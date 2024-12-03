@@ -305,19 +305,8 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
     // Execute the function to wrap elements
     if (router.pathname === '/') {
-      wrapElementsBetweenBlanks()
       //
-      document
-        .querySelectorAll('.notion-page-title-text')
-        .forEach(function (summary) {
-          // Select the <b> tag inside the <summary>
-          const boldTag = summary.querySelector('b')
-
-          // If a <b> tag exists, replace it with its text content
-          if (boldTag) {
-            boldTag.replaceWith(boldTag.textContent)
-          }
-        })
+      wrapElementsBetweenBlanks()
       // Select all elements with the 'notion-page-link' class
       const notionPageLinks = document.querySelectorAll('.notion-page-link')
       // Loop through all the selected elements and replace the class with 'notion-link'
@@ -351,6 +340,63 @@ export const NotionPage: React.FC<types.PageProps> = ({
           wrapper.remove()
         }
       })
+      // Select all elements with the class 'notion-link'
+      const notionLinks = document.querySelectorAll('.notion-link')
+
+      // Iterate through each notion-link
+      notionLinks.forEach((notionLink) => {
+        // Check if the parent of the notion-link has the 'custom-wrapper-class'
+        const parentWrapper = notionLink.closest('.custom-wrapper-class')
+
+        if (parentWrapper) {
+          // Check if the element is already wrapped with the 'notion-text' class
+          if (!notionLink.parentElement.classList.contains('notion-text')) {
+            // Create a new div with the class 'notion-text'
+            const wrapperDiv = document.createElement('div')
+            wrapperDiv.className = 'notion-text'
+
+            // Insert the wrapper div before the notion-link in the DOM
+            notionLink.parentNode.insertBefore(wrapperDiv, notionLink)
+
+            // Move the notion-link inside the wrapper div
+            wrapperDiv.appendChild(notionLink)
+          }
+        }
+      })
+      //
+      const notionTextElements = document.querySelectorAll(
+        '.notion-text'
+      ) as NodeListOf<HTMLElement>
+
+      if (notionTextElements.length > 0) {
+        // Get the last .notion-text element
+        const lastNotionTextElement =
+          notionTextElements[notionTextElements.length - 1]
+
+        const notionLinkElement = lastNotionTextElement.querySelector(
+          'a'
+        ) as HTMLAnchorElement
+
+        if (
+          notionLinkElement &&
+          notionLinkElement.href.includes(
+            'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en'
+          )
+        ) {
+          // Add a border to the top of the container above the last .notion-text element
+          const borderContainer = document.createElement('div')
+          borderContainer.style.borderTop = '1px solid rgba(229, 231, 235, 1)'
+          borderContainer.style.width = '100%'
+          borderContainer.style.marginTop = '10px'
+          borderContainer.style.marginBottom = '10px'
+
+          // Insert the border container before the last .notion-text element
+          lastNotionTextElement.parentNode?.insertBefore(
+            borderContainer,
+            lastNotionTextElement
+          )
+        }
+      }
     } else if (router.asPath === '/about-9a2ace4be0dc4d928e7d304a44a6afe8') {
       wrapHeadersAndContent()
     } else if (
@@ -381,6 +427,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         summaryElement.innerHTML = textContent
       })
     } else {
+      //
       document.querySelectorAll('.notion-title').forEach(function (summary) {
         // Select the <b> tag inside the <summary>
         const boldTag = summary.querySelector('b')
@@ -392,10 +439,51 @@ export const NotionPage: React.FC<types.PageProps> = ({
       })
       const customWrappers = document.querySelectorAll('.notion-text')
       customWrappers.forEach((wrapper) => {
-        if (wrapper.children.length === 0 && wrapper.textContent.trim() === '') {
+        if (
+          wrapper.children.length === 0 &&
+          wrapper.textContent.trim() === ''
+        ) {
           wrapper.remove()
         }
       })
+      // Find the parent container with the class 'notion-page-content-inner'
+      const notionPageContentInner = document.querySelector(
+        '.notion-page-content-inner'
+      )
+
+      // Check if the parent container exists and the page ID is not the specified one
+      if (pageId !== '14d19a13-312a-80ab-a903-d49ab333bd38') {
+        if (notionPageContentInner) {
+          // Create a div for the horizontal line
+          const lineDiv = document.createElement('div')
+          lineDiv.style.borderTop = '1px solid rgba(229, 231, 235, 1)' // Light grey line
+          lineDiv.style.width = '100%' // Ensure the line spans the container
+          lineDiv.style.marginTop = '8px' // Space above the line
+          lineDiv.style.marginBottom = '8px' // Space below the line
+
+          // Create the main text div
+          const notionTextDiv = document.createElement('div')
+          notionTextDiv.className = 'notion-text'
+          notionTextDiv.textContent = 'All classes are licensed under the'
+
+          // Create the anchor element
+          const notionLink = document.createElement('a')
+          notionLink.className = 'notion-link'
+          notionLink.href =
+            'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en'
+          notionLink.target = '_blank'
+          notionLink.rel = 'noopener noreferrer'
+          notionLink.textContent = 'CC-BY-NC-SA license'
+          notionLink.style.marginLeft = '5px' // Space between text and link
+
+          // Append the link to the text div
+          notionTextDiv.appendChild(notionLink)
+
+          // Append the horizontal line and text div to the parent container
+          notionPageContentInner.appendChild(lineDiv)
+          notionPageContentInner.appendChild(notionTextDiv)
+        }
+      }
     }
 
     const addSeeAllClassesButton = () => {
@@ -428,6 +516,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
       detailsElements.forEach((detailsElement) => {
         detailsElement.setAttribute('open', 'true') // Open the dropdown
+        detailsElement.style.paddingBottom = '8px'
         detailsElement.style.borderBottom = '1px solid hsl(214.3, 31.8%, 91.4%)'
       })
     }
@@ -441,6 +530,25 @@ export const NotionPage: React.FC<types.PageProps> = ({
     ) {
       setDropdownOpen()
       addSeeAllClassesButton()
+      const notionTextElements = document.querySelectorAll('.notion-text') // Select all elements with class 'notion-text'
+      notionTextElements.forEach((element) => {
+        if (element instanceof HTMLElement) {
+          // Ensure the element is an HTMLElement
+          element.style.setProperty('padding', '0', 'important') // Apply padding with !important
+          element.style.setProperty('margin', '0', 'important') // Apply margin with !important
+        }
+      })
+      // Get the notion-app element
+      const notionApp = document.querySelector('.notion-app')
+
+      // Get the button-container element
+      const buttonContainer = document.querySelector('.button-container')
+
+      // Check if both elements exist
+      if (notionApp && buttonContainer) {
+        // Move the button-container inside the notion-app
+        notionApp.appendChild(buttonContainer)
+      }
     }
   }, [router])
 
