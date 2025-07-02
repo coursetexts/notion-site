@@ -1,62 +1,109 @@
 import * as React from 'react'
 import { useState } from 'react'
 
-import styles from './styles.module.css'
-
 export const Footer: React.FC = () => {
-  // --- form logic integration ------------------------------------------------
-  const [topic, setTopic] = useState('')
-  const [status, setStatus] = useState<'success' | 'error' | null>(null)
+  const [requestTopic, setRequestTopic] = useState('')
+  const [requestStatus, setRequestStatus] = useState<
+    'success' | 'error' | null
+  >(null)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleRequestSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setStatus(null)
+    setRequestStatus(null)
 
     try {
       const response = await fetch('/api/append-to-sheet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topic })
+        body: JSON.stringify({ topic: requestTopic })
       })
 
       const result = await response.json()
 
       if (response.ok) {
-        setStatus('success')
-        setTopic('')
+        setRequestStatus('success')
+        setRequestTopic('')
       } else {
         throw new Error(result.message || 'Error appending to sheet')
       }
     } catch (error) {
       console.error(error)
-      setStatus('error')
+      setRequestStatus('error')
     }
   }
-  // ---------------------------------------------------------------------------
+
+  const MathLinks: { title: string; href: string }[] = [
+    {
+      title: 'Mathematical Biology-Evolutionary Dynamics',
+      href: '/mathematical-biology-evolutionary-dynamics-math-242-dff30cb6404848a4bf2bf4d0ba385c46'
+    },
+    {
+      title: 'Automorphic Forms and Arithmetic Statistics',
+      href: '/automorphic-forms-and-arithmetic-statistics-math-288x-12d19a13312a8066bbd8dc21cfee3969'
+    },
+
+    {
+      title: 'Vector Calculus and Linear Algebra II',
+      href: '/vector-calculus-and-linear-algebra-ii-math-22b-12d19a13312a8096ad91cf37d6973355'
+    },
+    {
+      title: 'Differential Geometry',
+      href: '/differential-geometry-math230a-12d19a13312a8028b457f080d389cd06'
+    },
+    {
+      title: 'Mathematics and the World',
+      href: '/mathematics-and-the-world-math-157-12b19a13312a807ea697ffc87aab9f0d'
+    },
+    {
+      title: 'Algebraic Geometry',
+      href: '/algebraic-geometry-math137-9991b187ee4d4e66a900e4462dbd59c4'
+    }
+  ]
+
+  const PhysicsLinks: { title: string; href: string }[] = [
+    {
+      title: 'Advanced Electromagnetism',
+      href: '/advanced-electromagnetismphysics-232-d82e8352f9b24e738aa57720d06e8995'
+    },
+    {
+      title: 'Modern Atomic and Optical Physics I',
+      href: '/modern-atomic-and-optical-physics-iphysics285a-4aeba2df8c1241ae9c7703c3d1d4ab63'
+    },
+    {
+      title: 'Frontiers in Biophysics',
+      href: '/frontiers-in-biophysicschem163-153883e7e7094a2e8473b7c626b8aa58'
+    }
+  ]
 
   return (
     <>
-      <footer className={styles.footerContainer}>
+      <footer className='w-full bg-[#0f0f10] text-white py-12 px-16 font-sans flex flex-col items-center max-[700px]:py-8 max-[700px]:px-12'>
         {/* Top section with columns */}
-        <div className={styles.footerColumns}>
-          <div className={styles.footerTop}>
-            <h2>
+        <div className='w-full mb-8'>
+          <div className='flex justify-between items-center w-full max-w-[1200px] mb-8 max-[700px]:flex-col max-[700px]:items-start'>
+            <h2 className="text-[1.75rem] font-medium max-w-[500px] leading-[1.4] font-['Tobias'] max-[700px]:leading-[130%] max-[700px]:text-base">
               A free and open archive of
               <br /> Harvard & MIT course materials
             </h2>
             {/* Styled form for input with button */}
             <div>
-              <form className={styles.footerForm} onSubmit={handleSubmit}>
+              <form
+                className='flex items-center overflow-hidden w-full max-w-[400px] bg-[#eeede8] rounded-lg focus:outline-none'
+                onSubmit={handleRequestSubmit}
+              >
                 <input
                   type='text'
                   placeholder='Request a Course...'
-                  className={styles.footerInput}
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
+                  className='bg-[#eeede8] rounded-lg border-none py-3 px-5 text-sm flex items-center w-full focus:outline-none text-gray-900'
+                  value={requestTopic}
+                  onChange={(e) => setRequestTopic(e.target.value)}
                   required
                 />
 
-                <button type='submit' className={styles.footerButton}>
+                <button
+                  type='submit'
+                  className='bg-[#d6ceb8] py-2.5 px-4 border-none flex items-center justify-center cursor-pointer hover:bg-[#c4baa3]'
+                >
                   {/* arrow icon */}
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -74,60 +121,53 @@ export const Footer: React.FC = () => {
               </form>
 
               {/* status messages */}
-              {status === 'success' && (
-                <p style={{ color: 'lightgreen', marginTop: '0.5rem' }}>
+              {requestStatus === 'success' && (
+                <p className='text-green-300 mt-2'>
                   Your request has been submitted!
                 </p>
               )}
-              {status === 'error' && (
-                <p style={{ color: 'red', marginTop: '0.5rem' }}>
+              {requestStatus === 'error' && (
+                <p className='text-red-500 mt-2'>
                   Sorry, there was an error. Please try again.
                 </p>
               )}
             </div>
           </div>
 
-          <div className={styles.footerRow}>
-            <div className={styles.footerCol}>
-              <div className={styles.footerColTitle}>Math</div>
-              <a href='/mathematical-biology-evolutionary-dynamics-math-242-dff30cb6404848a4bf2bf4d0ba385c46'>
-                Mathematical Biology-Evolutionary Dynamics
-              </a>
-              <a href='/automorphic-forms-and-arithmetic-statistics-math-288x-12d19a13312a8066bbd8dc21cfee3969'>
-                Automorphic Forms and Arithmetic Statistics
-              </a>
-              <a href='/vector-calculus-and-linear-algebra-ii-math-22b-12d19a13312a8096ad91cf37d6973355'>
-                Vector Calculus and Linear Algebra II
-              </a>
-              <a href='/differential-geometry-math230a-12d19a13312a8028b457f080d389cd06'>
-                Differential Geometry
-              </a>
-              <a href='/mathematics-and-the-world-math-157-12b19a13312a807ea697ffc87aab9f0d'>
-                Mathematics and the World
-              </a>
-              <a href='/algebraic-geometry-math137-9991b187ee4d4e66a900e4462dbd59c4'>
-                Algebraic Geometry
-              </a>
+          <div className='grid grid-cols-2 w-1/2 min-w-[180px] max-[700px]:w-full max-[700px]:gap-3 max-[350px]:hidden'>
+            <div className='mb-2 font-light'>
+              <div className='mt-6 mb-2 text-[0.8rem] text-[#D4CBAD]'>Math</div>
+              {MathLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  className='text-white cursor-pointer mb-2 text-[0.76rem] font-light flex w-full pr-2.5 hover:underline'
+                >
+                  {link.title}
+                </a>
+              ))}
             </div>
 
-            <div className={styles.footerCol}>
-              <div className={styles.footerColTitle}>Physics</div>
-              <a href='/advanced-electromagnetismphysics-232-d82e8352f9b24e738aa57720d06e8995'>
-                Advanced Electromagnetism
-              </a>
-              <a href='/modern-atomic-and-optical-physics-iphysics285a-4aeba2df8c1241ae9c7703c3d1d4ab63'>
-                Modern Atomic and Optical Physics I
-              </a>
-              <a href='/frontiers-in-biophysicschem163-153883e7e7094a2e8473b7c626b8aa58'>
-                Frontiers in Biophysics
-              </a>
+            <div className='mb-2 font-light'>
+              <div className='mt-6 mb-2 text-[0.8rem] text-[#D4CBAD]'>
+                Physics
+              </div>
+              {PhysicsLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  className='text-white cursor-pointer mb-2 text-[0.76rem] font-light flex w-full pr-2.5 hover:underline'
+                >
+                  {link.title}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Bottom strip with brand on left and links on right */}
-        <div className={styles.footerBottom}>
-          <div className={styles.footerBottomLeft}>
+        <div className='flex justify-between items-center w-full border-t border-[#333] pt-4 text-[0.9rem] max-[700px]:flex-col'>
+          <div className="flex font-bold font-['Tobias'] text-lg gap-1.5 max-[700px]:self-start max-[700px]:mb-4">
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -142,13 +182,28 @@ export const Footer: React.FC = () => {
             </svg>
             CourseTexts
           </div>
-          <div className={styles.footerLinks}>
-            <a href='https://hcb.hackclub.com/donations/start/coursetexts'>
+          <div className='flex flex-row min-w-[180px] justify-end gap-4 w-full text-center max-[700px]:w-full max-[700px]:justify-between max-[700px]:gap-2 max-[700px]:text-center max-[350px]:grid max-[350px]:grid-cols-2'>
+            <a
+              href='https://hcb.hackclub.com/donations/start/coursetexts'
+              className='text-white no-underline hover:underline'
+            >
               Donate
             </a>
-            <a href='/terms-of-service'>Terms of Service</a>
-            <a href='/privacy-policy'>Privacy Policy</a>
-            <a href='#'>NCA License</a>
+            <a
+              href='/terms-of-service'
+              className='text-white no-underline hover:underline'
+            >
+              Terms of Service
+            </a>
+            <a
+              href='/privacy-policy'
+              className='text-white no-underline hover:underline'
+            >
+              Privacy Policy
+            </a>
+            <a href='#' className='text-white no-underline hover:underline'>
+              NCA License
+            </a>
           </div>
         </div>
       </footer>
