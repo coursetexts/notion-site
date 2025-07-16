@@ -1228,13 +1228,16 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }, [router])
 
-  /*
-   * Effects run in the order they are defined
-   * Prevents flash of unstyled / pre-dom-manipulated content
-   */
+  // Prevent flash of unstyled / pre-dom-manipulated content
   const [isPageReady, setIsPageReady] = React.useState(false)
   React.useEffect(() => {
-    setIsPageReady(true)
+    const timer = setTimeout(() => {
+      setIsPageReady(true)
+    }, 50)
+
+    return () => {
+      clearTimeout(timer)
+    }
   }, [router.asPath])
 
   if (router.isFallback) {
