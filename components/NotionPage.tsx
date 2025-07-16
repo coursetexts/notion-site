@@ -1228,6 +1228,15 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }, [router])
 
+  /*
+   * Effects run in the order they are defined
+   * Prevents flash of unstyled / pre-dom-manipulated content
+   */
+  const [isPageReady, setIsPageReady] = React.useState(false)
+  React.useEffect(() => {
+    setIsPageReady(true)
+  }, [router.asPath])
+
   if (router.isFallback) {
     return <Loading />
   }
@@ -1304,7 +1313,11 @@ export const NotionPage: React.FC<types.PageProps> = ({
   // }, [router, pageClass]);
 
   return (
-    <>
+    <div
+      style={{
+        opacity: isPageReady ? 1 : 0
+      }}
+    >
       <PageHead
         pageId={pageId}
         site={site}
@@ -1361,6 +1374,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
       {pageClass === 'notion-home' && <License />}
       <Footer />
       {/* <GitHubShareButton /> */}
-    </>
+    </div>
   )
 }
