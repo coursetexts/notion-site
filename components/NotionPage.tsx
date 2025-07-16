@@ -1231,13 +1231,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
   // Prevent flash of unstyled / pre-dom-manipulated content
   const [isPageReady, setIsPageReady] = React.useState(false)
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPageReady(true)
-    }, 50)
-
-    return () => {
-      clearTimeout(timer)
-    }
+    setIsPageReady(true)
   }, [router.asPath])
 
   if (router.isFallback) {
@@ -1318,7 +1312,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
   return (
     <div
       style={{
-        opacity: isPageReady ? 1 : 0
+        visibility: isPageReady ? 'visible' : 'hidden'
       }}
     >
       <PageHead
