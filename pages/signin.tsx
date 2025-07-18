@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 
 export default function SignIn() {
-  const router = useRouter();
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+    e.preventDefault()
+    setError('')
+    setIsLoading(true)
 
     try {
       const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
-      });
+        body: JSON.stringify({ password })
+      })
 
       if (res.ok) {
         // Redirect to the originally requested page or homepage
-        const redirectUrl = router.query.redirect as string || '/';
-        await router.push(redirectUrl);
+        const redirectUrl = (router.query.redirect as string) || '/'
+        await router.push(redirectUrl)
       } else {
-        const data = await res.json();
-        setError(data.message || 'Invalid password');
+        const data = await res.json()
+        setError(data.message || 'Invalid password')
       }
     } catch (err) {
-      console.error('Login error:', err);
-      setError('An unexpected error occurred. Please try again.');
+      console.error('Login error:', err)
+      setError('An unexpected error occurred. Please try again.')
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   // Basic styling for the form
   const styles: { [key: string]: React.CSSProperties } = {
@@ -44,7 +44,7 @@ export default function SignIn() {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
-      fontFamily: 'sans-serif',
+      fontFamily: 'sans-serif'
     },
     form: {
       padding: '2rem',
@@ -54,12 +54,12 @@ export default function SignIn() {
       display: 'flex',
       flexDirection: 'column',
       gap: '1rem',
-      minWidth: '300px',
+      minWidth: '300px'
     },
     input: {
       padding: '0.5rem',
       border: '1px solid #ccc',
-      borderRadius: '4px',
+      borderRadius: '4px'
     },
     button: {
       padding: '0.75rem',
@@ -68,14 +68,14 @@ export default function SignIn() {
       backgroundColor: '#0070f3',
       color: 'white',
       cursor: 'pointer',
-      fontSize: '1rem',
+      fontSize: '1rem'
     },
     error: {
       color: 'red',
       marginTop: '0.5rem',
-      textAlign: 'center',
-    },
-  };
+      textAlign: 'center'
+    }
+  }
 
   return (
     <>
@@ -86,20 +86,20 @@ export default function SignIn() {
         <h2>Preview Site Sign In</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           <input
-            type="password"
-            placeholder="Password"
+            type='password'
+            placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             style={styles.input}
             disabled={isLoading}
           />
-          <button type="submit" disabled={isLoading} style={styles.button}>
+          <button type='submit' disabled={isLoading} style={styles.button}>
             {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
           {error && <p style={styles.error}>{error}</p>}
         </form>
       </div>
     </>
-  );
+  )
 }

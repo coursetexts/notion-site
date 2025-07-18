@@ -7,7 +7,7 @@ if (!rawSiteConfig) {
 
 // allow environment variables to override site.config.ts
 let siteConfigOverrides: SiteConfig
-let siteOverridesManual = {};
+let siteOverridesManual = {}
 
 try {
   if (process.env.NEXT_PUBLIC_NOTION_PAGE_ID) {
