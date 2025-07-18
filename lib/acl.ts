@@ -52,4 +52,8 @@ export async function pageAcl({
       }
     }
   }
+
+  // If none of the above ACL checks triggered an error, return an empty object
+  // indicating successful authorization.
+  return {}
 }
