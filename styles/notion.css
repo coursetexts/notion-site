@@ -13,6 +13,7 @@
   font-weight: lighter;
   font-style: normal;
   letter-spacing: -4%;
+  font-display: swap;
 }
 
 @font-face {
@@ -21,14 +22,15 @@
   font-weight: medium;
   font-style: normal;
   letter-spacing: -4%;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'UntitledSans';
   src: url('/fonts/UntitledSans-Regular.woff') format('woff');
   font-weight: normal;
-
   font-style: normal;
+  font-display: swap;
 }
 
 .notion-page-content-inner {
@@ -808,8 +810,8 @@
   line-height: 1rem;
   vertical-align: middle;
   line-height: 1rem;
-  align-items: center;        /* Add this */
-  gap: 0.5em; 
+  align-items: center; /* Add this */
+  gap: 0.5em;
 }
 .course-page .notion-page-content-inner > :nth-child(3) {
   border-bottom: 1px solid #e5e1d3;
@@ -978,7 +980,6 @@
   grid-column: 2;
   grid-row: 1; /* ensure it starts at the first row */
 }
-
 
 /* every *other* direct child stays in the left column */
 .course-page .notion-page-content-inner > *:not(.content-table) {

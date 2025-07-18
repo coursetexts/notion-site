@@ -1,13 +1,5 @@
 @import 'tailwindcss';
 
-@font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-Regular.woff') format('woff2'),
-    url('/fonts/TobiasTRIAL-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 * {
   box-sizing: border-box;
 }
