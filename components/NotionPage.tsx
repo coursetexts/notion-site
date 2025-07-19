@@ -28,9 +28,9 @@ import FeedbackForm from './FeedbackForm'
 // React 18+
 import FilterRow from './FilterRow'
 import { Footer } from './Footer'
+import { Header } from './Header'
 // import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
-import { NotionPageHeader } from './NotionPageHeader'
 import { Page404 } from './Page404'
 // import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
@@ -734,75 +734,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
       }
     })
 
-    // Header
-    const header = document.querySelector('.breadcrumbs')
-    if (header) {
-      const nav = document.createElement('nav')
-      nav.classList.add('nav-container') // Optionally add a class to the <nav> tag for styling
-
-      const links = [
-        { href: '/', label: 'Coursetexts' },
-        // { href: '/about', label: 'About' },
-        { href: '/why', label: 'Why' },
-        { href: donate, label: 'Donate', target: '_blank', rel: 'noreferrer' }
-      ]
-
-      links.forEach((link, index) => {
-        const anchor = document.createElement('a')
-        anchor.href = link.href
-        anchor.classList.add('nav-link') // Add styling class to <a> tag
-
-        // Apply target and rel attributes if they exist
-        if (link.target) {
-          anchor.target = link.target
-        }
-        if (link.rel) {
-          anchor.rel = link.rel
-        }
-
-        // Apply flexbox to align vertically
-        anchor.style.display = 'flex'
-        anchor.style.flexDirection = 'row' // Stack SVG and text vertically
-        anchor.style.alignItems = 'center' // Center align items
-        anchor.style.textDecoration = 'none' // Remove underline
-        anchor.style.color = 'black' // Set text color
-        anchor.style.gap = '4px' // Space between SVG and text
-
-        // If it's the first link, insert the SVG
-        if (index === 0) {
-          const svgIcon = document.createElementNS(
-            'http://www.w3.org/2000/svg',
-            'svg'
-          )
-          svgIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-          svgIcon.setAttribute('width', '24')
-          svgIcon.setAttribute('height', '25')
-          svgIcon.setAttribute('viewBox', '0 0 24 25')
-          svgIcon.setAttribute('fill', 'none')
-
-          const path = document.createElementNS(
-            'http://www.w3.org/2000/svg',
-            'path'
-          )
-          path.setAttribute(
-            'd',
-            'M21.9 18.8375L18.0187 4.34375C17.9155 3.95963 17.6639 3.63225 17.3194 3.43358C16.9748 3.23492 16.5654 3.18125 16.1813 3.28438L13.2844 4.0625L13.1906 4.09062C13.0509 3.90732 12.8708 3.75868 12.6643 3.65625C12.4578 3.55382 12.2305 3.50035 12 3.5H9C8.73609 3.50071 8.47716 3.57191 8.25 3.70625C8.02284 3.57191 7.76391 3.50071 7.5 3.5H4.5C4.10218 3.5 3.72064 3.65804 3.43934 3.93934C3.15804 4.22064 3 4.60218 3 5V20C3 20.3978 3.15804 20.7794 3.43934 21.0607C3.72064 21.342 4.10218 21.5 4.5 21.5H7.5C7.76391 21.4993 8.02284 21.4281 8.25 21.2938C8.47716 21.4281 8.73609 21.4993 9 21.5H12C12.3978 21.5 12.7794 21.342 13.0607 21.0607C13.342 20.7794 13.5 20.3978 13.5 20V10.6625L16.1063 20.3844C16.1912 20.7047 16.3798 20.988 16.6427 21.1898C16.9056 21.3916 17.2279 21.5007 17.5594 21.5C17.6888 21.4978 17.8176 21.482 17.9437 21.4531L20.8406 20.675C21.2247 20.5718 21.5521 20.3202 21.7508 19.9756C21.9495 19.631 22.0031 19.2216 21.9 18.8375ZM16.5656 4.7375L17.1562 6.90313L14.2594 7.68125L13.6688 5.51563L16.5656 4.7375ZM12 5V16.25H9V5H12ZM7.5 5V7.25H4.5V5H7.5ZM12 20H9V17.75H12V20ZM20.4562 19.2219L17.5594 20L16.9688 17.825L19.875 17.0469L20.4562 19.2219Z'
-          )
-          path.setAttribute('fill', 'black')
-
-          svgIcon.appendChild(path)
-          anchor.appendChild(svgIcon) // Append SVG before text
-        }
-
-        const textNode = document.createTextNode(link.label)
-        anchor.appendChild(textNode)
-
-        nav.appendChild(anchor) // Append each <a> to the <nav>
-      })
-
-      header.appendChild(nav) // Append <nav> to the .notion-nav-header
-    }
-
     function removeNotionLinkWithText() {
       // Select all anchor tags with the class 'notion-link'
       const anchorTags = document.querySelectorAll('a.notion-link')
@@ -1133,7 +1064,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
       Pdf,
       Modal,
       Tweet,
-      Header: NotionPageHeader,
       propertyLastEditedTimeValue,
       propertyTextValue,
       propertyDateValue
@@ -1339,6 +1269,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           visibility: isMounted ? 'visible' : 'hidden'
         }}
       >
+        <Header />
         <NotionRenderer
           bodyClassName={cs(
             styles.notion,
@@ -1350,6 +1281,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           rootPageId={site.rootNotionPageId}
           rootDomain={site.domain}
           fullPage={!isLiteMode}
+          disableHeader={true}
           previewImages={!!recordMap.preview_images}
           showCollectionViewDropdown={false}
           showTableOfContents={showTableOfContents}
