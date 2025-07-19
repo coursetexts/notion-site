@@ -50,13 +50,17 @@ export const Header = () => {
         </div>
 
         {/* Right Section */}
-        <div
-          className='border border-gray-400/50 py-1 px-3 rounded-md flex items-center gap-2 text-sm min-w-fit
+        <button
+          className='border border-gray-400/50 py-1 px-3 rounded-md flex items-center gap-2 text-sm
+                    cursor-pointer hover:bg-black/3 transition-colors duration-200
                     w-fit sm:w-36 md:w-40 lg:w-44 xl:w-48'
+          onClick={() => {
+            console.log('search')
+          }}
         >
           <SearchIcon />
           <span className=''>Search</span>
-        </div>
+        </button>
       </div>
     </div>
   )
