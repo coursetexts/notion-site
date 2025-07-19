@@ -3,7 +3,7 @@ import React from 'react'
 
 import { donate } from '@/lib/config'
 
-import { SearchIcon } from './custom-icons'
+import SearchDialog from './SearchDialog'
 
 export const Header = () => {
   return (
@@ -49,18 +49,8 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Right Section */}
-        <button
-          className='border border-gray-400/50 py-1 px-3 rounded-md flex items-center gap-2 text-sm
-                    cursor-pointer hover:bg-black/3 transition-colors duration-200
-                    w-fit sm:w-36 md:w-40 lg:w-44 xl:w-48'
-          onClick={() => {
-            console.log('search')
-          }}
-        >
-          <SearchIcon />
-          <span className=''>Search</span>
-        </button>
+        {/* Right Section: Search Dialog/Modal */}
+        <SearchDialog />
       </div>
     </div>
   )
