@@ -10,9 +10,9 @@ export const Header = () => {
     <div className='w-full border-b border-[#AAAEB3] bg-[var(--bg-color)] px-[3%]'>
       <div className='flex items-center justify-between w-full py-3'>
         {/* Left Section */}
-        <div className='flex items-center gap-8'>
+        <div className='flex items-center'>
           <Link href='/'>
-            <a className='flex items-center gap-[4px]'>
+            <a className='flex items-center'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='24'
@@ -26,28 +26,34 @@ export const Header = () => {
                   fill='black'
                 ></path>
               </svg>
-              <h1 className='font-[tobias-med] text-[17px] font-bold'>
+              <h1 className='font-[tobias-med] text-lg font-bold hidden lg:block lg:ml-[4px]'>
                 Coursetexts
               </h1>
+              <div className='w-px h-[0.875rem] bg-gray-400 opacity-50 mx-[1rem]'></div>
             </a>
           </Link>
-          <Link href='/why'>
-            <a className='text-[17px] font-extralight font-sans hover:opacity-80'>
-              Why
+          <div className='flex items-center gap-4'>
+            <Link href='/why'>
+              <a className='text-md font-extralight font-sans hover:opacity-80'>
+                Why
+              </a>
+            </Link>
+            <a
+              href={donate}
+              target='_blank'
+              rel='noreferrer'
+              className='text-md font-extralight font-sans hover:opacity-80'
+            >
+              Donate
             </a>
-          </Link>
-          <a
-            href={donate}
-            target='_blank'
-            rel='noreferrer'
-            className='text-[17px] font-extralight font-sans hover:opacity-80'
-          >
-            Donate
-          </a>
+          </div>
         </div>
 
         {/* Right Section */}
-        <div className='border py-1 px-3 rounded-md flex items-center gap-2 text-sm w-48'>
+        <div
+          className='border border-gray-400/50 py-1 px-3 rounded-md flex items-center gap-2 text-sm min-w-fit
+                    w-fit sm:w-36 md:w-40 lg:w-44 xl:w-48'
+        >
           <SearchIcon />
           <span className=''>Search</span>
         </div>
