@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import React from 'react'
 
+import { Header } from '@/components/Header'
+
 const PrivacyAndPolicy = () => {
   return (
     <>
@@ -10,29 +12,7 @@ const PrivacyAndPolicy = () => {
       </Head>
       <div className='notion notion-app'>
         <div className='notion-frame'>
-          <header className='notion-header'>
-            <div className='notion-nav-header'>
-              <div className='breadcrumbs'>
-                <div className='breadcrumb active'>
-                  <span className='title'>Coursetexts</span>
-                </div>
-                <nav className='nav-container'>
-                  <a href='/' className='nav-link'>
-                    Coursetexts
-                  </a>
-                  {/* <a
-                    href='/about-9a2ace4be0dc4d928e7d304a44a6afe8'
-                    className='nav-link'
-                  >
-                    About
-                  </a> */}
-                  <a href='/why' className='nav-link'>
-                    Why Coursetexts?
-                  </a>
-                </nav>
-              </div>
-            </div>
-          </header>
+          <Header />
           <div className='notion-page-scroller'>
             <main
               style={{ marginBottom: '2rem' }}
