@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import type { SearchResults } from 'notion-types'
 
@@ -22,6 +22,7 @@ export default function SearchDialog() {
   const [query, setQuery] = useState('')
   const [searchResults, setSearchResults] = useState<SearchResults | null>(null)
 
+  // Cmd + K Hotkey
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -34,16 +35,23 @@ export default function SearchDialog() {
     return () => document.removeEventListener('keydown', down)
   }, [])
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    if (query) {
+  // Search delay of 300 ms
+  useEffect(() => {
+    if (!query) {
+      setSearchResults(null)
+      return
+    }
+
+    const timeoutId = setTimeout(async () => {
       const results = await searchNotion({
         query,
         ancestorId: rootNotionPageId
       })
       setSearchResults(results)
-    }
-  }
+    }, 300)
+
+    return () => clearTimeout(timeoutId)
+  }, [query])
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -70,13 +78,13 @@ export default function SearchDialog() {
           <DialogTitle>Search</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={onSubmit} className='space-y-8'>
+        <div className='space-y-8'>
           <Input
             placeholder='Search for a course'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-        </form>
+        </div>
 
         {searchResults && (
           <div className='flex flex-col gap-2 mt-4'>
