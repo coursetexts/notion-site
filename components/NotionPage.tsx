@@ -221,18 +221,6 @@ function addReactComponentBeforeTitle(reactNode: React.ReactNode) {
     .catch((err) => console.warn(err.message))
 }
 
-function addReactComponentAfterHeader(reactNode: React.ReactNode) {
-  waitForElement('.notion-header')
-    .then((notionHeader) => {
-      if (!notionHeader) return
-      const newContainer = document.createElement('div')
-      newContainer.className = 'fill-article-row'
-      notionHeader.insertAdjacentElement('afterend', newContainer)
-      createRoot(newContainer).render(reactNode)
-    })
-    .catch((err) => console.warn(err.message))
-}
-
 export const NotionPage: React.FC<types.PageProps> = ({
   site,
   recordMap,
@@ -421,8 +409,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
         </a>
       )
     }
-
-    addReactComponentAfterHeader(<UpdateNoticeBanner />)
   }, [pageClass])
 
   // 2) Filter .custom-wrapper-class i.e. the course cards each time searchValue or department changes
@@ -1270,6 +1256,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         }}
       >
         <Header />
+        <UpdateNoticeBanner />
         <NotionRenderer
           bodyClassName={cs(
             styles.notion,
