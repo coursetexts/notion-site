@@ -26,10 +26,8 @@ if (!rootNotionPageId) {
 }
 
 // if you want to restrict pages to a single notion workspace (optional)
-export const rootNotionSpaceId: string | null = parsePageId(
-  getSiteConfig('rootNotionSpaceId', null),
-  { uuid: true }
-)
+export const rootNotionSpaceId: string | null =
+  parsePageId(getSiteConfig('rootNotionSpaceId', null), { uuid: true }) || null
 
 export const pageUrlOverrides = cleanPageUrlMap(
   getSiteConfig('pageUrlOverrides', {}) || {},
@@ -112,7 +110,7 @@ export const navigationLinks: Array<NavigationLink | null> = getSiteConfig(
 )
 
 // Optional site search
-export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true);
+export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true)
 
 // ----------------------------------------------------------------------------
 
@@ -175,7 +173,9 @@ export const posthogConfig: Partial<PostHogConfig> = {
   api_host: 'https://app.posthog.com'
 }
 
-export const googleAnalyticsId = isDev ? null : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+export const googleAnalyticsId = isDev
+  ? null
+  : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 function cleanPageUrlMap(
   pageUrlMap: PageUrlOverridesMap,
