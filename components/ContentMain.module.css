@@ -1,0 +1,40 @@
+.root {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.viewBar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 3rem;
+  border-bottom: 1px solid #e5e1d3;
+  flex-shrink: 0;
+}
+
+.slot {
+  width: 100%;
+  min-width: 0;
+  padding: 2rem 3rem 4rem;
+  box-sizing: border-box;
+}
+
+.pdfWrap {
+  margin-bottom: 2rem;
+}
+
+.slotContent {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .viewBar {
+    padding: 1rem 1.25rem;
+  }
+
+  .slot {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+}

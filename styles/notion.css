@@ -1530,7 +1530,8 @@ summary .notion-h3 .notion-h-title {
 }
 
 .course-page .notion-page-scroller {
-  padding: 0 4%;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .notion-callout-text > b {
@@ -1604,4 +1605,39 @@ summary .notion-h3 .notion-h-title {
 
 .course-left-column .notion-gray {
   text-transform: uppercase !important;
+}
+
+/* ─── COURSE CONTENT LAYOUT (directly under Course Hero) ───────────────────
+   .course-content-mount wraps TableOfContents (left) + ContentMain (right).
+   Visually separated from the hero so the TOC sits clearly underneath.
+   .notion-page-content-inner is moved into ContentMain; force single column
+   and hide the old left column so only the main tabbed content shows. */
+.course-content-mount {
+  width: 100%;
+  min-width: 0;
+  background-color: #fff;
+  border-top: 1px solid #e5e1d3;
+}
+
+.course-content-mount .notion-page-content-inner {
+  display: block;
+  grid-template-columns: unset;
+  max-width: 100%;
+}
+
+.course-content-mount .notion-page-content-inner > .course-left-column {
+  display: none;
+}
+
+.course-content-mount .notion-page-content-inner > .content-table {
+  grid-column: unset;
+  grid-row: unset;
+}
+
+/* Only show the active tab’s panel; hide the rest so only that heading’s content is visible */
+.course-content-mount .course-content-section {
+  display: none !important;
+}
+.course-content-mount .course-content-section.content-section-active {
+  display: block !important;
 }

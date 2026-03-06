@@ -28,6 +28,7 @@ import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 // import { HeroButterflies } from './HeroButterflies'
+import { CourseContent } from './CourseContent'
 import { CourseHero, type CourseHeroData } from './CourseHero'
 import FeedbackForm from './FeedbackForm'
 // React 18+
@@ -587,13 +588,20 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }
 
+  /**
+   * Build tabs from article (Notion page) content: find the section between
+   * the two <hr> dividers, then group everything under each heading until
+   * we see the next heading. Each heading becomes a tab; its content goes
+   * into that tab’s panel. Run after the course hero is loaded so we’re
+   * only scraping the article content.
+   */
   function wrapElementsBetweenDividers(): void {
     const headingSelector =
       'h1[class*="notion-"], h2[class*="notion-"], h3[class*="notion-"]'
     const isHeading = (el: Element | null): el is HTMLElement =>
       !!el && el.matches(headingSelector)
 
-    /* ---------- 1 · find the delimiting <hr> ---------------------------- */
+    /* ---------- 1 · find the article section (between 2nd and 3rd <hr>) --- */
     const dividers = Array.from(document.querySelectorAll('hr.notion-hr'))
     if (dividers.length < 4) return // page layout must have changed
     const startDivider = dividers[1] // 2nd <hr>
@@ -621,25 +629,24 @@ export const NotionPage: React.FC<types.PageProps> = ({
     const panelContainer = document.createElement('div') // holds the panels
     tabsBlock.append(tabBar, panelContainer) // keep them together
 
-    /* ---------- 4 · walk through the nodes between the two <hr> -------- */
+    /* ---------- 4 · article: under each heading, group until next heading */
     let node: Element | null = startDivider.nextElementSibling
     let tabIndex = 0
 
     while (node && node !== endDivider) {
       if (isHeading(node)) {
-        /* ----- create a new tab-panel ---------------------------------- */
+        /* ----- new tab = this heading; content = everything until next heading ----- */
         const afterHeading = node.nextElementSibling
 
         const wrapper = document.createElement('div')
-        wrapper.className = 'custom-divider-wrapper-tabcontent'
+        wrapper.className =
+          'custom-divider-wrapper-tabcontent' +
+          (tabIndex === 0 ? ' content-tab-panel-active' : '')
         wrapper.dataset.tab = String(tabIndex)
-        if (tabIndex !== 0) wrapper.style.display = 'none'
-
-        // Remove duplicate tab text (heading) and add consistent top padding for content
-        node.remove()
         wrapper.style.paddingTop = '12px'
 
-        /* swallow everything until next heading or the end divider ----- */
+        node.remove()
+
         let sib = afterHeading
         while (sib && !isHeading(sib) && sib !== endDivider) {
           const nxt = sib.nextElementSibling
@@ -653,16 +660,14 @@ export const NotionPage: React.FC<types.PageProps> = ({
         btn.className = tabIndex === 0 ? 'tab-btn active' : 'tab-btn'
         btn.textContent = node.textContent?.trim() || `Tab ${tabIndex + 1}`
         btn.addEventListener('click', () => {
-          /* hide all panels + deactivate all buttons */
           panelContainer
             .querySelectorAll<HTMLElement>('.custom-divider-wrapper-tabcontent')
-            .forEach((p) => (p.style.display = 'none'))
+            .forEach((p) => p.classList.remove('content-tab-panel-active'))
           tabBar
             .querySelectorAll<HTMLButtonElement>('.tab-btn')
             .forEach((b) => b.classList.remove('active'))
 
-          /* show selected */
-          wrapper.style.display = ''
+          wrapper.classList.add('content-tab-panel-active')
           btn.classList.add('active')
         })
         tabBar.appendChild(btn)
@@ -1142,9 +1147,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
         summaryElement.innerHTML = textContent
       })
     } else {
-      //
-
-      wrapElementsBetweenDividers()
+      // Non–course pages: build tabs from content between <hr> dividers.
+      // Course pages use the heading-based section builder in CourseContent instead.
+      const isCoursePage = document.querySelector('.course-page')
+      if (!isCoursePage) {
+        wrapElementsBetweenDividers()
+      }
 
       document.querySelectorAll('.notion-title').forEach(function (summary) {
         // Select the <b> tag inside the <summary>
@@ -1394,6 +1402,13 @@ export const NotionPage: React.FC<types.PageProps> = ({
     hiddenNodes: HTMLElement[]
   }>({ root: null, container: null, hiddenNodes: [] })
 
+  const courseContentRef = React.useRef<{
+    root: Root | null
+    container: HTMLElement | null
+    originalParent: HTMLElement | null
+    originalNextSibling: ChildNode | null
+  }>({ root: null, container: null, originalParent: null, originalNextSibling: null })
+
   const COURSE_HERO_STORAGE_KEY = 'courseHero'
 
   /**
@@ -1563,6 +1578,91 @@ export const NotionPage: React.FC<types.PageProps> = ({
         .forEach((el) => el.removeAttribute('data-course-hero-rendered'))
     }
   }, [pageClass, pageId, title])
+
+  /**
+   * Course content layout: wait for hero, then optionally give the tab structure
+   * (.content-table) a short time to appear so the TOC can populate. Either way,
+   * we always mount the course content section and move the main content into it.
+   */
+  React.useEffect(() => {
+    if (pageClass !== 'course-page') return
+
+    let cancelled = false
+    const contentInnerToMoveRef = { current: null as HTMLElement | null }
+
+    function mountCourseContent() {
+      if (cancelled) return
+      const contentInner = document.querySelector(
+        '.course-page .notion-page-content-inner'
+      ) as HTMLElement
+      if (!contentInner?.parentElement) return
+      if (contentInner.hasAttribute('data-course-content-wrapped')) return
+
+      const parent = contentInner.parentElement
+      if (!parent) return
+
+      const mount = document.createElement('div')
+      mount.className = 'course-content-mount'
+      mount.setAttribute('data-course-content-mount', 'true')
+      const hero = parent.querySelector('.course-hero-mount')
+      const insertBeforeNode = hero ? hero.nextSibling : contentInner
+      parent.insertBefore(mount, insertBeforeNode)
+
+      contentInnerToMoveRef.current = contentInner
+
+      const cc = courseContentRef.current
+      cc.container = mount
+      cc.root = createRoot(mount)
+
+      cc.root.render(
+        <CourseContent
+          mainRef={(el) => {
+            const node = contentInnerToMoveRef.current
+            if (!el || !node) return
+            cc.originalParent = node.parentElement
+            cc.originalNextSibling = node.nextSibling
+            el.appendChild(node)
+            contentInnerToMoveRef.current = null
+            node.setAttribute('data-course-content-wrapped', 'true')
+          }}
+        />
+      )
+    }
+
+    waitForElement('.course-page .notion-page-content-inner')
+      .then(() =>
+        waitForElement('.course-hero-mount', 8000).catch(() => null)
+      )
+      .then(() => {
+        mountCourseContent()
+      })
+      .catch(() => {
+        mountCourseContent()
+      })
+
+    return () => {
+      cancelled = true
+      const { root, container, originalParent, originalNextSibling } =
+        courseContentRef.current
+      if (container) {
+        const inner = container.querySelector('.notion-page-content-inner')
+        if (inner && originalParent) {
+          originalParent.insertBefore(inner, originalNextSibling)
+          inner.removeAttribute('data-course-content-wrapped')
+        }
+      }
+      if (root && container) {
+        try {
+          root.unmount()
+        } catch (_) {}
+        container.remove()
+        courseContentRef.current.root = null
+        courseContentRef.current.container = null
+        courseContentRef.current.originalParent = null
+        courseContentRef.current.originalNextSibling = null
+      }
+    }
+  }, [pageClass])
 
   React.useEffect(() => {
     // After wrapping courses, check if none exist and add maintenance message
