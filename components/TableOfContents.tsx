@@ -50,16 +50,20 @@ export interface TableOfContentsProps {
   contentRef?: React.RefObject<HTMLDivElement | null>
   /** TOC entries (tabs + subtabs) from the heading-based section builder. */
   items?: TocItem[]
+  /** When a TOC link is clicked: (href, label?). storage.googleapis URLs load in PDF viewer; others open in new tab. */
+  onLinkClick?: (href: string, label?: string) => void
   title?: string
 }
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({
   contentRef,
   items: itemsProp = [],
+  onLinkClick,
   title = 'Table of Contents'
 }) => {
   const [search, setSearch] = React.useState('')
   const [activeTabIndex, setActiveTabIndex] = React.useState(0)
+  const [activeSubtabId, setActiveSubtabId] = React.useState<string | null>(null)
 
   const items = itemsProp.map((item) => ({
     ...item,
@@ -82,6 +86,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   const handleTabClick = (tabIndex: number) => {
     setActiveTabIndex(tabIndex)
+    setActiveSubtabId(null)
     const container = contentRef?.current ?? null
     if (!container) return
     const root = container.closest('.course-content-mount') || container
@@ -100,8 +105,13 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     if (tabIndex !== activeTabIndex) {
       handleTabClick(tabIndex)
     }
+    setActiveSubtabId(child.id ?? null)
     if (child.href) {
-      window.location.href = child.href
+      if (onLinkClick) {
+        onLinkClick(child.href, child.label)
+      } else {
+        window.open(child.href, '_blank', 'noopener,noreferrer')
+      }
       return
     }
     if (child.id && contentRef?.current) {
@@ -150,7 +160,11 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
                 {item.children.map((child, j) => (
                   <li key={child.id ?? j}>
                     <div
-                      className={styles.childItem}
+                      className={
+                        child.id === activeSubtabId
+                          ? `${styles.childItem} ${styles.childItemActive}`
+                          : styles.childItem
+                      }
                       role="button"
                       tabIndex={0}
                       onClick={() => handleSubtabClick(item.tabIndex, child)}

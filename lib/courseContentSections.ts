@@ -124,9 +124,12 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
     })
 
     const seen = new Set<string>()
+    const sectionLabelNorm = sec.label.trim().toLowerCase()
     candidates.forEach((c, j) => {
-      if (seen.has(c.label)) return
-      seen.add(c.label)
+      const labelNorm = c.label.trim().toLowerCase()
+      if (seen.has(labelNorm)) return
+      if (labelNorm === sectionLabelNorm) return
+      seen.add(labelNorm)
       const id = `toc-${tabIndex}-${j}`
       c.el.setAttribute(DATA_TOC_ID, id)
       children.push({ id, label: c.label, href: c.href })

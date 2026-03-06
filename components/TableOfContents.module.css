@@ -103,6 +103,18 @@
   color: #25272b;
 }
 
+.childItemActive {
+  background-color: #e8eef5;
+  color: #1e40af;
+  border-radius: 4px;
+  margin: 0 -0.25rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.childItemActive:hover {
+  color: #1e3a8a;
+}
+
 .emptyState {
   font-family: 'UntitledSans', sans-serif;
   font-size: 0.8125rem;

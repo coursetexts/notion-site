@@ -24,6 +24,64 @@
   margin-bottom: 2rem;
 }
 
+.pdfTitle {
+  margin: 0 0 1.25rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #242424;
+  letter-spacing: -0.02em;
+  font-family: 'Tobias', serif;
+
+}
+
+.markCompleteWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.markCompleteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  margin-bottom: 0;
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #4a4a4a;
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.markCompleteBtn:hover {
+  background-color: #efefef;
+  border-color: #d5d5d5;
+  color: #3a3a3a;
+}
+
+.markCompleteIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.75rem;
+  color: #4a4a4a;
+  background-color: #fff;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.markCompleteText {
+  line-height: 1.2;
+}
+
 .slotContent {
   width: 100%;
   min-width: 0;

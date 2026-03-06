@@ -12,6 +12,8 @@ export interface ContentMainProps {
   annotationCount?: number
   /** Optional PDF URL to embed at the top of the content main section */
   pdfUrl?: string
+  /** Item name to show above the PDF viewer (e.g. selected TOC link label) */
+  pdfTitle?: string
 }
 
 export const ContentMain: React.FC<ContentMainProps> = ({
@@ -20,7 +22,8 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   showAnnotations = false,
   onShowAnnotations,
   annotationCount = 0,
-  pdfUrl
+  pdfUrl,
+  pdfTitle
 }) => {
   const showViewBar = onShowAnnotations && !showAnnotations
 
@@ -37,7 +40,16 @@ export const ContentMain: React.FC<ContentMainProps> = ({
       <div className={styles.slot}>
         {pdfUrl && (
           <div className={styles.pdfWrap}>
+            {pdfTitle && (
+              <h2 className={styles.pdfTitle}>{pdfTitle}</h2>
+            )}
             <PdfEmbed url={pdfUrl} title="Course PDF" />
+            <div className={styles.markCompleteWrap}>
+              <button type="button" className={styles.markCompleteBtn} aria-label="Mark as completed">
+                <span className={styles.markCompleteIcon} aria-hidden>✓</span>
+                <span className={styles.markCompleteText}>Mark as Completed</span>
+              </button>
+            </div>
           </div>
         )}
         <div ref={innerRef} className={styles.slotContent}>
