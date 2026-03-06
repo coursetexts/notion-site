@@ -1,0 +1,98 @@
+.root {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: 2.5rem 3rem;
+  align-items: start;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  min-width: 0;
+  /* Temporary: bright background so you can spot the hero */
+  background-color: #ffffff0c;
+  padding: 1.5rem;
+}
+
+.left {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.courseCode {
+  color: #5D534B;
+  font-family: 'TobiasMed', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: Tobias, serif;
+  font-weight: 600;
+  color: #140c00;
+  font-size: 3rem;
+  line-height: 1.3;
+  letter-spacing: -1.94px;
+  margin: 0 0 0.75rem 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.instructor {
+  margin-top: 2rem;
+}
+
+.instructorLink {
+  font-family: 'TobiasMed', sans-serif;
+  color: #5D534B;
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: none;
+  letter-spacing: -0.16px;
+}
+
+.instructorLink:hover {
+  opacity: 0.8;
+}
+
+.schoolDate {
+  margin-top: 4rem;
+  color: #6b7280;
+  font-family: 'TobiasMed', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-transform: capitalize;
+}
+
+.description {
+  min-width: 0;
+  font-family: 'Tobias', serif;
+  color: #25272B;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.description :global(p) {
+  margin-bottom: 0.75rem;
+}
+
+/* Drop cap: first letter wrapped by JS (CourseHero) and styled here */
+.dropCap {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  padding-right: 0.25rem;
+  padding-top: 0.06em;
+  font-family: 'Tobias', serif;
+  font-weight: 600;
+  color: #25272B;
+}
+
+@media (max-width: 800px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+}

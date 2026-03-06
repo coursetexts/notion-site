@@ -28,6 +28,7 @@ import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 // import { HeroButterflies } from './HeroButterflies'
+import { CourseHero, type CourseHeroData } from './CourseHero'
 import FeedbackForm from './FeedbackForm'
 // React 18+
 import FilterRow from './FilterRow'
@@ -385,6 +386,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }, [pageClass])
 
+
+
+// BACK TO ARCHIVE BUTTON ON THE TOP OF THE COURSE PAGE
   React.useEffect(() => {
     if (pageClass == 'course-page') {
       addReactComponentBeforeTitle(
@@ -1383,6 +1387,182 @@ export const NotionPage: React.FC<types.PageProps> = ({
       cancelled = true
     }
   }, [pageClass])
+
+  const courseHeroRef = React.useRef<{
+    root: Root | null
+    container: HTMLElement | null
+    hiddenNodes: HTMLElement[]
+  }>({ root: null, container: null, hiddenNodes: [] })
+
+  const COURSE_HERO_STORAGE_KEY = 'courseHero'
+
+  /**
+   * Scrape hero content (first 3 blocks), assign to variables, render <CourseHero>, hide originals.
+   * Saves scraped data to sessionStorage so the hero can show on refresh before DOM is ready.
+   * Works both when there's no content-table (direct children) and when there is (children inside .course-left-column).
+   */
+  React.useEffect(() => {
+    if (pageClass !== 'course-page') return
+
+    let cancelled = false
+    let retryTimeout: ReturnType<typeof setTimeout> | null = null
+    const storageKey = `${COURSE_HERO_STORAGE_KEY}_${pageId}`
+
+    function saveHeroData(data: CourseHeroData) {
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify(data))
+      } catch (_) {}
+    }
+
+    function loadHeroData(): CourseHeroData | null {
+      try {
+        const raw = sessionStorage.getItem(storageKey)
+        return raw ? (JSON.parse(raw) as CourseHeroData) : null
+      } catch (_) {
+        return null
+      }
+    }
+
+    function withPageTitle(data: CourseHeroData, pageTitle: string): CourseHeroData {
+      return { ...data, title: pageTitle }
+    }
+
+    function ensureMountAndRender(contentInner: HTMLElement, data: CourseHeroData) {
+      let { container, root } = courseHeroRef.current
+      if (!container || !root) {
+        const parent = contentInner.parentElement
+        if (!parent) return
+        container = document.createElement('div')
+        container.className = 'course-hero-mount'
+        container.style.width = '100%'
+        parent.insertBefore(container, contentInner)
+        root = createRoot(container)
+        courseHeroRef.current.container = container
+        courseHeroRef.current.root = root
+      }
+      root!.render(<CourseHero {...data} />)
+    }
+
+    function scrape(scope: HTMLElement): { data: CourseHeroData; nodes: HTMLElement[] } | null {
+      const children = Array.from(scope.children) as HTMLElement[]
+      if (children.length < 3) return null
+      const [child1, child2, child3] = children
+
+      // First block = school | date (course code is derived from page title in CourseHero)
+      const schoolDate = (child1?.innerText ?? '').trim()
+      const instructorLink = scope.querySelector(
+        '.notion-blue .notion-link'
+      ) as HTMLAnchorElement | null
+      const instructorName = (instructorLink?.textContent ?? '').trim()
+      const instructorUrl = instructorLink?.href ?? ''
+      const descriptionHtml = (child3?.innerHTML ?? '').trim()
+
+      return {
+        data: {
+          courseCode: '', // derived from page title (brackets) in CourseHero
+          title: '', // filled in with Notion page title via withPageTitle
+          instructorName,
+          instructorUrl,
+          schoolDate: schoolDate || undefined,
+          descriptionHtml
+        },
+        nodes: [child1, child2, child3]
+      }
+    }
+
+    function run() {
+      if (cancelled) return
+      const contentInner = document.querySelector(
+        '.course-page .notion-page-content-inner'
+      ) as HTMLElement
+      if (!contentInner?.parentElement) return
+      if (contentInner.hasAttribute('data-course-hero-rendered')) return
+
+      const table = contentInner.querySelector('.content-table')
+      const leftCol = contentInner.querySelector('.course-left-column')
+      const scope = (table && leftCol ? leftCol : contentInner) as HTMLElement
+
+      const result = scrape(scope)
+      if (result) {
+        const dataWithTitle = withPageTitle(result.data, title)
+        saveHeroData(dataWithTitle)
+        ensureMountAndRender(contentInner, dataWithTitle)
+        courseHeroRef.current.hiddenNodes = result.nodes
+        result.nodes.forEach((el) => {
+          if (el) el.style.display = 'none'
+        })
+        contentInner.setAttribute('data-course-hero-rendered', 'true')
+        return
+      }
+
+      const cached = loadHeroData()
+      if (cached) {
+        ensureMountAndRender(contentInner, withPageTitle(cached, title))
+        contentInner.setAttribute('data-course-hero-rendered', 'true')
+      }
+
+      let attempts = 0
+      const maxAttempts = 8
+      const delayMs = 400
+
+      function retry() {
+        if (cancelled || attempts >= maxAttempts) return
+        attempts += 1
+        retryTimeout = setTimeout(() => {
+          if (cancelled) return
+          const inner = document.querySelector(
+            '.course-page .notion-page-content-inner'
+          ) as HTMLElement
+          if (!inner?.parentElement) {
+            retry()
+            return
+          }
+          const tbl = inner.querySelector('.content-table')
+          const col = inner.querySelector('.course-left-column')
+          const sc = (tbl && col ? col : inner) as HTMLElement
+          const res = scrape(sc)
+          if (res) {
+            const dataWithTitle = withPageTitle(res.data, title)
+            saveHeroData(dataWithTitle)
+            ensureMountAndRender(inner, dataWithTitle)
+            courseHeroRef.current.hiddenNodes = res.nodes
+            res.nodes.forEach((el) => {
+              if (el) el.style.display = 'none'
+            })
+            return
+          }
+          retry()
+        }, delayMs)
+      }
+      retry()
+    }
+
+    waitForElement('.course-page .notion-page-content-inner')
+      .then(() => new Promise<void>((r) => setTimeout(r, 500)))
+      .then(run)
+      .catch(() => {})
+
+    return () => {
+      cancelled = true
+      if (retryTimeout) clearTimeout(retryTimeout)
+      const { root, container, hiddenNodes } = courseHeroRef.current
+      if (root && container) {
+        try {
+          root.unmount()
+        } catch (_) {}
+        container.remove()
+        courseHeroRef.current.root = null
+        courseHeroRef.current.container = null
+      }
+      hiddenNodes.forEach((el) => {
+        if (el) el.style.display = ''
+      })
+      courseHeroRef.current.hiddenNodes = []
+      document
+        .querySelectorAll('[data-course-hero-rendered]')
+        .forEach((el) => el.removeAttribute('data-course-hero-rendered'))
+    }
+  }, [pageClass, pageId, title])
 
   React.useEffect(() => {
     // After wrapping courses, check if none exist and add maintenance message

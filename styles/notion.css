@@ -77,11 +77,11 @@
 }
 
 .notion-header .notion-nav-header {
-  max-width: 100%;
+  max-width: 90%;
   margin: 0 auto;
   overflow-x: auto;
   padding: 0 2px;
-  border-bottom: 1px solid#AAAEB3;
+  border-bottom: 1px solid#D8D8D8;
   /* font-family: 'DM Mono', monospace; Add this line */
   font-family: 'UntitledSans', sans-serif;
   color: #000000;
@@ -494,7 +494,7 @@
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(16px);
   position: relative;
-  background-color: #f5f5f5;
+  background-color: #FCFCFC;
 }
 
 .dark-mode .notion-header {
@@ -786,16 +786,9 @@
   line-height: 1.1111111;
 }
 
+/* Hide the Notion page title on course pages; it's already shown in the Course Hero */
 .course-page .notion-title {
-  font-family: Tobias;
-  font-weight: 600;
-  color: #140c00;
-  margin: 0;
-  margin-bottom: 1.5rem;
-  max-width: 900px;
-  font-size: 2.5rem;
-  line-height: 120%;
-  letter-spacing: -0.3px;
+  display: none !important;
 }
 
 .course-page .content-table-heading {
@@ -829,25 +822,134 @@
   opacity: 80%;
 }
 
-.course-page .notion-page-content-inner > :nth-child(1) {
-  color: #616774;
+
+/* Mount point for CourseHero component (scraped content rendered here) */
+.course-hero-mount {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ─── COURSE HERO STANDALONE ─────────────────────────────────────────────
+   Content from .notion-page-content-inner nth-child(1)–(3) is moved into
+   .course-hero-standalone as a sibling *before* .notion-page-content-inner,
+   so .notion-page-content-inner styles do NOT apply. This block styles the
+   standalone container from scratch (no .course-page / .notion-page-content-inner
+   inheritance for layout; body still has .course-page so we override below). ─── */
+
+.course-hero-standalone {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2.5rem 3rem;
+  align-items: start;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+/* Left column: first two children */
+.course-hero-standalone > *:nth-child(1),
+.course-hero-standalone > *:nth-child(2) {
+  grid-column: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  background-color: #67bdfc;
+}
+
+/* Right column: third child */
+.course-hero-standalone > *:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: start;
+  min-width: 0;
+}
+
+/* Optional: drop-cap on right column first paragraph */
+.course-hero-standalone > *:nth-child(3) .notion-text:first-of-type::first-letter {
+  float: left;
+  font-size: 4rem;
+  line-height: 0.85;
+  padding-right: 0.5rem;
+  font-family: 'Tobias', serif;
+}
+
+/* Override .course-page styles so you can style the hero from scratch */
+.course-hero-standalone .notion-title {
+  font-family: Tobias, serif;
+  font-weight: 600;
+  color: #140c00;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.course-hero-standalone > *:nth-child(1) {
+  color: #6e6174;
   font-size: 11px;
   font-weight: 400;
-  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  line-height: 1rem;
+}
+
+.course-hero-standalone .notion-blue .notion-link {
+  font-family: 'TobiasMed', sans-serif;
+  color: #1f2a37;
+  font-size: 16px;
+  border-bottom: none;
+  letter-spacing: -0.16px;
+  text-transform: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .course-hero-standalone {
+    grid-template-columns: 1fr;
+  }
+  .course-hero-standalone > *:nth-child(3) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* ─── COURSE PAGE HERO (when NOT moved: still inside .notion-page-content-inner) ─── */
+.course-page .notion-page-content-inner:not(:has(.content-table)) {
+  grid-template-columns: minmax(220px, 320px) 1fr !important;
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > :nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: start;
+  border: none;
+}
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > :nth-child(3) .notion-text:first-of-type::first-letter {
+  float: left;
+  font-size: 4rem;
+  line-height: 0.85;
+  padding-right: 0.5rem;
+  font-family: 'Tobias', serif;
+}
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > *:not(:nth-child(3)) {
+  grid-column: 1;
+  order: 4;
+}
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > :nth-child(1) { order: 1; }
+.course-page .notion-page-content-inner:not(:has(.content-table)) > *:has(.notion-title) { order: 2; }
+.course-page .notion-page-content-inner:not(:has(.content-table)) > *:has(.notion-blue) { order: 3; }
+
+.course-page .notion-page-content-inner > :nth-child(1) {
+  color: #6e6174;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 1.1px;
   line-height: 1rem;
   vertical-align: middle;
-  line-height: 1rem;
-  align-items: center; /* Add this */
+  align-items: center;
   gap: 0.5em;
-}
-.course-page .notion-page-content-inner > :nth-child(3) {
-  border-bottom: 1px solid #e5e1d3;
-  border-top: 1px solid #e5e1d3;
-}
-
-.course-page .notion-page-content-inner:not(:has(.content-table)) {
-  grid-template-columns: 1fr !important; /* single column */
 }
 
 .course-page .notion-blue .notion-link {
@@ -858,6 +960,8 @@
   letter-spacing: -0.16px;
   text-transform: none;
 }
+
+
 /* 
 .course-page .notion-h2 .notion-h-title {
   font-weight: 700;
@@ -897,7 +1001,6 @@
   margin-bottom: 1em;
   line-height: 1.3333333;
   font-family: 'DM Mono', monospace;
-  text-transform: uppercase;
   letter-spacing: 1.1px;
   text-align: center;
   color: #616774;
@@ -1026,8 +1129,10 @@
     grid-row: 2;
   }
 
-  .course-page .notion-page-content-inner > *:not(.content-table) {
+  .course-page .notion-page-content-inner > *:not(.content-table),
+  .course-page .notion-page-content-inner > :nth-child(3) {
     grid-column: 1;
+    grid-row: auto;
   }
 
   .content-table {
