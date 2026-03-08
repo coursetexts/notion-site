@@ -19,6 +19,8 @@ import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
 
+import { AuthDebugPanel } from '@/components/AuthDebugPanel'
+import { AuthProvider } from '../contexts/AuthContext'
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   fathomConfig,
@@ -69,5 +71,10 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events, router.asPath])
 
-  return <Component {...pageProps} />
+  return (
+    <AuthProvider rootName="app">
+      <Component {...pageProps} />
+      <AuthDebugPanel />
+    </AuthProvider>
+  )
 }

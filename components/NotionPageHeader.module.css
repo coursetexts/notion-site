@@ -1,0 +1,114 @@
+.headerBar {
+  width: 100%;
+  background-color: #f8f8f8 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  flex-shrink: 0;
+  backdrop-filter: none;
+}
+
+.headerInner {
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 54px;
+  padding: 0 0.25rem;
+  font-family: 'UntitledSans', sans-serif;
+}
+
+.headerLogo {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #25272b;
+  text-decoration: none;
+  flex-shrink: 0;
+  font-family: 'Tobias', serif;
+}
+
+.headerLogo:hover {
+  color: #1a1a1a;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.headerNavLink {
+  font-size: 0.9375rem;
+  color: #25272b;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.headerNavLink:hover {
+  color: #1a1a1a;
+}
+
+.headerRhs {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.headerSearchWrap {
+  display: flex;
+  align-items: center;
+}
+
+.headerSearchWrap :global(.notion-search),
+.headerSearchWrap :global(.searchBar) {
+  border: none;
+  box-shadow: none;
+}
+
+.headerIconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #25272b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 6px;
+}
+
+.headerIconBtn:hover {
+  color: #1a1a1a;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.signUpBtn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #25272b;
+  background-color: #efefef;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.signUpBtn:hover {
+  background-color: #e8e8e8;
+  border-color: #d5d5d5;
+  color: #1a1a1a;
+}

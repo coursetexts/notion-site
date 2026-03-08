@@ -1,0 +1,177 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'UntitledSans', sans-serif;
+  background-color: #f8f8f8;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-size: 1rem;
+  color: #666;
+}
+
+.card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.back {
+  font-size: 0.9375rem;
+  color: #666;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: #25272b;
+  text-decoration: underline;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.avatarWrap {
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #666;
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #25272b;
+  margin: 0 0 0.25rem 0;
+  font-family: 'Tobias', serif;
+}
+
+.email {
+  font-size: 0.9375rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.signOutBtn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  color: #25272b;
+  background: #efefef;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.signOutBtn:hover {
+  background: #e8e8e8;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #25272b;
+  margin: 0 0 0.75rem 0;
+}
+
+.placeholder {
+  font-size: 0.9375rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.listLink {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #25272b;
+}
+
+.listLink:hover {
+  color: #0089C4;
+}
+
+.listTitle {
+  font-weight: 500;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listMeta {
+  font-size: 0.8125rem;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.listBody {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0.5rem 0 0 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

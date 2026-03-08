@@ -30,6 +30,7 @@
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
     "@react-icons/all-files": "^4.1.0",
+    "@supabase/supabase-js": "^2.98.0",
     "@types/node": "^18.8.5",
     "@types/react": "^18.0.21",
     "@vercel/og": "^0.0.19",

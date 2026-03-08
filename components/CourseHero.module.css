@@ -68,6 +68,10 @@
   text-transform: capitalize;
 }
 
+.saveWrap {
+  margin-top: 1.5rem;
+}
+
 .description {
   min-width: 0;
   font-family: 'Tobias', serif;

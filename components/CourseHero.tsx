@@ -1,4 +1,5 @@
 import React from 'react'
+import { SaveCourseButton } from './SaveCourseButton'
 import styles from './CourseHero.module.css'
 
 export interface CourseHeroData {
@@ -10,7 +11,17 @@ export interface CourseHeroData {
   descriptionHtml: string
 }
 
-interface CourseHeroProps extends CourseHeroData {}
+export interface CourseHeroCourseInfo {
+  coursePageId?: string
+  courseTitle: string
+  courseUrl: string
+}
+
+interface CourseHeroProps extends CourseHeroData {
+  coursePageId?: string
+  courseTitle?: string
+  courseUrl?: string
+}
 
 function wrapFirstLetterInDescription(container: HTMLElement) {
   const wrap = (node: ChildNode): boolean => {
@@ -45,7 +56,10 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   instructorName,
   instructorUrl,
   schoolDate,
-  descriptionHtml
+  descriptionHtml,
+  coursePageId,
+  courseTitle,
+  courseUrl
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
 
@@ -60,6 +74,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   const bracketMatch = title.match(/\(([^)]+)\)\s*$/)
   const derivedCourseCode = bracketMatch ? bracketMatch[1].trim() : (courseCodeProp ?? '')
   const displayTitle = bracketMatch ? title.replace(/\s*\([^)]+\)\s*$/, '').trim() : title
+  const showSaveButton = courseUrl != null && (courseTitle != null || title)
 
   return (
     <div className={styles.root}>
@@ -76,6 +91,15 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
         {schoolDate ? (
           <div className={styles.schoolDate}>{schoolDate}</div>
         ) : null}
+        {showSaveButton && (
+          <div className={styles.saveWrap}>
+            <SaveCourseButton
+              courseUrl={courseUrl}
+              courseTitle={courseTitle ?? title}
+              coursePageId={coursePageId}
+            />
+          </div>
+        )}
       </div>
       <div
         ref={descriptionRef}

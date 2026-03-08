@@ -48,6 +48,63 @@
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid #e5e1d3;
   flex-shrink: 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.addWrap .addInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.submitBtn {
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  color: #25272b;
+  background: #efefef;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signInHint {
+  padding: 0 1.25rem 0.75rem;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.signInHint a {
+  color: #0089C4;
+  text-decoration: none;
+}
+
+.signInHint a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  padding: 0 1.25rem 0.25rem;
+  font-size: 0.8125rem;
+  color: #c00;
+  margin: 0;
+}
+
+.placeholder {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  margin: 0;
 }
 
 .addInput {
@@ -73,6 +130,16 @@
   flex: 1;
   overflow-y: auto;
   padding: 0.75rem 1.25rem 1.5rem;
+}
+
+.threadItem {
+  width: 100%;
+}
+
+.threadChildren {
+  border-left: 2px solid #f3f4f6;
+  margin-left: 0.3rem;
+  padding-left: 0.6rem;
 }
 
 .annotation {
@@ -109,33 +176,10 @@
   font-size: 0.875rem;
   line-height: 1.45;
   color: #374151;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.voteBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.75rem;
-  color: #6b7280;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.voteBtn:hover {
-  color: #25272b;
-}
-
-.reply {
+.replyBtn {
   font-family: 'UntitledSans', sans-serif;
   font-size: 0.75rem;
   color: #6b7280;
@@ -146,21 +190,28 @@
   text-decoration: underline;
 }
 
-.reply:hover {
+.replyBtn:hover {
   color: #25272b;
 }
 
-.showReplies {
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.75rem;
-  color: #3b82f6;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin-top: 0.25rem;
+.replyComposer {
+  margin-top: 0.55rem;
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
 }
 
-.showReplies:hover {
+.threadToggleBtn {
+  margin-top: 0.35rem;
+  margin-bottom: 0.15rem;
+  background: none;
+  border: none;
+  color: #0089C4;
+  font-size: 0.74rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.threadToggleBtn:hover {
   text-decoration: underline;
 }

@@ -38,11 +38,11 @@ export const ContentMain: React.FC<ContentMainProps> = ({
         </div>
       )}
       <div className={styles.slot}>
+        {pdfTitle && (
+          <h2 className={styles.pdfTitle}>{pdfTitle}</h2>
+        )}
         {pdfUrl && (
           <div className={styles.pdfWrap}>
-            {pdfTitle && (
-              <h2 className={styles.pdfTitle}>{pdfTitle}</h2>
-            )}
             <PdfEmbed url={pdfUrl} title="Course PDF" />
             <div className={styles.markCompleteWrap}>
               <button type="button" className={styles.markCompleteBtn} aria-label="Mark as completed">

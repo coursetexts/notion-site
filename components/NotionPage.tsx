@@ -27,6 +27,7 @@ import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
+import { AuthProvider } from '../contexts/AuthContext'
 // import { HeroButterflies } from './HeroButterflies'
 import { CourseContent } from './CourseContent'
 import { CourseHero, type CourseHeroData } from './CourseHero'
@@ -1442,6 +1443,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
       return { ...data, title: pageTitle }
     }
 
+    const courseHeroCourseInfo = {
+      coursePageId: pageId,
+      courseTitle: title,
+      courseUrl: router.asPath?.split('?')[0] ?? `/${pageId}`
+    }
+
     function ensureMountAndRender(contentInner: HTMLElement, data: CourseHeroData) {
       let { container, root } = courseHeroRef.current
       if (!container || !root) {
@@ -1455,7 +1462,11 @@ export const NotionPage: React.FC<types.PageProps> = ({
         courseHeroRef.current.container = container
         courseHeroRef.current.root = root
       }
-      root!.render(<CourseHero {...data} />)
+      root!.render(
+        <AuthProvider rootName="course-hero">
+          <CourseHero {...data} {...courseHeroCourseInfo} />
+        </AuthProvider>
+      )
     }
 
     function scrape(scope: HTMLElement): { data: CourseHeroData; nodes: HTMLElement[] } | null {
@@ -1615,17 +1626,22 @@ export const NotionPage: React.FC<types.PageProps> = ({
       cc.root = createRoot(mount)
 
       cc.root.render(
-        <CourseContent
-          mainRef={(el) => {
-            const node = contentInnerToMoveRef.current
-            if (!el || !node) return
-            cc.originalParent = node.parentElement
-            cc.originalNextSibling = node.nextSibling
-            el.appendChild(node)
-            contentInnerToMoveRef.current = null
-            node.setAttribute('data-course-content-wrapped', 'true')
-          }}
-        />
+        <AuthProvider rootName="course-content">
+          <CourseContent
+            coursePageId={pageId}
+            courseTitle={title}
+            courseUrl={router.asPath?.split('?')[0] ?? `/${pageId}`}
+            mainRef={(el) => {
+              const node = contentInnerToMoveRef.current
+              if (!el || !node) return
+              cc.originalParent = node.parentElement
+              cc.originalNextSibling = node.nextSibling
+              el.appendChild(node)
+              contentInnerToMoveRef.current = null
+              node.setAttribute('data-course-content-wrapped', 'true')
+            }}
+          />
+        </AuthProvider>
       )
     }
 
@@ -1662,7 +1678,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         courseContentRef.current.originalNextSibling = null
       }
     }
-  }, [pageClass])
+  }, [pageClass, pageId, title, router.asPath])
 
   React.useEffect(() => {
     // After wrapping courses, check if none exist and add maintenance message

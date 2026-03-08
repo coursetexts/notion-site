@@ -52,6 +52,10 @@ export interface TableOfContentsProps {
   items?: TocItem[]
   /** When a TOC link is clicked: (href, label?). storage.googleapis URLs load in PDF viewer; others open in new tab. */
   onLinkClick?: (href: string, label?: string) => void
+  /** Called when the selected item has no PDF link (e.g. parent tab or subtab without href). Hide the PDF viewer. */
+  onSelectionClearPdf?: () => void
+  /** Called with the label of the item that was clicked (parent tab or subtab). Use for the big title above content. */
+  onSelectedItemChange?: (label: string | null) => void
   title?: string
 }
 
@@ -59,6 +63,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   contentRef,
   items: itemsProp = [],
   onLinkClick,
+  onSelectionClearPdf,
+  onSelectedItemChange,
   title = 'Table of Contents'
 }) => {
   const [search, setSearch] = React.useState('')
@@ -87,6 +93,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   const handleTabClick = (tabIndex: number) => {
     setActiveTabIndex(tabIndex)
     setActiveSubtabId(null)
+    onSelectionClearPdf?.()
+    onSelectedItemChange?.(itemsProp[tabIndex]?.label ?? null)
     const container = contentRef?.current ?? null
     if (!container) return
     const root = container.closest('.course-content-mount') || container
@@ -106,6 +114,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       handleTabClick(tabIndex)
     }
     setActiveSubtabId(child.id ?? null)
+    onSelectedItemChange?.(child.label ?? null)
     if (child.href) {
       if (onLinkClick) {
         onLinkClick(child.href, child.label)
@@ -114,6 +123,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       }
       return
     }
+    onSelectionClearPdf?.()
     if (child.id && contentRef?.current) {
       const root = contentRef.current.closest('.course-content-mount') || contentRef.current
       const el = root.querySelector(`[data-toc-id="${child.id}"]`)

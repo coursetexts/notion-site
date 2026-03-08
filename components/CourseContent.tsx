@@ -10,32 +10,45 @@ export interface CourseContentProps {
   /** Optional ref for the main content container so existing DOM can be moved into it */
   mainRef?: React.Ref<HTMLDivElement>
   children?: React.ReactNode
+  /** Course identity for activity (comments, bookmarks, annotations) */
+  coursePageId?: string
+  courseTitle?: string
+  courseUrl?: string
 }
 
 const ANNOTATION_COUNT = 20
 
-/** Example PDF embed for course content; can later be driven by Notion or per-page config. */
-const DEFAULT_PDF_URL =
-  'https://storage.googleapis.com/course-texts-staging/127172/course%20files/Astro%2B16%2BSyllabus%2B%25282024%2529.pdf'
-
 const STORAGE_GOOGLEAPIS_PREFIX = 'https://storage.googleapis.com/'
 
-export const CourseContent: React.FC<CourseContentProps> = ({ mainRef, children }) => {
+export const CourseContent: React.FC<CourseContentProps> = ({
+  mainRef,
+  children,
+  coursePageId,
+  courseTitle,
+  courseUrl
+}) => {
   const [showAnnotations, setShowAnnotations] = React.useState(false)
   const [contentSlotReady, setContentSlotReady] = React.useState(false)
   const [tocItems, setTocItems] = React.useState<TocItem[]>([])
-  const [pdfUrl, setPdfUrl] = React.useState<string | undefined>(DEFAULT_PDF_URL)
+  const [pdfUrl, setPdfUrl] = React.useState<string | undefined>(undefined)
+  const [pdfTitle, setPdfTitle] = React.useState<string | undefined>(undefined)
   const contentSlotRef = React.useRef<HTMLDivElement | null>(null)
 
-  const [pdfTitle, setPdfTitle] = React.useState<string | undefined>(undefined)
-
-  const handleTocLink = React.useCallback((href: string, label?: string) => {
+  const handleTocLink = React.useCallback((href: string) => {
     if (href.startsWith(STORAGE_GOOGLEAPIS_PREFIX)) {
       setPdfUrl(href)
-      setPdfTitle(label ?? undefined)
     } else {
+      setPdfUrl(undefined)
       window.open(href, '_blank', 'noopener,noreferrer')
     }
+  }, [])
+
+  const handleSelectionClearPdf = React.useCallback(() => {
+    setPdfUrl(undefined)
+  }, [])
+
+  const handleSelectedItemChange = React.useCallback((label: string | null) => {
+    setPdfTitle(label ?? undefined)
   }, [])
 
   const setSlotRef = React.useCallback(
@@ -68,6 +81,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({ mainRef, children 
     return () => clearTimeout(timer)
   }, [contentSlotReady, tocItems.length])
 
+  const currentSectionLabel = pdfTitle ?? tocItems[0]?.label ?? 'Overview'
+
   return (
     <div className={styles.wrapper}>
       <div
@@ -80,6 +95,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({ mainRef, children 
             contentRef={contentSlotRef}
             items={tocItems}
             onLinkClick={handleTocLink}
+            onSelectionClearPdf={handleSelectionClearPdf}
+            onSelectedItemChange={handleSelectedItemChange}
           />
         </aside>
         <ContentMain
@@ -95,14 +112,21 @@ export const CourseContent: React.FC<CourseContentProps> = ({ mainRef, children 
         {showAnnotations && (
           <div className={styles.annotationsColumn}>
             <AnnotationWidget
-              count={ANNOTATION_COUNT}
+              courseUrl={courseUrl}
+              courseTitle={courseTitle}
+              coursePageId={coursePageId}
+              sectionId={currentSectionLabel}
               onHide={() => setShowAnnotations(false)}
             />
           </div>
         )}
       </div>
       <div className={styles.activitySection}>
-        <CourseActivity />
+        <CourseActivity
+          coursePageId={coursePageId}
+          courseTitle={courseTitle}
+          courseUrl={courseUrl}
+        />
       </div>
     </div>
   )
