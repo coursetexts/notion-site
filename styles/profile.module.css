@@ -100,6 +100,107 @@
   background: #e8e8e8;
 }
 
+.followRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.followBtn {
+  padding: 0.4rem 1rem;
+  font-size: 0.9375rem;
+  color: #fff;
+  background: #0089C4;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.followBtn:hover:not(:disabled) {
+  background: #0077a8;
+}
+
+.followBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.followingBtn {
+  padding: 0.4rem 1rem;
+  font-size: 0.9375rem;
+  color: #25272b;
+  background: #efefef;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.followingBtn:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+.followCounts {
+  font-size: 0.9375rem;
+  color: #666;
+}
+
+.followCountBtn {
+  font: inherit;
+  color: #0089C4;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.followCountBtn:hover {
+  text-decoration: underline;
+}
+
+.backToProfile {
+  font-size: 0.9375rem;
+  color: #666;
+  background: none;
+  border: none;
+  padding: 0 0 1rem 0;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  display: block;
+}
+
+.backToProfile:hover {
+  color: #25272b;
+  text-decoration: underline;
+}
+
+.userList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.userListItem {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.userListItem:last-child {
+  border-bottom: none;
+}
+
+.userListLink {
+  color: #25272b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.userListLink:hover {
+  color: #0089C4;
+  text-decoration: underline;
+}
+
 .section {
   margin-bottom: 2rem;
 }
@@ -113,6 +214,50 @@
   font-weight: 600;
   color: #25272b;
   margin: 0 0 0.75rem 0;
+}
+
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitleRow .sectionTitle {
+  margin: 0;
+}
+
+.activityToggle {
+  display: inline-flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.toggleBtn,
+.toggleBtnActive {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.6rem;
+  border: none;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+}
+
+.toggleBtn:not(:last-child),
+.toggleBtnActive:not(:last-child) {
+  border-right: 1px solid #e0e0e0;
+}
+
+.toggleBtn:hover {
+  background: #f7f7f7;
+  color: #25272b;
+}
+
+.toggleBtnActive {
+  background: #efefef;
+  color: #25272b;
 }
 
 .placeholder {
@@ -133,6 +278,13 @@
   border-bottom: 1px solid #eee;
 }
 
+.listItemUnread {
+  background: #fff7ed;
+  border-radius: 6px;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
 .listItem:last-child {
   border-bottom: none;
 }
@@ -148,6 +300,16 @@
 
 .listLink:hover {
   color: #0089C4;
+}
+
+.inlineLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.inlineLink:hover {
+  color: #0089C4;
+  text-decoration: underline;
 }
 
 .listTitle {
@@ -174,4 +336,10 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.notificationMeta {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0;
 }

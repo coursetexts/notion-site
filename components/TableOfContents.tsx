@@ -70,6 +70,9 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   const [search, setSearch] = React.useState('')
   const [activeTabIndex, setActiveTabIndex] = React.useState(0)
   const [activeSubtabId, setActiveSubtabId] = React.useState<string | null>(null)
+  const [expandedTabIndexes, setExpandedTabIndexes] = React.useState<Set<number>>(
+    () => new Set(itemsProp.map((item) => item.tabIndex))
+  )
 
   const items = itemsProp.map((item) => ({
     ...item,
@@ -106,6 +109,17 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       } else {
         el.classList.remove(SECTION_ACTIVE_CLASS)
       }
+    })
+  }
+
+  const handleItemClick = (item: TocItem) => {
+    handleTabClick(item.tabIndex)
+    if (!item.children || item.children.length === 0) return
+    setExpandedTabIndexes((prev) => {
+      const next = new Set(prev)
+      if (next.has(item.tabIndex)) next.delete(item.tabIndex)
+      else next.add(item.tabIndex)
+      return next
     })
   }
 
@@ -154,18 +168,29 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               className={item.active ? `${styles.item} ${styles.itemActive}` : styles.item}
               role="button"
               tabIndex={0}
-              onClick={() => handleTabClick(item.tabIndex)}
+              onClick={() => handleItemClick(item)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault()
-                  handleTabClick(item.tabIndex)
+                  handleItemClick(item)
                 }
               }}
             >
               {item.icon && <Icon type={item.icon} />}
-              <span>{item.label}</span>
+              <span className={styles.itemLabel}>{item.label}</span>
+              {item.children && item.children.length > 0 && (
+                <span className={styles.itemToggle} aria-hidden>
+                  {search.trim()
+                    ? '▾'
+                    : expandedTabIndexes.has(item.tabIndex)
+                      ? '▾'
+                      : '▸'}
+                </span>
+              )}
             </div>
-            {item.children && item.children.length > 0 && (
+            {item.children &&
+              item.children.length > 0 &&
+              (search.trim() || expandedTabIndexes.has(item.tabIndex)) && (
               <ul className={styles.itemChildren}>
                 {item.children.map((child, j) => (
                   <li key={child.id ?? j}>

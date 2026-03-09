@@ -9,11 +9,21 @@ import { authDebug } from '@/lib/auth-debug'
 import { getSupabaseClient } from '@/lib/supabase'
 import {
   getMyComments,
+  getMyAnnotations,
   getMyBookmarks,
   type Comment as DbComment,
+  type Annotation as DbAnnotation,
   type Course as CourseType
 } from '@/lib/course-activity-db'
+import {
+  getReplyNotifications,
+  markReplyNotificationsRead,
+  type ReplyNotification
+} from '@/lib/reply-notifications'
 import { name as siteName } from '@/lib/config'
+import { useFollowingIds } from '@/hooks/useFollowingIds'
+import { useFollowerIds } from '@/hooks/useFollowerIds'
+import { UserLink } from '@/components/UserLink'
 import styles from '@/styles/profile.module.css'
 
 function formatDate(iso: string): string {
@@ -35,19 +45,34 @@ export default function ProfilePage() {
   const cached = getCachedAuth()
   const [resolvedUser, setResolvedUser] = useState<User | null>(() => cached.user ?? null)
   const [comments, setComments] = useState<{ comment: DbComment; course: CourseType }[]>([])
+  const [annotations, setAnnotations] = useState<{ annotation: DbAnnotation; course: CourseType }[]>([])
   const [bookmarks, setBookmarks] = useState<{ bookmark: { id: string; course_id: string; created_at: string }; course: CourseType }[]>([])
+  const [notifications, setNotifications] = useState<ReplyNotification[]>([])
   const [activityLoading, setActivityLoading] = useState(true)
+  const [myActivityTab, setMyActivityTab] = useState<'comments' | 'annotations'>(
+    'comments'
+  )
+  const { followingIds } = useFollowingIds()
+  const { followerIds } = useFollowerIds()
 
   const effectiveUser = user ?? resolvedUser
 
-  const loadActivity = useCallback(async () => {
-    const [commentsRes, bookmarksRes] = await Promise.all([
+  const loadActivity = useCallback(async (userId: string) => {
+    const [commentsRes, annotationsRes, bookmarksRes, notificationRes] = await Promise.all([
       getMyComments(),
-      getMyBookmarks()
+      getMyAnnotations(),
+      getMyBookmarks(),
+      getReplyNotifications(userId)
     ])
     setComments(commentsRes)
+    setAnnotations(annotationsRes)
     setBookmarks(bookmarksRes)
+    setNotifications(notificationRes)
     setActivityLoading(false)
+
+    // Mark as read after rendering this fetch so entries can appear as read next time.
+    await markReplyNotificationsRead(userId)
+    setNotifications((prev) => prev.map((n) => ({ ...n, is_unread: false })))
   }, [])
 
   useEffect(() => {
@@ -63,7 +88,7 @@ export default function ProfilePage() {
   }, [effectiveUser, isLoading, router])
 
   useEffect(() => {
-    if (effectiveUser) loadActivity()
+    if (effectiveUser) loadActivity(effectiveUser.id)
     else setActivityLoading(false)
   }, [effectiveUser, loadActivity])
 
@@ -155,31 +180,6 @@ export default function ProfilePage() {
           </div>
 
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>My comments</h2>
-            {activityLoading ? (
-              <p className={styles.placeholder}>Loading…</p>
-            ) : comments.length === 0 ? (
-              <p className={styles.placeholder}>
-                You haven’t commented on any course yet. Comments you leave on course pages will appear here.
-              </p>
-            ) : (
-              <ul className={styles.list}>
-                {comments.map(({ comment, course }) => (
-                  <li key={comment.id} className={styles.listItem}>
-                    <Link href={course.url ?? `/${course.notion_page_id}`}>
-                      <a className={styles.listLink}>
-                        <span className={styles.listTitle}>{course.name}</span>
-                        <span className={styles.listMeta}>{formatDate(comment.created_at)}</span>
-                      </a>
-                    </Link>
-                    <p className={styles.listBody}>{comment.body}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Bookmarked courses</h2>
             {activityLoading ? (
               <p className={styles.placeholder}>Loading…</p>
@@ -200,6 +200,123 @@ export default function ProfilePage() {
                   </li>
                 ))}
               </ul>
+            )}
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Replies to me</h2>
+            {activityLoading ? (
+              <p className={styles.placeholder}>Loading…</p>
+            ) : notifications.length === 0 ? (
+              <p className={styles.placeholder}>
+                No replies yet. When someone replies to your comment or annotation, it appears here.
+              </p>
+            ) : (
+              <ul className={styles.list}>
+                {notifications.map((n) => (
+                  <li
+                    key={n.id}
+                    className={
+                      n.is_unread
+                        ? `${styles.listItem} ${styles.listItemUnread}`
+                        : styles.listItem
+                    }
+                  >
+                    <div className={styles.listLink}>
+                      <span className={styles.listTitle}>
+                        <UserLink
+                          userId={n.author_id}
+                          displayName={n.author_name}
+                          showFollowingTag={followingIds.has(n.author_id)}
+                          showFollowsYouTag={followerIds.has(n.author_id)}
+                        />
+                        {' replied on '}
+                        <Link href={n.course_url ?? `/${n.course_id}`}>
+                          <a className={styles.inlineLink}>{n.course_name}</a>
+                        </Link>
+                      </span>
+                      <span className={styles.listMeta}>{formatDate(n.created_at)}</span>
+                    </div>
+                    {n.type === 'annotation' && n.section_id && (
+                      <p className={styles.notificationMeta}>Section: {n.section_id}</p>
+                    )}
+                    <p className={styles.listBody}>{n.body}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div className={styles.section}>
+            <div className={styles.sectionTitleRow}>
+              <h2 className={styles.sectionTitle}>My activity</h2>
+              <div className={styles.activityToggle} role="tablist" aria-label="My activity tabs">
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={myActivityTab === 'comments'}
+                  className={myActivityTab === 'comments' ? styles.toggleBtnActive : styles.toggleBtn}
+                  onClick={() => setMyActivityTab('comments')}
+                >
+                  Comments
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={myActivityTab === 'annotations'}
+                  className={myActivityTab === 'annotations' ? styles.toggleBtnActive : styles.toggleBtn}
+                  onClick={() => setMyActivityTab('annotations')}
+                >
+                  Annotations
+                </button>
+              </div>
+            </div>
+
+            {activityLoading && <p className={styles.placeholder}>Loading…</p>}
+
+            {!activityLoading && myActivityTab === 'comments' && (
+              comments.length === 0 ? (
+                <p className={styles.placeholder}>
+                  You haven’t commented on any course yet. Comments you leave on course pages will appear here.
+                </p>
+              ) : (
+                <ul className={styles.list}>
+                  {comments.map(({ comment, course }) => (
+                    <li key={comment.id} className={styles.listItem}>
+                      <Link href={course.url ?? `/${course.notion_page_id}`}>
+                        <a className={styles.listLink}>
+                          <span className={styles.listTitle}>{course.name}</span>
+                          <span className={styles.listMeta}>{formatDate(comment.created_at)}</span>
+                        </a>
+                      </Link>
+                      <p className={styles.listBody}>{comment.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              )
+            )}
+
+            {!activityLoading && myActivityTab === 'annotations' && (
+              annotations.length === 0 ? (
+                <p className={styles.placeholder}>
+                  You haven’t added annotations yet. Annotations you leave in course sections will appear here.
+                </p>
+              ) : (
+                <ul className={styles.list}>
+                  {annotations.map(({ annotation, course }) => (
+                    <li key={annotation.id} className={styles.listItem}>
+                      <Link href={course.url ?? `/${course.notion_page_id}`}>
+                        <a className={styles.listLink}>
+                          <span className={styles.listTitle}>{course.name}</span>
+                          <span className={styles.listMeta}>{formatDate(annotation.created_at)}</span>
+                        </a>
+                      </Link>
+                      <p className={styles.notificationMeta}>Section: {annotation.section_id}</p>
+                      <p className={styles.listBody}>{annotation.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              )
             )}
           </div>
         </div>

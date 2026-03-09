@@ -18,8 +18,6 @@ export interface CourseContentProps {
 
 const ANNOTATION_COUNT = 20
 
-const STORAGE_GOOGLEAPIS_PREFIX = 'https://storage.googleapis.com/'
-
 export const CourseContent: React.FC<CourseContentProps> = ({
   mainRef,
   children,
@@ -30,25 +28,26 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const [showAnnotations, setShowAnnotations] = React.useState(false)
   const [contentSlotReady, setContentSlotReady] = React.useState(false)
   const [tocItems, setTocItems] = React.useState<TocItem[]>([])
-  const [pdfUrl, setPdfUrl] = React.useState<string | undefined>(undefined)
-  const [pdfTitle, setPdfTitle] = React.useState<string | undefined>(undefined)
+  const [embedUrl, setEmbedUrl] = React.useState<string | undefined>(undefined)
+  const [embedTitle, setEmbedTitle] = React.useState<string | undefined>(undefined)
   const contentSlotRef = React.useRef<HTMLDivElement | null>(null)
 
   const handleTocLink = React.useCallback((href: string) => {
-    if (href.startsWith(STORAGE_GOOGLEAPIS_PREFIX)) {
-      setPdfUrl(href)
+    const isHttp = /^https?:\/\//i.test(href)
+    if (isHttp) {
+      setEmbedUrl(href)
     } else {
-      setPdfUrl(undefined)
+      setEmbedUrl(undefined)
       window.open(href, '_blank', 'noopener,noreferrer')
     }
   }, [])
 
   const handleSelectionClearPdf = React.useCallback(() => {
-    setPdfUrl(undefined)
+    setEmbedUrl(undefined)
   }, [])
 
   const handleSelectedItemChange = React.useCallback((label: string | null) => {
-    setPdfTitle(label ?? undefined)
+    setEmbedTitle(label ?? undefined)
   }, [])
 
   const setSlotRef = React.useCallback(
@@ -81,7 +80,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     return () => clearTimeout(timer)
   }, [contentSlotReady, tocItems.length])
 
-  const currentSectionLabel = pdfTitle ?? tocItems[0]?.label ?? 'Overview'
+  const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? 'Overview'
 
   return (
     <div className={styles.wrapper}>
@@ -104,8 +103,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           showAnnotations={showAnnotations}
           onShowAnnotations={() => setShowAnnotations(true)}
           annotationCount={ANNOTATION_COUNT}
-          pdfUrl={pdfUrl}
-          pdfTitle={pdfTitle}
+          embedUrl={embedUrl}
+          embedTitle={embedTitle}
         >
           {children}
         </ContentMain>

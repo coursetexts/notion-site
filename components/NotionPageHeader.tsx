@@ -9,6 +9,10 @@ import { Header, Search, useNotionContext } from 'react-notion-x'
 
 import { getCachedAuth, subscribeToAuthCache } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
+import {
+  getUnreadReplyCount,
+  subscribeReplyNotificationUpdates
+} from '@/lib/reply-notifications'
 import { useAuthOptional } from '../contexts/AuthContext'
 import {
   isSearchEnabled,
@@ -53,6 +57,7 @@ export const NotionPageHeader: React.FC<{
   const { components, mapPageUrl } = useNotionContext()
   const auth = useAuthOptional()
   const [cached, setCached] = React.useState(getCachedAuth)
+  const [unreadReplies, setUnreadReplies] = React.useState(0)
 
   React.useEffect(() => {
     return subscribeToAuthCache(() => setCached(getCachedAuth()))
@@ -65,6 +70,24 @@ export const NotionPageHeader: React.FC<{
   const rootUrl = mapPageUrl(rootNotionPageId)
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
+
+  React.useEffect(() => {
+    if (!user) {
+      setUnreadReplies(0)
+      return
+    }
+    let cancelled = false
+    const load = async () => {
+      const count = await getUnreadReplyCount(user.id)
+      if (!cancelled) setUnreadReplies(count)
+    }
+    load()
+    const unsub = subscribeReplyNotificationUpdates(load)
+    return () => {
+      cancelled = true
+      unsub()
+    }
+  }, [user?.id])
 
   React.useEffect(() => {
     authDebug('header:auth-state', {
@@ -121,7 +144,14 @@ export const NotionPageHeader: React.FC<{
             href={isLoggedIn ? '/profile' : '/signin'}
             className={styles.signUpBtn}
           >
-            {isLoggedIn ? 'Profile' : 'Sign in'}
+            <span className={styles.profileLinkLabelWrap}>
+              <span>{isLoggedIn ? 'Profile' : 'Sign in'}</span>
+              {isLoggedIn && unreadReplies > 0 && (
+                <span className={styles.profileAlertBadge} aria-label={`${unreadReplies} unread replies`}>
+                  {unreadReplies > 99 ? '99+' : unreadReplies}
+                </span>
+              )}
+            </span>
           </Link>
         </div>
       </div>

@@ -4,11 +4,17 @@ import {
   getOrCreateCourse,
   getAnnotations,
   addAnnotation,
+  setVote,
   type Annotation as DbAnnotation
 } from '@/lib/course-activity-db'
 import { authDebug } from '@/lib/auth-debug'
 import { useAuthOptional } from '../contexts/AuthContext'
+import { useFollowingIds } from '@/hooks/useFollowingIds'
+import { useFollowerIds } from '@/hooks/useFollowerIds'
+import { UserLink } from './UserLink'
 import styles from './AnnotationWidget.module.css'
+
+type SortBy = 'time' | 'votes'
 
 export interface AnnotationWidgetProps {
   count?: number
@@ -59,6 +65,57 @@ function buildAnnotationTree(annotations: DbAnnotation[]): ThreadAnnotation[] {
   return roots
 }
 
+function sortAnnotationRoots(roots: ThreadAnnotation[], sortBy: SortBy): ThreadAnnotation[] {
+  if (sortBy === 'votes') {
+    return [...roots].sort((a, b) => {
+      const sa = a.score ?? 0
+      const sb = b.score ?? 0
+      if (sb !== sa) return sb - sa
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    })
+  }
+  return [...roots].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  )
+}
+
+interface VoteRowProps {
+  score: number
+  userVote: number | null
+  disabled: boolean
+  onVote: (value: 1 | -1 | null) => void
+}
+
+const VoteRow: React.FC<VoteRowProps> = ({ score, userVote, disabled, onVote }) => {
+  const handleUp = () => onVote(userVote === 1 ? null : 1)
+  const handleDown = () => onVote(userVote === -1 ? null : -1)
+  return (
+    <div className={styles.voteRow}>
+      <button
+        type="button"
+        className={styles.voteBtn}
+        onClick={handleUp}
+        disabled={disabled}
+        aria-label="Upvote"
+        title="Upvote"
+      >
+        <span className={userVote === 1 ? styles.voteBtnActive : undefined}>▲</span>
+      </button>
+      <span className={styles.voteCount}>{score}</span>
+      <button
+        type="button"
+        className={styles.voteBtn}
+        onClick={handleDown}
+        disabled={disabled}
+        aria-label="Downvote"
+        title="Downvote"
+      >
+        <span className={userVote === -1 ? styles.voteBtnActive : undefined}>▼</span>
+      </button>
+    </div>
+  )
+}
+
 export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   count = 0,
   onHide,
@@ -68,6 +125,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   sectionId
 }) => {
   const auth = useAuthOptional()
+  const [sortBy, setSortBy] = useState<SortBy>('time')
   const [inputValue, setInputValue] = useState('')
   const [courseId, setCourseId] = useState<string | null>(null)
   const [annotations, setAnnotations] = useState<DbAnnotation[]>([])
@@ -77,7 +135,10 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   const [loading, setLoading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [submittingReplyId, setSubmittingReplyId] = useState<string | null>(null)
+  const [votingId, setVotingId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const { followingIds } = useFollowingIds()
+  const { followerIds } = useFollowerIds()
 
   const loadAnnotations = useCallback(async () => {
     if (!coursePageId || !courseTitle || sectionId == null || sectionId === '') return
@@ -133,6 +194,18 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
     () => buildAnnotationTree(annotations),
     [annotations]
   )
+  const sortedAnnotationRoots = useMemo(
+    () => sortAnnotationRoots(threadedAnnotations, sortBy),
+    [threadedAnnotations, sortBy]
+  )
+  const updateAnnotationVote = useCallback(
+    (annotationId: string, score: number, user_vote: number | null) => {
+      setAnnotations((prev) =>
+        prev.map((a) => (a.id === annotationId ? { ...a, score, user_vote } : a))
+      )
+    },
+    []
+  )
 
   return (
     <aside className={styles.root} aria-label="Annotations">
@@ -141,14 +214,30 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
           Annotations
           {sectionId ? ` · ${sectionId}` : ''} ({displayCount})
         </h2>
-        <button
-          type="button"
-          className={styles.hideBtn}
-          onClick={onHide}
-          aria-label="Hide annotations"
-        >
-          Hide
-        </button>
+        <div className={styles.headerActions}>
+          <div className={styles.sortWrap} role="group" aria-label="Sort annotations">
+            <label className={styles.sortLabel} htmlFor="annotation-widget-sort">
+              Sort:
+            </label>
+            <select
+              id="annotation-widget-sort"
+              className={styles.sortSelect}
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as SortBy)}
+            >
+              <option value="time">Newest first</option>
+              <option value="votes">Most voted</option>
+            </select>
+          </div>
+          <button
+            type="button"
+            className={styles.hideBtn}
+            onClick={onHide}
+            aria-label="Hide annotations"
+          >
+            Hide
+          </button>
+        </div>
       </div>
       {auth?.user ? (
         <div className={styles.addWrap}>
@@ -186,17 +275,26 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
           <p className={styles.placeholder}>No annotations on this section yet.</p>
         )}
         {!loading &&
-          threadedAnnotations.map((a) => (
+          sortedAnnotationRoots.map((a) => (
             <ThreadAnnotationItem
               key={a.id}
               node={a}
               depth={0}
               authUser={Boolean(auth?.user)}
               courseUrl={courseUrl}
+              followingIds={followingIds}
+              followerIds={followerIds}
               replyDraftById={replyDraftById}
               replyOpenById={replyOpenById}
               submittingReplyId={submittingReplyId}
               threadExpandedById={threadExpandedById}
+              votingId={votingId}
+              onVote={async (id, value) => {
+                setVotingId(id)
+                const newScore = await setVote('annotation', id, value)
+                if (newScore !== null) updateAnnotationVote(id, newScore, value)
+                setVotingId(null)
+              }}
               onToggleReply={(id) =>
                 setReplyOpenById((prev) => ({ ...prev, [id]: !prev[id] }))
               }
@@ -219,10 +317,14 @@ interface ThreadAnnotationItemProps {
   depth: number
   authUser: boolean
   courseUrl?: string
+  followingIds: Set<string>
+  followerIds: Set<string>
   replyDraftById: Record<string, string>
   replyOpenById: Record<string, boolean>
   submittingReplyId: string | null
   threadExpandedById: Record<string, boolean>
+  votingId: string | null
+  onVote: (id: string, value: 1 | -1 | null) => void
   onToggleReply: (id: string) => void
   onToggleThread: (id: string) => void
   onReplyChange: (id: string, value: string) => void
@@ -234,10 +336,14 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
   depth,
   authUser,
   courseUrl,
+  followingIds,
+  followerIds,
   replyDraftById,
   replyOpenById,
   submittingReplyId,
   threadExpandedById,
+  votingId,
+  onVote,
   onToggleReply,
   onToggleThread,
   onReplyChange,
@@ -259,9 +365,22 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
     <div className={styles.threadItem} style={{ marginLeft }}>
       <div className={styles.annotation}>
         <div className={styles.annotationHeader}>
-          <span className={styles.author}>{node.author?.display_name ?? 'Anonymous'}</span>
+          <span className={styles.author}>
+            <UserLink
+              userId={node.user_id}
+              displayName={node.author?.display_name ?? 'Anonymous'}
+              showFollowingTag={followingIds.has(node.user_id)}
+              showFollowsYouTag={followerIds.has(node.user_id)}
+            />
+          </span>
           <span className={styles.time}>{formatRelativeTime(node.created_at)}</span>
         </div>
+        <VoteRow
+          score={node.score ?? 0}
+          userVote={node.user_vote ?? null}
+          disabled={!authUser || votingId === node.id}
+          onVote={(value) => onVote(node.id, value)}
+        />
         <p className={styles.body}>{node.body}</p>
         <button
           type="button"
@@ -310,10 +429,14 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
               depth={depth + 1}
               authUser={authUser}
               courseUrl={courseUrl}
+              followingIds={followingIds}
+              followerIds={followerIds}
               replyDraftById={replyDraftById}
               replyOpenById={replyOpenById}
               submittingReplyId={submittingReplyId}
               threadExpandedById={threadExpandedById}
+              votingId={votingId}
+              onVote={onVote}
               onToggleReply={onToggleReply}
               onToggleThread={onToggleThread}
               onReplyChange={onReplyChange}

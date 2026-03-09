@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './ContentMain.module.css'
 import { PdfEmbed } from './PdfEmbed'
+import { WebEmbed } from './WebEmbed'
 import { ViewAnnotationsButton } from './ViewAnnotationsButton'
 
 export interface ContentMainProps {
@@ -10,10 +11,10 @@ export interface ContentMainProps {
   showAnnotations?: boolean
   onShowAnnotations?: () => void
   annotationCount?: number
-  /** Optional PDF URL to embed at the top of the content main section */
-  pdfUrl?: string
-  /** Item name to show above the PDF viewer (e.g. selected TOC link label) */
-  pdfTitle?: string
+  /** Optional URL to embed at the top of the content main section */
+  embedUrl?: string
+  /** Item name to show above the viewer (e.g. selected TOC link label) */
+  embedTitle?: string
 }
 
 export const ContentMain: React.FC<ContentMainProps> = ({
@@ -22,10 +23,11 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   showAnnotations = false,
   onShowAnnotations,
   annotationCount = 0,
-  pdfUrl,
-  pdfTitle
+  embedUrl,
+  embedTitle
 }) => {
   const showViewBar = onShowAnnotations && !showAnnotations
+  const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
 
   return (
     <main className={styles.root}>
@@ -38,12 +40,16 @@ export const ContentMain: React.FC<ContentMainProps> = ({
         </div>
       )}
       <div className={styles.slot}>
-        {pdfTitle && (
-          <h2 className={styles.pdfTitle}>{pdfTitle}</h2>
+        {embedTitle && (
+          <h2 className={styles.pdfTitle}>{embedTitle}</h2>
         )}
-        {pdfUrl && (
+        {embedUrl && (
           <div className={styles.pdfWrap}>
-            <PdfEmbed url={pdfUrl} title="Course PDF" />
+            {isPdf ? (
+              <PdfEmbed url={embedUrl} title="Course PDF" />
+            ) : (
+              <WebEmbed url={embedUrl} title={embedTitle || 'Embedded content'} />
+            )}
             <div className={styles.markCompleteWrap}>
               <button type="button" className={styles.markCompleteBtn} aria-label="Mark as completed">
                 <span className={styles.markCompleteIcon} aria-hidden>✓</span>

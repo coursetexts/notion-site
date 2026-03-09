@@ -65,6 +65,24 @@
   background-color: #f5f5f5;
 }
 
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemToggle {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #6b7280;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.item:hover .itemToggle,
+.itemActive .itemToggle {
+  opacity: 1;
+}
+
 .itemActive {
   background-color: #eff6ff;
   border-left-color: #3b82f6;

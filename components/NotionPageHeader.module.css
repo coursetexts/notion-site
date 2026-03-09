@@ -105,10 +105,32 @@
   text-decoration: none;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   transition: background-color 0.15s, border-color 0.15s;
+  position: relative;
 }
 
 .signUpBtn:hover {
   background-color: #e8e8e8;
   border-color: #d5d5d5;
   color: #1a1a1a;
+}
+
+.profileLinkLabelWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.profileAlertBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.28rem;
+  border-radius: 999px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.68rem;
+  line-height: 1;
+  font-weight: 600;
 }

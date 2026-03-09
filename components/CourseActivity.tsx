@@ -5,13 +5,18 @@ import {
   getComments,
   getAnnotations,
   getOrCreateCourse,
+  setVote,
   type Comment as DbComment,
   type Annotation as DbAnnotation
 } from '@/lib/course-activity-db'
 import { useAuthOptional } from '../contexts/AuthContext'
+import { useFollowingIds } from '@/hooks/useFollowingIds'
+import { useFollowerIds } from '@/hooks/useFollowerIds'
+import { UserLink } from './UserLink'
 import styles from './CourseActivity.module.css'
 
 type TabId = 'all' | 'comments' | 'annotations'
+type SortBy = 'time' | 'votes'
 type ThreadComment = DbComment & { replies: ThreadComment[] }
 
 function formatRelativeTime(iso: string): string {
@@ -26,6 +31,43 @@ function formatRelativeTime(iso: string): string {
   if (hours < 24) return `${hours}h`
   if (days < 7) return `${days}d`
   return d.toLocaleDateString()
+}
+
+interface VoteRowProps {
+  score: number
+  userVote: number | null
+  disabled: boolean
+  onVote: (value: 1 | -1 | null) => void
+}
+
+const VoteRow: React.FC<VoteRowProps> = ({ score, userVote, disabled, onVote }) => {
+  const handleUp = () => onVote(userVote === 1 ? null : 1)
+  const handleDown = () => onVote(userVote === -1 ? null : -1)
+  return (
+    <div className={styles.voteRow}>
+      <button
+        type="button"
+        className={styles.voteBtn}
+        onClick={handleUp}
+        disabled={disabled}
+        aria-label="Upvote"
+        title="Upvote"
+      >
+        <span className={userVote === 1 ? styles.voteBtnActive : undefined}>▲</span>
+      </button>
+      <span className={styles.voteCount}>{score}</span>
+      <button
+        type="button"
+        className={styles.voteBtn}
+        onClick={handleDown}
+        disabled={disabled}
+        aria-label="Downvote"
+        title="Downvote"
+      >
+        <span className={userVote === -1 ? styles.voteBtnActive : undefined}>▼</span>
+      </button>
+    </div>
+  )
 }
 
 function buildCommentTree(comments: DbComment[]): ThreadComment[] {
@@ -51,6 +93,37 @@ function buildCommentTree(comments: DbComment[]): ThreadComment[] {
   return roots
 }
 
+function sortCommentRoots(roots: ThreadComment[], sortBy: SortBy): ThreadComment[] {
+  if (sortBy === 'votes') {
+    return [...roots].sort((a, b) => {
+      const sa = a.score ?? 0
+      const sb = b.score ?? 0
+      if (sb !== sa) return sb - sa
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    })
+  }
+  return [...roots].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  )
+}
+
+function sortAnnotationRoots<T extends { score?: number; created_at: string }>(
+  items: T[],
+  sortBy: SortBy
+): T[] {
+  if (sortBy === 'votes') {
+    return [...items].sort((a, b) => {
+      const sa = a.score ?? 0
+      const sb = b.score ?? 0
+      if (sb !== sa) return sb - sa
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    })
+  }
+  return [...items].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  )
+}
+
 export interface CourseActivityProps {
   coursePageId?: string
   courseTitle?: string
@@ -64,6 +137,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
 }) => {
   const auth = useAuthOptional()
   const [activeTab, setActiveTab] = useState<TabId>('comments')
+  const [sortBy, setSortBy] = useState<SortBy>('time')
   const [commentInput, setCommentInput] = useState('')
   const [courseId, setCourseId] = useState<string | null>(null)
   const [comments, setComments] = useState<DbComment[]>([])
@@ -75,6 +149,9 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
   const [submitting, setSubmitting] = useState(false)
   const [submittingReplyId, setSubmittingReplyId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [votingId, setVotingId] = useState<string | null>(null)
+  const { followingIds } = useFollowingIds()
+  const { followerIds } = useFollowerIds()
 
   const loadCourseAndActivity = useCallback(async () => {
     if (!coursePageId || !courseTitle) return
@@ -142,14 +219,48 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
   ]
 
   const allActivity = React.useMemo(() => {
-    const items: { type: 'comment' | 'annotation'; item: DbComment | DbAnnotation; at: string }[] = []
-    comments.forEach((c) => items.push({ type: 'comment', item: c, at: c.created_at }))
-    annotations.forEach((a) => items.push({ type: 'annotation', item: a, at: a.created_at }))
-    items.sort((a, b) => new Date(b.at).getTime() - new Date(a.at).getTime())
+    const items: {
+      type: 'comment' | 'annotation'
+      item: DbComment | DbAnnotation
+      at: string
+      score: number
+    }[] = []
+    comments.forEach((c) =>
+      items.push({ type: 'comment', item: c, at: c.created_at, score: c.score ?? 0 })
+    )
+    annotations.forEach((a) =>
+      items.push({ type: 'annotation', item: a, at: a.created_at, score: a.score ?? 0 })
+    )
+    if (sortBy === 'votes') {
+      items.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score
+        return new Date(b.at).getTime() - new Date(a.at).getTime()
+      })
+    } else {
+      items.sort((a, b) => new Date(b.at).getTime() - new Date(a.at).getTime())
+    }
     return items
-  }, [comments, annotations])
+  }, [comments, annotations, sortBy])
 
   const threadedComments = useMemo(() => buildCommentTree(comments), [comments])
+  const sortedCommentRoots = useMemo(
+    () => sortCommentRoots(threadedComments, sortBy),
+    [threadedComments, sortBy]
+  )
+
+  const updateCommentVote = useCallback((commentId: string, score: number, user_vote: number | null) => {
+    setComments((prev) =>
+      prev.map((c) => (c.id === commentId ? { ...c, score, user_vote } : c))
+    )
+  }, [])
+  const updateAnnotationVote = useCallback(
+    (annotationId: string, score: number, user_vote: number | null) => {
+      setAnnotations((prev) =>
+        prev.map((a) => (a.id === annotationId ? { ...a, score, user_vote } : a))
+      )
+    },
+    []
+  )
 
   const participants = React.useMemo(() => {
     const byId: Record<string, { name: string; count: number }> = {}
@@ -202,7 +313,23 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
 
           {!loading && activeTab === 'comments' && (
             <div className={styles.commentsPanel}>
-              <h3 className={styles.commentsHeading}>Comments ({commentCount})</h3>
+              <div className={styles.headingRow}>
+                <h3 className={styles.commentsHeading}>Comments ({commentCount})</h3>
+                <div className={styles.sortWrap} role="group" aria-label="Sort comments">
+                  <label className={styles.sortLabel} htmlFor="comment-sort">
+                    Sort:
+                  </label>
+                  <select
+                    id="comment-sort"
+                    className={styles.sortSelect}
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as SortBy)}
+                  >
+                    <option value="time">Newest first</option>
+                    <option value="votes">Most voted</option>
+                  </select>
+                </div>
+              </div>
               {auth?.user && (
                 <div className={styles.addWrap}>
                   <input
@@ -234,20 +361,29 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
               )}
               {error && <p className={styles.error}>{error}</p>}
               <div className={styles.commentList}>
-                {threadedComments.length === 0 && (
+                {sortedCommentRoots.length === 0 && (
                   <p className={styles.placeholderText}>No comments yet. Be the first!</p>
                 )}
-                {threadedComments.map((c) => (
+                {sortedCommentRoots.map((c) => (
                   <ThreadCommentItem
                     key={c.id}
                     node={c}
                     depth={0}
                     authUser={Boolean(auth?.user)}
                     courseUrl={courseUrl}
+                    followingIds={followingIds}
+                    followerIds={followerIds}
                     replyDraftById={replyDraftById}
                     replyOpenById={replyOpenById}
                     submittingReplyId={submittingReplyId}
                     threadExpandedById={threadExpandedById}
+                    votingId={votingId}
+                    onVote={async (id, value) => {
+                      setVotingId(id)
+                      const newScore = await setVote('comment', id, value)
+                      if (newScore !== null) updateCommentVote(id, newScore, value)
+                      setVotingId(null)
+                    }}
                     onToggleReply={(id) =>
                       setReplyOpenById((prev) => ({ ...prev, [id]: !prev[id] }))
                     }
@@ -266,20 +402,52 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
 
           {!loading && activeTab === 'annotations' && (
             <div className={styles.annotationsPanel}>
-              <h3 className={styles.commentsHeading}>Annotations ({annotationCount})</h3>
+              <div className={styles.headingRow}>
+                <h3 className={styles.commentsHeading}>Annotations ({annotationCount})</h3>
+                <div className={styles.sortWrap} role="group" aria-label="Sort annotations">
+                  <label className={styles.sortLabel} htmlFor="annotation-sort">
+                    Sort:
+                  </label>
+                  <select
+                    id="annotation-sort"
+                    className={styles.sortSelect}
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as SortBy)}
+                  >
+                    <option value="time">Newest first</option>
+                    <option value="votes">Most voted</option>
+                  </select>
+                </div>
+              </div>
               {annotations.length === 0 && (
                 <p className={styles.placeholderText}>
                   No annotations yet. Add annotations from the sidebar on a specific section.
                 </p>
               )}
-              {annotations.map((a) => (
+              {sortAnnotationRoots(annotations, sortBy).map((a) => (
                 <div key={a.id} className={styles.annotationItem}>
                   <div className={styles.commentHeader}>
                     <span className={styles.author}>
-                      {a.author?.display_name ?? 'Anonymous'}
+                      <UserLink
+                        userId={a.user_id}
+                        displayName={a.author?.display_name ?? 'Anonymous'}
+                        showFollowingTag={followingIds.has(a.user_id)}
+                        showFollowsYouTag={followerIds.has(a.user_id)}
+                      />
                     </span>
                     <span className={styles.time}>{formatRelativeTime(a.created_at)}</span>
                   </div>
+                  <VoteRow
+                    score={a.score ?? 0}
+                    userVote={a.user_vote ?? null}
+                    disabled={!auth?.user || votingId === a.id}
+                    onVote={async (value) => {
+                      setVotingId(a.id)
+                      const newScore = await setVote('annotation', a.id, value)
+                      if (newScore !== null) updateAnnotationVote(a.id, newScore, value)
+                      setVotingId(null)
+                    }}
+                  />
                   <span className={styles.sectionTag}>{a.section_id}</span>
                   <p className={styles.body}>{a.body}</p>
                 </div>
@@ -289,7 +457,23 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
 
           {!loading && activeTab === 'all' && (
             <div className={styles.allPanel}>
-              <h3 className={styles.commentsHeading}>All Activity ({totalCount})</h3>
+              <div className={styles.headingRow}>
+                <h3 className={styles.commentsHeading}>All Activity ({totalCount})</h3>
+                <div className={styles.sortWrap} role="group" aria-label="Sort activity">
+                  <label className={styles.sortLabel} htmlFor="all-sort">
+                    Sort:
+                  </label>
+                  <select
+                    id="all-sort"
+                    className={styles.sortSelect}
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as SortBy)}
+                  >
+                    <option value="time">Newest first</option>
+                    <option value="votes">Most voted</option>
+                  </select>
+                </div>
+              </div>
               {allActivity.length === 0 && (
                 <p className={styles.placeholderText}>No activity yet.</p>
               )}
@@ -298,26 +482,58 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   <div key={`c-${item.id}`} className={styles.comment}>
                     <div className={styles.commentHeader}>
                       <span className={styles.author}>
-                        {(item as DbComment).author?.display_name ?? 'Anonymous'}
+                        <UserLink
+                          userId={(item as DbComment).user_id}
+                          displayName={(item as DbComment).author?.display_name ?? 'Anonymous'}
+                          showFollowingTag={followingIds.has((item as DbComment).user_id)}
+                          showFollowsYouTag={followerIds.has((item as DbComment).user_id)}
+                        />
                       </span>
                       <span className={styles.time}>
                         {formatRelativeTime((item as DbComment).created_at)}
                       </span>
                       <span className={styles.typeTag}>Comment</span>
                     </div>
+                    <VoteRow
+                      score={(item as DbComment).score ?? 0}
+                      userVote={(item as DbComment).user_vote ?? null}
+                      disabled={!auth?.user || votingId === item.id}
+                      onVote={async (value) => {
+                        setVotingId(item.id)
+                        const newScore = await setVote('comment', item.id, value)
+                        if (newScore !== null) updateCommentVote(item.id, newScore, value)
+                        setVotingId(null)
+                      }}
+                    />
                     <p className={styles.body}>{(item as DbComment).body}</p>
                   </div>
                 ) : (
                   <div key={`a-${item.id}`} className={styles.annotationItem}>
                     <div className={styles.commentHeader}>
                       <span className={styles.author}>
-                        {(item as DbAnnotation).author?.display_name ?? 'Anonymous'}
+                        <UserLink
+                          userId={(item as DbAnnotation).user_id}
+                          displayName={(item as DbAnnotation).author?.display_name ?? 'Anonymous'}
+                          showFollowingTag={followingIds.has((item as DbAnnotation).user_id)}
+                          showFollowsYouTag={followerIds.has((item as DbAnnotation).user_id)}
+                        />
                       </span>
                       <span className={styles.time}>
                         {formatRelativeTime((item as DbAnnotation).created_at)}
                       </span>
                       <span className={styles.typeTag}>Annotation</span>
                     </div>
+                    <VoteRow
+                      score={(item as DbAnnotation).score ?? 0}
+                      userVote={(item as DbAnnotation).user_vote ?? null}
+                      disabled={!auth?.user || votingId === item.id}
+                      onVote={async (value) => {
+                        setVotingId(item.id)
+                        const newScore = await setVote('annotation', item.id, value)
+                        if (newScore !== null) updateAnnotationVote(item.id, newScore, value)
+                        setVotingId(null)
+                      }}
+                    />
                     <span className={styles.sectionTag}>{(item as DbAnnotation).section_id}</span>
                     <p className={styles.body}>{(item as DbAnnotation).body}</p>
                   </div>
@@ -347,10 +563,14 @@ interface ThreadCommentItemProps {
   depth: number
   authUser: boolean
   courseUrl?: string
+  followingIds: Set<string>
+  followerIds: Set<string>
   replyDraftById: Record<string, string>
   replyOpenById: Record<string, boolean>
   submittingReplyId: string | null
   threadExpandedById: Record<string, boolean>
+  votingId: string | null
+  onVote: (id: string, value: 1 | -1 | null) => void
   onToggleReply: (id: string) => void
   onToggleThread: (id: string) => void
   onReplyChange: (id: string, value: string) => void
@@ -362,10 +582,14 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
   depth,
   authUser,
   courseUrl,
+  followingIds,
+  followerIds,
   replyDraftById,
   replyOpenById,
   submittingReplyId,
   threadExpandedById,
+  votingId,
+  onVote,
   onToggleReply,
   onToggleThread,
   onReplyChange,
@@ -388,10 +612,21 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
       <div className={styles.comment}>
         <div className={styles.commentHeader}>
           <span className={styles.author}>
-            {node.author?.display_name ?? 'Anonymous'}
+            <UserLink
+              userId={node.user_id}
+              displayName={node.author?.display_name ?? 'Anonymous'}
+              showFollowingTag={followingIds.has(node.user_id)}
+              showFollowsYouTag={followerIds.has(node.user_id)}
+            />
           </span>
           <span className={styles.time}>{formatRelativeTime(node.created_at)}</span>
         </div>
+        <VoteRow
+          score={node.score ?? 0}
+          userVote={node.user_vote ?? null}
+          disabled={!authUser || votingId === node.id}
+          onVote={(value) => onVote(node.id, value)}
+        />
         <p className={styles.body}>{node.body}</p>
         <button
           type="button"
@@ -442,10 +677,14 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
               depth={depth + 1}
               authUser={authUser}
               courseUrl={courseUrl}
+              followingIds={followingIds}
+              followerIds={followerIds}
               replyDraftById={replyDraftById}
               replyOpenById={replyOpenById}
               submittingReplyId={submittingReplyId}
               threadExpandedById={threadExpandedById}
+              votingId={votingId}
+              onVote={onVote}
               onToggleReply={onToggleReply}
               onToggleThread={onToggleThread}
               onReplyChange={onReplyChange}

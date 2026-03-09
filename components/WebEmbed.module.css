@@ -1,0 +1,30 @@
+.root {
+  width: 100%;
+  border: 1px solid #e5e1d3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.iframe {
+  display: block;
+  width: 100%;
+  height: min(72vh, 900px);
+  border: none;
+}
+
+.linkWrap {
+  border-top: 1px solid #e5e1d3;
+  padding: 0.5rem 0.75rem;
+  background: #fafafa;
+}
+
+.link {
+  color: #1f4dbd;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
