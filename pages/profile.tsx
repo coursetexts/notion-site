@@ -16,10 +16,28 @@ import {
   type Course as CourseType
 } from '@/lib/course-activity-db'
 import {
+  getFollowingCount,
+  getFollowersCount,
+  getFollowingList,
+  getFollowersList,
+  type ProfileListItem
+} from '@/lib/follows'
+import {
   getReplyNotifications,
   markReplyNotificationsRead,
   type ReplyNotification
 } from '@/lib/reply-notifications'
+import {
+  getMyTags,
+  getMyLinks,
+  createTag,
+  addLink,
+  updateLink,
+  deleteLink,
+  type LinkTag,
+  type UserLinkWithTag
+} from '@/lib/user-links'
+import { getLinkSiteFaviconDomain, getFaviconUrl } from '@/lib/link-site-favicon'
 import { name as siteName } from '@/lib/config'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 import { useFollowerIds } from '@/hooks/useFollowerIds'
@@ -52,28 +70,178 @@ export default function ProfilePage() {
   const [myActivityTab, setMyActivityTab] = useState<'comments' | 'annotations'>(
     'comments'
   )
+  type ProfileView = 'profile' | 'following' | 'followers'
+  const [view, setView] = useState<ProfileView>('profile')
+  const [followingCount, setFollowingCount] = useState(0)
+  const [followersCount, setFollowersCount] = useState(0)
+  const [followingList, setFollowingList] = useState<ProfileListItem[]>([])
+  const [followersList, setFollowersList] = useState<ProfileListItem[]>([])
   const { followingIds } = useFollowingIds()
   const { followerIds } = useFollowerIds()
+  const [linkTags, setLinkTags] = useState<LinkTag[]>([])
+  const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
+  const [linkFilterTagId, setLinkFilterTagId] = useState<string | null>(null)
+  const [showAddLinkModal, setShowAddLinkModal] = useState(false)
+  const [linkFormTitle, setLinkFormTitle] = useState('')
+  const [linkFormUrl, setLinkFormUrl] = useState('')
+  const [linkFormTagIds, setLinkFormTagIds] = useState<string[]>([])
+  const [linkFormNote, setLinkFormNote] = useState('')
+  const [linkFormIsPrivate, setLinkFormIsPrivate] = useState(false)
+  const [newTagName, setNewTagName] = useState('')
+  const [showNewTagInput, setShowNewTagInput] = useState(false)
+  const [linksLoading, setLinksLoading] = useState(false)
+  const [linkSubmitting, setLinkSubmitting] = useState(false)
+  const [tagSubmitting, setTagSubmitting] = useState(false)
+  type LinkActionType = 'edit-note' | 'add-tag' | 'delete'
+  const [linkActionOverlay, setLinkActionOverlay] = useState<{ type: LinkActionType; link: UserLinkWithTag } | null>(null)
+  const [editNote, setEditNote] = useState('')
+  const [editTagIds, setEditTagIds] = useState<string[]>([])
+  const [editIsPrivate, setEditIsPrivate] = useState(false)
+  const [editSubmitting, setEditSubmitting] = useState(false)
+  const [showPrivateMessageForLinkId, setShowPrivateMessageForLinkId] = useState<string | null>(null)
 
   const effectiveUser = user ?? resolvedUser
 
   const loadActivity = useCallback(async (userId: string) => {
-    const [commentsRes, annotationsRes, bookmarksRes, notificationRes] = await Promise.all([
+    const [
+      commentsRes,
+      annotationsRes,
+      bookmarksRes,
+      notificationRes,
+      fCount,
+      fersCount,
+      fList,
+      fersList
+    ] = await Promise.all([
       getMyComments(),
       getMyAnnotations(),
       getMyBookmarks(),
-      getReplyNotifications(userId)
+      getReplyNotifications(userId),
+      getFollowingCount(userId),
+      getFollowersCount(userId),
+      getFollowingList(userId),
+      getFollowersList(userId)
     ])
     setComments(commentsRes)
     setAnnotations(annotationsRes)
     setBookmarks(bookmarksRes)
     setNotifications(notificationRes)
+    setFollowingCount(fCount)
+    setFollowersCount(fersCount)
+    setFollowingList(fList)
+    setFollowersList(fersList)
     setActivityLoading(false)
 
     // Mark as read after rendering this fetch so entries can appear as read next time.
     await markReplyNotificationsRead(userId)
     setNotifications((prev) => prev.map((n) => ({ ...n, is_unread: false })))
   }, [])
+
+  const loadLinks = useCallback(async () => {
+    setLinksLoading(true)
+    const [tags, links] = await Promise.all([
+      getMyTags(),
+      getMyLinks(linkFilterTagId)
+    ])
+    setLinkTags(tags)
+    setUserLinks(links)
+    setLinksLoading(false)
+  }, [linkFilterTagId])
+
+  useEffect(() => {
+    if (!effectiveUser) return
+    loadLinks()
+  }, [effectiveUser, linkFilterTagId, loadLinks])
+
+  const handleCreateTag = async () => {
+    const name = newTagName.trim()
+    if (!name || tagSubmitting) return
+    setTagSubmitting(true)
+    const tag = await createTag(name)
+    if (tag) {
+      setLinkTags((prev) => [...prev, tag].sort((a, b) => a.name.localeCompare(b.name)))
+      setNewTagName('')
+      setShowNewTagInput(false)
+    }
+    setTagSubmitting(false)
+  }
+
+  const closeAddLinkModal = () => {
+    setShowAddLinkModal(false)
+    setLinkFormTitle('')
+    setLinkFormUrl('')
+    setLinkFormTagIds([])
+    setLinkFormNote('')
+    setLinkFormIsPrivate(false)
+  }
+
+  const handleAddLink = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!linkFormUrl.trim() || linkSubmitting) return
+    setLinkSubmitting(true)
+    const link = await addLink(linkFormUrl, {
+      title: linkFormTitle || null,
+      tagIds: linkFormTagIds.length ? linkFormTagIds : undefined,
+      note: linkFormNote || null,
+      isPrivate: linkFormIsPrivate
+    })
+    if (link) {
+      setUserLinks((prev) => {
+        if (linkFilterTagId && !link.tag_ids.includes(linkFilterTagId)) return prev
+        return [link, ...prev]
+      })
+      closeAddLinkModal()
+    }
+    setLinkSubmitting(false)
+  }
+
+  const handleDeleteLink = async (linkId: string) => {
+    const ok = await deleteLink(linkId)
+    if (ok) {
+      setUserLinks((prev) => prev.filter((l) => l.id !== linkId))
+      setLinkActionOverlay(null)
+    }
+  }
+
+  const openLinkAction = (type: LinkActionType, link: UserLinkWithTag) => {
+    setLinkActionOverlay({ type, link })
+    setEditNote(link.note ?? '')
+    setEditTagIds(link.tag_ids ? [...link.tag_ids] : [])
+    setEditIsPrivate(link.is_private ?? false)
+  }
+
+  const closeLinkActionOverlay = () => {
+    setLinkActionOverlay(null)
+    setEditNote('')
+    setEditTagIds([])
+    setEditIsPrivate(false)
+  }
+
+  const handleSaveEditNote = async () => {
+    if (!linkActionOverlay || linkActionOverlay.type !== 'edit-note' || editSubmitting) return
+    setEditSubmitting(true)
+    const updated = await updateLink(linkActionOverlay.link.id, { note: editNote })
+    if (updated) {
+      setUserLinks((prev) =>
+        prev.map((l) => (l.id === linkActionOverlay.link.id ? updated : l))
+      )
+      closeLinkActionOverlay()
+    }
+    setEditSubmitting(false)
+  }
+
+  const handleSaveAddTag = async () => {
+    if (!linkActionOverlay || linkActionOverlay.type !== 'add-tag' || editSubmitting) return
+    setEditSubmitting(true)
+    const updated = await updateLink(linkActionOverlay.link.id, { tagIds: editTagIds, isPrivate: editIsPrivate })
+    if (updated) {
+      setUserLinks((prev) =>
+        prev.map((l) => (l.id === linkActionOverlay.link.id ? updated : l))
+      )
+      closeLinkActionOverlay()
+    }
+    setEditSubmitting(false)
+  }
 
   useEffect(() => {
     authDebug('profile:effective-user', {
@@ -88,6 +256,7 @@ export default function ProfilePage() {
   }, [effectiveUser, isLoading, router])
 
   useEffect(() => {
+    setView('profile')
     if (effectiveUser) loadActivity(effectiveUser.id)
     else setActivityLoading(false)
   }, [effectiveUser, loadActivity])
@@ -170,6 +339,25 @@ export default function ProfilePage() {
             {effectiveUser.email && (
               <p className={styles.email}>{effectiveUser.email}</p>
             )}
+            <div className={styles.followRow}>
+              <span className={styles.followCounts}>
+                <button
+                  type="button"
+                  className={styles.followCountBtn}
+                  onClick={() => setView('following')}
+                >
+                  <strong>{followingCount}</strong> following
+                </button>
+                {' · '}
+                <button
+                  type="button"
+                  className={styles.followCountBtn}
+                  onClick={() => setView('followers')}
+                >
+                  <strong>{followersCount}</strong> followers
+                </button>
+              </span>
+            </div>
             <button
               type="button"
               className={styles.signOutBtn}
@@ -179,6 +367,60 @@ export default function ProfilePage() {
             </button>
           </div>
 
+          {view === 'following' && (
+            <div className={styles.section}>
+              <button
+                type="button"
+                className={styles.backToProfile}
+                onClick={() => setView('profile')}
+              >
+                ← Back to profile
+              </button>
+              <h2 className={styles.sectionTitle}>Following</h2>
+              {followingList.length === 0 ? (
+                <p className={styles.placeholder}>Not following anyone yet.</p>
+              ) : (
+                <ul className={styles.userList}>
+                  {followingList.map((u) => (
+                    <li key={u.user_id} className={styles.userListItem}>
+                      <a href={`/profile/${u.user_id}`} className={styles.userListLink}>
+                        {u.display_name || 'User'}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {view === 'followers' && (
+            <div className={styles.section}>
+              <button
+                type="button"
+                className={styles.backToProfile}
+                onClick={() => setView('profile')}
+              >
+                ← Back to profile
+              </button>
+              <h2 className={styles.sectionTitle}>Followers</h2>
+              {followersList.length === 0 ? (
+                <p className={styles.placeholder}>No followers yet.</p>
+              ) : (
+                <ul className={styles.userList}>
+                  {followersList.map((u) => (
+                    <li key={u.user_id} className={styles.userListItem}>
+                      <a href={`/profile/${u.user_id}`} className={styles.userListLink}>
+                        {u.display_name || 'User'}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {view === 'profile' && (
+          <>
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Bookmarked courses</h2>
             {activityLoading ? (
@@ -319,6 +561,364 @@ export default function ProfilePage() {
               )
             )}
           </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>My bookmarked links</h2>
+            <div className={styles.linkFilterRow}>
+              <div className={styles.linkFilterTagsWrap}>
+                <span className={styles.linkFilterLabel}>Filter:</span>
+                <button
+                  type="button"
+                  className={linkFilterTagId === null ? styles.linkFilterBtnActive : styles.linkFilterBtn}
+                  onClick={() => setLinkFilterTagId(null)}
+                >
+                  All
+                </button>
+                {linkTags.map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    className={linkFilterTagId === t.id ? styles.linkFilterBtnActive : styles.linkFilterBtn}
+                    onClick={() => setLinkFilterTagId(t.id)}
+                  >
+                    {t.name}
+                  </button>
+                ))}
+                {showNewTagInput ? (
+                  <span className={styles.newTagWrap}>
+                    <input
+                      type="text"
+                      className={styles.newTagInput}
+                      placeholder="Tag name"
+                      value={newTagName}
+                      onChange={(e) => setNewTagName(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && handleCreateTag()}
+                      autoFocus
+                    />
+                    <button
+                      type="button"
+                      className={styles.newTagBtn}
+                      onClick={handleCreateTag}
+                      disabled={!newTagName.trim() || tagSubmitting}
+                    >
+                      {tagSubmitting ? '…' : 'Add'}
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.newTagCancel}
+                      onClick={() => { setShowNewTagInput(false); setNewTagName('') }}
+                    >
+                      Cancel
+                    </button>
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.linkFilterBtnNew}
+                    onClick={() => setShowNewTagInput(true)}
+                  >
+                    + New tag
+                  </button>
+                )}
+              </div>
+              <>
+                <span className={styles.linkFilterDivider} aria-hidden>|</span>
+                <button
+                  type="button"
+                  className={styles.addLinkBtn}
+                  onClick={() => setShowAddLinkModal(true)}
+                >
+                  Add a new link
+                </button>
+              </>
+            </div>
+            {showAddLinkModal && (
+              <div className={styles.modalBackdrop} onClick={closeAddLinkModal} role="presentation">
+                <div className={styles.modalCard} onClick={(e) => e.stopPropagation()}>
+                  <div className={styles.modalHeader}>
+                    <h3 className={styles.modalTitle}>Add New Bookmark</h3>
+                    <button
+                      type="button"
+                      className={styles.modalClose}
+                      onClick={closeAddLinkModal}
+                      aria-label="Close"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <form className={styles.modalForm} onSubmit={handleAddLink}>
+                    <label className={styles.modalLabel}>
+                      Title <span className={styles.modalOptional}>(optional)</span>
+                      <input
+                        type="text"
+                        className={styles.modalInput}
+                        placeholder="My Awesome Link"
+                        value={linkFormTitle}
+                        onChange={(e) => setLinkFormTitle(e.target.value)}
+                      />
+                    </label>
+                    <label className={styles.modalLabel}>
+                      URL <span className={styles.modalRequired}>*</span>
+                      <input
+                        type="url"
+                        className={styles.modalInput}
+                        placeholder="https://example.com"
+                        value={linkFormUrl}
+                        onChange={(e) => setLinkFormUrl(e.target.value)}
+                        required
+                      />
+                    </label>
+                    <label className={styles.modalLabel}>
+                      Description <span className={styles.modalOptional}>(optional)</span>
+                      <textarea
+                        className={styles.modalTextarea}
+                        placeholder="A brief description of this bookmark..."
+                        value={linkFormNote}
+                        onChange={(e) => setLinkFormNote(e.target.value)}
+                        rows={3}
+                      />
+                    </label>
+                    <div className={styles.modalLabel}>
+                      <span>Tags</span>
+                      <div className={styles.tagPillsWrap} role="group" aria-label="Select tags">
+                        {linkTags.map((t) => {
+                          const selected = linkFormTagIds.includes(t.id)
+                          return (
+                            <button
+                              key={t.id}
+                              type="button"
+                              className={selected ? styles.tagPillSelected : styles.tagPill}
+                              onClick={() => {
+                                setLinkFormTagIds((prev) =>
+                                  prev.includes(t.id)
+                                    ? prev.filter((id) => id !== t.id)
+                                    : [...prev, t.id]
+                                )
+                              }}
+                            >
+                              {t.name}
+                            </button>
+                          )
+                        })}
+                        {linkTags.length === 0 && (
+                          <span className={styles.tagPillsEmpty}>No tags yet. Add one in the filter row.</span>
+                        )}
+                      </div>
+                    </div>
+                    <label className={styles.modalCheckboxLabel}>
+                      <input
+                        type="checkbox"
+                        checked={linkFormIsPrivate}
+                        onChange={(e) => setLinkFormIsPrivate(e.target.checked)}
+                        className={styles.modalCheckbox}
+                      />
+                      <span>Private – only visible to you</span>
+                    </label>
+                    <div className={styles.modalActions}>
+                      <button
+                        type="button"
+                        className={styles.modalCancelBtn}
+                        onClick={closeAddLinkModal}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className={styles.modalSubmitBtn}
+                        disabled={linkSubmitting || !linkFormUrl.trim()}
+                      >
+                        {linkSubmitting ? '…' : 'Add Bookmark'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+            {linksLoading ? (
+              <p className={styles.placeholder}>Loading links…</p>
+            ) : userLinks.length === 0 ? (
+              <p className={styles.placeholder}>
+                No links yet. Click “Add a new link” to add a bookmark.
+              </p>
+            ) : (
+              <ul className={styles.userLinksList}>
+                {userLinks.map((l) => {
+                  const faviconDomain = getLinkSiteFaviconDomain(l.url)
+                  return (
+                  <li key={l.id} className={styles.userLinkItem}>
+                    <div className={styles.userLinkItemInner}>
+                      <span className={styles.userLinkIconWrap}>
+                        {faviconDomain ? (
+                          <img
+                            src={getFaviconUrl(faviconDomain)}
+                            alt=""
+                            className={styles.userLinkIcon}
+                            width={20}
+                            height={20}
+                          />
+                        ) : (
+                          <span className={styles.userLinkIconDefault} aria-hidden>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                            </svg>
+                          </span>
+                        )}
+                      </span>
+                      <div className={styles.userLinkContent}>
+                        <div className={styles.userLinkRow}>
+                          <a
+                            href={l.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.userLinkUrl}
+                          >
+                            {l.title || l.url}
+                          </a>
+                          <div className={styles.userLinkActions}>
+                            <button
+                              type="button"
+                              className={styles.userLinkActionBtn}
+                              onClick={() => openLinkAction('edit-note', l)}
+                              aria-label="Edit note"
+                              title="Edit note"
+                            >
+                              Note
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.userLinkActionBtn}
+                              onClick={() => openLinkAction('add-tag', l)}
+                              aria-label="Add tag"
+                              title="Tag page"
+                            >
+                              Tag
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.userLinkActionBtn}
+                              onClick={() => openLinkAction('delete', l)}
+                              aria-label="Delete link"
+                              title="Delete"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                        <div className={styles.userLinkMeta}>
+                          {l.is_private && (
+                            <button
+                              type="button"
+                              className={styles.userLinkTagPrivate}
+                              onClick={() => setShowPrivateMessageForLinkId((id) => (id === l.id ? null : l.id))}
+                              title="This link is only visible to you"
+                            >
+                              Private
+                            </button>
+                          )}
+                          {l.tag_names?.length > 0 && l.tag_names.map((name) => (
+                            <span key={name} className={styles.userLinkTag}>{name}</span>
+                          ))}
+                          <span className={styles.userLinkDate}>{formatDate(l.created_at)}</span>
+                          {(() => {
+                            try {
+                              return <span className={styles.userLinkDomain}>{new URL(l.url).hostname}</span>
+                            } catch {
+                              return null
+                            }
+                          })()}
+                        </div>
+                        {showPrivateMessageForLinkId === l.id && (
+                          <p className={styles.privateMessage} role="status">
+                            This link is only visible to you.
+                          </p>
+                        )}
+                        {l.note && <p className={styles.userLinkNote}>{l.note}</p>}
+                      </div>
+                    </div>
+                  </li>
+                  )
+                })}
+              </ul>
+            )}
+            {linkActionOverlay && (
+              <div className={styles.modalBackdrop} onClick={closeLinkActionOverlay} role="presentation">
+                <div className={styles.actionOverlayCard} onClick={(e) => e.stopPropagation()}>
+                  {linkActionOverlay.type === 'edit-note' && (
+                    <>
+                      <h4 className={styles.actionOverlayTitle}>Edit note</h4>
+                      <textarea
+                        className={styles.actionOverlayInput}
+                        placeholder="Note (optional)"
+                        value={editNote}
+                        onChange={(e) => setEditNote(e.target.value)}
+                        rows={3}
+                        autoFocus
+                      />
+                      <div className={styles.actionOverlayActions}>
+                        <button type="button" className={styles.actionOverlayCancel} onClick={closeLinkActionOverlay}>Cancel</button>
+                        <button type="button" className={styles.actionOverlaySave} onClick={handleSaveEditNote} disabled={editSubmitting}>{editSubmitting ? '…' : 'Save'}</button>
+                      </div>
+                    </>
+                  )}
+                  {linkActionOverlay.type === 'add-tag' && (
+                    <>
+                      <h4 className={styles.actionOverlayTitle}>Tag page</h4>
+                      <div className={styles.tagPillsWrap} role="group" aria-label="Select tags">
+                        {linkTags.map((t) => {
+                          const selected = editTagIds.includes(t.id)
+                          return (
+                            <button
+                              key={t.id}
+                              type="button"
+                              className={selected ? styles.tagPillSelected : styles.tagPill}
+                              onClick={() => {
+                                setEditTagIds((prev) =>
+                                  prev.includes(t.id)
+                                    ? prev.filter((id) => id !== t.id)
+                                    : [...prev, t.id]
+                                )
+                              }}
+                            >
+                              {t.name}
+                            </button>
+                          )
+                        })}
+                        {linkTags.length === 0 && (
+                          <span className={styles.tagPillsEmpty}>No tags yet.</span>
+                        )}
+                      </div>
+                      <label className={styles.actionOverlayCheckbox}>
+                        <input
+                          type="checkbox"
+                          checked={editIsPrivate}
+                          onChange={(e) => setEditIsPrivate(e.target.checked)}
+                          className={styles.actionOverlayCheckboxInput}
+                        />
+                        <span>Only visible to you</span>
+                      </label>
+                      <div className={styles.actionOverlayActions}>
+                        <button type="button" className={styles.actionOverlayCancel} onClick={closeLinkActionOverlay}>Cancel</button>
+                        <button type="button" className={styles.actionOverlaySave} onClick={handleSaveAddTag} disabled={editSubmitting}>{editSubmitting ? '…' : 'Save'}</button>
+                      </div>
+                    </>
+                  )}
+                  {linkActionOverlay.type === 'delete' && (
+                    <>
+                      <h4 className={styles.actionOverlayTitle}>Delete link?</h4>
+                      <p className={styles.actionOverlayText}>This bookmark will be removed.</p>
+                      <div className={styles.actionOverlayActions}>
+                        <button type="button" className={styles.actionOverlayCancel} onClick={closeLinkActionOverlay}>Cancel</button>
+                        <button type="button" className={styles.actionOverlayDelete} onClick={() => handleDeleteLink(linkActionOverlay.link.id)}>Delete</button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          </>
+          )}
         </div>
       </div>
     </>

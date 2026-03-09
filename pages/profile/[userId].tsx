@@ -20,6 +20,8 @@ import {
 } from '@/lib/follows'
 import type { Course } from '@/lib/course-activity-db'
 import type { Comment, Annotation, Bookmark } from '@/lib/course-activity-db'
+import { getLinksByUserId, type UserLinkWithTag } from '@/lib/user-links'
+import { getLinkSiteFaviconDomain, getFaviconUrl } from '@/lib/link-site-favicon'
 import { name as siteName } from '@/lib/config'
 import styles from '@/styles/profile.module.css'
 
@@ -45,6 +47,7 @@ export default function PublicProfilePage() {
   const [followingList, setFollowingList] = useState<ProfileListItem[]>([])
   const [followersList, setFollowersList] = useState<ProfileListItem[]>([])
   const [bookmarks, setBookmarks] = useState<{ bookmark: Bookmark; course: Course }[]>([])
+  const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
   const [comments, setComments] = useState<{ comment: Comment; course: Course }[]>([])
   const [annotations, setAnnotations] = useState<{ annotation: Annotation; course: Course }[]>([])
   const [activityTab, setActivityTab] = useState<'comments' | 'annotations'>('comments')
@@ -57,7 +60,7 @@ export default function PublicProfilePage() {
   const loadProfile = useCallback(async (uid: string) => {
     setLoading(true)
     setNotFound(false)
-    const [p, followStatus, fCount, fersCount, fList, fersList, b, c, a] = await Promise.all([
+    const [p, followStatus, fCount, fersCount, fList, fersList, b, links, c, a] = await Promise.all([
       getProfileByUserId(uid),
       currentUserId ? getFollowStatus(currentUserId, uid) : false,
       getFollowingCount(uid),
@@ -65,6 +68,7 @@ export default function PublicProfilePage() {
       getFollowingList(uid),
       getFollowersList(uid),
       getBookmarksByUser(uid),
+      getLinksByUserId(uid),
       getCommentsByUser(uid),
       getAnnotationsByUser(uid)
     ])
@@ -80,6 +84,7 @@ export default function PublicProfilePage() {
     setFollowingList(fList)
     setFollowersList(fersList)
     setBookmarks(b)
+    setUserLinks(links)
     setComments(c)
     setAnnotations(a)
     setLoading(false)
@@ -288,6 +293,69 @@ export default function PublicProfilePage() {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            )}
+          </div>
+
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>Bookmarked links</h2>
+            {userLinks.length === 0 ? (
+              <p className={styles.placeholder}>No bookmarked links.</p>
+            ) : (
+              <ul className={styles.userLinksList}>
+                {userLinks.map((l) => {
+                  const faviconDomain = getLinkSiteFaviconDomain(l.url)
+                  return (
+                    <li key={l.id} className={styles.userLinkItem}>
+                      <div className={styles.userLinkItemInner}>
+                        <span className={styles.userLinkIconWrap}>
+                          {faviconDomain ? (
+                            <img
+                              src={getFaviconUrl(faviconDomain)}
+                              alt=""
+                              className={styles.userLinkIcon}
+                              width={20}
+                              height={20}
+                            />
+                          ) : (
+                            <span className={styles.userLinkIconDefault} aria-hidden>
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                              </svg>
+                            </span>
+                          )}
+                        </span>
+                        <div className={styles.userLinkContent}>
+                          <div className={styles.userLinkRow}>
+                            <a
+                              href={l.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={styles.userLinkUrl}
+                            >
+                              {l.title || l.url}
+                            </a>
+                          </div>
+                          <div className={styles.userLinkMeta}>
+                            {l.tag_names?.length > 0 && l.tag_names.map((name) => (
+                              <span key={name} className={styles.userLinkTag}>{name}</span>
+                            ))}
+                            <span className={styles.userLinkDate}>{formatDate(l.created_at)}</span>
+                            {(() => {
+                              try {
+                                return <span className={styles.userLinkDomain}>{new URL(l.url).hostname}</span>
+                              } catch {
+                                return null
+                              }
+                            })()}
+                          </div>
+                          {l.note && <p className={styles.userLinkNote}>{l.note}</p>}
+                        </div>
+                      </div>
+                    </li>
+                  )
+                })}
               </ul>
             )}
           </div>

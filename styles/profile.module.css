@@ -103,9 +103,11 @@
 .followRow {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .followBtn {
@@ -143,12 +145,12 @@
 
 .followCounts {
   font-size: 0.9375rem;
-  color: #666;
+  color: #1a1a1a;
 }
 
 .followCountBtn {
   font: inherit;
-  color: #0089C4;
+  color: #1a1a1a;
   background: none;
   border: none;
   padding: 0;
@@ -156,6 +158,7 @@
 }
 
 .followCountBtn:hover {
+  color: #25272b;
   text-decoration: underline;
 }
 
@@ -274,8 +277,14 @@
 }
 
 .listItem {
-  padding: 0.75rem 0;
+  padding: 0.75rem 0.5rem;
   border-bottom: 1px solid #eee;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.listItem:hover {
+  background: #f9f9f9;
 }
 
 .listItemUnread {
@@ -283,6 +292,10 @@
   border-radius: 6px;
   padding-left: 0.6rem;
   padding-right: 0.6rem;
+}
+
+.listItemUnread:hover {
+  background: #fef3e6;
 }
 
 .listItem:last-child {
@@ -299,7 +312,8 @@
 }
 
 .listLink:hover {
-  color: #0089C4;
+  color: #25272b;
+  text-decoration: underline;
 }
 
 .inlineLink {
@@ -308,7 +322,7 @@
 }
 
 .inlineLink:hover {
-  color: #0089C4;
+  color: #25272b;
   text-decoration: underline;
 }
 
@@ -342,4 +356,745 @@
   font-size: 0.75rem;
   color: #6b7280;
   margin: 0.25rem 0 0;
+}
+
+/* My bookmarked links */
+.linkFilterRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 1rem;
+}
+
+.linkFilterTagsWrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.linkFilterDivider {
+  color: #bbb;
+  font-weight: 300;
+  flex-shrink: 0;
+  padding: 0 0.25rem;
+  margin-left: 0.75rem;
+}
+
+.linkFilterLabel {
+  font-size: 0.875rem;
+  color: #666;
+  margin-right: 0.25rem;
+}
+
+.linkFilterBtn,
+.linkFilterBtnActive,
+.linkFilterBtnNew {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+  color: #25272b;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.linkFilterBtn:hover,
+.linkFilterBtnNew:hover {
+  background: #f7f7f7;
+  border-color: #d0d0d0;
+}
+
+.linkFilterBtnActive {
+  background: #efefef;
+  border-color: #d0d0d0;
+  font-weight: 500;
+}
+
+
+.newTagWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.newTagInput {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  width: 8rem;
+}
+
+.newTagBtn,
+.newTagCancel {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.newTagBtn {
+  background: #0089C4;
+  color: #fff;
+  border: none;
+}
+
+.newTagBtn:hover:not(:disabled) {
+  background: #0077a8;
+}
+
+.newTagBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newTagCancel {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.newTagCancel:hover {
+  background: #f7f7f7;
+}
+
+.addLinkBtn {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.6rem;
+  color: #0089C4;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.addLinkBtn:hover {
+  background: #e6f4fc;
+  border-color: #0089C4;
+}
+
+.linkForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.linkFormCancel {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.linkFormCancel:hover {
+  background: #f7f7f7;
+}
+
+.linkInput {
+  flex: 1;
+  min-width: 12rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.linkTagSelect {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  min-width: 6rem;
+}
+
+.linkNoteInput {
+  flex: 1;
+  min-width: 10rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.linkSubmitBtn {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: #25272b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.linkSubmitBtn:hover:not(:disabled) {
+  background: #1a1a1a;
+}
+
+.linkSubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Add bookmark modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.modalCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  max-width: 440px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #25272b;
+  margin: 0;
+}
+
+.modalClose {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.modalClose:hover {
+  color: #25272b;
+}
+
+.modalForm {
+  padding: 0.5rem 1.25rem 1.25rem;
+}
+
+.modalLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  color: #25272b;
+  margin-bottom: 1rem;
+}
+
+.modalOptional {
+  font-weight: 400;
+  color: #888;
+}
+
+.modalRequired {
+  color: #c00;
+}
+
+.tagPillsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.tagPill,
+.tagPillSelected {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.tagPill:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+.tagPillSelected {
+  background: #e6f4fc;
+  border-color: #0089C4;
+  color: #0089C4;
+}
+
+.tagPillSelected:hover {
+  background: #cce9f7;
+}
+
+.tagPillsEmpty {
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+.modalInput,
+.modalTextarea,
+.modalSelect {
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.modalTextarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+.modalCheckboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #25272b;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.modalCheckbox {
+  width: 1rem;
+  height: 1rem;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.modalCancelBtn {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modalCancelBtn:hover {
+  background: #f7f7f7;
+}
+
+.modalSubmitBtn {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  background: #25272b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modalSubmitBtn:hover:not(:disabled) {
+  background: #1a1a1a;
+}
+
+.modalSubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Action overlay (edit note / add tag / delete) */
+.actionOverlayCard {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+  max-width: 320px;
+  width: 100%;
+}
+
+.actionOverlayTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #25272b;
+  margin: 0 0 0.75rem 0;
+}
+
+.actionOverlayText {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.actionOverlayInput,
+.actionOverlaySelect {
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.actionOverlayInput {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+.actionOverlayCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #25272b;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.actionOverlayCheckboxInput {
+  width: 1rem;
+  height: 1rem;
+}
+
+.actionOverlayActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.actionOverlayCancel {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actionOverlayCancel:hover {
+  background: #f7f7f7;
+}
+
+.actionOverlaySave {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  background: #25272b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actionOverlaySave:hover:not(:disabled) {
+  background: #1a1a1a;
+}
+
+.actionOverlaySave:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.actionOverlayDelete {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  background: #c00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actionOverlayDelete:hover {
+  background: #a00;
+}
+
+.userLinksList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.userLinkItem {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #eee;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.userLinkItem:hover {
+  background: #f9f9f9;
+}
+
+.userLinkItem:last-child {
+  border-bottom: none;
+}
+
+.userLinkItemInner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.userLinkIconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-top: 0.1rem;
+}
+
+.userLinkIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
+  filter: grayscale(1);
+}
+
+.userLinkIconDefault {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+}
+
+.userLinkIconDefault svg {
+  width: 20px;
+  height: 20px;
+}
+
+.userLinkContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.userLinkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.userLinkUrl {
+  font-size: 0.9375rem;
+  color: #25272b;
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userLinkUrl:hover {
+  color: #25272b !important;
+  text-decoration: underline;
+}
+
+.userLinkActions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.userLinkItem:hover .userLinkActions {
+  opacity: 1;
+}
+
+.userLinkActionBtn {
+  font-size: 0.75rem;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+}
+
+.userLinkActionBtn:hover {
+  color: #0089C4;
+  background: #f0f8fc;
+}
+
+.userLinkActionBtn:last-child:hover {
+  color: #c00;
+  background: #fff0f0;
+}
+
+.userLinkMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.userLinkDomain {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.userLinkTag {
+  font-size: 0.75rem;
+  color: #666;
+  background: #f0f0f0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.userLinkTagPrivate {
+  font-size: 0.75rem;
+  color: #25272b;
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.userLinkTagPrivate:hover {
+  background: #e5e5e5;
+}
+
+.privateMessage {
+  font-size: 0.8125rem;
+  color: #666;
+  margin: 0.35rem 0 0 0;
+  font-style: italic;
+}
+
+.userLinkDate {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.userLinkEdit,
+.userLinkDelete {
+  font-size: 0.75rem;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.userLinkEdit:hover {
+  color: #0089C4;
+  text-decoration: underline;
+}
+
+.userLinkDelete:hover {
+  color: #c00;
+  text-decoration: underline;
+}
+
+.userLinkEditForm {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.userLinkEditLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.userLinkEditInput {
+  font-size: 0.875rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  min-width: 14rem;
+}
+
+.userLinkEditSelect {
+  font-size: 0.875rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  min-width: 8rem;
+}
+
+.userLinkEditActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.userLinkEditSave {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  background: #25272b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.userLinkEditSave:hover:not(:disabled) {
+  background: #1a1a1a;
+}
+
+.userLinkEditSave:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.userLinkEditCancel {
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.userLinkEditCancel:hover {
+  background: #f7f7f7;
+}
+
+.userLinkNote {
+  font-size: 0.8125rem;
+  color: #666;
+  margin: 0.35rem 0 0 0;
+  line-height: 1.4;
 }

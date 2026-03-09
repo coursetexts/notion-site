@@ -331,17 +331,17 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                 </div>
               </div>
               {auth?.user && (
-                <div className={styles.addWrap}>
-                  <input
-                    type="text"
-                    className={styles.addInput}
+              <div className={styles.addWrap}>
+                <input
+                  type="text"
+                  className={styles.addInput}
                     placeholder="Add your thoughts…"
-                    value={commentInput}
-                    onChange={(e) => setCommentInput(e.target.value)}
+                  value={commentInput}
+                  onChange={(e) => setCommentInput(e.target.value)}
                     onKeyDown={(e) =>
                       e.key === 'Enter' && handleSubmitComment(undefined)
                     }
-                    aria-label="Add comment"
+                  aria-label="Add comment"
                     disabled={submitting}
                   />
                   <button
@@ -352,7 +352,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   >
                     {submitting ? 'Posting…' : 'Post'}
                   </button>
-                </div>
+              </div>
               )}
               {!auth?.user && (
                 <p className={styles.signInHint}>
@@ -544,14 +544,14 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
         </div>
 
         {participants.length > 0 && (
-          <aside className={styles.participants} aria-label="Participants">
+        <aside className={styles.participants} aria-label="Participants">
             {participants.map((p, i) => (
-              <div key={i} className={styles.participant}>
-                <span className={styles.participantCount}>{p.count}</span>
-                <span className={styles.participantName}>{p.name}</span>
-              </div>
-            ))}
-          </aside>
+            <div key={i} className={styles.participant}>
+              <span className={styles.participantCount}>{p.count}</span>
+              <span className={styles.participantName}>{p.name}</span>
+            </div>
+          ))}
+        </aside>
         )}
       </div>
     </section>
