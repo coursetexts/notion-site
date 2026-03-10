@@ -5,11 +5,12 @@ import {
   type TocChild,
   type TocItem
 } from '@/lib/courseContentSections'
+import type { SectionProgressStatus } from '@/lib/course-section-progress'
 import styles from './TableOfContents.module.css'
 
 const DATA_TAB_INDEX = 'data-tab-index'
 
-function Icon({ type }: { type: 'pdf' | 'lock' | 'check' }) {
+function Icon({ type }: { type: 'pdf' | 'lock' | 'check' | 'bookmark' }) {
   if (type === 'pdf') {
     return (
       <span className={styles.itemIcon} aria-hidden>
@@ -35,7 +36,17 @@ function Icon({ type }: { type: 'pdf' | 'lock' | 'check' }) {
     return (
       <span className={styles.itemIcon} aria-hidden>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2">
-          <polyline points="20 6 9 17 4 12" />
+          <circle cx="12" cy="12" r="9" fill="#ecfdf3" />
+          <polyline points="17 9 11 15 7 11" />
+        </svg>
+      </span>
+    )
+  }
+  if (type === 'bookmark') {
+    return (
+      <span className={styles.itemIcon} aria-hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#eab308" strokeWidth="2">
+          <path d="M7 3h10a1 1 0 0 1 1 1v16l-6-4-6 4V4a1 1 0 0 1 1-1z" />
         </svg>
       </span>
     )
@@ -51,12 +62,14 @@ export interface TableOfContentsProps {
   /** TOC entries (tabs + subtabs) from the heading-based section builder. */
   items?: TocItem[]
   /** When a TOC link is clicked: (href, label?). storage.googleapis URLs load in PDF viewer; others open in new tab. */
-  onLinkClick?: (href: string, label?: string) => void
+  onLinkClick?: (href: string, label?: string, hideContent?: boolean) => void
   /** Called when the selected item has no PDF link (e.g. parent tab or subtab without href). Hide the PDF viewer. */
   onSelectionClearPdf?: () => void
   /** Called with the label of the item that was clicked (parent tab or subtab). Use for the big title above content. */
   onSelectedItemChange?: (label: string | null) => void
   title?: string
+  /** Optional per-section status (completion / bookmark) keyed by section label. */
+  sectionProgress?: Record<string, SectionProgressStatus>
 }
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({
@@ -65,7 +78,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   onLinkClick,
   onSelectionClearPdf,
   onSelectedItemChange,
-  title = 'Table of Contents'
+  title = 'Table of Contents',
+  sectionProgress
 }) => {
   const [search, setSearch] = React.useState('')
   const [activeTabIndex, setActiveTabIndex] = React.useState(0)
@@ -78,6 +92,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     ...item,
     active: item.tabIndex === activeTabIndex
   }))
+  type TocItemWithActive = TocItem & { active: boolean }
 
   const filteredItems = React.useMemo(() => {
     if (!search.trim()) return items
@@ -90,7 +105,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         if (childMatches.length) return { ...item, children: childMatches }
         return null
       })
-      .filter((x): x is TocItem => x !== null)
+      .filter((x): x is TocItemWithActive => x !== null)
   }, [items, search])
 
   const handleTabClick = (tabIndex: number) => {
@@ -131,7 +146,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     onSelectedItemChange?.(child.label ?? null)
     if (child.href) {
       if (onLinkClick) {
-        onLinkClick(child.href, child.label)
+        onLinkClick(child.href, child.label, child.hideContentUnderEmbed)
       } else {
         window.open(child.href, '_blank', 'noopener,noreferrer')
       }
@@ -162,62 +177,82 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         {filteredItems.length === 0 && (
           <li className={styles.emptyState}>Loading sections…</li>
         )}
-        {filteredItems.map((item) => (
-          <li key={item.tabIndex}>
-            <div
-              className={item.active ? `${styles.item} ${styles.itemActive}` : styles.item}
-              role="button"
-              tabIndex={0}
-              onClick={() => handleItemClick(item)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  handleItemClick(item)
-                }
-              }}
-            >
-              {item.icon && <Icon type={item.icon} />}
-              <span className={styles.itemLabel}>{item.label}</span>
-              {item.children && item.children.length > 0 && (
-                <span className={styles.itemToggle} aria-hidden>
-                  {search.trim()
-                    ? '▾'
-                    : expandedTabIndexes.has(item.tabIndex)
-                      ? '▾'
-                      : '▸'}
+        {filteredItems.map((item) => {
+          const status = sectionProgress?.[item.label]
+          const itemCompleted = status?.isCompleted
+          const itemBookmarked = status?.isBookmarked
+          const itemIcon = (item as TocItem & { icon?: 'pdf' | 'lock' | 'check' | 'bookmark' })
+            .icon
+          return (
+            <li key={item.tabIndex}>
+              <div
+                className={item.active ? `${styles.item} ${styles.itemActive}` : styles.item}
+                role="button"
+                tabIndex={0}
+                onClick={() => handleItemClick(item)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    handleItemClick(item)
+                  }
+                }}
+              >
+                {itemIcon && <Icon type={itemIcon} />}
+                <span className={styles.itemLabel}>{item.label}</span>
+                <span className={styles.itemStatusIcon}>
+                  {itemCompleted && <Icon type="check" />}
+                  {!itemCompleted && itemBookmarked && <Icon type="bookmark" />}
                 </span>
+                {item.children && item.children.length > 0 && (
+                  <span className={styles.itemToggle} aria-hidden>
+                    {search.trim()
+                      ? '▾'
+                      : expandedTabIndexes.has(item.tabIndex)
+                        ? '▾'
+                        : '▸'}
+                  </span>
+                )}
+              </div>
+              {item.children &&
+                item.children.length > 0 &&
+                (search.trim() || expandedTabIndexes.has(item.tabIndex)) && (
+                <ul className={styles.itemChildren}>
+                  {item.children.map((child, j) => {
+                    const childStatus = sectionProgress?.[child.label ?? '']
+                    const childCompleted = childStatus?.isCompleted
+                    const childBookmarked = childStatus?.isBookmarked
+                    return (
+                      <li key={child.id ?? j}>
+                        <div
+                          className={
+                            child.id === activeSubtabId
+                              ? `${styles.childItem} ${styles.childItemActive}`
+                              : styles.childItem
+                          }
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => handleSubtabClick(item.tabIndex, child)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault()
+                              handleSubtabClick(item.tabIndex, child)
+                            }
+                          }}
+                        >
+                          <span>– {child.label}</span>
+                          <span className={styles.childStatusIcon}>
+                            {childCompleted && <Icon type="check" />}
+                            {!childCompleted && childBookmarked && <Icon type="bookmark" />}
+                          </span>
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
               )}
-            </div>
-            {item.children &&
-              item.children.length > 0 &&
-              (search.trim() || expandedTabIndexes.has(item.tabIndex)) && (
-              <ul className={styles.itemChildren}>
-                {item.children.map((child, j) => (
-                  <li key={child.id ?? j}>
-                    <div
-                      className={
-                        child.id === activeSubtabId
-                          ? `${styles.childItem} ${styles.childItemActive}`
-                          : styles.childItem
-                      }
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => handleSubtabClick(item.tabIndex, child)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault()
-                          handleSubtabClick(item.tabIndex, child)
-                        }
-                      }}
-                    >
-                      – {child.label}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )

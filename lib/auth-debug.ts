@@ -27,7 +27,7 @@ export function authDebug(label: string, payload: AuthDebugPayload = {}): void {
 }
 
 export function subscribeAuthDebug(callback: () => void): () => void {
-  if (typeof window === 'undefined') return () => {}
+  if (typeof window === 'undefined') return () => undefined
   window.addEventListener('auth-debug-update', callback)
   return () => window.removeEventListener('auth-debug-update', callback)
 }

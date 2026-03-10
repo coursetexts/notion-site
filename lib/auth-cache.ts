@@ -34,7 +34,7 @@ export function clearCachedAuth(): void {
 
 /** Subscribe to cache updates (e.g. for components in a different React root). */
 export function subscribeToAuthCache(callback: () => void): () => void {
-  if (typeof window === 'undefined') return () => {}
+  if (typeof window === 'undefined') return () => undefined
   window.addEventListener(AUTH_CACHE_EVENT, callback)
   return () => window.removeEventListener(AUTH_CACHE_EVENT, callback)
 }

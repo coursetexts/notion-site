@@ -1,34 +1,47 @@
 .headerBar {
-  width: 100%;
-  background-color: #f8f8f8 !important;
-  border-bottom: 1px solid #e0e0e0 !important;
-  flex-shrink: 0;
+  width: 90%;
+  background-color: #FDFDFD !important;
   backdrop-filter: none;
+  border-bottom: 1px solid #E6E6E6;
+  height: 100px;
+  align-content: center;
+  margin: auto;
 }
 
 .headerInner {
-  max-width: 90%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  min-height: 54px;
-  padding: 0 0.25rem;
+  color: #37352F;
   font-family: 'UntitledSans', sans-serif;
+  font-weight: 400;
 }
 
 .headerLogo {
   font-size: 1.125rem;
   font-weight: 600;
+  line-height: 1;
   color: #25272b;
   text-decoration: none;
   flex-shrink: 0;
   font-family: 'Tobias', serif;
+  display: inline-flex;
+  align-items: center;
 }
 
 .headerLogo:hover {
   color: #1a1a1a;
+}
+
+.headerCenter {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
 }
 
 .headerNav {
@@ -40,12 +53,15 @@
 
 .headerNavLink {
   font-size: 0.9375rem;
+  line-height: 1;
   color: #25272b;
   text-decoration: none;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
+  display: inline-flex;
+  align-items: center;
 }
 
 .headerNavLink:hover {
@@ -93,24 +109,32 @@
   visibility: hidden;
 }
 
-.signUpBtn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  color: #25272b;
-  background-color: #efefef;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+/* Link wrapper: no border, just wraps the button span */
+.profileLink {
+  display: inline-flex;
   text-decoration: none;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-  transition: background-color 0.15s, border-color 0.15s;
-  position: relative;
+  color: inherit;
 }
 
-.signUpBtn:hover {
-  background-color: #e8e8e8;
-  border-color: #d5d5d5;
+/* Button look (border, background) on the span so it’s visible and not overridden by preflight on <a> */
+.headerBar .signUpBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1;
+  font-weight: 400;
+  color: #37352F;
+  background-color: transparent;
+  /* border: 1px solid #E6E6E6; */
+  border-radius: 3px;
+  transition: background-color 0.15s, border-color 0.15s;
+  cursor: pointer;
+}
+
+.headerBar .profileLink:hover .signUpBtn {
+  border-color: #777;
   color: #1a1a1a;
 }
 
@@ -134,3 +158,4 @@
   line-height: 1;
   font-weight: 600;
 }
+

@@ -16,6 +16,7 @@ export interface TocChild {
   id?: string
   label: string
   href?: string
+  hideContentUnderEmbed?: boolean
 }
 
 export interface TocItem {
@@ -26,6 +27,28 @@ export interface TocItem {
 
 function isHeading(el: Element): boolean {
   return el.matches(HEADING_SELECTOR)
+}
+
+function normalizeText(text: string): string {
+  return text.replace(/\s+/g, ' ').trim()
+}
+
+/**
+ * True when this row is essentially "one big link" with no other visible text.
+ * We only auto-embed those rows; mixed text+link rows remain regular content.
+ */
+function isStandaloneLinkOnly(linkEl: HTMLElement): boolean {
+  const block = linkEl.closest('.notion-text, .notion-callout-text') as HTMLElement | null
+  if (!block) return false
+
+  const links = block.querySelectorAll('a.notion-link, a.notion-page-link')
+  if (links.length !== 1 || links[0] !== linkEl) return false
+
+  const blockText = normalizeText(block.textContent || '')
+  const linkText = normalizeText(linkEl.textContent || '')
+  if (!blockText || !linkText) return false
+
+  return blockText === linkText
 }
 
 /**
@@ -96,7 +119,12 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
     sec.nodes.forEach((n) => wrapper.appendChild(n))
 
     const children: TocChild[] = []
-    type Candidate = { el: HTMLElement; label: string; href?: string }
+    type Candidate = {
+      el: HTMLElement
+      label: string
+      href?: string
+      hideContentUnderEmbed?: boolean
+    }
     const candidates: Candidate[] = []
 
     const subHeadings = wrapper.querySelectorAll<HTMLElement>(
@@ -113,7 +141,14 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
     linkEls.forEach((el) => {
       if (el.closest(`[${DATA_TOC_ID}]`)) return
       const text = el.textContent?.trim()
-      if (text) candidates.push({ el, label: text, href: el.getAttribute('href') || undefined })
+      if (!text) return
+      const standaloneLinkOnly = isStandaloneLinkOnly(el)
+      candidates.push({
+        el,
+        label: text,
+        href: standaloneLinkOnly ? el.getAttribute('href') || undefined : undefined,
+        hideContentUnderEmbed: standaloneLinkOnly
+      })
     })
 
     candidates.sort((a, b) => {
@@ -132,7 +167,12 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
       seen.add(labelNorm)
       const id = `toc-${tabIndex}-${j}`
       c.el.setAttribute(DATA_TOC_ID, id)
-      children.push({ id, label: c.label, href: c.href })
+      children.push({
+        id,
+        label: c.label,
+        href: c.href,
+        hideContentUnderEmbed: c.hideContentUnderEmbed
+      })
     })
 
     items.push({

@@ -1,14 +1,15 @@
 .wrap {
   width: 100%;
   max-width: 90%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0.75rem 0 1rem;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'TobiasMed', sans-serif;
 }
 
 .saveBtn,
 .savedBtn {
   display: inline-flex;
+  white-space: nowrap;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;

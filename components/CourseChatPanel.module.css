@@ -1,0 +1,159 @@
+.root {
+  width: 100%;
+  min-width: 280px;
+  max-width: 360px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  border-left: 1px solid #e5e1d3;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e1d3;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: 'TobiasMed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #25272b;
+  margin: 0;
+}
+
+.hideBtn {
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.hideBtn:hover {
+  color: #25272b;
+}
+
+.meta {
+  border-bottom: 1px solid #e5e1d3;
+  padding: 0.7rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.courseTitle {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.8rem;
+  font-family: 'UntitledSans', sans-serif;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.bubbleWrap {
+  display: flex;
+  width: 100%;
+}
+
+.assistantWrap {
+  justify-content: flex-start;
+}
+
+.userWrap {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 90%;
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  font-size: 0.85rem;
+  font-family: 'UntitledSans', sans-serif;
+}
+
+.assistantBubble {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.userBubble {
+  background: #0089C4;
+  color: #fff;
+}
+
+.pending {
+  margin: 0.25rem 0 0;
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+.error {
+  margin: 0;
+  padding: 0.4rem 1.25rem;
+  color: #b91c1c;
+  font-size: 0.8125rem;
+}
+
+.inputWrap {
+  border-top: 1px solid #e5e1d3;
+  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.input {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+  max-height: 180px;
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.875rem;
+  color: #25272b;
+  background: #f8f8f8;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 0.6rem 0.75rem;
+}
+
+.sendBtn {
+  align-self: flex-end;
+  padding: 0.48rem 0.85rem;
+  font-size: 0.8125rem;
+  color: #25272b;
+  background: #efefef;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+.sendBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

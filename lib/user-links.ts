@@ -48,7 +48,7 @@ export async function getMyLinks(tagId?: string | null): Promise<UserLinkWithTag
   if (!supabase) return []
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return []
-  let q = supabase
+  const q = supabase
     .from('user_links')
     .select('id, user_id, url, title, note, is_private, created_at')
     .eq('user_id', user.id)

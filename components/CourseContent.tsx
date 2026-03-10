@@ -4,7 +4,13 @@ import { buildSectionsFromHeadings, type TocItem } from '@/lib/courseContentSect
 import { AnnotationWidget } from './AnnotationWidget'
 import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
+import { CourseChatPanel } from './CourseChatPanel'
 import { TableOfContents } from './TableOfContents'
+import {
+  getSectionProgressMap,
+  updateSectionProgress,
+  type SectionProgressStatus
+} from '@/lib/course-section-progress'
 
 export interface CourseContentProps {
   /** Optional ref for the main content container so existing DOM can be moved into it */
@@ -13,6 +19,7 @@ export interface CourseContentProps {
   /** Course identity for activity (comments, bookmarks, annotations) */
   coursePageId?: string
   courseTitle?: string
+  courseDescription?: string
   courseUrl?: string
 }
 
@@ -23,27 +30,35 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   children,
   coursePageId,
   courseTitle,
+  courseDescription,
   courseUrl
 }) => {
-  const [showAnnotations, setShowAnnotations] = React.useState(false)
+  const [rightPanel, setRightPanel] = React.useState<'none' | 'annotations' | 'chat'>('none')
   const [contentSlotReady, setContentSlotReady] = React.useState(false)
   const [tocItems, setTocItems] = React.useState<TocItem[]>([])
   const [embedUrl, setEmbedUrl] = React.useState<string | undefined>(undefined)
   const [embedTitle, setEmbedTitle] = React.useState<string | undefined>(undefined)
+  const [hideContentUnderEmbed, setHideContentUnderEmbed] = React.useState(false)
   const contentSlotRef = React.useRef<HTMLDivElement | null>(null)
+  const [sectionProgress, setSectionProgress] = React.useState<
+    Record<string, SectionProgressStatus>
+  >({})
 
-  const handleTocLink = React.useCallback((href: string) => {
+  const handleTocLink = React.useCallback((href: string, _label?: string, hideContent?: boolean) => {
     const isHttp = /^https?:\/\//i.test(href)
     if (isHttp) {
       setEmbedUrl(href)
+      setHideContentUnderEmbed(Boolean(hideContent))
     } else {
       setEmbedUrl(undefined)
+      setHideContentUnderEmbed(false)
       window.open(href, '_blank', 'noopener,noreferrer')
     }
   }, [])
 
   const handleSelectionClearPdf = React.useCallback(() => {
     setEmbedUrl(undefined)
+    setHideContentUnderEmbed(false)
   }, [])
 
   const handleSelectedItemChange = React.useCallback((label: string | null) => {
@@ -81,12 +96,50 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   }, [contentSlotReady, tocItems.length])
 
   const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? 'Overview'
+  const currentStatus = sectionProgress[currentSectionLabel] ?? {
+    isCompleted: false,
+    isBookmarked: false
+  }
+
+  React.useEffect(() => {
+    if (!coursePageId) return
+    ;(async () => {
+      const map = await getSectionProgressMap(coursePageId)
+      setSectionProgress(map)
+    })()
+  }, [coursePageId])
+
+  const handleToggleComplete = React.useCallback(
+    async (label: string, completed: boolean) => {
+      if (!coursePageId) return
+      const next = await updateSectionProgress(coursePageId, label, { isCompleted: completed })
+      if (!next) return
+      setSectionProgress((prev) => ({
+        ...prev,
+        [label]: next
+      }))
+    },
+    [coursePageId]
+  )
+
+  const handleToggleBookmark = React.useCallback(
+    async (label: string, bookmarked: boolean) => {
+      if (!coursePageId) return
+      const next = await updateSectionProgress(coursePageId, label, { isBookmarked: bookmarked })
+      if (!next) return
+      setSectionProgress((prev) => ({
+        ...prev,
+        [label]: next
+      }))
+    },
+    [coursePageId]
+  )
 
   return (
     <div className={styles.wrapper}>
       <div
         className={
-          showAnnotations ? `${styles.root} ${styles.rootWithAnnotations}` : styles.root
+          rightPanel !== 'none' ? `${styles.root} ${styles.rootWithRightPanel}` : styles.root
         }
       >
         <aside className={styles.sidebar}>
@@ -96,26 +149,46 @@ export const CourseContent: React.FC<CourseContentProps> = ({
             onLinkClick={handleTocLink}
             onSelectionClearPdf={handleSelectionClearPdf}
             onSelectedItemChange={handleSelectedItemChange}
+            sectionProgress={sectionProgress}
           />
         </aside>
         <ContentMain
           innerRef={setSlotRef}
-          showAnnotations={showAnnotations}
-          onShowAnnotations={() => setShowAnnotations(true)}
+          showAnnotations={rightPanel === 'annotations'}
+          onShowAnnotations={() => setRightPanel('annotations')}
           annotationCount={ANNOTATION_COUNT}
+          showChat={rightPanel === 'chat'}
+          onShowChat={() => setRightPanel('chat')}
           embedUrl={embedUrl}
           embedTitle={embedTitle}
+          hideContentUnderEmbed={hideContentUnderEmbed}
+          sectionStatus={currentStatus}
+          onToggleComplete={(completed) =>
+            handleToggleComplete(currentSectionLabel, completed)
+          }
+          onToggleBookmark={(bookmarked) =>
+            handleToggleBookmark(currentSectionLabel, bookmarked)
+          }
         >
           {children}
         </ContentMain>
-        {showAnnotations && (
+        {rightPanel === 'annotations' && (
           <div className={styles.annotationsColumn}>
             <AnnotationWidget
               courseUrl={courseUrl}
               courseTitle={courseTitle}
               coursePageId={coursePageId}
               sectionId={currentSectionLabel}
-              onHide={() => setShowAnnotations(false)}
+              onHide={() => setRightPanel('none')}
+            />
+          </div>
+        )}
+        {rightPanel === 'chat' && (
+          <div className={styles.annotationsColumn}>
+            <CourseChatPanel
+              courseTitle={courseTitle}
+              courseDescription={courseDescription}
+              onHide={() => setRightPanel('none')}
             />
           </div>
         )}

@@ -1,0 +1,26 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.875rem;
+  color: #25272b;
+  background-color: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.root:hover {
+  background-color: #f8f8f8;
+  border-color: #d1d5db;
+}
+
+.icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

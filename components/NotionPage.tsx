@@ -31,7 +31,6 @@ import { AuthProvider } from '../contexts/AuthContext'
 // import { HeroButterflies } from './HeroButterflies'
 import { CourseContent } from './CourseContent'
 import { CourseHero, type CourseHeroData } from './CourseHero'
-import FeedbackForm from './FeedbackForm'
 // React 18+
 import FilterRow from './FilterRow'
 import { Footer } from './Footer'
@@ -198,7 +197,7 @@ function waitForElement(selector: string, timeout = 5000): Promise<Element> {
   })
 }
 
-function addReactComponentAtEndOfArticle(
+export function addReactComponentAtEndOfArticle(
   articleSelector: string,
   containerClassName: string,
   reactNode: React.ReactNode
@@ -216,7 +215,7 @@ function addReactComponentAtEndOfArticle(
     .catch((err) => console.warn(err.message))
 }
 
-function addReactComponentBeforeTitle(reactNode: React.ReactNode) {
+export function addReactComponentBeforeTitle(reactNode: React.ReactNode) {
   waitForElement('.notion-title')
     .then((notionTitle) => {
       if (!notionTitle) return
@@ -288,6 +287,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
   if (block && (block as any).properties) {
     title = getBlockTitle(block, recordMap)
   }
+  const courseDescription =
+    getPageProperty<string>('Description', block, recordMap) ||
+    config.description
 
   // Clean up when the component unmounts or pageClass changes
   React.useEffect(() => {
@@ -379,59 +381,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
   }, [searchValue, department, allDepartmentTags])
 
   React.useEffect(() => {
-    if (pageClass == 'course-page') {
-      addReactComponentAtEndOfArticle(
-        'article',
-        'fill-article-row',
-        <FeedbackForm courseName={title} />
-      )
-    }
-  }, [pageClass])
-
-
-
-// BACK TO ARCHIVE BUTTON ON THE TOP OF THE COURSE PAGE
-  React.useEffect(() => {
-    if (pageClass == 'course-page') {
-      addReactComponentBeforeTitle(
-        <a href='/' style={{ textDecoration: 'none' }}>
-          <button
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#58534A', // Gray color
-              fontSize: '14px',
-              fontWeight: '500',
-              fontFamily: 'Tobias',
-              display: 'flex',
-              alignItems: 'center',
-              cursor: 'pointer',
-              marginBottom: '1.5rem',
-              padding: 0
-            }}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='9'
-              height='12'
-              viewBox='0 0 9 15'
-              fill='none'
-              style={{ marginRight: '10px' }}
-            >
-              <path
-                d='M7.5 14L1.25 7.75L7.5 1.5'
-                stroke='#B2A371'
-                strokeWidth='1.66667'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-            Back to Archive
-          </button>
-        </a>
-      )
-    }
-
     addReactComponentAfterHeader(<UpdateNoticeBanner />)
   }, [pageClass])
 
@@ -1427,7 +1376,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
     function saveHeroData(data: CourseHeroData) {
       try {
         sessionStorage.setItem(storageKey, JSON.stringify(data))
-      } catch (_) {}
+      } catch {
+        // Ignore sessionStorage write failures (e.g. private mode).
+      }
     }
 
     function loadHeroData(): CourseHeroData | null {
@@ -1566,7 +1517,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
     waitForElement('.course-page .notion-page-content-inner')
       .then(() => new Promise<void>((r) => setTimeout(r, 500)))
       .then(run)
-      .catch(() => {})
+      .catch(() => undefined)
 
     return () => {
       cancelled = true
@@ -1575,7 +1526,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
       if (root && container) {
         try {
           root.unmount()
-        } catch (_) {}
+        } catch {
+          // Ignore unmount race conditions during teardown.
+        }
         container.remove()
         courseHeroRef.current.root = null
         courseHeroRef.current.container = null
@@ -1630,6 +1583,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           <CourseContent
             coursePageId={pageId}
             courseTitle={title}
+            courseDescription={courseDescription}
             courseUrl={router.asPath?.split('?')[0] ?? `/${pageId}`}
             mainRef={(el) => {
               const node = contentInnerToMoveRef.current
@@ -1670,7 +1624,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
       if (root && container) {
         try {
           root.unmount()
-        } catch (_) {}
+        } catch {
+          // Ignore unmount race conditions during teardown.
+        }
         container.remove()
         courseContentRef.current.root = null
         courseContentRef.current.container = null
@@ -1748,10 +1704,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   const socialImage = null
 
-  const socialDescription =
-    getPageProperty<string>('Description', block, recordMap) ||
-    config.description
-
   // /* Run once per page load */
   // React.useEffect(() => {
   //   //  create an overlay container
@@ -1798,7 +1750,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         pageId={pageId}
         site={site}
         title={title}
-        description={socialDescription}
+        description={courseDescription}
         image={socialImage}
         url={canonicalPageUrl}
       />
@@ -1819,7 +1771,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           )}
           darkMode={isDarkMode}
           components={components}
-          recordMap={recordMap}
+          recordMap={recordMap as any}
           rootPageId={site.rootNotionPageId}
           rootDomain={site.domain}
           fullPage={!isLiteMode}
@@ -1831,8 +1783,8 @@ export const NotionPage: React.FC<types.PageProps> = ({
           defaultPageCover={config.defaultPageCover}
           defaultPageCoverPosition={config.defaultPageCoverPosition}
           mapPageUrl={siteMapPageUrl}
-          mapImageUrl={mapImageUrl}
-          searchNotion={config.isSearchEnabled ? searchNotion : null}
+          mapImageUrl={mapImageUrl as any}
+          searchNotion={config.isSearchEnabled ? (searchNotion as any) : null}
           pageAside={null}
         />
 

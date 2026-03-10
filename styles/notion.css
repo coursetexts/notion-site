@@ -528,6 +528,16 @@
   color: var(--fg-color-2);
 }
 
+/* Search overlay result titles: serif */
+.notion-search .notion-page-title,
+.notion-search .notion-page-title-text {
+  font-family: 'Tobias', serif;
+}
+
+a.notion-page-link .notion-page-title {
+  font-family: 'Tobias', serif;
+}
+
 .notion-equation.notion-equation-block {
   align-items: center;
 }
@@ -1277,6 +1287,15 @@
   border-color: #fff !important;
 }
 
+/* Make full-page course content span the full white width */
+.notion-page.notion-page-no-cover.notion-page-has-icon.notion-page-has-text-icon.notion-full-page {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .dark-mode .notion-callout-text b {
   color: #fff !important;
 }
@@ -1612,11 +1631,18 @@ summary .notion-h3 .notion-h-title {
    Visually separated from the hero so the TOC sits clearly underneath.
    .notion-page-content-inner is moved into ContentMain; force single column
    and hide the old left column so only the main tabbed content shows. */
+/* Full viewport width: white course content area reaches the edges; internal padding preserved in ContentMain .slot and sidebar */
 .course-content-mount {
-  width: 100%;
+  width: 100vw;
   min-width: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   background-color: #fff;
   border-top: 1px solid #e5e1d3;
+  box-sizing: border-box;
 }
 
 .course-content-mount .notion-page-content-inner {

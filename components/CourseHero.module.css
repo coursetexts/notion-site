@@ -1,7 +1,7 @@
 .root {
   display: grid;
   grid-template-columns: 500px 1fr;
-  gap: 2.5rem 3rem;
+  gap: 2.5rem 15%;
   align-items: start;
   width: 100%;
   margin-top: 2rem;
@@ -9,7 +9,7 @@
   min-width: 0;
   /* Temporary: bright background so you can spot the hero */
   background-color: #ffffff0c;
-  padding: 1.5rem;
+  padding: 4rem 5rem 1.5rem 10%;
   margin-bottom: 5rem;
 }
 
@@ -19,38 +19,45 @@
   overflow-wrap: break-word;
 }
 
+.right {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .courseCode {
-  color: #5D534B;
+  color: #9a948f;
   font-family: 'TobiasMed', sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 1.1px;
   line-height: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .title {
   font-family: Tobias, serif;
   font-weight: 600;
   color: #140c00;
-  font-size: 3rem;
+  font-size: 3.5rem;
   line-height: 1.3;
   letter-spacing: -1.94px;
   margin: 0 0 0.75rem 0;
   max-width: 100%;
   overflow-wrap: break-word;
+  margin-bottom: 2rem;
 }
 
-.instructor {
-  margin-top: 2rem;
+.instructor a{
+  margin-top: 3rem;
+  color: #5D534B;
 }
 
 .instructorLink {
-  font-family: 'TobiasMed', sans-serif;
+  font-family: 'UntitledSans', sans-serif;
   color: #5D534B;
   font-size: 16px;
-  text-decoration: none;
-  border-bottom: none;
+  text-decoration: underline gray;
   letter-spacing: -0.16px;
 }
 
@@ -59,24 +66,52 @@
 }
 
 .schoolDate {
-  margin-top: 4rem;
-  color: #6b7280;
+  margin-top: 5rem;
+  color: #5D534B;
   font-family: 'TobiasMed', sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.25rem;
   text-transform: capitalize;
+  letter-spacing: 0.003px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 0;
+}
+
+.schoolDateWithLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.schoolLogo {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.schoolDateDot {
+  font-size: 0.7em;
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+  color: #37352F;
 }
 
 .saveWrap {
   margin-top: 1.5rem;
+  align-self: flex-end;
 }
 
 .description {
   min-width: 0;
+  width: 100%;
   font-family: 'Tobias', serif;
   color: #25272B;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 2;
 }
 
@@ -86,7 +121,7 @@
 
 /* Drop cap: first letter wrapped by JS (CourseHero) and styled here */
 .dropCap {
-  float: left;
+  float: top;
   font-size: 4.5rem;
   line-height: 0.85;
   padding-right: 0.25rem;

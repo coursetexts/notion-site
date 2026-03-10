@@ -25,7 +25,7 @@ function emitReplyNotificationUpdate(): void {
 }
 
 export function subscribeReplyNotificationUpdates(callback: () => void): () => void {
-  if (typeof window === 'undefined') return () => {}
+  if (typeof window === 'undefined') return () => undefined
   window.addEventListener(REPLY_NOTIFICATIONS_EVENT, callback)
   return () => window.removeEventListener(REPLY_NOTIFICATIONS_EVENT, callback)
 }

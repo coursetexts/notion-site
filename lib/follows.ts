@@ -8,7 +8,10 @@ import type { Profile } from './supabase-types'
 import type { Course } from './course-activity-db'
 import type { Comment, Annotation, Bookmark } from './course-activity-db'
 
-export interface PublicProfile extends Pick<Profile, 'user_id' | 'display_name' | 'avatar_url'> {}
+export type PublicProfile = Pick<
+  Profile,
+  'user_id' | 'display_name' | 'avatar_url'
+>
 
 /** Get profile by user_id (for public profile page). */
 export async function getProfileByUserId(userId: string): Promise<PublicProfile | null> {

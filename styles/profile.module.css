@@ -313,7 +313,14 @@
 
 .listLink:hover {
   color: #25272b;
+}
+
+.listLink:hover .listTitle {
   text-decoration: underline;
+}
+
+.listLink .listMeta {
+  text-decoration: none;
 }
 
 .inlineLink {

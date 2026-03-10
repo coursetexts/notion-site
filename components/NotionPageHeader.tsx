@@ -58,20 +58,16 @@ export const NotionPageHeader: React.FC<{
   const auth = useAuthOptional()
   const [cached, setCached] = React.useState(getCachedAuth)
   const [unreadReplies, setUnreadReplies] = React.useState(0)
-
-  React.useEffect(() => {
-    return subscribeToAuthCache(() => setCached(getCachedAuth()))
-  }, [])
-
-  if (navigationStyle === 'default') {
-    return <Header block={block} />
-  }
-
-  const rootUrl = mapPageUrl(rootNotionPageId)
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
 
   React.useEffect(() => {
+    return subscribeToAuthCache(() => setCached(getCachedAuth()))
+  }, [])
+  const rootUrl = mapPageUrl(rootNotionPageId)
+
+  React.useEffect(() => {
+    if (navigationStyle === 'default') return
     if (!user) {
       setUnreadReplies(0)
       return
@@ -90,6 +86,7 @@ export const NotionPageHeader: React.FC<{
   }, [user?.id])
 
   React.useEffect(() => {
+    if (navigationStyle === 'default') return
     authDebug('header:auth-state', {
       authUser: auth?.user?.id ?? null,
       cachedUser: cached.user?.id ?? null,
@@ -98,6 +95,10 @@ export const NotionPageHeader: React.FC<{
     })
   }, [auth?.user?.id, cached.user?.id, user?.id, isLoggedIn])
 
+  if (navigationStyle === 'default') {
+    return <Header block={block} />
+  }
+
   return (
     <header className={cs(styles.headerBar, 'notion-header')}>
       <div className={styles.headerInner}>
@@ -105,46 +106,48 @@ export const NotionPageHeader: React.FC<{
           {siteName}
         </Link>
 
-        <nav className={styles.headerNav} aria-label="Main">
-          {navigationLinks
-            ?.map((link, index) => {
-              if (!link.pageId && !link.url) return null
-              if (link.pageId) {
+        <div className={styles.headerCenter}>
+          <nav className={styles.headerNav} aria-label="Main">
+            {navigationLinks
+              ?.map((link, index) => {
+                if (!link.pageId && !link.url) return null
+                if (link.pageId) {
+                  return (
+                    <components.PageLink
+                      href={mapPageUrl(link.pageId)}
+                      key={index}
+                      className={styles.headerNavLink}
+                    >
+                      {link.title}
+                    </components.PageLink>
+                  )
+                }
                 return (
-                  <components.PageLink
-                    href={mapPageUrl(link.pageId)}
+                  <components.Link
+                    href={link.url!}
                     key={index}
                     className={styles.headerNavLink}
                   >
                     {link.title}
-                  </components.PageLink>
+                  </components.Link>
                 )
-              }
-              return (
-                <components.Link
-                  href={link.url!}
-                  key={index}
-                  className={styles.headerNavLink}
-                >
-                  {link.title}
-                </components.Link>
-              )
-            })
-            .filter(Boolean)}
-        </nav>
-
-        <div className={styles.headerRhs}>
-          <ToggleThemeButton />
+              })
+              .filter(Boolean)}
+          </nav>
           {isSearchEnabled && (
             <div className={styles.headerSearchWrap}>
               <Search block={block} title={null} />
             </div>
           )}
+        </div>
+
+        <div className={styles.headerRhs}>
+          <ToggleThemeButton />
           <Link
             href={isLoggedIn ? '/profile' : '/signin'}
-            className={styles.signUpBtn}
+            className={styles.profileLink}
           >
-            <span className={styles.profileLinkLabelWrap}>
+            <span className={cs(styles.profileLinkLabelWrap, styles.signUpBtn)}>
               <span>{isLoggedIn ? 'Profile' : 'Sign in'}</span>
               {isLoggedIn && unreadReplies > 0 && (
                 <span className={styles.profileAlertBadge} aria-label={`${unreadReplies} unread replies`}>

@@ -124,6 +124,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   coursePageId,
   sectionId
 }) => {
+  void count
   const auth = useAuthOptional()
   const [sortBy, setSortBy] = useState<SortBy>('time')
   const [inputValue, setInputValue] = useState('')

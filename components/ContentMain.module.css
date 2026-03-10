@@ -8,6 +8,7 @@
 .viewBar {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   padding: 1rem 3rem;
   border-bottom: 1px solid #e5e1d3;
   flex-shrink: 0;
@@ -38,6 +39,7 @@
 .markCompleteWrap {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   margin-top: 1rem;
 }
 
@@ -64,6 +66,12 @@
   color: #3a3a3a;
 }
 
+.markCompleteBtnDone {
+  background-color: #ecfdf3;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
 .markCompleteIcon {
   display: inline-flex;
   align-items: center;
@@ -79,6 +87,39 @@
 }
 
 .markCompleteText {
+  line-height: 1.2;
+}
+
+.bookmarkBtn,
+.bookmarkBtnActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.875rem;
+  color: #4a4a4a;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bookmarkBtn:hover {
+  background-color: #f7f7f7;
+}
+
+.bookmarkBtnActive {
+  background-color: #fef9c3;
+  border-color: #facc15;
+  color: #a16207;
+}
+
+.bookmarkIcon {
+  font-size: 0.9rem;
+}
+
+.bookmarkText {
   line-height: 1.2;
 }
 

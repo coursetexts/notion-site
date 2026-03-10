@@ -58,7 +58,7 @@ export default function ProfilePage() {
   const user = auth?.user ?? null
   const profile = auth?.profile ?? null
   const isLoading = auth?.isLoading ?? true
-  const signOut = auth?.signOut ?? (async () => {})
+  const signOut = auth?.signOut ?? (async () => Promise.resolve())
 
   const cached = getCachedAuth()
   const [resolvedUser, setResolvedUser] = useState<User | null>(() => cached.user ?? null)
