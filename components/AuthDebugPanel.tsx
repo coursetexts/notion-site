@@ -1,5 +1,10 @@
 import React from 'react'
-import { clearCachedAuth, getCachedAuth, subscribeToAuthCache } from '@/lib/auth-cache'
+
+import {
+  clearCachedAuth,
+  getCachedAuth,
+  subscribeToAuthCache
+} from '@/lib/auth-cache'
 import {
   clearAuthDebugEntries,
   getAuthDebugEntries,
@@ -9,7 +14,10 @@ import {
 function isEnabled(): boolean {
   if (typeof window === 'undefined') return false
   const search = new URLSearchParams(window.location.search)
-  return search.get('authDebug') === '1' || window.localStorage.getItem('authDebug') === '1'
+  return (
+    search.get('authDebug') === '1' ||
+    window.localStorage.getItem('authDebug') === '1'
+  )
 }
 
 export const AuthDebugPanel: React.FC = () => {
@@ -20,7 +28,9 @@ export const AuthDebugPanel: React.FC = () => {
   React.useEffect(() => {
     setEnabled(isEnabled())
     if (!isEnabled()) return
-    const unsubDebug = subscribeAuthDebug(() => setEntries(getAuthDebugEntries()))
+    const unsubDebug = subscribeAuthDebug(() =>
+      setEntries(getAuthDebugEntries())
+    )
     const unsubCache = subscribeToAuthCache(() => setCache(getCachedAuth()))
     return () => {
       unsubDebug()
@@ -47,14 +57,21 @@ export const AuthDebugPanel: React.FC = () => {
         padding: 10,
         fontSize: 12,
         zIndex: 99999,
-        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
+        fontFamily:
+          'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: 8
+        }}
+      >
         <strong>Auth Debug</strong>
         <div style={{ display: 'flex', gap: 6 }}>
           <button
-            type="button"
+            type='button'
             onClick={() => {
               clearAuthDebugEntries()
               setEntries([])
@@ -64,7 +81,7 @@ export const AuthDebugPanel: React.FC = () => {
             clear logs
           </button>
           <button
-            type="button"
+            type='button'
             onClick={() => {
               clearCachedAuth()
               setCache(getCachedAuth())
@@ -78,14 +95,20 @@ export const AuthDebugPanel: React.FC = () => {
       <div style={{ marginBottom: 8 }}>
         cache.user: {cache.user?.id ?? 'null'}
       </div>
-      {entries.slice(-20).reverse().map((e, idx) => (
-        <div key={`${e.at}-${idx}`} style={{ marginBottom: 8, whiteSpace: 'pre-wrap' }}>
-          <div style={{ color: '#93c5fd' }}>
-            {e.at} · {e.label}
+      {entries
+        .slice(-20)
+        .reverse()
+        .map((e, idx) => (
+          <div
+            key={`${e.at}-${idx}`}
+            style={{ marginBottom: 8, whiteSpace: 'pre-wrap' }}
+          >
+            <div style={{ color: '#93c5fd' }}>
+              {e.at} · {e.label}
+            </div>
+            <div>{JSON.stringify(e.payload)}</div>
           </div>
-          <div>{JSON.stringify(e.payload)}</div>
-        </div>
-      ))}
+        ))}
     </div>
   )
 }

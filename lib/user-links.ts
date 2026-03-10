@@ -2,7 +2,6 @@
  * User bookmarked links and tags (profile "My bookmarked links").
  * Requires getSupabaseClient() and auth.
  */
-
 import { getSupabaseClient } from './supabase'
 
 export interface LinkTag {
@@ -31,7 +30,9 @@ export interface UserLinkWithTag extends UserLinkRow {
 export async function getMyTags(): Promise<LinkTag[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return []
   const { data, error } = await supabase
     .from('link_tags')
@@ -43,10 +44,14 @@ export async function getMyTags(): Promise<LinkTag[]> {
 }
 
 /** Get all links for the current user, with tag ids and names. Optionally filter by tag_id. */
-export async function getMyLinks(tagId?: string | null): Promise<UserLinkWithTag[]> {
+export async function getMyLinks(
+  tagId?: string | null
+): Promise<UserLinkWithTag[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return []
   const q = supabase
     .from('user_links')
@@ -61,16 +66,22 @@ export async function getMyLinks(tagId?: string | null): Promise<UserLinkWithTag
     .select('link_id, tag_id')
     .in('link_id', linkIds)
   const tagIdsByLink: Record<string, string[]> = {}
-  linkIds.forEach((id) => { tagIdsByLink[id] = [] })
+  linkIds.forEach((id) => {
+    tagIdsByLink[id] = []
+  })
   ;(linkTags || []).forEach((row: { link_id: string; tag_id: string }) => {
     if (!tagIdsByLink[row.link_id]) tagIdsByLink[row.link_id] = []
     tagIdsByLink[row.link_id].push(row.tag_id)
   })
   let filteredLinks = links as UserLinkRow[]
   if (tagId != null && tagId !== '') {
-    filteredLinks = filteredLinks.filter((l) => tagIdsByLink[l.id]?.includes(tagId))
+    filteredLinks = filteredLinks.filter((l) =>
+      tagIdsByLink[l.id]?.includes(tagId)
+    )
   }
-  const allTagIds = [...new Set((linkTags || []).map((r: { tag_id: string }) => r.tag_id))]
+  const allTagIds = [
+    ...new Set((linkTags || []).map((r: { tag_id: string }) => r.tag_id))
+  ]
   const tagNames: Record<string, string> = {}
   if (allTagIds.length > 0) {
     const { data: tags } = await supabase
@@ -108,16 +119,22 @@ export async function getLinksByUserId(
     .select('link_id, tag_id')
     .in('link_id', linkIds)
   const tagIdsByLink: Record<string, string[]> = {}
-  linkIds.forEach((id) => { tagIdsByLink[id] = [] })
+  linkIds.forEach((id) => {
+    tagIdsByLink[id] = []
+  })
   ;(linkTags || []).forEach((row: { link_id: string; tag_id: string }) => {
     if (!tagIdsByLink[row.link_id]) tagIdsByLink[row.link_id] = []
     tagIdsByLink[row.link_id].push(row.tag_id)
   })
   let filteredLinks = links as UserLinkRow[]
   if (tagId != null && tagId !== '') {
-    filteredLinks = filteredLinks.filter((l) => tagIdsByLink[l.id]?.includes(tagId))
+    filteredLinks = filteredLinks.filter((l) =>
+      tagIdsByLink[l.id]?.includes(tagId)
+    )
   }
-  const allTagIds = [...new Set((linkTags || []).map((r: { tag_id: string }) => r.tag_id))]
+  const allTagIds = [
+    ...new Set((linkTags || []).map((r: { tag_id: string }) => r.tag_id))
+  ]
   const tagNames: Record<string, string> = {}
   if (allTagIds.length > 0) {
     const { data: tags } = await supabase
@@ -139,7 +156,9 @@ export async function getLinksByUserId(
 export async function createTag(name: string): Promise<LinkTag | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return null
   const trimmed = name.trim()
   if (!trimmed) return null
@@ -162,11 +181,18 @@ export async function createTag(name: string): Promise<LinkTag | null> {
 /** Add a link. title, tagIds, note, isPrivate optional. */
 export async function addLink(
   url: string,
-  options?: { title?: string | null; tagIds?: string[]; note?: string | null; isPrivate?: boolean }
+  options?: {
+    title?: string | null
+    tagIds?: string[]
+    note?: string | null
+    isPrivate?: boolean
+  }
 ): Promise<UserLinkWithTag | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return null
   const trimmedUrl = url.trim()
   if (!trimmedUrl) return null
@@ -205,13 +231,24 @@ export async function addLink(
 /** Update a link's title, tag ids, note and/or is_private. */
 export async function updateLink(
   linkId: string,
-  updates: { title?: string | null; tagIds?: string[]; note?: string | null; isPrivate?: boolean }
+  updates: {
+    title?: string | null
+    tagIds?: string[]
+    note?: string | null
+    isPrivate?: boolean
+  }
 ): Promise<UserLinkWithTag | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return null
-  const payload: { title?: string | null; note?: string | null; is_private?: boolean } = {}
+  const payload: {
+    title?: string | null
+    note?: string | null
+    is_private?: boolean
+  } = {}
   if (updates.title !== undefined) payload.title = updates.title?.trim() || null
   if (updates.note !== undefined) payload.note = updates.note?.trim() || null
   if (updates.isPrivate !== undefined) payload.is_private = updates.isPrivate
@@ -261,7 +298,9 @@ export async function updateLink(
 export async function deleteLink(linkId: string): Promise<boolean> {
   const supabase = getSupabaseClient()
   if (!supabase) return false
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return false
   const { error } = await supabase
     .from('user_links')
@@ -275,7 +314,9 @@ export async function deleteLink(linkId: string): Promise<boolean> {
 export async function deleteTag(tagId: string): Promise<boolean> {
   const supabase = getSupabaseClient()
   if (!supabase) return false
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return false
   const { error } = await supabase
     .from('link_tags')

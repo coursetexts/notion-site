@@ -1,9 +1,22 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import { getCachedAuth, setCachedAuth, clearCachedAuth, subscribeToAuthCache } from '@/lib/auth-cache'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
+
+import type { User } from '@supabase/supabase-js'
+
+import {
+  clearCachedAuth,
+  getCachedAuth,
+  setCachedAuth,
+  subscribeToAuthCache
+} from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
 import { getSupabaseClient } from '@/lib/supabase'
 import type { Profile } from '@/lib/supabase-types'
-import type { User } from '@supabase/supabase-js'
 
 interface AuthContextValue {
   user: User | null
@@ -84,7 +97,9 @@ export function AuthProvider({
     }
 
     const init = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
+      const {
+        data: { session }
+      } = await supabase.auth.getSession()
       authDebug('provider:init:getSession', {
         provider: providerIdRef.current,
         sessionUser: session?.user?.id ?? null
@@ -116,45 +131,45 @@ export function AuthProvider({
       }
       authDebug('provider:init:done', {
         provider: providerIdRef.current,
-        user: (session?.user?.id ?? getCachedAuth().user?.id) ?? null
+        user: session?.user?.id ?? getCachedAuth().user?.id ?? null
       })
     }
 
     init()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        authDebug('provider:onAuthStateChange', {
-          provider: providerIdRef.current,
-          event,
-          sessionUser: session?.user?.id ?? null
-        })
-        if (session?.user) {
-          const u = session.user
-          setUserState(u)
-          setCachedAuth(u, getCachedAuth().profile)
-          setIsLoading(false)
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      authDebug('provider:onAuthStateChange', {
+        provider: providerIdRef.current,
+        event,
+        sessionUser: session?.user?.id ?? null
+      })
+      if (session?.user) {
+        const u = session.user
+        setUserState(u)
+        setCachedAuth(u, getCachedAuth().profile)
+        setIsLoading(false)
 
-          // Do not block auth on profile query.
-          fetchProfileWithTimeout(u.id).then((p) => {
-            setProfileState(p)
-            setCachedAuth(u, p)
-            authDebug('provider:profile:hydrated', {
-              provider: providerIdRef.current,
-              user: u.id,
-              hasProfile: Boolean(p)
-            })
+        // Do not block auth on profile query.
+        fetchProfileWithTimeout(u.id).then((p) => {
+          setProfileState(p)
+          setCachedAuth(u, p)
+          authDebug('provider:profile:hydrated', {
+            provider: providerIdRef.current,
+            user: u.id,
+            hasProfile: Boolean(p)
           })
-        } else {
-          // Only clear global auth on explicit sign out.
-          if (event === 'SIGNED_OUT') {
-            setUserState(null)
-            setProfileState(null)
-            clearCachedAuth()
-          }
+        })
+      } else {
+        // Only clear global auth on explicit sign out.
+        if (event === 'SIGNED_OUT') {
+          setUserState(null)
+          setProfileState(null)
+          clearCachedAuth()
         }
       }
-    )
+    })
 
     return () => {
       authDebug('provider:unmount', { provider: providerIdRef.current })
@@ -181,14 +196,19 @@ export function AuthProvider({
     setError(null)
     const supabase = getSupabaseClient()
     if (!supabase) {
-      setError('Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.')
+      setError(
+        'Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.'
+      )
       return
     }
     try {
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : undefined
+          redirectTo:
+            typeof window !== 'undefined'
+              ? `${window.location.origin}/auth/callback`
+              : undefined
         }
       })
       if (signInError) {

@@ -1,6 +1,7 @@
 import React from 'react'
-import { SaveCourseButton } from './SaveCourseButton'
+
 import styles from './CourseHero.module.css'
+import { SaveCourseButton } from './SaveCourseButton'
 
 export interface CourseHeroData {
   courseCode?: string
@@ -57,7 +58,7 @@ const SCHOOL_LOGOS: Record<string, string> = {
   'University of Waterloo': '/images/schools/waterloo.png',
   'University of British Columbia': '/images/schools/ubc.jpg',
   'Princeton University': '/images/schools/princeton.png',
-  'New York University': '/images/schools/nyu.png',
+  'New York University': '/images/schools/nyu.png'
 }
 
 /** Normalize school string for matching (lowercase, trim). */
@@ -71,21 +72,26 @@ function getSchoolLogo(school: string): [string, string] | null {
   const canonicalEntries = Object.entries(SCHOOL_LOGOS)
   // Exact match first
   for (const [canonicalName, logoPath] of canonicalEntries) {
-    if (normalized === normalizeSchool(canonicalName)) return [canonicalName, logoPath]
+    if (normalized === normalizeSchool(canonicalName))
+      return [canonicalName, logoPath]
   }
   // Then match by distinctive first word (e.g. "Stanford" -> "Stanford University")
   const firstWord = normalized.split(/\s+/)[0] ?? ''
   if (!firstWord) return null
   for (const [canonicalName, logoPath] of canonicalEntries) {
     const canon = normalizeSchool(canonicalName)
-    if (canon.startsWith(firstWord) || canon.includes(firstWord)) return [canonicalName, logoPath]
+    if (canon.startsWith(firstWord) || canon.includes(firstWord))
+      return [canonicalName, logoPath]
   }
   return null
 }
 
 /** Normalize schoolDate: school first, then date. Returns single string or [school, date] for styled dot. */
 function formatSchoolDate(raw: string): string | [string, string] {
-  const parts = raw.split(/\s*\|\s*/).map((p) => p.trim()).filter(Boolean)
+  const parts = raw
+    .split(/\s*\|\s*/)
+    .map((p) => p.trim())
+    .filter(Boolean)
   if (parts.length === 0) return ''
   if (parts.length === 1) return parts[0]
   // Heuristic: date usually looks like "Spring 2024", "Fall 2024", or "2024"
@@ -119,8 +125,12 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
 
   // Derive course code from content in brackets at end of title, e.g. "Intro to CS (CS 101)" → "CS 101"
   const bracketMatch = title.match(/\(([^)]+)\)\s*$/)
-  const derivedCourseCode = bracketMatch ? bracketMatch[1].trim() : (courseCodeProp ?? '')
-  const displayTitle = bracketMatch ? title.replace(/\s*\([^)]+\)\s*$/, '').trim() : title
+  const derivedCourseCode = bracketMatch
+    ? bracketMatch[1].trim()
+    : courseCodeProp ?? ''
+  const displayTitle = bracketMatch
+    ? title.replace(/\s*\([^)]+\)\s*$/, '').trim()
+    : title
   const showSaveButton = courseUrl != null && (courseTitle != null || title)
 
   return (
@@ -150,7 +160,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                     <span className={styles.schoolDateWithLogo}>
                       <img
                         src={logoPath}
-                        alt=""
+                        alt=''
                         className={styles.schoolLogo}
                         width={24}
                         height={24}

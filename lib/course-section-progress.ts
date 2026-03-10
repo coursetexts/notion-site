@@ -19,7 +19,9 @@ export async function getSectionProgressMap(
 ): Promise<Record<string, SectionProgressStatus>> {
   const supabase = getSupabaseClient()
   if (!supabase) return {}
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return {}
   const { data, error } = await supabase
     .from(TABLE_NAME)
@@ -44,7 +46,9 @@ export async function updateSectionProgress(
 ): Promise<SectionProgressStatus | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
   if (!user) return null
 
   // Fetch existing row (if any)
@@ -57,8 +61,10 @@ export async function updateSectionProgress(
     .maybeSingle()
 
   const current: SectionProgressStatus = {
-    isCompleted: (existingRow as SectionProgressRow | null)?.is_completed ?? false,
-    isBookmarked: (existingRow as SectionProgressRow | null)?.is_bookmarked ?? false
+    isCompleted:
+      (existingRow as SectionProgressRow | null)?.is_completed ?? false,
+    isBookmarked:
+      (existingRow as SectionProgressRow | null)?.is_bookmarked ?? false
   }
 
   const next: SectionProgressStatus = {
@@ -79,9 +85,9 @@ export async function updateSectionProgress(
     updated_at: new Date().toISOString()
   }
 
-  const { error } = await supabase
-    .from(TABLE_NAME)
-    .upsert(payload, { onConflict: 'user_id,course_page_id,section_label' as any })
+  const { error } = await supabase.from(TABLE_NAME).upsert(payload, {
+    onConflict: 'user_id,course_page_id,section_label' as any
+  })
 
   if (error) return null
   return next

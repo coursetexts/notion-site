@@ -9,7 +9,10 @@ export interface AuthDebugEntry {
 function isEnabled(): boolean {
   if (typeof window === 'undefined') return false
   const search = new URLSearchParams(window.location.search)
-  return search.get('authDebug') === '1' || window.localStorage.getItem('authDebug') === '1'
+  return (
+    search.get('authDebug') === '1' ||
+    window.localStorage.getItem('authDebug') === '1'
+  )
 }
 
 export function authDebug(label: string, payload: AuthDebugPayload = {}): void {

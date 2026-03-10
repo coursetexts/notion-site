@@ -1,18 +1,21 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import {
-  getOrCreateCourse,
-  getAnnotations,
-  addAnnotation,
-  setVote,
-  type Annotation as DbAnnotation
-} from '@/lib/course-activity-db'
-import { authDebug } from '@/lib/auth-debug'
-import { useAuthOptional } from '../contexts/AuthContext'
-import { useFollowingIds } from '@/hooks/useFollowingIds'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+
 import { useFollowerIds } from '@/hooks/useFollowerIds'
-import { UserLink } from './UserLink'
+import { useFollowingIds } from '@/hooks/useFollowingIds'
+
+import { authDebug } from '@/lib/auth-debug'
+import {
+  type Annotation as DbAnnotation,
+  addAnnotation,
+  getAnnotations,
+  getOrCreateCourse,
+  setVote
+} from '@/lib/course-activity-db'
+
+import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './AnnotationWidget.module.css'
+import { UserLink } from './UserLink'
 
 type SortBy = 'time' | 'votes'
 
@@ -44,7 +47,8 @@ type ThreadAnnotation = DbAnnotation & { replies: ThreadAnnotation[] }
 
 function buildAnnotationTree(annotations: DbAnnotation[]): ThreadAnnotation[] {
   const sorted = [...annotations].sort(
-    (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+    (a, b) =>
+      new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
   )
   const byId: Record<string, ThreadAnnotation> = {}
   sorted.forEach((a) => {
@@ -65,7 +69,10 @@ function buildAnnotationTree(annotations: DbAnnotation[]): ThreadAnnotation[] {
   return roots
 }
 
-function sortAnnotationRoots(roots: ThreadAnnotation[], sortBy: SortBy): ThreadAnnotation[] {
+function sortAnnotationRoots(
+  roots: ThreadAnnotation[],
+  sortBy: SortBy
+): ThreadAnnotation[] {
   if (sortBy === 'votes') {
     return [...roots].sort((a, b) => {
       const sa = a.score ?? 0
@@ -75,7 +82,8 @@ function sortAnnotationRoots(roots: ThreadAnnotation[], sortBy: SortBy): ThreadA
     })
   }
   return [...roots].sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   )
 }
 
@@ -86,31 +94,40 @@ interface VoteRowProps {
   onVote: (value: 1 | -1 | null) => void
 }
 
-const VoteRow: React.FC<VoteRowProps> = ({ score, userVote, disabled, onVote }) => {
+const VoteRow: React.FC<VoteRowProps> = ({
+  score,
+  userVote,
+  disabled,
+  onVote
+}) => {
   const handleUp = () => onVote(userVote === 1 ? null : 1)
   const handleDown = () => onVote(userVote === -1 ? null : -1)
   return (
     <div className={styles.voteRow}>
       <button
-        type="button"
+        type='button'
         className={styles.voteBtn}
         onClick={handleUp}
         disabled={disabled}
-        aria-label="Upvote"
-        title="Upvote"
+        aria-label='Upvote'
+        title='Upvote'
       >
-        <span className={userVote === 1 ? styles.voteBtnActive : undefined}>▲</span>
+        <span className={userVote === 1 ? styles.voteBtnActive : undefined}>
+          ▲
+        </span>
       </button>
       <span className={styles.voteCount}>{score}</span>
       <button
-        type="button"
+        type='button'
         className={styles.voteBtn}
         onClick={handleDown}
         disabled={disabled}
-        aria-label="Downvote"
-        title="Downvote"
+        aria-label='Downvote'
+        title='Downvote'
       >
-        <span className={userVote === -1 ? styles.voteBtnActive : undefined}>▼</span>
+        <span className={userVote === -1 ? styles.voteBtnActive : undefined}>
+          ▼
+        </span>
       </button>
     </div>
   )
@@ -130,19 +147,28 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   const [inputValue, setInputValue] = useState('')
   const [courseId, setCourseId] = useState<string | null>(null)
   const [annotations, setAnnotations] = useState<DbAnnotation[]>([])
-  const [replyDraftById, setReplyDraftById] = useState<Record<string, string>>({})
-  const [replyOpenById, setReplyOpenById] = useState<Record<string, boolean>>({})
-  const [threadExpandedById, setThreadExpandedById] = useState<Record<string, boolean>>({})
+  const [replyDraftById, setReplyDraftById] = useState<Record<string, string>>(
+    {}
+  )
+  const [replyOpenById, setReplyOpenById] = useState<Record<string, boolean>>(
+    {}
+  )
+  const [threadExpandedById, setThreadExpandedById] = useState<
+    Record<string, boolean>
+  >({})
   const [loading, setLoading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [submittingReplyId, setSubmittingReplyId] = useState<string | null>(null)
+  const [submittingReplyId, setSubmittingReplyId] = useState<string | null>(
+    null
+  )
   const [votingId, setVotingId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const { followingIds } = useFollowingIds()
   const { followerIds } = useFollowerIds()
 
   const loadAnnotations = useCallback(async () => {
-    if (!coursePageId || !courseTitle || sectionId == null || sectionId === '') return
+    if (!coursePageId || !courseTitle || sectionId == null || sectionId === '')
+      return
     const result = await getOrCreateCourse(coursePageId, courseTitle, courseUrl)
     if (!result) return
     setCourseId(result.courseId)
@@ -165,7 +191,14 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
       parentAnnotationId != null
         ? (replyDraftById[parentAnnotationId] || '').trim()
         : inputValue.trim()
-    if (!body || !courseId || sectionId == null || sectionId === '' || !auth?.user) return
+    if (
+      !body ||
+      !courseId ||
+      sectionId == null ||
+      sectionId === '' ||
+      !auth?.user
+    )
+      return
     if (parentAnnotationId) setSubmittingReplyId(parentAnnotationId)
     else setSubmitting(true)
     setError(null)
@@ -202,39 +235,48 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   const updateAnnotationVote = useCallback(
     (annotationId: string, score: number, user_vote: number | null) => {
       setAnnotations((prev) =>
-        prev.map((a) => (a.id === annotationId ? { ...a, score, user_vote } : a))
+        prev.map((a) =>
+          a.id === annotationId ? { ...a, score, user_vote } : a
+        )
       )
     },
     []
   )
 
   return (
-    <aside className={styles.root} aria-label="Annotations">
+    <aside className={styles.root} aria-label='Annotations'>
       <div className={styles.header}>
         <h2 className={styles.title}>
           Annotations
           {sectionId ? ` · ${sectionId}` : ''} ({displayCount})
         </h2>
         <div className={styles.headerActions}>
-          <div className={styles.sortWrap} role="group" aria-label="Sort annotations">
-            <label className={styles.sortLabel} htmlFor="annotation-widget-sort">
+          <div
+            className={styles.sortWrap}
+            role='group'
+            aria-label='Sort annotations'
+          >
+            <label
+              className={styles.sortLabel}
+              htmlFor='annotation-widget-sort'
+            >
               Sort:
             </label>
             <select
-              id="annotation-widget-sort"
+              id='annotation-widget-sort'
               className={styles.sortSelect}
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortBy)}
             >
-              <option value="time">Newest first</option>
-              <option value="votes">Most voted</option>
+              <option value='time'>Newest first</option>
+              <option value='votes'>Most voted</option>
             </select>
           </div>
           <button
-            type="button"
+            type='button'
             className={styles.hideBtn}
             onClick={onHide}
-            aria-label="Hide annotations"
+            aria-label='Hide annotations'
           >
             Hide
           </button>
@@ -243,17 +285,17 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
       {auth?.user ? (
         <div className={styles.addWrap}>
           <input
-            type="text"
+            type='text'
             className={styles.addInput}
-            placeholder="Add your thoughts…"
+            placeholder='Add your thoughts…'
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSubmit(undefined)}
-            aria-label="Add annotation"
+            aria-label='Add annotation'
             disabled={submitting || !sectionId}
           />
           <button
-            type="button"
+            type='button'
             className={styles.submitBtn}
             onClick={() => handleSubmit(undefined)}
             disabled={submitting || !inputValue.trim() || !sectionId}
@@ -263,17 +305,27 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
         </div>
       ) : (
         <p className={styles.signInHint}>
-          <Link href={typeof window !== 'undefined' ? `/signin?redirect=${encodeURIComponent(window.location.pathname)}` : '/signin'}>
+          <Link
+            href={
+              typeof window !== 'undefined'
+                ? `/signin?redirect=${encodeURIComponent(
+                    window.location.pathname
+                  )}`
+                : '/signin'
+            }
+          >
             Sign in
-          </Link>
-          {' '}to add annotations.
+          </Link>{' '}
+          to add annotations.
         </p>
       )}
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.list}>
         {loading && <p className={styles.placeholder}>Loading…</p>}
         {!loading && threadedAnnotations.length === 0 && (
-          <p className={styles.placeholder}>No annotations on this section yet.</p>
+          <p className={styles.placeholder}>
+            No annotations on this section yet.
+          </p>
         )}
         {!loading &&
           sortedAnnotationRoots.map((a) => (
@@ -374,7 +426,9 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
               showFollowsYouTag={followerIds.has(node.user_id)}
             />
           </span>
-          <span className={styles.time}>{formatRelativeTime(node.created_at)}</span>
+          <span className={styles.time}>
+            {formatRelativeTime(node.created_at)}
+          </span>
         </div>
         <VoteRow
           score={node.score ?? 0}
@@ -384,7 +438,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
         />
         <p className={styles.body}>{node.body}</p>
         <button
-          type="button"
+          type='button'
           className={styles.replyBtn}
           onClick={() => onToggleReply(node.id)}
         >
@@ -393,16 +447,16 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
         {isReplyOpen && authUser && (
           <div className={styles.replyComposer}>
             <input
-              type="text"
+              type='text'
               className={styles.addInput}
-              placeholder="Write a reply…"
+              placeholder='Write a reply…'
               value={draft}
               onChange={(e) => onReplyChange(node.id, e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && onSubmitReply(node.id)}
               disabled={isSubmitting}
             />
             <button
-              type="button"
+              type='button'
               className={styles.submitBtn}
               onClick={() => onSubmitReply(node.id)}
               disabled={isSubmitting || !draft.trim()}
@@ -413,7 +467,11 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
         )}
         {isReplyOpen && !authUser && (
           <p className={styles.signInHint}>
-            <Link href={`/signin?redirect=${encodeURIComponent(courseUrl || '/profile')}`}>
+            <Link
+              href={`/signin?redirect=${encodeURIComponent(
+                courseUrl || '/profile'
+              )}`}
+            >
               Sign in
             </Link>{' '}
             to reply.
@@ -446,7 +504,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
           ))}
           {hasLongThread && (
             <button
-              type="button"
+              type='button'
               className={styles.threadToggleBtn}
               onClick={() => onToggleThread(node.id)}
             >

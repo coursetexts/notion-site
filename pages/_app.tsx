@@ -20,7 +20,6 @@ import 'styles/notion.css'
 import 'styles/prism-theme.css'
 
 import { AuthDebugPanel } from '@/components/AuthDebugPanel'
-import { AuthProvider } from '../contexts/AuthContext'
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
   fathomConfig,
@@ -30,6 +29,8 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
+
+import { AuthProvider } from '../contexts/AuthContext'
 
 if (!isServer) {
   bootstrap()
@@ -72,7 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events, router.asPath])
 
   return (
-    <AuthProvider rootName="app">
+    <AuthProvider rootName='app'>
       <Component {...pageProps} />
       <AuthDebugPanel />
     </AuthProvider>

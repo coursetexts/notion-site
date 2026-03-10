@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+
 import { getSupabaseClient } from '@/lib/supabase'
 
 /**
@@ -19,7 +20,10 @@ export default function AuthCallbackPage() {
     }
 
     const run = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession()
+      const {
+        data: { session },
+        error
+      } = await supabase.auth.getSession()
       if (error) {
         console.error('Auth callback error:', error)
         setStatus('error')
@@ -52,7 +56,7 @@ export default function AuthCallbackPage() {
         {status === 'error' && (
           <div>
             <p>Something went wrong.</p>
-            <a href="/">Return home</a>
+            <a href='/'>Return home</a>
           </div>
         )}
       </div>

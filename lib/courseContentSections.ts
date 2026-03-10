@@ -38,7 +38,9 @@ function normalizeText(text: string): string {
  * We only auto-embed those rows; mixed text+link rows remain regular content.
  */
 function isStandaloneLinkOnly(linkEl: HTMLElement): boolean {
-  const block = linkEl.closest('.notion-text, .notion-callout-text') as HTMLElement | null
+  const block = linkEl.closest(
+    '.notion-text, .notion-callout-text'
+  ) as HTMLElement | null
   if (!block) return false
 
   const links = block.querySelectorAll('a.notion-link, a.notion-page-link')
@@ -55,10 +57,14 @@ function isStandaloneLinkOnly(linkEl: HTMLElement): boolean {
  * Find the article container to walk (notion-page-content-inner or slot’s first child).
  */
 function getArticleInner(container: HTMLElement): HTMLElement | null {
-  const inner = container.querySelector('.notion-page-content-inner') as HTMLElement
+  const inner = container.querySelector(
+    '.notion-page-content-inner'
+  ) as HTMLElement
   if (inner) return inner
   const first = container.firstElementChild as HTMLElement
-  return first && (first.classList.contains('notion-page-content-inner') || first.children.length > 0)
+  return first &&
+    (first.classList.contains('notion-page-content-inner') ||
+      first.children.length > 0)
     ? first
     : null
 }
@@ -67,7 +73,9 @@ function getArticleInner(container: HTMLElement): HTMLElement | null {
  * Build sections from headings: wrap content under each heading until next heading or end of doc.
  * Returns TOC items and mutates the DOM (wraps nodes in section divs).
  */
-export function buildSectionsFromHeadings(container: HTMLElement | null): TocItem[] {
+export function buildSectionsFromHeadings(
+  container: HTMLElement | null
+): TocItem[] {
   if (!container) return []
 
   const inner = getArticleInner(container)
@@ -89,7 +97,10 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
         sections.push({ label: 'Overview', nodes: preHeading })
         preHeading = []
       }
-      const label = (node.querySelector('.notion-h-title') || node).textContent?.trim() || node.textContent?.trim() || `Section ${sections.length + 1}`
+      const label =
+        (node.querySelector('.notion-h-title') || node).textContent?.trim() ||
+        node.textContent?.trim() ||
+        `Section ${sections.length + 1}`
       current = { label, nodes: [node] }
       sections.push(current)
     } else if (current) {
@@ -131,7 +142,9 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
       '.notion-h2, .notion-h3, h2[class*="notion"], h3[class*="notion"]'
     )
     subHeadings.forEach((el) => {
-      const text = (el.querySelector('.notion-h-title') || el).textContent?.trim() || el.textContent?.trim()
+      const text =
+        (el.querySelector('.notion-h-title') || el).textContent?.trim() ||
+        el.textContent?.trim()
       if (text) candidates.push({ el, label: text })
     })
 
@@ -146,7 +159,9 @@ export function buildSectionsFromHeadings(container: HTMLElement | null): TocIte
       candidates.push({
         el,
         label: text,
-        href: standaloneLinkOnly ? el.getAttribute('href') || undefined : undefined,
+        href: standaloneLinkOnly
+          ? el.getAttribute('href') || undefined
+          : undefined,
         hideContentUnderEmbed: standaloneLinkOnly
       })
     })

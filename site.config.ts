@@ -67,6 +67,9 @@ export default siteConfig({
     { title: 'All Courses', pageId: process.env.NEXT_PUBLIC_NOTION_PAGE_ID! },
     { title: 'Resources', url: '/about' },
     { title: 'Communities', url: 'https://discord.gg/6xBECjtC55' },
-    { title: 'Donate', url: 'https://hcb.hackclub.com/donations/start/coursetexts' }
+    {
+      title: 'Donate',
+      url: 'https://hcb.hackclub.com/donations/start/coursetexts'
+    }
   ]
 })

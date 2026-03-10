@@ -3,8 +3,8 @@
  * and across React roots (e.g. header in notion-x tree, course content in createRoot).
  * Ensures consistent auth context throughout the app until sign out.
  */
-
 import type { User } from '@supabase/supabase-js'
+
 import type { Profile } from './supabase-types'
 
 const AUTH_CACHE_EVENT = 'auth-cache-update'
@@ -12,11 +12,17 @@ const AUTH_CACHE_EVENT = 'auth-cache-update'
 let cachedUser: User | null = null
 let cachedProfile: Profile | null = null
 
-export function getCachedAuth(): { user: User | null; profile: Profile | null } {
+export function getCachedAuth(): {
+  user: User | null
+  profile: Profile | null
+} {
   return { user: cachedUser, profile: cachedProfile }
 }
 
-export function setCachedAuth(user: User | null, profile: Profile | null): void {
+export function setCachedAuth(
+  user: User | null,
+  profile: Profile | null
+): void {
   cachedUser = user
   cachedProfile = profile
   if (typeof window !== 'undefined') {

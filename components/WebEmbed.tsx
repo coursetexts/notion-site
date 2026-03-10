@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styles from './WebEmbed.module.css'
 
 export interface WebEmbedProps {
@@ -12,16 +13,12 @@ export const WebEmbed: React.FC<WebEmbedProps> = ({
 }) => {
   return (
     <div className={styles.root}>
-      <iframe
-        src={url}
-        title={title}
-        className={styles.iframe}
-      />
+      <iframe src={url} title={title} className={styles.iframe} />
       <div className={styles.linkWrap}>
         <a
           href={url}
-          target="_blank"
-          rel="noopener noreferrer"
+          target='_blank'
+          rel='noopener noreferrer'
           className={styles.link}
         >
           Open link in new tab

@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
+
 import {
   getOrCreateCourse,
   isBookmarked,
   toggleBookmark
 } from '@/lib/course-activity-db'
+
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './SaveCourseButton.module.css'
 
@@ -71,7 +73,7 @@ export const SaveCourseButton: React.FC<SaveCourseButtonProps> = ({
   return (
     <div className={styles.wrap}>
       <button
-        type="button"
+        type='button'
         className={saved ? styles.savedBtn : styles.saveBtn}
         onClick={handleClick}
         disabled={loading || checking}
@@ -81,12 +83,16 @@ export const SaveCourseButton: React.FC<SaveCourseButtonProps> = ({
           <span className={styles.label}>…</span>
         ) : saved ? (
           <>
-            <span className={styles.icon} aria-hidden>✓</span>
+            <span className={styles.icon} aria-hidden>
+              ✓
+            </span>
             <span className={styles.label}>Saved</span>
           </>
         ) : (
           <>
-            <span className={styles.icon} aria-hidden>+</span>
+            <span className={styles.icon} aria-hidden>
+              +
+            </span>
             <span className={styles.label}>Save course</span>
           </>
         )}

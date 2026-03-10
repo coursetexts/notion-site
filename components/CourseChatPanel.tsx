@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styles from './CourseChatPanel.module.css'
 
 interface ChatMessage {
@@ -37,7 +38,10 @@ export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
     const trimmed = inputValue.trim()
     if (!trimmed || isSending) return
 
-    const nextMessages = [...messages, { role: 'user' as const, content: trimmed }]
+    const nextMessages = [
+      ...messages,
+      { role: 'user' as const, content: trimmed }
+    ]
     setMessages(nextMessages)
     setInputValue('')
     setError(null)
@@ -66,23 +70,28 @@ export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
         throw new Error('Empty chat response.')
       }
 
-      setMessages((prev) => [...prev, { role: 'assistant', content: assistantReply }])
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: assistantReply }
+      ])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not get a chat response.')
+      setError(
+        err instanceof Error ? err.message : 'Could not get a chat response.'
+      )
     } finally {
       setIsSending(false)
     }
   }, [courseDescription, courseTitle, inputValue, isSending, messages])
 
   return (
-    <aside className={styles.root} aria-label="Course chat">
+    <aside className={styles.root} aria-label='Course chat'>
       <div className={styles.header}>
         <h2 className={styles.title}>Course Chat</h2>
         <button
-          type="button"
+          type='button'
           className={styles.hideBtn}
           onClick={onHide}
-          aria-label="Hide course chat"
+          aria-label='Hide course chat'
         >
           Hide
         </button>
@@ -123,7 +132,7 @@ export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
           className={styles.input}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Ask a question about this course..."
+          placeholder='Ask a question about this course...'
           rows={3}
           disabled={isSending}
           onKeyDown={(e) => {
@@ -134,7 +143,7 @@ export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
           }}
         />
         <button
-          type="button"
+          type='button'
           className={styles.sendBtn}
           onClick={sendMessage}
           disabled={isSending || !inputValue.trim()}

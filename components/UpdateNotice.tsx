@@ -1,5 +1,6 @@
-import * as React from 'react';
-import styles from './styles.module.css';
+import * as React from 'react'
+
+import styles from './styles.module.css'
 
 export const UpdateNotice: React.FC = () => {
   return (
@@ -15,5 +16,5 @@ export const UpdateNotice: React.FC = () => {
       <button className={styles.button}>Learn more →</button> */}
       <hr></hr>
     </div>
-  );
-};
+  )
+}

@@ -24,7 +24,9 @@ function emitReplyNotificationUpdate(): void {
   }
 }
 
-export function subscribeReplyNotificationUpdates(callback: () => void): () => void {
+export function subscribeReplyNotificationUpdates(
+  callback: () => void
+): () => void {
   if (typeof window === 'undefined') return () => undefined
   window.addEventListener(REPLY_NOTIFICATIONS_EVENT, callback)
   return () => window.removeEventListener(REPLY_NOTIFICATIONS_EVENT, callback)
@@ -98,7 +100,9 @@ export async function getUnreadReplyCount(userId: string): Promise<number> {
   return count
 }
 
-export async function getReplyNotifications(userId: string): Promise<ReplyNotification[]> {
+export async function getReplyNotifications(
+  userId: string
+): Promise<ReplyNotification[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
 
@@ -130,10 +134,14 @@ export async function getReplyNotifications(userId: string): Promise<ReplyNotifi
   const commentReplies = commentRepliesRes.data || []
   const annotationReplies = annotationRepliesRes.data || []
   const allCourseIds = [
-    ...new Set([...commentReplies, ...annotationReplies].map((r: any) => r.course_id))
+    ...new Set(
+      [...commentReplies, ...annotationReplies].map((r: any) => r.course_id)
+    )
   ]
   const allAuthorIds = [
-    ...new Set([...commentReplies, ...annotationReplies].map((r: any) => r.user_id))
+    ...new Set(
+      [...commentReplies, ...annotationReplies].map((r: any) => r.user_id)
+    )
   ]
 
   const [coursesRes, profilesRes] = await Promise.all([
@@ -151,17 +159,24 @@ export async function getReplyNotifications(userId: string): Promise<ReplyNotifi
       : Promise.resolve({ data: [] as any[] } as any)
   ])
 
-  const courseById = (coursesRes.data || []).reduce((acc: Record<string, any>, c: any) => {
-    acc[c.notion_page_id] = c
-    return acc
-  }, {})
-  const authorById = (profilesRes.data || []).reduce((acc: Record<string, any>, p: any) => {
-    acc[p.user_id] = p
-    return acc
-  }, {})
+  const courseById = (coursesRes.data || []).reduce(
+    (acc: Record<string, any>, c: any) => {
+      acc[c.notion_page_id] = c
+      return acc
+    },
+    {}
+  )
+  const authorById = (profilesRes.data || []).reduce(
+    (acc: Record<string, any>, p: any) => {
+      acc[p.user_id] = p
+      return acc
+    },
+    {}
+  )
 
   const toIsUnread = (createdAt: string) =>
-    !lastReadAt || new Date(createdAt).getTime() > new Date(lastReadAt).getTime()
+    !lastReadAt ||
+    new Date(createdAt).getTime() > new Date(lastReadAt).getTime()
 
   const commentNotifs: ReplyNotification[] = commentReplies.map((r: any) => {
     const course = courseById[r.course_id]
@@ -179,29 +194,34 @@ export async function getReplyNotifications(userId: string): Promise<ReplyNotifi
     }
   })
 
-  const annotationNotifs: ReplyNotification[] = annotationReplies.map((r: any) => {
-    const course = courseById[r.course_id]
-    return {
-      id: `annotation-${r.id}`,
-      type: 'annotation',
-      course_id: r.course_id,
-      course_name: course?.name || r.course_id,
-      course_url: course?.url || null,
-      author_id: r.user_id,
-      author_name: authorById[r.user_id]?.display_name || 'Someone',
-      body: r.body,
-      section_id: r.section_id,
-      created_at: r.created_at,
-      is_unread: toIsUnread(r.created_at)
+  const annotationNotifs: ReplyNotification[] = annotationReplies.map(
+    (r: any) => {
+      const course = courseById[r.course_id]
+      return {
+        id: `annotation-${r.id}`,
+        type: 'annotation',
+        course_id: r.course_id,
+        course_name: course?.name || r.course_id,
+        course_url: course?.url || null,
+        author_id: r.user_id,
+        author_name: authorById[r.user_id]?.display_name || 'Someone',
+        body: r.body,
+        section_id: r.section_id,
+        created_at: r.created_at,
+        is_unread: toIsUnread(r.created_at)
+      }
     }
-  })
+  )
 
   return [...commentNotifs, ...annotationNotifs].sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   )
 }
 
-export async function markReplyNotificationsRead(userId: string): Promise<void> {
+export async function markReplyNotificationsRead(
+  userId: string
+): Promise<void> {
   const supabase = getSupabaseClient()
   if (!supabase) return
   await supabase
@@ -210,4 +230,3 @@ export async function markReplyNotificationsRead(userId: string): Promise<void> 
     .eq('user_id', userId)
   emitReplyNotificationUpdate()
 }
-

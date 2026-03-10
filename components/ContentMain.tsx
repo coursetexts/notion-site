@@ -1,9 +1,10 @@
 import React from 'react'
+
 import styles from './ContentMain.module.css'
 import { PdfEmbed } from './PdfEmbed'
-import { WebEmbed } from './WebEmbed'
 import { ViewAnnotationsButton } from './ViewAnnotationsButton'
 import { ViewCourseChatButton } from './ViewCourseChatButton'
+import { WebEmbed } from './WebEmbed'
 
 export interface ContentMainProps {
   children?: React.ReactNode
@@ -41,7 +42,8 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   onToggleComplete,
   onToggleBookmark
 }) => {
-  const showViewBar = (onShowAnnotations || onShowChat) && !showAnnotations && !showChat
+  const showViewBar =
+    (onShowAnnotations || onShowChat) && !showAnnotations && !showChat
   const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
   const isCompleted = sectionStatus?.isCompleted ?? false
   const isBookmarked = sectionStatus?.isBookmarked ?? false
@@ -56,29 +58,32 @@ export const ContentMain: React.FC<ContentMainProps> = ({
               onClick={onShowAnnotations}
             />
           )}
-          {onShowChat && (
-            <ViewCourseChatButton onClick={onShowChat} />
-          )}
+          {onShowChat && <ViewCourseChatButton onClick={onShowChat} />}
         </div>
       )}
       <div className={styles.slot}>
-        {embedTitle && (
-          <h2 className={styles.pdfTitle}>{embedTitle}</h2>
-        )}
+        {embedTitle && <h2 className={styles.pdfTitle}>{embedTitle}</h2>}
         {embedUrl && (
           <div className={styles.pdfWrap}>
             {isPdf ? (
-              <PdfEmbed url={embedUrl} title="Course PDF" />
+              <PdfEmbed url={embedUrl} title='Course PDF' />
             ) : (
-              <WebEmbed url={embedUrl} title={embedTitle || 'Embedded content'} />
+              <WebEmbed
+                url={embedUrl}
+                title={embedTitle || 'Embedded content'}
+              />
             )}
             <div className={styles.markCompleteWrap}>
               <button
-                type="button"
+                type='button'
                 className={
-                  isCompleted ? `${styles.markCompleteBtn} ${styles.markCompleteBtnDone}` : styles.markCompleteBtn
+                  isCompleted
+                    ? `${styles.markCompleteBtn} ${styles.markCompleteBtnDone}`
+                    : styles.markCompleteBtn
                 }
-                aria-label={isCompleted ? 'Marked as completed' : 'Mark as completed'}
+                aria-label={
+                  isCompleted ? 'Marked as completed' : 'Mark as completed'
+                }
                 onClick={() => onToggleComplete?.(!isCompleted)}
               >
                 <span className={styles.markCompleteIcon} aria-hidden>
@@ -89,24 +94,30 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                 </span>
               </button>
               <button
-                type="button"
-                className={isBookmarked ? styles.bookmarkBtnActive : styles.bookmarkBtn}
-                aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark this item'}
+                type='button'
+                className={
+                  isBookmarked ? styles.bookmarkBtnActive : styles.bookmarkBtn
+                }
+                aria-label={
+                  isBookmarked ? 'Remove bookmark' : 'Bookmark this item'
+                }
                 onClick={() => onToggleBookmark?.(!isBookmarked)}
               >
                 <span className={styles.bookmarkIcon} aria-hidden>
                   <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                    width='16'
+                    height='16'
+                    viewBox='0 0 24 24'
+                    fill='none'
                     stroke={isBookmarked ? '#eab308' : '#9ca3af'}
-                    strokeWidth="2"
+                    strokeWidth='2'
                   >
-                    <path d="M7 3h10a1 1 0 0 1 1 1v16l-6-4-6 4V4a1 1 0 0 1 1-1z" />
+                    <path d='M7 3h10a1 1 0 0 1 1 1v16l-6-4-6 4V4a1 1 0 0 1 1-1z' />
                   </svg>
                 </span>
-                <span className={styles.bookmarkText}>{isBookmarked ? 'Bookmarked' : 'Bookmark'}</span>
+                <span className={styles.bookmarkText}>
+                  {isBookmarked ? 'Bookmarked' : 'Bookmark'}
+                </span>
               </button>
             </div>
           </div>
@@ -114,7 +125,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
         <div
           ref={innerRef}
           className={styles.slotContent}
-          style={hideContentUnderEmbed && embedUrl ? { display: 'none' } : undefined}
+          style={
+            hideContentUnderEmbed && embedUrl ? { display: 'none' } : undefined
+          }
         >
           {children}
         </div>

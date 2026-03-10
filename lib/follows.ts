@@ -2,11 +2,10 @@
  * Follows and public profile helpers.
  * Requires getSupabaseClient() (browser).
  */
-
+import type { Course } from './course-activity-db'
+import type { Annotation, Bookmark, Comment } from './course-activity-db'
 import { getSupabaseClient } from './supabase'
 import type { Profile } from './supabase-types'
-import type { Course } from './course-activity-db'
-import type { Comment, Annotation, Bookmark } from './course-activity-db'
 
 export type PublicProfile = Pick<
   Profile,
@@ -14,7 +13,9 @@ export type PublicProfile = Pick<
 >
 
 /** Get profile by user_id (for public profile page). */
-export async function getProfileByUserId(userId: string): Promise<PublicProfile | null> {
+export async function getProfileByUserId(
+  userId: string
+): Promise<PublicProfile | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
   const { data, error } = await supabase
@@ -73,7 +74,9 @@ export async function unfollowUser(
 }
 
 /** Get list of user IDs the current user follows (for "following" tag). */
-export async function getFollowingIds(currentUserId: string | null): Promise<string[]> {
+export async function getFollowingIds(
+  currentUserId: string | null
+): Promise<string[]> {
   if (!currentUserId) return []
   const supabase = getSupabaseClient()
   if (!supabase) return []
@@ -86,7 +89,9 @@ export async function getFollowingIds(currentUserId: string | null): Promise<str
 }
 
 /** Get list of user IDs who follow the current user (for "follows you" tag). */
-export async function getFollowerIds(currentUserId: string | null): Promise<string[]> {
+export async function getFollowerIds(
+  currentUserId: string | null
+): Promise<string[]> {
   if (!currentUserId) return []
   const supabase = getSupabaseClient()
   if (!supabase) return []
@@ -127,7 +132,9 @@ export interface ProfileListItem {
 }
 
 /** Get list of users that userId follows (with profile). */
-export async function getFollowingList(userId: string): Promise<ProfileListItem[]> {
+export async function getFollowingList(
+  userId: string
+): Promise<ProfileListItem[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
   const { data: rows, error } = await supabase
@@ -140,19 +147,24 @@ export async function getFollowingList(userId: string): Promise<ProfileListItem[
     .from('profiles')
     .select('user_id, display_name, avatar_url')
     .in('user_id', ids)
-  const byId = (profiles || []).reduce((acc: Record<string, ProfileListItem>, p: any) => {
-    acc[p.user_id] = {
-      user_id: p.user_id,
-      display_name: p.display_name,
-      avatar_url: p.avatar_url
-    }
-    return acc
-  }, {})
+  const byId = (profiles || []).reduce(
+    (acc: Record<string, ProfileListItem>, p: any) => {
+      acc[p.user_id] = {
+        user_id: p.user_id,
+        display_name: p.display_name,
+        avatar_url: p.avatar_url
+      }
+      return acc
+    },
+    {}
+  )
   return ids.map((id) => byId[id]).filter(Boolean)
 }
 
 /** Get list of users who follow userId. */
-export async function getFollowersList(userId: string): Promise<ProfileListItem[]> {
+export async function getFollowersList(
+  userId: string
+): Promise<ProfileListItem[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
   const { data: rows, error } = await supabase
@@ -165,14 +177,17 @@ export async function getFollowersList(userId: string): Promise<ProfileListItem[
     .from('profiles')
     .select('user_id, display_name, avatar_url')
     .in('user_id', ids)
-  const byId = (profiles || []).reduce((acc: Record<string, ProfileListItem>, p: any) => {
-    acc[p.user_id] = {
-      user_id: p.user_id,
-      display_name: p.display_name,
-      avatar_url: p.avatar_url
-    }
-    return acc
-  }, {})
+  const byId = (profiles || []).reduce(
+    (acc: Record<string, ProfileListItem>, p: any) => {
+      acc[p.user_id] = {
+        user_id: p.user_id,
+        display_name: p.display_name,
+        avatar_url: p.avatar_url
+      }
+      return acc
+    },
+    {}
+  )
   return ids.map((id) => byId[id]).filter(Boolean)
 }
 
@@ -219,7 +234,9 @@ export async function getCommentsByUser(
   if (!supabase) return []
   const { data: commentRows, error: err1 } = await supabase
     .from('comments')
-    .select('id, user_id, course_id, parent_comment_id, body, created_at, updated_at')
+    .select(
+      'id, user_id, course_id, parent_comment_id, body, created_at, updated_at'
+    )
     .eq('user_id', userId)
     .is('parent_comment_id', null)
     .order('created_at', { ascending: false })
@@ -234,10 +251,13 @@ export async function getCommentsByUser(
     .select('user_id, display_name, avatar_url')
     .eq('user_id', userId)
     .maybeSingle()
-  const courseById = (courses || []).reduce((acc: Record<string, Course>, c: any) => {
-    acc[c.notion_page_id] = c
-    return acc
-  }, {})
+  const courseById = (courses || []).reduce(
+    (acc: Record<string, Course>, c: any) => {
+      acc[c.notion_page_id] = c
+      return acc
+    },
+    {}
+  )
   const author = profile
     ? { display_name: profile.display_name, avatar_url: profile.avatar_url }
     : undefined
@@ -274,10 +294,13 @@ export async function getAnnotationsByUser(
     .select('user_id, display_name, avatar_url')
     .eq('user_id', userId)
     .maybeSingle()
-  const courseById = (courses || []).reduce((acc: Record<string, Course>, c: any) => {
-    acc[c.notion_page_id] = c
-    return acc
-  }, {})
+  const courseById = (courses || []).reduce(
+    (acc: Record<string, Course>, c: any) => {
+      acc[c.notion_page_id] = c
+      return acc
+    },
+    {}
+  )
   const author = profile
     ? { display_name: profile.display_name, avatar_url: profile.avatar_url }
     : undefined

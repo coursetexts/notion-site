@@ -1,28 +1,28 @@
 import * as React from 'react'
+import Link from 'next/link'
 
 import * as types from 'notion-types'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
 import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
-import Link from 'next/link'
 import cs from 'classnames'
 import { Header, Search, useNotionContext } from 'react-notion-x'
 
 import { getCachedAuth, subscribeToAuthCache } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
 import {
+  isSearchEnabled,
+  navigationLinks,
+  navigationStyle,
+  rootNotionPageId,
+  name as siteName
+} from '@/lib/config'
+import {
   getUnreadReplyCount,
   subscribeReplyNotificationUpdates
 } from '@/lib/reply-notifications'
-import { useAuthOptional } from '../contexts/AuthContext'
-import {
-  isSearchEnabled,
-  name as siteName,
-  navigationLinks,
-  navigationStyle,
-  rootNotionPageId
-} from '@/lib/config'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
+import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './NotionPageHeader.module.css'
 
 const ToggleThemeButton = () => {
@@ -41,10 +41,10 @@ const ToggleThemeButton = () => {
     <div
       className={cs(styles.headerIconBtn, !hasMounted && styles.hidden)}
       onClick={onToggleTheme}
-      role="button"
+      role='button'
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onToggleTheme()}
-      aria-label="Toggle theme"
+      aria-label='Toggle theme'
     >
       {hasMounted && isDarkMode ? <IoMoonSharp /> : <IoSunnyOutline />}
     </div>
@@ -102,12 +102,12 @@ export const NotionPageHeader: React.FC<{
   return (
     <header className={cs(styles.headerBar, 'notion-header')}>
       <div className={styles.headerInner}>
-        <Link href={rootUrl} className={styles.headerLogo} aria-label="Home">
+        <Link href={rootUrl} className={styles.headerLogo} aria-label='Home'>
           {siteName}
         </Link>
 
         <div className={styles.headerCenter}>
-          <nav className={styles.headerNav} aria-label="Main">
+          <nav className={styles.headerNav} aria-label='Main'>
             {navigationLinks
               ?.map((link, index) => {
                 if (!link.pageId && !link.url) return null
@@ -150,7 +150,10 @@ export const NotionPageHeader: React.FC<{
             <span className={cs(styles.profileLinkLabelWrap, styles.signUpBtn)}>
               <span>{isLoggedIn ? 'Profile' : 'Sign in'}</span>
               {isLoggedIn && unreadReplies > 0 && (
-                <span className={styles.profileAlertBadge} aria-label={`${unreadReplies} unread replies`}>
+                <span
+                  className={styles.profileAlertBadge}
+                  aria-label={`${unreadReplies} unread replies`}
+                >
                   {unreadReplies > 99 ? '99+' : unreadReplies}
                 </span>
               )}

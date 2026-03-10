@@ -1357,7 +1357,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
     container: HTMLElement | null
     originalParent: HTMLElement | null
     originalNextSibling: ChildNode | null
-  }>({ root: null, container: null, originalParent: null, originalNextSibling: null })
+  }>({
+    root: null,
+    container: null,
+    originalParent: null,
+    originalNextSibling: null
+  })
 
   const COURSE_HERO_STORAGE_KEY = 'courseHero'
 
@@ -1390,7 +1395,10 @@ export const NotionPage: React.FC<types.PageProps> = ({
       }
     }
 
-    function withPageTitle(data: CourseHeroData, pageTitle: string): CourseHeroData {
+    function withPageTitle(
+      data: CourseHeroData,
+      pageTitle: string
+    ): CourseHeroData {
       return { ...data, title: pageTitle }
     }
 
@@ -1400,7 +1408,10 @@ export const NotionPage: React.FC<types.PageProps> = ({
       courseUrl: router.asPath?.split('?')[0] ?? `/${pageId}`
     }
 
-    function ensureMountAndRender(contentInner: HTMLElement, data: CourseHeroData) {
+    function ensureMountAndRender(
+      contentInner: HTMLElement,
+      data: CourseHeroData
+    ) {
       let { container, root } = courseHeroRef.current
       if (!container || !root) {
         const parent = contentInner.parentElement
@@ -1414,13 +1425,15 @@ export const NotionPage: React.FC<types.PageProps> = ({
         courseHeroRef.current.root = root
       }
       root!.render(
-        <AuthProvider rootName="course-hero">
+        <AuthProvider rootName='course-hero'>
           <CourseHero {...data} {...courseHeroCourseInfo} />
         </AuthProvider>
       )
     }
 
-    function scrape(scope: HTMLElement): { data: CourseHeroData; nodes: HTMLElement[] } | null {
+    function scrape(
+      scope: HTMLElement
+    ): { data: CourseHeroData; nodes: HTMLElement[] } | null {
       const children = Array.from(scope.children) as HTMLElement[]
       if (children.length < 3) return null
       const [child1, child2, child3] = children
@@ -1579,7 +1592,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
       cc.root = createRoot(mount)
 
       cc.root.render(
-        <AuthProvider rootName="course-content">
+        <AuthProvider rootName='course-content'>
           <CourseContent
             coursePageId={pageId}
             courseTitle={title}
@@ -1600,9 +1613,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
 
     waitForElement('.course-page .notion-page-content-inner')
-      .then(() =>
-        waitForElement('.course-hero-mount', 8000).catch(() => null)
-      )
+      .then(() => waitForElement('.course-hero-mount', 8000).catch(() => null))
       .then(() => {
         mountCourseContent()
       })

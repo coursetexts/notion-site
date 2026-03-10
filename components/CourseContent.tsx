@@ -1,16 +1,21 @@
 import React from 'react'
-import styles from './CourseContent.module.css'
-import { buildSectionsFromHeadings, type TocItem } from '@/lib/courseContentSections'
+
+import {
+  type SectionProgressStatus,
+  getSectionProgressMap,
+  updateSectionProgress
+} from '@/lib/course-section-progress'
+import {
+  type TocItem,
+  buildSectionsFromHeadings
+} from '@/lib/courseContentSections'
+
 import { AnnotationWidget } from './AnnotationWidget'
 import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
 import { CourseChatPanel } from './CourseChatPanel'
+import styles from './CourseContent.module.css'
 import { TableOfContents } from './TableOfContents'
-import {
-  getSectionProgressMap,
-  updateSectionProgress,
-  type SectionProgressStatus
-} from '@/lib/course-section-progress'
 
 export interface CourseContentProps {
   /** Optional ref for the main content container so existing DOM can be moved into it */
@@ -33,28 +38,36 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   courseDescription,
   courseUrl
 }) => {
-  const [rightPanel, setRightPanel] = React.useState<'none' | 'annotations' | 'chat'>('none')
+  const [rightPanel, setRightPanel] = React.useState<
+    'none' | 'annotations' | 'chat'
+  >('none')
   const [contentSlotReady, setContentSlotReady] = React.useState(false)
   const [tocItems, setTocItems] = React.useState<TocItem[]>([])
   const [embedUrl, setEmbedUrl] = React.useState<string | undefined>(undefined)
-  const [embedTitle, setEmbedTitle] = React.useState<string | undefined>(undefined)
-  const [hideContentUnderEmbed, setHideContentUnderEmbed] = React.useState(false)
+  const [embedTitle, setEmbedTitle] = React.useState<string | undefined>(
+    undefined
+  )
+  const [hideContentUnderEmbed, setHideContentUnderEmbed] =
+    React.useState(false)
   const contentSlotRef = React.useRef<HTMLDivElement | null>(null)
   const [sectionProgress, setSectionProgress] = React.useState<
     Record<string, SectionProgressStatus>
   >({})
 
-  const handleTocLink = React.useCallback((href: string, _label?: string, hideContent?: boolean) => {
-    const isHttp = /^https?:\/\//i.test(href)
-    if (isHttp) {
-      setEmbedUrl(href)
-      setHideContentUnderEmbed(Boolean(hideContent))
-    } else {
-      setEmbedUrl(undefined)
-      setHideContentUnderEmbed(false)
-      window.open(href, '_blank', 'noopener,noreferrer')
-    }
-  }, [])
+  const handleTocLink = React.useCallback(
+    (href: string, _label?: string, hideContent?: boolean) => {
+      const isHttp = /^https?:\/\//i.test(href)
+      if (isHttp) {
+        setEmbedUrl(href)
+        setHideContentUnderEmbed(Boolean(hideContent))
+      } else {
+        setEmbedUrl(undefined)
+        setHideContentUnderEmbed(false)
+        window.open(href, '_blank', 'noopener,noreferrer')
+      }
+    },
+    []
+  )
 
   const handleSelectionClearPdf = React.useCallback(() => {
     setEmbedUrl(undefined)
@@ -70,7 +83,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
       contentSlotRef.current = el
       setContentSlotReady(!!el)
       if (typeof mainRef === 'function') mainRef(el)
-      else if (mainRef && el) (mainRef as React.MutableRefObject<HTMLDivElement | null>).current = el
+      else if (mainRef && el)
+        (mainRef as React.MutableRefObject<HTMLDivElement | null>).current = el
     },
     [mainRef]
   )
@@ -112,7 +126,9 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const handleToggleComplete = React.useCallback(
     async (label: string, completed: boolean) => {
       if (!coursePageId) return
-      const next = await updateSectionProgress(coursePageId, label, { isCompleted: completed })
+      const next = await updateSectionProgress(coursePageId, label, {
+        isCompleted: completed
+      })
       if (!next) return
       setSectionProgress((prev) => ({
         ...prev,
@@ -125,7 +141,9 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const handleToggleBookmark = React.useCallback(
     async (label: string, bookmarked: boolean) => {
       if (!coursePageId) return
-      const next = await updateSectionProgress(coursePageId, label, { isBookmarked: bookmarked })
+      const next = await updateSectionProgress(coursePageId, label, {
+        isBookmarked: bookmarked
+      })
       if (!next) return
       setSectionProgress((prev) => ({
         ...prev,
@@ -139,7 +157,9 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     <div className={styles.wrapper}>
       <div
         className={
-          rightPanel !== 'none' ? `${styles.root} ${styles.rootWithRightPanel}` : styles.root
+          rightPanel !== 'none'
+            ? `${styles.root} ${styles.rootWithRightPanel}`
+            : styles.root
         }
       >
         <aside className={styles.sidebar}>
