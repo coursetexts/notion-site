@@ -6,11 +6,15 @@
 }
 
 .viewBar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
   padding: 1rem 3rem;
   border-bottom: 1px solid #e5e1d3;
+  background-color: #fff;
   flex-shrink: 0;
 }
 
@@ -25,22 +29,56 @@
   margin-bottom: 2rem;
 }
 
+.embedParentTitle {
+  margin: 1rem 0 0.25rem 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #9ca3af;
+  /* font-family: 'TobiasMed', serif; */
+  letter-spacing: -0.4px;
+}
+
 .pdfTitle {
-  margin: 0 0 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.25;
   color: #242424;
   letter-spacing: -0.02em;
   font-family: 'Tobias', serif;
-
+  background-color: #ffffff;
+  box-sizing: border-box;
 }
 
-.markCompleteWrap {
+.sectionActionsWrap {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 7rem;
+  padding-top: 1rem;
+  /* border-top: 1px solid #e5e1d3; */
+  flex-wrap: wrap;
+}
+
+.nextSectionBtn {
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.nextSectionBtn:hover {
+  background-color: #efefef;
+  border-color: #d5d5d5;
+  color: #1f2937;
 }
 
 .markCompleteBtn {
@@ -94,19 +132,23 @@
 .bookmarkBtnActive {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.85rem;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
   font-family: 'UntitledSans', sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
   color: #4a4a4a;
-  background-color: #fff;
+  background-color: #f7f7f7;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .bookmarkBtn:hover {
-  background-color: #f7f7f7;
+  background-color: #efefef;
+  border-color: #d5d5d5;
+  color: #3a3a3a;
 }
 
 .bookmarkBtnActive {

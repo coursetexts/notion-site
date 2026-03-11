@@ -3,11 +3,19 @@ import React from 'react'
 import styles from './CourseHero.module.css'
 import { SaveCourseButton } from './SaveCourseButton'
 
+export interface CourseHeroInstructor {
+  name: string
+  url: string
+}
+
 export interface CourseHeroData {
   courseCode?: string
   title: string
-  instructorName: string
-  instructorUrl: string
+  /** Prefer this when multiple instructors (comma-separated or multiple links). */
+  instructors?: CourseHeroInstructor[]
+  /** Legacy single instructor; used if instructors is not set (e.g. cached data). */
+  instructorName?: string
+  instructorUrl?: string
   schoolDate?: string
   descriptionHtml: string
 }
@@ -58,7 +66,9 @@ const SCHOOL_LOGOS: Record<string, string> = {
   'University of Waterloo': '/images/schools/waterloo.png',
   'University of British Columbia': '/images/schools/ubc.jpg',
   'Princeton University': '/images/schools/princeton.png',
-  'New York University': '/images/schools/nyu.png'
+  'New York University': '/images/schools/nyu.png',
+  'Columbia University': '/images/schools/columbia.png',
+  'Yale University': '/images/schools/yale.png'
 }
 
 /** Normalize school string for matching (lowercase, trim). */
@@ -106,8 +116,9 @@ function formatSchoolDate(raw: string): string | [string, string] {
 export const CourseHero: React.FC<CourseHeroProps> = ({
   courseCode: courseCodeProp,
   title,
-  instructorName,
-  instructorUrl,
+  instructors: instructorsProp,
+  instructorName: instructorNameLegacy,
+  instructorUrl: instructorUrlLegacy,
   schoolDate,
   descriptionHtml,
   coursePageId,
@@ -115,6 +126,14 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   courseUrl
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
+
+  // Support both instructors[] and legacy instructorName + instructorUrl
+  const instructors: CourseHeroInstructor[] =
+    (instructorsProp?.length ?? 0) > 0
+      ? instructorsProp!
+      : instructorNameLegacy && instructorUrlLegacy
+        ? [{ name: instructorNameLegacy, url: instructorUrlLegacy }]
+        : []
 
   React.useLayoutEffect(() => {
     const el = descriptionRef.current
@@ -136,15 +155,25 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   return (
     <div className={styles.root}>
       <div className={styles.left}>
+        <a href="/" className={styles.backToHome} aria-label="Back to homepage">
+          <span className={styles.backArrow} aria-hidden>←</span>
+        </a>
         {derivedCourseCode ? (
           <div className={styles.courseCode}>{derivedCourseCode}</div>
         ) : null}
         <h1 className={styles.title}>{displayTitle}</h1>
-        <div className={styles.instructor}>
-          <a href={instructorUrl} className={styles.instructorLink}>
-            {instructorName}
-          </a>
-        </div>
+        {instructors.length > 0 ? (
+          <div className={styles.instructor}>
+            {instructors.map((inst, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && ' '}
+                <a href={inst.url} className={styles.instructorLink}>
+                  {inst.name}
+                </a>
+              </React.Fragment>
+            ))}
+          </div>
+        ) : null}
         {schoolDate ? (
           <div className={styles.schoolDate}>
             {(() => {
@@ -179,11 +208,16 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
         ) : null}
       </div>
       <div className={styles.right}>
-        <div
-          ref={descriptionRef}
-          className={styles.description}
-          dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-        />
+        <div className={styles.descriptionWrap}>
+          <div className={styles.descriptionScroll}>
+            <div
+              ref={descriptionRef}
+              className={styles.description}
+              dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+            />
+          </div>
+          <div className={styles.descriptionFade} aria-hidden />
+        </div>
         {showSaveButton && (
           <div className={styles.saveWrap}>
             <SaveCourseButton

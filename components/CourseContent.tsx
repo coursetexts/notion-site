@@ -47,9 +47,15 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const [embedTitle, setEmbedTitle] = React.useState<string | undefined>(
     undefined
   )
+  const [embedParentTitle, setEmbedParentTitle] = React.useState<
+    string | undefined
+  >(undefined)
   const [hideContentUnderEmbed, setHideContentUnderEmbed] =
     React.useState(false)
   const contentSlotRef = React.useRef<HTMLDivElement | null>(null)
+  const tocRef = React.useRef<{
+    goToNextSection: () => void
+  } | null>(null)
   const [sectionProgress, setSectionProgress] = React.useState<
     Record<string, SectionProgressStatus>
   >({})
@@ -74,9 +80,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     setHideContentUnderEmbed(false)
   }, [])
 
-  const handleSelectedItemChange = React.useCallback((label: string | null) => {
-    setEmbedTitle(label ?? undefined)
-  }, [])
+  const handleSelectedItemChange = React.useCallback(
+    (label: string | null, parentLabel?: string | null) => {
+      setEmbedTitle(label ?? undefined)
+      setEmbedParentTitle(parentLabel ?? undefined)
+    },
+    []
+  )
 
   const setSlotRef = React.useCallback(
     (el: HTMLDivElement | null) => {
@@ -109,7 +119,54 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     return () => clearTimeout(timer)
   }, [contentSlotReady, tocItems.length])
 
-  const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? 'Overview'
+  const PREFERRED_FIRST_SUB_LABELS = [
+    'course overview',
+    'course syllabus',
+    'syllabus'
+  ]
+  React.useEffect(() => {
+    if (tocItems.length === 0) return
+    setEmbedTitle((prev) => {
+      if (prev !== undefined) return prev
+      const first = tocItems[0]
+      const children = first?.children ?? []
+      if (children.length === 0) return first?.label
+      const preferred = children.find((c) =>
+        PREFERRED_FIRST_SUB_LABELS.includes(c.label.trim().toLowerCase())
+      )
+      const target = preferred ?? children[0]
+      return target.label
+    })
+    setEmbedParentTitle((prev) => {
+      if (prev !== undefined) return prev
+      const first = tocItems[0]
+      if (!first?.children?.length) return undefined
+      return first.label
+    })
+  }, [tocItems.length])
+
+  const hasNextSection = React.useMemo(() => {
+    if (tocItems.length === 0) return false
+    const currentLabel = embedTitle ?? tocItems[0]?.label ?? ''
+    const parentLabel = embedParentTitle
+    if (parentLabel != null && parentLabel !== '') {
+      const tabIndex = tocItems.findIndex((item) => item.label === parentLabel)
+      if (tabIndex < 0) return tocItems.length > 1
+      const item = tocItems[tabIndex]
+      const children = item?.children ?? []
+      const childIndex = children.findIndex((c) => c.label === currentLabel)
+      if (childIndex >= 0 && childIndex < children.length - 1) return true
+      return tabIndex < tocItems.length - 1
+    }
+    const tabIndex = tocItems.findIndex((item) => item.label === currentLabel)
+    if (tabIndex < 0) return tocItems.length > 1 || (tocItems[0]?.children?.length ?? 0) > 0
+    const item = tocItems[tabIndex]
+    const children = item?.children ?? []
+    if (children.length > 0) return true
+    return tabIndex < tocItems.length - 1
+  }, [tocItems, embedTitle, embedParentTitle])
+
+  const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? ''
   const currentStatus = sectionProgress[currentSectionLabel] ?? {
     isCompleted: false,
     isBookmarked: false
@@ -164,6 +221,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
       >
         <aside className={styles.sidebar}>
           <TableOfContents
+            ref={tocRef}
             contentRef={contentSlotRef}
             items={tocItems}
             onLinkClick={handleTocLink}
@@ -181,6 +239,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           onShowChat={() => setRightPanel('chat')}
           embedUrl={embedUrl}
           embedTitle={embedTitle}
+          embedParentTitle={embedParentTitle}
           hideContentUnderEmbed={hideContentUnderEmbed}
           sectionStatus={currentStatus}
           onToggleComplete={(completed) =>
@@ -189,6 +248,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           onToggleBookmark={(bookmarked) =>
             handleToggleBookmark(currentSectionLabel, bookmarked)
           }
+          onNextSection={() => tocRef.current?.goToNextSection()}
+          hasNextSection={hasNextSection}
         >
           {children}
         </ContentMain>

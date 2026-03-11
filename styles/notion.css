@@ -167,7 +167,8 @@
 
 .notion-h1,
 .notion-h2,
-.notion-h3 {
+.notion-h3,
+.notion-h4 {
   margin-bottom: 0.25em;
   padding: 0 !important;
   display: block;
@@ -176,9 +177,11 @@
 .page-tight-heading-gap .notion-text + .notion-h1,
 .page-tight-heading-gap .notion-text + .notion-h2,
 .page-tight-heading-gap .notion-text + .notion-h3,
+.page-tight-heading-gap .notion-text + .notion-h4,
 .page-tight-heading-gap .notion-list + .notion-h1,
 .page-tight-heading-gap .notion-list + .notion-h2,
-.page-tight-heading-gap .notion-list + .notion-h3 {
+.page-tight-heading-gap .notion-list + .notion-h3,
+.page-tight-heading-gap .notion-list + .notion-h4 {
   margin-top: 0.15rem;
 }
 
@@ -934,13 +937,7 @@ a.notion-page-link .notion-page-title {
   border: none;
 }
 
-.course-page .notion-page-content-inner:not(:has(.content-table)) > :nth-child(3) .notion-text:first-of-type::first-letter {
-  float: left;
-  font-size: 4rem;
-  line-height: 0.85;
-  padding-right: 0.5rem;
-  font-family: 'Tobias', serif;
-}
+/* Drop cap only in course hero (see .course-hero-standalone); not here so content area never gets it */
 
 .course-page .notion-page-content-inner:not(:has(.content-table)) > *:not(:nth-child(3)) {
   grid-column: 1;
@@ -984,13 +981,13 @@ a.notion-page-link .notion-page-title {
 } */
 
 .course-page .notion-h2 .notion-h-title {
-  font-weight: 400;
-  font-size: 11px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: inherit;
   margin-bottom: 1em;
   line-height: 1.3333333;
-  font-family: 'DM Mono', monospace;
   text-transform: uppercase;
-  letter-spacing: 1.1px;
+  letter-spacing: 0.05em;
   text-align: center;
   color: #616774;
 }
@@ -1006,14 +1003,12 @@ a.notion-page-link .notion-page-title {
  */
 
 .course-page .notion-text b {
-  font-weight: 400;
-  font-size: 11px;
-  margin-bottom: 1em;
-  line-height: 1.3333333;
-  font-family: 'DM Mono', monospace;
-  letter-spacing: 1.1px;
-  text-align: center;
-  color: #616774;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
 }
 
 .course-page a {
@@ -1661,9 +1656,57 @@ summary .notion-h3 .notion-h-title {
 }
 
 /* Only show the active tab’s panel; hide the rest so only that heading’s content is visible */
+/* Reset drop-cap outside hero: only the hero paragraph should have the big first letter */
+.course-content-mount .notion-text::first-letter,
+.course-content-section .notion-text::first-letter {
+  float: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  padding-right: 0 !important;
+  font-family: inherit !important;
+}
+
 .course-content-mount .course-content-section {
   display: none !important;
 }
 .course-content-mount .course-content-section.content-section-active {
   display: block !important;
+}
+
+/* Hide duplicate heading only in the block that matches the selected tab (slot title above) */
+.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h2:first-child,
+.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h3:first-child,
+.course-content-mount .course-content-main[data-content-visible='true'] > h2[class*='notion']:first-child,
+.course-content-mount .course-content-main[data-content-visible='true'] > h3[class*='notion']:first-child,
+.course-content-mount .course-content-subsection[data-content-visible='true'] > .notion-h4:first-child,
+.course-content-mount .course-content-subsection[data-content-visible='true'] > h4[class*='notion']:first-child {
+  display: none !important;
+}
+
+/* Remove Notion highlight backgrounds from section headings in main content (avoids blue bar on "GENERAL" etc.) */
+.course-content-mount .course-content-main .notion-h2.notion-blue_background,
+.course-content-mount .course-content-main .notion-h2.notion-gray_background,
+.course-content-mount .course-content-main .notion-h3.notion-blue_background,
+.course-content-mount .course-content-main .notion-h3.notion-gray_background,
+.course-content-mount .course-content-subsection .notion-h4.notion-blue_background,
+.course-content-mount .course-content-subsection .notion-h4.notion-gray_background {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+/* h4 sub-sections (sub-tabs) under a top-level section */
+.course-content-mount .course-content-subsection {
+  margin-top: 1.25rem;
+}
+
+/* Leave space below sticky top bar when scrolling to a heading */
+.course-content-mount [data-toc-id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Brief highlight on content heading when selected from table of contents */
+.course-content-mount .content-heading-highlight {
+  background-color: #cae4f7b5;
+  border-radius: 4px;
+  transition: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

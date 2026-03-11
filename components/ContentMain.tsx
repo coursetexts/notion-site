@@ -19,12 +19,18 @@ export interface ContentMainProps {
   embedUrl?: string
   /** Item name to show above the viewer (e.g. selected TOC link label) */
   embedTitle?: string
+  /** Parent tab name to show above the title when viewing a subtab (e.g. "Readings") */
+  embedParentTitle?: string
   /** Hide section text while the embed is visible (used for standalone link-only rows). */
   hideContentUnderEmbed?: boolean
   /** Optional status for the current section */
   sectionStatus?: { isCompleted?: boolean; isBookmarked?: boolean }
   onToggleComplete?: (completed: boolean) => void
   onToggleBookmark?: (bookmarked: boolean) => void
+  /** Go to next section (always visible, e.g. Next button) */
+  onNextSection?: () => void
+  /** When false, hide the Next button (e.g. on last section) */
+  hasNextSection?: boolean
 }
 
 export const ContentMain: React.FC<ContentMainProps> = ({
@@ -37,10 +43,13 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   onShowChat,
   embedUrl,
   embedTitle,
+  embedParentTitle,
   hideContentUnderEmbed = false,
   sectionStatus,
   onToggleComplete,
-  onToggleBookmark
+  onToggleBookmark,
+  onNextSection,
+  hasNextSection = true
 }) => {
   const showViewBar =
     (onShowAnnotations || onShowChat) && !showAnnotations && !showChat
@@ -62,6 +71,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
         </div>
       )}
       <div className={styles.slot}>
+        {embedParentTitle && (
+          <div className={styles.embedParentTitle}>{embedParentTitle}</div>
+        )}
         {embedTitle && <h2 className={styles.pdfTitle}>{embedTitle}</h2>}
         {embedUrl && (
           <div className={styles.pdfWrap}>
@@ -73,7 +85,20 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                 title={embedTitle || 'Embedded content'}
               />
             )}
-            <div className={styles.markCompleteWrap}>
+          </div>
+        )}
+        <div
+          ref={innerRef}
+          className={styles.slotContent}
+          style={
+            hideContentUnderEmbed && embedUrl ? { display: 'none' } : undefined
+          }
+        >
+          {children}
+        </div>
+        {(onToggleComplete ?? onToggleBookmark ?? onNextSection) && (
+          <div className={styles.sectionActionsWrap}>
+            {onToggleComplete && (
               <button
                 type='button'
                 className={
@@ -84,7 +109,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                 aria-label={
                   isCompleted ? 'Marked as completed' : 'Mark as completed'
                 }
-                onClick={() => onToggleComplete?.(!isCompleted)}
+                onClick={() => onToggleComplete(!isCompleted)}
               >
                 <span className={styles.markCompleteIcon} aria-hidden>
                   ✓
@@ -93,6 +118,8 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                   {isCompleted ? 'Completed' : 'Mark as Completed'}
                 </span>
               </button>
+            )}
+            {onToggleBookmark && (
               <button
                 type='button'
                 className={
@@ -101,7 +128,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                 aria-label={
                   isBookmarked ? 'Remove bookmark' : 'Bookmark this item'
                 }
-                onClick={() => onToggleBookmark?.(!isBookmarked)}
+                onClick={() => onToggleBookmark(!isBookmarked)}
               >
                 <span className={styles.bookmarkIcon} aria-hidden>
                   <svg
@@ -119,18 +146,19 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                   {isBookmarked ? 'Bookmarked' : 'Bookmark'}
                 </span>
               </button>
-            </div>
+            )}
+            {onNextSection && hasNextSection && (
+              <button
+                type='button'
+                className={styles.nextSectionBtn}
+                onClick={onNextSection}
+                aria-label='Go to next section'
+              >
+                Next
+              </button>
+            )}
           </div>
         )}
-        <div
-          ref={innerRef}
-          className={styles.slotContent}
-          style={
-            hideContentUnderEmbed && embedUrl ? { display: 'none' } : undefined
-          }
-        >
-          {children}
-        </div>
       </div>
     </main>
   )

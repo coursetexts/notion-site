@@ -1440,19 +1440,39 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
       // First block = school | date (course code is derived from page title in CourseHero)
       const schoolDate = (child1?.innerText ?? '').trim()
-      const instructorLink = scope.querySelector(
+      const instructorLinks = scope.querySelectorAll(
         '.notion-blue .notion-link'
-      ) as HTMLAnchorElement | null
-      const instructorName = (instructorLink?.textContent ?? '').trim()
-      const instructorUrl = instructorLink?.href ?? ''
+      ) as NodeListOf<HTMLAnchorElement>
+      const instructors: { name: string; url: string }[] = []
+      if (instructorLinks.length > 1) {
+        instructorLinks.forEach((a) => {
+          const name = (a.textContent ?? '').trim()
+          if (name) instructors.push({ name, url: a.href ?? '' })
+        })
+      } else if (instructorLinks.length === 1) {
+        const text = (instructorLinks[0].textContent ?? '').trim()
+        const url = instructorLinks[0].href ?? ''
+        if (text.includes(',')) {
+          text
+            .split(',')
+            .map((s) => s.trim())
+            .filter(Boolean)
+            .forEach((name) => instructors.push({ name, url }))
+        } else if (text) {
+          instructors.push({ name: text, url })
+        }
+      }
       const descriptionHtml = (child3?.innerHTML ?? '').trim()
 
       return {
         data: {
           courseCode: '', // derived from page title (brackets) in CourseHero
           title: '', // filled in with Notion page title via withPageTitle
-          instructorName,
-          instructorUrl,
+          instructors: instructors.length > 0 ? instructors : undefined,
+          instructorName:
+            instructors.length === 1 ? instructors[0].name : undefined,
+          instructorUrl:
+            instructors.length === 1 ? instructors[0].url : undefined,
           schoolDate: schoolDate || undefined,
           descriptionHtml
         },

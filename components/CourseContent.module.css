@@ -32,8 +32,12 @@
 .sidebar {
   position: sticky;
   top: 0;
+  align-self: start;
   min-height: 100vh;
-  height: 100%;
+  max-height: 100vh;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -48,7 +52,9 @@
 .annotationsColumn {
   position: sticky;
   top: 0;
-  min-height: 100vh;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 @media (max-width: 1100px) {

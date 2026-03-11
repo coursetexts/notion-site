@@ -19,6 +19,25 @@
   overflow-wrap: break-word;
 }
 
+.backToHome {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: #a8a39d;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  font-family: Tobias, serif;
+}
+
+.backToHome:hover {
+  color: #8a8580;
+}
+
+.backArrow {
+  font-size: 1.25rem;
+  line-height: 1;
+  font-family: Tobias, serif;
+}
+
 .right {
   min-width: 0;
   display: flex;
@@ -104,6 +123,32 @@
 .saveWrap {
   margin-top: 1.5rem;
   align-self: flex-end;
+}
+
+.descriptionWrap {
+  max-height: 400px;
+  position: relative;
+}
+
+.descriptionScroll {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.descriptionScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.descriptionFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.85));
+  pointer-events: none;
 }
 
 .description {
