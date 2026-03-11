@@ -18,12 +18,82 @@
   padding: 24px 0;
 }
 
-.heroImage {
+.heroImageWrap {
+  position: relative;
   width: min(1383px, calc(100vw - var(--home-side, 58px)));
   height: 300px;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center top;
   display: block;
+}
+
+.hotspotLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: var(--hotspot-size, 84px);
+  height: var(--hotspot-size, 84px);
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.hotspot:focus-visible {
+  outline: 1px solid #0089c4;
+  outline-offset: 1px;
+}
+
+.hotspotTooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  min-width: 180px;
+  max-width: 220px;
+  padding: 8px 10px;
+  border: 1px solid #e6e6e6;
+  background: #fdfdfd;
+  color: #2c1a0c;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: -0.0004em;
+  box-shadow: 0 10px 22px #00000014;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  white-space: normal;
+}
+
+.hotspotTooltipMeta {
+  display: block;
+  margin-top: 2px;
+  color: #5d534b;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.hotspot:hover .hotspotTooltip,
+.hotspot:focus-visible .hotspotTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .disclaimer {
@@ -54,5 +124,10 @@
   .heroImage {
     height: auto;
     max-height: 260px;
+  }
+
+  .heroImageWrap {
+    height: min(260px, calc((100vw - var(--home-side, 58px)) * 0.22));
+    min-height: 160px;
   }
 }
