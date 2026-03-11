@@ -1,0 +1,167 @@
+.section {
+  width: 100%;
+  background: #fdfdfd;
+  border-top: 1px solid #e6e6e67a;
+  border-bottom: 1px solid #e6e6e67a;
+}
+
+.content {
+  width: min(
+    var(--home-content-max, 640px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  padding: 128px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.heading {
+  margin: 0;
+  color: #000000;
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 24px;
+  letter-spacing: 0.0002em;
+}
+
+.featureImageFrame {
+  margin-top: 36px;
+  width: 640px;
+  max-width: 100%;
+  height: 316px;
+  align-self: flex-start;
+  border: 2px solid #c9c9c98a;
+  border-radius: 14px;
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+}
+
+.featureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  display: block;
+  transition: transform 220ms ease;
+}
+
+.featureImageFrame:hover .featureImage,
+.featureImageFrame:focus-visible .featureImage {
+  transform: scale(1.01);
+}
+
+.dateBadge {
+  margin-top: 40px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #0089c414;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dateText {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.1em;
+  color: #0089c4;
+  text-transform: uppercase;
+}
+
+.postTitleLink {
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.postTitle {
+  margin: 0;
+  color: #000000;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 26px;
+  letter-spacing: -0.0004em;
+  position: relative;
+  display: inline;
+  transition: color 200ms ease;
+}
+
+.postTitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: #0089c4;
+  transition: width 260ms cubic-bezier(0.68, -0.55, 0.265, 1);
+}
+
+.postTitleLink:hover .postTitle,
+.postTitleLink:focus-visible .postTitle {
+  color: #0089c4;
+}
+
+.postTitleLink:hover .postTitle::after,
+.postTitleLink:focus-visible .postTitle::after {
+  width: 100%;
+}
+
+.postExcerpt {
+  margin: 12px 0 0;
+  max-width: 640px;
+  color: #25272b;
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.authorRow {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.authorImage {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  display: block;
+}
+
+.authorName {
+  margin: 0;
+  color: #37352f;
+  font-family: 'Gambetta Variable', 'Gambetta', 'Iowan Old Style', Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 21px;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 96px 0;
+  }
+
+  .heading {
+    font-size: 28px;
+    line-height: 30px;
+  }
+}

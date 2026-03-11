@@ -8,6 +8,22 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Gambarino';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Gambarino-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Gambetta Variable';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/Gambetta-Variable.woff2') format('woff2');
+}
+
 * {
   box-sizing: border-box;
 }
