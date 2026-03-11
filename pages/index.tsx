@@ -647,7 +647,7 @@ export default function HomePage({ courses }: HomePageProps) {
           activeSubjects={activeSubjects}
           onSubjectToggle={handleSubjectToggle}
         />
-        <HomeDotGrid />
+        <HomeDotGrid courses={courses} />
         <HomeCoursesSection
           courses={filteredCourses}
           activeSubjects={activeSubjects}
