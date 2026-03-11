@@ -1,0 +1,343 @@
+.section {
+  width: 100%;
+  background: #fbfbfa;
+  border-top: 1px solid #f1edea;
+  border-bottom: 1px solid #f1edea;
+}
+
+.content {
+  width: min(
+    var(--home-content-max, 640px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  padding: 128px 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 96px;
+  box-sizing: border-box;
+}
+
+.leftPane {
+  width: 272px;
+  height: 274px;
+  flex: none;
+}
+
+.rightPane {
+  position: relative;
+  width: 272px;
+  height: 249px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 2px solid var(--outline, #e6e6e6);
+  border-radius: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex: none;
+}
+
+.supportRow {
+  position: relative;
+  z-index: 1;
+  margin-top: 16px;
+  margin-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 220ms ease;
+}
+
+.supportRow:hover,
+.supportRow:focus-visible {
+  opacity: 0.95;
+}
+
+.donationBadge {
+  position: relative;
+  z-index: 0;
+  width: 67px;
+  height: 84px;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  box-shadow: none;
+  transform: none;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex: none;
+  cursor: pointer;
+  transform-origin: center;
+  transition: transform 280ms ease;
+}
+
+.supportRow:hover .donationBadge,
+.supportRow:focus-within .donationBadge {
+  transform: rotate(-10deg);
+}
+
+.supportCopy {
+  margin: 12px 0 0 -12px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.supportText {
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.0004em;
+  vertical-align: middle;
+  color: var(--dark-brown, #2c1a0c);
+  transition: color 200ms ease;
+}
+
+.getStartedText {
+  margin: 4px 0 0;
+  position: relative;
+  display: inline-block;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.0004em;
+  vertical-align: middle;
+  color: #37352f;
+  transition: color 200ms ease;
+}
+
+.supportText::after,
+.getStartedText::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: #0089c4;
+  transition: width 260ms cubic-bezier(0.68, -0.55, 0.265, 1);
+}
+
+.supportRow:hover .supportText::after,
+.supportRow:focus-visible .supportText::after,
+.supportRow:focus-within .supportText::after,
+.supportRow:hover .getStartedText::after,
+.supportRow:focus-visible .getStartedText::after,
+.supportRow:focus-within .getStartedText::after {
+  width: 100%;
+}
+
+.supportRow:hover .supportText,
+.supportRow:focus-visible .supportText,
+.supportRow:focus-within .supportText,
+.supportRow:hover .getStartedText,
+.supportRow:focus-visible .getStartedText,
+.supportRow:focus-within .getStartedText {
+  color: #0089c4;
+}
+
+.heading {
+  margin: 0;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+.body {
+  margin: 24px 0 0;
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #37352f;
+}
+
+.ctaBar {
+  margin-top: 24px;
+  width: 272px;
+  height: 58px;
+  padding: 16px 12px;
+  border-top: 1px solid var(--outline, #e6e6e6);
+  border-bottom: 1px solid var(--outline, #e6e6e6);
+  background: var(--ligthBackground, #f8f6f352);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  cursor: pointer;
+  transition:
+    opacity 220ms ease,
+    border-top-color 220ms ease,
+    border-bottom-color 220ms ease;
+}
+
+.ctaBar:hover,
+.ctaBar:focus-visible {
+  opacity: 0.9;
+  border-top-color: #1f1f1f;
+  border-bottom-color: #1f1f1f;
+}
+
+.ctaBar:hover .ctaText,
+.ctaBar:focus-visible .ctaText {
+  color: #0089c4;
+}
+
+.ctaBar:hover .ctaText::after,
+.ctaBar:focus-visible .ctaText::after {
+  width: 100%;
+}
+
+.ctaContent {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctaText {
+  position: relative;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: -0.0004em;
+  color: var(--dark-brown, #2c1a0c);
+  transition: color 200ms ease;
+}
+
+.ctaText::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: #0089c4;
+  transition: width 260ms cubic-bezier(0.68, -0.55, 0.265, 1);
+}
+
+.heartIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  object-fit: contain;
+  transform-origin: center;
+  transition: transform 280ms ease;
+}
+
+.ctaBar:hover .heartIcon,
+.ctaBar:focus-visible .heartIcon,
+.ctaBar:focus-within .heartIcon {
+  transform: rotate(-18deg);
+}
+
+.arrowBox {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  padding: 6px;
+  border: 1px solid var(--outline, #e6e6e6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition:
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.arrowBox svg {
+  transition: transform 220ms ease;
+}
+
+.ctaBar:hover .arrowBox,
+.ctaBar:focus-visible .arrowBox,
+.ctaBar:focus-within .arrowBox {
+  border-color: #1f1f1f;
+  transform: translateY(-50%) translateX(1px);
+}
+
+.ctaBar:hover .arrowBox svg,
+.ctaBar:focus-visible .arrowBox svg,
+.ctaBar:focus-within .arrowBox svg {
+  transform: translateX(2px);
+}
+
+.previewImage {
+  position: relative;
+  z-index: 2;
+  margin-top: -4px;
+  width: 100%;
+  height: 167px;
+  border-radius: 14px;
+  border: 1px solid #c9c9c98a;
+  box-sizing: border-box;
+  box-shadow:
+    inset 0 0 1px #6b6b6b80,
+    inset 0 -1px 1px #6b6b6b80,
+    0px 14px 41px 0px #00000014;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 720px) {
+  .content {
+    flex-direction: column;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .leftPane,
+  .rightPane,
+  .ctaBar {
+    width: min(100%, 272px);
+  }
+
+  .leftPane {
+    height: auto;
+  }
+
+  .rightPane {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .rightPane {
+    height: auto;
+    min-height: 248px;
+  }
+
+  .supportRow {
+    margin-right: 0;
+  }
+}

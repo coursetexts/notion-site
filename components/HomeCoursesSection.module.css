@@ -1,0 +1,387 @@
+.section {
+  width: 100%;
+  min-height: 1200px;
+  background: #fbfbfa;
+  border-top: 1px solid #f1edea;
+  border-bottom: 1px solid #f1edea;
+}
+
+.content {
+  width: min(
+    var(--home-content-max, 640px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  height: 100%;
+  padding: 128px 0;
+  margin: 0 auto;
+}
+
+.heading {
+  margin: 0;
+  color: #000000;
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 24px;
+  letter-spacing: 0.0002em;
+}
+
+.subjectGroup {
+  margin-top: 52px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashedRule {
+  width: 100%;
+  height: 0;
+  border-top: 1px dashed var(--outline, #e6e6e6);
+  border-top-style: dashed;
+  border-image: repeating-linear-gradient(
+      to right,
+      var(--outline, #e6e6e6) 0 2px,
+      transparent 2px 4px
+    )
+    1;
+  opacity: 1;
+}
+
+.subjectRow {
+  margin: 19px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.subjectItem {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    opacity 200ms ease;
+}
+
+.subjectItem:hover,
+.subjectItem:focus-visible {
+  opacity: 0.85;
+}
+
+.subjectItemActive .subjectLabel {
+  color: #0089c4;
+}
+
+.subjectItemActive .subjectLabel::after {
+  width: 100%;
+}
+
+.subjectIconWrap {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subjectIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.subjectLabel {
+  position: relative;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.0004em;
+  color: var(--midGrey, #37352f);
+}
+
+.subjectLabel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: #0089c4;
+  transition: width 260ms cubic-bezier(0.68, -0.55, 0.265, 1);
+}
+
+.subjectItem:hover .subjectLabel::after,
+.subjectItem:focus-visible .subjectLabel::after {
+  width: 100%;
+}
+
+.courseGrid {
+  margin-top: 40px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 20px;
+  row-gap: 48px;
+}
+
+.emptyState {
+  margin: 40px 0 0;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  color: #37352f;
+}
+
+.courseCardLink {
+  display: block;
+  cursor: pointer;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+.courseCardLink:hover,
+.courseCardLink:focus-visible {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.courseCard {
+  width: 100%;
+  min-height: 135px;
+}
+
+.courseMetaRow {
+  display: flex;
+  align-items: center;
+}
+
+.schoolLogoWrap {
+  width: 21px;
+  height: 21px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 1px;
+  border: 1px solid var(--outline, #e6e6e6);
+  border-radius: 999px;
+  box-sizing: border-box;
+}
+
+.schoolLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 50%;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.courseMetaText {
+  margin-left: 6px;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+.courseTitle {
+  margin: 8px 0 0;
+  display: -webkit-box;
+  max-width: 190px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  text-decoration-line: underline;
+  text-decoration-color: var(--outline, #e6e6e6);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #000000;
+  transition:
+    color 220ms ease,
+    text-decoration-color 220ms ease;
+}
+
+.courseCardLink:hover .courseTitle,
+.courseCardLink:focus-visible .courseTitle {
+  color: #0089c4;
+  text-decoration-color: #0089c4;
+}
+
+.courseDescription {
+  margin: 16px 0 0;
+  font-family: 'Guyot Text', 'Guyot Press', 'Iowan Old Style', Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.0002em;
+  color: #353b48;
+}
+
+.viewAllBar {
+  margin-top: 56px;
+  width: 100%;
+  height: 58px;
+  padding: 16px 12px;
+  border-top: 1px solid var(--outline, #e6e6e6);
+  border-bottom: 1px solid var(--outline, #e6e6e6);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  transition:
+    border-top-color 220ms ease,
+    border-bottom-color 220ms ease;
+}
+
+.viewAllBar:hover,
+.viewAllBar:focus-within {
+  border-top-color: #1f1f1f;
+  border-bottom-color: #1f1f1f;
+}
+
+.viewAllBarLink {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.viewAllText {
+  position: relative;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.0004em;
+  color: var(--midGrey, #37352f);
+  transition: color 200ms ease;
+}
+
+.viewAllText::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: #0089c4;
+  transition: width 260ms cubic-bezier(0.68, -0.55, 0.265, 1);
+}
+
+.viewAllBarLink:hover .viewAllText,
+.viewAllBarLink:focus-visible .viewAllText,
+.viewAllBar:hover .viewAllText,
+.viewAllBar:focus-within .viewAllText {
+  color: #0089c4;
+}
+
+.viewAllBarLink:hover .viewAllText::after,
+.viewAllBarLink:focus-visible .viewAllText::after,
+.viewAllBar:hover .viewAllText::after,
+.viewAllBar:focus-within .viewAllText::after {
+  width: 100%;
+}
+
+.viewAllArrowBox {
+  width: 26px;
+  height: 26px;
+  padding: 6px;
+  border: 1px solid var(--outline, #e6e6e6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.viewAllArrowBox svg {
+  transition: transform 220ms ease;
+}
+
+.viewAllBar:hover .viewAllArrowBox,
+.viewAllBar:focus-within .viewAllArrowBox,
+.viewAllArrowBox:hover,
+.viewAllArrowBox:focus-visible {
+  border-color: #1f1f1f;
+  transform: translateX(1px);
+}
+
+@media (max-width: 768px) {
+  .courseGrid {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .courseCardLink {
+    width: min(300px, 100%);
+    margin: 0 auto;
+  }
+
+  .courseCard {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.viewAllBar:hover .viewAllArrowBox svg,
+.viewAllBar:focus-within .viewAllArrowBox svg,
+.viewAllArrowBox:hover svg,
+.viewAllArrowBox:focus-visible svg {
+  transform: translateX(2px);
+}
+
+@media (max-width: 860px) {
+  .courseGrid {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .subjectRow {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 96px 0;
+  }
+
+  .heading {
+    font-size: 28px;
+    line-height: 30px;
+  }
+}

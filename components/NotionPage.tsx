@@ -239,11 +239,16 @@ function addReactComponentAfterHeader(reactNode: React.ReactNode) {
     .catch((err) => console.warn(err.message))
 }
 
-export const NotionPage: React.FC<types.PageProps> = ({
+type NotionPageProps = types.PageProps & {
+  hideFooter?: boolean
+}
+
+export const NotionPage: React.FC<NotionPageProps> = ({
   site,
   recordMap,
   error,
-  pageId
+  pageId,
+  hideFooter = false
 }) => {
   const router = useRouter()
   const lite = useSearchParam('lite')
@@ -257,7 +262,10 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   let pageClass = ''
 
-  if (router.pathname === '/') {
+  if (
+    router.pathname === '/' ||
+    router.pathname === '/all-courses'
+  ) {
     pageClass = 'notion-home'
   } else if (router.asPath.startsWith('/about')) {
     pageClass = 'about-page'
@@ -1818,7 +1826,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
         {pageClass === 'notion-home' && <License />}
       </div>
-      <Footer />
+      {!hideFooter && <Footer />}
       {/* <GitHubShareButton /> */}
     </>
   )
