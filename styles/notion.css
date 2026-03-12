@@ -514,8 +514,7 @@
 }
 
 .notion-bookmark:hover {
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-  border-image-slice: 1;
+  border-color: #0089C4;
 }
 
 .notion-search .searchBar {
@@ -1090,9 +1089,13 @@ a.notion-page-link .notion-page-title {
   text-wrap: nowrap;
   background-color: #f8f8f8;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   padding: 8px 18px;
   color: #000000;
+}
+
+.tab-btn + .tab-btn {
+  border-left: 1px solid #E6E6E6;
 }
 
 .tab-btn.active {
@@ -1664,6 +1667,112 @@ summary .notion-h3 .notion-h-title {
   line-height: inherit !important;
   padding-right: 0 !important;
   font-family: inherit !important;
+}
+
+/* Paragraph font in content main */
+.course-content-mount .notion-text {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/*
+ * Lock icon is injected as first child of .notion-text (NotionPage inserts
+ * svg.lock-icon before link). Grid row wraps icon col + text col.
+ */
+.course-content-mount .notion-text-citation-row {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  align-items: start;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.course-content-mount .notion-text-citation-row .citation-icon-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.15em;
+}
+
+.course-content-mount .notion-text-citation-row .citation-icon-col svg.lock-icon {
+  display: block !important;
+  position: static !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+  transform: none;
+  vertical-align: top;
+}
+
+.course-content-mount .notion-text-citation-row .citation-text-col {
+  display: block;
+  min-width: 0;
+  word-break: break-word;
+}
+
+/*
+ * Citation links with icons – 2-column layout (JS adds .citation-icon-col +
+ * .citation-text-col). Column 1 = icon only; column 2 = all text so wraps never
+ * sit under the icon.
+ */
+.course-content-mount a.notion-link-citation-layout {
+  display: grid !important;
+  grid-template-columns: 1.5rem 1fr;
+  align-items: start;
+  gap: 0.5rem;
+  width: 100% !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-left: 0 !important;
+  margin-bottom: 0.5em;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-icon-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.15em;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-icon-col .notion-page-icon-inline,
+.course-content-mount a.notion-link-citation-layout .citation-icon-col .notion-page-icon-span,
+.course-content-mount a.notion-link-citation-layout .citation-icon-col .notion-page-icon-image,
+.course-content-mount a.notion-link-citation-layout .citation-icon-col img {
+  display: inline-flex !important;
+  position: static !important;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-text-col {
+  display: block;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-text-col .notion-page-title,
+.course-content-mount a.notion-link-citation-layout .citation-text-col .notion-page-title-text {
+  display: block !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: normal !important;
+}
+
+/* Before JS runs, or if layout didn’t apply – fallback block + padding */
+.course-content-mount a.notion-link-citation:not(.notion-link-citation-layout) {
+  display: block !important;
+  width: 100% !important;
+  padding-left: 1.75rem !important;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
+
+.course-content-mount .notion-list li .notion-page-link,
+.course-content-mount .notion-text .notion-page-link {
+  margin-bottom: 0.5em;
 }
 
 .course-content-mount .course-content-section {

@@ -1,3 +1,4 @@
+import './load-env'
 import rawSiteConfig from '../site.config'
 import { SiteConfig } from './site-config'
 
@@ -30,7 +31,14 @@ const siteConfig: SiteConfig = {
 }
 
 export function getSiteConfig<T>(key: string, defaultValue?: T): T {
-  const value = siteConfig[key]
+  let value = siteConfig[key]
+  // Resolve rootNotionPageId at read time from env so it works even when
+  // this module was loaded before .env was available (e.g. during SSG/build).
+  if (key === 'rootNotionPageId') {
+    const fromEnv = process.env.NEXT_PUBLIC_NOTION_PAGE_ID
+    if (fromEnv) value = fromEnv as T
+    if (value === undefined || value === null || value === '') value = undefined
+  }
 
   if (value !== undefined) {
     return value

@@ -127,29 +127,54 @@ export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
 
       {error && <p className={styles.error}>{error}</p>}
 
-      <div className={styles.inputWrap}>
-        <textarea
-          className={styles.input}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder='Ask a question about this course...'
-          rows={3}
-          disabled={isSending}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-              e.preventDefault()
-              sendMessage()
-            }
-          }}
-        />
-        <button
-          type='button'
-          className={styles.sendBtn}
-          onClick={sendMessage}
-          disabled={isSending || !inputValue.trim()}
-        >
-          {isSending ? 'Sending...' : 'Send'}
-        </button>
+      <div className={styles.addWrap}>
+        <div className={styles.addWrapInner}>
+          <textarea
+            className={styles.addInput}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder='Ask a question about this course...'
+            rows={3}
+            disabled={isSending}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault()
+                sendMessage()
+              }
+            }}
+          />
+          <button
+            type='button'
+            className={styles.submitBtn}
+            onClick={sendMessage}
+            disabled={isSending || !inputValue.trim()}
+            aria-label={isSending ? 'Sending message' : 'Send message'}
+          >
+            <span className={styles.submitBtnIcon} aria-hidden>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='14'
+                height='14'
+                viewBox='0 0 24 24'
+                fill='none'
+              >
+                <path
+                  d='M4 12h15'
+                  stroke='#ffffff'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                />
+                <path
+                  d='M13 5l7 7-7 7'
+                  stroke='#ffffff'
+                  strokeWidth='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
     </aside>
   )

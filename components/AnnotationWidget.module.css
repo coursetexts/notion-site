@@ -1,3 +1,6 @@
+/* Annotations panel – Figma: Hanken for UI, Guyot italic for body first line;
+   accent #0089C4, muted #5D534B */
+
 .root {
   width: 100%;
   min-width: 280px;
@@ -10,38 +13,29 @@
   flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid #e5e1d3;
   flex-shrink: 0;
 }
 
 .headerActions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-}
-
-.sortWrap {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.sortLabel {
-  font-size: 0.75rem;
-  color: #6b7280;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .sortSelect {
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.75rem;
   color: #25272b;
   padding: 0.3rem 0.4rem;
@@ -51,73 +45,183 @@
   cursor: pointer;
 }
 
+.sortMenuWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sortBtn {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.sortBtn:hover {
+  border-color: #d4cfc4;
+}
+
+.sortBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.sortBtnLabel {
+  line-height: 1;
+}
+
+.sortBtnChevron {
+  display: block;
+  transition: transform 140ms ease;
+}
+
+.sortBtnChevronOpen {
+  transform: rotate(180deg);
+}
+
+.sortMenu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  min-width: 9rem;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  padding: 0.35rem;
+  z-index: 20;
+}
+
+.sortMenuItem {
+  width: 100%;
+  text-align: left;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #25272b;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  cursor: pointer;
+}
+
+.sortMenuItem:hover {
+  background: rgba(0, 137, 196, 0.08);
+}
+
+.sortMenuItemActive {
+  background: rgba(0, 137, 196, 0.12);
+  color: #0089c4;
+}
+
+.sortMenuItem:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
 .title {
-  font-family: 'TobiasMed', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #25272b;
   margin: 0;
 }
 
+/* Count in thin weight + light grey */
+.titleCount {
+  font-weight: 200;
+  color: #9ca3af;
+  letter-spacing: 0.04em;
+}
+
 .hideBtn {
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.8125rem;
-  color: #6b7280;
-  background: none;
-  border: none;
+  color: #5d534b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.65rem;
 }
 
 .hideBtn:hover {
   color: #25272b;
+  border-color: #d4cfc4;
 }
 
+/* Input row: bordered field with circular submit inside bottom-right */
 .addWrap {
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid #e5e1d3;
   flex-shrink: 0;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+}
+
+.addWrapInner {
+  position: relative;
+  display: block;
 }
 
 .addWrap .addInput {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
+  padding: 0.65rem 2.75rem 0.65rem 0.75rem;
+  min-height: 2.75rem;
+  box-sizing: border-box;
 }
 
 .submitBtn {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8125rem;
-  color: #25272b;
-  background: #efefef;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  font-size: 0;
+  color: transparent;
+  background: #0089c4;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: #e8e8e8;
+  background: #007aad;
 }
 
 .submitBtn:disabled {
-  opacity: 0.6;
+  opacity: 0.45;
   cursor: not-allowed;
+}
+
+.submitBtnIcon {
+  display: block;
 }
 
 .signInHint {
   padding: 0 1.25rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.8125rem;
-  color: #6b7280;
+  color: #5d534b;
   margin: 0;
 }
 
 .signInHint a {
-  color: #0089C4;
+  color: #0089c4;
   text-decoration: none;
 }
 
@@ -133,6 +237,7 @@
 }
 
 .placeholder {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.8125rem;
   color: #9ca3af;
   margin: 0;
@@ -140,21 +245,19 @@
 
 .addInput {
   width: 100%;
-  padding: 0.6rem 0.75rem 0.6rem 2.25rem;
-  font-family: 'UntitledSans', sans-serif;
+  padding: 0.6rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.875rem;
   color: #25272b;
-  background: #f8f8f8;
+  background: #fff;
   border: 1px solid #e5e1d3;
-  border-radius: 6px;
+  border-radius: 8px;
   box-sizing: border-box;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M12 19V5M5 12h14'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 0.6rem center;
 }
 
 .addInput::placeholder {
-  color: #9ca3af;
+  color: #5d534b;
+  opacity: 0.7;
 }
 
 .list {
@@ -167,120 +270,235 @@
   width: 100%;
 }
 
+/* Divider between root-level annotation blocks only (not between nested replies) */
+.threadItemRoot {
+  border-bottom: 1px solid #e0e0de;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.threadItemRoot:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.repliesToggleRow {
+  margin: 0.25rem 0 0.35rem;
+  display: flex;
+  align-items: center;
+}
+
+.repliesToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.35rem 0.25rem 0.2rem;
+  line-height: 1.25;
+  border-radius: 4px;
+}
+
+.repliesToggleLabel {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.74rem;
+  color: #0089c4;
+}
+
+.repliesToggleBtn:hover {
+  background: rgba(0, 137, 196, 0.08);
+}
+
+.repliesToggleBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.45);
+  outline-offset: 2px;
+}
+
+.repliesToggleIcon {
+  display: block;
+}
+
+/* Reply thread line: dotted #0089C4 @ 30% */
 .threadChildren {
-  border-left: 2px solid #f3f4f6;
-  margin-left: 0.3rem;
-  padding-left: 0.6rem;
+  border-left: 1px dotted rgba(0, 137, 196, 0.3);
+  margin-left: 0.35rem;
+  padding-left: 0.75rem;
 }
 
 .annotation {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 0.5rem 0 0;
 }
 
-.annotation:last-child {
-  border-bottom: none;
-}
-
-.annotationHeader {
+/* Row: author, then time + votes grouped together (not pushed to the right) */
+.annotationMetaRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.35rem;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.annotationMetaRow .author {
+  min-width: 0;
+}
+
+/* Timestamp + vote controls stay inline together */
+.metaTimeVotes {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+}
+
+.annotationMetaRow .time {
+  flex-shrink: 0;
+}
+
+.annotationMetaRow .voteRow {
+  margin-left: 0;
+  margin-bottom: 0;
 }
 
 .voteRow {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.2rem;
   margin-bottom: 0.4rem;
 }
 
 .voteBtn {
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.75rem;
-  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
-  line-height: 1;
+  line-height: 0;
 }
 
 .voteBtn:hover:not(:disabled) {
-  color: #25272b;
+  opacity: 0.85;
 }
 
 .voteBtn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.voteCount {
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.75rem;
-  color: #6b7280;
-  min-width: 1.25rem;
+.voteBtnActive svg g,
+.voteBtnActive svg path {
+  opacity: 1 !important;
+  fill: #0089c4 !important;
+  stroke: #0089c4 !important;
 }
 
-.voteBtnActive {
-  color: #0089C4;
+.voteCount {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #000;
+  min-width: 1.1rem;
+  text-align: center;
 }
 
 .author {
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
   color: #25272b;
 }
 
 .time {
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
   color: #9ca3af;
 }
 
+/* Base annotation text – no bar unless user uses > blockquote */
 .body {
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.875rem;
-  line-height: 1.45;
-  color: #374151;
-  margin-bottom: 0.4rem;
+  line-height: 1.5;
+  color: #25272b;
+  margin: 0 0 0.5rem 0;
+  white-space: pre-wrap;
+}
+
+/* Only when body uses leading > (markdown-style blockquote) */
+.bodyBlockquote {
+  padding-left: 0.5rem;
+  border-left: 3px solid #E0E0DE;
+}
+
+.bodyBlockquote::first-line {
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-style: italic;
 }
 
 .replyBtn {
-  font-family: 'UntitledSans', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #5d534b;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .replyBtn:hover {
   color: #25272b;
 }
 
+.replyBtnIcon {
+  display: block;
+  flex-shrink: 0;
+}
+
 .replyComposer {
   margin-top: 0.55rem;
-  display: flex;
-  gap: 0.45rem;
-  align-items: center;
+  position: relative;
+}
+
+.replyComposer .addInput {
+  padding-right: 2.75rem;
+}
+
+.replyComposer .submitBtn {
+  right: 0.35rem;
+  bottom: 0.35rem;
 }
 
 .threadToggleBtn {
   margin-top: 0.35rem;
   margin-bottom: 0.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   background: none;
   border: none;
-  color: #0089C4;
+  color: #5d534b;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.74rem;
   cursor: pointer;
   padding: 0;
 }
 
 .threadToggleBtn:hover {
+  color: #25272b;
   text-decoration: underline;
+}
+
+.threadToggleIcon {
+  display: block;
 }

@@ -10,22 +10,21 @@
   flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.75rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid #e5e1d3;
   flex-shrink: 0;
 }
 
 .title {
-  font-family: 'TobiasMed', sans-serif;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #25272b;
@@ -33,17 +32,23 @@
 }
 
 .hideBtn {
-  font-family: 'UntitledSans', sans-serif;
   font-size: 0.8125rem;
-  color: #6b7280;
-  background: none;
-  border: none;
+  color: #5d534b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.65rem;
 }
 
 .hideBtn:hover {
   color: #25272b;
+  border-color: #d4cfc4;
+}
+
+.hideBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
 }
 
 .meta {
@@ -54,15 +59,15 @@
 
 .courseTitle {
   margin: 0;
-  color: #4b5563;
+  color: #5d534b;
   font-size: 0.8rem;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .list {
   flex: 1;
   overflow-y: auto;
-  padding: 0.9rem 1rem;
+  padding: 0.9rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
@@ -88,12 +93,13 @@
   white-space: pre-wrap;
   line-height: 1.4;
   font-size: 0.85rem;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .assistantBubble {
-  background: #f3f4f6;
-  color: #1f2937;
+  background: #f8f8f8;
+  color: #25272b;
+  border: 1px solid #e5e1d3;
 }
 
 .userBubble {
@@ -114,46 +120,76 @@
   font-size: 0.8125rem;
 }
 
-.inputWrap {
+.addWrap {
+  padding: 0.75rem 1.25rem;
   border-top: 1px solid #e5e1d3;
-  padding: 0.75rem 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
   flex-shrink: 0;
 }
 
-.input {
+.addWrapInner {
+  position: relative;
+  display: block;
+}
+
+.addInput {
   width: 100%;
-  resize: vertical;
-  min-height: 60px;
-  max-height: 180px;
-  font-family: 'UntitledSans', sans-serif;
+  resize: none;
+  min-height: 2.75rem;
+  max-height: 9rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.875rem;
   color: #25272b;
-  background: #f8f8f8;
+  background: #fff;
   border: 1px solid #e5e1d3;
-  border-radius: 6px;
+  border-radius: 10px;
   box-sizing: border-box;
-  padding: 0.6rem 0.75rem;
+  padding: 0.65rem 2.75rem 0.65rem 0.75rem;
+  line-height: 1.35;
 }
 
-.sendBtn {
-  align-self: flex-end;
-  padding: 0.48rem 0.85rem;
-  font-size: 0.8125rem;
-  color: #25272b;
-  background: #efefef;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+.addInput::placeholder {
+  color: #9ca3af;
+}
+
+.addInput:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.submitBtn {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0;
+  color: transparent;
+  background: #0089c4;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-.sendBtn:hover:not(:disabled) {
-  background: #e8e8e8;
+.submitBtn:hover:not(:disabled) {
+  background: #007aad;
 }
 
-.sendBtn:disabled {
+.submitBtn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.submitBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.submitBtnIcon {
+  display: block;
 }

@@ -155,12 +155,18 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   return (
     <div className={styles.root}>
       <div className={styles.left}>
-        <a href="/" className={styles.backToHome} aria-label="Back to homepage">
-          <span className={styles.backArrow} aria-hidden>←</span>
-        </a>
-        {derivedCourseCode ? (
-          <div className={styles.courseCode}>{derivedCourseCode}</div>
-        ) : null}
+        <div className={styles.backAndCourseCode}>
+          <a href="/" className={styles.backToHome} aria-label="Back to homepage">
+            <span className={styles.backArrow} aria-hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M7.64529 1.90314C7.57602 1.87612 7.50052 1.86927 7.42752 1.88337C7.35452 1.89747 7.28701 1.93195 7.23279 1.98282L3.48279 5.73283C3.41237 5.80392 3.37286 5.89994 3.37286 6.00001C3.37286 6.10008 3.41237 6.1961 3.48279 6.2672L7.23279 10.0172C7.30477 10.086 7.4004 10.1246 7.49997 10.125C7.54974 10.1248 7.59903 10.1153 7.64529 10.0969C7.71354 10.0682 7.77177 10.02 7.81264 9.95822C7.85352 9.89649 7.87521 9.82405 7.87497 9.75001V2.25001C7.87521 2.17598 7.85352 2.10353 7.81264 2.0418C7.77177 1.98007 7.71354 1.93183 7.64529 1.90314Z" fill="black"/>
+              </svg>
+            </span>
+          </a>
+          {derivedCourseCode ? (
+            <div className={styles.courseCode}>{derivedCourseCode}</div>
+          ) : null}
+        </div>
         <h1 className={styles.title}>{displayTitle}</h1>
         {instructors.length > 0 ? (
           <div className={styles.instructor}>

@@ -3,7 +3,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.875rem;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.875rem;
   color: #25272b;
   background-color: #fff;
@@ -20,7 +20,7 @@
 
 .count {
   color: #9ca3af;
-  font-weight: 400;
+  font-weight: 200;
 }
 
 .icon {

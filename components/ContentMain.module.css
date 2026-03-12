@@ -3,6 +3,9 @@
   min-width: 0;
   box-sizing: border-box;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .viewBar {
@@ -23,6 +26,10 @@
   min-width: 0;
   padding: 2rem 3rem 4rem;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .pdfWrap {
@@ -40,88 +47,145 @@
 }
 
 .pdfTitle {
+  max-width: 900px;
   margin-top: 1rem;
   margin-bottom: 2rem;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.25;
   color: #242424;
-  letter-spacing: -0.02em;
-  font-family: 'Tobias', serif;
+  letter-spacing: -0.03em;
+  font-family: "Guyot Press", "Guyot Text", "Iowan Old Style", Georgia, serif;
   background-color: #ffffff;
   box-sizing: border-box;
 }
 
 .sectionActionsWrap {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 7rem;
+  gap: 1rem;
+  margin-top: auto;
   padding-top: 1rem;
-  /* border-top: 1px solid #e5e1d3; */
   flex-wrap: wrap;
 }
 
-.nextSectionBtn {
-  font-family: 'UntitledSans', sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #374151;
-  background-color: #f7f7f7;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+.sectionActionsLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.nextSectionBtn:hover {
-  background-color: #efefef;
+.sectionCount {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #37352F;
+  line-height: 1.2;
+}
+
+.sectionCountDivider {
+  width: 1px;
+  height: 1.25rem;
+  background-color: #E6E6E6;
+  flex-shrink: 0;
+}
+
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #37352F;
+  background-color: transparent;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.navBtn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
   border-color: #d5d5d5;
-  color: #1f2937;
+}
+
+.navBtnIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionActionsRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .markCompleteBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
   margin-bottom: 0;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
-  color: #4a4a4a;
-  background-color: #f7f7f7;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  color: #37352F;
+  background-color: transparent;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
 }
 
 .markCompleteBtn:hover {
-  background-color: #efefef;
+  background-color: rgba(0, 0, 0, 0.04);
   border-color: #d5d5d5;
-  color: #3a3a3a;
 }
 
+/* Hover affordance: fill the check icon green even before completion */
+.markCompleteBtn:hover .markCompleteIcon svg path {
+  fill: #337A5D;
+}
+
+/* Hover affordance: also tint the circle green */
+.markCompleteBtn:hover .markCompleteIcon {
+  background: rgba(51, 122, 93, 0.12);
+  border-color: rgba(51, 122, 93, 0.45);
+}
+
+/* Completed state: same treatment as bookmark — light grey pill, filled green check in grey circle, dark grey label */
 .markCompleteBtnDone {
-  background-color: #ecfdf3;
-  border-color: #bbf7d0;
-  color: #166534;
+  background-color: #f3f3f3;
+  border-color: #e0e0e0;
+  color: #363636;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.markCompleteBtnDone:hover {
+  background-color: #ededed;
+  border-color: #d5d5d5;
 }
 
 .markCompleteIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  font-size: 0.75rem;
-  color: #4a4a4a;
-  background-color: #fff;
-  border: 1px solid #cccccc;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
+  background: transparent;
+  border: 1px solid #e6e6e6;
   flex-shrink: 0;
+}
+
+.markCompleteBtnDone .markCompleteIcon {
+  background: #337A5D;
+  border: 2px solid #337A5D;
 }
 
 .markCompleteText {
@@ -132,33 +196,95 @@
 .bookmarkBtnActive {
   display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 1rem 0.5rem 0.75rem;
-  font-family: 'UntitledSans', sans-serif;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
-  color: #4a4a4a;
-  background-color: #f7f7f7;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  color: #37352F;
+  background-color: transparent;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
 }
 
 .bookmarkBtn:hover {
-  background-color: #efefef;
+  background-color: rgba(0, 0, 0, 0.04);
   border-color: #d5d5d5;
-  color: #3a3a3a;
 }
 
+/* Hover affordance: turn bookmark icon blue even before bookmarking */
+.bookmarkBtn:hover .bookmarkIcon {
+  color: #0089C4;
+  border-color: rgba(0, 137, 196, 0.35);
+}
+
+.bookmarkIconStack {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+.bookmarkIconStack > svg {
+  position: absolute;
+  inset: 0;
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.bookmarkIconFilled {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 140ms ease, transform 180ms ease;
+}
+
+.bookmarkIconOutline {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 140ms ease, transform 180ms ease;
+}
+
+.bookmarkBtn:hover .bookmarkIconFilled {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bookmarkBtn:hover .bookmarkIconOutline {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+/* Bookmarked state: light grey pill, filled blue icon in grey circle, dark grey label (matches design ref) */
 .bookmarkBtnActive {
-  background-color: #fef9c3;
-  border-color: #facc15;
-  color: #a16207;
+  background-color: #f3f3f3;
+  border-color: #e0e0e0;
+  color: #363636;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.bookmarkBtnActive:hover {
+  background-color: #ededed;
+  border-color: #d5d5d5;
 }
 
 .bookmarkIcon {
-  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #e6e6e6;
+  flex-shrink: 0;
+}
+
+.bookmarkBtnActive .bookmarkIcon {
+  background: #f3f3f3;
+  border: 2px solid #d9d9d9;
 }
 
 .bookmarkText {
@@ -168,6 +294,7 @@
 .slotContent {
   width: 100%;
   min-width: 0;
+  flex: 1;
 }
 
 @media (max-width: 800px) {
