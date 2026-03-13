@@ -33,9 +33,15 @@ export interface ContentMainProps {
   sectionStatus?: { isCompleted?: boolean; isBookmarked?: boolean }
   onToggleComplete?: (completed: boolean) => void
   onToggleBookmark?: (bookmarked: boolean) => void
-  /** Current section index (1-based) for display e.g. "1/4" */
+  /** Current child/subtab index (1-based) within the current parent — e.g. "2" of "Aug. 27", "Sept. 3" under Readings */
+  currentChildIndex?: number
+  /** Total number of children (subtabs) under the current parent */
+  totalChildren?: number
+  /** When true, we are viewing a child tab — show children counter only. When false, show parent counter only. */
+  isOnChildTab?: boolean
+  /** Current parent tab index (1-based) for display e.g. "1" of General, Readings, … */
   currentSectionIndex?: number
-  /** Total number of sections */
+  /** Total number of parent sections */
   totalSections?: number
   /** Go to previous section */
   onPreviousSection?: () => void
@@ -50,10 +56,8 @@ export interface ContentMainProps {
 export const ContentMain: React.FC<ContentMainProps> = ({
   children,
   innerRef,
-  showAnnotations = false,
   onShowAnnotations,
   annotationCount = 0,
-  showChat = false,
   onShowChat,
   embedUrl,
   embedTitle,
@@ -62,6 +66,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   sectionStatus,
   onToggleComplete,
   onToggleBookmark,
+  currentChildIndex,
+  totalChildren = 0,
+  isOnChildTab = false,
   currentSectionIndex = 1,
   totalSections = 0,
   onPreviousSection,
@@ -125,7 +132,15 @@ export const ContentMain: React.FC<ContentMainProps> = ({
           onPreviousSection) && (
           <div className={styles.sectionActionsWrap}>
             <div className={styles.sectionActionsLeft}>
-              {totalSections > 0 && (
+              {isOnChildTab && totalChildren > 0 && (
+                <>
+                  <span className={styles.sectionCount}>
+                    {currentChildIndex ?? 1}/{totalChildren}
+                  </span>
+                  <span className={styles.sectionCountDivider} aria-hidden />
+                </>
+              )}
+              {!isOnChildTab && totalSections > 0 && (
                 <>
                   <span className={styles.sectionCount}>
                     {currentSectionIndex}/{totalSections}

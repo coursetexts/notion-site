@@ -58,6 +58,12 @@ function formatRelativeTime(iso: string): string {
 
 type ThreadAnnotation = DbAnnotation & { replies: ThreadAnnotation[] }
 
+function autoGrowTextArea(el: HTMLTextAreaElement | null) {
+  if (!el) return
+  el.style.height = 'auto'
+  el.style.height = `${el.scrollHeight}px`
+}
+
 function buildAnnotationTree(annotations: DbAnnotation[]): ThreadAnnotation[] {
   const sorted = [...annotations].sort(
     (a, b) =>
@@ -215,17 +221,22 @@ const RepliesChevronUpIcon: React.FC = () => (
 const SubmitArrowIcon: React.FC = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width='8'
-    height='5'
-    viewBox='0 0 8 5'
+    width='12'
+    height='12'
+    viewBox='0 0 12 12'
     fill='none'
     className={styles.submitBtnIcon}
     aria-hidden
   >
     <path
-      d='M0.5 3.875L3.875 0.5L7.25 3.875'
+      d='M6 10.125V1.875'
       stroke='#F8F7F4'
-      strokeWidth='1.1'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M2.625 5.25L6 1.875L9.375 5.25'
+      stroke='#F8F7F4'
       strokeLinecap='round'
       strokeLinejoin='round'
     />
@@ -278,19 +289,16 @@ const VoteRow: React.FC<VoteRowProps> = ({
 const SortChevronIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width='14'
-    height='14'
-    viewBox='0 0 14 14'
+    width='12'
+    height='12'
+    viewBox='0 0 12 12'
     fill='none'
     className={className}
     aria-hidden
   >
     <path
-      d='M3.5 5.25L7 8.75L10.5 5.25'
-      stroke='#5D534B'
-      strokeWidth='1.25'
-      strokeLinecap='round'
-      strokeLinejoin='round'
+      d='M10.0969 4.35469C10.0682 4.28644 10.02 4.22821 9.95822 4.18733C9.89649 4.14646 9.82405 4.12477 9.75001 4.125H2.25001C2.17598 4.12477 2.10353 4.14646 2.0418 4.18733C1.98007 4.22821 1.93183 4.28644 1.90314 4.35469C1.87612 4.42396 1.86927 4.49946 1.88337 4.57246C1.89747 4.64545 1.93195 4.71297 1.98282 4.76719L5.73283 8.51719C5.8045 8.5865 5.90031 8.62524 6.00001 8.62524C6.09972 8.62524 6.19552 8.5865 6.2672 8.51719L10.0172 4.76719C10.0681 4.71297 10.1026 4.64545 10.1167 4.57246C10.1308 4.49946 10.1239 4.42396 10.0969 4.35469Z'
+      fill='#5D534B'
     />
   </svg>
 )
@@ -398,6 +406,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   const auth = useAuthOptional()
   const [sortBy, setSortBy] = useState<SortBy>('time')
   const [inputValue, setInputValue] = useState('')
+  const composerRef = useRef<HTMLTextAreaElement | null>(null)
   const [courseId, setCourseId] = useState<string | null>(null)
   const [annotations, setAnnotations] = useState<DbAnnotation[]>([])
   const [replyDraftById, setReplyDraftById] = useState<Record<string, string>>(
@@ -442,6 +451,10 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
     setLoading(true)
     loadAnnotations().then(() => setLoading(false))
   }, [auth?.user?.id, coursePageId, loadAnnotations, sectionId])
+
+  useEffect(() => {
+    autoGrowTextArea(composerRef.current)
+  }, [inputValue])
 
   const handleSubmit = async (parentAnnotationId?: string) => {
     const body =
@@ -522,15 +535,21 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
       {auth?.user ? (
         <div className={styles.addWrap}>
           <div className={styles.addWrapInner}>
-            <input
-              type='text'
+            <textarea
+              ref={composerRef}
               className={styles.addInput}
               placeholder='Add your thoughts…'
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSubmit(undefined)}
+              onKeyDown={(e) => {
+                if (e.key !== 'Enter' || e.shiftKey) return
+                e.preventDefault()
+                handleSubmit(undefined)
+              }}
+              onInput={(e) => autoGrowTextArea(e.currentTarget)}
               aria-label='Add annotation'
               disabled={submitting || !sectionId}
+              rows={1}
             />
             <button
               type='button'
@@ -662,6 +681,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
   const marginLeft = Math.min(depth * 14, 84)
   const isReplyOpen = Boolean(replyOpenById[node.id])
   const draft = replyDraftById[node.id] || ''
+  const replyComposerRef = useRef<HTMLTextAreaElement | null>(null)
   const isSubmitting = submittingReplyId === node.id
   const hasLongThread = node.replies.length > COLLAPSE_AFTER
   const isThreadExpanded = Boolean(threadExpandedById[node.id])
@@ -672,6 +692,11 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
 
   const repliesOpen = repliesOpenById[node.id] !== false
   const hasReplies = node.replies.length > 0
+
+  useEffect(() => {
+    if (!isReplyOpen) return
+    autoGrowTextArea(replyComposerRef.current)
+  }, [draft, isReplyOpen])
 
   return (
     <div
@@ -726,14 +751,20 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
         {isReplyOpen && authUser && (
           <div className={styles.replyComposer}>
             <div className={styles.addWrapInner}>
-              <input
-                type='text'
+              <textarea
+                ref={replyComposerRef}
                 className={styles.addInput}
                 placeholder='Write a reply…'
                 value={draft}
                 onChange={(e) => onReplyChange(node.id, e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && onSubmitReply(node.id)}
+                onKeyDown={(e) => {
+                  if (e.key !== 'Enter' || e.shiftKey) return
+                  e.preventDefault()
+                  onSubmitReply(node.id)
+                }}
+                onInput={(e) => autoGrowTextArea(e.currentTarget)}
                 disabled={isSubmitting}
+                rows={1}
               />
               <button
                 type='button'

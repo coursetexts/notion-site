@@ -1,4 +1,5 @@
 import * as React from 'react'
+import cs from 'classnames'
 import { HomeLicenseBar } from './HomeLicenseBar'
 import styles from './HomeFooter.module.css'
 
@@ -8,7 +9,12 @@ type NavItem = {
   external?: boolean
 }
 
-export function HomeFooter() {
+type HomeFooterProps = {
+  /** Use 'course' on course pages to match hero background and reduce gap above footer */
+  variant?: 'default' | 'course'
+}
+
+export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
   const supportCards: Array<NavItem & { image: string }> = [
     {
       image: '/images/home/footer-for-students.png',
@@ -72,7 +78,7 @@ export function HomeFooter() {
   ]
 
   return (
-    <footer className={styles.footer}>
+    <footer className={cs(styles.footer, variant === 'course' && styles.footerCourse)}>
       <div className={styles.contentShell}>
         <div className={styles.content}>
           <p className={styles.heading}>Learn more, learn better.</p>

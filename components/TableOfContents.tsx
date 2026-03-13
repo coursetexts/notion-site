@@ -147,6 +147,8 @@ export type { TocChild, TocItem }
 export interface TableOfContentsRef {
   goToNextSection: () => void
   goToPreviousSection: () => void
+  /** Open the tab (and optional subtab) that matches the given section label. */
+  goToSectionByLabel: (label: string) => void
 }
 
 export interface TableOfContentsProps {
@@ -160,8 +162,14 @@ export interface TableOfContentsProps {
   onSelectionClearPdf?: () => void
   /** Called with the label of the item that was clicked (parent tab or subtab), and optional parent tab label when a subtab is selected. */
   onSelectedItemChange?: (label: string | null, parentLabel?: string | null) => void
-  /** Called when the active section changes: (currentIndex (1-based), total). */
-  onSectionChange?: (currentIndex: number, total: number) => void
+  /** Called when the active section changes: (parentIndex, parentTotal, childIndex?, childTotal?, isOnChildTab?). */
+  onSectionChange?: (
+    parentIndex: number,
+    parentTotal: number,
+    childIndex?: number,
+    childTotal?: number,
+    isOnChildTab?: boolean
+  ) => void
   title?: string
   /** Optional per-section status (completion / bookmark) keyed by section label. */
   sectionProgress?: Record<string, SectionProgressStatus>
@@ -231,8 +239,24 @@ export const TableOfContents = React.forwardRef<
 
   React.useEffect(() => {
     if (itemsProp.length === 0) return
-    onSectionChange?.(activeTabIndex + 1, itemsProp.length)
-  }, [activeTabIndex, itemsProp.length, onSectionChange])
+    const parentIndex = activeTabIndex + 1
+    const parentTotal = itemsProp.length
+    const item = itemsProp[activeTabIndex]
+    const children = item?.children ?? []
+    let childIndex: number | undefined
+    let childTotal: number | undefined
+    const isOnChildTab = children.length > 0 && activeSubtabId != null
+    if (children.length > 0) {
+      childTotal = children.length
+      if (activeSubtabId != null) {
+        const j = children.findIndex((c) => c.id === activeSubtabId)
+        childIndex = j >= 0 ? j + 1 : 1
+      } else {
+        childIndex = 1
+      }
+    }
+    onSectionChange?.(parentIndex, parentTotal, childIndex, childTotal, isOnChildTab)
+  }, [activeTabIndex, activeSubtabId, itemsProp, onSectionChange])
 
   React.useEffect(() => {
     if (itemsProp.length === 0 || hasInitializedExpanded.current) return
@@ -437,13 +461,41 @@ export const TableOfContents = React.forwardRef<
     handleSubtabClick
   ])
 
+  const handleGoToSectionByLabel = React.useCallback(
+    (label: string) => {
+      if (!label || itemsProp.length === 0) return
+      const trimmed = label.trim()
+      const parentIndex = itemsProp.findIndex((item) => item.label === trimmed)
+      if (parentIndex >= 0) {
+        handleTabClick(parentIndex)
+        return
+      }
+      for (let i = 0; i < itemsProp.length; i++) {
+        const item = itemsProp[i]
+        const children = item?.children ?? []
+        const child = children.find((c) => c.label === trimmed)
+        if (child) {
+          handleTabClick(i)
+          handleSubtabClick(i, child)
+          return
+        }
+      }
+    },
+    [itemsProp, handleTabClick, handleSubtabClick]
+  )
+
   React.useImperativeHandle(
     ref,
     () => ({
       goToNextSection: handleGoToNextSection,
-      goToPreviousSection: handleGoToPreviousSection
+      goToPreviousSection: handleGoToPreviousSection,
+      goToSectionByLabel: handleGoToSectionByLabel
     }),
-    [handleGoToNextSection, handleGoToPreviousSection]
+    [
+      handleGoToNextSection,
+      handleGoToPreviousSection,
+      handleGoToSectionByLabel
+    ]
   )
 
   return (
@@ -542,7 +594,7 @@ export const TableOfContents = React.forwardRef<
                               }
                             }}
                           >
-                            <span>– {child.label}</span>
+                            <span>{child.label}</span>
                             <span className={styles.childStatusIcon}>
                               {childCompleted && <Icon type='check' />}
                               {!childCompleted && childBookmarked && (

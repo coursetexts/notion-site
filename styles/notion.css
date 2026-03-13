@@ -1294,6 +1294,12 @@ a.notion-page-link .notion-page-title {
   padding-right: 0 !important;
 }
 
+/* Remove main’s bottom padding and top margin on course pages to close the gap above the footer */
+.course-page main.notion-page {
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 .dark-mode .notion-callout-text b {
   color: #fff !important;
 }

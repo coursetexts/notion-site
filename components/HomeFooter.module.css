@@ -4,6 +4,15 @@
   border-top: 1px solid var(--outline, #e6e6e6);
 }
 
+/* Course page: match course hero background, remove gap above footer */
+.footerCourse {
+  background: #F8F7F4;
+}
+
+.footerCourse .contentShell {
+  padding-top: 48px;
+}
+
 .contentShell {
   width: 100%;
   padding: 120px 0 110px;
@@ -411,6 +420,10 @@
 @media (max-width: 1024px) {
   .contentShell {
     padding-top: 96px;
+  }
+
+  .footerCourse .contentShell {
+    padding-top: 48px;
   }
 
   .footerColumnsRow {

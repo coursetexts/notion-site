@@ -58,9 +58,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const tocRef = React.useRef<{
     goToNextSection: () => void
     goToPreviousSection: () => void
+    goToSectionByLabel: (label: string) => void
   } | null>(null)
   const [sectionIndex, setSectionIndex] = React.useState(1)
   const [sectionTotal, setSectionTotal] = React.useState(0)
+  const [childSectionIndex, setChildSectionIndex] = React.useState<number>(1)
+  const [childSectionTotal, setChildSectionTotal] = React.useState(0)
+  const [isOnChildTab, setIsOnChildTab] = React.useState(false)
   const [sectionProgress, setSectionProgress] = React.useState<
     Record<string, SectionProgressStatus>
   >({})
@@ -187,7 +191,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
         .querySelectorAll<HTMLAnchorElement>('a.notion-link-citation')
         .forEach((a) => {
           if (a.getAttribute('data-citation-layout') === 'grid') return
-          let iconEl =
+          const iconEl =
             a.querySelector<HTMLElement>(ICON_SELECTOR) ||
             (a.firstElementChild?.tagName === 'IMG'
               ? (a.firstElementChild as HTMLElement)
@@ -259,9 +263,18 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   }, [tocItems.length])
 
   const handleSectionChange = React.useCallback(
-    (currentIndex: number, total: number) => {
-      setSectionIndex(currentIndex)
-      setSectionTotal(total)
+    (
+      parentIndex: number,
+      parentTotal: number,
+      childIndex?: number,
+      childTotal?: number,
+      onChildTab?: boolean
+    ) => {
+      setSectionIndex(parentIndex)
+      setSectionTotal(parentTotal)
+      setChildSectionIndex(childIndex ?? 1)
+      setChildSectionTotal(childTotal ?? 0)
+      setIsOnChildTab(onChildTab ?? false)
     },
     []
   )
@@ -287,7 +300,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     return tabIndex < tocItems.length - 1
   }, [tocItems, embedTitle, embedParentTitle])
 
-  const hasPreviousSection = sectionIndex > 1
+  const hasPreviousSection =
+    (childSectionTotal > 0 && childSectionIndex > 1) || sectionIndex > 1
 
   const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? ''
   const currentStatus = sectionProgress[currentSectionLabel] ?? {
@@ -387,6 +401,9 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           onToggleBookmark={(bookmarked) =>
             handleToggleBookmark(currentSectionLabel, bookmarked)
           }
+          currentChildIndex={childSectionIndex}
+          totalChildren={childSectionTotal}
+          isOnChildTab={isOnChildTab}
           currentSectionIndex={sectionIndex}
           totalSections={sectionTotal}
           onPreviousSection={() => tocRef.current?.goToPreviousSection()}
@@ -434,6 +451,23 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           coursePageId={coursePageId}
           courseTitle={courseTitle}
           courseUrl={courseUrl}
+          onSectionClick={(label) => {
+            tocRef.current?.goToSectionByLabel?.(label)
+            const mount = contentSlotRef.current?.closest('.course-content-mount')
+            if (mount) {
+              const top =
+                mount.getBoundingClientRect().top + window.scrollY
+              window.scrollTo({
+                top: top - 56,
+                behavior: 'smooth'
+              })
+            } else {
+              contentSlotRef.current?.scrollIntoView?.({
+                behavior: 'smooth',
+                block: 'start'
+              })
+            }
+          }}
         />
       </div>
     </div>

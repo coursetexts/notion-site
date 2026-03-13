@@ -33,7 +33,7 @@ import { CourseContent } from './CourseContent'
 import { CourseHero, type CourseHeroData } from './CourseHero'
 // React 18+
 import FilterRow from './FilterRow'
-import { Footer } from './Footer'
+import { HomeFooterSection } from './HomeFooterSection'
 // import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
@@ -1846,7 +1846,11 @@ export const NotionPage: React.FC<NotionPageProps> = ({
 
         {pageClass === 'notion-home' && <License />}
       </div>
-      {!hideFooter && <Footer />}
+      {!hideFooter && (
+        <HomeFooterSection
+          variant={pageClass === 'course-page' ? 'course' : 'default'}
+        />
+      )}
       {/* <GitHubShareButton /> */}
     </>
   )

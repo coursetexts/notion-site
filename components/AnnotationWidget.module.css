@@ -91,10 +91,10 @@
   position: absolute;
   top: calc(100% + 0.4rem);
   right: 0;
-  min-width: 9rem;
+  min-width: 4rem;
   background: #fff;
   border: 1px solid #e5e1d3;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
   padding: 0.35rem;
   z-index: 20;
@@ -108,9 +108,10 @@
   color: #25272b;
   background: transparent;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 0.45rem 0.55rem;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .sortMenuItem:hover {
@@ -181,8 +182,8 @@
 
 .submitBtn {
   position: absolute;
-  right: 0.4rem;
-  bottom: 0.4rem;
+  right: 0.6rem;
+  bottom: 0.7rem;
   width: 2rem;
   height: 2rem;
   padding: 0;
@@ -197,6 +198,7 @@
   border-radius: 50%;
   cursor: pointer;
   box-sizing: border-box;
+  transition: background-color 0.2s ease;
 }
 
 .submitBtn:hover:not(:disabled) {
@@ -253,6 +255,9 @@
   border: 1px solid #e5e1d3;
   border-radius: 8px;
   box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  line-height: 1.35;
 }
 
 .addInput::placeholder {
@@ -268,6 +273,15 @@
 
 .threadItem {
   width: 100%;
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  margin: 0 -0.5rem;
+  background-color: transparent;
+  transition: background-color 0.22s ease;
+}
+
+.threadItem:hover {
+  background-color: rgba(0, 137, 196, 0.06);
 }
 
 /* Divider between root-level annotation blocks only (not between nested replies) */
@@ -300,6 +314,7 @@
   padding: 0.25rem 0.35rem 0.25rem 0.2rem;
   line-height: 1.25;
   border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .repliesToggleLabel {

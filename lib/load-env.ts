@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /**
  * Load .env into process.env before any config is read.
  * Ensures NEXT_PUBLIC_NOTION_PAGE_ID etc. are available when site.config runs.
@@ -33,3 +34,5 @@ function loadEnv(): void {
 }
 
 loadEnv()
+
+export {}
