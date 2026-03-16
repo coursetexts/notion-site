@@ -105,8 +105,16 @@
   opacity: 0.8;
 }
 
-.schoolDate {
+.schoolDateRow {
   margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  width: 100%;
+}
+
+.schoolDate {
   color: #37352F;
   font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 13px;
@@ -143,8 +151,8 @@
 }
 
 .saveWrap {
-  margin-top: 1.5rem;
-  align-self: flex-end;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 /* .descriptionWrap {

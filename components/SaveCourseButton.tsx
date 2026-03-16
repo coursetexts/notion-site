@@ -84,16 +84,20 @@ export const SaveCourseButton: React.FC<SaveCourseButtonProps> = ({
         ) : saved ? (
           <>
             <span className={styles.icon} aria-hidden>
-              ✓
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z" fill="currentColor" />
+              </svg>
             </span>
             <span className={styles.label}>Saved</span>
           </>
         ) : (
           <>
             <span className={styles.icon} aria-hidden>
-              +
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z" fill="currentColor" />
+              </svg>
             </span>
-            <span className={styles.label}>Save course</span>
+            <span className={styles.label}>Save</span>
           </>
         )}
       </button>

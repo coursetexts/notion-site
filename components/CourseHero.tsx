@@ -180,36 +180,49 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
             ))}
           </div>
         ) : null}
-        {schoolDate ? (
-          <div className={styles.schoolDate}>
-            {(() => {
-              const formatted = formatSchoolDate(schoolDate)
-              if (typeof formatted === 'string') return formatted
-              const [school, date] = formatted
-              const schoolLogo = getSchoolLogo(school)
-              const displayName = schoolLogo ? schoolLogo[0] : school
-              const logoPath = schoolLogo ? schoolLogo[1] : null
-              return (
-                <>
-                  {logoPath ? (
-                    <span className={styles.schoolDateWithLogo}>
-                      <img
-                        src={logoPath}
-                        alt=''
-                        className={styles.schoolLogo}
-                        width={24}
-                        height={24}
-                      />
-                      <span>{displayName}</span>
-                    </span>
-                  ) : (
-                    displayName
-                  )}
-                  <span className={styles.schoolDateDot}>•</span>
-                  {date}
-                </>
-              )
-            })()}
+        {(schoolDate || showSaveButton) ? (
+          <div className={styles.schoolDateRow}>
+            {schoolDate ? (
+              <div className={styles.schoolDate}>
+                {(() => {
+                  const formatted = formatSchoolDate(schoolDate)
+                  if (typeof formatted === 'string') return formatted
+                  const [school, date] = formatted
+                  const schoolLogo = getSchoolLogo(school)
+                  const displayName = schoolLogo ? schoolLogo[0] : school
+                  const logoPath = schoolLogo ? schoolLogo[1] : null
+                  return (
+                    <>
+                      {logoPath ? (
+                        <span className={styles.schoolDateWithLogo}>
+                          <img
+                            src={logoPath}
+                            alt=''
+                            className={styles.schoolLogo}
+                            width={24}
+                            height={24}
+                          />
+                          <span>{displayName}</span>
+                        </span>
+                      ) : (
+                        displayName
+                      )}
+                      <span className={styles.schoolDateDot}>•</span>
+                      {date}
+                    </>
+                  )
+                })()}
+              </div>
+            ) : null}
+            {showSaveButton ? (
+              <div className={styles.saveWrap}>
+                <SaveCourseButton
+                  courseUrl={courseUrl}
+                  courseTitle={courseTitle ?? title}
+                  coursePageId={coursePageId}
+                />
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
@@ -224,15 +237,6 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
           </div>
           <div className={styles.descriptionFade} aria-hidden />
         </div>
-        {showSaveButton && (
-          <div className={styles.saveWrap}>
-            <SaveCourseButton
-              courseUrl={courseUrl}
-              courseTitle={courseTitle ?? title}
-              coursePageId={coursePageId}
-            />
-          </div>
-        )}
       </div>
     </div>
   )

@@ -1,9 +1,5 @@
 .wrap {
-  width: 100%;
-  max-width: 90%;
-  /* margin: 0 auto; */
-  padding: 0.75rem 0 1rem;
-  font-family: 'TobiasMed', sans-serif;
+  flex-shrink: 0;
 }
 
 .saveBtn,
@@ -12,34 +8,29 @@
   white-space: nowrap;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.9375rem;
-  color: #25272b;
-  background-color: #efefef;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid var(--outline, #E6E6E6);
+  background: var(--offwhite, #FDFDFD);
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  color: #37352F;
+  font-family: "Hanken Grotesk", 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   transition: background-color 0.15s, border-color 0.15s;
 }
 
 .saveBtn:hover,
 .savedBtn:hover {
-  background-color: #e8e8e8;
+  background-color: #f5f5f5;
   border-color: #d5d5d5;
 }
 
-.savedBtn {
-  background-color: #e8f5e9;
-  border-color: #c8e6c9;
-  color: #1b5e20;
-}
-
-.savedBtn:hover {
-  background-color: #dcedc8;
-  border-color: #aed581;
-}
+/* .savedBtn shares .saveBtn base styles; add overrides here if needed */
 
 .saveBtn:disabled,
 .savedBtn:disabled {
@@ -48,8 +39,14 @@
 }
 
 .icon {
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
+}
+
+.icon svg {
+  display: block;
 }
 
 .label {
