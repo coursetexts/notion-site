@@ -1,16 +1,10 @@
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
+import { motion } from 'framer-motion'
 
 import {
   type Annotation as DbAnnotation,
@@ -737,7 +731,6 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   role='group'
                   aria-label='Sort comments'
                 >
-
                   <SortMenu
                     value={sortBy}
                     onChange={setSortBy}
@@ -756,11 +749,10 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                       onChange={(e) => setCommentInput(e.target.value)}
                       onKeyDown={(e) =>
                         e.key === 'Enter' &&
-                        !e.shiftKey && (e.preventDefault(), handleSubmitComment(undefined))
+                        !e.shiftKey &&
+                        (e.preventDefault(), handleSubmitComment(undefined))
                       }
-                      onInput={(e) =>
-                        autoGrowTextArea(e.currentTarget)
-                      }
+                      onInput={(e) => autoGrowTextArea(e.currentTarget)}
                       aria-label='Add comment'
                       disabled={submitting}
                       rows={1}
@@ -862,7 +854,6 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   role='group'
                   aria-label='Sort annotations'
                 >
-
                   <SortMenu
                     value={sortBy}
                     onChange={setSortBy}
@@ -880,45 +871,47 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                 <div key={a.id} className={styles.threadItemRoot}>
                   <div className={styles.annotationItem}>
                     <div className={styles.commentHeader}>
-                    <span className={styles.author}>
-                      <UserLink
-                        userId={a.user_id}
-                        displayName={a.author?.display_name ?? 'Anonymous'}
-                        showFollowingTag={followingIds.has(a.user_id)}
-                        showFollowsYouTag={followerIds.has(a.user_id)}
-                      />
-                    </span>
-                    <span className={styles.metaTimeVotes}>
-                      <span className={styles.time}>
-                        {formatRelativeTime(a.created_at)}
+                      <span className={styles.author}>
+                        <UserLink
+                          userId={a.user_id}
+                          displayName={a.author?.display_name ?? 'Anonymous'}
+                          showFollowingTag={followingIds.has(a.user_id)}
+                          showFollowsYouTag={followerIds.has(a.user_id)}
+                        />
                       </span>
-                      <VoteRow
-                        score={a.score ?? 0}
-                        userVote={a.user_vote ?? null}
-                        disabled={!auth?.user || votingId === a.id}
-                        onVote={async (value) => {
-                          setVotingId(a.id)
-                          const newScore = await setVote(
-                            'annotation',
-                            a.id,
-                            value
-                          )
-                          if (newScore !== null)
-                            updateAnnotationVote(a.id, newScore, value)
-                          setVotingId(null)
-                        }}
-                      />
-                    </span>
-                    {onSectionClick && a.section_id ? (
-                      <SectionTagButton
-                        label={a.section_id}
-                        onClick={() => onSectionClick(a.section_id)}
-                        title={`Go to section: ${a.section_id}`}
-                      />
-                    ) : (
-                      <span className={styles.sectionTag}>{a.section_id}</span>
-                    )}
-                  </div>
+                      <span className={styles.metaTimeVotes}>
+                        <span className={styles.time}>
+                          {formatRelativeTime(a.created_at)}
+                        </span>
+                        <VoteRow
+                          score={a.score ?? 0}
+                          userVote={a.user_vote ?? null}
+                          disabled={!auth?.user || votingId === a.id}
+                          onVote={async (value) => {
+                            setVotingId(a.id)
+                            const newScore = await setVote(
+                              'annotation',
+                              a.id,
+                              value
+                            )
+                            if (newScore !== null)
+                              updateAnnotationVote(a.id, newScore, value)
+                            setVotingId(null)
+                          }}
+                        />
+                      </span>
+                      {onSectionClick && a.section_id ? (
+                        <SectionTagButton
+                          label={a.section_id}
+                          onClick={() => onSectionClick(a.section_id)}
+                          title={`Go to section: ${a.section_id}`}
+                        />
+                      ) : (
+                        <span className={styles.sectionTag}>
+                          {a.section_id}
+                        </span>
+                      )}
+                    </div>
                     <p className={styles.body}>{a.body}</p>
                   </div>
                 </div>
@@ -955,42 +948,42 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   <div key={`c-${item.id}`} className={styles.threadItemRoot}>
                     <div className={styles.comment}>
                       <div className={styles.commentHeader}>
-                      <span className={styles.author}>
-                        <UserLink
-                          userId={(item as DbComment).user_id}
-                          displayName={
-                            (item as DbComment).author?.display_name ??
-                            'Anonymous'
-                          }
-                          showFollowingTag={followingIds.has(
-                            (item as DbComment).user_id
-                          )}
-                          showFollowsYouTag={followerIds.has(
-                            (item as DbComment).user_id
-                          )}
-                        />
-                      </span>
-                      <span className={styles.metaTimeVotes}>
-                        <span className={styles.time}>
-                          {formatRelativeTime((item as DbComment).created_at)}
+                        <span className={styles.author}>
+                          <UserLink
+                            userId={(item as DbComment).user_id}
+                            displayName={
+                              (item as DbComment).author?.display_name ??
+                              'Anonymous'
+                            }
+                            showFollowingTag={followingIds.has(
+                              (item as DbComment).user_id
+                            )}
+                            showFollowsYouTag={followerIds.has(
+                              (item as DbComment).user_id
+                            )}
+                          />
                         </span>
-                        <VoteRow
-                          score={(item as DbComment).score ?? 0}
-                          userVote={(item as DbComment).user_vote ?? null}
-                          disabled={!auth?.user || votingId === item.id}
-                          onVote={async (value) => {
-                            setVotingId(item.id)
-                            const newScore = await setVote(
-                              'comment',
-                              item.id,
-                              value
-                            )
-                            if (newScore !== null)
-                              updateCommentVote(item.id, newScore, value)
-                            setVotingId(null)
-                          }}
-                        />
-                      </span>
+                        <span className={styles.metaTimeVotes}>
+                          <span className={styles.time}>
+                            {formatRelativeTime((item as DbComment).created_at)}
+                          </span>
+                          <VoteRow
+                            score={(item as DbComment).score ?? 0}
+                            userVote={(item as DbComment).user_vote ?? null}
+                            disabled={!auth?.user || votingId === item.id}
+                            onVote={async (value) => {
+                              setVotingId(item.id)
+                              const newScore = await setVote(
+                                'comment',
+                                item.id,
+                                value
+                              )
+                              if (newScore !== null)
+                                updateCommentVote(item.id, newScore, value)
+                              setVotingId(null)
+                            }}
+                          />
+                        </span>
                         <span className={styles.typeTag}>Comment</span>
                       </div>
                       <p className={styles.body}>{(item as DbComment).body}</p>
@@ -1000,21 +993,21 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   <div key={`a-${item.id}`} className={styles.threadItemRoot}>
                     <div className={styles.annotationItem}>
                       <div className={styles.commentHeader}>
-                      <span className={styles.author}>
-                        <UserLink
-                          userId={(item as DbAnnotation).user_id}
-                          displayName={
-                            (item as DbAnnotation).author?.display_name ??
-                            'Anonymous'
-                          }
-                          showFollowingTag={followingIds.has(
-                            (item as DbAnnotation).user_id
-                          )}
-                          showFollowsYouTag={followerIds.has(
-                            (item as DbAnnotation).user_id
-                          )}
-                        />
-                      </span>
+                        <span className={styles.author}>
+                          <UserLink
+                            userId={(item as DbAnnotation).user_id}
+                            displayName={
+                              (item as DbAnnotation).author?.display_name ??
+                              'Anonymous'
+                            }
+                            showFollowingTag={followingIds.has(
+                              (item as DbAnnotation).user_id
+                            )}
+                            showFollowsYouTag={followerIds.has(
+                              (item as DbAnnotation).user_id
+                            )}
+                          />
+                        </span>
                         <span className={styles.metaTimeVotes}>
                           <span className={styles.time}>
                             {formatRelativeTime(
@@ -1039,12 +1032,9 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                           />
                         </span>
                         <span className={styles.typeTag}>Annotation</span>
-                        {onSectionClick &&
-                        (item as DbAnnotation).section_id ? (
+                        {onSectionClick && (item as DbAnnotation).section_id ? (
                           <SectionTagButton
-                            label={
-                              (item as DbAnnotation).section_id ?? ''
-                            }
+                            label={(item as DbAnnotation).section_id ?? ''}
                             onClick={() =>
                               onSectionClick(
                                 (item as DbAnnotation).section_id ?? ''
@@ -1109,7 +1099,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                     <span>Continue with Google</span>
                   </button>
                   <p className={styles.activityCtaSignUp}>
-                    Don&apos;t have an account?{' '} Sign Up
+                    Don&apos;t have an account? Sign Up
                   </p>
                 </>
               )}
@@ -1256,9 +1246,7 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
                 className={styles.submitBtn}
                 onClick={() => onSubmitReply(node.id)}
                 disabled={isSubmitting || !draft.trim()}
-                aria-label={
-                  isSubmitting ? 'Posting reply' : 'Submit reply'
-                }
+                aria-label={isSubmitting ? 'Posting reply' : 'Submit reply'}
                 title='Submit reply'
               >
                 {isSubmitting ? (

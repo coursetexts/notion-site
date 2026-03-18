@@ -262,10 +262,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
 
   let pageClass = ''
 
-  if (
-    router.pathname === '/' ||
-    router.pathname === '/all-courses'
-  ) {
+  if (router.pathname === '/' || router.pathname === '/all-courses') {
     pageClass = 'notion-home'
   } else if (router.asPath.startsWith('/about')) {
     pageClass = 'about-page'

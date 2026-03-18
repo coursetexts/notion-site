@@ -1,7 +1,9 @@
 import * as React from 'react'
+
 import cs from 'classnames'
-import { HomeLicenseBar } from './HomeLicenseBar'
+
 import styles from './HomeFooter.module.css'
+import { HomeLicenseBar } from './HomeLicenseBar'
 
 type NavItem = {
   label: string
@@ -40,7 +42,10 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
     { label: 'Harvard University', href: '/all-courses?q=Harvard' },
     { label: 'Stanford University', href: '/all-courses?q=Stanford' },
     { label: 'University of Waterloo', href: '/all-courses?q=Waterloo' },
-    { label: 'University of British Columbia', href: '/all-courses?q=British+Columbia' },
+    {
+      label: 'University of British Columbia',
+      href: '/all-courses?q=British+Columbia'
+    },
     { label: 'Princeton University', href: '/all-courses?q=Princeton' },
     { label: 'New York University', href: '/all-courses?q=New+York+University' }
   ]
@@ -78,7 +83,9 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
   ]
 
   return (
-    <footer className={cs(styles.footer, variant === 'course' && styles.footerCourse)}>
+    <footer
+      className={cs(styles.footer, variant === 'course' && styles.footerCourse)}
+    >
       <div className={styles.contentShell}>
         <div className={styles.content}>
           <p className={styles.heading}>Learn more, learn better.</p>
@@ -178,7 +185,10 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
                   <span className={styles.socialText}>Twitter</span>
                 </a>
 
-                <a href='mailto:coursetexts.info@gmail.com' className={styles.socialBox}>
+                <a
+                  href='mailto:coursetexts.info@gmail.com'
+                  className={styles.socialBox}
+                >
                   <svg
                     width='20'
                     height='20'
@@ -213,7 +223,11 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
                 <p className={styles.footerHeading}>Subjects</p>
                 <div className={styles.footerLinksColumn}>
                   {subjectLinks.map((item) => (
-                    <a key={item.label} href={item.href} className={styles.footerLinkItem}>
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className={styles.footerLinkItem}
+                    >
                       {item.label}
                     </a>
                   ))}
@@ -224,7 +238,11 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
                 <p className={styles.footerHeading}>Schools</p>
                 <div className={styles.footerLinksColumn}>
                   {schoolLinks.map((item) => (
-                    <a key={item.label} href={item.href} className={styles.footerLinkItem}>
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className={styles.footerLinkItem}
+                    >
                       {item.label}
                     </a>
                   ))}
@@ -239,14 +257,24 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
                       <a
                         key={item.label}
                         href={item.href}
-                        target={item.href.startsWith('http') ? '_blank' : undefined}
-                        rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                        target={
+                          item.href.startsWith('http') ? '_blank' : undefined
+                        }
+                        rel={
+                          item.href.startsWith('http')
+                            ? 'noreferrer'
+                            : undefined
+                        }
                         className={styles.footerLinkItem}
                       >
                         {item.label}
                       </a>
                     ) : (
-                      <a key={item.label} href={item.href} className={styles.footerLinkItem}>
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className={styles.footerLinkItem}
+                      >
                         {item.label}
                       </a>
                     )
@@ -259,7 +287,9 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
           <div className={styles.disclaimerDivider} aria-hidden='true' />
 
           <div className={styles.disclaimerBlock}>
-            <p className={styles.disclaimerHeading}>Disclaimers and footnotes</p>
+            <p className={styles.disclaimerHeading}>
+              Disclaimers and footnotes
+            </p>
 
             <div className={styles.disclaimerTextBox}>
               {disclaimers.map((item) => (

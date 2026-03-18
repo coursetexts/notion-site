@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { getSchoolLogoForMeta } from './courseSchoolLogo'
 import styles from './HomeCoursesSection.module.css'
+import { getSchoolLogoForMeta } from './courseSchoolLogo'
 
 export type HomeCourseCard = {
   id: string
@@ -52,7 +52,9 @@ export function CourseCardGrid({
 
                 <p
                   className={styles.courseDescription}
-                  style={descriptionWidth ? { width: descriptionWidth } : undefined}
+                  style={
+                    descriptionWidth ? { width: descriptionWidth } : undefined
+                  }
                 >
                   {course.description}
                 </p>
@@ -86,17 +88,16 @@ export function HomeCoursesSection({
     { label: 'English', icon: '/images/home/english.png' }
   ]
 
-  const cards =
-    courses
-      ? courses.slice(0, 8)
-      : Array.from({ length: 8 }).map((_, index) => ({
-          id: `fallback-${index + 1}`,
-          href: '/',
-          meta: 'Harvard / Fall 2024',
-          title: 'Global & Visual Digital Culture',
-          description:
-            'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
-        }))
+  const cards = courses
+    ? courses.slice(0, 8)
+    : Array.from({ length: 8 }).map((_, index) => ({
+        id: `fallback-${index + 1}`,
+        href: '/',
+        meta: 'Harvard / Fall 2024',
+        title: 'Global & Visual Digital Culture',
+        description:
+          'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
+      }))
 
   return (
     <section className={styles.section}>

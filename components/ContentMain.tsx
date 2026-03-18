@@ -1,8 +1,10 @@
 import React from 'react'
+
+import { useAuthOptional } from '@/contexts/AuthContext'
 import {
   AnimatePresence,
-  motion,
   type Transition,
+  motion,
   useReducedMotion
 } from 'framer-motion'
 
@@ -76,11 +78,15 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   onNextSection,
   hasNextSection = true
 }) => {
+  const auth = useAuthOptional()
+  const isSignedIn = Boolean(auth?.user)
   const showViewBar = Boolean(onShowAnnotations || onShowChat)
   const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
   const isCompleted = sectionStatus?.isCompleted ?? false
   const isBookmarked = sectionStatus?.isBookmarked ?? false
   const shouldReduceMotion = useReducedMotion()
+  const canShowProgressButtons =
+    isSignedIn && Boolean(onToggleComplete || onToggleBookmark)
 
   const buttonSpring: Transition = React.useMemo(() => {
     if (shouldReduceMotion) return { duration: 0 }
@@ -202,7 +208,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
               )}
             </div>
             <div className={styles.sectionActionsRight}>
-              {onToggleComplete && (
+              {canShowProgressButtons && onToggleComplete && (
                 <motion.button
                   type='button'
                   className={
@@ -283,7 +289,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                   </motion.span>
                 </motion.button>
               )}
-              {onToggleBookmark && (
+              {canShowProgressButtons && onToggleBookmark && (
                 <motion.button
                   type='button'
                   className={
@@ -333,7 +339,10 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                             />
                           </svg>
                         ) : (
-                          <span className={styles.bookmarkIconStack} aria-hidden>
+                          <span
+                            className={styles.bookmarkIconStack}
+                            aria-hidden
+                          >
                             <svg
                               className={styles.bookmarkIconFilled}
                               xmlns='http://www.w3.org/2000/svg'

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { CourseCardGrid, type HomeCourseCard } from './HomeCoursesSection'
 import styles from './AllCoursesNewGridSection.module.css'
+import { CourseCardGrid, type HomeCourseCard } from './HomeCoursesSection'
 
 type AllCoursesNewGridSectionProps = {
   courses?: HomeCourseCard[]
@@ -18,7 +18,9 @@ function fallbackCards(): HomeCourseCard[] {
   }))
 }
 
-export function AllCoursesNewGridSection({ courses }: AllCoursesNewGridSectionProps) {
+export function AllCoursesNewGridSection({
+  courses
+}: AllCoursesNewGridSectionProps) {
   const cards = courses ?? fallbackCards()
 
   return (

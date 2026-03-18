@@ -23,7 +23,10 @@ function loadEnv(): void {
       if (!match) continue
       const key = match[1]
       let value = match[2].trim()
-      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
         value = value.slice(1, -1)
       }
       process.env[key] = value

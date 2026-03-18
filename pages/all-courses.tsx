@@ -4,18 +4,26 @@ import { useRouter } from 'next/router'
 
 import { AllCoursesNewGridSection } from '@/components/AllCoursesNewGridSection'
 import { AllCoursesNewTopSection } from '@/components/AllCoursesNewTopSection'
+import type { HomeCourseCard } from '@/components/HomeCoursesSection'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import type { HomeCourseCard } from '@/components/HomeCoursesSection'
 
 type AllCoursesPageProps = {
   courses: HomeCourseCard[]
 }
 
-const SUBJECT_OPTIONS = ['Science', 'Math', 'Art', 'Sociology', 'English'] as const
+const SUBJECT_OPTIONS = [
+  'Science',
+  'Math',
+  'Art',
+  'Sociology',
+  'English'
+] as const
 type HomeSubject = (typeof SUBJECT_OPTIONS)[number]
 
-function parseSubjectsParam(value: string | string[] | undefined): HomeSubject[] {
+function parseSubjectsParam(
+  value: string | string[] | undefined
+): HomeSubject[] {
   const raw = Array.isArray(value) ? value.join(',') : value || ''
 
   if (!raw.trim()) return []
@@ -143,7 +151,8 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
       if (!matchesSubject) return false
 
       if (!needle) return true
-      const searchable = `${course.title} ${course.description} ${course.meta}`.toLowerCase()
+      const searchable =
+        `${course.title} ${course.description} ${course.meta}`.toLowerCase()
       return searchable.includes(needle)
     })
 
@@ -161,7 +170,11 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
         <link rel='preconnect' href='https://p.typekit.net' />
         <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin=''
+        />
         <link
           href='https://fonts.googleapis.com/css2?family=Bad+Script&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
           rel='stylesheet'

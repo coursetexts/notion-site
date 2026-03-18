@@ -11,10 +11,26 @@ const SUBJECTS = [
 ]
 
 const PARTNER_LINKS = [
-  { label: 'Stanford', icon: '/images/home/stanford.png', href: '/all-courses?q=Stanford' },
-  { label: 'Harvard', icon: '/images/home/harvard-red.png', href: '/all-courses?q=Harvard' },
-  { label: 'Waterloo', icon: '/images/home/waterloo.png', href: '/all-courses?q=Waterloo' },
-  { label: 'More schools', icon: '/images/home/plus-10.png', href: '/all-courses' }
+  {
+    label: 'Stanford',
+    icon: '/images/home/stanford.png',
+    href: '/all-courses?q=Stanford'
+  },
+  {
+    label: 'Harvard',
+    icon: '/images/home/harvard-red.png',
+    href: '/all-courses?q=Harvard'
+  },
+  {
+    label: 'Waterloo',
+    icon: '/images/home/waterloo.png',
+    href: '/all-courses?q=Waterloo'
+  },
+  {
+    label: 'More schools',
+    icon: '/images/home/plus-10.png',
+    href: '/all-courses'
+  }
 ]
 
 type AllCoursesNewTopSectionProps = {
@@ -126,7 +142,9 @@ export function AllCoursesNewTopSection({
               key={subject.label}
               type='button'
               className={`${styles.subjectItem} ${
-                activeSubjects.includes(subject.label) ? styles.subjectItemActive : ''
+                activeSubjects.includes(subject.label)
+                  ? styles.subjectItemActive
+                  : ''
               }`}
               onClick={() => onSubjectToggle(subject.label)}
               aria-pressed={activeSubjects.includes(subject.label)}

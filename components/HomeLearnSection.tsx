@@ -58,7 +58,9 @@ export function HomeLearnSection() {
 
                     <div className={styles.categoryTextWrap}>
                       <div className={styles.categoryTitleRow}>
-                        <h3 className={styles.categoryTitle}>{category.title}</h3>
+                        <h3 className={styles.categoryTitle}>
+                          {category.title}
+                        </h3>
                         {index === 0 && (
                           <span className={styles.newBadge}>
                             <span className={styles.newBadgeText}>NEW</span>

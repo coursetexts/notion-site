@@ -7,10 +7,26 @@ import styles from './HomeHero.module.css'
 const subjects = ['Science', 'Math', 'Sociology', 'English']
 
 const partnerLinks = [
-  { label: 'Stanford', icon: '/images/home/stanford.png', href: '/all-courses?q=Stanford' },
-  { label: 'Waterloo', icon: '/images/home/waterloo.png', href: '/all-courses?q=Waterloo' },
-  { label: 'Harvard', icon: '/images/home/harvard-red.png', href: '/all-courses?q=Harvard' },
-  { label: 'More schools', icon: '/images/home/plus-10.png', href: '/all-courses' }
+  {
+    label: 'Stanford',
+    icon: '/images/home/stanford.png',
+    href: '/all-courses?q=Stanford'
+  },
+  {
+    label: 'Waterloo',
+    icon: '/images/home/waterloo.png',
+    href: '/all-courses?q=Waterloo'
+  },
+  {
+    label: 'Harvard',
+    icon: '/images/home/harvard-red.png',
+    href: '/all-courses?q=Harvard'
+  },
+  {
+    label: 'More schools',
+    icon: '/images/home/plus-10.png',
+    href: '/all-courses'
+  }
 ]
 
 type HomeHeroProps = {
@@ -149,7 +165,9 @@ export function HomeHero({
                 <button
                   key={subject}
                   type='button'
-                  className={`${styles.chip} ${isActive ? styles.chipSelected : ''}`}
+                  className={`${styles.chip} ${
+                    isActive ? styles.chipSelected : ''
+                  }`}
                   aria-pressed={isActive}
                   onClick={() => onSubjectToggle?.(subject)}
                 >

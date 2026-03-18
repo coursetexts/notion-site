@@ -1,18 +1,27 @@
 import * as React from 'react'
-import Head from 'next/head'
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
+
 import { ExtendedRecordMap } from 'notion-types'
-import { getBlockParentPage, getBlockTitle, getPageProperty, idToUuid } from 'notion-utils'
+import {
+  getBlockParentPage,
+  getBlockTitle,
+  getPageProperty,
+  idToUuid
+} from 'notion-utils'
 
 import { HomeBlogSection } from '@/components/HomeBlogSection'
-import { HomeCoursesSection, HomeCourseCard } from '@/components/HomeCoursesSection'
+import {
+  HomeCourseCard,
+  HomeCoursesSection
+} from '@/components/HomeCoursesSection'
 import { HomeDonateSection } from '@/components/HomeDonateSection'
 import { HomeDotGrid } from '@/components/HomeDotGrid'
-import { HomeHero } from '@/components/HomeHero'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
-import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { HomeHero } from '@/components/HomeHero'
+import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 
@@ -31,7 +40,11 @@ function toText(value: unknown): string {
     return String(value)
   }
   if (Array.isArray(value)) {
-    return value.map((item) => toText(item)).filter(Boolean).join(' ').trim()
+    return value
+      .map((item) => toText(item))
+      .filter(Boolean)
+      .join(' ')
+      .trim()
   }
   if (typeof value === 'object') {
     const candidate = (value as { name?: unknown }).name
@@ -89,7 +102,10 @@ function isLikelyInstructorLine(text: string): boolean {
 function isUsableDescriptionSentence(text: string): boolean {
   const normalized = text.replace(/\s+/g, ' ').trim()
   if (!normalized) return false
-  if (isLikelySchoolDateLine(normalized) || isLikelyInstructorLine(normalized)) {
+  if (
+    isLikelySchoolDateLine(normalized) ||
+    isLikelyInstructorLine(normalized)
+  ) {
     return false
   }
   if (normalized.split(/\s+/).length < 5) return false
@@ -116,9 +132,8 @@ function isLikelySchoolDateLine(text: string): boolean {
   const value = text.trim()
   if (!value) return false
 
-  const hasTerm = /(spring|summer|fall|winter|semester|quarter|\b20\d{2}\b)/i.test(
-    value
-  )
+  const hasTerm =
+    /(spring|summer|fall|winter|semester|quarter|\b20\d{2}\b)/i.test(value)
   const hasSeparator = /[|/]/.test(value)
   const hasSchool =
     /\b(university|college|institute|mit|harvard|stanford|waterloo|princeton|nyu|yale|columbia|cornell|berkeley)\b/i.test(
@@ -149,7 +164,9 @@ function extractCourseFallbackContent(
   const firstBlockText = getChildBlockText(recordMap, childIds[0])
   const thirdBlockText = getChildBlockText(recordMap, childIds[2])
 
-  const schoolDate = isLikelySchoolDateLine(firstBlockText) ? firstBlockText : ''
+  const schoolDate = isLikelySchoolDateLine(firstBlockText)
+    ? firstBlockText
+    : ''
   const thirdSentence = thirdBlockText ? firstSentence(thirdBlockText) : ''
   if (isUsableDescriptionSentence(thirdSentence)) {
     return { schoolDate, descriptionSentence: thirdSentence }
@@ -295,7 +312,9 @@ function fallbackCourses(): HomeCourseCard[] {
   }))
 }
 
-function parseSubjectsParam(value: string | string[] | undefined): HomeSubject[] {
+function parseSubjectsParam(
+  value: string | string[] | undefined
+): HomeSubject[] {
   const raw = Array.isArray(value) ? value.join(',') : value || ''
 
   if (!raw.trim()) return []
@@ -323,9 +342,10 @@ function inferSubjects(params: {
   schoolDate: string
   subjectHints: string
 }): HomeSubject[] {
-  const text = `${params.subjectHints} ${params.title} ${params.description} ${params.pagePath} ${params.schoolDate}`
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
+  const text =
+    `${params.subjectHints} ${params.title} ${params.description} ${params.pagePath} ${params.schoolDate}`
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
 
   const results: HomeSubject[] = []
 
@@ -432,7 +452,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
         getPageProperty<string>('School / Date', block, recordMap) ??
         getPageProperty<string>('School', block, recordMap) ??
         ''
-      const schoolDate = toText(schoolDateRaw).trim() || fallbackContent.schoolDate
+      const schoolDate =
+        toText(schoolDateRaw).trim() || fallbackContent.schoolDate
 
       const schoolRaw =
         getPageProperty<string>('School', block, recordMap) ??
@@ -497,7 +518,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       })
     }
 
-    const courses = pool.length > 0 ? pickRandom(pool, pool.length) : fallbackCourses()
+    const courses =
+      pool.length > 0 ? pickRandom(pool, pool.length) : fallbackCourses()
 
     return {
       props: { courses },
@@ -554,10 +576,14 @@ export default function HomePage({ courses }: HomePageProps) {
   }, [router])
 
   const querySubjects = React.useMemo(
-    () => parseSubjectsParam(router.query.subjects as string | string[] | undefined),
+    () =>
+      parseSubjectsParam(
+        router.query.subjects as string | string[] | undefined
+      ),
     [router.query.subjects]
   )
-  const [activeSubjects, setActiveSubjects] = React.useState<HomeSubject[]>(querySubjects)
+  const [activeSubjects, setActiveSubjects] =
+    React.useState<HomeSubject[]>(querySubjects)
 
   React.useEffect(() => {
     if (!router.isReady) return
@@ -623,7 +649,11 @@ export default function HomePage({ courses }: HomePageProps) {
         <link rel='preconnect' href='https://p.typekit.net' />
         <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin=''
+        />
         <link
           href='https://fonts.googleapis.com/css2?family=Bad+Script&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
           rel='stylesheet'
@@ -631,16 +661,18 @@ export default function HomePage({ courses }: HomePageProps) {
       </Head>
 
       <main
-        style={{
-          '--home-side': 'clamp(20px, 4.03vw, 58px)',
-          '--home-main-max': '1324px',
-          '--home-content-max': '640px',
-          '--home-footer-side': 'max(28px, 15.28vw)',
-          minHeight: '100vh',
-          background: 'var(--footer, #F8F7F4)',
-          display: 'flex',
-          flexDirection: 'column'
-        } as React.CSSProperties}
+        style={
+          {
+            '--home-side': 'clamp(20px, 4.03vw, 58px)',
+            '--home-main-max': '1324px',
+            '--home-content-max': '640px',
+            '--home-footer-side': 'max(28px, 15.28vw)',
+            minHeight: '100vh',
+            background: 'var(--footer, #F8F7F4)',
+            display: 'flex',
+            flexDirection: 'column'
+          } as React.CSSProperties
+        }
       >
         <HomeHeader />
         <HomeHero

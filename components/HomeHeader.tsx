@@ -81,7 +81,9 @@ export function HomeHeader({
                 </a>
               ) : (
                 <Link key={item.label} href={item.href} legacyBehavior>
-                  <a className={`${styles.middleItem} ${styles.interactiveLink}`}>
+                  <a
+                    className={`${styles.middleItem} ${styles.interactiveLink}`}
+                  >
                     {item.label}
                   </a>
                 </Link>

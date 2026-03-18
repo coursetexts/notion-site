@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { AnimatePresence, motion } from 'framer-motion'
 
 import {
@@ -293,7 +294,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
       return tabIndex < tocItems.length - 1
     }
     const tabIndex = tocItems.findIndex((item) => item.label === currentLabel)
-    if (tabIndex < 0) return tocItems.length > 1 || (tocItems[0]?.children?.length ?? 0) > 0
+    if (tabIndex < 0)
+      return tocItems.length > 1 || (tocItems[0]?.children?.length ?? 0) > 0
     const item = tocItems[tabIndex]
     const children = item?.children ?? []
     if (children.length > 0) return true
@@ -453,10 +455,11 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           courseUrl={courseUrl}
           onSectionClick={(label) => {
             tocRef.current?.goToSectionByLabel?.(label)
-            const mount = contentSlotRef.current?.closest('.course-content-mount')
+            const mount = contentSlotRef.current?.closest(
+              '.course-content-mount'
+            )
             if (mount) {
-              const top =
-                mount.getBoundingClientRect().top + window.scrollY
+              const top = mount.getBoundingClientRect().top + window.scrollY
               window.scrollTo({
                 top: top - 56,
                 behavior: 'smooth'

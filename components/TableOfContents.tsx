@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { AnimatePresence, motion } from 'framer-motion'
 
 import type { SectionProgressStatus } from '@/lib/course-section-progress'
@@ -41,9 +42,9 @@ function showOnlyContentBlock(
     `.${SECTION_CLASS}[${DATA_TAB_INDEX}="${tabIndex}"]`
   ) as HTMLElement | null
   if (!section) return
-  const main = section.querySelector(`.${MAIN_CONTENT_CLASS}`) as
-    | HTMLElement
-    | null
+  const main = section.querySelector(
+    `.${MAIN_CONTENT_CLASS}`
+  ) as HTMLElement | null
   const subsections = section.querySelectorAll<HTMLElement>(
     `.${SUBSECTION_CLASS}`
   )
@@ -58,7 +59,8 @@ function showOnlyContentBlock(
         ? 'block'
         : 'none'
   })
-  if (activeSubtabId === null && main) main.setAttribute(DATA_CONTENT_VISIBLE, 'true')
+  if (activeSubtabId === null && main)
+    main.setAttribute(DATA_CONTENT_VISIBLE, 'true')
   else
     subsections.forEach((el) => {
       if (el.getAttribute('data-toc-id') === activeSubtabId)
@@ -161,7 +163,10 @@ export interface TableOfContentsProps {
   /** Called when the selected item has no PDF link (e.g. parent tab or subtab without href). Hide the PDF viewer. */
   onSelectionClearPdf?: () => void
   /** Called with the label of the item that was clicked (parent tab or subtab), and optional parent tab label when a subtab is selected. */
-  onSelectedItemChange?: (label: string | null, parentLabel?: string | null) => void
+  onSelectedItemChange?: (
+    label: string | null,
+    parentLabel?: string | null
+  ) => void
   /** Called when the active section changes: (parentIndex, parentTotal, childIndex?, childTotal?, isOnChildTab?). */
   onSectionChange?: (
     parentIndex: number,
@@ -232,7 +237,9 @@ export const TableOfContents = React.forwardRef<
       const subsection = root.querySelector(
         `[data-toc-id="${activeSubtabId}"]`
       ) as HTMLElement | null
-      const heading = subsection?.querySelector(H4_SELECTOR) as HTMLElement | null
+      const heading = subsection?.querySelector(
+        H4_SELECTOR
+      ) as HTMLElement | null
       applyHeadingHighlight(root, heading ?? subsection)
     }
   }, [itemsProp.length, activeTabIndex, activeSubtabId, contentRef])
@@ -255,7 +262,13 @@ export const TableOfContents = React.forwardRef<
         childIndex = 1
       }
     }
-    onSectionChange?.(parentIndex, parentTotal, childIndex, childTotal, isOnChildTab)
+    onSectionChange?.(
+      parentIndex,
+      parentTotal,
+      childIndex,
+      childTotal,
+      isOnChildTab
+    )
   }, [activeTabIndex, activeSubtabId, itemsProp, onSectionChange])
 
   React.useEffect(() => {
@@ -301,7 +314,9 @@ export const TableOfContents = React.forwardRef<
         const subsection = root.querySelector(
           `[data-toc-id="${subId}"]`
         ) as HTMLElement | null
-        const heading = subsection?.querySelector(H4_SELECTOR) as HTMLElement | null
+        const heading = subsection?.querySelector(
+          H4_SELECTOR
+        ) as HTMLElement | null
         applyHeadingHighlight(root, heading ?? subsection)
       }
     }
@@ -372,9 +387,9 @@ export const TableOfContents = React.forwardRef<
         const subsection = root.querySelector(
           `[data-toc-id="${child.id}"]`
         ) as HTMLElement | null
-        const heading = subsection?.querySelector(H4_SELECTOR) as
-          | HTMLElement
-          | null
+        const heading = subsection?.querySelector(
+          H4_SELECTOR
+        ) as HTMLElement | null
         applyHeadingHighlight(root, heading ?? subsection)
       }
     }
@@ -491,11 +506,7 @@ export const TableOfContents = React.forwardRef<
       goToPreviousSection: handleGoToPreviousSection,
       goToSectionByLabel: handleGoToSectionByLabel
     }),
-    [
-      handleGoToNextSection,
-      handleGoToPreviousSection,
-      handleGoToSectionByLabel
-    ]
+    [handleGoToNextSection, handleGoToPreviousSection, handleGoToSectionByLabel]
   )
 
   return (
