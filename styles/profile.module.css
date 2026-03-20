@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   padding: 2rem;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   background-color: #f8f8f8;
 }
 
@@ -77,7 +77,7 @@
   font-weight: 600;
   color: #25272b;
   margin: 0 0 0.25rem 0;
-  font-family: 'Tobias', serif;
+  font-family: 'Guyot Press', serif;
 }
 
 .email {

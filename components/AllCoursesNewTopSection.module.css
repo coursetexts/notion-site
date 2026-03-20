@@ -9,7 +9,7 @@
 .heading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -61,7 +61,7 @@
   outline: none;
   background: transparent;
   padding: 16px 110px 16px 19px;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -87,7 +87,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -164,7 +164,7 @@
 
 .subjectLabel {
   position: relative;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
