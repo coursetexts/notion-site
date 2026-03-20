@@ -10,7 +10,7 @@
   flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .header {
@@ -61,7 +61,7 @@
   margin: 0;
   color: #5d534b;
   font-size: 0.8rem;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .list {
@@ -93,7 +93,7 @@
   white-space: pre-wrap;
   line-height: 1.4;
   font-size: 0.85rem;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .assistantBubble {
@@ -136,7 +136,7 @@
   resize: none;
   min-height: 2.75rem;
   max-height: 9rem;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.875rem;
   color: #25272b;
   background: #fff;

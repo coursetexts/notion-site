@@ -48,7 +48,7 @@ export default function AuthCallbackPage() {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '100vh',
-          fontFamily: 'sans-serif'
+          fontFamily: "'Hanken Grotesk', sans-serif"
         }}
       >
         {status === 'loading' && <p>Signing you in…</p>}

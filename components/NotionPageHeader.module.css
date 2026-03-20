@@ -15,9 +15,9 @@
   justify-content: space-between;
   gap: 1.5rem;
   color: #37352F;
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
-  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   letter-spacing: -0.065px;
 }
 
@@ -43,7 +43,7 @@
   flex: 1;
   justify-content: center;
   min-width: 0;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .headerNav {
@@ -144,7 +144,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .profileAlertBadge {

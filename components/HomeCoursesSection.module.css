@@ -19,7 +19,7 @@
 .heading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -98,7 +98,7 @@
 
 .subjectLabel {
   position: relative;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
@@ -134,7 +134,7 @@
 
 .emptyState {
   margin: 40px 0 0;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
@@ -189,7 +189,7 @@
 
 .courseMetaText {
   margin-left: 6px;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 12px;
@@ -213,7 +213,7 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
   text-decoration-skip-ink: none;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -233,7 +233,7 @@
 
 .courseDescription {
   margin: 16px 0 0;
-  font-family: 'Guyot Text', 'Guyot Press', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
@@ -278,7 +278,7 @@
 
 .viewAllText {
   position: relative;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 15px;

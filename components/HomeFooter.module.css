@@ -33,7 +33,7 @@
 .heading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Text', 'Guyot Press', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 18px;
@@ -92,7 +92,7 @@
 .supportCardLabel {
   margin: 0;
   color: #0089c4;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 10px;
@@ -104,7 +104,7 @@
 .supportCardTitle {
   margin: 6px 0 0;
   color: var(--midGrey, #37352f);
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
@@ -175,7 +175,7 @@
 
 .socialText {
   color: #353b48;
-  font-family: 'Gambetta Variable', 'Gambetta', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 350;
   font-style: normal;
   font-size: 13px;
@@ -186,7 +186,7 @@
 .footerHeading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Text', 'Guyot Press', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 15px;
@@ -206,7 +206,7 @@
   width: max-content;
   max-width: 100%;
   color: #353b48;
-  font-family: 'Guyot Text', 'Guyot Press', 'Iowan Old Style', Georgia, serif;
+  font-family: 'Guyot Press', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
@@ -262,7 +262,7 @@
 .disclaimerHeading {
   margin: 0;
   color: #37352f;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 11px;
@@ -288,7 +288,7 @@
 
 .disclaimerNumber {
   color: #37352f;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 11px;
@@ -299,7 +299,7 @@
 .disclaimerText {
   margin: 0;
   color: #37352f;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 11px;
@@ -382,7 +382,7 @@
   justify-content: flex-start;
   color: #000000;
   text-align: left;
-  font-family: 'Bad Script', cursive;
+  font-family: 'Guyot Press', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -397,7 +397,7 @@
   z-index: 20;
   color: #37352f;
   text-align: left;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 9px;
