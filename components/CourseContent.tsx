@@ -2,6 +2,7 @@ import React from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
 import {
   type SectionProgressStatus,
   getSectionProgressMap,
@@ -29,8 +30,6 @@ export interface CourseContentProps {
   courseDescription?: string
   courseUrl?: string
 }
-
-const ANNOTATION_COUNT = 20
 
 export const CourseContent: React.FC<CourseContentProps> = ({
   mainRef,
@@ -69,6 +68,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const [sectionProgress, setSectionProgress] = React.useState<
     Record<string, SectionProgressStatus>
   >({})
+  const [annotationCount, setAnnotationCount] = React.useState(0)
 
   const handleTocLink = React.useCallback(
     (href: string, _label?: string, hideContent?: boolean) => {
@@ -311,6 +311,36 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     isBookmarked: false
   }
 
+  const handleAnnotationCountChange = React.useCallback((n: number) => {
+    setAnnotationCount(n)
+  }, [])
+
+  React.useEffect(() => {
+    if (
+      !coursePageId ||
+      !courseTitle ||
+      currentSectionLabel === '' ||
+      currentSectionLabel == null
+    ) {
+      setAnnotationCount(0)
+      return
+    }
+    let cancelled = false
+    ;(async () => {
+      const result = await getOrCreateCourse(
+        coursePageId,
+        courseTitle,
+        courseUrl
+      )
+      if (!result || cancelled) return
+      const list = await getAnnotations(result.courseId, currentSectionLabel)
+      if (!cancelled) setAnnotationCount(list.length)
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [coursePageId, courseTitle, courseUrl, currentSectionLabel])
+
   React.useEffect(() => {
     if (!coursePageId) return
     ;(async () => {
@@ -389,7 +419,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           innerRef={setSlotRef}
           showAnnotations={rightPanel === 'annotations'}
           onShowAnnotations={() => openRightPanel('annotations')}
-          annotationCount={ANNOTATION_COUNT}
+          annotationCount={annotationCount}
           showChat={rightPanel === 'chat'}
           onShowChat={() => openRightPanel('chat')}
           embedUrl={embedUrl}
@@ -436,6 +466,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
                   coursePageId={coursePageId}
                   sectionId={currentSectionLabel}
                   onHide={closeRightPanel}
+                  onAnnotationCountChange={handleAnnotationCountChange}
                 />
               ) : (
                 <CourseChatPanel

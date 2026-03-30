@@ -2062,13 +2062,20 @@ summary .notion-h3 .notion-h-title {
   display: block !important;
 }
 
-/* Hide duplicate heading only in the block that matches the selected tab (slot title above) */
-.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h2:first-child,
-.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h3:first-child,
-.course-content-mount .course-content-main[data-content-visible='true'] > h2[class*='notion']:first-child,
-.course-content-mount .course-content-main[data-content-visible='true'] > h3[class*='notion']:first-child,
-.course-content-mount .course-content-subsection[data-content-visible='true'] > .notion-h4:first-child,
-.course-content-mount .course-content-subsection[data-content-visible='true'] > h4[class*='notion']:first-child {
+/* Hide duplicate heading only in the block that matches the selected tab (slot title above).
+ * Use :first-of-type not :first-child — Notion often inserts dividers/spacers before the section h2,
+ * so the duplicate "GENERAL" bar was still visible for General but not when the first h2 was first child. */
+.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h2:first-of-type,
+.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h3:first-of-type,
+.course-content-mount .course-content-main[data-content-visible='true'] > h2[class*='notion']:first-of-type,
+.course-content-mount .course-content-main[data-content-visible='true'] > h3[class*='notion']:first-of-type,
+.course-content-mount .course-content-subsection[data-content-visible='true'] > .notion-h4:first-of-type,
+.course-content-mount .course-content-subsection[data-content-visible='true'] > h4[class*='notion']:first-of-type,
+/* Sections built without h4 sub-tabs: headings sit directly under .course-content-section */
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > .notion-h2:first-of-type,
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > .notion-h3:first-of-type,
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > h2[class*='notion']:first-of-type,
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > h3[class*='notion']:first-of-type {
   display: none !important;
 }
 

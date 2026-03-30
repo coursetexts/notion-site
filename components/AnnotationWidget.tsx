@@ -20,7 +20,8 @@ import { UserLink } from './UserLink'
 type SortBy = 'time' | 'votes'
 
 export interface AnnotationWidgetProps {
-  count?: number
+  /** Report total annotations for the current section (roots + replies) for parent UI (e.g. top bar). */
+  onAnnotationCountChange?: (count: number) => void
   onHide?: () => void
   courseUrl?: string
   courseTitle?: string
@@ -395,14 +396,13 @@ const SortMenu: React.FC<SortMenuProps> = ({ value, onChange }) => {
 }
 
 export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
-  count = 0,
+  onAnnotationCountChange,
   onHide,
   courseUrl,
   courseTitle,
   coursePageId,
   sectionId
 }) => {
-  void count
   const auth = useAuthOptional()
   const [sortBy, setSortBy] = useState<SortBy>('time')
   const [inputValue, setInputValue] = useState('')
@@ -494,6 +494,11 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   }
 
   const displayCount = annotations.length
+
+  useEffect(() => {
+    onAnnotationCountChange?.(displayCount)
+  }, [displayCount, onAnnotationCountChange])
+
   const threadedAnnotations = useMemo(
     () => buildAnnotationTree(annotations),
     [annotations]

@@ -306,6 +306,17 @@ export const TableOfContents = React.forwardRef<
     hasInitializedFirstSubtab.current = true
     setActiveSubtabId(subId)
     onSelectedItemChange?.(targetChild.label, first.label)
+    /* Same as handleSubtabClick: PDF / embed links only set embedUrl via onLinkClick; that
+     * path was missing here, so first paint had no embed until the user re-selected the tab. */
+    if (targetChild.href) {
+      onLinkClick?.(
+        targetChild.href,
+        targetChild.label,
+        targetChild.hideContentUnderEmbed
+      )
+    } else {
+      onSelectionClearPdf?.()
+    }
     const container = contentRef?.current
     if (container) {
       const root = container.closest('.course-content-mount') || container
@@ -320,7 +331,7 @@ export const TableOfContents = React.forwardRef<
         applyHeadingHighlight(root, heading ?? subsection)
       }
     }
-  }, [itemsProp, onSelectedItemChange, contentRef])
+  }, [itemsProp, onSelectedItemChange, contentRef, onLinkClick, onSelectionClearPdf])
 
   const handleTabClick = (tabIndex: number) => {
     setActiveTabIndex(tabIndex)
