@@ -8,6 +8,22 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Gambarino';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Gambarino-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Gambetta Variable';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/Gambetta-Variable.woff2') format('woff2');
+}
+
 * {
   box-sizing: border-box;
 }
@@ -30,7 +46,7 @@ html {
 .notion {
   padding-left: 3%;
   padding-right: 3%;
-  background-color: #f5f5f5;
+  background-color: #F8F7F4;
   @media only screen and (max-width: 920px) {
     padding-left: 3%;
     padding-right: 3%;

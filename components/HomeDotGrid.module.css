@@ -1,0 +1,133 @@
+.gridBand {
+  width: 100%;
+  min-height: 450px;
+  margin-top: 150px;
+  background-image: radial-gradient(circle, #d7d4cc 1px, transparent 1px);
+  background-size: 18px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.heroImageWrap {
+  position: relative;
+  width: min(1383px, calc(100vw - var(--home-side, 58px)));
+  height: 300px;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+}
+
+.hotspotLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.hotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: var(--hotspot-size, 84px);
+  height: var(--hotspot-size, 84px);
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.hotspot:focus-visible {
+  outline: 1px solid #0089c4;
+  outline-offset: 1px;
+}
+
+.hotspotTooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px);
+  min-width: 180px;
+  max-width: 220px;
+  padding: 8px 10px;
+  border: 1px solid #e6e6e6;
+  background: #fdfdfd;
+  color: #2c1a0c;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: -0.0004em;
+  box-shadow: 0 10px 22px #00000014;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  white-space: normal;
+}
+
+.hotspotTooltipMeta {
+  display: block;
+  margin-top: 2px;
+  color: #5d534b;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.hotspot:hover .hotspotTooltip,
+.hotspot:focus-visible .hotspotTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.disclaimer {
+  width: 487px;
+  max-width: calc(100vw - (var(--home-side, 58px) * 2));
+  min-height: 28px;
+  margin: 21px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: -0.0004em;
+  color: var(--midGrey, #37352f);
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .gridBand {
+    min-height: 360px;
+    margin-top: 120px;
+  }
+
+  .heroImage {
+    height: auto;
+    max-height: 260px;
+  }
+
+  .heroImageWrap {
+    height: min(260px, calc((100vw - var(--home-side, 58px)) * 0.22));
+    min-height: 160px;
+  }
+}

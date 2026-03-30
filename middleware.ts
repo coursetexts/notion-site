@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getIronSession, IronSessionData } from 'iron-session'
+
+import { IronSessionData, getIronSession } from 'iron-session'
+
 import { sessionOptions } from '@/lib/session-config'
 
 export const config = {
   // Match all routes except for specific ones like API routes, static files,
   // the sign-in page itself, and Next.js internal paths.
-  matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|signin|logo.svg).*)',
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|signin|logo.svg).*)']
 }
 
 export async function middleware(req: NextRequest) {
@@ -21,15 +21,24 @@ export async function middleware(req: NextRequest) {
 
   // If protection is enabled, check for a valid session
   const res = NextResponse.next() // Prepare response object for session handling
-  const session = await getIronSession<IronSessionData>(req, res, sessionOptions)
+  const session = await getIronSession<IronSessionData>(
+    req,
+    res,
+    sessionOptions
+  )
 
   // Check if the user is authenticated
   if (!session.isAuthenticated) {
     // If not authenticated, redirect to the sign-in page
     // Preserve the original URL as a query parameter for redirection after login
     const signInUrl = new URL('/signin', req.url)
-    signInUrl.searchParams.set('redirect', req.nextUrl.pathname + req.nextUrl.search)
-    console.log(`Unauthenticated access to ${req.nextUrl.pathname}. Redirecting to signin.`)
+    signInUrl.searchParams.set(
+      'redirect',
+      req.nextUrl.pathname + req.nextUrl.search
+    )
+    console.log(
+      `Unauthenticated access to ${req.nextUrl.pathname}. Redirecting to signin.`
+    )
     return NextResponse.redirect(signInUrl)
   }
 

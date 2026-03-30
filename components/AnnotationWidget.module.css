@@ -1,0 +1,531 @@
+/* Annotations panel – Figma: Hanken for UI, Guyot italic for body first line;
+   accent #0089C4, muted #5D534B */
+
+.root {
+  width: 100%;
+  min-width: 280px;
+  max-width: 360px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  border-left: 1px solid #e5e1d3;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.rootSheet {
+  max-width: none;
+  min-width: 0;
+  width: 100%;
+  border-left: none;
+  min-height: 0;
+  flex: 1 1 auto;
+  height: 100%;
+  max-height: 100%;
+  box-shadow: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.sortSelect {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #25272b;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.sortMenuWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sortBtn {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.sortBtn:hover {
+  border-color: #d4cfc4;
+}
+
+.sortBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.sortBtnLabel {
+  line-height: 1;
+}
+
+.sortBtnChevron {
+  display: block;
+  transition: transform 140ms ease;
+}
+
+.sortBtnChevronOpen {
+  transform: rotate(180deg);
+}
+
+.sortMenu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  min-width: 4rem;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  padding: 0.35rem;
+  z-index: 20;
+}
+
+.sortMenuItem {
+  width: 100%;
+  text-align: left;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #25272b;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: 0.45rem 0.55rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sortMenuItem:hover {
+  background: rgba(0, 137, 196, 0.08);
+}
+
+.sortMenuItemActive {
+  background: rgba(0, 137, 196, 0.12);
+  color: #0089c4;
+}
+
+.sortMenuItem:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.title {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #25272b;
+  margin: 0;
+}
+
+/* Count in thin weight + light grey */
+.titleCount {
+  font-weight: 200;
+  color: #9ca3af;
+  letter-spacing: 0.04em;
+}
+
+.hideBtn {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #5d534b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+}
+
+.hideBtn:hover {
+  color: #25272b;
+  border-color: #d4cfc4;
+}
+
+/* Input row: bordered field with circular submit inside bottom-right */
+.addWrap {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #e5e1d3;
+  flex-shrink: 0;
+}
+
+.addWrapInner {
+  position: relative;
+  display: block;
+}
+
+.addWrap .addInput {
+  width: 100%;
+  padding: 0.65rem 2.75rem 0.65rem 0.75rem;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+}
+
+.submitBtn {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0;
+  color: transparent;
+  background: #0089c4;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #007aad;
+}
+
+.submitBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.submitBtnIcon {
+  display: block;
+}
+
+.signInHint {
+  padding: 0 1.25rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #5d534b;
+  margin: 0;
+}
+
+.signInHint a {
+  color: #0089c4;
+  text-decoration: none;
+}
+
+.signInHint a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  padding: 0 1.25rem 0.25rem;
+  font-size: 0.8125rem;
+  color: #c00;
+  margin: 0;
+}
+
+.placeholder {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.addInput {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 8px;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  line-height: 1.35;
+}
+
+.addInput::placeholder {
+  color: #5d534b;
+  opacity: 0.7;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 1.25rem 1.5rem;
+}
+
+.threadItem {
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
+  margin: 0 -0.5rem;
+  background-color: transparent;
+  transition: background-color 0.22s ease;
+}
+
+.threadItem:hover {
+  background-color: rgba(0, 137, 196, 0.06);
+}
+
+/* Divider between root-level annotation blocks only (not between nested replies) */
+.threadItemRoot {
+  border-bottom: 1px solid #e0e0de;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.threadItemRoot:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.repliesToggleRow {
+  margin: 0.25rem 0 0.35rem;
+  display: flex;
+  align-items: center;
+}
+
+.repliesToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.35rem 0.25rem 0.2rem;
+  line-height: 1.25;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.repliesToggleLabel {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.74rem;
+  color: #0089c4;
+}
+
+.repliesToggleBtn:hover {
+  background: rgba(0, 137, 196, 0.08);
+}
+
+.repliesToggleBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.45);
+  outline-offset: 2px;
+}
+
+.repliesToggleIcon {
+  display: block;
+}
+
+/* Reply thread line: dotted #0089C4 @ 30% */
+.threadChildren {
+  border-left: 1px dotted rgba(0, 137, 196, 0.3);
+  margin-left: 0.35rem;
+  padding-left: 0.75rem;
+}
+
+.annotation {
+  padding: 0.5rem 0 0;
+}
+
+/* Row: author, then time + votes grouped together (not pushed to the right) */
+.annotationMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.annotationMetaRow .author {
+  min-width: 0;
+}
+
+/* Timestamp + vote controls stay inline together */
+.metaTimeVotes {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+}
+
+.annotationMetaRow .time {
+  flex-shrink: 0;
+}
+
+.annotationMetaRow .voteRow {
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.voteRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.voteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.voteBtn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.voteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.voteBtnActive svg g,
+.voteBtnActive svg path {
+  opacity: 1 !important;
+  fill: #0089c4 !important;
+  stroke: #0089c4 !important;
+}
+
+.voteCount {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #000;
+  min-width: 1.1rem;
+  text-align: center;
+}
+
+.author {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #25272b;
+}
+
+.time {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/* Base annotation text – no bar unless user uses > blockquote */
+.body {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #25272b;
+  margin: 0 0 0.5rem 0;
+  white-space: pre-wrap;
+}
+
+/* Only when body uses leading > (markdown-style blockquote) */
+.bodyBlockquote {
+  padding-left: 0.5rem;
+  border-left: 3px solid #E0E0DE;
+}
+
+.bodyBlockquote::first-line {
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-style: italic;
+}
+
+.replyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  color: #5d534b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+
+.replyBtn:hover {
+  color: #25272b;
+}
+
+.replyBtnIcon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.replyComposer {
+  margin-top: 0.55rem;
+  position: relative;
+}
+
+.replyComposer .addInput {
+  padding-right: 2.75rem;
+}
+
+.replyComposer .submitBtn {
+  right: 0.35rem;
+  bottom: 0.35rem;
+}
+
+.threadToggleBtn {
+  margin-top: 0.35rem;
+  margin-bottom: 0.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  color: #5d534b;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.74rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.threadToggleBtn:hover {
+  color: #25272b;
+  text-decoration: underline;
+}
+
+.threadToggleIcon {
+  display: block;
+}

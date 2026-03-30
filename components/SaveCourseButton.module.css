@@ -1,0 +1,66 @@
+.wrap {
+  flex-shrink: 0;
+}
+
+.saveBtn,
+.savedBtn {
+  display: inline-flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--outline, #E6E6E6);
+  background: var(--offwhite, #FDFDFD);
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  color: #37352F;
+  font-family: "Hanken Grotesk", 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.saveBtn:hover:not(:disabled):not(.saving) {
+  background-color: #f5f5f5;
+  border-color: #d5d5d5;
+}
+
+.savedBtn,
+.saveBtn.saving {
+  background: #f2f9ff;
+}
+
+.savedBtn:hover:not(:disabled),
+.saveBtn.saving:hover:not(:disabled) {
+  background-color: #e8f4fd;
+  border-color: #d5d5d5;
+}
+
+.savedBtn .icon {
+  color: #0089c4;
+}
+
+.saveBtn:disabled,
+.savedBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.icon svg {
+  display: block;
+}
+
+.label {
+  font-weight: 400;
+}

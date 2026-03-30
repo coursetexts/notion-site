@@ -27,11 +27,13 @@ import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
+import { AuthProvider } from '../contexts/AuthContext'
 // import { HeroButterflies } from './HeroButterflies'
-import FeedbackForm from './FeedbackForm'
+import { CourseContent } from './CourseContent'
+import { CourseHero, type CourseHeroData } from './CourseHero'
 // React 18+
 import FilterRow from './FilterRow'
-import { Footer } from './Footer'
+import { HomeFooterSection } from './HomeFooterSection'
 // import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
@@ -195,7 +197,7 @@ function waitForElement(selector: string, timeout = 5000): Promise<Element> {
   })
 }
 
-function addReactComponentAtEndOfArticle(
+export function addReactComponentAtEndOfArticle(
   articleSelector: string,
   containerClassName: string,
   reactNode: React.ReactNode
@@ -213,7 +215,7 @@ function addReactComponentAtEndOfArticle(
     .catch((err) => console.warn(err.message))
 }
 
-function addReactComponentBeforeTitle(reactNode: React.ReactNode) {
+export function addReactComponentBeforeTitle(reactNode: React.ReactNode) {
   waitForElement('.notion-title')
     .then((notionTitle) => {
       if (!notionTitle) return
@@ -237,11 +239,16 @@ function addReactComponentAfterHeader(reactNode: React.ReactNode) {
     .catch((err) => console.warn(err.message))
 }
 
-export const NotionPage: React.FC<types.PageProps> = ({
+type NotionPageProps = types.PageProps & {
+  hideFooter?: boolean
+}
+
+export const NotionPage: React.FC<NotionPageProps> = ({
   site,
   recordMap,
   error,
-  pageId
+  pageId,
+  hideFooter = false
 }) => {
   const router = useRouter()
   const lite = useSearchParam('lite')
@@ -255,7 +262,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
   let pageClass = ''
 
-  if (router.pathname === '/') {
+  if (router.pathname === '/' || router.pathname === '/all-courses') {
     pageClass = 'notion-home'
   } else if (router.asPath.startsWith('/about')) {
     pageClass = 'about-page'
@@ -285,6 +292,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
   if (block && (block as any).properties) {
     title = getBlockTitle(block, recordMap)
   }
+  const courseDescription =
+    getPageProperty<string>('Description', block, recordMap) ||
+    config.description
 
   // Clean up when the component unmounts or pageClass changes
   React.useEffect(() => {
@@ -376,56 +386,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
   }, [searchValue, department, allDepartmentTags])
 
   React.useEffect(() => {
-    if (pageClass == 'course-page') {
-      addReactComponentAtEndOfArticle(
-        'article',
-        'fill-article-row',
-        <FeedbackForm courseName={title} />
-      )
-    }
-  }, [pageClass])
-
-  React.useEffect(() => {
-    if (pageClass == 'course-page') {
-      addReactComponentBeforeTitle(
-        <a href='/' style={{ textDecoration: 'none' }}>
-          <button
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#58534A', // Gray color
-              fontSize: '14px',
-              fontWeight: '500',
-              fontFamily: 'Tobias',
-              display: 'flex',
-              alignItems: 'center',
-              cursor: 'pointer',
-              marginBottom: '1.5rem',
-              padding: 0
-            }}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='9'
-              height='12'
-              viewBox='0 0 9 15'
-              fill='none'
-              style={{ marginRight: '10px' }}
-            >
-              <path
-                d='M7.5 14L1.25 7.75L7.5 1.5'
-                stroke='#B2A371'
-                strokeWidth='1.66667'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-            Back to Archive
-          </button>
-        </a>
-      )
-    }
-
     addReactComponentAfterHeader(<UpdateNoticeBanner />)
   }, [pageClass])
 
@@ -583,13 +543,20 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }
 
+  /**
+   * Build tabs from article (Notion page) content: find the section between
+   * the two <hr> dividers, then group everything under each heading until
+   * we see the next heading. Each heading becomes a tab; its content goes
+   * into that tab’s panel. Run after the course hero is loaded so we’re
+   * only scraping the article content.
+   */
   function wrapElementsBetweenDividers(): void {
     const headingSelector =
       'h1[class*="notion-"], h2[class*="notion-"], h3[class*="notion-"]'
     const isHeading = (el: Element | null): el is HTMLElement =>
       !!el && el.matches(headingSelector)
 
-    /* ---------- 1 · find the delimiting <hr> ---------------------------- */
+    /* ---------- 1 · find the article section (between 2nd and 3rd <hr>) --- */
     const dividers = Array.from(document.querySelectorAll('hr.notion-hr'))
     if (dividers.length < 4) return // page layout must have changed
     const startDivider = dividers[1] // 2nd <hr>
@@ -617,25 +584,24 @@ export const NotionPage: React.FC<types.PageProps> = ({
     const panelContainer = document.createElement('div') // holds the panels
     tabsBlock.append(tabBar, panelContainer) // keep them together
 
-    /* ---------- 4 · walk through the nodes between the two <hr> -------- */
+    /* ---------- 4 · article: under each heading, group until next heading */
     let node: Element | null = startDivider.nextElementSibling
     let tabIndex = 0
 
     while (node && node !== endDivider) {
       if (isHeading(node)) {
-        /* ----- create a new tab-panel ---------------------------------- */
+        /* ----- new tab = this heading; content = everything until next heading ----- */
         const afterHeading = node.nextElementSibling
 
         const wrapper = document.createElement('div')
-        wrapper.className = 'custom-divider-wrapper-tabcontent'
+        wrapper.className =
+          'custom-divider-wrapper-tabcontent' +
+          (tabIndex === 0 ? ' content-tab-panel-active' : '')
         wrapper.dataset.tab = String(tabIndex)
-        if (tabIndex !== 0) wrapper.style.display = 'none'
-
-        // Remove duplicate tab text (heading) and add consistent top padding for content
-        node.remove()
         wrapper.style.paddingTop = '12px'
 
-        /* swallow everything until next heading or the end divider ----- */
+        node.remove()
+
         let sib = afterHeading
         while (sib && !isHeading(sib) && sib !== endDivider) {
           const nxt = sib.nextElementSibling
@@ -649,16 +615,14 @@ export const NotionPage: React.FC<types.PageProps> = ({
         btn.className = tabIndex === 0 ? 'tab-btn active' : 'tab-btn'
         btn.textContent = node.textContent?.trim() || `Tab ${tabIndex + 1}`
         btn.addEventListener('click', () => {
-          /* hide all panels + deactivate all buttons */
           panelContainer
             .querySelectorAll<HTMLElement>('.custom-divider-wrapper-tabcontent')
-            .forEach((p) => (p.style.display = 'none'))
+            .forEach((p) => p.classList.remove('content-tab-panel-active'))
           tabBar
             .querySelectorAll<HTMLButtonElement>('.tab-btn')
             .forEach((b) => b.classList.remove('active'))
 
-          /* show selected */
-          wrapper.style.display = ''
+          wrapper.classList.add('content-tab-panel-active')
           btn.classList.add('active')
         })
         tabBar.appendChild(btn)
@@ -1138,9 +1102,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
         summaryElement.innerHTML = textContent
       })
     } else {
-      //
-
-      wrapElementsBetweenDividers()
+      // Non–course pages: build tabs from content between <hr> dividers.
+      // Course pages use the heading-based section builder in CourseContent instead.
+      const isCoursePage = document.querySelector('.course-page')
+      if (!isCoursePage) {
+        wrapElementsBetweenDividers()
+      }
 
       document.querySelectorAll('.notion-title').forEach(function (summary) {
         // Select the <b> tag inside the <summary>
@@ -1384,6 +1351,327 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }, [pageClass])
 
+  const courseHeroRef = React.useRef<{
+    root: Root | null
+    container: HTMLElement | null
+    hiddenNodes: HTMLElement[]
+  }>({ root: null, container: null, hiddenNodes: [] })
+
+  const courseContentRef = React.useRef<{
+    root: Root | null
+    container: HTMLElement | null
+    originalParent: HTMLElement | null
+    originalNextSibling: ChildNode | null
+  }>({
+    root: null,
+    container: null,
+    originalParent: null,
+    originalNextSibling: null
+  })
+
+  const COURSE_HERO_STORAGE_KEY = 'courseHero'
+
+  /**
+   * Scrape hero content (first 3 blocks), assign to variables, render <CourseHero>, hide originals.
+   * Saves scraped data to sessionStorage so the hero can show on refresh before DOM is ready.
+   * Works both when there's no content-table (direct children) and when there is (children inside .course-left-column).
+   */
+  React.useEffect(() => {
+    if (pageClass !== 'course-page') return
+
+    let cancelled = false
+    let retryTimeout: ReturnType<typeof setTimeout> | null = null
+    const storageKey = `${COURSE_HERO_STORAGE_KEY}_${pageId}`
+
+    function saveHeroData(data: CourseHeroData) {
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify(data))
+      } catch {
+        // Ignore sessionStorage write failures (e.g. private mode).
+      }
+    }
+
+    function loadHeroData(): CourseHeroData | null {
+      try {
+        const raw = sessionStorage.getItem(storageKey)
+        return raw ? (JSON.parse(raw) as CourseHeroData) : null
+      } catch (_) {
+        return null
+      }
+    }
+
+    function withPageTitle(
+      data: CourseHeroData,
+      pageTitle: string
+    ): CourseHeroData {
+      return { ...data, title: pageTitle }
+    }
+
+    const courseHeroCourseInfo = {
+      coursePageId: pageId,
+      courseTitle: title,
+      courseUrl: router.asPath?.split('?')[0] ?? `/${pageId}`
+    }
+
+    function ensureMountAndRender(
+      contentInner: HTMLElement,
+      data: CourseHeroData
+    ) {
+      let { container, root } = courseHeroRef.current
+      if (!container || !root) {
+        const parent = contentInner.parentElement
+        if (!parent) return
+        container = document.createElement('div')
+        container.className = 'course-hero-mount'
+        container.style.width = '100%'
+        parent.insertBefore(container, contentInner)
+        root = createRoot(container)
+        courseHeroRef.current.container = container
+        courseHeroRef.current.root = root
+      }
+      root!.render(
+        <AuthProvider rootName='course-hero'>
+          <CourseHero {...data} {...courseHeroCourseInfo} />
+        </AuthProvider>
+      )
+    }
+
+    function scrape(
+      scope: HTMLElement
+    ): { data: CourseHeroData; nodes: HTMLElement[] } | null {
+      const children = Array.from(scope.children) as HTMLElement[]
+      if (children.length < 3) return null
+      const [child1, child2, child3] = children
+
+      // First block = school | date (course code is derived from page title in CourseHero)
+      const schoolDate = (child1?.innerText ?? '').trim()
+      const instructorLinks = scope.querySelectorAll(
+        '.notion-blue .notion-link'
+      ) as NodeListOf<HTMLAnchorElement>
+      const instructors: { name: string; url: string }[] = []
+      if (instructorLinks.length > 1) {
+        instructorLinks.forEach((a) => {
+          const name = (a.textContent ?? '').trim()
+          if (name) instructors.push({ name, url: a.href ?? '' })
+        })
+      } else if (instructorLinks.length === 1) {
+        const text = (instructorLinks[0].textContent ?? '').trim()
+        const url = instructorLinks[0].href ?? ''
+        if (text.includes(',')) {
+          text
+            .split(',')
+            .map((s) => s.trim())
+            .filter(Boolean)
+            .forEach((name) => instructors.push({ name, url }))
+        } else if (text) {
+          instructors.push({ name: text, url })
+        }
+      }
+      const descriptionHtml = (child3?.innerHTML ?? '').trim()
+
+      return {
+        data: {
+          courseCode: '', // derived from page title (brackets) in CourseHero
+          title: '', // filled in with Notion page title via withPageTitle
+          instructors: instructors.length > 0 ? instructors : undefined,
+          instructorName:
+            instructors.length === 1 ? instructors[0].name : undefined,
+          instructorUrl:
+            instructors.length === 1 ? instructors[0].url : undefined,
+          schoolDate: schoolDate || undefined,
+          descriptionHtml
+        },
+        nodes: [child1, child2, child3]
+      }
+    }
+
+    function run() {
+      if (cancelled) return
+      const contentInner = document.querySelector(
+        '.course-page .notion-page-content-inner'
+      ) as HTMLElement
+      if (!contentInner?.parentElement) return
+      if (contentInner.hasAttribute('data-course-hero-rendered')) return
+
+      const table = contentInner.querySelector('.content-table')
+      const leftCol = contentInner.querySelector('.course-left-column')
+      const scope = (table && leftCol ? leftCol : contentInner) as HTMLElement
+
+      const result = scrape(scope)
+      if (result) {
+        const dataWithTitle = withPageTitle(result.data, title)
+        saveHeroData(dataWithTitle)
+        ensureMountAndRender(contentInner, dataWithTitle)
+        courseHeroRef.current.hiddenNodes = result.nodes
+        result.nodes.forEach((el) => {
+          if (el) el.style.display = 'none'
+        })
+        contentInner.setAttribute('data-course-hero-rendered', 'true')
+        return
+      }
+
+      const cached = loadHeroData()
+      if (cached) {
+        ensureMountAndRender(contentInner, withPageTitle(cached, title))
+        contentInner.setAttribute('data-course-hero-rendered', 'true')
+      }
+
+      let attempts = 0
+      const maxAttempts = 8
+      const delayMs = 400
+
+      function retry() {
+        if (cancelled || attempts >= maxAttempts) return
+        attempts += 1
+        retryTimeout = setTimeout(() => {
+          if (cancelled) return
+          const inner = document.querySelector(
+            '.course-page .notion-page-content-inner'
+          ) as HTMLElement
+          if (!inner?.parentElement) {
+            retry()
+            return
+          }
+          const tbl = inner.querySelector('.content-table')
+          const col = inner.querySelector('.course-left-column')
+          const sc = (tbl && col ? col : inner) as HTMLElement
+          const res = scrape(sc)
+          if (res) {
+            const dataWithTitle = withPageTitle(res.data, title)
+            saveHeroData(dataWithTitle)
+            ensureMountAndRender(inner, dataWithTitle)
+            courseHeroRef.current.hiddenNodes = res.nodes
+            res.nodes.forEach((el) => {
+              if (el) el.style.display = 'none'
+            })
+            return
+          }
+          retry()
+        }, delayMs)
+      }
+      retry()
+    }
+
+    waitForElement('.course-page .notion-page-content-inner')
+      .then(() => new Promise<void>((r) => setTimeout(r, 500)))
+      .then(run)
+      .catch(() => undefined)
+
+    return () => {
+      cancelled = true
+      if (retryTimeout) clearTimeout(retryTimeout)
+      const { root, container, hiddenNodes } = courseHeroRef.current
+      if (root && container) {
+        try {
+          root.unmount()
+        } catch {
+          // Ignore unmount race conditions during teardown.
+        }
+        container.remove()
+        courseHeroRef.current.root = null
+        courseHeroRef.current.container = null
+      }
+      hiddenNodes.forEach((el) => {
+        if (el) el.style.display = ''
+      })
+      courseHeroRef.current.hiddenNodes = []
+      document
+        .querySelectorAll('[data-course-hero-rendered]')
+        .forEach((el) => el.removeAttribute('data-course-hero-rendered'))
+    }
+  }, [pageClass, pageId, title])
+
+  /**
+   * Course content layout: wait for hero, then optionally give the tab structure
+   * (.content-table) a short time to appear so the TOC can populate. Either way,
+   * we always mount the course content section and move the main content into it.
+   */
+  React.useEffect(() => {
+    if (pageClass !== 'course-page') return
+
+    let cancelled = false
+    const contentInnerToMoveRef = { current: null as HTMLElement | null }
+
+    function mountCourseContent() {
+      if (cancelled) return
+      const contentInner = document.querySelector(
+        '.course-page .notion-page-content-inner'
+      ) as HTMLElement
+      if (!contentInner?.parentElement) return
+      if (contentInner.hasAttribute('data-course-content-wrapped')) return
+
+      const parent = contentInner.parentElement
+      if (!parent) return
+
+      const mount = document.createElement('div')
+      mount.className = 'course-content-mount'
+      mount.setAttribute('data-course-content-mount', 'true')
+      const hero = parent.querySelector('.course-hero-mount')
+      const insertBeforeNode = hero ? hero.nextSibling : contentInner
+      parent.insertBefore(mount, insertBeforeNode)
+
+      contentInnerToMoveRef.current = contentInner
+
+      const cc = courseContentRef.current
+      cc.container = mount
+      cc.root = createRoot(mount)
+
+      cc.root.render(
+        <AuthProvider rootName='course-content'>
+          <CourseContent
+            coursePageId={pageId}
+            courseTitle={title}
+            courseDescription={courseDescription}
+            courseUrl={router.asPath?.split('?')[0] ?? `/${pageId}`}
+            mainRef={(el) => {
+              const node = contentInnerToMoveRef.current
+              if (!el || !node) return
+              cc.originalParent = node.parentElement
+              cc.originalNextSibling = node.nextSibling
+              el.appendChild(node)
+              contentInnerToMoveRef.current = null
+              node.setAttribute('data-course-content-wrapped', 'true')
+            }}
+          />
+        </AuthProvider>
+      )
+    }
+
+    waitForElement('.course-page .notion-page-content-inner')
+      .then(() => waitForElement('.course-hero-mount', 8000).catch(() => null))
+      .then(() => {
+        mountCourseContent()
+      })
+      .catch(() => {
+        mountCourseContent()
+      })
+
+    return () => {
+      cancelled = true
+      const { root, container, originalParent, originalNextSibling } =
+        courseContentRef.current
+      if (container) {
+        const inner = container.querySelector('.notion-page-content-inner')
+        if (inner && originalParent) {
+          originalParent.insertBefore(inner, originalNextSibling)
+          inner.removeAttribute('data-course-content-wrapped')
+        }
+      }
+      if (root && container) {
+        try {
+          root.unmount()
+        } catch {
+          // Ignore unmount race conditions during teardown.
+        }
+        container.remove()
+        courseContentRef.current.root = null
+        courseContentRef.current.container = null
+        courseContentRef.current.originalParent = null
+        courseContentRef.current.originalNextSibling = null
+      }
+    }
+  }, [pageClass, pageId, title, router.asPath])
+
   React.useEffect(() => {
     // After wrapping courses, check if none exist and add maintenance message
     const cards = document.querySelectorAll('.custom-wrapper-class')
@@ -1416,12 +1704,72 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }, [router])
 
-  const [isMounted, setIsMounted] = React.useState(false)
+  /** Hide Notion output until safe to show: course pages need CourseContent to move DOM + fonts. */
+  const [contentVisible, setContentVisible] = React.useState(false)
 
   React.useEffect(() => {
-    const delay = setTimeout(() => setIsMounted(true), 200)
-    return () => clearTimeout(delay)
-  }, [])
+    if (pageClass !== 'course-page') {
+      const delay = setTimeout(() => setContentVisible(true), 200)
+      return () => clearTimeout(delay)
+    }
+
+    setContentVisible(false)
+
+    let cancelled = false
+    const selector = '.notion-page-content-inner[data-course-content-wrapped]'
+
+    const revealAfterPaint = () => {
+      const finish = () => {
+        if (cancelled) return
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (!cancelled) setContentVisible(true)
+          })
+        })
+      }
+      const fonts = document.fonts?.ready
+      if (fonts) {
+        void fonts.then(finish).catch(finish)
+      } else {
+        finish()
+      }
+    }
+
+    const timeoutRef: {
+      id?: ReturnType<typeof setTimeout>
+    } = {}
+    const observer = new MutationObserver(() => {
+      if (cancelled) return
+      if (document.querySelector(selector)) {
+        observer.disconnect()
+        clearTimeout(timeoutRef.id)
+        revealAfterPaint()
+      }
+    })
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    })
+
+    timeoutRef.id = setTimeout(() => {
+      if (!cancelled) {
+        observer.disconnect()
+        revealAfterPaint()
+      }
+    }, 3000)
+
+    if (document.querySelector(selector)) {
+      observer.disconnect()
+      clearTimeout(timeoutRef.id)
+      revealAfterPaint()
+    }
+
+    return () => {
+      cancelled = true
+      observer.disconnect()
+      clearTimeout(timeoutRef.id)
+    }
+  }, [pageClass, pageId])
 
   if (router.isFallback) {
     return <Loading />
@@ -1451,10 +1799,6 @@ export const NotionPage: React.FC<types.PageProps> = ({
     !config.isDev && getCanonicalPageUrl(site, recordMap)(pageId)
 
   const socialImage = null
-
-  const socialDescription =
-    getPageProperty<string>('Description', block, recordMap) ||
-    config.description
 
   // /* Run once per page load */
   // React.useEffect(() => {
@@ -1502,7 +1846,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         pageId={pageId}
         site={site}
         title={title}
-        description={socialDescription}
+        description={courseDescription}
         image={socialImage}
         url={canonicalPageUrl}
       />
@@ -1511,9 +1855,29 @@ export const NotionPage: React.FC<types.PageProps> = ({
       {isDarkMode && <BodyClassName className='dark-mode' />} */}
       <BodyClassName className={pageClass} />
 
+      {pageClass === 'course-page' && !contentVisible && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 10000,
+            backgroundColor: 'var(--bg-color)',
+            pointerEvents: 'auto'
+          }}
+          aria-busy='true'
+          aria-label='Loading course'
+        >
+          <div
+            style={{ position: 'relative', width: '100%', height: '100%' }}
+          >
+            <Loading />
+          </div>
+        </div>
+      )}
+
       <div
         style={{
-          visibility: isMounted ? 'visible' : 'hidden'
+          visibility: contentVisible ? 'visible' : 'hidden'
         }}
       >
         <NotionRenderer
@@ -1523,7 +1887,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           )}
           darkMode={isDarkMode}
           components={components}
-          recordMap={recordMap}
+          recordMap={recordMap as any}
           rootPageId={site.rootNotionPageId}
           rootDomain={site.domain}
           fullPage={!isLiteMode}
@@ -1535,8 +1899,8 @@ export const NotionPage: React.FC<types.PageProps> = ({
           defaultPageCover={config.defaultPageCover}
           defaultPageCoverPosition={config.defaultPageCoverPosition}
           mapPageUrl={siteMapPageUrl}
-          mapImageUrl={mapImageUrl}
-          searchNotion={config.isSearchEnabled ? searchNotion : null}
+          mapImageUrl={mapImageUrl as any}
+          searchNotion={config.isSearchEnabled ? (searchNotion as any) : null}
           pageAside={null}
         />
 
@@ -1559,7 +1923,11 @@ export const NotionPage: React.FC<types.PageProps> = ({
 
         {pageClass === 'notion-home' && <License />}
       </div>
-      <Footer />
+      {!hideFooter && (
+        <HomeFooterSection
+          variant={pageClass === 'course-page' ? 'course' : 'default'}
+        />
+      )}
       {/* <GitHubShareButton /> */}
     </>
   )

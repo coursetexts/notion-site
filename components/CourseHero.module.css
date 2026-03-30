@@ -1,0 +1,460 @@
+.root {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: 2.5rem 10%;
+  align-items: start;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  min-width: 0;
+  /* Temporary: bright background so you can spot the hero */
+  padding: 4rem 5rem 1.5rem 10%;
+  margin-bottom: 5rem;
+}
+
+.left {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.backAndCourseCode {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.backToHome {
+  display: inline-flex;
+  align-items: center;
+  color: #a8a39d;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  font-family: Tobias, serif;
+}
+
+.backToHome:hover {
+  color: #8a8580;
+}
+
+.backArrow {
+  display: inline-flex;
+  line-height: 1;
+  font-family: Tobias, serif;
+}
+
+.backArrow svg {
+  display: block;
+}
+
+.right {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.copyrightCtaRow {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.copyrightCtaButton {
+  appearance: none;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  background: transparent;
+  color: #111827;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 10px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.copyrightCtaButton:hover {
+  background: rgba(17, 24, 39, 0.04);
+  border-color: rgba(17, 24, 39, 0.18);
+}
+
+.copyrightCtaButton:active {
+  opacity: 0.85;
+}
+
+.copyrightModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.copyrightModal {
+  width: min(920px, 100%);
+  max-height: min(720px, calc(100vh - 48px));
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 0;
+}
+
+.copyrightModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 35px;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.copyrightModalTitle {
+  font-family: 'Tobias', 'Guyot Press', 'Iowan Old Style', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #353B48;
+  letter-spacing: 0.003px;
+}
+
+.copyrightModalClose {
+  appearance: none;
+  border: 1px solid #E6E6E6;
+  background: transparent;
+  color: #111827;
+  font-size: 22px;
+  line-height: 1;
+  padding: 7px 12px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+  border-radius: 100%;
+}
+
+.copyrightModalClose:hover {
+  opacity: 1;
+}
+
+.copyrightModalBody {
+  padding: 20px 35px;
+  overflow: auto;
+}
+
+.copyrightIntro {
+  margin: 0 0 18px 0;
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  color: #25272B;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.copyrightIntroLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.copyrightIntroLink:hover {
+  text-decoration-color: rgba(93, 83, 75, 0.95);
+}
+
+.copyrightSection {
+  margin-top: 18px;
+}
+
+.copyrightSectionLabel {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #37352F;
+  margin-bottom: 12px;
+}
+
+.perFileList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.perFileItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perFileFilenameBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #E6E6E6;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 10px 12px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.perFileIconBox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #E6E6E6;
+  border-radius: 3px;
+  background: #E6E6E6;
+  flex: 0 0 auto;
+}
+
+.perFileIconSvg {
+  display: block;
+  width: 12px;
+  height: 12px;
+
+}
+
+.perFileFilename {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+  letter-spacing: -0.06px;
+  color: #37352F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(760px, calc(100vw - 120px));
+}
+
+.perFileStatsRow {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.perFileStatsText {
+  color: #37352fa5;
+}
+
+.summaryLines {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: #37352F;
+  font-weight: 400;
+  letter-spacing: -0.06px;
+}
+
+.summaryLine {
+  white-space: pre-wrap;
+}
+
+
+
+/* Ensure Notion-rendered content looks sane inside modal */
+.copyrightModalBody :global(.notion-text) {
+  padding: 0 !important;
+  margin: 0 0 10px 0;
+}
+
+.copyrightModalBody :global(img) {
+  max-width: 100%;
+  height: auto;
+}
+
+.copyrightModalBody :global(.notion-page-content) {
+  width: 100%;
+}
+
+.copyrightRemainder :global(.notion-text) {
+  margin-bottom: 10px;
+}
+
+.copyrightRemainder :global(.notion-h1),
+.copyrightRemainder :global(.notion-h2),
+.copyrightRemainder :global(.notion-h3) {
+  margin: 16px 0 10px 0;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  color: #37352F;
+}
+
+.copyrightRemainder :global(ul),
+.copyrightRemainder :global(ol) {
+  margin: 8px 0 12px 22px;
+}
+
+.courseCode {
+  color: #37352F;;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-style: normal;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.56px;
+  line-height: 21px; /* 161.538% */
+  font-weight: 500;
+}
+
+.backAndCourseCode .courseCode {
+  margin-bottom: 0;
+}
+
+.title {
+  font-family: Gambarino;
+  font-size: 56px;
+  font-weight: 400;
+  font-style: normal;
+  color: #140c00;
+  font-size: 3.5rem;
+  line-height: 64px; /* 114.286% */
+  letter-spacing: -1.68px;
+  margin: 0 0 0.75rem 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  margin-bottom: 52px;
+  margin-top: 24px;
+}
+
+.instructor a{
+  color: #5D534B;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 21px; /* 161.538% */
+  font-weight: 400;
+}
+
+.instructorLink {
+  font-weight: 400;
+  color: #E6E6E6;
+  font-size: 16px;
+  text-decoration: underline #E6E6E6;
+  text-underline-offset: 7px; /* adjust this value */
+  letter-spacing: -0.16px;
+}
+
+.instructorLink:hover {
+  opacity: 0.8;
+}
+
+.schoolDateRow {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  width: 100%;
+}
+
+.schoolDate {
+  color: #37352F;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 161.538% */;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 0;
+}
+
+.schoolDateWithLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.schoolLogo {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.schoolDateDot {
+  font-size: 1em;
+  margin-left: 0.6em;
+  margin-right: 0.6em;
+  color: #37352F;
+}
+
+.saveWrap {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* .descriptionWrap {
+  max-height: 400px;
+  position: relative;
+}
+
+.descriptionScroll {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.descriptionScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.descriptionFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.85));
+  pointer-events: none;
+} */
+
+.description {
+  min-width: 0;
+  width: 97%;
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  color: #25272B;
+  font-size: 15px;
+  line-height: 24px; /* 37.5% */
+}
+
+.description :global(p) {
+  margin-bottom: 0.75rem;
+}
+
+/* Drop cap: first letter wrapped by JS (CourseHero) and styled here */
+.dropCap {
+  float: top;
+  font-size: 60px;
+  line-height: 0.85;
+  padding-right: 0.25rem;
+  padding-top: 0.06em;
+  font-family: 'Tobias', serif;
+  font-weight: 600;
+  color: #25272B;
+}
+
+@media (max-width: 800px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+}

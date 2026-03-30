@@ -77,11 +77,11 @@
 }
 
 .notion-header .notion-nav-header {
-  max-width: 100%;
+  max-width: 90%;
   margin: 0 auto;
   overflow-x: auto;
   padding: 0 2px;
-  border-bottom: 1px solid#AAAEB3;
+  border-bottom: 1px solid#D8D8D8;
   /* font-family: 'DM Mono', monospace; Add this line */
   font-family: 'UntitledSans', sans-serif;
   color: #000000;
@@ -167,7 +167,8 @@
 
 .notion-h1,
 .notion-h2,
-.notion-h3 {
+.notion-h3,
+.notion-h4 {
   margin-bottom: 0.25em;
   padding: 0 !important;
   display: block;
@@ -176,9 +177,11 @@
 .page-tight-heading-gap .notion-text + .notion-h1,
 .page-tight-heading-gap .notion-text + .notion-h2,
 .page-tight-heading-gap .notion-text + .notion-h3,
+.page-tight-heading-gap .notion-text + .notion-h4,
 .page-tight-heading-gap .notion-list + .notion-h1,
 .page-tight-heading-gap .notion-list + .notion-h2,
-.page-tight-heading-gap .notion-list + .notion-h3 {
+.page-tight-heading-gap .notion-list + .notion-h3,
+.page-tight-heading-gap .notion-list + .notion-h4 {
   margin-top: 0.15rem;
 }
 
@@ -494,7 +497,7 @@
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(16px);
   position: relative;
-  background-color: #f5f5f5;
+  background-color: #FCFCFC;
 }
 
 .dark-mode .notion-header {
@@ -511,8 +514,7 @@
 }
 
 .notion-bookmark:hover {
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-  border-image-slice: 1;
+  border-color: #0089C4;
 }
 
 .notion-search .searchBar {
@@ -526,6 +528,290 @@
 
 .notion-search .noResultsDetail {
   color: var(--fg-color-2);
+}
+
+/* Search overlay result titles: serif */
+.notion-search .notion-page-title,
+.notion-search .notion-page-title-text {
+  font-family: 'Tobias', serif;
+}
+
+/* Search modal redesign */
+.notion-search-overlay {
+  background: rgba(15, 15, 15, 0.28) !important;
+  align-items: flex-start;
+}
+
+.notion-search {
+  width: 437px !important;
+  height: 468px !important;
+  max-width: 437px !important;
+  max-height: 468px !important;
+  min-height: 468px !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04) !important;
+  top: 72px !important;
+  overflow: hidden !important;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif !important;
+  color: #000 !important;
+}
+
+.notion-search * {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+.notion-search .quickFindMenu {
+  max-height: 468px !important;
+  min-height: 468px !important;
+}
+
+.notion-search .searchBar {
+  position: relative;
+  height: 68px !important;
+  padding: 22px 16px 16px 16px !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid #e6e6e6;
+  gap: 10px;
+}
+
+.notion-search .inlineIcon {
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 2px !important;
+  opacity: 1 !important;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cg opacity='0.4'%3E%3Cpath d='M8.15625 14.0625C11.4182 14.0625 14.0625 11.4182 14.0625 8.15625C14.0625 4.89432 11.4182 2.25 8.15625 2.25C4.89432 2.25 2.25 4.89432 2.25 8.15625C2.25 11.4182 4.89432 14.0625 8.15625 14.0625Z' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12.333 12.333L15.7502 15.7502' stroke='black' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  background-position: center;
+}
+
+.notion-search .inlineIcon path {
+  opacity: 0 !important;
+}
+
+.notion-search .searchInput {
+  font-size: 15px !important;
+  line-height: 40px !important;
+  font-weight: 500;
+  color: #000 !important;
+  letter-spacing: -0.06px;
+}
+
+.notion-search .searchInput::placeholder {
+  color: #000;
+  opacity: 1;
+}
+
+.notion-search .clearButton {
+  margin-left: 0 !important;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid #e6e6e6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notion-search .clearIcon {
+  width: 12px !important;
+  height: 12px !important;
+  color: transparent !important;
+  fill: transparent !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M6.52984 5.99986L9.64234 2.89205C9.70214 2.81919 9.7327 2.72669 9.72808 2.63255C9.72345 2.5384 9.68398 2.44934 9.61733 2.38269C9.55068 2.31604 9.46162 2.27657 9.36747 2.27194C9.27333 2.26732 9.18083 2.29788 9.10797 2.35768L6.00016 5.47018L2.89234 2.35768C2.81948 2.29788 2.72698 2.26732 2.63284 2.27194C2.53869 2.27657 2.44964 2.31604 2.38299 2.38269C2.31633 2.44934 2.27686 2.5384 2.27223 2.63255C2.26761 2.72669 2.29817 2.81919 2.35797 2.89205L5.47047 5.99986L2.35797 9.10768C2.28755 9.17877 2.24805 9.2748 2.24805 9.37486C2.24805 9.47493 2.28755 9.57095 2.35797 9.64205C2.42965 9.71136 2.52545 9.7501 2.62516 9.7501C2.72486 9.7501 2.82067 9.71136 2.89234 9.64205L6.00016 6.52955L9.10797 9.64205C9.17965 9.71136 9.27545 9.7501 9.37516 9.7501C9.47486 9.7501 9.57067 9.71136 9.64234 9.64205C9.71276 9.57095 9.75227 9.47493 9.75227 9.37486C9.75227 9.2748 9.71276 9.17877 9.64234 9.10768L6.52984 5.99986Z' fill='%235D534B'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+}
+
+.notion-search .clearIcon path {
+  opacity: 0 !important;
+}
+
+.notion-search .resultsFooter {
+  position: absolute;
+  top: 26px;
+  right: 56px;
+  min-height: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 13px !important;
+  line-height: 21px !important;
+  font-weight: 400 !important;
+  color: #37352f !important;
+  opacity: 0.5;
+  background: transparent !important;
+  pointer-events: none;
+  z-index: 3;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.notion-search .resultsCount {
+  font-size: 13px !important;
+  line-height: 21px !important;
+  font-weight: 400 !important;
+  color: #37352f !important;
+  opacity: 1 !important;
+}
+
+.notion-search .resultsPane {
+  overflow: auto;
+  font-size: 15px !important;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+  position: relative;
+  background-image: url('/images/coursepage/PottedPlant.png');
+  background-repeat: no-repeat;
+  background-position: center 46%;
+  background-size: 136px 86px;
+}
+
+.notion-search .resultsPane::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.notion-search .resultsPane .result {
+  position: relative;
+  display: block !important;
+  padding: 18px 52px 18px 16px !important;
+  border-bottom: 1px solid #e6e6e6 !important;
+  color: #000 !important;
+  background: #fff !important;
+  z-index: 1;
+}
+
+.notion-search .resultsPane .result:hover {
+  background: #f9f9f9 !important;
+}
+
+.notion-search .resultsPane .result .notion-page-title {
+  display: block !important;
+  margin: 0 0 4px 0;
+  font-size: 15px !important;
+
+}
+
+.notion-search .resultsPane .result .notion-page-title-icon {
+  display: none !important;
+  
+}
+
+.notion-search .resultsPane .result .notion-page-title-text {
+  display: block !important;
+  border-bottom: 0 none !important;
+  font-size: 13px !important;
+  color: #000 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 20px !important; /* 166.667% */
+  letter-spacing: -0.06px !important;
+  margin-bottom: 1rem !important;
+}
+
+.notion-search .resultsPane .result .notion-search-result-highlight {
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 21px !important;
+  font-weight: 400 !important;
+  color: #37352f !important;
+  opacity: 0.8;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notion-search .resultsPane .result::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M5.25 11.375L9.625 7L5.25 2.625' stroke='%235D534B' stroke-width='1.60417' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.notion-search .noResultsPane {
+  min-height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px 16px 32px 16px !important;
+}
+
+.notion-search .noResultsPane::before {
+  content: '';
+  width: 136px;
+  height: 86px;
+  background-image: url('/images/coursepage/PottedPlant.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.98;
+}
+
+.notion-search .noResults {
+  color: #37352f !important;
+  font-size: 18px !important;
+  line-height: 24px !important;
+  font-weight: 500 !important;
+}
+
+.notion-search .noResultsDetail {
+  color: #37352f !important;
+  opacity: 0.6;
+  font-size: 11px !important;
+  line-height: 20px !important;
+  letter-spacing: -0.06px !important;
+}
+
+/* Initial modal open state: show only the pot artwork */
+.notion-search .searchBar:has(.searchInput:placeholder-shown) ~ .noResultsPane .noResults,
+.notion-search .searchBar:has(.searchInput:placeholder-shown) ~ .noResultsPane .noResultsDetail {
+  display: none !important;
+}
+
+/* Initial modal open state in react-notion-x often renders an empty results pane */
+.notion-search .searchBar:has(.searchInput:placeholder-shown) ~ .resultsPane:empty {
+  position: relative;
+}
+
+.notion-search .searchBar:has(.searchInput:placeholder-shown) ~ .resultsPane:empty::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: 136px;
+  height: 86px;
+  background-image: url('/images/coursepage/PottedPlant.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.98;
+  pointer-events: none;
+}
+
+a.notion-page-link .notion-page-title {
+  font-family: 'Tobias', serif;
 }
 
 .notion-equation.notion-equation-block {
@@ -786,16 +1072,9 @@
   line-height: 1.1111111;
 }
 
+/* Hide the Notion page title on course pages; it's already shown in the Course Hero */
 .course-page .notion-title {
-  font-family: Tobias;
-  font-weight: 600;
-  color: #140c00;
-  margin: 0;
-  margin-bottom: 1.5rem;
-  max-width: 900px;
-  font-size: 2.5rem;
-  line-height: 120%;
-  letter-spacing: -0.3px;
+  display: none !important;
 }
 
 .course-page .content-table-heading {
@@ -829,25 +1108,128 @@
   opacity: 80%;
 }
 
-.course-page .notion-page-content-inner > :nth-child(1) {
-  color: #616774;
+
+/* Mount point for CourseHero component (scraped content rendered here) */
+.course-hero-mount {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ─── COURSE HERO STANDALONE ─────────────────────────────────────────────
+   Content from .notion-page-content-inner nth-child(1)–(3) is moved into
+   .course-hero-standalone as a sibling *before* .notion-page-content-inner,
+   so .notion-page-content-inner styles do NOT apply. This block styles the
+   standalone container from scratch (no .course-page / .notion-page-content-inner
+   inheritance for layout; body still has .course-page so we override below). ─── */
+
+.course-hero-standalone {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2.5rem 3rem;
+  align-items: start;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+/* Left column: first two children */
+.course-hero-standalone > *:nth-child(1),
+.course-hero-standalone > *:nth-child(2) {
+  grid-column: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  background-color: #67bdfc;
+}
+
+/* Right column: third child */
+.course-hero-standalone > *:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: start;
+  min-width: 0;
+}
+
+/* Optional: drop-cap on right column first paragraph */
+.course-hero-standalone > *:nth-child(3) .notion-text:first-of-type::first-letter {
+  float: left;
+  font-size: 4rem;
+  line-height: 0.85;
+  padding-right: 0.5rem;
+  font-family: 'Tobias', serif;
+}
+
+/* Override .course-page styles so you can style the hero from scratch */
+.course-hero-standalone .notion-title {
+  font-family: Tobias, serif;
+  font-weight: 600;
+  color: #140c00;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.course-hero-standalone > *:nth-child(1) {
+  color: #6e6174;
   font-size: 11px;
   font-weight: 400;
-  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  line-height: 1rem;
+}
+
+.course-hero-standalone .notion-blue .notion-link {
+  font-family: 'TobiasMed', sans-serif;
+  color: #1f2a37;
+  font-size: 16px;
+  border-bottom: none;
+  letter-spacing: -0.16px;
+  text-transform: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .course-hero-standalone {
+    grid-template-columns: 1fr;
+  }
+  .course-hero-standalone > *:nth-child(3) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* ─── COURSE PAGE HERO (when NOT moved: still inside .notion-page-content-inner) ─── */
+.course-page .notion-page-content-inner:not(:has(.content-table)) {
+  grid-template-columns: minmax(220px, 320px) 1fr !important;
+  gap: 2.5rem 3rem;
+  align-items: start;
+}
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > :nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: start;
+  border: none;
+}
+
+/* Drop cap only in course hero (see .course-hero-standalone); not here so content area never gets it */
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > *:not(:nth-child(3)) {
+  grid-column: 1;
+  order: 4;
+}
+
+.course-page .notion-page-content-inner:not(:has(.content-table)) > :nth-child(1) { order: 1; }
+.course-page .notion-page-content-inner:not(:has(.content-table)) > *:has(.notion-title) { order: 2; }
+.course-page .notion-page-content-inner:not(:has(.content-table)) > *:has(.notion-blue) { order: 3; }
+
+.course-page .notion-page-content-inner > :nth-child(1) {
+  color: #6e6174;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 1.1px;
   line-height: 1rem;
   vertical-align: middle;
-  line-height: 1rem;
-  align-items: center; /* Add this */
+  align-items: center;
   gap: 0.5em;
-}
-.course-page .notion-page-content-inner > :nth-child(3) {
-  border-bottom: 1px solid #e5e1d3;
-  border-top: 1px solid #e5e1d3;
-}
-
-.course-page .notion-page-content-inner:not(:has(.content-table)) {
-  grid-template-columns: 1fr !important; /* single column */
 }
 
 .course-page .notion-blue .notion-link {
@@ -858,6 +1240,8 @@
   letter-spacing: -0.16px;
   text-transform: none;
 }
+
+
 /* 
 .course-page .notion-h2 .notion-h-title {
   font-weight: 700;
@@ -870,13 +1254,13 @@
 } */
 
 .course-page .notion-h2 .notion-h-title {
-  font-weight: 400;
-  font-size: 11px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: inherit;
   margin-bottom: 1em;
   line-height: 1.3333333;
-  font-family: 'DM Mono', monospace;
   text-transform: uppercase;
-  letter-spacing: 1.1px;
+  letter-spacing: 0.05em;
   text-align: center;
   color: #616774;
 }
@@ -892,15 +1276,12 @@
  */
 
 .course-page .notion-text b {
-  font-weight: 400;
-  font-size: 11px;
-  margin-bottom: 1em;
-  line-height: 1.3333333;
-  font-family: 'DM Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 1.1px;
-  text-align: center;
-  color: #616774;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
 }
 
 .course-page a {
@@ -982,9 +1363,13 @@
   text-wrap: nowrap;
   background-color: #f8f8f8;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  font-family: 'UntitledSans', sans-serif;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   padding: 8px 18px;
   color: #000000;
+}
+
+.tab-btn + .tab-btn {
+  border-left: 1px solid #E6E6E6;
 }
 
 .tab-btn.active {
@@ -1026,8 +1411,10 @@
     grid-row: 2;
   }
 
-  .course-page .notion-page-content-inner > *:not(.content-table) {
+  .course-page .notion-page-content-inner > *:not(.content-table),
+  .course-page .notion-page-content-inner > :nth-child(3) {
     grid-column: 1;
+    grid-row: auto;
   }
 
   .content-table {
@@ -1170,6 +1557,21 @@
   color: #fff !important;
   font-weight: 500;
   border-color: #fff !important;
+}
+
+/* Make full-page course content span the full white width */
+.notion-page.notion-page-no-cover.notion-page-has-icon.notion-page-has-text-icon.notion-full-page {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Remove main’s bottom padding and top margin on course pages to close the gap above the footer */
+.course-page main.notion-page {
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .dark-mode .notion-callout-text b {
@@ -1425,7 +1827,8 @@ summary .notion-h3 .notion-h-title {
 }
 
 .course-page .notion-page-scroller {
-  padding: 0 4%;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .notion-callout-text > b {
@@ -1499,4 +1902,207 @@ summary .notion-h3 .notion-h-title {
 
 .course-left-column .notion-gray {
   text-transform: uppercase !important;
+}
+
+/* ─── COURSE CONTENT LAYOUT (directly under Course Hero) ───────────────────
+   .course-content-mount wraps TableOfContents (left) + ContentMain (right).
+   Visually separated from the hero so the TOC sits clearly underneath.
+   .notion-page-content-inner is moved into ContentMain; force single column
+   and hide the old left column so only the main tabbed content shows. */
+/* Full viewport width: white course content area reaches the edges; internal padding preserved in ContentMain .slot and sidebar */
+.course-content-mount {
+  width: 100vw;
+  min-width: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #fff;
+  border-top: 1px solid #e5e1d3;
+  box-sizing: border-box;
+}
+
+.course-content-mount .notion-page-content-inner {
+  display: block;
+  grid-template-columns: unset;
+  max-width: 100%;
+}
+
+.course-content-mount .notion-page-content-inner > .course-left-column {
+  display: none;
+}
+
+.course-content-mount .notion-page-content-inner > .content-table {
+  grid-column: unset;
+  grid-row: unset;
+}
+
+/* Only show the active tab’s panel; hide the rest so only that heading’s content is visible */
+/* Reset drop-cap outside hero: only the hero paragraph should have the big first letter */
+.course-content-mount .notion-text::first-letter,
+.course-content-section .notion-text::first-letter {
+  float: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  padding-right: 0 !important;
+  font-family: inherit !important;
+}
+
+/* Paragraph font in content main */
+.course-content-mount .notion-text {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/*
+ * Lock icon is injected as first child of .notion-text (NotionPage inserts
+ * svg.lock-icon before link). Grid row wraps icon col + text col.
+ */
+.course-content-mount .notion-text-citation-row {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  align-items: start;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.course-content-mount .notion-text-citation-row .citation-icon-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.15em;
+}
+
+.course-content-mount .notion-text-citation-row .citation-icon-col svg.lock-icon {
+  display: block !important;
+  position: static !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+  transform: none;
+  vertical-align: top;
+}
+
+.course-content-mount .notion-text-citation-row .citation-text-col {
+  display: block;
+  min-width: 0;
+  word-break: break-word;
+}
+
+/*
+ * Citation links with icons – 2-column layout (JS adds .citation-icon-col +
+ * .citation-text-col). Column 1 = icon only; column 2 = all text so wraps never
+ * sit under the icon.
+ */
+.course-content-mount a.notion-link-citation-layout {
+  display: grid !important;
+  grid-template-columns: 1.5rem 1fr;
+  align-items: start;
+  gap: 0.5rem;
+  width: 100% !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-left: 0 !important;
+  margin-bottom: 0.5em;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-icon-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.15em;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-icon-col .notion-page-icon-inline,
+.course-content-mount a.notion-link-citation-layout .citation-icon-col .notion-page-icon-span,
+.course-content-mount a.notion-link-citation-layout .citation-icon-col .notion-page-icon-image,
+.course-content-mount a.notion-link-citation-layout .citation-icon-col img {
+  display: inline-flex !important;
+  position: static !important;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-text-col {
+  display: block;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.course-content-mount a.notion-link-citation-layout .citation-text-col .notion-page-title,
+.course-content-mount a.notion-link-citation-layout .citation-text-col .notion-page-title-text {
+  display: block !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: normal !important;
+}
+
+/* Before JS runs, or if layout didn’t apply – fallback block + padding */
+.course-content-mount a.notion-link-citation:not(.notion-link-citation-layout) {
+  display: block !important;
+  width: 100% !important;
+  padding-left: 1.75rem !important;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+}
+
+.course-content-mount .notion-list li .notion-page-link,
+.course-content-mount .notion-text .notion-page-link {
+  margin-bottom: 0.5em;
+}
+
+.course-content-mount .course-content-section {
+  display: none !important;
+}
+.course-content-mount .course-content-section.content-section-active {
+  display: block !important;
+}
+
+/* Hide duplicate heading only in the block that matches the selected tab (slot title above).
+ * Use :first-of-type not :first-child — Notion often inserts dividers/spacers before the section h2,
+ * so the duplicate "GENERAL" bar was still visible for General but not when the first h2 was first child. */
+.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h2:first-of-type,
+.course-content-mount .course-content-main[data-content-visible='true'] > .notion-h3:first-of-type,
+.course-content-mount .course-content-main[data-content-visible='true'] > h2[class*='notion']:first-of-type,
+.course-content-mount .course-content-main[data-content-visible='true'] > h3[class*='notion']:first-of-type,
+.course-content-mount .course-content-subsection[data-content-visible='true'] > .notion-h4:first-of-type,
+.course-content-mount .course-content-subsection[data-content-visible='true'] > h4[class*='notion']:first-of-type,
+/* Sections built without h4 sub-tabs: headings sit directly under .course-content-section */
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > .notion-h2:first-of-type,
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > .notion-h3:first-of-type,
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > h2[class*='notion']:first-of-type,
+.course-content-mount .course-content-section.content-section-active:not(:has(.course-content-main)) > h3[class*='notion']:first-of-type {
+  display: none !important;
+}
+
+/* Remove Notion highlight backgrounds from section headings in main content (avoids blue bar on "GENERAL" etc.) */
+.course-content-mount .course-content-main .notion-h2.notion-blue_background,
+.course-content-mount .course-content-main .notion-h2.notion-gray_background,
+.course-content-mount .course-content-main .notion-h3.notion-blue_background,
+.course-content-mount .course-content-main .notion-h3.notion-gray_background,
+.course-content-mount .course-content-subsection .notion-h4.notion-blue_background,
+.course-content-mount .course-content-subsection .notion-h4.notion-gray_background {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+/* h4 sub-sections (sub-tabs) under a top-level section */
+.course-content-mount .course-content-subsection {
+  margin-top: 1.25rem;
+}
+
+/* Leave space below sticky top bar when scrolling to a heading */
+.course-content-mount [data-toc-id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Brief highlight on content heading when selected from table of contents */
+.course-content-mount .content-heading-highlight {
+  background-color: #cae4f7b5;
+  border-radius: 4px;
+  transition: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

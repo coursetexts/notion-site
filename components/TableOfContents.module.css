@@ -1,0 +1,228 @@
+.root {
+  width: 100%;
+  min-width: 0;
+  padding: 1.5rem 1.25rem 2rem;
+  background-color: #fff;
+  border-right: 1px solid #e5e1d3;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.heading {
+  font-family: 'Guyot Press', 'Guyot Text', 'Iowan Old Style', Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #25272b;
+  margin: 0 0 1.5rem 0;
+}
+
+.searchWrap {
+  margin-bottom: 1.25rem;
+}
+
+.search {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #25272b;
+  background: transparent;
+  border: 1px solid #000d1a16;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.6rem center;
+}
+
+.search::placeholder {
+  color: #6b7280;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  margin: 0 -0.5rem;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.875rem;
+  color: #25272b;
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid #E6E6E6;
+  cursor: pointer;
+}
+
+.list > .item:last-child {
+  border-bottom: none;
+}
+
+.item:hover {
+  background-color: #f5f5f5;
+}
+
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Flush right: chevron + status icons share one rail, vertically centered together */
+.itemEndRail {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.itemToggle {
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #6b7280;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.item:hover .itemToggle,
+.itemActive .itemToggle {
+  opacity: 1;
+  color: #0089C4;
+}
+
+
+
+.itemActive {
+  background-color: #BDE3FF3D;
+  border-left-color: #0089C4;
+  color: #0089C4;
+}
+
+.itemIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Matches ContentMain completed / bookmarked control icons: blue circle, white glyph */
+.itemIconCheck {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #0089c4;
+  border: 1px solid #0089c4;
+  box-sizing: border-box;
+}
+
+.itemIconBookmark {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #0089c4;
+  border: 1px solid #0089c4;
+  box-sizing: border-box;
+}
+
+.itemChildren {
+  list-style: none;
+  margin: 0.5rem 0 0.5rem 1.25rem;
+  border-left: 1px solid #e5e1d3;
+  padding-left: 0.75rem;
+}
+
+.childItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.35rem 0;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.8125rem;
+  color: #4b5563;
+  border-bottom: 1px solid #E6E6E6;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.itemChildren .childItem:last-child {
+  border-bottom: none;
+}
+
+.childItem > span:first-of-type {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.childEndRail {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.childItem:hover {
+  color: #25272b;
+}
+
+.childItemActive {
+  background-color: #BDE3FF3D;
+  color: #0089C4;
+  border-radius: 4px;
+  margin: 0 -0.25rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.childItemActive:hover {
+  color: #0089C4;
+}
+
+.emptyState {
+  font-family: 'UntitledSans', sans-serif;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  padding: 0.5rem 0;
+  font-style: italic;
+}

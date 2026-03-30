@@ -7,7 +7,7 @@
   "repository": "transitive-bullshit/nextjs-notion-starter-kit",
   "license": "MIT",
   "engines": {
-    "node": ">=16"
+    "node": ">=20"
   },
   "scripts": {
     "dev": "next dev",
@@ -30,13 +30,16 @@
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
     "@react-icons/all-files": "^4.1.0",
+    "@supabase/supabase-js": "^2.98.0",
     "@types/node": "^18.8.5",
     "@types/react": "^18.0.21",
     "@vercel/og": "^0.0.19",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
+    "dotenv": "^17.3.1",
     "expiry-map": "^2.0.0",
     "fathom-client": "^3.4.1",
+    "framer-motion": "^12.35.2",
     "googleapis": "^148.0.0",
     "got": "^12.0.3",
     "iron-session": "^8.0.4",

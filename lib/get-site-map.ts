@@ -1,6 +1,6 @@
+import { ExtendedRecordMap } from 'notion-types'
 import { getAllPagesInSpace, getPageProperty } from 'notion-utils'
 import pMemoize from 'p-memoize'
-import { ExtendedRecordMap } from 'notion-types'
 
 import * as config from './config'
 import * as types from './types'
@@ -49,7 +49,9 @@ async function getAllPagesImpl(
       }
 
       const block = recordMap.block[pageId]?.value
-      if (!(getPageProperty<boolean|null>('Public', block, recordMap) ?? true)) {
+      if (
+        !(getPageProperty<boolean | null>('Public', block, recordMap) ?? true)
+      ) {
         return map
       }
 
@@ -83,8 +85,10 @@ async function getAllPagesImpl(
     {}
   )
 
-  console.log(`Successfully processed ${Object.keys(canonicalPageMap).length} pages`)
-  
+  console.log(
+    `Successfully processed ${Object.keys(canonicalPageMap).length} pages`
+  )
+
   return {
     pageMap,
     canonicalPageMap

@@ -58,20 +58,18 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  navigationStyle: 'default',
+  navigationStyle: 'custom',
 
   // whether or not to include the Notion ID in page URLs
   includeNotionIdInUrls: false,
 
-  // navigationStyle: 'custom',
-  // navigationLinks: [
-  //   {
-  //     title: 'About',
-  //     pageId: 'f1199d37579b41cbabfc0b5174f4256a'
-  //   },
-  //   {
-  //     title: 'Contact',
-  //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
-  //   }
-  // ]
+  navigationLinks: [
+    { title: 'All Courses', pageId: process.env.NEXT_PUBLIC_NOTION_PAGE_ID! },
+    { title: 'Resources', url: '/about' },
+    { title: 'Communities', url: 'https://discord.gg/6xBECjtC55' },
+    {
+      title: 'Donate',
+      url: 'https://hcb.hackclub.com/donations/start/coursetexts'
+    }
+  ]
 })

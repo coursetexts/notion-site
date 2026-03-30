@@ -6,7 +6,10 @@ export const notion = new NotionAPI({
 })
 
 // Rate-limited wrapper for getPage
-export async function getPageWithRetry(pageId: string, maxRetries = 3): Promise<any> {
+export async function getPageWithRetry(
+  pageId: string,
+  maxRetries = 3
+): Promise<any> {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       console.log(`notion getPage ${pageId} (attempt ${attempt})`)
@@ -16,10 +19,10 @@ export async function getPageWithRetry(pageId: string, maxRetries = 3): Promise<
         // Exponential backoff: wait 2^attempt seconds
         const delay = Math.pow(2, attempt) * 1000
         console.log(`Rate limited, retrying in ${delay}ms...`)
-        await new Promise(resolve => setTimeout(resolve, delay))
+        await new Promise((resolve) => setTimeout(resolve, delay))
         continue
       }
-      
+
       console.error(`page load error`, { pageId }, error?.message)
       if (attempt === maxRetries) {
         throw error
@@ -29,9 +32,11 @@ export async function getPageWithRetry(pageId: string, maxRetries = 3): Promise<
 }
 
 // Throttled batch processing
-export async function getPages(pageIds: string[]): Promise<{ [pageId: string]: any }> {
+export async function getPages(
+  pageIds: string[]
+): Promise<{ [pageId: string]: any }> {
   console.log(`Fetching ${pageIds.length} pages with rate limiting...`)
-  
+
   const results = await pMap(
     pageIds,
     async (pageId) => {
@@ -43,7 +48,7 @@ export async function getPages(pageIds: string[]): Promise<{ [pageId: string]: a
         return { pageId, page: null }
       }
     },
-    { 
+    {
       concurrency: 3, // Limit to 3 concurrent requests
       stopOnError: false // Continue processing remaining items if an error occurs
     }
