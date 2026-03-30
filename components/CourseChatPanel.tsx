@@ -1,4 +1,5 @@
 import React from 'react'
+import cs from 'classnames'
 
 import styles from './CourseChatPanel.module.css'
 
@@ -11,12 +12,15 @@ export interface CourseChatPanelProps {
   onHide?: () => void
   courseTitle?: string
   courseDescription?: string
+  /** Full-viewport sheet on small screens (no sidebar border / max-width). */
+  sheetLayout?: boolean
 }
 
 export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
   onHide,
   courseTitle,
-  courseDescription
+  courseDescription,
+  sheetLayout = false
 }) => {
   const [messages, setMessages] = React.useState<ChatMessage[]>([
     {
@@ -84,7 +88,10 @@ export const CourseChatPanel: React.FC<CourseChatPanelProps> = ({
   }, [courseDescription, courseTitle, inputValue, isSending, messages])
 
   return (
-    <aside className={styles.root} aria-label='Course chat'>
+    <aside
+      className={cs(styles.root, sheetLayout && styles.rootSheet)}
+      aria-label='Course chat'
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>Course Chat</h2>
         <button

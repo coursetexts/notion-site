@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import cs from 'classnames'
 
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
@@ -30,6 +31,8 @@ export interface AnnotationWidgetProps {
   sectionId?: string
   /** Called after a new annotation or reply is saved (e.g. to refresh course activity below). */
   onActivityPosted?: () => void
+  /** Full-viewport sheet on small screens (no sidebar border / max-width). */
+  sheetLayout?: boolean
 }
 
 /** True if any line starts with optional spaces then > (markdown blockquote). */
@@ -404,7 +407,8 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   courseTitle,
   coursePageId,
   sectionId,
-  onActivityPosted
+  onActivityPosted,
+  sheetLayout = false
 }) => {
   const auth = useAuthOptional()
   const [sortBy, setSortBy] = useState<SortBy>('time')
@@ -523,7 +527,10 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   )
 
   return (
-    <aside className={styles.root} aria-label='Annotations'>
+    <aside
+      className={cs(styles.root, sheetLayout && styles.rootSheet)}
+      aria-label='Annotations'
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>
           Annotations{' '}

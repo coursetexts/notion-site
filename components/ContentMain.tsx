@@ -1,12 +1,6 @@
 import React from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
-import {
-  AnimatePresence,
-  type Transition,
-  motion,
-  useReducedMotion
-} from 'framer-motion'
 
 import styles from './ContentMain.module.css'
 import { PdfEmbed } from './PdfEmbed'
@@ -84,14 +78,8 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
   const isCompleted = sectionStatus?.isCompleted ?? false
   const isBookmarked = sectionStatus?.isBookmarked ?? false
-  const shouldReduceMotion = useReducedMotion()
   const canShowProgressButtons =
     isSignedIn && Boolean(onToggleComplete || onToggleBookmark)
-
-  const buttonSpring: Transition = React.useMemo(() => {
-    if (shouldReduceMotion) return { duration: 0 }
-    return { type: 'spring', stiffness: 520, damping: 38, mass: 0.7 }
-  }, [shouldReduceMotion])
 
   return (
     <main className={styles.root}>
@@ -209,7 +197,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
             </div>
             <div className={styles.sectionActionsRight}>
               {canShowProgressButtons && onToggleComplete && (
-                <motion.button
+                <button
                   type='button'
                   className={
                     isCompleted
@@ -220,77 +208,51 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                     isCompleted ? 'Marked as completed' : 'Mark as completed'
                   }
                   onClick={() => onToggleComplete(!isCompleted)}
-                  layout
-                  transition={buttonSpring}
                 >
                   <span className={styles.markCompleteIcon} aria-hidden>
-                    <AnimatePresence mode='wait' initial={false}>
-                      <motion.span
-                        key={isCompleted ? 'done' : 'todo'}
-                        initial={
-                          shouldReduceMotion
-                            ? { opacity: 1, scale: 1 }
-                            : { opacity: 0, scale: 0.85 }
-                        }
-                        animate={{
-                          opacity: 1,
-                          scale: isCompleted ? 1.12 : 1
-                        }}
-                        exit={
-                          shouldReduceMotion
-                            ? { opacity: 1, scale: 1 }
-                            : { opacity: 0, scale: 0.9 }
-                        }
-                        transition={buttonSpring}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
+                    {isCompleted ? (
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='12'
+                        height='12'
+                        viewBox='0 0 12 12'
+                        fill='none'
+                        aria-hidden
                       >
-                        {isCompleted ? (
-                          <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            width='12'
-                            height='12'
-                            viewBox='0 0 12 12'
-                            fill='none'
-                            aria-hidden
-                          >
-                            <path
-                              d='M4.87499 8.99999C4.77559 8.99864 4.68029 8.96018 4.6078 8.89217L1.9828 6.26717C1.923 6.19431 1.89244 6.10181 1.89706 6.00767C1.90169 5.91352 1.94116 5.82447 2.00781 5.75781C2.07447 5.69116 2.16352 5.65169 2.25767 5.64706C2.35181 5.64244 2.44431 5.673 2.51717 5.7328L4.87499 8.0953L9.8578 3.1078C9.93066 3.048 10.0232 3.01744 10.1173 3.02206C10.2114 3.02669 10.3005 3.06616 10.3672 3.13281C10.4338 3.19947 10.4733 3.28852 10.4779 3.38267C10.4825 3.47681 10.452 3.56931 10.3922 3.64217L5.14217 8.89217C5.06968 8.96018 4.97438 8.99864 4.87499 8.99999Z'
-                              fill='#ffffff'
-                            />
-                          </svg>
-                        ) : (
-                          <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            width='12'
-                            height='12'
-                            viewBox='0 0 12 12'
-                            fill='none'
-                            aria-hidden
-                          >
-                            <path
-                              d='M4.87499 8.99999C4.77559 8.99864 4.68029 8.96018 4.6078 8.89217L1.9828 6.26717C1.923 6.19431 1.89244 6.10181 1.89706 6.00767C1.90169 5.91352 1.94116 5.82447 2.00781 5.75781C2.07447 5.69116 2.16352 5.65169 2.25767 5.64706C2.35181 5.64244 2.44431 5.673 2.51717 5.7328L4.87499 8.0953L9.8578 3.1078C9.93066 3.048 10.0232 3.01744 10.1173 3.02206C10.2114 3.02669 10.3005 3.06616 10.3672 3.13281C10.4338 3.19947 10.4733 3.28852 10.4779 3.38267C10.4825 3.47681 10.452 3.56931 10.3922 3.64217L5.14217 8.89217C5.06968 8.96018 4.97438 8.99864 4.87499 8.99999Z'
-                              fill='#9ca3af'
-                            />
-                          </svg>
-                        )}
-                      </motion.span>
-                    </AnimatePresence>
+                        <path
+                          d='M10.125 3.375L4.875 8.625L2.25 6'
+                          stroke='#FDFDFD'
+                          strokeWidth='1.5'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='12'
+                        height='12'
+                        viewBox='0 0 12 12'
+                        fill='none'
+                        aria-hidden
+                      >
+                        <path
+                          d='M10.125 3.375L4.875 8.625L2.25 6'
+                          stroke='#242424'
+                          strokeWidth='1.5'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                      </svg>
+                    )}
                   </span>
-                  <motion.span
-                    className={styles.markCompleteText}
-                    layout
-                    transition={buttonSpring}
-                  >
-                    {isCompleted ? 'Completed' : 'Mark as Completed'}
-                  </motion.span>
-                </motion.button>
+                  <span className={styles.markCompleteText}>
+                    {isCompleted ? 'Completed' : 'Completed?'}
+                  </span>
+                </button>
               )}
               {canShowProgressButtons && onToggleBookmark && (
-                <motion.button
+                <button
                   type='button'
                   className={
                     isBookmarked ? styles.bookmarkBtnActive : styles.bookmarkBtn
@@ -299,93 +261,65 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                     isBookmarked ? 'Remove bookmark' : 'Bookmark this item'
                   }
                   onClick={() => onToggleBookmark(!isBookmarked)}
-                  layout
-                  transition={buttonSpring}
                 >
                   <span className={styles.bookmarkIcon} aria-hidden>
-                    <AnimatePresence mode='wait' initial={false}>
-                      <motion.span
-                        key={isBookmarked ? 'saved' : 'unsaved'}
-                        initial={
-                          shouldReduceMotion
-                            ? { opacity: 1, scale: 1 }
-                            : { opacity: 0, scale: 0.85 }
-                        }
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={
-                          shouldReduceMotion
-                            ? { opacity: 1, scale: 1 }
-                            : { opacity: 0, scale: 0.9 }
-                        }
-                        transition={buttonSpring}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
+                    {isBookmarked ? (
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='12'
+                        height='12'
+                        viewBox='-4 -4 20 20'
+                        fill='none'
+                        aria-hidden
                       >
-                        {isBookmarked ? (
-                          <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            width='12'
-                            height='12'
-                            viewBox='0 0 24 24'
+                        <path
+                          d='M8.625 1.5H3.375C3.17609 1.5 2.98532 1.57902 2.84467 1.71967C2.70402 1.86032 2.625 2.05109 2.625 2.25V10.5C2.62536 10.5668 2.64331 10.6322 2.67706 10.6899C2.7108 10.7475 2.75913 10.7952 2.81719 10.8281C2.8728 10.8599 2.93596 10.8761 3 10.875C3.06961 10.8751 3.13784 10.8556 3.19687 10.8188L6 9.06562L8.79844 10.8188C8.85621 10.8535 8.92201 10.8726 8.98939 10.8742C9.05677 10.8759 9.12342 10.86 9.18281 10.8281C9.24087 10.7952 9.2892 10.7475 9.32294 10.6899C9.35669 10.6322 9.37464 10.5668 9.375 10.5V2.25C9.375 2.05109 9.29598 1.86032 9.15533 1.71967C9.01468 1.57902 8.82391 1.5 8.625 1.5Z'
+                          fill='#F8F7F4'
+                        />
+                      </svg>
+                    ) : (
+                      <span
+                        className={styles.bookmarkIconStack}
+                        aria-hidden
+                      >
+                        <svg
+                          className={styles.bookmarkIconFilled}
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='12'
+                          height='12'
+                          viewBox='-4 -4 20 20'
+                          fill='none'
+                          aria-hidden
+                        >
+                          <path
+                            d='M8.625 1.5H3.375C3.17609 1.5 2.98532 1.57902 2.84467 1.71967C2.70402 1.86032 2.625 2.05109 2.625 2.25V10.5C2.62536 10.5668 2.64331 10.6322 2.67706 10.6899C2.7108 10.7475 2.75913 10.7952 2.81719 10.8281C2.8728 10.8599 2.93596 10.8761 3 10.875C3.06961 10.8751 3.13784 10.8556 3.19687 10.8188L6 9.06562L8.79844 10.8188C8.85621 10.8535 8.92201 10.8726 8.98939 10.8742C9.05677 10.8759 9.12342 10.86 9.18281 10.8281C9.24087 10.7952 9.2892 10.7475 9.32294 10.6899C9.35669 10.6322 9.37464 10.5668 9.375 10.5V2.25C9.375 2.05109 9.29598 1.86032 9.15533 1.71967C9.01468 1.57902 8.82391 1.5 8.625 1.5Z'
+                            fill='#0089C4'
+                          />
+                        </svg>
+                        <svg
+                          className={styles.bookmarkIconOutline}
+                          xmlns='http://www.w3.org/2000/svg'
+                          width='12'
+                          height='12'
+                          viewBox='-4 -4 20 20'
+                          fill='none'
+                          aria-hidden
+                        >
+                          <path
+                            d='M8.625 1.5H3.375C3.17609 1.5 2.98532 1.57902 2.84467 1.71967C2.70402 1.86032 2.625 2.05109 2.625 2.25V10.5C2.62536 10.5668 2.64331 10.6322 2.67706 10.6899C2.7108 10.7475 2.75913 10.7952 2.81719 10.8281C2.8728 10.8599 2.93596 10.8761 3 10.875C3.06961 10.8751 3.13784 10.8556 3.19687 10.8188L6 9.06562L8.79844 10.8188C8.85621 10.8535 8.92201 10.8726 8.98939 10.8742C9.05677 10.8759 9.12342 10.86 9.18281 10.8281C9.24087 10.7952 9.2892 10.7475 9.32294 10.6899C9.35669 10.6322 9.37464 10.5668 9.375 10.5V2.25C9.375 2.05109 9.29598 1.86032 9.15533 1.71967C9.01468 1.57902 8.82391 1.5 8.625 1.5Z'
                             fill='none'
-                            aria-hidden
-                          >
-                            <path
-                              d='M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z'
-                              fill='#0089C4'
-                            />
-                          </svg>
-                        ) : (
-                          <span
-                            className={styles.bookmarkIconStack}
-                            aria-hidden
-                          >
-                            <svg
-                              className={styles.bookmarkIconFilled}
-                              xmlns='http://www.w3.org/2000/svg'
-                              width='12'
-                              height='12'
-                              viewBox='0 0 24 24'
-                              fill='none'
-                              aria-hidden
-                            >
-                              <path
-                                d='M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z'
-                                fill='#0089C4'
-                              />
-                            </svg>
-                            <svg
-                              className={styles.bookmarkIconOutline}
-                              xmlns='http://www.w3.org/2000/svg'
-                              width='12'
-                              height='12'
-                              viewBox='0 0 12 12'
-                              fill='none'
-                              aria-hidden
-                            >
-                              <path
-                                d='M9 10.5L6 8.625L3 10.5V2.25C3 2.15054 3.03951 2.05516 3.10984 1.98484C3.18016 1.91451 3.27554 1.875 3.375 1.875H8.625C8.72446 1.875 8.81984 1.91451 8.89017 1.98484C8.96049 2.05516 9 2.15054 9 2.25V10.5Z'
-                                stroke='currentColor'
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                              />
-                            </svg>
-                          </span>
-                        )}
-                      </motion.span>
-                    </AnimatePresence>
+                            stroke='currentColor'
+                            strokeWidth='0.85'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
+                      </span>
+                    )}
                   </span>
-                  <motion.span
-                    className={styles.bookmarkText}
-                    layout
-                    transition={buttonSpring}
-                  >
+                  <span className={styles.bookmarkText}>
                     {isBookmarked ? 'Bookmarked' : 'Bookmark'}
-                  </motion.span>
-                </motion.button>
+                  </span>
+                </button>
               )}
             </div>
           </div>

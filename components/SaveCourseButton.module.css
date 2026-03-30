@@ -7,8 +7,8 @@
   display: inline-flex;
   white-space: nowrap;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.6rem;
+  gap: 10px;
+  padding: 8px 12px;
   border-radius: 4px;
   border: 1px solid var(--outline, #E6E6E6);
   background: var(--offwhite, #FDFDFD);
@@ -24,13 +24,25 @@
   transition: background-color 0.15s, border-color 0.15s;
 }
 
-.saveBtn:hover,
-.savedBtn:hover {
+.saveBtn:hover:not(:disabled):not(.saving) {
   background-color: #f5f5f5;
   border-color: #d5d5d5;
 }
 
-/* .savedBtn shares .saveBtn base styles; add overrides here if needed */
+.savedBtn,
+.saveBtn.saving {
+  background: #f2f9ff;
+}
+
+.savedBtn:hover:not(:disabled),
+.saveBtn.saving:hover:not(:disabled) {
+  background-color: #e8f4fd;
+  border-color: #d5d5d5;
+}
+
+.savedBtn .icon {
+  color: #0089c4;
+}
 
 .saveBtn:disabled,
 .savedBtn:disabled {

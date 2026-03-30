@@ -1,4 +1,5 @@
 import React from 'react'
+import { createPortal } from 'react-dom'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -399,11 +400,71 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     []
   )
 
+  const mobileSheetTransition = React.useMemo(
+    () => ({ duration: 0.34, ease: [0.22, 1, 0.36, 1] as const }),
+    []
+  )
+
+  const [isCompactLayout, setIsCompactLayout] = React.useState(false)
+  const [portalReady, setPortalReady] = React.useState(false)
+
+  React.useEffect(() => setPortalReady(true), [])
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1100px)')
+    const sync = () => setIsCompactLayout(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  const showDesktopRightPanel = !isCompactLayout && rightPanel !== 'none'
+  const showMobileRightPanel = isCompactLayout && rightPanel !== 'none'
+
+  React.useEffect(() => {
+    if (!showMobileRightPanel) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [showMobileRightPanel])
+
+  React.useEffect(() => {
+    if (!showMobileRightPanel) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeRightPanel()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [showMobileRightPanel, closeRightPanel])
+
+  const renderRightPanel = (sheetLayout: boolean) =>
+    rightPanel === 'annotations' ? (
+      <AnnotationWidget
+        courseUrl={courseUrl}
+        courseTitle={courseTitle}
+        coursePageId={coursePageId}
+        sectionId={currentSectionLabel}
+        onHide={closeRightPanel}
+        onAnnotationCountChange={handleAnnotationCountChange}
+        onActivityPosted={bumpActivityRefresh}
+        sheetLayout={sheetLayout}
+      />
+    ) : (
+      <CourseChatPanel
+        courseTitle={courseTitle}
+        courseDescription={courseDescription}
+        onHide={closeRightPanel}
+        sheetLayout={sheetLayout}
+      />
+    )
+
   return (
     <div className={styles.wrapper}>
       <div
         className={
-          rightPanel !== 'none' || isRightPanelExiting
+          !isCompactLayout && (rightPanel !== 'none' || isRightPanelExiting)
             ? `${styles.root} ${styles.rootWithRightPanel}`
             : styles.root
         }
@@ -455,7 +516,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           initial={false}
           onExitComplete={() => setIsRightPanelExiting(false)}
         >
-          {rightPanel !== 'none' && (
+          {showDesktopRightPanel && (
             <motion.div
               key={rightPanel}
               className={styles.annotationsColumn}
@@ -464,27 +525,55 @@ export const CourseContent: React.FC<CourseContentProps> = ({
               exit={{ x: 28, opacity: 0 }}
               transition={rightPanelTransition}
             >
-              {rightPanel === 'annotations' ? (
-                <AnnotationWidget
-                  courseUrl={courseUrl}
-                  courseTitle={courseTitle}
-                  coursePageId={coursePageId}
-                  sectionId={currentSectionLabel}
-                  onHide={closeRightPanel}
-                  onAnnotationCountChange={handleAnnotationCountChange}
-                  onActivityPosted={bumpActivityRefresh}
-                />
-              ) : (
-                <CourseChatPanel
-                  courseTitle={courseTitle}
-                  courseDescription={courseDescription}
-                  onHide={closeRightPanel}
-                />
-              )}
+              {renderRightPanel(false)}
             </motion.div>
           )}
         </AnimatePresence>
       </div>
+      {portalReady &&
+        createPortal(
+          <AnimatePresence
+            initial={false}
+            onExitComplete={() => setIsRightPanelExiting(false)}
+          >
+            {showMobileRightPanel && (
+              <>
+                <motion.button
+                  key='mobile-right-backdrop'
+                  type='button'
+                  className={styles.mobilePanelBackdrop}
+                  aria-label='Close panel'
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.22 }}
+                  onClick={closeRightPanel}
+                />
+                <motion.div
+                  key='mobile-right-sheet'
+                  role='dialog'
+                  aria-modal='true'
+                  aria-label={
+                    rightPanel === 'annotations'
+                      ? 'Annotations'
+                      : 'Course chat'
+                  }
+                  className={styles.mobilePanelSheet}
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '100%' }}
+                  transition={mobileSheetTransition}
+                >
+                  <div className={styles.mobilePanelHandle} aria-hidden />
+                  <div className={styles.mobilePanelSheetBody}>
+                    {renderRightPanel(true)}
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
       <div className={styles.activitySection}>
         <CourseActivity
           coursePageId={coursePageId}

@@ -1704,12 +1704,72 @@ export const NotionPage: React.FC<NotionPageProps> = ({
     }
   }, [router])
 
-  const [isMounted, setIsMounted] = React.useState(false)
+  /** Hide Notion output until safe to show: course pages need CourseContent to move DOM + fonts. */
+  const [contentVisible, setContentVisible] = React.useState(false)
 
   React.useEffect(() => {
-    const delay = setTimeout(() => setIsMounted(true), 200)
-    return () => clearTimeout(delay)
-  }, [])
+    if (pageClass !== 'course-page') {
+      const delay = setTimeout(() => setContentVisible(true), 200)
+      return () => clearTimeout(delay)
+    }
+
+    setContentVisible(false)
+
+    let cancelled = false
+    const selector = '.notion-page-content-inner[data-course-content-wrapped]'
+
+    const revealAfterPaint = () => {
+      const finish = () => {
+        if (cancelled) return
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (!cancelled) setContentVisible(true)
+          })
+        })
+      }
+      const fonts = document.fonts?.ready
+      if (fonts) {
+        void fonts.then(finish).catch(finish)
+      } else {
+        finish()
+      }
+    }
+
+    const timeoutRef: {
+      id?: ReturnType<typeof setTimeout>
+    } = {}
+    const observer = new MutationObserver(() => {
+      if (cancelled) return
+      if (document.querySelector(selector)) {
+        observer.disconnect()
+        clearTimeout(timeoutRef.id)
+        revealAfterPaint()
+      }
+    })
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    })
+
+    timeoutRef.id = setTimeout(() => {
+      if (!cancelled) {
+        observer.disconnect()
+        revealAfterPaint()
+      }
+    }, 3000)
+
+    if (document.querySelector(selector)) {
+      observer.disconnect()
+      clearTimeout(timeoutRef.id)
+      revealAfterPaint()
+    }
+
+    return () => {
+      cancelled = true
+      observer.disconnect()
+      clearTimeout(timeoutRef.id)
+    }
+  }, [pageClass, pageId])
 
   if (router.isFallback) {
     return <Loading />
@@ -1795,9 +1855,29 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       {isDarkMode && <BodyClassName className='dark-mode' />} */}
       <BodyClassName className={pageClass} />
 
+      {pageClass === 'course-page' && !contentVisible && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 10000,
+            backgroundColor: 'var(--bg-color)',
+            pointerEvents: 'auto'
+          }}
+          aria-busy='true'
+          aria-label='Loading course'
+        >
+          <div
+            style={{ position: 'relative', width: '100%', height: '100%' }}
+          >
+            <Loading />
+          </div>
+        </div>
+      )}
+
       <div
         style={{
-          visibility: isMounted ? 'visible' : 'hidden'
+          visibility: contentVisible ? 'visible' : 'hidden'
         }}
       >
         <NotionRenderer

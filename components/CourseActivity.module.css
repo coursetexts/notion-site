@@ -786,7 +786,7 @@ button.sectionTag:focus-visible {
 
 @media (max-width: 800px) {
   .root {
-    padding: 1.5rem 1.25rem 2rem;
+    padding: 4.25rem 1.25rem 2rem;
   }
 
   .layout {

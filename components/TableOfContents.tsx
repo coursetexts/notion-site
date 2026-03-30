@@ -115,8 +115,11 @@ function Icon({ type }: { type: 'pdf' | 'lock' | 'check' | 'bookmark' }) {
           fill='none'
         >
           <path
-            d='M4.87499 8.99999C4.77559 8.99864 4.68029 8.96018 4.6078 8.89217L1.9828 6.26717C1.923 6.19431 1.89244 6.10181 1.89706 6.00767C1.90169 5.91352 1.94116 5.82447 2.00781 5.75781C2.07447 5.69116 2.16352 5.65169 2.25767 5.64706C2.35181 5.64244 2.44431 5.673 2.51717 5.7328L4.87499 8.0953L9.8578 3.1078C9.93066 3.048 10.0232 3.01744 10.1173 3.02206C10.2114 3.02669 10.3005 3.06616 10.3672 3.13281C10.4338 3.19947 10.4733 3.28852 10.4779 3.38267C10.4825 3.47681 10.452 3.56931 10.3922 3.64217L5.14217 8.89217C5.06968 8.96018 4.97438 8.99864 4.87499 8.99999Z'
-            fill='#337A5D'
+            d='M10.125 3.375L4.875 8.625L2.25 6'
+            stroke='#FDFDFD'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
         </svg>
       </span>
@@ -129,13 +132,12 @@ function Icon({ type }: { type: 'pdf' | 'lock' | 'check' | 'bookmark' }) {
           xmlns='http://www.w3.org/2000/svg'
           width='12'
           height='12'
-          viewBox='0 0 24 24'
+          viewBox='-4 -4 20 20'
           fill='none'
         >
-          {/* Filled bookmark #0089C4 — matches bookmarked button ref */}
           <path
-            d='M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z'
-            fill='#0089C4'
+            d='M8.625 1.5H3.375C3.17609 1.5 2.98532 1.57902 2.84467 1.71967C2.70402 1.86032 2.625 2.05109 2.625 2.25V10.5C2.62536 10.5668 2.64331 10.6322 2.67706 10.6899C2.7108 10.7475 2.75913 10.7952 2.81719 10.8281C2.8728 10.8599 2.93596 10.8761 3 10.875C3.06961 10.8751 3.13784 10.8556 3.19687 10.8188L6 9.06562L8.79844 10.8188C8.85621 10.8535 8.92201 10.8726 8.98939 10.8742C9.05677 10.8759 9.12342 10.86 9.18281 10.8281C9.24087 10.7952 9.2892 10.7475 9.32294 10.6899C9.35669 10.6322 9.37464 10.5668 9.375 10.5V2.25C9.375 2.05109 9.29598 1.86032 9.15533 1.71967C9.01468 1.57902 8.82391 1.5 8.625 1.5Z'
+            fill='#F8F7F4'
           />
         </svg>
       </span>
@@ -567,19 +569,21 @@ export const TableOfContents = React.forwardRef<
               >
                 {itemIcon && <Icon type={itemIcon} />}
                 <span className={styles.itemLabel}>{item.label}</span>
-                <span className={styles.itemStatusIcon}>
+                <span className={styles.itemEndRail}>
+                  {item.children && item.children.length > 0 && (
+                    <span className={styles.itemToggle} aria-hidden>
+                      {search.trim()
+                        ? '▾'
+                        : expandedTabIndexes.has(item.tabIndex)
+                        ? '▾'
+                        : '▸'}
+                    </span>
+                  )}
                   {itemCompleted && <Icon type='check' />}
-                  {!itemCompleted && itemBookmarked && <Icon type='bookmark' />}
+                  {!itemCompleted && itemBookmarked && (
+                    <Icon type='bookmark' />
+                  )}
                 </span>
-                {item.children && item.children.length > 0 && (
-                  <span className={styles.itemToggle} aria-hidden>
-                    {search.trim()
-                      ? '▾'
-                      : expandedTabIndexes.has(item.tabIndex)
-                      ? '▾'
-                      : '▸'}
-                  </span>
-                )}
               </div>
               <AnimatePresence initial={false}>
                 {showChildren && (
@@ -617,7 +621,7 @@ export const TableOfContents = React.forwardRef<
                             }}
                           >
                             <span>{child.label}</span>
-                            <span className={styles.childStatusIcon}>
+                            <span className={styles.childEndRail}>
                               {childCompleted && <Icon type='check' />}
                               {!childCompleted && childBookmarked && (
                                 <Icon type='bookmark' />
