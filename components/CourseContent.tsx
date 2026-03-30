@@ -69,6 +69,11 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     Record<string, SectionProgressStatus>
   >({})
   const [annotationCount, setAnnotationCount] = React.useState(0)
+  const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
+
+  const bumpActivityRefresh = React.useCallback(() => {
+    setActivityRefreshNonce((n) => n + 1)
+  }, [])
 
   const handleTocLink = React.useCallback(
     (href: string, _label?: string, hideContent?: boolean) => {
@@ -467,6 +472,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
                   sectionId={currentSectionLabel}
                   onHide={closeRightPanel}
                   onAnnotationCountChange={handleAnnotationCountChange}
+                  onActivityPosted={bumpActivityRefresh}
                 />
               ) : (
                 <CourseChatPanel
@@ -484,6 +490,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           coursePageId={coursePageId}
           courseTitle={courseTitle}
           courseUrl={courseUrl}
+          activityRefreshNonce={activityRefreshNonce}
           onSectionClick={(label) => {
             tocRef.current?.goToSectionByLabel?.(label)
             const mount = contentSlotRef.current?.closest(

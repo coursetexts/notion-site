@@ -2,7 +2,34 @@
  * Client-side helpers for course activity: courses, comments, bookmarks, annotations.
  * All require getSupabaseClient() (browser only).
  */
+import type { SupabaseClient, User } from '@supabase/supabase-js'
+
 import { getSupabaseClient } from './supabase'
+
+type AuthorFields = { display_name: string | null; avatar_url: string | null }
+
+/** Display name + avatar for the current user right after insert (profile + OAuth metadata). */
+async function authorForUser(
+  supabase: SupabaseClient,
+  user: User
+): Promise<AuthorFields> {
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('display_name, avatar_url')
+    .eq('user_id', user.id)
+    .maybeSingle()
+  const meta = user.user_metadata || {}
+  const fromMetaName =
+    (meta.full_name as string | undefined) ||
+    (meta.name as string | undefined) ||
+    (meta.display_name as string | undefined) ||
+    null
+  const fromMetaAvatar = (meta.avatar_url as string | undefined) || null
+  return {
+    display_name: profile?.display_name ?? fromMetaName ?? null,
+    avatar_url: profile?.avatar_url ?? fromMetaAvatar ?? null
+  }
+}
 
 export interface Course {
   notion_page_id: string
@@ -269,7 +296,13 @@ export async function addComment(
     .single()
 
   if (error || !data) return null
-  return data as Comment
+  const author = await authorForUser(supabase, user)
+  return {
+    ...(data as Comment),
+    author,
+    score: 0,
+    user_vote: null
+  }
 }
 
 /** Fetch annotations for a course, optionally filtered by section. */
@@ -362,7 +395,13 @@ export async function addAnnotation(
     .single()
 
   if (error || !data) return null
-  return data as Annotation
+  const author = await authorForUser(supabase, user)
+  return {
+    ...(data as Annotation),
+    author,
+    score: 0,
+    user_vote: null
+  }
 }
 
 /** Check if current user has bookmarked a course. */

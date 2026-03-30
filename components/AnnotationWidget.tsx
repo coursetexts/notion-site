@@ -28,6 +28,8 @@ export interface AnnotationWidgetProps {
   coursePageId?: string
   /** Current section/tab label for this annotation context */
   sectionId?: string
+  /** Called after a new annotation or reply is saved (e.g. to refresh course activity below). */
+  onActivityPosted?: () => void
 }
 
 /** True if any line starts with optional spaces then > (markdown blockquote). */
@@ -401,7 +403,8 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   courseUrl,
   courseTitle,
   coursePageId,
-  sectionId
+  sectionId,
+  onActivityPosted
 }) => {
   const auth = useAuthOptional()
   const [sortBy, setSortBy] = useState<SortBy>('time')
@@ -486,6 +489,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
         setInputValue('')
       }
       setAnnotations((prev) => [...prev, added])
+      onActivityPosted?.()
     } else {
       setError('Could not add annotation. Try again.')
     }

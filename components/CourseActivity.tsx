@@ -490,13 +490,16 @@ export interface CourseActivityProps {
   courseUrl?: string
   /** When provided, section tags become clickable and call this with the section label to open that tab. */
   onSectionClick?: (sectionLabel: string) => void
+  /** Increment (e.g. from parent state) after activity is posted elsewhere so this list refetches. */
+  activityRefreshNonce?: number
 }
 
 export const CourseActivity: React.FC<CourseActivityProps> = ({
   coursePageId,
   courseTitle,
   courseUrl,
-  onSectionClick
+  onSectionClick,
+  activityRefreshNonce = 0
 }) => {
   const auth = useAuthOptional()
   const [activeTab, setActiveTab] = useState<TabId>('comments')
@@ -528,39 +531,51 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
   const { followingIds } = useFollowingIds()
   const { followerIds } = useFollowerIds()
 
-  const loadCourseAndActivity = useCallback(async () => {
-    if (!coursePageId || !courseTitle) return
-    setLoading(true)
-    setError(null)
-    try {
-      const result = await getOrCreateCourse(
-        coursePageId,
-        courseTitle,
-        courseUrl
-      )
-      if (!result) {
+  const loadCourseAndActivity = useCallback(
+    async (opts?: { silent?: boolean }) => {
+      if (!coursePageId || !courseTitle) return
+      const silent = opts?.silent === true
+      if (!silent) setLoading(true)
+      setError(null)
+      try {
+        const result = await getOrCreateCourse(
+          coursePageId,
+          courseTitle,
+          courseUrl
+        )
+        if (!result) {
+          setComments([])
+          setAnnotations([])
+          return
+        }
+        setCourseId(result.courseId)
+        const [commentsRes, annotationsRes] = await Promise.all([
+          getComments(result.courseId),
+          getAnnotations(result.courseId, null)
+        ])
+        setComments(commentsRes)
+        setAnnotations(annotationsRes)
+      } catch (_) {
         setComments([])
         setAnnotations([])
-        return
+      } finally {
+        if (!silent) setLoading(false)
       }
-      setCourseId(result.courseId)
-      const [commentsRes, annotationsRes] = await Promise.all([
-        getComments(result.courseId),
-        getAnnotations(result.courseId, null)
-      ])
-      setComments(commentsRes)
-      setAnnotations(annotationsRes)
-    } catch (_) {
-      setComments([])
-      setAnnotations([])
-    } finally {
-      setLoading(false)
-    }
-  }, [coursePageId, courseTitle, courseUrl])
+    },
+    [coursePageId, courseTitle, courseUrl]
+  )
 
   useEffect(() => {
     loadCourseAndActivity()
   }, [loadCourseAndActivity])
+
+  const loadActivityRef = useRef(loadCourseAndActivity)
+  loadActivityRef.current = loadCourseAndActivity
+
+  useEffect(() => {
+    if (activityRefreshNonce === 0) return
+    void loadActivityRef.current({ silent: true })
+  }, [activityRefreshNonce])
 
   useEffect(() => {
     autoGrowTextArea(commentComposerRef.current)
