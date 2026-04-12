@@ -41,7 +41,7 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   let recordMap = await notion.getPage(pageId)
 
   // Validate that we received valid page data
-  if (!recordMap || typeof recordMap !== 'object') {
+  if (!recordMap || typeof recordMap !== 'object' || !recordMap.block) {
     console.error(`Invalid recordMap received for pageId: ${pageId}`, { recordMap })
     return { block: {} } as ExtendedRecordMap
   }

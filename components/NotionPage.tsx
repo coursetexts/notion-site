@@ -1427,12 +1427,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
     return <Loading />
   }
 
-  if (error || !site || !block) {
+  if (error || !site) {
     return <Page404 site={site} pageId={pageId} error={error} />
   }
 
-  // Additional validation: ensure recordMap has valid block data
-  if (!recordMap?.block || Object.keys(recordMap.block).length === 0) {
+  // Check if we have valid recordMap block data or if we're rendering a blank page
+  if (!recordMap?.block || Object.keys(recordMap.block).length === 0 || !block) {
     console.error('Invalid recordMap - no block data found', {
       pageId,
       hasBlock: !!recordMap?.block,
