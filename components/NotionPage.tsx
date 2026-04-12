@@ -1431,6 +1431,17 @@ export const NotionPage: React.FC<types.PageProps> = ({
     return <Page404 site={site} pageId={pageId} error={error} />
   }
 
+  // Additional validation: ensure recordMap has valid block data
+  if (!recordMap?.block || Object.keys(recordMap.block).length === 0) {
+    console.error('Invalid recordMap - no block data found', {
+      pageId,
+      hasBlock: !!recordMap?.block,
+      blockKeys: Object.keys(recordMap?.block || {}),
+      recordMapKeys: Object.keys(recordMap || {})
+    })
+    return <Page404 site={site} pageId={pageId} error={{ message: 'Page data could not be loaded', statusCode: 500 }} />
+  }
+
   console.log('notion page', {
     isDev: config.isDev,
     title,

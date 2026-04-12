@@ -44,7 +44,22 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
     }
 
     if (pageId) {
-      recordMap = await getPage(pageId)
+      try {
+        recordMap = await getPage(pageId)
+        
+        // Check if recordMap has valid data
+        if (!recordMap?.block || Object.keys(recordMap.block).length === 0) {
+          console.warn(`Page resolved but recordMap is empty for pageId: ${pageId}, rawPageId: ${rawPageId}`)
+        }
+      } catch (err) {
+        console.error(`Failed to get page for pageId: ${pageId}, rawPageId: ${rawPageId}`, err)
+        return {
+          error: {
+            message: `Failed to load page "${rawPageId}"`,
+            statusCode: 500
+          }
+        }
+      }
     } else {
       // handle mapping of user-friendly canonical page paths to Notion page IDs
       // e.g., /developer-x-entrepreneur versus /71201624b204481f862630ea25ce62fe
@@ -56,21 +71,36 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
         // cached aggressively
         // recordMap = siteMap.pageMap[pageId]
 
-        recordMap = await getPage(pageId)
+        try {
+          recordMap = await getPage(pageId)
+          
+          if (!recordMap?.block || Object.keys(recordMap.block).length === 0) {
+            console.warn(`Page from siteMap resolved but recordMap is empty for pageId: ${pageId}, rawPageId: ${rawPageId}`)
+          }
 
-        if (useUriToPageIdCache) {
-          try {
-            // update the database mapping of URI to pageId
-            await db.set(cacheKey, pageId, cacheTTL)
+          if (useUriToPageIdCache) {
+            try {
+              // update the database mapping of URI to pageId
+              await db.set(cacheKey, pageId, cacheTTL)
 
-            // console.log(`redis set "${cacheKey}"`, pageId, { cacheTTL })
-          } catch (err) {
-            // ignore redis errors
-            console.warn(`redis error set "${cacheKey}"`, err.message)
+              // console.log(`redis set "${cacheKey}"`, pageId, { cacheTTL })
+            } catch (err) {
+              // ignore redis errors
+              console.warn(`redis error set "${cacheKey}"`, err.message)
+            }
+          }
+        } catch (err) {
+          console.error(`Failed to get page from siteMap for pageId: ${pageId}, rawPageId: ${rawPageId}`, err)
+          return {
+            error: {
+              message: `Failed to load page "${rawPageId}"`,
+              statusCode: 500
+            }
           }
         }
       } else {
         // note: we're purposefully not caching URI to pageId mappings for 404s
+        console.warn(`Page not found in siteMap: ${rawPageId}`)
         return {
           error: {
             message: `Not found "${rawPageId}"`,
@@ -82,8 +112,22 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
   } else {
     pageId = site.rootNotionPageId
 
-    console.log(site)
-    recordMap = await getPage(pageId)
+    console.log('Loading root notion page', { rootPageId: site.rootNotionPageId })
+    try {
+      recordMap = await getPage(pageId)
+      
+      if (!recordMap?.block || Object.keys(recordMap.block).length === 0) {
+        console.warn(`Root page recordMap is empty for pageId: ${pageId}`)
+      }
+    } catch (err) {
+      console.error(`Failed to get root page for pageId: ${pageId}`, err)
+      return {
+        error: {
+          message: 'Failed to load root page',
+          statusCode: 500
+        }
+      }
+    }
   }
 
   const props = { site, recordMap, pageId }

@@ -6,7 +6,7 @@ export const config = {
   // Match all routes except for specific ones like API routes, static files,
   // the sign-in page itself, and Next.js internal paths.
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|signin|logo.svg).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|signin|logo.svg|manifest.json|fonts/|public/|.*\\.(?:woff|woff2|ttf|otf|eot|css|png|jpg|jpeg|gif|svg|ico|webp|avif|map|txt)).*)',
   ],
 }
 
