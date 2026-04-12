@@ -40,6 +40,12 @@ const getNavigationLinkPages = pMemoize(
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   let recordMap = await notion.getPage(pageId)
 
+  // Validate that we received valid page data
+  if (!recordMap || typeof recordMap !== 'object') {
+    console.error(`Invalid recordMap received for pageId: ${pageId}`, { recordMap })
+    return { block: {} } as ExtendedRecordMap
+  }
+
   if (navigationStyle !== 'default') {
     // ensure that any pages linked to in the custom navigation header have
     // their block info fully resolved in the page record map so we know
@@ -56,8 +62,14 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   }
 
   if (isPreviewImageSupportEnabled) {
-    const previewImageMap = await getPreviewImageMap(recordMap)
-    ;(recordMap as any).preview_images = previewImageMap
+    try {
+      const previewImageMap = await getPreviewImageMap(recordMap)
+      ;(recordMap as any).preview_images = previewImageMap
+    } catch (err) {
+      console.warn(`Failed to generate preview images for pageId: ${pageId}`, err)
+      // Continue without preview images rather than crashing
+      ;(recordMap as any).preview_images = {}
+    }
   }
 
   return recordMap
