@@ -14,11 +14,22 @@ export const mapPageUrl =
   (pageId = '') => {
     const pageUuid = parsePageId(pageId, { uuid: true })
 
+    // Guard malformed page references from Notion blocks.
+    if (!pageUuid) {
+      return createUrl('/', searchParams)
+    }
+
     if (uuidToId(pageUuid) === site.rootNotionPageId) {
       return createUrl('/', searchParams)
     } else {
+      const canonical = getCanonicalPageId(pageUuid, recordMap, { uuid })
+
+      if (!canonical) {
+        return createUrl('/', searchParams)
+      }
+
       return createUrl(
-        `/${getCanonicalPageId(pageUuid, recordMap, { uuid })}`,
+        `/${canonical}`,
         searchParams
       )
     }
@@ -29,12 +40,20 @@ export const getCanonicalPageUrl =
   (pageId = '') => {
     const pageUuid = parsePageId(pageId, { uuid: true })
 
-    if (uuidToId(pageId) === site.rootNotionPageId) {
+    if (!pageUuid) {
+      return `https://${site.domain}`
+    }
+
+    if (uuidToId(pageUuid) === site.rootNotionPageId) {
       return `https://${site.domain}`
     } else {
-      return `https://${site.domain}/${getCanonicalPageId(pageUuid, recordMap, {
-        uuid
-      })}`
+      const canonical = getCanonicalPageId(pageUuid, recordMap, { uuid })
+
+      if (!canonical) {
+        return `https://${site.domain}`
+      }
+
+      return `https://${site.domain}/${canonical}`
     }
   }
 
