@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
