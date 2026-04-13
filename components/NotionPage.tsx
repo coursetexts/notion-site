@@ -1433,13 +1433,15 @@ export const NotionPage: React.FC<types.PageProps> = ({
     return <Page404 site={site} pageId={pageId} error={error} />
   }
 
-  console.log('notion page', {
-    isDev: config.isDev,
-    title,
-    pageId,
-    rootNotionPageId: site.rootNotionPageId,
-    recordMap
-  })
+  if (config.isDev) {
+    console.log('notion page', {
+      isDev: config.isDev,
+      title,
+      pageId,
+      rootNotionPageId: site.rootNotionPageId,
+      blockCount: Object.keys(recordMap?.block || {}).length
+    })
+  }
 
   if (!config.isServer) {
     // add important objects to the window global for easy debugging

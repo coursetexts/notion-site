@@ -41,6 +41,7 @@ function sanitizeRecordMapBlocks(recordMap: ExtendedRecordMap, pageId: string) {
   const blockMap = (recordMap as any).block || {}
   let removed = 0
   let repaired = 0
+  let prunedRefs = 0
 
   for (const [blockId, blockEntry] of Object.entries<any>(blockMap)) {
     const value = blockEntry?.value
@@ -59,11 +60,31 @@ function sanitizeRecordMapBlocks(recordMap: ExtendedRecordMap, pageId: string) {
     }
   }
 
-  if (removed || repaired) {
+  // Remove broken child references that point to missing / invalid blocks.
+  for (const blockEntry of Object.values<any>(blockMap)) {
+    const value = blockEntry?.value
+    if (!value || typeof value !== 'object' || !Array.isArray(value.content)) {
+      continue
+    }
+
+    const before = value.content.length
+    value.content = value.content.filter((childId: any) => {
+      if (typeof childId !== 'string') {
+        return false
+      }
+
+      const child = blockMap[childId]
+      return !!(child && child.value && typeof child.value === 'object')
+    })
+    prunedRefs += before - value.content.length
+  }
+
+  if (removed || repaired || prunedRefs) {
     console.warn('Sanitized recordMap blocks', {
       pageId,
       removed,
-      repaired
+      repaired,
+      prunedRefs
     })
   }
 }
@@ -84,7 +105,7 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   // Validate that we received valid page data
   if (!recordMap || typeof recordMap !== 'object' || !recordMap.block) {
     console.error(`Invalid recordMap received for pageId: ${pageId}`, { recordMap })
-    return { block: {} } as ExtendedRecordMap
+    throw new Error(`Invalid recordMap received for pageId: ${pageId}`)
   }
 
   sanitizeRecordMapBlocks(recordMap, pageId)
