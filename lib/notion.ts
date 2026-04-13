@@ -8,7 +8,7 @@ import {
   navigationLinks,
   navigationStyle
 } from './config'
-import { getPageWithRetry, notion } from './notion-api'
+import { notion } from './notion-api'
 import { getPreviewImageMap } from './preview-images'
 
 const getNavigationLinkPages = pMemoize(
@@ -37,57 +37,9 @@ const getNavigationLinkPages = pMemoize(
   }
 )
 
-function sanitizeRecordMapBlocks(recordMap: ExtendedRecordMap, pageId: string) {
-  const blockMap = (recordMap as any).block || {}
-  let removed = 0
-  let repaired = 0
-
-  for (const [blockId, blockEntry] of Object.entries<any>(blockMap)) {
-    const value = blockEntry?.value
-
-    // Remove malformed blocks which cannot be rendered safely.
-    if (!blockId || !value || typeof value !== 'object') {
-      delete blockMap[blockId]
-      removed += 1
-      continue
-    }
-
-    // Some Notion responses omit value.id; react-notion-x expects it.
-    if (!value.id) {
-      value.id = blockId
-      repaired += 1
-    }
-  }
-
-  if (removed || repaired) {
-    console.warn('Sanitized recordMap blocks', {
-      pageId,
-      removed,
-      repaired
-    })
-  }
-}
-
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
-  let recordMap: ExtendedRecordMap
+  let recordMap = await notion.getPage(pageId)
 
-  try {
-    recordMap = await getPageWithRetry(pageId)
-  } catch (error: any) {
-    console.error('Failed to fetch Notion page after retries', {
-      pageId,
-      message: error?.message
-    })
-    throw error
-  }
-
-  // Validate that we received valid page data
-  if (!recordMap || typeof recordMap !== 'object' || !recordMap.block) {
-    console.error(`Invalid recordMap received for pageId: ${pageId}`, { recordMap })
-    return { block: {} } as ExtendedRecordMap
-  }
-
-  sanitizeRecordMapBlocks(recordMap, pageId)
   if (navigationStyle !== 'default') {
     // ensure that any pages linked to in the custom navigation header have
     // their block info fully resolved in the page record map so we know
@@ -100,22 +52,12 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
           mergeRecordMaps(map, navigationLinkRecordMap),
         recordMap
       )
-
-      // Navigation page merges can also introduce malformed block entries.
-      sanitizeRecordMapBlocks(recordMap, pageId)
     }
   }
 
   if (isPreviewImageSupportEnabled) {
-    try {
-      const previewImageMap = await getPreviewImageMap(recordMap)
-      ;(recordMap as any).preview_images = previewImageMap
-    } catch (error: any) {
-      console.warn('Failed to fetch preview images', {
-        pageId,
-        message: error?.message
-      })
-    }
+    const previewImageMap = await getPreviewImageMap(recordMap)
+    ;(recordMap as any).preview_images = previewImageMap
   }
 
   return recordMap

@@ -35,8 +35,8 @@ export async function pageAcl({
     }
   }
 
-  const rootBlock = recordMap.block[rootKey] as any
-  const rootSpaceId = rootBlock?.value?.space_id
+  const rootValue = recordMap.block[rootKey]?.value
+  const rootSpaceId = rootValue?.space_id
 
   if (
     rootSpaceId &&

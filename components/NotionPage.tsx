@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -7,7 +6,6 @@ import { useRouter } from 'next/router'
 
 import cs from 'classnames'
 // import { PageBlock } from 'notion-types'
-import { Block } from 'notion-types'
 import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
 import BodyClassName from 'react-body-classname'
 import { Root, createRoot } from 'react-dom/client'
@@ -281,7 +279,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
     process.env.NEXT_PUBLIC_NOTION_PAGE_ID === NOTION_PRODUCTION_URL
 
   const keys = Object.keys(recordMap?.block || {})
-  const block = recordMap?.block?.[keys[0]]?.value as Block | undefined
+  const block = recordMap?.block?.[keys[0]]?.value
 
   let title = 'Untitled'
   if (block && (block as any).properties) {
