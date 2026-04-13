@@ -8,7 +8,7 @@ import {
   navigationLinks,
   navigationStyle
 } from './config'
-import { notion } from './notion-api'
+import { getPageWithRetry, notion } from './notion-api'
 import { getPreviewImageMap } from './preview-images'
 
 const getNavigationLinkPages = pMemoize(
@@ -69,7 +69,17 @@ function sanitizeRecordMapBlocks(recordMap: ExtendedRecordMap, pageId: string) {
 }
 
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
-  let recordMap = await notion.getPage(pageId)
+  let recordMap: ExtendedRecordMap
+
+  try {
+    recordMap = await getPageWithRetry(pageId)
+  } catch (error: any) {
+    console.error('Failed to fetch Notion page after retries', {
+      pageId,
+      message: error?.message
+    })
+    return { block: {} } as ExtendedRecordMap
+  }
 
   // Validate that we received valid page data
   if (!recordMap || typeof recordMap !== 'object' || !recordMap.block) {
@@ -97,8 +107,15 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   }
 
   if (isPreviewImageSupportEnabled) {
-    const previewImageMap = await getPreviewImageMap(recordMap)
-    ;(recordMap as any).preview_images = previewImageMap
+    try {
+      const previewImageMap = await getPreviewImageMap(recordMap)
+      ;(recordMap as any).preview_images = previewImageMap
+    } catch (error: any) {
+      console.warn('Failed to fetch preview images', {
+        pageId,
+        message: error?.message
+      })
+    }
   }
 
   return recordMap
