@@ -2,7 +2,7 @@ import { Block } from 'notion-types'
 
 import { defaultPageCover, defaultPageIcon } from './config'
 
-const defaultMapImageUrl = (url: string, block: Block) => {
+const defaultMapImageUrl = (url: string, _block: Block) => {
   if (!url) return url
 
   if (url.startsWith('data:')) {
