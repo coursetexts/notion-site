@@ -1,21 +1,7 @@
 import { Block } from 'notion-types'
+import { defaultMapImageUrl } from 'notion-utils'
 
 import { defaultPageCover, defaultPageIcon } from './config'
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const defaultMapImageUrl = (url: string, _block?: Block) => {
-  if (!url) return url
-
-  if (url.startsWith('data:')) {
-    return url
-  }
-
-  if (url.startsWith('/images')) {
-    return url
-  }
-
-  return `https://www.notion.so${url.startsWith('/') ? url : `/${url}`}`
-}
 
 export const mapImageUrl = (url: string, block: Block) => {
   if (url === defaultPageCover || url === defaultPageIcon) {

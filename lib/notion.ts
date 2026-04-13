@@ -78,7 +78,7 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
       pageId,
       message: error?.message
     })
-    return { block: {} } as ExtendedRecordMap
+    throw error
   }
 
   // Validate that we received valid page data
