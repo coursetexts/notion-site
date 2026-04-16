@@ -52,11 +52,9 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
       pageId = siteMap?.canonicalPageMap[rawPageId]
 
       if (pageId) {
-        // TODO: we're not re-using the page recordMap from siteMaps because it is
-        // cached aggressively
-        // recordMap = siteMap.pageMap[pageId]
-
-        recordMap = await getPage(pageId)
+        // Reuse the site map's already-fetched record map during SSG to avoid
+        // a second burst of Notion API calls for every static page.
+        recordMap = siteMap.pageMap?.[pageId] || (await getPage(pageId))
 
         if (useUriToPageIdCache) {
           try {

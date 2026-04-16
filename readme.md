@@ -8,6 +8,8 @@ preview.coursetexts.org is the preview site with all the preview sites included,
 
 To setup, make sure to set the `NEXT_PUBLIC_NOTION_PAGE_ID` environment variable in Vercel and in .env.
 
+Railway deployment notes, required env vars, and the current production service details live in [docs/railway.md](./docs/railway.md).
+
 ---
 
 > The perfect starter kit for building websites with Next.js and Notion.
@@ -44,7 +46,7 @@ It uses Notion as a CMS, [react-notion-x](https://github.com/NotionX/react-notio
 
 **All config is defined in [site.config.ts](./site.config.ts).**
 
-This project requires a recent version of Node.js (we recommend >= 16).
+This project requires Node.js `18.x`.
 
 1. Fork / clone this repo
 2. Change a few values in [site.config.ts](./site.config.ts)

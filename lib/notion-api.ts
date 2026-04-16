@@ -1,9 +1,46 @@
 import { NotionAPI } from '@genthegreat/notion-client'
 import pMap from 'p-map'
 
-export const notion = new NotionAPI({
+const notionClient = new NotionAPI({
   apiBaseUrl: process.env.NOTION_API_BASE_URL
 })
+
+function normalizeRecordMap(recordMap: any) {
+  if (!recordMap?.block) {
+    return recordMap
+  }
+
+  const normalizedBlocks = Object.fromEntries(
+    Object.entries(recordMap.block).map(([blockId, entry]: [string, any]) => {
+      const nestedValue = entry?.value?.value
+
+      if (!nestedValue) {
+        return [blockId, entry]
+      }
+
+      return [
+        blockId,
+        {
+          ...entry,
+          role: entry.role ?? entry.value?.role,
+          value: nestedValue
+        }
+      ]
+    })
+  )
+
+  return {
+    ...recordMap,
+    block: normalizedBlocks
+  }
+}
+
+const rawGetPage = notionClient.getPage.bind(notionClient)
+notionClient.getPage = (async (...args: Parameters<typeof rawGetPage>) => {
+  return normalizeRecordMap(await rawGetPage(...args))
+}) as typeof notionClient.getPage
+
+export const notion = notionClient
 
 // Rate-limited wrapper for getPage
 export async function getPageWithRetry(pageId: string, maxRetries = 3): Promise<any> {
