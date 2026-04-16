@@ -7,6 +7,36 @@ import { db } from './db'
 import { getSiteMap } from './get-site-map'
 import { getPage } from './notion'
 
+function getSiteMapRecordMap(
+  siteMap: Awaited<ReturnType<typeof getSiteMap>>,
+  pageId: string
+): ExtendedRecordMap | undefined {
+  const rawId = parsePageId(pageId, { uuid: false }) || pageId
+  const uuidId = parsePageId(pageId, { uuid: true }) || rawId
+  const candidateIds = Array.from(new Set([pageId, rawId, uuidId].filter(Boolean)))
+
+  for (const candidateId of candidateIds) {
+    const recordMap = siteMap?.pageMap?.[candidateId]
+    if (recordMap) {
+      return recordMap
+    }
+  }
+
+  for (const recordMap of Object.values(siteMap?.pageMap || {})) {
+    const blockMap = (recordMap as ExtendedRecordMap)?.block
+    if (!blockMap) continue
+
+    if (blockMap[uuidId] || blockMap[rawId]) {
+      console.warn('Resolved site map recordMap via block match', {
+        requestedPageId: pageId,
+        rawId,
+        uuidId
+      })
+      return recordMap as ExtendedRecordMap
+    }
+  }
+}
+
 export async function resolveNotionPage(domain: string, rawPageId?: string) {
   let pageId: string
   let recordMap: ExtendedRecordMap
@@ -54,7 +84,7 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
       if (pageId) {
         // Reuse the site map's already-fetched record map during SSG to avoid
         // a second burst of Notion API calls for every static page.
-        recordMap = siteMap.pageMap?.[pageId] || (await getPage(pageId))
+        recordMap = getSiteMapRecordMap(siteMap, pageId) || (await getPage(pageId))
 
         if (useUriToPageIdCache) {
           try {
@@ -82,7 +112,7 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
 
     console.log(site)
     const siteMap = await getSiteMap()
-    recordMap = siteMap.pageMap?.[pageId] || (await getPage(pageId))
+    recordMap = getSiteMapRecordMap(siteMap, pageId) || (await getPage(pageId))
   }
 
   const props = { site, recordMap, pageId }
