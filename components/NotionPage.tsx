@@ -520,18 +520,34 @@ export const NotionPage: React.FC<types.PageProps> = ({
     // Select all .notion-blank div elements
     const blankDivs = Array.from(document.querySelectorAll('.notion-blank'))
 
-    // Exit if there are less than 2 .notion-blank divs, as no wrapping is needed
-    if (blankDivs.length < 2) return
+    if (blankDivs.length === 0) return
+
+    const trailingCourseStopHrefs = new Set([
+      '/about',
+      '/why',
+      '/process',
+      '/privacy-policy',
+      '/terms-of-service'
+    ])
+
+    const isCourseCardBoundary = (element: Element) => {
+      if (element.classList.contains('notion-blank')) return true
+
+      const nestedLink = element.querySelector<HTMLAnchorElement>('a[href]')
+      const href = nestedLink?.getAttribute('href')
+
+      return !!(href && trailingCourseStopHrefs.has(href))
+    }
 
     // We will use a while loop to iterate over all .notion-blank elements
     let index = 0
-    while (index < blankDivs.length - 1) {
+    while (index < blankDivs.length) {
       const blankDiv = blankDivs[index]
       const elementsToWrap = []
       let nextSibling = blankDiv.nextElementSibling
 
-      // Collect all elements until reaching the next .notion-blank div
-      while (nextSibling && !nextSibling.classList.contains('notion-blank')) {
+      // Collect each course card until the next blank or the footer/about links.
+      while (nextSibling && !isCourseCardBoundary(nextSibling)) {
         elementsToWrap.push(nextSibling)
         nextSibling = nextSibling.nextElementSibling
       }
