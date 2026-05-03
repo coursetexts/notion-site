@@ -6,6 +6,7 @@ import * as config from './config'
 import * as types from './types'
 import { includeNotionIdInUrls } from './config'
 import { getCanonicalPageId } from './get-canonical-page-id'
+import { getRecordBlockValue } from './notion-record-block'
 import { getPageWithRetry } from './notion-api'
 
 const uuid = !!includeNotionIdInUrls
@@ -31,7 +32,12 @@ async function getAllPagesImpl(
   rootNotionSpaceId: string
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string): Promise<ExtendedRecordMap> => {
-    return getPageWithRetry(pageId)
+    // Larger first chunk + fetchMissingBlocks (default) reduces incomplete trees on big pages.
+    return getPageWithRetry(pageId, 3, {
+      chunkLimit: process.env.NOTION_PAGE_CHUNK_LIMIT
+        ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
+        : 250
+    })
   }
 
   const pageMap = await getAllPagesInSpace(
@@ -48,7 +54,11 @@ async function getAllPagesImpl(
         return map
       }
 
-      const block = recordMap.block[pageId]?.value
+      const block = getRecordBlockValue(recordMap, pageId)
+      if (!block) {
+        console.warn(`Skipping page "${pageId}" - no block value`)
+        return map
+      }
       if (
         !(getPageProperty<boolean | null>('Public', block, recordMap) ?? true)
       ) {

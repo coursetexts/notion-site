@@ -5,11 +5,13 @@ import { useRouter } from 'next/router'
 import { AllCoursesNewGridSection } from '@/components/AllCoursesNewGridSection'
 import { AllCoursesNewTopSection } from '@/components/AllCoursesNewTopSection'
 import type { HomeCourseCard } from '@/components/HomeCoursesSection'
+import type { NotionHomeDebugPayload } from './index'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 
 type AllCoursesPageProps = {
   courses: HomeCourseCard[]
+  notionHomeDebug?: NotionHomeDebugPayload | null
 }
 
 const SUBJECT_OPTIONS = [
@@ -59,10 +61,23 @@ function sameSubjects(a: HomeSubject[], b: HomeSubject[]): boolean {
 
 export { getStaticProps } from './index'
 
-export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
+export default function AllCoursesPage({
+  courses,
+  notionHomeDebug
+}: AllCoursesPageProps) {
   const router = useRouter()
   const [query, setQuery] = React.useState('')
   const [activeSubjects, setActiveSubjects] = React.useState<HomeSubject[]>([])
+
+  React.useEffect(() => {
+    if (notionHomeDebug && typeof window !== 'undefined') {
+      console.log(
+        '%c[Coursetexts] Notion home debug (shared getStaticProps with /)',
+        'color:#2563eb;font-weight:bold;',
+        notionHomeDebug
+      )
+    }
+  }, [notionHomeDebug])
 
   React.useEffect(() => {
     if (!router.isReady) return

@@ -5,8 +5,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import cs from 'classnames'
+import type { ExtendedRecordMap } from 'notion-types'
 // import { PageBlock } from 'notion-types'
-import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
+import {
+  formatDate,
+  getBlockTitle,
+  getPageProperty,
+  parsePageId,
+  uuidToId
+} from 'notion-utils'
 import BodyClassName from 'react-body-classname'
 import { Root, createRoot } from 'react-dom/client'
 import { NotionRenderer } from 'react-notion-x'
@@ -24,6 +31,7 @@ import {
 } from '@/lib/link-icons'
 import { mapImageUrl } from '@/lib/map-image-url'
 import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
+import { getRecordBlockValue } from '@/lib/notion-record-block'
 import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
@@ -285,15 +293,73 @@ export const NotionPage: React.FC<NotionPageProps> = ({
   const isProduction =
     process.env.NEXT_PUBLIC_NOTION_PAGE_ID === NOTION_PRODUCTION_URL
 
-  const keys = Object.keys(recordMap?.block || {})
-  const block = recordMap?.block?.[keys[0]]?.value
+  const pageUuid = React.useMemo(
+    () => parsePageId(pageId, { uuid: true }) ?? pageId,
+    [pageId]
+  )
+
+  const hashFragment = React.useMemo(() => {
+    if (!router.isReady) return ''
+    const path = router.asPath ?? ''
+    const h = path.indexOf('#')
+    if (h === -1) return ''
+    return path.slice(h + 1).trim()
+  }, [router.isReady, router.asPath])
+
+  const hashBlockUuid = React.useMemo(() => {
+    if (!hashFragment || !recordMap?.block) return undefined
+    const rm = recordMap as ExtendedRecordMap
+    const hasBlock = (id: string) => !!getRecordBlockValue(rm, id)
+
+    const asUuid = parsePageId(hashFragment, { uuid: true })
+    if (asUuid && hasBlock(asUuid)) return asUuid
+    const compact = parsePageId(hashFragment, { uuid: false })
+    if (!compact) return undefined
+    const dashed = parsePageId(compact, { uuid: true })
+    if (dashed && hasBlock(dashed)) return dashed
+    if (hasBlock(compact)) return compact
+
+    const targetUuid =
+      parsePageId(hashFragment, { uuid: true }) ??
+      parsePageId(compact, { uuid: true })
+    if (!targetUuid) return undefined
+    for (const key of Object.keys(recordMap.block)) {
+      const keyUuid = parsePageId(key, { uuid: true })
+      if (keyUuid === targetUuid && hasBlock(key)) return key
+    }
+    return undefined
+  }, [hashFragment, recordMap])
+
+  const rendererBlockId = React.useMemo(() => {
+    if (!hashBlockUuid || !recordMap) return pageUuid
+    const b = getRecordBlockValue(recordMap as ExtendedRecordMap, hashBlockUuid)
+    return b?.type === 'page' || b?.type === 'collection_view_page'
+      ? hashBlockUuid
+      : pageUuid
+  }, [hashBlockUuid, pageUuid, recordMap])
+
+  const isSiteRootPage = React.useMemo(() => {
+    if (!site?.rootNotionPageId) return false
+    const rootUuid = parsePageId(site.rootNotionPageId, { uuid: true })
+    return (
+      (rootUuid != null && rootUuid === pageUuid) ||
+      uuidToId(pageUuid) === uuidToId(site.rootNotionPageId)
+    )
+  }, [site?.rootNotionPageId, pageUuid])
+
+  const block = recordMap
+    ? getRecordBlockValue(recordMap as ExtendedRecordMap, rendererBlockId) ??
+      getRecordBlockValue(recordMap as ExtendedRecordMap, pageUuid)
+    : undefined
 
   let title = 'Untitled'
-  if (block && (block as any).properties) {
+  if (block && recordMap && (block as any).properties) {
     title = getBlockTitle(block, recordMap)
   }
   const courseDescription =
-    getPageProperty<string>('Description', block, recordMap) ||
+    (block &&
+      recordMap &&
+      getPageProperty<string>('Description', block, recordMap)) ||
     config.description
 
   // Clean up when the component unmounts or pageClass changes
@@ -1381,7 +1447,10 @@ export const NotionPage: React.FC<NotionPageProps> = ({
 
     let cancelled = false
     let retryTimeout: ReturnType<typeof setTimeout> | null = null
-    const storageKey = `${COURSE_HERO_STORAGE_KEY}_${pageId}`
+    const pathHash = (router.asPath?.split('#')[1] ?? '').trim()
+    const storageKey = `${COURSE_HERO_STORAGE_KEY}_${pageId}_${
+      pathHash || 'root'
+    }`
 
     function saveHeroData(data: CourseHeroData) {
       try {
@@ -1408,7 +1477,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
     }
 
     const courseHeroCourseInfo = {
-      coursePageId: pageId,
+      coursePageId: rendererBlockId,
       courseTitle: title,
       courseUrl: router.asPath?.split('?')[0] ?? `/${pageId}`
     }
@@ -1579,7 +1648,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         .querySelectorAll('[data-course-hero-rendered]')
         .forEach((el) => el.removeAttribute('data-course-hero-rendered'))
     }
-  }, [pageClass, pageId, title])
+  }, [pageClass, pageId, title, router.asPath, rendererBlockId])
 
   /**
    * Course content layout: wait for hero, then optionally give the tab structure
@@ -1619,7 +1688,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       cc.root.render(
         <AuthProvider rootName='course-content'>
           <CourseContent
-            coursePageId={pageId}
+            coursePageId={rendererBlockId}
             courseTitle={title}
             courseDescription={courseDescription}
             courseUrl={router.asPath?.split('?')[0] ?? `/${pageId}`}
@@ -1670,7 +1739,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         courseContentRef.current.originalNextSibling = null
       }
     }
-  }, [pageClass, pageId, title, router.asPath])
+  }, [pageClass, pageId, title, router.asPath, rendererBlockId])
 
   React.useEffect(() => {
     // After wrapping courses, check if none exist and add maintenance message
@@ -1769,7 +1838,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       observer.disconnect()
       clearTimeout(timeoutRef.id)
     }
-  }, [pageClass, pageId])
+  }, [pageClass, pageId, router.asPath])
 
   if (router.isFallback) {
     return <Loading />
@@ -1843,7 +1912,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
   return (
     <>
       <PageHead
-        pageId={pageId}
+        pageId={rendererBlockId}
         site={site}
         title={title}
         description={courseDescription}
@@ -1883,12 +1952,13 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         <NotionRenderer
           bodyClassName={cs(
             styles.notion,
-            pageId === site.rootNotionPageId && 'index-page'
+            isSiteRootPage && 'index-page'
           )}
           darkMode={isDarkMode}
           components={components}
           recordMap={recordMap as any}
-          rootPageId={site.rootNotionPageId}
+          blockId={rendererBlockId}
+          rootPageId={rendererBlockId}
           rootDomain={site.domain}
           fullPage={!isLiteMode}
           previewImages={!!recordMap.preview_images}

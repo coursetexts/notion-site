@@ -5,15 +5,31 @@ export const notion = new NotionAPI({
   apiBaseUrl: process.env.NOTION_API_BASE_URL
 })
 
+export type GetPageOptions = {
+  chunkLimit?: number
+  fetchMissingBlocks?: boolean
+}
+
 // Rate-limited wrapper for getPage
 export async function getPageWithRetry(
   pageId: string,
-  maxRetries = 3
+  maxRetries = 3,
+  getPageOpts?: GetPageOptions
 ): Promise<any> {
+  const chunkLimit =
+    getPageOpts?.chunkLimit ??
+    (process.env.NOTION_PAGE_CHUNK_LIMIT
+      ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
+      : 250)
+  const fetchMissingBlocks = getPageOpts?.fetchMissingBlocks ?? true
+
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       console.log(`notion getPage ${pageId} (attempt ${attempt})`)
-      return await notion.getPage(pageId)
+      return await notion.getPage(pageId, {
+        chunkLimit,
+        fetchMissingBlocks
+      })
     } catch (error: any) {
       if (error?.response?.status === 429 && attempt < maxRetries) {
         // Exponential backoff: wait 2^attempt seconds
@@ -29,6 +45,8 @@ export async function getPageWithRetry(
       }
     }
   }
+
+  throw new Error(`getPageWithRetry: exhausted retries for ${pageId}`)
 }
 
 // Throttled batch processing

@@ -3,12 +3,14 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { ExtendedRecordMap } from 'notion-types'
+import type { Block, ExtendedRecordMap } from 'notion-types'
 import {
   getBlockParentPage,
   getBlockTitle,
   getPageProperty,
-  idToUuid
+  getTextContent,
+  parsePageId,
+  uuidToId
 } from 'notion-utils'
 
 import { HomeBlogSection } from '@/components/HomeBlogSection'
@@ -22,11 +24,30 @@ import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
 import { HomeLearnSection } from '@/components/HomeLearnSection'
-import { rootNotionPageId } from '@/lib/config'
+import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
+import { getRecordBlockValue } from '@/lib/notion-record-block'
+
+export type NotionHomeDebugPayload = {
+  reason?: string
+  pageMapKey: string | null
+  rootBlockId: string | null
+  rootBlockType: string | null
+  blockAtKeyType?: string | null
+  rootListingCourseCount: number
+  flattenedTextBlockCount?: number
+  totalBlocksInRecordMap?: number
+  sampleFlattened?: Array<{
+    id: string
+    type?: string
+    text: string
+  }>
+  note?: string
+}
 
 type HomePageProps = {
   courses: HomeCourseCard[]
+  notionHomeDebug?: NotionHomeDebugPayload | null
 }
 
 const SUBJECT_OPTIONS = ['Science', 'Math', 'Sociology', 'English'] as const
@@ -143,14 +164,40 @@ function isLikelySchoolDateLine(text: string): boolean {
   return (hasTerm && hasSeparator) || (hasTerm && hasSchool)
 }
 
+/**
+ * Plain text for matching course titles / metadata. Prefer getBlockTitle; extend
+ * for block shapes that store copy outside properties.title (e.g. table_row cells).
+ */
+function getRecordBlockPlainText(
+  recordMap: ExtendedRecordMap,
+  blockId: string
+): string {
+  const block = getRecordBlockValue(recordMap, blockId)
+  if (!block) return ''
+
+  const fromTitle = (getBlockTitle(block, recordMap) || '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (fromTitle) return fromTitle
+
+  if (block.type === 'table_row' && block.properties) {
+    const props = block.properties as Record<string, unknown>
+    const parts = Object.keys(props)
+      .sort()
+      .map((k) => getTextContent(props[k] as any) || '')
+      .filter(Boolean)
+    return parts.join(' ').replace(/\s+/g, ' ').trim()
+  }
+
+  return ''
+}
+
 function getChildBlockText(
   recordMap: ExtendedRecordMap,
   childId: string | undefined
 ): string {
   if (!childId) return ''
-  const child = recordMap.block?.[childId]?.value
-  if (!child) return ''
-  return (getBlockTitle(child, recordMap) || '').replace(/\s+/g, ' ').trim()
+  return getRecordBlockPlainText(recordMap, childId)
 }
 
 function extractCourseFallbackContent(
@@ -395,6 +442,597 @@ function inferSubjects(params: {
   return [deterministicSubject]
 }
 
+/**
+ * Stable dashed UUID for comparisons. Do not use idToUuid() on values that may
+ * already contain hyphens — it corrupts the string. parsePageId handles both forms.
+ */
+function canonicalNotionPageUuid(id: string): string | null {
+  return parsePageId(id, { uuid: true }) ?? null
+}
+
+function resolvePageMapKey(
+  pageMap: Record<string, ExtendedRecordMap>,
+  notionPageId: string
+): string | null {
+  const target = canonicalNotionPageUuid(notionPageId)
+  if (!target) return null
+  for (const key of Object.keys(pageMap)) {
+    const keyUuid = canonicalNotionPageUuid(key)
+    if (keyUuid === target) return key
+  }
+  return null
+}
+
+function findCanonicalPathForPageId(
+  canonicalPageMap: Record<string, string>,
+  pageMapKey: string
+): string {
+  const target = canonicalNotionPageUuid(pageMapKey)
+  if (!target) return ''
+  for (const [path, pid] of Object.entries(canonicalPageMap)) {
+    if (canonicalNotionPageUuid(pid) === target) return path
+  }
+  return ''
+}
+
+/**
+ * Course titles on the root Notion page look like "Frontiers in Biophysics (CHEM 163)"
+ * or "* Title (CODE)" — paragraph or heading blocks with a parenthetical course code.
+ */
+function looksLikeCourseTitleLine(text: string): boolean {
+  const normalized = text.replace(/^\s*\*\s*/, '').trim()
+  if (!normalized) return false
+  if (/\([A-Z]{2,}\s*\d{2,4}[A-Z0-9-]*\)/i.test(normalized)) return true
+  if (/\([^)]*[A-Za-z][^)]*\d[^)]*\)/.test(normalized)) return true
+  return false
+}
+
+/** Course list ends before the site footer (Notion page body convention). */
+function isCourseListLicenseLine(text: string): boolean {
+  const t = text.replace(/\s+/g, ' ').trim()
+  return /\bCC[- ]?BY[- ]?NC[- ]?SA\b/i.test(t) && /licensed under/i.test(t)
+}
+
+const ROOT_PAGE_TEXT_BLOCK_TYPES = new Set<Block['type']>([
+  'text',
+  'header',
+  'sub_header',
+  'sub_sub_header',
+  'bulleted_list',
+  'numbered_list',
+  'quote',
+  'to_do',
+  'table_row'
+])
+
+/** Notion roots that own a `content` tree of child blocks (normal page or full-page DB). */
+const ROOT_TRAVERSAL_BLOCK_TYPES = new Set<string>([
+  'page',
+  'collection_view_page'
+])
+
+/**
+ * Depth-first document order over `block.content`, including blocks inside
+ * columns, callouts, toggles, etc. (Direct `page.content` alone misses those.)
+ */
+function flattenPageContentBlockIds(
+  recordMap: ExtendedRecordMap,
+  pageBlockId: string
+): string[] {
+  const out: string[] = []
+
+  const visit = (blockId: string, parentBlockId: string | undefined) => {
+    const block = getRecordBlockValue(recordMap, blockId)
+    if (!block) return
+
+    const atSiteRoot = blockId === pageBlockId
+    const parentIsSiteRoot = parentBlockId === pageBlockId
+
+    if (
+      !atSiteRoot &&
+      (block.type === 'page' || block.type === 'collection_view_page')
+    ) {
+      if (parentIsSiteRoot) {
+        out.push(blockId)
+      }
+      const children = Array.isArray(block.content) ? block.content : []
+      for (const cid of children) {
+        visit(cid, blockId)
+      }
+      return
+    }
+
+    if (block.type === 'collection_view') {
+      return
+    }
+
+    const children = Array.isArray(block.content) ? block.content : []
+
+    if (!atSiteRoot && ROOT_PAGE_TEXT_BLOCK_TYPES.has(block.type)) {
+      out.push(blockId)
+    }
+
+    if (block.type === 'transclusion_reference') {
+      const refId = (block as Block & { format?: { transclusion_reference_pointer?: { id: string } } })
+        .format?.transclusion_reference_pointer?.id
+      if (refId) {
+        visit(refId, blockId)
+      }
+      return
+    }
+
+    if (block.type === 'alias') {
+      const aliasId = (
+        block as Block & { format?: { alias_pointer?: { id: string } } }
+      ).format?.alias_pointer?.id
+      if (aliasId) {
+        visit(aliasId, blockId)
+      }
+      return
+    }
+
+    for (const cid of children) {
+      visit(cid, blockId)
+    }
+  }
+
+  visit(pageBlockId, undefined)
+  return out
+}
+
+/**
+ * Metadata line: "Instructor | Term | School" (e.g. "Adam Cohen | Fall 2022 | Harvard University").
+ */
+function isCourseListingMetadataLine(text: string): boolean {
+  const normalized = text.replace(/\s+/g, ' ').trim()
+  if (!normalized.includes('|')) return false
+  const parts = normalized.split('|').map((p) => p.trim()).filter(Boolean)
+  if (parts.length >= 3) {
+    // Middle segment is the term; last is school (may be "MIT", "Harvard University", etc.)
+    return looksLikeTerm(parts[1]) && parts[2].length > 0
+  }
+  if (parts.length === 2) {
+    return isLikelySchoolDateLine(normalized)
+  }
+  return false
+}
+
+function parseListingMetaLine(metaLine: string): { school: string; term: string } {
+  const parts = metaLine.split('|').map((p) => p.trim()).filter(Boolean)
+  if (parts.length >= 3) {
+    return { school: parts[2], term: parts[1] }
+  }
+  return parseSchoolDate(metaLine)
+}
+
+function buildMetaFromListingLine(
+  metaLine: string,
+  title: string,
+  pagePath: string,
+  description: string
+): string {
+  const { school, term } = parseListingMetaLine(metaLine)
+  const schoolFmt = formatSchoolDisplayName(school)
+  if (schoolFmt && term) return `${schoolFmt} / ${term}`
+  return buildCourseMeta({
+    schoolDate: metaLine,
+    school: '',
+    term: '',
+    title,
+    pagePath,
+    description
+  })
+}
+
+function logRootPageBlocksPreview(
+  recordMap: ExtendedRecordMap,
+  pageId: string
+): void {
+  if (!isDev) return
+
+  const flatIds = flattenPageContentBlockIds(recordMap, pageId)
+  const preview = flatIds.slice(0, 120).map((blockId) => {
+    const b = getRecordBlockValue(recordMap, blockId)
+    const text = getRecordBlockPlainText(recordMap, blockId)
+    return {
+      id: blockId,
+      type: b?.type,
+      textPreview: text.slice(0, 160)
+    }
+  })
+
+  console.log(
+    '[getStaticProps] root Notion page — flattened content blocks (type + text preview)',
+    JSON.stringify(
+      { totalFlattened: flatIds.length, preview },
+      null,
+      2
+    )
+  )
+}
+
+function shouldLogFullNotionRecordMapJson(): boolean {
+  if (!isDev) return false
+  const v = process.env.NOTION_DEBUG_FULL_PAGE
+  if (v === '0' || v === 'false') return false
+  return true
+}
+
+/**
+ * Logs every block in the page `recordMap` (inventory) and optionally the full JSON
+ * (chunked). Set NOTION_DEBUG_FULL_PAGE=0 to skip the huge full dump; inventory still runs in dev.
+ */
+function logNotionRootRecordMapDebug(
+  recordMap: ExtendedRecordMap,
+  meta: { pageMapKey: string; stage: string }
+): void {
+  if (!isDev) return
+
+  const blockMap = recordMap.block || {}
+  const ids = Object.keys(blockMap)
+  const topKeys = Object.keys(recordMap as unknown as Record<string, unknown>).filter(
+    (k) => k !== 'block'
+  )
+
+  const inventory = ids.map((id) => {
+    const wrap = blockMap[id] as { role?: string } | undefined
+    const v = getRecordBlockValue(recordMap, id) as
+      | (Block & { parent_table?: string })
+      | undefined
+    const content = Array.isArray(v?.content) ? v.content : null
+    const props = v?.properties
+    return {
+      id,
+      role: wrap?.role,
+      type: v?.type,
+      alive: v?.alive,
+      parent_table: v?.parent_table,
+      contentChildCount: content?.length ?? 0,
+      propertyKeys:
+        props && typeof props === 'object' ? Object.keys(props as object) : [],
+      textPreview: getRecordBlockPlainText(recordMap, id).slice(0, 150)
+    }
+  })
+
+  const payload = {
+    ...meta,
+    recordMapTopLevelKeys: topKeys,
+    blockCount: ids.length,
+    collectionCount: Object.keys(recordMap.collection || {}).length,
+    collectionViewCount: Object.keys(recordMap.collection_view || {}).length,
+    blocks: inventory
+  }
+
+  const invJson = JSON.stringify(payload, null, 2)
+  const chunkSize = 14000
+  console.log(
+    `[getStaticProps] Notion DEBUG — block inventory (JSON length=${invJson.length}). ` +
+      'Full recordMap: set NOTION_DEBUG_FULL_PAGE=0 to skip.'
+  )
+  for (let i = 0; i < invJson.length; i += chunkSize) {
+    const part = Math.floor(i / chunkSize) + 1
+    const total = Math.ceil(invJson.length / chunkSize) || 1
+    console.log(`[NOTION_INVENTORY ${part}/${total}]\n${invJson.slice(i, i + chunkSize)}`)
+  }
+
+  if (!shouldLogFullNotionRecordMapJson()) {
+    return
+  }
+
+  try {
+    const full = JSON.stringify(recordMap, null, 2)
+    console.log(
+      `[getStaticProps] Notion DEBUG — FULL recordMap JSON (length=${full.length})`
+    )
+    for (let i = 0; i < full.length; i += chunkSize) {
+      const part = Math.floor(i / chunkSize) + 1
+      const total = Math.ceil(full.length / chunkSize) || 1
+      console.log(`[NOTION_FULL_DUMP ${part}/${total}]\n${full.slice(i, i + chunkSize)}`)
+    }
+  } catch (err) {
+    console.error('[getStaticProps] FULL recordMap JSON.stringify failed', err)
+    console.dir(recordMap, { depth: 8, maxArrayLength: 20 })
+  }
+}
+
+/**
+ * Parses the root Coursetexts Notion page when courses are inline blocks:
+ * title block → description paragraph(s) → "Instructor | Term | School" line.
+ */
+function extractHomeCoursesFromRootPage(params: {
+  pageMap: Record<string, ExtendedRecordMap>
+  canonicalPageMap: Record<string, string>
+  rootNotionPageId: string
+}): {
+  courses: HomeCourseCard[]
+  notionHomeDebug: NotionHomeDebugPayload | null
+} {
+  const pageMapKey = resolvePageMapKey(
+    params.pageMap,
+    params.rootNotionPageId
+  )
+  if (!pageMapKey) {
+    if (isDev) {
+      console.warn(
+        '[getStaticProps] root listing: no pageMap key matches rootNotionPageId (ID normalize bug?)',
+        {
+          rootNotionPageId: params.rootNotionPageId,
+          pageMapKeys: Object.keys(params.pageMap)
+        }
+      )
+    }
+    return {
+      courses: [],
+      notionHomeDebug: isDev
+        ? {
+            reason: 'no pageMapKey for rootNotionPageId',
+            pageMapKey: null,
+            rootBlockId: null,
+            rootBlockType: null,
+            rootListingCourseCount: 0
+          }
+        : null
+    }
+  }
+
+  const recordMap = params.pageMap[pageMapKey] as ExtendedRecordMap
+  if (!recordMap?.block) {
+    return {
+      courses: [],
+      notionHomeDebug: isDev
+        ? {
+            reason: 'recordMap.block missing',
+            pageMapKey,
+            rootBlockId: null,
+            rootBlockType: null,
+            rootListingCourseCount: 0
+          }
+        : null
+    }
+  }
+
+  logNotionRootRecordMapDebug(recordMap, {
+    pageMapKey,
+    stage: 'extractHomeCoursesFromRootPage (raw recordMap from getSiteMap pageMap)'
+  })
+
+  const wantUuid = canonicalNotionPageUuid(pageMapKey)
+  const blockAtKey = getRecordBlockValue(recordMap, pageMapKey)
+
+  let rootBlockId: string | null =
+    blockAtKey && ROOT_TRAVERSAL_BLOCK_TYPES.has(blockAtKey.type)
+      ? pageMapKey
+      : Object.keys(recordMap.block).find((bid) => {
+          const v = getRecordBlockValue(recordMap, bid)
+          return (
+            !!v &&
+            ROOT_TRAVERSAL_BLOCK_TYPES.has(v.type) &&
+            !!wantUuid &&
+            canonicalNotionPageUuid(bid) === wantUuid
+          )
+        }) ?? null
+
+  if (
+    !rootBlockId &&
+    blockAtKey &&
+    Array.isArray(blockAtKey.content)
+  ) {
+    rootBlockId = pageMapKey
+  }
+
+  const rootBlock = rootBlockId
+    ? getRecordBlockValue(recordMap, rootBlockId)
+    : undefined
+  const rootOk =
+    !!rootBlockId &&
+    !!rootBlock &&
+    (ROOT_TRAVERSAL_BLOCK_TYPES.has(rootBlock.type) ||
+      Array.isArray(rootBlock.content))
+
+  if (!rootOk) {
+    console.warn(
+      '[getStaticProps] root listing: could not find root block in recordMap',
+      JSON.stringify(
+        {
+          pageMapKey,
+          wantUuid,
+          blockAtKeyType: blockAtKey?.type,
+          sampleBlockIds: Object.keys(recordMap.block).slice(0, 8)
+        },
+        null,
+        2
+      )
+    )
+    return {
+      courses: [],
+      notionHomeDebug: isDev
+        ? {
+            reason: 'root block not resolved (type/content)',
+            pageMapKey,
+            rootBlockId,
+            rootBlockType: rootBlock?.type ?? null,
+            blockAtKeyType: blockAtKey?.type ?? null,
+            rootListingCourseCount: 0,
+            totalBlocksInRecordMap: Object.keys(recordMap.block).length
+          }
+        : null
+    }
+  }
+
+  logRootPageBlocksPreview(recordMap, rootBlockId!)
+
+  const rootPagePath = findCanonicalPathForPageId(
+    params.canonicalPageMap,
+    pageMapKey
+  )
+
+  const flatIds = flattenPageContentBlockIds(recordMap, rootBlockId)
+  const out: HomeCourseCard[] = []
+  let i = 0
+
+  while (i < flatIds.length) {
+    const titleBlockId = flatIds[i]
+    const rawTitle = getRecordBlockPlainText(recordMap, titleBlockId)
+
+    if (isCourseListLicenseLine(rawTitle)) {
+      break
+    }
+
+    if (!looksLikeCourseTitleLine(rawTitle)) {
+      i += 1
+      continue
+    }
+
+    const displayTitle = rawTitle.replace(/^\s*\*\s*/, '').trim()
+    i += 1
+
+    const descriptionChunks: string[] = []
+    let metaLine: string | null = null
+    let stopAll = false
+
+    while (i < flatIds.length) {
+      const cid = flatIds[i]
+      const chunkText = getChildBlockText(recordMap, cid)
+
+      if (isCourseListLicenseLine(chunkText)) {
+        stopAll = true
+        break
+      }
+
+      if (looksLikeCourseTitleLine(chunkText)) {
+        break
+      }
+
+      if (isCourseListingMetadataLine(chunkText)) {
+        metaLine = chunkText
+        i += 1
+        break
+      }
+
+      if (chunkText) descriptionChunks.push(chunkText)
+      i += 1
+    }
+
+    if (stopAll) break
+
+    if (!metaLine) continue
+
+    const description = descriptionChunks.join(' ').replace(/\s+/g, ' ').trim()
+    const descriptionSentence = firstSentence(description)
+    const descriptionOut = clip(
+      isUsableDescriptionSentence(descriptionSentence)
+        ? descriptionSentence
+        : description.length > 0
+          ? clip(description, 150)
+          : DEFAULT_COURSE_DESCRIPTION,
+      150
+    )
+
+    const metaStr = buildMetaFromListingLine(
+      metaLine,
+      displayTitle,
+      rootPagePath,
+      description
+    )
+
+    const titleBlock = getRecordBlockValue(recordMap, titleBlockId)
+    const nestedCoursePage =
+      titleBlock &&
+      (titleBlock.type === 'page' ||
+        titleBlock.type === 'collection_view_page')
+    const subPagePath = nestedCoursePage
+      ? findCanonicalPathForPageId(
+          params.canonicalPageMap,
+          titleBlockId
+        )
+      : ''
+
+    const hash = uuidToId(titleBlockId)
+    const coursePageSegment =
+      parsePageId(titleBlockId, { uuid: false }) ?? uuidToId(titleBlockId)
+
+    let href: string
+    if (nestedCoursePage) {
+      href = subPagePath ? `/${subPagePath}` : `/${coursePageSegment}`
+    } else {
+      const rootPathForHash =
+        rootPagePath ||
+        findCanonicalPathForPageId(params.canonicalPageMap, pageMapKey) ||
+        parsePageId(pageMapKey, { uuid: false }) ||
+        uuidToId(pageMapKey)
+      href = `/${rootPathForHash}#${hash}`
+    }
+
+    out.push({
+      id: titleBlockId,
+      href,
+      meta: metaStr,
+      title: clip(cleanCourseTitle(displayTitle) || displayTitle, 64),
+      description: descriptionOut,
+      subjects: inferSubjects({
+        fallbackSeed: titleBlockId,
+        pagePath: rootPagePath,
+        title: displayTitle,
+        description,
+        schoolDate: metaLine,
+        subjectHints: ''
+      })
+    })
+  }
+
+  if (out.length === 0) {
+    const pageContentLen = Array.isArray(rootBlock.content)
+      ? rootBlock.content.length
+      : 0
+    const totalBlocks = Object.keys(recordMap.block || {}).length
+    const sample = flatIds.slice(0, 20).map((id) => {
+      const t = getRecordBlockPlainText(recordMap, id)
+      return {
+        type: getRecordBlockValue(recordMap, id)?.type,
+        text: t.slice(0, 120),
+        titleCandidate: looksLikeCourseTitleLine(t),
+        metaCandidate: isCourseListingMetadataLine(t)
+      }
+    })
+    console.warn(
+      '[getStaticProps] root listing parsed 0 courses — diagnostics',
+      JSON.stringify(
+        {
+          pageMapKey,
+          rootPagePath,
+          pageContentChildCount: pageContentLen,
+          totalBlocksInRecordMap: totalBlocks,
+          flattenedTextBlockCount: flatIds.length,
+          sampleFlattenedBlocks: sample
+        },
+        null,
+        2
+      )
+    )
+  }
+
+  const notionHomeDebug: NotionHomeDebugPayload | null = isDev
+    ? {
+        pageMapKey,
+        rootBlockId,
+        rootBlockType: rootBlock?.type ?? null,
+        blockAtKeyType: blockAtKey?.type ?? null,
+        rootListingCourseCount: out.length,
+        flattenedTextBlockCount: flatIds.length,
+        totalBlocksInRecordMap: Object.keys(recordMap.block).length,
+        sampleFlattened: flatIds.slice(0, 25).map((id) => ({
+          id,
+          type: getRecordBlockValue(recordMap, id)?.type,
+          text: getRecordBlockPlainText(recordMap, id).slice(0, 160)
+        })),
+        note:
+          'Dev-only payload from getStaticProps. Compare sampleFlattened order and text to Notion.'
+      }
+    : null
+
+  return { courses: out, notionHomeDebug }
+}
+
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   try {
     const siteMap = await getSiteMap()
@@ -410,25 +1048,50 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       'terms-of-service'
     ])
 
-    const pool: HomeCourseCard[] = []
+    const { courses: rootListing, notionHomeDebug } =
+      extractHomeCoursesFromRootPage({
+        pageMap: siteMap.pageMap as Record<string, ExtendedRecordMap>,
+        canonicalPageMap: siteMap.canonicalPageMap,
+        rootNotionPageId
+      })
 
-    for (const [pagePath, pageId] of Object.entries(siteMap.canonicalPageMap)) {
-      if (excludedPaths.has(pagePath)) continue
+    if (isDev) {
+      console.log(
+        '[getStaticProps] courses from root listing:',
+        rootListing.length
+      )
+    }
 
-      const recordMap = siteMap.pageMap[pageId] as ExtendedRecordMap
+    let pool: HomeCourseCard[]
+
+    if (rootListing.length > 0) {
+      pool = rootListing
+    } else {
+      pool = []
+
+      for (const [pagePath, pageId] of Object.entries(
+        siteMap.canonicalPageMap
+      )) {
+        if (excludedPaths.has(pagePath)) continue
+
+        const recordMap = siteMap.pageMap[pageId] as ExtendedRecordMap
       if (!recordMap?.block) continue
 
-      const keys = Object.keys(recordMap.block)
-      const block = recordMap.block?.[keys[0]]?.value
+      const block = getRecordBlockValue(recordMap, pageId)
       if (!block || block.type !== 'page') continue
 
       const title = (getBlockTitle(block, recordMap) || '').trim()
       if (!title) continue
 
       const parentPage = getBlockParentPage(block, recordMap)
+      const rootUuid = canonicalNotionPageUuid(rootNotionPageId)
+      const parentUuid = parentPage?.id
+        ? canonicalNotionPageUuid(parentPage.id)
+        : null
       const isBlogPost =
         block.parent_table === 'collection' &&
-        parentPage?.id === idToUuid(rootNotionPageId)
+        !!rootUuid &&
+        parentUuid === rootUuid
 
       const published = getPageProperty<number>('Published', block, recordMap)
       if (isBlogPost || !!published) continue
@@ -516,26 +1179,58 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
           subjectHints
         })
       })
+      }
+
+      if (pool.length > 0) {
+        pool = pickRandom(pool, pool.length)
+      }
     }
 
-    const courses =
-      pool.length > 0 ? pickRandom(pool, pool.length) : fallbackCourses()
+    const courses = pool.length > 0 ? pool : fallbackCourses()
+
+    console.log(
+      '[getStaticProps] home courses:',
+      courses.length,
+      rootListing.length > 0 ? '(parsed root Notion page)' : '(subpages or fallback)'
+    )
+
+    if (isDev) {
+      console.log('[getStaticProps] final courses detail', {
+        usedRootListing: rootListing.length > 0,
+        sampleTitles: courses.slice(0, 3).map((c) => c.title)
+      })
+    }
 
     return {
-      props: { courses },
+      props: { courses, notionHomeDebug },
       revalidate: 600
     }
   } catch (error) {
     console.error('home page courses load failed', error)
+    const courses = fallbackCourses()
+    console.log('[getStaticProps] courses (fallback)', courses)
     return {
-      props: { courses: fallbackCourses() },
+      props: { courses, notionHomeDebug: null },
       revalidate: 120
     }
   }
 }
 
-export default function HomePage({ courses }: HomePageProps) {
+export default function HomePage({
+  courses,
+  notionHomeDebug
+}: HomePageProps) {
   const router = useRouter()
+
+  React.useEffect(() => {
+    if (notionHomeDebug && typeof window !== 'undefined') {
+      console.log(
+        '%c[Coursetexts] Notion home debug (from getStaticProps)',
+        'color:#2563eb;font-weight:bold;',
+        notionHomeDebug
+      )
+    }
+  }, [notionHomeDebug])
 
   React.useEffect(() => {
     if (!router.isReady) return
