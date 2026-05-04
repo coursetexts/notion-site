@@ -33,6 +33,9 @@ export interface TocItem {
   children?: TocChild[]
 }
 
+export const COMMUNITY_WALL_LABEL = 'Community Wall'
+export const COMMUNITY_WALL_MOUNT_ATTR = 'data-community-wall-mount'
+
 function isHeading(el: Element): boolean {
   return el.matches(HEADING_SELECTOR)
 }
@@ -263,6 +266,21 @@ export function buildSectionsFromHeadings(
     })
 
     inner.appendChild(wrapper)
+  })
+
+  // Append a synthetic final tab for Community Wall (not from Notion headings).
+  // This renders into the same main content slot, and is always the last TOC item.
+  const communityTabIndex = items.length
+  const communityWrapper = document.createElement('div')
+  communityWrapper.className = SECTION_CLASS
+  communityWrapper.setAttribute(DATA_TAB_INDEX, String(communityTabIndex))
+  const communityMount = document.createElement('div')
+  communityMount.setAttribute(COMMUNITY_WALL_MOUNT_ATTR, 'true')
+  communityWrapper.appendChild(communityMount)
+  inner.appendChild(communityWrapper)
+  items.push({
+    tabIndex: communityTabIndex,
+    label: COMMUNITY_WALL_LABEL
   })
 
   return items

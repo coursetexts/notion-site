@@ -1,0 +1,400 @@
+.page {
+  min-height: 100vh;
+  background: #f8f8f7;
+}
+
+.shell {
+  max-width: 1324px;
+  margin: 0 auto;
+  padding: 0 1.25rem 2.5rem;
+}
+
+.backRow {
+  margin: 0.75rem 0 1rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  color: #555;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: #25272b;
+}
+
+.layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 0 0 260px;
+  background: #fff;
+  border: 1px solid #e8e8e6;
+  border-radius: 10px;
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+}
+
+.sidebarTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 0.75rem;
+}
+
+.tabSearch {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  padding: 0.45rem 0.65rem 0.45rem 2rem;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  background: #fafafa
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E")
+    0.55rem center no-repeat;
+}
+
+.tabList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: min(60vh, 420px);
+  overflow-y: auto;
+}
+
+.tabRow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.tabColor {
+  width: 4px;
+  flex-shrink: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.tabBtn {
+  flex: 1;
+  text-align: left;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.6rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+  border-radius: 0 6px 6px 0;
+}
+
+.tabBtn:hover {
+  background: #f4f4f2;
+}
+
+.tabBtnActive {
+  background: #ececea;
+  font-weight: 500;
+}
+
+.newTabBtn {
+  width: 100%;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  padding: 0.5rem;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+}
+
+.newTabBtn:hover:not(:disabled) {
+  border-color: #999;
+  color: #25272b;
+}
+
+.newTabBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #e8e8e6;
+  border-radius: 10px;
+  padding: 2rem 2.5rem 2.5rem;
+}
+
+.notebookTitle {
+  width: 100%;
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  border: none;
+  background: transparent;
+  color: #1a1a1a;
+  margin: 0 0 0.35rem;
+  padding: 0;
+  outline: none;
+}
+
+.notebookTitle::placeholder {
+  color: #bbb;
+}
+
+.notebookTitleStatic {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #1a1a1a;
+  margin: 0 0 0.35rem;
+}
+
+.readOnlyHint {
+  font-size: 0.9375rem;
+  color: #666;
+  margin: 0 0 0.75rem;
+}
+
+.publishedLive {
+  font-size: 0.875rem;
+  color: #3d7a4a;
+  font-weight: 500;
+}
+
+.descPlaceholder {
+  font-size: 0.9375rem;
+  color: #999;
+  margin: 0 0 0.75rem;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.metaPill {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: #f0f0ee;
+  color: #666;
+  border: none;
+  cursor: default;
+}
+
+.saveStatus {
+  font-size: 0.8125rem;
+  color: #888;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.toolBtn {
+  font-size: 0.8125rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+  color: #444;
+  cursor: pointer;
+}
+
+.toolBtn:hover {
+  background: #f7f7f5;
+}
+
+.toolBtnActive {
+  background: #25272b;
+  color: #fff;
+  border-color: #25272b;
+}
+
+.editorSurface {
+  margin-top: 0.25rem;
+  overflow-x: auto;
+}
+
+.editorSurface :global(.ProseMirror) {
+  min-height: 48vh;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #25272b;
+}
+
+.editorSurface :global(.ProseMirror p.is-editor-empty:first-child::before) {
+  color: #aaa;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.editorSurface :global(.ProseMirror h1) {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.editorSurface :global(.ProseMirror h2) {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 1rem 0 0.4rem;
+}
+
+.editorSurface :global(.ProseMirror h3) {
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0.85rem 0 0.35rem;
+}
+
+.editorSurface :global(.ProseMirror ul),
+.editorSurface :global(.ProseMirror ol) {
+  margin: 0.5rem 0;
+  padding-left: 1.35rem;
+}
+
+.editorSurface :global(.ProseMirror li) {
+  margin: 0.2rem 0;
+}
+
+.editorSurface :global(.ProseMirror a) {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.editorSurface :global(.ProseMirror iframe) {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+}
+
+.editorSurface :global(table.notebookTable) {
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  width: 100%;
+  table-layout: auto;
+}
+
+.editorSurface :global(table.notebookTable td),
+.editorSurface :global(table.notebookTable th) {
+  border: 1px solid #d8d8d6;
+  padding: 0.4rem 0.55rem;
+  vertical-align: top;
+  min-width: 2.5rem;
+}
+
+.editorSurface :global(table.notebookTable th) {
+  background: #f0f0ee;
+  font-weight: 600;
+}
+
+.editorSurface :global(.tableWrapper) {
+  margin: 0.75rem 0;
+}
+
+.editorSurface :global(.Tiptap-mathematics-render) {
+  display: inline-block;
+  margin: 0 0.12em;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.editorSurface :global(.Tiptap-mathematics-render .katex) {
+  font-size: 1.05em;
+}
+
+.editorSurface :global(.Tiptap-mathematics-editor.Tiptap-mathematics-editor--hidden) {
+  user-select: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.publishBtn {
+  font-size: 0.875rem;
+  padding: 0.55rem 1.25rem;
+  background: #25272b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.publishBtn:hover:not(:disabled) {
+  background: #111;
+}
+
+.publishBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.renameInput {
+  width: 100%;
+  font-size: 0.875rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.emptyTabs {
+  font-size: 0.8125rem;
+  color: #999;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    flex: none;
+    width: 100%;
+  }
+
+  .main {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .notebookTitle,
+  .notebookTitleStatic {
+    font-size: 1.65rem;
+  }
+}

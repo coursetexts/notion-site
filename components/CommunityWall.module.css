@@ -1,0 +1,280 @@
+.root {
+  width: 100%;
+  min-height: 60vh;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #25272b;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: 'Guyot Press', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn,
+.btnPrimary {
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #37352f;
+}
+
+.btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #d5d5d5;
+}
+
+.btnPrimary {
+  background: #fff;
+  border-color: #e6e6e6;
+}
+
+.btnPrimary:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #d5d5d5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #fff;
+}
+
+.pinRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: #5d534b;
+}
+
+.pinTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0, 137, 196, 0.08);
+  color: #0089c4;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-weight: 600;
+}
+
+.cardTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+}
+
+.cardDesc {
+  margin: 0 0 0.85rem;
+  font-size: 0.85rem;
+  color: #5d534b;
+  line-height: 1.4;
+}
+
+.preview {
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.previewBody {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(93, 83, 75, 0.6);
+  font-size: 0.9rem;
+}
+
+.previewFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.7rem;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.previewMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.previewSource {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+.previewLink {
+  font-size: 0.75rem;
+  color: #5d534b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.miniActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.miniBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.2rem;
+  color: #5d534b;
+}
+
+.miniBtn:hover {
+  color: #25272b;
+}
+
+.actionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.leftActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #5d534b;
+  font-size: 0.8rem;
+}
+
+.actionPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.empty {
+  border: 1px dashed #e6e6e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #9ca3af;
+}
+
+/* Modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 19000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.modal {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  padding: 1.1rem;
+  box-sizing: border-box;
+}
+
+.modalTitle {
+  margin: 0 0 0.9rem;
+  font-family: 'Guyot Press', serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5d534b;
+}
+
+.input,
+.textarea {
+  border: 1px solid #e5e1d3;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.95rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.error {
+  color: #c00;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.5rem;
+}
+

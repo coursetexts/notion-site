@@ -1,0 +1,411 @@
+/* /users directory — top hero matches All Courses (AllCoursesNewTopSection). */
+
+.topSection {
+  /* Same width as .pageBody so title + filter align with the user card grid */
+  width: min(
+    var(--users-shell-max, 1100px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  margin: 74px auto 0;
+  box-sizing: border-box;
+}
+
+.heading {
+  margin: 0;
+  color: #000000;
+  font-family: 'Guyot Press', serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 24px;
+  letter-spacing: 0.0002em;
+}
+
+.filtersForm {
+  margin: 0;
+  padding: 0;
+}
+
+.searchBar {
+  margin-top: 32px;
+  width: 100%;
+  max-width: 100%;
+  height: 49px;
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  border: 1px solid #d7d8da;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 16px 19px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #25272b;
+  box-sizing: border-box;
+}
+
+.searchInput::placeholder {
+  color: #6b7280;
+}
+
+.fieldDivider {
+  width: 1px;
+  flex-shrink: 0;
+  align-self: stretch;
+  margin: 10px 0;
+  background: #e6e6e6;
+}
+
+.applyBtn {
+  flex-shrink: 0;
+  align-self: center;
+  margin: 0 5px 0 4px;
+  width: 81px;
+  height: 40px;
+  border: none;
+  border-radius: 0;
+  background: var(--dark-brown, #2c1a0c);
+  color: #ffffff;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: 0px 3px 6px 0px #8a8a8a14;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.applyBtn:hover,
+.applyBtn:focus-visible {
+  opacity: 0.9;
+  transform: translateX(1px);
+}
+
+.pageBody {
+  margin: 24px auto 0;
+  width: min(
+    var(--users-shell-max, 1100px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  box-sizing: border-box;
+  padding: 0 0 2rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #25272b;
+}
+
+@media (max-width: 768px) {
+  .searchBar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 49px;
+  }
+
+  .fieldDivider {
+    display: none;
+  }
+
+  .searchInput {
+    flex: 1 1 45%;
+    min-height: 49px;
+    border-bottom: 1px solid #f1edea;
+  }
+
+  .searchInput:nth-child(1) {
+    border-right: 1px solid #f1edea;
+  }
+
+  .applyBtn {
+    margin: 8px auto;
+    width: min(200px, calc(100% - 16px));
+  }
+}
+
+@media (max-width: 520px) {
+  .searchBar {
+    flex-direction: column;
+  }
+
+  .searchInput:nth-child(1) {
+    border-right: none;
+  }
+
+  .searchInput {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.card {
+  border: 1px solid #e6e6e6;
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: #fff;
+}
+
+.cardTop {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0.5rem;
+  align-items: start;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardTop:hover .name {
+  text-decoration: underline;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  object-fit: cover;
+  display: block;
+}
+
+.avatarPlaceholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.meta {
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin: 0 0 0.15rem;
+  word-break: break-word;
+  letter-spacing: -0.0004em;
+}
+
+.followers {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--midGrey, #37352f);
+}
+
+.tags {
+  grid-column: 1 / -1;
+  margin: 0.35rem 0 0;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.0004em;
+  word-break: break-word;
+}
+
+.tag {
+  color: #0089c4;
+  margin-right: 0.35rem;
+  text-decoration: none;
+}
+
+.tag:hover {
+  text-decoration: underline;
+}
+
+.tagSep {
+  color: #999;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.pageBtn {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #d7d8da;
+  background: #fff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  color: #25272b;
+}
+
+.pageBtn:hover {
+  background: #fbfbfa;
+}
+
+.pageBtnActive {
+  border-color: #2c1a0c;
+  font-weight: 500;
+}
+
+.pageEllipsis {
+  padding: 0 0.25rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  color: var(--midGrey, #37352f);
+}
+
+.muted {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--midGrey, #37352f);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Discord community callout (below directory) */
+
+.discordCta {
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e8e4dc;
+}
+
+.discordCtaInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 14px;
+  /* background: linear-gradient(145deg, #fdfcfa 0%, #f3ede6 55%, #efe8df 100%); */
+  background: #F8F7F4;
+  border: 1px solid rgba(61, 52, 41, 0.12);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 6px 28px rgba(45, 38, 32, 0.07);
+}
+
+.discordCtaImageWrap {
+  flex: 0 0 auto;
+  width: min(240px, 42vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.discordCtaImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(45, 38, 32, 0.12));
+}
+
+.discordCtaCopy {
+  flex: 1;
+  min-width: min(100%, 220px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.discordCtaTitle {
+  font-family: 'Guyot Press', serif;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 401;
+  margin: 0;
+  color: #2d2620;
+  letter-spacing: 0.0002em;
+  line-height: 1.2;
+}
+
+.discordCtaBody {
+  margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: #5c544a;
+  max-width: 34rem;
+}
+
+.discordCtaBtn {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 0.35rem;
+  padding: 0.6rem 1.35rem;
+  border-radius: 9px;
+  background: #252222;
+  color: #fff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  border: none;
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+
+.discordCtaBtn:hover {
+  filter: brightness(1.07);
+}
+
+.discordCtaBtn:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .discordCtaInner {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.35rem 1.25rem;
+  }
+
+  .discordCtaImageWrap {
+    width: min(260px, 72vw);
+    margin: 0 auto;
+  }
+
+  .discordCtaBtn {
+    align-self: center;
+  }
+}

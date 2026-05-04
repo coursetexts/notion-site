@@ -2,7 +2,7 @@
   min-height: 100vh;
   padding: 2rem;
   font-family: 'Hanken Grotesk', sans-serif;
-  background-color: #f8f8f8;
+  background-color: pink;
 }
 
 .loading {
@@ -72,6 +72,7 @@
   justify-content: center;
 }
 
+/* Legacy: current profile UIs use .sidebarName for the display name. */
 .name {
   font-size: 1.5rem;
   font-weight: 600;
@@ -114,7 +115,7 @@
   padding: 0.4rem 1rem;
   font-size: 0.9375rem;
   color: #fff;
-  background: #0089C4;
+  background: #0089c4;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -200,7 +201,7 @@
 }
 
 .userListLink:hover {
-  color: #0089C4;
+  color: #0089c4;
   text-decoration: underline;
 }
 
@@ -422,7 +423,6 @@
   font-weight: 500;
 }
 
-
 .newTagWrap {
   display: inline-flex;
   align-items: center;
@@ -446,7 +446,7 @@
 }
 
 .newTagBtn {
-  background: #0089C4;
+  background: #0089c4;
   color: #fff;
   border: none;
 }
@@ -473,7 +473,7 @@
 .addLinkBtn {
   font-size: 0.8125rem;
   padding: 0.35rem 0.6rem;
-  color: #0089C4;
+  color: #0089c4;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
@@ -483,7 +483,7 @@
 
 .addLinkBtn:hover {
   background: #e6f4fc;
-  border-color: #0089C4;
+  border-color: #0089c4;
 }
 
 .linkForm {
@@ -651,8 +651,8 @@
 
 .tagPillSelected {
   background: #e6f4fc;
-  border-color: #0089C4;
-  color: #0089C4;
+  border-color: #0089c4;
+  color: #0089c4;
 }
 
 .tagPillSelected:hover {
@@ -950,7 +950,7 @@
 }
 
 .userLinkActionBtn:hover {
-  color: #0089C4;
+  color: #0089c4;
   background: #f0f8fc;
 }
 
@@ -1018,7 +1018,7 @@
 }
 
 .userLinkEdit:hover {
-  color: #0089C4;
+  color: #0089c4;
   text-decoration: underline;
 }
 
@@ -1104,4 +1104,947 @@
   color: #666;
   margin: 0.35rem 0 0 0;
   line-height: 1.4;
+}
+
+/* —— Profile page layout (header + two columns + tabs) —— */
+
+.pageShell {
+  min-height: calc(100vh - 1px);
+  background: #fff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #25272b;
+  /* Match HomeHeader defaults so profile content lines up with the nav row */
+  --profile-side: clamp(20px, 4.03vw, 58px);
+  --profile-main-max: 1324px;
+}
+
+.pageShell .loading {
+  min-height: 40vh;
+  width: min(var(--profile-main-max), calc(100vw - (var(--profile-side) * 2)));
+  margin: 0 auto;
+  padding-top: clamp(3rem, 8vw, 5.5rem);
+  box-sizing: border-box;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  /* Wide gutter between sidebar and main (see profile mock) */
+  column-gap: clamp(3rem, 9vw, 7rem);
+  row-gap: clamp(2rem, 4vw, 3rem);
+  width: min(var(--profile-main-max), calc(100vw - (var(--profile-side) * 2)));
+  margin: 0 auto;
+  box-sizing: border-box;
+  /* No horizontal padding: width already matches header inset. Generous top gap below header. */
+  padding: clamp(3.5rem, 9vw, 6.5rem) 0 2rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profileSidebar {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .profileSidebar {
+    position: static;
+    align-items: center;
+  }
+
+  .sidebarBack {
+    align-self: stretch;
+    text-align: left;
+  }
+
+  .sidebarName {
+    text-align: center;
+  }
+
+  .sidebarFollowLine {
+    justify-content: center;
+  }
+
+  .sidebarBio,
+  .sidebarBioMuted {
+    text-align: center;
+    max-width: 22rem;
+  }
+
+  .linkCardsRow {
+    align-self: stretch;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarFollowMainBtn {
+    align-self: stretch;
+    max-width: none;
+    width: 100%;
+  }
+
+  .sidebarAvatarWrap {
+    align-self: center;
+    margin-inline: auto;
+  }
+}
+
+.sidebarBack {
+  display: block;
+  font-size: 0.9375rem;
+  color: #666;
+  text-decoration: none;
+  /* Padding (not margin) so gap below link isn’t lost to collapse / resets */
+  padding-bottom: 4rem;
+  margin-bottom: 0;
+}
+
+.sidebarBack:hover {
+  color: #25272b;
+  text-decoration: underline;
+}
+
+.sidebarAvatarWrap {
+  margin-bottom: 1rem;
+  width: fit-content;
+  max-width: 100%;
+}
+
+@media (min-width: 861px) {
+  .sidebarAvatarWrap {
+    align-self: flex-start;
+  }
+}
+
+.sidebarAvatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebarAvatarPlaceholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #e8e8e8;
+  color: #555;
+  font-size: 2.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Display name on /profile and /profile/[userId] sidebars */
+.sidebarName {
+  font-family: 'Guyot Press', 'Georgia', serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #111;
+  line-height: 1.2;
+}
+
+.sidebarFollowLine {
+  font-size: 0.875rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.sidebarFollowBtn {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sidebarFollowBtn:hover {
+  color: #25272b;
+  text-decoration: underline;
+}
+
+.sidebarFollowDot {
+  user-select: none;
+}
+
+.sidebarFollowMainBtn {
+  width: 100%;
+  margin-top: 0.75rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.publicProfileSingleCol {
+  grid-column: 1 / -1;
+  max-width: 28rem;
+}
+
+.sidebarBio {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+
+.sidebarBioMuted {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  margin: 0 0 1rem 0;
+  color: #999;
+  font-style: italic;
+}
+
+.linkCardsRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.linkCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  min-height: 3.5rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.linkCard:hover {
+  border-color: #ccc;
+  background: #fafafa;
+}
+
+.linkCardLabel {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+}
+
+.linkCardValue {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #25272b;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1.25rem;
+}
+
+.linkCardArrow {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.profileMain {
+  min-width: 0;
+  padding-bottom: 3rem;
+}
+
+.mainPanel {
+  min-width: 0;
+}
+
+.primaryTabs {
+  display: flex;
+  gap: 1.75rem;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 1.25rem;
+}
+
+.primaryTab,
+.primaryTabActive {
+  font: inherit;
+  font-size: 0.9375rem;
+  padding: 0.5rem 0 0.65rem;
+  margin-bottom: -1px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #666;
+  cursor: pointer;
+}
+
+.primaryTab:hover {
+  color: #25272b;
+}
+
+.primaryTabActive {
+  color: #111;
+  font-weight: 500;
+  border-bottom-color: #0089c4;
+}
+
+.mainSerifTitle {
+  font-family: 'Guyot Press', 'Georgia', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #111;
+}
+
+.subsectionSerifTitle {
+  font-family: 'Guyot Press', 'Georgia', serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.65rem 0;
+  color: #25272b;
+}
+
+.tabPanel {
+  padding-top: 0.25rem;
+}
+
+.activitySubTabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.activitySubTab,
+.activitySubTabActive {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+}
+
+.activitySubTab:not(:last-child),
+.activitySubTabActive:not(:last-child) {
+  border-right: 1px solid #e0e0e0;
+}
+
+.activitySubTab:hover {
+  background: #f9f9f9;
+  color: #25272b;
+}
+
+.activitySubTabActive {
+  background: #efefef;
+  color: #25272b;
+}
+
+.pageFooterBar {
+  display: flex;
+  justify-content: flex-end;
+  width: min(var(--profile-main-max), calc(100vw - (var(--profile-side) * 2)));
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 0 1.5rem;
+}
+
+.signOutFooter {
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 0.45rem 1rem;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signOutFooter:hover {
+  background: #f7f7f7;
+}
+
+/* —— Profile “Your notebooks” tab —— */
+
+.notebooksToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.notebooksToolbar .subsectionSerifTitle {
+  margin: 0;
+}
+
+.createNewWrap {
+  position: relative;
+}
+
+.notebooksCreateBtn {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.45rem 0.85rem;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.notebooksCreateBtn:hover {
+  background: #f7f7f7;
+}
+
+.notebooksCreateMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 11rem;
+  padding: 0.35rem 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  z-index: 20;
+}
+
+.notebooksCreateMenuBtn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.5rem 0.85rem;
+  border: none;
+  background: none;
+  color: #25272b;
+  cursor: pointer;
+}
+
+.notebooksCreateMenuBtn:hover:not(:disabled) {
+  background: #f5f5f5;
+}
+
+.notebooksCreateMenuBtn:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.notebooksCreateMenuDivider {
+  height: 1px;
+  margin: 0.25rem 0;
+  background: #eee;
+}
+
+.notebooksEmpty {
+  box-sizing: border-box;
+  border: 1px solid #F8F7F4;
+  border-radius: 10px;
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: #fff;
+  padding: 2rem 1.5rem;
+}
+
+.notebooksEmptyPot {
+  width: 5.5rem;
+  height: auto;
+  max-height: 5.5rem;
+  object-fit: contain;
+  opacity: 0.92;
+  filter: grayscale(1);
+}
+
+.notebooksEmptyText {
+  margin: 0;
+  font-family: 'Guyot Press', 'Georgia', serif;
+  font-size: 1.0625rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #6a6a6a;
+  letter-spacing: 0.01em;
+}
+
+.notebooksList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.notebooksListItemWrap {
+  border-bottom: 1px solid #eee;
+  padding: 0;
+}
+
+.notebooksListItemWrap:last-child {
+  border-bottom: none;
+}
+
+.notebooksListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notebooksListItem:hover {
+  background: #fafafa;
+}
+
+.notebooksListTitle {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: #25272b;
+}
+
+.notebooksPublishedBadge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  flex-shrink: 0;
+}
+
+.notebooksListMeta {
+  font-size: 0.8125rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.sidebarAddMetaBtn {
+  display: block;
+  width: 100%;
+  margin: 0.75rem 0 0;
+  padding: 0.35rem 0.45rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  font-size: 0.875rem;
+  color: #666;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.sidebarAddMetaBtn:hover {
+  background: #f5f5f5;
+  color: #25272b;
+}
+
+/* Own profile: preview above rule, pickers + single editor below */
+
+.sidebarProfileMeta {
+  margin-top: 0.75rem;
+}
+
+.sidebarProfileMetaPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.sidebarProfileMetaPreview .profileInterestTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+}
+
+.sidebarMetaPreviewEmpty {
+  font-size: 0.875rem;
+  color: #888;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.sidebarMetaDivider {
+  border: 0;
+  border-top: 1px solid #ececea;
+  margin: 0.85rem 0 0.65rem;
+}
+
+.sidebarMetaPickColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebarMetaPickColumn .sidebarAddMetaBtn {
+  margin: 0;
+}
+
+.sidebarMetaPickBtnActive {
+  background: #eef0f3 !important;
+  color: #25272b !important;
+}
+
+.sidebarMetaEditorSlot {
+  margin-top: 0.65rem;
+}
+
+.sidebarMetaEditorSubheading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  margin: 0 0 0.5rem;
+}
+
+.sidebarMetaEditorPanel {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.sidebarWebsitesBlock {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ececea;
+}
+
+.sidebarWebsitesHeading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  margin: 0 0 0.45rem;
+}
+
+.sidebarWebsitesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sidebarWebsiteItem {
+  margin: 0;
+}
+
+.sidebarWebsiteCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.5rem 0.55rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.sidebarWebsiteLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.sidebarWebsiteTitle {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #25272b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebarWebsiteActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.sidebarWebsiteActionBtn {
+  font-size: 0.6875rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
+  cursor: pointer;
+  color: #555;
+}
+
+.sidebarWebsiteActionBtn:hover {
+  background: #f0f0f0;
+}
+
+/* Profile personal links (Twitter, portfolio — not bookmarked user_links) */
+
+.sidebarPersonalLinksBlock {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ececea;
+}
+
+.sidebarPersonalLinksHeading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  margin: 0 0 0.45rem;
+}
+
+.sidebarPersonalLinksList {
+  list-style: none;
+  margin: 0 0 0.65rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sidebarPersonalLinkItem {
+  margin: 0;
+}
+
+.sidebarPersonalLinkCard,
+.sidebarPersonalLinkEditCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.5rem 0.55rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.sidebarPersonalLinkAnchor {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.sidebarPersonalLinkTitle {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #25272b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebarPersonalLinkActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.sidebarPersonalLinkAdd {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebarPersonalLinkField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.6875rem;
+  color: #666;
+}
+
+.sidebarPersonalLinkInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+}
+
+.sidebarPersonalBioTextarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 5rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  resize: vertical;
+  font-family: inherit;
+  color: #25272b;
+}
+
+.sidebarPersonalLinkPrimaryBtn {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.65rem;
+  border: none;
+  border-radius: 6px;
+  background: #25272b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebarPersonalLinkPrimaryBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.sidebarPersonalLinkPrimaryBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.sidebarPersonalLinkGhostBtn {
+  font-size: 0.6875rem;
+  padding: 0.25rem 0.45rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
+  cursor: pointer;
+  color: #555;
+}
+
+.sidebarPersonalLinkGhostBtn:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.sidebarPersonalLinkEditActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.profileInterestsBlock {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ececea;
+}
+
+.profileInterestsHeading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  margin: 0 0 0.45rem;
+}
+
+.profileInterestsEdit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem;
+  align-items: center;
+}
+
+.profileInterestsInput {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+}
+
+.profileInterestsBtn {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.profileInterestsBtn:hover:not(:disabled) {
+  background: #f7f7f5;
+}
+
+.profileInterestTags {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.profileInterestTagsBelowAdd {
+  margin-top: 0.5rem;
+}
+
+.profileInterestEmpty {
+  color: #999;
+}
+
+.profileInterestTagRow {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.35rem;
+  margin-bottom: 0.2rem;
+}
+
+.profileInterestTag {
+  color: #1a66cc;
+  text-decoration: none;
+}
+
+.profileInterestTag:hover {
+  text-decoration: underline;
+}
+
+.profileInterestRemove {
+  margin-left: 0.15rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 0.15rem;
+}
+
+.profileInterestRemove:hover {
+  color: #333;
 }

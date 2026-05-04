@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { createPortal, flushSync } from 'react-dom'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { AnimatePresence, motion } from 'framer-motion'
+
+import { useAuthOptional } from '@/contexts/AuthContext'
 import { IoClose } from '@react-icons/all-files/io5/IoClose'
+import { AnimatePresence, motion } from 'framer-motion'
+import { createPortal, flushSync } from 'react-dom'
 
 import { getCachedAuth } from '@/lib/auth-cache'
-import { useAuthOptional } from '@/contexts/AuthContext'
 
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import styles from './HomeHeader.module.css'
@@ -14,11 +15,7 @@ import styles from './HomeHeader.module.css'
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
   { label: 'Resources', href: '/manifesto' },
-  {
-    label: 'Commmunities',
-    href: 'https://discord.gg/6xBECjtC55',
-    external: true
-  },
+  { label: 'Communities', href: '/users' },
   {
     label: 'Donate',
     href: 'https://hcb.hackclub.com/donations/start/coursetexts',
@@ -31,13 +28,16 @@ type HomeHeaderProps = {
   style?: React.CSSProperties
   sidePadding?: string
   maxWidth?: string
+  /** When true, hides the desktop account link and mobile menu account link (e.g. on profile). */
+  hideAccountActions?: boolean
 }
 
 export function HomeHeader({
   className,
   style,
   sidePadding = 'clamp(20px, 4.03vw, 58px)',
-  maxWidth = '1324px'
+  maxWidth = '1324px',
+  hideAccountActions = false
 }: HomeHeaderProps) {
   const router = useRouter()
   const auth = useAuthOptional()
@@ -281,13 +281,15 @@ export function HomeHeader({
                 )}
               </nav>
 
-              <div className={styles.menuFooter}>
-                <Link href={accountHref} legacyBehavior>
-                  <a className={styles.menuSignUp} onClick={closeMenu}>
-                    {accountLabel}
-                  </a>
-                </Link>
-              </div>
+              {!hideAccountActions && (
+                <div className={styles.menuFooter}>
+                  <Link href={accountHref} legacyBehavior>
+                    <a className={styles.menuSignUp} onClick={closeMenu}>
+                      {accountLabel}
+                    </a>
+                  </Link>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>
@@ -363,9 +365,11 @@ export function HomeHeader({
                 </button>
               </nav>
 
-              <Link href={accountHref} legacyBehavior>
-                <a className={styles.signUp}>{accountLabel}</a>
-              </Link>
+              {!hideAccountActions && (
+                <Link href={accountHref} legacyBehavior>
+                  <a className={styles.signUp}>{accountLabel}</a>
+                </Link>
+              )}
             </div>
 
             <button

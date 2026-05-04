@@ -1,7 +1,7 @@
 import React from 'react'
-import { createPortal } from 'react-dom'
 
 import { AnimatePresence, motion } from 'framer-motion'
+import { createPortal } from 'react-dom'
 
 import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
 import {
@@ -10,11 +10,14 @@ import {
   updateSectionProgress
 } from '@/lib/course-section-progress'
 import {
+  COMMUNITY_WALL_LABEL,
+  COMMUNITY_WALL_MOUNT_ATTR,
   type TocItem,
   buildSectionsFromHeadings
 } from '@/lib/courseContentSections'
 
 import { AnnotationWidget } from './AnnotationWidget'
+import { CommunityWall } from './CommunityWall'
 import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
 import { CourseChatPanel } from './CourseChatPanel'
@@ -71,6 +74,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   >({})
   const [annotationCount, setAnnotationCount] = React.useState(0)
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
+  const [communityWallMountEl, setCommunityWallMountEl] =
+    React.useState<HTMLElement | null>(null)
 
   const bumpActivityRefresh = React.useCallback(() => {
     setActivityRefreshNonce((n) => n + 1)
@@ -134,6 +139,29 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     }, 400)
     return () => clearTimeout(timer)
   }, [contentSlotReady, tocItems.length])
+
+  React.useEffect(() => {
+    if (!contentSlotReady || !contentSlotRef.current) {
+      setCommunityWallMountEl(null)
+      return
+    }
+    if (tocItems.length === 0) {
+      setCommunityWallMountEl(null)
+      return
+    }
+    const hasCommunity = tocItems.some((i) => i.label === COMMUNITY_WALL_LABEL)
+    if (!hasCommunity) {
+      setCommunityWallMountEl(null)
+      return
+    }
+    const root =
+      contentSlotRef.current.closest('.course-content-mount') ??
+      contentSlotRef.current
+    const mount = root.querySelector(
+      `[${COMMUNITY_WALL_MOUNT_ATTR}="true"]`
+    ) as HTMLElement | null
+    setCommunityWallMountEl(mount)
+  }, [contentSlotReady, tocItems])
 
   /**
    * Citation links with icons: mark then restructure into a 2-column layout
@@ -511,6 +539,16 @@ export const CourseContent: React.FC<CourseContentProps> = ({
         >
           {children}
         </ContentMain>
+        {portalReady &&
+          communityWallMountEl &&
+          createPortal(
+            <CommunityWall
+              coursePageId={coursePageId}
+              courseTitle={courseTitle}
+              courseUrl={courseUrl}
+            />,
+            communityWallMountEl
+          )}
         <AnimatePresence
           mode='wait'
           initial={false}
@@ -554,9 +592,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
                   role='dialog'
                   aria-modal='true'
                   aria-label={
-                    rightPanel === 'annotations'
-                      ? 'Annotations'
-                      : 'Course chat'
+                    rightPanel === 'annotations' ? 'Annotations' : 'Course chat'
                   }
                   className={styles.mobilePanelSheet}
                   initial={{ y: '100%' }}
