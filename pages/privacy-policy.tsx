@@ -29,6 +29,9 @@ const PrivacyAndPolicy = () => {
                   <a href='/why' className='nav-link'>
                     Why Coursetexts?
                   </a>
+                  <a href='/manifesto' className='nav-link'>
+                    Manifesto
+                  </a>
                 </nav>
               </div>
             </div>

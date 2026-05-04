@@ -948,6 +948,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         { href: '/', label: 'Coursetexts' },
         // { href: '/about', label: 'About' },
         { href: '/why', label: 'Why' },
+        { href: '/manifesto', label: 'Manifesto' },
         { href: donate, label: 'Donate', target: '_blank', rel: 'noreferrer' }
       ]
 

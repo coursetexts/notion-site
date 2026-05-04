@@ -58,7 +58,7 @@ export const AuthDebugPanel: React.FC = () => {
         fontSize: 12,
         zIndex: 99999,
         fontFamily:
-          'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
+          'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
       }}
     >
       <div

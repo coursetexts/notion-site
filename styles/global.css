@@ -1,27 +1,19 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
 
 @font-face {
-  font-family: 'Tobias';
-  src: url('/fonts/TobiasTRIAL-Regular.woff') format('woff2'),
-    url('/fonts/TobiasTRIAL-Regular.woff') format('woff');
+  font-family: 'Guyot Press';
+  src: local('Guyot Press');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
-@font-face {
-  font-family: 'Gambarino';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/Gambarino-Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Gambetta Variable';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('/fonts/Gambetta-Variable.woff2') format('woff2');
+:root {
+  --font-sans: 'Hanken Grotesk', sans-serif;
+  --font-serif: 'Guyot Press', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
 }
 
 * {
@@ -38,6 +30,42 @@ html {
   padding: 0;
   margin: 0;
   line-height: 1.5; /* Add this line */
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.notion-h1,
+.notion-h2,
+.notion-h3,
+.notion-h4,
+.notion-title {
+  font-family: var(--font-serif);
+}
+
+button,
+input,
+textarea,
+select,
+label,
+p,
+li,
+span,
+a {
+  font-family: var(--font-sans);
+}
+
+code,
+pre,
+kbd,
+samp,
+.notion-code,
+.notion-code code {
+  font-family: var(--font-mono);
 }
 .dark-mode {
   --bg-color: #1e1e1e;
@@ -69,7 +97,7 @@ html {
 }
 
 body {
-  /* --notion-font: 'Inter', 'Helvetica Neue', 'Arial', sans-serif; */
+  /* --notion-font: 'Hanken Grotesk', sans-serif; */
   /* font-family: var(--notion-font); */
   overflow-x: hidden;
 }
