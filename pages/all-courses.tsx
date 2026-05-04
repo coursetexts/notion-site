@@ -201,7 +201,7 @@ export default function AllCoursesPage({
           {
             '--home-side': 'clamp(20px, 4.03vw, 58px)',
             '--home-main-max': '1324px',
-            '--home-content-max': '640px',
+            '--home-content-max': '1000px',
             '--home-footer-side': 'max(28px, 15.28vw)',
             minHeight: '100vh',
             background: 'var(--footer, #F8F7F4)',

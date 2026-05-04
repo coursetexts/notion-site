@@ -41,9 +41,28 @@
   letter-spacing: 0.0002em;
 }
 
-.supportCardsRow {
+.footerHeroRow {
   margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: clamp(12px, 2.5vw, 32px);
+  width: 100%;
+}
+
+.footerHeroLeft {
+  min-width: 0;
+}
+
+.footerHeroRight {
+  justify-self: end;
+  flex-shrink: 0;
+}
+
+.supportCardsRow {
+  margin-top: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 12px;
 }
@@ -309,9 +328,9 @@
 }
 
 .topRightCard {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
+  top: auto;
+  right: auto;
   width: 220px;
   height: 182px;
   padding: 20px;
@@ -406,17 +425,6 @@
   vertical-align: middle;
 }
 
-@media (max-width: 1300px) {
-  .topRightCard {
-    position: relative;
-    top: auto;
-    right: auto;
-    margin-top: 36px;
-    margin-left: auto;
-  }
-
-}
-
 @media (max-width: 1024px) {
   .contentShell {
     padding-top: 96px;
@@ -460,8 +468,14 @@
 }
 
 @media (max-width: 768px) {
+  .footerHeroRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
   .supportCardsRow {
     flex-direction: column;
+    max-width: min(253px, 100%);
   }
 
   .supportCard {
@@ -474,10 +488,6 @@
   }
 
   .footerMainColumns > .footerColumn:last-child {
-    margin-left: 0;
-  }
-
-  .topRightCard {
     margin-left: 0;
   }
 }

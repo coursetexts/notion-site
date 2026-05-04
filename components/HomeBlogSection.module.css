@@ -25,28 +25,41 @@
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
-  line-height: 24px;
+  line-height: 1.2;
   letter-spacing: 0.0002em;
 }
 
-.featureImageFrame {
-  margin-top: 36px;
+.featureRow {
+  margin-top: 40px;
   width: 100%;
-  max-width: 100%;
-  height: 316px;
-  align-self: flex-start;
-  border: 2px solid #c9c9c98a;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  column-gap: clamp(28px, 4vw, 52px);
+  align-items: center;
+}
+
+.featureImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: min(380px, 52vw);
+  border: none;
   border-radius: 14px;
   overflow: hidden;
   display: block;
   cursor: pointer;
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.09),
+    0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .featureImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left top;
+  object-position: center;
   display: block;
   transition: transform 220ms ease;
 }
@@ -56,9 +69,17 @@
   transform: scale(1.01);
 }
 
+.featureCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  min-width: 0;
+}
+
 .dateBadge {
-  margin-top: 40px;
-  padding: 4px 6px;
+  margin: 0;
+  padding: 4px 8px;
   border-radius: 4px;
   background: #0089c414;
   display: inline-flex;
@@ -78,19 +99,21 @@
 }
 
 .postTitleLink {
-  margin-top: 24px;
+  margin: 0;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .postTitle {
   margin: 0;
   color: #000000;
   font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
-  font-size: 15px;
-  line-height: 26px;
-  letter-spacing: -0.0004em;
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
   position: relative;
   display: inline;
   transition: color 200ms ease;
@@ -118,7 +141,7 @@
 }
 
 .postExcerpt {
-  margin: 12px 0 0;
+  margin: 0;
   max-width: 100%;
   color: #25272b;
   font-family: 'Guyot Press', serif;
@@ -130,29 +153,53 @@
 }
 
 .authorRow {
-  margin-top: 24px;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   gap: 12px;
 }
 
-.authorImage {
+.authorIconBadge {
   width: 32px;
   height: 32px;
-  object-fit: cover;
+  border-radius: 50%;
+  background: #3d4d5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.authorBookIcon {
+  width: 17px;
+  height: auto;
   display: block;
+  filter: brightness(0) invert(1);
 }
 
 .authorName {
   margin: 0;
-  color: #37352f;
-  font-family: 'Guyot Press', serif;
+  color: #5c5c5c;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
   line-height: 21px;
-  letter-spacing: 0;
+  letter-spacing: -0.0004em;
   vertical-align: middle;
+}
+
+@media (max-width: 720px) {
+  .featureRow {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+    align-items: stretch;
+  }
+
+  .featureImageFrame {
+    max-height: none;
+    aspect-ratio: 16 / 10;
+  }
 }
 
 @media (max-width: 640px) {
@@ -162,6 +209,6 @@
 
   .heading {
     font-size: 28px;
-    line-height: 30px;
+    line-height: 1.2;
   }
 }

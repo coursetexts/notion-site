@@ -1,6 +1,5 @@
 .section {
   width: 100%;
-  height: 860px;
   margin-top: 0;
   background: var(--offwhite, #fdfdfd);
 }
@@ -10,32 +9,13 @@
     var(--home-content-max, 640px),
     calc(100vw - (var(--home-side, 58px) * 2))
   );
-  height: 100%;
-  padding: 96px 0;
+  padding: 112px 0 108px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   box-sizing: border-box;
 }
 
-.imageWrap {
-  width: 100%;
-  height: 291px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.image {
-  display: block;
-  width: 100%;
-  height: 291px;
-  object-fit: cover;
-}
-
 .heading {
-  margin: 72px 0 0;
+  margin: 0;
   width: 100%;
   text-align: left;
   color: #000000;
@@ -43,30 +23,65 @@
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
-  line-height: 24px;
+  line-height: 1.2;
   letter-spacing: 0.0002em;
 }
 
-.categoryGrid {
-  margin-top: 40px;
-  width: 100%;
+.learnRow {
+  margin-top: 44px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(3, 72px);
-  column-gap: 12px;
-  row-gap: 12px;
+  /* ~⅓ category column / ~⅔ hero image */
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+  align-items: start;
+  column-gap: clamp(28px, 4vw, 56px);
+}
+
+.learnLeft {
+  min-width: 0;
+}
+
+.learnRight {
+  min-width: 0;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.previewFrame {
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.1),
+    0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.previewImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  transition: transform 220ms ease;
+}
+
+.previewFrame:hover .previewImage,
+.previewFrame:focus-visible .previewImage {
+  transform: scale(1.01);
 }
 
 .categoryCardSlot {
   width: 100%;
-  height: 72px;
   position: relative;
 }
 
 .categoryCardLink {
   display: block;
   width: 100%;
-  height: 100%;
   cursor: pointer;
   transition:
     transform 220ms ease,
@@ -81,13 +96,14 @@
 
 .categoryCard {
   width: 100%;
-  height: 100%;
-  border: 1px solid var(--outline, #e6e6e6);
+  height: 72px;
+  border: 1px solid #ebebeb;
   border-radius: 8px;
   display: flex;
   align-items: stretch;
   overflow: hidden;
   box-sizing: border-box;
+  background: #ffffff;
 }
 
 .categoryImage {
@@ -99,10 +115,11 @@
 }
 
 .categoryTextWrap {
-  padding: 14px 0 14px 24px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  justify-content: center;
+  min-width: 0;
 }
 
 .categoryTitle {
@@ -113,7 +130,7 @@
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
-  line-height: 14px;
+  line-height: 1.2;
   letter-spacing: -0.0004em;
   color: var(--dark-brown, #2c1a0c);
 }
@@ -138,29 +155,20 @@
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.categoryCount {
-  margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 13px;
-  line-height: 100%;
-  letter-spacing: -0.0004em;
-  color: var(--dark-brown, #2c1a0c);
+  flex-wrap: wrap;
 }
 
 .newBadge {
-  width: 37px;
+  min-width: 37px;
   height: 18px;
-  padding: 4px 6px;
+  padding: 4px 7px;
   border-radius: 4px;
-  background: #0089c414;
+  background: #0089c4;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .newBadgeText {
@@ -171,36 +179,26 @@
   line-height: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #0089c4;
+  color: #ffffff;
 }
 
-@media (max-width: 860px) {
-  .section {
-    height: auto;
-  }
-
-  .content {
-    height: auto;
-    padding-bottom: 96px;
-  }
-
-  .categoryGrid {
+@media (max-width: 900px) {
+  .learnRow {
     grid-template-columns: 1fr;
-    grid-template-rows: none;
+    row-gap: 44px;
   }
 
-  .categoryCardSlot {
-    height: 72px;
+  .learnLeft {
+    max-width: none;
   }
 }
 
 @media (max-width: 640px) {
   .content {
-    padding-top: 80px;
+    padding: 88px 0 84px;
   }
 
   .heading {
     font-size: 28px;
-    line-height: 30px;
   }
 }

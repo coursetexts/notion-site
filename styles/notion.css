@@ -16,6 +16,11 @@
   --notion-header-height: 54px;
 }
 
+/* /why and /about: HomeHeader replaces react-notion-x header */
+.ct-notion-home-chrome .notion-header {
+  display: none !important;
+}
+
 .notion-frame {
   padding: 0;
 }

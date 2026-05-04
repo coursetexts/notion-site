@@ -533,6 +533,8 @@
 .notFoundPageContainer {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background: var(--footer, #f8f7f4);
 }
 
 .notFoundPage {
@@ -540,35 +542,147 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
+  min-height: 0;
+  padding: 48px 1.25rem 64px;
+  box-sizing: border-box;
+}
+
+.notFoundCore {
+  width: min(534px, 100%);
+  padding: 9rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+}
+
+.notFoundTitle {
+  margin: 0;
   font-family: 'Guyot Press', serif;
-  gap: 0.75rem;
-  min-height: 40rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #000000;
 }
 
-.notFoundPage h1 {
-  font-size: 3rem;
-  font-weight: bolder;
-  font-style: italic;
-  margin-bottom: 0.1rem;
+.notFoundSearchForm {
+  margin: 0;
+  margin-top: 40px;
+  width: 100%;
 }
 
-.notFoundPage button {
-  border-radius: 7px;
-  padding: 12px 18px;
+.notFoundSearchWrap {
+  position: relative;
+  width: 100%;
+  height: 49px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d7d8da;
+  background: #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 6px 0px #0000000b;
+}
+
+.notFoundSearchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.notFoundSearchInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 16px 110px 16px 44px;
+  box-sizing: border-box;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #25272b;
+}
+
+.notFoundSearchInput::placeholder {
+  color: #6b7280;
+}
+
+.notFoundSearchButton {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  width: 81px;
+  height: 40px;
+  border: none;
+  border-radius: 0;
+  background: var(--dark-brown, #2c1a0c);
+  color: #ffffff;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: 0px 3px 6px 0px #8a8a8a14;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.notFoundSearchButton:hover {
+  opacity: 0.92;
+}
+
+.notFoundLucky {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  background: none;
   cursor: pointer;
   font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 10px;
-  background-color: #e5dfcc;
-  border: none;
-  color: #473b09;
-  font-size: 1rem;
-  border: solid 0.5px #e0dac7;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b7280;
 }
 
-.notFoundPage button:hover {
-  background-color: #d5cfba;
-  transition: all 0.3s ease-in-out;
+.notFoundLucky:hover {
+  color: #374151;
+}
+
+.notFoundLucky img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.notFoundLuckyLabel {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 2px;
+}
+
+.notFoundMeta {
+  margin: 40px 0 0;
+  max-width: 100%;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #6b7280;
+  text-align: center;
 }
 
 .copyright {

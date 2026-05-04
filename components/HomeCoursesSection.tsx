@@ -88,16 +88,17 @@ export function HomeCoursesSection({
     { label: 'English', icon: '/images/home/english.png' }
   ]
 
-  const cards = courses
-    ? courses.slice(0, 8)
-    : Array.from({ length: 8 }).map((_, index) => ({
-        id: `fallback-${index + 1}`,
-        href: '/',
-        meta: 'Harvard / Fall 2024',
-        title: 'Global & Visual Digital Culture',
-        description:
-          'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
-      }))
+  const cards =
+    courses == null
+      ? Array.from({ length: 12 }).map((_, index) => ({
+          id: `fallback-${index + 1}`,
+          href: '/',
+          meta: 'Harvard / Fall 2024',
+          title: 'Global & Visual Digital Culture',
+          description:
+            'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
+        }))
+      : courses
 
   return (
     <section className={styles.section}>

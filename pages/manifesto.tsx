@@ -3,7 +3,7 @@ import React from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 import { HomeFooterSection } from '@/components/HomeFooterSection'
-import { discord, donate } from '@/lib/config'
+import { HomeHeader } from '@/components/HomeHeader'
 import styles from '@/styles/manifesto.module.css'
 
 const tocItems = [
@@ -64,25 +64,6 @@ const manifestoNotes = [
   'Article was written in collaboration with Aileen Luo.'
 ] as const
 
-function LogoMark() {
-  return (
-    <svg
-      aria-hidden='true'
-      className={styles.brandMark}
-      fill='none'
-      height='21'
-      viewBox='0 0 24 21'
-      width='24'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path
-        d='M21.9 18.3373L18.0187 3.84358C17.9155 3.45947 17.6639 3.13208 17.3194 2.93341C16.9748 2.73475 16.5654 2.68108 16.1813 2.78421L13.2844 3.56233L13.1906 3.59046C13.0509 3.40715 12.8708 3.25851 12.6643 3.15608C12.4578 3.05365 12.2305 3.00018 12 2.99983H9C8.73609 3.00054 8.47716 3.07175 8.25 3.20608C8.02284 3.07175 7.76391 3.00054 7.5 2.99983H4.5C4.10218 2.99983 3.72064 3.15787 3.43934 3.43917C3.15804 3.72048 3 4.10201 3 4.49983V19.4998C3 19.8977 3.15804 20.2792 3.43934 20.5605C3.72064 20.8418 4.10218 20.9998 4.5 20.9998H7.5C7.76391 20.9991 8.02284 20.9279 8.25 20.7936C8.47716 20.9279 8.73609 20.9991 9 20.9998H12C12.3978 20.9998 12.7794 20.8418 13.0607 20.5605C13.342 20.2792 13.5 19.8977 13.5 19.4998V10.1623L16.1063 19.8842C16.1912 20.2046 16.3798 20.4878 16.6427 20.6896C16.9056 20.8915 17.2279 21.0005 17.5594 20.9998C17.6888 20.9976 17.8176 20.9819 17.9437 20.953L20.8406 20.1748C21.2247 20.0716 21.5521 19.82 21.7508 19.4754C21.9495 19.1309 22.0031 18.7215 21.9 18.3373ZM16.5656 4.23733L17.1562 6.40296L14.2594 7.18108L13.6688 5.01546L16.5656 4.23733ZM12 4.49983V15.7498H9V4.49983H12ZM7.5 4.49983V6.74983H4.5V4.49983H7.5ZM12 19.4998H9V17.2498H12V19.4998ZM20.4562 18.7217L17.5594 19.4998L16.9688 17.3248L19.875 16.5467L20.4562 18.7217Z'
-        fill='black'
-      />
-    </svg>
-  )
-}
-
 function ArrowLeftIcon() {
   return (
     <svg
@@ -99,33 +80,6 @@ function ArrowLeftIcon() {
         strokeLinecap='round'
         strokeLinejoin='round'
         strokeWidth='1.25'
-      />
-    </svg>
-  )
-}
-
-function SearchIcon() {
-  return (
-    <svg
-      aria-hidden='true'
-      fill='none'
-      height='18'
-      viewBox='0 0 18 18'
-      width='18'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <circle
-        cx='7.875'
-        cy='7.875'
-        r='5.625'
-        stroke='currentColor'
-        strokeWidth='1.5'
-      />
-      <path
-        d='M11.85 11.85L15.75 15.75'
-        stroke='currentColor'
-        strokeLinecap='round'
-        strokeWidth='1.5'
       />
     </svg>
   )
@@ -221,12 +175,14 @@ function ManifestoArticleFooter() {
   )
 }
 
+const homeChromeVars = {
+  '--home-side': 'clamp(20px, 4.03vw, 58px)',
+  '--home-main-max': '1324px',
+  '--home-content-max': '1000px',
+  '--home-footer-side': 'max(28px, 15.28vw)'
+} as React.CSSProperties
+
 export default function ManifestoPage() {
-  const communityHref = discord || '/why'
-  const donateHref = donate || '/'
-  const communityExternal = !!discord
-  const donateExternal = !!donate
-  const reduceMotion = useReducedMotion()
   const [copyState, setCopyState] = React.useState<'idle' | 'copied' | 'error'>(
     'idle'
   )
@@ -306,6 +262,9 @@ export default function ManifestoPage() {
           content='Curated knowledge exists in extraordinary abundance, but the best of it still stays locked away.'
           name='description'
         />
+        <link rel='preconnect' href='https://use.typekit.net' />
+        <link rel='preconnect' href='https://p.typekit.net' />
+        <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
       </Head>
 
       <div className={styles.page}>
@@ -324,72 +283,11 @@ export default function ManifestoPage() {
           </filter>
         </svg>
 
-        <motion.div
-          aria-hidden='true'
-          className={styles.globalGrain}
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                  x: [0, -18, 10, 0],
-                  y: [0, 14, -10, 0],
-                  opacity: [0.16, 0.22, 0.18, 0.16]
-                }
-          }
-          transition={
-            reduceMotion
-              ? undefined
-              : { duration: 18, repeat: Infinity, ease: 'linear' }
-          }
-        />
+        {/* Static grain: animating this layer + SVG feTurbulence forced repaints every frame and made scrolling feel heavy. */}
+        <div aria-hidden='true' className={styles.globalGrain} />
 
-        <div className={styles.pageLayer}>
-          <div className={styles.topRule} />
-
-          <header className={styles.header}>
-            <a className={styles.brand} href='/'>
-              <LogoMark />
-              <span className={styles.brandText}>Coursetexts</span>
-            </a>
-
-            <nav aria-label='Primary' className={styles.headerNav}>
-              <a className={styles.headerLink} href='/'>
-                All Courses
-              </a>
-              <a className={styles.headerLink} href='/why'>
-                Resources
-              </a>
-              <a
-                className={styles.headerLink}
-                href={communityHref}
-                rel={communityExternal ? 'noreferrer' : undefined}
-                target={communityExternal ? '_blank' : undefined}
-              >
-                Communities
-              </a>
-              <a
-                className={styles.headerLink}
-                href={donateHref}
-                rel={donateExternal ? 'noreferrer' : undefined}
-                target={donateExternal ? '_blank' : undefined}
-              >
-                Donate
-              </a>
-            </nav>
-
-            <div className={styles.headerActions}>
-              <a
-                aria-label='Search all courses'
-                className={styles.searchButton}
-                href='/'
-              >
-                <SearchIcon />
-              </a>
-              <a className={styles.signUpButton} href='/signin'>
-                Sign Up
-              </a>
-            </div>
-          </header>
+        <div className={styles.pageLayer} style={homeChromeVars}>
+          <HomeHeader />
 
           <main className={styles.main}>
             <a className={styles.backLink} href='/'>
@@ -531,8 +429,10 @@ export default function ManifestoPage() {
             </div>
           </main>
 
-          <section className={styles.legacySection}>
-            <div className={`${styles.legacyTop} ${styles.noisySection}`}>
+          <section
+            className={`${styles.legacySection} ${styles.noisySection}`}
+          >
+            <div className={styles.legacyTop}>
               <Reveal className={styles.legacyTopInner}>
                 <h2 className={styles.legacyHeadline}>
                   <em>Cranetexts</em> began as Coursetexts; a free, open
@@ -541,7 +441,7 @@ export default function ManifestoPage() {
               </Reveal>
             </div>
 
-            <div className={`${styles.legacyBottom} ${styles.noisySection}`}>
+            <div className={styles.legacyBottom}>
               <Reveal className={styles.legacyInner}>
                 <div className={styles.legacyLead}>
                   <p className={styles.bottomText}>
@@ -615,7 +515,7 @@ export default function ManifestoPage() {
                     aria-hidden='true'
                     className={styles.ocwDesk}
                     height={145}
-                    src='/images/manifesto/ocw-cube.png'
+                    src='/images/manifesto/desk.png'
                     width={155}
                   />
                 </div>

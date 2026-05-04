@@ -2,6 +2,7 @@ import * as React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import cs from 'classnames'
@@ -41,6 +42,7 @@ import { CourseContent } from './CourseContent'
 import { CourseHero, type CourseHeroData } from './CourseHero'
 // React 18+
 import FilterRow from './FilterRow'
+import { HomeHeader } from './HomeHeader'
 import { HomeFooterSection } from './HomeFooterSection'
 // import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
@@ -260,6 +262,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
 }) => {
   const router = useRouter()
   const lite = useSearchParam('lite')
+  const isLiteMode = lite === 'true'
 
   // const [sections, setSections] = React.useState([]) // state for sections to be used for tabs
 
@@ -281,6 +284,12 @@ export const NotionPage: React.FC<NotionPageProps> = ({
   } else {
     pageClass = 'course-page'
   }
+
+  const pathForLayout =
+    (router.isReady ? router.asPath : router.pathname)?.split('?')[0] ?? ''
+  const useHomeChrome =
+    !isLiteMode &&
+    (pathForLayout === '/why' || pathForLayout === '/about')
 
   const filterRootRef = React.useRef<{
     root: Root | null
@@ -1344,16 +1353,17 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       Pdf,
       Modal,
       Tweet,
-      Header: NotionPageHeader,
+      Header: useHomeChrome
+        ? function MarketingNotionHeader() {
+            return null
+          }
+        : NotionPageHeader,
       propertyLastEditedTimeValue,
       propertyTextValue,
       propertyDateValue
     }),
-    []
+    [useHomeChrome]
   )
-
-  // lite mode is for oembed
-  const isLiteMode = lite === 'true'
 
   const { isDarkMode } = useDarkMode()
 
@@ -1923,7 +1933,9 @@ export const NotionPage: React.FC<NotionPageProps> = ({
 
       {/* {isLiteMode && <BodyClassName className='notion-lite' />}
       {isDarkMode && <BodyClassName className='dark-mode' />} */}
-      <BodyClassName className={pageClass} />
+      <BodyClassName
+        className={cs(pageClass, useHomeChrome && 'ct-notion-home-chrome')}
+      />
 
       {pageClass === 'course-page' && !contentVisible && (
         <div
@@ -1945,59 +1957,149 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         </div>
       )}
 
-      <div
-        style={{
-          visibility: contentVisible ? 'visible' : 'hidden'
-        }}
-      >
-        <NotionRenderer
-          bodyClassName={cs(
-            styles.notion,
-            isSiteRootPage && 'index-page'
-          )}
-          darkMode={isDarkMode}
-          components={components}
-          recordMap={recordMap as any}
-          blockId={rendererBlockId}
-          rootPageId={rendererBlockId}
-          rootDomain={site.domain}
-          fullPage={!isLiteMode}
-          previewImages={!!recordMap.preview_images}
-          showCollectionViewDropdown={false}
-          showTableOfContents={showTableOfContents}
-          minTableOfContentsItems={minTableOfContentsItems}
-          defaultPageIcon={null}
-          defaultPageCover={config.defaultPageCover}
-          defaultPageCoverPosition={config.defaultPageCoverPosition}
-          mapPageUrl={siteMapPageUrl}
-          mapImageUrl={mapImageUrl as any}
-          searchNotion={config.isSearchEnabled ? (searchNotion as any) : null}
-          pageAside={null}
-        />
+      {useHomeChrome ? (
+        <main
+          style={
+            {
+              '--home-side': 'clamp(20px, 4.03vw, 58px)',
+              '--home-main-max': '1324px',
+              '--home-content-max': '1000px',
+              '--home-footer-side': 'max(28px, 15.28vw)',
+              minHeight: '100vh',
+              background: 'var(--footer, #F8F7F4)',
+              display: 'flex',
+              flexDirection: 'column'
+            } as React.CSSProperties
+          }
+        >
+          <Head>
+            <link rel='preconnect' href='https://use.typekit.net' />
+            <link rel='preconnect' href='https://p.typekit.net' />
+            <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
+          </Head>
+          <HomeHeader />
+          <div
+            style={{
+              flex: 1,
+              minHeight: 0,
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                visibility: contentVisible ? 'visible' : 'hidden'
+              }}
+            >
+              <NotionRenderer
+                bodyClassName={cs(
+                  styles.notion,
+                  isSiteRootPage && 'index-page'
+                )}
+                darkMode={isDarkMode}
+                components={components}
+                recordMap={recordMap as any}
+                blockId={rendererBlockId}
+                rootPageId={rendererBlockId}
+                rootDomain={site.domain}
+                fullPage={!isLiteMode}
+                previewImages={!!recordMap.preview_images}
+                showCollectionViewDropdown={false}
+                showTableOfContents={showTableOfContents}
+                minTableOfContentsItems={minTableOfContentsItems}
+                defaultPageIcon={null}
+                defaultPageCover={config.defaultPageCover}
+                defaultPageCoverPosition={config.defaultPageCoverPosition}
+                mapPageUrl={siteMapPageUrl}
+                mapImageUrl={mapImageUrl as any}
+                searchNotion={
+                  config.isSearchEnabled ? (searchNotion as any) : null
+                }
+                pageAside={null}
+              />
 
-        {(router.asPath === '/about-9a2ace4be0dc4d928e7d304a44a6afe8' ||
-          router.asPath === '/about' ||
-          (router.asPath.split('/')[1]?.startsWith('about') &&
-            router.asPath.split('/')[1]) ||
-          pageId == '2636f19a-6ceb-4d8d-b057-f0b166b05ce0' ||
-          router.asPath === '/why' ||
-          router.asPath === '/process') && (
-          <div className='button-container'>
-            <a href='./'>
-              <button className='see-all'>See All Classes →</button>
-            </a>
-            <a href={donate} target='_blank' rel='noreferrer'>
-              <button className='see-all'>Donate →</button>
-            </a>
+              {(router.asPath === '/about-9a2ace4be0dc4d928e7d304a44a6afe8' ||
+                router.asPath === '/about' ||
+                (router.asPath.split('/')[1]?.startsWith('about') &&
+                  router.asPath.split('/')[1]) ||
+                pageId == '2636f19a-6ceb-4d8d-b057-f0b166b05ce0' ||
+                router.asPath === '/why' ||
+                router.asPath === '/process') && (
+                <div className='button-container'>
+                  <a href='./'>
+                    <button className='see-all'>See All Classes →</button>
+                  </a>
+                  <a href={donate} target='_blank' rel='noreferrer'>
+                    <button className='see-all'>Donate →</button>
+                  </a>
+                </div>
+              )}
+
+              {pageClass === 'notion-home' && <License />}
+            </div>
           </div>
-        )}
+          {!hideFooter && <HomeFooterSection variant='default' />}
+        </main>
+      ) : (
+        <>
+          <div
+            style={{
+              visibility: contentVisible ? 'visible' : 'hidden'
+            }}
+          >
+            <NotionRenderer
+              bodyClassName={cs(
+                styles.notion,
+                isSiteRootPage && 'index-page'
+              )}
+              darkMode={isDarkMode}
+              components={components}
+              recordMap={recordMap as any}
+              blockId={rendererBlockId}
+              rootPageId={rendererBlockId}
+              rootDomain={site.domain}
+              fullPage={!isLiteMode}
+              previewImages={!!recordMap.preview_images}
+              showCollectionViewDropdown={false}
+              showTableOfContents={showTableOfContents}
+              minTableOfContentsItems={minTableOfContentsItems}
+              defaultPageIcon={null}
+              defaultPageCover={config.defaultPageCover}
+              defaultPageCoverPosition={config.defaultPageCoverPosition}
+              mapPageUrl={siteMapPageUrl}
+              mapImageUrl={mapImageUrl as any}
+              searchNotion={
+                config.isSearchEnabled ? (searchNotion as any) : null
+              }
+              pageAside={null}
+            />
 
-        {pageClass === 'notion-home' && <License />}
-      </div>
-      {!hideFooter && (
-        <HomeFooterSection
-          variant={pageClass === 'course-page' ? 'course' : 'default'}
-        />
+            {(router.asPath === '/about-9a2ace4be0dc4d928e7d304a44a6afe8' ||
+              router.asPath === '/about' ||
+              (router.asPath.split('/')[1]?.startsWith('about') &&
+                router.asPath.split('/')[1]) ||
+              pageId == '2636f19a-6ceb-4d8d-b057-f0b166b05ce0' ||
+              router.asPath === '/why' ||
+              router.asPath === '/process') && (
+              <div className='button-container'>
+                <a href='./'>
+                  <button className='see-all'>See All Classes →</button>
+                </a>
+                <a href={donate} target='_blank' rel='noreferrer'>
+                  <button className='see-all'>Donate →</button>
+                </a>
+              </div>
+            )}
+
+            {pageClass === 'notion-home' && <License />}
+          </div>
+          {!hideFooter && (
+            <HomeFooterSection
+              variant={pageClass === 'course-page' ? 'course' : 'default'}
+            />
+          )}
+        </>
       )}
       {/* <GitHubShareButton /> */}
     </>

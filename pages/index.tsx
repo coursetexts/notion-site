@@ -24,6 +24,7 @@ import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
 import { HomeLearnSection } from '@/components/HomeLearnSection'
+import { HomeSocialLearningSection } from '@/components/HomeSocialLearningSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { getRecordBlockValue } from '@/lib/notion-record-block'
@@ -348,7 +349,7 @@ function fallbackCourses(): HomeCourseCard[] {
     'MIT / Spring 2025'
   ]
 
-  return Array.from({ length: 8 }).map((_, index) => ({
+  return Array.from({ length: 12 }).map((_, index) => ({
     id: `fallback-${index + 1}`,
     href: '/',
     meta: fallbackMeta[index % fallbackMeta.length],
@@ -1334,7 +1335,7 @@ export default function HomePage({
             )
           )
 
-    return subset.slice(0, 8)
+    return subset.slice(0, 12)
   }, [activeSubjects, courses])
 
   return (
@@ -1382,6 +1383,7 @@ export default function HomePage({
           onSubjectToggle={handleSubjectToggle}
         />
         <HomeLearnSection />
+        <HomeSocialLearningSection />
         <HomeDonateSection />
         <HomeBlogSection />
         <HomeFooterSection />

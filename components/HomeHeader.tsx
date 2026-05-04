@@ -5,12 +5,15 @@ import { useRouter } from 'next/router'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IoClose } from '@react-icons/all-files/io5/IoClose'
 
+import { getCachedAuth } from '@/lib/auth-cache'
+import { useAuthOptional } from '@/contexts/AuthContext'
+
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import styles from './HomeHeader.module.css'
 
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
-  { label: 'Resources', href: '/about' },
+  { label: 'Resources', href: '/manifesto' },
   {
     label: 'Commmunities',
     href: 'https://discord.gg/6xBECjtC55',
@@ -37,6 +40,15 @@ export function HomeHeader({
   maxWidth = '1324px'
 }: HomeHeaderProps) {
   const router = useRouter()
+  const auth = useAuthOptional()
+  const cached = React.useMemo(() => getCachedAuth(), [])
+  const user = auth?.user ?? cached.user
+  const isLoggedIn = Boolean(user)
+  const accountHref = isLoggedIn
+    ? '/profile'
+    : `/signin?redirect=${encodeURIComponent('/profile')}`
+  const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
+
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [searchDraft, setSearchDraft] = React.useState('')
@@ -270,9 +282,9 @@ export function HomeHeader({
               </nav>
 
               <div className={styles.menuFooter}>
-                <Link href='/signin' legacyBehavior>
+                <Link href={accountHref} legacyBehavior>
                   <a className={styles.menuSignUp} onClick={closeMenu}>
-                    Sign Up
+                    {accountLabel}
                   </a>
                 </Link>
               </div>
@@ -351,8 +363,8 @@ export function HomeHeader({
                 </button>
               </nav>
 
-              <Link href='/signin' legacyBehavior>
-                <a className={styles.signUp}>Sign Up</a>
+              <Link href={accountHref} legacyBehavior>
+                <a className={styles.signUp}>{accountLabel}</a>
               </Link>
             </div>
 

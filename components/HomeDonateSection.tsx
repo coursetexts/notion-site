@@ -72,11 +72,13 @@ export function HomeDonateSection() {
             </span>
           </a>
 
-          <img
-            src='/images/home/donation-preview.png'
-            alt='Donation preview'
-            className={styles.previewImage}
-          />
+          <div className={styles.previewClip}>
+            <img
+              src='/images/home/donation-preview.png'
+              alt='Donation preview'
+              className={styles.previewImage}
+            />
+          </div>
         </div>
       </div>
     </section>
