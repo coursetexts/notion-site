@@ -26,6 +26,21 @@ export interface UserLinkWithTag extends UserLinkRow {
   tag_names: string[]
 }
 
+/** Tags used on a user’s bookmarked links (public profile / filtering). */
+export async function getLinkTagsByUserId(
+  targetUserId: string
+): Promise<LinkTag[]> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return []
+  const { data, error } = await supabase
+    .from('link_tags')
+    .select('id, user_id, name, created_at')
+    .eq('user_id', targetUserId)
+    .order('name')
+  if (error) return []
+  return (data || []) as LinkTag[]
+}
+
 /** Get all tags for the current user. */
 export async function getMyTags(): Promise<LinkTag[]> {
   const supabase = getSupabaseClient()

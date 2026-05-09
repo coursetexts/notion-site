@@ -14,11 +14,26 @@
   z-index: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem 3rem;
   border-bottom: 1px solid #e5e1d3;
   background-color: #fff;
   flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.viewBarCommunityActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .slot {

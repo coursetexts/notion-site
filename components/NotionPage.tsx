@@ -12,6 +12,7 @@ import {
   formatDate,
   getBlockTitle,
   getPageProperty,
+  getTextContent,
   parsePageId,
   uuidToId
 } from 'notion-utils'
@@ -207,6 +208,169 @@ function waitForElement(selector: string, timeout = 5000): Promise<Element> {
   })
 }
 
+/** Heuristics aligned with pages/index.tsx — finds school + term lines in any block order. */
+function isLikelyCourseSchoolDateLine(text: string): boolean {
+  const value = text.replace(/\s+/g, ' ').trim()
+  if (!value) return false
+  const hasTerm =
+    /(spring|summer|fall|winter|semester|quarter|\b20\d{2}\b)/i.test(value)
+  const hasSeparator = /[|/]/.test(value)
+  const hasSchool =
+    /\b(university|college|institute|mit|harvard|stanford|waterloo|princeton|nyu|yale|columbia|cornell|berkeley)\b/i.test(
+      value
+    )
+  return (hasTerm && hasSeparator) || (hasTerm && hasSchool)
+}
+
+/**
+ * Course pages use "Fall 2024 | Columbia University" (date | school) in Notion, often bold.
+ * Only require a pipe and a term-like segment so we don't miss short school names.
+ */
+function looksLikeCourseDateSchoolMetaLine(text: string): boolean {
+  const value = text.replace(/\s+/g, ' ').trim()
+  if (!value || !/\|/.test(value)) return false
+  const hasTerm =
+    /(spring|summer|fall|winter|semester|quarter|\b20\d{2}\b)/i.test(value)
+  return hasTerm
+}
+
+function findCourseTitleBlockIndex(blocks: HTMLElement[]): number {
+  return blocks.findIndex((el) => {
+    if (el.matches?.('h1.notion-h1, .notion-h1')) return true
+    if (el.querySelector?.('.notion-title')) return true
+    if (el.querySelector?.('.notion-h1, h1.notion-h1')) return true
+    return false
+  })
+}
+
+function normalizeCourseHeroBlockList(scope: HTMLElement): HTMLElement[] {
+  let list = Array.from(scope.children) as HTMLElement[]
+  if (list.length === 1 && list[0].children.length >= 3) {
+    list = Array.from(list[0].children) as HTMLElement[]
+  }
+  return list
+}
+
+function notionPropPlainText(value: unknown): string {
+  if (value == null) return ''
+  if (typeof value === 'string') return value
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return String(value)
+  }
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => notionPropPlainText(item))
+      .filter(Boolean)
+      .join(' ')
+      .trim()
+  }
+  if (typeof value === 'object') {
+    const candidate = (value as { name?: unknown }).name
+    if (typeof candidate === 'string') return candidate
+    try {
+      return JSON.stringify(value)
+    } catch {
+      return ''
+    }
+  }
+  return ''
+}
+
+/**
+ * Database rows only: notion-utils getPageProperty reads collection schema via
+ * block.parent_id → recordMap.collection (see notion-utils get-page-property.ts).
+ */
+function getSchoolDateLineFromCollectionProps(
+  block: any,
+  recordMap: ExtendedRecordMap
+): string | undefined {
+  const combinedRaw =
+    getPageProperty<string>('School | Date', block, recordMap) ??
+    getPageProperty<string>('School / Date', block, recordMap)
+  const line = notionPropPlainText(combinedRaw).replace(/\s+/g, ' ').trim()
+  if (line) return line
+
+  const schoolRaw =
+    getPageProperty<string>('School', block, recordMap) ??
+    getPageProperty<string>('University', block, recordMap) ??
+    getPageProperty<string>('Institution', block, recordMap)
+  const termRaw =
+    getPageProperty<string>('Term', block, recordMap) ??
+    getPageProperty<string>('Semester', block, recordMap) ??
+    getPageProperty<string>('Quarter', block, recordMap) ??
+    getPageProperty<string>('Season', block, recordMap) ??
+    getPageProperty<string>('Year', block, recordMap) ??
+    getPageProperty<string>('Date', block, recordMap)
+
+  const school = notionPropPlainText(schoolRaw).replace(/\s+/g, ' ').trim()
+  const term = notionPropPlainText(termRaw).replace(/\s+/g, ' ').trim()
+  if (school && term) return `${term} | ${school}`
+  if (school) return school
+  if (term) return term
+  return undefined
+}
+
+const MAX_SCHOOL_LINE_WALK_DEPTH = 10
+
+/**
+ * Standalone course pages (not a DB row): getPageProperty always returns null.
+ * Walk page blocks (including column / sync wrappers) for "Fall 2024 | School".
+ */
+function findSchoolDateLineInPageContent(
+  recordMap: ExtendedRecordMap,
+  pageBlockId: string
+): string | undefined {
+  const page = getRecordBlockValue(recordMap, pageBlockId)
+  const content = page?.content
+  if (!content || !Array.isArray(content)) return undefined
+
+  const visit = (ids: string[], depth: number): string | undefined => {
+    if (depth > MAX_SCHOOL_LINE_WALK_DEPTH) return undefined
+    for (const blockId of ids.slice(0, 55)) {
+      const b = getRecordBlockValue(recordMap, blockId as string)
+      if (!b) continue
+      const titleDeco = b.properties?.title as Parameters<
+        typeof getTextContent
+      >[0]
+      if (titleDeco) {
+        const text = getTextContent(titleDeco).replace(/\s+/g, ' ').trim()
+        if (text) {
+          if (looksLikeCourseDateSchoolMetaLine(text)) return text
+          if (isLikelyCourseSchoolDateLine(text)) return text
+        }
+      }
+      const nested = b.content
+      if (nested && Array.isArray(nested) && nested.length) {
+        const found = visit(nested as string[], depth + 1)
+        if (found) return found
+      }
+    }
+    return undefined
+  }
+
+  return visit(content as string[], 0)
+}
+
+/**
+ * Same as home cards when the page is a collection row; otherwise parse body blocks.
+ */
+function getSchoolDateLineFromCourseRecord(
+  block: any,
+  recordMap: ExtendedRecordMap | undefined
+): string | undefined {
+  if (!block || !recordMap || !block.properties) return undefined
+
+  const fromCollection = getSchoolDateLineFromCollectionProps(block, recordMap)
+  if (fromCollection) return fromCollection
+
+  const pageId = block.id as string | undefined
+  if (pageId) {
+    const fromBody = findSchoolDateLineInPageContent(recordMap, pageId)
+    if (fromBody) return fromBody
+  }
+  return undefined
+}
+
 export function addReactComponentAtEndOfArticle(
   articleSelector: string,
   containerClassName: string,
@@ -370,6 +534,12 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       recordMap &&
       getPageProperty<string>('Description', block, recordMap)) ||
     config.description
+
+  const heroRecordSchoolDateRef = React.useRef<string | undefined>(undefined)
+  heroRecordSchoolDateRef.current =
+    pageClass === 'course-page'
+      ? getSchoolDateLineFromCourseRecord(block, recordMap as ExtendedRecordMap)
+      : undefined
 
   // Clean up when the component unmounts or pageClass changes
   React.useEffect(() => {
@@ -1461,7 +1631,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
     const pathHash = (router.asPath?.split('#')[1] ?? '').trim()
     const storageKey = `${COURSE_HERO_STORAGE_KEY}_${pageId}_${
       pathHash || 'root'
-    }`
+    }_v6`
 
     function saveHeroData(data: CourseHeroData) {
       try {
@@ -1485,6 +1655,13 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       pageTitle: string
     ): CourseHeroData {
       return { ...data, title: pageTitle }
+    }
+
+    /** Same fields as homepage cards — wins over scraped body text when set. */
+    function mergeRecordSchoolDate(data: CourseHeroData): CourseHeroData {
+      const r = heroRecordSchoolDateRef.current?.trim()
+      if (!r) return data
+      return { ...data, schoolDate: r }
     }
 
     const courseHeroCourseInfo = {
@@ -1519,12 +1696,41 @@ export const NotionPage: React.FC<NotionPageProps> = ({
     function scrape(
       scope: HTMLElement
     ): { data: CourseHeroData; nodes: HTMLElement[] } | null {
-      const children = Array.from(scope.children) as HTMLElement[]
-      if (children.length < 3) return null
-      const [child1, child2, child3] = children
+      const blocks = normalizeCourseHeroBlockList(scope)
+      if (blocks.length < 3) return null
 
-      // First block = school | date (course code is derived from page title in CourseHero)
-      const schoolDate = (child1?.innerText ?? '').trim()
+      const titleIdx = findCourseTitleBlockIndex(blocks)
+
+      let schoolIdx = -1
+      if (
+        titleIdx >= 0 &&
+        titleIdx + 1 < blocks.length &&
+        looksLikeCourseDateSchoolMetaLine(blocks[titleIdx + 1].innerText ?? '')
+      ) {
+        schoolIdx = titleIdx + 1
+      }
+      if (schoolIdx < 0) {
+        const scanEnd = Math.min(blocks.length, 32)
+        for (let i = 0; i < scanEnd; i++) {
+          if (looksLikeCourseDateSchoolMetaLine(blocks[i].innerText ?? '')) {
+            schoolIdx = i
+            break
+          }
+        }
+      }
+      if (schoolIdx < 0) {
+        const scanEnd = Math.min(blocks.length, 32)
+        for (let i = 0; i < scanEnd; i++) {
+          if (isLikelyCourseSchoolDateLine(blocks[i].innerText ?? '')) {
+            schoolIdx = i
+            break
+          }
+        }
+      }
+      if (schoolIdx < 0) schoolIdx = 0
+
+      const schoolDate = (blocks[schoolIdx]?.innerText ?? '').trim()
+
       const instructorLinks = scope.querySelectorAll(
         '.notion-blue .notion-link'
       ) as NodeListOf<HTMLAnchorElement>
@@ -1547,12 +1753,61 @@ export const NotionPage: React.FC<NotionPageProps> = ({
           instructors.push({ name: text, url })
         }
       }
-      const descriptionHtml = (child3?.innerHTML ?? '').trim()
+
+      const instructorIdx = blocks.findIndex((el) =>
+        el.querySelector('.notion-blue .notion-link')
+      )
+
+      const descSkip = new Set<number>()
+      ;[schoolIdx, titleIdx, instructorIdx].forEach((i) => {
+        if (i >= 0) descSkip.add(i)
+      })
+
+      const MIN_DESC_WORDS = 10
+      let descBlock: HTMLElement | null = null
+      let bestLen = 0
+      blocks.forEach((el, i) => {
+        if (descSkip.has(i)) return
+        const t = (el.innerText ?? '').trim()
+        const words = t.split(/\s+/).filter(Boolean).length
+        if (words >= MIN_DESC_WORDS && t.length > bestLen) {
+          bestLen = t.length
+          descBlock = el
+        }
+      })
+      if (!descBlock) {
+        blocks.forEach((el, i) => {
+          if (descSkip.has(i)) return
+          const t = (el.innerText ?? '').trim()
+          if (t.length > bestLen) {
+            bestLen = t.length
+            descBlock = el
+          }
+        })
+      }
+      if (!descBlock) {
+        const fallbackIdx = blocks.findIndex((_el, i) => !descSkip.has(i))
+        descBlock =
+          fallbackIdx >= 0 ? blocks[fallbackIdx] : blocks[Math.min(2, blocks.length - 1)]
+      }
+
+      const descriptionHtml = (descBlock?.innerHTML ?? '').trim()
+
+      const hideSet = new Set<HTMLElement>()
+      ;[
+        blocks[schoolIdx],
+        titleIdx >= 0 ? blocks[titleIdx] : null,
+        instructorIdx >= 0 ? blocks[instructorIdx] : null,
+        descBlock
+      ].forEach((el) => {
+        if (el) hideSet.add(el)
+      })
+      const nodes = Array.from(hideSet)
 
       return {
         data: {
-          courseCode: '', // derived from page title (brackets) in CourseHero
-          title: '', // filled in with Notion page title via withPageTitle
+          courseCode: '',
+          title: '',
           instructors: instructors.length > 0 ? instructors : undefined,
           instructorName:
             instructors.length === 1 ? instructors[0].name : undefined,
@@ -1561,8 +1816,28 @@ export const NotionPage: React.FC<NotionPageProps> = ({
           schoolDate: schoolDate || undefined,
           descriptionHtml
         },
-        nodes: [child1, child2, child3]
+        nodes
       }
+    }
+
+    function tryScrapeAndMount(contentInner: HTMLElement): boolean {
+      if (contentInner.hasAttribute('data-course-hero-rendered')) return true
+      const table = contentInner.querySelector('.content-table')
+      const leftCol = contentInner.querySelector('.course-left-column')
+      const scope = (table && leftCol ? leftCol : contentInner) as HTMLElement
+
+      const result = scrape(scope)
+      if (!result) return false
+
+      const dataWithTitle = mergeRecordSchoolDate(withPageTitle(result.data, title))
+      saveHeroData(dataWithTitle)
+      ensureMountAndRender(contentInner, dataWithTitle)
+      courseHeroRef.current.hiddenNodes = result.nodes
+      result.nodes.forEach((el) => {
+        if (el) el.style.display = 'none'
+      })
+      contentInner.setAttribute('data-course-hero-rendered', 'true')
+      return true
     }
 
     function run() {
@@ -1573,68 +1848,62 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       if (!contentInner?.parentElement) return
       if (contentInner.hasAttribute('data-course-hero-rendered')) return
 
-      const table = contentInner.querySelector('.content-table')
-      const leftCol = contentInner.querySelector('.course-left-column')
-      const scope = (table && leftCol ? leftCol : contentInner) as HTMLElement
+      const hasContentTable = !!contentInner.querySelector('.content-table')
 
-      const result = scrape(scope)
-      if (result) {
-        const dataWithTitle = withPageTitle(result.data, title)
-        saveHeroData(dataWithTitle)
-        ensureMountAndRender(contentInner, dataWithTitle)
-        courseHeroRef.current.hiddenNodes = result.nodes
-        result.nodes.forEach((el) => {
-          if (el) el.style.display = 'none'
-        })
-        contentInner.setAttribute('data-course-hero-rendered', 'true')
-        return
-      }
+      const afterWait = () => {
+        if (cancelled) return
+        if (tryScrapeAndMount(contentInner)) return
 
-      const cached = loadHeroData()
-      if (cached) {
-        ensureMountAndRender(contentInner, withPageTitle(cached, title))
-        contentInner.setAttribute('data-course-hero-rendered', 'true')
-      }
+        const cached = loadHeroData()
+        if (cached) {
+          ensureMountAndRender(
+            contentInner,
+            mergeRecordSchoolDate(withPageTitle(cached, title))
+          )
+          contentInner.setAttribute('data-course-hero-rendered', 'true')
+          return
+        }
 
-      let attempts = 0
-      const maxAttempts = 8
-      const delayMs = 400
+        let attempts = 0
+        const maxAttempts = 8
+        const delayMs = 400
 
-      function retry() {
-        if (cancelled || attempts >= maxAttempts) return
-        attempts += 1
-        retryTimeout = setTimeout(() => {
-          if (cancelled) return
-          const inner = document.querySelector(
-            '.course-page .notion-page-content-inner'
-          ) as HTMLElement
-          if (!inner?.parentElement) {
+        function retry() {
+          if (cancelled || attempts >= maxAttempts) return
+          attempts += 1
+          retryTimeout = setTimeout(() => {
+            if (cancelled) return
+            const inner = document.querySelector(
+              '.course-page .notion-page-content-inner'
+            ) as HTMLElement
+            if (!inner?.parentElement) {
+              retry()
+              return
+            }
+            if (tryScrapeAndMount(inner)) return
             retry()
-            return
-          }
-          const tbl = inner.querySelector('.content-table')
-          const col = inner.querySelector('.course-left-column')
-          const sc = (tbl && col ? col : inner) as HTMLElement
-          const res = scrape(sc)
-          if (res) {
-            const dataWithTitle = withPageTitle(res.data, title)
-            saveHeroData(dataWithTitle)
-            ensureMountAndRender(inner, dataWithTitle)
-            courseHeroRef.current.hiddenNodes = res.nodes
-            res.nodes.forEach((el) => {
-              if (el) el.style.display = 'none'
-            })
-            return
-          }
-          retry()
-        }, delayMs)
+          }, delayMs)
+        }
+        retry()
       }
-      retry()
+
+      if (hasContentTable) {
+        waitForElement('.course-page .course-left-column', 8000)
+          .then(() => {
+            if (cancelled) return
+            window.setTimeout(afterWait, 80)
+          })
+          .catch(() => {
+            if (cancelled) return
+            window.setTimeout(afterWait, 500)
+          })
+      } else {
+        window.setTimeout(afterWait, 500)
+      }
     }
 
     waitForElement('.course-page .notion-page-content-inner')
-      .then(() => new Promise<void>((r) => setTimeout(r, 500)))
-      .then(run)
+      .then(() => run())
       .catch(() => undefined)
 
     return () => {

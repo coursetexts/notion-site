@@ -194,20 +194,115 @@ function CommentBubbleIcon() {
   )
 }
 
+function ExpandableTwoLineText({
+  as,
+  className,
+  children,
+  measureKey
+}: {
+  as: 'h3' | 'p'
+  className: string
+  children: React.ReactNode
+  measureKey: string
+}) {
+  const ref = React.useRef<HTMLElement | null>(null)
+  const [expanded, setExpanded] = React.useState(false)
+  const [expandable, setExpandable] = React.useState(false)
+
+  /**
+   * scrollHeight vs clientHeight is unreliable with -webkit-line-clamp in some
+   * browsers. Briefly unclamp in layout, compare full vs two-line height.
+   */
+  React.useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) {
+      setExpandable(false)
+      return
+    }
+
+    const measure = () => {
+      if (expanded) {
+        setExpandable(true)
+        return
+      }
+      el.classList.remove(styles.cardTextClamp)
+      el.classList.add(styles.cardTextExpanded)
+      const fullH = el.scrollHeight
+      el.classList.remove(styles.cardTextExpanded)
+      el.classList.add(styles.cardTextClamp)
+      const clampH = el.clientHeight
+      setExpandable(fullH > clampH + 2)
+    }
+
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [measureKey, expanded])
+
+  const showInteraction = expandable || expanded
+  const toggle = () => {
+    if (!showInteraction) return
+    setExpanded((v) => !v)
+  }
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (!showInteraction) return
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      toggle()
+    }
+  }
+
+  const Tag = as
+  return (
+    <Tag
+      ref={ref as React.Ref<HTMLHeadingElement & HTMLParagraphElement>}
+      className={[
+        className,
+        expanded ? styles.cardTextExpanded : styles.cardTextClamp,
+        showInteraction ? styles.cardTextExpandable : ''
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      onClick={showInteraction ? toggle : undefined}
+      onKeyDown={showInteraction ? onKeyDown : undefined}
+      tabIndex={showInteraction ? 0 : undefined}
+      aria-expanded={showInteraction ? expanded : undefined}
+      title={
+        showInteraction
+          ? expanded
+            ? 'Click to collapse'
+            : 'Click to expand'
+          : undefined
+      }
+    >
+      {children}
+    </Tag>
+  )
+}
+
 function CardDescription({ text }: { text: string }) {
   const lower = text.toLowerCase()
   const idx = lower.lastIndexOf('read more')
-  if (idx === -1) {
-    return <p className={styles.cardDesc}>{text}</p>
-  }
-  const before = text.slice(0, idx).trimEnd()
-  const after = text.slice(idx).trim()
+  const body =
+    idx === -1 ? (
+      text
+    ) : (
+      <>
+        {text.slice(0, idx).trimEnd()}
+        {text.slice(0, idx).trimEnd() ? ' ' : null}
+        <em className={styles.cardDescReadMore}>{text.slice(idx).trim()}</em>
+      </>
+    )
+
   return (
-    <p className={styles.cardDesc}>
-      {before}
-      {before ? ' ' : null}
-      <em className={styles.cardDescReadMore}>{after}</em>
-    </p>
+    <ExpandableTwoLineText
+      as='p'
+      className={styles.cardDesc}
+      measureKey={text}
+    >
+      {body}
+    </ExpandableTwoLineText>
   )
 }
 
@@ -682,7 +777,13 @@ export const CommunityWall = React.forwardRef<
                   </div>
                 )}
 
-                <h3 className={styles.cardTitle}>{r.title}</h3>
+                <ExpandableTwoLineText
+                  as='h3'
+                  className={styles.cardTitle}
+                  measureKey={r.title}
+                >
+                  {r.title}
+                </ExpandableTwoLineText>
                 <CardDescription text={r.description} />
 
                 <div className={styles.preview}>

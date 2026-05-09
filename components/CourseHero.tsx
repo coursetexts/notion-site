@@ -261,16 +261,19 @@ function parseCopyrightReportFromToggleHtml(html: string): CopyrightReportData {
   }
 }
 
-/** Known schools that have logos. Map canonical name -> logo path under /images/schools/ */
+/**
+ * Canonical school name -> asset path. Uses /images/home/* for parity with
+ * HomeCoursesSection (courseSchoolLogo); NYU / UBC stay under /images/schools.
+ */
 const SCHOOL_LOGOS: Record<string, string> = {
-  'Harvard University': '/images/schools/harvard.png',
-  'Stanford University': '/images/schools/stanford.png',
-  'University of Waterloo': '/images/schools/waterloo.png',
-  'University of British Columbia': '/images/schools/ubc.jpg',
-  'Princeton University': '/images/schools/princeton.png',
+  'Harvard University': '/images/home/harvard-red.png',
+  'Stanford University': '/images/home/stanford.png',
+  'University of Waterloo': '/images/home/waterloo.png',
+  'University of British Columbia': '/images/schools/ubc.png',
+  'Princeton University': '/images/home/princeton.png',
   'New York University': '/images/schools/nyu.png',
-  'Columbia University': '/images/schools/columbia.png',
-  'Yale University': '/images/schools/yale.png'
+  'Columbia University': '/images/home/columbia.png',
+  'Yale University': '/images/home/yale.png'
 }
 
 /** Normalize school string for matching (lowercase, trim). */
@@ -278,17 +281,51 @@ function normalizeSchool(s: string): string {
   return s.trim().toLowerCase()
 }
 
-/** If the school is one of the known ones, return [canonicalName, logoPath]; else null. */
+/**
+ * Map free-text school strings from Notion to [canonical label, logo path].
+ * Order matters: e.g. British Columbia / UBC before bare "Columbia".
+ */
 function getSchoolLogo(school: string): [string, string] | null {
-  const normalized = normalizeSchool(school)
-  const canonicalEntries = Object.entries(SCHOOL_LOGOS)
-  // Exact match first
-  for (const [canonicalName, logoPath] of canonicalEntries) {
-    if (normalized === normalizeSchool(canonicalName))
-      return [canonicalName, logoPath]
+  const trimmed = school.trim()
+  if (!trimmed) return null
+
+  const n = normalizeSchool(trimmed)
+  const pick = (canonical: string): [string, string] | null => {
+    const path = SCHOOL_LOGOS[canonical]
+    return path ? [canonical, path] : null
   }
-  // Then match by distinctive first word (e.g. "Stanford" -> "Stanford University")
-  const firstWord = normalized.split(/\s+/)[0] ?? ''
+
+  if (
+    /\bubc\b/.test(n) ||
+    /\bbritish\s+columbia\b/.test(n) ||
+    /\bu\s*of\s*bc\b/.test(n) ||
+    /\buniversity\s+of\s+british\s+columbia\b/.test(n)
+  ) {
+    return pick('University of British Columbia')
+  }
+
+  if (
+    /\bcolumbia\s+university\b/.test(n) ||
+    (/\bcolumbia\b/.test(n) && !/\bbritish\s+columbia\b/.test(n))
+  ) {
+    return pick('Columbia University')
+  }
+
+  if (/\bharvard\b/.test(n)) return pick('Harvard University')
+  if (/\bstanford\b/.test(n)) return pick('Stanford University')
+  if (/\bwaterloo\b/.test(n)) return pick('University of Waterloo')
+  if (/\bprinceton\b/.test(n)) return pick('Princeton University')
+  if (/\bnyu\b/.test(n) || /\bnew\s+york\s+university\b/.test(n)) {
+    return pick('New York University')
+  }
+  if (/\byale\b/.test(n)) return pick('Yale University')
+
+  const canonicalEntries = Object.entries(SCHOOL_LOGOS)
+  for (const [canonicalName, logoPath] of canonicalEntries) {
+    if (n === normalizeSchool(canonicalName)) return [canonicalName, logoPath]
+  }
+
+  const firstWord = n.split(/\s+/)[0] ?? ''
   if (!firstWord) return null
   for (const [canonicalName, logoPath] of canonicalEntries) {
     const canon = normalizeSchool(canonicalName)
@@ -300,10 +337,24 @@ function getSchoolLogo(school: string): [string, string] | null {
 
 /** Normalize schoolDate: school first, then date. Returns single string or [school, date] for styled dot. */
 function formatSchoolDate(raw: string): string | [string, string] {
-  const parts = raw
-    .split(/\s*\|\s*/)
-    .map((p) => p.trim())
-    .filter(Boolean)
+  const value = raw.trim()
+  if (!value) return ''
+  const splitParts = (s: string): string[] => {
+    if (s.includes('|')) {
+      return s
+        .split(/\s*\|\s*/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+    }
+    if (/\s\/\s/.test(s)) {
+      return s
+        .split(/\s*\/\s*/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+    }
+    return [s]
+  }
+  const parts = splitParts(value)
   if (parts.length === 0) return ''
   if (parts.length === 1) return parts[0]
   // Heuristic: date usually looks like "Spring 2024", "Fall 2024", or "2024"
@@ -313,6 +364,23 @@ function formatSchoolDate(raw: string): string | [string, string] {
   const bIsDate = dateLike.test(b)
   if (aIsDate && !bIsDate) return [b, a] // e.g. "Spring 2024 | Harvard" → [Harvard, Spring 2024]
   return [a, b]
+}
+
+function SchoolDateSeparator() {
+  return (
+    <span className={styles.schoolDateDot} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='4'
+        height='4'
+        viewBox='0 0 4 4'
+        fill='none'
+        className={styles.schoolDateDotSvg}
+      >
+        <circle cx='2' cy='2' r='2' fill='currentColor' />
+      </svg>
+    </span>
+  )
 }
 
 export const CourseHero: React.FC<CourseHeroProps> = ({
@@ -494,15 +562,17 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
               <div className={styles.schoolDate}>
                 {(() => {
                   const formatted = formatSchoolDate(schoolDate)
-                  if (typeof formatted === 'string') return formatted
+                  if (typeof formatted === 'string') {
+                    return <span className={styles.schoolDateText}>{formatted}</span>
+                  }
                   const [school, date] = formatted
                   const schoolLogo = getSchoolLogo(school)
                   const displayName = schoolLogo ? schoolLogo[0] : school
                   const logoPath = schoolLogo ? schoolLogo[1] : null
                   return (
                     <>
-                      {logoPath ? (
-                        <span className={styles.schoolDateWithLogo}>
+                      <span className={styles.schoolDateLead}>
+                        {logoPath ? (
                           <img
                             src={logoPath}
                             alt=''
@@ -510,13 +580,11 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                             width={24}
                             height={24}
                           />
-                          <span>{displayName}</span>
-                        </span>
-                      ) : (
-                        displayName
-                      )}
-                      <span className={styles.schoolDateDot}>•</span>
-                      {date}
+                        ) : null}
+                        <span className={styles.schoolDateText}>{displayName}</span>
+                      </span>
+                      <SchoolDateSeparator />
+                      <span className={styles.schoolDateText}>{date}</span>
                     </>
                   )
                 })()}

@@ -200,14 +200,8 @@
 
 .courseTitle {
   margin: 8px 0 0;
-  display: -webkit-box;
   max-width: 190px;
   white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
   text-decoration-line: underline;
   text-decoration-color: var(--outline, #e6e6e6);
   text-decoration-thickness: 1px;
@@ -225,6 +219,15 @@
     text-decoration-color 220ms ease;
 }
 
+.courseTitleTruncated {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
 .courseCardLink:hover .courseTitle,
 .courseCardLink:focus-visible .courseTitle {
   color: #0089c4;
@@ -240,6 +243,15 @@
   line-height: 20px;
   letter-spacing: 0.0002em;
   color: #353b48;
+}
+
+.courseDescriptionTruncated {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .viewAllBar {

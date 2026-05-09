@@ -177,12 +177,6 @@
   margin: 0 0 0.35rem;
 }
 
-.readOnlyHint {
-  font-size: 0.9375rem;
-  color: #666;
-  margin: 0 0 0.75rem;
-}
-
 .publishedLive {
   font-size: 0.875rem;
   color: #3d7a4a;

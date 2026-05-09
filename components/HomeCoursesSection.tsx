@@ -19,6 +19,52 @@ type CourseCardGridProps = {
   descriptionWidth?: React.CSSProperties['width']
 }
 
+function HomeCourseCardItem({
+  course,
+  descriptionWidth
+}: {
+  course: HomeCourseCard
+  descriptionWidth?: React.CSSProperties['width']
+}) {
+  const schoolLogo = getSchoolLogoForMeta(course.meta)
+
+  const descriptionStyle: React.CSSProperties = descriptionWidth
+    ? { width: descriptionWidth, maxWidth: '100%' }
+    : { maxWidth: 190 }
+
+  return (
+    <Link href={course.href} legacyBehavior>
+      <a className={styles.courseCardLink}>
+        <article className={styles.courseCard}>
+          <div className={styles.courseMetaRow}>
+            <span className={styles.schoolLogoWrap}>
+              <img
+                src={schoolLogo.src}
+                alt={schoolLogo.alt}
+                className={styles.schoolLogo}
+              />
+            </span>
+            <span className={styles.courseMetaText}>{course.meta}</span>
+          </div>
+
+          <h3
+            className={`${styles.courseTitle} ${styles.courseTitleTruncated}`}
+          >
+            {course.title}
+          </h3>
+
+          <p
+            className={`${styles.courseDescription} ${styles.courseDescriptionTruncated}`}
+            style={descriptionStyle}
+          >
+            {course.description}
+          </p>
+        </article>
+      </a>
+    </Link>
+  )
+}
+
 export function CourseCardGrid({
   cards,
   emptyMessage,
@@ -30,39 +76,13 @@ export function CourseCardGrid({
 
   return (
     <div className={styles.courseGrid}>
-      {cards.map((course) => {
-        const schoolLogo = getSchoolLogoForMeta(course.meta)
-
-        return (
-          <Link key={course.id} href={course.href} legacyBehavior>
-            <a className={styles.courseCardLink}>
-              <article className={styles.courseCard}>
-                <div className={styles.courseMetaRow}>
-                  <span className={styles.schoolLogoWrap}>
-                    <img
-                      src={schoolLogo.src}
-                      alt={schoolLogo.alt}
-                      className={styles.schoolLogo}
-                    />
-                  </span>
-                  <span className={styles.courseMetaText}>{course.meta}</span>
-                </div>
-
-                <h3 className={styles.courseTitle}>{course.title}</h3>
-
-                <p
-                  className={styles.courseDescription}
-                  style={
-                    descriptionWidth ? { width: descriptionWidth } : undefined
-                  }
-                >
-                  {course.description}
-                </p>
-              </article>
-            </a>
-          </Link>
-        )
-      })}
+      {cards.map((course) => (
+        <HomeCourseCardItem
+          key={course.id}
+          course={course}
+          descriptionWidth={descriptionWidth}
+        />
+      ))}
     </div>
   )
 }

@@ -409,11 +409,7 @@ export default function NotebookPage() {
                   <p className={notebookStyles.descPlaceholder}>
                     Add your description here…
                   </p>
-                ) : (
-                  <p className={notebookStyles.readOnlyHint}>
-                    Published notebook · read only
-                  </p>
-                )}
+                ) : null}
                 <div className={notebookStyles.metaRow}>
                   <span className={notebookStyles.metaPill}>
                     {activeTab

@@ -29,7 +29,6 @@
 .searchBar {
   margin-top: 32px;
   width: 100%;
-  max-width: 100%;
   height: 49px;
   display: flex;
   align-items: stretch;
@@ -302,9 +301,9 @@
 /* Discord community callout (below directory) */
 
 .discordCta {
-  margin-top: 2.75rem;
+  margin-top: 2.7rem;
   padding-top: 2rem;
-  border-top: 1px solid #e8e4dc;
+  border-top: 1px solid #f1efeb;
 }
 
 .discordCtaInner {
@@ -313,13 +312,11 @@
   align-items: center;
   gap: 1.5rem 2rem;
   padding: 1.5rem 1.75rem;
-  border-radius: 14px;
+  border-radius: 4px;
+  border: 1px solid #e3e1dd;
   /* background: linear-gradient(145deg, #fdfcfa 0%, #f3ede6 55%, #efe8df 100%); */
   background: #F8F7F4;
-  border: 1px solid rgba(61, 52, 41, 0.12);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7) inset,
-    0 6px 28px rgba(45, 38, 32, 0.07);
+  background-color: #fff;
 }
 
 .discordCtaImageWrap {
@@ -340,6 +337,7 @@
 }
 
 .discordCtaCopy {
+  max-width: 400px;
   flex: 1;
   min-width: min(100%, 220px);
   display: flex;

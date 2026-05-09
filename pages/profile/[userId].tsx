@@ -16,7 +16,9 @@ import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPane
 import { ProfileNotebooksPanel } from '@/components/ProfileNotebooksPanel'
 import {
   type CommunityResourceBookmarkWithCourse,
-  getCommunityResourceBookmarksByUser
+  ensureCommunityResourceBookmark,
+  getCommunityResourceBookmarksByUser,
+  getMyCommunityResourceBookmarks
 } from '@/lib/community-wall-db'
 import { name as siteName } from '@/lib/config'
 import type { Course } from '@/lib/course-activity-db'
@@ -46,11 +48,61 @@ import {
   listPersonalLinksByUserId
 } from '@/lib/profile-personal-links-db'
 import {
+  notebookAbsoluteUrl,
   notebookUserLinkHref,
   parseNotebookIdFromUserLinkUrl
 } from '@/lib/notebook-bookmark-link'
-import { type UserLinkWithTag, getLinksByUserId } from '@/lib/user-links'
+import {
+  type LinkTag,
+  type UserLinkWithTag,
+  addLink,
+  getLinkTagsByUserId,
+  getLinksByUserId,
+  getMyLinks
+} from '@/lib/user-links'
 import styles from '@/styles/profile.module.css'
+
+/** Matches own-profile bookmarks filter: not a real tag id. */
+const COMMUNITY_RESOURCE_LINK_FILTER = '__community_resource__' as const
+
+/** Same bookmark glyph as ProfileNotebooksPanel / notebook rows */
+function ProfileSaveBookmarkIcon({ filled }: { filled: boolean }) {
+  if (filled) {
+    return (
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='14'
+        viewBox='0 0 14 16'
+        fill='none'
+        aria-hidden
+      >
+        <path
+          d='M2.75 2.25h8.5v10.85L7 9.35l-4.25 3.75V2.25z'
+          fill='currentColor'
+        />
+      </svg>
+    )
+  }
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='14'
+      height='14'
+      viewBox='0 0 14 16'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M2.75 2.25h8.5v10.85L7 9.35l-4.25 3.75V2.25z'
+        fill='none'
+        stroke='currentColor'
+        strokeWidth='1.05'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString(undefined, {
@@ -93,6 +145,10 @@ export default function PublicProfilePage() {
     CommunityResourceBookmarkWithCourse[]
   >([])
   const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
+  const [profileLinkTags, setProfileLinkTags] = useState<LinkTag[]>([])
+  const [bookmarkTagFilterId, setBookmarkTagFilterId] = useState<string | null>(
+    null
+  )
   const [showNoteForLinkId, setShowNoteForLinkId] = useState<string | null>(
     null
   )
@@ -106,6 +162,104 @@ export default function PublicProfilePage() {
       userLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) == null),
     [userLinks]
   )
+
+  const profileBookmarkTagsInUse = useMemo(() => {
+    const used = new Set<string>()
+    for (const l of savedProfileLinks) {
+      for (const tid of l.tag_ids || []) used.add(tid)
+    }
+    return profileLinkTags.filter((t) => used.has(t.id))
+  }, [profileLinkTags, savedProfileLinks])
+
+  const filteredPublicSavedLinks = useMemo(() => {
+    if (bookmarkTagFilterId === COMMUNITY_RESOURCE_LINK_FILTER) return []
+    if (bookmarkTagFilterId == null) return savedProfileLinks
+    return savedProfileLinks.filter((l) =>
+      (l.tag_ids || []).includes(bookmarkTagFilterId)
+    )
+  }, [savedProfileLinks, bookmarkTagFilterId])
+
+  /** Saved notebooks tab: notebook pins + course bookmarks, A–Z by title. */
+  const savedNotebooksAndCourseRows = useMemo(() => {
+    type Row =
+      | {
+          kind: 'notebook'
+          id: string
+          title: string
+          href: string
+          createdAt: string
+          sortKey: string
+        }
+      | {
+          kind: 'course'
+          id: string
+          title: string
+          href: string
+          createdAt: string
+          sortKey: string
+        }
+    const rows: Row[] = []
+    for (const l of notebookPinLinks) {
+      const title = l.title?.trim() || 'Notebook'
+      rows.push({
+        kind: 'notebook',
+        id: l.id,
+        title,
+        href: notebookUserLinkHref(l.url),
+        createdAt: l.created_at,
+        sortKey: title.toLowerCase()
+      })
+    }
+    for (const { bookmark, course } of bookmarks) {
+      const title = course.name
+      rows.push({
+        kind: 'course',
+        id: bookmark.id,
+        title,
+        href: course.url ?? `/${course.notion_page_id}`,
+        createdAt: bookmark.created_at,
+        sortKey: title.toLowerCase()
+      })
+    }
+    rows.sort((a, b) => a.sortKey.localeCompare(b.sortKey))
+    return rows
+  }, [notebookPinLinks, bookmarks])
+
+  const publicSavedBookmarkRows = useMemo(() => {
+    type Row =
+      | { kind: 'link'; link: UserLinkWithTag }
+      | { kind: 'community'; data: CommunityResourceBookmarkWithCourse }
+    const rows: Row[] = []
+    for (const link of filteredPublicSavedLinks) {
+      rows.push({ kind: 'link', link })
+    }
+    const includeCommunity =
+      bookmarkTagFilterId === null ||
+      bookmarkTagFilterId === COMMUNITY_RESOURCE_LINK_FILTER
+    if (includeCommunity) {
+      for (const data of resourceBookmarks) {
+        rows.push({ kind: 'community', data })
+      }
+    }
+    rows.sort((a, b) => {
+      const ta =
+        a.kind === 'link'
+          ? a.link.created_at
+          : a.data.bookmark.created_at
+      const tb =
+        b.kind === 'link'
+          ? b.link.created_at
+          : b.data.bookmark.created_at
+      return tb.localeCompare(ta)
+    })
+    return rows
+  }, [filteredPublicSavedLinks, resourceBookmarks, bookmarkTagFilterId])
+
+  const showPublicBookmarkTagFilters =
+    profileBookmarkTagsInUse.length > 0 ||
+    resourceBookmarks.length > 0 ||
+    savedProfileLinks.length > 0
+
   const [personalLinks, setPersonalLinks] = useState<ProfilePersonalLink[]>([])
   const [comments, setComments] = useState<
     { comment: Comment; course: Course }[]
@@ -113,17 +267,34 @@ export default function PublicProfilePage() {
   const [annotations, setAnnotations] = useState<
     { annotation: Annotation; course: Course }[]
   >([])
+
+  const publicActivityRows = useMemo(() => {
+    type Row =
+      | { kind: 'comment'; comment: Comment; course: Course }
+      | { kind: 'annotation'; annotation: Annotation; course: Course }
+    const rows: Row[] = [
+      ...comments.map((x) => ({ kind: 'comment' as const, ...x })),
+      ...annotations.map((x) => ({ kind: 'annotation' as const, ...x }))
+    ]
+    rows.sort((a, b) => {
+      const ta =
+        a.kind === 'comment'
+          ? a.comment.created_at
+          : a.annotation.created_at
+      const tb =
+        b.kind === 'comment'
+          ? b.comment.created_at
+          : b.annotation.created_at
+      return tb.localeCompare(ta)
+    })
+    return rows
+  }, [comments, annotations])
+
   const [publishedNotebooks, setPublishedNotebooks] = useState<Notebook[]>([])
   const [profileInterestTags, setProfileInterestTags] = useState<string[]>([])
   const [mainTab, setMainTab] = useState<
     'notebooks' | 'bookmarks' | 'activity'
   >('activity')
-  const [activitySubTab, setActivitySubTab] = useState<
-    'comments' | 'annotations'
-  >('comments')
-  const [bookmarksSubTab, setBookmarksSubTab] = useState<
-    'saved' | 'notebookPins' | 'courses' | 'community'
-  >('saved')
   const [notebooksSubTab, setNotebooksSubTab] = useState<'yours' | 'saved'>(
     'yours'
   )
@@ -138,12 +309,161 @@ export default function PublicProfilePage() {
   const [rowFollowBusyId, setRowFollowBusyId] = useState<string | null>(null)
   const { followingIds, refresh: refreshFollowingIds } = useFollowingIds()
 
+  /** Signed-in viewer’s notebook URL pins (for bookmark controls on others’ notebooks). */
+  const [myNotebookPinLinks, setMyNotebookPinLinks] = useState<
+    UserLinkWithTag[]
+  >([])
+
+  const loadMyNotebookPins = useCallback(async () => {
+    if (!currentUserId) {
+      setMyNotebookPinLinks([])
+      return
+    }
+    const all = await getMyLinks(null)
+    setMyNotebookPinLinks(
+      all.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null)
+    )
+  }, [currentUserId])
+
+  useEffect(() => {
+    void loadMyNotebookPins()
+  }, [loadMyNotebookPins])
+
+  const viewerBookmarkedNotebookIds = useMemo(() => {
+    const s = new Set<string>()
+    for (const l of myNotebookPinLinks) {
+      const id = parseNotebookIdFromUserLinkUrl(l.url)
+      if (id) s.add(id)
+    }
+    return s
+  }, [myNotebookPinLinks])
+
+  const pinNotebookToMyBookmarks = useCallback(
+    async (nb: { id: string; title: string }) => {
+      if (!currentUserId || typeof window === 'undefined') return false
+      if (viewerBookmarkedNotebookIds.has(nb.id)) return true
+      const url = notebookAbsoluteUrl(nb.id, window.location.origin)
+      const row = await addLink(url, {
+        title: nb.title,
+        note: 'Pinned from a profile'
+      })
+      if (row) await loadMyNotebookPins()
+      return !!row
+    },
+    [currentUserId, viewerBookmarkedNotebookIds, loadMyNotebookPins]
+  )
+
+  const [viewerResourceBookmarkIds, setViewerResourceBookmarkIds] = useState<
+    Set<string>
+  >(() => new Set())
+  const [viewerSavedLinkUrls, setViewerSavedLinkUrls] = useState<Set<string>>(
+    () => new Set()
+  )
+  const [viewerCopyTargetsLoaded, setViewerCopyTargetsLoaded] =
+    useState(false)
+  const [copyBookmarkBusyKey, setCopyBookmarkBusyKey] = useState<
+    string | null
+  >(null)
+
+  const loadViewerBookmarkCopyState = useCallback(async () => {
+    if (!currentUserId) {
+      setViewerResourceBookmarkIds(new Set())
+      setViewerSavedLinkUrls(new Set())
+      setViewerCopyTargetsLoaded(false)
+      return
+    }
+    const [resBookmarks, allLinks] = await Promise.all([
+      getMyCommunityResourceBookmarks(),
+      getMyLinks(null)
+    ])
+    const rIds = new Set<string>()
+    for (const x of resBookmarks) {
+      rIds.add(x.resource.id)
+    }
+    const urls = new Set<string>()
+    for (const link of allLinks) {
+      if (parseNotebookIdFromUserLinkUrl(link.url) != null) continue
+      urls.add(link.url.trim())
+    }
+    setViewerResourceBookmarkIds(rIds)
+    setViewerSavedLinkUrls(urls)
+    setViewerCopyTargetsLoaded(true)
+  }, [currentUserId])
+
+  useEffect(() => {
+    void loadViewerBookmarkCopyState()
+  }, [loadViewerBookmarkCopyState])
+
+  const handleCopyCommunityBookmark = useCallback(
+    async (resourceId: string) => {
+      if (!currentUserId) return
+      const key = `cr-${resourceId}`
+      if (copyBookmarkBusyKey) return
+      setCopyBookmarkBusyKey(key)
+      try {
+        const result = await ensureCommunityResourceBookmark(resourceId)
+        if (result === null) {
+          window.alert('Could not save bookmark. Try signing in again.')
+          return
+        }
+        setViewerResourceBookmarkIds((prev) => {
+          const next = new Set(prev)
+          next.add(resourceId)
+          return next
+        })
+      } finally {
+        setCopyBookmarkBusyKey(null)
+      }
+    },
+    [currentUserId, copyBookmarkBusyKey]
+  )
+
+  const handleCopyProfileLinkBookmark = useCallback(
+    async (l: UserLinkWithTag) => {
+      if (!currentUserId) return
+      const key = `link-${l.id}`
+      if (copyBookmarkBusyKey) return
+      const url = l.url.trim()
+      if (viewerSavedLinkUrls.has(url)) return
+      setCopyBookmarkBusyKey(key)
+      try {
+        const row = await addLink(url, {
+          title: l.title,
+          note: l.note?.trim()
+            ? `${l.note.trim()} (from someone's profile)`
+            : 'Saved from a profile'
+        })
+        if (!row) {
+          await loadViewerBookmarkCopyState()
+          window.alert(
+            'Could not add bookmark. It may already be in your list.'
+          )
+          return
+        }
+        setViewerSavedLinkUrls((prev) => {
+          const next = new Set(prev)
+          next.add(url)
+          return next
+        })
+      } finally {
+        setCopyBookmarkBusyKey(null)
+      }
+    },
+    [
+      currentUserId,
+      copyBookmarkBusyKey,
+      viewerSavedLinkUrls,
+      loadViewerBookmarkCopyState
+    ]
+  )
+
   const loadProfile = useCallback(
     async (uid: string) => {
       setLoading(true)
       setNotFound(false)
       setPublishedNotebooks([])
       setProfileInterestTags([])
+      setBookmarkTagFilterId(null)
       const [
         p,
         followStatus,
@@ -154,6 +474,7 @@ export default function PublicProfilePage() {
         b,
         resourceB,
         links,
+        linkTags,
         personal,
         c,
         a,
@@ -169,6 +490,7 @@ export default function PublicProfilePage() {
         getBookmarksByUser(uid),
         getCommunityResourceBookmarksByUser(uid),
         getLinksByUserId(uid),
+        getLinkTagsByUserId(uid),
         listPersonalLinksByUserId(uid),
         getCommentsByUser(uid),
         getAnnotationsByUser(uid),
@@ -178,6 +500,7 @@ export default function PublicProfilePage() {
       if (!p) {
         setProfile(null)
         setPersonalLinks([])
+        setProfileLinkTags([])
         setNotFound(true)
         setLoading(false)
         return
@@ -191,6 +514,7 @@ export default function PublicProfilePage() {
       setBookmarks(b)
       setResourceBookmarks(resourceB)
       setUserLinks(links)
+      setProfileLinkTags(linkTags)
       setPersonalLinks(personal)
       setComments(c)
       setAnnotations(a)
@@ -640,73 +964,257 @@ export default function PublicProfilePage() {
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
                     <h2 className={styles.mainSerifTitle}>Bookmarks</h2>
-                    <nav
-                      className={styles.activitySubTabs}
-                      role='tablist'
-                      aria-label='Bookmarks type'
-                    >
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={bookmarksSubTab === 'saved'}
-                        className={
-                          bookmarksSubTab === 'saved'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setBookmarksSubTab('saved')}
-                      >
-                        Saved links
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={bookmarksSubTab === 'notebookPins'}
-                        className={
-                          bookmarksSubTab === 'notebookPins'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setBookmarksSubTab('notebookPins')}
-                      >
-                        Notebook bookmarks
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={bookmarksSubTab === 'courses'}
-                        className={
-                          bookmarksSubTab === 'courses'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setBookmarksSubTab('courses')}
-                      >
-                        Course bookmarks
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={bookmarksSubTab === 'community'}
-                        className={
-                          bookmarksSubTab === 'community'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setBookmarksSubTab('community')}
-                      >
-                        Community resources
-                      </button>
-                    </nav>
-                    {bookmarksSubTab === 'saved' && (
                     <div className={styles.section}>
-                      {savedProfileLinks.length === 0 ? (
+                      {showPublicBookmarkTagFilters ? (
+                        <div className={styles.linkFilterRow}>
+                          <div className={styles.linkFilterTagsWrap}>
+                            <button
+                              type='button'
+                              className={
+                                bookmarkTagFilterId === null
+                                  ? styles.linkFilterBtnActive
+                                  : styles.linkFilterBtn
+                              }
+                              onClick={() => setBookmarkTagFilterId(null)}
+                            >
+                              All
+                            </button>
+                            {profileBookmarkTagsInUse.map((t) => (
+                              <button
+                                key={t.id}
+                                type='button'
+                                className={
+                                  bookmarkTagFilterId === t.id
+                                    ? styles.linkFilterBtnActive
+                                    : styles.linkFilterBtn
+                                }
+                                onClick={() => setBookmarkTagFilterId(t.id)}
+                              >
+                                {t.name}
+                              </button>
+                            ))}
+                            {resourceBookmarks.length > 0 ? (
+                              <button
+                                type='button'
+                                className={
+                                  bookmarkTagFilterId ===
+                                  COMMUNITY_RESOURCE_LINK_FILTER
+                                    ? styles.linkFilterBtnActive
+                                    : styles.linkFilterBtn
+                                }
+                                onClick={() =>
+                                  setBookmarkTagFilterId(
+                                    COMMUNITY_RESOURCE_LINK_FILTER
+                                  )
+                                }
+                              >
+                                Community resource
+                              </button>
+                            ) : null}
+                          </div>
+                        </div>
+                      ) : null}
+                      {publicSavedBookmarkRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          No bookmarked links.
+                          {bookmarkTagFilterId != null
+                            ? 'No bookmarks match this filter.'
+                            : 'No saved links on this profile yet.'}
                         </p>
                       ) : (
-                        <ul className={styles.userLinksList}>
-                          {savedProfileLinks.map((l) => {
+                        <ul
+                          className={`${styles.userLinksList} ${
+                            currentUserId ? styles.userLinksListWithCopy : ''
+                          }`}
+                        >
+                          {publicSavedBookmarkRows.map((row) => {
+                            if (row.kind === 'community') {
+                              const { bookmark, resource, course } = row.data
+                              const rowNoteId = `cr-${bookmark.id}`
+                              const courseHref =
+                                course.url ?? `/${course.notion_page_id}`
+                              const raw = resource.link?.trim() ?? ''
+                              const primaryHref =
+                                raw && /^https?:\/\//i.test(raw)
+                                  ? raw
+                                  : courseHref
+                              const openInNewTab =
+                                /^https?:\/\//i.test(primaryHref)
+                              let domainLabel: string | null = null
+                              try {
+                                domainLabel = new URL(
+                                  primaryHref,
+                                  typeof window !== 'undefined'
+                                    ? window.location.origin
+                                    : 'https://placeholder.local'
+                                ).hostname
+                              } catch {
+                                domainLabel = null
+                              }
+                              return (
+                                <li
+                                  key={rowNoteId}
+                                  className={styles.userLinkItem}
+                                >
+                                  <div className={styles.userLinkItemInner}>
+                                    <span
+                                      className={styles.userLinkIconWrap}
+                                    >
+                                      <span
+                                        className={styles.userLinkIconBlue}
+                                        aria-hidden
+                                      >
+                                        <svg
+                                          xmlns='http://www.w3.org/2000/svg'
+                                          width='8'
+                                          height='8'
+                                          viewBox='0 0 8 8'
+                                          fill='none'
+                                        >
+                                          <path
+                                            d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
+                                            stroke='#FDFDFD'
+                                            strokeWidth='0.75'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                          />
+                                          <path
+                                            d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
+                                            stroke='#FDFDFD'
+                                            strokeWidth='0.75'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                          />
+                                        </svg>
+                                      </span>
+                                    </span>
+                                    <div className={styles.userLinkContent}>
+                                      <div className={styles.userLinkRow}>
+                                        <span
+                                          className={styles.userLinkTitleAndDomain}
+                                        >
+                                          <a
+                                            href={primaryHref}
+                                            {...(openInNewTab
+                                              ? {
+                                                  target: '_blank',
+                                                  rel: 'noopener noreferrer'
+                                                }
+                                              : {})}
+                                            className={styles.userLinkUrl}
+                                          >
+                                            {resource.title}
+                                          </a>
+                                          {domainLabel ? (
+                                            <span
+                                              className={styles.userLinkDomain}
+                                            >
+                                              {domainLabel}
+                                            </span>
+                                          ) : null}
+                                        </span>
+                                        {currentUserId ? (
+                                          <div
+                                            className={styles.userLinkActions}
+                                          >
+                                            <button
+                                              type='button'
+                                              className={
+                                                styles.notebooksListIconBtn
+                                              }
+                                              disabled={
+                                                !viewerCopyTargetsLoaded ||
+                                                copyBookmarkBusyKey !==
+                                                  null ||
+                                                viewerResourceBookmarkIds.has(
+                                                  resource.id
+                                                )
+                                              }
+                                              onClick={() =>
+                                                void handleCopyCommunityBookmark(
+                                                  resource.id
+                                                )
+                                              }
+                                              title={
+                                                viewerResourceBookmarkIds.has(
+                                                  resource.id
+                                                )
+                                                  ? 'Saved to your bookmarks'
+                                                  : 'Save to your bookmarks'
+                                              }
+                                              aria-label={
+                                                viewerResourceBookmarkIds.has(
+                                                  resource.id
+                                                )
+                                                  ? 'Saved to your bookmarks'
+                                                  : 'Save to your bookmarks'
+                                              }
+                                            >
+                                              <span
+                                                className={
+                                                  copyBookmarkBusyKey ===
+                                                    `cr-${resource.id}` &&
+                                                  !viewerResourceBookmarkIds.has(
+                                                    resource.id
+                                                  )
+                                                    ? styles.notebooksListIconBtnInnerBusy
+                                                    : undefined
+                                                }
+                                              >
+                                                <ProfileSaveBookmarkIcon
+                                                  filled={viewerResourceBookmarkIds.has(
+                                                    resource.id
+                                                  )}
+                                                />
+                                              </span>
+                                            </button>
+                                          </div>
+                                        ) : null}
+                                      </div>
+                                      <div className={styles.userLinkMeta}>
+                                        <div
+                                          className={styles.userLinkMetaTags}
+                                        >
+                                          <span
+                                            className={styles.userLinkTag}
+                                          >
+                                            Community resource
+                                          </span>
+                                          {resource.description ? (
+                                            <button
+                                              type='button'
+                                              className={
+                                                styles.userLinkNoteToggle
+                                              }
+                                              onClick={() =>
+                                                setShowNoteForLinkId((cur) =>
+                                                  cur === rowNoteId
+                                                    ? null
+                                                    : rowNoteId
+                                                )
+                                              }
+                                            >
+                                              Note
+                                            </button>
+                                          ) : null}
+                                        </div>
+                                        <span
+                                          className={styles.userLinkDate}
+                                        >
+                                          {formatDate(bookmark.created_at)}
+                                        </span>
+                                        {resource.description &&
+                                        showNoteForLinkId === rowNoteId ? (
+                                          <p className={styles.userLinkNote}>
+                                            {resource.description}
+                                          </p>
+                                        ) : null}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              )
+                            }
+                            const l = row.link
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
@@ -791,6 +1299,62 @@ export default function PublicProfilePage() {
                                           }
                                         })()}
                                       </span>
+                                      {currentUserId ? (
+                                        <div
+                                          className={styles.userLinkActions}
+                                        >
+                                          <button
+                                            type='button'
+                                            className={
+                                              styles.notebooksListIconBtn
+                                            }
+                                            disabled={
+                                              !viewerCopyTargetsLoaded ||
+                                              copyBookmarkBusyKey !== null ||
+                                              viewerSavedLinkUrls.has(
+                                                l.url.trim()
+                                              )
+                                            }
+                                            onClick={() =>
+                                              void handleCopyProfileLinkBookmark(
+                                                l
+                                              )
+                                            }
+                                            title={
+                                              viewerSavedLinkUrls.has(
+                                                l.url.trim()
+                                              )
+                                                ? 'Saved to your bookmarks'
+                                                : 'Save to your bookmarks'
+                                            }
+                                            aria-label={
+                                              viewerSavedLinkUrls.has(
+                                                l.url.trim()
+                                              )
+                                                ? 'Saved to your bookmarks'
+                                                : 'Save to your bookmarks'
+                                            }
+                                          >
+                                            <span
+                                              className={
+                                                copyBookmarkBusyKey ===
+                                                  `link-${l.id}` &&
+                                                !viewerSavedLinkUrls.has(
+                                                  l.url.trim()
+                                                )
+                                                  ? styles.notebooksListIconBtnInnerBusy
+                                                  : undefined
+                                              }
+                                            >
+                                              <ProfileSaveBookmarkIcon
+                                                filled={viewerSavedLinkUrls.has(
+                                                  l.url.trim()
+                                                )}
+                                              />
+                                            </span>
+                                          </button>
+                                        </div>
+                                      ) : null}
                                     </div>
                                     <div className={styles.userLinkMeta}>
                                       <div className={styles.userLinkMetaTags}>
@@ -834,74 +1398,26 @@ export default function PublicProfilePage() {
                         </ul>
                       )}
                     </div>
-                    )}
-                    {bookmarksSubTab === 'notebookPins' && (
-                    <div className={styles.section}>
-                      {notebookPinLinks.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No notebook shortcuts on this profile.
-                        </p>
-                      ) : (
-                        <ul className={styles.list}>
-                          {notebookPinLinks.map((l) => (
-                            <li key={l.id} className={styles.listItem}>
-                              <Link
-                                href={notebookUserLinkHref(l.url)}
-                                legacyBehavior={false}
-                                className={styles.listLink}
+                  </div>
+                )}
+
+                {mainTab === 'activity' && (
+                  <div className={styles.tabPanel}>
+                    <h2 className={styles.mainSerifTitle}>All activity</h2>
+                    {publicActivityRows.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No comments or annotations yet.
+                      </p>
+                    ) : (
+                      <ul className={styles.list}>
+                        {publicActivityRows.map((row) => {
+                          if (row.kind === 'comment') {
+                            const { comment, course } = row
+                            return (
+                              <li
+                                key={`comment-${comment.id}`}
+                                className={styles.listItem}
                               >
-                                <span className={styles.listTitle}>
-                                  {l.title?.trim() || 'Notebook'}
-                                </span>
-                                <span className={styles.listMeta}>
-                                  Notebook · {formatDate(l.created_at)}
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                    )}
-                    {bookmarksSubTab === 'courses' && (
-                    <div className={styles.section}>
-                      {bookmarks.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No bookmarked courses.
-                        </p>
-                      ) : (
-                        <ul className={styles.list}>
-                          {bookmarks.map(({ bookmark, course }) => (
-                            <li key={bookmark.id} className={styles.listItem}>
-                              <Link
-                                href={course.url ?? `/${course.notion_page_id}`}
-                              >
-                                <a className={styles.listLink}>
-                                  <span className={styles.listTitle}>
-                                    {course.name}
-                                  </span>
-                                  <span className={styles.listMeta}>
-                                    {formatDate(bookmark.created_at)}
-                                  </span>
-                                </a>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                    )}
-                    {bookmarksSubTab === 'community' && (
-                    <div className={styles.section}>
-                      {resourceBookmarks.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No saved community resources.
-                        </p>
-                      ) : (
-                        <ul className={styles.list}>
-                          {resourceBookmarks.map(
-                            ({ bookmark, resource, course }) => (
-                              <li key={bookmark.id} className={styles.listItem}>
                                 <Link
                                   href={
                                     course.url ?? `/${course.notion_page_id}`
@@ -909,118 +1425,44 @@ export default function PublicProfilePage() {
                                 >
                                   <a className={styles.listLink}>
                                     <span className={styles.listTitle}>
-                                      {resource.title}
+                                      <span
+                                        className={styles.userLinkTag}
+                                        aria-label='Comment'
+                                      >
+                                        Comment
+                                      </span>{' '}
+                                      {course.name}
                                     </span>
                                     <span className={styles.listMeta}>
-                                      {course.name} ·{' '}
-                                      {formatDate(bookmark.created_at)}
+                                      {formatDate(comment.created_at)}
                                     </span>
                                   </a>
                                 </Link>
-                                {resource.description ? (
-                                  <p className={styles.listBody}>
-                                    {resource.description.length > 220
-                                      ? `${resource.description.slice(0, 220)}…`
-                                      : resource.description}
-                                  </p>
-                                ) : null}
-                                {resource.link ? (
-                                  <p className={styles.notificationMeta}>
-                                    <a
-                                      href={resource.link}
-                                      target='_blank'
-                                      rel='noopener noreferrer'
-                                      className={styles.inlineLink}
-                                    >
-                                      {resource.link}
-                                    </a>
-                                  </p>
-                                ) : null}
+                                <p className={styles.listBody}>
+                                  {comment.body}
+                                </p>
                               </li>
                             )
-                          )}
-                        </ul>
-                      )}
-                    </div>
-                    )}
-                  </div>
-                )}
-
-                {mainTab === 'activity' && (
-                  <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>All activity</h2>
-                    <nav
-                      className={styles.activitySubTabs}
-                      role='tablist'
-                      aria-label='Activity type'
-                    >
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={activitySubTab === 'comments'}
-                        className={
-                          activitySubTab === 'comments'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setActivitySubTab('comments')}
-                      >
-                        Comments
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={activitySubTab === 'annotations'}
-                        className={
-                          activitySubTab === 'annotations'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setActivitySubTab('annotations')}
-                      >
-                        Annotations
-                      </button>
-                    </nav>
-
-                    {activitySubTab === 'comments' &&
-                      (comments.length === 0 ? (
-                        <p className={styles.placeholder}>No comments yet.</p>
-                      ) : (
-                        <ul className={styles.list}>
-                          {comments.map(({ comment, course }) => (
-                            <li key={comment.id} className={styles.listItem}>
+                          }
+                          const { annotation, course } = row
+                          return (
+                            <li
+                              key={`annotation-${annotation.id}`}
+                              className={styles.listItem}
+                            >
                               <Link
-                                href={course.url ?? `/${course.notion_page_id}`}
+                                href={
+                                  course.url ?? `/${course.notion_page_id}`
+                                }
                               >
                                 <a className={styles.listLink}>
                                   <span className={styles.listTitle}>
-                                    {course.name}
-                                  </span>
-                                  <span className={styles.listMeta}>
-                                    {formatDate(comment.created_at)}
-                                  </span>
-                                </a>
-                              </Link>
-                              <p className={styles.listBody}>{comment.body}</p>
-                            </li>
-                          ))}
-                        </ul>
-                      ))}
-
-                    {activitySubTab === 'annotations' &&
-                      (annotations.length === 0 ? (
-                        <p className={styles.placeholder}>
-                          No annotations yet.
-                        </p>
-                      ) : (
-                        <ul className={styles.list}>
-                          {annotations.map(({ annotation, course }) => (
-                            <li key={annotation.id} className={styles.listItem}>
-                              <Link
-                                href={course.url ?? `/${course.notion_page_id}`}
-                              >
-                                <a className={styles.listLink}>
-                                  <span className={styles.listTitle}>
+                                    <span
+                                      className={styles.userLinkTag}
+                                      aria-label='Annotation'
+                                    >
+                                      Annotation
+                                    </span>{' '}
                                     {course.name}
                                   </span>
                                   <span className={styles.listMeta}>
@@ -1035,9 +1477,10 @@ export default function PublicProfilePage() {
                                 {annotation.body}
                               </p>
                             </li>
-                          ))}
-                        </ul>
-                      ))}
+                          )
+                        })}
+                      </ul>
+                    )}
                   </div>
                 )}
 
@@ -1079,31 +1522,43 @@ export default function PublicProfilePage() {
                         loading={loading}
                         onRefresh={() => undefined}
                         canCreate={false}
-                        subsectionTitle='Published notebooks'
-                        emptyHint='No published notebooks yet.'
+                        subsectionTitle={null}
+                        emptyHint='No notebooks yet.'
+                        bookmarkedNotebookIds={
+                          currentUserId ? viewerBookmarkedNotebookIds : undefined
+                        }
+                        onBookmarkNotebook={
+                          currentUserId ? pinNotebookToMyBookmarks : undefined
+                        }
                       />
                     ) : (
                       <div className={styles.section}>
                         {loading ? (
                           <p className={styles.placeholder}>Loading…</p>
-                        ) : notebookPinLinks.length === 0 ? (
+                        ) : savedNotebooksAndCourseRows.length === 0 ? (
                           <p className={styles.placeholder}>
-                            No saved notebooks on this profile yet.
+                            No saved notebooks or courses on this profile yet.
                           </p>
                         ) : (
                           <ul className={styles.list}>
-                            {notebookPinLinks.map((l) => (
-                              <li key={l.id} className={styles.listItem}>
+                            {savedNotebooksAndCourseRows.map((row) => (
+                              <li
+                                key={`${row.kind}-${row.id}`}
+                                className={styles.listItem}
+                              >
                                 <Link
-                                  href={notebookUserLinkHref(l.url)}
+                                  href={row.href}
                                   legacyBehavior={false}
                                   className={styles.listLink}
                                 >
                                   <span className={styles.listTitle}>
-                                    {l.title?.trim() || 'Notebook'}
+                                    {row.title}
                                   </span>
                                   <span className={styles.listMeta}>
-                                    Notebook · {formatDate(l.created_at)}
+                                    {row.kind === 'notebook'
+                                      ? 'Notebook'
+                                      : 'Course'}{' '}
+                                    · {formatDate(row.createdAt)}
                                   </span>
                                 </Link>
                               </li>

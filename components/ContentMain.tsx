@@ -86,7 +86,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
 }) => {
   const auth = useAuthOptional()
   const isSignedIn = Boolean(auth?.user)
-  const showViewBar = Boolean(onShowAnnotations || onShowChat)
+  const showViewBar = Boolean(
+    (onShowAnnotations || onShowChat) && !hideAnnotationsChatButtons
+  )
   const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
   const isCompleted = sectionStatus?.isCompleted ?? false
   const isBookmarked = sectionStatus?.isBookmarked ?? false
@@ -97,15 +99,13 @@ export const ContentMain: React.FC<ContentMainProps> = ({
     <main className={styles.root}>
       {showViewBar && (
         <div className={styles.viewBar}>
-          {!hideAnnotationsChatButtons && onShowAnnotations && (
+          {onShowAnnotations && (
             <ViewAnnotationsButton
               count={annotationCount}
               onClick={onShowAnnotations}
             />
           )}
-          {!hideAnnotationsChatButtons && onShowChat && (
-            <ViewCourseChatButton onClick={onShowChat} />
-          )}
+          {onShowChat && <ViewCourseChatButton onClick={onShowChat} />}
         </div>
       )}
       <div className={styles.slot}>

@@ -965,6 +965,11 @@
   padding: 0;
 }
 
+/* Public profile bookmarks: copy control stays visible without row hover */
+.userLinksListWithCopy .userLinkActions {
+  opacity: 1;
+}
+
 .userLinkItem {
   padding: 0.75rem 0.5rem;
   border-bottom: 1px solid #f8f8f8;

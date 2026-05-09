@@ -95,8 +95,8 @@ type ProfileNotebooksPanelProps = {
   /** Notebook ids already saved under Profile → Bookmarks (Saved links). */
   bookmarkedNotebookIds?: ReadonlySet<string>
   /**
-   * Own profile: add this notebook’s URL to Saved links so it appears under
-   * Bookmarks → Notebook bookmarks.
+   * Logged-in viewer: add this notebook’s URL to your saved links (Notebooks →
+   * Saved notebooks on your profile).
    */
   onBookmarkNotebook?: (notebook: {
     id: string

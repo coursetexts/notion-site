@@ -295,6 +295,36 @@ export async function toggleCommunityResourceBookmark(
   return error ? null : true
 }
 
+/**
+ * Save this wall resource to the signed-in user's bookmarks if not already saved.
+ * @returns true if newly added, false if already bookmarked, null if unauthenticated or error
+ */
+export async function ensureCommunityResourceBookmark(
+  resourceId: string
+): Promise<boolean | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return null
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return null
+
+  const { data: existing } = await supabase
+    .from('course_resource_bookmarks')
+    .select('id')
+    .eq('user_id', user.id)
+    .eq('resource_id', resourceId)
+    .maybeSingle()
+
+  if (existing) return false
+
+  const { error } = await supabase
+    .from('course_resource_bookmarks')
+    .insert({ user_id: user.id, resource_id: resourceId })
+
+  return error ? null : true
+}
+
 export async function getCommunityResourceComments(
   resourceId: string
 ): Promise<CommunityResourceComment[]> {
