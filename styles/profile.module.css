@@ -90,9 +90,9 @@
 .signOutBtn {
   padding: 0.5rem 1rem;
   font-size: 0.9375rem;
-  color: #25272b;
-  background: #efefef;
-  border: 1px solid #e0e0e0;
+  color: #37352F;;
+  background: rgba(230, 230, 230, 0.32);
+  border: none;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -171,12 +171,18 @@
   padding: 0 0 1rem 0;
   margin-bottom: 0.5rem;
   cursor: pointer;
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .backToProfile:hover {
   color: #25272b;
   text-decoration: underline;
+}
+
+.backToProfile:hover .sidebarBackArrow {
+  color: #25272b;
 }
 
 .userList {
@@ -186,7 +192,10 @@
 }
 
 .userListItem {
-  padding: 0.35rem 0;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0.45rem 0;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -195,14 +204,101 @@
 }
 
 .userListLink {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
   color: #25272b;
   text-decoration: none;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .userListLink:hover {
   color: #0089c4;
+  text-decoration: none;
+}
+
+.userListLink:hover .userListLinkText {
   text-decoration: underline;
+}
+
+.userListAvatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.userListAvatarPlaceholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e8e8e8;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.userListLinkText {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.userListFollowBtn {
+  flex-shrink: 0;
+  padding: 0.35rem 0.75rem !important;
+  font-size: 0.875rem !important;
+}
+
+.connectionsTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 1rem;
+}
+
+.connectionsTab,
+.connectionsTabActive {
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 0.35rem 0 0.55rem;
+  margin-bottom: -1px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.connectionsTab {
+  color: #888;
+  font-weight: 400;
+}
+
+.connectionsTab:hover {
+  color: #555;
+}
+
+.connectionsTabActive {
+  color: #111;
+  font-weight: 500;
+  border-bottom-color: #0089c4;
 }
 
 .section {
@@ -399,91 +495,87 @@
 }
 
 .linkFilterBtn,
-.linkFilterBtnActive,
-.linkFilterBtnNew {
+.linkFilterBtnActive {
   font-size: 0.8125rem;
   padding: 0.35rem 0.65rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background: #fff;
+  border: none;
+  border-radius: 40px;
+  background: #f9f7f7d8;
+  color: #7b7f89;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: -0.05px;
+}
+
+.linkFilterBtn:hover {
+  background: #f7f7f7;
+}
+
+.linkFilterBtnNew {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.45rem 0.85rem;
   color: #25272b;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
 }
 
-.linkFilterBtn:hover,
 .linkFilterBtnNew:hover {
   background: #f7f7f7;
-  border-color: #d0d0d0;
 }
 
 .linkFilterBtnActive {
-  background: #efefef;
-  border-color: #d0d0d0;
+  background: #efeded;
   font-weight: 500;
+  color: rgb(54, 54, 54)
 }
 
-.newTagWrap {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.newTagInput {
+/* Inline new-tag field: same pill as filter chips; Enter saves, blur discards. */
+.linkFilterNewTagInput {
+  font: inherit;
   font-size: 0.8125rem;
-  padding: 0.35rem 0.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  width: 8rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #e8e4e4;
+  border-radius: 40px;
+  background: #f9f7f7;
+  color: #25272b;
+  width: 7.5rem;
+  min-width: 0;
+  max-width: 14rem;
+  box-sizing: border-box;
+  outline: none;
 }
 
-.newTagBtn,
-.newTagCancel {
-  font-size: 0.8125rem;
-  padding: 0.35rem 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
+.linkFilterNewTagInput::placeholder {
+  color: #888;
 }
 
-.newTagBtn {
-  background: #0089c4;
-  color: #fff;
-  border: none;
-}
-
-.newTagBtn:hover:not(:disabled) {
-  background: #0077a8;
-}
-
-.newTagBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.newTagCancel {
+.linkFilterNewTagInput:focus {
+  border-color: #0089c4;
   background: #fff;
-  border: 1px solid #e0e0e0;
-  color: #666;
 }
 
-.newTagCancel:hover {
-  background: #f7f7f7;
+.linkFilterNewTagInput:disabled {
+  opacity: 0.65;
 }
 
 .addLinkBtn {
+  font: inherit;
   font-size: 0.8125rem;
-  padding: 0.35rem 0.6rem;
-  color: #0089c4;
+  padding: 0.45rem 0.85rem;
+  color: #25272b;
   background: #fff;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #d0d0d0;
   border-radius: 6px;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 .addLinkBtn:hover {
-  background: #e6f4fc;
-  border-color: #0089c4;
+  background: #f7f7f7;
 }
 
 .linkForm {
@@ -580,13 +672,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.25rem 0.5rem;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 .modalTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.35rem;
+  font-weight: 400;
   color: #25272b;
   margin: 0;
+  font-family: 'Guyot Press', serif;
+
 }
 
 .modalClose {
@@ -616,13 +711,18 @@
   margin-bottom: 1rem;
 }
 
+.modalLabelCaption {
+  display: block;
+  line-height: 1.3;
+}
+
 .modalOptional {
   font-weight: 400;
   color: #888;
 }
 
 .modalRequired {
-  color: #c00;
+  color: #0089C4;
 }
 
 .tagPillsWrap {
@@ -672,6 +772,16 @@
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   width: 100%;
+}
+
+.modalInput:focus,
+.modalInput:focus-visible,
+.modalTextarea:focus,
+.modalTextarea:focus-visible,
+.modalSelect:focus,
+.modalSelect:focus-visible {
+  outline: none;
+  border-color: #0089c4;
 }
 
 .modalTextarea {
@@ -773,6 +883,14 @@
   min-height: 4rem;
 }
 
+.actionOverlayInput:focus,
+.actionOverlayInput:focus-visible,
+.actionOverlaySelect:focus,
+.actionOverlaySelect:focus-visible {
+  outline: none;
+  border-color: #0089c4;
+}
+
 .actionOverlayCheckbox {
   display: flex;
   align-items: center;
@@ -849,13 +967,13 @@
 
 .userLinkItem {
   padding: 0.75rem 0.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f8f8f8;
   border-radius: 6px;
   transition: background 0.15s ease;
 }
 
 .userLinkItem:hover {
-  background: #f9f9f9;
+  background: #f9f9f98c;
 }
 
 .userLinkItem:last-child {
@@ -876,6 +994,21 @@
   width: 28px;
   height: 28px;
   margin-top: 0.1rem;
+}
+
+.userLinkIconBlue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: var(--buttonBlue, #0089C4);
+}
+
+.userLinkIconBlue svg {
+  width: 8px;
+  height: 8px;
 }
 
 .userLinkIcon {
@@ -906,8 +1039,21 @@
 .userLinkRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.5rem;
+}
+
+.userLinkTitleAndDomain {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.userLinkTitleAndDomain .userLinkUrl {
+  flex: 0 1 auto;
+  text-decoration: underline #9b9b9b;
 }
 
 .userLinkUrl {
@@ -931,6 +1077,7 @@
   align-items: center;
   gap: 0.35rem;
   flex-shrink: 0;
+  margin-left: auto;
   opacity: 0;
   transition: opacity 0.15s ease;
 }
@@ -961,38 +1108,89 @@
 
 .userLinkMeta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
   margin-top: 0.35rem;
 }
 
+.userLinkMetaTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+ 
+}
+
 .userLinkDomain {
+  font-size: 0.80rem;
+  color: #b2b2b2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 12rem;
+  letter-spacing: -0.05px;
+}
+
+.userLinkNoteToggle {
+  font: inherit;
   font-size: 0.75rem;
-  color: #999;
+  color: #666;
+  background: #fffbe6;
+  border: none;
+  border-radius: 4px;
+  padding: 0.15rem 0.35rem;
+  cursor: pointer;
+}
+
+.userLinkNoteToggle:hover {
+  color: #25272b;
+  background: #fff4bf;
+}
+
+.userLinkNoteRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  min-width: 0;
+}
+
+.userLinkNoteInline {
+  font-size: 0.8125rem;
+  color: #666;
+  line-height: 1.4;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .userLinkTag {
-  font-size: 0.75rem;
-  color: #666;
+  font-size: 0.6rem;
+  color: #949292;
   background: #f0f0f0;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  font: 500;
 }
 
 .userLinkTagPrivate {
+  font: inherit;
   font-size: 0.75rem;
-  color: #25272b;
-  background: #eee;
-  border: 1px solid #ccc;
-  padding: 0.2rem 0.5rem;
+  color: #1f4f6b;
+  background: #e6f4ff;
+  border: none;
+  padding: 0.15rem 0.35rem;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: 500;
 }
 
 .userLinkTagPrivate:hover {
-  background: #e5e5e5;
+  color: #163b52;
+  background: #d8efff;
 }
 
 .privateMessage {
@@ -1101,9 +1299,10 @@
 
 .userLinkNote {
   font-size: 0.8125rem;
-  color: #666;
+  color: #6c6c6c;
   margin: 0.35rem 0 0 0;
   line-height: 1.4;
+  font-style: italic;
 }
 
 /* —— Profile page layout (header + two columns + tabs) —— */
@@ -1163,6 +1362,7 @@
   .sidebarBack {
     align-self: stretch;
     text-align: left;
+    letter-spacing: -0.5px;
   }
 
   .sidebarName {
@@ -1171,6 +1371,7 @@
 
   .sidebarFollowLine {
     justify-content: center;
+    gap: 8px;
   }
 
   .sidebarBio,
@@ -1201,18 +1402,31 @@
 }
 
 .sidebarBack {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.9375rem;
   color: #666;
   text-decoration: none;
   /* Padding (not margin) so gap below link isn’t lost to collapse / resets */
   padding-bottom: 4rem;
   margin-bottom: 0;
+  letter-spacing: -0.005px;
+}
+
+.sidebarBackArrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #5d534b;
 }
 
 .sidebarBack:hover {
   color: #25272b;
   text-decoration: underline;
+}
+
+.sidebarBack:hover .sidebarBackArrow {
+  color: #25272b;
 }
 
 .sidebarAvatarWrap {
@@ -1251,7 +1465,7 @@
 .sidebarName {
   font-family: 'Guyot Press', 'Georgia', serif;
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0 0 0.5rem 0;
   color: #111;
   line-height: 1.2;
@@ -1259,13 +1473,13 @@
 
 .sidebarFollowLine {
   font-size: 0.875rem;
-  color: #888;
+  color: #37352f;
   margin-bottom: 0.75rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 0;
+  gap: 8px;
 }
 
 .sidebarFollowBtn {
@@ -1284,6 +1498,11 @@
 
 .sidebarFollowDot {
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
 }
 
 .sidebarFollowMainBtn {
@@ -1299,10 +1518,11 @@
 }
 
 .sidebarBio {
-  font-size: 0.9375rem;
+  font-size: 15px;
   line-height: 1.45;
-  color: #333;
+  color: #25272B;
   margin: 0 0 1rem 0;
+  font-family: 'Guyot Press', serif;
 }
 
 .sidebarBioMuted {
@@ -1380,6 +1600,40 @@
   gap: 1.75rem;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.primaryTabsRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 1.25rem;
+}
+
+.primaryTabsRow .primaryTabs {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.primaryTabsRightActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.35rem;
+}
+
+.tabPanelHeaderRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+.tabPanelHeaderRow .mainSerifTitle {
+  margin: 0;
 }
 
 .primaryTab,
@@ -1393,6 +1647,7 @@
   border-bottom: 2px solid transparent;
   color: #666;
   cursor: pointer;
+  font-weight: 400;
 }
 
 .primaryTab:hover {
@@ -1401,14 +1656,14 @@
 
 .primaryTabActive {
   color: #111;
-  font-weight: 500;
+  font-weight: 400;
   border-bottom-color: #0089c4;
 }
 
 .mainSerifTitle {
   font-family: 'Guyot Press', 'Georgia', serif;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0 0 1rem 0;
   color: #111;
 }
@@ -1426,8 +1681,9 @@
 }
 
 .activitySubTabs {
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
   gap: 0;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
@@ -1438,8 +1694,11 @@
 .activitySubTab,
 .activitySubTabActive {
   font: inherit;
-  font-size: 0.8125rem;
-  padding: 0.4rem 0.75rem;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 0.9375rem;
+  padding: 0.65rem 0.75rem;
   border: none;
   background: #fff;
   color: #666;
@@ -1452,12 +1711,12 @@
 }
 
 .activitySubTab:hover {
-  background: #f9f9f9;
+  background: #fafafa;
   color: #25272b;
 }
 
 .activitySubTabActive {
-  background: #efefef;
+  background: #f6f6f6;
   color: #25272b;
 }
 
@@ -1475,8 +1734,7 @@
   font-size: 0.875rem;
   padding: 0.45rem 1rem;
   color: #25272b;
-  background: #fff;
-  border: 1px solid #d0d0d0;
+  background: rgba(230, 230, 230, 0.32);
   border-radius: 4px;
   cursor: pointer;
 }
@@ -1611,6 +1869,59 @@
   border-bottom: none;
 }
 
+.notebooksListRow {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.notebooksListRowActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.35rem 0.5rem;
+  border-left: 1px solid #eee;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.notebooksListIconBtn {
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #b0b0b0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.notebooksListIconBtn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.04);
+  color: #8a8a8a;
+}
+
+.notebooksListIconBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.notebooksListIconBtn:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.15);
+  outline-offset: 1px;
+}
+
+.notebooksListIconBtnInnerBusy {
+  opacity: 0.45;
+}
+
 .notebooksListItem {
   display: flex;
   justify-content: space-between;
@@ -1620,7 +1931,8 @@
   font-size: 0.9375rem;
   text-decoration: none;
   color: inherit;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   box-sizing: border-box;
 }
 
@@ -1706,38 +2018,44 @@
   margin: 0.85rem 0 0.65rem;
 }
 
-.sidebarMetaPickColumn {
+.sidebarEditProfileRow {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
 }
 
-.sidebarMetaPickColumn .sidebarAddMetaBtn {
-  margin: 0;
+.sidebarEditProfileBtn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: var(--offwhite, #fdfdfd);
+  color: #5d534b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.sidebarMetaPickBtnActive {
-  background: #eef0f3 !important;
-  color: #25272b !important;
+.sidebarEditProfileBtnActive {
+  background: #0089c4;
+  border-color: #0089c4;
+  color: #ffffff;
 }
 
-.sidebarMetaEditorSlot {
-  margin-top: 0.65rem;
+.sidebarEditProfileBtn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(93, 83, 75, 0.35);
 }
 
-.sidebarMetaEditorSubheading {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #888;
-  margin: 0 0 0.5rem;
+.sidebarEditProfileBtnActive:hover:not(:disabled) {
+  background: #0077a8;
+  border-color: #0077a8;
 }
 
-.sidebarMetaEditorPanel {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
+.sidebarEditProfileBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .sidebarWebsitesBlock {
@@ -1820,18 +2138,9 @@
 /* Profile personal links (Twitter, portfolio — not bookmarked user_links) */
 
 .sidebarPersonalLinksBlock {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #ececea;
-}
-
-.sidebarPersonalLinksHeading {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #888;
-  margin: 0 0 0.45rem;
+  margin-top: 0.5rem;
+  padding-top: 0;
+  border-top: none;
 }
 
 .sidebarPersonalLinksList {
@@ -1849,23 +2158,90 @@
 
 .sidebarPersonalLinkCard,
 .sidebarPersonalLinkEditCard {
-  border: 1px solid #e0e0e0;
+  --outline: #e6e6e6;
+  border: 1px solid var(--outline, #e6e6e6);
   border-radius: 4px;
-  padding: 0.5rem 0.55rem;
+  padding: 0.55rem 0.65rem;
   background: #fff;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   min-width: 0;
+  position: relative;
+}
+
+.sidebarPersonalLinkRemoveX {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #8a8a8a;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarPersonalLinkRemoveX:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.04);
+  color: #25272b;
+}
+
+.sidebarPersonalLinkRemoveX:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.sidebarPersonalLinksInlineWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebarPersonalLinksInlineAddRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sidebarPersonalLinksInlineInput {
+  width: min(22rem, 100%);
+  max-width: 100%;
 }
 
 .sidebarPersonalLinkAnchor {
   text-decoration: none;
   color: inherit;
   display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   min-width: 0;
+}
+
+.sidebarPersonalLinkAnchorMain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.sidebarPersonalLinkArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+  color: #5d534b;
 }
 
 .sidebarPersonalLinkTitle {
@@ -1960,19 +2336,25 @@
   gap: 0.35rem;
 }
 
-.profileInterestsBlock {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #ececea;
+.profileInterestNewRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
-.profileInterestsHeading {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #888;
-  margin: 0 0 0.45rem;
+.profileInterestNewTagInput {
+  flex: 1;
+  min-width: 7rem;
+  width: auto;
+  max-width: none;
+}
+
+.profileInterestsBlock {
+  margin-top: 0.5rem;
+  padding-top: 0;
+  border-top: none;
 }
 
 .profileInterestsEdit {

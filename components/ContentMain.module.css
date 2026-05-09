@@ -60,6 +60,55 @@
   box-sizing: border-box;
 }
 
+.communityTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+  padding-top: 0.35rem;
+  padding-bottom: 1.1rem;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e1d3;
+}
+
+.communityTitleLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.communityTitleLeft button{
+  border-radius: 4px;
+  border: none;
+  background-color: rgba(230, 230, 230, 0.32);
+  color: #37352F;
+  margin-left: 1rem;
+}
+
+.communityTitleLeft .pdfTitle {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.communityTitleRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.communityTitleRight button{
+  border-radius: 0px;
+  border: 1px solid #E6E6E6;
+  cursor: pointer;
+}
+
 .sectionActionsWrap {
   display: flex;
   justify-content: space-between;

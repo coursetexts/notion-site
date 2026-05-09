@@ -1,7 +1,13 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
@@ -9,10 +15,12 @@ import type { User } from '@supabase/supabase-js'
 
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { ProfileBackArrow } from '@/components/ProfileBackArrow'
+import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
+import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
 import {
-  personalLinkDisplayTitle,
-  personalLinkKindLabel,
+  ProfilePersonalLinkAnchorRow,
   ProfilePersonalLinksPanel
 } from '@/components/ProfilePersonalLinksPanel'
 import { ProfileNotebooksPanel } from '@/components/ProfileNotebooksPanel'
@@ -34,21 +42,28 @@ import {
 } from '@/lib/course-activity-db'
 import {
   type ProfileListItem,
+  followUser,
   getFollowersCount,
   getFollowersList,
   getFollowingCount,
-  getFollowingList
+  getFollowingList,
+  unfollowUser
 } from '@/lib/follows'
 import {
-  getFaviconUrl,
-  getLinkSiteFaviconDomain
-} from '@/lib/link-site-favicon'
-import { type Notebook, getMyNotebooks } from '@/lib/notebooks-db'
+  notebookAbsoluteUrl,
+  notebookUserLinkHref,
+  parseNotebookIdFromUserLinkUrl
+} from '@/lib/notebook-bookmark-link'
+import { type Notebook, createNotebook, getMyNotebooks } from '@/lib/notebooks-db'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
 import {
   type ProfilePersonalLink,
   listMyPersonalLinks
 } from '@/lib/profile-personal-links-db'
+import {
+  type ProfileFeedItem,
+  getProfileFeed
+} from '@/lib/profile-feed-db'
 import {
   type ReplyNotification,
   getReplyNotifications,
@@ -106,22 +121,40 @@ export default function ProfilePage() {
   >([])
   const [notifications, setNotifications] = useState<ReplyNotification[]>([])
   const [activityLoading, setActivityLoading] = useState(true)
+  const [feedItems, setFeedItems] = useState<ProfileFeedItem[]>([])
   const [mainTab, setMainTab] = useState<
     'notebooks' | 'bookmarks' | 'activity'
   >('activity')
   const [activitySubTab, setActivitySubTab] = useState<
-    'comments' | 'annotations' | 'replies'
-  >('comments')
-  type ProfileView = 'profile' | 'following' | 'followers'
+    'feed' | 'comments' | 'annotations' | 'replies'
+  >('feed')
+  const [bookmarksSubTab, setBookmarksSubTab] = useState<
+    'saved' | 'notebookPins' | 'courses' | 'community'
+  >('saved')
+  const [notebooksSubTab, setNotebooksSubTab] = useState<'yours' | 'saved'>(
+    'yours'
+  )
+  const [notebookCreateModalOpen, setNotebookCreateModalOpen] = useState(false)
+  const [notebookCreating, setNotebookCreating] = useState(false)
+  const [notebookNewTitle, setNotebookNewTitle] = useState('')
+  type ProfileView = 'profile' | 'connections'
+  type ConnectionsTab = 'followers' | 'following'
   const [view, setView] = useState<ProfileView>('profile')
+  const [connectionsTab, setConnectionsTab] =
+    useState<ConnectionsTab>('following')
+  const [rowFollowBusyId, setRowFollowBusyId] = useState<string | null>(null)
   const [followingCount, setFollowingCount] = useState(0)
   const [followersCount, setFollowersCount] = useState(0)
   const [followingList, setFollowingList] = useState<ProfileListItem[]>([])
   const [followersList, setFollowersList] = useState<ProfileListItem[]>([])
-  const { followingIds } = useFollowingIds()
+  const { followingIds, refresh: refreshFollowingIds } = useFollowingIds()
   const { followerIds } = useFollowerIds()
   const [linkTags, setLinkTags] = useState<LinkTag[]>([])
   const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
+  /** From getMyLinks(null): notebook URL pins, independent of Saved links tag filter. */
+  const [notebookPinLinks, setNotebookPinLinks] = useState<UserLinkWithTag[]>(
+    []
+  )
   const [linkFilterTagId, setLinkFilterTagId] = useState<string | null>(null)
   const [showAddLinkModal, setShowAddLinkModal] = useState(false)
   const [linkFormTitle, setLinkFormTitle] = useState('')
@@ -134,6 +167,10 @@ export default function ProfilePage() {
   const [linksLoading, setLinksLoading] = useState(false)
   const [linkSubmitting, setLinkSubmitting] = useState(false)
   const [tagSubmitting, setTagSubmitting] = useState(false)
+  const tagSubmittingRef = useRef(false)
+  useEffect(() => {
+    tagSubmittingRef.current = tagSubmitting
+  }, [tagSubmitting])
   type LinkActionType = 'edit-note' | 'add-tag' | 'delete'
   const [linkActionOverlay, setLinkActionOverlay] = useState<{
     type: LinkActionType
@@ -145,14 +182,20 @@ export default function ProfilePage() {
   const [editSubmitting, setEditSubmitting] = useState(false)
   const [showPrivateMessageForLinkId, setShowPrivateMessageForLinkId] =
     useState<string | null>(null)
+  const [showNoteForLinkId, setShowNoteForLinkId] = useState<string | null>(
+    null
+  )
   const [notebooks, setNotebooks] = useState<Notebook[]>([])
   const [notebooksLoading, setNotebooksLoading] = useState(false)
   const [profileInterests, setProfileInterests] = useState<string[]>([])
   const [personalLinks, setPersonalLinks] = useState<ProfilePersonalLink[]>([])
-  type SidebarEditMode = null | 'bio' | 'personalLinks' | 'interests'
-  const [sidebarEditMode, setSidebarEditMode] = useState<SidebarEditMode>(null)
+  const [isEditingProfile, setIsEditingProfile] = useState(false)
   const [bioDraft, setBioDraft] = useState('')
   const [bioSaving, setBioSaving] = useState(false)
+  const bioSavingRef = useRef(false)
+  useEffect(() => {
+    bioSavingRef.current = bioSaving
+  }, [bioSaving])
 
   const effectiveUser = user ?? resolvedUser
 
@@ -171,6 +214,7 @@ export default function ProfilePage() {
       bookmarksRes,
       resourceBookmarksRes,
       notificationRes,
+      feedRes,
       fCount,
       fersCount,
       fList,
@@ -181,6 +225,7 @@ export default function ProfilePage() {
       getMyBookmarks(),
       getMyCommunityResourceBookmarks(),
       getReplyNotifications(userId),
+      getProfileFeed(userId),
       getFollowingCount(userId),
       getFollowersCount(userId),
       getFollowingList(userId),
@@ -191,6 +236,7 @@ export default function ProfilePage() {
     setBookmarks(bookmarksRes)
     setResourceBookmarks(resourceBookmarksRes)
     setNotifications(notificationRes)
+    setFeedItems(feedRes)
     setFollowingCount(fCount)
     setFollowersCount(fersCount)
     setFollowingList(fList)
@@ -202,16 +248,102 @@ export default function ProfilePage() {
     setNotifications((prev) => prev.map((n) => ({ ...n, is_unread: false })))
   }, [])
 
+  const refreshFollowListsAndCounts = useCallback(async () => {
+    const uid = effectiveUser?.id
+    if (!uid) return
+    const [fCount, fersCount, fList, fersList] = await Promise.all([
+      getFollowingCount(uid),
+      getFollowersCount(uid),
+      getFollowingList(uid),
+      getFollowersList(uid)
+    ])
+    setFollowingCount(fCount)
+    setFollowersCount(fersCount)
+    setFollowingList(fList)
+    setFollowersList(fersList)
+  }, [effectiveUser?.id])
+
+  const handleConnectionRowFollowToggle = useCallback(
+    async (targetUserId: string) => {
+      const me = effectiveUser?.id
+      if (!me || targetUserId === me || rowFollowBusyId) return
+      setRowFollowBusyId(targetUserId)
+      try {
+        const already = followingIds.has(targetUserId)
+        if (already) {
+          await unfollowUser(me, targetUserId)
+        } else {
+          await followUser(me, targetUserId)
+        }
+        await refreshFollowingIds()
+        await refreshFollowListsAndCounts()
+      } finally {
+        setRowFollowBusyId(null)
+      }
+    },
+    [
+      effectiveUser?.id,
+      followingIds,
+      refreshFollowListsAndCounts,
+      refreshFollowingIds,
+      rowFollowBusyId
+    ]
+  )
+
   const loadLinks = useCallback(async () => {
     setLinksLoading(true)
-    const [tags, links] = await Promise.all([
+    const [tags, links, allLinks] = await Promise.all([
       getMyTags(),
-      getMyLinks(linkFilterTagId)
+      getMyLinks(linkFilterTagId),
+      getMyLinks(null)
     ])
     setLinkTags(tags)
     setUserLinks(links)
+    setNotebookPinLinks(
+      allLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null)
+    )
     setLinksLoading(false)
   }, [linkFilterTagId])
+
+  const bookmarkedNotebookIds = useMemo(() => {
+    const s = new Set<string>()
+    for (const l of notebookPinLinks) {
+      const id = parseNotebookIdFromUserLinkUrl(l.url)
+      if (id) s.add(id)
+    }
+    return s
+  }, [notebookPinLinks])
+
+  const savedNotebooks = useMemo<Notebook[]>(() => {
+    const list: Notebook[] = []
+    for (const l of notebookPinLinks) {
+      const id = parseNotebookIdFromUserLinkUrl(l.url)
+      if (!id) continue
+      list.push({
+        id,
+        title: l.title?.trim() || 'Notebook',
+        created_at: l.created_at,
+        // Saved notebooks come from pinned links; publish state unknown here.
+        published: false
+      } as Notebook)
+    }
+    return list
+  }, [notebookPinLinks])
+
+  const pinNotebookToBookmarkLinks = useCallback(
+    async (nb: { id: string; title: string }) => {
+      if (typeof window === 'undefined') return false
+      if (bookmarkedNotebookIds.has(nb.id)) return true
+      const url = notebookAbsoluteUrl(nb.id, window.location.origin)
+      const row = await addLink(url, {
+        title: nb.title,
+        note: 'Pinned from your notebooks'
+      })
+      if (row) await loadLinks()
+      return !!row
+    },
+    [bookmarkedNotebookIds, loadLinks]
+  )
 
   const loadPersonalLinks = useCallback(async () => {
     const list = await listMyPersonalLinks()
@@ -224,6 +356,33 @@ export default function ProfilePage() {
     setNotebooks(list)
     setNotebooksLoading(false)
   }, [])
+
+  const openNotebookCreateModal = () => {
+    setNotebookNewTitle('')
+    setNotebookCreateModalOpen(true)
+  }
+
+  const closeNotebookCreateModal = () => {
+    if (notebookCreating) return
+    setNotebookCreateModalOpen(false)
+    setNotebookNewTitle('')
+  }
+
+  const handleCreateNotebook = async () => {
+    if (notebookCreating) return
+    const title = notebookNewTitle.trim() || 'Untitled notebook'
+    setNotebookCreating(true)
+    try {
+      const row = await createNotebook(title)
+      if (row) {
+        await loadNotebooks()
+        closeNotebookCreateModal()
+        await router.push(`/notebook/${row.id}`)
+      }
+    } finally {
+      setNotebookCreating(false)
+    }
+  }
 
   useEffect(() => {
     if (!effectiveUser) return
@@ -246,15 +405,8 @@ export default function ProfilePage() {
   }, [effectiveUser?.id, loadPersonalLinks])
 
   useEffect(() => {
-    if (sidebarEditMode === 'bio') {
-      setBioDraft(bioText)
-    }
-  }, [sidebarEditMode, bioText])
-
-  const cancelBioEdit = () => {
-    setSidebarEditMode(null)
-    setBioDraft('')
-  }
+    if (isEditingProfile) setBioDraft(bioText)
+  }, [isEditingProfile, bioText])
 
   const saveBio = async () => {
     const supabase = getSupabaseClient()
@@ -275,9 +427,58 @@ export default function ProfilePage() {
     if (data.user) {
       setCachedAuth(data.user, getCachedAuth().profile)
       if (!user) setResolvedUser(data.user)
-      setSidebarEditMode(null)
       setBioDraft('')
     }
+  }
+
+  const saveProfile = async () => {
+    const next = bioDraft.trim()
+    if (next !== bioText) {
+      await saveBio()
+    }
+    setIsEditingProfile(false)
+  }
+
+  function PencilIcon() {
+    return (
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='14'
+        viewBox='0 0 14 14'
+        fill='none'
+        aria-hidden
+      >
+        <path
+          d='M8.6 2.2l3.2 3.2M3 11.2l2.9-.6 6.1-6.1a.9.9 0 0 0 0-1.3L10.8 2a.9.9 0 0 0-1.3 0L3.4 8.1 3 11.2Z'
+          stroke='currentColor'
+          strokeWidth='1.2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    )
+  }
+
+  function CheckIcon() {
+    return (
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='14'
+        height='14'
+        viewBox='0 0 14 14'
+        fill='none'
+        aria-hidden
+      >
+        <path
+          d='M11.5 4L6 10l-2.5-2.6'
+          stroke='currentColor'
+          strokeWidth='1.6'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    )
   }
 
   const handleCreateTag = async () => {
@@ -481,13 +682,7 @@ export default function ProfilePage() {
         <div className={styles.profileGrid}>
           <aside className={styles.profileSidebar}>
             {/* Next 12: default Link legacy behavior drops className; false applies it to <a>. */}
-            <Link
-              href='/'
-              legacyBehavior={false}
-              className={styles.sidebarBack}
-            >
-              ← Back to Home
-            </Link>
+            <ProfileSidebarBackHome />
             <div className={styles.sidebarAvatarWrap}>
               {avatarUrl ? (
                 <img
@@ -508,18 +703,21 @@ export default function ProfilePage() {
               <button
                 type='button'
                 className={styles.sidebarFollowBtn}
-                onClick={() => setView('following')}
+                onClick={() => {
+                  setConnectionsTab('following')
+                  setView('connections')
+                }}
               >
                 {followingCount} following
               </button>
-              <span className={styles.sidebarFollowDot} aria-hidden>
-                {' '}
-                •{' '}
-              </span>
+              <FollowCountDividerDot />
               <button
                 type='button'
                 className={styles.sidebarFollowBtn}
-                onClick={() => setView('followers')}
+                onClick={() => {
+                  setConnectionsTab('followers')
+                  setView('connections')
+                }}
               >
                 {followersCount} followers
               </button>
@@ -527,10 +725,44 @@ export default function ProfilePage() {
             {effectiveUser?.id ? (
               <div className={styles.sidebarProfileMeta}>
                 <div className={styles.sidebarProfileMetaPreview}>
-                  {bioText ? (
+                  {isEditingProfile ? (
+                    <textarea
+                      value={bioDraft}
+                      onChange={(e) => setBioDraft(e.target.value)}
+                      placeholder='A short line about you…'
+                      className={styles.sidebarPersonalBioTextarea}
+                      rows={4}
+                      maxLength={500}
+                      aria-label='Personal bio'
+                      autoFocus
+                      disabled={bioSaving}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Escape') {
+                          e.preventDefault()
+                          setIsEditingProfile(false)
+                        }
+                        if (
+                          e.key === 'Enter' &&
+                          (e.metaKey || e.ctrlKey)
+                        ) {
+                          e.preventDefault()
+                          void saveProfile()
+                        }
+                      }}
+                      title='⌘/Ctrl+Enter to save'
+                    />
+                  ) : bioText ? (
                     <p className={styles.sidebarBio}>{bioText}</p>
                   ) : null}
-                  {profileInterests.length > 0 ? (
+                  {isEditingProfile ? (
+                    <ProfileInterestsPanel
+                      userId={effectiveUser.id}
+                      editable
+                      initialTags={profileInterests}
+                      onTagsChange={setProfileInterests}
+                      inline
+                    />
+                  ) : profileInterests.length > 0 ? (
                     <div className={styles.profileInterestTags}>
                       {profileInterests.map((t) => (
                         <Link
@@ -544,7 +776,14 @@ export default function ProfilePage() {
                       ))}
                     </div>
                   ) : null}
-                  {personalLinks.length > 0 ? (
+                  {isEditingProfile ? (
+                    <ProfilePersonalLinksPanel
+                      links={personalLinks}
+                      editable
+                      onRefresh={() => void loadPersonalLinks()}
+                      inline
+                    />
+                  ) : personalLinks.length > 0 ? (
                     <ul className={styles.sidebarPersonalLinksList}>
                       {personalLinks.map((l) => (
                         <li
@@ -552,19 +791,7 @@ export default function ProfilePage() {
                           className={styles.sidebarPersonalLinkItem}
                         >
                           <div className={styles.sidebarPersonalLinkCard}>
-                            <a
-                              href={l.url}
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              className={styles.sidebarPersonalLinkAnchor}
-                            >
-                              <span className={styles.linkCardLabel}>
-                                {personalLinkKindLabel(l.url)}
-                              </span>
-                              <span className={styles.sidebarPersonalLinkTitle}>
-                                {personalLinkDisplayTitle(l.url, l.title)}
-                              </span>
-                            </a>
+                            <ProfilePersonalLinkAnchorRow link={l} />
                           </div>
                         </li>
                       ))}
@@ -572,199 +799,214 @@ export default function ProfilePage() {
                   ) : null}
                   {!bioText &&
                   profileInterests.length === 0 &&
-                  personalLinks.length === 0 ? (
+                  personalLinks.length === 0 &&
+                  !isEditingProfile ? (
                     <p className={styles.sidebarMetaPreviewEmpty}>
                       Your bio, interests, and links will appear here.
                     </p>
                   ) : null}
                 </div>
-                <hr className={styles.sidebarMetaDivider} aria-hidden />
-                <div className={styles.sidebarMetaPickColumn}>
+                <div className={styles.sidebarEditProfileRow}>
                   <button
                     type='button'
-                    className={`${styles.sidebarAddMetaBtn} ${
-                      sidebarEditMode === 'bio'
-                        ? styles.sidebarMetaPickBtnActive
-                        : ''
-                    }`.trim()}
-                    aria-pressed={sidebarEditMode === 'bio'}
-                    onClick={() =>
-                      setSidebarEditMode((m) => (m === 'bio' ? null : 'bio'))
+                    className={
+                      isEditingProfile
+                        ? `${styles.sidebarEditProfileBtn} ${styles.sidebarEditProfileBtnActive}`
+                        : styles.sidebarEditProfileBtn
                     }
+                    onClick={() => {
+                      if (isEditingProfile) {
+                        void saveProfile()
+                      } else {
+                        setIsEditingProfile(true)
+                      }
+                    }}
+                    aria-label={isEditingProfile ? 'Save profile' : 'Edit profile'}
+                    title={isEditingProfile ? 'Save profile' : 'Edit profile'}
+                    disabled={bioSaving}
                   >
-                    {bioText ? '+ Edit personal bio' : '+ Add personal bio'}
-                  </button>
-                  <button
-                    type='button'
-                    className={`${styles.sidebarAddMetaBtn} ${
-                      sidebarEditMode === 'personalLinks'
-                        ? styles.sidebarMetaPickBtnActive
-                        : ''
-                    }`.trim()}
-                    aria-pressed={sidebarEditMode === 'personalLinks'}
-                    onClick={() =>
-                      setSidebarEditMode((m) =>
-                        m === 'personalLinks' ? null : 'personalLinks'
-                      )
-                    }
-                  >
-                    {personalLinks.length > 0
-                      ? '+ Edit personal links'
-                      : '+ Add personal links'}
-                  </button>
-                  <button
-                    type='button'
-                    className={`${styles.sidebarAddMetaBtn} ${
-                      sidebarEditMode === 'interests'
-                        ? styles.sidebarMetaPickBtnActive
-                        : ''
-                    }`.trim()}
-                    aria-pressed={sidebarEditMode === 'interests'}
-                    onClick={() =>
-                      setSidebarEditMode((m) =>
-                        m === 'interests' ? null : 'interests'
-                      )
-                    }
-                  >
-                    {profileInterests.length > 0
-                      ? '+ Edit interests'
-                      : '+ Add interests'}
+                    {isEditingProfile ? <CheckIcon /> : <PencilIcon />}
                   </button>
                 </div>
-                {sidebarEditMode ? (
-                  <div className={styles.sidebarMetaEditorSlot}>
-                    <h3 className={styles.sidebarMetaEditorSubheading}>
-                      {sidebarEditMode === 'bio'
-                        ? bioText
-                          ? 'Edit personal bio'
-                          : 'Add personal bio'
-                        : null}
-                      {sidebarEditMode === 'personalLinks'
-                        ? personalLinks.length > 0
-                          ? 'Edit personal links'
-                          : 'Add personal links'
-                        : null}
-                      {sidebarEditMode === 'interests'
-                        ? profileInterests.length > 0
-                          ? 'Edit interests'
-                          : 'Add interests'
-                        : null}
-                    </h3>
-                    {sidebarEditMode === 'bio' ? (
-                      <div className={styles.sidebarPersonalLinkAdd}>
-                        <label className={styles.sidebarPersonalLinkField}>
-                          <span>Your bio</span>
-                          <textarea
-                            value={bioDraft}
-                            onChange={(e) => setBioDraft(e.target.value)}
-                            placeholder='A short line about you…'
-                            className={styles.sidebarPersonalBioTextarea}
-                            rows={4}
-                            maxLength={500}
-                            aria-label='Personal bio'
-                          />
-                        </label>
-                        <div className={styles.sidebarPersonalLinkEditActions}>
-                          <button
-                            type='button'
-                            className={styles.sidebarPersonalLinkGhostBtn}
-                            onClick={cancelBioEdit}
-                            disabled={bioSaving}
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type='button'
-                            className={styles.sidebarPersonalLinkPrimaryBtn}
-                            onClick={() => void saveBio()}
-                            disabled={bioSaving}
-                          >
-                            {bioSaving ? '…' : 'Save'}
-                          </button>
-                        </div>
-                      </div>
-                    ) : null}
-                    {sidebarEditMode === 'personalLinks' ? (
-                      <ProfilePersonalLinksPanel
-                        links={personalLinks}
-                        editable
-                        onRefresh={() => void loadPersonalLinks()}
-                        showHeading={false}
-                        nested
-                      />
-                    ) : null}
-                    {sidebarEditMode === 'interests' ? (
-                      <ProfileInterestsPanel
-                        userId={effectiveUser.id}
-                        editable
-                        initialTags={profileInterests}
-                        onTagsChange={setProfileInterests}
-                        showHeading={false}
-                        nested
-                      />
-                    ) : null}
-                  </div>
-                ) : null}
               </div>
             ) : null}
           </aside>
 
           <div className={styles.profileMain}>
-            {view === 'following' && (
+            {view === 'connections' && (
               <div className={styles.mainPanel}>
                 <button
                   type='button'
                   className={styles.backToProfile}
                   onClick={() => setView('profile')}
                 >
-                  ← Back to profile
+                  <ProfileBackArrow className={styles.sidebarBackArrow} />
+                  Profile
                 </button>
-                <h2 className={styles.mainSerifTitle}>Following</h2>
-                {followingList.length === 0 ? (
+                <h2 className={styles.mainSerifTitle}>
+                  {connectionsTab === 'followers'
+                    ? 'Followers'
+                    : 'Following'}
+                </h2>
+                <nav
+                  className={styles.connectionsTabs}
+                  role='tablist'
+                  aria-label='Followers and following'
+                >
+                  <button
+                    type='button'
+                    role='tab'
+                    aria-selected={connectionsTab === 'followers'}
+                    className={
+                      connectionsTab === 'followers'
+                        ? styles.connectionsTabActive
+                        : styles.connectionsTab
+                    }
+                    onClick={() => setConnectionsTab('followers')}
+                  >
+                    Followers
+                  </button>
+                  <button
+                    type='button'
+                    role='tab'
+                    aria-selected={connectionsTab === 'following'}
+                    className={
+                      connectionsTab === 'following'
+                        ? styles.connectionsTabActive
+                        : styles.connectionsTab
+                    }
+                    onClick={() => setConnectionsTab('following')}
+                  >
+                    Following
+                  </button>
+                </nav>
+                {connectionsTab === 'followers' ? (
+                  followersList.length === 0 ? (
+                    <p className={styles.placeholder}>No followers yet.</p>
+                  ) : (
+                    <ul className={styles.userList}>
+                      {followersList.map((u) => {
+                        const selfId = effectiveUser?.id
+                        const showFollow = !!selfId && u.user_id !== selfId
+                        const isFollowingRow = followingIds.has(u.user_id)
+                        const busy = rowFollowBusyId === u.user_id
+                        return (
+                          <li key={u.user_id} className={styles.userListItem}>
+                            <a
+                              href={`/profile/${u.user_id}`}
+                              className={styles.userListLink}
+                            >
+                              {u.avatar_url ? (
+                                <img
+                                  src={u.avatar_url}
+                                  alt=''
+                                  className={styles.userListAvatar}
+                                  width={40}
+                                  height={40}
+                                />
+                              ) : (
+                                <span
+                                  className={styles.userListAvatarPlaceholder}
+                                  aria-hidden
+                                >
+                                  {(u.display_name || 'U')
+                                    .charAt(0)
+                                    .toUpperCase()}
+                                </span>
+                              )}
+                              <span className={styles.userListLinkText}>
+                                {u.display_name || 'User'}
+                              </span>
+                            </a>
+                            {showFollow ? (
+                              <button
+                                type='button'
+                                className={
+                                  isFollowingRow
+                                    ? `${styles.followingBtn} ${styles.userListFollowBtn}`
+                                    : `${styles.followBtn} ${styles.userListFollowBtn}`
+                                }
+                                disabled={busy || rowFollowBusyId !== null}
+                                onClick={() =>
+                                  void handleConnectionRowFollowToggle(
+                                    u.user_id
+                                  )
+                                }
+                              >
+                                {busy
+                                  ? '…'
+                                  : isFollowingRow
+                                    ? 'Following'
+                                    : 'Follow'}
+                              </button>
+                            ) : null}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )
+                ) : followingList.length === 0 ? (
                   <p className={styles.placeholder}>
                     Not following anyone yet.
                   </p>
                 ) : (
                   <ul className={styles.userList}>
-                    {followingList.map((u) => (
-                      <li key={u.user_id} className={styles.userListItem}>
-                        <a
-                          href={`/profile/${u.user_id}`}
-                          className={styles.userListLink}
-                        >
-                          {u.display_name || 'User'}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )}
-
-            {view === 'followers' && (
-              <div className={styles.mainPanel}>
-                <button
-                  type='button'
-                  className={styles.backToProfile}
-                  onClick={() => setView('profile')}
-                >
-                  ← Back to profile
-                </button>
-                <h2 className={styles.mainSerifTitle}>Followers</h2>
-                {followersList.length === 0 ? (
-                  <p className={styles.placeholder}>No followers yet.</p>
-                ) : (
-                  <ul className={styles.userList}>
-                    {followersList.map((u) => (
-                      <li key={u.user_id} className={styles.userListItem}>
-                        <a
-                          href={`/profile/${u.user_id}`}
-                          className={styles.userListLink}
-                        >
-                          {u.display_name || 'User'}
-                        </a>
-                      </li>
-                    ))}
+                    {followingList.map((u) => {
+                      const selfId = effectiveUser?.id
+                      const showFollow = !!selfId && u.user_id !== selfId
+                      const isFollowingRow = followingIds.has(u.user_id)
+                      const busy = rowFollowBusyId === u.user_id
+                      return (
+                        <li key={u.user_id} className={styles.userListItem}>
+                          <a
+                            href={`/profile/${u.user_id}`}
+                            className={styles.userListLink}
+                          >
+                            {u.avatar_url ? (
+                              <img
+                                src={u.avatar_url}
+                                alt=''
+                                className={styles.userListAvatar}
+                                width={40}
+                                height={40}
+                              />
+                            ) : (
+                              <span
+                                className={styles.userListAvatarPlaceholder}
+                                aria-hidden
+                              >
+                                {(u.display_name || 'U')
+                                  .charAt(0)
+                                  .toUpperCase()}
+                              </span>
+                            )}
+                            <span className={styles.userListLinkText}>
+                              {u.display_name || 'User'}
+                            </span>
+                          </a>
+                          {showFollow ? (
+                            <button
+                              type='button'
+                              className={
+                                isFollowingRow
+                                  ? `${styles.followingBtn} ${styles.userListFollowBtn}`
+                                  : `${styles.followBtn} ${styles.userListFollowBtn}`
+                              }
+                              disabled={busy || rowFollowBusyId !== null}
+                              onClick={() =>
+                                void handleConnectionRowFollowToggle(u.user_id)
+                              }
+                            >
+                              {busy
+                                ? '…'
+                                : isFollowingRow
+                                  ? 'Following'
+                                  : 'Follow'}
+                            </button>
+                          ) : null}
+                        </li>
+                      )
+                    })}
                   </ul>
                 )}
               </div>
@@ -772,64 +1014,143 @@ export default function ProfilePage() {
 
             {view === 'profile' && (
               <div className={styles.mainPanel}>
-                <nav
-                  className={styles.primaryTabs}
-                  role='tablist'
-                  aria-label='Profile content'
-                >
-                  <button
-                    type='button'
-                    role='tab'
-                    aria-selected={mainTab === 'notebooks'}
-                    className={
-                      mainTab === 'notebooks'
-                        ? styles.primaryTabActive
-                        : styles.primaryTab
-                    }
-                    onClick={() => setMainTab('notebooks')}
+                <div className={styles.primaryTabsRow}>
+                  <nav
+                    className={styles.primaryTabs}
+                    role='tablist'
+                    aria-label='Profile content'
                   >
-                    Notebooks
-                  </button>
-                  <button
-                    type='button'
-                    role='tab'
-                    aria-selected={mainTab === 'bookmarks'}
-                    className={
-                      mainTab === 'bookmarks'
-                        ? styles.primaryTabActive
-                        : styles.primaryTab
-                    }
-                    onClick={() => setMainTab('bookmarks')}
-                  >
-                    Bookmarks
-                  </button>
-                  <button
-                    type='button'
-                    role='tab'
-                    aria-selected={mainTab === 'activity'}
-                    className={
-                      mainTab === 'activity'
-                        ? styles.primaryTabActive
-                        : styles.primaryTab
-                    }
-                    onClick={() => setMainTab('activity')}
-                  >
-                    Activity
-                  </button>
-                </nav>
+                    <button
+                      type='button'
+                      role='tab'
+                      aria-selected={mainTab === 'notebooks'}
+                      className={
+                        mainTab === 'notebooks'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => setMainTab('notebooks')}
+                    >
+                      Notebooks
+                    </button>
+                    <button
+                      type='button'
+                      role='tab'
+                      aria-selected={mainTab === 'bookmarks'}
+                      className={
+                        mainTab === 'bookmarks'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => setMainTab('bookmarks')}
+                    >
+                      Bookmarks
+                    </button>
+                    <button
+                      type='button'
+                      role='tab'
+                      aria-selected={mainTab === 'activity'}
+                      className={
+                        mainTab === 'activity'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => setMainTab('activity')}
+                    >
+                      Activity
+                    </button>
+                  </nav>
+
+                  <div className={styles.primaryTabsRightActions} />
+                </div>
 
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>Bookmarks</h2>
-                    <div className={styles.section}>
-                      <h3 className={styles.subsectionSerifTitle}>
+                    <div className={styles.tabPanelHeaderRow}>
+                      <h2 className={styles.mainSerifTitle}>Bookmarks</h2>
+                      {bookmarksSubTab === 'saved' ? (
+                        <div className={styles.primaryTabsRightActions}>
+                          <button
+                            type='button'
+                            className={styles.linkFilterBtnNew}
+                            onClick={() => setShowNewTagInput(true)}
+                          >
+                            + New tag
+                          </button>
+                          <button
+                            type='button'
+                            className={styles.addLinkBtn}
+                            onClick={() => setShowAddLinkModal(true)}
+                          >
+                            + New Link
+                          </button>
+                        </div>
+                      ) : (
+                        <div />
+                      )}
+                    </div>
+                    <nav
+                      className={styles.activitySubTabs}
+                      role='tablist'
+                      aria-label='Bookmarks type'
+                    >
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'saved'}
+                        className={
+                          bookmarksSubTab === 'saved'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('saved')}
+                      >
                         Saved links
-                      </h3>
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'notebookPins'}
+                        className={
+                          bookmarksSubTab === 'notebookPins'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('notebookPins')}
+                      >
+                        Notebook bookmarks
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'courses'}
+                        className={
+                          bookmarksSubTab === 'courses'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('courses')}
+                      >
+                        Course bookmarks
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'community'}
+                        className={
+                          bookmarksSubTab === 'community'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('community')}
+                      >
+                        Community resources
+                      </button>
+                    </nav>
+                    {bookmarksSubTab === 'saved' && (
+                    <div className={styles.section}>
                       <div className={styles.linkFilterRow}>
                         <div className={styles.linkFilterTagsWrap}>
-                          <span className={styles.linkFilterLabel}>
-                            Filter:
-                          </span>
                           <button
                             type='button'
                             className={
@@ -856,62 +1177,36 @@ export default function ProfilePage() {
                             </button>
                           ))}
                           {showNewTagInput ? (
-                            <span className={styles.newTagWrap}>
-                              <input
-                                type='text'
-                                className={styles.newTagInput}
-                                placeholder='Tag name'
-                                value={newTagName}
-                                onChange={(e) => setNewTagName(e.target.value)}
-                                onKeyDown={(e) =>
-                                  e.key === 'Enter' && handleCreateTag()
+                            <input
+                              type='text'
+                              className={styles.linkFilterNewTagInput}
+                              placeholder='New tag'
+                              value={newTagName}
+                              aria-label='New tag name'
+                              onChange={(e) => setNewTagName(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault()
+                                  void handleCreateTag()
                                 }
-                                autoFocus
-                              />
-                              <button
-                                type='button'
-                                className={styles.newTagBtn}
-                                onClick={handleCreateTag}
-                                disabled={!newTagName.trim() || tagSubmitting}
-                              >
-                                {tagSubmitting ? '…' : 'Add'}
-                              </button>
-                              <button
-                                type='button'
-                                className={styles.newTagCancel}
-                                onClick={() => {
+                                if (e.key === 'Escape') {
+                                  e.preventDefault()
                                   setShowNewTagInput(false)
                                   setNewTagName('')
-                                }}
-                              >
-                                Cancel
-                              </button>
-                            </span>
-                          ) : (
-                            <button
-                              type='button'
-                              className={styles.linkFilterBtnNew}
-                              onClick={() => setShowNewTagInput(true)}
-                            >
-                              + New tag
-                            </button>
-                          )}
+                                }
+                              }}
+                              onBlur={() => {
+                                window.setTimeout(() => {
+                                  if (tagSubmittingRef.current) return
+                                  setShowNewTagInput(false)
+                                  setNewTagName('')
+                                }, 0)
+                              }}
+                              disabled={tagSubmitting}
+                              autoFocus
+                            />
+                          ) : null}
                         </div>
-                        <>
-                          <span
-                            className={styles.linkFilterDivider}
-                            aria-hidden
-                          >
-                            |
-                          </span>
-                          <button
-                            type='button'
-                            className={styles.addLinkBtn}
-                            onClick={() => setShowAddLinkModal(true)}
-                          >
-                            Add a new link
-                          </button>
-                        </>
                       </div>
                       {showAddLinkModal && (
                         <div
@@ -942,9 +1237,6 @@ export default function ProfilePage() {
                             >
                               <label className={styles.modalLabel}>
                                 Title{' '}
-                                <span className={styles.modalOptional}>
-                                  (optional)
-                                </span>
                                 <input
                                   type='text'
                                   className={styles.modalInput}
@@ -956,8 +1248,10 @@ export default function ProfilePage() {
                                 />
                               </label>
                               <label className={styles.modalLabel}>
-                                URL{' '}
-                                <span className={styles.modalRequired}>*</span>
+                                <span className={styles.modalLabelCaption}>
+                                  URL{' '}
+                                  <span className={styles.modalRequired}>*</span>
+                                </span>
                                 <input
                                   type='url'
                                   className={styles.modalInput}
@@ -971,9 +1265,6 @@ export default function ProfilePage() {
                               </label>
                               <label className={styles.modalLabel}>
                                 Description{' '}
-                                <span className={styles.modalOptional}>
-                                  (optional)
-                                </span>
                                 <textarea
                                   className={styles.modalTextarea}
                                   placeholder='A brief description of this bookmark...'
@@ -1066,52 +1357,90 @@ export default function ProfilePage() {
                       ) : (
                         <ul className={styles.userLinksList}>
                           {userLinks.map((l) => {
-                            const faviconDomain = getLinkSiteFaviconDomain(
-                              l.url
-                            )
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
                                   <span className={styles.userLinkIconWrap}>
-                                    {faviconDomain ? (
-                                      <img
-                                        src={getFaviconUrl(faviconDomain)}
-                                        alt=''
-                                        className={styles.userLinkIcon}
-                                        width={20}
-                                        height={20}
-                                      />
-                                    ) : (
-                                      <span
-                                        className={styles.userLinkIconDefault}
-                                        aria-hidden
+                                    {/*
+                                      Previous favicon / default icon logic kept for future use:
+
+                                      {faviconDomain ? (
+                                        <img
+                                          src={getFaviconUrl(faviconDomain)}
+                                          alt=''
+                                          className={styles.userLinkIcon}
+                                          width={20}
+                                          height={20}
+                                        />
+                                      ) : (
+                                        <span
+                                          className={styles.userLinkIconDefault}
+                                          aria-hidden
+                                        >
+                                          <svg
+                                            width='20'
+                                            height='20'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            stroke='currentColor'
+                                            strokeWidth='2'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                          >
+                                            <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
+                                            <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
+                                          </svg>
+                                        </span>
+                                      )}
+                                    */}
+                                    <span className={styles.userLinkIconBlue} aria-hidden>
+                                      <svg
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        width='8'
+                                        height='8'
+                                        viewBox='0 0 8 8'
+                                        fill='none'
                                       >
-                                        <svg
-                                          width='20'
-                                          height='20'
-                                          viewBox='0 0 24 24'
-                                          fill='none'
-                                          stroke='currentColor'
-                                          strokeWidth='2'
+                                        <path
+                                          d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
+                                          stroke='#FDFDFD'
+                                          strokeWidth='0.75'
                                           strokeLinecap='round'
                                           strokeLinejoin='round'
-                                        >
-                                          <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
-                                          <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
-                                        </svg>
-                                      </span>
-                                    )}
+                                        />
+                                        <path
+                                          d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
+                                          stroke='#FDFDFD'
+                                          strokeWidth='0.75'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                        />
+                                      </svg>
+                                    </span>
                                   </span>
                                   <div className={styles.userLinkContent}>
                                     <div className={styles.userLinkRow}>
-                                      <a
-                                        href={l.url}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className={styles.userLinkUrl}
-                                      >
-                                        {l.title || l.url}
-                                      </a>
+                                      <span className={styles.userLinkTitleAndDomain}>
+                                        <a
+                                          href={l.url}
+                                          target='_blank'
+                                          rel='noopener noreferrer'
+                                          className={styles.userLinkUrl}
+                                        >
+                                          {l.title || l.url}
+                                        </a>
+                                        {(() => {
+                                          try {
+                                            return (
+                                              <span className={styles.userLinkDomain}>
+                                                {new URL(l.url).hostname}
+                                              </span>
+                                            )
+                                          } catch {
+                                            return null
+                                          }
+                                        })()}
+                                      </span>
                                       <div className={styles.userLinkActions}>
                                         <button
                                           type='button'
@@ -1149,46 +1478,53 @@ export default function ProfilePage() {
                                       </div>
                                     </div>
                                     <div className={styles.userLinkMeta}>
-                                      {l.is_private && (
-                                        <button
-                                          type='button'
-                                          className={styles.userLinkTagPrivate}
-                                          onClick={() =>
-                                            setShowPrivateMessageForLinkId(
-                                              (id) =>
-                                                id === l.id ? null : l.id
-                                            )
-                                          }
-                                          title='This link is only visible to you'
-                                        >
-                                          Private
-                                        </button>
-                                      )}
-                                      {l.tag_names?.length > 0 &&
-                                        l.tag_names.map((name) => (
-                                          <span
-                                            key={name}
-                                            className={styles.userLinkTag}
+                                      <div className={styles.userLinkMetaTags}>
+                                        {l.is_private && (
+                                          <button
+                                            type='button'
+                                            className={styles.userLinkTagPrivate}
+                                            onClick={() =>
+                                              setShowPrivateMessageForLinkId(
+                                                (id) =>
+                                                  id === l.id ? null : l.id
+                                              )
+                                            }
+                                            title='This link is only visible to you'
                                           >
-                                            {name}
-                                          </span>
-                                        ))}
+                                            Private
+                                          </button>
+                                        )}
+                                        {l.note ? (
+                                          <button
+                                            type='button'
+                                            className={styles.userLinkNoteToggle}
+                                            onClick={() =>
+                                              setShowNoteForLinkId((cur) =>
+                                                cur === l.id ? null : l.id
+                                              )
+                                            }
+                                          >
+                                            Note
+                                          </button>
+                                        ) : null}
+                                        {l.tag_names?.length > 0 &&
+                                          l.tag_names.map((name) => (
+                                            <span
+                                              key={name}
+                                              className={styles.userLinkTag}
+                                            >
+                                              {name}
+                                            </span>
+                                          ))}
+                                      </div>
                                       <span className={styles.userLinkDate}>
                                         {formatDate(l.created_at)}
                                       </span>
-                                      {(() => {
-                                        try {
-                                          return (
-                                            <span
-                                              className={styles.userLinkDomain}
-                                            >
-                                              {new URL(l.url).hostname}
-                                            </span>
-                                          )
-                                        } catch {
-                                          return null
-                                        }
-                                      })()}
+                                      {l.note && showNoteForLinkId === l.id ? (
+                                        <p className={styles.userLinkNote}>
+                                          {l.note}
+                                        </p>
+                                      ) : null}
                                     </div>
                                     {showPrivateMessageForLinkId === l.id && (
                                       <p
@@ -1196,11 +1532,6 @@ export default function ProfilePage() {
                                         role='status'
                                       >
                                         This link is only visible to you.
-                                      </p>
-                                    )}
-                                    {l.note && (
-                                      <p className={styles.userLinkNote}>
-                                        {l.note}
                                       </p>
                                     )}
                                   </div>
@@ -1357,10 +1688,40 @@ export default function ProfilePage() {
                         </div>
                       )}
                     </div>
+                    )}
+                    {bookmarksSubTab === 'notebookPins' && (
                     <div className={styles.section}>
-                      <h3 className={styles.subsectionSerifTitle}>
-                        Course bookmarks
-                      </h3>
+                      {linksLoading ? (
+                        <p className={styles.placeholder}>Loading…</p>
+                      ) : notebookPinLinks.length === 0 ? (
+                        <p className={styles.placeholder}>
+                          No notebook shortcuts yet. Use “Bookmark” on a
+                          notebook in the Notebooks tab to list it here.
+                        </p>
+                      ) : (
+                        <ul className={styles.list}>
+                          {notebookPinLinks.map((l) => (
+                              <li key={l.id} className={styles.listItem}>
+                                <Link
+                                  href={notebookUserLinkHref(l.url)}
+                                  legacyBehavior={false}
+                                  className={styles.listLink}
+                                >
+                                  <span className={styles.listTitle}>
+                                    {l.title?.trim() || 'Notebook'}
+                                  </span>
+                                  <span className={styles.listMeta}>
+                                    Notebook · {formatDate(l.created_at)}
+                                  </span>
+                                </Link>
+                              </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    )}
+                    {bookmarksSubTab === 'courses' && (
+                    <div className={styles.section}>
                       {activityLoading ? (
                         <p className={styles.placeholder}>Loading…</p>
                       ) : bookmarks.length === 0 ? (
@@ -1389,11 +1750,9 @@ export default function ProfilePage() {
                         </ul>
                       )}
                     </div>
-
+                    )}
+                    {bookmarksSubTab === 'community' && (
                     <div className={styles.section}>
-                      <h3 className={styles.subsectionSerifTitle}>
-                        Community resources
-                      </h3>
                       {activityLoading ? (
                         <p className={styles.placeholder}>Loading…</p>
                       ) : resourceBookmarks.length === 0 ? (
@@ -1447,17 +1806,31 @@ export default function ProfilePage() {
                         </ul>
                       )}
                     </div>
+                    )}
                   </div>
                 )}
 
                 {mainTab === 'activity' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>All activity</h2>
+                    <h2 className={styles.mainSerifTitle}>Activity</h2>
                     <nav
                       className={styles.activitySubTabs}
                       role='tablist'
                       aria-label='Activity type'
                     >
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={activitySubTab === 'feed'}
+                        className={
+                          activitySubTab === 'feed'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setActivitySubTab('feed')}
+                      >
+                        Feed
+                      </button>
                       <button
                         type='button'
                         role='tab'
@@ -1502,6 +1875,101 @@ export default function ProfilePage() {
                     {activityLoading && (
                       <p className={styles.placeholder}>Loading…</p>
                     )}
+
+                    {!activityLoading &&
+                      activitySubTab === 'feed' &&
+                      (feedItems.length === 0 ? (
+                        <p className={styles.placeholder}>
+                          Nothing in your feed yet. Subscribe to Community Walls
+                          on course pages, and follow people to see new wall
+                          posts and their course and resource bookmarks here.
+                        </p>
+                      ) : (
+                        <ul className={styles.list}>
+                          {feedItems.map((item) => {
+                            const courseHref =
+                              item.course_url ?? `/${item.course_id}`
+                            const actorLabel =
+                              item.actor_display_name?.trim() || 'Someone'
+                            return (
+                              <li key={item.id} className={styles.listItem}>
+                                <div className={styles.listLink}>
+                                  <span className={styles.listTitle}>
+                                    {item.kind === 'wall_resource' && (
+                                      <>
+                                        <UserLink
+                                          userId={item.actor_id}
+                                          displayName={actorLabel}
+                                          showFollowingTag={followingIds.has(
+                                            item.actor_id
+                                          )}
+                                          showFollowsYouTag={followerIds.has(
+                                            item.actor_id
+                                          )}
+                                        />
+                                        {' added '}
+                                        <em>{item.resource_title}</em>
+                                        {' to the Community Wall on '}
+                                        <Link href={courseHref}>
+                                          <a className={styles.inlineLink}>
+                                            {item.course_name}
+                                          </a>
+                                        </Link>
+                                      </>
+                                    )}
+                                    {item.kind === 'followed_course_bookmark' && (
+                                      <>
+                                        <UserLink
+                                          userId={item.actor_id}
+                                          displayName={actorLabel}
+                                          showFollowingTag={followingIds.has(
+                                            item.actor_id
+                                          )}
+                                          showFollowsYouTag={followerIds.has(
+                                            item.actor_id
+                                          )}
+                                        />
+                                        {' saved course '}
+                                        <Link href={courseHref}>
+                                          <a className={styles.inlineLink}>
+                                            {item.course_name}
+                                          </a>
+                                        </Link>
+                                      </>
+                                    )}
+                                    {item.kind ===
+                                      'followed_resource_bookmark' && (
+                                      <>
+                                        <UserLink
+                                          userId={item.actor_id}
+                                          displayName={actorLabel}
+                                          showFollowingTag={followingIds.has(
+                                            item.actor_id
+                                          )}
+                                          showFollowsYouTag={followerIds.has(
+                                            item.actor_id
+                                          )}
+                                        />
+                                        {' bookmarked '}
+                                        <em>{item.resource_title}</em>
+                                        {' on '}
+                                        <Link href={courseHref}>
+                                          <a className={styles.inlineLink}>
+                                            {item.course_name}
+                                          </a>
+                                        </Link>
+                                      </>
+                                    )}
+                                  </span>
+                                  <span className={styles.listMeta}>
+                                    {formatDate(item.created_at)}
+                                  </span>
+                                </div>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      ))}
 
                     {!activityLoading &&
                       activitySubTab === 'comments' &&
@@ -1623,12 +2091,145 @@ export default function ProfilePage() {
                 )}
 
                 {mainTab === 'notebooks' && (
-                  <ProfileNotebooksPanel
-                    notebooks={notebooks}
-                    loading={notebooksLoading}
-                    onRefresh={loadNotebooks}
-                    showPublishedBadge
-                  />
+                  <div className={styles.tabPanel}>
+                    <div className={styles.tabPanelHeaderRow}>
+                      <h2 className={styles.mainSerifTitle}>Notebooks</h2>
+                      {notebooksSubTab === 'yours' ? (
+                        <button
+                          type='button'
+                          className={styles.notebooksCreateBtn}
+                          onClick={openNotebookCreateModal}
+                          disabled={notebookCreating}
+                        >
+                          + Create New
+                        </button>
+                      ) : (
+                        <div />
+                      )}
+                    </div>
+                    <div className={styles.activitySubTabs} role='tablist'>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={notebooksSubTab === 'yours'}
+                        className={
+                          notebooksSubTab === 'yours'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setNotebooksSubTab('yours')}
+                      >
+                        Your notebooks
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={notebooksSubTab === 'saved'}
+                        className={
+                          notebooksSubTab === 'saved'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setNotebooksSubTab('saved')}
+                      >
+                        Saved notebooks
+                      </button>
+                    </div>
+
+                    {notebooksSubTab === 'yours' ? (
+                      <ProfileNotebooksPanel
+                        notebooks={notebooks}
+                        loading={notebooksLoading}
+                        onRefresh={loadNotebooks}
+                        showPublishedBadge
+                        subsectionTitle={null}
+                        canCreate={false}
+                        bookmarkedNotebookIds={bookmarkedNotebookIds}
+                        onBookmarkNotebook={pinNotebookToBookmarkLinks}
+                      />
+                    ) : (
+                      <ProfileNotebooksPanel
+                        notebooks={savedNotebooks}
+                        loading={linksLoading}
+                        onRefresh={loadLinks}
+                        subsectionTitle={null}
+                        emptyHint='No saved notebooks yet.'
+                        canCreate={false}
+                        bookmarkedNotebookIds={bookmarkedNotebookIds}
+                        onBookmarkNotebook={pinNotebookToBookmarkLinks}
+                      />
+                    )}
+
+                    {notebookCreateModalOpen && (
+                      <div
+                        className={styles.modalBackdrop}
+                        role='presentation'
+                        onMouseDown={(e) => {
+                          if (e.target === e.currentTarget) closeNotebookCreateModal()
+                        }}
+                      >
+                        <div
+                          className={styles.modalCard}
+                          role='dialog'
+                          aria-modal='true'
+                          aria-labelledby='notebook-name-modal-title'
+                          onMouseDown={(e) => e.stopPropagation()}
+                        >
+                          <div className={styles.modalHeader}>
+                            <h2
+                              id='notebook-name-modal-title'
+                              className={styles.modalTitle}
+                            >
+                              New notebook
+                            </h2>
+                            <button
+                              type='button'
+                              className={styles.modalClose}
+                              onClick={closeNotebookCreateModal}
+                              aria-label='Close'
+                            >
+                              ×
+                            </button>
+                          </div>
+                          <div className={styles.modalForm}>
+                            <label className={styles.modalLabel}>
+                              Name
+                              <input
+                                type='text'
+                                className={styles.modalInput}
+                                value={notebookNewTitle}
+                                onChange={(e) => setNotebookNewTitle(e.target.value)}
+                                placeholder='Untitled notebook'
+                                autoFocus
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') void handleCreateNotebook()
+                                  if (e.key === 'Escape') closeNotebookCreateModal()
+                                }}
+                              />
+                            </label>
+                            <div className={styles.modalActions}>
+                              <button
+                                type='button'
+                                className={styles.modalCancelBtn}
+                                onClick={closeNotebookCreateModal}
+                                disabled={notebookCreating}
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                type='button'
+                                className={styles.modalSubmitBtn}
+                                onClick={() => void handleCreateNotebook()}
+                                disabled={notebookCreating}
+                              >
+                                {notebookCreating ? 'Creating…' : 'Create'}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             )}

@@ -13,6 +13,7 @@ import TableRow from '@tiptap/extension-table-row'
 import Youtube from '@tiptap/extension-youtube'
 import 'katex/dist/katex.min.css'
 
+import { NotebookPdf, isAllowedPdfEmbedUrl } from '@/lib/tiptap-notebook-pdf'
 import { NOTEBOOK_EMPTY_DOC } from '@/lib/notebook-editor-default'
 import type { NotebookDocJson } from '@/lib/notebook-editor-default'
 
@@ -138,6 +139,10 @@ export function NotebookEditor({
         width: 640,
         height: 360
       }),
+      NotebookPdf.configure({
+        frameMinHeight: 520,
+        addPasteHandler: true
+      }),
       Placeholder.configure({
         placeholder: editable ? 'Start writing…' : ''
       })
@@ -225,6 +230,24 @@ export function NotebookEditor({
       return
     }
     editor.chain().focus().setYoutubeVideo({ src: trimmed }).run()
+  }
+
+  const setPdfEmbed = () => {
+    if (!editor) return
+    const url = window.prompt(
+      'PDF URL (https link to the file — must allow embedding in an iframe; many academic PDFs work)',
+      'https://'
+    )
+    if (url === null || !url.trim()) return
+    const trimmed = url.trim()
+    if (!isAllowedPdfEmbedUrl(trimmed)) {
+      window.alert('Please paste an http(s) URL to a PDF file.')
+      return
+    }
+    const ok = editor.chain().focus().setNotebookPdf({ src: trimmed }).run()
+    if (!ok) {
+      window.alert('Could not insert PDF embed.')
+    }
   }
 
   const insertTable = () => {
@@ -328,6 +351,9 @@ export function NotebookEditor({
         </button>
         <button type='button' className={styles.toolBtn} onClick={setYoutube}>
           YouTube
+        </button>
+        <button type='button' className={styles.toolBtn} onClick={setPdfEmbed}>
+          PDF
         </button>
         <button type='button' className={styles.toolBtn} onClick={insertTable}>
           Table

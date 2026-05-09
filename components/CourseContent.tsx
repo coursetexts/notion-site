@@ -16,8 +16,15 @@ import {
   buildSectionsFromHeadings
 } from '@/lib/courseContentSections'
 
+import {
+  getCommunityWallSubscribed,
+  setCommunityWallSubscribed
+} from '@/lib/community-wall-subscriptions-db'
+
+import { useAuthOptional } from '../contexts/AuthContext'
 import { AnnotationWidget } from './AnnotationWidget'
-import { CommunityWall } from './CommunityWall'
+import { CommunityWall, type CommunityWallHandle } from './CommunityWall'
+import cwStyles from './CommunityWall.module.css'
 import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
 import { CourseChatPanel } from './CourseChatPanel'
@@ -76,6 +83,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
   const [communityWallMountEl, setCommunityWallMountEl] =
     React.useState<HTMLElement | null>(null)
+  const communityWallRef = React.useRef<CommunityWallHandle | null>(null)
+  const auth = useAuthOptional()
+  const authUser = auth?.user ?? null
+  const [communityWallSubscribed, setCommunityWallSubscribedState] =
+    React.useState(false)
+  const [communityWallSubLoading, setCommunityWallSubLoading] =
+    React.useState(false)
 
   const bumpActivityRefresh = React.useCallback(() => {
     setActivityRefreshNonce((n) => n + 1)
@@ -340,10 +354,58 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     (childSectionTotal > 0 && childSectionIndex > 1) || sectionIndex > 1
 
   const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? ''
+  const isCommunityWallTab = currentSectionLabel === COMMUNITY_WALL_LABEL
   const currentStatus = sectionProgress[currentSectionLabel] ?? {
     isCompleted: false,
     isBookmarked: false
   }
+
+  React.useEffect(() => {
+    if (!isCommunityWallTab || !coursePageId || !authUser) {
+      setCommunityWallSubscribedState(false)
+      return
+    }
+    let cancelled = false
+    setCommunityWallSubLoading(true)
+    void (async () => {
+      const sub = await getCommunityWallSubscribed(coursePageId)
+      if (!cancelled) {
+        setCommunityWallSubscribedState(sub)
+        setCommunityWallSubLoading(false)
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [isCommunityWallTab, coursePageId, authUser])
+
+  const handleCommunityWallSubscribeToggle = React.useCallback(async () => {
+    if (
+      !authUser ||
+      !coursePageId ||
+      !courseTitle ||
+      communityWallSubLoading
+    ) {
+      return
+    }
+    setCommunityWallSubLoading(true)
+    const next = !communityWallSubscribed
+    const ok = await setCommunityWallSubscribed(
+      coursePageId,
+      courseTitle,
+      courseUrl,
+      next
+    )
+    if (ok) setCommunityWallSubscribedState(next)
+    setCommunityWallSubLoading(false)
+  }, [
+    authUser,
+    communityWallSubLoading,
+    communityWallSubscribed,
+    coursePageId,
+    courseTitle,
+    courseUrl
+  ])
 
   const handleAnnotationCountChange = React.useCallback((n: number) => {
     setAnnotationCount(n)
@@ -520,6 +582,39 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           embedTitle={embedTitle}
           embedParentTitle={embedParentTitle}
           hideContentUnderEmbed={hideContentUnderEmbed}
+          hideAnnotationsChatButtons={isCommunityWallTab}
+          hideCompleteBookmark={isCommunityWallTab}
+          titleRowAddon={
+            isCommunityWallTab ? (
+              <button
+                type='button'
+                className={
+                  communityWallSubscribed
+                    ? `${cwStyles.btn} ${cwStyles.subscribeBtnActive}`
+                    : cwStyles.btn
+                }
+                disabled={!authUser || communityWallSubLoading}
+                onClick={() => void handleCommunityWallSubscribeToggle()}
+              >
+                {communityWallSubLoading
+                  ? '…'
+                  : communityWallSubscribed
+                    ? 'Subscribed'
+                    : 'Subscribe'}
+              </button>
+            ) : undefined
+          }
+          titleRowTrailing={
+            isCommunityWallTab ? (
+              <button
+                type='button'
+                className={cwStyles.btnPrimary}
+                onClick={() => communityWallRef.current?.openAdd()}
+              >
+                + Add Resource
+              </button>
+            ) : undefined
+          }
           sectionStatus={currentStatus}
           onToggleComplete={(completed) =>
             handleToggleComplete(currentSectionLabel, completed)
@@ -543,6 +638,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           communityWallMountEl &&
           createPortal(
             <CommunityWall
+              ref={communityWallRef}
               coursePageId={coursePageId}
               courseTitle={courseTitle}
               courseUrl={courseUrl}

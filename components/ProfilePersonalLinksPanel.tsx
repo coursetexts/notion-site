@@ -9,6 +9,66 @@ import {
 } from '@/lib/profile-personal-links-db'
 import styles from '@/styles/profile.module.css'
 
+export function PersonalLinkExternalArrowIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='12'
+      height='12'
+      viewBox='0 0 12 12'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M3 9L9 3'
+        stroke='#5D534B'
+        strokeWidth='1'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M4.125 3H9V7.875'
+        stroke='#5D534B'
+        strokeWidth='1'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+/** Read-only link row (label + title + arrow) for personal social cards. */
+export function ProfilePersonalLinkAnchorRow({
+  link: l,
+  hideArrow = false
+}: {
+  link: ProfilePersonalLink
+  hideArrow?: boolean
+}) {
+  return (
+    <a
+      href={l.url}
+      target='_blank'
+      rel='noopener noreferrer'
+      className={styles.sidebarPersonalLinkAnchor}
+    >
+      <span className={styles.sidebarPersonalLinkAnchorMain}>
+        <span className={styles.linkCardLabel}>
+          {personalLinkKindLabel(l.url)}
+        </span>
+        <span className={styles.sidebarPersonalLinkTitle}>
+          {personalLinkDisplayTitle(l.url, l.title)}
+        </span>
+      </span>
+      {!hideArrow ? (
+        <span className={styles.sidebarPersonalLinkArrow} aria-hidden>
+          <PersonalLinkExternalArrowIcon />
+        </span>
+      ) : null}
+    </a>
+  )
+}
+
 export function personalLinkKindLabel(url: string): string {
   try {
     const h = new URL(url).hostname.toLowerCase().replace(/^www\./, '')
@@ -39,18 +99,21 @@ type ProfilePersonalLinksPanelProps = {
   links: ProfilePersonalLink[]
   editable: boolean
   onRefresh: () => void
-  /** When false, omit the “Personal links” heading (parent shows a shared editor title). */
-  showHeading?: boolean
   /** Lighter wrapper when used under the sidebar meta divider. */
   nested?: boolean
+  /**
+   * Inline editing mode: render controls directly in the card list
+   * (meant for the sidebar preview “above the line”).
+   */
+  inline?: boolean
 }
 
 export function ProfilePersonalLinksPanel({
   links,
   editable,
   onRefresh,
-  showHeading = true,
-  nested = false
+  nested = false,
+  inline = false
 }: ProfilePersonalLinksPanelProps) {
   const [urlDraft, setUrlDraft] = React.useState('')
   const [titleDraft, setTitleDraft] = React.useState('')
@@ -59,6 +122,7 @@ export function ProfilePersonalLinksPanel({
   const [editUrl, setEditUrl] = React.useState('')
   const [editTitle, setEditTitle] = React.useState('')
   const [busy, setBusy] = React.useState(false)
+  const [showNewLinkInput, setShowNewLinkInput] = React.useState(false)
 
   if (!editable && links.length === 0) {
     return null
@@ -121,11 +185,90 @@ export function ProfilePersonalLinksPanel({
     ? styles.sidebarMetaEditorPanel
     : styles.sidebarPersonalLinksBlock
 
+  const cancelNewLinkInput = () => {
+    setShowNewLinkInput(false)
+    setUrlDraft('')
+    setTitleDraft('')
+  }
+
+  if (inline) {
+    if (!editable && links.length === 0) return null
+    return (
+      <div className={nested ? styles.sidebarMetaEditorPanel : undefined}>
+        <div className={styles.sidebarPersonalLinksInlineWrap}>
+          {links.length > 0 ? (
+            <ul className={styles.sidebarPersonalLinksList}>
+              {links.map((l) => (
+                <li key={l.id} className={styles.sidebarPersonalLinkItem}>
+                  <div className={styles.sidebarPersonalLinkCard}>
+                    <ProfilePersonalLinkAnchorRow link={l} hideArrow />
+                    {editable ? (
+                      <button
+                        type='button'
+                        className={styles.sidebarPersonalLinkRemoveX}
+                        aria-label={`Remove ${personalLinkDisplayTitle(l.url, l.title)}`}
+                        title='Remove'
+                        onClick={() => void handleDelete(l.id)}
+                        disabled={busy || adding}
+                      >
+                        ×
+                      </button>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {editable && links.length < MAX_PROFILE_PERSONAL_LINKS ? (
+            <div className={styles.sidebarPersonalLinksInlineAddRow}>
+              {showNewLinkInput ? (
+                <input
+                  type='url'
+                  value={urlDraft}
+                  onChange={(e) => setUrlDraft(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      void handleAdd()
+                    }
+                    if (e.key === 'Escape') {
+                      e.preventDefault()
+                      cancelNewLinkInput()
+                    }
+                  }}
+                  onBlur={() => {
+                    window.setTimeout(() => {
+                      if (adding) return
+                      cancelNewLinkInput()
+                    }, 0)
+                  }}
+                  placeholder='https://…'
+                  className={`${styles.linkFilterNewTagInput} ${styles.sidebarPersonalLinksInlineInput}`}
+                  aria-label='Add personal link URL'
+                  autoComplete='off'
+                  disabled={adding}
+                  autoFocus
+                />
+              ) : (
+                <button
+                  type='button'
+                  className={styles.linkFilterBtnNew}
+                  onClick={() => setShowNewLinkInput(true)}
+                  disabled={adding}
+                >
+                  + New link
+                </button>
+              )}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={wrapClass}>
-      {showHeading ? (
-        <h2 className={styles.sidebarPersonalLinksHeading}>Personal links</h2>
-      ) : null}
       {links.length > 0 ? (
         <ul className={styles.sidebarPersonalLinksList}>
           {links.map((l) => (
@@ -174,19 +317,7 @@ export function ProfilePersonalLinksPanel({
                 </div>
               ) : (
                 <div className={styles.sidebarPersonalLinkCard}>
-                  <a
-                    href={l.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className={styles.sidebarPersonalLinkAnchor}
-                  >
-                    <span className={styles.linkCardLabel}>
-                      {personalLinkKindLabel(l.url)}
-                    </span>
-                    <span className={styles.sidebarPersonalLinkTitle}>
-                      {personalLinkDisplayTitle(l.url, l.title)}
-                    </span>
-                  </a>
+                  <ProfilePersonalLinkAnchorRow link={l} />
                   {editable ? (
                     <div className={styles.sidebarPersonalLinkActions}>
                       <button

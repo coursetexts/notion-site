@@ -66,7 +66,7 @@ export default siteConfig({
   navigationLinks: [
     { title: 'All Courses', pageId: process.env.NEXT_PUBLIC_NOTION_PAGE_ID! },
     { title: 'Resources', url: '/manifesto' },
-    { title: 'Communities', url: 'https://discord.gg/6xBECjtC55' },
+    { title: 'Communities', url: '/users' },
     {
       title: 'Donate',
       url: 'https://hcb.hackclub.com/donations/start/coursetexts'

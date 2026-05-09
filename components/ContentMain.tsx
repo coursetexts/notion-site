@@ -47,6 +47,14 @@ export interface ContentMainProps {
   onNextSection?: () => void
   /** When false, hide the Next button (e.g. on last section) */
   hasNextSection?: boolean
+  /** Hide only the Annotations and Course chat buttons; bar strip remains (e.g. Community Wall). */
+  hideAnnotationsChatButtons?: boolean
+  /** Hide Completed? / Bookmark in the section footer (e.g. Community Wall tab). */
+  hideCompleteBookmark?: boolean
+  /** Rendered after the main title heading on the same row (e.g. Subscribe). */
+  titleRowAddon?: React.ReactNode
+  /** Rendered at the end of the title row (e.g. + Add Resource). */
+  titleRowTrailing?: React.ReactNode
 }
 
 export const ContentMain: React.FC<ContentMainProps> = ({
@@ -70,7 +78,11 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   onPreviousSection,
   hasPreviousSection = false,
   onNextSection,
-  hasNextSection = true
+  hasNextSection = true,
+  hideAnnotationsChatButtons = false,
+  hideCompleteBookmark = false,
+  titleRowAddon,
+  titleRowTrailing
 }) => {
   const auth = useAuthOptional()
   const isSignedIn = Boolean(auth?.user)
@@ -85,20 +97,37 @@ export const ContentMain: React.FC<ContentMainProps> = ({
     <main className={styles.root}>
       {showViewBar && (
         <div className={styles.viewBar}>
-          {onShowAnnotations && (
+          {!hideAnnotationsChatButtons && onShowAnnotations && (
             <ViewAnnotationsButton
               count={annotationCount}
               onClick={onShowAnnotations}
             />
           )}
-          {onShowChat && <ViewCourseChatButton onClick={onShowChat} />}
+          {!hideAnnotationsChatButtons && onShowChat && (
+            <ViewCourseChatButton onClick={onShowChat} />
+          )}
         </div>
       )}
       <div className={styles.slot}>
         {embedParentTitle && (
           <div className={styles.embedParentTitle}>{embedParentTitle}</div>
         )}
-        {embedTitle && <h2 className={styles.pdfTitle}>{embedTitle}</h2>}
+        {embedTitle &&
+          (titleRowAddon != null || titleRowTrailing != null ? (
+            <div className={styles.communityTitleRow}>
+              <div className={styles.communityTitleLeft}>
+                <h2 className={styles.pdfTitle}>{embedTitle}</h2>
+                {titleRowAddon}
+              </div>
+              {titleRowTrailing ? (
+                <div className={styles.communityTitleRight}>
+                  {titleRowTrailing}
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <h2 className={styles.pdfTitle}>{embedTitle}</h2>
+          ))}
         {embedUrl && (
           <div className={styles.pdfWrap}>
             {isPdf ? (
@@ -196,7 +225,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
               )}
             </div>
             <div className={styles.sectionActionsRight}>
-              {canShowProgressButtons && onToggleComplete && (
+              {canShowProgressButtons &&
+                !hideCompleteBookmark &&
+                onToggleComplete && (
                 <button
                   type='button'
                   className={
@@ -251,7 +282,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
                   </span>
                 </button>
               )}
-              {canShowProgressButtons && onToggleBookmark && (
+              {canShowProgressButtons &&
+                !hideCompleteBookmark &&
+                onToggleBookmark && (
                 <button
                   type='button'
                   className={

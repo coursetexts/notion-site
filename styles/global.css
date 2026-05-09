@@ -25,6 +25,16 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: #0089c4;
+}
+
 body,
 html {
   padding: 0;

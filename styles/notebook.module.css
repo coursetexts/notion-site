@@ -1,11 +1,12 @@
 .page {
   min-height: 100vh;
-  background: #f8f8f7;
+  background: #ffffff;
 }
 
 .shell {
   max-width: 1324px;
   margin: 0 auto;
+  margin-top: 54px;
   padding: 0 1.25rem 2.5rem;
 }
 
@@ -23,6 +24,16 @@
 }
 
 .backLink:hover {
+  color: #25272b;
+}
+
+.backLinkArrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #5d534b;
+}
+
+.backLink:hover .backLinkArrow {
   color: #25272b;
 }
 
@@ -297,6 +308,17 @@
   max-width: 100%;
   border-radius: 8px;
   margin: 0.75rem 0;
+}
+
+.editorSurface :global(.notebookPdfWrap) {
+  margin: 0.75rem 0;
+  max-width: 100%;
+}
+
+.editorSurface :global(.notebookPdfIframe) {
+  display: block;
+  width: 100%;
+  background: #f0f0ee;
 }
 
 .editorSurface :global(table.notebookTable) {

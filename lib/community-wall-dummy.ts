@@ -7,6 +7,10 @@ export type DummyCommunityResource = {
   votes: number
   comments: number
   sourceLabel?: string
+  /** Optional second line under source (e.g. handle); demo only. */
+  sourceHandle?: string
+  /** Optional hero image for the link preview (dummy / demo only). */
+  previewImage?: string
 }
 
 function stableCourseSeed(coursePageId?: string): number {
@@ -38,7 +42,8 @@ export function getDummyCommunityResources(
       pinned: true,
       votes: 1,
       comments: 0,
-      sourceLabel: 'Twitter'
+      sourceLabel: 'Twitter',
+      sourceHandle: 'userisgrotesque'
     },
     {
       id: 'dummy-2',
@@ -48,13 +53,15 @@ export function getDummyCommunityResources(
       pinned: false,
       votes: 0,
       comments: 0,
-      sourceLabel: 'Twitter'
+      sourceLabel: 'Twitter',
+      previewImage:
+        'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80'
     },
     {
       id: 'dummy-3',
       title: 'Great lecture series',
       description: 'Clear explanations + good practice problems.',
-      link: 'https://www.youtube.com/',
+      link: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
       pinned: false,
       votes: 2,
       comments: 1,
@@ -69,6 +76,17 @@ export function getDummyCommunityResources(
       votes: 0,
       comments: 0,
       sourceLabel: 'Notes'
+    },
+    {
+      id: 'dummy-5',
+      title: 'Post with course tips',
+      description: 'Tweet permalink uses the X link preview placeholder.',
+      link: 'https://x.com/jack/status/20',
+      pinned: false,
+      votes: 0,
+      comments: 0,
+      sourceLabel: 'X',
+      sourceHandle: 'jack'
     }
   ]
 

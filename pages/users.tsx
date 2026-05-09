@@ -306,7 +306,7 @@ export default function UsersPage() {
               </span>
             )}
             <span className={styles.muted} style={{ marginLeft: '0.5rem' }}>
-              Page {page} of {totalPages} ({total} users)
+              Page {page} of {totalPages}
             </span>
           </nav>
         ) : null}

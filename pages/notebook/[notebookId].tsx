@@ -3,10 +3,9 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { IoChevronBack } from '@react-icons/all-files/io5/IoChevronBack'
-
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { name as siteName } from '@/lib/config'
 import {
   NOTEBOOK_EMPTY_DOC,
@@ -271,6 +270,7 @@ export default function NotebookPage() {
               legacyBehavior={false}
               className={notebookStyles.backLink}
             >
+              <ProfileBackArrow className={notebookStyles.backLinkArrow} />
               Back to profile
             </Link>
           </div>
@@ -295,7 +295,7 @@ export default function NotebookPage() {
               legacyBehavior={false}
               className={notebookStyles.backLink}
             >
-              <IoChevronBack aria-hidden style={{ flexShrink: 0 }} />
+              <ProfileBackArrow className={notebookStyles.backLinkArrow} />
               {profileBackLabel}
             </Link>
           </div>

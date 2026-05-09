@@ -1,12 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
+import { useFollowingIds } from '@/hooks/useFollowingIds'
 
+import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import { ProfileBackArrow } from '@/components/ProfileBackArrow'
+import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
 import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
 import { ProfileNotebooksPanel } from '@/components/ProfileNotebooksPanel'
@@ -36,15 +40,15 @@ import {
   type Notebook,
   getPublishedNotebooksByUserId
 } from '@/lib/notebooks-db'
-import {
-  getFaviconUrl,
-  getLinkSiteFaviconDomain
-} from '@/lib/link-site-favicon'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
 import {
   type ProfilePersonalLink,
   listPersonalLinksByUserId
 } from '@/lib/profile-personal-links-db'
+import {
+  notebookUserLinkHref,
+  parseNotebookIdFromUserLinkUrl
+} from '@/lib/notebook-bookmark-link'
 import { type UserLinkWithTag, getLinksByUserId } from '@/lib/user-links'
 import styles from '@/styles/profile.module.css'
 
@@ -89,6 +93,19 @@ export default function PublicProfilePage() {
     CommunityResourceBookmarkWithCourse[]
   >([])
   const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
+  const [showNoteForLinkId, setShowNoteForLinkId] = useState<string | null>(
+    null
+  )
+  const notebookPinLinks = useMemo(
+    () =>
+      userLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null),
+    [userLinks]
+  )
+  const savedProfileLinks = useMemo(
+    () =>
+      userLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) == null),
+    [userLinks]
+  )
   const [personalLinks, setPersonalLinks] = useState<ProfilePersonalLink[]>([])
   const [comments, setComments] = useState<
     { comment: Comment; course: Course }[]
@@ -104,11 +121,22 @@ export default function PublicProfilePage() {
   const [activitySubTab, setActivitySubTab] = useState<
     'comments' | 'annotations'
   >('comments')
+  const [bookmarksSubTab, setBookmarksSubTab] = useState<
+    'saved' | 'notebookPins' | 'courses' | 'community'
+  >('saved')
+  const [notebooksSubTab, setNotebooksSubTab] = useState<'yours' | 'saved'>(
+    'yours'
+  )
   const [loading, setLoading] = useState(true)
   const [followLoading, setFollowLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
-  type ProfileView = 'profile' | 'following' | 'followers'
+  type ProfileView = 'profile' | 'connections'
+  type ConnectionsTab = 'followers' | 'following'
   const [view, setView] = useState<ProfileView>('profile')
+  const [connectionsTab, setConnectionsTab] =
+    useState<ConnectionsTab>('following')
+  const [rowFollowBusyId, setRowFollowBusyId] = useState<string | null>(null)
+  const { followingIds, refresh: refreshFollowingIds } = useFollowingIds()
 
   const loadProfile = useCallback(
     async (uid: string) => {
@@ -173,6 +201,52 @@ export default function PublicProfilePage() {
     [currentUserId]
   )
 
+  const refreshPublicConnectionLists = useCallback(async () => {
+    if (!userId) return
+    const [fCount, fersCount, fList, fersList] = await Promise.all([
+      getFollowingCount(userId),
+      getFollowersCount(userId),
+      getFollowingList(userId),
+      getFollowersList(userId)
+    ])
+    setFollowingCount(fCount)
+    setFollowersCount(fersCount)
+    setFollowingList(fList)
+    setFollowersList(fersList)
+  }, [userId])
+
+  const handleConnectionRowFollowToggle = useCallback(
+    async (targetUserId: string) => {
+      if (
+        !currentUserId ||
+        targetUserId === currentUserId ||
+        rowFollowBusyId
+      ) {
+        return
+      }
+      setRowFollowBusyId(targetUserId)
+      try {
+        const already = followingIds.has(targetUserId)
+        if (already) {
+          await unfollowUser(currentUserId, targetUserId)
+        } else {
+          await followUser(currentUserId, targetUserId)
+        }
+        await refreshFollowingIds()
+        await refreshPublicConnectionLists()
+      } finally {
+        setRowFollowBusyId(null)
+      }
+    },
+    [
+      currentUserId,
+      followingIds,
+      refreshFollowingIds,
+      refreshPublicConnectionLists,
+      rowFollowBusyId
+    ]
+  )
+
   useEffect(() => {
     if (!userId) return
     setView('profile')
@@ -230,13 +304,7 @@ export default function PublicProfilePage() {
         <div className={styles.pageShell}>
           <div className={styles.profileGrid}>
             <div className={styles.publicProfileSingleCol}>
-              <Link
-                href='/'
-                legacyBehavior={false}
-                className={styles.sidebarBack}
-              >
-                ← Back to Home
-              </Link>
+              <ProfileSidebarBackHome />
               <h1 className={styles.sidebarName}>Profile not found</h1>
               <p className={styles.placeholder}>
                 This user doesn’t exist or their profile is unavailable.
@@ -277,13 +345,7 @@ export default function PublicProfilePage() {
       <div className={styles.pageShell}>
         <div className={styles.profileGrid}>
           <aside className={styles.profileSidebar}>
-            <Link
-              href='/'
-              legacyBehavior={false}
-              className={styles.sidebarBack}
-            >
-              ← Back to Home
-            </Link>
+            <ProfileSidebarBackHome />
             <div className={styles.sidebarAvatarWrap}>
               {profile.avatar_url ? (
                 <img
@@ -304,18 +366,21 @@ export default function PublicProfilePage() {
               <button
                 type='button'
                 className={styles.sidebarFollowBtn}
-                onClick={() => setView('following')}
+                onClick={() => {
+                  setConnectionsTab('following')
+                  setView('connections')
+                }}
               >
                 {followingCount} following
               </button>
-              <span className={styles.sidebarFollowDot} aria-hidden>
-                {' '}
-                •{' '}
-              </span>
+              <FollowCountDividerDot />
               <button
                 type='button'
                 className={styles.sidebarFollowBtn}
-                onClick={() => setView('followers')}
+                onClick={() => {
+                  setConnectionsTab('followers')
+                  setView('connections')
+                }}
               >
                 {followersCount} followers
               </button>
@@ -345,61 +410,180 @@ export default function PublicProfilePage() {
           </aside>
 
           <div className={styles.profileMain}>
-            {view === 'following' && (
+            {view === 'connections' && (
               <div className={styles.mainPanel}>
                 <button
                   type='button'
                   className={styles.backToProfile}
                   onClick={() => setView('profile')}
                 >
-                  ← Back to profile
+                  <ProfileBackArrow className={styles.sidebarBackArrow} />
+                  Profile
                 </button>
-                <h2 className={styles.mainSerifTitle}>Following</h2>
-                {followingList.length === 0 ? (
+                <h2 className={styles.mainSerifTitle}>
+                  {connectionsTab === 'followers'
+                    ? 'Followers'
+                    : 'Following'}
+                </h2>
+                <nav
+                  className={styles.connectionsTabs}
+                  role='tablist'
+                  aria-label='Followers and following'
+                >
+                  <button
+                    type='button'
+                    role='tab'
+                    aria-selected={connectionsTab === 'followers'}
+                    className={
+                      connectionsTab === 'followers'
+                        ? styles.connectionsTabActive
+                        : styles.connectionsTab
+                    }
+                    onClick={() => setConnectionsTab('followers')}
+                  >
+                    Followers
+                  </button>
+                  <button
+                    type='button'
+                    role='tab'
+                    aria-selected={connectionsTab === 'following'}
+                    className={
+                      connectionsTab === 'following'
+                        ? styles.connectionsTabActive
+                        : styles.connectionsTab
+                    }
+                    onClick={() => setConnectionsTab('following')}
+                  >
+                    Following
+                  </button>
+                </nav>
+                {connectionsTab === 'followers' ? (
+                  followersList.length === 0 ? (
+                    <p className={styles.placeholder}>No followers yet.</p>
+                  ) : (
+                    <ul className={styles.userList}>
+                      {followersList.map((u) => {
+                        const showFollow =
+                          !!currentUserId && u.user_id !== currentUserId
+                        const isFollowingRow = followingIds.has(u.user_id)
+                        const busy = rowFollowBusyId === u.user_id
+                        return (
+                          <li key={u.user_id} className={styles.userListItem}>
+                            <a
+                              href={`/profile/${u.user_id}`}
+                              className={styles.userListLink}
+                            >
+                              {u.avatar_url ? (
+                                <img
+                                  src={u.avatar_url}
+                                  alt=''
+                                  className={styles.userListAvatar}
+                                  width={40}
+                                  height={40}
+                                />
+                              ) : (
+                                <span
+                                  className={styles.userListAvatarPlaceholder}
+                                  aria-hidden
+                                >
+                                  {(u.display_name || 'U')
+                                    .charAt(0)
+                                    .toUpperCase()}
+                                </span>
+                              )}
+                              <span className={styles.userListLinkText}>
+                                {u.display_name || 'User'}
+                              </span>
+                            </a>
+                            {showFollow ? (
+                              <button
+                                type='button'
+                                className={
+                                  isFollowingRow
+                                    ? `${styles.followingBtn} ${styles.userListFollowBtn}`
+                                    : `${styles.followBtn} ${styles.userListFollowBtn}`
+                                }
+                                disabled={busy || rowFollowBusyId !== null}
+                                onClick={() =>
+                                  void handleConnectionRowFollowToggle(
+                                    u.user_id
+                                  )
+                                }
+                              >
+                                {busy
+                                  ? '…'
+                                  : isFollowingRow
+                                    ? 'Following'
+                                    : 'Follow'}
+                              </button>
+                            ) : null}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )
+                ) : followingList.length === 0 ? (
                   <p className={styles.placeholder}>
                     Not following anyone yet.
                   </p>
                 ) : (
                   <ul className={styles.userList}>
-                    {followingList.map((u) => (
-                      <li key={u.user_id} className={styles.userListItem}>
-                        <a
-                          href={`/profile/${u.user_id}`}
-                          className={styles.userListLink}
-                        >
-                          {u.display_name || 'User'}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )}
-
-            {view === 'followers' && (
-              <div className={styles.mainPanel}>
-                <button
-                  type='button'
-                  className={styles.backToProfile}
-                  onClick={() => setView('profile')}
-                >
-                  ← Back to profile
-                </button>
-                <h2 className={styles.mainSerifTitle}>Followers</h2>
-                {followersList.length === 0 ? (
-                  <p className={styles.placeholder}>No followers yet.</p>
-                ) : (
-                  <ul className={styles.userList}>
-                    {followersList.map((u) => (
-                      <li key={u.user_id} className={styles.userListItem}>
-                        <a
-                          href={`/profile/${u.user_id}`}
-                          className={styles.userListLink}
-                        >
-                          {u.display_name || 'User'}
-                        </a>
-                      </li>
-                    ))}
+                    {followingList.map((u) => {
+                      const showFollow =
+                        !!currentUserId && u.user_id !== currentUserId
+                      const isFollowingRow = followingIds.has(u.user_id)
+                      const busy = rowFollowBusyId === u.user_id
+                      return (
+                        <li key={u.user_id} className={styles.userListItem}>
+                          <a
+                            href={`/profile/${u.user_id}`}
+                            className={styles.userListLink}
+                          >
+                            {u.avatar_url ? (
+                              <img
+                                src={u.avatar_url}
+                                alt=''
+                                className={styles.userListAvatar}
+                                width={40}
+                                height={40}
+                              />
+                            ) : (
+                              <span
+                                className={styles.userListAvatarPlaceholder}
+                                aria-hidden
+                              >
+                                {(u.display_name || 'U')
+                                  .charAt(0)
+                                  .toUpperCase()}
+                              </span>
+                            )}
+                            <span className={styles.userListLinkText}>
+                              {u.display_name || 'User'}
+                            </span>
+                          </a>
+                          {showFollow ? (
+                            <button
+                              type='button'
+                              className={
+                                isFollowingRow
+                                  ? `${styles.followingBtn} ${styles.userListFollowBtn}`
+                                  : `${styles.followBtn} ${styles.userListFollowBtn}`
+                              }
+                              disabled={busy || rowFollowBusyId !== null}
+                              onClick={() =>
+                                void handleConnectionRowFollowToggle(u.user_id)
+                              }
+                            >
+                              {busy
+                                ? '…'
+                                : isFollowingRow
+                                  ? 'Following'
+                                  : 'Follow'}
+                            </button>
+                          ) : null}
+                        </li>
+                      )
+                    })}
                   </ul>
                 )}
               </div>
@@ -456,96 +640,192 @@ export default function PublicProfilePage() {
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
                     <h2 className={styles.mainSerifTitle}>Bookmarks</h2>
-                    <div className={styles.section}>
-                      <h3 className={styles.subsectionSerifTitle}>
+                    <nav
+                      className={styles.activitySubTabs}
+                      role='tablist'
+                      aria-label='Bookmarks type'
+                    >
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'saved'}
+                        className={
+                          bookmarksSubTab === 'saved'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('saved')}
+                      >
                         Saved links
-                      </h3>
-                      {userLinks.length === 0 ? (
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'notebookPins'}
+                        className={
+                          bookmarksSubTab === 'notebookPins'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('notebookPins')}
+                      >
+                        Notebook bookmarks
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'courses'}
+                        className={
+                          bookmarksSubTab === 'courses'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('courses')}
+                      >
+                        Course bookmarks
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={bookmarksSubTab === 'community'}
+                        className={
+                          bookmarksSubTab === 'community'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setBookmarksSubTab('community')}
+                      >
+                        Community resources
+                      </button>
+                    </nav>
+                    {bookmarksSubTab === 'saved' && (
+                    <div className={styles.section}>
+                      {savedProfileLinks.length === 0 ? (
                         <p className={styles.placeholder}>
                           No bookmarked links.
                         </p>
                       ) : (
                         <ul className={styles.userLinksList}>
-                          {userLinks.map((l) => {
-                            const faviconDomain = getLinkSiteFaviconDomain(
-                              l.url
-                            )
+                          {savedProfileLinks.map((l) => {
                             return (
                               <li key={l.id} className={styles.userLinkItem}>
                                 <div className={styles.userLinkItemInner}>
                                   <span className={styles.userLinkIconWrap}>
-                                    {faviconDomain ? (
-                                      <img
-                                        src={getFaviconUrl(faviconDomain)}
-                                        alt=''
-                                        className={styles.userLinkIcon}
-                                        width={20}
-                                        height={20}
-                                      />
-                                    ) : (
-                                      <span
-                                        className={styles.userLinkIconDefault}
-                                        aria-hidden
+                                    {/*
+                                      Previous favicon / default icon logic kept for future use:
+
+                                      {faviconDomain ? (
+                                        <img
+                                          src={getFaviconUrl(faviconDomain)}
+                                          alt=''
+                                          className={styles.userLinkIcon}
+                                          width={20}
+                                          height={20}
+                                        />
+                                      ) : (
+                                        <span
+                                          className={styles.userLinkIconDefault}
+                                          aria-hidden
+                                        >
+                                          <svg
+                                            width='20'
+                                            height='20'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            stroke='currentColor'
+                                            strokeWidth='2'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                          >
+                                            <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
+                                            <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
+                                          </svg>
+                                        </span>
+                                      )}
+                                    */}
+                                    <span className={styles.userLinkIconBlue} aria-hidden>
+                                      <svg
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        width='8'
+                                        height='8'
+                                        viewBox='0 0 8 8'
+                                        fill='none'
                                       >
-                                        <svg
-                                          width='20'
-                                          height='20'
-                                          viewBox='0 0 24 24'
-                                          fill='none'
-                                          stroke='currentColor'
-                                          strokeWidth='2'
+                                        <path
+                                          d='M4.14058 1.91562L4.44058 1.61249C4.70255 1.37372 5.04645 1.24506 5.40081 1.25327C5.75518 1.26147 6.09276 1.4059 6.3434 1.65654C6.59404 1.90718 6.73847 2.24476 6.74667 2.59913C6.75488 2.95349 6.62622 3.29739 6.38745 3.55937L5.44058 4.50312C5.31312 4.63105 5.16166 4.73256 4.99488 4.80183C4.8281 4.87109 4.64929 4.90674 4.4687 4.90674C4.28811 4.90674 4.1093 4.87109 3.94252 4.80183C3.77574 4.73256 3.62428 4.63105 3.49683 4.50312'
+                                          stroke='#FDFDFD'
+                                          strokeWidth='0.75'
                                           strokeLinecap='round'
                                           strokeLinejoin='round'
-                                        >
-                                          <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' />
-                                          <path d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' />
-                                        </svg>
-                                      </span>
-                                    )}
+                                        />
+                                        <path
+                                          d='M3.8594 6.08436L3.5594 6.38749C3.29742 6.62626 2.95352 6.75491 2.59916 6.74671C2.24479 6.7385 1.90721 6.59407 1.65657 6.34343C1.40593 6.09279 1.2615 5.75521 1.2533 5.40085C1.2451 5.04648 1.37375 4.70258 1.61252 4.44061L2.5594 3.49686C2.68685 3.36893 2.83831 3.26742 3.00509 3.19815C3.17187 3.12889 3.35068 3.09323 3.53127 3.09323C3.71186 3.09323 3.89067 3.12889 4.05745 3.19815C4.22423 3.26742 4.37569 3.36893 4.50315 3.49686'
+                                          stroke='#FDFDFD'
+                                          strokeWidth='0.75'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                        />
+                                      </svg>
+                                    </span>
                                   </span>
                                   <div className={styles.userLinkContent}>
                                     <div className={styles.userLinkRow}>
-                                      <a
-                                        href={l.url}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className={styles.userLinkUrl}
-                                      >
-                                        {l.title || l.url}
-                                      </a>
+                                      <span className={styles.userLinkTitleAndDomain}>
+                                        <a
+                                          href={l.url}
+                                          target='_blank'
+                                          rel='noopener noreferrer'
+                                          className={styles.userLinkUrl}
+                                        >
+                                          {l.title || l.url}
+                                        </a>
+                                        {(() => {
+                                          try {
+                                            return (
+                                              <span className={styles.userLinkDomain}>
+                                                {new URL(l.url).hostname}
+                                              </span>
+                                            )
+                                          } catch {
+                                            return null
+                                          }
+                                        })()}
+                                      </span>
                                     </div>
                                     <div className={styles.userLinkMeta}>
-                                      {l.tag_names?.length > 0 &&
-                                        l.tag_names.map((name) => (
-                                          <span
-                                            key={name}
-                                            className={styles.userLinkTag}
+                                      <div className={styles.userLinkMetaTags}>
+                                        {l.note ? (
+                                          <button
+                                            type='button'
+                                            className={styles.userLinkNoteToggle}
+                                            onClick={() =>
+                                              setShowNoteForLinkId((cur) =>
+                                                cur === l.id ? null : l.id
+                                              )
+                                            }
                                           >
-                                            {name}
-                                          </span>
-                                        ))}
+                                            Note
+                                          </button>
+                                        ) : null}
+                                        {l.tag_names?.length > 0 &&
+                                          l.tag_names.map((name) => (
+                                            <span
+                                              key={name}
+                                              className={styles.userLinkTag}
+                                            >
+                                              {name}
+                                            </span>
+                                          ))}
+                                      </div>
                                       <span className={styles.userLinkDate}>
                                         {formatDate(l.created_at)}
                                       </span>
-                                      {(() => {
-                                        try {
-                                          return (
-                                            <span
-                                              className={styles.userLinkDomain}
-                                            >
-                                              {new URL(l.url).hostname}
-                                            </span>
-                                          )
-                                        } catch {
-                                          return null
-                                        }
-                                      })()}
+                                      {l.note && showNoteForLinkId === l.id ? (
+                                        <p className={styles.userLinkNote}>
+                                          {l.note}
+                                        </p>
+                                      ) : null}
                                     </div>
-                                    {l.note && (
-                                      <p className={styles.userLinkNote}>
-                                        {l.note}
-                                      </p>
-                                    )}
                                   </div>
                                 </div>
                               </li>
@@ -554,11 +834,37 @@ export default function PublicProfilePage() {
                         </ul>
                       )}
                     </div>
-
+                    )}
+                    {bookmarksSubTab === 'notebookPins' && (
                     <div className={styles.section}>
-                      <h3 className={styles.subsectionSerifTitle}>
-                        Course bookmarks
-                      </h3>
+                      {notebookPinLinks.length === 0 ? (
+                        <p className={styles.placeholder}>
+                          No notebook shortcuts on this profile.
+                        </p>
+                      ) : (
+                        <ul className={styles.list}>
+                          {notebookPinLinks.map((l) => (
+                            <li key={l.id} className={styles.listItem}>
+                              <Link
+                                href={notebookUserLinkHref(l.url)}
+                                legacyBehavior={false}
+                                className={styles.listLink}
+                              >
+                                <span className={styles.listTitle}>
+                                  {l.title?.trim() || 'Notebook'}
+                                </span>
+                                <span className={styles.listMeta}>
+                                  Notebook · {formatDate(l.created_at)}
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    )}
+                    {bookmarksSubTab === 'courses' && (
+                    <div className={styles.section}>
                       {bookmarks.length === 0 ? (
                         <p className={styles.placeholder}>
                           No bookmarked courses.
@@ -584,11 +890,9 @@ export default function PublicProfilePage() {
                         </ul>
                       )}
                     </div>
-
+                    )}
+                    {bookmarksSubTab === 'community' && (
                     <div className={styles.section}>
-                      <h3 className={styles.subsectionSerifTitle}>
-                        Community resources
-                      </h3>
                       {resourceBookmarks.length === 0 ? (
                         <p className={styles.placeholder}>
                           No saved community resources.
@@ -638,6 +942,7 @@ export default function PublicProfilePage() {
                         </ul>
                       )}
                     </div>
+                    )}
                   </div>
                 )}
 
@@ -737,14 +1042,77 @@ export default function PublicProfilePage() {
                 )}
 
                 {mainTab === 'notebooks' && (
-                  <ProfileNotebooksPanel
-                    notebooks={publishedNotebooks}
-                    loading={loading}
-                    onRefresh={() => undefined}
-                    canCreate={false}
-                    subsectionTitle='Published notebooks'
-                    emptyHint='No published notebooks yet.'
-                  />
+                  <div className={styles.tabPanel}>
+                    <h2 className={styles.mainSerifTitle}>Notebooks</h2>
+                    <div className={styles.activitySubTabs} role='tablist'>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={notebooksSubTab === 'yours'}
+                        className={
+                          notebooksSubTab === 'yours'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setNotebooksSubTab('yours')}
+                      >
+                        Their notebooks
+                      </button>
+                      <button
+                        type='button'
+                        role='tab'
+                        aria-selected={notebooksSubTab === 'saved'}
+                        className={
+                          notebooksSubTab === 'saved'
+                            ? styles.activitySubTabActive
+                            : styles.activitySubTab
+                        }
+                        onClick={() => setNotebooksSubTab('saved')}
+                      >
+                        Saved notebooks
+                      </button>
+                    </div>
+
+                    {notebooksSubTab === 'yours' ? (
+                      <ProfileNotebooksPanel
+                        notebooks={publishedNotebooks}
+                        loading={loading}
+                        onRefresh={() => undefined}
+                        canCreate={false}
+                        subsectionTitle='Published notebooks'
+                        emptyHint='No published notebooks yet.'
+                      />
+                    ) : (
+                      <div className={styles.section}>
+                        {loading ? (
+                          <p className={styles.placeholder}>Loading…</p>
+                        ) : notebookPinLinks.length === 0 ? (
+                          <p className={styles.placeholder}>
+                            No saved notebooks on this profile yet.
+                          </p>
+                        ) : (
+                          <ul className={styles.list}>
+                            {notebookPinLinks.map((l) => (
+                              <li key={l.id} className={styles.listItem}>
+                                <Link
+                                  href={notebookUserLinkHref(l.url)}
+                                  legacyBehavior={false}
+                                  className={styles.listLink}
+                                >
+                                  <span className={styles.listTitle}>
+                                    {l.title?.trim() || 'Notebook'}
+                                  </span>
+                                  <span className={styles.listMeta}>
+                                    Notebook · {formatDate(l.created_at)}
+                                  </span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             )}
