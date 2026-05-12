@@ -253,6 +253,7 @@
 .pageBtn {
   padding: 0.35rem 0.55rem;
   border: 1px solid #d7d8da;
+  border-radius: 4px;
   background: #fff;
   font-family: 'Hanken Grotesk', sans-serif;
   font-size: 13px;
@@ -314,9 +315,7 @@
   padding: 1.5rem 1.75rem;
   border-radius: 4px;
   border: 1px solid #e3e1dd;
-  /* background: linear-gradient(145deg, #fdfcfa 0%, #f3ede6 55%, #efe8df 100%); */
-  background: #F8F7F4;
-  background-color: #fff;
+  background: var(--footer, #f8f7f4);
 }
 
 .discordCtaImageWrap {
@@ -366,29 +365,36 @@
 }
 
 .discordCtaBtn {
-  display: inline-block;
+  display: inline-flex;
   align-self: flex-start;
   margin-top: 0.35rem;
-  padding: 0.6rem 1.35rem;
-  border-radius: 9px;
-  background: #252222;
-  color: #fff;
+  height: 40px;
+  padding: 12px 20px;
+  border-radius: 0;
+  background: var(--dark-brown, #2c1a0c);
+  color: #ffffff;
   font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
   text-decoration: none;
   border: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 3px 6px 0px #8a8a8a14;
   transition:
-    filter 0.15s ease,
-    transform 0.15s ease;
+    opacity 220ms ease,
+    transform 220ms ease;
 }
 
-.discordCtaBtn:hover {
-  filter: brightness(1.07);
+.discordCtaBtn:hover,
+.discordCtaBtn:focus-visible {
+  opacity: 0.9;
+  transform: translateX(1px);
 }
 
 .discordCtaBtn:active {
-  transform: translateY(1px);
+  transform: translateX(1px) translateY(1px);
 }
 
 @media (max-width: 640px) {

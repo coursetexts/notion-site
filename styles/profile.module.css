@@ -445,6 +445,43 @@
   flex-shrink: 0;
 }
 
+/* Activity → Feed: actor row wraps (profile + tags + time), narrative below */
+.feedCardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  width: 100%;
+}
+
+.feedCardActor {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.feedCardTime {
+  font-size: 0.8125rem;
+  color: #666;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.feedCardActions {
+  margin-top: 0.45rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #25272b;
+}
+
+.feedCardActions em {
+  font-style: italic;
+}
+
 .listBody {
   font-size: 0.875rem;
   color: #666;
@@ -1527,7 +1564,7 @@
   line-height: 1.45;
   color: #25272B;
   margin: 0 0 1rem 0;
-  font-family: 'Guyot Press', serif;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
 }
 
 .sidebarBioMuted {
@@ -1536,6 +1573,7 @@
   margin: 0 0 1rem 0;
   color: #999;
   font-style: italic;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
 }
 
 .linkCardsRow {
@@ -2297,7 +2335,7 @@
   font-size: 0.8125rem;
   line-height: 1.45;
   resize: vertical;
-  font-family: inherit;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   color: #25272b;
 }
 
@@ -2413,7 +2451,7 @@
 }
 
 .profileInterestTag {
-  color: #1a66cc;
+  color: #0389c4;
   text-decoration: none;
 }
 

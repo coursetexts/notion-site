@@ -17,14 +17,24 @@
 }
 
 .title {
-  margin: 0;
-  font-family: 'Guyot Press', serif;
-  font-weight: 400;
+  color: #000;
+  text-align: center;
+  font-family: "Guyot Press";
+  font-size: 32px;
   font-style: normal;
-  font-size: 64px;
-  line-height: 64px;
-  letter-spacing: -0.03em;
-  color: #000000;
+  font-weight: 401;
+  line-height: 24px; /* 75% */
+  letter-spacing: 0.006px;
+}
+
+.titleFree {
+  color: #000;
+  font-family: "Guyot Press";
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 401;
+  line-height: 24px;
+  letter-spacing: 0.006px;
 }
 
 .description {
@@ -252,6 +262,11 @@
     line-height: 52px;
   }
 
+  .titleFree {
+    font-size: 52px;
+    line-height: 52px;
+  }
+
   .description {
     height: auto;
   }
@@ -263,6 +278,11 @@
   }
 
   .title {
+    font-size: 40px;
+    line-height: 42px;
+  }
+
+  .titleFree {
     font-size: 40px;
     line-height: 42px;
   }
@@ -285,6 +305,11 @@
 
 @media (max-width: 560px) {
   .title {
+    font-size: 34px;
+    line-height: 36px;
+  }
+
+  .titleFree {
     font-size: 34px;
     line-height: 36px;
   }

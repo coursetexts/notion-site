@@ -178,6 +178,28 @@
   color: rgba(55, 65, 81, 0.45);
 }
 
+/* YouTube video link — typed placeholder (no thumbnail). */
+.previewBodyYoutube {
+  min-height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.previewYoutubeIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.15);
+  color: #dc2626;
+}
+
 /* X / Twitter link preview–style placeholder (tweet permalink, no oEmbed). */
 .previewBodyTwitter {
   min-height: 132px;
@@ -288,6 +310,21 @@
   max-width: 200px;
 }
 
+a.previewLink,
+a.previewLink:visited {
+  color: #9ca3af;
+}
+
+a.previewLink {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.previewLink:hover {
+  color: #6b7280;
+  text-decoration: underline;
+}
+
 .previewActions {
   display: inline-flex;
   align-items: center;
@@ -305,8 +342,13 @@
   border-radius: 8px;
   background: transparent;
   cursor: pointer;
-  color: #5D534B;
+  color: #5d534b;
   padding: 0;
+  box-sizing: border-box;
+}
+
+a.previewIconBtn {
+  text-decoration: none;
 }
 
 .previewIconBtn:hover {

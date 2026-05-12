@@ -1132,13 +1132,14 @@ a.notion-page-link .notion-page-title {
   min-width: 0;
 }
 
-/* Optional: drop-cap on right column first paragraph */
+/* Hero description: bold first letter only (same as CourseHero description) */
 .course-hero-standalone > *:nth-child(3) .notion-text:first-of-type::first-letter {
-  float: left;
-  font-size: 4rem;
-  line-height: 0.85;
-  padding-right: 0.5rem;
-  font-family: 'Guyot Press', serif;
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 700;
 }
 
 /* Override .course-page styles so you can style the hero from scratch */
@@ -1933,6 +1934,33 @@ summary .notion-h3 .notion-h-title {
 /* Paragraph font in content main */
 .course-content-mount .notion-text {
   font-family: 'Hanken Grotesk', sans-serif;
+}
+
+/* h4 in course content: slightly smaller than default, Guyot serif (body text is sans) */
+.course-content-mount .course-content-main .notion-h4,
+.course-content-mount .course-content-main h4[class*='notion'],
+.course-content-mount .course-content-subsection .notion-h4,
+.course-content-mount .course-content-subsection h4[class*='notion'],
+.course-content-mount .course-content-section.content-section-active .notion-h4,
+.course-content-mount .course-content-section.content-section-active h4[class*='notion'] {
+  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.course-content-mount .course-content-main .notion-h4 .notion-h-title,
+.course-content-mount .course-content-main h4[class*='notion'] .notion-h-title,
+.course-content-mount .course-content-subsection .notion-h4 .notion-h-title,
+.course-content-mount .course-content-subsection h4[class*='notion'] .notion-h-title,
+.course-content-mount .course-content-section.content-section-active .notion-h4 .notion-h-title,
+.course-content-mount .course-content-section.content-section-active h4[class*='notion'] .notion-h-title {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin-top: 0;
 }
 
 /*

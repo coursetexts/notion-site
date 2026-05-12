@@ -5,6 +5,7 @@ export type Notebook = {
   id: string
   user_id: string
   title: string
+  description: string
   published: boolean
   created_at: string
   updated_at: string
@@ -21,7 +22,18 @@ export type NotebookTab = {
 }
 
 const NOTEBOOK_LIST_COLS =
-  'id, user_id, title, published, created_at, updated_at'
+  'id, user_id, title, description, published, created_at, updated_at'
+
+type NotebookRow = Omit<Notebook, 'description'> & {
+  description?: string | null
+}
+
+function normalizeNotebook(row: NotebookRow): Notebook {
+  return {
+    ...row,
+    description: typeof row.description === 'string' ? row.description : ''
+  }
+}
 
 export async function getMyNotebooks(): Promise<Notebook[]> {
   const supabase = getSupabaseClient()
@@ -36,7 +48,7 @@ export async function getMyNotebooks(): Promise<Notebook[]> {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
   if (error || !data) return []
-  return data as Notebook[]
+  return (data as NotebookRow[]).map(normalizeNotebook)
 }
 
 /** Public notebooks on someone’s profile (RLS: only rows with published = true). */
@@ -52,7 +64,7 @@ export async function getPublishedNotebooksByUserId(
     .eq('published', true)
     .order('created_at', { ascending: false })
   if (error || !data) return []
-  return data as Notebook[]
+  return (data as NotebookRow[]).map(normalizeNotebook)
 }
 
 export async function getNotebookById(
@@ -66,7 +78,7 @@ export async function getNotebookById(
     .eq('id', notebookId)
     .maybeSingle()
   if (error || !data) return null
-  return data as Notebook
+  return normalizeNotebook(data as NotebookRow)
 }
 
 export async function updateNotebookTitle(
@@ -82,6 +94,24 @@ export async function updateNotebookTitle(
   const { error } = await supabase
     .from('notebooks')
     .update({ title, updated_at: new Date().toISOString() })
+    .eq('id', notebookId)
+    .eq('user_id', user.id)
+  return !error
+}
+
+export async function updateNotebookDescription(
+  notebookId: string,
+  description: string
+): Promise<boolean> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return false
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return false
+  const { error } = await supabase
+    .from('notebooks')
+    .update({ description, updated_at: new Date().toISOString() })
     .eq('id', notebookId)
     .eq('user_id', user.id)
   return !error
@@ -131,7 +161,7 @@ export async function createNotebook(
     await supabase.from('notebooks').delete().eq('id', nb.id)
     return null
   }
-  return nb as Notebook
+  return normalizeNotebook(nb as NotebookRow)
 }
 
 export async function getTabsForNotebook(

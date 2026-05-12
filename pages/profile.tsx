@@ -1947,8 +1947,8 @@ export default function ProfilePage() {
                                       : styles.listItem
                                   }
                                 >
-                                  <div className={styles.listLink}>
-                                    <span className={styles.listTitle}>
+                                  <div className={styles.feedCardHead}>
+                                    <div className={styles.feedCardActor}>
                                       <UserLink
                                         userId={n.author_id}
                                         displayName={n.author_name}
@@ -1959,18 +1959,20 @@ export default function ProfilePage() {
                                           n.author_id
                                         )}
                                       />
-                                      {' replied on '}
-                                      <Link
-                                        href={n.course_url ?? `/${n.course_id}`}
-                                      >
-                                        <a className={styles.inlineLink}>
-                                          {n.course_name}
-                                        </a>
-                                      </Link>
-                                    </span>
-                                    <span className={styles.listMeta}>
+                                    </div>
+                                    <span className={styles.feedCardTime}>
                                       {formatDate(n.created_at)}
                                     </span>
+                                  </div>
+                                  <div className={styles.feedCardActions}>
+                                    <span>replied on </span>
+                                    <Link
+                                      href={n.course_url ?? `/${n.course_id}`}
+                                    >
+                                      <a className={styles.inlineLink}>
+                                        {n.course_name}
+                                      </a>
+                                    </Link>
                                   </div>
                                   {n.type === 'annotation' && n.section_id ? (
                                     <p className={styles.notificationMeta}>
@@ -1988,77 +1990,57 @@ export default function ProfilePage() {
                               item.actor_display_name?.trim() || 'Someone'
                             return (
                               <li key={item.id} className={styles.listItem}>
-                                <div className={styles.listLink}>
-                                  <span className={styles.listTitle}>
-                                    {item.kind === 'wall_resource' && (
-                                      <>
-                                        <UserLink
-                                          userId={item.actor_id}
-                                          displayName={actorLabel}
-                                          showFollowingTag={followingIds.has(
-                                            item.actor_id
-                                          )}
-                                          showFollowsYouTag={followerIds.has(
-                                            item.actor_id
-                                          )}
-                                        />
-                                        {' added '}
-                                        <em>{item.resource_title}</em>
-                                        {' to the Community Wall on '}
-                                        <Link href={courseHref}>
-                                          <a className={styles.inlineLink}>
-                                            {item.course_name}
-                                          </a>
-                                        </Link>
-                                      </>
-                                    )}
-                                    {item.kind === 'followed_course_bookmark' && (
-                                      <>
-                                        <UserLink
-                                          userId={item.actor_id}
-                                          displayName={actorLabel}
-                                          showFollowingTag={followingIds.has(
-                                            item.actor_id
-                                          )}
-                                          showFollowsYouTag={followerIds.has(
-                                            item.actor_id
-                                          )}
-                                        />
-                                        {' saved course '}
-                                        <Link href={courseHref}>
-                                          <a className={styles.inlineLink}>
-                                            {item.course_name}
-                                          </a>
-                                        </Link>
-                                      </>
-                                    )}
-                                    {item.kind ===
-                                      'followed_resource_bookmark' && (
-                                      <>
-                                        <UserLink
-                                          userId={item.actor_id}
-                                          displayName={actorLabel}
-                                          showFollowingTag={followingIds.has(
-                                            item.actor_id
-                                          )}
-                                          showFollowsYouTag={followerIds.has(
-                                            item.actor_id
-                                          )}
-                                        />
-                                        {' bookmarked '}
-                                        <em>{item.resource_title}</em>
-                                        {' on '}
-                                        <Link href={courseHref}>
-                                          <a className={styles.inlineLink}>
-                                            {item.course_name}
-                                          </a>
-                                        </Link>
-                                      </>
-                                    )}
-                                  </span>
-                                  <span className={styles.listMeta}>
+                                <div className={styles.feedCardHead}>
+                                  <div className={styles.feedCardActor}>
+                                    <UserLink
+                                      userId={item.actor_id}
+                                      displayName={actorLabel}
+                                      showFollowingTag={followingIds.has(
+                                        item.actor_id
+                                      )}
+                                      showFollowsYouTag={followerIds.has(
+                                        item.actor_id
+                                      )}
+                                    />
+                                  </div>
+                                  <span className={styles.feedCardTime}>
                                     {formatDate(item.created_at)}
                                   </span>
+                                </div>
+                                <div className={styles.feedCardActions}>
+                                  {item.kind === 'wall_resource' && (
+                                    <>
+                                      added <em>{item.resource_title}</em> to
+                                      the Community Wall on{' '}
+                                      <Link href={courseHref}>
+                                        <a className={styles.inlineLink}>
+                                          {item.course_name}
+                                        </a>
+                                      </Link>
+                                    </>
+                                  )}
+                                  {item.kind === 'followed_course_bookmark' && (
+                                    <>
+                                      saved course{' '}
+                                      <Link href={courseHref}>
+                                        <a className={styles.inlineLink}>
+                                          {item.course_name}
+                                        </a>
+                                      </Link>
+                                    </>
+                                  )}
+                                  {item.kind ===
+                                    'followed_resource_bookmark' && (
+                                    <>
+                                      bookmarked <em>{item.resource_title}</em>{' '}
+                                      on{' '}
+                                      <Link href={courseHref}>
+                                        <a className={styles.inlineLink}>
+                                          {item.course_name}
+                                        </a>
+                                      </Link>
+                                    </>
+                                  )}
                                 </div>
                               </li>
                             )

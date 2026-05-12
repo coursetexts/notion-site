@@ -1,13 +1,17 @@
 .page {
   min-height: 100vh;
-  background: #ffffff;
+  box-sizing: border-box;
+  background: var(--footer, #f8f7f4);
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  /* Padding (not child margin) so the page background fills the gap below the
+     header; margin-top on .shell was collapsing through and showed body white. */
+  padding: 10px 0 2.5rem;
 }
 
 .shell {
   max-width: 1324px;
   margin: 0 auto;
-  margin-top: 54px;
-  padding: 0 1.25rem 2.5rem;
+  padding: 0 1.25rem;
 }
 
 .backRow {
@@ -53,7 +57,161 @@
   top: 1rem;
 }
 
+.sidebarNotebookBlock {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e8e8e6;
+}
+
+.sidebarNotebookLabel {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  margin-bottom: 0.35rem;
+}
+
+.sidebarNotebookTitle {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #fafafa;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0.4rem 0.45rem;
+  outline: none;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  resize: vertical;
+  min-height: 2.75em;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.sidebarNotebookTitle:focus {
+  border-color: #d0d0cc;
+  background: #fff;
+}
+
+.sidebarNotebookTitle::placeholder {
+  color: #bbb;
+}
+
+.sidebarNotebookTitleStatic {
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1a1a1a;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.sidebarNotebookDescLabel {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.sidebarNotebookDescInput {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #333;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #fafafa;
+  margin: 0;
+  padding: 0.4rem 0.45rem;
+  outline: none;
+  min-height: 4.25rem;
+  max-height: 10rem;
+  resize: vertical;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow-y: auto;
+}
+
+.sidebarNotebookDescInput:focus {
+  border-color: #d0d0cc;
+  background: #fff;
+}
+
+.sidebarNotebookDescInput::placeholder {
+  color: #aaa;
+}
+
+.sidebarNotebookDescReadWrap {
+  margin: 0;
+}
+
+.sidebarNotebookDescReadClamp {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #555;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.sidebarNotebookDescReadFull {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #555;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.sidebarNotebookDescToggle {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5d534b;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sidebarNotebookDescToggle:hover {
+  color: #25272b;
+}
+
+.sidebarNotebookDescEmpty {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #999;
+  font-style: italic;
+  margin: 0;
+}
+
 .sidebarTitle {
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -141,6 +299,94 @@
   cursor: not-allowed;
 }
 
+.visibilityBlock {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e8e8e6;
+}
+
+.visibilityHeader {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.visibilityControl {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.visToggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  background: #d1d5db;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.visToggle:hover:not(:disabled) {
+  background: #c4c8ce;
+}
+
+.visToggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.visToggleOn {
+  background: #22c55e;
+}
+
+.visToggleOn:hover:not(:disabled) {
+  background: #16a34a;
+}
+
+.visToggleKnob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease;
+  display: block;
+  pointer-events: none;
+}
+
+.visToggleOn .visToggleKnob {
+  transform: translateX(20px);
+}
+
+.visToggleLabel {
+  font-size: 0.875rem;
+  color: #25272b;
+  font-weight: 500;
+}
+
+.visibilityHint {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.45;
+}
+
+.footerNote {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
 .main {
   flex: 1;
   min-width: 0;
@@ -150,9 +396,9 @@
   padding: 2rem 2.5rem 2.5rem;
 }
 
-.notebookTitle {
+.tabPageTitle {
   width: 100%;
-  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 2.25rem;
   font-weight: 600;
   line-height: 1.15;
@@ -164,12 +410,12 @@
   outline: none;
 }
 
-.notebookTitle::placeholder {
+.tabPageTitle::placeholder {
   color: #bbb;
 }
 
-.notebookTitleStatic {
-  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+.tabPageTitleStatic {
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 2.25rem;
   font-weight: 600;
   line-height: 1.15;
@@ -181,12 +427,6 @@
   font-size: 0.875rem;
   color: #3d7a4a;
   font-weight: 500;
-}
-
-.descPlaceholder {
-  font-size: 0.9375rem;
-  color: #999;
-  margin: 0 0 0.75rem;
 }
 
 .metaRow {
@@ -249,6 +489,7 @@
 .editorSurface :global(.ProseMirror) {
   min-height: 48vh;
   outline: none;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 1rem;
   line-height: 1.65;
   color: #25272b;
@@ -263,21 +504,21 @@
 }
 
 .editorSurface :global(.ProseMirror h1) {
-  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 1.75rem;
   font-weight: 600;
   margin: 1.25rem 0 0.5rem;
 }
 
 .editorSurface :global(.ProseMirror h2) {
-  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 1.4rem;
   font-weight: 600;
   margin: 1rem 0 0.4rem;
 }
 
 .editorSurface :global(.ProseMirror h3) {
-  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
   font-size: 1.15rem;
   font-weight: 600;
   margin: 0.85rem 0 0.35rem;
@@ -409,8 +650,13 @@
     padding: 1.25rem 1rem 1.5rem;
   }
 
-  .notebookTitle,
-  .notebookTitleStatic {
+  .tabPageTitle,
+  .tabPageTitleStatic {
     font-size: 1.65rem;
+  }
+
+  .sidebarNotebookTitle,
+  .sidebarNotebookTitleStatic {
+    font-size: 1rem;
   }
 }

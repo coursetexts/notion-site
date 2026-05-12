@@ -14,8 +14,8 @@ import styles from './HomeHeader.module.css'
 
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
-  { label: 'Resources', href: '/manifesto' },
-  { label: 'Communities', href: '/users' },
+  { label: 'Manifesto', href: '/manifesto' },
+  { label: 'Community', href: '/users' },
   {
     label: 'Donate',
     href: 'https://hcb.hackclub.com/donations/start/coursetexts',

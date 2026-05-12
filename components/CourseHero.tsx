@@ -54,21 +54,33 @@ type CopyrightReportData = {
 }
 
 function wrapFirstLetterInDescription(container: HTMLElement) {
+  if (container.querySelector('[data-course-hero-drop-cap]')) return
+
   const wrap = (node: ChildNode): boolean => {
-    if (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()) {
-      const text = node.textContent
-      const first = text[0]
-      const rest = text.slice(1)
+    if (node.nodeType === Node.TEXT_NODE) {
+      const raw = node.textContent ?? ''
+      const letterMatch = raw.match(/\p{L}/u)
+      if (!letterMatch || letterMatch.index === undefined) return false
+      const idx = letterMatch.index
+      const ch = letterMatch[0]
       const parent = node.parentElement
-      if (!parent || !first.match(/\p{L}/u)) return false
+      if (!parent || !ch) return false
+      const before = raw.slice(0, idx)
+      const after = raw.slice(idx + ch.length)
       const span = document.createElement('span')
       span.className = styles.dropCap
-      span.textContent = first
+      span.setAttribute('data-course-hero-drop-cap', '')
+      span.textContent = ch
+      if (before) {
+        parent.insertBefore(document.createTextNode(before), node)
+      }
       parent.insertBefore(span, node)
-      node.textContent = rest
+      node.textContent = after
       return true
     }
     if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node as Element
+      if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return false
       for (let i = 0; i < node.childNodes.length; i++) {
         if (wrap(node.childNodes[i])) return true
       }
@@ -412,7 +424,6 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   React.useLayoutEffect(() => {
     const el = descriptionRef.current
     if (!el) return
-    if (el.querySelector(`.${styles.dropCap}`)) return
     wrapFirstLetterInDescription(el)
   }, [descriptionHtml])
 

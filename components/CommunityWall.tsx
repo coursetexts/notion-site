@@ -50,6 +50,24 @@ function PinIcon() {
   )
 }
 
+/** YouTube mark for video links — matches other typed placeholders (no thumb). */
+function YouTubeCardIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='28'
+      height='28'
+      viewBox='0 0 24 24'
+      aria-hidden
+    >
+      <path
+        fill='currentColor'
+        d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12 9.545 15.568z'
+      />
+    </svg>
+  )
+}
+
 /** X (Twitter) mark for tweet link placeholders — matches in-app link preview tone. */
 function TwitterPostPlaceholderIcon() {
   return (
@@ -791,11 +809,13 @@ export const CommunityWall = React.forwardRef<
                     className={
                       preview.kind === 'image'
                         ? styles.previewBodyImage
-                        : preview.kind === 'twitter'
-                          ? styles.previewBodyTwitter
-                          : preview.kind === 'website'
-                            ? styles.previewBodyWebsite
-                            : styles.previewBody
+                        : preview.kind === 'youtube'
+                          ? styles.previewBodyYoutube
+                          : preview.kind === 'twitter'
+                            ? styles.previewBodyTwitter
+                            : preview.kind === 'website'
+                              ? styles.previewBodyWebsite
+                              : styles.previewBody
                     }
                   >
                     {preview.kind === 'image' ? (
@@ -806,6 +826,10 @@ export const CommunityWall = React.forwardRef<
                         loading='lazy'
                         decoding='async'
                       />
+                    ) : preview.kind === 'youtube' ? (
+                      <span className={styles.previewYoutubeIconWrap}>
+                        <YouTubeCardIcon />
+                      </span>
                     ) : preview.kind === 'twitter' ? (
                       <span className={styles.previewTwitterIconWrap}>
                         <TwitterPostPlaceholderIcon />
@@ -824,25 +848,32 @@ export const CommunityWall = React.forwardRef<
                   <div className={styles.previewFooter}>
                     <div className={styles.previewMeta}>
                       <div className={styles.previewSource}>{source}</div>
-                      <div className={styles.previewLink}>{subline}</div>
+                      {r.link ? (
+                        <a
+                          href={r.link}
+                          className={styles.previewLink}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          title={r.link}
+                        >
+                          {subline}
+                        </a>
+                      ) : (
+                        <div className={styles.previewLink}>{subline}</div>
+                      )}
                     </div>
                     <div className={styles.previewActions}>
                       {r.link ? (
-                        <button
-                          type='button'
+                        <a
+                          href={r.link}
                           className={styles.previewIconBtn}
-                          aria-label='Open link'
-                          title='Open link'
-                          onClick={() =>
-                            window.open(
-                              r.link || '',
-                              '_blank',
-                              'noopener,noreferrer'
-                            )
-                          }
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label='Open link in new tab'
+                          title={r.link}
                         >
                           <ExternalIcon />
-                        </button>
+                        </a>
                       ) : null}
                       <button
                         type='button'

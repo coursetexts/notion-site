@@ -1,18 +1,20 @@
 /**
  * Resolves how a community-wall link should look in the card preview area.
  *
- * Order: explicit hero image → YouTube thumbnail → tweet (X placeholder) →
- * http(s) website (favicon / iMessage-style tile) → generic chain icon.
+ * Order: YouTube (icon, no thumbnail) → explicit hero image → tweet (X
+ * placeholder) → http(s) website (favicon / iMessage-style tile) → generic
+ * chain icon.
  *
  * To add more types (e.g. Reddit, GitHub accent, Open Graph image via /api):
  * branch here before `website` using the URL host or path.
  */
 
 import { isTwitterPostUrl } from '@/lib/twitter-post-link'
-import { youtubeThumbnailFromUrl } from '@/lib/youtube-thumbnail'
+import { extractYouTubeVideoId } from '@/lib/youtube-thumbnail'
 
 export type LinkPreviewVisual =
   | { kind: 'image'; src: string }
+  | { kind: 'youtube' }
   | { kind: 'twitter' }
   | { kind: 'website'; faviconUrl: string; hostname: string }
   | { kind: 'generic' }
@@ -56,10 +58,9 @@ export function resolveLinkPreviewVisual(
   link: string | null | undefined,
   previewImage: string | null | undefined
 ): LinkPreviewVisual {
-  if (previewImage) return { kind: 'image', src: previewImage }
+  if (extractYouTubeVideoId(link)) return { kind: 'youtube' }
 
-  const yt = youtubeThumbnailFromUrl(link)
-  if (yt) return { kind: 'image', src: yt }
+  if (previewImage) return { kind: 'image', src: previewImage }
 
   if (isTwitterPostUrl(link)) return { kind: 'twitter' }
 

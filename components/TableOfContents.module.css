@@ -14,12 +14,14 @@
 }
 
 .heading {
+  color: #000;
   font-family: 'Guyot Press', serif;
   font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  color: #25272b;
-  margin: 0 0 1.5rem 0;
+  font-style: normal;
+  font-weight: 401;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.003px;
+  margin: 0 0 1rem 0;
 }
 
 .searchWrap {

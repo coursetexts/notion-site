@@ -123,7 +123,9 @@ export function HomeHero({
   return (
     <section className={styles.heroWrapper}>
       <div className={styles.heroContent}>
-        <h1 className={styles.title}>The library for learners</h1>
+        <h1 className={styles.title}>
+          The <span className={styles.titleFree}>free</span> library for learners
+        </h1>
 
         <p className={styles.description}>
           Coursetexts is a registered 501(c)(3) non-profit doing open research

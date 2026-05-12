@@ -1,6 +1,6 @@
 .root {
   display: grid;
-  grid-template-columns: 500px 1fr;
+  grid-template-columns: 425px 1fr;
   gap: 2.5rem 10%;
   align-items: start;
   width: 100%;
@@ -318,18 +318,17 @@
 
 .title {
   font-family: 'Guyot Press', serif;
-  font-size: 56px;
-  font-weight: 400;
+  font-size: 48px;
   font-style: normal;
   color: #140c00;
-  font-size: 3.5rem;
-  line-height: 64px; /* 114.286% */
-  letter-spacing: -1.68px;
+  line-height: 44px; /* 91.667% */
+  letter-spacing: -1.44px;
   margin: 0 0 0.75rem 0;
   max-width: 100%;
   overflow-wrap: break-word;
   margin-bottom: 52px;
   margin-top: 24px;
+  font-weight: 400;
 }
 
 .instructor a{
@@ -460,12 +459,12 @@
 /* Drop cap: first letter wrapped by JS (CourseHero) and styled here */
 .dropCap {
   float: top;
-  font-size: 60px;
+  font-size: 50px;
   line-height: 0.85;
-  padding-right: 0.25rem;
+  padding-right: 0.10rem;
   padding-top: 0.06em;
   font-family: 'Guyot Press', serif;
-  font-weight: 600;
+  font-weight: 400;
   color: #25272B;
 }
 

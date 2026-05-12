@@ -10,13 +10,13 @@
     var(--home-content-max, 640px),
     calc(100vw - (var(--home-side, 58px) * 2))
   );
-  padding: 128px 0;
+  padding: 90px 0;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 56px 96px;
+  gap: 56px 150px;
   box-sizing: border-box;
 }
 
