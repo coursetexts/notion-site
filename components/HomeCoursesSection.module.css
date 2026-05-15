@@ -200,7 +200,7 @@
 
 .courseTitle {
   margin: 8px 0 0;
-  max-width: 190px;
+  max-width: 100%;
   white-space: normal;
   text-decoration-line: underline;
   text-decoration-color: var(--outline, #e6e6e6);
@@ -387,8 +387,8 @@
   }
 
   .courseCardLink {
-    width: min(300px, 100%);
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
   }
 
   .courseCard {

@@ -14,7 +14,7 @@ function formatDate(iso: string): string {
   })
 }
 
-function NotebookShareLinkIcon() {
+export function NotebookShareLinkIcon() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +42,7 @@ function NotebookShareLinkIcon() {
   )
 }
 
-function NotebookBookmarkIcon({ filled }: { filled: boolean }) {
+export function NotebookBookmarkIcon({ filled }: { filled: boolean }) {
   if (filled) {
     return (
       <svg
@@ -339,7 +339,9 @@ export function ProfileNotebooksPanel({
                     className={styles.notebooksListItem}
                   >
                     <span className={styles.notebooksListTitle}>
-                      {n.title}
+                      <span className={styles.notebooksListTitleText}>
+                        {n.title}
+                      </span>
                       {showPublishedBadge && n.published ? (
                         <span className={styles.notebooksPublishedBadge}>
                           Public

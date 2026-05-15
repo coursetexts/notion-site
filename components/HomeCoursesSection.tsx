@@ -30,7 +30,7 @@ function HomeCourseCardItem({
 
   const descriptionStyle: React.CSSProperties = descriptionWidth
     ? { width: descriptionWidth, maxWidth: '100%' }
-    : { maxWidth: 190 }
+    : { maxWidth: '100%' }
 
   return (
     <Link href={course.href} legacyBehavior>

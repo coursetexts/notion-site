@@ -1431,6 +1431,55 @@
     grid-template-columns: 1fr;
   }
 
+  .sidebarProfileMeta {
+    align-self: stretch;
+    width: 100%;
+    max-width: none;
+  }
+
+  .sidebarProfileMetaPreview {
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    max-width: none;
+  }
+
+  .sidebarProfileMetaPreview .sidebarBio,
+  .sidebarProfileMetaPreview .sidebarBioMuted {
+    text-align: center;
+    align-self: center;
+    max-width: 22rem;
+  }
+
+  .profileSidebar .profileInterestTags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  .sidebarPersonalLinksBlock,
+  .sidebarPersonalLinksInlineWrap,
+  .sidebarPersonalLinksList {
+    align-self: stretch;
+    width: 100%;
+    max-width: none;
+  }
+
+  .sidebarPersonalLinkItem,
+  .sidebarPersonalLinkCard,
+  .sidebarPersonalLinkEditCard,
+  .sidebarPersonalLinkAdd {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sidebarPersonalLinksInlineInput {
+    width: 100%;
+  }
+
   .sidebarFollowMainBtn {
     align-self: stretch;
     max-width: none;
@@ -1786,6 +1835,19 @@
   background: #f7f7f7;
 }
 
+@media (max-width: 860px) {
+  .pageFooterBar {
+    width: min(var(--profile-main-max), calc(100vw - (var(--profile-side) * 2)));
+    justify-content: stretch;
+  }
+
+  .signOutFooter {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
+
 /* —— Profile “Your notebooks” tab —— */
 
 .notebooksToolbar {
@@ -1984,12 +2046,20 @@
 }
 
 .notebooksListTitle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 0.4rem;
+  min-width: 0;
+  flex: 1;
   font-weight: 500;
   color: #25272b;
+}
+
+.notebooksListTitleText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .notebooksPublishedBadge {
@@ -2008,6 +2078,10 @@
   font-size: 0.8125rem;
   color: #888;
   flex-shrink: 0;
+}
+
+.notebooksKindTag {
+  color: #666;
 }
 
 .sidebarAddMetaBtn {

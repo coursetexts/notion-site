@@ -24,6 +24,7 @@ import {
   ProfilePersonalLinksPanel
 } from '@/components/ProfilePersonalLinksPanel'
 import { ProfileNotebooksPanel } from '@/components/ProfileNotebooksPanel'
+import { ProfileSavedNotebooksList } from '@/components/ProfileSavedNotebooksList'
 import { UserLink } from '@/components/UserLink'
 import { getCachedAuth, setCachedAuth } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
@@ -37,6 +38,7 @@ import {
   type Annotation as DbAnnotation,
   type Comment as DbComment,
   getMyAnnotations,
+  addBookmark,
   getMyBookmarks,
   getMyComments
 } from '@/lib/course-activity-db'
@@ -84,8 +86,15 @@ import styles from '@/styles/profile.module.css'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 
-/** Saved-links filter: not a DB tag id; shows only Community Wall bookmarks. */
-const COMMUNITY_RESOURCE_LINK_FILTER = '__community_resource__' as const
+import {
+  EMPTY_BOOKMARK_TAG_FILTER,
+  isBookmarkTagFilterActive,
+  linkMatchesBookmarkTagFilter,
+  newLinkVisibleInBookmarkFilter,
+  shouldIncludeCommunityBookmarks,
+  toggleBookmarkTagFilter,
+  type BookmarkTagFilter
+} from '@/lib/bookmark-tag-filter'
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString(undefined, {
@@ -155,7 +164,9 @@ export default function ProfilePage() {
   const [notebookPinLinks, setNotebookPinLinks] = useState<UserLinkWithTag[]>(
     []
   )
-  const [linkFilterTagId, setLinkFilterTagId] = useState<string | null>(null)
+  const [bookmarkTagFilter, setBookmarkTagFilter] = useState<BookmarkTagFilter>(
+    EMPTY_BOOKMARK_TAG_FILTER
+  )
   const [showAddLinkModal, setShowAddLinkModal] = useState(false)
   const [linkFormTitle, setLinkFormTitle] = useState('')
   const [linkFormUrl, setLinkFormUrl] = useState('')
@@ -297,14 +308,9 @@ export default function ProfilePage() {
     setNotebookPinLinks(
       allLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null)
     )
-    if (linkFilterTagId === COMMUNITY_RESOURCE_LINK_FILTER) {
-      setUserLinks([])
-    } else {
-      const links = await getMyLinks(linkFilterTagId)
-      setUserLinks(links)
-    }
+    setUserLinks(allLinks)
     setLinksLoading(false)
-  }, [linkFilterTagId])
+  }, [])
 
   const bookmarkedNotebookIds = useMemo(() => {
     const s = new Set<string>()
@@ -315,35 +321,42 @@ export default function ProfilePage() {
     return s
   }, [notebookPinLinks])
 
+  const bookmarkedCourseIds = useMemo(
+    () => new Set(bookmarks.map(({ course }) => course.notion_page_id)),
+    [bookmarks]
+  )
+
   /** Saved notebooks tab: notebook pins + course bookmarks, A–Z by title. */
   const savedNotebooksAndCourseRows = useMemo(() => {
     type Row =
       | {
           kind: 'notebook'
           id: string
+          notebookId: string
           title: string
           href: string
           createdAt: string
-          sortKey: string
         }
       | {
           kind: 'course'
           id: string
+          courseId: string
           title: string
           href: string
           createdAt: string
-          sortKey: string
         }
     const rows: Row[] = []
     for (const l of notebookPinLinks) {
+      const notebookId = parseNotebookIdFromUserLinkUrl(l.url)
+      if (!notebookId) continue
       const title = l.title?.trim() || 'Notebook'
       rows.push({
         kind: 'notebook',
         id: l.id,
+        notebookId,
         title,
         href: notebookUserLinkHref(l.url),
-        createdAt: l.created_at,
-        sortKey: title.toLowerCase()
+        createdAt: l.created_at
       })
     }
     for (const { bookmark, course } of bookmarks) {
@@ -351,13 +364,15 @@ export default function ProfilePage() {
       rows.push({
         kind: 'course',
         id: bookmark.id,
+        courseId: course.notion_page_id,
         title,
         href: course.url ?? `/${course.notion_page_id}`,
-        createdAt: bookmark.created_at,
-        sortKey: title.toLowerCase()
+        createdAt: bookmark.created_at
       })
     }
-    rows.sort((a, b) => a.sortKey.localeCompare(b.sortKey))
+    rows.sort((a, b) =>
+      a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
+    )
     return rows
   }, [notebookPinLinks, bookmarks])
 
@@ -366,13 +381,14 @@ export default function ProfilePage() {
       | { kind: 'link'; link: UserLinkWithTag }
       | { kind: 'community'; data: CommunityResourceBookmarkWithCourse }
     const rows: Row[] = []
-    if (linkFilterTagId !== COMMUNITY_RESOURCE_LINK_FILTER) {
-      for (const link of userLinks) rows.push({ kind: 'link', link })
+    if (!bookmarkTagFilter.communityOnly) {
+      for (const link of userLinks) {
+        if (linkMatchesBookmarkTagFilter(link, bookmarkTagFilter)) {
+          rows.push({ kind: 'link', link })
+        }
+      }
     }
-    if (
-      linkFilterTagId === null ||
-      linkFilterTagId === COMMUNITY_RESOURCE_LINK_FILTER
-    ) {
+    if (shouldIncludeCommunityBookmarks(bookmarkTagFilter)) {
       for (const data of resourceBookmarks) {
         rows.push({ kind: 'community', data })
       }
@@ -389,7 +405,7 @@ export default function ProfilePage() {
       return tb.localeCompare(ta)
     })
     return rows
-  }, [userLinks, resourceBookmarks, linkFilterTagId])
+  }, [userLinks, resourceBookmarks, bookmarkTagFilter])
 
   const activityFeedRows = useMemo(() => {
     type Row =
@@ -457,6 +473,19 @@ export default function ProfilePage() {
     [bookmarkedNotebookIds, loadLinks]
   )
 
+  const bookmarkCourseFromSaved = useCallback(
+    async (course: { id: string }) => {
+      if (bookmarkedCourseIds.has(course.id)) return true
+      const ok = await addBookmark(course.id)
+      if (ok && effectiveUser?.id) {
+        const bookmarksRes = await getMyBookmarks()
+        setBookmarks(bookmarksRes)
+      }
+      return ok
+    },
+    [bookmarkedCourseIds, effectiveUser?.id]
+  )
+
   const loadPersonalLinks = useCallback(async () => {
     const list = await listMyPersonalLinks()
     setPersonalLinks(list)
@@ -499,7 +528,7 @@ export default function ProfilePage() {
   useEffect(() => {
     if (!effectiveUser) return
     loadLinks()
-  }, [effectiveUser, linkFilterTagId, loadLinks])
+  }, [effectiveUser, loadLinks])
 
   useEffect(() => {
     if (!effectiveUser) return
@@ -629,8 +658,7 @@ export default function ProfilePage() {
     })
     if (link) {
       setUserLinks((prev) => {
-        if (linkFilterTagId && !link.tag_ids.includes(linkFilterTagId))
-          return prev
+        if (!newLinkVisibleInBookmarkFilter(link, bookmarkTagFilter)) return prev
         return [link, ...prev]
       })
       closeAddLinkModal()
@@ -1203,11 +1231,13 @@ export default function ProfilePage() {
                           <button
                             type='button'
                             className={
-                              linkFilterTagId === null
+                              !isBookmarkTagFilterActive(bookmarkTagFilter)
                                 ? styles.linkFilterBtnActive
                                 : styles.linkFilterBtn
                             }
-                            onClick={() => setLinkFilterTagId(null)}
+                            onClick={() =>
+                              setBookmarkTagFilter(EMPTY_BOOKMARK_TAG_FILTER)
+                            }
                           >
                             All
                           </button>
@@ -1215,25 +1245,36 @@ export default function ProfilePage() {
                             <button
                               key={t.id}
                               type='button'
+                              aria-pressed={bookmarkTagFilter.tagIds.includes(
+                                t.id
+                              )}
                               className={
-                                linkFilterTagId === t.id
+                                bookmarkTagFilter.tagIds.includes(t.id)
                                   ? styles.linkFilterBtnActive
                                   : styles.linkFilterBtn
                               }
-                              onClick={() => setLinkFilterTagId(t.id)}
+                              onClick={() =>
+                                setBookmarkTagFilter((prev) =>
+                                  toggleBookmarkTagFilter(prev, t.id)
+                                )
+                              }
                             >
                               {t.name}
                             </button>
                           ))}
                           <button
                             type='button'
+                            aria-pressed={bookmarkTagFilter.communityOnly}
                             className={
-                              linkFilterTagId === COMMUNITY_RESOURCE_LINK_FILTER
+                              bookmarkTagFilter.communityOnly
                                 ? styles.linkFilterBtnActive
                                 : styles.linkFilterBtn
                             }
                             onClick={() =>
-                              setLinkFilterTagId(COMMUNITY_RESOURCE_LINK_FILTER)
+                              setBookmarkTagFilter({
+                                tagIds: [],
+                                communityOnly: true
+                              })
                             }
                           >
                             Community resource
@@ -2191,41 +2232,17 @@ export default function ProfilePage() {
                         onBookmarkNotebook={pinNotebookToBookmarkLinks}
                       />
                     ) : (
-                      <div className={styles.section}>
-                        {linksLoading || activityLoading ? (
-                          <p className={styles.placeholder}>Loading…</p>
-                        ) : savedNotebooksAndCourseRows.length === 0 ? (
-                          <p className={styles.placeholder}>
-                            No saved notebooks or courses yet. Pin notebooks or
-                            save courses from their pages to list them here.
-                          </p>
-                        ) : (
-                          <ul className={styles.list}>
-                            {savedNotebooksAndCourseRows.map((row) => (
-                              <li
-                                key={`${row.kind}-${row.id}`}
-                                className={styles.listItem}
-                              >
-                                <Link
-                                  href={row.href}
-                                  legacyBehavior={false}
-                                  className={styles.listLink}
-                                >
-                                  <span className={styles.listTitle}>
-                                    {row.title}
-                                  </span>
-                                  <span className={styles.listMeta}>
-                                    {row.kind === 'notebook'
-                                      ? 'Notebook'
-                                      : 'Course'}{' '}
-                                    · {formatDate(row.createdAt)}
-                                  </span>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                      <ProfileSavedNotebooksList
+                        rows={savedNotebooksAndCourseRows}
+                        loading={linksLoading || activityLoading}
+                        emptyMessage='No saved notebooks or courses yet. Pin notebooks or save courses from their pages to list them here.'
+                        bookmarkedNotebookIds={bookmarkedNotebookIds}
+                        bookmarkedCourseIds={bookmarkedCourseIds}
+                        onBookmarkNotebook={pinNotebookToBookmarkLinks}
+                        onBookmarkCourse={(course) =>
+                          bookmarkCourseFromSaved({ id: course.id })
+                        }
+                      />
                     )}
 
                     {notebookCreateModalOpen && (

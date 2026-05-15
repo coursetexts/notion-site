@@ -120,17 +120,18 @@
 
 .featureImageWrap {
   margin-top: 6px;
+  width: 100%;
   border-radius: 16px;
   overflow: hidden;
   background: transparent;
-  width: fill;
+  line-height: 0;
 }
 
 .featureImage {
   display: block;
   width: 100%;
+  max-width: none;
   height: auto;
-  vertical-align: middle;
   border: none;
   outline: none;
   transition: transform 220ms ease;
