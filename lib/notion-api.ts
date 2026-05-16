@@ -65,6 +65,15 @@ async function fillMissingBlocks(recordMap: any): Promise<any> {
     const res: any = await (notionClient as any).getBlocks(pendingIds)
     const fetched = res?.recordMap?.block || {}
 
+    // If Notion returned nothing, the remaining blocks are inaccessible.
+    // Break now instead of burning all 10 iterations on the same IDs.
+    if (!Object.keys(fetched).length) {
+      console.warn(
+        `notion fillMissingBlocks: getBlocks returned no data for ${pendingIds.length} block(s), stopping`
+      )
+      break
+    }
+
     // Normalize freshly fetched blocks into the same flat shape.
     for (const [id, entry] of Object.entries<any>(fetched)) {
       const inner = entry?.value?.value
