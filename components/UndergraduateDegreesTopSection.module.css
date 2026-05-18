@@ -1,0 +1,122 @@
+.section {
+  width: min(
+    var(--home-content-max, 640px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  margin: 74px auto 0;
+}
+
+.heading {
+  margin: 0;
+  color: #000000;
+  font-family: 'Guyot Press', serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 24px;
+  letter-spacing: 0.0002em;
+}
+
+.intro {
+  margin: 20px 0 0;
+  max-width: 534px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.0004em;
+  color: var(--midGrey, #37352f);
+}
+
+.searchWrap {
+  margin-top: 32px;
+  width: 534px;
+  max-width: 100%;
+  height: 49px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d7d8da;
+  border-radius: 0;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.searchWrapPulse {
+  animation: searchSubmitPulse 900ms ease-out;
+}
+
+@keyframes searchSubmitPulse {
+  0% {
+    border-color: #0089c4;
+    box-shadow: 0 0 0 0 #0089c473;
+  }
+
+  32% {
+    border-color: #0089c4;
+    box-shadow: 0 0 0 4px #0089c433;
+  }
+
+  100% {
+    border-color: #d7d8da;
+    box-shadow: 0 0 0 0 #0089c400;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 16px 110px 16px 19px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #25272b;
+}
+
+.input::placeholder {
+  color: #6b7280;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  width: 81px;
+  height: 40px;
+  border: none;
+  border-radius: 0;
+  background: var(--dark-brown, #2c1a0c);
+  color: #ffffff;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: 0px 3px 6px 0px #8a8a8a14;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  opacity: 0.9;
+  transform: translateY(-50%) translateX(1px);
+}
+
+@media (max-width: 768px) {
+  .searchWrap {
+    width: 100%;
+  }
+}

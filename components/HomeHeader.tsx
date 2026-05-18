@@ -14,6 +14,7 @@ import styles from './HomeHeader.module.css'
 
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
+  { label: 'Undergraduate', href: '/undergraduate-degrees' },
   { label: 'Manifesto', href: '/manifesto' },
   { label: 'Community', href: '/users' },
   {
@@ -67,7 +68,8 @@ export function HomeHeader({
   const focusSearch = React.useCallback(() => {
     const target =
       document.getElementById('home-search') ||
-      document.getElementById('all-courses-search')
+      document.getElementById('all-courses-search') ||
+      document.getElementById('undergraduate-degrees-search')
 
     if (!target) return false
 
