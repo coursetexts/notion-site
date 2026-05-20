@@ -226,6 +226,30 @@
   border-top: 1px solid #f1edea;
 }
 
+.courseBodyColumns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0 24px;
+  align-items: start;
+}
+
+.courseBodyColumn {
+  min-width: 0;
+}
+
+.courseBodyColumn:first-child {
+  padding-right: 16px;
+  border-right: 1px solid #f1edea;
+}
+
+.courseBodyColumn:last-child {
+  padding-left: 16px;
+}
+
+.courseBodyColumn .topicsHeading {
+  padding-top: 12px;
+}
+
 .topicsPanel {
   padding: 16px 20px 16px 40px;
   background: #ffffff;
@@ -324,21 +348,64 @@
   background: #0089c4;
 }
 
-.resourcesGroups {
+.resourceTabs {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.resourceGroupHeading {
-  margin: 0 0 8px;
+.resourceTabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid #f1edea;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.resourceTab,
+.resourceTabActive {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 10px;
+  border: none;
+  background: #ffffff;
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--midGrey, #37352f);
+  cursor: pointer;
+  text-align: center;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.resourceTab:not(:last-child),
+.resourceTabActive:not(:last-child) {
+  border-right: 1px solid #f1edea;
+}
+
+.resourceTab:hover,
+.resourceTab:focus-visible {
+  background: #faf9f7;
+  color: #25272b;
+}
+
+.resourceTabActive {
+  background: #f5f4f1;
+  color: #25272b;
+}
+
+.resourceTabCount {
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 400;
+  color: var(--midGrey, #b9b4a7);
+}
+
+.resourceTabPanel {
+  min-height: 0;
 }
 
 .resourcesList {
@@ -435,5 +502,22 @@
     margin-top: 16px;
     padding-left: 24px;
     padding-right: 16px;
+  }
+
+  .courseBodyColumns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .courseBodyColumn:first-child {
+    padding-right: 0;
+    padding-bottom: 8px;
+    border-right: none;
+    border-bottom: 1px solid #f1edea;
+  }
+
+  .courseBodyColumn:last-child {
+    padding-left: 0;
+    padding-top: 8px;
   }
 }

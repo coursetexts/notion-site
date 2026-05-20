@@ -85,17 +85,23 @@ export function isResourceUrl(value: string): boolean {
   return /^https?:\/\//i.test(value.trim())
 }
 
-const RESOURCE_GROUP_LABELS: Record<CourseResourceKind, string> = {
+export const RESOURCE_GROUP_LABELS: Record<CourseResourceKind, string> = {
   textbook: 'Textbooks',
   website: 'Websites',
   youtube: 'YouTube channels'
 }
 
+export const RESOURCE_KINDS: CourseResourceKind[] = [
+  'textbook',
+  'website',
+  'youtube'
+]
+
 export function groupResources(resources: CourseResource[]) {
   const groups: Array<{ kind: CourseResourceKind; label: string; items: CourseResource[] }> =
     []
 
-  for (const kind of ['textbook', 'website', 'youtube'] as const) {
+  for (const kind of RESOURCE_KINDS) {
     const items = resources.filter((r) => r.kind === kind)
     if (items.length > 0) {
       groups.push({ kind, label: RESOURCE_GROUP_LABELS[kind], items })

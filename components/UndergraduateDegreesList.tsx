@@ -5,6 +5,7 @@ import {
   groupResources,
   isResourceUrl,
   type CourseResource,
+  type CourseResourceKind,
   type UndergraduateCourse,
   type UndergraduateDegree,
   undergraduateDegrees,
@@ -41,6 +42,96 @@ function YearTag({ year }: { year: string }) {
 
   return (
     <span className={`${styles.yearTag} ${styles[yearClass]}`}>{year}</span>
+  )
+}
+
+function ResourceTabs({
+  groups,
+  idPrefix
+}: {
+  groups: Array<{
+    kind: CourseResourceKind
+    label: string
+    items: CourseResource[]
+  }>
+  idPrefix: string
+}) {
+  const [activeKind, setActiveKind] = React.useState<CourseResourceKind>(
+    groups[0].kind
+  )
+
+  React.useEffect(() => {
+    setActiveKind((current) =>
+      groups.some((group) => group.kind === current) ? current : groups[0].kind
+    )
+  }, [groups])
+
+  const activeGroup =
+    groups.find((group) => group.kind === activeKind) ?? groups[0]
+  const tabListId = `${idPrefix}-resource-tabs`
+  const panelId = `${idPrefix}-resource-panel`
+
+  if (groups.length === 1) {
+    return (
+      <ul className={styles.resourcesList}>
+        {groups[0].items.map((resource, index) => (
+          <ResourceItem
+            key={`${idPrefix}-${groups[0].kind}-${index}`}
+            resource={resource}
+          />
+        ))}
+      </ul>
+    )
+  }
+
+  return (
+    <div className={styles.resourceTabs}>
+      <div
+        role='tablist'
+        aria-label='Resource type'
+        className={styles.resourceTabList}
+        id={tabListId}
+      >
+        {groups.map((group) => {
+          const selected = group.kind === activeKind
+          const tabId = `${idPrefix}-tab-${group.kind}`
+
+          return (
+            <button
+              key={group.kind}
+              type='button'
+              role='tab'
+              id={tabId}
+              className={
+                selected ? styles.resourceTabActive : styles.resourceTab
+              }
+              aria-selected={selected}
+              aria-controls={panelId}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => setActiveKind(group.kind)}
+            >
+              {group.label}
+              <span className={styles.resourceTabCount}>{group.items.length}</span>
+            </button>
+          )
+        })}
+      </div>
+      <div
+        role='tabpanel'
+        id={panelId}
+        aria-labelledby={`${idPrefix}-tab-${activeGroup.kind}`}
+        className={styles.resourceTabPanel}
+      >
+        <ul className={styles.resourcesList}>
+          {activeGroup.items.map((resource, index) => (
+            <ResourceItem
+              key={`${idPrefix}-${activeGroup.kind}-${index}`}
+              resource={resource}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
   )
 }
 
@@ -83,6 +174,23 @@ function ResourceItem({ resource }: { resource: CourseResource }) {
         <p className={styles.resourceDescription}>{resource.description}</p>
       ) : null}
     </li>
+  )
+}
+
+function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
+  if (course.topics.length === 0) return null
+
+  return (
+    <>
+      <p className={styles.topicsHeading}>Syllabus topics</p>
+      <ul className={styles.topicsList}>
+        {course.topics.map((topic, index) => (
+          <li key={`${course.number}-topic-${index}`} className={styles.topicItem}>
+            {topic}
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
@@ -173,55 +281,37 @@ function CourseRow({
           className={hasResources ? styles.courseBody : styles.topicsPanel}
         >
           {hasTopics && hasResources ? (
-            <NestedSection
-              label='Syllabus topics'
-              countLabel={`${course.topics.length} topics`}
-              defaultOpen={defaultOpen}
-            >
-              <ul className={styles.topicsList}>
-                {course.topics.map((topic, index) => (
-                  <li key={`${course.number}-topic-${index}`} className={styles.topicItem}>
-                    {topic}
-                  </li>
-                ))}
-              </ul>
-            </NestedSection>
+            <div className={styles.courseBodyColumns}>
+              <div className={styles.courseBodyColumn}>
+                <SyllabusTopics course={course} />
+              </div>
+              <div className={styles.courseBodyColumn}>
+                <NestedSection
+                  label='Recommended resources'
+                  countLabel={`${resources.length} resources`}
+                  defaultOpen={defaultOpen}
+                >
+                  <ResourceTabs
+                    groups={resourceGroups}
+                    idPrefix={`course-${course.number}`}
+                  />
+                </NestedSection>
+              </div>
+            </div>
           ) : null}
 
-          {hasTopics && !hasResources ? (
-            <>
-              <p className={styles.topicsHeading}>Syllabus topics</p>
-              <ul className={styles.topicsList}>
-                {course.topics.map((topic, index) => (
-                  <li key={`${course.number}-topic-${index}`} className={styles.topicItem}>
-                    {topic}
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : null}
+          {hasTopics && !hasResources ? <SyllabusTopics course={course} /> : null}
 
-          {hasResources ? (
+          {!hasTopics && hasResources ? (
             <NestedSection
               label='Recommended resources'
               countLabel={`${resources.length} resources`}
               defaultOpen={defaultOpen}
             >
-              <div className={styles.resourcesGroups}>
-                {resourceGroups.map((group) => (
-                  <div key={group.kind} className={styles.resourceGroup}>
-                    <p className={styles.resourceGroupHeading}>{group.label}</p>
-                    <ul className={styles.resourcesList}>
-                      {group.items.map((resource, index) => (
-                        <ResourceItem
-                          key={`${course.number}-${group.kind}-${index}`}
-                          resource={resource}
-                        />
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+              <ResourceTabs
+                groups={resourceGroups}
+                idPrefix={`course-${course.number}`}
+              />
             </NestedSection>
           ) : null}
         </div>
