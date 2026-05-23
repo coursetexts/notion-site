@@ -8,11 +8,43 @@ import {
   type CourseResourceKind,
   type UndergraduateCourse,
   type UndergraduateDegree,
-  undergraduateDegrees,
   yearTagClass
 } from '@/lib/undergraduate-degrees'
 
+import type { DegreeLevel } from '@/components/UndergraduateDegreesTopSection'
+import { groupGraduateDegreesBySection } from '@/lib/graduate-degree-sections'
+import { groupUndergraduateDegreesBySection } from '@/lib/undergraduate-degree-sections'
+
 import styles from './UndergraduateDegreesList.module.css'
+
+const DEGREE_DURATION_SUFFIX = /\s+-\s+(Typical\s+.+)$/i
+
+function splitDegreeDisplayName(name: string) {
+  const match = name.match(DEGREE_DURATION_SUFFIX)
+  if (!match) {
+    return { title: name, duration: null as string | null }
+  }
+
+  return {
+    title: name.slice(0, match.index).trimEnd(),
+    duration: match[1]
+  }
+}
+
+function DegreeTitle({ name }: { name: string }) {
+  const { title, duration } = splitDegreeDisplayName(name)
+
+  if (!duration) {
+    return <>{name}</>
+  }
+
+  return (
+    <>
+      {title}
+      <span className={styles.degreeDuration}> - {duration}</span>
+    </>
+  )
+}
 
 function ChevronIcon({ open }: { open: boolean }) {
   return (
@@ -342,7 +374,9 @@ function DegreeCard({
         aria-expanded={coursesOpen}
       >
         <span className={styles.degreeHeaderMain}>
-          <h2 className={styles.degreeTitle}>{degree.name}</h2>
+          <h2 className={styles.degreeTitle}>
+            <DegreeTitle name={degree.name} />
+          </h2>
           <p className={styles.degreeMeta}>
             {degree.courses.length}{' '}
             {degree.courses.length === 1 ? 'course' : 'courses'}
@@ -372,29 +406,92 @@ function DegreeCard({
 }
 
 type UndergraduateDegreesListProps = {
+  degrees: UndergraduateDegree[]
+  level: DegreeLevel
   query?: string
 }
 
+function DegreeSectionGroup({
+  title,
+  description,
+  degrees,
+  queryActive
+}: {
+  title: string
+  description: string
+  degrees: UndergraduateDegree[]
+  queryActive: boolean
+}) {
+  return (
+    <section className={styles.categorySection} aria-label={title}>
+      <h2 className={styles.categoryHeading}>{title}</h2>
+      {description ? (
+        <p className={styles.categoryDescription}>{description}</p>
+      ) : null}
+      <div className={styles.list}>
+        {degrees.map((degree) => (
+          <DegreeCard
+            key={degree.id}
+            degree={degree}
+            queryActive={queryActive}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
 export function UndergraduateDegreesList({
+  degrees,
+  level,
   query = ''
 }: UndergraduateDegreesListProps) {
   const filtered = React.useMemo(
-    () => filterDegrees(undergraduateDegrees, query),
-    [query]
+    () => filterDegrees(degrees, query),
+    [degrees, query]
   )
+  const sectionGroups = React.useMemo(() => {
+    if (level === 'undergraduate') {
+      return groupUndergraduateDegreesBySection(filtered)
+    }
+    if (level === 'graduate') {
+      return groupGraduateDegreesBySection(filtered)
+    }
+    return null
+  }, [filtered, level])
   const queryActive = query.trim().length > 0
+  const levelLabel = level === 'graduate' ? 'graduate' : 'undergraduate'
+  const ariaLabel =
+    level === 'graduate'
+      ? 'Graduate degree curricula'
+      : 'Undergraduate degree curricula'
 
   return (
-    <section className={styles.section} aria-label='Undergraduate degree curricula'>
+    <section
+      id='degrees-panel'
+      aria-labelledby='degrees-level-label'
+      className={styles.section}
+      aria-label={ariaLabel}
+    >
       <div className={styles.inner}>
-      <p className={styles.resultsMeta}>
-        {queryActive
-          ? `${filtered.length} of ${undergraduateDegrees.length} degrees`
-          : `${undergraduateDegrees.length} degrees`}
-      </p>
-
       {filtered.length === 0 ? (
-        <p className={styles.emptyState}>No degrees matched your search.</p>
+        <p className={styles.emptyState}>
+          {degrees.length === 0
+            ? `${level === 'graduate' ? 'Graduate' : 'Undergraduate'} degrees coming soon.`
+            : `No ${levelLabel} degrees matched your search.`}
+        </p>
+      ) : sectionGroups ? (
+        <div className={styles.categoryList}>
+          {sectionGroups.map((group) => (
+            <DegreeSectionGroup
+              key={group.section.id}
+              title={group.section.title}
+              description={group.section.description}
+              degrees={group.degrees}
+              queryActive={queryActive}
+            />
+          ))}
+        </div>
       ) : (
         <div className={styles.list}>
           {filtered.map((degree) => (

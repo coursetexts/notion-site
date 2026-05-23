@@ -7,6 +7,15 @@ const withBundleAnalyzer =
     : (config) => config
 
 module.exports = withBundleAnalyzer({
+  async redirects() {
+    return [
+      {
+        source: '/undergraduate-degrees',
+        destination: '/degrees',
+        permanent: true
+      }
+    ]
+  },
   staticPageGenerationTimeout: 600,
   images: {
     domains: [

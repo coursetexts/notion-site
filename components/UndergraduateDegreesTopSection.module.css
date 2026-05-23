@@ -6,15 +6,99 @@
   margin: 74px auto 0;
 }
 
-.heading {
+
+.levelSelect {
+  position: relative;
+  width: fit-content;
+}
+
+.levelTrigger {
   margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
   color: #000000;
-  font-family: 'Guyot Press', serif;
+  font-family: var(--font-serif, 'Guyot Press', serif);
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
   line-height: 24px;
   letter-spacing: 0.0002em;
+}
+
+.levelTrigger:hover .levelTitle,
+.levelTrigger:focus-visible .levelTitle {
+  opacity: 0.75;
+}
+
+.levelTitle {
+  color: #000000;
+  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 24px;
+  letter-spacing: 0.0002em;
+  transition: opacity 180ms ease;
+}
+
+.levelChevron {
+  flex-shrink: 0;
+  color: #000000;
+  transition: transform 180ms ease;
+}
+
+.levelChevronOpen {
+  transform: rotate(180deg);
+}
+
+.levelMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 20;
+  min-width: 100%;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  border: 1px solid #e6e6e6;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.levelOption {
+  width: 100%;
+  margin: 0;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-weight: 401;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: 0.0002em;
+  color: #6b7280;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.levelOption:hover,
+.levelOption:focus-visible {
+  background: #faf9f7;
+  color: #000000;
+}
+
+.levelOptionSelected {
+  color: #000000;
 }
 
 .intro {

@@ -2,23 +2,64 @@ import * as React from 'react'
 
 import styles from './UndergraduateDegreesTopSection.module.css'
 
-const INTRO_COPY =
-  'Coursetexts curated curriculum for common undergraduate degrees. Helping self learners structure their learning, and linking out to world class resources.'
+export type DegreeLevel = 'undergraduate' | 'graduate'
+
+const LEVEL_LABELS: Record<DegreeLevel, string> = {
+  undergraduate: 'Undergraduate Degrees',
+  graduate: 'Graduate Degrees'
+}
+
+const LEVEL_OPTIONS: DegreeLevel[] = ['undergraduate', 'graduate']
+
+const INTRO_COPY: Record<DegreeLevel, string> = {
+  undergraduate:
+    'Coursetexts curated curriculum for common undergraduate degrees. Helping self learners structure their learning, and linking out to world class resources.',
+  graduate:
+    'Coursetexts curated curriculum for common graduate degrees. Helping self learners structure their learning, and linking out to world class resources.'
+}
+
+function ChevronDownIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      className={`${styles.levelChevron} ${open ? styles.levelChevronOpen : ''}`}
+      width='12'
+      height='12'
+      viewBox='0 0 12 12'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      aria-hidden='true'
+    >
+      <path
+        d='M2.25 4.125L6 7.875L9.75 4.125'
+        stroke='currentColor'
+        strokeWidth='1.25'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
 
 type UndergraduateDegreesTopSectionProps = {
+  level: DegreeLevel
+  onLevelChange: (level: DegreeLevel) => void
   query: string
   onQueryChange: (value: string) => void
   onSearchSubmit: () => void
 }
 
 export function UndergraduateDegreesTopSection({
+  level,
+  onLevelChange,
   query,
   onQueryChange,
   onSearchSubmit
 }: UndergraduateDegreesTopSectionProps) {
   const [isSearchPulse, setIsSearchPulse] = React.useState(false)
+  const [levelMenuOpen, setLevelMenuOpen] = React.useState(false)
   const pulseTimeoutRef = React.useRef<number | null>(null)
   const submitFromButtonRef = React.useRef(false)
+  const levelSelectRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     return () => {
@@ -27,6 +68,30 @@ export function UndergraduateDegreesTopSection({
       }
     }
   }, [])
+
+  React.useEffect(() => {
+    if (!levelMenuOpen) return
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!levelSelectRef.current?.contains(event.target as Node)) {
+        setLevelMenuOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setLevelMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [levelMenuOpen])
 
   const triggerSearchPulse = React.useCallback(() => {
     setIsSearchPulse(false)
@@ -46,7 +111,7 @@ export function UndergraduateDegreesTopSection({
   }, [])
 
   React.useEffect(() => {
-    const form = document.getElementById('undergraduate-degrees-search')
+    const form = document.getElementById('degrees-search')
     if (!form) return
 
     const handleExternalPulse = () => triggerSearchPulse()
@@ -74,14 +139,64 @@ export function UndergraduateDegreesTopSection({
     [onSearchSubmit, triggerSearchPulse]
   )
 
+  const handleLevelSelect = React.useCallback(
+    (nextLevel: DegreeLevel) => {
+      onLevelChange(nextLevel)
+      setLevelMenuOpen(false)
+    },
+    [onLevelChange]
+  )
+
   return (
     <section className={styles.section}>
-      <h1 className={styles.heading}>Undergraduate Degrees</h1>
+      <div className={styles.levelSelect} ref={levelSelectRef}>
+        <button
+          type='button'
+          id='degrees-level-label'
+          className={styles.levelTrigger}
+          aria-haspopup='listbox'
+          aria-expanded={levelMenuOpen}
+          aria-controls='degrees-level-menu'
+          onClick={() => setLevelMenuOpen((open) => !open)}
+        >
+          <span className={styles.levelTitle}>{LEVEL_LABELS[level]}</span>
+          <ChevronDownIcon open={levelMenuOpen} />
+        </button>
 
-      <p className={styles.intro}>{INTRO_COPY}</p>
+        {levelMenuOpen ? (
+          <ul
+            id='degrees-level-menu'
+            role='listbox'
+            aria-labelledby='degrees-level-label'
+            className={styles.levelMenu}
+          >
+            {LEVEL_OPTIONS.map((option) => {
+              const selected = option === level
+
+              return (
+                <li key={option} role='presentation'>
+                  <button
+                    type='button'
+                    role='option'
+                    aria-selected={selected}
+                    className={`${styles.levelOption} ${
+                      selected ? styles.levelOptionSelected : ''
+                    }`}
+                    onClick={() => handleLevelSelect(option)}
+                  >
+                    {LEVEL_LABELS[option]}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        ) : null}
+      </div>
+
+      <p className={styles.intro}>{INTRO_COPY[level]}</p>
 
       <form
-        id='undergraduate-degrees-search'
+        id='degrees-search'
         className={`${styles.searchWrap} ${
           isSearchPulse ? styles.searchWrapPulse : ''
         }`}

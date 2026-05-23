@@ -5,12 +5,23 @@ import { useRouter } from 'next/router'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { UndergraduateDegreesList } from '@/components/UndergraduateDegreesList'
-import { UndergraduateDegreesTopSection } from '@/components/UndergraduateDegreesTopSection'
+import {
+  UndergraduateDegreesTopSection,
+  type DegreeLevel
+} from '@/components/UndergraduateDegreesTopSection'
+import { graduateDegrees } from '@/lib/graduate-degrees'
+import { undergraduateDegrees } from '@/lib/undergraduate-degrees'
 import { name as siteName } from '@/lib/config'
 
-export default function UndergraduateDegreesPage() {
+function parseDegreeLevel(value: string | string[] | undefined): DegreeLevel {
+  const raw = Array.isArray(value) ? value[0] : value
+  return raw === 'graduate' ? 'graduate' : 'undergraduate'
+}
+
+export default function DegreesPage() {
   const router = useRouter()
   const [query, setQuery] = React.useState('')
+  const [level, setLevel] = React.useState<DegreeLevel>('undergraduate')
 
   React.useEffect(() => {
     if (!router.isReady) return
@@ -20,10 +31,11 @@ export default function UndergraduateDegreesPage() {
       : (router.query.q as string | undefined) || ''
 
     setQuery((current) => (current === urlQuery ? current : urlQuery))
-  }, [router.isReady, router.query.q])
+    setLevel(parseDegreeLevel(router.query.level))
+  }, [router.isReady, router.query.q, router.query.level])
 
   const updateUrl = React.useCallback(
-    (nextQuery: string) => {
+    (nextQuery: string, nextLevel: DegreeLevel) => {
       if (!router.isReady) return
 
       const trimmedQuery = nextQuery.trim()
@@ -33,9 +45,13 @@ export default function UndergraduateDegreesPage() {
         nextRouteQuery.q = trimmedQuery
       }
 
+      if (nextLevel === 'graduate') {
+        nextRouteQuery.level = 'graduate'
+      }
+
       void router.replace(
         {
-          pathname: '/undergraduate-degrees',
+          pathname: '/degrees',
           query: nextRouteQuery
         },
         undefined,
@@ -46,13 +62,26 @@ export default function UndergraduateDegreesPage() {
   )
 
   const handleSearchSubmit = React.useCallback(() => {
-    updateUrl(query)
-  }, [query, updateUrl])
+    updateUrl(query, level)
+  }, [query, level, updateUrl])
+
+  const handleLevelChange = React.useCallback(
+    (nextLevel: DegreeLevel) => {
+      setLevel(nextLevel)
+      updateUrl(query, nextLevel)
+    },
+    [query, updateUrl]
+  )
+
+  const degrees =
+    level === 'graduate' ? graduateDegrees : undergraduateDegrees
+  const pageTitle =
+    level === 'graduate' ? 'Graduate Degrees' : 'Undergraduate Degrees'
 
   return (
     <>
       <Head>
-        <title>Undergraduate Degrees – {siteName}</title>
+        <title>{pageTitle} – {siteName}</title>
         <link rel='preconnect' href='https://use.typekit.net' />
         <link rel='preconnect' href='https://p.typekit.net' />
         <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
@@ -83,16 +112,19 @@ export default function UndergraduateDegreesPage() {
         }
       >
         <HomeHeader />
-        <section
-          style={{ flex: 1 }}
-          aria-label='Undergraduate degrees workspace'
-        >
+        <section style={{ flex: 1 }} aria-label='Degrees workspace'>
           <UndergraduateDegreesTopSection
+            level={level}
+            onLevelChange={handleLevelChange}
             query={query}
             onQueryChange={setQuery}
             onSearchSubmit={handleSearchSubmit}
           />
-          <UndergraduateDegreesList query={query} />
+          <UndergraduateDegreesList
+            degrees={degrees}
+            level={level}
+            query={query}
+          />
         </section>
         <HomeFooterSection />
       </main>

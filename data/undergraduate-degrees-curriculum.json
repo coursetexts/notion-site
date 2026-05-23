@@ -130,6 +130,7 @@
             "Applications of derivatives (optimization, marginal analysis)",
             "Integration and the Fundamental Theorem of Calculus",
             "Applications of integrals (area, accumulation)",
+            "Multivariable functions and partial derivatives",
             "Constrained optimization (Lagrange multipliers)",
             "Matrix algebra and systems of equations",
             "Linear programming and basic optimization",
@@ -1141,7 +1142,8 @@
             "Securities and antitrust regulation",
             "Employment law and discrimination",
             "Intellectual property (patents, trademarks, copyrights)",
-            "Ethical frameworks and corporate social responsibility"
+            "Ethical frameworks and corporate social responsibility",
+            "Data privacy, cybersecurity compliance, and digital-platform regulation"
           ],
           "resources": [
             {
@@ -1203,6 +1205,18 @@
               "title": "Markkula Center for Applied Ethics",
               "linkOrSite": "https://www.scu.edu/ethics/",
               "description": "Excellent ethics frameworks and business ethics cases."
+            },
+            {
+              "kind": "website",
+              "title": "FTC - Privacy and Security Guidance",
+              "linkOrSite": "https://www.ftc.gov/business-guidance/privacy-security",
+              "description": "Official business guidance for privacy promises, data security practices, and digital compliance."
+            },
+            {
+              "kind": "website",
+              "title": "NIST Privacy Framework",
+              "linkOrSite": "https://www.nist.gov/privacy-framework",
+              "description": "Enterprise privacy-risk framework useful for digital-platform and cybersecurity compliance discussions."
             },
             {
               "kind": "youtube",
@@ -1477,7 +1491,8 @@
             "Material Requirements Planning (MRP)",
             "Just-in-Time, Lean, and Six Sigma",
             "Quality management (TQM, SPC)",
-            "Project management (CPM/PERT) and supply chain"
+            "Project management (CPM/PERT) and supply chain",
+            "Operational resilience, sustainable operations, and disruption recovery"
           ],
           "resources": [
             {
@@ -1813,7 +1828,8 @@
             "Corporate-level strategy (diversification, integration)",
             "International and global strategy",
             "Mergers, acquisitions, and alliances",
-            "Strategy implementation, leadership, and case analysis"
+            "Strategy implementation, leadership, and case analysis",
+            "Corporate governance, stakeholders, sustainability, and strategic risk"
           ],
           "resources": [
             {
@@ -2716,7 +2732,8 @@
             "CNS drugs (analgesics, sedatives, antiseizure)",
             "Antimicrobials",
             "Endocrine and hormone-related drugs",
-            "Pain management and patient teaching"
+            "Pain management and patient teaching",
+            "Medication safety, reconciliation, adverse reactions, and error prevention"
           ],
           "resources": [
             {
@@ -2940,7 +2957,8 @@
             "Abdominal assessment",
             "Musculoskeletal assessment",
             "Neurological assessment and mental status",
-            "Cultural assessment and documentation"
+            "Cultural assessment and documentation",
+            "Lifespan, functional, trauma-informed, and accessibility-aware assessment"
           ],
           "resources": [
             {
@@ -3388,7 +3406,8 @@
             "Newborn assessment and care",
             "Breastfeeding and infant nutrition",
             "High-risk pregnancy and complications",
-            "Family-centered care and discharge planning"
+            "Family-centered care and discharge planning",
+            "Maternal morbidity, obstetric emergencies, perinatal safety, and equity"
           ],
           "resources": [
             {
@@ -3500,7 +3519,8 @@
             "Neurological disorders in children",
             "Pediatric oncology and hematology",
             "Common chronic illnesses (asthma, diabetes)",
-            "Family-centered care and child advocacy"
+            "Family-centered care and child advocacy",
+            "Safeguarding, maltreatment recognition, mandatory reporting, and family safety"
           ],
           "resources": [
             {
@@ -3612,7 +3632,8 @@
             "Eating disorders",
             "Crisis intervention and suicide assessment",
             "Psychopharmacology",
-            "Group, family, and milieu therapy"
+            "Group, family, and milieu therapy",
+            "Trauma-informed de-escalation, restraint reduction, and legal patient protections"
           ],
           "resources": [
             {
@@ -3836,7 +3857,8 @@
             "Health data analytics and dashboards",
             "Quality improvement through data",
             "Emerging technologies (AI, machine learning)",
-            "Workflow design and human factors"
+            "Workflow design and human factors",
+            "Interoperability, data standards, data quality, and clinical governance"
           ],
           "resources": [
             {
@@ -4284,7 +4306,8 @@
             "Quality improvement project",
             "NCLEX preparation strategies",
             "Reflective practice and self-evaluation",
-            "Career planning and job search"
+            "Career planning and job search",
+            "Recognition and escalation of deterioration, rapid response, and emergency stabilization"
           ],
           "resources": [
             {
@@ -4508,6 +4531,7 @@
           "topics": [
             "Descriptive statistics and visualization",
             "Probability and the normal distribution",
+            "Sampling distributions, confidence intervals, and estimation",
             "Hypothesis testing fundamentals",
             "One-sample and two-sample t-tests",
             "ANOVA (one-way, factorial)",
@@ -4626,7 +4650,8 @@
             "Research ethics and the IRB",
             "Replicability and the open-science movement",
             "Data analysis and interpretation",
-            "APA-style scientific writing"
+            "APA-style scientific writing",
+            "Preregistration, data management, and reproducible analysis workflows"
           ],
           "resources": [
             {
@@ -5634,7 +5659,8 @@
             "Neuropsychological testing",
             "Achievement and aptitude testing",
             "Cultural fairness and bias in testing",
-            "Ethical and legal issues in assessment"
+            "Ethical and legal issues in assessment",
+            "Clinical report writing, feedback, accommodations, and referral decisions"
           ],
           "resources": [
             {
@@ -6087,6 +6113,7 @@
             "Prokaryotes (bacteria and archaea)",
             "Protists",
             "Fungi",
+            "Plant diversity and plant physiology",
             "Animal diversity and physiology",
             "Ecology and biodiversity"
           ],
@@ -7096,7 +7123,8 @@
             "Gene regulation in prokaryotes",
             "Gene regulation in eukaryotes",
             "Mutations and DNA repair",
-            "Population and quantitative genetics"
+            "Population and quantitative genetics",
+            "Genomics, CRISPR gene editing, genetic screening, and bioethics"
           ],
           "resources": [
             {
@@ -7544,7 +7572,8 @@
             "Host immune response",
             "Antimicrobials and resistance",
             "Industrial and environmental microbiology",
-            "Diagnostic microbiology techniques"
+            "Diagnostic microbiology techniques",
+            "Infection prevention, outbreak epidemiology, and One Health surveillance"
           ],
           "resources": [
             {
@@ -7992,7 +8021,8 @@
             "Scientific writing",
             "Poster presentation",
             "Oral defense",
-            "Career and grad-school planning"
+            "Career and grad-school planning",
+            "Biosafety, data stewardship, and reproducible biological research"
           ],
           "resources": [
             {
@@ -8222,6 +8252,7 @@
             "Convergence tests",
             "Power series and Taylor series",
             "Parametric equations",
+            "Polar coordinates",
             "Introduction to vectors"
           ],
           "resources": [
@@ -10238,7 +10269,8 @@
             "Testing and validation",
             "Design for manufacturing and cost",
             "Documentation and technical reports",
-            "Final presentation and demo"
+            "Final presentation and demo",
+            "Safety, professional ethics, standards, and regulatory compliance"
           ],
           "resources": [
             {
@@ -10467,6 +10499,7 @@
             "Applications of derivatives (optimization)",
             "Curve sketching and Mean Value Theorem",
             "Antiderivatives",
+            "Definite integrals and net change",
             "Fundamental Theorem of Calculus",
             "Applications of integration"
           ],
@@ -11476,7 +11509,8 @@
             "Virtual memory and paging",
             "File systems",
             "I/O subsystems",
-            "Security and protection"
+            "Security and protection",
+            "Virtualization, containers, isolation, and systems observability"
           ],
           "resources": [
             {
@@ -11588,7 +11622,8 @@
             "Transactions and ACID",
             "Concurrency control",
             "Recovery and logging",
-            "NoSQL, distributed databases, and warehousing"
+            "NoSQL, distributed databases, and warehousing",
+            "Database security, privacy, access control, and data governance"
           ],
           "resources": [
             {
@@ -11650,6 +11685,12 @@
               "title": "Red Book Readings in Database Systems",
               "linkOrSite": "http://www.redbook.io/",
               "description": "Curated database systems papers and commentary."
+            },
+            {
+              "kind": "website",
+              "title": "OWASP Database Security Cheat Sheet",
+              "linkOrSite": "https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html",
+              "description": "Applied database hardening guidance for authentication, authorization, encryption, and secure deployment."
             },
             {
               "kind": "youtube",
@@ -11812,7 +11853,8 @@
             "Testing (unit, integration, system, TDD)",
             "Continuous integration and deployment",
             "Code review and refactoring",
-            "Software project management"
+            "Software project management",
+            "Secure software development, dependency risk, and delivery controls"
           ],
           "resources": [
             {
@@ -11874,6 +11916,18 @@
               "title": "Git Documentation",
               "linkOrSite": "https://git-scm.com/doc",
               "description": "Official Git book and reference for version control workflows."
+            },
+            {
+              "kind": "website",
+              "title": "OWASP SAMM",
+              "linkOrSite": "https://owasp.org/www-project-samm/",
+              "description": "Secure software-development maturity model covering governance, implementation, verification, and operations."
+            },
+            {
+              "kind": "website",
+              "title": "NIST Secure Software Development Framework (SSDF)",
+              "linkOrSite": "https://csrc.nist.gov/pubs/sp/800/218/final",
+              "description": "Authoritative secure-development practices for supply-chain risk and protected software delivery."
             },
             {
               "kind": "youtube",
@@ -12260,7 +12314,8 @@
             "Unsupervised learning (clustering, PCA)",
             "Neural networks and deep learning",
             "Reinforcement learning",
-            "Natural language processing"
+            "Natural language processing",
+            "Model evaluation, bias, explainability, privacy, and responsible AI"
           ],
           "resources": [
             {
@@ -12324,6 +12379,12 @@
               "description": "Official ML algorithms and workflow documentation."
             },
             {
+              "kind": "website",
+              "title": "NIST AI Risk Management Framework",
+              "linkOrSite": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "description": "Framework for AI evaluation, bias, explainability, privacy, and trustworthy deployment."
+            },
+            {
               "kind": "youtube",
               "title": "Stanford Online",
               "linkOrSite": "https://www.youtube.com/@stanfordonline",
@@ -12372,7 +12433,8 @@
             "Documentation and technical writing",
             "Team collaboration and project management",
             "Final demo and presentation",
-            "Reflection and post-mortem"
+            "Reflection and post-mortem",
+            "Deployment, monitoring, accessibility, and long-term software maintenance"
           ],
           "resources": [
             {
@@ -12598,6 +12660,7 @@
             "Topic selection and research",
             "Speech organization and outlining",
             "Introductions and conclusions",
+            "Supporting evidence, citation, and oral source integration",
             "Visual aids and presentation tech",
             "Vocal delivery and physical delivery",
             "Informative speaking",
@@ -13498,7 +13561,8 @@
             "Broadcast regulation and the FCC",
             "Indecency, obscenity, and content rules",
             "Journalism ethics codes (SPJ)",
-            "Ethics in advertising, PR, and entertainment"
+            "Ethics in advertising, PR, and entertainment",
+            "Digital platforms, misinformation, privacy, and AI-generated media"
           ],
           "resources": [
             {
@@ -14398,6 +14462,7 @@
             "Musculoskeletal terminology",
             "Cardiovascular and lymphatic terminology",
             "Respiratory terminology",
+            "Digestive and urinary system terminology",
             "Nervous system and sensory terminology",
             "Endocrine and reproductive terminology",
             "Common medical abbreviations and pronunciation"
@@ -14960,7 +15025,8 @@
             "International healthcare system comparisons",
             "Healthcare disparities and access",
             "Healthcare regulation (HIPAA, EMTALA)",
-            "Future trends (value-based care, telehealth)"
+            "Future trends (value-based care, telehealth)",
+            "Health informatics, interoperability, and digital-health equity"
           ],
           "resources": [
             {
@@ -15968,7 +16034,8 @@
             "Special populations (pediatric, geriatric, pregnancy)",
             "Cardiovascular drugs",
             "CNS drugs",
-            "Antimicrobial agents"
+            "Antimicrobial agents",
+            "Medication safety, reconciliation, and error prevention"
           ],
           "resources": [
             {
@@ -16420,6 +16487,7 @@
             "Cognitive and constructivist theories",
             "Motivation and engagement",
             "Memory and information processing",
+            "Individual differences, exceptional learners, and inclusive instruction",
             "Self-regulation and metacognition",
             "Classroom assessment principles",
             "Applying psychology to teaching practice"
@@ -17094,7 +17162,8 @@
             "The science of reading",
             "Structured literacy approaches",
             "Dyslexia and reading difficulties",
-            "Assessment of reading skills"
+            "Assessment of reading skills",
+            "Evidence-based reading intervention and progress monitoring"
           ],
           "resources": [
             {
@@ -17878,7 +17947,8 @@
             "Rubrics and scoring criteria",
             "Data-driven instruction",
             "Reporting to families",
-            "Bias and fairness in assessment"
+            "Bias and fairness in assessment",
+            "Assessment accommodations and multilingual and disability-inclusive evaluation"
           ],
           "resources": [
             {
@@ -18214,7 +18284,8 @@
             "Parent-teacher communication",
             "Professionalism in schools",
             "edTPA preparation",
-            "Job search and licensure"
+            "Job search and licensure",
+            "IEP/504 implementation, mandated reporting, and legal responsibilities"
           ],
           "resources": [
             {
@@ -18276,6 +18347,12 @@
               "title": "AAEE Job Search Handbook",
               "linkOrSite": "https://aaee.org/",
               "description": "Education career and job-search resources."
+            },
+            {
+              "kind": "website",
+              "title": "Child Welfare Information Gateway - Mandated Reporting",
+              "linkOrSite": "https://www.childwelfare.gov/topics/safety-and-risk/mandated-reporting/",
+              "description": "Professional reference for reporting responsibilities when educators suspect child abuse or neglect."
             },
             {
               "kind": "youtube",
@@ -18443,6 +18520,7 @@
             "Monetary policy and the Federal Reserve",
             "Money, banking, and financial markets",
             "Long-run economic growth and productivity",
+            "Business cycles and recession indicators",
             "International trade and comparative advantage",
             "Exchange rates and the balance of payments"
           ],
@@ -19900,7 +19978,8 @@
             "Expenditure cycle controls",
             "Production and HR cycle controls",
             "ERP systems and integration",
-            "Data analytics and emerging tech in AIS"
+            "Data analytics and emerging tech in AIS",
+            "Cybersecurity incidents, continuous auditing, and control monitoring"
           ],
           "resources": [
             {
@@ -20236,7 +20315,8 @@
             "Audit sampling",
             "Auditing major transaction cycles (revenue, purchasing)",
             "Completing the audit and audit reports",
-            "Other assurance services (review, compilation, attestation)"
+            "Other assurance services (review, compilation, attestation)",
+            "Fraud risk, audit analytics, and cybersecurity controls"
           ],
           "resources": [
             {
@@ -20578,6 +20658,7 @@
             "Money, banking, and financial markets",
             "Long-run economic growth and productivity",
             "Business cycles and recessions",
+            "International trade and capital flows",
             "Exchange rates and the balance of payments"
           ],
           "resources": [
@@ -21586,7 +21667,8 @@
             "Market efficiency",
             "Equity valuation models",
             "Fixed-income analysis and bond pricing",
-            "Derivatives and options pricing intro"
+            "Derivatives and options pricing intro",
+            "Behavioral finance and biases in portfolio decision-making"
           ],
           "resources": [
             {
@@ -21698,7 +21780,8 @@
             "Commercial banking",
             "Investment banking and securities firms",
             "Insurance companies and pension funds",
-            "Financial regulation (Fed, SEC, FDIC)"
+            "Financial regulation (Fed, SEC, FDIC)",
+            "Financial crises, systemic risk, and macroprudential oversight"
           ],
           "resources": [
             {
@@ -22146,7 +22229,8 @@
             "Option Greeks (delta, gamma, vega, theta)",
             "Swap pricing and applications",
             "Credit derivatives and credit risk",
-            "Enterprise risk management"
+            "Enterprise risk management",
+            "Value at risk, stress testing, scenario analysis, and model risk"
           ],
           "resources": [
             {
@@ -22818,6 +22902,7 @@
           "topics": [
             "Models of consumer decision-making",
             "Perception and attention",
+            "Learning, memory, and involvement",
             "Motivation and emotion",
             "Personality and self-concept",
             "Attitudes and persuasion",
@@ -23048,7 +23133,8 @@
             "A/B testing and experimentation",
             "Marketing mix modeling",
             "Attribution modeling",
-            "Dashboards and reporting"
+            "Dashboards and reporting",
+            "Consumer privacy, consent, algorithmic bias, and responsible targeting"
           ],
           "resources": [
             {
@@ -23110,6 +23196,12 @@
               "title": "Mode Analytics SQL Tutorial",
               "linkOrSite": "https://mode.com/sql-tutorial/",
               "description": "SQL practice for marketing analytics data extraction and analysis."
+            },
+            {
+              "kind": "website",
+              "title": "FTC - Privacy and Security Guidance",
+              "linkOrSite": "https://www.ftc.gov/business-guidance/privacy-security",
+              "description": "Consumer-data privacy and security guidance for analytics, audience data, and targeting decisions."
             },
             {
               "kind": "youtube",
@@ -23272,7 +23364,8 @@
             "Display and programmatic advertising",
             "Influencer marketing",
             "Mobile marketing",
-            "Marketing automation"
+            "Marketing automation",
+            "Consumer privacy, consent, measurement loss, and responsible personalization"
           ],
           "resources": [
             {
@@ -23334,6 +23427,12 @@
               "title": "Moz SEO Learning Center",
               "linkOrSite": "https://moz.com/learn/seo",
               "description": "SEO fundamentals, technical SEO, keywords, and ranking concepts."
+            },
+            {
+              "kind": "website",
+              "title": "FTC - Privacy and Security Guidance",
+              "linkOrSite": "https://www.ftc.gov/business-guidance/privacy-security",
+              "description": "Regulatory context for consent, personalization, data collection, and privacy claims in digital channels."
             },
             {
               "kind": "youtube",
@@ -24393,6 +24492,7 @@
             "The comparative method",
             "States and state-building",
             "Democratic regimes",
+            "Authoritarian regimes and democratization",
             "Political institutions (parliamentary vs. presidential)",
             "Electoral systems",
             "Political culture and identity",
@@ -25182,7 +25282,8 @@
             "Cost-benefit analysis",
             "Stakeholder analysis",
             "Policy instruments",
-            "Major policy areas (health, education, environment)"
+            "Major policy areas (health, education, environment)",
+            "Equity impact analysis, public engagement, and implementation accountability"
           ],
           "resources": [
             {
@@ -26080,6 +26181,7 @@
             "Beowulf",
             "Chaucer and The Canterbury Tales",
             "Sir Gawain and the Green Knight",
+            "Medieval drama and religious literature",
             "Arthurian and romance tradition",
             "Allegory and dream visions (Pearl, Piers Plowman)",
             "Medieval prose",
@@ -27316,7 +27418,8 @@
             "Queer theory",
             "Postcolonial theory",
             "New historicism and cultural studies",
-            "Eco-criticism and digital humanities"
+            "Eco-criticism and digital humanities",
+            "Critical race, disability, and intersectional approaches to texts"
           ],
           "resources": [
             {
@@ -27378,6 +27481,18 @@
               "title": "Postcolonial Studies at Emory",
               "linkOrSite": "https://scholarblogs.emory.edu/postcolonialstudies/",
               "description": "Postcolonial theory concepts, authors, and contexts."
+            },
+            {
+              "kind": "website",
+              "title": "Disability Studies Quarterly",
+              "linkOrSite": "https://dsq-sds.org/",
+              "description": "Peer-reviewed scholarship supporting disability studies and intersectional textual analysis."
+            },
+            {
+              "kind": "website",
+              "title": "Stanford Encyclopedia of Philosophy - Intersectionality",
+              "linkOrSite": "https://plato.stanford.edu/entries/feminism-intersectionality/",
+              "description": "Rigorous conceptual reference for intersectionality as a critical analytic framework."
             },
             {
               "kind": "youtube",
@@ -27881,6 +27996,7 @@
             "Monetary policy",
             "Money and banking",
             "Long-run economic growth",
+            "Business cycles and stabilization policy",
             "International trade",
             "Exchange rates and open-economy macro"
           ],
@@ -28890,7 +29006,8 @@
             "Instrumental variables",
             "Panel data methods",
             "Limited dependent variable models (logit, probit)",
-            "Time series econometrics"
+            "Time series econometrics",
+            "Modern causal inference: difference-in-differences, regression discontinuity, and experiments"
           ],
           "resources": [
             {
@@ -30012,6 +30129,7 @@
             "Classical school (Beccaria, Bentham)",
             "Biological theories of crime",
             "Psychological theories",
+            "Social structure theories: strain and social disorganization",
             "Social process theories (differential association, learning)",
             "Social control theories",
             "Critical and conflict theories",
@@ -31136,7 +31254,8 @@
             "Firearms and ballistics",
             "Questioned document examination",
             "Digital forensics",
-            "Forensic ethics and expert testimony"
+            "Forensic ethics and expert testimony",
+            "Method validity, error rates, quality assurance, and laboratory accreditation"
           ],
           "resources": [
             {
@@ -31360,7 +31479,8 @@
             "Racial bias and discrimination",
             "Whistleblowing",
             "Research ethics",
-            "Personal and professional ethics"
+            "Personal and professional ethics",
+            "Algorithmic policing, surveillance, and digital-evidence ethics"
           ],
           "resources": [
             {
@@ -31809,6 +31929,7 @@
             "Auguste Comte and positivism",
             "Karl Marx (capitalism, class, alienation)",
             "Emile Durkheim (solidarity, anomie, suicide)",
+            "Max Weber: rationalization, bureaucracy, and authority",
             "Georg Simmel",
             "W.E.B. Du Bois",
             "Harriet Martineau",
@@ -31915,7 +32036,7 @@
           "type": "Core",
           "year": "Year 2-3",
           "description": "Modern theory - Berkeley Soc 102 (separate from classical)",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Structural functionalism (Parsons, Merton)",
             "Conflict theory and neo-Marxism",
@@ -32150,7 +32271,8 @@
             "Comparative-historical methods",
             "Sampling",
             "Mixed methods",
-            "Ethics in social research"
+            "Ethics in social research",
+            "Community-engaged research, reflexivity, and responsible data stewardship"
           ],
           "resources": [
             {
@@ -32367,6 +32489,7 @@
           "topics": [
             "Sociological concepts of race",
             "History of race in America",
+            "Racial formation, ethnicity, and intersectionality",
             "Prejudice, stereotyping, and discrimination",
             "Institutional racism",
             "Whiteness studies",
@@ -33496,6 +33619,7 @@
             "Early modern empires",
             "Scientific Revolution and Enlightenment",
             "Industrial Revolution",
+            "Imperialism and nineteenth-century nationalism",
             "World wars",
             "Decolonization",
             "Cold War",
@@ -33824,7 +33948,7 @@
           "type": "Core",
           "year": "Year 2",
           "description": "Harvard History 97 - introduction to historical practice",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "What is history?",
             "Primary vs. secondary sources",
@@ -34059,7 +34183,8 @@
             "Marxist history",
             "Social and cultural history",
             "Postmodern and postcolonial history",
-            "Digital history"
+            "Digital history",
+            "Archival research, source provenance, and primary-source critique"
           ],
           "resources": [
             {
@@ -34160,7 +34285,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "Harvard requires two research seminars - primary source work",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Identifying a research topic",
             "Reviewing existing scholarship",
@@ -34720,7 +34845,7 @@
           "type": "Core",
           "year": "Year 4",
           "description": "Second research seminar - culminating work in archives",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Advanced research project",
             "Deeper archival work",
@@ -35513,6 +35638,7 @@
           "description": "Kinematics, dynamics, energy",
           "isNew": false,
           "topics": [
+            "Kinematics in one and multiple dimensions",
             "Newton's laws of motion",
             "Work, energy, and power",
             "Momentum and collisions",
@@ -35734,7 +35860,7 @@
           "type": "Foundational",
           "year": "Year 1",
           "description": "Computational tools - core at MIT and Stanford ME",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Variables, data types, and operators",
             "Arrays, vectors, and matrices",
@@ -36518,7 +36644,7 @@
           "type": "Core",
           "year": "Year 2-3",
           "description": "MIT 2.086 / Stanford ME 142 - numerical solution methods",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Error analysis and computer arithmetic",
             "Root-finding (bisection, Newton's method)",
@@ -37190,7 +37316,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "MIT 2.671 'Go Forth and Measure' / Stanford ME 80",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Measurement fundamentals and error",
             "Calibration",
@@ -37425,7 +37551,8 @@
             "Polymer processing",
             "Additive manufacturing (3D printing)",
             "CNC and automation",
-            "Manufacturing economics"
+            "Manufacturing economics",
+            "Metrology, process capability, quality control, and design for manufacturability"
           ],
           "resources": [
             {
@@ -37761,7 +37888,8 @@
             "Prototyping and fabrication",
             "Testing and validation",
             "Documentation",
-            "Final demonstration and presentation"
+            "Final demonstration and presentation",
+            "Safety, engineering standards, risk management, and regulatory compliance"
           ],
           "resources": [
             {
@@ -37991,7 +38119,8 @@
             "Convergence tests",
             "Power series and Taylor series",
             "Parametric equations",
-            "Polar coordinates"
+            "Polar coordinates",
+            "Introduction to vectors and vector-valued functions"
           ],
           "resources": [
             {
@@ -38204,7 +38333,7 @@
           "type": "Foundational",
           "year": "Year 1",
           "description": "Python/C, data structures - core at MIT 6-5 and Stanford EE",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Programming fundamentals (C and Python)",
             "Data types and control flow",
@@ -38652,7 +38781,7 @@
           "type": "Foundational",
           "year": "Year 2",
           "description": "Logic, proofs, computation - standard at top EE programs",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Propositional and predicate logic",
             "Sets, relations, and functions",
@@ -38876,7 +39005,7 @@
           "type": "Core",
           "year": "Year 2-3",
           "description": "MIT 6.3700 / Stanford EE 178 - core EE requirement",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Probability axioms",
             "Random variables and distributions",
@@ -40007,7 +40136,8 @@
             "Fault analysis",
             "Power electronic converters",
             "AC-DC and DC-DC conversion",
-            "Motor drives"
+            "Motor drives",
+            "Renewable integration, energy storage, smart grids, and resilience"
           ],
           "resources": [
             {
@@ -40071,6 +40201,12 @@
               "description": "Professional power engineering resources, standards context, and technical topics."
             },
             {
+              "kind": "website",
+              "title": "NREL - Grid Research",
+              "linkOrSite": "https://www.nrel.gov/grid/research.html",
+              "description": "Research material on renewable integration, reliability, power-system controls, security, and resilience."
+            },
+            {
               "kind": "youtube",
               "title": "NPTEL-NOC IITM",
               "linkOrSite": "https://www.youtube.com/@nptel-nociitm",
@@ -40119,7 +40255,8 @@
             "Testing and validation",
             "Documentation",
             "Final demonstration",
-            "Team and project management"
+            "Team and project management",
+            "Electrical safety, EMC, standards, and regulatory testing"
           ],
           "resources": [
             {
@@ -40453,6 +40590,7 @@
           "description": "Mechanics fundamentals",
           "isNew": false,
           "topics": [
+            "Kinematics in one and multiple dimensions",
             "Newton's laws of motion",
             "Work, energy, and power",
             "Momentum and collisions",
@@ -40674,7 +40812,7 @@
           "type": "Foundational",
           "year": "Year 1-2",
           "description": "Berkeley E7 / GT CEE 3040 - programming and computation",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Programming basics (MATLAB or Python)",
             "Error analysis",
@@ -41122,7 +41260,7 @@
           "type": "Core",
           "year": "Year 2",
           "description": "Berkeley CE 93 / GT CEE 3000 - core CE requirement",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Probability axioms and combinatorics",
             "Random variables and distributions",
@@ -41794,7 +41932,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "Water cycle, watershed analysis - core at Berkeley and GT",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Hydrologic cycle",
             "Precipitation",
@@ -41805,7 +41943,8 @@
             "Watershed analysis",
             "Groundwater hydrology",
             "Stormwater and drainage",
-            "Water resources management"
+            "Water resources management",
+            "Climate-informed flood and drought design, green infrastructure, and resilience"
           ],
           "resources": [
             {
@@ -42253,7 +42392,8 @@
             "Environmental regulations",
             "Risk assessment",
             "Sustainable engineering",
-            "Climate change impact"
+            "Climate change impact",
+            "Environmental justice, green infrastructure, and resilient community systems"
           ],
           "resources": [
             {
@@ -42701,7 +42841,8 @@
             "Sustainability and environmental impact",
             "Codes and regulations compliance",
             "Documentation and drawings",
-            "Final presentation"
+            "Final presentation",
+            "Public safety, community engagement, and professional ethics"
           ],
           "resources": [
             {
@@ -42928,6 +43069,7 @@
             "Acids and bases",
             "Buffers and titrations",
             "Solubility equilibria",
+            "Thermodynamics and spontaneity",
             "Electrochemistry",
             "Nuclear chemistry",
             "Coordination chemistry",
@@ -43256,7 +43398,7 @@
           "type": "Foundational",
           "year": "Year 2",
           "description": "Required at MIT and Berkeley chem programs",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Vectors and 3D coordinate geometry",
             "Vector-valued functions",
@@ -44611,7 +44753,8 @@
             "Scientific writing",
             "Poster presentation",
             "Oral defense",
-            "Career planning"
+            "Career planning",
+            "Green chemistry, waste minimization, and reproducible lab documentation"
           ],
           "resources": [
             {
@@ -44838,6 +44981,7 @@
             "Applications of integration",
             "Sequences and series",
             "Convergence tests",
+            "Power series and Taylor series",
             "Parametric equations",
             "Polar coordinates",
             "Vectors intro",
@@ -45838,7 +45982,7 @@
           "type": "Advanced",
           "year": "Year 3-4",
           "description": "Common option at Princeton/Harvard pure-math majors",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Curves in R^3",
             "Frenet-Serret frame",
@@ -46749,6 +46893,7 @@
             "Functions",
             "Lists and arrays",
             "File I/O",
+            "Object-oriented programming and reusable modules",
             "Recursion",
             "Debugging",
             "Practical programming projects"
@@ -46852,7 +46997,7 @@
           "type": "Foundational",
           "year": "Year 1-2",
           "description": "RIT CIT core - logic, sets, combinatorics",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Logic and propositions",
             "Sets, functions, and relations",
@@ -47535,7 +47680,8 @@
             "Malware analysis",
             "Risk management",
             "Compliance and policy",
-            "Incident response"
+            "Incident response",
+            "Security operations, logging, monitoring, and threat detection"
           ],
           "resources": [
             {
@@ -47860,7 +48006,7 @@
           "type": "Core",
           "year": "Year 3-4",
           "description": "RIT requires multiple co-op blocks - hallmark of top IT programs",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Site selection and placement",
             "Learning objectives",
@@ -47983,7 +48129,8 @@
             "Containers and Docker",
             "Kubernetes",
             "DevOps in the cloud",
-            "Cloud cost management"
+            "Cloud cost management",
+            "Reliability engineering, observability, backup, and disaster recovery"
           ],
           "resources": [
             {
@@ -48420,7 +48567,7 @@
           "type": "Capstone",
           "year": "Year 4",
           "description": "RIT requires two-semester capstone - first half",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Project proposal",
             "Requirements analysis",
@@ -48773,7 +48920,8 @@
             "Kinetics",
             "Equilibrium",
             "Acids and bases",
-            "Electrochemistry"
+            "Electrochemistry",
+            "Biochemical applications to exercise and physiology"
           ],
           "resources": [
             {
@@ -48874,7 +49022,7 @@
           "type": "Foundational",
           "year": "Year 1",
           "description": "Common prereq at IU and Penn State Movement Science",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Research methods",
             "Biological bases of behavior",
@@ -49210,7 +49358,7 @@
           "type": "Foundational",
           "year": "Year 2",
           "description": "Required at IU Bloomington and Penn State Movement Science",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Carbon-based structures and functional groups",
             "Stereochemistry",
@@ -49669,7 +49817,8 @@
             "Joint mechanics",
             "Muscle mechanics",
             "Gait analysis",
-            "Sport biomechanics"
+            "Sport biomechanics",
+            "Injury prevention, rehabilitation biomechanics, and assistive movement analysis"
           ],
           "resources": [
             {
@@ -49994,7 +50143,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "Distinct course at Michigan and Penn State",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Nervous system overview",
             "Sensorimotor integration",
@@ -50442,7 +50591,7 @@
           "type": "Advanced",
           "year": "Year 4",
           "description": "Clinical exercise testing - core at top Exercise Science programs",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Health screening",
             "Risk stratification",
@@ -50565,7 +50714,8 @@
             "Fitness profiles",
             "Interpretation of results",
             "Goal setting",
-            "Program design from assessment"
+            "Program design from assessment",
+            "Preparticipation screening, contraindications, referral, and emergency response"
           ],
           "resources": [
             {
@@ -51129,6 +51279,7 @@
             "Integration",
             "Fundamental Theorem of Calculus",
             "Applications of integration",
+            "Differential equations and population growth models",
             "Sequences and series intro",
             "Partial derivatives intro",
             "Applications for health/biology"
@@ -51232,7 +51383,7 @@
           "type": "Core",
           "year": "Year 1-2",
           "description": "Brown HSP 0310 - first required core course",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Structure of US healthcare",
             "Public vs. private financing",
@@ -51355,7 +51506,8 @@
             "Screening and diagnostic tests",
             "Outbreak investigation",
             "Disease surveillance",
-            "Causation and Bradford Hill criteria"
+            "Causation and Bradford Hill criteria",
+            "Causal diagrams, interaction, and modern causal-inference applications"
           ],
           "resources": [
             {
@@ -51579,7 +51731,8 @@
             "Occupational health",
             "Climate change and health",
             "Environmental justice",
-            "Risk assessment"
+            "Risk assessment",
+            "Toxicology, dose-response, and exposure assessment"
           ],
           "resources": [
             {
@@ -51680,7 +51833,7 @@
           "type": "Core",
           "year": "Year 2-3",
           "description": "Hopkins/Brown core - social context of health",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Social determinants framework",
             "Socioeconomic status and health",
@@ -52352,7 +52505,7 @@
           "type": "Advanced",
           "year": "Year 3-4",
           "description": "Economic analysis of health systems - core at Hopkins",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Economic concepts in health",
             "Demand for health and healthcare",
@@ -52811,7 +52964,8 @@
             "Outcome evaluation",
             "Impact evaluation",
             "Cost analysis",
-            "Reporting findings"
+            "Reporting findings",
+            "Implementation science, reach, equity, and program adaptation"
           ],
           "resources": [
             {
@@ -53151,6 +53305,7 @@
             "Middle childhood",
             "Adolescence",
             "Young adulthood",
+            "Middle and later adulthood, aging, and life transitions",
             "Attachment",
             "Trauma in development",
             "Resilience"
@@ -53590,7 +53745,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "CSWE-required competency emphasized at WashU and U-Mich",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Foundations of anti-racism",
             "Systemic racism",
@@ -53937,7 +54092,8 @@
             "Solution-focused therapy",
             "Motivational interviewing",
             "Family therapy basics",
-            "Termination and evaluation"
+            "Termination and evaluation",
+            "Mandated reporting, safety planning, and coordinated referrals"
           ],
           "resources": [
             {
@@ -54161,7 +54317,8 @@
             "Self-disclosure",
             "Professional boundaries",
             "Ethical dilemmas",
-            "Documentation and risk management"
+            "Documentation and risk management",
+            "Telepractice, digital records, social media boundaries, and technology ethics"
           ],
           "resources": [
             {
@@ -54262,7 +54419,7 @@
           "type": "Advanced",
           "year": "Year 3-4",
           "description": "Increasingly required course at top SW programs",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Trauma definition and types",
             "Neurobiology of trauma",
@@ -54497,7 +54654,8 @@
             "Substance use disorders",
             "Co-occurring disorders",
             "Recovery and resilience",
-            "Treatment modalities"
+            "Treatment modalities",
+            "Suicide-risk assessment, crisis response, and coordinated care planning"
           ],
           "resources": [
             {
@@ -54598,7 +54756,7 @@
           "type": "Core",
           "year": "Year 4",
           "description": "Standard at U-Mich generalist core",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Demographics of aging",
             "Physical and cognitive aging",
@@ -55173,6 +55331,7 @@
             "Color basics",
             "Composition",
             "Black and white compositions",
+            "Color interaction and chromatic composition",
             "Research and concept development",
             "Critique",
             "Portfolio building"
@@ -55388,7 +55547,7 @@
           "type": "Core",
           "year": "Year 1",
           "description": "Group critique and seminar - structural at RISD/Yale",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Critique as creative practice",
             "Articulating ideas about work",
@@ -56172,7 +56331,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "After foundation, students concentrate in one medium - RISD/Yale model",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Concentration in chosen medium",
             "Advanced technical skills",
@@ -56732,7 +56891,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "Group critique - structural at top BFA programs",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Advanced critique practices",
             "Developing a personal voice",
@@ -56967,7 +57126,8 @@
             "Exhibition planning",
             "Installation and presentation",
             "Opening reception",
-            "Documentation and portfolio"
+            "Documentation and portfolio",
+            "Professional practice, artwork rights, installation safety, and accessible exhibition design"
           ],
           "resources": [
             {
@@ -57197,6 +57357,7 @@
             "Pattern and repetition",
             "Form and counterform",
             "Visual rhythm",
+            "Color theory and visual communication",
             "Portfolio development"
           ],
           "resources": [
@@ -57522,7 +57683,7 @@
           "type": "Core",
           "year": "Year 2",
           "description": "RISD Studio sequence backbone - integrated software/concept",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Foundational studio practice",
             "Conceptual exercises",
@@ -57746,7 +57907,7 @@
           "type": "Core",
           "year": "Year 2",
           "description": "Continuation of RISD Studio sequence",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Intermediate studio practice",
             "Identity and brand projects",
@@ -58306,7 +58467,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "Junior-year RISD studio - information design focus",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Junior-year studio",
             "Information design focus",
@@ -58418,7 +58579,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "RISD junior-year focus - data viz, systems",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Information design principles",
             "Data visualization",
@@ -58866,7 +59027,7 @@
           "type": "Core",
           "year": "Year 4",
           "description": "Senior studio - leads into Degree Project",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Senior-year studio",
             "Self-directed projects",
@@ -58989,7 +59150,8 @@
             "Usability testing",
             "Accessibility",
             "Design systems",
-            "UX case study"
+            "UX case study",
+            "Inclusive research and accessibility evaluation using WCAG and assistive technology"
           ],
           "resources": [
             {
@@ -59547,6 +59709,7 @@
           "description": "Site, program, and basic architectural form",
           "isNew": false,
           "topics": [
+            "Site analysis and contextual response",
             "Program and function",
             "Small-building design",
             "Materials and tectonics",
@@ -59656,7 +59819,7 @@
           "type": "Foundational",
           "year": "Year 1-2",
           "description": "NAAB B.Arch accreditation requirement",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Humanities courses",
             "Cultural studies",
@@ -60216,7 +60379,7 @@
           "type": "Core",
           "year": "Year 2-3",
           "description": "Advanced representation techniques",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Advanced drawing",
             "Hybrid digital-analog techniques",
@@ -60440,7 +60603,7 @@
           "type": "Core",
           "year": "Year 3",
           "description": "Cornell and MIT require 3-course history sequence",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Non-Western architectural traditions",
             "Vernacular architecture worldwide",
@@ -61224,7 +61387,7 @@
           "type": "Advanced",
           "year": "Year 4",
           "description": "B.Arch programs require 6 design studios",
-          "isNew": true,
+          "isNew": false,
           "topics": [
             "Final pre-thesis studio",
             "Large-scale design problem",
@@ -61459,7 +61622,8 @@
             "Materials and life cycle",
             "Water conservation",
             "LEED and other certifications",
-            "Net-zero and beyond"
+            "Net-zero and beyond",
+            "Embodied carbon, resilience, climate adaptation, and post-occupancy evaluation"
           ],
           "resources": [
             {
@@ -61795,7 +61959,8 @@
             "Documentation",
             "Defense",
             "Exhibition",
-            "Portfolio finalization"
+            "Portfolio finalization",
+            "Building codes, accessibility, life safety, and permitting review"
           ],
           "resources": [
             {
@@ -61857,6 +62022,18 @@
               "title": "Show It Better",
               "linkOrSite": "https://showitbetter.co/",
               "description": "Architecture portfolio, diagram, rendering, and presentation resources."
+            },
+            {
+              "kind": "website",
+              "title": "ADA Standards for Accessible Design",
+              "linkOrSite": "https://www.ada.gov/law-and-regs/design-standards/",
+              "description": "Official accessibility design requirements for buildings and facilities."
+            },
+            {
+              "kind": "website",
+              "title": "U.S. Access Board - ADA Accessibility Standards",
+              "linkOrSite": "https://www.access-board.gov/ada/",
+              "description": "Technical accessibility guidance for code-aware design review and accessible means of egress."
             },
             {
               "kind": "youtube",
@@ -62023,6 +62200,7 @@
             "Argumentation and rhetoric",
             "Research and source integration",
             "Citation styles (MLA, APA)",
+            "Revision, peer review, and editing strategies",
             "Audience and purpose",
             "Style and voice",
             "Academic integrity and avoiding plagiarism"
@@ -64045,6 +64223,7 @@
             "Interviewing basics",
             "Attribution and quotes",
             "AP style fundamentals",
+            "Verification, accuracy, and fact-checking",
             "Covering speeches and meetings",
             "Beat reporting basics",
             "Writing on deadline"
@@ -65279,7 +65458,8 @@
             "Newsletters and podcasts",
             "User-generated content",
             "Misinformation and fact-checking",
-            "Digital storytelling tools"
+            "Digital storytelling tools",
+            "Platform algorithms, AI-generated content, and disclosure ethics"
           ],
           "resources": [
             {
@@ -65343,6 +65523,12 @@
               "description": "Search, verification, data, audience, and digital journalism trainings."
             },
             {
+              "kind": "website",
+              "title": "Partnership on AI - Responsible Practices for Synthetic Media",
+              "linkOrSite": "https://syntheticmedia.partnershiponai.org/",
+              "description": "Disclosure and responsible-publication guidance for AI-generated or modified media."
+            },
+            {
               "kind": "youtube",
               "title": "Google News Initiative",
               "linkOrSite": "https://www.youtube.com/@GoogleNewsInit",
@@ -65391,7 +65577,8 @@
             "Maps and geographic data",
             "Scraping and acquiring data",
             "Verifying data",
-            "Building data-driven stories"
+            "Building data-driven stories",
+            "Data privacy, algorithmic accountability, and reproducible reporting workflows"
           ],
           "resources": [
             {
@@ -65615,7 +65802,8 @@
             "Interviewing for accountability",
             "Building an evidence file",
             "Legal and ethical issues",
-            "Writing and presenting the investigation"
+            "Writing and presenting the investigation",
+            "Source protection, digital security, trauma-informed reporting, and publication risk"
           ],
           "resources": [
             {
@@ -65677,6 +65865,18 @@
               "title": "ProPublica",
               "linkOrSite": "https://www.propublica.org/",
               "description": "Gold-standard investigative examples, methodology, data, and accountability stories."
+            },
+            {
+              "kind": "website",
+              "title": "Freedom of the Press Foundation - Digital Security",
+              "linkOrSite": "https://freedom.press/digisec/",
+              "description": "Practical security education for journalists protecting communications, data, and sources."
+            },
+            {
+              "kind": "website",
+              "title": "Dart Center for Journalism and Trauma",
+              "linkOrSite": "https://dartcenter.org/",
+              "description": "Trauma-informed reporting resources for violence, conflict, tragedy, and journalist wellbeing."
             },
             {
               "kind": "youtube",
@@ -66067,6 +66267,7 @@
             "Dominant seventh chords",
             "Non-chord tones",
             "Phrase structure",
+            "Cadences, phrase rhythm, and harmonic analysis",
             "Harmonic progression",
             "Figured bass",
             "Introduction to two-part counterpoint"
@@ -66740,6 +66941,7 @@
             "Binary and ternary forms",
             "Sonata form",
             "Rondo form",
+            "Extended tertian harmony and enharmonic reinterpretation",
             "Chromatic harmony in context"
           ],
           "resources": [
@@ -67188,7 +67390,8 @@
             "Mid-century experimentation (Cage)",
             "Minimalism",
             "Electronic and computer music",
-            "Music of the 21st century"
+            "Music of the 21st century",
+            "Global contemporary traditions, popular music, recording, and media circulation"
           ],
           "resources": [
             {
@@ -67250,6 +67453,18 @@
               "title": "Metropolitan Museum of Art: Musical Instruments",
               "linkOrSite": "https://www.metmuseum.org/art/collection/search?department=18",
               "description": "Instrument collection for historical context, organology, and visual culture."
+            },
+            {
+              "kind": "website",
+              "title": "Smithsonian Folkways",
+              "linkOrSite": "https://folkways.si.edu/",
+              "description": "Global traditional and contemporary recordings extending study beyond Western concert repertory."
+            },
+            {
+              "kind": "website",
+              "title": "Library of Congress - Audio Recordings",
+              "linkOrSite": "https://www.loc.gov/audio/",
+              "description": "Primary-source sound collections for popular music, recording history, and media circulation."
             },
             {
               "kind": "youtube",
@@ -67860,7 +68075,8 @@
             "Memorization and polish",
             "Stage presence",
             "Public recital performance",
-            "Post-recital reflection"
+            "Post-recital reflection",
+            "Recording, rights, digital portfolio, and professional presentation"
           ],
           "resources": [
             {
@@ -68086,6 +68302,7 @@
             "The actor's instrument",
             "Sense memory and observation",
             "Objectives and actions",
+            "Text analysis, beats, and given circumstances",
             "Improvisation",
             "Scene study basics",
             "Character work",
@@ -69210,7 +69427,8 @@
             "Calling cues",
             "Tech and dress rehearsals",
             "Running the show",
-            "Professional standards and Equity"
+            "Professional standards and Equity",
+            "Safety, accessibility, consent, and intimacy protocols"
           ],
           "resources": [
             {
@@ -69884,6 +70102,7 @@
             "Camera operation basics",
             "Composition and framing",
             "Lighting fundamentals",
+            "Location sound and audio recording",
             "Editing software introduction",
             "Pre-production and planning",
             "Production roles and crew",
@@ -71008,7 +71227,8 @@
             "Documentary structure and editing",
             "Funding and pitching documentaries",
             "Distribution and impact",
-            "Producing a short documentary"
+            "Producing a short documentary",
+            "Informed consent, trauma-informed practice, and participant accountability"
           ],
           "resources": [
             {
@@ -71456,7 +71676,8 @@
             "Faculty and peer review",
             "Distribution and festival strategy",
             "Public screening and defense",
-            "Portfolio and career preparation"
+            "Portfolio and career preparation",
+            "Legal clearances, releases, copyright, and production safety"
           ],
           "resources": [
             {
@@ -71684,6 +71905,7 @@
             "Sequences and series",
             "Convergence tests",
             "Power series and Taylor series",
+            "Parametric equations",
             "Polar coordinates",
             "Vectors",
             "Multivariable preview"
@@ -72357,6 +72579,7 @@
             "Magnetic fields",
             "Ampere's law",
             "Faraday's law",
+            "Inductance and AC circuits",
             "EM waves"
           ],
           "resources": [
@@ -73141,7 +73364,8 @@
             "Stability analysis",
             "Frequency response",
             "Cascade and advanced control",
-            "Process instrumentation"
+            "Process instrumentation",
+            "Alarm management, safety-instrumented systems, and industrial cybersecurity"
           ],
           "resources": [
             {
@@ -73203,6 +73427,12 @@
               "title": "MathWorks Process Control",
               "linkOrSite": "https://www.mathworks.com/solutions/process-control.html",
               "description": "Modeling, simulation, and control resources for MATLAB/Simulink process applications."
+            },
+            {
+              "kind": "website",
+              "title": "CISA - Industrial Control Systems",
+              "linkOrSite": "https://www.cisa.gov/topics/industrial-control-systems",
+              "description": "Cybersecurity guidance relevant to process instrumentation, industrial control, and safety systems."
             },
             {
               "kind": "youtube",
@@ -73477,7 +73707,8 @@
             "Optimization and alternatives",
             "Team collaboration and management",
             "The design report",
-            "Final design presentation"
+            "Final design presentation",
+            "Process hazard analysis, relief protection, and inherently safer design"
           ],
           "resources": [
             {
@@ -73613,6 +73844,7 @@
             "Momentum and collisions",
             "Rotational motion",
             "Equilibrium",
+            "Gravitation and orbital mechanics",
             "Oscillations",
             "Waves",
             "Fluid mechanics"
@@ -73875,7 +74107,100 @@
             "Handling qualities",
             "Feedback control of aircraft",
             "Autopilots and stability augmentation",
-            "Spacecraft attitude control"
+            "Spacecraft attitude control",
+            "Guidance, navigation, autonomous flight control, and verification"
+          ],
+          "resources": [
+            {
+              "kind": "textbook",
+              "title": "Aircraft Control and Simulation: Dynamics, Controls Design, and Autonomous Systems",
+              "linkOrSite": "Wiley",
+              "description": "Comprehensive upper-level reference for flight dynamics, control design, simulation, and autonomy."
+            },
+            {
+              "kind": "textbook",
+              "title": "Flight Stability and Automatic Control",
+              "linkOrSite": "McGraw Hill",
+              "description": "Foundational text for stability derivatives, aircraft modes, handling qualities, and feedback control."
+            },
+            {
+              "kind": "textbook",
+              "title": "Dynamics of Flight: Stability and Control",
+              "linkOrSite": "Wiley",
+              "description": "Rigorous treatment of aircraft motion, longitudinal and lateral-directional stability, and control response."
+            },
+            {
+              "kind": "textbook",
+              "title": "Small Unmanned Aircraft: Theory and Practice",
+              "linkOrSite": "Princeton University Press",
+              "description": "Useful bridge from aircraft dynamics to guidance, navigation, control, and autonomous UAV applications."
+            },
+            {
+              "kind": "textbook",
+              "title": "Aircraft Flight Dynamics and Control",
+              "linkOrSite": "AIAA Education Series",
+              "description": "Applied aerospace reference connecting aircraft dynamics models with control-system design."
+            },
+            {
+              "kind": "website",
+              "title": "MIT OCW - Aircraft Stability and Control",
+              "linkOrSite": "https://ocw.mit.edu/courses/16-333-aircraft-stability-and-control-fall-2004/",
+              "description": "Open MIT lecture notes and problem sets on stability, handling qualities, and control systems."
+            },
+            {
+              "kind": "website",
+              "title": "NASA Technical Reports Server",
+              "linkOrSite": "https://ntrs.nasa.gov/",
+              "description": "NASA technical literature database for flight-control, autonomy, and verification research."
+            },
+            {
+              "kind": "website",
+              "title": "NASA Aeronautics Systems Engineering Branch",
+              "linkOrSite": "https://engineering.larc.nasa.gov/branches/d201-aeronautics-systems-engineering-branch-aseb/",
+              "description": "Applied NASA systems-engineering context for experimental flight vehicles and unmanned aerial systems."
+            },
+            {
+              "kind": "website",
+              "title": "FAA Unmanned Aircraft Systems",
+              "linkOrSite": "https://www.faa.gov/uas",
+              "description": "Regulatory and operational context for autonomous and remotely piloted aircraft applications."
+            },
+            {
+              "kind": "website",
+              "title": "MATLAB Aerospace Blockset",
+              "linkOrSite": "https://www.mathworks.com/products/aerospace-blockset.html",
+              "description": "Simulation resources for flight dynamics, guidance, navigation, and controls modeling."
+            },
+            {
+              "kind": "youtube",
+              "title": "MIT OpenCourseWare",
+              "linkOrSite": "https://www.youtube.com/@mitocw",
+              "description": "University lectures supporting dynamics, controls, modeling, and aerospace engineering fundamentals."
+            },
+            {
+              "kind": "youtube",
+              "title": "NASA",
+              "linkOrSite": "https://www.youtube.com/@NASA",
+              "description": "Mission and technology material illustrating flight systems, autonomy, testing, and aerospace applications."
+            },
+            {
+              "kind": "youtube",
+              "title": "MATLAB",
+              "linkOrSite": "https://www.youtube.com/@MATLAB",
+              "description": "Tutorials and demonstrations for control-system modeling and aerospace simulation workflows."
+            },
+            {
+              "kind": "youtube",
+              "title": "Embry-Riddle Aeronautical University",
+              "linkOrSite": "https://www.youtube.com/@EmbryRiddle",
+              "description": "Aviation and aerospace instruction and applications from an aeronautics-focused university."
+            },
+            {
+              "kind": "youtube",
+              "title": "AIAA",
+              "linkOrSite": "https://www.youtube.com/@aiaaerospace",
+              "description": "Professional aerospace talks on vehicle systems, guidance, autonomy, and current practice."
+            }
           ]
         },
         {
@@ -73935,7 +74260,100 @@
             "Testing and validation",
             "Economic and feasibility analysis",
             "Design documentation",
-            "Final design review and presentation"
+            "Final design review and presentation",
+            "Certification, system safety, and verification compliance"
+          ],
+          "resources": [
+            {
+              "kind": "textbook",
+              "title": "NASA Systems Engineering Handbook",
+              "linkOrSite": "NASA",
+              "description": "Authoritative handbook for requirements, design, technical reviews, verification, and validation."
+            },
+            {
+              "kind": "textbook",
+              "title": "Aircraft Design: A Conceptual Approach",
+              "linkOrSite": "AIAA Education Series",
+              "description": "Standard aerospace design reference for requirements, configuration trades, sizing, and design decisions."
+            },
+            {
+              "kind": "textbook",
+              "title": "Systems Engineering Principles and Practice",
+              "linkOrSite": "Wiley",
+              "description": "Systems-engineering methods for complex design, lifecycle management, interfaces, and verification."
+            },
+            {
+              "kind": "textbook",
+              "title": "System Safety Engineering and Risk Assessment",
+              "linkOrSite": "CRC Press",
+              "description": "Safety and risk methods relevant to aerospace hazards, assurance, and certification evidence."
+            },
+            {
+              "kind": "textbook",
+              "title": "Engineering Design: A Project-Based Introduction",
+              "linkOrSite": "Wiley",
+              "description": "Accessible design-process text for team projects, prototyping, documentation, and final review."
+            },
+            {
+              "kind": "website",
+              "title": "NASA Systems Engineering Handbook",
+              "linkOrSite": "https://www.nasa.gov/reference/systems-engineering-handbook/",
+              "description": "Official systems-engineering lifecycle guidance for design reviews and verification planning."
+            },
+            {
+              "kind": "website",
+              "title": "NASA System Safety",
+              "linkOrSite": "https://sma.nasa.gov/sma-disciplines/system-safety",
+              "description": "Official risk and system-safety principles for identifying hazards and controlling mishap risk."
+            },
+            {
+              "kind": "website",
+              "title": "FAA Aircraft Certification",
+              "linkOrSite": "https://www.faa.gov/aircraft/air_cert",
+              "description": "Certification and airworthiness context for credible aerospace design projects."
+            },
+            {
+              "kind": "website",
+              "title": "FAA Handbooks and Manuals",
+              "linkOrSite": "https://www.faa.gov/regulations_policies/handbooks_manuals",
+              "description": "Technical and regulatory reference material useful for aircraft design documentation."
+            },
+            {
+              "kind": "website",
+              "title": "SAE Aerospace Standards",
+              "linkOrSite": "https://www.sae.org/standards/aerospace",
+              "description": "Professional standards context for aerospace systems, safety, quality, and compliance."
+            },
+            {
+              "kind": "youtube",
+              "title": "NASA",
+              "linkOrSite": "https://www.youtube.com/@NASA",
+              "description": "Engineering and mission content illustrating aerospace testing, design integration, and system performance."
+            },
+            {
+              "kind": "youtube",
+              "title": "Federal Aviation Administration",
+              "linkOrSite": "https://www.youtube.com/@FAAnews",
+              "description": "Regulatory and aviation-safety context relevant to certification-aware design."
+            },
+            {
+              "kind": "youtube",
+              "title": "MIT OpenCourseWare",
+              "linkOrSite": "https://www.youtube.com/@mitocw",
+              "description": "Academic instruction in aerospace design, systems, controls, and engineering analysis."
+            },
+            {
+              "kind": "youtube",
+              "title": "INCOSE",
+              "linkOrSite": "https://www.youtube.com/@INCOSESystemsEngineering",
+              "description": "Systems-engineering professional presentations relevant to lifecycle design and verification."
+            },
+            {
+              "kind": "youtube",
+              "title": "SAE International",
+              "linkOrSite": "https://www.youtube.com/@SAEInternational",
+              "description": "Industry-facing engineering standards and mobility technology discussions."
+            }
           ]
         }
       ]
@@ -74071,6 +74489,7 @@
             "Momentum and collisions",
             "Rotational motion",
             "Equilibrium",
+            "Gravitation and engineering applications",
             "Oscillations",
             "Waves",
             "Fluid mechanics"
@@ -74744,6 +75163,7 @@
             "Sampling distributions",
             "Estimation",
             "Hypothesis testing",
+            "Correlation, regression, and engineering modeling",
             "Statistical quality control"
           ],
           "resources": [
@@ -74968,7 +75388,8 @@
             "Decision analysis",
             "Markov decision processes",
             "Reliability theory",
-            "Stochastic simulation overview"
+            "Stochastic simulation overview",
+            "Monte Carlo risk analysis, stochastic optimization, and decision under uncertainty"
           ],
           "resources": [
             {
@@ -75192,7 +75613,8 @@
             "Cognitive ergonomics",
             "Workplace safety",
             "Human-machine systems",
-            "Productivity improvement"
+            "Productivity improvement",
+            "Inclusive design, accessibility, and human-centered evaluation"
           ],
           "resources": [
             {
@@ -76092,6 +76514,7 @@
             "Applications of integration",
             "Sequences and series",
             "Convergence tests",
+            "Power series and Taylor approximations",
             "Parametric equations",
             "Polar coordinates",
             "Introduction to vectors"
@@ -76765,6 +77188,7 @@
             "Linear transformations",
             "Inner product spaces",
             "Orthogonality",
+            "Diagonalization and singular value decomposition",
             "Applications"
           ],
           "resources": [
@@ -77101,7 +77525,8 @@
             "Analog-to-digital conversion",
             "Real-time concepts",
             "Embedded software design",
-            "Embedded systems project"
+            "Embedded systems project",
+            "Embedded security, secure boot, firmware updates, and hardware trust"
           ],
           "resources": [
             {
@@ -77885,7 +78310,8 @@
             "Testing and validation",
             "Economic and feasibility analysis",
             "Design documentation",
-            "Final design review and presentation"
+            "Final design review and presentation",
+            "Hardware security, safety, and compliance validation"
           ],
           "resources": [
             {
@@ -79236,7 +79662,8 @@
             "Drug delivery materials",
             "Implants, scaffolds, and wound-healing materials",
             "Testing standards and regulatory considerations",
-            "Failure analysis and materials selection project"
+            "Failure analysis and materials selection project",
+            "Biofilms, infection prevention, and antimicrobial biomaterial strategies"
           ],
           "resources": [
             {
@@ -79348,7 +79775,8 @@
             "Optical and chemical biosensors",
             "Medical-device calibration and validation",
             "Data acquisition and embedded systems",
-            "Instrumentation design laboratory project"
+            "Instrumentation design laboratory project",
+            "Medical electrical safety, interoperability, cybersecurity, and patient-data protection"
           ],
           "resources": [
             {
@@ -79410,6 +79838,18 @@
               "title": "FDA Medical Device Safety",
               "linkOrSite": "https://www.fda.gov/medical-devices",
               "description": "Regulatory and safety context for medical device measurement systems."
+            },
+            {
+              "kind": "website",
+              "title": "FDA - Medical Device Cybersecurity",
+              "linkOrSite": "https://www.fda.gov/medical-devices/digital-health/cybersecurity",
+              "description": "FDA guidance for cybersecurity design, documentation, and postmarket device risk."
+            },
+            {
+              "kind": "website",
+              "title": "FDA - Medical Device Interoperability",
+              "linkOrSite": "https://www.fda.gov/medical-devices/digital-health-center-excellence/medical-device-interoperability",
+              "description": "Design and safety considerations for devices exchanging patient and clinical data."
             },
             {
               "kind": "youtube",
@@ -79908,7 +80348,8 @@
             "Regulatory, reimbursement, and ethics review",
             "Human factors and usability testing",
             "Design documentation and technical review",
-            "Final presentation, prototype demo, and report"
+            "Final presentation, prototype demo, and report",
+            "Design controls, quality systems, and manufacturing transfer"
           ],
           "resources": [
             {
@@ -81483,7 +81924,8 @@
             "Systematic error and calibration",
             "Research notebook practice",
             "Scientific writing and oral presentation",
-            "Independent experimental module"
+            "Independent experimental module",
+            "Reproducible computational analysis, versioned data, and open scientific practice"
           ],
           "resources": [
             {
@@ -83170,7 +83612,8 @@
             "Greenhouse gases and forcing",
             "Climate models",
             "Impacts and adaptation",
-            "Analysis of climate datasets"
+            "Analysis of climate datasets",
+            "Attribution, climate scenarios, uncertainty, and risk communication"
           ],
           "resources": [
             {
@@ -83282,7 +83725,8 @@
             "Remote-sensing platforms and sensors",
             "Image classification",
             "Change detection",
-            "Environmental mapping project"
+            "Environmental mapping project",
+            "Reproducible geospatial workflows, uncertainty, and ethical spatial-data use"
           ],
           "resources": [
             {
@@ -83730,7 +84174,8 @@
             "Public participation",
             "Monitoring and adaptive management",
             "EIS/EIR document structure",
-            "Assessment critique or mock review"
+            "Assessment critique or mock review",
+            "Indigenous and Tribal engagement, equity, and community accountability"
           ],
           "resources": [
             {
@@ -83792,6 +84237,12 @@
               "title": "European Commission Environmental Assessment",
               "linkOrSite": "https://environment.ec.europa.eu/law-and-governance/environmental-assessments_en",
               "description": "EIA and strategic environmental assessment guidance and policy resources."
+            },
+            {
+              "kind": "website",
+              "title": "EPA - Consultation and Coordination with Tribes",
+              "linkOrSite": "https://www.epa.gov/tribal/forms/consultation-and-coordination-tribes",
+              "description": "Official consultation policy resource supporting Tribal engagement and treaty-rights considerations."
             },
             {
               "kind": "youtube",
@@ -85305,7 +85756,8 @@
             "Safety, permits, and professional ethics",
             "Collaborative field interpretation",
             "Daily field journals",
-            "Final field report and presentation"
+            "Final field report and presentation",
+            "Data sovereignty, cultural heritage stewardship, and responsible return of findings"
           ],
           "resources": [
             {
@@ -85367,6 +85819,12 @@
               "title": "Open Context",
               "linkOrSite": "https://opencontext.org/",
               "description": "Open archaeological data useful for learning field recording and interpretation."
+            },
+            {
+              "kind": "website",
+              "title": "GIDA - CARE Principles for Indigenous Data Governance",
+              "linkOrSite": "https://www.gida-global.org/careprinciples",
+              "description": "Framework for collective benefit, authority to control, responsibility, and ethics in Indigenous data."
             },
             {
               "kind": "youtube",
@@ -87895,7 +88353,8 @@
             "Textual and hermeneutic methods",
             "Feminist and postcolonial critique",
             "Comparison as method",
-            "Research design in religious studies"
+            "Research design in religious studies",
+            "Lived religion, material culture, digital religion, and researcher positionality"
           ],
           "resources": [
             {
@@ -90478,7 +90937,8 @@
             "Consecutive interpretation basics",
             "Sight translation",
             "Revision and quality control",
-            "Translation portfolio"
+            "Translation portfolio",
+            "Simultaneous and remote interpretation, accessibility, and certification standards"
           ],
           "resources": [
             {
@@ -91157,7 +91617,8 @@
             "HACCP and preventive controls",
             "Allergen management",
             "Regulatory inspection and compliance",
-            "Food safety certification practice"
+            "Food safety certification practice",
+            "Outbreak investigation, recalls, crisis communication, and corrective action"
           ],
           "resources": [
             {
@@ -91717,7 +92178,8 @@
             "Franchise and management agreements",
             "Privacy and data security",
             "Risk management and insurance",
-            "Legal case briefing"
+            "Legal case briefing",
+            "Accessibility, emergency duty of care, and public-health compliance"
           ],
           "resources": [
             {
@@ -92165,7 +92627,8 @@
             "Destination marketing organizations",
             "Transportation and access",
             "Policy and governance",
-            "Destination development plan"
+            "Destination development plan",
+            "Climate resilience, crisis recovery, overtourism, and community stewardship"
           ],
           "resources": [
             {
@@ -93404,7 +93867,8 @@
             "Validity and reliability",
             "Adverse impact",
             "Candidate experience",
-            "Staffing plan project"
+            "Staffing plan project",
+            "AI-assisted hiring, algorithmic bias, and auditability"
           ],
           "resources": [
             {
@@ -93466,6 +93930,12 @@
               "title": "ERE Recruiting Intelligence",
               "linkOrSite": "https://www.ere.net/",
               "description": "Recruiting strategy, sourcing, selection, and talent acquisition commentary."
+            },
+            {
+              "kind": "website",
+              "title": "EEOC - Artificial Intelligence and the ADA",
+              "linkOrSite": "https://www.eeoc.gov/eeoc-disability-related-resources/artificial-intelligence-and-ada",
+              "description": "Official guidance on algorithmic hiring tools, disability discrimination, and applicant accommodation."
             },
             {
               "kind": "youtube",
@@ -93740,7 +94210,8 @@
             "Employee privacy",
             "Wrongful discharge",
             "Compliance documentation",
-            "Employment-law case briefing"
+            "Employment-law case briefing",
+            "Labor relations, union organizing, and collective bargaining"
           ],
           "resources": [
             {
@@ -94076,7 +94547,8 @@
             "Engagement analytics",
             "People analytics ethics",
             "Data visualization",
-            "Analytics project"
+            "Analytics project",
+            "Privacy, access controls, fairness audits, and responsible people analytics"
           ],
           "resources": [
             {
@@ -95203,7 +95675,8 @@
             "Contracts",
             "Supplier relationship management",
             "Ethical sourcing",
-            "Sourcing strategy project"
+            "Sourcing strategy project",
+            "Supplier risk, continuity planning, traceability, and due diligence"
           ],
           "resources": [
             {
@@ -95651,7 +96124,8 @@
             "Global logistics",
             "Resilience and disruption",
             "Sustainability and labor standards",
-            "Global sourcing case"
+            "Global sourcing case",
+            "Forced-labor due diligence and supply-chain traceability"
           ],
           "resources": [
             {
@@ -95715,6 +96189,12 @@
               "description": "Supply chain risk, disruption, resilience, and global supplier insights."
             },
             {
+              "kind": "website",
+              "title": "CBP - Forced Labor and UFLPA Resources",
+              "linkOrSite": "https://www.cbp.gov/trade/forced-labor",
+              "description": "Official enforcement and due-diligence material for forced-labor risk and supply-chain tracing."
+            },
+            {
               "kind": "youtube",
               "title": "WTO",
               "linkOrSite": "https://www.youtube.com/@WTO",
@@ -95763,7 +96243,8 @@
             "Warehouse systems",
             "Analytics and reporting",
             "Implementation risks",
-            "ERP process exercise"
+            "ERP process exercise",
+            "Data governance, cybersecurity, and internal controls"
           ],
           "resources": [
             {
@@ -95825,6 +96306,12 @@
               "title": "Gartner Supply Chain Technology",
               "linkOrSite": "https://www.gartner.com/en/supply-chain",
               "description": "Research summaries on SCM technology, ERP, planning systems, and digital operations."
+            },
+            {
+              "kind": "website",
+              "title": "NIST SP 800-161 - Cybersecurity Supply Chain Risk Management",
+              "linkOrSite": "https://csrc.nist.gov/pubs/sp/800/161/r1/upd1/final",
+              "description": "Cyber supply-chain risk framework for supplier assurance, controls, and technology governance."
             },
             {
               "kind": "youtube",
@@ -97338,7 +97825,8 @@
             "GI disorders",
             "Renal basics",
             "Chart documentation",
-            "Clinical case study"
+            "Clinical case study",
+            "Nutrition-focused physical exam and medication-nutrient interactions"
           ],
           "resources": [
             {
@@ -97450,7 +97938,8 @@
             "Cultural competence",
             "Policy and advocacy",
             "Program evaluation",
-            "Community intervention plan"
+            "Community intervention plan",
+            "Systems approaches to equitable food access and community partnership"
           ],
           "resources": [
             {
@@ -97562,7 +98051,8 @@
             "Eating disorders",
             "Pediatric clinical nutrition",
             "Interprofessional care",
-            "Complex case presentation"
+            "Complex case presentation",
+            "Malnutrition diagnosis, refeeding risk, and transition planning"
           ],
           "resources": [
             {
@@ -97898,7 +98388,8 @@
             "Research ethics",
             "Data interpretation",
             "Scientific writing",
-            "Research proposal"
+            "Research proposal",
+            "Dietary measurement error, reproducibility, and transparent reporting"
           ],
           "resources": [
             {
