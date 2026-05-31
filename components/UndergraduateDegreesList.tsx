@@ -3,11 +3,12 @@ import * as React from 'react'
 import {
   filterDegrees,
   groupResources,
-  isResourceUrl,
   type CourseResource,
   type CourseResourceKind,
+  type DegreeSchoolOffering,
   type UndergraduateCourse,
   type UndergraduateDegree,
+  isResourceUrl,
   yearTagClass
 } from '@/lib/undergraduate-degrees'
 
@@ -262,6 +263,41 @@ function NestedSection({
   )
 }
 
+function SchoolsOfferingSection({
+  schools,
+  defaultOpen
+}: {
+  schools: DegreeSchoolOffering[]
+  defaultOpen: boolean
+}) {
+  if (schools.length === 0) return null
+
+  return (
+    <div className={styles.degreeSubsection}>
+      <NestedSection
+        label='Schools offering this degree — program requirements'
+        countLabel={`${schools.length} ${schools.length === 1 ? 'school' : 'schools'}`}
+        defaultOpen={defaultOpen}
+      >
+        <ul className={styles.schoolsList}>
+          {schools.map((school) => (
+            <li key={school.name} className={styles.schoolItem}>
+              <a
+                href={school.requirementsUrl}
+                target='_blank'
+                rel='noreferrer'
+                className={styles.schoolLink}
+              >
+                {school.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </NestedSection>
+    </div>
+  )
+}
+
 function CourseRow({
   course,
   defaultOpen
@@ -359,6 +395,7 @@ function DegreeCard({
   degree: UndergraduateDegree
   queryActive: boolean
 }) {
+  const schools = degree.schoolsOffering ?? []
   const [coursesOpen, setCoursesOpen] = React.useState(queryActive)
 
   React.useEffect(() => {
@@ -392,6 +429,10 @@ function DegreeCard({
 
       {coursesOpen ? (
         <div className={styles.coursesPanel}>
+          <SchoolsOfferingSection
+            schools={schools}
+            defaultOpen={queryActive}
+          />
           {degree.courses.map((course) => (
             <CourseRow
               key={`${degree.id}-${course.number}-${course.name}`}

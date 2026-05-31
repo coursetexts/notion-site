@@ -152,6 +152,42 @@
   border-top: 1px solid var(--outline, #e6e6e6);
 }
 
+.degreeSubsection {
+  padding: 14px 20px 0 28px;
+  background: #fbfbfa;
+  border-bottom: 1px solid #f1edea;
+}
+
+.degreeSubsection .nestedSectionHeader {
+  padding: 0 0 12px;
+}
+
+.schoolsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schoolItem {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.schoolLink {
+  color: #0089c4;
+  text-decoration: none;
+}
+
+.schoolLink:hover,
+.schoolLink:focus-visible {
+  text-decoration: underline;
+}
+
 .courseBlock {
   border-bottom: 1px solid #f1edea;
 }

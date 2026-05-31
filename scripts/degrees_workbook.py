@@ -121,6 +121,20 @@ def read_sheet(
     return rows
 
 
+def parse_schools_offering(rows: dict[int, dict[str, dict[str, str]]]) -> list[dict]:
+    """School name (H) and requirements URL (J); ignores rank (G) and notes (K)."""
+    schools: list[dict] = []
+    for r in sorted(rows.keys()):
+        school = rows[r].get('H', {}).get('v', '').strip()
+        requirements_url = rows[r].get('J', {}).get('v', '').strip()
+        if not school or school.lower() == 'school':
+            continue
+        if not requirements_url:
+            continue
+        schools.append({'name': school, 'requirementsUrl': requirements_url})
+    return schools
+
+
 def parse_resource_row(rows: dict[int, dict[str, dict[str, str]]], r: int, b: str) -> dict:
     title = rows[r].get('C', {}).get('v', '').strip()
     link_or_site = rows[r].get('D', {}).get('v', '').strip()
@@ -244,6 +258,7 @@ def generate_degrees_curriculum(
             short_name = re.sub(r'^\d+\.\s*', '', sheet_name).strip()
             degree_name = parse_degree_title(title_cell) if title_cell else short_name
             courses = parse_degree_sheet(rows)
+            schools_offering = parse_schools_offering(rows)
             resource_course_count += sum(1 for course in courses if 'resources' in course)
 
             sheet_order = sheet_order_number(sheet_name)
@@ -255,14 +270,16 @@ def generate_degrees_curriculum(
             else:
                 degree_id = slugify(short_name)
 
-            degrees.append(
-                {
-                    'id': degree_id,
-                    'name': degree_name,
-                    'shortName': short_name,
-                    'courses': courses,
-                }
-            )
+            degree_entry: dict = {
+                'id': degree_id,
+                'name': degree_name,
+                'shortName': short_name,
+                'courses': courses,
+            }
+            if schools_offering:
+                degree_entry['schoolsOffering'] = schools_offering
+
+            degrees.append(degree_entry)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(

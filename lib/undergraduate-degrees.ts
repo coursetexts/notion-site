@@ -9,6 +9,11 @@ export type CourseResource = {
   description: string
 }
 
+export type DegreeSchoolOffering = {
+  name: string
+  requirementsUrl: string
+}
+
 export type UndergraduateCourse = {
   number: number
   name: string
@@ -24,6 +29,7 @@ export type UndergraduateDegree = {
   id: string
   name: string
   shortName: string
+  schoolsOffering?: DegreeSchoolOffering[]
   courses: UndergraduateCourse[]
 }
 
@@ -54,7 +60,11 @@ export function filterDegrees(
 
   return degrees
     .map((degree) => {
-      const degreeHaystack = `${degree.name} ${degree.shortName}`.toLowerCase()
+      const schoolsHaystack = (degree.schoolsOffering ?? [])
+        .map((school) => `${school.name} ${school.requirementsUrl}`)
+        .join(' ')
+      const degreeHaystack =
+        `${degree.name} ${degree.shortName} ${schoolsHaystack}`.toLowerCase()
       if (degreeHaystack.includes(needle)) return degree
 
       const matchingCourses = degree.courses.filter((course) => {

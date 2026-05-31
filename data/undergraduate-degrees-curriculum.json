@@ -1924,6 +1924,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Pennsylvania (Wharton)",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/wharton/curriculum/"
+        },
+        {
+          "name": "UC Berkeley (Haas)",
+          "requirementsUrl": "https://haas.berkeley.edu/undergrad/academics/curriculum/degree-requirements/"
+        },
+        {
+          "name": "University of Michigan (Ross)",
+          "requirementsUrl": "https://rossweb.bus.umich.edu/academics/curriculum/core-curriculum/bba/"
+        },
+        {
+          "name": "New York University (Stern)",
+          "requirementsUrl": "https://www.stern.nyu.edu/current-students/undergraduate/academics/degree-programs/bs-business"
+        },
+        {
+          "name": "University of Southern California (Marshall)",
+          "requirementsUrl": "https://www.marshall.usc.edu/programs/undergraduate-programs/undergraduate-degrees/business-administration-program"
+        },
+        {
+          "name": "Georgetown University",
+          "requirementsUrl": "https://bulletin.georgetown.edu/schools-programs/business/undergraduate/bsba/"
+        },
+        {
+          "name": "Washington University in St. Louis",
+          "requirementsUrl": "https://bulletin.wustl.edu/undergrad/business/bsba/"
+        },
+        {
+          "name": "UNC Chapel Hill",
+          "requirementsUrl": "https://catalog.unc.edu/undergraduate/programs-study/business-administration-major-bsba/"
+        },
+        {
+          "name": "University of Virginia",
+          "requirementsUrl": "https://records.ureg.virginia.edu/preview_program.php?catoid=61&poid=10049"
+        },
+        {
+          "name": "University of Notre Dame",
+          "requirementsUrl": "https://mendoza.nd.edu/undergraduate/management-consulting-major/"
+        }
       ]
     },
     {
@@ -4402,6 +4444,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/nursing-bsn/"
+        },
+        {
+          "name": "Emory University",
+          "requirementsUrl": "https://www.nursing.emory.edu/program-details/freshman-option-emory-and-oxford-students"
+        },
+        {
+          "name": "University of Washington",
+          "requirementsUrl": "https://nursing.uw.edu/academics/bsn/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://nursing.umich.edu/academics/BSN"
+        },
+        {
+          "name": "University of Pittsburgh",
+          "requirementsUrl": "https://www.nursing.pitt.edu/programs/undergraduate-bsn"
+        },
+        {
+          "name": "UNC Chapel Hill",
+          "requirementsUrl": "https://catalog.unc.edu/undergraduate/programs-study/nursing-major-bsn/"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://nursing.osu.edu/academics/undergraduate/bachelor-science-nursing"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGNUR/NUR_BSN/"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/nursingbs"
+        },
+        {
+          "name": "NYU",
+          "requirementsUrl": "https://bulletins.nyu.edu/undergraduate/nursing/programs/nursing-bs/"
+        }
       ]
     },
     {
@@ -5978,6 +6062,48 @@
               "description": "Clear academic writing, citation, and research process videos."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://psychology.stanford.edu/academics/undergraduate-program/major"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://psychology.berkeley.edu/undergraduate/major-requirements"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://undergrad.psychology.fas.harvard.edu/requirements-chart"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/psychology/"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2025/PSYCHOLOGYBA"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/psychology/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/psychology-ba/"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://psych.princeton.edu/undergraduate/major-requirements"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/psych/undergraduates/major-requirements.html"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://psychandneuro.duke.edu/undergraduate/psychology"
         }
       ]
     },
@@ -8116,6 +8242,48 @@
               "description": "Research proposal, literature review, and thesis-writing help."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/biology-course-7/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://biology.stanford.edu/academics/undergraduate-program/undergraduate-major-biology"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://www.mcb.harvard.edu/undergraduate/molecular-and-cellular-biology-mcb/mcb-student-worksheet/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://mcb.berkeley.edu/undergrad/major"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/molecular-cellular-developmental-biology/"
+        },
+        {
+          "name": "Johns Hopkins University",
+          "requirementsUrl": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/biology/biology-bachelor-science/"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://ua.princeton.edu/academic-units/department-molecular-biology"
+        },
+        {
+          "name": "UC San Diego",
+          "requirementsUrl": "https://catalog.ucsd.edu/curric/BIOL-ug.html"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://biology.duke.edu/undergraduate/major-requirements"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/biological-sciences-bs/"
         }
       ]
     },
@@ -10365,6 +10533,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://seas.harvard.edu/electrical-engineering/undergraduate-programs/concentration-information/concentration-requirements"
+        },
+        {
+          "name": "Harvey Mudd College",
+          "requirementsUrl": "https://www.hmc.edu/engineering/curriculum/"
+        },
+        {
+          "name": "Olin College of Engineering",
+          "requirementsUrl": "https://olin.smartcatalogiq.com/en/2025-26/catalog/programs-of-study-and-degree-requirements/academic-programs/engineering"
+        },
+        {
+          "name": "Dartmouth College",
+          "requirementsUrl": "https://engineering.dartmouth.edu/undergraduate/ab/majors/engineering-sciences"
+        },
+        {
+          "name": "Brown University",
+          "requirementsUrl": "https://bulletin.brown.edu/the-college/concentrations/engn/"
+        },
+        {
+          "name": "Bucknell University",
+          "requirementsUrl": "https://coursecatalog.bucknell.edu/collegeofengineering/"
+        },
+        {
+          "name": "Swarthmore College",
+          "requirementsUrl": "https://catalog.swarthmore.edu/preview_program.php?catoid=7&poid=1006"
+        },
+        {
+          "name": "Smith College",
+          "requirementsUrl": "https://catalog.smith.edu/engineering/engineering-science-bs/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://engineering.purdue.edu/ENE/Academics/Undergrad/FYE"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/engineering/#programstext"
+        }
       ]
     },
     {
@@ -12529,6 +12739,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://www.cs.stanford.edu/bachelors/degree-requirements"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/schoolofcomputerscience/undergraduatecomputerscience/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://berkeley-public.courseleaf.com/undergraduate/degree-programs/computer-science/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/engineering/computer-science-bs/"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/computer-science-bs/"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://www.cs.princeton.edu/ugrad/majors"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://csadvising.seas.harvard.edu/concentration/requirements/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/computer-science-bs/"
+        },
+        {
+          "name": "University of Washington",
+          "requirementsUrl": "https://www.cs.washington.edu/academics/ugrad/current-students/degree/cs-requirements"
+        }
       ]
     },
     {
@@ -14328,6 +14580,48 @@
               "description": "Digital portfolio, content, campaign, and communication strategy ideas."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/communication/communication-studies/communication-studies-major/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://www.asc.upenn.edu/undergraduate-program/communication-major-requirements"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://comm.stanford.edu/major"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://annenberg.usc.edu/academic-programs/communication-ba"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/communicationba"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/comm/undergraduates/major-requirements.html"
+        },
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/com/programs/communication/bs/"
+        },
+        {
+          "name": "UNC Chapel Hill",
+          "requirementsUrl": "https://catalog.unc.edu/undergraduate/programs-study/communication-studies-major-ba/"
+        },
+        {
+          "name": "UC Santa Barbara",
+          "requirementsUrl": "https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/ls-intro/comm.aspx"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/communication/degrees-and-programs/bs-communication-studies/"
         }
       ]
     },
@@ -16353,6 +16647,48 @@
               "description": "Visual medical science drawings for physiology, disease, immunology, and pharmacology."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/sar/programs/health-science/"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://phhp.ufl.edu/academics/undergraduate-programs/bachelor-of-health-science/curriculum/"
+        },
+        {
+          "name": "Northeastern University",
+          "requirementsUrl": "https://catalog.northeastern.edu/undergraduate/health-sciences/community-health-behavioral-sciences/health-science-bs/"
+        },
+        {
+          "name": "University of Central Florida",
+          "requirementsUrl": "https://www.ucf.edu/degree/health-sciences-bs-pre-professional/pre-clinical-track/"
+        },
+        {
+          "name": "University of South Florida",
+          "requirementsUrl": "https://health.usf.edu/publichealth/undergrad/bshs"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://hrs.osu.edu/academics/undergraduate-programs/health-sciences"
+        },
+        {
+          "name": "Drexel University",
+          "requirementsUrl": "https://catalog.drexel.edu/undergraduate/collegeofnursingandhealthprofessions/healthsciences/"
+        },
+        {
+          "name": "Stony Brook University",
+          "requirementsUrl": "https://www.stonybrook.edu/sb/bulletin/current/academicprograms/han/degreesandrequirements.php"
+        },
+        {
+          "name": "University of Missouri",
+          "requirementsUrl": "https://catalog.missouri.edu/collegeofhealthsciences/healthscience/bhs-health-science/"
+        },
+        {
+          "name": "Rutgers University",
+          "requirementsUrl": "https://shp.rutgers.edu/health-administration/bachelor-of-science-in-health-administration/"
         }
       ]
     },
@@ -18385,6 +18721,48 @@
               "description": "Early elementary literacy, math, centers, and developmentally appropriate practice."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Vanderbilt University",
+          "requirementsUrl": "https://peabody.vanderbilt.edu/academics/undergraduate-majors/elementary-secondary-education/"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/education/curriculum-instruction/elementary-education-bse/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://marsal.umich.edu/academics-admissions/degrees/bachelors-certification/undergraduate-elementary-teacher-education"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/education/elementary-education-bs/"
+        },
+        {
+          "name": "University of Georgia",
+          "requirementsUrl": "https://coe.uga.edu/academics/degrees"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/education/elementary-early-childhood-education-bs/"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://ehe.osu.edu/undergraduate/primary-education"
+        },
+        {
+          "name": "Florida State University",
+          "requirementsUrl": "https://cehhs.fsu.edu/elementary-education"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31319"
+        },
+        {
+          "name": "Arizona State University",
+          "requirementsUrl": "https://degrees.apps.asu.edu/bachelors/major/ASU00/TEELEDBAE/elementary-education-bae"
         }
       ]
     },
@@ -20522,6 +20900,48 @@
               "description": "Accounting career, controller work, reporting, and professional practice."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/business/degrees-and-programs/bachelor-of-business-administration/accounting/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/bus/accountancy-bs/"
+        },
+        {
+          "name": "Brigham Young University",
+          "requirementsUrl": "https://catalog.byu.edu/programs/34574"
+        },
+        {
+          "name": "Indiana University Kelley",
+          "requirementsUrl": "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=ACTGBSB"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/business/accounting/bba/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://michiganross.umich.edu/undergraduate/bba/curriculum/accounting"
+        },
+        {
+          "name": "University of Notre Dame",
+          "requirementsUrl": "https://mendoza.nd.edu/undergraduate/accountancy-major/"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=28630"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://fisher.osu.edu/undergraduate/academics/curriculum/specializations/accounting"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGACT/ACG_BSAC/"
         }
       ]
     },
@@ -22773,6 +23193,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://undergrad-inside.wharton.upenn.edu/fnce/"
+        },
+        {
+          "name": "NYU Stern",
+          "requirementsUrl": "https://www.stern.nyu.edu/current-students/undergraduate/academics/degree-programs/bs-business/finance"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/business/degrees-and-programs/bachelor-of-business-administration/finance/"
+        },
+        {
+          "name": "Indiana University Kelley",
+          "requirementsUrl": "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=FINBSB"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/bus/finance-bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://michiganross.umich.edu/undergraduate/bba/curriculum/finance"
+        },
+        {
+          "name": "University of Notre Dame",
+          "requirementsUrl": "https://mendoza.nd.edu/undergraduate/finance-major/"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=28640"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://fisher.osu.edu/undergraduate/academics/curriculum/specializations/finance"
+        },
+        {
+          "name": "Boston College",
+          "requirementsUrl": "https://www.bc.edu/bc-web/schools/carroll-school/undergraduate/academics/concentrations/finance.html"
+        }
       ]
     },
     {
@@ -24361,6 +24823,48 @@
               "description": "Accessible marketing, international business, and consumer behavior explanations."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://undergrad-inside.wharton.upenn.edu/mktg/"
+        },
+        {
+          "name": "NYU Stern",
+          "requirementsUrl": "https://www.stern.nyu.edu/portal-partners/current-students/undergraduate/academics/degree-programs/bs-business/marketing"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/business/degrees-and-programs/bachelor-of-business-administration/marketing/"
+        },
+        {
+          "name": "Indiana University Kelley",
+          "requirementsUrl": "https://bulletin.kelley.iu.edu/Undergrad/Plan/Detail?planCode=MKTGBSB"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/business/marketing/marketing-bba/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://michiganross.umich.edu/undergraduate/bba/curriculum/marketing"
+        },
+        {
+          "name": "University of Notre Dame",
+          "requirementsUrl": "https://mendoza.nd.edu/undergraduate/marketing-major/"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=28640"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://fisher.osu.edu/undergraduate/academics/curriculum/specializations/marketing"
+        },
+        {
+          "name": "Boston College",
+          "requirementsUrl": "https://www.bc.edu/bc-web/schools/carroll-school/undergraduate/academics/concentrations/marketing.html"
         }
       ]
     },
@@ -26049,6 +26553,48 @@
               "description": "Political science professional talks, research, teaching, and careers."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://gov.harvard.edu/undergraduate-program/requirements/"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://ua.princeton.edu/academic-units/department-politics"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://politicalscience.stanford.edu/undergraduate/major-requirements"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://politicalscience.yale.edu/academics/undergraduate-program/major-requirements"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/political-science/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/politicalscience/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/political-science/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/polisci/undergraduates/major-requirements.html"
+        },
+        {
+          "name": "Georgetown University",
+          "requirementsUrl": "https://government.georgetown.edu/undergraduate/major-requirements/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://polisci.duke.edu/undergraduate/major"
         }
       ]
     },
@@ -27861,6 +28407,48 @@
               "description": "Concise writing, rhetoric, storytelling, and literature explainers."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://english.yale.edu/undergraduate/requirements-major"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://english.stanford.edu/academics/undergraduate-program/majors-minors/english-major"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://ua.princeton.edu/academic-units/department-english"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/english-comparative-literature/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/english/"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://english.fas.harvard.edu/undergraduate/concentration-requirements"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/englishlanguageandliterature/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/english-ba/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://english.duke.edu/undergraduate/major"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/english/undergraduate/english-major.html"
         }
       ]
     },
@@ -29998,6 +30586,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/economics-course-14-1/"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://economics.harvard.edu/concentration-requirements"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://ua.princeton.edu/academic-units/department-economics"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://economics.stanford.edu/undergraduate/major"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/economics/"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/economics/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/economics/"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/economics/economics-major/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/economics-ba/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/economics/"
+        }
       ]
     },
     {
@@ -31799,6 +32429,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Maryland",
+          "requirementsUrl": "https://academiccatalog.umd.edu/undergraduate/colleges-schools/behavioral-social-sciences/criminology-criminal-justice/criminology-criminal-justice-major/"
+        },
+        {
+          "name": "UC Irvine",
+          "requirementsUrl": "https://catalogue.uci.edu/schoolofsocialecology/departmentofcriminologylawandsociety/criminologylawandsociety_ba/"
+        },
+        {
+          "name": "Florida State University",
+          "requirementsUrl": "https://criminology.fsu.edu/undergraduate-programs/majors/criminology-major"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/capital/criminal-justice-bs/"
+        },
+        {
+          "name": "John Jay College of Criminal Justice",
+          "requirementsUrl": "https://jjay.smartcatalogiq.com/en/current/undergraduate-bulletin/majors/criminal-justice-bs/"
+        },
+        {
+          "name": "Rutgers University",
+          "requirementsUrl": "https://sasundergrad.rutgers.edu/majors-and-core-curriculum/major/major-minor-details/criminal-justice"
+        },
+        {
+          "name": "University of Cincinnati",
+          "requirementsUrl": "https://cech.uc.edu/schools/criminaljustice/undergraduate-programs/criminal-justice-bs.html"
+        },
+        {
+          "name": "Northeastern University",
+          "requirementsUrl": "https://catalog.northeastern.edu/undergraduate/social-sciences-humanities/criminology-criminal-justice/criminal-justice-bs/"
+        },
+        {
+          "name": "Michigan State University",
+          "requirementsUrl": "https://reg.msu.edu/AcademicPrograms/ProgramDetail.aspx?Program=CRIMJ_BA1"
+        },
+        {
+          "name": "George Mason University",
+          "requirementsUrl": "https://catalog.gmu.edu/colleges-schools/humanities-social-sciences/criminology-law-society/criminology-law-society-bs/"
+        }
       ]
     },
     {
@@ -33486,6 +34158,48 @@
               "description": "Useful support for planning, writing, presentations, and managing a long research project."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://sociology.fas.harvard.edu/pages/requirements"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://sociology.stanford.edu/academics/undergraduate-program/major-requirements"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://ua.princeton.edu/academic-units/department-sociology"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/sociology/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/soc/undergraduates/major-requirements.html"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/sociology/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/sociology/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/sociology/"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/sociologyba"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/sociology/sociology-major/"
         }
       ]
     },
@@ -35398,6 +36112,48 @@
               "description": "Talks and collection videos useful for archival research, manuscripts, books, and historical interpretation."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://ua.princeton.edu/academic-units/department-history"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://history.yale.edu/undergraduate/major/requirements-major"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://history.fas.harvard.edu/concentration-requirements"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://history.stanford.edu/undergraduate/major-requirements"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/history/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/history/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/history/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/history-ba/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://history.duke.edu/undergraduate/major"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/history/undergraduates/major-requirements.html"
         }
       ]
     },
@@ -37984,6 +38740,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/mechanical-engineering-course-2/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://me.stanford.edu/academics-admissions/undergraduate/majors/bs-mechanical-engineering"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/mechanical-engineering/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/mechanical-engineering-bs/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/engineering/mechanical-engineering-bs/"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/mechanical-engineering/mechanical-engineering-bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/mechanical-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31181"
+        },
+        {
+          "name": "Caltech",
+          "requirementsUrl": "https://catalog.caltech.edu/current/2024-25/department-of-mechanical-and-civil-engineering/mechanical-engineering-option-and-minor-me"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeofengineering/departmentofmechanicalengineering/"
+        }
       ]
     },
     {
@@ -40350,6 +41148,48 @@
               "description": "Electronics design, measurement, debugging, teardown, and lab-practice videos."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/electrical-science-engineering-course-6-1/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://bulletin.stanford.edu/programs/ELEN-BS"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/electrical-engineering-computer-sciences/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/electrical-engineering-bs/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/engineering/electrical-engineering-bs/"
+        },
+        {
+          "name": "Caltech",
+          "requirementsUrl": "https://catalog.caltech.edu/current/2024-25/department-of-electrical-engineering/electrical-engineering-option-and-minor-ee"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/electrical-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31107"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/electrical-computer-engineering-bs/"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeofengineering/departmentofelectricalandcomputerengineering/"
         }
       ]
     },
@@ -42937,6 +43777,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/engineering-civil-environmental-engineering-course-1-eng/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://engineering.berkeley.edu/students/undergraduate-guide/degree-requirements/major-programs/cee/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/civil-engineering-bs/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/engineering/civil-engineering-bs/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://ughb.stanford.edu/majors-minors/major-programs/civil-engineering-program"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/civil-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31077"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/civil-engineering-bs/"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeofengineering/departmentofcivilenvironmentalengineering/"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/engineering/civil-environmental/civil-bs/"
+        }
       ]
     },
     {
@@ -44849,6 +45731,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/chemistry-course-5/"
+        },
+        {
+          "name": "Caltech",
+          "requirementsUrl": "https://cce.caltech.edu/undergraduate/undergraduate-chemistry/ugrad-chemistry-option-requirements"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://chemistry.berkeley.edu/ugrad/degrees/chem"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://bulletin.stanford.edu/programs/CHEM-BS"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/chemistry/"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://chemistry.harvard.edu/pages/concentration-requirements"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://chemistry.princeton.edu/undergrads/major-requirements"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/chemistry/"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/chemistry-bs/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/las/chemistry-bs/"
+        }
       ]
     },
     {
@@ -46759,6 +47683,48 @@
               "description": "Excellent models of visual explanation and mathematical storytelling."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/mathematics-course-18/"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://www.math.princeton.edu/undergraduate/majors/overview"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://www.math.harvard.edu/undergraduate/courses-and-concentration-information/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://mathematics.stanford.edu/academics/undergraduate-students/math-major"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/mathematics/"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/mathematics/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/mathematics/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/mathematics/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/math/undergraduates/major-and-minor-programs.html"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/mathematicsbs"
         }
       ]
     },
@@ -48784,6 +49750,48 @@
               "description": "Project-based full-stack, cloud, SQL, and deployment tutorials."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://catalog.cornell.edu/programs/information-science-systems-technology-bs/"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/dietrichcollegeofhumanitiesandsocialsciences/informationsystems/"
+        },
+        {
+          "name": "University of Washington",
+          "requirementsUrl": "https://ischool.uw.edu/programs/informatics/curriculum"
+        },
+        {
+          "name": "Syracuse University",
+          "requirementsUrl": "https://www.syracuse.edu/academics/programs/information-management-technology/"
+        },
+        {
+          "name": "RIT",
+          "requirementsUrl": "https://www.rit.edu/programs/computing-and-information-technologies-bs"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/information-sciences-technology/information-sciences-technology-bs/"
+        },
+        {
+          "name": "Virginia Tech",
+          "requirementsUrl": "https://catalog.vt.edu/undergraduate/pamplin-business/business-information-technology/business-information-technology-bs/"
+        },
+        {
+          "name": "Florida State University",
+          "requirementsUrl": "https://undergrad1.its.fsu.edu/academic_guide/guide-display.php?program=information-technology"
+        },
+        {
+          "name": "University of Central Florida",
+          "requirementsUrl": "https://www.ucf.edu/degree/information-technology-bs/"
+        },
+        {
+          "name": "New Jersey Institute of Technology",
+          "requirementsUrl": "https://catalog.njit.edu/undergraduate/computing-sciences/informatics/information-technology-bs/"
         }
       ]
     },
@@ -51146,6 +52154,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://www.kines.umich.edu/academics/movement-science/undergraduate"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/education/kinesiology/kinesiology-bs/"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGHHU/APK_BSAP/"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/kinesiology-bs/"
+        },
+        {
+          "name": "University of Central Florida",
+          "requirementsUrl": "https://www.ucf.edu/degree/kinesiology-bs/exercise-and-sport-physiology/"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/education/degrees-and-programs/bs-kinesiology-health/exercise-science/"
+        },
+        {
+          "name": "Michigan State University",
+          "requirementsUrl": "https://reg.msu.edu/AcademicPrograms/ProgramDetail.aspx?Program=KINES_BS1"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/ahs/kinesiology-bs/"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://ehe.osu.edu/undergraduate/health-promotion-nutrition-exercise-science"
+        },
+        {
+          "name": "University of Maryland",
+          "requirementsUrl": "https://sph.umd.edu/academics/departments-units/department-kinesiology/undergraduate-degree-programs/bs-kinesiology"
+        }
       ]
     },
     {
@@ -53171,6 +54221,48 @@
               "description": "Resume, interview, presentation, productivity, and workplace communication guidance."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Johns Hopkins University",
+          "requirementsUrl": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/public-health-studies/public-health-studies-bachelor-arts/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://publichealth.berkeley.edu/academics/undergraduate/curriculum"
+        },
+        {
+          "name": "University of North Carolina at Chapel Hill",
+          "requirementsUrl": "https://unc-public.courseleaf.com/undergraduate/programs-study/biostatistics-major-bsph/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://sph.umich.edu/undergrad/index.html"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://ph.ucla.edu/degree-programs/undergraduate-programs/bs-public-health"
+        },
+        {
+          "name": "George Washington University",
+          "requirementsUrl": "https://bulletin.gwu.edu/public-health/public-health/bs/"
+        },
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/cas/programs/public-health/ba/"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGPBH/PH_BPH/"
+        },
+        {
+          "name": "Indiana University Bloomington",
+          "requirementsUrl": "https://bulletins.iu.edu/iub/phb/2025-2026/undergraduate/degrees-majors/bsph-community-health.shtml"
+        },
+        {
+          "name": "Rutgers University",
+          "requirementsUrl": "https://catalogs.rutgers.edu/generated/nb-ug_current/pg1057.html"
         }
       ]
     },
@@ -55198,6 +56290,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://socialwelfare.berkeley.edu/academics/bachelor-arts-social-welfare"
+        },
+        {
+          "name": "NYU",
+          "requirementsUrl": "https://bulletins.nyu.edu/undergraduate/social-work/programs/bachelor-science/"
+        },
+        {
+          "name": "University of Washington",
+          "requirementsUrl": "https://socialwork.uw.edu/academics/basw/basw-overview/"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://socialwork.utexas.edu/academics/bsw/"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/letters-science/social-work/social-welfare-ba/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://ssw.umich.edu/programs/undergraduate-minor"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://csw.osu.edu/academics/bssw/"
+        },
+        {
+          "name": "Florida State University",
+          "requirementsUrl": "https://csw.fsu.edu/academics/bsw-program"
+        },
+        {
+          "name": "University of Maryland Baltimore County",
+          "requirementsUrl": "https://catalog.umbc.edu/preview_program.php?catoid=36&poid=6707"
+        },
+        {
+          "name": "Rutgers University",
+          "requirementsUrl": "https://catalogs.rutgers.edu/generated/nb-ug_current/pg1231.html"
+        }
       ]
     },
     {
@@ -57221,6 +58355,48 @@
               "description": "Artist interviews, exhibition context, and installation examples."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/art/course-descriptions/yale-college-art-major/"
+        },
+        {
+          "name": "Pratt Institute",
+          "requirementsUrl": "https://www.pratt.edu/programs/bfa-sculpture-and-integrated-practices/"
+        },
+        {
+          "name": "RISD",
+          "requirementsUrl": "https://www.risd.edu/academics/undergraduate-study"
+        },
+        {
+          "name": "School of the Art Institute of Chicago",
+          "requirementsUrl": "https://www.saic.edu/academics/undergraduate-studies"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/art-bfa/"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/artba"
+        },
+        {
+          "name": "Virginia Commonwealth University",
+          "requirementsUrl": "https://bulletin.vcu.edu/undergraduate/arts/art-foundation-program/art-foundation-fine-arts-bfa/"
+        },
+        {
+          "name": "Maryland Institute College of Art",
+          "requirementsUrl": "https://www.mica.edu/undergraduate-majors-minors/general-fine-arts-major/"
+        },
+        {
+          "name": "California Institute of the Arts",
+          "requirementsUrl": "https://catalog.calarts.edu/requirements/school-of-art/bfa-program-art"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeoffinearts/schoolofart/"
         }
       ]
     },
@@ -59469,6 +60645,48 @@
               "description": "Professional talks, design careers, ethics, and community conversations."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "RISD",
+          "requirementsUrl": "https://www.risd.edu/academics/graphic-design/"
+        },
+        {
+          "name": "ArtCenter College of Design",
+          "requirementsUrl": "https://www.artcenter.edu/academics/undergraduate-degrees/graphic-design/overview.html"
+        },
+        {
+          "name": "Pratt Institute",
+          "requirementsUrl": "https://www.pratt.edu/design/undergraduate-communications-design/communications-design-bfa-emphasis-in-graphic-design/"
+        },
+        {
+          "name": "MICA",
+          "requirementsUrl": "https://www.mica.edu/undergraduate-majors-minors/graphic-design-major/?tp=1"
+        },
+        {
+          "name": "RIT",
+          "requirementsUrl": "https://www.rit.edu/study/graphic-design-bfa"
+        },
+        {
+          "name": "Virginia Commonwealth University",
+          "requirementsUrl": "https://bulletin.vcu.edu/undergraduate/arts/graphic-design/graphic-design-bfa/"
+        },
+        {
+          "name": "California Institute of the Arts",
+          "requirementsUrl": "https://catalog.calarts.edu/requirements/school-of-art/bfa-program-graphic-design"
+        },
+        {
+          "name": "School of Visual Arts",
+          "requirementsUrl": "https://sva.edu/academics/undergraduate/bfa-design/curriculum"
+        },
+        {
+          "name": "Parsons School of Design",
+          "requirementsUrl": "https://www.newschool.edu/parsons/bfa-communication-design-curriculum/"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeoffinearts/schoolofdesign/"
         }
       ]
     },
@@ -62067,6 +63285,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/architecture-barch/"
+        },
+        {
+          "name": "Syracuse University",
+          "requirementsUrl": "https://coursecatalog.syracuse.edu/undergraduate/architecture/architecture-barch/"
+        },
+        {
+          "name": "Cal Poly San Luis Obispo",
+          "requirementsUrl": "https://catalog.calpoly.edu/architecture-environmental-design/architecture/architecture-barch/"
+        },
+        {
+          "name": "Rice University",
+          "requirementsUrl": "https://ga.rice.edu/programs-study/departments-programs/architecture/architecture/architecture-ba/"
+        },
+        {
+          "name": "Virginia Tech",
+          "requirementsUrl": "https://catalog.vt.edu/undergraduate/architecture-arts-design/architecture/architecture-barch/"
+        },
+        {
+          "name": "University of Notre Dame",
+          "requirementsUrl": "https://architecture.nd.edu/academics/undergraduate-programs/bachelor-of-architecture/"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=28511"
+        },
+        {
+          "name": "Pratt Institute",
+          "requirementsUrl": "https://www.pratt.edu/architecture/undergraduate-architecture/bachelor-of-architecture/"
+        },
+        {
+          "name": "Rensselaer Polytechnic Institute",
+          "requirementsUrl": "https://catalog.rpi.edu/preview_program.php?catoid=26&poid=7436"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/architecture/degrees-and-programs/bachelor-of-architecture/"
+        }
       ]
     },
     {
@@ -64089,6 +65349,48 @@
               "description": "Presentation, productivity, research organization, and career planning support."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://www.college.columbia.edu/core/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/thecurriculum/"
+        },
+        {
+          "name": "St. John's College",
+          "requirementsUrl": "https://www.sjc.edu/academic-programs/undergraduate/classes"
+        },
+        {
+          "name": "Reed College",
+          "requirementsUrl": "https://www.reed.edu/registrar/degree-requirements/"
+        },
+        {
+          "name": "Amherst College",
+          "requirementsUrl": "https://www.amherst.edu/academiclife/registrar/for-students/degree-requirements"
+        },
+        {
+          "name": "Brown University",
+          "requirementsUrl": "https://college.brown.edu/design-your-education/open-curriculum"
+        },
+        {
+          "name": "Swarthmore College",
+          "requirementsUrl": "https://www.swarthmore.edu/registrar/degree-requirements"
+        },
+        {
+          "name": "Williams College",
+          "requirementsUrl": "https://catalog.williams.edu/requirements/degree-requirements/"
+        },
+        {
+          "name": "Pomona College",
+          "requirementsUrl": "https://catalog.pomona.edu/content.php?catoid=45&navoid=9140"
+        },
+        {
+          "name": "Wesleyan University",
+          "requirementsUrl": "https://catalog.wesleyan.edu/general-education/"
         }
       ]
     },
@@ -66134,6 +67436,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/medill/journalism/journalism-major/"
+        },
+        {
+          "name": "University of Missouri",
+          "requirementsUrl": "https://catalog.missouri.edu/collegeofjournalism/journalism/bj-journalism/"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://annenberg.usc.edu/academic-programs/journalism-ba"
+        },
+        {
+          "name": "Syracuse University",
+          "requirementsUrl": "https://coursecatalog.syracuse.edu/undergraduate/public-communications/broadcast-digital-journalism-bs/"
+        },
+        {
+          "name": "UNC Chapel Hill",
+          "requirementsUrl": "https://catalog.unc.edu/undergraduate/programs-study/media-journalism-major-ba/"
+        },
+        {
+          "name": "University of Maryland",
+          "requirementsUrl": "https://academiccatalog.umd.edu/undergraduate/colleges-schools/journalism/journalism-major/"
+        },
+        {
+          "name": "Arizona State University",
+          "requirementsUrl": "https://degrees.apps.asu.edu/bachelors/major/ASU00/CSJMCBA/journalism-and-mass-communication-ba"
+        },
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/com/programs/journalism/bs/"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGJRC/JOU_BSJO/"
+        },
+        {
+          "name": "Ohio University",
+          "requirementsUrl": "https://catalogs.ohio.edu/preview_program.php?catoid=93&poid=29428"
+        }
       ]
     },
     {
@@ -68171,6 +69515,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Juilliard",
+          "requirementsUrl": "https://catalog.juilliard.edu/preview_program.php?catoid=58&poid=7760"
+        },
+        {
+          "name": "Eastman School of Music",
+          "requirementsUrl": "https://www.esm.rochester.edu/registrar/undergraduate/curriculum/"
+        },
+        {
+          "name": "Berklee College of Music",
+          "requirementsUrl": "https://catalog.berklee.edu/content.php?catoid=8&navoid=414"
+        },
+        {
+          "name": "Indiana University Jacobs School of Music",
+          "requirementsUrl": "https://bulletins.iu.edu/iub/music/2025-2026/undergraduate/degrees/bachelor-music/index.shtml"
+        },
+        {
+          "name": "USC Thornton School of Music",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=30684"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://smtd.umich.edu/current-students-3/undergraduate-degree-requirements/"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/music/music-studies/music-major/"
+        },
+        {
+          "name": "New England Conservatory",
+          "requirementsUrl": "https://necmusic.edu/degree-programs/bachelor-music"
+        },
+        {
+          "name": "Manhattan School of Music",
+          "requirementsUrl": "https://www.msmnyc.edu/programs/bachelor-of-music/"
+        },
+        {
+          "name": "Peabody Institute",
+          "requirementsUrl": "https://peabody.jhu.edu/academics/degrees-programs/bachelor-of-music/"
+        }
       ]
     },
     {
@@ -69970,6 +71356,48 @@
               "description": "Actor career and audition guidance for post-graduation planning."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/theater-performance-studies/"
+        },
+        {
+          "name": "NYU Tisch",
+          "requirementsUrl": "https://tisch.nyu.edu/drama/about/degree-requirements"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeoffinearts/schoolofdrama/"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/communication/theatre/theatre-major/"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=28741"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/theaterba"
+        },
+        {
+          "name": "Emerson College",
+          "requirementsUrl": "https://emerson.edu/majors-programs/undergraduate-programs/theatre"
+        },
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/cfa/programs/theatre-arts/bfa/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://smtd.umich.edu/programs-degrees/degree-programs/undergraduate/theatre-performance-bfa/"
+        },
+        {
+          "name": "University of North Carolina School of the Arts",
+          "requirementsUrl": "https://www.uncsa.edu/drama/undergraduate-programs/index.aspx"
         }
       ]
     },
@@ -71771,6 +73199,48 @@
               "description": "Panels and interviews on independent film careers, producing, festivals, and distribution."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "NYU Tisch",
+          "requirementsUrl": "https://tisch.nyu.edu/film-tv/about-undergraduate-film-tv/degree-requirements"
+        },
+        {
+          "name": "USC",
+          "requirementsUrl": "https://catalogue.usc.edu/preview_program.php?catoid=20&poid=28582"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/filmandtelevisionba"
+        },
+        {
+          "name": "Chapman University",
+          "requirementsUrl": "https://catalog.chapman.edu/preview_program.php?catoid=46&poid=9165"
+        },
+        {
+          "name": "Emerson College",
+          "requirementsUrl": "https://emerson.edu/majors-programs/undergraduate-programs/media-arts-production"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/film/"
+        },
+        {
+          "name": "Florida State University",
+          "requirementsUrl": "https://film.fsu.edu/programs/undergraduate-programs"
+        },
+        {
+          "name": "Loyola Marymount University",
+          "requirementsUrl": "https://bulletin.lmu.edu/preview_program.php?catoid=19&poid=4304"
+        },
+        {
+          "name": "DePaul University",
+          "requirementsUrl": "https://catalog.depaul.edu/programs/film-television-bfa/"
+        },
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/com/programs/film-television/bs/"
         }
       ]
     },
@@ -73803,6 +75273,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/chemical-engineering-course-10/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/chemical-engineering/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/chemical-biomolecular-engineering-bs/"
+        },
+        {
+          "name": "University of Minnesota",
+          "requirementsUrl": "https://onestop2.umn.edu/pcas/viewCatalogProgram.do?programID=105"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://bulletin.stanford.edu/programs/CHEMENG-BS"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/las/chemical-engineering-bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/chemical-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31068"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/engineering/degrees-and-programs/bs-chemical-engineering/"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeofengineering/departmentofchemicalengineering/"
+        }
       ]
     },
     {
@@ -74355,6 +75867,48 @@
               "description": "Industry-facing engineering standards and mobility technology discussions."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/aerospace-engineering-course-16/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/aerospace-engineering-bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/aerospace-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31065"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/engineering/aerospace-engineering-bs/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://bulletin.stanford.edu/programs/AA-BS"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/engineering/aerospace/aerospace-bs/"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/engineering/degrees-and-programs/bs-aerospace-engineering/"
+        },
+        {
+          "name": "Embry-Riddle Aeronautical University",
+          "requirementsUrl": "https://erau.edu/degrees/bachelor/aerospace-engineering"
+        },
+        {
+          "name": "Virginia Tech",
+          "requirementsUrl": "https://catalog.vt.edu/undergraduate/engineering/aerospace-ocean-engineering/aerospace-engineering-bs/"
         }
       ]
     },
@@ -76381,6 +77935,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/industrial-engineering-bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/industrial-operations-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31162"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/industrial-engineering-operations-research/"
+        },
+        {
+          "name": "Virginia Tech",
+          "requirementsUrl": "https://catalog.vt.edu/undergraduate/engineering/industrial-systems-engineering/industrial-systems-engineering-bs/"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/engineering-applied-science/industrial-engineering-management-sciences/industrial-engineering-bs/"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/engineering/industrial-systems/industrial-bs/"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/engineering/industrial-systems-engineering/industrial-engineering-bs/"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/operations-research-engineering-bs/"
+        },
+        {
+          "name": "North Carolina State University",
+          "requirementsUrl": "https://catalog.ncsu.edu/undergraduate/engineering/industrial-systems/industrial-engineering-bs/"
+        }
       ]
     },
     {
@@ -78405,6 +80001,48 @@
               "description": "Low-level programming, C, memory, systems, and embedded computing videos."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/engineering/computer-engineering-bs/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/computer-engineering-bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/computer-engineering/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31094"
+        },
+        {
+          "name": "UC San Diego",
+          "requirementsUrl": "https://catalog.ucsd.edu/curric/CSE-ug.html"
+        },
+        {
+          "name": "Carnegie Mellon University",
+          "requirementsUrl": "https://coursecatalog.web.cmu.edu/schools-colleges/collegeofengineering/departmentofelectricalandcomputerengineering/"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/electrical-computer-engineering-bs/"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/engineering/degrees-and-programs/bs-electrical-and-computer-engineering/"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/engineering/computer-science/computer-engineering-bs/"
+        },
+        {
+          "name": "Virginia Tech",
+          "requirementsUrl": "https://catalog.vt.edu/undergraduate/engineering/electrical-computer-engineering/computer-engineering-bs/"
         }
       ]
     },
@@ -80444,6 +82082,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Johns Hopkins University",
+          "requirementsUrl": "https://www.bme.jhu.edu/academics/undergraduate/undergraduate-degree-requirements/"
+        },
+        {
+          "name": "Georgia Tech",
+          "requirementsUrl": "https://catalog.gatech.edu/programs/biomedical-engineering-bs/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://bme.duke.edu/academics/undergrad/"
+        },
+        {
+          "name": "UC San Diego",
+          "requirementsUrl": "https://catalog.ucsd.edu/curric/BENG-ug.html"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/bioengineering-bse/"
+        },
+        {
+          "name": "Boston University",
+          "requirementsUrl": "https://www.bu.edu/academics/eng/programs/biomedical-engineering/bs/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://bulletin.engin.umich.edu/ug-ed/degrees/biomedical-engineering/"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/engineering/biomedical-engineering/biomedical-engineering-bs/"
+        },
+        {
+          "name": "Case Western Reserve University",
+          "requirementsUrl": "https://bulletin.case.edu/engineering/biomedical-engineering/biomedical-engineering-bs/"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/engineering/degrees-and-programs/bs-biomedical-engineering/"
+        }
       ]
     },
     {
@@ -82355,6 +84035,48 @@
               "description": "High-quality science communication useful for presentation style and conceptual framing."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://catalog.mit.edu/degree-charts/physics-course-8/"
+        },
+        {
+          "name": "Caltech",
+          "requirementsUrl": "https://www.catalog.caltech.edu/current/information-for-undergraduate-students/graduation-requirements-all-options/physics-option-ph/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://physics.stanford.edu/undergraduate/physics-major"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://phy.princeton.edu/undergraduate-program"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/physics/"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://physics.harvard.edu/undergrad"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/physics/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/physics/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/physics/"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/physics-bs/"
         }
       ]
     },
@@ -84388,6 +86110,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://earthsystems.stanford.edu/academics-admissions/undergraduate-program/earth-systems-major"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/environmental-sciences/"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/environmental-studies/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://nicholas.duke.edu/undergraduate-programs/majors-minors-certificate-programs/environmental-sciences-bs"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/earth/undergraduates/majors-minors/environment-major.html"
+        },
+        {
+          "name": "UNC Chapel Hill",
+          "requirementsUrl": "https://catalog.unc.edu/undergraduate/programs-study/environmental-science-major-bs/"
+        },
+        {
+          "name": "University of Washington",
+          "requirementsUrl": "https://www.washington.edu/students/gencat/program/S/EnvironmentalScienceandTerrestrialResourceManagement-1092.html"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGLAS/EVS_BS/"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/agricultural-life-sciences/soil-environmental-sciences/environmental-sciences-bs/"
+        },
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/environment-sustainability-bs/"
+        }
       ]
     },
     {
@@ -86082,6 +87846,48 @@
             }
           ]
         }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://anthropology.fas.harvard.edu/concentration-requirements"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://anthropology.stanford.edu/academics/undergraduate-program/major"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/anthropology/"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://anthropology.yale.edu/undergraduate-program/undergraduate-concentration"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/anthropology/"
+        },
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://anthropology.princeton.edu/undergraduate/major"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/anthropology/"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/anthro/undergraduates/majors-minors.html"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/anthropologyba"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://culturalanthropology.duke.edu/undergraduate/major-minor"
+        }
       ]
     },
     {
@@ -87768,6 +89574,48 @@
               "description": "Recorded talks and interviews useful for advanced thesis exploration."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://philosophy.princeton.edu/undergraduate/concentration-requirements"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://philosophy.fas.harvard.edu/concentration"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://philosophy.stanford.edu/academics/undergraduate-program-philosophy/major-philosophy"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/philosophy/"
+        },
+        {
+          "name": "MIT",
+          "requirementsUrl": "https://philosophy.mit.edu/undergraduate/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/philosophy/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/philosophy/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/philosophy/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/philosophy-ba/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://philosophy.duke.edu/undergraduate/major"
         }
       ]
     },
@@ -89456,6 +91304,48 @@
               "description": "Research design and methods videos for qualitative and humanities projects."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://religion.princeton.edu/undergraduate/major-requirements"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://religiousstudies.stanford.edu/undergraduate/degrees-overview/major-bachelor-arts-religious-studies"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/religious-studies/"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://studyofreligion.fas.harvard.edu/undergraduate-program/concentration-options/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/religiousstudies/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/religion/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/religious-studies-ba/"
+        },
+        {
+          "name": "Duke University",
+          "requirementsUrl": "https://religiousstudies.duke.edu/undergraduate/major"
+        },
+        {
+          "name": "Northwestern University",
+          "requirementsUrl": "https://catalogs.northwestern.edu/undergraduate/arts-sciences/religious-studies/religious-studies-major/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/religious-studies/"
         }
       ]
     },
@@ -91256,6 +93146,48 @@
               "description": "MLA webinars and professional resources for literary and language scholarship."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Princeton University",
+          "requirementsUrl": "https://spo.princeton.edu/undergraduate/major"
+        },
+        {
+          "name": "Yale University",
+          "requirementsUrl": "https://catalog.yale.edu/ycps/subjects-of-instruction/spanish/"
+        },
+        {
+          "name": "Stanford University",
+          "requirementsUrl": "https://bulletin.stanford.edu/programs/SPAN-BA"
+        },
+        {
+          "name": "Harvard University",
+          "requirementsUrl": "https://rll.fas.harvard.edu/pages/undergraduate-program"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/spanish-portuguese/"
+        },
+        {
+          "name": "University of Pennsylvania",
+          "requirementsUrl": "https://catalog.upenn.edu/undergraduate/programs/hispanic-studies-ba/"
+        },
+        {
+          "name": "Columbia University",
+          "requirementsUrl": "https://bulletin.columbia.edu/columbia-college/departments-instruction/latin-american-iberian-cultures/"
+        },
+        {
+          "name": "University of Chicago",
+          "requirementsUrl": "https://collegecatalog.uchicago.edu/thecollege/romancelanguagesliteratures/"
+        },
+        {
+          "name": "UCLA",
+          "requirementsUrl": "https://catalog.registrar.ucla.edu/major/2023/spanishba"
+        },
+        {
+          "name": "University of Michigan",
+          "requirementsUrl": "https://lsa.umich.edu/rll/undergraduates/majors-minors/spanish-major.html"
         }
       ]
     },
@@ -93058,6 +94990,48 @@
               "description": "Professional communication, leadership, and career development videos."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/hotel-management-bs/"
+        },
+        {
+          "name": "UNLV",
+          "requirementsUrl": "https://www.unlv.edu/degree/bs-hospitality-management"
+        },
+        {
+          "name": "Michigan State University",
+          "requirementsUrl": "https://reg.msu.edu/AcademicPrograms/ProgramDetail.aspx?PType=UGRD&Program=HOSPTL_BA1"
+        },
+        {
+          "name": "University of Central Florida",
+          "requirementsUrl": "https://www.ucf.edu/degree/hospitality-management-bs/as-to-bs/"
+        },
+        {
+          "name": "Florida International University",
+          "requirementsUrl": "https://catalog.fiu.edu/2025_2026/undergraduate/Chaplin_School_of_Hospitality_and_Tourism_Management/UG_Hospitality_and_Tourism_Management.pdf"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/health-human-development/hospitality-management-bs/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://catalog.purdue.edu/preview_program.php?catoid=17&poid=31267"
+        },
+        {
+          "name": "University of Houston",
+          "requirementsUrl": "https://publications.uh.edu/preview_program.php?catoid=52&poid=18053"
+        },
+        {
+          "name": "Temple University",
+          "requirementsUrl": "https://bulletin.temple.edu/undergraduate/sport-tourism-hospitality-management/tourism-hospitality-management-bs/"
+        },
+        {
+          "name": "San Diego State University",
+          "requirementsUrl": "https://catalog.sdsu.edu/preview_program.php?catoid=10&poid=9306"
         }
       ]
     },
@@ -94866,6 +96840,48 @@
               "description": "HR career, internship, generalist, and workplace advice for new HR professionals."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/industrial-labor-relations-bs/"
+        },
+        {
+          "name": "Michigan State University",
+          "requirementsUrl": "https://broad.msu.edu/undergraduate/programs/human-resource-management-major/"
+        },
+        {
+          "name": "Rutgers University",
+          "requirementsUrl": "https://sasundergrad.rutgers.edu/majors-and-core-curriculum/major/major-minor-details/human-resource-management"
+        },
+        {
+          "name": "Temple University",
+          "requirementsUrl": "https://bulletin.temple.edu/undergraduate/fox-business-management/human-resource-management-bba/"
+        },
+        {
+          "name": "University of Minnesota",
+          "requirementsUrl": "https://onestop2.umn.edu/pcas/viewCatalogProgram.do?programID=126"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/bus/management-bs/human-resource-management-concentration/"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/liberal-arts/labor-human-resources-bs/"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://fisher.osu.edu/undergraduate/academics/curriculum/specializations/human-resources"
+        },
+        {
+          "name": "University of South Carolina",
+          "requirementsUrl": "https://academicbulletins.sc.edu/undergraduate/business/management/management-bsba/human-resource-management-concentration/"
+        },
+        {
+          "name": "DePaul University",
+          "requirementsUrl": "https://catalog.depaul.edu/programs/human-resource-management-bsb/"
         }
       ]
     },
@@ -96680,6 +98696,48 @@
               "description": "Project management and stakeholder skills for internship projects."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Michigan State University",
+          "requirementsUrl": "https://broad.msu.edu/undergraduate/programs/supply-chain-management-major/"
+        },
+        {
+          "name": "Arizona State University",
+          "requirementsUrl": "https://degrees.apps.asu.edu/bachelors/major/ASU00/BASCMBS/supply-chain-management-bs"
+        },
+        {
+          "name": "Penn State",
+          "requirementsUrl": "https://bulletins.psu.edu/undergraduate/colleges/smeal-business/supply-chain-information-systems-bs/"
+        },
+        {
+          "name": "University of Tennessee",
+          "requirementsUrl": "https://haslam.utk.edu/supply-chain-management/undergraduate/"
+        },
+        {
+          "name": "University of Texas at Austin",
+          "requirementsUrl": "https://catalog.utexas.edu/undergraduate/business/degrees-and-programs/bachelor-of-business-administration/supply-chain-management/"
+        },
+        {
+          "name": "University of Maryland",
+          "requirementsUrl": "https://academiccatalog.umd.edu/undergraduate/colleges-schools/business/decision-operations-information-technologies/operations-management-business-analytics-major/"
+        },
+        {
+          "name": "Rutgers University",
+          "requirementsUrl": "https://www.business.rutgers.edu/undergraduate-new-brunswick/supply-chain-management"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://fisher.osu.edu/undergraduate/academics/curriculum/specializations/logistics-management"
+        },
+        {
+          "name": "University of Minnesota",
+          "requirementsUrl": "https://onestop2.umn.edu/pcas/viewCatalogProgram.do?programID=129"
+        },
+        {
+          "name": "Northeastern University",
+          "requirementsUrl": "https://catalog.northeastern.edu/undergraduate/business/concentrations/supply-chain-management/"
         }
       ]
     },
@@ -98595,6 +100653,48 @@
               "description": "Food safety and sanitation videos useful for foodservice rotations."
             }
           ]
+        }
+      ],
+      "schoolsOffering": [
+        {
+          "name": "Cornell University",
+          "requirementsUrl": "https://courses.cornell.edu/programs/nutritional-sciences-bs/"
+        },
+        {
+          "name": "UNC Chapel Hill",
+          "requirementsUrl": "https://unc-public.courseleaf.com/undergraduate/programs-study/nutrition-major-bsph/"
+        },
+        {
+          "name": "UC Berkeley",
+          "requirementsUrl": "https://guide.berkeley.edu/undergraduate/degree-programs/nutritional-metabolic-biology/"
+        },
+        {
+          "name": "Purdue University",
+          "requirementsUrl": "https://www.admissions.purdue.edu/majors/a-to-z/nutrition-and-dietetics.php"
+        },
+        {
+          "name": "NC State University",
+          "requirementsUrl": "https://catalog.ncsu.edu/undergraduate/agriculture-life-sciences/food-bioprocessing-nutrition-science/nutrition-sciences-bs/"
+        },
+        {
+          "name": "University of Illinois Urbana-Champaign",
+          "requirementsUrl": "https://catalog.illinois.edu/undergraduate/aces/food-science-human-nutrition-bs/dietetics-concentration/"
+        },
+        {
+          "name": "University of Wisconsin-Madison",
+          "requirementsUrl": "https://guide.wisc.edu/undergraduate/agricultural-life-sciences/nutritional-sciences/dietetics-bs/"
+        },
+        {
+          "name": "Ohio State University",
+          "requirementsUrl": "https://ehe.osu.edu/undergraduate/human-nutrition"
+        },
+        {
+          "name": "University of Florida",
+          "requirementsUrl": "https://catalog.ufl.edu/UGRD/colleges-schools/UGAGL/DIE_BS/"
+        },
+        {
+          "name": "Texas A&M University",
+          "requirementsUrl": "https://catalog.tamu.edu/undergraduate/agriculture-life-sciences/nutrition/nutrition-bs/"
         }
       ]
     }
