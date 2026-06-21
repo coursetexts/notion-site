@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import {
   filterDegrees,
+  getCoursePageUrl,
   groupResources,
   type CourseResource,
   type CourseResourceKind,
@@ -65,6 +66,58 @@ function ChevronIcon({ open }: { open: boolean }) {
         strokeLinejoin='round'
       />
     </svg>
+  )
+}
+
+function DocumentIcon() {
+  return (
+    <svg
+      className={styles.courseDocumentIconSvg}
+      width='14'
+      height='14'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      aria-hidden='true'
+    >
+      <path
+        d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <polyline
+        points='14 2 14 8 20 8'
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+function CourseDocumentLink({
+  url,
+  courseName
+}: {
+  url?: string
+  courseName: string
+}) {
+  const label = `Course document for ${courseName}`
+
+  return (
+    <a
+      href={getCoursePageUrl(url)}
+      target='_blank'
+      rel='noreferrer'
+      className={styles.courseDocumentLink}
+      aria-label={label}
+      onClick={(event) => event.stopPropagation()}
+    >
+      <DocumentIcon />
+    </a>
   )
 }
 
@@ -222,6 +275,19 @@ function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
             {topic}
           </li>
         ))}
+        <li
+          key={`${course.number}-topic-course-page`}
+          className={styles.topicItem}
+        >
+          <a
+            href={getCoursePageUrl(course.documentUrl)}
+            target='_blank'
+            rel='noreferrer'
+            className={styles.resourceLink}
+          >
+            See full course outline
+          </a>
+        </li>
       </ul>
     </>
   )
@@ -339,7 +405,13 @@ function CourseRow({
         </span>
         <span className={styles.courseHeaderRight}>
           {course.isNew ? <span className={styles.newTag}>New</span> : null}
-          <YearTag year={course.year} />
+          <span className={styles.courseYearGroup}>
+            <CourseDocumentLink
+              url={course.documentUrl}
+              courseName={course.name}
+            />
+            <YearTag year={course.year} />
+          </span>
           {canExpand ? <ChevronIcon open={courseOpen} /> : null}
         </span>
       </button>

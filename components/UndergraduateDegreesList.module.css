@@ -248,6 +248,33 @@
   flex-shrink: 0;
 }
 
+.courseYearGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.courseDocumentLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--midGrey, #b9b4a7);
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.courseDocumentLink:hover,
+.courseDocumentLink:focus-visible {
+  color: #25272b;
+}
+
+.courseDocumentIconSvg {
+  display: block;
+}
+
 .yearTag {
   display: inline-flex;
   align-items: center;

@@ -23,6 +23,15 @@ export type UndergraduateCourse = {
   isNew: boolean
   topics: string[]
   resources?: CourseResource[]
+  /** Opens in a new tab from the degrees course row document icon. */
+  documentUrl?: string
+}
+
+export const COURSE_PAGE_PLACEHOLDER_URL = 'https://google.com'
+
+export function getCoursePageUrl(documentUrl?: string): string {
+  const trimmed = documentUrl?.trim()
+  return trimmed || COURSE_PAGE_PLACEHOLDER_URL
 }
 
 export type UndergraduateDegree = {
