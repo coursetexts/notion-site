@@ -27,6 +27,86 @@
   letter-spacing: 0.0002em;
 }
 
+.schoolsMarquee {
+  margin-top: 32px;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+.schoolsTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: schoolsScroll 90s linear infinite;
+}
+
+.schoolsMarquee:hover .schoolsTrack {
+  animation-play-state: paused;
+}
+
+.schoolLogoItem {
+  flex: none;
+  height: 44px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.schoolLogoImg {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.schoolLogoItem:hover .schoolLogoImg {
+  opacity: 1;
+  transform: translateY(-3px) scale(1.05);
+}
+
+@keyframes schoolsScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schoolsTrack {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 20px;
+  }
+
+  .schoolsMarquee .schoolLogoItem[aria-hidden='true'] {
+    display: none;
+  }
+}
+
 .subjectGroup {
   margin-top: 52px;
   display: flex;

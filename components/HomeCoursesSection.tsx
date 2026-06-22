@@ -108,6 +108,20 @@ export function HomeCoursesSection({
     { label: 'English', icon: '/images/home/english.png' }
   ]
 
+  const topSchools = [
+    { src: '/images/home/harvard-red.png', alt: 'Harvard University' },
+    { src: '/images/home/stanford.png', alt: 'Stanford University' },
+    { src: '/images/home/princeton.png', alt: 'Princeton University' },
+    { src: '/images/home/yale.png', alt: 'Yale University' },
+    { src: '/images/home/columbia.png', alt: 'Columbia University' },
+    { src: '/images/home/waterloo.png', alt: 'University of Waterloo' }
+  ]
+
+  // Repeat the set so one half of the track (the scroll distance) always
+  // exceeds the content column (≤1000px) even before logos load — otherwise a
+  // blank gap appears at the end of each loop. 6 copies keeps it gap-free.
+  const loopSchools = Array.from({ length: 6 }, () => topSchools).flat()
+
   const cards =
     courses == null
       ? Array.from({ length: 12 }).map((_, index) => ({
@@ -124,6 +138,24 @@ export function HomeCoursesSection({
     <section className={styles.section}>
       <div className={styles.content}>
         <h2 className={styles.heading}>Try courses from top schools.</h2>
+
+        <div className={styles.schoolsMarquee} aria-label='Featured top schools'>
+          <div className={styles.schoolsTrack}>
+            {loopSchools.map((school, index) => (
+              <div
+                key={`${school.alt}-${index}`}
+                className={styles.schoolLogoItem}
+                aria-hidden={index >= topSchools.length ? true : undefined}
+              >
+                <img
+                  src={school.src}
+                  alt={index >= topSchools.length ? '' : school.alt}
+                  className={styles.schoolLogoImg}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className={styles.subjectGroup}>
           <div className={styles.dashedRule} />
