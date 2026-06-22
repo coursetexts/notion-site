@@ -36,9 +36,10 @@
   font-family: 'Guyot Press', serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 22px;
+  line-height: 30px;
   letter-spacing: 0.0002em;
+  text-align: center;
 }
 
 .footerHeroRow {
@@ -63,14 +64,17 @@
   margin-top: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: stretch;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px;
 }
 
 .supportCard {
-  width: 253px;
-  height: 74px;
-  padding: 20px;
+  width: 360px;
+  height: 104px;
+  padding: 24px;
   border: 1px solid var(--outline, #e6e6e6);
   background: var(--offwhite, #fdfdfd);
   display: flex;
@@ -92,8 +96,8 @@
 }
 
 .supportCardIcon {
-  width: 26px;
-  height: 32px;
+  width: 48px;
+  height: 56px;
   object-fit: contain;
   border-radius: 4px;
   border: 1px solid var(--fill, #e6e6e652);
@@ -114,27 +118,27 @@
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 10px;
-  line-height: 10px;
+  font-size: 11px;
+  line-height: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .supportCardTitle {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: var(--midGrey, #37352f);
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 22px;
   letter-spacing: -0.0004em;
 }
 
 .footerColumnsRow {
-  margin-top: 98px;
+  margin-top: 56px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.7fr 1fr;
   align-items: flex-start;
   column-gap: 72px;
   box-sizing: border-box;
@@ -165,7 +169,8 @@
 }
 
 .socialBox {
-  width: 100px;
+  width: auto;
+  min-width: 100px;
   height: 33px;
   padding: 6px 12px;
   border: 2px solid var(--outline, #e6e6e6);
@@ -200,6 +205,7 @@
   font-size: 13px;
   line-height: 160%;
   letter-spacing: -0.004em;
+  white-space: nowrap;
 }
 
 .footerHeading {
