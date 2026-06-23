@@ -15,9 +15,9 @@
   justify-content: space-between;
   gap: 1.5rem;
   color: #37352F;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   letter-spacing: -0.065px;
 }
 
@@ -52,7 +52,7 @@
   flex: 1;
   justify-content: center;
   min-width: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .headerNav {
@@ -153,7 +153,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .profileAlertBadge {
@@ -344,7 +344,7 @@
 }
 
 .menuNavLink {
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.35;
   color: #000000;
@@ -379,7 +379,7 @@
 }
 
 .menuThemeLabel {
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.875rem;
   color: #37352f;
 }
@@ -415,7 +415,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9375rem;
   color: #000000;
 }

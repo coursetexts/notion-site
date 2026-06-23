@@ -13,7 +13,7 @@
 .heading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -46,7 +46,7 @@
   outline: none;
   background: transparent;
   padding: 16px 19px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -80,7 +80,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -106,7 +106,7 @@
   );
   box-sizing: border-box;
   padding: 0 0 2rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #25272b;
 }
 
@@ -255,7 +255,7 @@
   border: 1px solid #d7d8da;
   border-radius: 4px;
   background: #fff;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
@@ -275,13 +275,13 @@
 
 .pageEllipsis {
   padding: 0 0.25rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 13px;
   color: var(--midGrey, #37352f);
 }
 
 .muted {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: var(--midGrey, #37352f);
@@ -346,7 +346,7 @@
 }
 
 .discordCtaTitle {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: clamp(1.35rem, 2.6vw, 1.85rem);
   font-weight: 401;
   margin: 0;
@@ -357,7 +357,7 @@
 
 .discordCtaBody {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 22px;
   color: #5c544a;
@@ -373,7 +373,7 @@
   border-radius: 0;
   background: var(--dark-brown, #2c1a0c);
   color: #ffffff;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;

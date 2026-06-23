@@ -109,12 +109,32 @@ export function HomeCoursesSection({
   ]
 
   const topSchools = [
-    { src: '/images/home/harvard-red.png', alt: 'Harvard University' },
-    { src: '/images/home/stanford.png', alt: 'Stanford University' },
-    { src: '/images/home/princeton.png', alt: 'Princeton University' },
-    { src: '/images/home/yale.png', alt: 'Yale University' },
-    { src: '/images/home/columbia.png', alt: 'Columbia University' },
-    { src: '/images/home/waterloo.png', alt: 'University of Waterloo' }
+    {
+      src: '/images/home/harvard-red.png',
+      alt: 'Harvard University',
+      query: 'Harvard'
+    },
+    {
+      src: '/images/home/stanford.png',
+      alt: 'Stanford University',
+      query: 'Stanford'
+    },
+    {
+      src: '/images/home/princeton.png',
+      alt: 'Princeton University',
+      query: 'Princeton'
+    },
+    { src: '/images/home/yale.png', alt: 'Yale University', query: 'Yale' },
+    {
+      src: '/images/home/columbia.png',
+      alt: 'Columbia University',
+      query: 'Columbia'
+    },
+    {
+      src: '/images/home/waterloo.png',
+      alt: 'University of Waterloo',
+      query: 'Waterloo'
+    }
   ]
 
   // Repeat the set so one half of the track (the scroll distance) always
@@ -141,19 +161,32 @@ export function HomeCoursesSection({
 
         <div className={styles.schoolsMarquee} aria-label='Featured top schools'>
           <div className={styles.schoolsTrack}>
-            {loopSchools.map((school, index) => (
-              <div
-                key={`${school.alt}-${index}`}
-                className={styles.schoolLogoItem}
-                aria-hidden={index >= topSchools.length ? true : undefined}
-              >
-                <img
-                  src={school.src}
-                  alt={index >= topSchools.length ? '' : school.alt}
-                  className={styles.schoolLogoImg}
-                />
-              </div>
-            ))}
+            {loopSchools.map((school, index) => {
+              const isDuplicate = index >= topSchools.length
+
+              return (
+                <Link
+                  key={`${school.alt}-${index}`}
+                  href={`/all-courses?q=${encodeURIComponent(school.query)}`}
+                  legacyBehavior
+                >
+                  <a
+                    className={styles.schoolLogoItem}
+                    aria-label={
+                      isDuplicate ? undefined : `Browse ${school.alt} courses`
+                    }
+                    aria-hidden={isDuplicate ? true : undefined}
+                    tabIndex={isDuplicate ? -1 : undefined}
+                  >
+                    <img
+                      src={school.src}
+                      alt={isDuplicate ? '' : school.alt}
+                      className={styles.schoolLogoImg}
+                    />
+                  </a>
+                </Link>
+              )
+            })}
           </div>
         </div>
 

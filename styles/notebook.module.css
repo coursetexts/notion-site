@@ -2,7 +2,7 @@
   min-height: 100vh;
   box-sizing: border-box;
   background: var(--footer, #f8f7f4);
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   /* Padding (not child margin) so the page background fills the gap below the
      header; margin-top on .shell was collapsing through and showed body white. */
   padding: 10px 0 2.5rem;
@@ -78,7 +78,7 @@
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.35;
@@ -107,7 +107,7 @@
 }
 
 .sidebarNotebookTitleStatic {
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.35;
@@ -211,7 +211,7 @@
 }
 
 .sidebarTitle {
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -398,7 +398,7 @@
 
 .tabPageTitle {
   width: 100%;
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 2.25rem;
   font-weight: 600;
   line-height: 1.15;
@@ -415,7 +415,7 @@
 }
 
 .tabPageTitleStatic {
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 2.25rem;
   font-weight: 600;
   line-height: 1.15;
@@ -489,7 +489,7 @@
 .editorSurface :global(.ProseMirror) {
   min-height: 48vh;
   outline: none;
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 1rem;
   line-height: 1.65;
   color: #25272b;
@@ -504,21 +504,21 @@
 }
 
 .editorSurface :global(.ProseMirror h1) {
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 1.75rem;
   font-weight: 600;
   margin: 1.25rem 0 0.5rem;
 }
 
 .editorSurface :global(.ProseMirror h2) {
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 1.4rem;
   font-weight: 600;
   margin: 1rem 0 0.4rem;
 }
 
 .editorSurface :global(.ProseMirror h3) {
-  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-family: var(--font-sans, 'Inter', sans-serif);
   font-size: 1.15rem;
   font-weight: 600;
   margin: 0.85rem 0 0.35rem;

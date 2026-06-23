@@ -21,7 +21,7 @@
 .heading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -85,7 +85,7 @@
 }
 
 .dateText {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 10px;
@@ -105,7 +105,7 @@
 .postTitle {
   margin: 0;
   color: #000000;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 16px;
@@ -141,7 +141,7 @@
   margin: 0;
   max-width: 100%;
   color: #25272b;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 15px;
@@ -177,7 +177,7 @@
 .authorName {
   margin: 0;
   color: #5c5c5c;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;

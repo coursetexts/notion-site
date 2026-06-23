@@ -48,7 +48,7 @@
   background-color: #0f0f10; /* Dark background */
   color: #ffffff; /* White text */
   padding: 3rem 4rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +69,7 @@
   font-weight: 500;
   max-width: 500px;
   line-height: 1.4;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
 }
 
 /* Footer Columns */
@@ -245,7 +245,7 @@
 .footerBottomLeft {
   display: flex;
   font-weight: bold;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   font-size: large;
   gap: 5px;
 }
@@ -339,7 +339,7 @@
 /* Feedback Comment Form*/
 
 .FeedbackFormContainer {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   width: 100%;
   margin: 20px 0px;
   border: none;
@@ -403,7 +403,7 @@
   border: 1px solid #e5e1d3;
   border-radius: 8px;
   font-size: 12px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #959697;
   background-color: #f8f8f8;
 }
@@ -411,7 +411,7 @@
 .FeedbackFormForm textarea {
   min-height: 80px;
   resize: vertical;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #959697;
   line-height: 140%;
 }
@@ -424,7 +424,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
 }
 
 .submitButtonRow {
@@ -449,18 +449,18 @@
 
 .UpdateParent h1 {
   font-size: 1.5rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .UpdateParent .cursive {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
 }
 
 .UpdateParent p {
   font-size: 0.7rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .UpdateParent button {
@@ -469,7 +469,7 @@
   color: white;
   padding: 5px 20px;
   font-size: 0.9rem;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
@@ -559,7 +559,7 @@
 
 .notFoundTitle {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 400;
   font-style: normal;
   font-size: clamp(28px, 5vw, 40px);
@@ -604,7 +604,7 @@
   background: transparent;
   padding: 16px 110px 16px 44px;
   box-sizing: border-box;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -630,7 +630,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -652,7 +652,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -678,7 +678,7 @@
 .notFoundMeta {
   margin: 40px 0 0;
   max-width: 100%;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 13px;
   line-height: 20px;
   color: #6b7280;
@@ -876,7 +876,7 @@
   margin: 0 auto;
   color: #374151;
   background-color: #f5f5f5;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: lighter;
   font-size: 0.9rem;
 }
@@ -892,7 +892,7 @@
   padding-top: 0;
   color: #374151;
   background-color: #f5f5f5;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: lighter;
   font-size: 0.8rem;
   margin-top: 0.9rem;

@@ -19,7 +19,7 @@
 .title {
   color: #000;
   text-align: center;
-  font-family: "Guyot Press";
+  font-family: 'Fraunces';
   font-size: 32px;
   font-style: normal;
   font-weight: 401;
@@ -29,7 +29,7 @@
 
 .titleFree {
   color: #000;
-  font-family: "Guyot Press";
+  font-family: 'Fraunces';
   font-size: 32px;
   font-style: italic;
   font-weight: 401;
@@ -42,7 +42,7 @@
   width: 424px;
   max-width: 100%;
   height: 40px;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 13px;
@@ -95,7 +95,7 @@
   outline: none;
   background: transparent;
   padding: 16px 110px 16px 19px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -121,7 +121,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -170,7 +170,7 @@
   border-radius: 999px;
   border: 1px solid transparent;
   background: var(--offwhite, #fdfdfd);
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
