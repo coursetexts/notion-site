@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
+
 import { motion, useReducedMotion } from 'framer-motion'
 
 import { HomeFooterSection } from '@/components/HomeFooterSection'
@@ -50,12 +51,12 @@ const lookingForwardCards = [
   },
   {
     image: '/images/manifesto/right-origami.png',
-    text: 'Coursecrane increases the nourishing educational surface area of your exposure, with world-class material that should be public.'
+    text: 'Coursetexts increases the nourishing educational surface area of your exposure, with world-class material that should be public.'
   }
 ] as const
 
 const gratitudeCopy =
-  "Coursetexts is 100% volunteer-run and nonprofit, by student volunteers from MIT, harvard, waterloo, laurier, and purdue. we're grateful to michael nielsen and the institute for their grant support, and to lawrence lessig and peter suber for their advisorship. if you want to collaborate, we'd love to hear from you."
+  "Coursetexts is 100% volunteer-run and nonprofit, by student volunteers from MIT, Harvard, Waterloo, Laurier, and Purdue. We're grateful to Michael Nielsen and the institute for their grant support, and to Lawrence Lessig and Peter Suber for their advisorship. If you want to collaborate, we'd love to hear from you."
 
 const manifestoNotes = [
   '[1] MIT OpenCourseWare annual operating cost (~$2.7M for 2,300+ courses) from MIT OCW fundraising pages. Cited figure is total operational cost including infrastructure, publishing, and rights clearance staffing, not a per-image clearance rate. Source: ocw.mit.edu/give. The $1,170/course/year figure is a simple division; actual per-course clearance labor varies significantly by discipline (art history >> computer science).',
@@ -165,9 +166,7 @@ function ManifestoArticleFooter() {
           </a>
         </div>
 
-        <p className={styles.articleFooterDescription}>
-          {gratitudeCopy}
-        </p>
+        <p className={styles.articleFooterDescription}>{gratitudeCopy}</p>
       </div>
 
       <div className={styles.articleFooterBottom} />
@@ -206,14 +205,27 @@ export default function ManifestoPage() {
     }
   }, [])
 
+  const [shareCopied, setShareCopied] = React.useState(false)
+  const shareCopiedTimerRef = React.useRef<ReturnType<
+    typeof setTimeout
+  > | null>(null)
+
+  React.useEffect(() => {
+    return () => {
+      if (shareCopiedTimerRef.current !== null) {
+        clearTimeout(shareCopiedTimerRef.current)
+      }
+    }
+  }, [])
+
   const shareLink = React.useCallback(async () => {
     const url = window.location.href
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'The Coursecrane Manifesto',
-          text: 'The Coursecrane Manifesto',
+          title: 'The Coursetexts Manifesto',
+          text: 'The Coursetexts Manifesto',
           url
         })
         return
@@ -223,12 +235,20 @@ export default function ManifestoPage() {
     }
 
     await copyLink()
+    setShareCopied(true)
+    if (shareCopiedTimerRef.current !== null) {
+      clearTimeout(shareCopiedTimerRef.current)
+    }
+    shareCopiedTimerRef.current = setTimeout(() => {
+      setShareCopied(false)
+      shareCopiedTimerRef.current = null
+    }, 2000)
   }, [copyLink])
 
   const [activeSection, setActiveSection] = React.useState('introduction')
 
   React.useEffect(() => {
-    const sectionIds = tocItems.map(item => item.href.slice(1))
+    const sectionIds = tocItems.map((item) => item.href.slice(1))
     const intersecting = new Set<string>()
 
     const observer = new IntersectionObserver(
@@ -240,16 +260,16 @@ export default function ManifestoPage() {
             intersecting.delete(entry.target.id)
           }
         })
-        const active = sectionIds.find(id => intersecting.has(id))
+        const active = sectionIds.find((id) => intersecting.has(id))
         if (active) setActiveSection(active)
       },
       { rootMargin: '0px 0px -50% 0px' }
     )
 
     sectionIds
-      .map(id => document.getElementById(id))
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null)
-      .forEach(el => observer.observe(el))
+      .forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
   }, [])
@@ -257,7 +277,7 @@ export default function ManifestoPage() {
   return (
     <>
       <Head>
-        <title>The Coursecrane Manifesto | Coursetexts</title>
+        <title>The Coursetexts Manifesto</title>
         <meta
           content='Curated knowledge exists in extraordinary abundance, but the best of it still stays locked away.'
           name='description'
@@ -328,115 +348,115 @@ export default function ManifestoPage() {
                 </Reveal>
 
                 <article className={styles.article}>
-                <Reveal>
-                  <div className={styles.headingRow}>
-                    <h1 className={styles.title}>The Coursecrane Manifesto</h1>
-                    <span className={styles.dateBadge}>March 19, 2026</span>
-                  </div>
+                  <Reveal>
+                    <div className={styles.headingRow}>
+                      <h1 className={styles.title}>
+                        The Coursetexts Manifesto
+                      </h1>
+                      <span className={styles.dateBadge}>March 19, 2026</span>
+                    </div>
 
-                  <blockquote className={styles.quoteBlock}>
-                    <p>
-                      &quot;When I was in high school, I searched everywhere for
-                      materials on the physics of MRI. Every course I found was
-                      aimed at medical students, high-level overviews, nothing
-                      deeper.
-                    </p>
-                    <p>
-                      Years later, I landed at Harvard and finally took a class
-                      on how MRIs work. The lecture notes were incredible, but
-                      only accessible to those in the class.
-                    </p>
-                    <p>
-                      I would have done anything to have had those notes be
-                      available in high school [1].&quot;
-                    </p>
-                  </blockquote>
-                </Reveal>
+                    <blockquote className={styles.quoteBlock}>
+                      <p>
+                        &quot;When I was in high school, I searched everywhere
+                        for materials on the physics of MRI. Every course I
+                        found was aimed at medical students, high-level
+                        overviews, nothing deeper.
+                      </p>
+                      <p>
+                        Years later, I landed at Harvard and finally took a
+                        class on how MRIs work. The lecture notes were
+                        incredible, but only accessible to those in the class.
+                      </p>
+                      <p>
+                        I would have done anything to have had those notes be
+                        available in high school [1].&quot;
+                      </p>
+                    </blockquote>
+                  </Reveal>
 
-                <Reveal delay={0.05}>
-                  <section className={styles.lead} id='introduction'>
-                    <p>
-                      Curated knowledge exists in extraordinary abundance, at
-                      universities across the world. The problem is that the
-                      best of it stays locked inside canvas exports, private
-                      lecture notes, and course videos that expire when semester
-                      ends.
-                    </p>
-                    <p>
-                      Only a small fraction of courses at universities are
-                      publicly available. We want to live in a world where
-                      anyone can learn higher-level subjects for free,
-                      especially advanced and niche courses for which there are
-                      no online equivalents.
-                    </p>
-                  </section>
-                </Reveal>
+                  <Reveal delay={0.05}>
+                    <section className={styles.lead} id='introduction'>
+                      <p>
+                        Curated knowledge exists in extraordinary abundance, at
+                        universities across the world. The problem is that the
+                        best of it stays locked inside canvas exports, private
+                        lecture notes, and course videos that expire when
+                        semester ends.
+                      </p>
+                      <p>
+                        Only a small fraction of courses at universities are
+                        publicly available. We want to live in a world where
+                        anyone can learn higher-level subjects for free,
+                        especially advanced and niche courses for which there
+                        are no online equivalents.
+                      </p>
+                    </section>
+                  </Reveal>
 
-                <Reveal delay={0.08}>
-                  <section className={styles.contentSection} id='why-ocw'>
-                    <h2 className={styles.sectionHeading}>
-                      Professors spend lifetimes writing and distilling research
-                      into digestible, teachable chunks.
-                    </h2>
-                    <p className={styles.bodyText}>
-                      Access to their life&apos;s work ends for students when a
-                      login expires. Coursecrane is the infrastructure for
-                      bridging the gap between lifetime learners and the heavy
-                      gates that must be pushed past to acquire institutional
-                      knowledge.
-                    </p>
-                  </section>
-                </Reveal>
+                  <Reveal delay={0.08}>
+                    <section className={styles.contentSection} id='why-ocw'>
+                      <h2 className={styles.sectionHeading}>
+                        Professors spend lifetimes writing and distilling
+                        research into digestible, teachable chunks.
+                      </h2>
+                      <p className={styles.bodyText}>
+                        Access to their life&apos;s work ends for students when
+                        a login expires. Coursetexts is the infrastructure for
+                        bridging the gap between lifetime learners and the heavy
+                        gates that must be pushed past to acquire institutional
+                        knowledge.
+                      </p>
+                    </section>
+                  </Reveal>
 
-                <Reveal delay={0.12}>
-                  <section
-                    className={`${styles.contentSection} ${styles.birdRow}`}
-                    id='institutional-freedom'
-                  >
-                    <img
-                      alt=''
-                      aria-hidden='true'
-                      className={styles.birdMark}
-                      height={928}
-                      src='/images/manifesto/bird.png'
-                      width={1232}
-                    />
-                    <h2 className={styles.sectionHeading}>
-                      Institutional freedom should not be a prerequisite for
-                      deep learning.
-                    </h2>
-                    <p className={styles.sectionSubtext}>
-                      The point is not to replace modern learning platforms. It
-                      is to lower the global barrier to publishing online and
-                      raise the collective ceiling of online learning.
-                    </p>
-                  </section>
-                </Reveal>
+                  <Reveal delay={0.12}>
+                    <section
+                      className={`${styles.contentSection} ${styles.birdRow}`}
+                      id='institutional-freedom'
+                    >
+                      <img
+                        alt=''
+                        aria-hidden='true'
+                        className={styles.birdMark}
+                        height={928}
+                        src='/images/manifesto/bird.png'
+                        width={1232}
+                      />
+                      <h2 className={styles.sectionHeading}>
+                        Institutional freedom should not be a prerequisite for
+                        deep learning.
+                      </h2>
+                      <p className={styles.sectionSubtext}>
+                        The point is not to replace modern learning platforms.
+                        It is to lower the global barrier to publishing online
+                        and raise the collective ceiling of online learning.
+                      </p>
+                    </section>
+                  </Reveal>
 
-                <Reveal delay={0.15}>
-                  <div className={styles.doorwayWrap}>
-                    <img
-                      alt='Open doorway in a painted landscape'
-                      className={styles.doorwayImage}
-                      height={928}
-                      src='/images/manifesto/doorway.png'
-                      width={1232}
-                    />
-                  </div>
-                </Reveal>
-              </article>
+                  <Reveal delay={0.15}>
+                    <div className={styles.doorwayWrap}>
+                      <img
+                        alt='Open doorway in a painted landscape'
+                        className={styles.doorwayImage}
+                        height={928}
+                        src='/images/manifesto/doorway.png'
+                        width={1232}
+                      />
+                    </div>
+                  </Reveal>
+                </article>
               </div>
             </div>
           </main>
 
-          <section
-            className={`${styles.legacySection} ${styles.noisySection}`}
-          >
+          <section className={`${styles.legacySection} ${styles.noisySection}`}>
             <div className={styles.legacyTop}>
               <Reveal className={styles.legacyTopInner}>
                 <h2 className={styles.legacyHeadline}>
-                  <em>Cranetexts</em> began as Coursetexts; a free, open
-                  library of Harvard lecture notes.
+                  <em>Cranetexts</em> began as Coursetexts; a free, open library
+                  of Harvard lecture notes.
                 </h2>
               </Reveal>
             </div>
@@ -593,10 +613,10 @@ export default function ManifestoPage() {
 
               <Reveal className={styles.lookingForwardCopy} delay={0.05}>
                 <p>
-                  The Internet and the age of LLMs has made knowledge
-                  plentiful. Why hasn&apos;t genuine learning followed the
-                  Cambrian explosion in information? Our earlier theory of
-                  change assumed that{' '}
+                  The Internet and the age of LLMs has made knowledge plentiful.
+                  Why hasn&apos;t genuine learning followed the Cambrian
+                  explosion in information? Our earlier theory of change assumed
+                  that{' '}
                   <a
                     href='https://blog.aayushg.com/education/'
                     rel='noreferrer'
@@ -604,11 +624,11 @@ export default function ManifestoPage() {
                   >
                     advanced material
                   </a>{' '}
-                  was the bottleneck for driven self-learners. Under that
-                  theory of change, we focused on graduate-level STEM material.
-                  Our current theory of change is that motivation and navigation
-                  are more common bottlenecks for many self-directed learners,
-                  not just access to advanced material, per se.
+                  was the bottleneck for driven self-learners. Under that theory
+                  of change, we focused on graduate-level STEM material. Our
+                  current theory of change is that motivation and navigation are
+                  more common bottlenecks for many self-directed learners, not
+                  just access to advanced material, per se.
                 </p>
                 <p>
                   The internet has more content than anyone can consume. What it
@@ -647,7 +667,9 @@ export default function ManifestoPage() {
                     className={styles.shareButton}
                   >
                     <ShareIcon />
-                    <span className={styles.shareButtonText}>Share article</span>
+                    <span className={styles.shareButtonText}>
+                      {shareCopied ? 'Link copied' : 'Share article'}
+                    </span>
                   </button>
 
                   <div className={styles.actionButtonGroup}>

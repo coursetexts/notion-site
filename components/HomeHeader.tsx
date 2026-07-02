@@ -43,11 +43,27 @@ export function HomeHeader({
   const auth = useAuthOptional()
   const cached = React.useMemo(() => getCachedAuth(), [])
   const user = auth?.user ?? cached.user
+  const profile = auth?.profile ?? cached.profile
   const isLoggedIn = Boolean(user)
   const accountHref = isLoggedIn
     ? '/profile'
     : `/signin?redirect=${encodeURIComponent('/profile')}`
   const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
+
+  // Avatar/name may hydrate after first paint (auth loads async). Fall back to
+  // Google user_metadata when the DB profile is null (live schema mismatch).
+  const avatarUrl =
+    profile?.avatar_url ?? user?.user_metadata?.avatar_url ?? null
+  const displayName =
+    profile?.display_name ??
+    user?.user_metadata?.full_name ??
+    user?.user_metadata?.name ??
+    null
+  const firstName =
+    typeof displayName === 'string' && displayName.trim()
+      ? displayName.trim().split(/\s+/)[0]
+      : 'Profile'
+  const avatarInitial = firstName.charAt(0).toUpperCase()
 
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
@@ -366,11 +382,38 @@ export function HomeHeader({
                 </button>
               </nav>
 
-              {!hideAccountActions && (
-                <Link href={accountHref} legacyBehavior>
-                  <a className={styles.signUp}>{accountLabel}</a>
-                </Link>
-              )}
+              {!hideAccountActions &&
+                (isLoggedIn ? (
+                  <Link href={accountHref} legacyBehavior>
+                    <a
+                      className={`${styles.signUp} ${styles.profileChip}`}
+                      aria-label='Your profile'
+                    >
+                      {avatarUrl ? (
+                        <img
+                          className={styles.profileAvatar}
+                          src={avatarUrl}
+                          alt=''
+                          width={20}
+                          height={20}
+                          referrerPolicy='no-referrer'
+                        />
+                      ) : (
+                        <span
+                          className={styles.profileAvatarFallback}
+                          aria-hidden
+                        >
+                          {avatarInitial}
+                        </span>
+                      )}
+                      <span className={styles.profileName}>{firstName}</span>
+                    </a>
+                  </Link>
+                ) : (
+                  <Link href={accountHref} legacyBehavior>
+                    <a className={styles.signUp}>{accountLabel}</a>
+                  </Link>
+                ))}
             </div>
 
             <button

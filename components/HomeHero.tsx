@@ -6,28 +6,26 @@ import styles from './HomeHero.module.css'
 
 const subjects = ['Science', 'Math', 'Sociology', 'English']
 
-const partnerLinks = [
-  {
-    label: 'Stanford',
-    icon: '/images/home/stanford.png',
-    href: '/all-courses?q=Stanford'
-  },
-  {
-    label: 'Waterloo',
-    icon: '/images/home/waterloo.png',
-    href: '/all-courses?q=Waterloo'
-  },
-  {
-    label: 'Harvard',
-    icon: '/images/home/harvard-red.png',
-    href: '/all-courses?q=Harvard'
-  },
-  {
-    label: 'More schools',
-    icon: '/images/home/plus-10.png',
-    href: '/all-courses'
-  }
-]
+const schoolLinks = [
+  { label: 'Stanford', icon: '/images/home/stanford.png' },
+  { label: 'Waterloo', icon: '/images/home/waterloo.png' },
+  { label: 'Harvard', icon: '/images/home/harvard-red.png' },
+  { label: 'Yale', icon: '/images/home/yale.png' },
+  { label: 'Princeton', icon: '/images/home/princeton.png' },
+  { label: 'Columbia', icon: '/images/home/columbia.png' }
+].map((school) => ({
+  ...school,
+  href: `/all-courses?q=${school.label}`
+}))
+
+const moreSchoolsLink = {
+  label: 'More schools',
+  icon: '/images/home/plus-10.png',
+  href: '/all-courses'
+}
+
+const VISIBLE_LOGO_COUNT = 3
+const LOGO_ROTATE_MS = 2600
 
 type HomeHeroProps = {
   activeSubjects?: string[]
@@ -43,6 +41,30 @@ export function HomeHero({
   const [isSearchPulse, setIsSearchPulse] = React.useState(false)
   const pulseTimeoutRef = React.useRef<number | null>(null)
   const submitFromButtonRef = React.useRef(false)
+  const [logoOffset, setLogoOffset] = React.useState(0)
+  const [logosPaused, setLogosPaused] = React.useState(false)
+
+  // Circle the top-school logos through the visible slots. Paused on hover
+  // and skipped entirely when the user prefers reduced motion.
+  React.useEffect(() => {
+    if (logosPaused) return
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return
+    }
+    const id = window.setInterval(
+      () => setLogoOffset((o) => (o + 1) % schoolLinks.length),
+      LOGO_ROTATE_MS
+    )
+    return () => window.clearInterval(id)
+  }, [logosPaused])
+
+  const visibleSchools = Array.from(
+    { length: VISIBLE_LOGO_COUNT },
+    (_, i) => schoolLinks[(logoOffset + i) % schoolLinks.length]
+  )
 
   React.useEffect(() => {
     return () => {
@@ -124,7 +146,8 @@ export function HomeHero({
     <section className={styles.heroWrapper}>
       <div className={styles.heroContent}>
         <h1 className={styles.title}>
-          The <span className={styles.titleFree}>free</span> library for learners
+          The <span className={styles.titleFree}>free</span> library for
+          learners
         </h1>
 
         <p className={styles.description}>
@@ -179,22 +202,33 @@ export function HomeHero({
             })}
           </div>
 
-          <div className={styles.logoRow} aria-label='Partner schools'>
-            {partnerLinks.map((partner) => (
-              <Link key={partner.label} href={partner.href} legacyBehavior>
-                <a className={styles.logoCircle} title={partner.label}>
+          <div
+            className={styles.logoRow}
+            aria-label='Partner schools'
+            onMouseEnter={() => setLogosPaused(true)}
+            onMouseLeave={() => setLogosPaused(false)}
+          >
+            {visibleSchools.map((school, slot) => (
+              <Link key={slot} href={school.href} legacyBehavior>
+                <a className={styles.logoCircle} title={school.label}>
                   <img
-                    src={partner.icon}
-                    alt={partner.label}
-                    className={
-                      partner.label === 'More schools'
-                        ? styles.logoPlusImage
-                        : styles.logoImage
-                    }
+                    key={school.label}
+                    src={school.icon}
+                    alt={school.label}
+                    className={styles.logoImage}
                   />
                 </a>
               </Link>
             ))}
+            <Link href={moreSchoolsLink.href} legacyBehavior>
+              <a className={styles.logoCircle} title={moreSchoolsLink.label}>
+                <img
+                  src={moreSchoolsLink.icon}
+                  alt={moreSchoolsLink.label}
+                  className={styles.logoPlusImage}
+                />
+              </a>
+            </Link>
           </div>
         </div>
       </div>

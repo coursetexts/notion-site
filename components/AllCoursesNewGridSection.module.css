@@ -12,7 +12,7 @@
     calc(100vw - (var(--home-side, 58px) * 2))
   );
   margin: 0 auto;
-  padding: 128px 0 256px;
+  padding: 48px 0 128px;
 }
 
 .disclaimerRule {

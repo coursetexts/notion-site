@@ -38,6 +38,8 @@
 .brandIcon {
   flex-shrink: 0;
   align-self: center;
+  position: relative;
+  top: 1px;
 }
 
 .brandLink:hover,
@@ -142,11 +144,8 @@
   color: #000000;
   white-space: nowrap;
   cursor: pointer;
-  transition:
-    border-color 220ms ease,
-    color 220ms ease,
-    background-color 220ms ease,
-    opacity 220ms ease;
+  transition: border-color 220ms ease, color 220ms ease,
+    background-color 220ms ease, opacity 220ms ease;
 }
 
 .signUp:hover,
@@ -155,6 +154,46 @@
   color: #0089c4;
   background-color: #f5fbff;
   opacity: 0.95;
+}
+
+/* Signed-in profile chip: same bordered container as .signUp, tighter gap. */
+.profileChip {
+  gap: 8px;
+  padding-left: 8px;
+  text-decoration: none;
+}
+
+.profileAvatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.profileAvatarFallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #f3f4f6;
+  color: #37352f;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.profileName {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
 }
 
 .divider {
@@ -186,9 +225,7 @@
   border-radius: 8px;
   background: #fafaf8;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .mobileMenuBtn:hover,
@@ -286,9 +323,7 @@
   border-radius: 8px;
   background: #f5f5f3;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .menuCloseBtn:hover,
@@ -389,9 +424,7 @@
   font-size: 0.9375rem;
   color: #000000;
   text-decoration: none;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .menuSignUp:hover,
