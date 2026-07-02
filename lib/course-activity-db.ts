@@ -13,10 +13,11 @@ async function authorForUser(
   supabase: SupabaseClient,
   user: User
 ): Promise<AuthorFields> {
+  // Live schema: profiles.id IS the auth user id.
   const { data: profile } = await supabase
     .from('profiles')
     .select('display_name, avatar_url')
-    .eq('user_id', user.id)
+    .eq('id', user.id)
     .maybeSingle()
   const meta = user.user_metadata || {}
   const fromMetaName =
@@ -32,6 +33,8 @@ async function authorForUser(
 }
 
 export interface Course {
+  /** uuid — usable as a comments/votes target_id (live bridge schema). */
+  id: string
   notion_page_id: string
   name: string
   url: string | null
@@ -194,12 +197,12 @@ export async function getOrCreateCourse(
 
   const { data: existing } = await supabase
     .from('courses')
-    .select('notion_page_id, name, url, created_at')
+    .select('id, notion_page_id, name, url, created_at')
     .eq('notion_page_id', notionPageId)
     .maybeSingle()
 
   if (existing) {
-    return { courseId: existing.notion_page_id, course: existing as Course }
+    return { courseId: existing.id, course: existing as Course }
   }
 
   const { data: inserted, error } = await supabase
@@ -209,11 +212,21 @@ export async function getOrCreateCourse(
       name,
       url: url ?? null
     })
-    .select('notion_page_id, name, url, created_at')
+    .select('id, notion_page_id, name, url, created_at')
     .single()
 
-  if (error || !inserted) return null
-  return { courseId: inserted.notion_page_id, course: inserted as Course }
+  if (error || !inserted) {
+    // Insert races (unique notion_page_id) or RLS for signed-out users:
+    // fall back to re-reading the row another client may have created.
+    const { data: raced } = await supabase
+      .from('courses')
+      .select('id, notion_page_id, name, url, created_at')
+      .eq('notion_page_id', notionPageId)
+      .maybeSingle()
+    if (!raced) return null
+    return { courseId: raced.id, course: raced as Course }
+  }
+  return { courseId: inserted.id, course: inserted as Course }
 }
 
 /** Fetch comments for a course (newest first). */
@@ -221,24 +234,29 @@ export async function getComments(courseId: string): Promise<Comment[]> {
   const supabase = getSupabaseClient()
   if (!supabase) return []
 
+  // Live schema: comments are polymorphic — course comments use
+  // target_type 'course' with the course uuid; there is no updated_at.
   const { data, error } = await supabase
     .from('comments')
-    .select(
-      'id, user_id, course_id, parent_comment_id, body, created_at, updated_at'
-    )
-    .eq('course_id', courseId)
+    .select('id, user_id, parent_comment_id, body, created_at')
+    .eq('target_type', 'course')
+    .eq('target_id', courseId)
     .order('created_at', { ascending: false })
 
   if (error) return []
-  const comments = (data || []) as Comment[]
+  const comments = (data || []).map((c: any) => ({
+    ...c,
+    course_id: courseId,
+    updated_at: c.created_at
+  })) as Comment[]
   if (comments.length === 0) return []
 
   const userIds = [...new Set(comments.map((c) => c.user_id))]
   const [profilesRes, voteMap] = await Promise.all([
     supabase
       .from('profiles')
-      .select('user_id, display_name, avatar_url')
-      .in('user_id', userIds),
+      .select('id, display_name, avatar_url')
+      .in('id', userIds),
     getVotesForComments(comments.map((c) => c.id))
   ])
   const profileByUser = (profilesRes?.data || []).reduce(
@@ -249,7 +267,7 @@ export async function getComments(courseId: string): Promise<Comment[]> {
       >,
       p: any
     ) => {
-      acc[p.user_id] = {
+      acc[p.id] = {
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }
@@ -286,19 +304,20 @@ export async function addComment(
     .from('comments')
     .insert({
       user_id: user.id,
-      course_id: courseId,
+      target_type: 'course',
+      target_id: courseId,
       parent_comment_id: parentCommentId ?? null,
       body
     })
-    .select(
-      'id, user_id, course_id, parent_comment_id, body, created_at, updated_at'
-    )
+    .select('id, user_id, parent_comment_id, body, created_at')
     .single()
 
   if (error || !data) return null
   const author = await authorForUser(supabase, user)
   return {
-    ...(data as Comment),
+    ...(data as Omit<Comment, 'course_id' | 'updated_at'>),
+    course_id: courseId,
+    updated_at: data.created_at,
     author,
     score: 0,
     user_vote: null

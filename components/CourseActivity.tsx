@@ -610,10 +610,11 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
   const annotationCount = annotations.length
   const totalCount = commentCount + annotationCount
 
+  // Annotations still target the old schema and can't persist on the live DB;
+  // hide the tab until they're ported (course comments were bridged first).
   const tabs: { id: TabId; label: string; count: number }[] = [
     { id: 'all', label: 'All Activity', count: totalCount },
-    { id: 'comments', label: 'Comments', count: commentCount },
-    { id: 'annotations', label: 'Annotations', count: annotationCount }
+    { id: 'comments', label: 'Comments', count: commentCount }
   ]
 
   const allActivity = React.useMemo(() => {
