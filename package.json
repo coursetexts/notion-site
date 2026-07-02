@@ -22,7 +22,9 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
     "test": "run-p test:*",
     "test:lint": "eslint '**/*.{ts,tsx}'",
-    "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
+    "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
+    "seed:community": "node scripts/seed-community.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",
@@ -72,6 +74,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@trivago/prettier-plugin-sort-imports": "^3.3.1",
     "@typescript-eslint/eslint-plugin": "^5.40.0",

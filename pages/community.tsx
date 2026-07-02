@@ -1,30 +1,68 @@
 import * as React from 'react'
 import Head from 'next/head'
+
 import { createPortal } from 'react-dom'
 
+import { CommunityComments } from '@/components/CommunityComments'
 import { VoteRow } from '@/components/CourseActivity'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
+import {
+  type CommunityPageResource,
+  RESOURCE_TYPES,
+  type ResourceDbType,
+  addCommunityPageResource,
+  getCommunityPageResources,
+  setResourceVote
+} from '@/lib/community-comments-db'
 
+import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './community.module.css'
 
-type ResourceType = 'Article' | 'Video' | 'Tool' | 'Paper' | 'Course'
+type ResourceType = ResourceDbType
+
+/** Display labels for the resources.type enum. */
+const TYPE_LABELS: Record<ResourceType, string> = {
+  textbook: 'Textbook',
+  video: 'Video',
+  paper: 'Paper',
+  slides: 'Slides',
+  problem_set: 'Problem set'
+}
 
 interface CommunityResource {
   id: string
-  type: ResourceType
+  type: ResourceType | null
   title: string
   description: string
   url: string
   author: string
   score: number
   userVote: 1 | -1 | null
+  /** True when the row exists in Supabase (comments/votes persist). */
+  dbBacked?: boolean
+  commentCount?: number
+}
+
+function dbToFeedItem(r: CommunityPageResource): CommunityResource {
+  return {
+    id: r.id,
+    type: r.type,
+    title: r.title,
+    description: r.description ?? '',
+    url: r.url,
+    author: r.author_name ?? 'Anonymous',
+    score: r.score,
+    userVote: r.user_vote,
+    dbBacked: true,
+    commentCount: r.comment_count
+  }
 }
 
 const MOCK_RESOURCES: CommunityResource[] = [
   {
     id: 'r1',
-    type: 'Article',
+    type: 'paper',
     title: 'The Feynman Technique for Learning Anything',
     description:
       'A simple four-step method for understanding hard ideas: pick a concept, explain it plainly, find the gaps, and refine. Great for self-study.',
@@ -35,7 +73,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
   },
   {
     id: 'r2',
-    type: 'Video',
+    type: 'video',
     title: 'MIT 6.006 — Introduction to Algorithms (Full Course)',
     description:
       'The complete lecture series covering data structures, sorting, graph algorithms, and dynamic programming. Pairs well with the assigned problem sets.',
@@ -46,7 +84,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
   },
   {
     id: 'r3',
-    type: 'Tool',
+    type: 'slides',
     title: 'Excalidraw — virtual whiteboard for sketching diagrams',
     description:
       'A hand-drawn-feel diagramming tool that is perfect for mapping out proofs, system designs, and concept relationships while you study.',
@@ -57,7 +95,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
   },
   {
     id: 'r4',
-    type: 'Paper',
+    type: 'paper',
     title: 'Attention Is All You Need',
     description:
       'The foundational transformer paper. Dense but worth annotating section by section — start with the architecture diagram and work outward.',
@@ -68,7 +106,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
   },
   {
     id: 'r5',
-    type: 'Article',
+    type: 'textbook',
     title: 'How to Read a Mathematics Textbook',
     description:
       'Reading math is not reading prose. This guide covers active reading, working examples by hand, and why you should never skip the exercises.',
@@ -79,7 +117,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
   },
   {
     id: 'r6',
-    type: 'Course',
+    type: 'video',
     title: 'CS50: Introduction to Computer Science',
     description:
       "Harvard's flagship intro course. A friendly on-ramp to programming, memory, and algorithms — fully free with graded assignments.",
@@ -90,7 +128,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
   },
   {
     id: 'r7',
-    type: 'Tool',
+    type: 'problem_set',
     title: 'Anki — powerful, intelligent flashcards',
     description:
       'Spaced-repetition flashcards that schedule reviews right before you would forget. Indispensable for memory-heavy subjects.',
@@ -100,6 +138,12 @@ const MOCK_RESOURCES: CommunityResource[] = [
     userVote: null
   }
 ]
+
+const TYPE_FILTERS: Array<'All' | ResourceType> = ['All', ...RESOURCE_TYPES]
+
+function pluralTypeLabel(t: ResourceType): string {
+  return t === 'slides' ? TYPE_LABELS[t] : `${TYPE_LABELS[t]}s`
+}
 
 function hostFromUrl(url: string): string {
   try {
@@ -118,10 +162,10 @@ const SearchIcon: React.FC = () => (
     fill='none'
     aria-hidden
   >
-    <circle cx='7' cy='7' r='4.5' stroke='#9ca3af' strokeWidth='1.3' />
+    <circle cx='7' cy='7' r='4.5' stroke='#6b7280' strokeWidth='1.3' />
     <path
       d='M10.5 10.5L14 14'
-      stroke='#9ca3af'
+      stroke='#6b7280'
       strokeWidth='1.3'
       strokeLinecap='round'
     />
@@ -211,52 +255,111 @@ const Modal: React.FC<ModalProps> = ({ title, children, onClose }) => {
 }
 
 export default function CommunityPage() {
+  const auth = useAuthOptional()
+  const signedIn = Boolean(auth?.user)
   const [resources, setResources] =
     React.useState<CommunityResource[]>(MOCK_RESOURCES)
+  const [openThreads, setOpenThreads] = React.useState<Record<string, boolean>>(
+    {}
+  )
   const [query, setQuery] = React.useState('')
+  const [typeFilter, setTypeFilter] = React.useState<'All' | ResourceType>(
+    'All'
+  )
+  const [sort, setSort] = React.useState<'top' | 'new'>('top')
   const [modal, setModal] = React.useState<ModalKind>(null)
 
   // Submit-a-resource form state
   const [resTitle, setResTitle] = React.useState('')
   const [resDesc, setResDesc] = React.useState('')
   const [resLink, setResLink] = React.useState('')
-  const [resType, setResType] = React.useState<ResourceType>('Article')
+  const [resType, setResType] = React.useState<ResourceType>('textbook')
 
   // Add-a-knowledge-component form state (placeholder flow)
   const [kcName, setKcName] = React.useState('')
   const [kcSummary, setKcSummary] = React.useState('')
 
+  // Live resources from Supabase replace the mocks when any exist.
+  // Re-fetched when auth settles so user_vote reflects the session.
+  React.useEffect(() => {
+    let alive = true
+    getCommunityPageResources().then((rows) => {
+      if (!alive || rows.length === 0) return
+      setResources(rows.map(dbToFeedItem))
+    })
+    return () => {
+      alive = false
+    }
+  }, [auth?.user?.id])
+
   const filtered = React.useMemo(() => {
     const needle = query.trim().toLowerCase()
-    if (!needle) return resources
-    return resources.filter((r) =>
-      `${r.title} ${r.description} ${r.type} ${r.author}`
-        .toLowerCase()
-        .includes(needle)
-    )
-  }, [resources, query])
+    let list = resources
+    if (typeFilter !== 'All') {
+      list = list.filter((r) => r.type === typeFilter)
+    }
+    if (needle) {
+      list = list.filter((r) =>
+        `${r.title} ${r.description} ${r.type} ${r.author}`
+          .toLowerCase()
+          .includes(needle)
+      )
+    }
+    // 'new' keeps insertion order (submissions are prepended); 'top' by score.
+    if (sort === 'top') {
+      list = [...list].sort((a, b) => b.score - a.score)
+    }
+    return list
+  }, [resources, query, typeFilter, sort])
 
-  const handleVote = (id: string, value: 1 | -1 | null) => {
+  const handleVote = (item: CommunityResource, value: 1 | -1 | null) => {
+    // Optimistic update either way; persist for db-backed rows.
     setResources((prev) =>
       prev.map((r) => {
-        if (r.id !== id) return r
+        if (r.id !== item.id) return r
         const prevVote = r.userVote ?? 0
         const nextVote = value ?? 0
         return { ...r, score: r.score - prevVote + nextVote, userVote: value }
       })
     )
+    if (item.dbBacked && signedIn) {
+      setResourceVote(item.id, value).then((score) => {
+        if (score === null) return
+        setResources((prev) =>
+          prev.map((r) => (r.id === item.id ? { ...r, score } : r))
+        )
+      })
+    }
+  }
+
+  const setCommentCount = (id: string, count: number) => {
+    setResources((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, commentCount: count } : r))
+    )
   }
 
   const closeModal = () => setModal(null)
 
-  const submitResource = () => {
+  const submitResource = async () => {
     const title = resTitle.trim()
     const description = resDesc.trim()
     if (!title || !description) return
     const link = resLink.trim()
-    setResources((prev) => [
-      {
-        id: `new-${prev.length + 1}-${title.slice(0, 8)}`,
+
+    let item: CommunityResource | null = null
+    if (signedIn) {
+      const created = await addCommunityPageResource({
+        title,
+        description,
+        url: link || 'https://coursetexts.org',
+        type: resType
+      })
+      if (created) item = dbToFeedItem(created)
+    }
+    if (!item) {
+      // Signed out (or Supabase unavailable): keep it local to the session.
+      item = {
+        id: `new-${resources.length + 1}-${title.slice(0, 8)}`,
         type: resType,
         title,
         description,
@@ -264,13 +367,13 @@ export default function CommunityPage() {
         author: 'You',
         score: 1,
         userVote: 1
-      },
-      ...prev
-    ])
+      }
+    }
+    setResources((prev) => [item as CommunityResource, ...prev])
     setResTitle('')
     setResDesc('')
     setResLink('')
-    setResType('Article')
+    setResType('textbook')
     closeModal()
   }
 
@@ -303,29 +406,21 @@ export default function CommunityPage() {
         <section className={styles.section} aria-label='Community'>
           <div className={styles.container}>
             <header className={styles.header}>
-              <h1 className={styles.title}>Community</h1>
-              <p className={styles.subtitle}>
-                Resources and knowledge components shared by learners. Upvote
-                what helped you, and add your own.
-              </p>
-              <div className={styles.ctaRow}>
+              <div className={styles.titleRow}>
+                <h1 className={styles.title}>Community</h1>
                 <button
                   type='button'
-                  className={styles.ctaPrimary}
+                  className={styles.shareBtn}
                   onClick={() => setModal('resource')}
                 >
                   <PlusIcon />
-                  Submit a Resource
-                </button>
-                <button
-                  type='button'
-                  className={styles.ctaSecondary}
-                  onClick={() => setModal('knowledge')}
-                >
-                  <PlusIcon />
-                  Add a Knowledge Component
+                  Share a resource
                 </button>
               </div>
+              <p className={styles.subtitle}>
+                Articles, lectures, tools, and papers that helped other
+                learners. Upvote what helps you.
+              </p>
             </header>
 
             <div className={styles.searchWrap}>
@@ -335,30 +430,133 @@ export default function CommunityPage() {
               <input
                 type='search'
                 className={styles.searchInput}
-                placeholder='Search resources…'
+                placeholder='Search by title, topic, or author…'
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 aria-label='Search resources'
               />
             </div>
 
-            <div className={styles.feedHeading}>
-              <span className={styles.feedHeadingLabel}>Resources</span>
-              <span className={styles.feedHeadingCount}>
-                ({filtered.length})
+            <div className={styles.filterBar}>
+              <div
+                className={styles.chipRow}
+                role='group'
+                aria-label='Filter by type'
+              >
+                {TYPE_FILTERS.map((t) => (
+                  <button
+                    key={t}
+                    type='button'
+                    className={
+                      typeFilter === t
+                        ? `${styles.chip} ${styles.chipSelected}`
+                        : styles.chip
+                    }
+                    aria-pressed={typeFilter === t}
+                    onClick={() => setTypeFilter(t)}
+                  >
+                    {t === 'All' ? 'All' : pluralTypeLabel(t)}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.sortRow}>
+                <span className={styles.sortLabel}>Sort by</span>
+                <button
+                  type='button'
+                  className={
+                    sort === 'top'
+                      ? `${styles.sortBtn} ${styles.sortBtnActive}`
+                      : styles.sortBtn
+                  }
+                  aria-pressed={sort === 'top'}
+                  onClick={() => setSort('top')}
+                >
+                  Top
+                </button>
+                <button
+                  type='button'
+                  className={
+                    sort === 'new'
+                      ? `${styles.sortBtn} ${styles.sortBtnActive}`
+                      : styles.sortBtn
+                  }
+                  aria-pressed={sort === 'new'}
+                  onClick={() => setSort('new')}
+                >
+                  New
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.feedBar}>
+              <span>
+                <span className={styles.feedHeadingLabel}>Resources</span>
+                <span className={styles.feedHeadingCount}>
+                  ({filtered.length})
+                </span>
               </span>
+              <button
+                type='button'
+                className={styles.quietLink}
+                onClick={() => setModal('knowledge')}
+              >
+                Add a knowledge component
+              </button>
             </div>
 
             {filtered.length === 0 ? (
-              <p className={styles.empty}>
-                No resources match “{query.trim()}”. Try a different search.
-              </p>
+              <div className={styles.empty}>
+                <p className={styles.emptyText}>
+                  {resources.length === 0
+                    ? 'Nothing here yet.'
+                    : query.trim()
+                    ? `No resources match “${query.trim()}”.`
+                    : typeFilter === 'All'
+                    ? 'No resources shared yet.'
+                    : `No ${pluralTypeLabel(
+                        typeFilter
+                      ).toLowerCase()} shared yet.`}
+                </p>
+                {query.trim() || typeFilter !== 'All' ? (
+                  <button
+                    type='button'
+                    className={styles.quietLink}
+                    onClick={() => {
+                      setQuery('')
+                      setTypeFilter('All')
+                    }}
+                  >
+                    Clear search and filters
+                  </button>
+                ) : (
+                  <button
+                    type='button'
+                    className={styles.quietLink}
+                    onClick={() => setModal('resource')}
+                  >
+                    Be the first to share a resource
+                  </button>
+                )}
+              </div>
             ) : (
               <div className={styles.feed}>
                 {filtered.map((r) => (
-                  <article key={r.id} className={styles.card}>
-                    <div className={styles.cardHead}>
-                      <span className={styles.typeTag}>{r.type}</span>
+                  <article
+                    key={r.id}
+                    className={styles.row}
+                    data-testid='resource-row'
+                  >
+                    <div className={styles.rowMeta}>
+                      {r.type && (
+                        <>
+                          <span className={styles.typeTag}>
+                            {TYPE_LABELS[r.type]}
+                          </span>
+                          <span className={styles.metaDot} aria-hidden>
+                            ·
+                          </span>
+                        </>
+                      )}
                       <a
                         href={r.url}
                         className={styles.host}
@@ -369,29 +567,61 @@ export default function CommunityPage() {
                         {hostFromUrl(r.url)}
                         <ExternalIcon />
                       </a>
+                      <span className={styles.rowMetaRight}>
+                        <span className={styles.author}>by {r.author}</span>
+                        <span data-testid='resource-vote'>
+                          <VoteRow
+                            score={r.score}
+                            userVote={r.userVote}
+                            disabled={Boolean(r.dbBacked) && !signedIn}
+                            onVote={(value) => handleVote(r, value)}
+                          />
+                        </span>
+                      </span>
                     </div>
 
-                    <h3 className={styles.cardTitle}>
+                    <h3 className={styles.rowTitle}>
                       <a
                         href={r.url}
-                        className={styles.cardTitleLink}
+                        className={styles.rowTitleLink}
                         target='_blank'
                         rel='noopener noreferrer'
+                        data-testid='resource-title'
                       >
                         {r.title}
                       </a>
                     </h3>
-                    <p className={styles.cardDesc}>{r.description}</p>
+                    <p className={styles.rowDesc}>{r.description}</p>
 
-                    <div className={styles.cardFooter}>
-                      <VoteRow
-                        score={r.score}
-                        userVote={r.userVote}
-                        disabled={false}
-                        onVote={(value) => handleVote(r.id, value)}
+                    {r.dbBacked && (
+                      <div className={styles.rowActions}>
+                        <button
+                          type='button'
+                          className={styles.quietLink}
+                          onClick={() =>
+                            setOpenThreads((prev) => ({
+                              ...prev,
+                              [r.id]: !prev[r.id]
+                            }))
+                          }
+                          aria-expanded={Boolean(openThreads[r.id])}
+                          data-testid='comments-toggle'
+                        >
+                          {openThreads[r.id]
+                            ? 'Hide comments'
+                            : r.commentCount === 1
+                            ? '1 comment'
+                            : `${r.commentCount ?? 0} comments`}
+                        </button>
+                      </div>
+                    )}
+                    {r.dbBacked && openThreads[r.id] && (
+                      <CommunityComments
+                        resourceId={r.id}
+                        signedIn={signedIn}
+                        onCountChange={(n) => setCommentCount(r.id, n)}
                       />
-                      <span className={styles.author}>by {r.author}</span>
-                    </div>
+                    )}
                   </article>
                 ))}
               </div>
@@ -403,7 +633,7 @@ export default function CommunityPage() {
       </main>
 
       {modal === 'resource' && (
-        <Modal title='Submit a Resource' onClose={closeModal}>
+        <Modal title='Share a resource' onClose={closeModal}>
           <label className={styles.field}>
             <span className={styles.label}>Title</span>
             <input
@@ -420,11 +650,11 @@ export default function CommunityPage() {
               value={resType}
               onChange={(e) => setResType(e.target.value as ResourceType)}
             >
-              <option>Article</option>
-              <option>Video</option>
-              <option>Tool</option>
-              <option>Paper</option>
-              <option>Course</option>
+              {RESOURCE_TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {TYPE_LABELS[t]}
+                </option>
+              ))}
             </select>
           </label>
           <label className={styles.field}>
@@ -455,17 +685,17 @@ export default function CommunityPage() {
               onClick={submitResource}
               disabled={!resTitle.trim() || !resDesc.trim()}
             >
-              Submit
+              Share
             </button>
           </div>
         </Modal>
       )}
 
       {modal === 'knowledge' && (
-        <Modal title='Add a Knowledge Component' onClose={closeModal}>
+        <Modal title='Add a knowledge component' onClose={closeModal}>
           <p className={styles.hint}>
-            Knowledge components are a richer, structured contribution type.
-            This flow is a placeholder for now.
+            Knowledge components are structured study units — an early preview.
+            Entries aren&apos;t saved yet.
           </p>
           <label className={styles.field}>
             <span className={styles.label}>Name</span>

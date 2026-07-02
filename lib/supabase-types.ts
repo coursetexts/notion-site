@@ -7,6 +7,8 @@ export interface Profile {
   user_id: string
   display_name: string | null
   avatar_url: string | null
+  /** Shown next to usernames; how it changes is TBD (see lib/karma.ts). */
+  karma_score?: number
   created_at: string
   updated_at: string
 }
