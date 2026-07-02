@@ -67,7 +67,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 13px;
   line-height: 21px;
   letter-spacing: 0.12em;
@@ -91,7 +91,7 @@
 
 .tocTitle {
   display: block;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 16px;
   line-height: 24px;
   color: #353b48;
@@ -108,7 +108,7 @@
 
 .tocCurrent,
 .tocLink {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 13px;
   line-height: 21px;
   color: #37352f;
@@ -197,7 +197,7 @@
 
 .title {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 48px;
   line-height: 44px;
   letter-spacing: -0.03em;
@@ -208,7 +208,7 @@
   margin-top: 3px;
   background: rgba(0, 137, 196, 0.08);
   color: #0089c4;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   line-height: 10px;
   font-weight: 400;
@@ -227,7 +227,7 @@
 
 .quoteBlock p {
   margin: 0 0 20px;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.014em;
@@ -245,7 +245,7 @@
 .bottomText,
 .bottomSmall {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 15px;
   line-height: 24px;
   color: #25272b;
@@ -261,7 +261,7 @@
 
 .sectionHeading {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 18px;
   line-height: 26px;
   letter-spacing: 0.003em;
@@ -357,7 +357,7 @@
 
 .legacyHeadline {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 32px;
   line-height: 36px;
   letter-spacing: 0.006em;
@@ -444,7 +444,7 @@
 
 .ocwAsideText p {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 15px;
   line-height: 24px;
   color: #25272b;
@@ -513,7 +513,7 @@
 
 .principlesTitle {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 25.6px;
   line-height: 28.8px;
   letter-spacing: 0.0051px;
@@ -535,7 +535,7 @@
 .principleTitle,
 .principleBody {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 15px;
   line-height: 24px;
   color: #f8f7f5;
@@ -560,7 +560,7 @@
 
 .lookingForwardTitle {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 48px;
   line-height: 44px;
   letter-spacing: -0.03em;
@@ -582,7 +582,7 @@
 
 .lookingForwardCopy p,
 .lookingForwardCopy a {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 15px;
   line-height: 24px;
   color: #25272b;
@@ -634,7 +634,7 @@
 
 .lookingForwardCardText {
   margin: 28px 0 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0;
@@ -659,7 +659,7 @@
 .articleFooterButton {
   border-radius: 4px;
   cursor: pointer;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   line-height: 10px;
   font-weight: 400;
@@ -728,7 +728,7 @@
 
 .thankYouTitle {
   margin: 0;
-  font-family: 'Gambetta Variable', 'Guyot Press', serif;
+  font-family: 'Gambetta Variable', 'Fraunces', serif;
   font-size: 16px;
   line-height: 26px;
   letter-spacing: -0.014em;
@@ -737,7 +737,7 @@
 
 .thankYouBody {
   margin: 12px 0 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 24px;
   color: #37352f;
@@ -758,7 +758,7 @@
 
 .manifestoNoteNumber,
 .manifestoNoteText {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   line-height: 21px;
   color: #37352f;
@@ -818,7 +818,7 @@
 
 .articleFooterName {
   margin: 0;
-  font-family: 'Gambetta Variable', 'Guyot Press', serif;
+  font-family: 'Gambetta Variable', 'Fraunces', serif;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: -0.01em;
@@ -843,7 +843,7 @@
 
 .articleFooterDescription {
   margin: 0;
-  font-family: 'Gambetta Variable', 'Guyot Press', serif;
+  font-family: 'Gambetta Variable', 'Fraunces', serif;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.02em;
@@ -868,7 +868,7 @@
   border-radius: 4px;
   background: #fdfdfd;
   padding: 12px 16px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   line-height: 10px;
   font-weight: 400;

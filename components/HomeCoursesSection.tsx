@@ -108,6 +108,40 @@ export function HomeCoursesSection({
     { label: 'English', icon: '/images/home/english.png' }
   ]
 
+  const topSchools = [
+    {
+      src: '/images/home/harvard-red.png',
+      alt: 'Harvard University',
+      query: 'Harvard'
+    },
+    {
+      src: '/images/home/stanford.png',
+      alt: 'Stanford University',
+      query: 'Stanford'
+    },
+    {
+      src: '/images/home/princeton.png',
+      alt: 'Princeton University',
+      query: 'Princeton'
+    },
+    { src: '/images/home/yale.png', alt: 'Yale University', query: 'Yale' },
+    {
+      src: '/images/home/columbia.png',
+      alt: 'Columbia University',
+      query: 'Columbia'
+    },
+    {
+      src: '/images/home/waterloo.png',
+      alt: 'University of Waterloo',
+      query: 'Waterloo'
+    }
+  ]
+
+  // Repeat the set so one half of the track (the scroll distance) always
+  // exceeds the content column (≤1000px) even before logos load — otherwise a
+  // blank gap appears at the end of each loop. 6 copies keeps it gap-free.
+  const loopSchools = Array.from({ length: 6 }, () => topSchools).flat()
+
   const cards =
     courses == null
       ? Array.from({ length: 12 }).map((_, index) => ({
@@ -124,6 +158,37 @@ export function HomeCoursesSection({
     <section className={styles.section}>
       <div className={styles.content}>
         <h2 className={styles.heading}>Try courses from top schools.</h2>
+
+        <div className={styles.schoolsMarquee} aria-label='Featured top schools'>
+          <div className={styles.schoolsTrack}>
+            {loopSchools.map((school, index) => {
+              const isDuplicate = index >= topSchools.length
+
+              return (
+                <Link
+                  key={`${school.alt}-${index}`}
+                  href={`/all-courses?q=${encodeURIComponent(school.query)}`}
+                  legacyBehavior
+                >
+                  <a
+                    className={styles.schoolLogoItem}
+                    aria-label={
+                      isDuplicate ? undefined : `Browse ${school.alt} courses`
+                    }
+                    aria-hidden={isDuplicate ? true : undefined}
+                    tabIndex={isDuplicate ? -1 : undefined}
+                  >
+                    <img
+                      src={school.src}
+                      alt={isDuplicate ? '' : school.alt}
+                      className={styles.schoolLogoImg}
+                    />
+                  </a>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
 
         <div className={styles.subjectGroup}>
           <div className={styles.dashedRule} />

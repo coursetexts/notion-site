@@ -5,7 +5,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #f8f8f8;
 }
 
@@ -24,7 +24,7 @@
   font-weight: 600;
   color: #25272b;
   margin: 0 0 0.5rem 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
 }
 
 .subtitle {

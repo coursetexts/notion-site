@@ -340,7 +340,7 @@ const SortMenu: React.FC<SortMenuProps> = ({ value, onChange, ariaLabel }) => {
   )
 }
 
-interface VoteRowProps {
+export interface VoteRowProps {
   score: number
   userVote: number | null
   disabled: boolean
@@ -385,7 +385,7 @@ const DownvoteIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 )
 
-const VoteRow: React.FC<VoteRowProps> = ({
+export const VoteRow: React.FC<VoteRowProps> = ({
   score,
   userVote,
   disabled,

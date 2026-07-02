@@ -1,17 +1,17 @@
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+/* --- FONT TEST: Fraunces (display) + Inter (text) loaded via <link> in pages/_document.tsx --- */
 
 @font-face {
-  font-family: 'Guyot Press';
-  src: local('Guyot Press');
+  font-family: 'Fraunces';
+  src: local('Fraunces');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-sans: 'Hanken Grotesk', sans-serif;
-  --font-serif: 'Guyot Press', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   /* Home / users / notebook page canvas (see pages/index.tsx main) */
@@ -58,6 +58,7 @@ h6,
 .notion-h4,
 .notion-title {
   font-family: var(--font-serif);
+  font-optical-sizing: auto;
 }
 
 button,
@@ -110,7 +111,7 @@ samp,
 }
 
 body {
-  /* --notion-font: 'Hanken Grotesk', sans-serif; */
+  /* --notion-font: 'Inter', sans-serif; */
   /* font-family: var(--notion-font); */
   overflow-x: hidden;
 }

@@ -19,7 +19,7 @@
   width: 100%;
   text-align: left;
   color: #000000;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -116,7 +116,7 @@
   margin: 0;
   position: relative;
   display: inline-block;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
@@ -162,7 +162,7 @@
 }
 
 .newBadgeText {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 10px;

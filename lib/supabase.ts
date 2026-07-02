@@ -21,12 +21,17 @@ export function getSupabaseClient(): SupabaseClient | null {
          * request with the 'steal' option` when auth races (Strict Mode, many
          * parallel `getUser`/`getSession` calls on profile). `processLock` uses an
          * in-process promise queue instead of `navigator.locks`, avoiding steal.
+         *
+         * supabase-js does not forward `lockAcquireTimeout` to GoTrueClient, so
+         * it runs with the 5s default and bursts of queries (e.g. Community
+         * page mount) throw ProcessLockAcquireTimeoutError. Enforce infinite
+         * wait here instead. Keep an explicit 0 (auto-refresh tick) as-is: it
+         * means "skip if busy" and its timeout error is handled internally.
          */
-        lock: processLock,
-        lockAcquireTimeout: -1
+        lock: (name, acquireTimeout, fn) =>
+          processLock(name, acquireTimeout === 0 ? 0 : -1, fn)
       }
-      // `lock` / negative timeout: types may lag auth-js; keep cast narrow.
-    } as Parameters<typeof createClient>[2])
+    })
   }
   return browserClient
 }

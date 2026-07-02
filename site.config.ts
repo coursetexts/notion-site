@@ -65,7 +65,6 @@ export default siteConfig({
 
   navigationLinks: [
     { title: 'All Courses', pageId: process.env.NEXT_PUBLIC_NOTION_PAGE_ID! },
-    { title: 'Degrees', url: '/degrees' },
     { title: 'Resources', url: '/manifesto' },
     { title: 'Communities', url: '/users' },
     {

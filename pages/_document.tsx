@@ -18,8 +18,15 @@ export default class MyDocument extends Document {
             /> */}
 
             <link rel='manifest' href='/manifest.json' />
+            {/* FONT TEST: Fraunces (display) + Inter (text). Revert with git checkout. */}
+            <link rel='preconnect' href='https://fonts.googleapis.com' />
             <link
-              href='https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
+              rel='preconnect'
+              href='https://fonts.gstatic.com'
+              crossOrigin='anonymous'
+            />
+            <link
+              href='https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..700&display=swap'
               rel='stylesheet'
             ></link>
 

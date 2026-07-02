@@ -19,12 +19,96 @@
 .heading {
   margin: 0;
   color: #000000;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
   line-height: 24px;
   letter-spacing: 0.0002em;
+}
+
+.schoolsMarquee {
+  margin-top: 20px;
+  /* Vertical headroom so the hover lift/scale isn't clipped by overflow: hidden */
+  padding: 12px 0;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+.schoolsTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: schoolsScroll 90s linear infinite;
+}
+
+.schoolsMarquee:hover .schoolsTrack {
+  animation-play-state: paused;
+}
+
+.schoolLogoItem {
+  flex: none;
+  height: 44px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.schoolLogoImg {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.schoolLogoItem:hover .schoolLogoImg {
+  opacity: 1;
+  transform: translateY(-3px) scale(1.05);
+}
+
+@keyframes schoolsScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schoolsTrack {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 20px;
+  }
+
+  .schoolsMarquee .schoolLogoItem[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 .subjectGroup {
@@ -98,7 +182,7 @@
 
 .subjectLabel {
   position: relative;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
@@ -134,7 +218,7 @@
 
 .emptyState {
   margin: 40px 0 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
@@ -189,7 +273,7 @@
 
 .courseMetaText {
   margin-left: 6px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 12px;
@@ -207,7 +291,7 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
   text-decoration-skip-ink: none;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -236,7 +320,7 @@
 
 .courseDescription {
   margin: 16px 0 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
@@ -290,7 +374,7 @@
 
 .viewAllText {
   position: relative;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 15px;

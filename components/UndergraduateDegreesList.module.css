@@ -29,7 +29,7 @@
 
 .categoryHeading {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 1.15;
@@ -42,7 +42,7 @@
 .categoryDescription {
   margin: 10px 0 0;
   max-width: 640px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -96,7 +96,7 @@
 
 .degreeTitle {
   margin: 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-size: 20px;
   line-height: 1.25;
@@ -114,7 +114,7 @@
 
 .degreeMeta {
   margin: 6px 0 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -129,7 +129,7 @@
 }
 
 .coursesToggleLabel {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
@@ -172,7 +172,7 @@
 }
 
 .schoolItem {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
@@ -224,7 +224,7 @@
 
 .courseName {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
@@ -234,7 +234,7 @@
 .courseDescription {
   margin: 4px 0 0;
   margin-left: 10px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -280,7 +280,7 @@
   align-items: center;
   padding: 2px 8px;
   border-radius: 2px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
@@ -313,7 +313,7 @@
   align-items: center;
   padding: 2px 8px;
   border-radius: 2px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
@@ -359,7 +359,7 @@
 
 .topicsHeading {
   margin: 0 0 8px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
@@ -393,7 +393,7 @@
 }
 
 .nestedSectionLabel {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
@@ -408,7 +408,7 @@
 }
 
 .nestedSectionCount {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
   line-height: 16px;
@@ -431,7 +431,7 @@
 .topicItem {
   position: relative;
   padding-left: 14px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -472,7 +472,7 @@
   padding: 8px 10px;
   border: none;
   background: #ffffff;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
   line-height: 16px;
@@ -526,7 +526,7 @@
 
 .resourceTitle {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 13px;
   line-height: 18px;
@@ -549,7 +549,7 @@
 
 .resourceMeta {
   margin: 4px 0 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
   line-height: 16px;
@@ -569,7 +569,7 @@
 
 .resourceDescription {
   margin: 6px 0 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -580,7 +580,7 @@
   margin: 0;
   padding: 32px 0;
   text-align: center;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;

@@ -37,20 +37,58 @@ async function fetchProfile(userId: string): Promise<Profile | null> {
     .from('profiles')
     .select('*')
     .eq('user_id', userId)
-    .single()
+    .maybeSingle()
   if (error) {
     console.error('Failed to fetch profile:', error)
     return null
   }
+  return data as Profile | null
+}
+
+/**
+ * Fetch the profile, creating it if missing (e.g. the DB trigger isn't
+ * installed yet). Insert goes through the "Users can insert own profile"
+ * RLS policy. Deliberately not an upsert: that would overwrite user-edited
+ * fields on later sign-ins.
+ */
+async function ensureProfile(user: User): Promise<Profile | null> {
+  const existing = await fetchProfile(user.id)
+  if (existing) return existing
+
+  const supabase = getSupabaseClient()
+  if (!supabase) return null
+  const { data, error } = await supabase
+    .from('profiles')
+    .insert({
+      user_id: user.id,
+      display_name:
+        user.user_metadata?.full_name ??
+        user.user_metadata?.name ??
+        user.email?.split('@')[0] ??
+        null,
+      avatar_url: user.user_metadata?.avatar_url ?? null
+    })
+    .select()
+    .single()
+  if (error) {
+    // 23505 unique violation: row was created concurrently (e.g. by the
+    // on_auth_user_created trigger) — just refetch it.
+    if (error.code === '23505') {
+      return fetchProfile(user.id)
+    }
+    console.error('Failed to create profile:', error)
+    return null
+  }
+  authDebug('profile:created', { user: user.id })
   return data as Profile
 }
 
-async function fetchProfileWithTimeout(
-  userId: string,
+async function ensureProfileWithTimeout(
+  user: User,
   timeoutMs = 2500
 ): Promise<Profile | null> {
   return Promise.race([
-    fetchProfile(userId),
+    ensureProfile(user),
     new Promise<null>((resolve) => setTimeout(() => resolve(null), timeoutMs))
   ])
 }
@@ -111,7 +149,7 @@ export function AuthProvider({
         setIsLoading(false)
 
         // Profile hydration should not block auth state.
-        fetchProfileWithTimeout(u.id).then((p) => {
+        ensureProfileWithTimeout(u).then((p) => {
           setProfileState(p)
           setCachedAuth(u, p)
           authDebug('provider:profile:hydrated', {
@@ -152,7 +190,7 @@ export function AuthProvider({
         setIsLoading(false)
 
         // Do not block auth on profile query.
-        fetchProfileWithTimeout(u.id).then((p) => {
+        ensureProfileWithTimeout(u).then((p) => {
           setProfileState(p)
           setCachedAuth(u, p)
           authDebug('provider:profile:hydrated', {

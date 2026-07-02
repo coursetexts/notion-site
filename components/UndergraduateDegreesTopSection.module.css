@@ -22,7 +22,7 @@
   gap: 10px;
   cursor: pointer;
   color: #000000;
-  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-family: var(--font-serif, 'Fraunces', serif);
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -37,7 +37,7 @@
 
 .levelTitle {
   color: #000000;
-  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-family: var(--font-serif, 'Fraunces', serif);
   font-weight: 401;
   font-style: normal;
   font-size: 32px;
@@ -80,7 +80,7 @@
   cursor: pointer;
   text-align: left;
   white-space: nowrap;
-  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-family: var(--font-serif, 'Fraunces', serif);
   font-weight: 401;
   font-size: 18px;
   line-height: 1.25;
@@ -104,7 +104,7 @@
 .intro {
   margin: 20px 0 0;
   max-width: 534px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -155,7 +155,7 @@
   outline: none;
   background: transparent;
   padding: 16px 110px 16px 19px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -181,7 +181,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;

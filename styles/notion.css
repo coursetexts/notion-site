@@ -54,7 +54,7 @@
 }
 
 .notion-header bold {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
 }
 
 .notion-header .notion-nav-header {
@@ -63,8 +63,8 @@
   overflow-x: auto;
   padding: 0 2px;
   border-bottom: 1px solid#D8D8D8;
-  /* font-family: 'Hanken Grotesk', sans-serif; Add this line */
-  font-family: 'Hanken Grotesk', sans-serif;
+  /* font-family: 'Inter', sans-serif; Add this line */
+  font-family: 'Inter', sans-serif;
   color: #000000;
 }
 
@@ -178,7 +178,7 @@
 }
 
 .notion-h1 {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   font-weight: 200;
   text-align: center;
   font-size: 2.5rem;
@@ -200,7 +200,7 @@
   margin-top: 1.25rem;
   margin-bottom: 2rem;
   color: #4b5563;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .notion-home .notion-callout {
@@ -500,7 +500,7 @@
 
 .notion-search .searchBar {
   box-shadow: var(--fg-color-0) 0px 1px 0px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .notion-search .noResults {
@@ -514,7 +514,7 @@
 /* Search overlay result titles: serif */
 .notion-search .notion-page-title,
 .notion-search .notion-page-title-text {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
 }
 
 /* Search modal redesign */
@@ -534,12 +534,12 @@
   box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04) !important;
   top: 72px !important;
   overflow: hidden !important;
-  font-family: 'Hanken Grotesk', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   color: #000 !important;
 }
 
 .notion-search * {
-  font-family: 'Hanken Grotesk', sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
 .notion-search .quickFindMenu {
@@ -792,7 +792,7 @@
 }
 
 a.notion-page-link .notion-page-title {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
 }
 
 .notion-equation.notion-equation-block {
@@ -815,7 +815,7 @@ a.notion-page-link .notion-page-title {
 .notion-gray_co {
   color: rgb(107 114 128 / 1);
   /* color: #6B7280; */
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: small;
 }
 
@@ -902,7 +902,7 @@ a.notion-page-link .notion-page-title {
   font-weight: 100;
   line-height: 25px; /* 178.571% */
   text-overflow: ellipsis;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .custom-wrapper-class > *:first-child {
@@ -917,7 +917,7 @@ a.notion-page-link .notion-page-title {
 
 .custom-wrapper-class > *:last-child {
   /* border-top: 1px solid #E5E1D3; */
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #374151;
   font-weight: 'medium';
   width: 100%;
@@ -938,7 +938,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .custom-wrapper-class .notion-page-title-text {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   color: #374151;
   font-size: large;
   border-top: none;
@@ -948,7 +948,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .why-page .notion-title {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   font-weight: bolder;
   font-size: 3rem;
   margin-bottom: 0rem;
@@ -963,14 +963,14 @@ a.notion-page-link .notion-page-title {
 }
 
 .why-page .notion-text {
-  font-family: 'Hanken Grotesk';
+  font-family: 'Inter';
   color: #000000;
   font-weight: 400;
   font-size: 0.95rem;
 }
 
 .why-page li {
-  font-family: 'Hanken Grotesk';
+  font-family: 'Inter';
   color: #000000;
   font-weight: 400;
   font-size: 0.95rem;
@@ -978,20 +978,20 @@ a.notion-page-link .notion-page-title {
 
 @media (max-width: 800px) {
   .why-page .notion-h1 {
-    font-family: 'Hanken Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #000000;
     font-weight: 400;
   }
 }
 
 .why-page .notion-h1 {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #000000;
   font-weight: 400;
 }
 
 .why-page .notion-h2 {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   color: #000000;
   font-weight: bolder;
   font-size: 1.6rem;
@@ -1006,10 +1006,10 @@ a.notion-page-link .notion-page-title {
   justify-content: center; /* Centers items vertically within the parent */
   text-align: center; /* Ensures text is centered */
   height: 100%; /* Ensures full height of parent container */
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 .why-page .notion-column .notion-h2 {
-  font-family: 'Hanken Grotesk';
+  font-family: 'Inter';
   font-weight: 500;
   color: #000000;
   text-transform: none;
@@ -1017,7 +1017,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .why-page .notion-column .notion-gray {
-  font-family: 'Hanken Grotesk';
+  font-family: 'Inter';
 }
 
 /* Target the wrapping element around the image */
@@ -1044,7 +1044,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .process-page .notion-title {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   font-weight: bolder;
   font-size: 3rem;
   margin-bottom: 0rem;
@@ -1060,7 +1060,7 @@ a.notion-page-link .notion-page-title {
 
 .course-page .content-table-heading {
   font-size: 24px;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   padding: 20px 0px;
   color: #374151;
   font-weight: 350;
@@ -1073,7 +1073,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .course-page .notion-gray {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
 }
 
@@ -1144,7 +1144,7 @@ a.notion-page-link .notion-page-title {
 
 /* Override .course-page styles so you can style the hero from scratch */
 .course-hero-standalone .notion-title {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 600;
   color: #140c00;
   max-width: 100%;
@@ -1160,7 +1160,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .course-hero-standalone .notion-blue .notion-link {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   color: #1f2a37;
   font-size: 16px;
   border-bottom: none;
@@ -1215,7 +1215,7 @@ a.notion-page-link .notion-page-title {
 }
 
 .course-page .notion-blue .notion-link {
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   color: #1f2a37;
   font-size: 16px;
   border-bottom: none;
@@ -1230,7 +1230,7 @@ a.notion-page-link .notion-page-title {
   font-size: 1.5rem;
   margin-bottom: 1em;
   line-height: 1.3333333;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   text-align: center;
   color: #000000;
 } */
@@ -1249,7 +1249,7 @@ a.notion-page-link .notion-page-title {
 
 /* 
 .course-page .notion-h2 {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #6B7280;
   font-weight: 500;
   font-size: small;
@@ -1278,7 +1278,7 @@ a.notion-page-link .notion-page-title {
   width: 20%;
   background-color: #b439df;
   color: #67bdfc;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* For tabbs in the course page table */
@@ -1345,7 +1345,7 @@ a.notion-page-link .notion-page-title {
   text-wrap: nowrap;
   background-color: #f8f8f8;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   padding: 8px 18px;
   color: #000000;
 }
@@ -1483,7 +1483,7 @@ a.notion-page-link .notion-page-title {
   font-size: 1.1rem;
   color: #030712;
   text-decoration: none;
-  font-family: 'Hanken Grotesk';
+  font-family: 'Inter';
 }
 
 .dark-mode .notion-page-title-text {
@@ -1505,7 +1505,7 @@ a.notion-page-link .notion-page-title {
 
 .notion-callout .notion-text {
   color: #ffffff;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .notion-callout .notion-link {
@@ -1576,7 +1576,7 @@ a.notion-page-link .notion-page-title {
   display: flex;
   align-items: center;
   gap: 32px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .breadcrumbs .nav-container .nav-link {
@@ -1584,14 +1584,14 @@ a.notion-page-link .notion-page-title {
   line-height: 1.75rem;
   opacity: 0.8;
   font-weight: lighter;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 17px;
 }
 .breadcrumbs .nav-container a[href='/'] {
   font-weight: bold;
   color: unset;
   opacity: 1;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
 }
 
 .notion-text .notion-block {
@@ -1662,7 +1662,7 @@ a.notion-page-link .notion-page-title {
   font-size: 2.5rem;
   margin-top: 2em;
   margin-bottom: 1em;
-  font-family: 'Guyot Press';
+  font-family: 'Fraunces';
   text-align: center;
 }
 
@@ -1770,7 +1770,7 @@ summary .notion-h3 .notion-h-title {
   display: table-column;
   border-top: 1px solid #e5e7eb;
   text-align: center;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #6b7280;
   font-size: 0.9rem;
   margin-top: 4rem;
@@ -1933,7 +1933,7 @@ summary .notion-h3 .notion-h-title {
 
 /* Paragraph font in content main */
 .course-content-mount .notion-text {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* h4 in course content: slightly smaller than default, Guyot serif (body text is sans) */
@@ -1943,7 +1943,7 @@ summary .notion-h3 .notion-h-title {
 .course-content-mount .course-content-subsection h4[class*='notion'],
 .course-content-mount .course-content-section.content-section-active .notion-h4,
 .course-content-mount .course-content-section.content-section-active h4[class*='notion'] {
-  font-family: var(--font-serif, 'Guyot Press', serif);
+  font-family: var(--font-serif, 'Fraunces', serif);
   font-size: 1rem;
   line-height: 1.4;
   font-weight: 500;

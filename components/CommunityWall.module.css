@@ -1,7 +1,7 @@
 .root {
   width: 100%;
   min-height: 60vh;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #25272b;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .title {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
   margin: 0;
@@ -109,7 +109,7 @@
 }
 
 .cardTitle {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -503,7 +503,7 @@ a.previewIconBtn {
 
 .modalTitle {
   margin: 0 0 0.9rem;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 400;
   font-size: 1.25rem;
 }
@@ -529,7 +529,7 @@ a.previewIconBtn {
   border-radius: 8px;
   padding: 0.65rem 0.75rem;
   font-size: 0.95rem;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .textarea {

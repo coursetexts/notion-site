@@ -107,7 +107,7 @@
   margin: 0;
   position: relative;
   display: inline-block;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 12px;
@@ -122,7 +122,7 @@
   margin: 4px 0 0;
   position: relative;
   display: inline-block;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 12px;
@@ -165,7 +165,7 @@
 
 .heading {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
@@ -176,7 +176,7 @@
 
 .body {
   margin: 24px 0 0;
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-weight: 401;
   font-style: normal;
   font-size: 13px;
@@ -234,7 +234,7 @@
 
 .ctaText {
   position: relative;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 13px;
