@@ -19,6 +19,7 @@ import * as config from '@/lib/config'
 import * as types from '@/lib/types'
 import { donate } from '@/lib/config'
 import { NOTION_PRODUCTION_URL } from '@/lib/consts'
+import { shouldHideCourseFromPublicHome } from '@/lib/course-count'
 import {
   LINK_ICON_METADATA,
   LinkIconKey,
@@ -557,8 +558,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         .join(' ')
         .toLowerCase()
 
-      // Hide courses by Adam Cohen in production
-      if (contentText.includes('adam cohen') && isProduction) {
+      if (shouldHideCourseFromPublicHome(contentText, isProduction)) {
         elementsToWrap.forEach((element) => {
           element.remove()
         })
