@@ -331,6 +331,12 @@
   color: #37352f;
 }
 
+/* Knowledge-component results carry the accent so they read as a
+   different entity in the same ledger. */
+.typeTagKc {
+  color: #0089c4;
+}
+
 .metaDot {
   color: var(--outline, #e6e6e6);
 }

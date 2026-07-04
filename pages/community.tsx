@@ -15,6 +15,10 @@ import {
   getCommunityPageResources,
   setResourceVote
 } from '@/lib/community-comments-db'
+import {
+  type CommunitySearchHit,
+  searchCommunity
+} from '@/lib/community-search-db'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './community.module.css'
@@ -42,6 +46,8 @@ interface CommunityResource {
   /** True when the row exists in Supabase (comments/votes persist). */
   dbBacked?: boolean
   commentCount?: number
+  /** Search results can also surface knowledge components. */
+  kind?: 'resource' | 'knowledge_component'
 }
 
 function dbToFeedItem(r: CommunityPageResource): CommunityResource {
@@ -56,6 +62,22 @@ function dbToFeedItem(r: CommunityPageResource): CommunityResource {
     userVote: r.user_vote,
     dbBacked: true,
     commentCount: r.comment_count
+  }
+}
+
+/** Search hits not already in the loaded feed (e.g. knowledge components). */
+function searchHitToFeedItem(h: CommunitySearchHit): CommunityResource {
+  return {
+    id: h.id,
+    kind: h.kind,
+    type: h.type,
+    title: h.title,
+    description: h.description ?? '',
+    url: h.url ?? '',
+    author: '',
+    score: h.score,
+    userVote: null,
+    dbBacked: h.kind === 'resource'
   }
 }
 
@@ -279,6 +301,12 @@ export default function CommunityPage() {
   const [kcName, setKcName] = React.useState('')
   const [kcSummary, setKcSummary] = React.useState('')
 
+  // Server search results (Postgres FTS via search_community RPC), or null
+  // when idle / unavailable — null falls back to the local substring filter.
+  const [searchResults, setSearchResults] = React.useState<
+    CommunitySearchHit[] | null
+  >(null)
+
   // Live resources from Supabase replace the mocks when any exist.
   // Re-fetched when auth settles so user_vote reflects the session.
   React.useEffect(() => {
@@ -292,8 +320,46 @@ export default function CommunityPage() {
     }
   }, [auth?.user?.id])
 
+  // Search-as-you-type: debounce ~150ms, abort superseded requests. While a
+  // request is in flight the previous list stays on screen (the local filter
+  // covers the very first keystrokes), so results feel instant.
+  React.useEffect(() => {
+    const q = query.trim()
+    if (!q) {
+      setSearchResults(null)
+      return
+    }
+    const controller = new AbortController()
+    const timer = setTimeout(() => {
+      searchCommunity(q, { signal: controller.signal }).then((hits) => {
+        if (controller.signal.aborted) return
+        setSearchResults(hits)
+      })
+    }, 150)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
+  }, [query])
+
   const filtered = React.useMemo(() => {
     const needle = query.trim().toLowerCase()
+
+    // Server-ranked search: FTS relevance, vote-score tie-break (RPC order).
+    // Resource hits merge with loaded rows to keep userVote/commentCount.
+    if (needle && searchResults) {
+      const byId = new Map(resources.map((r) => [r.id, r]))
+      let list = searchResults.map((h) =>
+        h.kind === 'resource'
+          ? byId.get(h.id) ?? searchHitToFeedItem(h)
+          : searchHitToFeedItem(h)
+      )
+      if (typeFilter !== 'All') {
+        list = list.filter((r) => r.type === typeFilter)
+      }
+      return list
+    }
+
     let list = resources
     if (typeFilter !== 'All') {
       list = list.filter((r) => r.type === typeFilter)
@@ -310,7 +376,7 @@ export default function CommunityPage() {
       list = [...list].sort((a, b) => b.score - a.score)
     }
     return list
-  }, [resources, query, typeFilter, sort])
+  }, [resources, searchResults, query, typeFilter, sort])
 
   const handleVote = (item: CommunityResource, value: 1 | -1 | null) => {
     // Optimistic update either way; persist for db-backed rows.
@@ -339,6 +405,8 @@ export default function CommunityPage() {
   }
 
   const closeModal = () => setModal(null)
+
+  const searchActive = query.trim().length > 0
 
   const submitResource = async () => {
     const title = resTitle.trim()
@@ -430,7 +498,7 @@ export default function CommunityPage() {
               <input
                 type='search'
                 className={styles.searchInput}
-                placeholder='Search by title, topic, or author…'
+                placeholder='Search resources and knowledge components…'
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 aria-label='Search resources'
@@ -460,37 +528,45 @@ export default function CommunityPage() {
                 ))}
               </div>
               <div className={styles.sortRow}>
-                <span className={styles.sortLabel}>Sort by</span>
-                <button
-                  type='button'
-                  className={
-                    sort === 'top'
-                      ? `${styles.sortBtn} ${styles.sortBtnActive}`
-                      : styles.sortBtn
-                  }
-                  aria-pressed={sort === 'top'}
-                  onClick={() => setSort('top')}
-                >
-                  Top
-                </button>
-                <button
-                  type='button'
-                  className={
-                    sort === 'new'
-                      ? `${styles.sortBtn} ${styles.sortBtnActive}`
-                      : styles.sortBtn
-                  }
-                  aria-pressed={sort === 'new'}
-                  onClick={() => setSort('new')}
-                >
-                  New
-                </button>
+                <span className={styles.sortLabel}>
+                  {searchActive ? 'Sorted by relevance' : 'Sort by'}
+                </span>
+                {!searchActive && (
+                  <>
+                    <button
+                      type='button'
+                      className={
+                        sort === 'top'
+                          ? `${styles.sortBtn} ${styles.sortBtnActive}`
+                          : styles.sortBtn
+                      }
+                      aria-pressed={sort === 'top'}
+                      onClick={() => setSort('top')}
+                    >
+                      Top
+                    </button>
+                    <button
+                      type='button'
+                      className={
+                        sort === 'new'
+                          ? `${styles.sortBtn} ${styles.sortBtnActive}`
+                          : styles.sortBtn
+                      }
+                      aria-pressed={sort === 'new'}
+                      onClick={() => setSort('new')}
+                    >
+                      New
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 
             <div className={styles.feedBar}>
               <span>
-                <span className={styles.feedHeadingLabel}>Resources</span>
+                <span className={styles.feedHeadingLabel}>
+                  {searchActive ? 'Results' : 'Resources'}
+                </span>
                 <span className={styles.feedHeadingCount}>
                   ({filtered.length})
                 </span>
@@ -510,7 +586,7 @@ export default function CommunityPage() {
                   {resources.length === 0
                     ? 'Nothing here yet.'
                     : query.trim()
-                    ? `No resources match “${query.trim()}”.`
+                    ? `Nothing matches “${query.trim()}”.`
                     : typeFilter === 'All'
                     ? 'No resources shared yet.'
                     : `No ${pluralTypeLabel(
@@ -547,33 +623,48 @@ export default function CommunityPage() {
                     data-testid='resource-row'
                   >
                     <div className={styles.rowMeta}>
-                      {r.type && (
-                        <>
-                          <span className={styles.typeTag}>
-                            {TYPE_LABELS[r.type]}
-                          </span>
-                          <span className={styles.metaDot} aria-hidden>
-                            ·
-                          </span>
-                        </>
+                      {r.kind === 'knowledge_component' ? (
+                        <span
+                          className={`${styles.typeTag} ${styles.typeTagKc}`}
+                        >
+                          Knowledge component
+                        </span>
+                      ) : (
+                        r.type && (
+                          <>
+                            <span className={styles.typeTag}>
+                              {TYPE_LABELS[r.type]}
+                            </span>
+                            <span className={styles.metaDot} aria-hidden>
+                              ·
+                            </span>
+                          </>
+                        )
                       )}
-                      <a
-                        href={r.url}
-                        className={styles.host}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        title={r.url}
-                      >
-                        {hostFromUrl(r.url)}
-                        <ExternalIcon />
-                      </a>
+                      {r.url && (
+                        <a
+                          href={r.url}
+                          className={styles.host}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          title={r.url}
+                        >
+                          {hostFromUrl(r.url)}
+                          <ExternalIcon />
+                        </a>
+                      )}
                       <span className={styles.rowMetaRight}>
-                        <span className={styles.author}>by {r.author}</span>
+                        {r.author && (
+                          <span className={styles.author}>by {r.author}</span>
+                        )}
                         <span data-testid='resource-vote'>
                           <VoteRow
                             score={r.score}
                             userVote={r.userVote}
-                            disabled={Boolean(r.dbBacked) && !signedIn}
+                            disabled={
+                              r.kind === 'knowledge_component' ||
+                              (Boolean(r.dbBacked) && !signedIn)
+                            }
                             onVote={(value) => handleVote(r, value)}
                           />
                         </span>
@@ -581,15 +672,24 @@ export default function CommunityPage() {
                     </div>
 
                     <h3 className={styles.rowTitle}>
-                      <a
-                        href={r.url}
-                        className={styles.rowTitleLink}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        data-testid='resource-title'
-                      >
-                        {r.title}
-                      </a>
+                      {r.url ? (
+                        <a
+                          href={r.url}
+                          className={styles.rowTitleLink}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          data-testid='resource-title'
+                        >
+                          {r.title}
+                        </a>
+                      ) : (
+                        <span
+                          className={styles.rowTitleLink}
+                          data-testid='resource-title'
+                        >
+                          {r.title}
+                        </span>
+                      )}
                     </h3>
                     <p className={styles.rowDesc}>{r.description}</p>
 
