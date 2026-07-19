@@ -6,18 +6,41 @@
 -- This migration is safe to re-run.
 -- =============================================================================
 
+alter table public.profiles
+  add column if not exists replies_last_read_at timestamptz,
+  add column if not exists updated_at timestamptz not null default now();
+
+create or replace function public.set_updated_at()
+returns trigger
+language plpgsql
+set search_path = ''
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_set_updated_at on public.profiles;
+create trigger profiles_set_updated_at
+  before update on public.profiles
+  for each row execute function public.set_updated_at();
+
 alter table public.profiles enable row level security;
 
+drop policy if exists "Anyone can read profiles" on public.profiles;
 drop policy if exists "Public profiles are readable" on public.profiles;
 create policy "Public profiles are readable"
   on public.profiles for select
   using (true);
 
+drop policy if exists "Users insert own profile" on public.profiles;
 drop policy if exists "Users can insert their own profile" on public.profiles;
 create policy "Users can insert their own profile"
   on public.profiles for insert
   with check ((select auth.uid()) = id);
 
+drop policy if exists "Users update own profile" on public.profiles;
 drop policy if exists "Users can update their own profile" on public.profiles;
 create policy "Users can update their own profile"
   on public.profiles for update
