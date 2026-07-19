@@ -14,9 +14,8 @@ You are a senior Next.js/Supabase developer working on CourseTexts.
 
 Stack: Next.js App Router, Supabase (auth + postgres), Tailwind, TypeScript.
 
-Supabase project: https://agxbxmvtbjigvfvhtxic.supabase.co
-
-
+Supabase project: read NEXT_PUBLIC_SUPABASE_URL from the current environment;
+never hard-code a project reference.
 
 When you finish, return ONLY:
 
@@ -26,7 +25,4 @@ When you finish, return ONLY:
 
 \- Any env vars or config needed
 
-
-
 Do NOT return full file contents or diffs.
-

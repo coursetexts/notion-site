@@ -49,14 +49,14 @@ async function displayNamesByUserId(
   const unique = [...new Set(userIds)]
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('user_id, display_name')
-    .in('user_id', unique)
+    .select('id, display_name')
+    .in('id', unique)
   const out: Record<string, string | null> = {}
   unique.forEach((id) => {
     out[id] = null
   })
   for (const p of profiles || []) {
-    out[(p as { user_id: string }).user_id] = (
+    out[(p as { id: string }).id] = (
       p as { display_name: string | null }
     ).display_name
   }

@@ -1,5 +1,10 @@
 # Supabase Auth & Data Design
 
+> **Schema note:** the community deployment uses the live schema documented in
+> `supabase/live/`, where `profiles.id` is the matching `auth.users.id`. The
+> older files in `supabase/migrations/` use a separate `profiles.user_id`
+> layout and must not be applied to the community database.
+
 ## High-level flow
 
 ```mermaid
@@ -195,14 +200,18 @@ alter table public.bookmarks enable row level security;
 ## What you need to provide
 
 1. **Supabase project**
+
    - Project URL (e.g. `https://xxxx.supabase.co`)
    - Anon/public key (safe for client)
 
-2. **Run the profiles migration**
-   - In Supabase Dashboard: SQL Editor → New query → paste and run the contents of `supabase/migrations/001_profiles.sql`.
-   - This creates the `profiles` table and the trigger that creates a profile row when a user signs up.
+2. **Harden profiles in the existing community database**
+
+   - In Supabase Dashboard: SQL Editor → New query → paste and run the contents of `supabase/live/003_auth_profiles.sql`.
+   - This aligns profile RLS and the new-user trigger with the live schema's `profiles.id` convention.
+   - Do not run `supabase/migrations/001_profiles.sql` against the community database; it targets the incompatible legacy schema.
 
 3. **Google OAuth**
+
    - In Supabase Dashboard: **Authentication** → **Providers** → **Google** → Enable, add **Client ID** and **Client Secret** from Google Cloud Console.
    - In **Google Cloud Console**: create an OAuth 2.0 Client (Web application), add authorized redirect URI: `https://<project-ref>.supabase.co/auth/v1/callback`.
 

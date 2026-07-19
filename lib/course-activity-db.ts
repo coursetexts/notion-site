@@ -353,8 +353,8 @@ export async function getAnnotations(
   const [profilesRes, voteMap] = await Promise.all([
     supabase
       .from('profiles')
-      .select('user_id, display_name, avatar_url')
-      .in('user_id', userIds),
+      .select('id, display_name, avatar_url')
+      .in('id', userIds),
     getVotesForAnnotations(annotations.map((a) => a.id))
   ])
   const profileByUser = (profilesRes?.data || []).reduce(
@@ -365,7 +365,7 @@ export async function getAnnotations(
       >,
       p: any
     ) => {
-      acc[p.user_id] = {
+      acc[p.id] = {
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }

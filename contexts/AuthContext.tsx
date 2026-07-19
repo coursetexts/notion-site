@@ -36,7 +36,7 @@ async function fetchProfile(userId: string): Promise<Profile | null> {
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
-    .eq('user_id', userId)
+    .eq('id', userId)
     .maybeSingle()
   if (error) {
     console.error('Failed to fetch profile:', error)
@@ -49,7 +49,8 @@ async function fetchProfile(userId: string): Promise<Profile | null> {
  * Fetch the profile, creating it if missing (e.g. the DB trigger isn't
  * installed yet). Insert goes through the "Users can insert own profile"
  * RLS policy. Deliberately not an upsert: that would overwrite user-edited
- * fields on later sign-ins.
+ * fields on later sign-ins. The live community schema uses the auth user id
+ * directly as profiles.id (there is no separate profiles.user_id column).
  */
 async function ensureProfile(user: User): Promise<Profile | null> {
   const existing = await fetchProfile(user.id)
@@ -60,7 +61,8 @@ async function ensureProfile(user: User): Promise<Profile | null> {
   const { data, error } = await supabase
     .from('profiles')
     .insert({
-      user_id: user.id,
+      id: user.id,
+      email: user.email ?? null,
       display_name:
         user.user_metadata?.full_name ??
         user.user_metadata?.name ??

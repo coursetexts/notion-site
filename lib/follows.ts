@@ -5,14 +5,15 @@
 import type { Course } from './course-activity-db'
 import type { Annotation, Bookmark, Comment } from './course-activity-db'
 import { getSupabaseClient } from './supabase'
-import type { Profile } from './supabase-types'
 
-export type PublicProfile = Pick<
-  Profile,
-  'user_id' | 'display_name' | 'avatar_url'
->
+export interface PublicProfile {
+  /** Compatibility alias used by profile routes; sourced from profiles.id. */
+  user_id: string
+  display_name: string | null
+  avatar_url: string | null
+}
 
-/** Get profile by user_id (for public profile page). */
+/** Get a profile by auth user id (profiles.id in the live schema). */
 export async function getProfileByUserId(
   userId: string
 ): Promise<PublicProfile | null> {
@@ -20,11 +21,15 @@ export async function getProfileByUserId(
   if (!supabase) return null
   const { data, error } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .eq('user_id', userId)
+    .select('id, display_name, avatar_url')
+    .eq('id', userId)
     .maybeSingle()
   if (error || !data) return null
-  return data as PublicProfile
+  return {
+    user_id: data.id,
+    display_name: data.display_name,
+    avatar_url: data.avatar_url
+  }
 }
 
 /** Check if current user follows targetUserId. */
@@ -145,12 +150,12 @@ export async function getFollowingList(
   const ids = rows.map((r: { following_id: string }) => r.following_id)
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .in('user_id', ids)
+    .select('id, display_name, avatar_url')
+    .in('id', ids)
   const byId = (profiles || []).reduce(
     (acc: Record<string, ProfileListItem>, p: any) => {
-      acc[p.user_id] = {
-        user_id: p.user_id,
+      acc[p.id] = {
+        user_id: p.id,
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }
@@ -175,12 +180,12 @@ export async function getFollowersList(
   const ids = rows.map((r: { follower_id: string }) => r.follower_id)
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .in('user_id', ids)
+    .select('id, display_name, avatar_url')
+    .in('id', ids)
   const byId = (profiles || []).reduce(
     (acc: Record<string, ProfileListItem>, p: any) => {
-      acc[p.user_id] = {
-        user_id: p.user_id,
+      acc[p.id] = {
+        user_id: p.id,
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }
@@ -248,8 +253,8 @@ export async function getCommentsByUser(
     .in('notion_page_id', courseIds)
   const { data: profile } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .eq('user_id', userId)
+    .select('id, display_name, avatar_url')
+    .eq('id', userId)
     .maybeSingle()
   const courseById = (courses || []).reduce(
     (acc: Record<string, Course>, c: any) => {
@@ -291,8 +296,8 @@ export async function getAnnotationsByUser(
     .in('notion_page_id', courseIds)
   const { data: profile } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .eq('user_id', userId)
+    .select('id, display_name, avatar_url')
+    .eq('id', userId)
     .maybeSingle()
   const courseById = (courses || []).reduce(
     (acc: Record<string, Course>, c: any) => {

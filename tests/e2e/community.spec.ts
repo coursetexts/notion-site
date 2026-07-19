@@ -22,6 +22,19 @@ const SEEDED_RESOURCE = 'The Feynman Technique for Learning Anything'
 const SEEDED_TOP_COMMENT = 'The four-step loop works even better'
 const SEEDED_NESTED_COMMENT = 'The refine step is where most people stop'
 
+test('configured Supabase auth service is reachable', async ({ request }) => {
+  test.skip(!SUPABASE_URL || !ANON_KEY, 'Supabase env not configured')
+
+  const response = await request.get(`${SUPABASE_URL}/auth/v1/health`, {
+    headers: { apikey: ANON_KEY }
+  })
+
+  expect(
+    response.ok(),
+    `Supabase auth health check failed at ${SUPABASE_URL}`
+  ).toBeTruthy()
+})
+
 async function passwordSession() {
   const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
     method: 'POST',

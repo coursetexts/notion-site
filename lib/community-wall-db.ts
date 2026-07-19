@@ -12,7 +12,7 @@ async function authorForUser(
   const { data: profile } = await supabase
     .from('profiles')
     .select('display_name, avatar_url')
-    .eq('user_id', user.id)
+    .eq('id', user.id)
     .maybeSingle()
   const meta = user.user_metadata || {}
   const fromMetaName =
@@ -158,8 +158,8 @@ export async function getCommunityResources(
   const [profilesRes, voteMap, commentCounts, bookmarkMap] = await Promise.all([
     supabase
       .from('profiles')
-      .select('user_id, display_name, avatar_url')
-      .in('user_id', userIds),
+      .select('id, display_name, avatar_url')
+      .in('id', userIds),
     getVoteSummaries(resourceIds),
     getCommentCounts(resourceIds),
     getBookmarkMap(resourceIds)
@@ -167,7 +167,7 @@ export async function getCommunityResources(
 
   const profileByUser = (profilesRes?.data || []).reduce(
     (acc: Record<string, AuthorFields>, p: any) => {
-      acc[p.user_id] = {
+      acc[p.id] = {
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }
@@ -341,11 +341,11 @@ export async function getCommunityResourceComments(
   const userIds = [...new Set(comments.map((c) => c.user_id))]
   const profilesRes = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .in('user_id', userIds)
+    .select('id, display_name, avatar_url')
+    .in('id', userIds)
   const profileByUser = (profilesRes?.data || []).reduce(
     (acc: Record<string, AuthorFields>, p: any) => {
-      acc[p.user_id] = {
+      acc[p.id] = {
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }
@@ -424,11 +424,11 @@ async function fetchResourceBookmarksForUser(
   const authorIds = [...new Set(resources.map((r) => r.user_id))]
   const { data: profiles } = await supabase
     .from('profiles')
-    .select('user_id, display_name, avatar_url')
-    .in('user_id', authorIds)
+    .select('id, display_name, avatar_url')
+    .in('id', authorIds)
   const profileByUser = (profiles || []).reduce(
     (acc: Record<string, AuthorFields>, p: any) => {
-      acc[p.user_id] = {
+      acc[p.id] = {
         display_name: p.display_name,
         avatar_url: p.avatar_url
       }

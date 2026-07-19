@@ -3,8 +3,9 @@ import type { User } from '@supabase/supabase-js'
 export type { User }
 
 export interface Profile {
+  /** Live schema primary key; equal to auth.users.id. */
   id: string
-  user_id: string
+  email?: string | null
   display_name: string | null
   avatar_url: string | null
   /** Shown next to usernames; how it changes is TBD (see lib/karma.ts). */

@@ -38,7 +38,7 @@ async function getLastReadAt(userId: string): Promise<string | null> {
   const { data } = await supabase
     .from('profiles')
     .select('replies_last_read_at')
-    .eq('user_id', userId)
+    .eq('id', userId)
     .maybeSingle()
   return data?.replies_last_read_at ?? null
 }
@@ -154,8 +154,8 @@ export async function getReplyNotifications(
     allAuthorIds.length
       ? supabase
           .from('profiles')
-          .select('user_id, display_name')
-          .in('user_id', allAuthorIds)
+          .select('id, display_name')
+          .in('id', allAuthorIds)
       : Promise.resolve({ data: [] as any[] } as any)
   ])
 
@@ -168,7 +168,7 @@ export async function getReplyNotifications(
   )
   const authorById = (profilesRes.data || []).reduce(
     (acc: Record<string, any>, p: any) => {
-      acc[p.user_id] = p
+      acc[p.id] = p
       return acc
     },
     {}
@@ -227,6 +227,6 @@ export async function markReplyNotificationsRead(
   await supabase
     .from('profiles')
     .update({ replies_last_read_at: new Date().toISOString() })
-    .eq('user_id', userId)
+    .eq('id', userId)
   emitReplyNotificationUpdate()
 }
