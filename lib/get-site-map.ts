@@ -6,8 +6,8 @@ import * as config from './config'
 import * as types from './types'
 import { includeNotionIdInUrls } from './config'
 import { getCanonicalPageId } from './get-canonical-page-id'
-import { getRecordBlockValue } from './notion-record-block'
 import { getPageWithRetry } from './notion-api'
+import { getRecordBlockValue } from './notion-record-block'
 
 const uuid = !!includeNotionIdInUrls
 
@@ -32,11 +32,20 @@ async function getAllPagesImpl(
   rootNotionSpaceId: string
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string): Promise<ExtendedRecordMap> => {
-    // Larger first chunk + fetchMissingBlocks (default) reduces incomplete trees on big pages.
+    const isRootPage =
+      pageId.replace(/-/g, '').toLowerCase() ===
+      rootNotionPageId.replace(/-/g, '').toLowerCase()
+
+    // The root owns the complete course listing, so recover every referenced
+    // block there. Child pages only need their initial metadata for the site
+    // map; fully expanding all of them here causes a large, rate-limited burst.
     return getPageWithRetry(pageId, 3, {
       chunkLimit: process.env.NOTION_PAGE_CHUNK_LIMIT
         ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
-        : 250
+        : isRootPage
+        ? 250
+        : 100,
+      fetchMissingBlocks: isRootPage
     })
   }
 

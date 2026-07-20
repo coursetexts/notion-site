@@ -904,6 +904,19 @@ export const CommunityWall = React.forwardRef<
                     <button
                       type='button'
                       className={styles.votePillBtn}
+                      aria-label='Upvote'
+                      title='Upvote'
+                      onClick={() =>
+                        handleVote(r, r.user_vote === 1 ? null : 1)
+                      }
+                      disabled={!isSignedIn || r.kind !== 'db'}
+                    >
+                      <VoteChevronUp />
+                    </button>
+                    <span className={styles.votePillScore}>{r.score}</span>
+                    <button
+                      type='button'
+                      className={styles.votePillBtn}
                       aria-label='Downvote'
                       title='Downvote'
                       onClick={() =>
@@ -912,17 +925,6 @@ export const CommunityWall = React.forwardRef<
                       disabled={!isSignedIn || r.kind !== 'db'}
                     >
                       <VoteChevronDown />
-                    </button>
-                    <span className={styles.votePillScore}>{r.score}</span>
-                    <button
-                      type='button'
-                      className={styles.votePillBtn}
-                      aria-label='Upvote'
-                      title='Upvote'
-                      onClick={() => handleVote(r, r.user_vote === 1 ? null : 1)}
-                      disabled={!isSignedIn || r.kind !== 'db'}
-                    >
-                      <VoteChevronUp />
                     </button>
                   </div>
                   <button

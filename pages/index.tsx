@@ -27,6 +27,7 @@ import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeSocialLearningSection } from '@/components/HomeSocialLearningSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
+import { getPageWithRetry } from '@/lib/notion-api'
 import { getRecordBlockValue } from '@/lib/notion-record-block'
 
 export type NotionHomeDebugPayload = {
@@ -328,7 +329,7 @@ function buildCourseMeta(params: {
 
   return (
     inferSchoolFromText(`${params.title} ${params.pagePath}`) ||
-    'Harvard / Spring 2024'
+    'Course details unavailable'
   )
 }
 
@@ -1036,7 +1037,6 @@ function extractHomeCoursesFromRootPage(params: {
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   try {
-    const siteMap = await getSiteMap()
     const excludedPaths = new Set([
       '',
       'why',
@@ -1050,10 +1050,19 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       'terms-of-service'
     ])
 
+    const rootRecordMap = await getPageWithRetry(rootNotionPageId, 3, {
+      chunkLimit: process.env.NOTION_PAGE_CHUNK_LIMIT
+        ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
+        : 250,
+      fetchMissingBlocks: true
+    })
+
     const { courses: rootListing, notionHomeDebug } =
       extractHomeCoursesFromRootPage({
-        pageMap: siteMap.pageMap as Record<string, ExtendedRecordMap>,
-        canonicalPageMap: siteMap.canonicalPageMap,
+        pageMap: {
+          [rootNotionPageId]: rootRecordMap as ExtendedRecordMap
+        },
+        canonicalPageMap: {},
         rootNotionPageId
       })
 
@@ -1069,6 +1078,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     if (rootListing.length > 0) {
       pool = rootListing
     } else {
+      const siteMap = await getSiteMap()
       pool = []
 
       for (const [pagePath, pageId] of Object.entries(

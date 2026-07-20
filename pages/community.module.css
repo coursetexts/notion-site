@@ -484,8 +484,6 @@
   font-size: 12px;
   line-height: 20px;
   color: #6b7280;
-  border-left: 2px solid var(--outline, #e6e6e6);
-  padding-left: 12px;
   margin: 0 0 20px;
 }
 
