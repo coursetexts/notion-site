@@ -794,25 +794,25 @@ export default function CommunityPage() {
       {modal === 'knowledge' && (
         <Modal title='Add a knowledge component' onClose={closeModal}>
           <p className={styles.hint}>
-            Knowledge components are structured study units — an early preview.
-            Entries aren&apos;t saved yet.
+            Add one specific idea or skill that someone can learn. This form is
+            a preview, so your entry won&apos;t be saved yet.
           </p>
           <label className={styles.field}>
-            <span className={styles.label}>Name</span>
+            <span className={styles.label}>Topic or skill</span>
             <input
               className={styles.input}
               value={kcName}
               onChange={(e) => setKcName(e.target.value)}
-              placeholder='e.g. Eigenvalues & eigenvectors'
+              placeholder='e.g. Multiplying two matrices'
             />
           </label>
           <label className={styles.field}>
-            <span className={styles.label}>Summary</span>
+            <span className={styles.label}>What should someone learn?</span>
             <textarea
               className={styles.textarea}
               value={kcSummary}
               onChange={(e) => setKcSummary(e.target.value)}
-              placeholder='What does this component teach?'
+              placeholder='Describe what a learner should understand or be able to do.'
             />
           </label>
           <div className={styles.modalActions}>
@@ -824,7 +824,7 @@ export default function CommunityPage() {
               className={styles.btnPrimary}
               onClick={closeModal}
             >
-              Done
+              Close preview
             </button>
           </div>
         </Modal>
