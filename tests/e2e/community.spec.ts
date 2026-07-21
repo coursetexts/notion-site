@@ -35,6 +35,135 @@ test('configured Supabase auth service is reachable', async ({ request }) => {
   ).toBeTruthy()
 })
 
+test('upvoting updates the score without moving the resource', async ({
+  page
+}) => {
+  test.skip(!SUPABASE_URL || !ANON_KEY, 'Supabase env not configured')
+
+  const userId = '00000000-0000-4000-8000-000000000001'
+  const now = Math.floor(Date.now() / 1000)
+  const encode = (value: object) =>
+    Buffer.from(JSON.stringify(value)).toString('base64url')
+  const accessToken = `${encode({ alg: 'HS256', typ: 'JWT' })}.${encode({
+    aud: 'authenticated',
+    exp: now + 3600,
+    iat: now,
+    role: 'authenticated',
+    sub: userId
+  })}.test-signature`
+  const user = {
+    id: userId,
+    aud: 'authenticated',
+    role: 'authenticated',
+    email: 'ranking-test@coursetexts.dev',
+    app_metadata: {},
+    user_metadata: {},
+    created_at: new Date().toISOString()
+  }
+  const session = {
+    access_token: accessToken,
+    refresh_token: 'ranking-test-refresh-token',
+    expires_in: 3600,
+    expires_at: now + 3600,
+    token_type: 'bearer',
+    user
+  }
+  const ref = new URL(SUPABASE_URL).hostname.split('.')[0]
+  await page.addInitScript(
+    ([key, value]) => window.localStorage.setItem(key, value),
+    [`sb-${ref}-auth-token`, JSON.stringify(session)] as const
+  )
+
+  const resources = ['Alpha resource', 'Beta resource', 'Gamma resource'].map(
+    (title, index) => ({
+      id: `00000000-0000-4000-8000-00000000001${index}`,
+      title,
+      url: `https://example.com/${index}`,
+      type: 'paper',
+      description: `${title} description`,
+      submitted_by: userId,
+      created_at: new Date(Date.now() - index * 1000).toISOString()
+    })
+  )
+  let votes: Array<{ user_id: string; target_id: string; value: number }> = []
+
+  await page.route(`${SUPABASE_URL}/auth/v1/user**`, async (route) => {
+    await route.fulfill({ json: user })
+  })
+  await page.route(`${SUPABASE_URL}/rest/v1/**`, async (route) => {
+    const request = route.request()
+    const url = new URL(request.url())
+    const table = url.pathname.split('/').pop()
+
+    if (table === 'resources') {
+      await route.fulfill({ json: resources })
+      return
+    }
+    if (table === 'profiles') {
+      await route.fulfill({
+        json: [
+          {
+            id: userId,
+            display_name: 'Ranking Tester',
+            avatar_url: null,
+            karma_score: 0
+          }
+        ]
+      })
+      return
+    }
+    if (table === 'comments') {
+      await route.fulfill({ json: [] })
+      return
+    }
+    if (table === 'votes') {
+      if (request.method() === 'POST') {
+        const body = request.postDataJSON() as {
+          user_id: string
+          target_id: string
+          value: number
+        }
+        votes = [body]
+        await route.fulfill({ status: 201, body: '' })
+        return
+      }
+      await route.fulfill({ json: votes })
+      return
+    }
+
+    await route.fulfill({ json: [] })
+  })
+
+  await page.goto('/community')
+  const titles = page.getByTestId('resource-title')
+  await expect(titles).toHaveText([
+    'Alpha resource',
+    'Beta resource',
+    'Gamma resource'
+  ])
+
+  const gamma = page
+    .getByTestId('resource-row')
+    .filter({ hasText: 'Gamma resource' })
+  await gamma.getByRole('button', { name: 'Upvote' }).click()
+  await expect(gamma.getByTestId('resource-vote')).toContainText('1')
+  await expect(titles).toHaveText([
+    'Alpha resource',
+    'Beta resource',
+    'Gamma resource'
+  ])
+
+  // Switching away and deliberately back to Top takes a fresh ranking
+  // snapshot, so the new score can influence ordering at that point.
+  await page.getByRole('button', { name: 'New' }).click()
+  await page.getByRole('button', { name: 'Top' }).click()
+  await expect(titles).toHaveText([
+    'Gamma resource',
+    'Alpha resource',
+    'Beta resource'
+  ])
+})
+
 async function passwordSession() {
   const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
     method: 'POST',

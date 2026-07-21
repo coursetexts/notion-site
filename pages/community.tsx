@@ -42,6 +42,8 @@ interface CommunityResource {
   url: string
   author: string
   score: number
+  /** Score snapshot used for the current Top ordering. */
+  rankingScore: number
   userVote: 1 | -1 | null
   /** True when the row exists in Supabase (comments/votes persist). */
   dbBacked?: boolean
@@ -59,6 +61,7 @@ function dbToFeedItem(r: CommunityPageResource): CommunityResource {
     url: r.url,
     author: r.author_name ?? 'Anonymous',
     score: r.score,
+    rankingScore: r.score,
     userVote: r.user_vote,
     dbBacked: true,
     commentCount: r.comment_count
@@ -76,6 +79,7 @@ function searchHitToFeedItem(h: CommunitySearchHit): CommunityResource {
     url: h.url ?? '',
     author: '',
     score: h.score,
+    rankingScore: h.score,
     userVote: null,
     dbBacked: h.kind === 'resource'
   }
@@ -91,6 +95,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://fs.blog/feynman-technique/',
     author: 'Maya Chen',
     score: 142,
+    rankingScore: 142,
     userVote: 1
   },
   {
@@ -102,6 +107,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://www.youtube.com/watch?v=ZA-tUyM_y7s',
     author: 'Devran Patel',
     score: 98,
+    rankingScore: 98,
     userVote: null
   },
   {
@@ -113,6 +119,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://excalidraw.com/',
     author: 'Lena Hofmann',
     score: 76,
+    rankingScore: 76,
     userVote: null
   },
   {
@@ -124,6 +131,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://arxiv.org/abs/1706.03762',
     author: 'Sofia Rossi',
     score: 64,
+    rankingScore: 64,
     userVote: -1
   },
   {
@@ -135,6 +143,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://example.substack.com/p/how-to-read-math',
     author: 'Theo Albrecht',
     score: 51,
+    rankingScore: 51,
     userVote: null
   },
   {
@@ -146,6 +155,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://cs50.harvard.edu/x/',
     author: 'Imani Walker',
     score: 39,
+    rankingScore: 39,
     userVote: null
   },
   {
@@ -157,6 +167,7 @@ const MOCK_RESOURCES: CommunityResource[] = [
     url: 'https://apps.ankiweb.net/',
     author: 'Noah Bergström',
     score: 28,
+    rankingScore: 28,
     userVote: null
   }
 ]
@@ -371,9 +382,10 @@ export default function CommunityPage() {
           .includes(needle)
       )
     }
-    // 'new' keeps insertion order (submissions are prepended); 'top' by score.
+    // 'new' keeps insertion order. 'top' uses a stable score snapshot so a
+    // vote can update in place without moving the card under the user.
     if (sort === 'top') {
-      list = [...list].sort((a, b) => b.score - a.score)
+      list = [...list].sort((a, b) => b.rankingScore - a.rankingScore)
     }
     return list
   }, [resources, searchResults, query, typeFilter, sort])
@@ -396,6 +408,19 @@ export default function CommunityPage() {
         )
       })
     }
+  }
+
+  const handleSortChange = (nextSort: 'top' | 'new') => {
+    // Deliberately returning to Top is the point where the feed may re-rank.
+    if (nextSort === 'top' && sort !== 'top') {
+      setResources((prev) =>
+        prev.map((resource) => ({
+          ...resource,
+          rankingScore: resource.score
+        }))
+      )
+    }
+    setSort(nextSort)
   }
 
   const setCommentCount = (id: string, count: number) => {
@@ -434,6 +459,7 @@ export default function CommunityPage() {
         url: link || 'https://coursetexts.org',
         author: 'You',
         score: 1,
+        rankingScore: 1,
         userVote: 1
       }
     }
@@ -541,7 +567,7 @@ export default function CommunityPage() {
                           : styles.sortBtn
                       }
                       aria-pressed={sort === 'top'}
-                      onClick={() => setSort('top')}
+                      onClick={() => handleSortChange('top')}
                     >
                       Top
                     </button>
@@ -553,7 +579,7 @@ export default function CommunityPage() {
                           : styles.sortBtn
                       }
                       aria-pressed={sort === 'new'}
-                      onClick={() => setSort('new')}
+                      onClick={() => handleSortChange('new')}
                     >
                       New
                     </button>
