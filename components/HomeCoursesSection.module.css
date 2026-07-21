@@ -78,9 +78,7 @@
   object-fit: contain;
   display: block;
   opacity: 0.9;
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .schoolLogoItem:hover .schoolLogoImg {
@@ -147,9 +145,7 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition:
-    color 200ms ease,
-    opacity 200ms ease;
+  transition: color 200ms ease, opacity 200ms ease;
 }
 
 .subjectItem:hover,
@@ -228,9 +224,7 @@
 .courseCardLink {
   display: block;
   cursor: pointer;
-  transition:
-    transform 220ms ease,
-    opacity 220ms ease;
+  transition: transform 220ms ease, opacity 220ms ease;
 }
 
 .courseCardLink:hover,
@@ -282,6 +276,10 @@
   color: #000000;
 }
 
+.courseMetaTextWithoutLogo {
+  margin-left: 0;
+}
+
 .courseTitle {
   margin: 8px 0 0;
   max-width: 100%;
@@ -298,9 +296,7 @@
   line-height: 20px;
   letter-spacing: 0;
   color: #000000;
-  transition:
-    color 220ms ease,
-    text-decoration-color 220ms ease;
+  transition: color 220ms ease, text-decoration-color 220ms ease;
 }
 
 .courseTitleTruncated {
@@ -351,9 +347,7 @@
   justify-content: space-between;
   position: relative;
   cursor: pointer;
-  transition:
-    border-top-color 220ms ease,
-    border-bottom-color 220ms ease;
+  transition: border-top-color 220ms ease, border-bottom-color 220ms ease;
 }
 
 .viewAllBar:hover,
@@ -419,9 +413,7 @@
   justify-content: center;
   box-sizing: border-box;
   cursor: pointer;
-  transition:
-    border-color 220ms ease,
-    transform 220ms ease;
+  transition: border-color 220ms ease, transform 220ms ease;
 }
 
 .viewAllArrowBox svg {

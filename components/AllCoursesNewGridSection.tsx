@@ -7,11 +7,17 @@ type AllCoursesNewGridSectionProps = {
   courses?: HomeCourseCard[]
 }
 
+const FALLBACK_SCHOOLS = [
+  'Harvard / Spring 2024',
+  'Yale / Spring 2025',
+  'Princeton / Fall 2024'
+]
+
 function fallbackCards(): HomeCourseCard[] {
   return Array.from({ length: 14 }).map((_, index) => ({
     id: `fallback-${index + 1}`,
     href: '/',
-    meta: 'Harvard / Spring 2024',
+    meta: FALLBACK_SCHOOLS[index % FALLBACK_SCHOOLS.length],
     title: 'Global & Visual Digital Culture',
     description:
       'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'

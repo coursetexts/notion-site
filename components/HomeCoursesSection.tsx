@@ -19,6 +19,12 @@ type CourseCardGridProps = {
   descriptionWidth?: React.CSSProperties['width']
 }
 
+const FALLBACK_SCHOOLS = [
+  'Harvard / Fall 2024',
+  'Yale / Spring 2025',
+  'Princeton / Fall 2024'
+]
+
 function HomeCourseCardItem({
   course,
   descriptionWidth
@@ -37,14 +43,22 @@ function HomeCourseCardItem({
       <a className={styles.courseCardLink}>
         <article className={styles.courseCard}>
           <div className={styles.courseMetaRow}>
-            <span className={styles.schoolLogoWrap}>
-              <img
-                src={schoolLogo.src}
-                alt={schoolLogo.alt}
-                className={styles.schoolLogo}
-              />
+            {schoolLogo ? (
+              <span className={styles.schoolLogoWrap}>
+                <img
+                  src={schoolLogo.src}
+                  alt={schoolLogo.alt}
+                  className={styles.schoolLogo}
+                />
+              </span>
+            ) : null}
+            <span
+              className={`${styles.courseMetaText} ${
+                schoolLogo ? '' : styles.courseMetaTextWithoutLogo
+              }`}
+            >
+              {course.meta}
             </span>
-            <span className={styles.courseMetaText}>{course.meta}</span>
           </div>
 
           <h3
@@ -144,14 +158,16 @@ export function HomeCoursesSection({
 
   const cards =
     courses == null
-      ? Array.from({ length: 12 }).map((_, index) => ({
-          id: `fallback-${index + 1}`,
-          href: '/',
-          meta: 'Harvard / Fall 2024',
-          title: 'Global & Visual Digital Culture',
-          description:
-            'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
-        }))
+      ? Array.from({ length: 12 }).map((_, index) => {
+          return {
+            id: `fallback-${index + 1}`,
+            href: '/',
+            meta: FALLBACK_SCHOOLS[index % FALLBACK_SCHOOLS.length],
+            title: 'Global & Visual Digital Culture',
+            description:
+              'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
+          }
+        })
       : courses
 
   return (
@@ -159,7 +175,10 @@ export function HomeCoursesSection({
       <div className={styles.content}>
         <h2 className={styles.heading}>Try courses from top schools.</h2>
 
-        <div className={styles.schoolsMarquee} aria-label='Featured top schools'>
+        <div
+          className={styles.schoolsMarquee}
+          aria-label='Featured top schools'
+        >
           <div className={styles.schoolsTrack}>
             {loopSchools.map((school, index) => {
               const isDuplicate = index >= topSchools.length

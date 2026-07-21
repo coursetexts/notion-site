@@ -26,6 +26,7 @@ import { HomeHero } from '@/components/HomeHero'
 import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeSocialLearningSection } from '@/components/HomeSocialLearningSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
+import { diversifyCoursesBySchool } from '@/lib/course-catalog'
 import { getSiteMap } from '@/lib/get-site-map'
 import { getPageWithRetry } from '@/lib/notion-api'
 import { getRecordBlockValue } from '@/lib/notion-record-block'
@@ -555,8 +556,11 @@ function flattenPageContentBlockIds(
     }
 
     if (block.type === 'transclusion_reference') {
-      const refId = (block as Block & { format?: { transclusion_reference_pointer?: { id: string } } })
-        .format?.transclusion_reference_pointer?.id
+      const refId = (
+        block as Block & {
+          format?: { transclusion_reference_pointer?: { id: string } }
+        }
+      ).format?.transclusion_reference_pointer?.id
       if (refId) {
         visit(refId, blockId)
       }
@@ -588,7 +592,10 @@ function flattenPageContentBlockIds(
 function isCourseListingMetadataLine(text: string): boolean {
   const normalized = text.replace(/\s+/g, ' ').trim()
   if (!normalized.includes('|')) return false
-  const parts = normalized.split('|').map((p) => p.trim()).filter(Boolean)
+  const parts = normalized
+    .split('|')
+    .map((p) => p.trim())
+    .filter(Boolean)
   if (parts.length >= 3) {
     // Middle segment is the term; last is school (may be "MIT", "Harvard University", etc.)
     return looksLikeTerm(parts[1]) && parts[2].length > 0
@@ -599,8 +606,14 @@ function isCourseListingMetadataLine(text: string): boolean {
   return false
 }
 
-function parseListingMetaLine(metaLine: string): { school: string; term: string } {
-  const parts = metaLine.split('|').map((p) => p.trim()).filter(Boolean)
+function parseListingMetaLine(metaLine: string): {
+  school: string
+  term: string
+} {
+  const parts = metaLine
+    .split('|')
+    .map((p) => p.trim())
+    .filter(Boolean)
   if (parts.length >= 3) {
     return { school: parts[2], term: parts[1] }
   }
@@ -645,11 +658,7 @@ function logRootPageBlocksPreview(
 
   console.log(
     '[getStaticProps] root Notion page — flattened content blocks (type + text preview)',
-    JSON.stringify(
-      { totalFlattened: flatIds.length, preview },
-      null,
-      2
-    )
+    JSON.stringify({ totalFlattened: flatIds.length, preview }, null, 2)
   )
 }
 
@@ -672,9 +681,9 @@ function logNotionRootRecordMapDebug(
 
   const blockMap = recordMap.block || {}
   const ids = Object.keys(blockMap)
-  const topKeys = Object.keys(recordMap as unknown as Record<string, unknown>).filter(
-    (k) => k !== 'block'
-  )
+  const topKeys = Object.keys(
+    recordMap as unknown as Record<string, unknown>
+  ).filter((k) => k !== 'block')
 
   const inventory = ids.map((id) => {
     const wrap = blockMap[id] as { role?: string } | undefined
@@ -714,7 +723,9 @@ function logNotionRootRecordMapDebug(
   for (let i = 0; i < invJson.length; i += chunkSize) {
     const part = Math.floor(i / chunkSize) + 1
     const total = Math.ceil(invJson.length / chunkSize) || 1
-    console.log(`[NOTION_INVENTORY ${part}/${total}]\n${invJson.slice(i, i + chunkSize)}`)
+    console.log(
+      `[NOTION_INVENTORY ${part}/${total}]\n${invJson.slice(i, i + chunkSize)}`
+    )
   }
 
   if (!shouldLogFullNotionRecordMapJson()) {
@@ -729,7 +740,9 @@ function logNotionRootRecordMapDebug(
     for (let i = 0; i < full.length; i += chunkSize) {
       const part = Math.floor(i / chunkSize) + 1
       const total = Math.ceil(full.length / chunkSize) || 1
-      console.log(`[NOTION_FULL_DUMP ${part}/${total}]\n${full.slice(i, i + chunkSize)}`)
+      console.log(
+        `[NOTION_FULL_DUMP ${part}/${total}]\n${full.slice(i, i + chunkSize)}`
+      )
     }
   } catch (err) {
     console.error('[getStaticProps] FULL recordMap JSON.stringify failed', err)
@@ -749,10 +762,7 @@ function extractHomeCoursesFromRootPage(params: {
   courses: HomeCourseCard[]
   notionHomeDebug: NotionHomeDebugPayload | null
 } {
-  const pageMapKey = resolvePageMapKey(
-    params.pageMap,
-    params.rootNotionPageId
-  )
+  const pageMapKey = resolvePageMapKey(params.pageMap, params.rootNotionPageId)
   if (!pageMapKey) {
     if (isDev) {
       console.warn(
@@ -795,7 +805,8 @@ function extractHomeCoursesFromRootPage(params: {
 
   logNotionRootRecordMapDebug(recordMap, {
     pageMapKey,
-    stage: 'extractHomeCoursesFromRootPage (raw recordMap from getSiteMap pageMap)'
+    stage:
+      'extractHomeCoursesFromRootPage (raw recordMap from getSiteMap pageMap)'
   })
 
   const wantUuid = canonicalNotionPageUuid(pageMapKey)
@@ -814,11 +825,7 @@ function extractHomeCoursesFromRootPage(params: {
           )
         }) ?? null
 
-  if (
-    !rootBlockId &&
-    blockAtKey &&
-    Array.isArray(blockAtKey.content)
-  ) {
+  if (!rootBlockId && blockAtKey && Array.isArray(blockAtKey.content)) {
     rootBlockId = pageMapKey
   }
 
@@ -925,8 +932,8 @@ function extractHomeCoursesFromRootPage(params: {
       isUsableDescriptionSentence(descriptionSentence)
         ? descriptionSentence
         : description.length > 0
-          ? clip(description, 150)
-          : DEFAULT_COURSE_DESCRIPTION,
+        ? clip(description, 150)
+        : DEFAULT_COURSE_DESCRIPTION,
       150
     )
 
@@ -940,13 +947,9 @@ function extractHomeCoursesFromRootPage(params: {
     const titleBlock = getRecordBlockValue(recordMap, titleBlockId)
     const nestedCoursePage =
       titleBlock &&
-      (titleBlock.type === 'page' ||
-        titleBlock.type === 'collection_view_page')
+      (titleBlock.type === 'page' || titleBlock.type === 'collection_view_page')
     const subPagePath = nestedCoursePage
-      ? findCanonicalPathForPageId(
-          params.canonicalPageMap,
-          titleBlockId
-        )
+      ? findCanonicalPathForPageId(params.canonicalPageMap, titleBlockId)
       : ''
 
     const hash = uuidToId(titleBlockId)
@@ -1027,8 +1030,7 @@ function extractHomeCoursesFromRootPage(params: {
           type: getRecordBlockValue(recordMap, id)?.type,
           text: getRecordBlockPlainText(recordMap, id).slice(0, 160)
         })),
-        note:
-          'Dev-only payload from getStaticProps. Compare sampleFlattened order and text to Notion.'
+        note: 'Dev-only payload from getStaticProps. Compare sampleFlattened order and text to Notion.'
       }
     : null
 
@@ -1087,110 +1089,110 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
         if (excludedPaths.has(pagePath)) continue
 
         const recordMap = siteMap.pageMap[pageId] as ExtendedRecordMap
-      if (!recordMap?.block) continue
+        if (!recordMap?.block) continue
 
-      const block = getRecordBlockValue(recordMap, pageId)
-      if (!block || block.type !== 'page') continue
+        const block = getRecordBlockValue(recordMap, pageId)
+        if (!block || block.type !== 'page') continue
 
-      const title = (getBlockTitle(block, recordMap) || '').trim()
-      if (!title) continue
+        const title = (getBlockTitle(block, recordMap) || '').trim()
+        if (!title) continue
 
-      const parentPage = getBlockParentPage(block, recordMap)
-      const rootUuid = canonicalNotionPageUuid(rootNotionPageId)
-      const parentUuid = parentPage?.id
-        ? canonicalNotionPageUuid(parentPage.id)
-        : null
-      const isBlogPost =
-        block.parent_table === 'collection' &&
-        !!rootUuid &&
-        parentUuid === rootUuid
+        const parentPage = getBlockParentPage(block, recordMap)
+        const rootUuid = canonicalNotionPageUuid(rootNotionPageId)
+        const parentUuid = parentPage?.id
+          ? canonicalNotionPageUuid(parentPage.id)
+          : null
+        const isBlogPost =
+          block.parent_table === 'collection' &&
+          !!rootUuid &&
+          parentUuid === rootUuid
 
-      const published = getPageProperty<number>('Published', block, recordMap)
-      if (isBlogPost || !!published) continue
+        const published = getPageProperty<number>('Published', block, recordMap)
+        if (isBlogPost || !!published) continue
 
-      const descriptionRaw =
-        getPageProperty<string>('Description', block, recordMap) ??
-        getPageProperty<string>('Summary', block, recordMap) ??
-        ''
-      const description = toText(descriptionRaw).replace(/\s+/g, ' ').trim()
-      const fallbackContent = extractCourseFallbackContent(block, recordMap)
-      const descriptionSentence = firstSentence(description)
+        const descriptionRaw =
+          getPageProperty<string>('Description', block, recordMap) ??
+          getPageProperty<string>('Summary', block, recordMap) ??
+          ''
+        const description = toText(descriptionRaw).replace(/\s+/g, ' ').trim()
+        const fallbackContent = extractCourseFallbackContent(block, recordMap)
+        const descriptionSentence = firstSentence(description)
 
-      const safeDescriptionSentence = isUsableDescriptionSentence(
-        descriptionSentence
-      )
-        ? descriptionSentence
-        : ''
+        const safeDescriptionSentence = isUsableDescriptionSentence(
+          descriptionSentence
+        )
+          ? descriptionSentence
+          : ''
 
-      const schoolDateRaw =
-        getPageProperty<string>('School | Date', block, recordMap) ??
-        getPageProperty<string>('School / Date', block, recordMap) ??
-        getPageProperty<string>('School', block, recordMap) ??
-        ''
-      const schoolDate =
-        toText(schoolDateRaw).trim() || fallbackContent.schoolDate
+        const schoolDateRaw =
+          getPageProperty<string>('School | Date', block, recordMap) ??
+          getPageProperty<string>('School / Date', block, recordMap) ??
+          getPageProperty<string>('School', block, recordMap) ??
+          ''
+        const schoolDate =
+          toText(schoolDateRaw).trim() || fallbackContent.schoolDate
 
-      const schoolRaw =
-        getPageProperty<string>('School', block, recordMap) ??
-        getPageProperty<string>('University', block, recordMap) ??
-        getPageProperty<string>('Institution', block, recordMap) ??
-        ''
-      const school = toText(schoolRaw).trim()
+        const schoolRaw =
+          getPageProperty<string>('School', block, recordMap) ??
+          getPageProperty<string>('University', block, recordMap) ??
+          getPageProperty<string>('Institution', block, recordMap) ??
+          ''
+        const school = toText(schoolRaw).trim()
 
-      const termRaw =
-        getPageProperty<string>('Term', block, recordMap) ??
-        getPageProperty<string>('Semester', block, recordMap) ??
-        getPageProperty<string>('Quarter', block, recordMap) ??
-        getPageProperty<string>('Season', block, recordMap) ??
-        getPageProperty<string>('Year', block, recordMap) ??
-        getPageProperty<string>('Date', block, recordMap) ??
-        ''
-      const term = toText(termRaw).trim()
+        const termRaw =
+          getPageProperty<string>('Term', block, recordMap) ??
+          getPageProperty<string>('Semester', block, recordMap) ??
+          getPageProperty<string>('Quarter', block, recordMap) ??
+          getPageProperty<string>('Season', block, recordMap) ??
+          getPageProperty<string>('Year', block, recordMap) ??
+          getPageProperty<string>('Date', block, recordMap) ??
+          ''
+        const term = toText(termRaw).trim()
 
-      const subjectHintsRaw =
-        getPageProperty<string>('Subject', block, recordMap) ??
-        getPageProperty<string>('Subjects', block, recordMap) ??
-        getPageProperty<string>('Topic', block, recordMap) ??
-        getPageProperty<string>('Topics', block, recordMap) ??
-        getPageProperty<string>('Field', block, recordMap) ??
-        getPageProperty<string>('Department', block, recordMap) ??
-        ''
-      const subjectHints = toText(subjectHintsRaw).trim()
+        const subjectHintsRaw =
+          getPageProperty<string>('Subject', block, recordMap) ??
+          getPageProperty<string>('Subjects', block, recordMap) ??
+          getPageProperty<string>('Topic', block, recordMap) ??
+          getPageProperty<string>('Topics', block, recordMap) ??
+          getPageProperty<string>('Field', block, recordMap) ??
+          getPageProperty<string>('Department', block, recordMap) ??
+          ''
+        const subjectHints = toText(subjectHintsRaw).trim()
 
-      const looksLikeCourse =
-        /[a-z]{2,}[-\s]?\d{2,}/i.test(title) ||
-        /course|lecture|syllabus|module|seminar/i.test(description) ||
-        description.length > 30
+        const looksLikeCourse =
+          /[a-z]{2,}[-\s]?\d{2,}/i.test(title) ||
+          /course|lecture|syllabus|module|seminar/i.test(description) ||
+          description.length > 30
 
-      if (!looksLikeCourse) continue
+        if (!looksLikeCourse) continue
 
-      pool.push({
-        id: pageId,
-        href: `/${pagePath}`,
-        meta: buildCourseMeta({
-          schoolDate,
-          school,
-          term,
-          title,
-          pagePath,
-          description
-        }),
-        title: clip(cleanCourseTitle(title) || title, 64),
-        description: clip(
-          safeDescriptionSentence ||
-            fallbackContent.descriptionSentence ||
-            DEFAULT_COURSE_DESCRIPTION,
-          150
-        ),
-        subjects: inferSubjects({
-          fallbackSeed: pageId,
-          pagePath,
-          title,
-          description,
-          schoolDate,
-          subjectHints
+        pool.push({
+          id: pageId,
+          href: `/${pagePath}`,
+          meta: buildCourseMeta({
+            schoolDate,
+            school,
+            term,
+            title,
+            pagePath,
+            description
+          }),
+          title: clip(cleanCourseTitle(title) || title, 64),
+          description: clip(
+            safeDescriptionSentence ||
+              fallbackContent.descriptionSentence ||
+              DEFAULT_COURSE_DESCRIPTION,
+            150
+          ),
+          subjects: inferSubjects({
+            fallbackSeed: pageId,
+            pagePath,
+            title,
+            description,
+            schoolDate,
+            subjectHints
+          })
         })
-      })
       }
 
       if (pool.length > 0) {
@@ -1198,12 +1200,16 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       }
     }
 
-    const courses = pool.length > 0 ? pool : fallbackCourses()
+    const courses = diversifyCoursesBySchool(
+      pool.length > 0 ? pool : fallbackCourses()
+    )
 
     console.log(
       '[getStaticProps] home courses:',
       courses.length,
-      rootListing.length > 0 ? '(parsed root Notion page)' : '(subpages or fallback)'
+      rootListing.length > 0
+        ? '(parsed root Notion page)'
+        : '(subpages or fallback)'
     )
 
     if (isDev) {
@@ -1228,10 +1234,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   }
 }
 
-export default function HomePage({
-  courses,
-  notionHomeDebug
-}: HomePageProps) {
+export default function HomePage({ courses, notionHomeDebug }: HomePageProps) {
   const router = useRouter()
 
   React.useEffect(() => {

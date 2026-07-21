@@ -3,13 +3,12 @@ type SchoolLogo = {
   alt: string
 }
 
-const DEFAULT_LOGO: SchoolLogo = {
-  src: '/images/home/harvard-red.png',
-  alt: 'Harvard'
-}
-
-export function getSchoolLogoForMeta(meta: string): SchoolLogo {
+export function getSchoolLogoForMeta(meta: string): SchoolLogo | null {
   const value = meta.toLowerCase()
+
+  if (value.includes('harvard')) {
+    return { src: '/images/home/harvard-red.png', alt: 'Harvard' }
+  }
 
   if (value.includes('princeton')) {
     return { src: '/images/home/princeton.png', alt: 'Princeton' }
@@ -35,5 +34,13 @@ export function getSchoolLogoForMeta(meta: string): SchoolLogo {
     return { src: '/images/home/waterloo.png', alt: 'Waterloo' }
   }
 
-  return DEFAULT_LOGO
+  if (value.includes('british columbia') || /\bubc\b/.test(value)) {
+    return { src: '/images/schools/ubc.png', alt: 'UBC' }
+  }
+
+  if (value.includes('new york university') || /\bnyu\b/.test(value)) {
+    return { src: '/images/schools/nyu.png', alt: 'NYU' }
+  }
+
+  return null
 }
