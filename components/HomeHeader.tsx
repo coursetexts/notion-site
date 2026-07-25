@@ -14,6 +14,7 @@ import styles from './HomeHeader.module.css'
 
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
+  { label: 'Degrees', href: '/degrees' },
   { label: 'Manifesto', href: '/manifesto' },
   { label: 'Community', href: '/community' },
   {

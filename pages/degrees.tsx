@@ -1,24 +1,33 @@
 import * as React from 'react'
+import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+import { DegreesDirectory } from '@/components/DegreesDirectory'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import { UndergraduateDegreesList } from '@/components/UndergraduateDegreesList'
 import {
-  UndergraduateDegreesTopSection,
-  type DegreeLevel
+  type DegreeLevel,
+  UndergraduateDegreesTopSection
 } from '@/components/UndergraduateDegreesTopSection'
-import { graduateDegrees } from '@/lib/graduate-degrees'
-import { undergraduateDegrees } from '@/lib/undergraduate-degrees'
 import { name as siteName } from '@/lib/config'
+import {
+  type DegreeDirectoryItem,
+  createDegreeDirectoryItems
+} from '@/lib/degrees-directory'
+import { graduateDegrees } from '@/lib/graduate-degrees'
+import { undergraduateDegrees } from '@/lib/undergraduate-degree-data'
+
+type DegreesPageProps = {
+  directories: Record<DegreeLevel, DegreeDirectoryItem[]>
+}
 
 function parseDegreeLevel(value: string | string[] | undefined): DegreeLevel {
   const raw = Array.isArray(value) ? value[0] : value
   return raw === 'graduate' ? 'graduate' : 'undergraduate'
 }
 
-export default function DegreesPage() {
+export default function DegreesPage({ directories }: DegreesPageProps) {
   const router = useRouter()
   const [query, setQuery] = React.useState('')
   const [level, setLevel] = React.useState<DegreeLevel>('undergraduate')
@@ -73,28 +82,14 @@ export default function DegreesPage() {
     [query, updateUrl]
   )
 
-  const degrees =
-    level === 'graduate' ? graduateDegrees : undergraduateDegrees
+  const degrees = directories[level]
   const pageTitle =
     level === 'graduate' ? 'Graduate Degrees' : 'Undergraduate Degrees'
 
   return (
     <>
       <Head>
-        <title>{pageTitle} – {siteName}</title>
-        <link rel='preconnect' href='https://use.typekit.net' />
-        <link rel='preconnect' href='https://p.typekit.net' />
-        <link rel='stylesheet' href='https://use.typekit.net/vxh3dki.css' />
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link
-          rel='preconnect'
-          href='https://fonts.gstatic.com'
-          crossOrigin=''
-        />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
-          rel='stylesheet'
-        />
+        <title>{`${pageTitle} – ${siteName}`}</title>
       </Head>
 
       <main
@@ -120,14 +115,19 @@ export default function DegreesPage() {
             onQueryChange={setQuery}
             onSearchSubmit={handleSearchSubmit}
           />
-          <UndergraduateDegreesList
-            degrees={degrees}
-            level={level}
-            query={query}
-          />
+          <DegreesDirectory degrees={degrees} level={level} query={query} />
         </section>
         <HomeFooterSection />
       </main>
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps<DegreesPageProps> = async () => ({
+  props: {
+    directories: {
+      undergraduate: createDegreeDirectoryItems(undergraduateDegrees),
+      graduate: createDegreeDirectoryItems(graduateDegrees)
+    }
+  }
+})

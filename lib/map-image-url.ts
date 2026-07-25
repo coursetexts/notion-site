@@ -1,8 +1,9 @@
-import { defaultMapImageUrl } from 'react-notion-x'
+import { Block } from 'notion-types'
+import { defaultMapImageUrl } from 'notion-utils'
 
 import { defaultPageCover, defaultPageIcon } from './config'
 
-export const mapImageUrl = (url: string, block: any) => {
+export const mapImageUrl = (url: string, block: Block) => {
   if (url === defaultPageCover || url === defaultPageIcon) {
     return url
   }

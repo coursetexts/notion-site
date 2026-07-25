@@ -1,20 +1,20 @@
 import * as React from 'react'
 
+import type { DegreeLevel } from '@/components/UndergraduateDegreesTopSection'
+import { groupGraduateDegreesBySection } from '@/lib/graduate-degree-sections'
+import { groupUndergraduateDegreesBySection } from '@/lib/undergraduate-degree-sections'
 import {
-  filterDegrees,
-  groupResources,
   type CourseResource,
   type CourseResourceKind,
   type DegreeSchoolOffering,
   type UndergraduateCourse,
   type UndergraduateDegree,
+  filterDegrees,
+  getCoursePageUrl,
+  groupResources,
   isResourceUrl,
   yearTagClass
 } from '@/lib/undergraduate-degrees'
-
-import type { DegreeLevel } from '@/components/UndergraduateDegreesTopSection'
-import { groupGraduateDegreesBySection } from '@/lib/graduate-degree-sections'
-import { groupUndergraduateDegreesBySection } from '@/lib/undergraduate-degree-sections'
 
 import styles from './UndergraduateDegreesList.module.css'
 
@@ -65,6 +65,61 @@ function ChevronIcon({ open }: { open: boolean }) {
         strokeLinejoin='round'
       />
     </svg>
+  )
+}
+
+function DocumentIcon() {
+  return (
+    <svg
+      className={styles.courseDocumentIconSvg}
+      width='14'
+      height='14'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      aria-hidden='true'
+    >
+      <path
+        d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <polyline
+        points='14 2 14 8 20 8'
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+function CourseDocumentLink({
+  url,
+  courseName
+}: {
+  url?: string
+  courseName: string
+}) {
+  const href = getCoursePageUrl(url)
+  if (!href) return null
+
+  const label = `Course document for ${courseName}`
+
+  return (
+    <a
+      href={href}
+      target='_blank'
+      rel='noreferrer'
+      className={styles.courseDocumentLink}
+      aria-label={label}
+      onClick={(event) => event.stopPropagation()}
+    >
+      <DocumentIcon />
+    </a>
   )
 }
 
@@ -144,7 +199,9 @@ function ResourceTabs({
               onClick={() => setActiveKind(group.kind)}
             >
               {group.label}
-              <span className={styles.resourceTabCount}>{group.items.length}</span>
+              <span className={styles.resourceTabCount}>
+                {group.items.length}
+              </span>
             </button>
           )
         })}
@@ -212,16 +269,35 @@ function ResourceItem({ resource }: { resource: CourseResource }) {
 
 function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
   if (course.topics.length === 0) return null
+  const coursePageUrl = getCoursePageUrl(course.documentUrl)
 
   return (
     <>
       <p className={styles.topicsHeading}>Syllabus topics</p>
       <ul className={styles.topicsList}>
         {course.topics.map((topic, index) => (
-          <li key={`${course.number}-topic-${index}`} className={styles.topicItem}>
+          <li
+            key={`${course.number}-topic-${index}`}
+            className={styles.topicItem}
+          >
             {topic}
           </li>
         ))}
+        {coursePageUrl ? (
+          <li
+            key={`${course.number}-topic-course-page`}
+            className={styles.topicItem}
+          >
+            <a
+              href={coursePageUrl}
+              target='_blank'
+              rel='noreferrer'
+              className={styles.resourceLink}
+            >
+              See full course outline
+            </a>
+          </li>
+        ) : null}
       </ul>
     </>
   )
@@ -276,7 +352,9 @@ function SchoolsOfferingSection({
     <div className={styles.degreeSubsection}>
       <NestedSection
         label='Schools offering this degree — program requirements'
-        countLabel={`${schools.length} ${schools.length === 1 ? 'school' : 'schools'}`}
+        countLabel={`${schools.length} ${
+          schools.length === 1 ? 'school' : 'schools'
+        }`}
         defaultOpen={defaultOpen}
       >
         <ul className={styles.schoolsList}>
@@ -305,7 +383,10 @@ function CourseRow({
   course: UndergraduateCourse
   defaultOpen: boolean
 }) {
-  const resources = course.resources ?? []
+  const resources = React.useMemo(
+    () => course.resources ?? [],
+    [course.resources]
+  )
   const hasTopics = course.topics.length > 0
   const hasResources = resources.length > 0
   const canExpand = hasTopics || hasResources
@@ -334,20 +415,26 @@ function CourseRow({
         <span className={styles.courseHeaderMain}>
           <span className={styles.courseName}>{course.name}</span>
           {course.description ? (
-            <span className={styles.courseDescription}>{course.description}</span>
+            <span className={styles.courseDescription}>
+              {course.description}
+            </span>
           ) : null}
         </span>
         <span className={styles.courseHeaderRight}>
           {course.isNew ? <span className={styles.newTag}>New</span> : null}
-          <YearTag year={course.year} />
+          <span className={styles.courseYearGroup}>
+            <CourseDocumentLink
+              url={course.documentUrl}
+              courseName={course.name}
+            />
+            <YearTag year={course.year} />
+          </span>
           {canExpand ? <ChevronIcon open={courseOpen} /> : null}
         </span>
       </button>
 
       {courseOpen && canExpand ? (
-        <div
-          className={hasResources ? styles.courseBody : styles.topicsPanel}
-        >
+        <div className={hasResources ? styles.courseBody : styles.topicsPanel}>
           {hasTopics && hasResources ? (
             <div className={styles.courseBodyColumns}>
               <div className={styles.courseBodyColumn}>
@@ -368,7 +455,9 @@ function CourseRow({
             </div>
           ) : null}
 
-          {hasTopics && !hasResources ? <SyllabusTopics course={course} /> : null}
+          {hasTopics && !hasResources ? (
+            <SyllabusTopics course={course} />
+          ) : null}
 
           {!hasTopics && hasResources ? (
             <NestedSection
@@ -390,17 +479,21 @@ function CourseRow({
 
 function DegreeCard({
   degree,
-  queryActive
+  queryActive,
+  defaultOpen = false
 }: {
   degree: UndergraduateDegree
   queryActive: boolean
+  defaultOpen?: boolean
 }) {
   const schools = degree.schoolsOffering ?? []
-  const [coursesOpen, setCoursesOpen] = React.useState(queryActive)
+  const [coursesOpen, setCoursesOpen] = React.useState(
+    defaultOpen || queryActive
+  )
 
   React.useEffect(() => {
-    if (queryActive) setCoursesOpen(true)
-  }, [queryActive])
+    if (defaultOpen || queryActive) setCoursesOpen(true)
+  }, [defaultOpen, queryActive])
 
   return (
     <article className={styles.degreeCard}>
@@ -429,10 +522,7 @@ function DegreeCard({
 
       {coursesOpen ? (
         <div className={styles.coursesPanel}>
-          <SchoolsOfferingSection
-            schools={schools}
-            defaultOpen={queryActive}
-          />
+          <SchoolsOfferingSection schools={schools} defaultOpen={queryActive} />
           {degree.courses.map((course) => (
             <CourseRow
               key={`${degree.id}-${course.number}-${course.name}`}
@@ -443,6 +533,31 @@ function DegreeCard({
         </div>
       ) : null}
     </article>
+  )
+}
+
+export function DegreeCurriculumDetail({
+  degree,
+  sectionTitle
+}: {
+  degree: UndergraduateDegree
+  sectionTitle: string
+}) {
+  return (
+    <section
+      className={`${styles.section} ${styles.detailSection}`}
+      aria-labelledby='degree-curriculum-section'
+    >
+      <div className={styles.inner}>
+        <p
+          id='degree-curriculum-section'
+          className={styles.detailCategoryHeading}
+        >
+          {sectionTitle}
+        </p>
+        <DegreeCard degree={degree} queryActive={false} defaultOpen />
+      </div>
+    </section>
   )
 }
 
@@ -515,35 +630,37 @@ export function UndergraduateDegreesList({
       aria-label={ariaLabel}
     >
       <div className={styles.inner}>
-      {filtered.length === 0 ? (
-        <p className={styles.emptyState}>
-          {degrees.length === 0
-            ? `${level === 'graduate' ? 'Graduate' : 'Undergraduate'} degrees coming soon.`
-            : `No ${levelLabel} degrees matched your search.`}
-        </p>
-      ) : sectionGroups ? (
-        <div className={styles.categoryList}>
-          {sectionGroups.map((group) => (
-            <DegreeSectionGroup
-              key={group.section.id}
-              title={group.section.title}
-              description={group.section.description}
-              degrees={group.degrees}
-              queryActive={queryActive}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className={styles.list}>
-          {filtered.map((degree) => (
-            <DegreeCard
-              key={degree.id}
-              degree={degree}
-              queryActive={queryActive}
-            />
-          ))}
-        </div>
-      )}
+        {filtered.length === 0 ? (
+          <p className={styles.emptyState}>
+            {degrees.length === 0
+              ? `${
+                  level === 'graduate' ? 'Graduate' : 'Undergraduate'
+                } degrees coming soon.`
+              : `No ${levelLabel} degrees matched your search.`}
+          </p>
+        ) : sectionGroups ? (
+          <div className={styles.categoryList}>
+            {sectionGroups.map((group) => (
+              <DegreeSectionGroup
+                key={group.section.id}
+                title={group.section.title}
+                description={group.section.description}
+                degrees={group.degrees}
+                queryActive={queryActive}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.list}>
+            {filtered.map((degree) => (
+              <DegreeCard
+                key={degree.id}
+                degree={degree}
+                queryActive={queryActive}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

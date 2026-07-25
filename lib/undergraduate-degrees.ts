@@ -1,5 +1,3 @@
-import curriculum from '@/data/undergraduate-degrees-curriculum.json'
-
 export type CourseResourceKind = 'textbook' | 'website' | 'youtube'
 
 export type CourseResource = {
@@ -23,6 +21,13 @@ export type UndergraduateCourse = {
   isNew: boolean
   topics: string[]
   resources?: CourseResource[]
+  /** Opens in a new tab from the degrees course row document icon. */
+  documentUrl?: string
+}
+
+export function getCoursePageUrl(documentUrl?: string): string | null {
+  const trimmed = documentUrl?.trim()
+  return trimmed || null
 }
 
 export type UndergraduateDegree = {
@@ -32,9 +37,6 @@ export type UndergraduateDegree = {
   schoolsOffering?: DegreeSchoolOffering[]
   courses: UndergraduateCourse[]
 }
-
-export const undergraduateDegrees: UndergraduateDegree[] =
-  curriculum.degrees as UndergraduateDegree[]
 
 export function yearTagClass(year: string): string {
   const normalized = year.trim().toLowerCase()
@@ -108,8 +110,11 @@ export const RESOURCE_KINDS: CourseResourceKind[] = [
 ]
 
 export function groupResources(resources: CourseResource[]) {
-  const groups: Array<{ kind: CourseResourceKind; label: string; items: CourseResource[] }> =
-    []
+  const groups: Array<{
+    kind: CourseResourceKind
+    label: string
+    items: CourseResource[]
+  }> = []
 
   for (const kind of RESOURCE_KINDS) {
     const items = resources.filter((r) => r.kind === kind)

@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import cs from 'classnames'
@@ -43,8 +44,8 @@ import { CourseContent } from './CourseContent'
 import { CourseHero, type CourseHeroData } from './CourseHero'
 // React 18+
 import FilterRow from './FilterRow'
-import { HomeHeader } from './HomeHeader'
 import { HomeFooterSection } from './HomeFooterSection'
+import { HomeHeader } from './HomeHeader'
 // import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
@@ -452,8 +453,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
   const pathForLayout =
     (router.isReady ? router.asPath : router.pathname)?.split('?')[0] ?? ''
   const useHomeChrome =
-    !isLiteMode &&
-    (pathForLayout === '/why' || pathForLayout === '/about')
+    !isLiteMode && (pathForLayout === '/why' || pathForLayout === '/about')
 
   const filterRootRef = React.useRef<{
     root: Root | null
@@ -723,18 +723,34 @@ export const NotionPage: React.FC<NotionPageProps> = ({
     // Select all .notion-blank div elements
     const blankDivs = Array.from(document.querySelectorAll('.notion-blank'))
 
-    // Exit if there are less than 2 .notion-blank divs, as no wrapping is needed
-    if (blankDivs.length < 2) return
+    if (blankDivs.length === 0) return
+
+    const trailingCourseStopHrefs = new Set([
+      '/about',
+      '/why',
+      '/process',
+      '/privacy-policy',
+      '/terms-of-service'
+    ])
+
+    const isCourseCardBoundary = (element: Element) => {
+      if (element.classList.contains('notion-blank')) return true
+
+      const nestedLink = element.querySelector<HTMLAnchorElement>('a[href]')
+      const href = nestedLink?.getAttribute('href')
+
+      return !!(href && trailingCourseStopHrefs.has(href))
+    }
 
     // We will use a while loop to iterate over all .notion-blank elements
     let index = 0
-    while (index < blankDivs.length - 1) {
+    while (index < blankDivs.length) {
       const blankDiv = blankDivs[index]
       const elementsToWrap = []
       let nextSibling = blankDiv.nextElementSibling
 
-      // Collect all elements until reaching the next .notion-blank div
-      while (nextSibling && !nextSibling.classList.contains('notion-blank')) {
+      // Collect each course card until the next blank or the footer/about links.
+      while (nextSibling && !isCourseCardBoundary(nextSibling)) {
         elementsToWrap.push(nextSibling)
         nextSibling = nextSibling.nextElementSibling
       }
@@ -1788,7 +1804,9 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       if (!descBlock) {
         const fallbackIdx = blocks.findIndex((_el, i) => !descSkip.has(i))
         descBlock =
-          fallbackIdx >= 0 ? blocks[fallbackIdx] : blocks[Math.min(2, blocks.length - 1)]
+          fallbackIdx >= 0
+            ? blocks[fallbackIdx]
+            : blocks[Math.min(2, blocks.length - 1)]
       }
 
       const descriptionHtml = (descBlock?.innerHTML ?? '').trim()
@@ -1829,7 +1847,9 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       const result = scrape(scope)
       if (!result) return false
 
-      const dataWithTitle = mergeRecordSchoolDate(withPageTitle(result.data, title))
+      const dataWithTitle = mergeRecordSchoolDate(
+        withPageTitle(result.data, title)
+      )
       saveHeroData(dataWithTitle)
       ensureMountAndRender(contentInner, dataWithTitle)
       courseHeroRef.current.hiddenNodes = result.nodes
@@ -2218,9 +2238,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
           aria-busy='true'
           aria-label='Loading course'
         >
-          <div
-            style={{ position: 'relative', width: '100%', height: '100%' }}
-          >
+          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
             <Loading />
           </div>
         </div>
@@ -2318,10 +2336,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
             }}
           >
             <NotionRenderer
-              bodyClassName={cs(
-                styles.notion,
-                isSiteRootPage && 'index-page'
-              )}
+              bodyClassName={cs(styles.notion, isSiteRootPage && 'index-page')}
               darkMode={isDarkMode}
               components={components}
               recordMap={recordMap as any}

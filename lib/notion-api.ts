@@ -82,7 +82,7 @@ function parseRetryAfterMs(
 // Rate-limited wrapper for getPage
 export async function getPageWithRetry(
   pageId: string,
-  maxRetries = 3,
+  maxRetries = 6,
   getPageOpts?: GetPageOptions
 ): Promise<any> {
   const chunkLimit =

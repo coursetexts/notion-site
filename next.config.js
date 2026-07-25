@@ -8,7 +8,13 @@ const withBundleAnalyzer =
 
 module.exports = withBundleAnalyzer({
   async redirects() {
-    return []
+    return [
+      {
+        source: '/undergraduate-degrees',
+        destination: '/degrees',
+        permanent: true
+      }
+    ]
   },
   staticPageGenerationTimeout: 600,
   images: {

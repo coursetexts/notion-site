@@ -7,6 +7,21 @@
   padding-bottom: 128px;
 }
 
+.detailSection {
+  margin-top: 48px;
+}
+
+.detailCategoryHeading {
+  margin: 0 0 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.025em;
+  color: #0089c4;
+  text-transform: uppercase;
+}
+
 .inner {
   width: min(
     var(--home-content-max, 1000px),
@@ -246,6 +261,33 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+}
+
+.courseYearGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.courseDocumentLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--midGrey, #b9b4a7);
+  border-radius: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.courseDocumentLink:hover,
+.courseDocumentLink:focus-visible {
+  color: #25272b;
+}
+
+.courseDocumentIconSvg {
+  display: block;
 }
 
 .yearTag {
@@ -561,6 +603,20 @@
 }
 
 @media (max-width: 768px) {
+  .detailSection {
+    margin-top: 40px;
+    padding-bottom: 84px;
+  }
+
+  .detailSection .inner {
+    width: calc(100vw - 40px);
+    padding-top: 40px;
+  }
+
+  .detailCategoryHeading {
+    margin-bottom: 18px;
+  }
+
   .categoryHeading {
     font-size: 26px;
   }
