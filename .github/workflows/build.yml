@@ -16,5 +16,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: build
         env:
-          NEXT_PUBLIC_NOTION_PAGE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_PAGE_ID }}
+          # NEXT_PUBLIC values are shipped to browsers, so this ID is not a
+          # secret. Keep a fallback so builds from forked PRs can run.
+          NEXT_PUBLIC_NOTION_PAGE_ID: ${{ vars.NEXT_PUBLIC_NOTION_PAGE_ID || secrets.NEXT_PUBLIC_NOTION_PAGE_ID || '1627bef4856e400ba7572c37ba7921f4' }}
         run: yarn build
