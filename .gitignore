@@ -7,6 +7,13 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
+
+# generated caches
+__pycache__/
+*.pyc
+*.tsbuildinfo
 
 # next.js
 /.next/
@@ -40,3 +47,4 @@ selena_1min_loom_overview.mp4
 
 # vercel
 .vercel
+.env*

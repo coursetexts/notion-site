@@ -28,10 +28,7 @@ export const mapPageUrl =
         return createUrl('/', searchParams)
       }
 
-      return createUrl(
-        `/${canonical}`,
-        searchParams
-      )
+      return createUrl(`/${canonical}`, searchParams)
     }
   }
 

@@ -2,155 +2,161 @@ import { NotionAPI } from '@genthegreat/notion-client'
 import { getPageContentBlockIds } from 'notion-utils'
 import pMap from 'p-map'
 
+import { normalizeRecordMapBlocks } from './notion-record-block'
+
 const notionClient = new NotionAPI({
   apiBaseUrl: process.env.NOTION_API_BASE_URL
 })
 
-// REASON: Notion's unofficial API returns blocks double-nested as
-// `{spaceId, value: {role, value: <actual block>}}`. The @genthegreat fork
-// flattens this to `{spaceId, role, value: <block>}` so downstream consumers
-// (notion-utils, react-notion-x) can read block.value.content / .properties
-// directly. Without this, getPageContentBlockIds returns just the root id
-// because it walks `entry.value.content` which is undefined in the raw shape.
-function normalizeRecordMap(recordMap: any) {
-  if (!recordMap?.block) {
-    return recordMap
-  }
-
-  const normalizedBlocks = Object.fromEntries(
-    Object.entries(recordMap.block).map(([blockId, entry]: [string, any]) => {
-      const nestedValue = entry?.value?.value
-
-      if (!nestedValue) {
-        return [blockId, entry]
-      }
-
-      return [
-        blockId,
-        {
-          ...entry,
-          role: entry.role ?? entry.value?.role,
-          value: nestedValue
-        }
-      ]
-    })
-  )
-
-  return {
-    ...recordMap,
-    block: normalizedBlocks
-  }
+export type GetPageOptions = {
+  chunkLimit?: number
+  fetchMissingBlocks?: boolean
 }
 
-// REASON: The library's internal fetchMissingBlocks loop inside getPage runs
-// BEFORE normalization, so it sees the double-nested shape and can't walk the
-// content tree — it returns only the root id and exits. That means any page
-// whose block tree exceeds `chunkLimit` (100 by default) silently drops the
-// rest. Here we re-run the missing-block fill AFTER normalization to recover
-// the cut-off blocks. Removing this will cause the homepage to drop ~17 of
-// 42 courses (including anything added after the 100-block mark in Notion).
 async function fillMissingBlocks(recordMap: any): Promise<any> {
   if (!recordMap?.block) return recordMap
 
-  // Bounded iteration — each pass should discover references inside the
-  // blocks we just fetched. Cap at 10 to avoid pathological loops.
-  for (let i = 0; i < 10; i++) {
+  normalizeRecordMapBlocks(recordMap)
+
+  for (let pass = 0; pass < 10; pass += 1) {
     const pendingIds = getPageContentBlockIds(recordMap).filter(
       (id) => !recordMap.block[id]?.value
     )
+
     if (!pendingIds.length) break
 
-    console.log(`notion fillMissingBlocks: fetching ${pendingIds.length} missing blocks (pass ${i + 1})`)
+    console.log(
+      `notion fillMissingBlocks: fetching ${
+        pendingIds.length
+      } missing blocks (pass ${pass + 1})`
+    )
 
-    const res: any = await (notionClient as any).getBlocks(pendingIds)
-    const fetched = res?.recordMap?.block || {}
+    const response: any = await (notionClient as any).getBlocks(pendingIds)
+    const fetchedRecordMap = response?.recordMap
+    const fetchedBlocks = fetchedRecordMap?.block || {}
+    const resolvedCount = pendingIds.filter(
+      (id) => fetchedBlocks[id]?.value || fetchedBlocks[id]?.value?.value
+    ).length
 
-    // If Notion returned nothing, the remaining blocks are inaccessible.
-    // Break now instead of burning all 10 iterations on the same IDs.
-    if (!Object.keys(fetched).length) {
+    if (!Object.keys(fetchedBlocks).length || resolvedCount === 0) {
       console.warn(
-        `notion fillMissingBlocks: getBlocks returned no data for ${pendingIds.length} block(s), stopping`
+        `notion fillMissingBlocks: made no progress for ${pendingIds.length} block(s), stopping`
       )
       break
     }
 
-    // Normalize freshly fetched blocks into the same flat shape.
-    for (const [id, entry] of Object.entries<any>(fetched)) {
-      const inner = entry?.value?.value
-      recordMap.block[id] = inner
-        ? { ...entry, role: entry.role ?? entry.value?.role, value: inner }
-        : entry
-    }
+    normalizeRecordMapBlocks(fetchedRecordMap)
+    Object.assign(recordMap.block, fetchedRecordMap.block)
   }
 
   return recordMap
 }
 
 const rawGetPage = notionClient.getPage.bind(notionClient)
-notionClient.getPage = (async (...args: Parameters<typeof rawGetPage>) => {
-  const normalized = normalizeRecordMap(await rawGetPage(...args))
-  return fillMissingBlocks(normalized)
+
+notionClient.getPage = (async (
+  ...args: Parameters<typeof rawGetPage>
+): Promise<any> => {
+  const options = args[1] as GetPageOptions | undefined
+  // The upstream client's fetchMissingBlocks loop is uncapped. Disable it and
+  // recover missing blocks exclusively through the bounded loop above.
+  const recordMap = await rawGetPage(args[0], {
+    ...options,
+    fetchMissingBlocks: false
+  })
+  normalizeRecordMapBlocks(recordMap)
+
+  return options?.fetchMissingBlocks === false
+    ? recordMap
+    : fillMissingBlocks(recordMap)
 }) as typeof notionClient.getPage
 
 export const notion = notionClient
 
-// REASON: Notion's 429 responses include a Retry-After header telling us
-// exactly how long to back off. Respecting it is both politer and usually
-// faster than a blind exponential schedule: Notion often asks for <1s when
-// the burst was small, and >10s when we're deep in the penalty box. Spec:
-// Retry-After can be an integer (seconds) or an HTTP-date.
-function parseRetryAfterMs(headerValue: string | null | undefined): number | null {
+function parseRetryAfterMs(
+  headerValue: string | null | undefined
+): number | null {
   if (!headerValue) return null
+
   const seconds = Number(headerValue)
   if (Number.isFinite(seconds) && seconds >= 0) return seconds * 1000
+
   const dateMs = Date.parse(headerValue)
-  if (!Number.isNaN(dateMs)) {
-    const delta = dateMs - Date.now()
-    return delta > 0 ? delta : 0
-  }
-  return null
+  if (Number.isNaN(dateMs)) return null
+
+  return Math.max(0, dateMs - Date.now())
 }
 
-export async function getPageWithRetry(pageId: string, maxRetries = 6): Promise<any> {
+function normalizeChunkLimit(value: number | undefined): number {
+  if (!Number.isFinite(value) || !value || value < 1) return 250
+  return Math.min(Math.floor(value), 1000)
+}
+
+// Rate-limited wrapper for getPage
+export async function getPageWithRetry(
+  pageId: string,
+  maxRetries = 6,
+  getPageOpts?: GetPageOptions
+): Promise<any> {
+  const chunkLimit = normalizeChunkLimit(
+    getPageOpts?.chunkLimit ??
+      (process.env.NOTION_PAGE_CHUNK_LIMIT
+        ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
+        : undefined)
+  )
+  const fetchMissingBlocks = getPageOpts?.fetchMissingBlocks ?? true
+
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       console.log(`notion getPage ${pageId} (attempt ${attempt})`)
-      return await notion.getPage(pageId)
+      return await notion.getPage(pageId, {
+        chunkLimit,
+        fetchMissingBlocks
+      })
     } catch (error: any) {
       const status = error?.response?.status
       const isRetryable =
         status === 429 ||
         (status && status >= 500) ||
-        /timed out|fetch failed|ECONNRESET|ETIMEDOUT/i.test(error?.message || '')
+        /timed out|fetch failed|ECONNRESET|ETIMEDOUT/i.test(
+          error?.message || ''
+        )
 
       if (isRetryable && attempt < maxRetries) {
-        // Prefer the server-provided Retry-After; fall back to exponential.
-        // Cap at 30s so a bad clock or hostile header can't wedge us.
-        const serverDelay = parseRetryAfterMs(
+        const retryAfterMs = parseRetryAfterMs(
           error?.response?.headers?.get?.('retry-after')
         )
-        const expDelay = Math.pow(2, attempt) * 1000
-        const delay = Math.min(30000, serverDelay ?? expDelay)
+        // Honor the service's Retry-After instruction (with a defensive
+        // five-minute ceiling). Only our own exponential fallback is capped
+        // at 30 seconds.
+        const delay =
+          retryAfterMs === null
+            ? Math.min(30000, Math.pow(2, attempt) * 1000)
+            : Math.min(300000, retryAfterMs)
+
         console.log(
-          `notion retryable error (${status ?? error?.message}), ` +
-            `retrying in ${delay}ms${serverDelay != null ? ' (Retry-After)' : ''}...`
+          `notion retryable error (${
+            status ?? error?.message
+          }), retrying in ${delay}ms...`
         )
         await new Promise((resolve) => setTimeout(resolve, delay))
         continue
       }
 
       console.error(`page load error`, { pageId }, error?.message)
-      if (attempt === maxRetries) {
-        throw error
-      }
+      throw error
     }
   }
+
+  throw new Error(`getPageWithRetry: exhausted retries for ${pageId}`)
 }
 
 // Throttled batch processing
-export async function getPages(pageIds: string[]): Promise<{ [pageId: string]: any }> {
+export async function getPages(
+  pageIds: string[]
+): Promise<{ [pageId: string]: any }> {
   console.log(`Fetching ${pageIds.length} pages with rate limiting...`)
-  
+
   const results = await pMap(
     pageIds,
     async (pageId) => {
@@ -162,7 +168,7 @@ export async function getPages(pageIds: string[]): Promise<{ [pageId: string]: a
         return { pageId, page: null }
       }
     },
-    { 
+    {
       concurrency: 3, // Limit to 3 concurrent requests
       stopOnError: false // Continue processing remaining items if an error occurs
     }

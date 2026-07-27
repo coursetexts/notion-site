@@ -1,12 +1,13 @@
+import { ExtendedRecordMap } from 'notion-types'
 import { getAllPagesInSpace, getPageProperty } from 'notion-utils'
 import pMemoize from 'p-memoize'
-import { ExtendedRecordMap } from 'notion-types'
 
 import * as config from './config'
 import * as types from './types'
 import { includeNotionIdInUrls } from './config'
 import { getCanonicalPageId } from './get-canonical-page-id'
 import { getPageWithRetry } from './notion-api'
+import { getRecordBlockValue } from './notion-record-block'
 
 const uuid = !!includeNotionIdInUrls
 
@@ -31,7 +32,21 @@ async function getAllPagesImpl(
   rootNotionSpaceId: string
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string): Promise<ExtendedRecordMap> => {
-    return getPageWithRetry(pageId)
+    const isRootPage =
+      pageId.replace(/-/g, '').toLowerCase() ===
+      rootNotionPageId.replace(/-/g, '').toLowerCase()
+
+    // The root owns the complete course listing, so recover every referenced
+    // block there. Child pages only need their initial metadata for the site
+    // map; fully expanding all of them here causes a large, rate-limited burst.
+    return getPageWithRetry(pageId, 3, {
+      chunkLimit: process.env.NOTION_PAGE_CHUNK_LIMIT
+        ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
+        : isRootPage
+        ? 250
+        : 100,
+      fetchMissingBlocks: isRootPage
+    })
   }
 
   const pageMap = await getAllPagesInSpace(
@@ -48,8 +63,14 @@ async function getAllPagesImpl(
         return map
       }
 
-      const block = (recordMap.block[pageId] as any)?.value
-      if (!(getPageProperty<boolean | null>('Public', block as any, recordMap) ?? true)) {
+      const block = getRecordBlockValue(recordMap, pageId)
+      if (!block) {
+        console.warn(`Skipping page "${pageId}" - no block value`)
+        return map
+      }
+      if (
+        !(getPageProperty<boolean | null>('Public', block, recordMap) ?? true)
+      ) {
         return map
       }
 
@@ -83,8 +104,10 @@ async function getAllPagesImpl(
     {}
   )
 
-  console.log(`Successfully processed ${Object.keys(canonicalPageMap).length} pages`)
-  
+  console.log(
+    `Successfully processed ${Object.keys(canonicalPageMap).length} pages`
+  )
+
   return {
     pageMap,
     canonicalPageMap

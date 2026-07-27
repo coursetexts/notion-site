@@ -1,0 +1,85 @@
+.hero {
+  width: min(
+    var(--home-content-max, 1000px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  margin: 68px auto 0;
+}
+
+.backLink {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #37352f;
+  transition: color 160ms ease;
+}
+
+.backLink:hover,
+.backLink:focus-visible {
+  color: #0089c4;
+}
+
+.eyebrow {
+  margin: 32px 0 0;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.025em;
+  color: #0089c4;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 760px;
+  margin: 12px 0 0;
+  font-family: var(--font-serif, 'Fraunces', serif);
+  font-weight: 401;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+.intro {
+  max-width: 600px;
+  margin: 18px 0 0;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #37352f;
+}
+
+.courseCount {
+  margin: 14px 0 0;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #6b7280;
+}
+
+.curriculum {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    width: calc(100vw - 40px);
+    margin-top: 40px;
+  }
+
+  .eyebrow {
+    margin-top: 26px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+}

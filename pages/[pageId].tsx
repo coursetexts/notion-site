@@ -19,9 +19,8 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   } catch (err) {
     console.error('page error', domain, rawPageId, err)
 
-    // we don't want to publish the error version of this page, so
-    // let next.js know explicitly that incremental SSG failed
-    throw err
+    // Avoid failing the whole build on transient Notion API errors for one page.
+    return { notFound: true, revalidate: 10 }
   }
 }
 

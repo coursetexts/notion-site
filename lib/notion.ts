@@ -9,6 +9,7 @@ import {
   navigationStyle
 } from './config'
 import { getPageWithRetry, notion } from './notion-api'
+import { normalizeRecordMapBlocks } from './notion-record-block'
 import { getPreviewImageMap } from './preview-images'
 
 const getNavigationLinkPages = pMemoize(
@@ -20,13 +21,16 @@ const getNavigationLinkPages = pMemoize(
     if (navigationStyle !== 'default' && navigationLinkPageIds.length) {
       return pMap(
         navigationLinkPageIds,
-        async (navigationLinkPageId) =>
-          notion.getPage(navigationLinkPageId, {
+        async (navigationLinkPageId) => {
+          const navMap = await notion.getPage(navigationLinkPageId, {
             chunkLimit: 1,
             fetchMissingBlocks: false,
             fetchCollections: false,
             signFileUrls: false
-          }),
+          })
+          normalizeRecordMapBlocks(navMap)
+          return navMap
+        },
         {
           concurrency: 4
         }
@@ -83,10 +87,13 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
 
   // Validate that we received valid page data
   if (!recordMap || typeof recordMap !== 'object' || !recordMap.block) {
-    console.error(`Invalid recordMap received for pageId: ${pageId}`, { recordMap })
+    console.error(`Invalid recordMap received for pageId: ${pageId}`, {
+      recordMap
+    })
     return { block: {} } as ExtendedRecordMap
   }
 
+  normalizeRecordMapBlocks(recordMap)
   sanitizeRecordMapBlocks(recordMap, pageId)
   if (navigationStyle !== 'default') {
     // ensure that any pages linked to in the custom navigation header have
@@ -100,7 +107,7 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
           mergeRecordMaps(map, navigationLinkRecordMap),
         recordMap
       )
-
+      normalizeRecordMapBlocks(recordMap)
       // Navigation page merges can also introduce malformed block entries.
       sanitizeRecordMapBlocks(recordMap, pageId)
     }

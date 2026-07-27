@@ -1,3 +1,4 @@
+import { getRecordBlockValue } from './notion-record-block'
 import { PageProps } from './types'
 
 export async function pageAcl({
@@ -35,8 +36,8 @@ export async function pageAcl({
     }
   }
 
-  const rootBlock = recordMap.block[rootKey] as any
-  const rootSpaceId = rootBlock?.value?.space_id
+  const rootValue = getRecordBlockValue(recordMap, rootKey)
+  const rootSpaceId = rootValue?.space_id
 
   if (
     rootSpaceId &&

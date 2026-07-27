@@ -1,0 +1,33 @@
+.link {
+  color: #25272b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: #0089C4;
+  text-decoration: underline;
+}
+
+.tagFollowing,
+.tagFollowsYou {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.tagFollowing {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.tagFollowsYou {
+  color: #1e40af;
+  background: #dbeafe;
+}

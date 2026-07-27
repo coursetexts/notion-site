@@ -7,9 +7,7 @@ export function getSocialImageUrl(pageId: string) {
     const envUrl =
       process.env.NEXT_PUBLIC_DEPLOY_URL ||
       process.env.RENDER_EXTERNAL_URL ||
-      (process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : null)
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null)
 
     const base = envUrl || host
     const url = new URL('/images/og-preview.png', base)
