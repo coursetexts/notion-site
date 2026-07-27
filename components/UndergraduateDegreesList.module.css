@@ -16,10 +16,105 @@
   padding-top: 48px;
 }
 
-.categoryList {
+.layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.toc {
+  position: sticky;
+  top: 24px;
+  min-width: 0;
+}
+
+.tocHeading {
+  margin: 0 0 16px;
+  color: #000;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.tocList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tocListItem {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.tocListItem:last-child {
+  border-bottom: none;
+}
+
+.tocItem,
+.tocItemSelected {
+  width: 100%;
+  margin: 0;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
   display: flex;
-  flex-direction: column;
-  gap: 65px;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  box-sizing: border-box;
+  transition: opacity 160ms ease;
+}
+
+.tocItem:hover,
+.tocItem:focus-visible,
+.tocItemSelected:hover,
+.tocItemSelected:focus-visible {
+  opacity: 0.8;
+}
+
+.tocNumber {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: #f1edea;
+  color: var(--dark-brown, #2c1a0c);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  box-sizing: border-box;
+}
+
+.tocLabel {
+  min-width: 0;
+  color: #37352f;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.tocItemSelected .tocLabel {
+  color: #000;
+  font-weight: 500;
+}
+
+.tocItemSelected .tocNumber {
+  background: #e8e2dc;
+}
+
+.main {
+  min-width: 0;
 }
 
 .categorySection {
@@ -29,14 +124,15 @@
 
 .categoryHeading {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 1.15;
-  letter-spacing: 0.025em;
-  color: #0089c4;
+  color: #000;
+  font-family: 'Guyot Press', serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 401;
+  line-height: 24px;
+  letter-spacing: 0.004px;
   text-align: left;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .categoryDescription {
@@ -63,21 +159,23 @@
 
 .degreeCard {
   width: 100%;
-  border: 1px solid var(--outline, #e6e6e6);
-  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .degreeHeader {
   width: 100%;
   margin: 0;
-  padding: 18px 20px;
+  padding: 14px 16px;
   border: none;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   cursor: pointer;
   text-align: left;
   box-sizing: border-box;
@@ -89,6 +187,26 @@
   background: #faf9f7;
 }
 
+.degreeIcon {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 8.814px 10.146px 9.853px 8.521px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.degreeIconSvg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  color: inherit;
+}
+
 .degreeHeaderMain {
   min-width: 0;
   flex: 1;
@@ -96,29 +214,31 @@
 
 .degreeTitle {
   margin: 0;
-  font-family: 'Guyot Press', serif;
-  font-weight: 401;
-  font-size: 20px;
-  line-height: 1.25;
-  letter-spacing: 0.0002em;
-  color: #000000;
+  color: #000;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: 0.004px;
 }
 
 .degreeDuration {
-  font-size: 18px;
-  color: #dde1e7;
+  font-size: inherit;
+  color: #9ca3af;
   font-weight: inherit;
   font-style: italic;
   display: none;
 }
 
 .degreeMeta {
-  margin: 6px 0 0;
+  margin: 0;
+  color: #37352f;
   font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 400;
   font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 18px;
-  color: var(--midGrey, #37352f);
 }
 
 .degreeHeaderRight {
@@ -128,18 +248,23 @@
   flex-shrink: 0;
 }
 
-.coursesToggleLabel {
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+.degreeChevronButton {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #e6e6e6;
+  background: #fff;
   color: #25272b;
+  box-sizing: border-box;
 }
 
 .chevron {
   width: 12px;
   height: 12px;
-  color: #25272b;
+  color: currentColor;
   transition: transform 220ms ease;
   flex-shrink: 0;
 }
@@ -331,7 +456,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .courseBodyColumn {
@@ -587,23 +712,22 @@
   color: var(--midGrey, #37352f);
 }
 
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .toc {
+    position: static;
+  }
+}
+
 @media (max-width: 768px) {
-  .categoryHeading {
-    font-size: 26px;
-  }
-
-  .categorySection .list {
-    padding-left: 20px;
-  }
-
   .degreeHeader,
   .courseHeader {
     padding-left: 16px;
     padding-right: 16px;
-  }
-
-  .coursesToggleLabel {
-    display: none;
   }
 
   .courseBody,

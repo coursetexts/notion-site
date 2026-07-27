@@ -14,6 +14,7 @@ import {
 } from '@/lib/undergraduate-degrees'
 
 import type { DegreeLevel } from '@/components/UndergraduateDegreesTopSection'
+import { DegreeCardIcon } from '@/components/degreeCardIcons'
 import { groupGraduateDegreesBySection } from '@/lib/graduate-degree-sections'
 import { groupUndergraduateDegreesBySection } from '@/lib/undergraduate-degree-sections'
 
@@ -285,7 +286,7 @@ function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
             rel='noreferrer'
             className={styles.resourceLink}
           >
-            See full course outline
+            See full course outline ⇗
           </a>
         </li>
       </ul>
@@ -482,6 +483,11 @@ function DegreeCard({
         onClick={() => setCoursesOpen((value) => !value)}
         aria-expanded={coursesOpen}
       >
+        <DegreeCardIcon
+          degreeId={degree.id}
+          className={styles.degreeIcon}
+          iconClassName={styles.degreeIconSvg}
+        />
         <span className={styles.degreeHeaderMain}>
           <h2 className={styles.degreeTitle}>
             <DegreeTitle name={degree.name} />
@@ -492,10 +498,9 @@ function DegreeCard({
           </p>
         </span>
         <span className={styles.degreeHeaderRight}>
-          <span className={styles.coursesToggleLabel}>
-            {coursesOpen ? 'Hide courses' : 'View courses'}
+          <span className={styles.degreeChevronButton}>
+            <ChevronIcon open={coursesOpen} />
           </span>
-          <ChevronIcon open={coursesOpen} />
         </span>
       </button>
 
@@ -554,6 +559,43 @@ function DegreeSectionGroup({
   )
 }
 
+function DegreesTableOfContents({
+  sections,
+  activeSectionId,
+  onSelect
+}: {
+  sections: Array<{ id: string; title: string }>
+  activeSectionId: string
+  onSelect: (sectionId: string) => void
+}) {
+  return (
+    <nav className={styles.toc} aria-label='Browse by Field'>
+      <h2 className={styles.tocHeading}>Browse by Field</h2>
+      <ol className={styles.tocList}>
+        {sections.map((section, index) => {
+          const selected = section.id === activeSectionId
+
+          return (
+            <li key={section.id} className={styles.tocListItem}>
+              <button
+                type='button'
+                className={
+                  selected ? styles.tocItemSelected : styles.tocItem
+                }
+                aria-current={selected ? 'true' : undefined}
+                onClick={() => onSelect(section.id)}
+              >
+                <span className={styles.tocNumber}>{index + 1}</span>
+                <span className={styles.tocLabel}>{section.title}</span>
+              </button>
+            </li>
+          )
+        })}
+      </ol>
+    </nav>
+  )
+}
+
 export function UndergraduateDegreesList({
   degrees,
   level,
@@ -572,6 +614,31 @@ export function UndergraduateDegreesList({
     }
     return null
   }, [filtered, level])
+  const [activeSectionId, setActiveSectionId] = React.useState<string | null>(
+    null
+  )
+
+  React.useEffect(() => {
+    if (!sectionGroups?.length) {
+      setActiveSectionId(null)
+      return
+    }
+
+    setActiveSectionId((current) => {
+      if (
+        current &&
+        sectionGroups.some((group) => group.section.id === current)
+      ) {
+        return current
+      }
+      return sectionGroups[0].section.id
+    })
+  }, [sectionGroups])
+
+  const activeGroup =
+    sectionGroups?.find((group) => group.section.id === activeSectionId) ??
+    sectionGroups?.[0] ??
+    null
   const queryActive = query.trim().length > 0
   const levelLabel = level === 'graduate' ? 'graduate' : 'undergraduate'
   const ariaLabel =
@@ -587,35 +654,43 @@ export function UndergraduateDegreesList({
       aria-label={ariaLabel}
     >
       <div className={styles.inner}>
-      {filtered.length === 0 ? (
-        <p className={styles.emptyState}>
-          {degrees.length === 0
-            ? `${level === 'graduate' ? 'Graduate' : 'Undergraduate'} degrees coming soon.`
-            : `No ${levelLabel} degrees matched your search.`}
-        </p>
-      ) : sectionGroups ? (
-        <div className={styles.categoryList}>
-          {sectionGroups.map((group) => (
-            <DegreeSectionGroup
-              key={group.section.id}
-              title={group.section.title}
-              description={group.section.description}
-              degrees={group.degrees}
-              queryActive={queryActive}
+        {filtered.length === 0 ? (
+          <p className={styles.emptyState}>
+            {degrees.length === 0
+              ? `${level === 'graduate' ? 'Graduate' : 'Undergraduate'} degrees coming soon.`
+              : `No ${levelLabel} degrees matched your search.`}
+          </p>
+        ) : sectionGroups && activeGroup ? (
+          <div className={styles.layout}>
+            <DegreesTableOfContents
+              sections={sectionGroups.map((group) => ({
+                id: group.section.id,
+                title: group.section.title
+              }))}
+              activeSectionId={activeGroup.section.id}
+              onSelect={setActiveSectionId}
             />
-          ))}
-        </div>
-      ) : (
-        <div className={styles.list}>
-          {filtered.map((degree) => (
-            <DegreeCard
-              key={degree.id}
-              degree={degree}
-              queryActive={queryActive}
-            />
-          ))}
-        </div>
-      )}
+            <div className={styles.main}>
+              <DegreeSectionGroup
+                key={activeGroup.section.id}
+                title={activeGroup.section.title}
+                description={activeGroup.section.description}
+                degrees={activeGroup.degrees}
+                queryActive={queryActive}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className={styles.list}>
+            {filtered.map((degree) => (
+              <DegreeCard
+                key={degree.id}
+                degree={degree}
+                queryActive={queryActive}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

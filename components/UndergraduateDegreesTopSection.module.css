@@ -36,13 +36,12 @@
 }
 
 .levelTitle {
-  color: #000000;
-  font-family: var(--font-serif, 'Guyot Press', serif);
-  font-weight: 401;
+  color: #000;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 20px;
   font-style: normal;
-  font-size: 32px;
+  font-weight: 500;
   line-height: 24px;
-  letter-spacing: 0.0002em;
   transition: opacity 180ms ease;
 }
 
@@ -104,12 +103,13 @@
 .intro {
   margin: 20px 0 0;
   max-width: 534px;
+  color: #37352f;
   font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 400;
   font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
   line-height: 22px;
-  letter-spacing: -0.0004em;
-  color: var(--midGrey, #37352f);
+  letter-spacing: -0.006px;
 }
 
 .searchWrap {

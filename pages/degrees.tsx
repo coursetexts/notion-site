@@ -102,7 +102,7 @@ export default function DegreesPage() {
           {
             '--home-side': 'clamp(20px, 4.03vw, 58px)',
             '--home-main-max': '1324px',
-            '--home-content-max': '1000px',
+            '--home-content-max': '1120px',
             '--home-footer-side': 'max(28px, 15.28vw)',
             minHeight: '100vh',
             background: 'var(--footer, #F8F7F4)',
