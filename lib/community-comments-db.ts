@@ -135,7 +135,8 @@ export async function getResourceCommentThread(
     .eq('target_type', 'resource')
     .eq('target_id', resourceId)
     .order('created_at', { ascending: true })
-  if (error || !data?.length) return []
+  if (error) throw error
+  if (!data?.length) return []
   const rows = data as CommentRow[]
 
   const [authorByUser, voteMap] = await Promise.all([
@@ -193,6 +194,7 @@ export async function setResourceCommentVote(
   value: 1 | -1 | null
 ): Promise<number | null> {
   const score = await setVote('comment', comment.id, value)
+  if (score === null) return null
   // Karma is display-only for now; this is a no-op stub (rules TBD).
   const supabase = getSupabaseClient()
   if (supabase) {
@@ -254,11 +256,12 @@ async function setVote(
     if (error) return null
   }
 
-  const { data: rows } = await supabase
+  const { data: rows, error: scoreError } = await supabase
     .from('votes')
     .select('value')
     .eq('target_type', targetType)
     .eq('target_id', targetId)
+  if (scoreError) return null
   return (rows || []).reduce((s, r) => s + (r as { value: number }).value, 0)
 }
 
@@ -290,7 +293,8 @@ export async function getCommunityPageResources(): Promise<
     .from('resources')
     .select('id, title, url, type, description, submitted_by, created_at')
     .order('created_at', { ascending: false })
-  if (error || !data?.length) return []
+  if (error) throw error
+  if (!data?.length) return []
 
   const rows = data as Array<{
     id: string

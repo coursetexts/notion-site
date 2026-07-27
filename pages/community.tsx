@@ -85,93 +85,6 @@ function searchHitToFeedItem(h: CommunitySearchHit): CommunityResource {
   }
 }
 
-const MOCK_RESOURCES: CommunityResource[] = [
-  {
-    id: 'r1',
-    type: 'paper',
-    title: 'The Feynman Technique for Learning Anything',
-    description:
-      'A simple four-step method for understanding hard ideas: pick a concept, explain it plainly, find the gaps, and refine. Great for self-study.',
-    url: 'https://fs.blog/feynman-technique/',
-    author: 'Maya Chen',
-    score: 142,
-    rankingScore: 142,
-    userVote: 1
-  },
-  {
-    id: 'r2',
-    type: 'video',
-    title: 'MIT 6.006 — Introduction to Algorithms (Full Course)',
-    description:
-      'The complete lecture series covering data structures, sorting, graph algorithms, and dynamic programming. Pairs well with the assigned problem sets.',
-    url: 'https://www.youtube.com/watch?v=ZA-tUyM_y7s',
-    author: 'Devran Patel',
-    score: 98,
-    rankingScore: 98,
-    userVote: null
-  },
-  {
-    id: 'r3',
-    type: 'slides',
-    title: 'Excalidraw — virtual whiteboard for sketching diagrams',
-    description:
-      'A hand-drawn-feel diagramming tool that is perfect for mapping out proofs, system designs, and concept relationships while you study.',
-    url: 'https://excalidraw.com/',
-    author: 'Lena Hofmann',
-    score: 76,
-    rankingScore: 76,
-    userVote: null
-  },
-  {
-    id: 'r4',
-    type: 'paper',
-    title: 'Attention Is All You Need',
-    description:
-      'The foundational transformer paper. Dense but worth annotating section by section — start with the architecture diagram and work outward.',
-    url: 'https://arxiv.org/abs/1706.03762',
-    author: 'Sofia Rossi',
-    score: 64,
-    rankingScore: 64,
-    userVote: -1
-  },
-  {
-    id: 'r5',
-    type: 'textbook',
-    title: 'How to Read a Mathematics Textbook',
-    description:
-      'Reading math is not reading prose. This guide covers active reading, working examples by hand, and why you should never skip the exercises.',
-    url: 'https://example.substack.com/p/how-to-read-math',
-    author: 'Theo Albrecht',
-    score: 51,
-    rankingScore: 51,
-    userVote: null
-  },
-  {
-    id: 'r6',
-    type: 'video',
-    title: 'CS50: Introduction to Computer Science',
-    description:
-      "Harvard's flagship intro course. A friendly on-ramp to programming, memory, and algorithms — fully free with graded assignments.",
-    url: 'https://cs50.harvard.edu/x/',
-    author: 'Imani Walker',
-    score: 39,
-    rankingScore: 39,
-    userVote: null
-  },
-  {
-    id: 'r7',
-    type: 'problem_set',
-    title: 'Anki — powerful, intelligent flashcards',
-    description:
-      'Spaced-repetition flashcards that schedule reviews right before you would forget. Indispensable for memory-heavy subjects.',
-    url: 'https://apps.ankiweb.net/',
-    author: 'Noah Bergström',
-    score: 28,
-    rankingScore: 28,
-    userVote: null
-  }
-]
-
 const TYPE_FILTERS: Array<'All' | ResourceType> = ['All', ...RESOURCE_TYPES]
 
 function pluralTypeLabel(t: ResourceType): string {
@@ -290,8 +203,16 @@ const Modal: React.FC<ModalProps> = ({ title, children, onClose }) => {
 export default function CommunityPage() {
   const auth = useAuthOptional()
   const signedIn = Boolean(auth?.user)
-  const [resources, setResources] =
-    React.useState<CommunityResource[]>(MOCK_RESOURCES)
+  const [resources, setResources] = React.useState<CommunityResource[]>([])
+  const [resourcesLoading, setResourcesLoading] = React.useState(true)
+  const [resourcesError, setResourcesError] = React.useState<string | null>(
+    null
+  )
+  const voteRequestSequence = React.useRef<Record<string, number>>({})
+  const pendingVoteIdsRef = React.useRef<Set<string>>(new Set())
+  const [pendingVoteIds, setPendingVoteIds] = React.useState<Set<string>>(
+    new Set()
+  )
   const [openThreads, setOpenThreads] = React.useState<Record<string, boolean>>(
     {}
   )
@@ -307,6 +228,10 @@ export default function CommunityPage() {
   const [resDesc, setResDesc] = React.useState('')
   const [resLink, setResLink] = React.useState('')
   const [resType, setResType] = React.useState<ResourceType>('textbook')
+  const [resourceSubmitError, setResourceSubmitError] = React.useState<
+    string | null
+  >(null)
+  const [resourceSubmitting, setResourceSubmitting] = React.useState(false)
 
   // Add-a-knowledge-component form state (placeholder flow)
   const [kcName, setKcName] = React.useState('')
@@ -318,14 +243,25 @@ export default function CommunityPage() {
     CommunitySearchHit[] | null
   >(null)
 
-  // Live resources from Supabase replace the mocks when any exist.
-  // Re-fetched when auth settles so user_vote reflects the session.
+  // Re-fetch when auth settles so user_vote reflects the current session.
   React.useEffect(() => {
     let alive = true
-    getCommunityPageResources().then((rows) => {
-      if (!alive || rows.length === 0) return
-      setResources(rows.map(dbToFeedItem))
-    })
+    setResourcesLoading(true)
+    setResourcesError(null)
+    getCommunityPageResources()
+      .then((rows) => {
+        if (!alive) return
+        setResources(rows.map(dbToFeedItem))
+      })
+      .catch((error: unknown) => {
+        if (!alive) return
+        console.error('Could not load community resources', error)
+        setResources([])
+        setResourcesError('Community resources could not be loaded.')
+      })
+      .finally(() => {
+        if (alive) setResourcesLoading(false)
+      })
     return () => {
       alive = false
     }
@@ -391,22 +327,95 @@ export default function CommunityPage() {
   }, [resources, searchResults, query, typeFilter, sort])
 
   const handleVote = (item: CommunityResource, value: 1 | -1 | null) => {
+    if (pendingVoteIdsRef.current.has(item.id)) return
+    pendingVoteIdsRef.current.add(item.id)
+    setPendingVoteIds(new Set(pendingVoteIdsRef.current))
+
+    const previous = { score: item.score, userVote: item.userVote }
+    const sequence = (voteRequestSequence.current[item.id] ?? 0) + 1
+    voteRequestSequence.current[item.id] = sequence
+
     // Optimistic update either way; persist for db-backed rows.
-    setResources((prev) =>
-      prev.map((r) => {
+    setResources((prev) => {
+      let found = false
+      const next = prev.map((r) => {
         if (r.id !== item.id) return r
+        found = true
         const prevVote = r.userVote ?? 0
         const nextVote = value ?? 0
         return { ...r, score: r.score - prevVote + nextVote, userVote: value }
       })
-    )
+
+      if (!found && item.dbBacked) {
+        const prevVote = item.userVote ?? 0
+        const nextVote = value ?? 0
+        next.push({
+          ...item,
+          score: item.score - prevVote + nextVote,
+          userVote: value
+        })
+      }
+      return next
+    })
     if (item.dbBacked && signedIn) {
-      setResourceVote(item.id, value).then((score) => {
-        if (score === null) return
-        setResources((prev) =>
-          prev.map((r) => (r.id === item.id ? { ...r, score } : r))
-        )
-      })
+      void (async () => {
+        try {
+          const score = await setResourceVote(item.id, value)
+          if (voteRequestSequence.current[item.id] !== sequence) return
+
+          if (score === null) {
+            setResources((prev) =>
+              prev.map((r) =>
+                r.id === item.id
+                  ? {
+                      ...r,
+                      score: previous.score,
+                      userVote: previous.userVote
+                    }
+                  : r
+              )
+            )
+            setResourcesError('Your vote could not be saved. Please try again.')
+            return
+          }
+
+          setResourcesError(null)
+          setResources((prev) =>
+            prev.map((r) =>
+              r.id === item.id ? { ...r, score, userVote: value } : r
+            )
+          )
+          setSearchResults(
+            (prev) =>
+              prev?.map((hit) =>
+                hit.id === item.id ? { ...hit, score } : hit
+              ) ?? null
+          )
+        } catch (error: unknown) {
+          if (voteRequestSequence.current[item.id] !== sequence) return
+          console.error('Could not save community vote', error)
+          setResources((prev) =>
+            prev.map((r) =>
+              r.id === item.id
+                ? {
+                    ...r,
+                    score: previous.score,
+                    userVote: previous.userVote
+                  }
+                : r
+            )
+          )
+          setResourcesError('Your vote could not be saved. Please try again.')
+        } finally {
+          if (voteRequestSequence.current[item.id] === sequence) {
+            pendingVoteIdsRef.current.delete(item.id)
+            setPendingVoteIds(new Set(pendingVoteIdsRef.current))
+          }
+        }
+      })()
+    } else {
+      pendingVoteIdsRef.current.delete(item.id)
+      setPendingVoteIds(new Set(pendingVoteIdsRef.current))
     }
   }
 
@@ -439,31 +448,27 @@ export default function CommunityPage() {
     if (!title || !description) return
     const link = resLink.trim()
 
-    let item: CommunityResource | null = null
-    if (signedIn) {
-      const created = await addCommunityPageResource({
-        title,
-        description,
-        url: link || 'https://coursetexts.org',
-        type: resType
-      })
-      if (created) item = dbToFeedItem(created)
+    if (!signedIn) {
+      setResourceSubmitError('Sign in with Google to submit a resource.')
+      return
     }
-    if (!item) {
-      // Signed out (or Supabase unavailable): keep it local to the session.
-      item = {
-        id: `new-${resources.length + 1}-${title.slice(0, 8)}`,
-        type: resType,
-        title,
-        description,
-        url: link || 'https://coursetexts.org',
-        author: 'You',
-        score: 1,
-        rankingScore: 1,
-        userVote: 1
-      }
+
+    setResourceSubmitting(true)
+    setResourceSubmitError(null)
+    const created = await addCommunityPageResource({
+      title,
+      description,
+      url: link || 'https://coursetexts.org',
+      type: resType
+    })
+    setResourceSubmitting(false)
+
+    if (!created) {
+      setResourceSubmitError('Your resource could not be saved. Try again.')
+      return
     }
-    setResources((prev) => [item as CommunityResource, ...prev])
+
+    setResources((prev) => [dbToFeedItem(created), ...prev])
     setResTitle('')
     setResDesc('')
     setResLink('')
@@ -606,11 +611,23 @@ export default function CommunityPage() {
               </button>
             </div>
 
-            {filtered.length === 0 ? (
+            {resourcesError && (
+              <p className={styles.emptyText} role='alert'>
+                {resourcesError}
+              </p>
+            )}
+
+            {resourcesLoading ? (
+              <div className={styles.empty} aria-live='polite'>
+                <p className={styles.emptyText}>Loading community resources…</p>
+              </div>
+            ) : filtered.length === 0 ? (
               <div className={styles.empty}>
                 <p className={styles.emptyText}>
-                  {resources.length === 0
-                    ? 'Nothing here yet.'
+                  {resourcesError
+                    ? 'No cached or fabricated resources are shown.'
+                    : resources.length === 0
+                    ? 'No resources have been shared yet.'
                     : query.trim()
                     ? `Nothing matches “${query.trim()}”.`
                     : typeFilter === 'All'
@@ -689,6 +706,7 @@ export default function CommunityPage() {
                             userVote={r.userVote}
                             disabled={
                               r.kind === 'knowledge_component' ||
+                              pendingVoteIds.has(r.id) ||
                               (Boolean(r.dbBacked) && !signedIn)
                             }
                             onVote={(value) => handleVote(r, value)}
@@ -809,11 +827,18 @@ export default function CommunityPage() {
               type='button'
               className={styles.btnPrimary}
               onClick={submitResource}
-              disabled={!resTitle.trim() || !resDesc.trim()}
+              disabled={
+                resourceSubmitting || !resTitle.trim() || !resDesc.trim()
+              }
             >
-              Share
+              {resourceSubmitting ? 'Sharing…' : 'Share'}
             </button>
           </div>
+          {resourceSubmitError && (
+            <p className={styles.emptyText} role='alert'>
+              {resourceSubmitError}
+            </p>
+          )}
         </Modal>
       )}
 

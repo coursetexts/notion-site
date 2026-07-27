@@ -89,13 +89,15 @@ interface CommentNodeProps {
   signedIn: boolean
   onReply: (parent: ThreadedComment, body: string) => Promise<boolean>
   onVote: (comment: ThreadedComment, value: 1 | -1 | null) => void
+  pendingVoteIds: Set<string>
 }
 
 const CommentNode: React.FC<CommentNodeProps> = ({
   comment,
   signedIn,
   onReply,
-  onVote
+  onVote,
+  pendingVoteIds
 }) => {
   const [collapsed, setCollapsed] = React.useState(false)
   const [replying, setReplying] = React.useState(false)
@@ -134,7 +136,7 @@ const CommentNode: React.FC<CommentNodeProps> = ({
           <VoteRow
             score={comment.score}
             userVote={comment.user_vote}
-            disabled={!signedIn}
+            disabled={!signedIn || pendingVoteIds.has(comment.id)}
             onVote={(value) => onVote(comment, value)}
           />
         </span>
@@ -176,6 +178,7 @@ const CommentNode: React.FC<CommentNodeProps> = ({
                   signedIn={signedIn}
                   onReply={onReply}
                   onVote={onVote}
+                  pendingVoteIds={pendingVoteIds}
                 />
               ))}
             </div>
@@ -227,6 +230,12 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
 }) => {
   const [thread, setThread] = React.useState<ThreadedComment[]>([])
   const [loading, setLoading] = React.useState(true)
+  const [error, setError] = React.useState<string | null>(null)
+  const voteRequestSequence = React.useRef<Record<string, number>>({})
+  const pendingVoteIdsRef = React.useRef<Set<string>>(new Set())
+  const [pendingVoteIds, setPendingVoteIds] = React.useState<Set<string>>(
+    new Set()
+  )
 
   const report = React.useCallback(
     (t: ThreadedComment[]) => onCountChange?.(countThread(t)),
@@ -235,12 +244,23 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
 
   React.useEffect(() => {
     let alive = true
-    getResourceCommentThread(resourceId).then((t) => {
-      if (!alive) return
-      setThread(t)
-      setLoading(false)
-      report(t)
-    })
+    setLoading(true)
+    setError(null)
+    getResourceCommentThread(resourceId)
+      .then((t) => {
+        if (!alive) return
+        setThread(t)
+        report(t)
+      })
+      .catch((loadError: unknown) => {
+        if (!alive) return
+        console.error('Could not load community comments', loadError)
+        setThread([])
+        setError('Comments could not be loaded.')
+      })
+      .finally(() => {
+        if (alive) setLoading(false)
+      })
     return () => {
       alive = false
     }
@@ -272,20 +292,53 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
   }
 
   const handleVote = async (comment: ThreadedComment, value: 1 | -1 | null) => {
+    if (pendingVoteIdsRef.current.has(comment.id)) return
+    pendingVoteIdsRef.current.add(comment.id)
+    setPendingVoteIds(new Set(pendingVoteIdsRef.current))
+    const sequence = (voteRequestSequence.current[comment.id] ?? 0) + 1
+    voteRequestSequence.current[comment.id] = sequence
+    const previous = {
+      score: comment.score,
+      user_vote: comment.user_vote
+    }
     // Optimistic update; reconcile with the server total when it returns.
     const prevVote = comment.user_vote ?? 0
     const optimistic = comment.score - prevVote + (value ?? 0)
     setThread((prev) =>
       updateNode(prev, comment.id, { score: optimistic, user_vote: value })
     )
-    const score = await setResourceCommentVote(comment, value)
-    if (score !== null) {
-      setThread((prev) => updateNode(prev, comment.id, { score }))
+    try {
+      const score = await setResourceCommentVote(comment, value)
+      if (voteRequestSequence.current[comment.id] !== sequence) return
+      if (score === null) {
+        setThread((prev) => updateNode(prev, comment.id, previous))
+        setError('Your vote could not be saved. Please try again.')
+        return
+      }
+      setError(null)
+      setThread((prev) =>
+        updateNode(prev, comment.id, { score, user_vote: value })
+      )
+    } catch (voteError) {
+      if (voteRequestSequence.current[comment.id] !== sequence) return
+      console.error('Could not save community comment vote', voteError)
+      setThread((prev) => updateNode(prev, comment.id, previous))
+      setError('Your vote could not be saved. Please try again.')
+    } finally {
+      if (voteRequestSequence.current[comment.id] === sequence) {
+        pendingVoteIdsRef.current.delete(comment.id)
+        setPendingVoteIds(new Set(pendingVoteIdsRef.current))
+      }
     }
   }
 
   return (
     <div className={styles.thread} data-testid='comment-thread'>
+      {error && (
+        <p className={styles.threadNote} role='alert'>
+          {error}
+        </p>
+      )}
       {loading ? (
         <p className={styles.threadNote}>Loading comments…</p>
       ) : (
@@ -297,6 +350,7 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
               signedIn={signedIn}
               onReply={handleReply}
               onVote={handleVote}
+              pendingVoteIds={pendingVoteIds}
             />
           ))}
           {thread.length === 0 && (

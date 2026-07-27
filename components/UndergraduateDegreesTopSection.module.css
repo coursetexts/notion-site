@@ -6,10 +6,13 @@
   margin: 74px auto 0;
 }
 
-
 .levelSelect {
   position: relative;
   width: fit-content;
+}
+
+.levelHeading {
+  margin: 0;
 }
 
 .levelTrigger {
@@ -86,9 +89,7 @@
   line-height: 1.25;
   letter-spacing: 0.0002em;
   color: #6b7280;
-  transition:
-    background 180ms ease,
-    color 180ms ease;
+  transition: background 180ms ease, color 180ms ease;
 }
 
 .levelOption:hover,
@@ -188,9 +189,7 @@
   box-shadow: 0px 3px 6px 0px #8a8a8a14;
   cursor: pointer;
   box-sizing: border-box;
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .button:hover,

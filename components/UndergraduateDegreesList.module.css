@@ -221,15 +221,30 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  cursor: pointer;
   text-align: left;
   box-sizing: border-box;
   transition: background 180ms ease;
 }
 
 .courseHeader:hover,
-.courseHeader:focus-visible {
+.courseHeader:focus-within {
   background: #f5f4f1;
+}
+
+.courseHeaderToggle {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.courseHeaderToggle:disabled {
+  cursor: default;
 }
 
 .courseHeaderMain {
@@ -288,6 +303,18 @@
 
 .courseDocumentIconSvg {
   display: block;
+}
+
+.courseExpandButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 .yearTag {

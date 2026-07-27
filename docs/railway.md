@@ -1,6 +1,6 @@
 # Railway Deployment
 
-This repo now deploys cleanly on Railway from Node `18.x`.
+This repo requires Node `20.x` or newer on Railway.
 
 ## Current Railway Project
 
@@ -15,6 +15,11 @@ These are required for the main site to build and boot:
 
 - `NEXT_PUBLIC_NOTION_PAGE_ID`
 - `SESSION_SECRET`
+
+These are required for Google auth and persistent community features:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
 These are optional, but currently used in this repo:
 
@@ -33,19 +38,20 @@ These are optional, but currently used in this repo:
 - `NEXT_PUBLIC_FATHOM_ID`
 - `NEXT_PUBLIC_POSTHOG_ID`
 - `TWITTER_ACCESS_TOKEN`
+- `OPENAI_API_KEY` (course chat only; otherwise the endpoint is disabled)
 
 ## Why Railway Was Failing
 
 Two separate issues blocked deploys:
 
-1. Railway was resolving Node 16 from the repo's old engine range, but the current Notion dependency graph requires Node 18.
+1. Railway was resolving an older Node release from the repo's old engine range, but the current application and CI require Node 20.
 2. The current Notion client returns blocks in a nested wrapper shape (`entry.value.value`) that `react-notion-x` does not handle directly.
 
 There was also a build-time Notion rate limit caused by fetching the same page set once for `getStaticPaths` and again for `getStaticProps`.
 
 ## Fixes Landed In The Repo
 
-- `package.json` now pins Node to `18.x`
+- `package.json` now requires Node 20 or newer
 - `lib/notion-api.ts` normalizes nested Notion block wrappers before the renderer sees them
 - `lib/resolve-notion-page.ts` reuses `siteMap.pageMap` during SSG to avoid duplicate Notion fetches
 - `.gitignore` excludes large local artifacts that break upload-based deploys

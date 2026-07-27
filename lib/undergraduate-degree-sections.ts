@@ -53,9 +53,9 @@ export const UNDERGRADUATE_DEGREE_SECTIONS: readonly UndergraduateDegreeSection[
       'finance',
       'marketing',
       'economics',
-      'hospitality-Management',
+      'hospitality-management',
       'human-resources',
-      'supply-chain-Management',
+      'supply-chain-management',
       'political-science'
     ]
   },

@@ -8,6 +8,8 @@
  * Requires (in .env or the environment):
  *   NEXT_PUBLIC_SUPABASE_URL
  *   SUPABASE_SERVICE_ROLE_KEY   (Dashboard → Settings → API — keep secret!)
+ *   COMMUNITY_SEED_PROJECT_REF  (must match the URL and must not be prod)
+ *   E2E_MAYA_PASSWORD / E2E_DEVRAN_PASSWORD / E2E_LENA_PASSWORD
  *
  * Usage: node scripts/seed-community.mjs
  * Idempotent: re-running resets the seeded thread and votes.
@@ -17,10 +19,35 @@ import 'dotenv/config'
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-if (!url || !serviceKey) {
+const expectedProjectRef = process.env.COMMUNITY_SEED_PROJECT_REF
+const productionProjectRefs = new Set(['agxbxmvtbjigvfvhtxic'])
+
+if (!url || !serviceKey || !expectedProjectRef) {
   console.error(
-    'Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.'
+    'Missing NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, or COMMUNITY_SEED_PROJECT_REF.'
   )
+  process.exit(1)
+}
+
+const actualProjectRef = new URL(url).hostname.split('.')[0]
+if (actualProjectRef !== expectedProjectRef) {
+  console.error(
+    'Refusing to seed: COMMUNITY_SEED_PROJECT_REF does not match the target URL.'
+  )
+  process.exit(1)
+}
+if (productionProjectRefs.has(actualProjectRef)) {
+  console.error('Refusing to seed the Coursetexts production Supabase project.')
+  process.exit(1)
+}
+
+const seedPasswords = {
+  maya: process.env.E2E_MAYA_PASSWORD,
+  devran: process.env.E2E_DEVRAN_PASSWORD,
+  lena: process.env.E2E_LENA_PASSWORD
+}
+if (!seedPasswords.maya || !seedPasswords.devran || !seedPasswords.lena) {
+  console.error('Missing one or more required E2E user passwords.')
   process.exit(1)
 }
 
@@ -31,19 +58,19 @@ const admin = createClient(url, serviceKey, {
 const SEED_USERS = [
   {
     email: 'e2e-maya@coursetexts.dev',
-    password: 'coursetexts-e2e-1!',
+    password: seedPasswords.maya,
     display_name: 'Maya Chen',
     karma_score: 132
   },
   {
     email: 'e2e-devran@coursetexts.dev',
-    password: 'coursetexts-e2e-2!',
+    password: seedPasswords.devran,
     display_name: 'Devran Patel',
     karma_score: 47
   },
   {
     email: 'e2e-lena@coursetexts.dev',
-    password: 'coursetexts-e2e-3!',
+    password: seedPasswords.lena,
     display_name: 'Lena Hofmann',
     karma_score: 8
   }

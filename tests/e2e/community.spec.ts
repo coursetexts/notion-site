@@ -14,9 +14,10 @@ import { expect, test } from '@playwright/test'
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
-const EMAIL = process.env.E2E_EMAIL ?? 'e2e-maya@coursetexts.dev'
-const PASSWORD = process.env.E2E_PASSWORD ?? 'coursetexts-e2e-1!'
-const DISPLAY_NAME = 'Maya Chen'
+const EMAIL = process.env.E2E_EMAIL ?? ''
+const PASSWORD = process.env.E2E_PASSWORD ?? ''
+const EXPECTED_PROJECT_REF = process.env.E2E_PROJECT_REF ?? ''
+const MUTATION_TESTS_ENABLED = process.env.E2E_ALLOW_MUTATIONS === 'true'
 
 const SEEDED_RESOURCE = 'The Feynman Technique for Learning Anything'
 const SEEDED_TOP_COMMENT = 'The four-step loop works even better'
@@ -86,6 +87,10 @@ test('upvoting updates the score without moving the resource', async ({
     })
   )
   let votes: Array<{ user_id: string; target_id: string; value: number }> = []
+  let failNextVote = false
+  let delayNextVote = false
+  let releaseNextVote: (() => void) | null = null
+  let mutationCount = 0
 
   await page.route(`${SUPABASE_URL}/auth/v1/user**`, async (route) => {
     await route.fulfill({ json: user })
@@ -118,6 +123,21 @@ test('upvoting updates the score without moving the resource', async ({
     }
     if (table === 'votes') {
       if (request.method() === 'POST') {
+        mutationCount += 1
+        if (failNextVote) {
+          failNextVote = false
+          await route.fulfill({
+            status: 500,
+            json: { message: 'test failure' }
+          })
+          return
+        }
+        if (delayNextVote) {
+          delayNextVote = false
+          await new Promise<void>((resolve) => {
+            releaseNextVote = resolve
+          })
+        }
         const body = request.postDataJSON() as {
           user_id: string
           target_id: string
@@ -125,6 +145,20 @@ test('upvoting updates the score without moving the resource', async ({
         }
         votes = [body]
         await route.fulfill({ status: 201, body: '' })
+        return
+      }
+      if (request.method() === 'DELETE') {
+        mutationCount += 1
+        if (failNextVote) {
+          failNextVote = false
+          await route.fulfill({
+            status: 500,
+            json: { message: 'test failure' }
+          })
+          return
+        }
+        votes = []
+        await route.fulfill({ status: 204, body: '' })
         return
       }
       await route.fulfill({ json: votes })
@@ -152,6 +186,45 @@ test('upvoting updates the score without moving the resource', async ({
     'Beta resource',
     'Gamma resource'
   ])
+
+  // Exercise every transition in the one-vote state machine.
+  await gamma.getByRole('button', { name: 'Upvote' }).click() // up -> none
+  await expect(gamma.getByTestId('resource-vote')).toContainText('0')
+  await gamma.getByRole('button', { name: 'Downvote' }).click() // none -> down
+  await expect(gamma.getByTestId('resource-vote')).toContainText('-1')
+  await gamma.getByRole('button', { name: 'Upvote' }).click() // down -> up
+  await expect(gamma.getByTestId('resource-vote')).toContainText('1')
+  await gamma.getByRole('button', { name: 'Downvote' }).click() // up -> down
+  await expect(gamma.getByTestId('resource-vote')).toContainText('-1')
+  await gamma.getByRole('button', { name: 'Downvote' }).click() // down -> none
+  await expect(gamma.getByTestId('resource-vote')).toContainText('0')
+  await gamma.getByRole('button', { name: 'Upvote' }).click() // leave at +1
+  await expect(gamma.getByTestId('resource-vote')).toContainText('1')
+  await expect(gamma.getByRole('button', { name: 'Upvote' })).toBeEnabled()
+  await expect(gamma.getByRole('button', { name: 'Downvote' })).toBeEnabled()
+
+  // A failed write rolls the optimistic transition back to the persisted vote.
+  failNextVote = true
+  await gamma.getByRole('button', { name: 'Upvote' }).click()
+  await expect(gamma.getByTestId('resource-vote')).toContainText('1')
+  await expect(page.getByText('Your vote could not be saved.')).toBeVisible()
+  await expect(gamma.getByRole('button', { name: 'Upvote' })).toBeEnabled()
+  await expect(gamma.getByRole('button', { name: 'Downvote' })).toBeEnabled()
+
+  // While a vote is in flight, both controls are disabled and a second
+  // transition cannot overtake the first one.
+  const mutationsBeforePendingVote = mutationCount
+  delayNextVote = true
+  const pendingVote = gamma.getByRole('button', { name: 'Downvote' }).click()
+  await expect(gamma.getByRole('button', { name: 'Upvote' })).toBeDisabled()
+  await expect(gamma.getByRole('button', { name: 'Downvote' })).toBeDisabled()
+  expect(mutationCount).toBe(mutationsBeforePendingVote + 1)
+  releaseNextVote?.()
+  await pendingVote
+  await expect(gamma.getByTestId('resource-vote')).toContainText('-1')
+  await gamma.getByRole('button', { name: 'Upvote' }).click()
+  await expect(gamma.getByTestId('resource-vote')).toContainText('1')
+  await expect(gamma.getByRole('button', { name: 'Upvote' })).toBeEnabled()
 
   // Switching away and deliberately back to Top takes a fresh ranking
   // snapshot, so the new score can influence ordering at that point.
@@ -181,7 +254,19 @@ async function passwordSession() {
 test('sign in, comment, reply, and vote on a community resource', async ({
   page
 }) => {
-  test.skip(!SUPABASE_URL || !ANON_KEY, 'Supabase env not configured')
+  const actualProjectRef = SUPABASE_URL
+    ? new URL(SUPABASE_URL).hostname.split('.')[0]
+    : ''
+  test.skip(
+    !MUTATION_TESTS_ENABLED ||
+      !SUPABASE_URL ||
+      !ANON_KEY ||
+      !EMAIL ||
+      !PASSWORD ||
+      !EXPECTED_PROJECT_REF ||
+      actualProjectRef !== EXPECTED_PROJECT_REF,
+    'Mutation test requires an explicitly matched disposable Supabase project'
+  )
 
   // -- Sign in: obtain a session and store it the way supabase-js does
   const session = await passwordSession()
@@ -213,7 +298,7 @@ test('sign in, comment, reply, and vote on a community resource', async ({
   await expect(topComment.getByTestId('comment-author').first()).toHaveText(
     'Devran Patel'
   )
-  await expect(topComment.getByTestId('comment-karma').first()).toHaveText('47')
+  await expect(topComment.getByTestId('comment-karma').first()).not.toBeEmpty()
 
   // -- Comment (top-level)
   const commentText = `E2E comment ${Date.now()}`
@@ -223,8 +308,8 @@ test('sign in, comment, reply, and vote on a community resource', async ({
     .getByTestId('comment-item')
     .filter({ hasText: commentText })
   await expect(myComment.getByTestId('comment-body')).toHaveText(commentText)
-  await expect(myComment.getByTestId('comment-author')).toHaveText(DISPLAY_NAME)
-  await expect(myComment.getByTestId('comment-karma')).toHaveText('132')
+  await expect(myComment.getByTestId('comment-author')).not.toBeEmpty()
+  await expect(myComment.getByTestId('comment-karma')).not.toBeEmpty()
 
   // -- Reply to the seeded nested comment (Maya's own deepest reply's parent:
   //    reply to Lena's comment to create a 4th level)

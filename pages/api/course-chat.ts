@@ -27,7 +27,10 @@ export default async function handler(
 
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
-    return res.status(500).json({ error: 'Missing OPENAI_API_KEY' })
+    return res.status(503).json({
+      error: 'Course chat is temporarily unavailable.',
+      code: 'COURSE_CHAT_DISABLED'
+    })
   }
 
   const {

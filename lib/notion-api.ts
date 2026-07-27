@@ -34,10 +34,13 @@ async function fillMissingBlocks(recordMap: any): Promise<any> {
     const response: any = await (notionClient as any).getBlocks(pendingIds)
     const fetchedRecordMap = response?.recordMap
     const fetchedBlocks = fetchedRecordMap?.block || {}
+    const resolvedCount = pendingIds.filter(
+      (id) => fetchedBlocks[id]?.value || fetchedBlocks[id]?.value?.value
+    ).length
 
-    if (!Object.keys(fetchedBlocks).length) {
+    if (!Object.keys(fetchedBlocks).length || resolvedCount === 0) {
       console.warn(
-        `notion fillMissingBlocks: getBlocks returned no data for ${pendingIds.length} block(s), stopping`
+        `notion fillMissingBlocks: made no progress for ${pendingIds.length} block(s), stopping`
       )
       break
     }
@@ -54,10 +57,15 @@ const rawGetPage = notionClient.getPage.bind(notionClient)
 notionClient.getPage = (async (
   ...args: Parameters<typeof rawGetPage>
 ): Promise<any> => {
-  const recordMap = await rawGetPage(...args)
+  const options = args[1] as GetPageOptions | undefined
+  // The upstream client's fetchMissingBlocks loop is uncapped. Disable it and
+  // recover missing blocks exclusively through the bounded loop above.
+  const recordMap = await rawGetPage(args[0], {
+    ...options,
+    fetchMissingBlocks: false
+  })
   normalizeRecordMapBlocks(recordMap)
 
-  const options = args[1] as GetPageOptions | undefined
   return options?.fetchMissingBlocks === false
     ? recordMap
     : fillMissingBlocks(recordMap)
@@ -79,17 +87,23 @@ function parseRetryAfterMs(
   return Math.max(0, dateMs - Date.now())
 }
 
+function normalizeChunkLimit(value: number | undefined): number {
+  if (!Number.isFinite(value) || !value || value < 1) return 250
+  return Math.min(Math.floor(value), 1000)
+}
+
 // Rate-limited wrapper for getPage
 export async function getPageWithRetry(
   pageId: string,
   maxRetries = 6,
   getPageOpts?: GetPageOptions
 ): Promise<any> {
-  const chunkLimit =
+  const chunkLimit = normalizeChunkLimit(
     getPageOpts?.chunkLimit ??
-    (process.env.NOTION_PAGE_CHUNK_LIMIT
-      ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
-      : 250)
+      (process.env.NOTION_PAGE_CHUNK_LIMIT
+        ? Number(process.env.NOTION_PAGE_CHUNK_LIMIT)
+        : undefined)
+  )
   const fetchMissingBlocks = getPageOpts?.fetchMissingBlocks ?? true
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -112,10 +126,13 @@ export async function getPageWithRetry(
         const retryAfterMs = parseRetryAfterMs(
           error?.response?.headers?.get?.('retry-after')
         )
-        const delay = Math.min(
-          30000,
-          retryAfterMs ?? Math.pow(2, attempt) * 1000
-        )
+        // Honor the service's Retry-After instruction (with a defensive
+        // five-minute ceiling). Only our own exponential fallback is capped
+        // at 30 seconds.
+        const delay =
+          retryAfterMs === null
+            ? Math.min(30000, Math.pow(2, attempt) * 1000)
+            : Math.min(300000, retryAfterMs)
 
         console.log(
           `notion retryable error (${
@@ -127,9 +144,7 @@ export async function getPageWithRetry(
       }
 
       console.error(`page load error`, { pageId }, error?.message)
-      if (attempt === maxRetries) {
-        throw error
-      }
+      throw error
     }
   }
 

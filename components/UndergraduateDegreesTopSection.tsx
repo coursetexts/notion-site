@@ -21,7 +21,9 @@ const INTRO_COPY: Record<DegreeLevel, string> = {
 function ChevronDownIcon({ open }: { open: boolean }) {
   return (
     <svg
-      className={`${styles.levelChevron} ${open ? styles.levelChevronOpen : ''}`}
+      className={`${styles.levelChevron} ${
+        open ? styles.levelChevronOpen : ''
+      }`}
       width='12'
       height='12'
       viewBox='0 0 12 12'
@@ -150,18 +152,20 @@ export function UndergraduateDegreesTopSection({
   return (
     <section className={styles.section}>
       <div className={styles.levelSelect} ref={levelSelectRef}>
-        <button
-          type='button'
-          id='degrees-level-label'
-          className={styles.levelTrigger}
-          aria-haspopup='listbox'
-          aria-expanded={levelMenuOpen}
-          aria-controls='degrees-level-menu'
-          onClick={() => setLevelMenuOpen((open) => !open)}
-        >
-          <span className={styles.levelTitle}>{LEVEL_LABELS[level]}</span>
-          <ChevronDownIcon open={levelMenuOpen} />
-        </button>
+        <h1 className={styles.levelHeading}>
+          <button
+            type='button'
+            id='degrees-level-label'
+            className={styles.levelTrigger}
+            aria-haspopup='listbox'
+            aria-expanded={levelMenuOpen}
+            aria-controls='degrees-level-menu'
+            onClick={() => setLevelMenuOpen((open) => !open)}
+          >
+            <span className={styles.levelTitle}>{LEVEL_LABELS[level]}</span>
+            <ChevronDownIcon open={levelMenuOpen} />
+          </button>
+        </h1>
 
         {levelMenuOpen ? (
           <ul

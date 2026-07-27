@@ -334,34 +334,6 @@ function buildCourseMeta(params: {
   )
 }
 
-function pickRandom<T>(items: T[], count: number): T[] {
-  const copy = [...items]
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy.slice(0, count)
-}
-
-function fallbackCourses(): HomeCourseCard[] {
-  const fallbackMeta = [
-    'Harvard University / Fall 2024',
-    'Stanford University / Fall 2024',
-    'University of Waterloo / Winter 2025',
-    'MIT / Spring 2025'
-  ]
-
-  return Array.from({ length: 12 }).map((_, index) => ({
-    id: `fallback-${index + 1}`,
-    href: '/',
-    meta: fallbackMeta[index % fallbackMeta.length],
-    title: 'Global & Visual Digital Culture',
-    description:
-      'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide',
-    subjects: [SUBJECT_OPTIONS[index % SUBJECT_OPTIONS.length]]
-  }))
-}
-
 function parseSubjectsParam(
   value: string | string[] | undefined
 ): HomeSubject[] {
@@ -1194,15 +1166,9 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
           })
         })
       }
-
-      if (pool.length > 0) {
-        pool = pickRandom(pool, pool.length)
-      }
     }
 
-    const courses = diversifyCoursesBySchool(
-      pool.length > 0 ? pool : fallbackCourses()
-    )
+    const courses = diversifyCoursesBySchool(pool)
 
     console.log(
       '[getStaticProps] home courses:',
@@ -1225,11 +1191,9 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
     }
   } catch (error) {
     console.error('home page courses load failed', error)
-    const courses = fallbackCourses()
-    console.log('[getStaticProps] courses (fallback)', courses)
     return {
-      props: { courses, notionHomeDebug: null },
-      revalidate: 120
+      props: { courses: [], notionHomeDebug: null },
+      revalidate: 60
     }
   }
 }

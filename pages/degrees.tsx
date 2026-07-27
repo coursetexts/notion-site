@@ -58,7 +58,7 @@ export default function DegreesPage({ directories }: DegreesPageProps) {
         nextRouteQuery.level = 'graduate'
       }
 
-      void router.replace(
+      void router.push(
         {
           pathname: '/degrees',
           query: nextRouteQuery

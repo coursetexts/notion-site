@@ -19,12 +19,6 @@ type CourseCardGridProps = {
   descriptionWidth?: React.CSSProperties['width']
 }
 
-const FALLBACK_SCHOOLS = [
-  'Harvard / Fall 2024',
-  'Yale / Spring 2025',
-  'Princeton / Fall 2024'
-]
-
 function HomeCourseCardItem({
   course,
   descriptionWidth
@@ -156,19 +150,7 @@ export function HomeCoursesSection({
   // blank gap appears at the end of each loop. 6 copies keeps it gap-free.
   const loopSchools = Array.from({ length: 6 }, () => topSchools).flat()
 
-  const cards =
-    courses == null
-      ? Array.from({ length: 12 }).map((_, index) => {
-          return {
-            id: `fallback-${index + 1}`,
-            href: '/',
-            meta: FALLBACK_SCHOOLS[index % FALLBACK_SCHOOLS.length],
-            title: 'Global & Visual Digital Culture',
-            description:
-              'Investigate digital media as a convergence-point where technical-systems, economic-imperatives, and power-structures collide'
-          }
-        })
-      : courses
+  const cards = courses ?? []
 
   return (
     <section className={styles.section}>

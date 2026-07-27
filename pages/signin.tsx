@@ -1,3 +1,4 @@
+import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -10,7 +11,11 @@ import styles from '@/styles/login.module.css'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 
-export default function SignIn() {
+type SignInProps = {
+  previewPasswordEnabled: boolean
+}
+
+export default function SignIn({ previewPasswordEnabled }: SignInProps) {
   const router = useRouter()
   const auth = useAuthOptional()
   const cached = getCachedAuth()
@@ -31,7 +36,7 @@ export default function SignIn() {
     if (!effectiveUser) return
     const redirectUrl = (router.query.redirect as string) || '/profile'
     router.replace(redirectUrl)
-  }, [effectiveUser, router])
+  }, [auth?.isLoading, auth?.user?.id, cached.user?.id, effectiveUser, router])
 
   const handleGoogleSignIn = () => {
     auth?.signInWithGoogle()
@@ -103,43 +108,45 @@ export default function SignIn() {
             </p>
           )}
 
-          <div className={styles.previewSection}>
-            <button
-              type='button'
-              className={styles.previewToggle}
-              onClick={() => setShowPreviewForm(!showPreviewForm)}
-            >
-              Preview site? Sign in with password
-            </button>
-            {showPreviewForm && (
-              <form
-                onSubmit={handlePreviewSubmit}
-                className={styles.previewForm}
+          {previewPasswordEnabled && (
+            <div className={styles.previewSection}>
+              <button
+                type='button'
+                className={styles.previewToggle}
+                onClick={() => setShowPreviewForm(!showPreviewForm)}
               >
-                <input
-                  type='password'
-                  placeholder='Preview password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={styles.input}
-                  disabled={previewLoading}
-                  required
-                />
-                <button
-                  type='submit'
-                  className={styles.previewSubmit}
-                  disabled={previewLoading}
+                Preview site? Sign in with password
+              </button>
+              {showPreviewForm && (
+                <form
+                  onSubmit={handlePreviewSubmit}
+                  className={styles.previewForm}
                 >
-                  {previewLoading ? 'Signing in…' : 'Sign in (preview)'}
-                </button>
-                {previewError && (
-                  <p className={styles.error} role='alert'>
-                    {previewError}
-                  </p>
-                )}
-              </form>
-            )}
-          </div>
+                  <input
+                    type='password'
+                    placeholder='Preview password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={styles.input}
+                    disabled={previewLoading}
+                    required
+                  />
+                  <button
+                    type='submit'
+                    className={styles.previewSubmit}
+                    disabled={previewLoading}
+                  >
+                    {previewLoading ? 'Signing in…' : 'Sign in (preview)'}
+                  </button>
+                  {previewError && (
+                    <p className={styles.error} role='alert'>
+                      {previewError}
+                    </p>
+                  )}
+                </form>
+              )}
+            </div>
+          )}
         </div>
         <p className={styles.footer}>
           <Link href='/'>← Back to home</Link>
@@ -148,6 +155,14 @@ export default function SignIn() {
     </>
   )
 }
+
+export const getServerSideProps: GetServerSideProps<
+  SignInProps
+> = async () => ({
+  props: {
+    previewPasswordEnabled: process.env.PASSWORD_PROTECT === 'true'
+  }
+})
 
 function GoogleIcon() {
   return (

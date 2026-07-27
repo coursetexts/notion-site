@@ -148,7 +148,7 @@ export async function getCommunityResources(
     .order('is_pinned', { ascending: false })
     .order('created_at', { ascending: false })
 
-  if (error) return []
+  if (error) throw error
   const resources = (data || []) as CommunityResource[]
   if (resources.length === 0) return []
 
@@ -252,10 +252,11 @@ export async function setCommunityResourceVote(
     )
     if (error) return null
   }
-  const { data: rows } = await supabase
+  const { data: rows, error: scoreError } = await supabase
     .from('course_resource_votes')
     .select('value')
     .eq('resource_id', resourceId)
+  if (scoreError) return null
   const score = (rows || []).reduce(
     (s, r) => s + (r as { value: number }).value,
     0

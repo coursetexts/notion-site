@@ -13,8 +13,6 @@ import {
   setCommunityResourceVote,
   toggleCommunityResourceBookmark
 } from '@/lib/community-wall-db'
-import type { DummyCommunityResource } from '@/lib/community-wall-dummy'
-import { getDummyCommunityResources } from '@/lib/community-wall-dummy'
 import { getOrCreateCourse } from '@/lib/course-activity-db'
 import {
   type LinkPreviewVisual,
@@ -314,11 +312,7 @@ function CardDescription({ text }: { text: string }) {
     )
 
   return (
-    <ExpandableTwoLineText
-      as='p'
-      className={styles.cardDesc}
-      measureKey={text}
-    >
+    <ExpandableTwoLineText as='p' className={styles.cardDesc} measureKey={text}>
       {body}
     </ExpandableTwoLineText>
   )
@@ -395,25 +389,6 @@ function toVMFromDb(r: CommunityResource): ResourceVM {
   }
 }
 
-function toVMFromDummy(r: DummyCommunityResource): ResourceVM {
-  return {
-    kind: 'dummy',
-    id: r.id,
-    title: r.title,
-    description: r.description,
-    link: r.link,
-    is_pinned: Boolean(r.pinned),
-    score: r.votes ?? 0,
-    comment_count: r.comments ?? 0,
-    is_bookmarked: false,
-    user_vote: null,
-    authorName: null,
-    sourceLabel: r.sourceLabel,
-    sourceHandle: r.sourceHandle,
-    previewImage: r.previewImage ?? null
-  }
-}
-
 export interface CommunityWallProps {
   coursePageId?: string
   courseTitle?: string
@@ -449,10 +424,15 @@ export const CommunityWall = React.forwardRef<
   const [commentDraft, setCommentDraft] = React.useState('')
   const [commentLoading, setCommentLoading] = React.useState(false)
   const [commentSubmitting, setCommentSubmitting] = React.useState(false)
+  const voteRequestSequence = React.useRef<Record<string, number>>({})
+  const pendingVoteIdsRef = React.useRef<Set<string>>(new Set())
+  const [pendingVoteIds, setPendingVoteIds] = React.useState<Set<string>>(
+    new Set()
+  )
 
   const load = React.useCallback(async () => {
     if (!coursePageId || !courseTitle) {
-      setResources(getDummyCommunityResources(coursePageId).map(toVMFromDummy))
+      setResources([])
       return
     }
     setLoading(true)
@@ -466,16 +446,15 @@ export const CommunityWall = React.forwardRef<
       const id = course?.courseId ?? coursePageId
       setCourseId(id)
       const db = await getCommunityResources(id)
-      const dummy = getDummyCommunityResources(coursePageId).map(toVMFromDummy)
-
-      // If DB has any data, prefer it (plus pinned dummy only if DB empty).
-      const merged = db.length > 0 ? db.map(toVMFromDb) : dummy
+      const merged = db.map(toVMFromDb)
 
       const pinned = merged.filter((r) => r.is_pinned)
       const rest = merged.filter((r) => !r.is_pinned)
       setResources([...pinned, ...rest])
     } catch (e) {
-      setResources(getDummyCommunityResources(coursePageId).map(toVMFromDummy))
+      console.error('Could not load course community resources', e)
+      setResources([])
+      setError('Community resources could not be loaded.')
     } finally {
       setLoading(false)
     }
@@ -543,13 +522,58 @@ export const CommunityWall = React.forwardRef<
       return
     }
     if (r.kind !== 'db') return
-    const newScore = await setCommunityResourceVote(r.id, value)
-    if (newScore == null) return
+    if (pendingVoteIdsRef.current.has(r.id)) return
+    pendingVoteIdsRef.current.add(r.id)
+    setPendingVoteIds(new Set(pendingVoteIdsRef.current))
+
+    const sequence = (voteRequestSequence.current[r.id] ?? 0) + 1
+    voteRequestSequence.current[r.id] = sequence
+    const previous = { score: r.score, user_vote: r.user_vote }
+    const previousVote = r.user_vote ?? 0
+    const nextVote = value ?? 0
+    setError(null)
     setResources((prev) =>
-      prev.map((x) =>
-        x.id === r.id ? { ...x, score: newScore, user_vote: value } : x
+      prev.map((item) =>
+        item.id === r.id
+          ? {
+              ...item,
+              score: item.score - previousVote + nextVote,
+              user_vote: value
+            }
+          : item
       )
     )
+
+    try {
+      const newScore = await setCommunityResourceVote(r.id, value)
+      if (voteRequestSequence.current[r.id] !== sequence) return
+      if (newScore == null) {
+        setResources((prev) =>
+          prev.map((item) =>
+            item.id === r.id ? { ...item, ...previous } : item
+          )
+        )
+        setError('Your vote could not be saved. Please try again.')
+        return
+      }
+      setResources((prev) =>
+        prev.map((x) =>
+          x.id === r.id ? { ...x, score: newScore, user_vote: value } : x
+        )
+      )
+    } catch (voteError) {
+      if (voteRequestSequence.current[r.id] !== sequence) return
+      console.error('Could not save course resource vote', voteError)
+      setResources((prev) =>
+        prev.map((item) => (item.id === r.id ? { ...item, ...previous } : item))
+      )
+      setError('Your vote could not be saved. Please try again.')
+    } finally {
+      if (voteRequestSequence.current[r.id] === sequence) {
+        pendingVoteIdsRef.current.delete(r.id)
+        setPendingVoteIds(new Set(pendingVoteIdsRef.current))
+      }
+    }
   }
 
   const handleBookmark = async (r: ResourceVM) => {
@@ -782,8 +806,7 @@ export const CommunityWall = React.forwardRef<
             const domain = hostFromUrl(r.link)
             const source = r.sourceLabel ?? (domain ? domain : 'Resource')
             const subline =
-              r.sourceHandle ??
-              (domain || (r.link ? r.link : 'No link'))
+              r.sourceHandle ?? (domain || (r.link ? r.link : 'No link'))
             const pinN = pinNumberById.get(r.id)
             return (
               <article key={r.id} className={styles.card}>
@@ -810,12 +833,12 @@ export const CommunityWall = React.forwardRef<
                       preview.kind === 'image'
                         ? styles.previewBodyImage
                         : preview.kind === 'youtube'
-                          ? styles.previewBodyYoutube
-                          : preview.kind === 'twitter'
-                            ? styles.previewBodyTwitter
-                            : preview.kind === 'website'
-                              ? styles.previewBodyWebsite
-                              : styles.previewBody
+                        ? styles.previewBodyYoutube
+                        : preview.kind === 'twitter'
+                        ? styles.previewBodyTwitter
+                        : preview.kind === 'website'
+                        ? styles.previewBodyWebsite
+                        : styles.previewBody
                     }
                   >
                     {preview.kind === 'image' ? (
@@ -909,7 +932,11 @@ export const CommunityWall = React.forwardRef<
                       onClick={() =>
                         handleVote(r, r.user_vote === 1 ? null : 1)
                       }
-                      disabled={!isSignedIn || r.kind !== 'db'}
+                      disabled={
+                        !isSignedIn ||
+                        r.kind !== 'db' ||
+                        pendingVoteIds.has(r.id)
+                      }
                     >
                       <VoteChevronUp />
                     </button>
@@ -922,7 +949,11 @@ export const CommunityWall = React.forwardRef<
                       onClick={() =>
                         handleVote(r, r.user_vote === -1 ? null : -1)
                       }
-                      disabled={!isSignedIn || r.kind !== 'db'}
+                      disabled={
+                        !isSignedIn ||
+                        r.kind !== 'db' ||
+                        pendingVoteIds.has(r.id)
+                      }
                     >
                       <VoteChevronDown />
                     </button>

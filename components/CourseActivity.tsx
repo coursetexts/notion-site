@@ -407,7 +407,9 @@ export const VoteRow: React.FC<VoteRowProps> = ({
           className={userVote === 1 ? styles.voteBtnActive : undefined}
         />
       </button>
-      <span className={styles.voteCount}>{score}</span>
+      <span className={styles.voteCount} aria-live='polite' aria-atomic='true'>
+        {score}
+      </span>
       <button
         type='button'
         className={styles.voteBtn}

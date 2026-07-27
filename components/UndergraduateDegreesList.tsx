@@ -147,6 +147,9 @@ function ResourceTabs({
   const [activeKind, setActiveKind] = React.useState<CourseResourceKind>(
     groups[0].kind
   )
+  const tabRefs = React.useRef<
+    Partial<Record<CourseResourceKind, HTMLButtonElement | null>>
+  >({})
 
   React.useEffect(() => {
     setActiveKind((current) =>
@@ -158,6 +161,32 @@ function ResourceTabs({
     groups.find((group) => group.kind === activeKind) ?? groups[0]
   const tabListId = `${idPrefix}-resource-tabs`
   const panelId = `${idPrefix}-resource-panel`
+
+  const activateTab = (index: number) => {
+    const group = groups[index]
+    if (!group) return
+    setActiveKind(group.kind)
+    tabRefs.current[group.kind]?.focus()
+  }
+
+  const handleTabKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      activateTab((index + 1) % groups.length)
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      activateTab((index - 1 + groups.length) % groups.length)
+    } else if (event.key === 'Home') {
+      event.preventDefault()
+      activateTab(0)
+    } else if (event.key === 'End') {
+      event.preventDefault()
+      activateTab(groups.length - 1)
+    }
+  }
 
   if (groups.length === 1) {
     return (
@@ -180,7 +209,7 @@ function ResourceTabs({
         className={styles.resourceTabList}
         id={tabListId}
       >
-        {groups.map((group) => {
+        {groups.map((group, index) => {
           const selected = group.kind === activeKind
           const tabId = `${idPrefix}-tab-${group.kind}`
 
@@ -196,7 +225,11 @@ function ResourceTabs({
               aria-selected={selected}
               aria-controls={panelId}
               tabIndex={selected ? 0 : -1}
+              ref={(element) => {
+                tabRefs.current[group.kind] = element
+              }}
               onClick={() => setActiveKind(group.kind)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
             >
               {group.label}
               <span className={styles.resourceTabCount}>
@@ -403,23 +436,23 @@ function CourseRow({
 
   return (
     <div className={styles.courseBlock}>
-      <button
-        type='button'
-        className={styles.courseHeader}
-        onClick={() => {
-          if (canExpand) setCourseOpen((value) => !value)
-        }}
-        aria-expanded={canExpand ? courseOpen : undefined}
-        disabled={!canExpand}
-      >
-        <span className={styles.courseHeaderMain}>
-          <span className={styles.courseName}>{course.name}</span>
-          {course.description ? (
-            <span className={styles.courseDescription}>
-              {course.description}
-            </span>
-          ) : null}
-        </span>
+      <div className={styles.courseHeader}>
+        <button
+          type='button'
+          className={styles.courseHeaderToggle}
+          onClick={() => setCourseOpen((value) => !value)}
+          aria-expanded={canExpand ? courseOpen : undefined}
+          disabled={!canExpand}
+        >
+          <span className={styles.courseHeaderMain}>
+            <span className={styles.courseName}>{course.name}</span>
+            {course.description ? (
+              <span className={styles.courseDescription}>
+                {course.description}
+              </span>
+            ) : null}
+          </span>
+        </button>
         <span className={styles.courseHeaderRight}>
           {course.isNew ? <span className={styles.newTag}>New</span> : null}
           <span className={styles.courseYearGroup}>
@@ -429,9 +462,21 @@ function CourseRow({
             />
             <YearTag year={course.year} />
           </span>
-          {canExpand ? <ChevronIcon open={courseOpen} /> : null}
+          {canExpand ? (
+            <button
+              type='button'
+              className={styles.courseExpandButton}
+              onClick={() => setCourseOpen((value) => !value)}
+              aria-label={`${courseOpen ? 'Collapse' : 'Expand'} ${
+                course.name
+              }`}
+              aria-expanded={courseOpen}
+            >
+              <ChevronIcon open={courseOpen} />
+            </button>
+          ) : null}
         </span>
-      </button>
+      </div>
 
       {courseOpen && canExpand ? (
         <div className={hasResources ? styles.courseBody : styles.topicsPanel}>

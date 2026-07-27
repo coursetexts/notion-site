@@ -1,10 +1,17 @@
 function normalizeSchoolKey(meta: string): string {
-  return meta
+  const normalized = meta
     .split('/')[0]
     .trim()
     .toLowerCase()
     .replace(/^university of\s+/, '')
     .replace(/\s+university$/, '')
+
+  const aliases: Record<string, string> = {
+    ubc: 'british columbia',
+    mit: 'massachusetts institute of technology'
+  }
+
+  return aliases[normalized] ?? normalized
 }
 
 /**
