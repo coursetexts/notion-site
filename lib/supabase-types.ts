@@ -7,6 +7,10 @@ export interface Profile {
   user_id: string
   display_name: string | null
   avatar_url: string | null
+  /** Optional; added by migration 025 for Community display. */
+  email?: string | null
+  /** Optional; display-only until karma rules land (see lib/karma.ts). */
+  karma_score?: number
   created_at: string
   updated_at: string
 }

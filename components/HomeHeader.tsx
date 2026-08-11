@@ -16,7 +16,7 @@ const navItems = [
   { label: 'All Courses', href: '/all-courses' },
   { label: 'Degrees', href: '/degrees' },
   { label: 'Manifesto', href: '/manifesto' },
-  { label: 'Community', href: '/users' },
+  { label: 'Community', href: '/community' },
   {
     label: 'Donate',
     href: 'https://hcb.hackclub.com/donations/start/coursetexts',

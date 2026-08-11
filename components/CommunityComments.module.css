@@ -1,0 +1,202 @@
+/* Threaded comments — ledger language: hairline nesting guides, Inter small
+   text, quiet controls. Karma sits next to the username. */
+
+.thread {
+  margin-top: 16px;
+  padding-left: 16px;
+  border-left: 1px solid var(--outline, #e6e6e6);
+}
+
+.threadNote {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #6b7280;
+  margin: 8px 0;
+}
+
+.comment {
+  padding: 8px 0;
+}
+
+.commentMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.collapseBtn {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 20px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.collapseBtn:hover,
+.collapseBtn:focus-visible {
+  color: #0089c4;
+}
+
+.collapseBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.commentAuthor {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #25272b;
+}
+
+.commentKarma {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  color: #6b7280;
+}
+
+.metaDot {
+  color: var(--outline, #e6e6e6);
+}
+
+.commentWhen {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  color: #6b7280;
+}
+
+.commentVote {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.commentBody {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.0004em;
+  color: #37352f;
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+}
+
+.commentActions {
+  margin-top: 4px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Nesting: each reply level gets a hairline guide, LessWrong-style */
+.replies {
+  margin-top: 4px;
+  padding-left: 16px;
+  border-left: 1px solid var(--outline, #e6e6e6);
+}
+
+.quietLink {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  color: #37352f;
+  text-decoration: underline;
+  text-decoration-color: var(--outline, #e6e6e6);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
+  cursor: pointer;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+
+.quietLink:hover,
+.quietLink:focus-visible {
+  color: #0089c4;
+  text-decoration-color: #0089c4;
+}
+
+.quietLink:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+/* Comment form */
+.form {
+  margin-top: 8px;
+}
+
+.formInput {
+  width: 100%;
+  min-height: 64px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #d7d8da;
+  border-radius: 0;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.formInput:focus-visible {
+  outline: none;
+  border-color: #0089c4;
+}
+
+.formActions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 0;
+  background: var(--dark-brown, #2c1a0c);
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: opacity 220ms ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submitBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.submitBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quietLink,
+  .submitBtn {
+    transition: none;
+  }
+}
