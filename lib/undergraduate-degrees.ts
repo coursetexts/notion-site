@@ -34,6 +34,22 @@ export function getCoursePageUrl(documentUrl?: string): string {
   return trimmed || COURSE_PAGE_PLACEHOLDER_URL
 }
 
+/** Kebab-case slug for curated-course video pages (shared across degrees by name). */
+export function getCuratedCourseSlug(courseName: string): string {
+  return courseName
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+/** Path: /curated-course/{slug} */
+export function getCuratedCoursePath(courseName: string): string {
+  const slug = getCuratedCourseSlug(courseName)
+  return slug ? `/curated-course/${slug}` : '/course-videos'
+}
+
 export type UndergraduateDegree = {
   id: string
   name: string

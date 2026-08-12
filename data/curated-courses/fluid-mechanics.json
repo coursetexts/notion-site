@@ -1,0 +1,1690 @@
+{
+  "slug": "fluid-mechanics",
+  "title": "Fluid Mechanics",
+  "description": "A one-semester engineering Fluid Mechanics course following calculus, physics, and statics/dynamics. It balances physical intuition, conservation-law modeling, engineering calculations, and laboratory interpretation.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Fluid Mechanics",
+      "linkOrSite": "McGraw Hill",
+      "description": "White text covering statics, Bernoulli, control volumes, pipe flow, and external flow."
+    },
+    {
+      "kind": "textbook",
+      "title": "Fundamentals of Fluid Mechanics",
+      "linkOrSite": "Wiley",
+      "description": "Munson text with strong undergraduate engineering examples."
+    },
+    {
+      "kind": "textbook",
+      "title": "Fluid Mechanics: Fundamentals and Applications",
+      "linkOrSite": "McGraw Hill",
+      "description": "Cengel and Cimbala text with accessible applications and visuals."
+    },
+    {
+      "kind": "textbook",
+      "title": "Engineering Fluid Mechanics",
+      "linkOrSite": "Wiley",
+      "description": "Crowe text for applied fluids, measurements, and engineering systems."
+    },
+    {
+      "kind": "textbook",
+      "title": "Introduction to Fluid Mechanics",
+      "linkOrSite": "Cambridge University Press",
+      "description": "Foundational fluid concepts and problem solving."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OCW Fluid Dynamics",
+      "linkOrSite": "https://ocw.mit.edu/courses/2-06-fluid-dynamics-spring-2013/",
+      "description": "MIT course covering hydrostatics, control volumes, viscous flow, and applications."
+    },
+    {
+      "kind": "website",
+      "title": "Engineering LibreTexts - Fluid Mechanics",
+      "linkOrSite": "https://eng.libretexts.org/Bookshelves/Civil_Engineering",
+      "description": "Open fluid mechanics text and examples."
+    },
+    {
+      "kind": "website",
+      "title": "LearnChemE Fluid Mechanics",
+      "linkOrSite": "https://learncheme.com/screencasts/fluid-mechanics/",
+      "description": "Fluid mechanics screencasts for balances, pressure, pipes, and pumps."
+    },
+    {
+      "kind": "website",
+      "title": "NASA Glenn Beginner's Guide to Aerodynamics",
+      "linkOrSite": "https://www.grc.nasa.gov/www/k-12/airplane/",
+      "description": "Accessible fluid flow, lift, drag, and compressible flow explanations."
+    },
+    {
+      "kind": "website",
+      "title": "NPTEL Fluid Mechanics",
+      "linkOrSite": "https://nptel.ac.in/courses/112/105/112105171/",
+      "description": "University lecture course for fluid statics and dynamics."
+    },
+    {
+      "kind": "youtube",
+      "title": "Jeff Hanson",
+      "linkOrSite": "https://www.youtube.com/@1234jhanson",
+      "description": "Excellent statics, dynamics, mechanics of materials, and vibrations walkthroughs."
+    },
+    {
+      "kind": "youtube",
+      "title": "StructureFree",
+      "linkOrSite": "https://www.youtube.com/@structurefree",
+      "description": "Engineering mechanics lessons for FBDs, trusses, beams, stress, and strain."
+    },
+    {
+      "kind": "youtube",
+      "title": "CPPMechEngTutorials",
+      "linkOrSite": "https://www.youtube.com/@cppmechengtutorials",
+      "description": "Engineering mechanics, thermodynamics, fluids, and materials examples."
+    },
+    {
+      "kind": "youtube",
+      "title": "LearnChemE",
+      "linkOrSite": "https://www.youtube.com/@LearnChemE",
+      "description": "Strong thermodynamics, fluids, controls, and engineering problem-solving videos."
+    },
+    {
+      "kind": "youtube",
+      "title": "Michel van Biezen",
+      "linkOrSite": "https://www.youtube.com/@MichelvanBiezen",
+      "description": "Large library of solved mechanics, physics, circuits, and math problems."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Course Orientation, Fluid Properties, and Continuum Modeling",
+      "description": "This opening unit establishes what makes a fluid different from a solid and how engineers model fluid behavior. Students learn the properties, units, and assumptions used throughout the course.",
+      "videos": [
+        {
+          "title": "What Is a Fluid? Course Overview",
+          "channel": "Engineering Foundations",
+          "durationSeconds": 522,
+          "url": "#",
+          "annotation": "Start here — sets up the whole course.",
+          "thumbnailQuery": "fluid mechanics course intro chalkboard"
+        },
+        {
+          "title": "Solids vs Liquids vs Gases",
+          "channel": "PhysicsHub",
+          "durationSeconds": 665,
+          "url": "#",
+          "thumbnailQuery": "states of matter molecular animation"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fluids and the Continuum Assumption",
+          "description": "Students learn when matter can be treated as a continuous field rather than individual molecules.",
+          "videos": [
+            {
+              "title": "The Continuum Hypothesis Explained",
+              "channel": "PhysicsHub",
+              "durationSeconds": 571,
+              "url": "#",
+              "thumbnailQuery": "continuum hypothesis molecules to field"
+            },
+            {
+              "title": "System, Control Mass, and Control Volume",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 738,
+              "url": "#",
+              "thumbnailQuery": "control volume diagram flow"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Liquids versus gases"
+            },
+            {
+              "type": "concept",
+              "title": "Continuum hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "System, control mass, and control volume"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fluid Properties",
+          "description": "Fluid properties connect material behavior to forces, flow, and energy loss.",
+          "videos": [
+            {
+              "title": "Density, Specific Weight & Specific Gravity",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 614,
+              "url": "#",
+              "thumbnailQuery": "density specific gravity beakers"
+            },
+            {
+              "title": "Viscosity and Newtonian Fluids",
+              "channel": "FlowLab",
+              "durationSeconds": 827,
+              "url": "#",
+              "thumbnailQuery": "viscosity shear flow parallel plates"
+            },
+            {
+              "title": "Surface Tension & Vapor Pressure",
+              "channel": "PhysicsHub",
+              "durationSeconds": 596,
+              "url": "#",
+              "thumbnailQuery": "surface tension water droplet capillary"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Density, specific weight, and specific gravity"
+            },
+            {
+              "type": "concept",
+              "title": "Viscosity and Newtonian fluids"
+            },
+            {
+              "type": "concept",
+              "title": "Surface tension, vapor pressure, and compressibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering Modeling and Units",
+          "description": "A consistent modeling workflow keeps fluid calculations physically meaningful.",
+          "videos": [
+            {
+              "title": "SI vs US Customary Units in Fluids",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 442,
+              "url": "#",
+              "thumbnailQuery": "unit conversion worksheet engineering"
+            },
+            {
+              "title": "Dimensional Homogeneity & Unit Checks",
+              "channel": "FlowLab",
+              "durationSeconds": 529,
+              "url": "#",
+              "thumbnailQuery": "dimensional analysis unit check equations"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "SI and US customary units"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensions and unit checks"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions, sketches, and reasonableness checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluid Statics, Pressure Variation, and Pressure Measurement",
+      "description": "Fluid statics studies fluids at rest. This unit teaches how pressure varies with depth and how engineers measure pressure reliably.",
+      "videos": [
+        {
+          "title": "Complete Introduction to Fluid Statics",
+          "channel": "FlowLab",
+          "durationSeconds": 873,
+          "url": "#",
+          "annotation": "Synthesizes the entire unit.",
+          "thumbnailQuery": "fluid statics pressure depth diagram"
+        },
+        {
+          "title": "Fluid Statics Worked Examples",
+          "channel": "Engineering Foundations",
+          "durationSeconds": 1087,
+          "url": "#",
+          "thumbnailQuery": "hydrostatics worked problems whiteboard"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pressure Concepts",
+          "description": "Students learn pressure as a normal stress and distinguish common reference scales.",
+          "videos": [
+            {
+              "title": "Absolute vs Gauge vs Vacuum Pressure",
+              "channel": "FlowLab",
+              "durationSeconds": 641,
+              "url": "#",
+              "thumbnailQuery": "absolute gauge vacuum pressure scale"
+            },
+            {
+              "title": "Pressure at a Point (Pascal's Law)",
+              "channel": "PhysicsHub",
+              "durationSeconds": 776,
+              "url": "#",
+              "thumbnailQuery": "pascal law pressure point hydraulics"
+            },
+            {
+              "title": "Pascal's Law and Hydraulic Systems",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 558,
+              "url": "#",
+              "thumbnailQuery": "hydraulic press pascal principle"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute, gauge, and vacuum pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure at a point"
+            },
+            {
+              "type": "concept",
+              "title": "Pascal's law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydrostatic Pressure Variation",
+          "description": "Students derive and apply the relationship between pressure and elevation.",
+          "videos": [
+            {
+              "title": "Deriving the Hydrostatic Equation",
+              "channel": "FlowLab",
+              "durationSeconds": 802,
+              "url": "#",
+              "thumbnailQuery": "hydrostatic equation derivation depth"
+            },
+            {
+              "title": "Pressure in Constant-Density Liquids",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 524,
+              "url": "#",
+              "thumbnailQuery": "pressure depth column liquid"
+            },
+            {
+              "title": "Pressure in the Compressible Atmosphere",
+              "channel": "PhysicsHub",
+              "durationSeconds": 697,
+              "url": "#",
+              "thumbnailQuery": "atmospheric pressure altitude graph"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrostatic equation"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-density liquids"
+            },
+            {
+              "type": "concept",
+              "title": "Compressible atmosphere overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure Measurement",
+          "description": "Students learn how devices translate pressure differences into measurable quantities.",
+          "videos": [
+            {
+              "title": "Piezometers and Manometers",
+              "channel": "FlowLab",
+              "durationSeconds": 723,
+              "url": "#",
+              "thumbnailQuery": "manometer u-tube pressure measurement"
+            },
+            {
+              "title": "Differential Manometers Explained",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 629,
+              "url": "#",
+              "thumbnailQuery": "differential manometer two fluids"
+            },
+            {
+              "title": "Barometers and Pressure Transducers",
+              "channel": "PhysicsHub",
+              "durationSeconds": 551,
+              "url": "#",
+              "thumbnailQuery": "barometer transducer instrument"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Piezometers and manometers"
+            },
+            {
+              "type": "concept",
+              "title": "Differential manometers"
+            },
+            {
+              "type": "concept",
+              "title": "Barometers and pressure transducers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hydrostatic Forces, Buoyancy, and Stability",
+      "description": "This unit applies pressure fields to submerged and floating bodies. Students learn how distributed pressure creates resultant forces and moments.",
+      "videos": [
+        {
+          "title": "Hydrostatic Forces & Buoyancy Overview",
+          "channel": "FlowLab",
+          "durationSeconds": 948,
+          "url": "#",
+          "thumbnailQuery": "submerged gate hydrostatic force buoyancy"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Forces on Plane and Curved Surfaces",
+          "description": "Students reduce distributed hydrostatic pressure to useful resultants.",
+          "videos": [
+            {
+              "title": "Hydrostatic Force on a Plane Surface",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 835,
+              "url": "#",
+              "thumbnailQuery": "plane surface hydrostatic pressure prism"
+            },
+            {
+              "title": "Center of Pressure Calculations",
+              "channel": "FlowLab",
+              "durationSeconds": 680,
+              "url": "#",
+              "thumbnailQuery": "center of pressure submerged gate"
+            },
+            {
+              "title": "Forces on Curved Surfaces",
+              "channel": "PhysicsHub",
+              "durationSeconds": 761,
+              "url": "#",
+              "thumbnailQuery": "curved surface pressure components dam"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnitude of hydrostatic force"
+            },
+            {
+              "type": "concept",
+              "title": "Center of pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Curved-surface force components"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buoyancy",
+          "description": "Archimedes' principle explains the upward force on immersed objects.",
+          "videos": [
+            {
+              "title": "Archimedes' Principle Derived",
+              "channel": "PhysicsHub",
+              "durationSeconds": 608,
+              "url": "#",
+              "thumbnailQuery": "archimedes principle displaced water"
+            },
+            {
+              "title": "Submerged vs Floating Bodies",
+              "channel": "FlowLab",
+              "durationSeconds": 587,
+              "url": "#",
+              "thumbnailQuery": "floating submerged body buoyancy diagram"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Displaced-fluid weight"
+            },
+            {
+              "type": "concept",
+              "title": "Fully and partially submerged bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Apparent weight"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability of Floating and Submerged Bodies",
+          "description": "Students learn why some bodies return to equilibrium while others overturn.",
+          "videos": [
+            {
+              "title": "Metacentric Height and Ship Stability",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 852,
+              "url": "#",
+              "thumbnailQuery": "metacenter ship stability tilt"
+            },
+            {
+              "title": "Stable, Unstable & Neutral Equilibrium",
+              "channel": "FlowLab",
+              "durationSeconds": 513,
+              "url": "#",
+              "thumbnailQuery": "equilibrium stability floating body"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Center of gravity and center of buoyancy"
+            },
+            {
+              "type": "concept",
+              "title": "Metacenter and metacentric height"
+            },
+            {
+              "type": "concept",
+              "title": "Stable, unstable, and neutral equilibrium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluid Kinematics and Flow Description",
+      "description": "Kinematics describes fluid motion without yet asking what forces cause it. Students learn to describe velocity fields, flow patterns, and local deformation.",
+      "videos": [
+        {
+          "title": "Describing Fluid Motion: Kinematics",
+          "channel": "FlowLab",
+          "durationSeconds": 747,
+          "url": "#",
+          "thumbnailQuery": "velocity field streamlines flow visualization"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flow Classification",
+          "description": "Students learn standard ways to characterize fluid motion.",
+          "videos": [
+            {
+              "title": "Steady vs Unsteady, Uniform vs Nonuniform",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 652,
+              "url": "#",
+              "thumbnailQuery": "steady unsteady flow classification"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steady and unsteady flow"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform and nonuniform flow"
+            },
+            {
+              "type": "concept",
+              "title": "One-, two-, and three-dimensional descriptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Velocity Fields and Streamlines",
+          "description": "Velocity fields help students visualize how fluid particles move.",
+          "videos": [
+            {
+              "title": "Streamlines, Pathlines & Streaklines",
+              "channel": "PhysicsHub",
+              "durationSeconds": 704,
+              "url": "#",
+              "thumbnailQuery": "streamlines pathlines streaklines dye"
+            },
+            {
+              "title": "The Material Derivative",
+              "channel": "FlowLab",
+              "durationSeconds": 789,
+              "url": "#",
+              "thumbnailQuery": "material derivative acceleration fluid particle"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Streamlines, pathlines, and streaklines"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration of a fluid particle"
+            },
+            {
+              "type": "concept",
+              "title": "Material derivative concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rotation and Deformation",
+          "description": "Students get an introductory view of how fluid elements translate, rotate, and strain.",
+          "videos": [
+            {
+              "title": "Vorticity and Rotation Basics",
+              "channel": "PhysicsHub",
+              "durationSeconds": 616,
+              "url": "#",
+              "thumbnailQuery": "vorticity rotation fluid element"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vorticity overview"
+            },
+            {
+              "type": "concept",
+              "title": "Rate of deformation"
+            },
+            {
+              "type": "concept",
+              "title": "Incompressible-flow kinematics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bernoulli Equation and Mechanical Energy Concepts",
+      "description": "Bernoulli's equation connects pressure, velocity, and elevation along a flow. Students learn both its power and its limitations.",
+      "videos": [
+        {
+          "title": "Bernoulli's Equation from Scratch",
+          "channel": "FlowLab",
+          "durationSeconds": 982,
+          "url": "#",
+          "thumbnailQuery": "bernoulli equation streamline energy"
+        },
+        {
+          "title": "Why Bernoulli Fails: Common Mistakes",
+          "channel": "Engineering Foundations",
+          "durationSeconds": 768,
+          "url": "#",
+          "thumbnailQuery": "bernoulli assumptions limitations"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Derivation and Assumptions",
+          "description": "Students learn when Bernoulli is valid rather than using it as a universal formula.",
+          "videos": [
+            {
+              "title": "Steady, Incompressible, Inviscid: The Assumptions",
+              "channel": "PhysicsHub",
+              "durationSeconds": 691,
+              "url": "#",
+              "thumbnailQuery": "bernoulli assumptions streamline diagram"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steady, incompressible, inviscid assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Along a streamline"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure, velocity, and elevation heads"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bernoulli Applications",
+          "description": "Students apply the equation to common devices and flow situations.",
+          "videos": [
+            {
+              "title": "Venturi Meters and Pitot Tubes",
+              "channel": "FlowLab",
+              "durationSeconds": 838,
+              "url": "#",
+              "thumbnailQuery": "venturi meter pitot tube measurement"
+            },
+            {
+              "title": "Nozzles, Diffusers, Jets and Siphons",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 731,
+              "url": "#",
+              "thumbnailQuery": "nozzle diffuser jet siphon flow"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nozzles and diffusers"
+            },
+            {
+              "type": "concept",
+              "title": "Venturi meters and Pitot tubes"
+            },
+            {
+              "type": "concept",
+              "title": "Jets, tanks, and siphons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy Interpretation",
+          "description": "Students connect Bernoulli terms to mechanical energy per unit weight.",
+          "videos": [
+            {
+              "title": "Static, Dynamic & Stagnation Pressure",
+              "channel": "PhysicsHub",
+              "durationSeconds": 637,
+              "url": "#",
+              "thumbnailQuery": "stagnation pressure dynamic static"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static, dynamic, and stagnation pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Energy grade concepts"
+            },
+            {
+              "type": "concept",
+              "title": "When losses and machines must be included"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control-Volume Conservation of Mass",
+      "description": "Mass conservation is the first universal balance law of fluid mechanics. Students learn to analyze flow through devices and networks using control volumes.",
+      "videos": [
+        {
+          "title": "The Control Volume Approach",
+          "channel": "FlowLab",
+          "durationSeconds": 794,
+          "url": "#",
+          "thumbnailQuery": "control volume mass balance diagram"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Control Volume Framework",
+          "description": "Students learn to draw boundaries around fluid systems and track what crosses them.",
+          "videos": [
+            {
+              "title": "Drawing Control Surfaces",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 584,
+              "url": "#",
+              "thumbnailQuery": "control surface inlet outlet boundary"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Inlets, outlets, and accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Steady versus unsteady balances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuity Equation",
+          "description": "The continuity equation relates density, area, and velocity.",
+          "videos": [
+            {
+              "title": "Deriving the Continuity Equation",
+              "channel": "FlowLab",
+              "durationSeconds": 722,
+              "url": "#",
+              "thumbnailQuery": "continuity equation area velocity"
+            },
+            {
+              "title": "Incompressible vs Compressible Continuity",
+              "channel": "PhysicsHub",
+              "durationSeconds": 626,
+              "url": "#",
+              "thumbnailQuery": "continuity compressible incompressible"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integral mass balance"
+            },
+            {
+              "type": "concept",
+              "title": "One-dimensional flow approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Incompressible and compressible forms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students use mass conservation in practical flow systems.",
+          "videos": [
+            {
+              "title": "Filling and Draining Tanks",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 679,
+              "url": "#",
+              "thumbnailQuery": "tank filling draining flow rate"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nozzles, diffusers, and junctions"
+            },
+            {
+              "type": "concept",
+              "title": "Filling and draining tanks"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-inlet and multiple-outlet systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control-Volume Momentum and Force Analysis",
+      "description": "Momentum conservation connects fluid motion to forces on pipes, vanes, jets, and devices. This unit is where flow creates mechanical loads.",
+      "videos": [
+        {
+          "title": "Momentum Equation for Control Volumes",
+          "channel": "FlowLab",
+          "durationSeconds": 931,
+          "url": "#",
+          "thumbnailQuery": "momentum control volume force diagram"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linear Momentum Equation",
+          "description": "Students learn how momentum flux and external forces balance.",
+          "videos": [
+            {
+              "title": "Setting Up the Momentum Balance",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 787,
+              "url": "#",
+              "thumbnailQuery": "linear momentum balance forces"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integral momentum balance"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure, weight, and support forces"
+            },
+            {
+              "type": "concept",
+              "title": "Sign conventions and vector components"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Momentum Applications",
+          "description": "Students calculate forces produced by changing flow direction or speed.",
+          "videos": [
+            {
+              "title": "Force on Pipe Bends and Reducers",
+              "channel": "FlowLab",
+              "durationSeconds": 773,
+              "url": "#",
+              "thumbnailQuery": "pipe bend reducer reaction force"
+            },
+            {
+              "title": "Jets Striking Plates and Vanes",
+              "channel": "PhysicsHub",
+              "durationSeconds": 702,
+              "url": "#",
+              "thumbnailQuery": "jet impact plate vane force"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pipe bends and reducers"
+            },
+            {
+              "type": "concept",
+              "title": "Jets striking plates and vanes"
+            },
+            {
+              "type": "concept",
+              "title": "Nozzle thrust and propulsion basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Angular Momentum",
+          "description": "Angular momentum provides the foundation for turbomachinery analysis.",
+          "videos": [
+            {
+              "title": "Moment of Momentum & Turbomachines",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 816,
+              "url": "#",
+              "thumbnailQuery": "angular momentum turbine rotor"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment of momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Torque on rotating devices"
+            },
+            {
+              "type": "concept",
+              "title": "Pump and turbine preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Equation, Head Losses, and Hydraulic Grade Lines",
+      "description": "The mechanical energy equation extends Bernoulli to real systems with losses, pumps, and turbines. Students learn to visualize energy changes along a flow path.",
+      "videos": [
+        {
+          "title": "The Extended Energy Equation",
+          "channel": "FlowLab",
+          "durationSeconds": 889,
+          "url": "#",
+          "thumbnailQuery": "energy equation head loss pump turbine"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanical Energy Equation",
+          "description": "Students account for machines and irreversible losses.",
+          "videos": [
+            {
+              "title": "Pump Head, Turbine Head & Losses",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 758,
+              "url": "#",
+              "thumbnailQuery": "pump head turbine head energy"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pump head and turbine head"
+            },
+            {
+              "type": "concept",
+              "title": "Major and minor losses"
+            },
+            {
+              "type": "concept",
+              "title": "Energy balance between sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Grade Lines",
+          "description": "Hydraulic and energy grade lines make pressure and energy behavior visible.",
+          "videos": [
+            {
+              "title": "Hydraulic and Energy Grade Lines",
+              "channel": "FlowLab",
+              "durationSeconds": 715,
+              "url": "#",
+              "thumbnailQuery": "hydraulic grade line energy grade line"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydraulic grade line"
+            },
+            {
+              "type": "concept",
+              "title": "Energy grade line"
+            },
+            {
+              "type": "concept",
+              "title": "Interpretation through pipes and devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System Analysis",
+          "description": "Students apply the equation to realistic fluid systems.",
+          "videos": [
+            {
+              "title": "Reservoir-to-Reservoir Flow",
+              "channel": "PhysicsHub",
+              "durationSeconds": 644,
+              "url": "#",
+              "thumbnailQuery": "reservoir pipe flow energy analysis"
+            },
+            {
+              "title": "Cavitation Risk in Pump Systems",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 598,
+              "url": "#",
+              "thumbnailQuery": "cavitation pump suction bubbles"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reservoir-to-reservoir flow"
+            },
+            {
+              "type": "concept",
+              "title": "Pump-assisted systems"
+            },
+            {
+              "type": "concept",
+              "title": "Siphons and cavitation risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dimensional Analysis, Similitude, and Model Testing",
+      "description": "Dimensional analysis reduces complex flow problems to meaningful nondimensional groups. It also lets engineers test scaled models and transfer results to full-size systems.",
+      "videos": [
+        {
+          "title": "Dimensional Analysis & Similitude Overview",
+          "channel": "FlowLab",
+          "durationSeconds": 912,
+          "url": "#",
+          "thumbnailQuery": "dimensional analysis pi groups model"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dimensions and Buckingham Pi",
+          "description": "Students learn how variables combine into dimensionless parameters.",
+          "videos": [
+            {
+              "title": "The Buckingham Pi Theorem, Step by Step",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 964,
+              "url": "#",
+              "thumbnailQuery": "buckingham pi theorem repeating variables"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fundamental dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Buckingham Pi theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Selecting repeating variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Important Dimensionless Numbers",
+          "description": "Dimensionless numbers compare competing physical effects.",
+          "videos": [
+            {
+              "title": "Reynolds, Froude, Euler, Mach & Weber",
+              "channel": "FlowLab",
+              "durationSeconds": 821,
+              "url": "#",
+              "thumbnailQuery": "dimensionless numbers reynolds froude mach"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds, Froude, Euler, Mach, and Weber numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Physical interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Regime identification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Similitude and Scaling",
+          "description": "Students learn how model tests represent prototypes.",
+          "videos": [
+            {
+              "title": "Geometric, Kinematic & Dynamic Similarity",
+              "channel": "PhysicsHub",
+              "durationSeconds": 739,
+              "url": "#",
+              "thumbnailQuery": "model prototype similarity wind tunnel"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric, kinematic, and dynamic similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Scale effects"
+            },
+            {
+              "type": "concept",
+              "title": "Wind-tunnel, water-channel, and hydraulic-model examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Internal Flow: Laminar and Turbulent Pipe Flow",
+      "description": "Internal flow focuses on fluids confined by walls. Students learn how viscosity, turbulence, and roughness determine pressure loss.",
+      "videos": [
+        {
+          "title": "Pipe Flow: Laminar to Turbulent",
+          "channel": "FlowLab",
+          "durationSeconds": 867,
+          "url": "#",
+          "thumbnailQuery": "pipe flow laminar turbulent velocity profile"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fully Developed Pipe Flow",
+          "description": "Students learn the structure of laminar and turbulent velocity profiles.",
+          "videos": [
+            {
+              "title": "Entrance Length & Velocity Profiles",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 753,
+              "url": "#",
+              "thumbnailQuery": "entrance length parabolic velocity profile"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entrance length"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar parabolic profile"
+            },
+            {
+              "type": "concept",
+              "title": "Mean velocity and wall shear"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reynolds Number and Flow Regimes",
+          "description": "Reynolds number predicts whether viscous or inertial behavior dominates.",
+          "videos": [
+            {
+              "title": "Reynolds' Experiment Recreated",
+              "channel": "PhysicsHub",
+              "durationSeconds": 649,
+              "url": "#",
+              "thumbnailQuery": "reynolds experiment dye pipe transition"
+            },
+            {
+              "title": "Critical Reynolds Number",
+              "channel": "FlowLab",
+              "durationSeconds": 562,
+              "url": "#",
+              "thumbnailQuery": "critical reynolds number transition"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Laminar, transitional, and turbulent regimes"
+            },
+            {
+              "type": "concept",
+              "title": "Critical Reynolds number"
+            },
+            {
+              "type": "concept",
+              "title": "Physical meaning of turbulence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Friction Losses",
+          "description": "Students quantify pressure drop in pipes.",
+          "videos": [
+            {
+              "title": "Darcy-Weisbach and the Moody Chart",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 918,
+              "url": "#",
+              "thumbnailQuery": "moody chart friction factor roughness"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Darcy-Weisbach equation"
+            },
+            {
+              "type": "concept",
+              "title": "Friction factor and Moody chart"
+            },
+            {
+              "type": "concept",
+              "title": "Relative roughness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pipe Systems, Pumps, Turbines, and Flow Measurement",
+      "description": "This unit turns pipe-flow fundamentals into engineering-system analysis. Students learn how components interact and how flow is measured and moved.",
+      "videos": [
+        {
+          "title": "Pipe Systems and Turbomachinery Overview",
+          "channel": "FlowLab",
+          "durationSeconds": 843,
+          "url": "#",
+          "thumbnailQuery": "pipe network pump turbine system"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pipe Networks and Minor Losses",
+          "description": "Students analyze systems with fittings, branches, and multiple pipes.",
+          "videos": [
+            {
+              "title": "Minor Losses and Loss Coefficients",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 767,
+              "url": "#",
+              "thumbnailQuery": "minor losses fittings loss coefficient"
+            },
+            {
+              "title": "Series and Parallel Pipes",
+              "channel": "PhysicsHub",
+              "durationSeconds": 668,
+              "url": "#",
+              "thumbnailQuery": "series parallel pipe network"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel pipes"
+            },
+            {
+              "type": "concept",
+              "title": "Network balancing overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pumps and Turbines",
+          "description": "Students learn how machines add or remove energy from fluids.",
+          "videos": [
+            {
+              "title": "Pump Curves and Operating Point",
+              "channel": "FlowLab",
+              "durationSeconds": 809,
+              "url": "#",
+              "thumbnailQuery": "pump curve system curve operating point"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pump curves and system curves"
+            },
+            {
+              "type": "concept",
+              "title": "Operating point"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency, power, and cavitation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow Measurement",
+          "description": "Students compare common measurement techniques and their limitations.",
+          "videos": [
+            {
+              "title": "Venturi, Orifice & Nozzle Meters",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 736,
+              "url": "#",
+              "thumbnailQuery": "venturi orifice nozzle flow meter"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Venturi, orifice, and nozzle meters"
+            },
+            {
+              "type": "concept",
+              "title": "Pitot-static tubes"
+            },
+            {
+              "type": "concept",
+              "title": "Rotameters, transducers, and calibration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "External Flow, Drag, Lift, and Boundary Layers",
+      "description": "External flow studies fluid moving around bodies. Students learn how viscous boundary layers create drag, separation, and lift-related effects.",
+      "videos": [
+        {
+          "title": "Boundary Layers, Drag and Lift Overview",
+          "channel": "FlowLab",
+          "durationSeconds": 944,
+          "url": "#",
+          "thumbnailQuery": "boundary layer drag lift airfoil"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boundary Layer Fundamentals",
+          "description": "Students learn how no-slip behavior creates a thin viscous region near surfaces.",
+          "videos": [
+            {
+              "title": "The No-Slip Condition & Boundary Layers",
+              "channel": "PhysicsHub",
+              "durationSeconds": 751,
+              "url": "#",
+              "thumbnailQuery": "boundary layer no slip velocity profile"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "No-slip condition"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar and turbulent boundary layers"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary-layer thickness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drag",
+          "description": "Students learn how shape, skin friction, and separation determine resistance.",
+          "videos": [
+            {
+              "title": "Pressure Drag vs Skin-Friction Drag",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 717,
+              "url": "#",
+              "thumbnailQuery": "pressure drag skin friction separation"
+            },
+            {
+              "title": "Flow Separation and Streamlining",
+              "channel": "FlowLab",
+              "durationSeconds": 624,
+              "url": "#",
+              "thumbnailQuery": "flow separation streamlining bluff body"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure drag and skin-friction drag"
+            },
+            {
+              "type": "concept",
+              "title": "Drag coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Flow separation and streamlining"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lift and Flow Around Bodies",
+          "description": "Students gain a foundational view of lift and fluid forces on engineering shapes.",
+          "videos": [
+            {
+              "title": "How Airfoils Generate Lift",
+              "channel": "PhysicsHub",
+              "durationSeconds": 792,
+              "url": "#",
+              "thumbnailQuery": "airfoil lift circulation flow"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lift coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Airfoils and circulation overview"
+            },
+            {
+              "type": "concept",
+              "title": "Bluff bodies and practical examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Open-Channel Flow and Introductory Compressible Flow",
+      "description": "This unit introduces two important regimes beyond closed-pipe incompressible flow: free-surface hydraulics and flows where density changes matter.",
+      "videos": [
+        {
+          "title": "Open-Channel and Compressible Flow Intro",
+          "channel": "FlowLab",
+          "durationSeconds": 878,
+          "url": "#",
+          "thumbnailQuery": "open channel free surface compressible flow"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Open-Channel Flow Concepts",
+          "description": "Students learn how gravity and free surfaces shape channel flow.",
+          "videos": [
+            {
+              "title": "Specific Energy and Flow Depth",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 764,
+              "url": "#",
+              "thumbnailQuery": "specific energy open channel depth"
+            },
+            {
+              "title": "Subcritical, Critical & Supercritical Flow",
+              "channel": "PhysicsHub",
+              "durationSeconds": 686,
+              "url": "#",
+              "thumbnailQuery": "froude number critical flow channel"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Depth, velocity, and discharge"
+            },
+            {
+              "type": "concept",
+              "title": "Specific energy"
+            },
+            {
+              "type": "concept",
+              "title": "Subcritical, critical, and supercritical flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uniform and Rapidly Varied Flow",
+          "description": "Students survey common hydraulic calculations and transitions.",
+          "videos": [
+            {
+              "title": "Manning's Equation and the Hydraulic Jump",
+              "channel": "FlowLab",
+              "durationSeconds": 783,
+              "url": "#",
+              "thumbnailQuery": "manning equation hydraulic jump channel"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Manning equation"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic jump"
+            },
+            {
+              "type": "concept",
+              "title": "Weirs and spillways overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compressible Flow Introduction",
+          "description": "Students learn when gas density changes can no longer be ignored.",
+          "videos": [
+            {
+              "title": "Mach Number and the Speed of Sound",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 729,
+              "url": "#",
+              "thumbnailQuery": "mach number speed of sound shock"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mach number"
+            },
+            {
+              "type": "concept",
+              "title": "Speed of sound"
+            },
+            {
+              "type": "concept",
+              "title": "Choking and shock-wave overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Fluid Mechanics Laboratory and Applications",
+      "description": "The final unit consolidates the course through measurement, uncertainty, and cross-disciplinary applications. Students practice explaining not only what the equations predict, but whether the result is credible.",
+      "videos": [
+        {
+          "title": "From Theory to Lab: Putting It Together",
+          "channel": "FlowLab",
+          "durationSeconds": 1011,
+          "url": "#",
+          "thumbnailQuery": "fluid mechanics lab measurement apparatus"
+        }
+      ],
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental Methods and Data Quality",
+          "description": "Students learn how fluid quantities are measured and how uncertainty affects conclusions.",
+          "videos": [
+            {
+              "title": "Measuring Pressure, Velocity & Flow Rate",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 798,
+              "url": "#",
+              "thumbnailQuery": "lab pressure velocity flow measurement"
+            },
+            {
+              "title": "Calibration and Uncertainty Analysis",
+              "channel": "FlowLab",
+              "durationSeconds": 707,
+              "url": "#",
+              "thumbnailQuery": "calibration uncertainty error bars"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure, velocity, and flow-rate measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Data reduction and plotting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated Engineering Applications",
+          "description": "Students connect core methods to real systems.",
+          "videos": [
+            {
+              "title": "Fluids in Aerospace and Biomedical Systems",
+              "channel": "PhysicsHub",
+              "durationSeconds": 775,
+              "url": "#",
+              "thumbnailQuery": "aerodynamics biofluid application"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydraulic, mechanical, and process systems"
+            },
+            {
+              "type": "concept",
+              "title": "Aerodynamic and biofluid examples"
+            },
+            {
+              "type": "concept",
+              "title": "Energy, environmental, and transport applications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Validation and Communication",
+          "description": "Students learn to present a fluid analysis as an engineering argument.",
+          "videos": [
+            {
+              "title": "Theory vs Experiment vs Simulation",
+              "channel": "Engineering Foundations",
+              "durationSeconds": 742,
+              "url": "#",
+              "thumbnailQuery": "theory experiment simulation comparison"
+            }
+          ],
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumptions and limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison of theory, experiment, and simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Clear diagrams, calculations, and conclusions"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

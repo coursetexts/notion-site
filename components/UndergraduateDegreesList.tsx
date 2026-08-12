@@ -3,6 +3,7 @@ import * as React from 'react'
 import {
   filterDegrees,
   getCoursePageUrl,
+  getCuratedCoursePath,
   groupResources,
   type CourseResource,
   type CourseResourceKind,
@@ -287,6 +288,17 @@ function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
             className={styles.resourceLink}
           >
             See full course outline ⇗
+          </a>
+        </li>
+        <li
+          key={`${course.number}-topic-curated-course`}
+          className={styles.topicItem}
+        >
+          <a
+            href={getCuratedCoursePath(course.name)}
+            className={styles.resourceLink}
+          >
+            See curated course videos
           </a>
         </li>
       </ul>

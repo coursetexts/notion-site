@@ -23,7 +23,8 @@
     "test": "run-p test:*",
     "test:lint": "eslint '**/*.{ts,tsx}'",
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
-    "seed:community": "node scripts/seed-community.mjs"
+    "seed:community": "node scripts/seed-community.mjs",
+    "seed:curated-courses": "node scripts/seed-curated-courses.mjs"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",
