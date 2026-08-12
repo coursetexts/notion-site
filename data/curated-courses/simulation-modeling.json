@@ -1,0 +1,768 @@
+{
+  "slug": "simulation-modeling",
+  "title": "Simulation Modeling",
+  "description": "Simulation Modeling develops discrete-event and related simulation methods for analyzing complex, random systems\u2014from input modeling and software implementation through output analysis, verification/validation, and comparing alternatives.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Introduction to Simulation",
+      "description": "Understand when simulation is the right tool for analyzing systems that are too complex, random, or costly to test directly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Purpose of Simulation",
+          "description": "Simulation helps study system behavior without interrupting the real system or oversimplifying uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision support"
+            },
+            {
+              "type": "concept",
+              "title": "Risk-free experimentation"
+            },
+            {
+              "type": "concept",
+              "title": "System performance estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of closed-form analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Types of Simulation",
+          "description": "Different modeling styles fit different kinds of systems and questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete-event simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Agent-based simulation"
+            },
+            {
+              "type": "concept",
+              "title": "System dynamics overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation Study Process",
+          "description": "A disciplined process keeps models tied to the decision being made.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem formulation"
+            },
+            {
+              "type": "concept",
+              "title": "Conceptual model"
+            },
+            {
+              "type": "concept",
+              "title": "Data collection"
+            },
+            {
+              "type": "concept",
+              "title": "Experimentation and reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete-Event Simulation Concepts",
+      "description": "Model systems as sequences of state changes caused by events such as arrivals, departures, failures, and resource releases.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "System State and Events",
+          "description": "Discrete-event models change only when meaningful events occur.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State variables"
+            },
+            {
+              "type": "concept",
+              "title": "Event list"
+            },
+            {
+              "type": "concept",
+              "title": "Clock advancement"
+            },
+            {
+              "type": "concept",
+              "title": "Initialization and termination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Entities, Resources, and Queues",
+          "description": "Core DES objects represent the flow of jobs, customers, orders, or materials through constrained resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entity attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Resource capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Queue discipline"
+            },
+            {
+              "type": "concept",
+              "title": "Seize-Delay-Release Logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance Measures",
+          "description": "Simulation is useful when outputs connect directly to operational decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Waiting time"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Utilization"
+            },
+            {
+              "type": "concept",
+              "title": "Work-in-Process and Cycle Time"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Number and Variate Generation",
+      "description": "Generate controlled streams of random behavior so experiments can represent uncertainty reproducibly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Random Number Streams",
+          "description": "Random streams provide the raw uncertainty behind repeatable simulation experiments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pseudo-random numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Seeds"
+            },
+            {
+              "type": "concept",
+              "title": "Independent streams"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Random Variate Methods",
+          "description": "Variate generation transforms uniform random numbers into realistic input behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverse transform method"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance-rejection idea"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Built-in distribution generators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Distributions",
+          "description": "Students learn to match common distributions to operational phenomena.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential interarrival times"
+            },
+            {
+              "type": "concept",
+              "title": "Normal process variation"
+            },
+            {
+              "type": "concept",
+              "title": "Triangular estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson counts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Input Data Modeling",
+      "description": "Turn observed data into probability models that drive realistic simulation inputs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Data Collection and Cleaning",
+          "description": "Input models are only as credible as the observations and assumptions behind them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling plans"
+            },
+            {
+              "type": "concept",
+              "title": "Missing data"
+            },
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Independence checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distribution Fitting",
+          "description": "Distribution fitting turns raw observations into usable model inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Histograms and summary statistics"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Goodness-of-fit tests"
+            },
+            {
+              "type": "concept",
+              "title": "Q-Q Plots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling Dependence and Nonstationarity",
+          "description": "Real systems often have time patterns and correlated inputs that simple independent assumptions miss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time-of-day effects"
+            },
+            {
+              "type": "concept",
+              "title": "Seasonality"
+            },
+            {
+              "type": "concept",
+              "title": "Correlated arrivals"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario-based inputs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Building Simulation Models",
+      "description": "Translate a real process into entities, logic, resources, queues, assumptions, and performance measures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Modeling",
+          "description": "Conceptual models define scope before software details take over.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Level of detail"
+            },
+            {
+              "type": "concept",
+              "title": "Process maps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Logic",
+          "description": "Model logic specifies how entities move, wait, compete for resources, and exit the system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arrivals"
+            },
+            {
+              "type": "concept",
+              "title": "Routing rules"
+            },
+            {
+              "type": "concept",
+              "title": "Service activities"
+            },
+            {
+              "type": "concept",
+              "title": "Failures and downtime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation and Traceability",
+          "description": "Good documentation makes a model reviewable, reusable, and defensible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumption logs"
+            },
+            {
+              "type": "concept",
+              "title": "Input sources"
+            },
+            {
+              "type": "concept",
+              "title": "Model diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Version history"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Simulation Software",
+      "description": "Use professional simulation tools and/or programming environments to build, run, debug, and document models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tool Selection",
+          "description": "Different tools trade off speed, flexibility, visualization, and learning curve.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arena"
+            },
+            {
+              "type": "concept",
+              "title": "AnyLogic"
+            },
+            {
+              "type": "concept",
+              "title": "Simio"
+            },
+            {
+              "type": "concept",
+              "title": "Python/R Simulation Libraries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Implementation Workflow",
+          "description": "Software work should move from a small verified model to a richer model in controlled steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prototype model"
+            },
+            {
+              "type": "concept",
+              "title": "Animation checks"
+            },
+            {
+              "type": "concept",
+              "title": "Debugging"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data and Reporting Integration",
+          "description": "Simulation software becomes more useful when it connects cleanly to data and reporting workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spreadsheet import/export"
+            },
+            {
+              "type": "concept",
+              "title": "Database connections"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Experiment logs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Output Analysis",
+      "description": "Analyze simulation results statistically so decisions are based on confidence, not isolated runs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Replications and Precision",
+          "description": "Multiple replications are needed because simulation outputs are random variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent replications"
+            },
+            {
+              "type": "concept",
+              "title": "Sample mean"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Warm-Up and Run Length",
+          "description": "Output analysis distinguishes transient startup effects from steady operating behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial bias"
+            },
+            {
+              "type": "concept",
+              "title": "Warm-up period"
+            },
+            {
+              "type": "concept",
+              "title": "Terminating systems"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-state systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpreting Results",
+          "description": "Statistical outputs should be translated into operational insight.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bottleneck evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Practical significance"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization of outputs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Verification and Validation",
+      "description": "Check that the model is built correctly and represents the real system well enough for its decision purpose.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Verification",
+          "description": "Verification asks whether the model was built as intended.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logic tracing"
+            },
+            {
+              "type": "concept",
+              "title": "Extreme-case tests"
+            },
+            {
+              "type": "concept",
+              "title": "Animation review"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation",
+          "description": "Validation asks whether the model is credible for the real decision context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Face validation"
+            },
+            {
+              "type": "concept",
+              "title": "Historical comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Expert review"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Credibility and Ethics",
+          "description": "A simulation model should make uncertainty, assumptions, and limitations visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumption transparency"
+            },
+            {
+              "type": "concept",
+              "title": "Model misuse"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder review"
+            },
+            {
+              "type": "concept",
+              "title": "Decision limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Comparing Alternatives",
+      "description": "Design experiments that compare policies, layouts, staffing levels, schedules, or process changes fairly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental Design",
+          "description": "Fair comparison requires planned experiments rather than casual trial-and-error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factors and levels"
+            },
+            {
+              "type": "concept",
+              "title": "Response variables"
+            },
+            {
+              "type": "concept",
+              "title": "Replication strategy"
+            },
+            {
+              "type": "concept",
+              "title": "Common random numbers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical Comparison",
+          "description": "Alternative selection uses statistical evidence to separate signal from random variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Paired comparisons"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals for differences"
+            },
+            {
+              "type": "concept",
+              "title": "Ranking and selection"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-comparison caution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization with Simulation",
+          "description": "Simulation can support search for better policies when outputs are noisy and systems are complex.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scenario screening"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation optimization"
+            },
+            {
+              "type": "concept",
+              "title": "Response surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Simulation Case Studies",
+      "description": "Apply the full simulation workflow to realistic manufacturing, logistics, service, healthcare, or supply-chain systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Manufacturing and Logistics",
+          "description": "Industrial engineering simulations often analyze flow through production, warehousing, and transport systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assembly lines"
+            },
+            {
+              "type": "concept",
+              "title": "Material handling"
+            },
+            {
+              "type": "concept",
+              "title": "Warehouse picking"
+            },
+            {
+              "type": "concept",
+              "title": "Supply-chain disruptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service and Healthcare Systems",
+          "description": "Queueing-heavy service systems are natural simulation applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Call centers"
+            },
+            {
+              "type": "concept",
+              "title": "Emergency departments"
+            },
+            {
+              "type": "concept",
+              "title": "Appointment systems"
+            },
+            {
+              "type": "concept",
+              "title": "Staffing policies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone Communication",
+          "description": "A case study should end with a clear decision recommendation and defensible evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "Model assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Experiment results"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation recommendations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1500 @@
+{
+  "slug": "aerospace-structures",
+  "title": "Aerospace Structures",
+  "description": "This syllabus is designed for a junior-level aerospace structures course after statics and mechanics of materials, with finite element and design integration appropriate for aerospace engineering students.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Aerospace Structural Loads and Design Philosophy",
+      "description": "This section develops aerospace structural loads and design philosophy through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Load Environments",
+          "description": "Students learn where structural demand comes from before analyzing members.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maneuver load"
+            },
+            {
+              "type": "concept",
+              "title": "Gust load"
+            },
+            {
+              "type": "concept",
+              "title": "Landing load"
+            },
+            {
+              "type": "concept",
+              "title": "Pressurization load"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal load"
+            },
+            {
+              "type": "concept",
+              "title": "Acoustic load"
+            },
+            {
+              "type": "concept",
+              "title": "Inertial load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Load Paths and Structural Idealization",
+          "description": "Aerospace structures must be simplified into analyzable paths without losing the essential physics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load path"
+            },
+            {
+              "type": "concept",
+              "title": "Primary structure"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary structure"
+            },
+            {
+              "type": "concept",
+              "title": "Free-body diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Idealized structure"
+            },
+            {
+              "type": "concept",
+              "title": "Structural redundancy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety and Certification Logic",
+          "description": "This subtopic connects analysis to design decisions and engineering accountability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limit load"
+            },
+            {
+              "type": "concept",
+              "title": "Ultimate load"
+            },
+            {
+              "type": "concept",
+              "title": "Factor of safety"
+            },
+            {
+              "type": "concept",
+              "title": "Margin of safety"
+            },
+            {
+              "type": "concept",
+              "title": "Allowable stress"
+            },
+            {
+              "type": "concept",
+              "title": "Certification basis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stress, Strain, Material Behavior, and Failure Criteria",
+      "description": "This section develops stress, strain, material behavior, and failure criteria through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stress and Strain Measures",
+          "description": "Students need local stress/strain language for every later structural calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal stress"
+            },
+            {
+              "type": "concept",
+              "title": "Shear stress"
+            },
+            {
+              "type": "concept",
+              "title": "Strain"
+            },
+            {
+              "type": "concept",
+              "title": "Principal stress"
+            },
+            {
+              "type": "concept",
+              "title": "Mohr's circle"
+            },
+            {
+              "type": "concept",
+              "title": "Stress concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Strain rosette"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constitutive Behavior",
+          "description": "Material behavior connects loads and deformation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Young's modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Shear modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson's ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Elasticity"
+            },
+            {
+              "type": "concept",
+              "title": "Plasticity"
+            },
+            {
+              "type": "concept",
+              "title": "Yield strength"
+            },
+            {
+              "type": "concept",
+              "title": "Ultimate strength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Failure Criteria",
+          "description": "Failure checks translate multiaxial stresses into design decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "von Mises stress"
+            },
+            {
+              "type": "concept",
+              "title": "Tresca criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum principal stress"
+            },
+            {
+              "type": "concept",
+              "title": "Allowable"
+            },
+            {
+              "type": "concept",
+              "title": "Factor of safety"
+            },
+            {
+              "type": "concept",
+              "title": "Failure envelope"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Axial Members, Trusses, and Statically Determinate Structures",
+      "description": "This section develops axial members, trusses, and statically determinate structures through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Axial Load Members",
+          "description": "Axial members are the simplest load-carrying elements and the foundation for truss idealization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial force"
+            },
+            {
+              "type": "concept",
+              "title": "Normal stress"
+            },
+            {
+              "type": "concept",
+              "title": "Elongation"
+            },
+            {
+              "type": "concept",
+              "title": "Stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal strain"
+            },
+            {
+              "type": "concept",
+              "title": "Stress area"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Truss Analysis",
+          "description": "Truss methods teach clean equilibrium and load-path reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Method of joints"
+            },
+            {
+              "type": "concept",
+              "title": "Method of sections"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-force member"
+            },
+            {
+              "type": "concept",
+              "title": "Pin joint"
+            },
+            {
+              "type": "concept",
+              "title": "Two-force member"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fittings and Local Load Transfer",
+          "description": "Real aerospace structures transfer loads through fittings, lugs, and attachments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lug"
+            },
+            {
+              "type": "concept",
+              "title": "Clevis"
+            },
+            {
+              "type": "concept",
+              "title": "Bearing stress"
+            },
+            {
+              "type": "concept",
+              "title": "Net-section tension"
+            },
+            {
+              "type": "concept",
+              "title": "Shear-out"
+            },
+            {
+              "type": "concept",
+              "title": "Bypass load"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Torsion of Shafts, Tubes, and Closed Thin-Walled Sections",
+      "description": "This section develops torsion of shafts, tubes, and closed thin-walled sections through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Circular Shaft Torsion",
+          "description": "Basic torsion models connect torque, shear stress, and twist.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Torque"
+            },
+            {
+              "type": "concept",
+              "title": "Polar moment of inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Angle of twist"
+            },
+            {
+              "type": "concept",
+              "title": "Torsional rigidity"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum shear stress"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thin-Walled Closed Sections",
+          "description": "Closed sections are efficient aerospace torsion boxes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bredt-Batho theory"
+            },
+            {
+              "type": "concept",
+              "title": "Shear flow"
+            },
+            {
+              "type": "concept",
+              "title": "Cell area"
+            },
+            {
+              "type": "concept",
+              "title": "Closed section"
+            },
+            {
+              "type": "concept",
+              "title": "Torque flow"
+            },
+            {
+              "type": "concept",
+              "title": "Twist per length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multi-Cell Torsion",
+          "description": "Aircraft wing boxes often require compatibility across multiple closed cells.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multi-cell section"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Redundant shear flow"
+            },
+            {
+              "type": "concept",
+              "title": "Common wall"
+            },
+            {
+              "type": "concept",
+              "title": "Rate of twist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bending, Shear, and Beam Deflection",
+      "description": "This section develops bending, shear, and beam deflection through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Beam Internal Loads",
+          "description": "Shear and moment diagrams organize how loads travel through beams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear force"
+            },
+            {
+              "type": "concept",
+              "title": "Bending moment"
+            },
+            {
+              "type": "concept",
+              "title": "Distributed load"
+            },
+            {
+              "type": "concept",
+              "title": "Point load"
+            },
+            {
+              "type": "concept",
+              "title": "Sign convention"
+            },
+            {
+              "type": "concept",
+              "title": "Internal resultant"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bending and Shear Stress",
+          "description": "Students connect cross-section geometry to stress and strength.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flexure formula"
+            },
+            {
+              "type": "concept",
+              "title": "Neutral axis"
+            },
+            {
+              "type": "concept",
+              "title": "Second moment of area"
+            },
+            {
+              "type": "concept",
+              "title": "Transverse shear"
+            },
+            {
+              "type": "concept",
+              "title": "Shear stress distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deflection and Stiffness",
+          "description": "Deflection checks ensure structures are not only strong but also stiff enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler-Bernoulli beam"
+            },
+            {
+              "type": "concept",
+              "title": "Curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Slope"
+            },
+            {
+              "type": "concept",
+              "title": "Deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thin-Walled Aerospace Structures and Shear Flow",
+      "description": "This section develops thin-walled aerospace structures and shear flow through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thin-Walled Assumptions",
+          "description": "Thin-walled idealization turns skins, webs, and stiffeners into efficient structural models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Skin"
+            },
+            {
+              "type": "concept",
+              "title": "Web"
+            },
+            {
+              "type": "concept",
+              "title": "Stringer"
+            },
+            {
+              "type": "concept",
+              "title": "Spar cap"
+            },
+            {
+              "type": "concept",
+              "title": "Rib"
+            },
+            {
+              "type": "concept",
+              "title": "Thin-wall assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Boom idealization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Open-Section Shear Flow",
+          "description": "Open sections teach how shear loads move through webs and flanges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear flow q"
+            },
+            {
+              "type": "concept",
+              "title": "First moment of area Q"
+            },
+            {
+              "type": "concept",
+              "title": "Open section"
+            },
+            {
+              "type": "concept",
+              "title": "Shear center"
+            },
+            {
+              "type": "concept",
+              "title": "Web shear"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Closed-Section Shear Flow",
+          "description": "Closed cells carry torsion and shear through circulating shear flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closed cell"
+            },
+            {
+              "type": "concept",
+              "title": "Constant shear flow"
+            },
+            {
+              "type": "concept",
+              "title": "Cut method"
+            },
+            {
+              "type": "concept",
+              "title": "Torsional compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Wing box"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aircraft Structural Components: Wings, Fuselages, Frames, Ribs, and Spars",
+      "description": "This section develops aircraft structural components: wings, fuselages, frames, ribs, and spars through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Wing Structures",
+          "description": "Students map aerodynamic loads into spars, ribs, skins, and stringers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wing box"
+            },
+            {
+              "type": "concept",
+              "title": "Front spar"
+            },
+            {
+              "type": "concept",
+              "title": "Rear spar"
+            },
+            {
+              "type": "concept",
+              "title": "Rib"
+            },
+            {
+              "type": "concept",
+              "title": "Skin panel"
+            },
+            {
+              "type": "concept",
+              "title": "Stringer"
+            },
+            {
+              "type": "concept",
+              "title": "Fuel load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fuselage Structures",
+          "description": "Fuselage analysis combines pressurization, bending, shear, and cutouts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semi-monocoque"
+            },
+            {
+              "type": "concept",
+              "title": "Frame"
+            },
+            {
+              "type": "concept",
+              "title": "Longeron"
+            },
+            {
+              "type": "concept",
+              "title": "Bulkhead"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure vessel"
+            },
+            {
+              "type": "concept",
+              "title": "Cutout reinforcement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Empennage and Control Surfaces",
+          "description": "Tail and control structures introduce hinge loads and local stiffness concerns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal stabilizer"
+            },
+            {
+              "type": "concept",
+              "title": "Vertical stabilizer"
+            },
+            {
+              "type": "concept",
+              "title": "Control surface"
+            },
+            {
+              "type": "concept",
+              "title": "Hinge moment"
+            },
+            {
+              "type": "concept",
+              "title": "Flutter margin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Methods and Virtual Work",
+      "description": "This section develops energy methods and virtual work through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Strain Energy",
+          "description": "Energy methods provide powerful alternatives to direct integration for deflection and redundancy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strain energy"
+            },
+            {
+              "type": "concept",
+              "title": "Axial energy"
+            },
+            {
+              "type": "concept",
+              "title": "Bending energy"
+            },
+            {
+              "type": "concept",
+              "title": "Torsional energy"
+            },
+            {
+              "type": "concept",
+              "title": "Complementary energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Castigliano's theorem",
+          "description": "Castigliano's theorem links force derivatives of strain energy to displacements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Castigliano theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Partial derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Rotation"
+            },
+            {
+              "type": "concept",
+              "title": "Dummy load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Virtual Work",
+          "description": "Virtual work gives a general method for displacement in trusses, beams, and frames.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Virtual load"
+            },
+            {
+              "type": "concept",
+              "title": "Unit-load method"
+            },
+            {
+              "type": "concept",
+              "title": "Work equivalence"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Redundant reaction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Buckling and Structural Stability",
+      "description": "This section develops buckling and structural stability through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Column Buckling",
+          "description": "Compression members can fail by instability below material yield.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Effective length"
+            },
+            {
+              "type": "concept",
+              "title": "Slenderness ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Critical load"
+            },
+            {
+              "type": "concept",
+              "title": "End condition"
+            },
+            {
+              "type": "concept",
+              "title": "Inelastic buckling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plate and Panel Buckling",
+          "description": "Thin aerospace skins often buckle locally and may still carry postbuckling load.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plate buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Skin panel"
+            },
+            {
+              "type": "concept",
+              "title": "Buckling coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Simply supported edge"
+            },
+            {
+              "type": "concept",
+              "title": "Postbuckling"
+            },
+            {
+              "type": "concept",
+              "title": "Crippling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stiffened Structures",
+          "description": "Stringers and frames delay buckling but introduce interaction modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stiffener"
+            },
+            {
+              "type": "concept",
+              "title": "Local buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Global buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Stiffened panel"
+            },
+            {
+              "type": "concept",
+              "title": "Knockdown factor"
+            },
+            {
+              "type": "concept",
+              "title": "Imperfection sensitivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fatigue, Fracture, and Damage Tolerance",
+      "description": "This section develops fatigue, fracture, and damage tolerance through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fatigue Life",
+          "description": "Aircraft structures face many load cycles, so fatigue can govern design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S-N curve"
+            },
+            {
+              "type": "concept",
+              "title": "Stress range"
+            },
+            {
+              "type": "concept",
+              "title": "Mean stress"
+            },
+            {
+              "type": "concept",
+              "title": "Miner's rule"
+            },
+            {
+              "type": "concept",
+              "title": "High-cycle fatigue"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrum loading"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fracture Mechanics",
+          "description": "Crack behavior gives engineers tools for inspection and residual strength.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crack tip"
+            },
+            {
+              "type": "concept",
+              "title": "Stress intensity factor"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture toughness"
+            },
+            {
+              "type": "concept",
+              "title": "Paris law"
+            },
+            {
+              "type": "concept",
+              "title": "Crack growth rate"
+            },
+            {
+              "type": "concept",
+              "title": "Critical crack length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Damage Tolerance",
+          "description": "Aerospace design assumes flaws exist and plans inspection accordingly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fail-safe design"
+            },
+            {
+              "type": "concept",
+              "title": "Safe-life design"
+            },
+            {
+              "type": "concept",
+              "title": "Damage tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection interval"
+            },
+            {
+              "type": "concept",
+              "title": "Residual strength"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-site damage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Composite Materials and Laminated Structures",
+      "description": "This section develops composite materials and laminated structures through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Composite Constituents",
+          "description": "Students learn why fiber and matrix roles create directional material behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fiber"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Lamina"
+            },
+            {
+              "type": "concept",
+              "title": "Ply"
+            },
+            {
+              "type": "concept",
+              "title": "Orthotropic material"
+            },
+            {
+              "type": "concept",
+              "title": "Volume fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Prepreg"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laminate Theory",
+          "description": "Laminate theory predicts stiffness and coupling from stacking sequence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stacking sequence"
+            },
+            {
+              "type": "concept",
+              "title": "ABD matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetric laminate"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced laminate"
+            },
+            {
+              "type": "concept",
+              "title": "Coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Ply angle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composite Failure",
+          "description": "Composite failure requires criteria beyond isotropic yield checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maximum stress criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Tsai-Hill"
+            },
+            {
+              "type": "concept",
+              "title": "Tsai-Wu"
+            },
+            {
+              "type": "concept",
+              "title": "Delamination"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix cracking"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber failure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joints, Fasteners, Adhesives, and Load Transfer",
+      "description": "This section develops joints, fasteners, adhesives, and load transfer through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanical Fasteners",
+          "description": "Fasteners are common structural weak points and load-transfer features.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rivet"
+            },
+            {
+              "type": "concept",
+              "title": "Bolt"
+            },
+            {
+              "type": "concept",
+              "title": "Fastener pitch"
+            },
+            {
+              "type": "concept",
+              "title": "Edge distance"
+            },
+            {
+              "type": "concept",
+              "title": "Bearing stress"
+            },
+            {
+              "type": "concept",
+              "title": "Shear tear-out"
+            },
+            {
+              "type": "concept",
+              "title": "Net tension"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adhesive Bonding",
+          "description": "Bonded joints distribute loads but depend on surface prep and peel control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adhesive bond"
+            },
+            {
+              "type": "concept",
+              "title": "Lap joint"
+            },
+            {
+              "type": "concept",
+              "title": "Peel stress"
+            },
+            {
+              "type": "concept",
+              "title": "Shear lag"
+            },
+            {
+              "type": "concept",
+              "title": "Surface preparation"
+            },
+            {
+              "type": "concept",
+              "title": "Bondline thickness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Joint Analysis Checks",
+          "description": "Students learn to check multiple competing failure modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bypass load"
+            },
+            {
+              "type": "concept",
+              "title": "Bearing-bypass interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Fastener shear"
+            },
+            {
+              "type": "concept",
+              "title": "Joint efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentricity"
+            },
+            {
+              "type": "concept",
+              "title": "Load transfer length"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aeroelasticity and Structural Dynamics Introduction",
+      "description": "This section develops aeroelasticity and structural dynamics introduction through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Structural Dynamics Basics",
+          "description": "Dynamic behavior matters because aircraft are flexible and excited by aerodynamic and inertial loads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Mode shape"
+            },
+            {
+              "type": "concept",
+              "title": "Damping"
+            },
+            {
+              "type": "concept",
+              "title": "Forced response"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Modal mass"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Static Aeroelasticity",
+          "description": "Aerodynamic loads can deform the structure and change the loads themselves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divergence"
+            },
+            {
+              "type": "concept",
+              "title": "Control reversal"
+            },
+            {
+              "type": "concept",
+              "title": "Aeroelastic coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Torsional stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Elastic axis"
+            },
+            {
+              "type": "concept",
+              "title": "Aerodynamic center"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flutter Concepts",
+          "description": "Flutter is a dynamic instability that couples structural modes with unsteady aerodynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flutter"
+            },
+            {
+              "type": "concept",
+              "title": "Flutter speed"
+            },
+            {
+              "type": "concept",
+              "title": "Bending-torsion coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Mass balance"
+            },
+            {
+              "type": "concept",
+              "title": "Stability boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Ground vibration test"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Element Modeling for Aerospace Structures",
+      "description": "This section develops finite element modeling for aerospace structures through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Model Idealization",
+          "description": "Good FEM starts with choosing the right idealization, not just meshing geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Beam element"
+            },
+            {
+              "type": "concept",
+              "title": "Shell element"
+            },
+            {
+              "type": "concept",
+              "title": "Solid element"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh density"
+            },
+            {
+              "type": "concept",
+              "title": "Idealized joint"
+            },
+            {
+              "type": "concept",
+              "title": "Load application"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary Conditions and Verification",
+          "description": "Boundary conditions can dominate results, so students learn disciplined checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction check"
+            },
+            {
+              "type": "concept",
+              "title": "Free-free model"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Verification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpreting FEM Results",
+          "description": "FEM results require engineering judgment and comparison to hand calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress contour"
+            },
+            {
+              "type": "concept",
+              "title": "Principal stress"
+            },
+            {
+              "type": "concept",
+              "title": "von Mises stress"
+            },
+            {
+              "type": "concept",
+              "title": "Hot spot stress"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement plot"
+            },
+            {
+              "type": "concept",
+              "title": "Margin check"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Aerospace Structures Design Project",
+      "description": "This section develops integrated aerospace structures design project through concrete aerospace-structures vocabulary, load-path reasoning, analysis methods, failure checks, and design applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design Problem Definition",
+          "description": "Students begin by defining loads, requirements, materials, geometry, and success criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Load case"
+            },
+            {
+              "type": "concept",
+              "title": "Material selection"
+            },
+            {
+              "type": "concept",
+              "title": "Design variable"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Objective"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hand Analysis and FEM Support",
+          "description": "The project combines classical calculations with simulation as a check, not a black box.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hand calculation"
+            },
+            {
+              "type": "concept",
+              "title": "FEM model"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Margin of safety"
+            },
+            {
+              "type": "concept",
+              "title": "Buckling check"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue check"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Technical Communication",
+          "description": "Aerospace structures work must communicate assumptions, risks, and design decisions clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Technical memo"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption table"
+            },
+            {
+              "type": "concept",
+              "title": "Load-path diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Results table"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Design review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

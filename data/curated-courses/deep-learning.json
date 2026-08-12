@@ -1,0 +1,1296 @@
+{
+  "slug": "deep-learning",
+  "title": "Deep Learning",
+  "description": "A curated Deep Learning syllabus covering neural network fundamentals, optimization, CNNs, sequence models, transformers, generative models, LLMs, training infrastructure, and responsible deployment.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Neural Network Fundamentals",
+      "description": "Builds the knowledge and practice needed to use neural network fundamentals in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perceptron"
+            },
+            {
+              "type": "concept",
+              "title": "Layer"
+            },
+            {
+              "type": "concept",
+              "title": "Weight"
+            },
+            {
+              "type": "concept",
+              "title": "Bias"
+            },
+            {
+              "type": "concept",
+              "title": "Activation function"
+            },
+            {
+              "type": "concept",
+              "title": "Forward pass"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perceptron in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare layer with weight"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perceptron affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Backpropagation and Automatic Differentiation",
+      "description": "Builds the knowledge and practice needed to use backpropagation and automatic differentiation in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chain rule"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Computational graph"
+            },
+            {
+              "type": "concept",
+              "title": "Automatic differentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobian"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply chain rule in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare gradient with computational graph"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how chain rule affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Activation Functions and Representation Learning",
+      "description": "Builds the knowledge and practice needed to use activation functions and representation learning in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ReLU"
+            },
+            {
+              "type": "concept",
+              "title": "Sigmoid"
+            },
+            {
+              "type": "concept",
+              "title": "Tanh"
+            },
+            {
+              "type": "concept",
+              "title": "GELU"
+            },
+            {
+              "type": "concept",
+              "title": "Dead neuron"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ReLU in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare sigmoid with tanh"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ReLU affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optimization and Gradient-Based Training",
+      "description": "Builds the knowledge and practice needed to use optimization and gradient-based training in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SGD"
+            },
+            {
+              "type": "concept",
+              "title": "Adam"
+            },
+            {
+              "type": "concept",
+              "title": "Learning rate"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Batch size"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply SGD in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Adam with learning rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how SGD affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Regularization, Generalization, and Evaluation",
+      "description": "Builds the knowledge and practice needed to use regularization, generalization, and evaluation in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dropout"
+            },
+            {
+              "type": "concept",
+              "title": "Weight decay"
+            },
+            {
+              "type": "concept",
+              "title": "Early stopping"
+            },
+            {
+              "type": "concept",
+              "title": "Data augmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Validation loss"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply dropout in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare weight decay with early stopping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how dropout affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convolutional Neural Networks",
+      "description": "Builds the knowledge and practice needed to use convolutional neural networks in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perceptron"
+            },
+            {
+              "type": "concept",
+              "title": "Layer"
+            },
+            {
+              "type": "concept",
+              "title": "Weight"
+            },
+            {
+              "type": "concept",
+              "title": "Bias"
+            },
+            {
+              "type": "concept",
+              "title": "Activation function"
+            },
+            {
+              "type": "concept",
+              "title": "Forward pass"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perceptron in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare layer with weight"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stride"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perceptron affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sequence Models: RNNs, LSTMs, and GRUs",
+      "description": "Builds the knowledge and practice needed to use sequence models: rnns, lstms, and grus in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RNN"
+            },
+            {
+              "type": "concept",
+              "title": "LSTM"
+            },
+            {
+              "type": "concept",
+              "title": "GRU"
+            },
+            {
+              "type": "concept",
+              "title": "Hidden state"
+            },
+            {
+              "type": "concept",
+              "title": "Teacher forcing"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply RNN in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare LSTM with GRU"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how RNN affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Attention Mechanisms and Transformers",
+      "description": "Builds the knowledge and practice needed to use attention mechanisms and transformers in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Query"
+            },
+            {
+              "type": "concept",
+              "title": "Key"
+            },
+            {
+              "type": "concept",
+              "title": "Value"
+            },
+            {
+              "type": "concept",
+              "title": "Self-attention"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-head attention"
+            },
+            {
+              "type": "concept",
+              "title": "Positional encoding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply query in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare key with value"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how query affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Representation Learning, Embeddings, and Transfer Learning",
+      "description": "Builds the knowledge and practice needed to use representation learning, embeddings, and transfer learning in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latent vector"
+            },
+            {
+              "type": "concept",
+              "title": "Embedding space"
+            },
+            {
+              "type": "concept",
+              "title": "Cosine similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer learning"
+            },
+            {
+              "type": "concept",
+              "title": "Fine-tuning"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply latent vector in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare embedding space with cosine similarity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how latent vector affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Generative Models: Autoencoders, VAEs, and GANs",
+      "description": "Builds the knowledge and practice needed to use generative models: autoencoders, vaes, and gans in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Autoencoder"
+            },
+            {
+              "type": "concept",
+              "title": "VAE"
+            },
+            {
+              "type": "concept",
+              "title": "GAN"
+            },
+            {
+              "type": "concept",
+              "title": "Latent space"
+            },
+            {
+              "type": "concept",
+              "title": "Generator"
+            },
+            {
+              "type": "concept",
+              "title": "Discriminator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply autoencoder in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare VAE with GAN"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how autoencoder affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diffusion Models and Modern Image Generation",
+      "description": "Builds the knowledge and practice needed to use diffusion models and modern image generation in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Noise schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Denoising"
+            },
+            {
+              "type": "concept",
+              "title": "Score matching"
+            },
+            {
+              "type": "concept",
+              "title": "Reverse process"
+            },
+            {
+              "type": "concept",
+              "title": "U-Net"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply noise schedule in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare denoising with score matching"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how noise schedule affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Large Language Models and Foundation Models",
+      "description": "Builds the knowledge and practice needed to use large language models and foundation models in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Token"
+            },
+            {
+              "type": "concept",
+              "title": "Context window"
+            },
+            {
+              "type": "concept",
+              "title": "Pretraining"
+            },
+            {
+              "type": "concept",
+              "title": "Instruction tuning"
+            },
+            {
+              "type": "concept",
+              "title": "Perplexity"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply token in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare context window with pretraining"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how token affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Training Infrastructure and Distributed Training",
+      "description": "Builds the knowledge and practice needed to use training infrastructure and distributed training in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPU"
+            },
+            {
+              "type": "concept",
+              "title": "Data parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Model parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpointing"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed precision"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply GPU in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare data parallelism with model parallelism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how GPU affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Deployment, Monitoring, and Responsible Deep Learning",
+      "description": "Builds the knowledge and practice needed to use deployment, monitoring, and responsible deep learning in the course's central problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model serving"
+            },
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Drift"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible AI"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build neural networks"
+            },
+            {
+              "type": "concept",
+              "title": "Run backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Tune training loops"
+            },
+            {
+              "type": "concept",
+              "title": "Apply model serving in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare latency with monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Vanishing gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Data leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of activation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how model serving affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

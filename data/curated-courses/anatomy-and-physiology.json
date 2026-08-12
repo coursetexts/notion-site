@@ -1,0 +1,1648 @@
+{
+  "slug": "anatomy-and-physiology",
+  "title": "Anatomy and Physiology",
+  "description": "A one-semester integrated Anatomy and Physiology course for biomedical engineering and related students who need organ-system literacy for devices, modeling, biomechanics, and health technology design.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Anatomical Terminology, Body Organization, and Homeostasis",
+      "description": "This section develops anatomical terminology, body organization, and homeostasis through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Anatomical Language",
+          "description": "Students need precise orientation language to describe structures and interpret diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anatomical position"
+            },
+            {
+              "type": "concept",
+              "title": "Superior/Inferior"
+            },
+            {
+              "type": "concept",
+              "title": "Anterior/Posterior"
+            },
+            {
+              "type": "concept",
+              "title": "Medial/Lateral"
+            },
+            {
+              "type": "concept",
+              "title": "Proximal/Distal"
+            },
+            {
+              "type": "concept",
+              "title": "Sagittal plane"
+            },
+            {
+              "type": "concept",
+              "title": "Transverse plane"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Levels and Compartments",
+          "description": "This subtopic shows how cells, tissues, organs, and systems are physically organized.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Organ"
+            },
+            {
+              "type": "concept",
+              "title": "Organ system"
+            },
+            {
+              "type": "concept",
+              "title": "Body cavity"
+            },
+            {
+              "type": "concept",
+              "title": "Serous membrane"
+            },
+            {
+              "type": "concept",
+              "title": "Organism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeostatic Regulation",
+          "description": "Homeostasis is the organizing principle linking structure, function, and disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Positive feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Receptor"
+            },
+            {
+              "type": "concept",
+              "title": "Control center"
+            },
+            {
+              "type": "concept",
+              "title": "Effector"
+            },
+            {
+              "type": "concept",
+              "title": "Set point"
+            },
+            {
+              "type": "concept",
+              "title": "Homeostatic imbalance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Physiology, Membranes, and Transport",
+      "description": "This section develops cell physiology, membranes, and transport through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane Structure",
+          "description": "Membranes control the boundary conditions for every cell and organ system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phospholipid bilayer"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane protein"
+            },
+            {
+              "type": "concept",
+              "title": "Cholesterol"
+            },
+            {
+              "type": "concept",
+              "title": "Glycocalyx"
+            },
+            {
+              "type": "concept",
+              "title": "Selective permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Fluid mosaic model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport Processes",
+          "description": "Transport explains how cells maintain gradients and exchange material.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Osmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Active transport"
+            },
+            {
+              "type": "concept",
+              "title": "Endocytosis"
+            },
+            {
+              "type": "concept",
+              "title": "Exocytosis"
+            },
+            {
+              "type": "concept",
+              "title": "Electrochemical gradient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell Signaling and Excitability",
+          "description": "Signaling converts chemical or electrical information into physiological responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receptor"
+            },
+            {
+              "type": "concept",
+              "title": "Ligand"
+            },
+            {
+              "type": "concept",
+              "title": "Second messenger"
+            },
+            {
+              "type": "concept",
+              "title": "Resting membrane potential"
+            },
+            {
+              "type": "concept",
+              "title": "Depolarization"
+            },
+            {
+              "type": "concept",
+              "title": "Ion channel"
+            },
+            {
+              "type": "concept",
+              "title": "Signal transduction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tissues, Histology, and Integumentary System",
+      "description": "This section develops tissues, histology, and integumentary system through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Primary Tissue Types",
+          "description": "Tissues are the reusable building blocks of organs and systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epithelial tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Connective tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Muscle tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Nervous tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Extracellular matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Basement membrane"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Histology Skills",
+          "description": "Microscopic structure helps students infer tissue function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple squamous epithelium"
+            },
+            {
+              "type": "concept",
+              "title": "Stratified squamous epithelium"
+            },
+            {
+              "type": "concept",
+              "title": "Collagen fiber"
+            },
+            {
+              "type": "concept",
+              "title": "Gland"
+            },
+            {
+              "type": "concept",
+              "title": "Cartilage"
+            },
+            {
+              "type": "concept",
+              "title": "Adipose tissue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Skin and Repair",
+          "description": "The integumentary system shows barrier function, repair, thermoregulation, and biomedical interface issues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epidermis"
+            },
+            {
+              "type": "concept",
+              "title": "Dermis"
+            },
+            {
+              "type": "concept",
+              "title": "Hypodermis"
+            },
+            {
+              "type": "concept",
+              "title": "Keratinocyte"
+            },
+            {
+              "type": "concept",
+              "title": "Melanocyte"
+            },
+            {
+              "type": "concept",
+              "title": "Wound healing"
+            },
+            {
+              "type": "concept",
+              "title": "Scar tissue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Skeletal System, Joints, and Bone Remodeling",
+      "description": "This section develops skeletal system, joints, and bone remodeling through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bone Tissue and Remodeling",
+          "description": "Bone is a living tissue that balances support, mineral storage, and repair.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Osteoblast"
+            },
+            {
+              "type": "concept",
+              "title": "Osteoclast"
+            },
+            {
+              "type": "concept",
+              "title": "Osteocyte"
+            },
+            {
+              "type": "concept",
+              "title": "Compact bone"
+            },
+            {
+              "type": "concept",
+              "title": "Spongy bone"
+            },
+            {
+              "type": "concept",
+              "title": "Lamella"
+            },
+            {
+              "type": "concept",
+              "title": "Remodeling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Skeletal Anatomy",
+          "description": "Structural landmarks matter for movement, protection, imaging, and device anchoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial skeleton"
+            },
+            {
+              "type": "concept",
+              "title": "Appendicular skeleton"
+            },
+            {
+              "type": "concept",
+              "title": "Long bone"
+            },
+            {
+              "type": "concept",
+              "title": "Joint surface"
+            },
+            {
+              "type": "concept",
+              "title": "Foramen"
+            },
+            {
+              "type": "concept",
+              "title": "Tubercle"
+            },
+            {
+              "type": "concept",
+              "title": "Condyle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Joints and Mechanics",
+          "description": "Joints convert bone structure into controlled motion and load transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synovial joint"
+            },
+            {
+              "type": "concept",
+              "title": "Cartilage"
+            },
+            {
+              "type": "concept",
+              "title": "Ligament"
+            },
+            {
+              "type": "concept",
+              "title": "Range of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Lever"
+            },
+            {
+              "type": "concept",
+              "title": "Joint stability"
+            },
+            {
+              "type": "concept",
+              "title": "Moment arm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Skeletal Muscle and Movement Physiology",
+      "description": "This section develops skeletal muscle and movement physiology through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Muscle Structure",
+          "description": "Muscle hierarchy connects microscopic filaments to whole-body movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Muscle fiber"
+            },
+            {
+              "type": "concept",
+              "title": "Myofibril"
+            },
+            {
+              "type": "concept",
+              "title": "Sarcomere"
+            },
+            {
+              "type": "concept",
+              "title": "Actin"
+            },
+            {
+              "type": "concept",
+              "title": "Myosin"
+            },
+            {
+              "type": "concept",
+              "title": "Tendon"
+            },
+            {
+              "type": "concept",
+              "title": "Fascicle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contraction Physiology",
+          "description": "Students learn how electrical signals become force and motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neuromuscular junction"
+            },
+            {
+              "type": "concept",
+              "title": "Acetylcholine"
+            },
+            {
+              "type": "concept",
+              "title": "Calcium release"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-bridge cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Power stroke"
+            },
+            {
+              "type": "concept",
+              "title": "ATP"
+            },
+            {
+              "type": "concept",
+              "title": "Excitation-Contraction Coupling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Force and Fatigue",
+          "description": "Force production links physiology to biomechanics, rehabilitation, and device design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motor unit"
+            },
+            {
+              "type": "concept",
+              "title": "Recruitment"
+            },
+            {
+              "type": "concept",
+              "title": "Tetanus"
+            },
+            {
+              "type": "concept",
+              "title": "Length-Tension Relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Force-Velocity Relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue"
+            },
+            {
+              "type": "concept",
+              "title": "EMG Signal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nervous System Signaling and Control",
+      "description": "This section develops nervous system signaling and control through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Neurons and Action Potentials",
+          "description": "Neural signaling explains fast control, sensation, and movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neuron"
+            },
+            {
+              "type": "concept",
+              "title": "Axon"
+            },
+            {
+              "type": "concept",
+              "title": "Dendrite"
+            },
+            {
+              "type": "concept",
+              "title": "Myelin"
+            },
+            {
+              "type": "concept",
+              "title": "Action potential"
+            },
+            {
+              "type": "concept",
+              "title": "Threshold"
+            },
+            {
+              "type": "concept",
+              "title": "Refractory period"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synapses and Circuits",
+          "description": "Synapses connect cells into functional circuits for reflexes and behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synapse"
+            },
+            {
+              "type": "concept",
+              "title": "Neurotransmitter"
+            },
+            {
+              "type": "concept",
+              "title": "EPSP"
+            },
+            {
+              "type": "concept",
+              "title": "IPSP"
+            },
+            {
+              "type": "concept",
+              "title": "Summation"
+            },
+            {
+              "type": "concept",
+              "title": "Reflex arc"
+            },
+            {
+              "type": "concept",
+              "title": "Neural circuit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CNS, PNS, and Autonomic Control",
+          "description": "Students connect anatomy to regulation of organs and responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Brain"
+            },
+            {
+              "type": "concept",
+              "title": "Spinal cord"
+            },
+            {
+              "type": "concept",
+              "title": "Cranial nerve"
+            },
+            {
+              "type": "concept",
+              "title": "Spinal nerve"
+            },
+            {
+              "type": "concept",
+              "title": "Sympathetic"
+            },
+            {
+              "type": "concept",
+              "title": "Parasympathetic"
+            },
+            {
+              "type": "concept",
+              "title": "Autonomic tone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Blood, Hemostasis, and Immune/Lymphatic Function",
+      "description": "This section develops blood, hemostasis, and immune/lymphatic function through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Blood Components",
+          "description": "Blood provides transport, immunity, clotting, and diagnostic information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plasma"
+            },
+            {
+              "type": "concept",
+              "title": "Erythrocyte"
+            },
+            {
+              "type": "concept",
+              "title": "Leukocyte"
+            },
+            {
+              "type": "concept",
+              "title": "Platelet"
+            },
+            {
+              "type": "concept",
+              "title": "Hemoglobin"
+            },
+            {
+              "type": "concept",
+              "title": "Hematocrit"
+            },
+            {
+              "type": "concept",
+              "title": "Albumin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hemostasis",
+          "description": "Clotting prevents blood loss but can create pathological thrombosis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vascular spasm"
+            },
+            {
+              "type": "concept",
+              "title": "Platelet plug"
+            },
+            {
+              "type": "concept",
+              "title": "Coagulation cascade"
+            },
+            {
+              "type": "concept",
+              "title": "Fibrin"
+            },
+            {
+              "type": "concept",
+              "title": "Thrombus"
+            },
+            {
+              "type": "concept",
+              "title": "Anticoagulant"
+            },
+            {
+              "type": "concept",
+              "title": "ABO/Rh Typing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Immune and Lymphatic Systems",
+          "description": "These systems connect defense, fluid return, and inflammation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lymph"
+            },
+            {
+              "type": "concept",
+              "title": "Lymph node"
+            },
+            {
+              "type": "concept",
+              "title": "Spleen"
+            },
+            {
+              "type": "concept",
+              "title": "Innate immunity"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive immunity"
+            },
+            {
+              "type": "concept",
+              "title": "Antibody"
+            },
+            {
+              "type": "concept",
+              "title": "Inflammation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cardiovascular Anatomy, Cardiac Physiology, and Hemodynamics",
+      "description": "This section develops cardiovascular anatomy, cardiac physiology, and hemodynamics through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heart Anatomy and Conduction",
+          "description": "Heart structure explains flow direction, valve function, and rhythmic contraction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atrium"
+            },
+            {
+              "type": "concept",
+              "title": "Ventricle"
+            },
+            {
+              "type": "concept",
+              "title": "Valve"
+            },
+            {
+              "type": "concept",
+              "title": "SA Node"
+            },
+            {
+              "type": "concept",
+              "title": "AV Node"
+            },
+            {
+              "type": "concept",
+              "title": "Purkinje Fiber"
+            },
+            {
+              "type": "concept",
+              "title": "ECG"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cardiac Output and Pressure",
+          "description": "Cardiac physiology links heart performance to tissue perfusion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stroke volume"
+            },
+            {
+              "type": "concept",
+              "title": "Heart rate"
+            },
+            {
+              "type": "concept",
+              "title": "Cardiac output"
+            },
+            {
+              "type": "concept",
+              "title": "Preload"
+            },
+            {
+              "type": "concept",
+              "title": "Afterload"
+            },
+            {
+              "type": "concept",
+              "title": "Contractility"
+            },
+            {
+              "type": "concept",
+              "title": "Mean Arterial Pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hemodynamics and Vessels",
+          "description": "Vessel structure controls resistance, exchange, and pressure regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Artery"
+            },
+            {
+              "type": "concept",
+              "title": "Arteriole"
+            },
+            {
+              "type": "concept",
+              "title": "Capillary"
+            },
+            {
+              "type": "concept",
+              "title": "Vein"
+            },
+            {
+              "type": "concept",
+              "title": "Vascular resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance"
+            },
+            {
+              "type": "concept",
+              "title": "Shear stress"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Respiratory Anatomy, Ventilation, and Gas Exchange",
+      "description": "This section develops respiratory anatomy, ventilation, and gas exchange through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Airway and Lung Structure",
+          "description": "Respiratory anatomy sets up ventilation and gas exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nasal cavity"
+            },
+            {
+              "type": "concept",
+              "title": "Trachea"
+            },
+            {
+              "type": "concept",
+              "title": "Bronchus"
+            },
+            {
+              "type": "concept",
+              "title": "Bronchiole"
+            },
+            {
+              "type": "concept",
+              "title": "Alveolus"
+            },
+            {
+              "type": "concept",
+              "title": "Pleura"
+            },
+            {
+              "type": "concept",
+              "title": "Respiratory membrane"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ventilation Mechanics",
+          "description": "Ventilation depends on pressure gradients, muscles, compliance, and resistance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diaphragm"
+            },
+            {
+              "type": "concept",
+              "title": "Intrapleural pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Tidal volume"
+            },
+            {
+              "type": "concept",
+              "title": "Vital capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance"
+            },
+            {
+              "type": "concept",
+              "title": "Airway resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Spirometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gas Exchange and Transport",
+          "description": "Gas transport connects lungs, blood, and tissues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Hemoglobin saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Bohr Effect"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonic anhydrase"
+            },
+            {
+              "type": "concept",
+              "title": "V/Q Matching"
+            },
+            {
+              "type": "concept",
+              "title": "Hypoxemia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Renal Physiology, Fluid-Electrolyte Balance, and Acid-Base Regulation",
+      "description": "This section develops renal physiology, fluid-electrolyte balance, and acid-base regulation through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nephron Structure",
+          "description": "The nephron is the functional unit for filtration and urine formation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glomerulus"
+            },
+            {
+              "type": "concept",
+              "title": "Bowman's Capsule"
+            },
+            {
+              "type": "concept",
+              "title": "Proximal tubule"
+            },
+            {
+              "type": "concept",
+              "title": "Loop of Henle"
+            },
+            {
+              "type": "concept",
+              "title": "Distal tubule"
+            },
+            {
+              "type": "concept",
+              "title": "Collecting duct"
+            },
+            {
+              "type": "concept",
+              "title": "Renal blood flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport and Water Balance",
+          "description": "Renal transport regulates volume, osmolality, and electrolytes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GFR"
+            },
+            {
+              "type": "concept",
+              "title": "Reabsorption"
+            },
+            {
+              "type": "concept",
+              "title": "Secretion"
+            },
+            {
+              "type": "concept",
+              "title": "ADH"
+            },
+            {
+              "type": "concept",
+              "title": "Aldosterone"
+            },
+            {
+              "type": "concept",
+              "title": "RAAS"
+            },
+            {
+              "type": "concept",
+              "title": "Countercurrent multiplier"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Acid-Base Control",
+          "description": "The kidney and lungs coordinate pH homeostasis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bicarbonate"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrogen ion"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer"
+            },
+            {
+              "type": "concept",
+              "title": "Respiratory compensation"
+            },
+            {
+              "type": "concept",
+              "title": "Renal compensation"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic acidosis"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic alkalosis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Endocrine Signaling and Integrated Homeostasis",
+      "description": "This section develops endocrine signaling and integrated homeostasis through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hormone Classes and Receptors",
+          "description": "Hormone chemistry determines signaling speed, receptor location, and response type.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peptide hormone"
+            },
+            {
+              "type": "concept",
+              "title": "Steroid hormone"
+            },
+            {
+              "type": "concept",
+              "title": "Amine hormone"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane receptor"
+            },
+            {
+              "type": "concept",
+              "title": "Nuclear receptor"
+            },
+            {
+              "type": "concept",
+              "title": "Second messenger"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major Endocrine Axes",
+          "description": "Endocrine axes explain layered feedback control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypothalamus"
+            },
+            {
+              "type": "concept",
+              "title": "Pituitary gland"
+            },
+            {
+              "type": "concept",
+              "title": "Thyroid axis"
+            },
+            {
+              "type": "concept",
+              "title": "Adrenal axis"
+            },
+            {
+              "type": "concept",
+              "title": "Gonadal axis"
+            },
+            {
+              "type": "concept",
+              "title": "Negative feedback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metabolic and Fluid Regulation",
+          "description": "Endocrine systems coordinate glucose, calcium, volume, and stress responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Insulin"
+            },
+            {
+              "type": "concept",
+              "title": "Glucagon"
+            },
+            {
+              "type": "concept",
+              "title": "Cortisol"
+            },
+            {
+              "type": "concept",
+              "title": "Parathyroid hormone"
+            },
+            {
+              "type": "concept",
+              "title": "Calcitonin"
+            },
+            {
+              "type": "concept",
+              "title": "ADH"
+            },
+            {
+              "type": "concept",
+              "title": "Aldosterone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digestive Anatomy, Metabolism, and Nutrition Integration",
+      "description": "This section develops digestive anatomy, metabolism, and nutrition integration through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Digestive Anatomy and Motility",
+          "description": "Digestive structure supports ingestion, propulsion, secretion, absorption, and elimination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oral cavity"
+            },
+            {
+              "type": "concept",
+              "title": "Esophagus"
+            },
+            {
+              "type": "concept",
+              "title": "Stomach"
+            },
+            {
+              "type": "concept",
+              "title": "Small intestine"
+            },
+            {
+              "type": "concept",
+              "title": "Large intestine"
+            },
+            {
+              "type": "concept",
+              "title": "Peristalsis"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accessory Organs and Secretions",
+          "description": "Accessory organs provide enzymes, bile, and metabolic processing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Liver"
+            },
+            {
+              "type": "concept",
+              "title": "Gallbladder"
+            },
+            {
+              "type": "concept",
+              "title": "Pancreas"
+            },
+            {
+              "type": "concept",
+              "title": "Bile"
+            },
+            {
+              "type": "concept",
+              "title": "Pancreatic enzymes"
+            },
+            {
+              "type": "concept",
+              "title": "Hepatic Portal Vein"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Absorption and Metabolism",
+          "description": "Nutrient handling links digestion to energy and body composition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Villus"
+            },
+            {
+              "type": "concept",
+              "title": "Microvillus"
+            },
+            {
+              "type": "concept",
+              "title": "Glucose absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Amino acid absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Chylomicron"
+            },
+            {
+              "type": "concept",
+              "title": "Glycogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Beta-Oxidation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reproductive Physiology, Development, and Genetics",
+      "description": "This section develops reproductive physiology, development, and genetics through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reproductive Anatomy and Gametogenesis",
+          "description": "Reproductive systems produce gametes and support fertilization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Testis"
+            },
+            {
+              "type": "concept",
+              "title": "Ovary"
+            },
+            {
+              "type": "concept",
+              "title": "Spermatogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Oogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Follicle"
+            },
+            {
+              "type": "concept",
+              "title": "Uterus"
+            },
+            {
+              "type": "concept",
+              "title": "Uterine tube"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hormonal Cycles",
+          "description": "Reproductive hormones coordinate cycles, fertility, and pregnancy readiness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GnRH"
+            },
+            {
+              "type": "concept",
+              "title": "FSH"
+            },
+            {
+              "type": "concept",
+              "title": "LH"
+            },
+            {
+              "type": "concept",
+              "title": "Estrogen"
+            },
+            {
+              "type": "concept",
+              "title": "Progesterone"
+            },
+            {
+              "type": "concept",
+              "title": "Testosterone"
+            },
+            {
+              "type": "concept",
+              "title": "Ovarian cycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Development and Genetics Basics",
+          "description": "Development and inheritance connect physiology to early life and biomedical risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fertilization"
+            },
+            {
+              "type": "concept",
+              "title": "Implantation"
+            },
+            {
+              "type": "concept",
+              "title": "Placenta"
+            },
+            {
+              "type": "concept",
+              "title": "Embryo"
+            },
+            {
+              "type": "concept",
+              "title": "Fetus"
+            },
+            {
+              "type": "concept",
+              "title": "Genotype"
+            },
+            {
+              "type": "concept",
+              "title": "Phenotype"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Special Senses and Biomedical Measurement Interfaces",
+      "description": "This section develops special senses and biomedical measurement interfaces through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sensory Physiology",
+          "description": "Special senses convert physical stimuli into neural signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Photoreceptor"
+            },
+            {
+              "type": "concept",
+              "title": "Cochlea"
+            },
+            {
+              "type": "concept",
+              "title": "Vestibular apparatus"
+            },
+            {
+              "type": "concept",
+              "title": "Taste bud"
+            },
+            {
+              "type": "concept",
+              "title": "Olfactory receptor"
+            },
+            {
+              "type": "concept",
+              "title": "Transduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal Sources",
+          "description": "Biomedical engineering depends on knowing where physiological signals originate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ECG"
+            },
+            {
+              "type": "concept",
+              "title": "EMG"
+            },
+            {
+              "type": "concept",
+              "title": "EEG"
+            },
+            {
+              "type": "concept",
+              "title": "Pulse oximetry"
+            },
+            {
+              "type": "concept",
+              "title": "Blood pressure waveform"
+            },
+            {
+              "type": "concept",
+              "title": "Respiratory signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement Constraints",
+          "description": "Measurement systems interact with tissues and signals, so artifacts matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrode"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "Artifact"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling rate"
+            },
+            {
+              "type": "concept",
+              "title": "Signal-to-Noise Ratio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Physiology, Disease Case Studies, and Biomedical Engineering Applications",
+      "description": "This section develops integrated physiology, disease case studies, and biomedical engineering applications through concrete anatomy, physiology, homeostatic mechanisms, measurement examples, and biomedical engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Systems Integration",
+          "description": "Integrated cases help students reason across organs rather than memorize isolated systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homeostatic loop"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-system compensation"
+            },
+            {
+              "type": "concept",
+              "title": "Shock"
+            },
+            {
+              "type": "concept",
+              "title": "Exercise response"
+            },
+            {
+              "type": "concept",
+              "title": "Fever"
+            },
+            {
+              "type": "concept",
+              "title": "Dehydration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Disease Mechanisms",
+          "description": "Disease cases reveal what normal physiology is trying to regulate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypertension"
+            },
+            {
+              "type": "concept",
+              "title": "Diabetes Mellitus"
+            },
+            {
+              "type": "concept",
+              "title": "Asthma"
+            },
+            {
+              "type": "concept",
+              "title": "Kidney failure"
+            },
+            {
+              "type": "concept",
+              "title": "Heart failure"
+            },
+            {
+              "type": "concept",
+              "title": "Inflammation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical Engineering Applications",
+          "description": "Students connect anatomy and physiology to devices, models, and design constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prosthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Implant"
+            },
+            {
+              "type": "concept",
+              "title": "Biosensor"
+            },
+            {
+              "type": "concept",
+              "title": "Hemodynamic model"
+            },
+            {
+              "type": "concept",
+              "title": "Drug delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue engineering"
+            },
+            {
+              "type": "concept",
+              "title": "Biocompatibility"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1296 @@
+{
+  "slug": "real-analysis",
+  "title": "Real Analysis",
+  "description": "Real Analysis turns calculus into a rigorous proof-based theory of limits, continuity, differentiation, integration, and convergence. It is central for advanced mathematics and supports mathematically rigorous economics.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Real Numbers and Completeness",
+      "description": "This section develops real numbers and completeness through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes real numbers and completeness precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ordered field"
+            },
+            {
+              "type": "concept",
+              "title": "Least upper bound"
+            },
+            {
+              "type": "concept",
+              "title": "Archimedean property"
+            },
+            {
+              "type": "concept",
+              "title": "Density of rationals"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with real numbers and completeness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ordered field in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare least upper bound with Archimedean property"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where real numbers and completeness succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ordered field changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Logic, Proof, and Sets in Analysis",
+      "description": "This section develops logic, proof, and sets in analysis through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes logic, proof, and sets in analysis precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            },
+            {
+              "type": "concept",
+              "title": "Infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Compact set"
+            },
+            {
+              "type": "concept",
+              "title": "Open cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with logic, proof, and sets in analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta proof in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare supremum with infimum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where logic, proof, and sets in analysis succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Riemann sum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta proof changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sequences and Limits",
+      "description": "This section develops sequences and limits through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes sequences and limits precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convergent sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Monotone convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Subsequence"
+            },
+            {
+              "type": "concept",
+              "title": "Bolzano-Weierstrass"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with sequences and limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply convergent sequence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Cauchy sequence with monotone convergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where sequences and limits succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how convergent sequence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Series and Convergence Tests",
+      "description": "This section develops series and convergence tests through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes series and convergence tests precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Ratio test"
+            },
+            {
+              "type": "concept",
+              "title": "Root test"
+            },
+            {
+              "type": "concept",
+              "title": "Power series"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with series and convergence tests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply absolute convergence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare conditional convergence with ratio test"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where series and convergence tests succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how absolute convergence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Topology of the Real Line",
+      "description": "This section develops topology of the real line through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes topology of the real line precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            },
+            {
+              "type": "concept",
+              "title": "Infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Compact set"
+            },
+            {
+              "type": "concept",
+              "title": "Open cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with topology of the real line.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta proof in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare supremum with infimum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where topology of the real line succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Riemann sum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta proof changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuity",
+      "description": "This section develops continuity through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes continuity precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate value theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Extreme value theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with continuity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta continuity in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare uniform continuity with intermediate value theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where continuity succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta continuity changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Differentiation with Proofs",
+      "description": "This section develops differentiation with proofs through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes differentiation with proofs precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean value theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Darboux theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Taylor theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative definition"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with differentiation with proofs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply mean value theorem in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Darboux theorem with Taylor theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where differentiation with proofs succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how mean value theorem changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Riemann Integration",
+      "description": "This section develops riemann integration through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes riemann integration precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partition"
+            },
+            {
+              "type": "concept",
+              "title": "Upper sum"
+            },
+            {
+              "type": "concept",
+              "title": "Lower sum"
+            },
+            {
+              "type": "concept",
+              "title": "Riemann integrable"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with riemann integration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply partition in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare upper sum with lower sum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where riemann integration succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how partition changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sequences and Series of Functions",
+      "description": "This section develops sequences and series of functions through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes sequences and series of functions precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convergent sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Monotone convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Subsequence"
+            },
+            {
+              "type": "concept",
+              "title": "Bolzano-Weierstrass"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute convergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with sequences and series of functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply convergent sequence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Cauchy sequence with monotone convergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where sequences and series of functions succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of root test"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how convergent sequence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Uniform Convergence",
+      "description": "This section develops uniform convergence through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes uniform convergence precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            },
+            {
+              "type": "concept",
+              "title": "Infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Compact set"
+            },
+            {
+              "type": "concept",
+              "title": "Open cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with uniform convergence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta proof in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare supremum with infimum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where uniform convergence succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Riemann sum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta proof changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metric Spaces",
+      "description": "This section develops metric spaces through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes metric spaces precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metric"
+            },
+            {
+              "type": "concept",
+              "title": "Open ball"
+            },
+            {
+              "type": "concept",
+              "title": "Complete space"
+            },
+            {
+              "type": "concept",
+              "title": "Compactness"
+            },
+            {
+              "type": "concept",
+              "title": "Connectedness"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with metric spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply metric in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare open ball with complete space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where metric spaces succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how metric changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Compactness and Connectedness",
+      "description": "This section develops compactness and connectedness through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes compactness and connectedness precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            },
+            {
+              "type": "concept",
+              "title": "Infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Compact set"
+            },
+            {
+              "type": "concept",
+              "title": "Open cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with compactness and connectedness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta proof in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare supremum with infimum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where compactness and connectedness succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Riemann sum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta proof changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Function Spaces",
+      "description": "This section develops function spaces through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes function spaces precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            },
+            {
+              "type": "concept",
+              "title": "Infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Compact set"
+            },
+            {
+              "type": "concept",
+              "title": "Open cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with function spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta proof in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare supremum with infimum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where function spaces succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Riemann sum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta proof changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Introduction to Lebesgue Measure",
+      "description": "This section develops introduction to lebesgue measure through the concrete vocabulary, procedures, examples, and checks students need in Real Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes introduction to lebesgue measure precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon-delta proof"
+            },
+            {
+              "type": "concept",
+              "title": "Supremum"
+            },
+            {
+              "type": "concept",
+              "title": "Infimum"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Compact set"
+            },
+            {
+              "type": "concept",
+              "title": "Open cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with introduction to lebesgue measure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write an epsilon proof"
+            },
+            {
+              "type": "concept",
+              "title": "Construct a counterexample"
+            },
+            {
+              "type": "concept",
+              "title": "Prove convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Apply epsilon-delta proof in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare supremum with infimum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where introduction to lebesgue measure succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Pointwise vs uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Riemann sum"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how epsilon-delta proof changes the interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

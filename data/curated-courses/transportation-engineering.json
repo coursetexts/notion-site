@@ -1,0 +1,1072 @@
+{
+  "slug": "transportation-engineering",
+  "title": "Transportation Engineering",
+  "description": "Transportation Engineering is a multimodal systems survey covering demand and data, traffic flow and capacity, highway and pavement design, transit, freight, safety, ITS, simulation, equity, and project evaluation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Transportation Engineering Context, Modes, and Systems Thinking",
+      "description": "Introduce transportation engineering as a multimodal systems field connecting mobility, safety, infrastructure, land use, economics, and public policy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transportation system roles",
+          "description": "Students learn that transportation engineering supports movement of people and goods while balancing safety, cost, access, and environmental effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mobility and accessibility"
+            },
+            {
+              "type": "concept",
+              "title": "Passenger and freight movement"
+            },
+            {
+              "type": "concept",
+              "title": "Infrastructure life cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Public agency and private operator roles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modes and facilities",
+          "description": "A transportation course begins by recognizing the technical differences and interconnections among modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roadways and highways"
+            },
+            {
+              "type": "concept",
+              "title": "Public transit"
+            },
+            {
+              "type": "concept",
+              "title": "Railroads and airports"
+            },
+            {
+              "type": "concept",
+              "title": "Bicycle, pedestrian, and micromobility facilities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems thinking",
+          "description": "Transportation problems are networked, behavioral, and policy-shaped rather than isolated design exercises.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supply and demand"
+            },
+            {
+              "type": "concept",
+              "title": "Network effects"
+            },
+            {
+              "type": "concept",
+              "title": "Land use interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Externalities and tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transportation Planning, Networks, Demand, and Data",
+      "description": "Study how trips, networks, demand, and data shape transportation decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Planning process",
+          "description": "Transportation planning turns community goals and future demand into projects, policies, and investment priorities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem definition"
+            },
+            {
+              "type": "concept",
+              "title": "Goals and objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Alternatives analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder and public involvement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Networks and demand",
+          "description": "Students learn how trips load onto networks and why congestion emerges from demand relative to capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes and links"
+            },
+            {
+              "type": "concept",
+              "title": "Origin-destination pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Trip generation and distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Mode choice and route choice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transportation data",
+          "description": "Data supports planning, operations, safety, and equity analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Traffic counts"
+            },
+            {
+              "type": "concept",
+              "title": "Travel surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Probe and GPS data"
+            },
+            {
+              "type": "concept",
+              "title": "BTS, FHWA, and agency datasets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Traffic Flow Theory and Fundamental Diagrams",
+      "description": "Analyze vehicle-stream behavior using speed, flow, density, queues, shock waves, and capacity relationships.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Traffic stream variables",
+          "description": "Core traffic variables describe how vehicles move collectively rather than one at a time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow, speed, and density"
+            },
+            {
+              "type": "concept",
+              "title": "Time mean speed and space mean speed"
+            },
+            {
+              "type": "concept",
+              "title": "Headway and spacing"
+            },
+            {
+              "type": "concept",
+              "title": "Occupancy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fundamental relationships",
+          "description": "Fundamental diagrams connect theory to observed congestion and capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow-density curve"
+            },
+            {
+              "type": "concept",
+              "title": "Speed-density curve"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Jam density and critical density"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Queues and shock waves",
+          "description": "Traffic queues form and dissipate dynamically, especially at bottlenecks and signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arrival and departure rates"
+            },
+            {
+              "type": "concept",
+              "title": "Deterministic queuing"
+            },
+            {
+              "type": "concept",
+              "title": "Backward-forming shock waves"
+            },
+            {
+              "type": "concept",
+              "title": "Queue discharge and spillback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capacity, Level of Service, and Performance Measures",
+      "description": "Evaluate roadway and multimodal system performance using capacity, delay, reliability, equity, and accessibility metrics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Roadway capacity analysis",
+          "description": "Capacity analysis estimates how much traffic a facility can serve under given conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basic freeway segments"
+            },
+            {
+              "type": "concept",
+              "title": "Multilane highways"
+            },
+            {
+              "type": "concept",
+              "title": "Two-lane highways"
+            },
+            {
+              "type": "concept",
+              "title": "Intersections and ramps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Level of service and delay",
+          "description": "LOS translates operational performance into categories, but students also learn its limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LOS A-F"
+            },
+            {
+              "type": "concept",
+              "title": "Control delay"
+            },
+            {
+              "type": "concept",
+              "title": "Volume-to-capacity ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Density-based freeway LOS"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Broader performance measures",
+          "description": "Modern transportation decisions require more than vehicle delay.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Travel time reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility"
+            },
+            {
+              "type": "concept",
+              "title": "Safety performance"
+            },
+            {
+              "type": "concept",
+              "title": "Equity and emissions metrics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Highway Geometric Design",
+      "description": "Design and assess roadway alignment, cross sections, sight distance, intersections, and roadside elements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design controls",
+          "description": "Geometric design starts from user, vehicle, terrain, and speed assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design speed"
+            },
+            {
+              "type": "concept",
+              "title": "Design vehicle"
+            },
+            {
+              "type": "concept",
+              "title": "Driver expectancy"
+            },
+            {
+              "type": "concept",
+              "title": "Terrain and context classification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Horizontal and vertical alignment",
+          "description": "Alignment design shapes safety, comfort, drainage, and sight distance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal curves"
+            },
+            {
+              "type": "concept",
+              "title": "Superelevation"
+            },
+            {
+              "type": "concept",
+              "title": "Vertical curves"
+            },
+            {
+              "type": "concept",
+              "title": "Stopping and passing sight distance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cross sections and intersections",
+          "description": "Students connect lane, shoulder, median, and intersection choices to operations and safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lane and shoulder width"
+            },
+            {
+              "type": "concept",
+              "title": "Medians and clear zones"
+            },
+            {
+              "type": "concept",
+              "title": "Turn lanes"
+            },
+            {
+              "type": "concept",
+              "title": "Roundabouts and channelization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pavement Materials, Design, and Management",
+      "description": "Understand pavement structure, materials, design methods, deterioration, and maintenance planning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pavement types and layers",
+          "description": "Students learn how pavements distribute wheel loads and protect subgrades.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flexible pavements"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid pavements"
+            },
+            {
+              "type": "concept",
+              "title": "Base, subbase, and subgrade"
+            },
+            {
+              "type": "concept",
+              "title": "Drainage and frost considerations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Materials and structural design",
+          "description": "Pavement design links traffic loading, materials, climate, and reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Asphalt concrete"
+            },
+            {
+              "type": "concept",
+              "title": "Portland cement concrete"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent single axle loads"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanistic-empirical design preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pavement management",
+          "description": "Management converts condition data into maintenance and rehabilitation decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distress surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Roughness and rutting"
+            },
+            {
+              "type": "concept",
+              "title": "Life-cycle cost analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Preventive maintenance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Traffic Engineering, Control Devices, and Signal Timing",
+      "description": "Apply traffic-control principles to signs, markings, signals, intersections, and operational safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Traffic control devices",
+          "description": "Students learn how signs, markings, and signals communicate rules and expectations to road users.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MUTCD principles"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory, warning, and guide signs"
+            },
+            {
+              "type": "concept",
+              "title": "Pavement markings"
+            },
+            {
+              "type": "concept",
+              "title": "Traffic signal indications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intersection control",
+          "description": "Intersections concentrate conflicts, delay, and safety risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stop control"
+            },
+            {
+              "type": "concept",
+              "title": "Yield control"
+            },
+            {
+              "type": "concept",
+              "title": "Roundabouts"
+            },
+            {
+              "type": "concept",
+              "title": "Signal warrants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal timing",
+          "description": "Signal timing balances safety, delay, progression, and pedestrian service.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle length"
+            },
+            {
+              "type": "concept",
+              "title": "Green split"
+            },
+            {
+              "type": "concept",
+              "title": "Yellow and all-red intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination and offsets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Public Transit, Shared Mobility, and Service Planning",
+      "description": "Analyze transit routes, service frequency, stop spacing, reliability, and rider-oriented performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transit modes and service types",
+          "description": "Transit analysis begins with service forms and right-of-way differences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bus, BRT, light rail, commuter rail"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-route and demand-responsive service"
+            },
+            {
+              "type": "concept",
+              "title": "Local, express, and feeder service"
+            },
+            {
+              "type": "concept",
+              "title": "Park-and-ride and transfer centers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service planning metrics",
+          "description": "Students evaluate transit from both operator and rider perspectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Frequency and headway"
+            },
+            {
+              "type": "concept",
+              "title": "Span of service"
+            },
+            {
+              "type": "concept",
+              "title": "Load factor"
+            },
+            {
+              "type": "concept",
+              "title": "On-time performance and reliability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Access and passenger experience",
+          "description": "Transit usefulness depends on the full journey, not only in-vehicle travel.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Walk access"
+            },
+            {
+              "type": "concept",
+              "title": "Stop spacing"
+            },
+            {
+              "type": "concept",
+              "title": "First-mile/last-mile connections"
+            },
+            {
+              "type": "concept",
+              "title": "Fare policy and accessibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Airport, Rail, Freight, and Intermodal Systems",
+      "description": "Survey major non-road modes and how passenger, freight, and logistics networks connect.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Airport engineering basics",
+          "description": "Airports combine airside capacity, landside access, safety areas, and passenger processing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Runway orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Taxiways and aprons"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal access"
+            },
+            {
+              "type": "concept",
+              "title": "FAA design context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Railroad engineering basics",
+          "description": "Rail systems require track geometry, operations, signaling, and terminal planning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Track gauge and alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Grades and curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Yards and terminals"
+            },
+            {
+              "type": "concept",
+              "title": "Passenger versus freight rail"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Freight and intermodal logistics",
+          "description": "Freight systems move goods across modes, terminals, and supply chains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trucking and rail freight"
+            },
+            {
+              "type": "concept",
+              "title": "Ports and intermodal terminals"
+            },
+            {
+              "type": "concept",
+              "title": "Last-mile delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Logistics performance measures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transportation Safety Analysis and Countermeasures",
+      "description": "Use crash data, risk concepts, human factors, and countermeasures to improve safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Crash data and safety metrics",
+          "description": "Safety analysis starts with understanding crash frequency, severity, exposure, and data limitations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crash rate"
+            },
+            {
+              "type": "concept",
+              "title": "Fatal and serious injury crashes"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure measures"
+            },
+            {
+              "type": "concept",
+              "title": "Police reports and geocoding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety diagnosis",
+          "description": "Students learn how to identify locations and patterns with elevated risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Network screening"
+            },
+            {
+              "type": "concept",
+              "title": "Collision diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Before-after studies"
+            },
+            {
+              "type": "concept",
+              "title": "Systemic safety analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Countermeasures",
+          "description": "Countermeasures translate diagnosis into design or operational changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Road diets"
+            },
+            {
+              "type": "concept",
+              "title": "Protected left turns"
+            },
+            {
+              "type": "concept",
+              "title": "Rumble strips"
+            },
+            {
+              "type": "concept",
+              "title": "Pedestrian refuge islands and speed management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Intelligent Transportation Systems and Connected Mobility",
+      "description": "Study sensors, communications, traveler information, connected vehicles, automation, and system management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ITS architecture and functions",
+          "description": "ITS uses sensing, communication, and control to manage transportation systems in real time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Traffic management centers"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic message signs"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive signal control"
+            },
+            {
+              "type": "concept",
+              "title": "Ramp metering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensors and data systems",
+          "description": "Modern operations depend on field data streams and automated detection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop detectors"
+            },
+            {
+              "type": "concept",
+              "title": "Cameras and video analytics"
+            },
+            {
+              "type": "concept",
+              "title": "Bluetooth and probe data"
+            },
+            {
+              "type": "concept",
+              "title": "Connected vehicle messages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connected and automated mobility",
+          "description": "Students survey how automation changes safety, operations, and infrastructure needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vehicle-to-infrastructure communication"
+            },
+            {
+              "type": "concept",
+              "title": "Automated vehicle levels"
+            },
+            {
+              "type": "concept",
+              "title": "Platooning"
+            },
+            {
+              "type": "concept",
+              "title": "Cybersecurity and privacy concerns"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transportation Simulation, Microsimulation, and Modeling Tools",
+      "description": "Use computational models to test operations, demand, control strategies, and network performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simulation purposes",
+          "description": "Simulation tests alternatives when field experiments are expensive or risky.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Operations analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Signal timing evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Incident and work-zone analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario comparison"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model types",
+          "description": "Students distinguish modeling scales and choose tools appropriate to the question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Macroscopic models"
+            },
+            {
+              "type": "concept",
+              "title": "Mesoscopic models"
+            },
+            {
+              "type": "concept",
+              "title": "Microsimulation"
+            },
+            {
+              "type": "concept",
+              "title": "Agent-based simulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calibration and validation",
+          "description": "A model is useful only if it reasonably reflects observed conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input data preparation"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Validation targets"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sustainable, Equitable, and Complete Streets Transportation",
+      "description": "Connect transportation engineering to emissions, accessibility, active modes, urban design, resilience, and environmental justice.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sustainable transportation",
+          "description": "Transportation engineering increasingly evaluates energy, emissions, climate resilience, and land-use impacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vehicle emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Mode shift"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience to flooding and heat"
+            },
+            {
+              "type": "concept",
+              "title": "Life-cycle infrastructure impacts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equity and accessibility",
+          "description": "Equity analysis asks who benefits, who is burdened, and who can reach opportunities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transportation-disadvantaged populations"
+            },
+            {
+              "type": "concept",
+              "title": "Access to jobs and services"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental justice"
+            },
+            {
+              "type": "concept",
+              "title": "Public participation and community impacts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complete streets and active modes",
+          "description": "Complete streets design supports safe movement for users beyond motor vehicles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sidewalks and crossings"
+            },
+            {
+              "type": "concept",
+              "title": "Bike lanes and protected bikeways"
+            },
+            {
+              "type": "concept",
+              "title": "Traffic calming"
+            },
+            {
+              "type": "concept",
+              "title": "NACTO urban street design concepts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Policy, Investment, Project Evaluation, and Integrated Capstone",
+      "description": "Synthesize planning, operations, design, safety, sustainability, and economics in a transportation project evaluation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project evaluation",
+          "description": "Students learn to compare alternatives using engineering, economic, environmental, and social criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Benefit-cost analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Life-cycle cost"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-criteria evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Risk and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Policy and funding",
+          "description": "Transportation projects are shaped by institutions, funding programs, and regulatory requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Federal, state, MPO, and local roles"
+            },
+            {
+              "type": "concept",
+              "title": "Capital improvement programs"
+            },
+            {
+              "type": "concept",
+              "title": "NEPA awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Pricing and demand management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated capstone",
+          "description": "A capstone synthesizes planning, operations, design, safety, sustainability, and communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Corridor study"
+            },
+            {
+              "type": "concept",
+              "title": "Intersection or signal redesign"
+            },
+            {
+              "type": "concept",
+              "title": "Transit service plan"
+            },
+            {
+              "type": "concept",
+              "title": "Technical memo and presentation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

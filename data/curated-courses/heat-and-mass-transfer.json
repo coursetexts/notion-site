@@ -1,0 +1,838 @@
+{
+  "slug": "heat-and-mass-transfer",
+  "title": "Heat and Mass Transfer",
+  "description": "Develop the ability to model, analyze, and design systems involving conductive, convective, radiative, diffusive, interphase, and simultaneous heat and mass transfer.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Conduction",
+      "description": "Conduction is the baseline mechanism for heat diffusion through solids and stationary fluids. Students learn how material properties, geometry, and boundary conditions determine heat flow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fourier's law",
+          "description": "Students learn the constitutive law for conductive heat flux.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature gradient and heat flux direction"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "One-dimensional and multidimensional notation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal resistance",
+          "description": "Students simplify conduction problems using circuit analogies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plane walls, cylinders, and spheres"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel resistances"
+            },
+            {
+              "type": "concept",
+              "title": "Contact resistance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat generation",
+          "description": "Students analyze systems where heat is produced internally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Volumetric generation"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum temperature in slabs/cylinders"
+            },
+            {
+              "type": "concept",
+              "title": "Electronic, nuclear, and reacting-system examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary conditions",
+          "description": "Students learn how physical surroundings enter conduction models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specified temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Specified heat flux"
+            },
+            {
+              "type": "concept",
+              "title": "Convection and radiation boundary conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Steady and Transient Conduction",
+      "description": "This section separates equilibrium conduction from time-dependent thermal response. The point is to predict both final temperatures and how long systems take to heat or cool.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Steady-state conduction",
+          "description": "Students solve temperature fields that no longer change with time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Composite walls"
+            },
+            {
+              "type": "concept",
+              "title": "Radial systems"
+            },
+            {
+              "type": "concept",
+              "title": "Fins and extended surfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient lumped analysis",
+          "description": "Students learn when an object can be approximated as spatially uniform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biot number"
+            },
+            {
+              "type": "concept",
+              "title": "Lumped capacitance method"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal time constant"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient distributed analysis",
+          "description": "Students handle cases with internal temperature gradients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier number"
+            },
+            {
+              "type": "concept",
+              "title": "Heisler-chart style reasoning"
+            },
+            {
+              "type": "concept",
+              "title": "Semi-infinite solids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical conduction methods",
+          "description": "Students get a practical bridge to computational heat transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite-difference energy balances"
+            },
+            {
+              "type": "concept",
+              "title": "Stability and time stepping"
+            },
+            {
+              "type": "concept",
+              "title": "Grid spacing and boundary implementation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convection Fundamentals",
+      "description": "Convection couples heat transfer with fluid flow. Students learn why a heat-transfer coefficient is not just a property, but a result of geometry, flow, and thermal boundary layers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boundary-layer ideas",
+          "description": "Students connect flow near surfaces to heat transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Velocity boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar versus turbulent behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Newton's law of cooling",
+          "description": "Students learn the engineering model for convective heat flux.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat-transfer coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Bulk and surface temperatures"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus average coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensionless groups",
+          "description": "Students use nondimensional numbers to generalize data and correlations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds number"
+            },
+            {
+              "type": "concept",
+              "title": "Prandtl number"
+            },
+            {
+              "type": "concept",
+              "title": "Nusselt number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy balance links",
+          "description": "Students connect surface convection to control-volume analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface heat flux"
+            },
+            {
+              "type": "concept",
+              "title": "Bulk temperature changes"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal entrance effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Forced and Natural Convection",
+      "description": "Forced and natural convection are taught together because both use correlations, but their driving mechanisms differ. Students learn how pumps, fans, wind, and buoyancy change heat-transfer behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "External forced convection",
+          "description": "Students analyze flow over plates, cylinders, and bodies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flat-plate correlations"
+            },
+            {
+              "type": "concept",
+              "title": "Cylinder and sphere correlations"
+            },
+            {
+              "type": "concept",
+              "title": "Drag and heat-transfer analogies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Internal forced convection",
+          "description": "Students analyze flow through pipes, tubes, and ducts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrodynamic and thermal development"
+            },
+            {
+              "type": "concept",
+              "title": "Constant wall temperature versus heat flux"
+            },
+            {
+              "type": "concept",
+              "title": "Turbulent pipe-flow correlations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Natural convection",
+          "description": "Students learn buoyancy-driven heat transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grashof and Rayleigh numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Vertical plates and enclosures"
+            },
+            {
+              "type": "concept",
+              "title": "Stable and unstable stratification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase-change convection",
+          "description": "Students get essential exposure to boiling and condensation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pool boiling curve"
+            },
+            {
+              "type": "concept",
+              "title": "Film and dropwise condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-transfer enhancement and limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Radiation",
+      "description": "Radiation matters whenever temperatures are high, surfaces exchange across space, or vacuum/gas paths limit conduction and convection. Students learn radiative exchange from surface physics to enclosure calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Radiation fundamentals",
+          "description": "Students learn the basic laws of thermal radiation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blackbody emission"
+            },
+            {
+              "type": "concept",
+              "title": "Stefan-Boltzmann law"
+            },
+            {
+              "type": "concept",
+              "title": "Wien's law and spectral behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surface properties",
+          "description": "Students connect material finish and wavelength to radiation exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emissivity"
+            },
+            {
+              "type": "concept",
+              "title": "Absorptivity, reflectivity, and transmissivity"
+            },
+            {
+              "type": "concept",
+              "title": "Gray and diffuse approximations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "View factors",
+          "description": "Students learn geometric weighting of radiation exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reciprocity"
+            },
+            {
+              "type": "concept",
+              "title": "Summation rule"
+            },
+            {
+              "type": "concept",
+              "title": "Common two-surface configurations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiation networks",
+          "description": "Students solve enclosure exchange problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface and space resistances"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation shields"
+            },
+            {
+              "type": "concept",
+              "title": "Combined radiation and convection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Heat Exchangers",
+      "description": "Heat exchangers are the main process-equipment application of heat-transfer theory. Students learn to size, rate, and troubleshoot exchangers for real process streams.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heat-exchanger types",
+          "description": "Students recognize common equipment and flow arrangements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double-pipe, shell-and-tube, compact, and plate exchangers"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel flow, counterflow, and crossflow"
+            },
+            {
+              "type": "concept",
+              "title": "Condensers and evaporators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "LMTD method",
+          "description": "Students learn the classic design equation for specified inlet/outlet states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy balances"
+            },
+            {
+              "type": "concept",
+              "title": "Log-mean temperature difference"
+            },
+            {
+              "type": "concept",
+              "title": "Correction factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effectiveness-NTU method",
+          "description": "Students learn rating methods when outlet temperatures are unknown.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat capacity rates"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum possible heat transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Effectiveness relationships"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design realities",
+          "description": "Students connect clean calculations to industrial equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overall heat-transfer coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Fouling factors"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure drop, materials, and safety margins"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mass Transfer Fundamentals and Diffusion",
+      "description": "Mass transfer begins with species movement due to concentration gradients. Students learn the analogies and differences between heat diffusion and molecular diffusion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Concentration measures",
+          "description": "Students learn how to express species amounts consistently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass and molar concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Mole fraction and mass fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Partial pressure for gases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fick's law",
+          "description": "Students learn the basic flux law for molecular diffusion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Binary diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Steady one-dimensional diffusion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diffusion with reaction or generation",
+          "description": "Students model transport coupled to consumption or production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order reaction examples"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst pellets as an introductory case"
+            },
+            {
+              "type": "concept",
+              "title": "Biological and environmental examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient diffusion",
+          "description": "Students learn how concentration fields evolve in time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic diffusion time"
+            },
+            {
+              "type": "concept",
+              "title": "Semi-infinite diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion into slabs and films"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convective Mass Transfer",
+      "description": "Convective mass transfer adds fluid motion to diffusion. Students learn how mass-transfer coefficients and dimensionless correlations convert complex flow fields into usable design equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mass-transfer coefficients",
+          "description": "Students learn the species-transfer counterpart to heat-transfer coefficients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Film model"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus average coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Driving-force definitions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensionless mass-transfer groups",
+          "description": "Students use correlations across systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sherwood number"
+            },
+            {
+              "type": "concept",
+              "title": "Schmidt number"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds number in mass transfer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat-mass transfer analogies",
+          "description": "Students connect thermal and concentration boundary layers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Chilton-Colburn analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of analogy use"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students apply convective mass transfer to equipment and processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dissolution and evaporation"
+            },
+            {
+              "type": "concept",
+              "title": "Gas absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane and surface-transfer examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interphase Mass Transfer",
+      "description": "Many chemical engineering operations depend on transfer across phase boundaries. Students learn how equilibrium and transport resistances combine at gas-liquid, liquid-liquid, solid-fluid, and membrane interfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase equilibrium",
+          "description": "Students learn the thermodynamic target for interphase transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Henry's law"
+            },
+            {
+              "type": "concept",
+              "title": "Raoult's law as context"
+            },
+            {
+              "type": "concept",
+              "title": "Partition coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Two-film theory",
+          "description": "Students model resistance on both sides of an interface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gas-side and liquid-side resistances"
+            },
+            {
+              "type": "concept",
+              "title": "Overall mass-transfer coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Controlling resistance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interfacial area",
+          "description": "Students learn why equipment geometry matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Packed columns"
+            },
+            {
+              "type": "concept",
+              "title": "Bubbles, droplets, and films"
+            },
+            {
+              "type": "concept",
+              "title": "Wetted area and contacting efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process examples",
+          "description": "Students connect interphase transfer to separations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absorption and stripping"
+            },
+            {
+              "type": "concept",
+              "title": "Liquid-liquid extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Adsorption and membrane separations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Simultaneous Heat and Mass Transfer",
+      "description": "Real processes often move heat and species at the same time. Students learn to solve coupled balances where temperature affects vapor pressure, diffusivity, equilibrium, and driving forces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coupled balances",
+          "description": "Students learn to write linked energy and species equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaporation energy requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Latent heat"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled boundary conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Humidification and psychrometrics",
+          "description": "Students analyze air-water vapor systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Humidity measures"
+            },
+            {
+              "type": "concept",
+              "title": "Wet-bulb temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Psychrometric charts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drying and evaporation",
+          "description": "Students study common industrial and environmental operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant-rate and falling-rate drying"
+            },
+            {
+              "type": "concept",
+              "title": "Mass and heat transfer resistances"
+            },
+            {
+              "type": "concept",
+              "title": "Spray, tray, and packed systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design and performance evaluation",
+          "description": "Students integrate the course into engineering decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dimensionless analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Model validation with data"
+            },
+            {
+              "type": "concept",
+              "title": "Safety, energy efficiency, and scale-up"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

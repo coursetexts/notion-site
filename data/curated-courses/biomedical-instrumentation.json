@@ -1,0 +1,1148 @@
+{
+  "slug": "biomedical-instrumentation",
+  "title": "Biomedical Instrumentation",
+  "description": "Biomedical Instrumentation teaches students how physiological variables become reliable clinical data. Students study electrodes, sensors, analog front ends, filters, data conversion, embedded acquisition, noise control, safety, calibration, validation, interoperability, cybersecurity, and applied measurements such as ECG, EMG, EEG, pressure, flow, optical sensing, and chemical biosensing.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "System Architecture and the Biomedical Measurement Chain",
+      "description": "This opening unit gives students the map of a biomedical instrument from patient interface to clinical display. The point is to see every later circuit, sensor, filter, and software choice as part of one measurement chain whose output affects patient care.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement-chain blocks",
+          "description": "Students learn how measurand, sensor, analog front end, converter, processor, storage, display, and user workflow fit together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Measurand definition"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor interface"
+            },
+            {
+              "type": "concept",
+              "title": "Analog front end"
+            },
+            {
+              "type": "concept",
+              "title": "Digital processing"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical display and alarm output"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clinical constraints",
+          "description": "Instrumentation decisions are tied to comfort, safety, workflow, sterility, maintenance, and the consequences of false readings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Use environment"
+            },
+            {
+              "type": "concept",
+              "title": "Patient attachment time"
+            },
+            {
+              "type": "concept",
+              "title": "Operator training"
+            },
+            {
+              "type": "concept",
+              "title": "Alarm fatigue"
+            },
+            {
+              "type": "concept",
+              "title": "Device cleaning and durability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance specifications",
+          "description": "Students practice translating a clinical need into measurable engineering requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Drift"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic range"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bioelectric Signals and Electrode Interfaces",
+      "description": "Bioelectric measurements are central to ECG, EEG, EMG, and many bedside monitors. This topic explains where those signals come from and why the electrode-skin interface is often the hardest part of the system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Physiological origins of biopotentials",
+          "description": "Students connect cellular activity to measurable body-surface voltage patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resting and action potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Volume conduction"
+            },
+            {
+              "type": "concept",
+              "title": "Cardiac depolarization"
+            },
+            {
+              "type": "concept",
+              "title": "Motor-unit recruitment"
+            },
+            {
+              "type": "concept",
+              "title": "Cortical rhythms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrode models",
+          "description": "Students learn equivalent circuits that explain half-cell potentials, impedance, polarization, and motion artifacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Half-cell potential"
+            },
+            {
+              "type": "concept",
+              "title": "Double-layer capacitance"
+            },
+            {
+              "type": "concept",
+              "title": "Contact impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Polarizable vs. Nonpolarizable Electrodes"
+            },
+            {
+              "type": "concept",
+              "title": "Gel and dry electrodes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lead systems and references",
+          "description": "Students see how electrode placement changes the signal, noise, and clinical interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ECG Limb and Chest Leads"
+            },
+            {
+              "type": "concept",
+              "title": "EEG Montages"
+            },
+            {
+              "type": "concept",
+              "title": "EMG Bipolar Placement"
+            },
+            {
+              "type": "concept",
+              "title": "Driven-right-leg concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Reference and ground choices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transducers, Sensors, and Signal Conditioning",
+      "description": "Biomedical instrumentation starts with converting physiological phenomena into electrical information. This section builds fluency with sensor families and the first conditioning circuits that make weak biological signals usable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sensor principles",
+          "description": "Students compare how common transducers convert pressure, flow, displacement, temperature, light, and chemical concentration into voltage, current, resistance, capacitance, or frequency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistive sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitive sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Piezoelectric sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Thermistors and RTDs"
+            },
+            {
+              "type": "concept",
+              "title": "Photodiodes"
+            },
+            {
+              "type": "concept",
+              "title": "Electrochemical sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bridge and excitation circuits",
+          "description": "Students learn how sensors are powered and read without adding avoidable drift or self-heating.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wheatstone bridges"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-current excitation"
+            },
+            {
+              "type": "concept",
+              "title": "Ratiometric measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Lead resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Self-heating limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analog front-end matching",
+          "description": "Students learn to match source impedance, amplitude, bandwidth, and isolation needs to the front-end circuit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Bias current"
+            },
+            {
+              "type": "concept",
+              "title": "Loading error"
+            },
+            {
+              "type": "concept",
+              "title": "Gain staging"
+            },
+            {
+              "type": "concept",
+              "title": "Anti-alias prefiltering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operational Amplifiers, Instrumentation Amplifiers, and Filters",
+      "description": "The analog front end determines whether small physiological signals survive long enough to be digitized. This topic focuses on amplifier and filter choices that preserve signal quality while rejecting interference.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Op-amp fundamentals for biomedical circuits",
+          "description": "Students review the practical op-amp limits that matter in medical measurement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-loop gain"
+            },
+            {
+              "type": "concept",
+              "title": "Input offset"
+            },
+            {
+              "type": "concept",
+              "title": "Input bias current"
+            },
+            {
+              "type": "concept",
+              "title": "Slew rate"
+            },
+            {
+              "type": "concept",
+              "title": "Common-mode range"
+            },
+            {
+              "type": "concept",
+              "title": "Power supply limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instrumentation amplifiers",
+          "description": "Students learn why high input impedance and common-mode rejection are essential for low-level biopotentials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Differential gain"
+            },
+            {
+              "type": "concept",
+              "title": "CMRR"
+            },
+            {
+              "type": "concept",
+              "title": "Three-op-amp architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Gain resistor selection"
+            },
+            {
+              "type": "concept",
+              "title": "Input protection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analog filter design",
+          "description": "Students design filters around physiological bandwidths and interference sources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low-pass filters"
+            },
+            {
+              "type": "concept",
+              "title": "High-pass filters"
+            },
+            {
+              "type": "concept",
+              "title": "Band-pass filters"
+            },
+            {
+              "type": "concept",
+              "title": "Notch filters"
+            },
+            {
+              "type": "concept",
+              "title": "Active filter topologies"
+            },
+            {
+              "type": "concept",
+              "title": "Phase distortion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Analog-to-Digital Conversion, Sampling, and Data Acquisition",
+      "description": "A clean analog signal still has to become trustworthy digital data. This section teaches sampling, quantization, and acquisition-system design so students can avoid aliasing, timing errors, and hidden resolution limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling theory",
+          "description": "Students learn how sample rate, bandwidth, and anti-alias filtering interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nyquist Criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Oversampling"
+            },
+            {
+              "type": "concept",
+              "title": "Sample-and-hold behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Reconstruction concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ADC performance",
+          "description": "Students interpret converter specifications in biomedical terms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Quantization noise"
+            },
+            {
+              "type": "concept",
+              "title": "Effective number of bits"
+            },
+            {
+              "type": "concept",
+              "title": "Input range"
+            },
+            {
+              "type": "concept",
+              "title": "Integral and differential nonlinearity"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion latency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DAQ architecture",
+          "description": "Students design acquisition systems that coordinate sensors, channels, timing, buffering, and software.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiplexing"
+            },
+            {
+              "type": "concept",
+              "title": "Simultaneous sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Timestamping"
+            },
+            {
+              "type": "concept",
+              "title": "Buffering"
+            },
+            {
+              "type": "concept",
+              "title": "USB and Wireless DAQ"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata capture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Noise, Grounding, Shielding, and Patient Safety",
+      "description": "This topic is where instrumentation becomes clinically serious. Students learn to distinguish random noise, interference, leakage current, and grounding faults, then design measurement systems that protect both data quality and patient safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Noise sources and models",
+          "description": "Students identify the sources that limit measurement quality and learn when filtering is not enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal noise"
+            },
+            {
+              "type": "concept",
+              "title": "Shot noise"
+            },
+            {
+              "type": "concept",
+              "title": "1/f Noise"
+            },
+            {
+              "type": "concept",
+              "title": "Electrode motion artifact"
+            },
+            {
+              "type": "concept",
+              "title": "Power-line interference"
+            },
+            {
+              "type": "concept",
+              "title": "Electromagnetic coupling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Grounding and shielding",
+          "description": "Students learn practical layout and wiring choices for reducing interference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-point grounding"
+            },
+            {
+              "type": "concept",
+              "title": "Driven shields"
+            },
+            {
+              "type": "concept",
+              "title": "Cable shielding"
+            },
+            {
+              "type": "concept",
+              "title": "Guarding"
+            },
+            {
+              "type": "concept",
+              "title": "Isolation barriers"
+            },
+            {
+              "type": "concept",
+              "title": "Ground loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Medical electrical safety",
+          "description": "Students connect circuit design to patient leakage limits and safe operation around other equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Macroshock and microshock"
+            },
+            {
+              "type": "concept",
+              "title": "Isolation amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Leakage current"
+            },
+            {
+              "type": "concept",
+              "title": "Defibrillator protection"
+            },
+            {
+              "type": "concept",
+              "title": "IEC 60601 Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Risk controls"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "ECG, EMG, EEG, Pressure, and Flow Measurements",
+      "description": "Students now apply the measurement-chain ideas to major clinical signals. The goal is to understand what each signal means, how it is acquired, and what can go wrong technically or clinically.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electrocardiography",
+          "description": "Students learn the signal path from cardiac electrical activity to displayed waveform and derived heart-rate metrics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PQRST Morphology"
+            },
+            {
+              "type": "concept",
+              "title": "Lead placement"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline wander"
+            },
+            {
+              "type": "concept",
+              "title": "QRS Detection"
+            },
+            {
+              "type": "concept",
+              "title": "Arrhythmia-monitoring basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electromyography and electroencephalography",
+          "description": "Students compare muscle and brain signals, emphasizing bandwidth, amplitude, artifacts, and interpretation limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface EMG"
+            },
+            {
+              "type": "concept",
+              "title": "Motor-unit activity"
+            },
+            {
+              "type": "concept",
+              "title": "EEG Rhythms"
+            },
+            {
+              "type": "concept",
+              "title": "Blink and muscle artifact"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure and flow",
+          "description": "Students learn how mechanical physiological variables are converted into calibrated waveforms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blood pressure transducers"
+            },
+            {
+              "type": "concept",
+              "title": "Catheter-tubing dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Respiratory flow sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Pulse waveforms"
+            },
+            {
+              "type": "concept",
+              "title": "Zeroing and leveling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optical, Chemical, and Wearable Biosensors",
+      "description": "Modern biomedical instrumentation increasingly uses light, chemistry, and body-worn platforms. This section shows how sensing choices change when measurements are continuous, noninvasive, implantable, or chemically selective.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Optical sensing",
+          "description": "Students learn the principles behind pulse oximetry, photoplethysmography, fluorescence, and optical motion artifacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Beer-Lambert Law"
+            },
+            {
+              "type": "concept",
+              "title": "LED and Photodiode Geometry"
+            },
+            {
+              "type": "concept",
+              "title": "PPG Waveform"
+            },
+            {
+              "type": "concept",
+              "title": "SpO2 Estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Ambient-light rejection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical and electrochemical biosensors",
+          "description": "Students learn how selective chemistry becomes a measurable signal.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enzyme electrodes"
+            },
+            {
+              "type": "concept",
+              "title": "Glucose sensing"
+            },
+            {
+              "type": "concept",
+              "title": "Ion-selective electrodes"
+            },
+            {
+              "type": "concept",
+              "title": "Potentiometry"
+            },
+            {
+              "type": "concept",
+              "title": "Amperometry"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wearable and implantable sensing",
+          "description": "Students evaluate constraints unique to continuous and mobile monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motion artifact"
+            },
+            {
+              "type": "concept",
+              "title": "Power budget"
+            },
+            {
+              "type": "concept",
+              "title": "Skin compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Wireless telemetry"
+            },
+            {
+              "type": "concept",
+              "title": "Data gaps"
+            },
+            {
+              "type": "concept",
+              "title": "Long-term drift"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Calibration, Uncertainty, Validation, and Quality Systems",
+      "description": "Clinical instruments must be more than plausible; they must be calibrated, traceable, validated, and documented. This topic gives students the measurement-science habits needed for trustworthy biomedical devices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Calibration and traceability",
+          "description": "Students learn how reference standards, calibration curves, and intervals support defensible measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zero and span calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Reference instruments"
+            },
+            {
+              "type": "concept",
+              "title": "Traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration intervals"
+            },
+            {
+              "type": "concept",
+              "title": "As-Found vs. As-Left Results"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty analysis",
+          "description": "Students quantify how errors propagate through a measurement system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy vs. Precision"
+            },
+            {
+              "type": "concept",
+              "title": "Bias and random error"
+            },
+            {
+              "type": "concept",
+              "title": "Error propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Repeatability and reproducibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Verification and validation",
+          "description": "Students distinguish proving the device was built right from proving it meets the clinical need.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Bench testing"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Validation protocol"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Embedded Systems, Connectivity, and Interoperability",
+      "description": "Many instruments now run on microcontrollers, stream data, and exchange information with clinical systems. This section connects biomedical measurements to firmware, timing, power, and safe communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microcontroller-based acquisition",
+          "description": "Students learn how embedded peripherals control sensors and acquisition timing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPIO"
+            },
+            {
+              "type": "concept",
+              "title": "Timers"
+            },
+            {
+              "type": "concept",
+              "title": "ADC Peripherals"
+            },
+            {
+              "type": "concept",
+              "title": "Interrupts"
+            },
+            {
+              "type": "concept",
+              "title": "DMA Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Watchdogs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Firmware and real-time constraints",
+          "description": "Students learn how timing, buffering, and failure handling affect device reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling loops"
+            },
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Task scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Memory limits"
+            },
+            {
+              "type": "concept",
+              "title": "Fault states"
+            },
+            {
+              "type": "concept",
+              "title": "Firmware validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interoperability",
+          "description": "Students learn why devices need structured data exchange and clear integration boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data formats"
+            },
+            {
+              "type": "concept",
+              "title": "Time synchronization"
+            },
+            {
+              "type": "concept",
+              "title": "Alarms and events"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical network interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "HL7/FHIR Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Usability at handoff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Medical Device Cybersecurity and Patient-Data Protection",
+      "description": "Connected devices create safety and privacy risks that are inseparable from engineering design. This topic introduces students to practical threat modeling and protective controls for biomedical instrumentation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Threat modeling for instruments",
+          "description": "Students identify who could attack or misuse a device and what harm could result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assets"
+            },
+            {
+              "type": "concept",
+              "title": "Attack surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Trust boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Failure modes"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical impact"
+            },
+            {
+              "type": "concept",
+              "title": "Misuse cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Security controls",
+          "description": "Students learn basic controls that reduce risk without undermining clinical usability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Authentication"
+            },
+            {
+              "type": "concept",
+              "title": "Authorization"
+            },
+            {
+              "type": "concept",
+              "title": "Encryption"
+            },
+            {
+              "type": "concept",
+              "title": "Secure update"
+            },
+            {
+              "type": "concept",
+              "title": "Logging"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Patient-data protection",
+          "description": "Students connect data handling to privacy, clinical accountability, and device lifecycle management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum necessary data"
+            },
+            {
+              "type": "concept",
+              "title": "De-identification concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Audit trails"
+            },
+            {
+              "type": "concept",
+              "title": "Retention"
+            },
+            {
+              "type": "concept",
+              "title": "Incident response"
+            },
+            {
+              "type": "concept",
+              "title": "Postmarket monitoring"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instrumentation Design Laboratory Project",
+      "description": "The course culminates in a design project where students build, test, and communicate a biomedical measurement system. The point is to integrate circuits, sensors, software, safety, validation, and documentation into one coherent instrument.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project definition",
+          "description": "Students turn a physiological measurement need into a bounded design problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Needs statement"
+            },
+            {
+              "type": "concept",
+              "title": "User profile"
+            },
+            {
+              "type": "concept",
+              "title": "Measurand and range"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Success metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prototype implementation",
+          "description": "Students build and debug the measurement chain in stages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor selection"
+            },
+            {
+              "type": "concept",
+              "title": "Front-end circuit"
+            },
+            {
+              "type": "concept",
+              "title": "DAQ or Microcontroller"
+            },
+            {
+              "type": "concept",
+              "title": "Signal processing"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical packaging"
+            },
+            {
+              "type": "concept",
+              "title": "Human factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing and communication",
+          "description": "Students validate the instrument and present evidence clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Test plan"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration record"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty budget"
+            },
+            {
+              "type": "concept",
+              "title": "Safety review"
+            },
+            {
+              "type": "concept",
+              "title": "Design review"
+            },
+            {
+              "type": "concept",
+              "title": "Technical report and demo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

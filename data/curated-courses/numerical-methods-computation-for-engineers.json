@@ -1,0 +1,1072 @@
+{
+  "slug": "numerical-methods-computation-for-engineers",
+  "title": "Numerical Methods / Computation for Engineers",
+  "description": "This syllabus blends numerical methods with engineering computation practice: students learn the algorithms, implement them in MATLAB/Python, verify numerical behavior, and communicate computational results as engineering evidence.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Engineering Computation Workflow, Programming, and Reproducibility",
+      "description": "Introduce MATLAB/Python workflows, notebooks, scripts, functions, data structures, debugging, and reproducible computation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Programming Environment and Workflow",
+          "description": "Students learn the practical computational setup used for engineering analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Script, function, notebook, command window, workspace, and package/library"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB, Python, NumPy, SciPy, Jupyter, and plotting libraries"
+            },
+            {
+              "type": "concept",
+              "title": "Input, output, parameter file, result file, and reproducible directory structure"
+            },
+            {
+              "type": "concept",
+              "title": "Vectorization, loops, conditionals, arrays, matrices, and broadcasting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Code Quality and Debugging",
+          "description": "The point is to make code that can be trusted and maintained.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Syntax error, runtime error, logic error, and numerical error"
+            },
+            {
+              "type": "concept",
+              "title": "Breakpoint, print debugging, unit test, assertion, and sanity check"
+            },
+            {
+              "type": "concept",
+              "title": "Function decomposition, meaningful variable names, comments, and docstrings"
+            },
+            {
+              "type": "concept",
+              "title": "Version control, commit, branch, README, and computational notebook hygiene"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering Visualization and Reporting",
+          "description": "Students learn to communicate computational results clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line plot, scatter plot, contour plot, surface plot, log plot, and residual plot"
+            },
+            {
+              "type": "concept",
+              "title": "Axis label, units, legend, annotation, and figure caption"
+            },
+            {
+              "type": "concept",
+              "title": "Table of parameters, assumptions, and computed outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible report, technical memo, and computational appendix"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Error Analysis, Floating-Point Arithmetic, and Numerical Stability",
+      "description": "Understand roundoff, truncation, conditioning, convergence, and stability in engineering calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Floating-Point Arithmetic",
+          "description": "Students learn why computers do not do exact real-number arithmetic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary representation, floating-point number, mantissa, exponent, machine epsilon, and overflow/underflow"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error, chopping, rounding, and significant digits"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation and subtractive cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Single precision, double precision, and complex numbers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error Types and Propagation",
+          "description": "This subtopic gives the vocabulary for estimating and controlling numerical error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute error, relative error, percent error, true error, and approximate error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error, discretization error, iteration error, and modeling error"
+            },
+            {
+              "type": "concept",
+              "title": "Taylor series, order of accuracy, leading error term, and error constant"
+            },
+            {
+              "type": "concept",
+              "title": "Error propagation, sensitivity coefficient, and uncertainty amplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditioning, Stability, and Convergence",
+          "description": "The goal is to distinguish problem sensitivity from algorithm behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Condition number, ill-conditioned problem, well-conditioned problem, and sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Stable algorithm, unstable algorithm, backward error, and forward error"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence criterion, tolerance, residual, and stopping rule"
+            },
+            {
+              "type": "concept",
+              "title": "Verification by refinement, benchmark comparison, and dimensional check"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Root Finding and Nonlinear Equation Solving",
+      "description": "Solve scalar and coupled nonlinear equations arising from engineering models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bracketing Methods",
+          "description": "Students learn robust methods that locate roots using sign changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Root, residual, nonlinear equation, and bracket"
+            },
+            {
+              "type": "concept",
+              "title": "Bisection method, false position method, and interval halving"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate value theorem and sign-change condition"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute tolerance, relative tolerance, function tolerance, and iteration count"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Open Methods",
+          "description": "This subtopic covers faster methods that need better initial guesses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fixed-point iteration, Newton-Raphson method, secant method, and modified Newton method"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative, tangent approximation, convergence rate, and quadratic convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Divergence, oscillation, multiple root, and poor initial guess"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering examples: friction factor, nonlinear spring, heat balance, and equilibrium equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems of Nonlinear Equations",
+          "description": "Many engineering models require solving several nonlinear equations together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector residual, Jacobian matrix, Newton method for systems, and finite-difference Jacobian"
+            },
+            {
+              "type": "concept",
+              "title": "Damped Newton, line search, trust region, and convergence basin"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling variables, nondimensionalization, and residual normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Solver diagnostics, failed convergence, and physical feasibility checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Linear Algebra and Linear Systems",
+      "description": "Solve dense and sparse linear systems using direct and iterative methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Direct Linear Solvers",
+          "description": "Students learn the core algorithms for Ax = b problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear system, coefficient matrix, right-hand side, and augmented matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian elimination, back substitution, forward substitution, and row operation"
+            },
+            {
+              "type": "concept",
+              "title": "LU factorization, pivoting, permutation matrix, and triangular solve"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple right-hand sides and factorization reuse"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrix Conditioning and Error",
+          "description": "This subtopic teaches students to judge whether a linear solve is reliable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix norm, vector norm, residual norm, and relative residual"
+            },
+            {
+              "type": "concept",
+              "title": "Condition number, ill-conditioning, rank deficiency, and nearly singular matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling, pivot growth, and roundoff amplification"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering examples: stiffness matrices, circuit equations, and least-squares normal equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sparse and Iterative Solvers",
+          "description": "The goal is to handle large engineering systems efficiently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sparse matrix, banded matrix, storage format, and fill-in"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobi method, Gauss-Seidel method, successive over-relaxation, and conjugate gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditioner, convergence rate, and stopping tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Finite difference/finite element systems and computational cost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Curve Fitting, Regression, and Data-Driven Engineering Models",
+      "description": "Fit empirical models to engineering data and quantify residuals and uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Least-Squares Fitting",
+          "description": "Students learn how to fit models when data are noisy or overdetermined.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residual, sum of squared errors, least-squares objective, and normal equations"
+            },
+            {
+              "type": "concept",
+              "title": "Linear regression, polynomial regression, basis function, and design matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Overdetermined system, QR factorization, and numerical stability of fitting"
+            },
+            {
+              "type": "concept",
+              "title": "Goodness of fit, R-squared, root mean square error, and residual plot"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonlinear and Weighted Regression",
+          "description": "This subtopic broadens fitting to realistic engineering models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nonlinear least squares, parameter estimate, initial guess, and solver convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted least squares, heteroscedasticity, and measurement uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval, prediction interval, and parameter correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration curve, material model fitting, drag correlation, and heat-transfer correlation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Selection and Diagnostics",
+          "description": "The point is to avoid fitting attractive but misleading models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Underfitting, overfitting, extrapolation, interpolation, and validation data"
+            },
+            {
+              "type": "concept",
+              "title": "Outlier, leverage, influence, and Cook's distance as diagnostic ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-validation, train/test split, and residual structure"
+            },
+            {
+              "type": "concept",
+              "title": "Physical interpretability and dimensional consistency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interpolation, Approximation, and Surrogate Models",
+      "description": "Approximate functions and data using interpolation, splines, and basis-function methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polynomial Interpolation",
+          "description": "Students learn exact-fit methods and their limitations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interpolation node, Lagrange polynomial, Newton divided difference, and interpolation error"
+            },
+            {
+              "type": "concept",
+              "title": "Equally spaced points, Runge phenomenon, and Chebyshev nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise interpolation and local versus global approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Lookup tables, calibration data, and property tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Splines and Piecewise Approximation",
+          "description": "This subtopic gives stable tools for smooth engineering curves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear spline, quadratic spline, cubic spline, knot, and continuity condition"
+            },
+            {
+              "type": "concept",
+              "title": "Natural spline, clamped spline, and not-a-knot boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Shape preservation, monotonic interpolation, and smoothing spline"
+            },
+            {
+              "type": "concept",
+              "title": "CAD curves, material property curves, and experimental response curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surrogate and Reduced Models",
+          "description": "The goal is to approximate expensive simulations or experiments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Response surface, metamodel, surrogate model, and emulator"
+            },
+            {
+              "type": "concept",
+              "title": "Radial basis function, polynomial response surface, and Gaussian process preview"
+            },
+            {
+              "type": "concept",
+              "title": "Design points, sampling plan, and validation error"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation acceleration, optimization support, and uncertainty screening"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Differentiation and Numerical Integration",
+      "description": "Approximate derivatives and integrals while understanding accuracy and error behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Finite Difference Derivatives",
+          "description": "Students learn to approximate derivatives from functions or data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forward difference, backward difference, central difference, and step size"
+            },
+            {
+              "type": "concept",
+              "title": "First derivative, second derivative, truncation error, and roundoff trade-off"
+            },
+            {
+              "type": "concept",
+              "title": "Richardson extrapolation and higher-order formula"
+            },
+            {
+              "type": "concept",
+              "title": "Noisy data differentiation and smoothing caution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Newton-Cotes Integration",
+          "description": "This subtopic covers common engineering quadrature formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trapezoidal rule, composite trapezoidal rule, Simpson's 1/3 rule, Simpson's 3/8 rule, and composite Simpson rule"
+            },
+            {
+              "type": "concept",
+              "title": "Step size, panel, integration error, and order of accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Unequally spaced data and tabulated-data integration"
+            },
+            {
+              "type": "concept",
+              "title": "Work, impulse, heat transfer, area, and accumulated quantity examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptive and Gaussian Quadrature",
+          "description": "The point is to integrate efficiently when functions vary unevenly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adaptive quadrature, error estimate, recursive subdivision, and tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian quadrature, quadrature point, weight, and exactness degree"
+            },
+            {
+              "type": "concept",
+              "title": "Improper integral, singular behavior, and oscillatory integrand caution"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical integration in SciPy/MATLAB and verification against known integrals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ordinary Differential Equation Initial-Value Solvers",
+      "description": "Solve dynamic engineering models with explicit and implicit ODE methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Explicit Single-Step Methods",
+          "description": "Students learn time-marching methods for dynamic engineering systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial value problem, state variable, time step, and right-hand-side function"
+            },
+            {
+              "type": "concept",
+              "title": "Forward Euler, midpoint method, Heun method, and fourth-order Runge-Kutta"
+            },
+            {
+              "type": "concept",
+              "title": "Local truncation error, global error, and order of method"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-spring-damper, cooling, tank draining, and population/process examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptive and Implicit Methods",
+          "description": "This subtopic introduces solver choices for difficult dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adaptive time step, error control, embedded Runge-Kutta pair, and event detection"
+            },
+            {
+              "type": "concept",
+              "title": "Backward Euler, trapezoidal method, implicit method, and nonlinear solve per step"
+            },
+            {
+              "type": "concept",
+              "title": "Stiff ODE, stability region, and stiffness ratio"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB ode45/ode15s and SciPy solve_ivp solver selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems of ODEs and Model Validation",
+          "description": "The goal is to translate engineering models into solver-ready form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order system form, state vector, parameter vector, and input function"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation checks, invariants, and physical bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size refinement study and analytical benchmark"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sensitivity and numerical versus modeling error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boundary Value Problems and Eigenvalue Problems",
+      "description": "Solve engineering boundary-value and modal/eigenvalue problems numerically.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boundary Value Problems",
+          "description": "Students learn methods for problems specified at multiple locations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary value problem, Dirichlet condition, Neumann condition, and Robin condition"
+            },
+            {
+              "type": "concept",
+              "title": "Shooting method, finite difference method, and collocation preview"
+            },
+            {
+              "type": "concept",
+              "title": "Residual at boundary and root finding for missing initial condition"
+            },
+            {
+              "type": "concept",
+              "title": "Beam deflection, heat conduction, and diffusion-reaction examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Eigenvalue Problems",
+          "description": "This subtopic supports vibrations, buckling, stability, and modal analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Eigenvalue, eigenvector, matrix eigenproblem, and generalized eigenproblem"
+            },
+            {
+              "type": "concept",
+              "title": "Power method, inverse iteration, QR algorithm as conceptual methods"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency, mode shape, buckling load, and stability threshold"
+            },
+            {
+              "type": "concept",
+              "title": "Mode normalization and interpretation of numerical modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditioning and Discretization Effects",
+          "description": "The point is to understand how mesh and formulation influence results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grid spacing, mesh refinement, boundary approximation, and discretization matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Spurious mode, numerical dispersion, and truncation error"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence study and comparison to analytical solution"
+            },
+            {
+              "type": "concept",
+              "title": "Ill-conditioned eigenproblem and scaling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Difference Methods for Partial Differential Equations",
+      "description": "Discretize steady and transient PDEs from heat transfer, diffusion, waves, and mechanics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PDE Classification and Grids",
+          "description": "Students learn how equation type influences numerical strategy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elliptic PDE, parabolic PDE, hyperbolic PDE, and conservation law"
+            },
+            {
+              "type": "concept",
+              "title": "Grid, node, stencil, mesh spacing, time step, and computational domain"
+            },
+            {
+              "type": "concept",
+              "title": "Initial condition, boundary condition, and source term"
+            },
+            {
+              "type": "concept",
+              "title": "Heat equation, wave equation, Laplace equation, Poisson equation, and diffusion equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finite Difference Schemes",
+          "description": "This subtopic develops practical discretization methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forward-time central-space, backward-time central-space, Crank-Nicolson, and upwind scheme"
+            },
+            {
+              "type": "concept",
+              "title": "Explicit scheme, implicit scheme, and semi-implicit idea"
+            },
+            {
+              "type": "concept",
+              "title": "Stability, consistency, convergence, and Lax equivalence concept"
+            },
+            {
+              "type": "concept",
+              "title": "CFL condition and time-step restriction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering PDE Applications",
+          "description": "The goal is to connect numerical schemes to real engineering models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transient heat conduction, steady heat conduction, diffusion, vibration/string wave, and potential flow examples"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary flux, insulated boundary, prescribed temperature, and convective boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Sparse matrix assembly and linear solve per time step"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization of fields, contours, and animated transients"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optimization Methods for Engineering Design",
+      "description": "Use numerical optimization to improve designs subject to constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Unconstrained Optimization",
+          "description": "Students learn how numerical algorithms find minima and maxima.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objective function, design variable, gradient, Hessian, and stationary point"
+            },
+            {
+              "type": "concept",
+              "title": "Golden-section search, parabolic interpolation, steepest descent, and Newton method"
+            },
+            {
+              "type": "concept",
+              "title": "Line search, trust region, and convergence criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Local minimum, global minimum, saddle point, and scaling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constrained Optimization",
+          "description": "This subtopic introduces realistic design constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equality constraint, inequality constraint, feasible region, active constraint, and Lagrange multiplier"
+            },
+            {
+              "type": "concept",
+              "title": "Penalty method, barrier method, sequential quadratic programming, and KKT condition preview"
+            },
+            {
+              "type": "concept",
+              "title": "Bound constraint, nonlinear constraint, and constraint violation"
+            },
+            {
+              "type": "concept",
+              "title": "Weight, cost, stress, displacement, efficiency, and safety constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering Design Optimization Practice",
+          "description": "The point is to use optimization responsibly with models and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis, parametric sweep, and design space exploration"
+            },
+            {
+              "type": "concept",
+              "title": "Multiobjective optimization, Pareto front, and weighted objective"
+            },
+            {
+              "type": "concept",
+              "title": "Noisy objective, expensive simulation, and surrogate-assisted optimization"
+            },
+            {
+              "type": "concept",
+              "title": "Verification of optimum and engineering feasibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Monte Carlo, Uncertainty Propagation, and Engineering Simulation",
+      "description": "Use random sampling and simulation to propagate uncertainty through engineering models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Monte Carlo Sampling",
+          "description": "Students learn to propagate uncertain inputs through computational models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random variable, input distribution, random seed, sample size, and replication"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo estimate, sample mean, sample variance, and confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Latin hypercube sampling, stratified sampling, and variance reduction preview"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence rate and simulation standard error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty Propagation",
+          "description": "This subtopic connects numerical computation to engineering risk and design margins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parameter uncertainty, measurement uncertainty, model-form uncertainty, and numerical uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity coefficient, tornado plot, and contribution to variance"
+            },
+            {
+              "type": "concept",
+              "title": "Output distribution, percentile, exceedance probability, and reliability estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty budget and propagation through nonlinear models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation-Based Engineering Decisions",
+          "description": "The goal is to summarize probabilistic results in a way that supports action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scenario analysis, risk metric, safety factor, and design margin"
+            },
+            {
+              "type": "concept",
+              "title": "Failure probability, performance threshold, and robustness"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization: histogram, CDF, boxplot, and prediction band"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption documentation and limitations of simulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Verification, Validation, Testing, and Computational Ethics",
+      "description": "Build credible computational models through code testing, convergence checks, validation, and transparent reporting.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Code Verification and Testing",
+          "description": "Students learn to check that the code solves the equations intended.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit test, regression test, integration test, and benchmark test"
+            },
+            {
+              "type": "concept",
+              "title": "Manufactured solution, analytical solution, and conservation check"
+            },
+            {
+              "type": "concept",
+              "title": "Grid convergence, time-step convergence, and observed order of accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Debugging, assertion, exception handling, and automated test"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Validation and Credibility",
+          "description": "This subtopic addresses whether the model is adequate for the real system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validation data, calibration, prediction, and validation metric"
+            },
+            {
+              "type": "concept",
+              "title": "Model-form error, parameter calibration, and uncertainty quantification"
+            },
+            {
+              "type": "concept",
+              "title": "Verification versus validation versus uncertainty quantification"
+            },
+            {
+              "type": "concept",
+              "title": "ASME V&V context and credibility assessment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational Ethics and Transparency",
+          "description": "The point is to treat computational output as engineering evidence with responsibilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reproducibility, traceability, versioning, and data/code availability"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption disclosure, limitation, conflict of interest, and uncertainty communication"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical result misuse, black-box model risk, and overconfidence"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible visualization and honest reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Engineering Computation Project",
+      "description": "Synthesize numerical methods, programming, visualization, and engineering interpretation in a complete computation project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project Scoping and Model Selection",
+          "description": "Students begin by defining a computational problem that is neither too vague nor too narrow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Engineering question, objective, system boundary, assumptions, and success metric"
+            },
+            {
+              "type": "concept",
+              "title": "Governing equation, empirical model, data source, and numerical method choice"
+            },
+            {
+              "type": "concept",
+              "title": "Inputs, outputs, parameters, units, and constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Plan for verification, validation, and sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation and Analysis",
+          "description": "This subtopic brings together coding, algorithms, and interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Modular code, reusable functions, notebook narrative, and version control"
+            },
+            {
+              "type": "concept",
+              "title": "Solver implementation, library solver comparison, and benchmark case"
+            },
+            {
+              "type": "concept",
+              "title": "Plots, tables, convergence study, and residual/error checks"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity study, uncertainty study, or optimization run"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Technical Communication",
+          "description": "The final deliverable asks students to make computational work understandable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary, method, assumptions, results, discussion, and recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Code appendix, reproducibility instructions, and data description"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations, uncertainty, validation evidence, and next steps"
+            },
+            {
+              "type": "concept",
+              "title": "Oral presentation, figure quality, and engineering decision framing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

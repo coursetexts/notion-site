@@ -1,0 +1,1101 @@
+{
+  "slug": "stability-and-control",
+  "title": "Stability and Control",
+  "description": "This upper-division aerospace course unifies flight mechanics, linearized vehicle dynamics, handling qualities, classical feedback control, autopilot design, and spacecraft attitude control. The syllabus covers modeling assumptions, stability derivatives, actuator/sensor realities, autonomous flight, and verification to provide a complete foundation for modern aircraft, UAV, and spacecraft engineering.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Static Stability and Trim",
+      "description": "This section teaches students how aircraft find equilibrium and whether small disturbances naturally produce restoring moments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Trim Conditions",
+          "description": "Trim is the baseline operating point for all linearized stability and control analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force and moment balance"
+            },
+            {
+              "type": "concept",
+              "title": "Steady level flight"
+            },
+            {
+              "type": "concept",
+              "title": "Climb and descent trim"
+            },
+            {
+              "type": "concept",
+              "title": "Trim variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Longitudinal Static Stability",
+          "description": "Students learn how the aircraft responds to angle-of-attack perturbations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pitching moment slope"
+            },
+            {
+              "type": "concept",
+              "title": "Neutral point"
+            },
+            {
+              "type": "concept",
+              "title": "Static margin"
+            },
+            {
+              "type": "concept",
+              "title": "Tail volume coefficient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Center-of-Gravity Effects",
+          "description": "CG location changes stability, control authority, and performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forward and aft CG limits"
+            },
+            {
+              "type": "concept",
+              "title": "Elevator trim authority"
+            },
+            {
+              "type": "concept",
+              "title": "Payload/fuel shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Stability-control tradeoff"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Static Directional and Lateral Stability",
+          "description": "The aircraft must also resist yaw and roll disturbances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weathercock stability"
+            },
+            {
+              "type": "concept",
+              "title": "Dihedral effect"
+            },
+            {
+              "type": "concept",
+              "title": "Sideslip response"
+            },
+            {
+              "type": "concept",
+              "title": "Vertical tail contribution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control Surfaces and Effectiveness",
+      "description": "This topic links physical control surfaces to the aerodynamic moments needed to maneuver or stabilize a vehicle.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Primary Control Surfaces",
+          "description": "Students learn which surfaces control each rotational axis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elevator"
+            },
+            {
+              "type": "concept",
+              "title": "Aileron"
+            },
+            {
+              "type": "concept",
+              "title": "Rudder"
+            },
+            {
+              "type": "concept",
+              "title": "Stabilator/canard variants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control Derivatives",
+          "description": "Derivatives quantify how commands change forces and moments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cm_delta_e"
+            },
+            {
+              "type": "concept",
+              "title": "Cl_delta_a"
+            },
+            {
+              "type": "concept",
+              "title": "Cn_delta_r"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-coupling derivatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effectiveness Limits",
+          "description": "Controls are not equally powerful at all speeds and attitudes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic pressure effects"
+            },
+            {
+              "type": "concept",
+              "title": "Stall and separation"
+            },
+            {
+              "type": "concept",
+              "title": "Control reversal"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator saturation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Actuation Realities",
+          "description": "Real control systems include hardware limits and delays.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Servo dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Rate limits"
+            },
+            {
+              "type": "concept",
+              "title": "Hinge moments"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equations of Motion",
+      "description": "This section builds the mathematical model that converts aircraft physics into analyzable dynamic systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coordinate Frames",
+          "description": "Students learn how inertial, body, wind, and stability axes are related.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Body axes"
+            },
+            {
+              "type": "concept",
+              "title": "Wind axes"
+            },
+            {
+              "type": "concept",
+              "title": "Euler angles"
+            },
+            {
+              "type": "concept",
+              "title": "Small-angle assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rigid-Body Dynamics",
+          "description": "The equations connect forces and moments to translational and rotational acceleration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton-Euler equations"
+            },
+            {
+              "type": "concept",
+              "title": "Inertia tensor"
+            },
+            {
+              "type": "concept",
+              "title": "Gravity components"
+            },
+            {
+              "type": "concept",
+              "title": "Aerodynamic forces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearization",
+          "description": "Linear models make stability modes and classical control design tractable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perturbation variables"
+            },
+            {
+              "type": "concept",
+              "title": "Trim-point expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Stability derivatives"
+            },
+            {
+              "type": "concept",
+              "title": "State matrices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State-Space Models",
+          "description": "Students express dynamics in a form ready for simulation and control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Outputs"
+            },
+            {
+              "type": "concept",
+              "title": "A/B/C/D matrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Longitudinal Dynamics",
+      "description": "Longitudinal dynamics explain pitch and speed behavior, including the short-period and phugoid modes pilots feel directly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Longitudinal States",
+          "description": "Students identify the variables that describe pitch-plane motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "u velocity perturbation"
+            },
+            {
+              "type": "concept",
+              "title": "w or alpha"
+            },
+            {
+              "type": "concept",
+              "title": "Pitch rate q"
+            },
+            {
+              "type": "concept",
+              "title": "Pitch angle theta"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Short-Period Mode",
+          "description": "The short-period mode captures fast angle-of-attack and pitch-rate response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Tail damping"
+            },
+            {
+              "type": "concept",
+              "title": "Elevator input"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phugoid Mode",
+          "description": "The phugoid describes slower energy exchange between altitude and speed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Speed-altitude exchange"
+            },
+            {
+              "type": "concept",
+              "title": "Low damping"
+            },
+            {
+              "type": "concept",
+              "title": "Period estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Longitudinal Control Design",
+          "description": "Students connect dynamics to pitch and altitude control loops.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pitch attitude hold"
+            },
+            {
+              "type": "concept",
+              "title": "Normal acceleration command"
+            },
+            {
+              "type": "concept",
+              "title": "Altitude hold"
+            },
+            {
+              "type": "concept",
+              "title": "Speed coupling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lateral-Directional Dynamics",
+      "description": "This section addresses coupled roll, yaw, and sideslip behavior, which is central to maneuvering and directional stability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lateral-Directional States",
+          "description": "Students identify variables and couplings in side motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sideslip beta"
+            },
+            {
+              "type": "concept",
+              "title": "Roll rate p"
+            },
+            {
+              "type": "concept",
+              "title": "Yaw rate r"
+            },
+            {
+              "type": "concept",
+              "title": "Bank angle phi"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dutch Roll",
+          "description": "Dutch roll is a coupled yaw-roll oscillation shaped by vertical tail and dihedral effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Yaw damping"
+            },
+            {
+              "type": "concept",
+              "title": "Roll-yaw coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Yaw damper need"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Roll and Spiral Modes",
+          "description": "These modes govern roll-rate decay and slow divergence or convergence in bank.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roll subsidence"
+            },
+            {
+              "type": "concept",
+              "title": "Spiral stability"
+            },
+            {
+              "type": "concept",
+              "title": "Dihedral effect"
+            },
+            {
+              "type": "concept",
+              "title": "Weathercock stability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lateral Control Design",
+          "description": "Students learn how roll and yaw loops interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roll attitude hold"
+            },
+            {
+              "type": "concept",
+              "title": "Turn coordination"
+            },
+            {
+              "type": "concept",
+              "title": "Yaw damping"
+            },
+            {
+              "type": "concept",
+              "title": "Crossfeed compensation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aircraft Modes of Motion",
+      "description": "Modes provide the bridge between eigenvalues, time-domain behavior, and the physical language of flight dynamics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Eigenvalue Interpretation",
+          "description": "Students translate roots into stability and response behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real roots"
+            },
+            {
+              "type": "concept",
+              "title": "Complex pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time-Response Metrics",
+          "description": "Response measures help compare aircraft and controller behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rise time"
+            },
+            {
+              "type": "concept",
+              "title": "Settling time"
+            },
+            {
+              "type": "concept",
+              "title": "Overshoot"
+            },
+            {
+              "type": "concept",
+              "title": "Time constant"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mode Identification",
+          "description": "Students learn to recognize modes from simulation or flight-test data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial-condition responses"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency content"
+            },
+            {
+              "type": "concept",
+              "title": "State participation"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sensitivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design Implications",
+          "description": "Mode properties influence handling qualities and control-law requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mode damping targets"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency separation"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot-in-the-loop effects"
+            },
+            {
+              "type": "concept",
+              "title": "Autopilot interaction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Handling Qualities",
+      "description": "Handling qualities translate dynamics and control performance into pilot workload, safety, and mission suitability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flying Qualities Criteria",
+          "description": "Students learn how acceptable response is codified.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MIL-F/MIL-STD criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Level 1/2/3 qualities"
+            },
+            {
+              "type": "concept",
+              "title": "Mission task elements"
+            },
+            {
+              "type": "concept",
+              "title": "Cooper-Harper scale"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pilot Workload",
+          "description": "A technically stable vehicle can still be tiring or unsafe to fly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Anticipation"
+            },
+            {
+              "type": "concept",
+              "title": "PIO risk"
+            },
+            {
+              "type": "concept",
+              "title": "Display and cueing effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bandwidth and Phase Delay",
+          "description": "Frequency-domain ideas help evaluate pilot-vehicle systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Phase margin"
+            },
+            {
+              "type": "concept",
+              "title": "Time delay"
+            },
+            {
+              "type": "concept",
+              "title": "Crossover frequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flight-Test Evaluation",
+          "description": "Handling qualities must be confirmed with realistic tasks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Test cards"
+            },
+            {
+              "type": "concept",
+              "title": "Doublets and pulses"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot ratings"
+            },
+            {
+              "type": "concept",
+              "title": "Safety buildup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Feedback Control of Aircraft",
+      "description": "Feedback control improves stability, disturbance rejection, command tracking, and robustness when open-loop dynamics are not enough.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical Control Tools",
+          "description": "Students use frequency and root-based tools for loop design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Root locus"
+            },
+            {
+              "type": "concept",
+              "title": "Bode plots"
+            },
+            {
+              "type": "concept",
+              "title": "Nyquist ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Gain and phase margins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State-Space Control",
+          "description": "State-space methods support multi-state aircraft models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controllability"
+            },
+            {
+              "type": "concept",
+              "title": "Observability"
+            },
+            {
+              "type": "concept",
+              "title": "Pole placement"
+            },
+            {
+              "type": "concept",
+              "title": "LQR preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Robustness",
+          "description": "Aircraft control laws must tolerate modeling error and flight-condition changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Unmodeled dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator limits"
+            },
+            {
+              "type": "concept",
+              "title": "Stability margins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation",
+          "description": "Control laws must be discretized and integrated with sensors and actuators.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Filters"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor noise"
+            },
+            {
+              "type": "concept",
+              "title": "Anti-windup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Autopilots and Stability Augmentation",
+      "description": "Autopilots and SAS turn feedback design into operational control functions that reduce workload and improve mission performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stability Augmentation Systems",
+          "description": "SAS loops improve damping and basic dynamic behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Yaw dampers"
+            },
+            {
+              "type": "concept",
+              "title": "Pitch dampers"
+            },
+            {
+              "type": "concept",
+              "title": "Roll dampers"
+            },
+            {
+              "type": "concept",
+              "title": "Washout filters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Attitude and Rate Hold",
+          "description": "Hold modes maintain commanded aircraft attitudes or rates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pitch hold"
+            },
+            {
+              "type": "concept",
+              "title": "Roll hold"
+            },
+            {
+              "type": "concept",
+              "title": "Heading hold"
+            },
+            {
+              "type": "concept",
+              "title": "Command shaping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Outer-Loop Autopilots",
+          "description": "Outer loops regulate path, altitude, speed, or course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Altitude hold"
+            },
+            {
+              "type": "concept",
+              "title": "Airspeed hold"
+            },
+            {
+              "type": "concept",
+              "title": "Glideslope tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Course capture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gain Scheduling and Modes",
+          "description": "Aircraft need different gains across the flight envelope.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic pressure scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Mach effects"
+            },
+            {
+              "type": "concept",
+              "title": "Mode transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Envelope protection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spacecraft Attitude Control",
+      "description": "This topic adapts stability and control tools to spacecraft, where attitude dynamics, actuators, and environmental torques are different from aircraft.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Attitude Representation",
+          "description": "Students compare ways to describe spacecraft orientation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler angles"
+            },
+            {
+              "type": "concept",
+              "title": "Quaternions"
+            },
+            {
+              "type": "concept",
+              "title": "Direction cosine matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Singularities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rotational Dynamics",
+          "description": "Spacecraft control starts from torque and angular momentum balance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler rotational equations"
+            },
+            {
+              "type": "concept",
+              "title": "Principal axes"
+            },
+            {
+              "type": "concept",
+              "title": "Gyroscopic coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Gravity-gradient effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Actuators and Sensors",
+          "description": "Students learn common hardware for changing and measuring attitude.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reaction wheels"
+            },
+            {
+              "type": "concept",
+              "title": "Control moment gyros"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetorquers"
+            },
+            {
+              "type": "concept",
+              "title": "Star trackers"
+            },
+            {
+              "type": "concept",
+              "title": "IMUs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Attitude Maneuvers",
+          "description": "Control design supports pointing, detumbling, and momentum management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Detumbling"
+            },
+            {
+              "type": "concept",
+              "title": "Slew maneuvers"
+            },
+            {
+              "type": "concept",
+              "title": "Nadir pointing"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum dumping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Guidance, Navigation, Autonomous Flight Control, and Verification",
+      "description": "The final section integrates control laws with sensors, mission objectives, autonomy, safety constraints, and evidence that the system works.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "GNC Architecture",
+          "description": "Students learn how guidance, navigation, and control divide responsibilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Guidance commands"
+            },
+            {
+              "type": "concept",
+              "title": "State estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Inner-loop control"
+            },
+            {
+              "type": "concept",
+              "title": "Mission manager"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Navigation and Estimation",
+          "description": "Controllers need reliable state estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IMU/GPS fusion"
+            },
+            {
+              "type": "concept",
+              "title": "Kalman filtering preview"
+            },
+            {
+              "type": "concept",
+              "title": "Air data"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor faults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Autonomous Flight Control",
+          "description": "Modern vehicles increasingly combine controls with autonomy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Path following"
+            },
+            {
+              "type": "concept",
+              "title": "Trajectory tracking"
+            },
+            {
+              "type": "concept",
+              "title": "UAV waypoint guidance"
+            },
+            {
+              "type": "concept",
+              "title": "Fault response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Verification and Validation",
+          "description": "Flight-control systems need disciplined evidence before flight.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simulation campaigns"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware-in-the-loop"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo testing"
+            },
+            {
+              "type": "concept",
+              "title": "Flight-test envelope expansion"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

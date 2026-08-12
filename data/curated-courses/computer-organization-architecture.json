@@ -1,0 +1,996 @@
+{
+  "slug": "computer-organization-architecture",
+  "title": "Computer Organization/Architecture",
+  "description": "This syllabus is designed for a sophomore-level computer science course that reveals how software runs on real hardware. It keeps digital logic, ISA, assembly, processor organization, memory hierarchy, and I/O central while adding modern performance, virtual memory, multicore, and accelerator context.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Number Representations and Binary Arithmetic",
+      "description": "Builds the bit-level foundation needed to understand how computers represent data and perform arithmetic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Integer representation",
+          "description": "Students learn how unsigned and signed integers are encoded and why overflow matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary and hexadecimal"
+            },
+            {
+              "type": "concept",
+              "title": "Two's complement"
+            },
+            {
+              "type": "concept",
+              "title": "Sign extension"
+            },
+            {
+              "type": "concept",
+              "title": "Integer overflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Floating-point representation",
+          "description": "Floating point is introduced as an approximate real-number format with precision and rounding limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IEEE 754 concept"
+            },
+            {
+              "type": "concept",
+              "title": "Exponent and significand"
+            },
+            {
+              "type": "concept",
+              "title": "Rounding"
+            },
+            {
+              "type": "concept",
+              "title": "NaN and infinity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Binary arithmetic operations",
+          "description": "Arithmetic circuits and machine instructions depend on bitwise addition, subtraction, shifting, and comparison.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Addition/subtraction"
+            },
+            {
+              "type": "concept",
+              "title": "Shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Bitwise logic"
+            },
+            {
+              "type": "concept",
+              "title": "Carry and overflow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boolean Algebra and Logic Gates",
+      "description": "Connects mathematical logic to the gates that implement computation in hardware.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boolean operations",
+          "description": "Students learn the algebraic rules behind hardware logic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AND/OR/NOT"
+            },
+            {
+              "type": "concept",
+              "title": "XOR"
+            },
+            {
+              "type": "concept",
+              "title": "De Morgan's laws"
+            },
+            {
+              "type": "concept",
+              "title": "Truth tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gate-level design",
+          "description": "Logic gates become the basic building blocks of arithmetic, control, and storage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NAND/NOR universality"
+            },
+            {
+              "type": "concept",
+              "title": "Gate delay"
+            },
+            {
+              "type": "concept",
+              "title": "Fan-in/fan-out"
+            },
+            {
+              "type": "concept",
+              "title": "Logic-level abstraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Logic simplification",
+          "description": "Simplifying logic reduces hardware cost, delay, and complexity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boolean identities"
+            },
+            {
+              "type": "concept",
+              "title": "Karnaugh maps"
+            },
+            {
+              "type": "concept",
+              "title": "Sum-of-products"
+            },
+            {
+              "type": "concept",
+              "title": "Don't-care conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Combinational and Sequential Circuits",
+      "description": "Shows how hardware moves from stateless logic to circuits with memory and clocked behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Combinational building blocks",
+          "description": "Students learn circuits whose outputs depend only on current inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiplexers"
+            },
+            {
+              "type": "concept",
+              "title": "Decoders"
+            },
+            {
+              "type": "concept",
+              "title": "Adders"
+            },
+            {
+              "type": "concept",
+              "title": "ALUs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sequential storage",
+          "description": "Sequential circuits store state and make processors possible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latches"
+            },
+            {
+              "type": "concept",
+              "title": "Flip-flops"
+            },
+            {
+              "type": "concept",
+              "title": "Registers"
+            },
+            {
+              "type": "concept",
+              "title": "Clocking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finite-state machines",
+          "description": "FSMs model control logic and coordinated hardware behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Moore/Mealy machines"
+            },
+            {
+              "type": "concept",
+              "title": "Control sequencing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Performance Metrics and Quantitative Evaluation",
+      "description": "Gives students a disciplined way to compare processors and design choices using execution time, CPI, throughput, and energy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CPU performance equation",
+          "description": "Students learn to separate instruction count, cycles per instruction, and clock rate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Execution time"
+            },
+            {
+              "type": "concept",
+              "title": "CPI"
+            },
+            {
+              "type": "concept",
+              "title": "Clock period"
+            },
+            {
+              "type": "concept",
+              "title": "Instruction count"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Benchmarking and measurement",
+          "description": "Architecture claims need workloads and measurement methodology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Benchmarks"
+            },
+            {
+              "type": "concept",
+              "title": "Amdahl's law"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric mean"
+            },
+            {
+              "type": "concept",
+              "title": "Microbenchmarks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power and energy basics",
+          "description": "Modern architecture is constrained by energy, heat, and battery/runtime limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic power"
+            },
+            {
+              "type": "concept",
+              "title": "Static power"
+            },
+            {
+              "type": "concept",
+              "title": "Energy-delay tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instruction Set Architecture",
+      "description": "Introduces the contract between hardware and software: the instructions, registers, addressing modes, and execution model visible to programmers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ISA roles and styles",
+          "description": "Students learn why an ISA abstracts hardware while still shaping compilers and performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RISC vs. CISC concept"
+            },
+            {
+              "type": "concept",
+              "title": "RISC-V"
+            },
+            {
+              "type": "concept",
+              "title": "ARM concept"
+            },
+            {
+              "type": "concept",
+              "title": "Backward compatibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instruction formats and addressing",
+          "description": "Instruction encodings determine how operations, registers, immediates, and memory references are represented.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Opcode fields"
+            },
+            {
+              "type": "concept",
+              "title": "Register fields"
+            },
+            {
+              "type": "concept",
+              "title": "Immediate values"
+            },
+            {
+              "type": "concept",
+              "title": "Addressing modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control flow and procedure support",
+          "description": "ISAs include branches, jumps, calls, returns, and conventions that structure programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional branches"
+            },
+            {
+              "type": "concept",
+              "title": "Jump and link"
+            },
+            {
+              "type": "concept",
+              "title": "Stack pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Calling convention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Assembly Language Programming",
+      "description": "Makes the hardware/software interface concrete by asking students to read and write low-level programs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Assembly syntax and data movement",
+          "description": "Students learn how instructions manipulate registers, memory, and immediate values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loads and stores"
+            },
+            {
+              "type": "concept",
+              "title": "Arithmetic instructions"
+            },
+            {
+              "type": "concept",
+              "title": "Labels"
+            },
+            {
+              "type": "concept",
+              "title": "Assembler directives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures and stack frames",
+          "description": "Function calls reveal how high-level code maps onto stack discipline and register conventions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Caller/callee roles"
+            },
+            {
+              "type": "concept",
+              "title": "Stack frames"
+            },
+            {
+              "type": "concept",
+              "title": "Saved registers"
+            },
+            {
+              "type": "concept",
+              "title": "Return addresses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "C-to-assembly reasoning",
+          "description": "Students connect compiled code to arrays, structs, pointers, loops, and conditionals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pointer arithmetic"
+            },
+            {
+              "type": "concept",
+              "title": "Loops"
+            },
+            {
+              "type": "concept",
+              "title": "Conditionals"
+            },
+            {
+              "type": "concept",
+              "title": "Struct layout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "CPU Datapath and Control Design",
+      "description": "Explains how instructions are executed by coordinating registers, ALUs, memories, buses, and control signals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Datapath components",
+          "description": "Students identify the hardware blocks that move and transform data during instruction execution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Register file"
+            },
+            {
+              "type": "concept",
+              "title": "ALU"
+            },
+            {
+              "type": "concept",
+              "title": "Instruction memory"
+            },
+            {
+              "type": "concept",
+              "title": "Data memory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control signal generation",
+          "description": "Control logic tells datapath components what to do for each instruction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control unit"
+            },
+            {
+              "type": "concept",
+              "title": "ALU control"
+            },
+            {
+              "type": "concept",
+              "title": "Mux selects"
+            },
+            {
+              "type": "concept",
+              "title": "Write enables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Single-cycle and multicycle processors",
+          "description": "Processor organization is compared through latency, throughput, clock period, and hardware reuse.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-cycle design"
+            },
+            {
+              "type": "concept",
+              "title": "Multicycle design"
+            },
+            {
+              "type": "concept",
+              "title": "Micro-operations"
+            },
+            {
+              "type": "concept",
+              "title": "Control sequencing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pipelining, Hazards, and Branch Prediction",
+      "description": "Shows how processors overlap instruction execution and manage the conflicts created by overlap.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pipeline stages",
+          "description": "Students learn the classic instruction pipeline and how it improves throughput.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fetch"
+            },
+            {
+              "type": "concept",
+              "title": "Decode"
+            },
+            {
+              "type": "concept",
+              "title": "Execute"
+            },
+            {
+              "type": "concept",
+              "title": "Memory and writeback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pipeline hazards",
+          "description": "Hazards explain why pipelining is not automatically correct or fast.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Structural hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Data hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Control hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Stalls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forwarding and prediction",
+          "description": "Modern pipelines reduce stalls through bypassing, prediction, and speculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forwarding"
+            },
+            {
+              "type": "concept",
+              "title": "Branch prediction"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline flushes"
+            },
+            {
+              "type": "concept",
+              "title": "Speculation concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory Hierarchy and Caching",
+      "description": "Explains why fast processors need layered memory systems and how locality makes caches effective.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Locality and hierarchy",
+          "description": "Students learn why memory is organized into registers, caches, main memory, and storage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temporal locality"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial locality"
+            },
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cache organization",
+          "description": "Cache design choices determine hit rate, access time, and complexity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cache lines"
+            },
+            {
+              "type": "concept",
+              "title": "Direct-mapped caches"
+            },
+            {
+              "type": "concept",
+              "title": "Set associativity"
+            },
+            {
+              "type": "concept",
+              "title": "Replacement policies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cache performance",
+          "description": "Students quantify cache behavior and connect it to program performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hit rate"
+            },
+            {
+              "type": "concept",
+              "title": "Miss penalty"
+            },
+            {
+              "type": "concept",
+              "title": "AMAT"
+            },
+            {
+              "type": "concept",
+              "title": "Write-through/write-back"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Virtual Memory and the OS Interface",
+      "description": "Connects architecture to operating systems by explaining address translation, protection, and memory abstraction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Address translation",
+          "description": "Students learn how virtual addresses map to physical memory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Virtual addresses"
+            },
+            {
+              "type": "concept",
+              "title": "Physical addresses"
+            },
+            {
+              "type": "concept",
+              "title": "Page tables"
+            },
+            {
+              "type": "concept",
+              "title": "TLB"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protection and sharing",
+          "description": "Virtual memory supports isolation, permissions, and controlled sharing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Page permissions"
+            },
+            {
+              "type": "concept",
+              "title": "Process isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Shared pages"
+            },
+            {
+              "type": "concept",
+              "title": "Kernel/user mode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance and faults",
+          "description": "Translation and paging affect speed and behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TLB misses"
+            },
+            {
+              "type": "concept",
+              "title": "Page faults"
+            },
+            {
+              "type": "concept",
+              "title": "Working set"
+            },
+            {
+              "type": "concept",
+              "title": "Memory-mapped files concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "I/O Systems and Interrupts",
+      "description": "Shows how processors communicate with devices, respond to events, and move data beyond the CPU-memory core.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "I/O interfaces",
+          "description": "Students learn common ways devices are exposed to software.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Memory-mapped I/O"
+            },
+            {
+              "type": "concept",
+              "title": "Ports and registers"
+            },
+            {
+              "type": "concept",
+              "title": "Device controllers"
+            },
+            {
+              "type": "concept",
+              "title": "Polling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interrupts and exceptions",
+          "description": "Interrupts let hardware and software redirect control for asynchronous events and errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interrupt vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "Priority"
+            },
+            {
+              "type": "concept",
+              "title": "Context saving"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data movement and peripherals",
+          "description": "I/O performance depends on buffering, DMA, buses, and device protocols.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DMA"
+            },
+            {
+              "type": "concept",
+              "title": "Buses"
+            },
+            {
+              "type": "concept",
+              "title": "UART/SPI/I2C concept"
+            },
+            {
+              "type": "concept",
+              "title": "Device drivers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Parallelism, Multicore, and Cache Coherence",
+      "description": "Introduces the shift from faster single cores to parallel hardware and the coordination problems that follow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Forms of parallelism",
+          "description": "Students distinguish instruction-level, data-level, thread-level, and task-level parallelism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ILP"
+            },
+            {
+              "type": "concept",
+              "title": "SIMD"
+            },
+            {
+              "type": "concept",
+              "title": "Threads"
+            },
+            {
+              "type": "concept",
+              "title": "Multicore"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multicore organization",
+          "description": "Multicore chips require shared resources and communication mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shared caches"
+            },
+            {
+              "type": "concept",
+              "title": "Interconnects"
+            },
+            {
+              "type": "concept",
+              "title": "Memory bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cache coherence",
+          "description": "Coherence keeps cached copies of shared data consistent enough for correct parallel programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coherence problem"
+            },
+            {
+              "type": "concept",
+              "title": "Invalidation"
+            },
+            {
+              "type": "concept",
+              "title": "MESI concept"
+            },
+            {
+              "type": "concept",
+              "title": "False sharing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "GPUs, Accelerators, Embedded Constraints, and Emerging Architectures",
+      "description": "Closes the course with modern architecture trends: specialized hardware, embedded constraints, energy limits, and reliability concerns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "GPUs and accelerators",
+          "description": "Students learn why specialized hardware can outperform general-purpose CPUs for certain workloads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPU execution model"
+            },
+            {
+              "type": "concept",
+              "title": "SIMT concept"
+            },
+            {
+              "type": "concept",
+              "title": "Tensor/AI accelerators"
+            },
+            {
+              "type": "concept",
+              "title": "Memory coalescing concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Embedded and real-time constraints",
+          "description": "Embedded systems prioritize latency, power, predictability, peripherals, and validation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microcontrollers"
+            },
+            {
+              "type": "concept",
+              "title": "Real-time constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Timers"
+            },
+            {
+              "type": "concept",
+              "title": "Debugging and validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Emerging architecture tradeoffs",
+          "description": "Modern design balances performance with energy, security, reliability, and programmability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Security side channels concept"
+            },
+            {
+              "type": "concept",
+              "title": "Domain-specific architectures"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

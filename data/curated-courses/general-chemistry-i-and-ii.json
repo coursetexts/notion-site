@@ -1,0 +1,904 @@
+{
+  "slug": "general-chemistry-i-and-ii",
+  "title": "General Chemistry I & II",
+  "description": "Builds quantitative problem-solving and molecular-level reasoning across measurement, atomic structure, bonding, stoichiometry, aqueous reactions, gases, thermochemistry, and intermolecular forces\u2014the chemical foundations needed for biology, engineering, environmental science, and later chemistry courses.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Course Orientation, Measurement, Matter, and Laboratory Foundations",
+      "description": "This opening unit establishes chemistry as a quantitative and experimental science. Students learn how to measure, report, classify, and reason about matter before tackling molecular models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement and Units",
+          "description": "Students learn the measurement language needed for every chemistry calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SI units and derived units"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Significant figures and scientific notation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classification of Matter",
+          "description": "Classifying matter helps students connect observations to particle-level explanations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elements, compounds, mixtures"
+            },
+            {
+              "type": "concept",
+              "title": "Physical and chemical properties"
+            },
+            {
+              "type": "concept",
+              "title": "Physical and chemical changes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laboratory Skills and Safety",
+          "description": "Lab practice teaches careful measurement, uncertainty, and safe experimental habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Safety rules and PPE"
+            },
+            {
+              "type": "concept",
+              "title": "Glassware, balances, and volumetric technique"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy, precision, error, and data reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Atoms, Isotopes, and the Periodic Table",
+      "description": "This unit introduces atoms as the basic building blocks of chemical identity. Students learn how subatomic particles, isotopes, and the periodic table organize matter.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atomic Structure",
+          "description": "Students learn what atoms contain and how subatomic particles determine identity and charge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protons, neutrons, electrons"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic number and mass number"
+            },
+            {
+              "type": "concept",
+              "title": "Ions and charges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Isotopes and Atomic Mass",
+          "description": "Isotopes explain why atomic masses on the periodic table are weighted averages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isotope notation"
+            },
+            {
+              "type": "concept",
+              "title": "Average atomic mass"
+            },
+            {
+              "type": "concept",
+              "title": "Mass spectrometry concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Periodic Table Organization",
+          "description": "Students learn how the table groups elements by recurring properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Groups, periods, metals, nonmetals, metalloids"
+            },
+            {
+              "type": "concept",
+              "title": "Main-group and transition elements"
+            },
+            {
+              "type": "concept",
+              "title": "Common element families"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electronic Structure and Quantum Theory of the Atom",
+      "description": "This unit explains how electrons are arranged and why that arrangement controls chemical behavior. It gives the conceptual basis for periodic trends and bonding.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Light, Energy, and Quantization",
+          "description": "Students see why atomic spectra require a quantum model of energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wavelength, frequency, energy"
+            },
+            {
+              "type": "concept",
+              "title": "Photons and line spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Bohr model as a stepping stone"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orbitals and Electron Configurations",
+          "description": "Students learn how electrons occupy orbitals in atoms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "s, p, d, f orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "Aufbau principle, Pauli exclusion, Hund's rule"
+            },
+            {
+              "type": "concept",
+              "title": "Orbital diagrams and noble-gas notation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Valence Electrons",
+          "description": "Valence electrons connect atomic structure to reactivity and bonding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Core versus valence electrons"
+            },
+            {
+              "type": "concept",
+              "title": "Main-group valence patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Electron configurations of ions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Periodic Trends and Chemical Periodicity",
+      "description": "Periodic trends let students predict properties before memorizing facts. This unit turns the periodic table into an explanatory model.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Effective Nuclear Charge and Shielding",
+          "description": "These ideas explain why electron attraction changes across the table.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nuclear charge"
+            },
+            {
+              "type": "concept",
+              "title": "Shielding by inner electrons"
+            },
+            {
+              "type": "concept",
+              "title": "Trends across periods and groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Atomic and Ionic Radii",
+          "description": "Students learn why atom and ion sizes vary systematically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atomic radius trends"
+            },
+            {
+              "type": "concept",
+              "title": "Cation and anion size"
+            },
+            {
+              "type": "concept",
+              "title": "Isoelectronic comparisons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ionization Energy, Electron Affinity, and Electronegativity",
+          "description": "These properties predict ion formation, bond polarity, and reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First ionization energy"
+            },
+            {
+              "type": "concept",
+              "title": "Electron affinity patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Electronegativity and chemical bonding"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Nomenclature, Formulas, and Composition",
+      "description": "This unit teaches students to name substances, interpret formulas, and calculate composition. It is the language bridge between chemical symbols and chemical quantities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Chemical Formulas",
+          "description": "Students learn how formulas encode composition and charge balance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Empirical and molecular formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Formula units and molecules"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrates and common polyatomic ions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nomenclature",
+          "description": "Naming rules help students communicate substances precisely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ionic compounds"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular compounds"
+            },
+            {
+              "type": "concept",
+              "title": "Acids and common naming exceptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moles and Composition",
+          "description": "The mole links atomic-scale formulas to measurable laboratory amounts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Avogadro's number"
+            },
+            {
+              "type": "concept",
+              "title": "Molar mass"
+            },
+            {
+              "type": "concept",
+              "title": "Percent composition and formula determination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Bonding: Ionic, Covalent, and Metallic Models",
+      "description": "Bonding explains why atoms combine and what properties result. Students learn the major bonding models and where each one works best.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ionic Bonding",
+          "description": "Students learn how electron transfer and electrostatic attraction form ionic compounds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cations and anions"
+            },
+            {
+              "type": "concept",
+              "title": "Lattice energy concept"
+            },
+            {
+              "type": "concept",
+              "title": "Properties of ionic solids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Covalent Bonding",
+          "description": "Students learn how shared electrons form molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single, double, and triple bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Bond length and bond energy"
+            },
+            {
+              "type": "concept",
+              "title": "Network covalent solids overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metallic Bonding",
+          "description": "Metallic bonding explains conductivity, malleability, and alloy behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron sea model"
+            },
+            {
+              "type": "concept",
+              "title": "Metal properties"
+            },
+            {
+              "type": "concept",
+              "title": "Alloys and composition effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lewis Structures, Resonance, Formal Charge, and Bond Polarity",
+      "description": "This unit gives students a visual model for molecular connectivity and electron placement. It prepares them for geometry, polarity, and reactivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lewis Structure Construction",
+          "description": "Students learn a repeatable method for drawing valid electron-dot structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Valence electron counting"
+            },
+            {
+              "type": "concept",
+              "title": "Skeleton structures"
+            },
+            {
+              "type": "concept",
+              "title": "Octet rule and exceptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Formal Charge and Resonance",
+          "description": "Formal charge and resonance help students compare plausible structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Formal charge calculation"
+            },
+            {
+              "type": "concept",
+              "title": "Major and minor resonance contributors"
+            },
+            {
+              "type": "concept",
+              "title": "Delocalized electrons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bond Polarity",
+          "description": "Students connect electronegativity differences to partial charges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polar and nonpolar bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Dipoles"
+            },
+            {
+              "type": "concept",
+              "title": "Bond polarity versus molecular polarity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Molecular Geometry, VSEPR, Hybridization, and Molecular Polarity",
+      "description": "This unit turns flat Lewis structures into three-dimensional molecules. Students learn how shape controls polarity, properties, and interactions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "VSEPR Shapes",
+          "description": "Students learn how electron groups arrange to reduce repulsion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron domains"
+            },
+            {
+              "type": "concept",
+              "title": "Linear, trigonal planar, tetrahedral, trigonal bipyramidal, octahedral geometries"
+            },
+            {
+              "type": "concept",
+              "title": "Lone-pair effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hybridization",
+          "description": "Hybridization gives a bonding-language shortcut for common molecular shapes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sp, sp2, sp3 hybridization"
+            },
+            {
+              "type": "concept",
+              "title": "Expanded valence examples"
+            },
+            {
+              "type": "concept",
+              "title": "Sigma and pi bonding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular Polarity",
+          "description": "Students learn to combine bond dipoles and geometry to predict whole-molecule polarity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symmetry and dipole cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Polar molecules"
+            },
+            {
+              "type": "concept",
+              "title": "Property implications of polarity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stoichiometry and Chemical Equations",
+      "description": "Stoichiometry is the quantitative heart of Chemistry I. Students learn to use balanced equations to connect substances, amounts, and reaction outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Balancing Chemical Equations",
+          "description": "Balanced equations express conservation of atoms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficients and conservation"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion and synthesis/decomposition examples"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting equations in particles and moles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mole-to-Mole and Mass Calculations",
+          "description": "Students learn how equations become calculation maps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molar ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-mole conversions"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-step stoichiometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Limiting Reactants and Yield",
+          "description": "These ideas connect ideal reaction calculations to real lab results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limiting and excess reactants"
+            },
+            {
+              "type": "concept",
+              "title": "Theoretical yield"
+            },
+            {
+              "type": "concept",
+              "title": "Percent yield"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aqueous Reactions and Solution Stoichiometry",
+      "description": "This unit brings reactions into water, where many biological, environmental, and laboratory systems operate. Students learn ions, concentrations, and reaction types.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solutions and Concentration",
+          "description": "Students learn how amount and volume describe dissolved substances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solutes and solvents"
+            },
+            {
+              "type": "concept",
+              "title": "Molarity"
+            },
+            {
+              "type": "concept",
+              "title": "Dilution calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precipitation, Acid-Base, and Redox Reactions",
+          "description": "Reaction categories help students predict products and interpret observations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solubility rules"
+            },
+            {
+              "type": "concept",
+              "title": "Neutralization reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation numbers and redox basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Net Ionic Equations and Titration",
+          "description": "Students learn to focus on chemical change and quantify reactions in solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strong electrolytes and spectator ions"
+            },
+            {
+              "type": "concept",
+              "title": "Net ionic equations"
+            },
+            {
+              "type": "concept",
+              "title": "Titration stoichiometry"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gases and Gas Laws",
+      "description": "Gas behavior shows how particle models become useful equations. Students connect pressure, volume, temperature, and moles to molecular motion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gas Variables and Laws",
+          "description": "Students learn how gas properties vary under controlled conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure, volume, temperature, moles"
+            },
+            {
+              "type": "concept",
+              "title": "Boyle's, Charles's, Avogadro's, and combined gas laws"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute temperature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ideal Gas Law and Stoichiometry",
+          "description": "The ideal gas law links gas measurements to moles and reaction quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PV = nRT"
+            },
+            {
+              "type": "concept",
+              "title": "Molar mass and density of gases"
+            },
+            {
+              "type": "concept",
+              "title": "Gas reaction stoichiometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kinetic Molecular Theory and Real Gases",
+          "description": "Students learn why gas laws work and when they fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Particle assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and average kinetic energy"
+            },
+            {
+              "type": "concept",
+              "title": "Deviations at high pressure and low temperature"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermochemistry and Energy Changes",
+      "description": "Thermochemistry explains heat flow in chemical and physical processes. Students learn to quantify energy changes and connect them to bonds and reactions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heat, Work, and Enthalpy",
+          "description": "Students learn energy vocabulary and the meaning of enthalpy change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System and surroundings"
+            },
+            {
+              "type": "concept",
+              "title": "Endothermic and exothermic processes"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy of reaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calorimetry",
+          "description": "Calorimetry connects temperature changes to heat transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specific heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Coffee-cup calorimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Bomb calorimetry overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hess's Law and Bond Energies",
+          "description": "Students learn alternate ways to calculate reaction enthalpy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hess's law"
+            },
+            {
+              "type": "concept",
+              "title": "Standard enthalpies of formation"
+            },
+            {
+              "type": "concept",
+              "title": "Average bond enthalpies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "States of Matter, Intermolecular Forces, and Phase Behavior",
+      "description": "This unit explains why substances have different boiling points, solubilities, vapor pressures, and physical states. It connects molecular structure to macroscopic properties.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Intermolecular Forces",
+          "description": "Students learn the attractions between particles that determine many physical properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "London dispersion forces"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole-dipole forces"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrogen bonding and ion-dipole forces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Liquids and Solids",
+          "description": "Students connect particle arrangement to properties of condensed phases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Viscosity, surface tension, vapor pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Crystalline and amorphous solids"
+            },
+            {
+              "type": "concept",
+              "title": "Unit cells overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase Changes and Diagrams",
+          "description": "Phase diagrams summarize how temperature and pressure control physical state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Melting, freezing, vaporization, condensation, sublimation"
+            },
+            {
+              "type": "concept",
+              "title": "Heating curves"
+            },
+            {
+              "type": "concept",
+              "title": "Critical point and triple point"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Chemistry I Applications and Lab Synthesis",
+      "description": "The final unit consolidates the course through applications and lab-style synthesis. Students practice choosing models, checking calculations, and communicating chemical reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cumulative Problem Solving",
+          "description": "Students learn to recognize which chemistry model a problem calls for.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit analysis across topics"
+            },
+            {
+              "type": "concept",
+              "title": "Combining stoichiometry, gases, solutions, and energy"
+            },
+            {
+              "type": "concept",
+              "title": "Reasonableness checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laboratory Data and Error Analysis",
+          "description": "Students connect experiments to chemical claims.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calibration and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Graphing and trend interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Lab report claims, evidence, and reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications Across Fields",
+          "description": "Students see how Chemistry I supports later work in science, health, engineering, and environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biological and nutritional chemistry foundations"
+            },
+            {
+              "type": "concept",
+              "title": "Materials and engineering examples"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental and energy applications"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

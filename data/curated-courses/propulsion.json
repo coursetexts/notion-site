@@ -1,0 +1,996 @@
+{
+  "slug": "propulsion",
+  "title": "Propulsion",
+  "description": "This syllabus is designed for a senior undergraduate aerospace propulsion course. It balances air-breathing engines, rockets, and emerging propulsion concepts while keeping performance analysis, thermodynamics, combustion, testing, and vehicle integration visible throughout.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Propulsion Fundamentals and Thrust",
+      "description": "Builds the basic momentum, energy, and performance language used for propellers, jets, rockets, and advanced propulsion systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Momentum theory of thrust",
+          "description": "Students learn how accelerating mass flow creates thrust and why propulsion is fundamentally a control-volume problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control volume"
+            },
+            {
+              "type": "concept",
+              "title": "Mass flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum flux"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure thrust"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Propulsive performance metrics",
+          "description": "Performance metrics let students compare engines across mission roles and operating conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Specific impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Thrust specific fuel consumption"
+            },
+            {
+              "type": "concept",
+              "title": "Propulsive efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flight condition effects",
+          "description": "Propulsion performance changes with altitude, Mach number, inlet state, and vehicle speed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Ram drag"
+            },
+            {
+              "type": "concept",
+              "title": "Altitude effects"
+            },
+            {
+              "type": "concept",
+              "title": "Installed vs. uninstalled thrust"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermodynamic Cycles for Engines",
+      "description": "Connects propulsion hardware to Brayton-cycle thermodynamics, energy addition, compression, expansion, and efficiency limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Brayton cycle analysis",
+          "description": "The ideal gas-turbine cycle gives students a reference model for jet engines and gas turbines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compressor work"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine work"
+            },
+            {
+              "type": "concept",
+              "title": "Heat addition"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Real-cycle losses",
+          "description": "Students learn how component inefficiencies, pressure losses, and temperature limits move performance away from ideal predictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isentropic efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Combustor pressure loss"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine inlet temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Nozzle losses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cycle performance trends",
+          "description": "Cycle parameters are used to reason about fuel burn, thrust, bypass ratio, and engine architecture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Specific thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Fuel-air ratio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Propellers and Propeller-Driven Systems",
+      "description": "Explains how rotating blades convert shaft power into thrust and why propellers are efficient for low-speed aircraft and emerging electric propulsion systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Actuator disk theory",
+          "description": "Momentum theory gives a first-order estimate of induced velocity, thrust, and ideal propulsive efficiency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Disk loading"
+            },
+            {
+              "type": "concept",
+              "title": "Induced velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Power required"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Blade element concepts",
+          "description": "Blade-element reasoning connects airfoil lift/drag to thrust and torque along the blade span.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pitch angle"
+            },
+            {
+              "type": "concept",
+              "title": "Advance ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Blade twist"
+            },
+            {
+              "type": "concept",
+              "title": "Tip losses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Propeller integration",
+          "description": "Students learn how propellers interact with engines, electric motors, airframes, and operating envelopes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variable pitch"
+            },
+            {
+              "type": "concept",
+              "title": "Contra-rotation concept"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "Distributed propulsion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Turbojet and Turbofan Engines",
+      "description": "Covers the major air-breathing engine families used in aircraft and explains how architecture choices shape thrust, fuel burn, and mission fit.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Turbojet operation",
+          "description": "Turbojets show the simplest gas-turbine propulsion architecture and are useful for high-speed performance intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffuser"
+            },
+            {
+              "type": "concept",
+              "title": "Compressor"
+            },
+            {
+              "type": "concept",
+              "title": "Combustor"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine and nozzle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Turbofan operation",
+          "description": "Turbofans improve efficiency by accelerating a larger mass of air at a lower jet velocity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bypass ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Fan pressure ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Core flow"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed and unmixed exhaust"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engine matching and mission fit",
+          "description": "Students compare turbojets, low-bypass turbofans, and high-bypass turbofans across flight regimes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specific thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Cruise efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Takeoff thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Engine sizing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inlets, Compressors, and Turbines",
+      "description": "Focuses on the turbomachinery and inlet components that condition flow, raise pressure, extract work, and determine operability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inlet/diffuser performance",
+          "description": "Inlets slow and condition incoming air with minimum total-pressure loss and distortion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total pressure recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Subsonic diffusers"
+            },
+            {
+              "type": "concept",
+              "title": "Supersonic inlet shocks"
+            },
+            {
+              "type": "concept",
+              "title": "Distortion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compressor fundamentals",
+          "description": "Compressors raise pressure but must avoid stall, surge, and efficiency loss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial compressors"
+            },
+            {
+              "type": "concept",
+              "title": "Compressor maps"
+            },
+            {
+              "type": "concept",
+              "title": "Stall and surge"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Turbine fundamentals",
+          "description": "Turbines extract work from hot gas to drive the compressor and fan while surviving severe thermal loading.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stage loading"
+            },
+            {
+              "type": "concept",
+              "title": "Cooling concept"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Blade materials"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Combustors, Fuels, Emissions, and Nozzles",
+      "description": "Links chemical energy release to thrust production while addressing stability, emissions, temperature limits, and exhaust expansion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Combustion fundamentals",
+          "description": "Students learn what makes a flame stable, efficient, and compatible with high-speed air flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fuel-air ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Flame stability"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aviation fuels and emissions",
+          "description": "Fuel choice and combustor design affect heat release, soot, NOx, carbon emissions, and operability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jet fuel"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative fuels"
+            },
+            {
+              "type": "concept",
+              "title": "NOx"
+            },
+            {
+              "type": "concept",
+              "title": "Soot and particulates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nozzle expansion",
+          "description": "Nozzles convert thermal energy and pressure into jet kinetic energy and thrust.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Choked flow"
+            },
+            {
+              "type": "concept",
+              "title": "Converging nozzles"
+            },
+            {
+              "type": "concept",
+              "title": "Converging-diverging nozzles"
+            },
+            {
+              "type": "concept",
+              "title": "Over/under-expanded flow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Propulsion Performance, Matching, and Mission Analysis",
+      "description": "Shows how engine performance connects to aircraft range, endurance, climb, takeoff, and design tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Performance maps and matching",
+          "description": "Students interpret component and engine maps to understand operating points and constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compressor maps"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine matching"
+            },
+            {
+              "type": "concept",
+              "title": "Operating line"
+            },
+            {
+              "type": "concept",
+              "title": "Surge margin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aircraft performance coupling",
+          "description": "Propulsion is tied to drag, weight, climb, and range rather than analyzed in isolation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thrust required"
+            },
+            {
+              "type": "concept",
+              "title": "Power required"
+            },
+            {
+              "type": "concept",
+              "title": "Breguet range"
+            },
+            {
+              "type": "concept",
+              "title": "Specific excess power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Installed performance",
+          "description": "Real engine performance includes nacelle, inlet, exhaust, bleed, and accessory penalties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Installation drag"
+            },
+            {
+              "type": "concept",
+              "title": "Bleed air"
+            },
+            {
+              "type": "concept",
+              "title": "Accessory loads"
+            },
+            {
+              "type": "concept",
+              "title": "Thrust lapse"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ramjets, Scramjets, and High-Speed Propulsion",
+      "description": "Introduces air-breathing engines for high Mach numbers, where compression, combustion, and thermal protection are governed by compressible-flow limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ramjet operation",
+          "description": "Ramjets use vehicle speed for compression and work best when dynamic pressure is high enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffuser compression"
+            },
+            {
+              "type": "concept",
+              "title": "Subsonic combustion"
+            },
+            {
+              "type": "concept",
+              "title": "No rotating machinery"
+            },
+            {
+              "type": "concept",
+              "title": "Operating Mach range"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scramjet operation",
+          "description": "Scramjets retain supersonic flow through combustion, creating extreme mixing and heat-transfer challenges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supersonic combustion"
+            },
+            {
+              "type": "concept",
+              "title": "Fuel injection"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing time"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal choking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "High-speed design constraints",
+          "description": "Students learn why materials, cooling, inlet start, and vehicle integration dominate hypersonic propulsion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shock systems"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal management"
+            },
+            {
+              "type": "concept",
+              "title": "Inlet unstart"
+            },
+            {
+              "type": "concept",
+              "title": "Vehicle integration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rocket Propulsion Fundamentals",
+      "description": "Develops rocket thrust, ideal performance, and mission intuition for systems that carry both fuel and oxidizer rather than relying on atmospheric air.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rocket thrust equation",
+          "description": "Students learn how chamber pressure, mass flow, exhaust velocity, and pressure mismatch create rocket thrust.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Momentum thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Effective exhaust velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Characteristic velocity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Specific impulse and mass ratio",
+          "description": "Rocket performance is framed through propellant efficiency and the exponential penalty of carrying propellant.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specific impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Delta-v"
+            },
+            {
+              "type": "concept",
+              "title": "Tsiolkovsky equation"
+            },
+            {
+              "type": "concept",
+              "title": "Mass fraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nozzle expansion in rockets",
+          "description": "Rocket nozzles are studied as devices optimized for pressure ratio, altitude, and expansion losses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Expansion ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Sea-level vs. vacuum nozzles"
+            },
+            {
+              "type": "concept",
+              "title": "Flow separation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Solid and Liquid Rocket Engines",
+      "description": "Compares the two major chemical rocket engine families and their tradeoffs in complexity, controllability, storage, cost, and reliability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solid rocket motors",
+          "description": "Solids are simpler and storable but harder to throttle or stop once ignited.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Propellant grain"
+            },
+            {
+              "type": "concept",
+              "title": "Burn rate"
+            },
+            {
+              "type": "concept",
+              "title": "Chamber pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Nozzle erosion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Liquid rocket engines",
+          "description": "Liquids enable high performance and controllability but require pumps, injectors, feed systems, and thermal management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure-fed cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Pump-fed cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Injectors"
+            },
+            {
+              "type": "concept",
+              "title": "Regenerative cooling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engine cycles and system tradeoffs",
+          "description": "Cycle choice shapes performance, complexity, cost, reliability, and startup behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gas-generator cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Staged combustion concept"
+            },
+            {
+              "type": "concept",
+              "title": "Expander cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Hypergolic vs. cryogenic propellants"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electric and Advanced Propulsion",
+      "description": "Surveys propulsion concepts that trade thrust level, efficiency, power, and mission duration differently from conventional aircraft engines and chemical rockets.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electric spacecraft propulsion",
+          "description": "Electric thrusters provide high specific impulse for missions where low thrust over long durations is acceptable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ion thrusters"
+            },
+            {
+              "type": "concept",
+              "title": "Hall thrusters"
+            },
+            {
+              "type": "concept",
+              "title": "Power processing"
+            },
+            {
+              "type": "concept",
+              "title": "Thrust-to-power ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hybrid-electric aircraft propulsion",
+          "description": "Students examine how batteries, motors, generators, and distributed propulsors change aircraft design trades.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Battery energy density"
+            },
+            {
+              "type": "concept",
+              "title": "Motor efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal management"
+            },
+            {
+              "type": "concept",
+              "title": "Distributed electric propulsion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Emerging concepts",
+          "description": "Advanced propulsion is framed through physics limits, mission needs, technology readiness, and system integration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nuclear thermal concept"
+            },
+            {
+              "type": "concept",
+              "title": "Solar electric propulsion"
+            },
+            {
+              "type": "concept",
+              "title": "Air-breathing combined cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Technology readiness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Propulsion Testing, Instrumentation, and Data Analysis",
+      "description": "Gives students practical awareness of how propulsion claims are measured, reduced, calibrated, and checked in labs and test facilities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Test facility basics",
+          "description": "Students learn what a propulsion test stand must control and measure to produce credible results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thrust stand"
+            },
+            {
+              "type": "concept",
+              "title": "Air supply"
+            },
+            {
+              "type": "concept",
+              "title": "Fuel flow"
+            },
+            {
+              "type": "concept",
+              "title": "Safety procedures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instrumentation and uncertainty",
+          "description": "Measurement quality is treated as part of engineering evidence rather than an afterthought.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure transducers"
+            },
+            {
+              "type": "concept",
+              "title": "Thermocouples"
+            },
+            {
+              "type": "concept",
+              "title": "Flow meters"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data reduction",
+          "description": "Raw measurements are converted into thrust, efficiency, fuel consumption, and performance maps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Corrected mass flow"
+            },
+            {
+              "type": "concept",
+              "title": "Corrected thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Repeatability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental, Safety, and Systems Integration Considerations",
+      "description": "Closes the course by linking propulsion design to emissions, noise, safety, certification, operations, and whole-vehicle integration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Environmental impacts",
+          "description": "Students connect propulsion choices to emissions, contrails, noise, and fuel sustainability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CO2"
+            },
+            {
+              "type": "concept",
+              "title": "NOx"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "Sustainable aviation fuel"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety and certification context",
+          "description": "Propulsion systems must be designed and tested against failure modes and regulatory expectations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Containment"
+            },
+            {
+              "type": "concept",
+              "title": "Fire safety"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Certification testing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vehicle integration",
+          "description": "Engine placement and propulsion architecture affect aerodynamics, structures, controls, thermal systems, and maintainability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nacelle integration"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal loads"
+            },
+            {
+              "type": "concept",
+              "title": "Control interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Maintainability"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

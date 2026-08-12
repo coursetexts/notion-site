@@ -1,0 +1,1296 @@
+{
+  "slug": "engineering-economics",
+  "title": "Engineering Economics",
+  "description": "Engineering Economics develops cash-flow analysis and decision methods\u2014time value of money, equivalence, present/annual/future worth, rate of return, benefit-cost, depreciation, taxes, inflation, replacement, and risk\u2014for evaluating engineering alternatives.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Engineering Economic Decision Framing",
+      "description": "This section develops engineering economic decision framing through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make engineering economic decision framing precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            },
+            {
+              "type": "concept",
+              "title": "Present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Annual worth"
+            },
+            {
+              "type": "concept",
+              "title": "IRR"
+            },
+            {
+              "type": "concept",
+              "title": "Depreciation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with engineering economic decision framing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply cash flow in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare discount rate with present worth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how cash flow affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time Value of Money",
+      "description": "This section develops time value of money through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make time value of money precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Present value"
+            },
+            {
+              "type": "concept",
+              "title": "Future value"
+            },
+            {
+              "type": "concept",
+              "title": "Interest rate"
+            },
+            {
+              "type": "concept",
+              "title": "Discount factor"
+            },
+            {
+              "type": "concept",
+              "title": "Annuity"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with time value of money.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply present value in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare future value with interest rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how present value affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cash Flow Diagrams and Equivalence",
+      "description": "This section develops cash flow diagrams and equivalence through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make cash flow diagrams and equivalence precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cash-flow diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Initial cost"
+            },
+            {
+              "type": "concept",
+              "title": "Annual benefit"
+            },
+            {
+              "type": "concept",
+              "title": "Salvage value"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with cash flow diagrams and equivalence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply cash-flow diagram in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare initial cost with annual benefit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how cash-flow diagram affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Present Worth and Future Worth Analysis",
+      "description": "This section develops present worth and future worth analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make present worth and future worth analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NPV"
+            },
+            {
+              "type": "concept",
+              "title": "Present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent worth"
+            },
+            {
+              "type": "concept",
+              "title": "Discounted cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with present worth and future worth analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply NPV in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare present worth with equivalent worth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of discount rate"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how NPV affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Annual Worth Analysis",
+      "description": "This section develops annual worth analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make annual worth analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EUAW"
+            },
+            {
+              "type": "concept",
+              "title": "Capital recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Annualized cost"
+            },
+            {
+              "type": "concept",
+              "title": "Service life"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with annual worth analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply EUAW in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare capital recovery with annualized cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how EUAW affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rate of Return and Incremental Analysis",
+      "description": "This section develops rate of return and incremental analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make rate of return and incremental analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IRR"
+            },
+            {
+              "type": "concept",
+              "title": "Incremental IRR"
+            },
+            {
+              "type": "concept",
+              "title": "MARR"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple roots"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with rate of return and incremental analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply IRR in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare incremental IRR with MARR"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how IRR affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Benefit-Cost Analysis",
+      "description": "This section develops benefit-cost analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make benefit-cost analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Benefit-cost ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Public project"
+            },
+            {
+              "type": "concept",
+              "title": "Incremental B/C"
+            },
+            {
+              "type": "concept",
+              "title": "Externality"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with benefit-cost analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply benefit-cost ratio in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare public project with incremental B/C"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how benefit-cost ratio affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Payback, Breakeven, and Cost Estimation",
+      "description": "This section develops payback, breakeven, and cost estimation through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make payback, breakeven, and cost estimation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Payback period"
+            },
+            {
+              "type": "concept",
+              "title": "Breakeven point"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed cost"
+            },
+            {
+              "type": "concept",
+              "title": "Variable cost"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with payback, breakeven, and cost estimation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply payback period in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare breakeven point with fixed cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how payback period affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Depreciation Methods",
+      "description": "This section develops depreciation methods through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make depreciation methods precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Straight-line"
+            },
+            {
+              "type": "concept",
+              "title": "MACRS"
+            },
+            {
+              "type": "concept",
+              "title": "Book value"
+            },
+            {
+              "type": "concept",
+              "title": "Tax shield"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with depreciation methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply straight-line in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare MACRS with book value"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how straight-line affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Taxes and After-Tax Economic Analysis",
+      "description": "This section develops taxes and after-tax economic analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make taxes and after-tax economic analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "After-tax cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Taxable income"
+            },
+            {
+              "type": "concept",
+              "title": "Capital gain"
+            },
+            {
+              "type": "concept",
+              "title": "Depreciation recapture"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with taxes and after-tax economic analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply after-tax cash flow in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare taxable income with capital gain"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how after-tax cash flow affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inflation and Price-Level Changes",
+      "description": "This section develops inflation and price-level changes through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make inflation and price-level changes precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real rate"
+            },
+            {
+              "type": "concept",
+              "title": "Nominal rate"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation rate"
+            },
+            {
+              "type": "concept",
+              "title": "Price index"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with inflation and price-level changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply real rate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare nominal rate with inflation rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how real rate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Replacement and Retention Analysis",
+      "description": "This section develops replacement and retention analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make replacement and retention analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Defender"
+            },
+            {
+              "type": "concept",
+              "title": "Challenger"
+            },
+            {
+              "type": "concept",
+              "title": "Economic life"
+            },
+            {
+              "type": "concept",
+              "title": "Sunk cost"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with replacement and retention analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply defender in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare challenger with economic life"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how defender affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sensitivity, Scenario, and Risk Analysis",
+      "description": "This section develops sensitivity, scenario, and risk analysis through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make sensitivity, scenario, and risk analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scenario analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Tornado diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Risk"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with sensitivity, scenario, and risk analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scenario analysis in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tornado diagram with risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scenario analysis affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Public-Sector, Sustainability, and Ethical Decisions",
+      "description": "This section develops public-sector, sustainability, and ethical decisions through the concrete vocabulary, procedures, examples, and checks students need in Engineering Economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make public-sector, sustainability, and ethical decisions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            },
+            {
+              "type": "concept",
+              "title": "Present worth"
+            },
+            {
+              "type": "concept",
+              "title": "Annual worth"
+            },
+            {
+              "type": "concept",
+              "title": "IRR"
+            },
+            {
+              "type": "concept",
+              "title": "Depreciation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with public-sector, sustainability, and ethical decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw cash-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Discount future values"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Apply cash flow in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare discount rate with present worth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Reinvestment assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how cash flow affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

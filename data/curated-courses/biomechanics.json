@@ -1,0 +1,852 @@
+{
+  "slug": "biomechanics",
+  "title": "Biomechanics",
+  "description": "A mechanics-based course on human movement and biological systems, including kinematics, kinetics, free-body analysis, joint and muscle mechanics, tissue mechanics, gait, motion measurement, injury, rehabilitation, and biomechanical modeling.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Biomechanics Scope, Units, and Modeling Assumptions",
+      "description": "Introduces biomechanics as mechanics applied to living systems and movement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Movement"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Sport"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical"
+            },
+            {
+              "type": "concept",
+              "title": "Device contexts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate systems"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling"
+            },
+            {
+              "type": "concept",
+              "title": "Anthropometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model simplification and biological variability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Anatomical Reference Systems and Functional Anatomy",
+      "description": "Builds the anatomical language needed for movement analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planes"
+            },
+            {
+              "type": "concept",
+              "title": "Axes"
+            },
+            {
+              "type": "concept",
+              "title": "Joint motions"
+            },
+            {
+              "type": "concept",
+              "title": "Segment definitions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bones"
+            },
+            {
+              "type": "concept",
+              "title": "Joints"
+            },
+            {
+              "type": "concept",
+              "title": "Muscles"
+            },
+            {
+              "type": "concept",
+              "title": "Tendons"
+            },
+            {
+              "type": "concept",
+              "title": "Ligaments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regional anatomy for movement and load transfer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Kinematics of Human Movement",
+      "description": "Describes translational motion without yet explaining its causes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motion capture and marker trajectories"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Projectile and locomotion examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Angular Kinematics and Segment Motion",
+      "description": "Extends motion description to rotation of joints and body segments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angular position"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relative and absolute segment angles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordination"
+            },
+            {
+              "type": "concept",
+              "title": "Range of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Timing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear and Angular Kinetics",
+      "description": "Connects forces and moments to motion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton Laws Applied to Human Movement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force"
+            },
+            {
+              "type": "concept",
+              "title": "Mass"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Torque"
+            },
+            {
+              "type": "concept",
+              "title": "Moment arms"
+            },
+            {
+              "type": "concept",
+              "title": "Angular momentum"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Free-Body Analysis of Musculoskeletal Systems",
+      "description": "Teaches students to isolate body segments and solve force/moment balances.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free-body diagrams for limbs and joints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ground reaction forces and external loads"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static and dynamic equilibrium assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work, Energy, Power, and Efficiency",
+      "description": "Analyzes movement using energy and power concepts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mechanical work and energy transfer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint power and muscle power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Performance"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue contexts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint Mechanics and Load Transmission",
+      "description": "Examines how joints bear load and guide movement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint reaction forces and contact mechanics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartilage"
+            },
+            {
+              "type": "concept",
+              "title": "Ligaments"
+            },
+            {
+              "type": "concept",
+              "title": "Stability"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spine"
+            },
+            {
+              "type": "concept",
+              "title": "Hip"
+            },
+            {
+              "type": "concept",
+              "title": "Knee"
+            },
+            {
+              "type": "concept",
+              "title": "Ankle"
+            },
+            {
+              "type": "concept",
+              "title": "Shoulder"
+            },
+            {
+              "type": "concept",
+              "title": "Elbow examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Muscle Mechanics and Neuromechanics",
+      "description": "Explains how muscles generate force and control movement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force-Length and Force-Velocity Relationships"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment arms"
+            },
+            {
+              "type": "concept",
+              "title": "Pennation"
+            },
+            {
+              "type": "concept",
+              "title": "Muscle architecture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EMG Basics, Motor Control, and Coordination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stress, Strain, and Tissue Constitutive Behavior",
+      "description": "Introduces tissue mechanics for bones, tendons, ligaments, cartilage, and soft tissues.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal/Shear Stress and Strain"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elastic"
+            },
+            {
+              "type": "concept",
+              "title": "Plastic"
+            },
+            {
+              "type": "concept",
+              "title": "Nonlinear"
+            },
+            {
+              "type": "concept",
+              "title": "Anisotropic behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constitutive models and biological material properties"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Viscoelasticity and Biological Tissue Mechanics",
+      "description": "Covers time-dependent tissue behavior central to injury and rehabilitation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Creep"
+            },
+            {
+              "type": "concept",
+              "title": "Stress relaxation"
+            },
+            {
+              "type": "concept",
+              "title": "Hysteresis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strain rate effects and loading history"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bone"
+            },
+            {
+              "type": "concept",
+              "title": "Cartilage"
+            },
+            {
+              "type": "concept",
+              "title": "Tendon"
+            },
+            {
+              "type": "concept",
+              "title": "Ligament"
+            },
+            {
+              "type": "concept",
+              "title": "Muscle"
+            },
+            {
+              "type": "concept",
+              "title": "Cardiovascular tissue examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gait Analysis and Movement Assessment",
+      "description": "Applies biomechanics to walking, running, and clinical movement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gait Cycle, Spatiotemporal Parameters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kinematics"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetics"
+            },
+            {
+              "type": "concept",
+              "title": "Ground reaction forces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clinical interpretation and movement compensations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instrumentation and Research Methods in Biomechanics",
+      "description": "Shows how biomechanical data are measured and interpreted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motion capture"
+            },
+            {
+              "type": "concept",
+              "title": "Force plates"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure mats"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EMG"
+            },
+            {
+              "type": "concept",
+              "title": "Ultrasound"
+            },
+            {
+              "type": "concept",
+              "title": "Wearable sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Measurement error"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Study design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modeling, Simulation, and Finite Element Concepts",
+      "description": "Introduces computational biomechanics and musculoskeletal modeling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverse dynamics and musculoskeletal models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "OpenSim and Simulation Workflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite element modeling basics and assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sport, Injury, Rehabilitation, Assistive Technology, and Implant Design",
+      "description": "Integrates biomechanics into performance, health, and biomedical applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, assumptions, and big ideas needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sport technique and injury prevention"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Evidence, and Workflow",
+          "description": "This subtopic turns the ideas into procedures, analysis steps, source work, calculations, or modeling choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rehabilitation biomechanics and assistive movement analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights common mistakes to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthopedic implants"
+            },
+            {
+              "type": "concept",
+              "title": "Prosthetics"
+            },
+            {
+              "type": "concept",
+              "title": "Ergonomics"
+            },
+            {
+              "type": "concept",
+              "title": "Case studies"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

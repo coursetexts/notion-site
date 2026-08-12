@@ -1,0 +1,1788 @@
+{
+  "slug": "analytical-chemistry",
+  "title": "Analytical Chemistry",
+  "description": "An analytical chemistry course covering measurement science, data quality and metrology, statistics and calibration, sampling and sample preparation, chemical equilibria, titrations, gravimetry, electroanalysis, molecular and atomic spectroscopy, chromatography, mass spectrometry, method validation, chemometrics, and quality assurance.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Analytical Chemistry as Measurement Science",
+      "description": "Define analytical chemistry as the science of asking chemical questions, designing measurements, and defending results.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Analytical questions and decision context",
+          "description": "Students learn that an analytical method starts with a decision, not with an instrument.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Qualitative analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Quantitative analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Screening versus confirmation"
+            },
+            {
+              "type": "concept",
+              "title": "Fit-for-purpose methods"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory context"
+            },
+            {
+              "type": "concept",
+              "title": "Decision thresholds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analyte, matrix, and interferents",
+          "description": "This subtopic builds vocabulary for what is measured, what surrounds it, and what can distort the result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyte"
+            },
+            {
+              "type": "concept",
+              "title": "Sample matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Interference"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Specificity"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix effects"
+            },
+            {
+              "type": "concept",
+              "title": "Blank correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytical workflow",
+          "description": "The goal is to see analysis as a chain of choices from sampling to reporting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Method selection"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling plan"
+            },
+            {
+              "type": "concept",
+              "title": "Sample preparation"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Data reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Quality, Significant Figures, and Chemical Metrology",
+      "description": "Build the habits needed to report measurements with appropriate precision, traceability, and uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement units and traceability",
+          "description": "Students connect chemical measurements to standards so results can be compared across labs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SI units"
+            },
+            {
+              "type": "concept",
+              "title": "Amount concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Mass fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Molarity"
+            },
+            {
+              "type": "concept",
+              "title": "Traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Certified reference material"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration standard"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Significant figures and reporting",
+          "description": "This subtopic prevents false precision and teaches defensible result formatting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Significant figures"
+            },
+            {
+              "type": "concept",
+              "title": "Rounding rules"
+            },
+            {
+              "type": "concept",
+              "title": "Decimal places"
+            },
+            {
+              "type": "concept",
+              "title": "Propagation of rounding"
+            },
+            {
+              "type": "concept",
+              "title": "Scientific notation"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval reporting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precision, accuracy, and bias",
+          "description": "Students separate repeatability from truthfulness and learn how systematic error enters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precision"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Trueness"
+            },
+            {
+              "type": "concept",
+              "title": "Bias"
+            },
+            {
+              "type": "concept",
+              "title": "Random error"
+            },
+            {
+              "type": "concept",
+              "title": "Systematic error"
+            },
+            {
+              "type": "concept",
+              "title": "Repeatability"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistics, Error, Calibration, and Detection Limits",
+      "description": "Use statistical tools to decide whether analytical data are reliable, different, linear, and fit for purpose.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Descriptive statistics",
+          "description": "Students summarize repeated measurements and estimate the spread of analytical data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean"
+            },
+            {
+              "type": "concept",
+              "title": "Median"
+            },
+            {
+              "type": "concept",
+              "title": "Standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Relative standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error"
+            },
+            {
+              "type": "concept",
+              "title": "Normal distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inference and outliers",
+          "description": "This subtopic gives tools for deciding whether results differ meaningfully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "T test"
+            },
+            {
+              "type": "concept",
+              "title": "F test"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence level"
+            },
+            {
+              "type": "concept",
+              "title": "Grubbs test"
+            },
+            {
+              "type": "concept",
+              "title": "Q test"
+            },
+            {
+              "type": "concept",
+              "title": "Pooled standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Degrees of freedom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calibration and detection",
+          "description": "Students learn how instrument response becomes concentration and where the useful measurement range begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "External calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Standard addition"
+            },
+            {
+              "type": "concept",
+              "title": "Internal standard"
+            },
+            {
+              "type": "concept",
+              "title": "Least-squares regression"
+            },
+            {
+              "type": "concept",
+              "title": "Residuals"
+            },
+            {
+              "type": "concept",
+              "title": "LOD"
+            },
+            {
+              "type": "concept",
+              "title": "LOQ"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic range"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling, Sample Preparation, and Method Workflow",
+      "description": "Understand that the measurement is only as good as the sample, preparation, and chain of handling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling design",
+          "description": "Students learn why sampling error often dominates instrument error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Representative sample"
+            },
+            {
+              "type": "concept",
+              "title": "Grab sample"
+            },
+            {
+              "type": "concept",
+              "title": "Composite sample"
+            },
+            {
+              "type": "concept",
+              "title": "Random sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Stratified sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Heterogeneity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sample handling and preservation",
+          "description": "This subtopic protects analytes from loss, contamination, or chemical change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chain of custody"
+            },
+            {
+              "type": "concept",
+              "title": "Container selection"
+            },
+            {
+              "type": "concept",
+              "title": "Preservation"
+            },
+            {
+              "type": "concept",
+              "title": "Filtration"
+            },
+            {
+              "type": "concept",
+              "title": "Digestion"
+            },
+            {
+              "type": "concept",
+              "title": "Storage stability"
+            },
+            {
+              "type": "concept",
+              "title": "Holding time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Preparation techniques",
+          "description": "Students compare preparation methods that isolate analytes and reduce matrix effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dilution"
+            },
+            {
+              "type": "concept",
+              "title": "Extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Solid-phase extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Liquid-liquid extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Microwave digestion"
+            },
+            {
+              "type": "concept",
+              "title": "Derivatization"
+            },
+            {
+              "type": "concept",
+              "title": "Cleanup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Equilibria for Analysis",
+      "description": "Use equilibrium chemistry as the quantitative engine behind titrations, separations, and speciation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equilibrium constants and mass balance",
+          "description": "Students use equilibrium expressions to predict analytical reactions and species distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium constant"
+            },
+            {
+              "type": "concept",
+              "title": "Activity"
+            },
+            {
+              "type": "concept",
+              "title": "Ionic strength"
+            },
+            {
+              "type": "concept",
+              "title": "Mass balance"
+            },
+            {
+              "type": "concept",
+              "title": "Charge balance"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional constant"
+            },
+            {
+              "type": "concept",
+              "title": "Le Chatelier principle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Speciation calculations",
+          "description": "This subtopic explains how analytes distribute among chemical forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alpha fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Predominance diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Buffered systems"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional solubility"
+            },
+            {
+              "type": "concept",
+              "title": "Complex species"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equilibrium in method design",
+          "description": "Students learn to choose conditions that make measurements selective and complete.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PH control"
+            },
+            {
+              "type": "concept",
+              "title": "Masking agent"
+            },
+            {
+              "type": "concept",
+              "title": "Ionic strength adjustment"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction completeness"
+            },
+            {
+              "type": "concept",
+              "title": "Side reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity optimization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Acid-Base Titrations and pH Measurements",
+      "description": "Master acid-base analysis, buffers, titration curves, indicators, and glass-electrode pH measurement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Acid-base theory and buffers",
+          "description": "Students use proton-transfer equilibria to control and measure solution chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strong acids"
+            },
+            {
+              "type": "concept",
+              "title": "Weak acids"
+            },
+            {
+              "type": "concept",
+              "title": "Polyprotic acids"
+            },
+            {
+              "type": "concept",
+              "title": "Ka"
+            },
+            {
+              "type": "concept",
+              "title": "PKa"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Henderson-Hasselbalch equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Titration curves and endpoints",
+          "description": "This subtopic develops calculation and interpretation of acid-base titrations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equivalence point"
+            },
+            {
+              "type": "concept",
+              "title": "Endpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Indicator error"
+            },
+            {
+              "type": "concept",
+              "title": "Gran plot"
+            },
+            {
+              "type": "concept",
+              "title": "Titration curve regions"
+            },
+            {
+              "type": "concept",
+              "title": "Back titration"
+            },
+            {
+              "type": "concept",
+              "title": "Standardization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "pH electrodes and measurement",
+          "description": "Students learn how pH is measured and what makes pH readings fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glass electrode"
+            },
+            {
+              "type": "concept",
+              "title": "Reference electrode"
+            },
+            {
+              "type": "concept",
+              "title": "Nernst response"
+            },
+            {
+              "type": "concept",
+              "title": "Junction potential"
+            },
+            {
+              "type": "concept",
+              "title": "Alkaline error"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature compensation"
+            },
+            {
+              "type": "concept",
+              "title": "Two-point calibration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Complexation and Chelometric Analysis",
+      "description": "Apply metal-ligand equilibria to selective metal analysis, masking, and EDTA titration design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Metal-ligand equilibria",
+          "description": "Students learn how ligands bind metals and how pH affects complex stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Formation constant"
+            },
+            {
+              "type": "concept",
+              "title": "Stepwise constant"
+            },
+            {
+              "type": "concept",
+              "title": "Overall constant"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional formation constant"
+            },
+            {
+              "type": "concept",
+              "title": "Chelate effect"
+            },
+            {
+              "type": "concept",
+              "title": "Ligand protonation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "EDTA titrations",
+          "description": "This subtopic teaches a central analytical method for metal-ion determination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EDTA"
+            },
+            {
+              "type": "concept",
+              "title": "Metal ion indicator"
+            },
+            {
+              "type": "concept",
+              "title": "Eriochrome Black T"
+            },
+            {
+              "type": "concept",
+              "title": "Buffered endpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Hardness determination"
+            },
+            {
+              "type": "concept",
+              "title": "Back titration"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement titration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selectivity control",
+          "description": "Students learn how to make complexometric methods specific enough for real samples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Masking"
+            },
+            {
+              "type": "concept",
+              "title": "Demasking"
+            },
+            {
+              "type": "concept",
+              "title": "PH selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Competing ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Interfering ions"
+            },
+            {
+              "type": "concept",
+              "title": "Separation before titration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Precipitation, Gravimetry, and Solubility Analysis",
+      "description": "Use low-solubility reactions for quantitative separations and mass-based determinations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solubility equilibria",
+          "description": "Students use Ksp to predict when precipitates form and dissolve.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ksp"
+            },
+            {
+              "type": "concept",
+              "title": "Ion product"
+            },
+            {
+              "type": "concept",
+              "title": "Common-ion effect"
+            },
+            {
+              "type": "concept",
+              "title": "Selective precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Fractional precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Complexing effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gravimetric analysis",
+          "description": "This subtopic shows how mass can become a high-accuracy chemical measurement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precipitating agent"
+            },
+            {
+              "type": "concept",
+              "title": "Digestion"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleation"
+            },
+            {
+              "type": "concept",
+              "title": "Particle growth"
+            },
+            {
+              "type": "concept",
+              "title": "Coprecipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Washing"
+            },
+            {
+              "type": "concept",
+              "title": "Ignition"
+            },
+            {
+              "type": "concept",
+              "title": "Gravimetric factor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precipitation titrations",
+          "description": "Students learn endpoint detection in reactions that form insoluble salts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mohr method"
+            },
+            {
+              "type": "concept",
+              "title": "Volhard method"
+            },
+            {
+              "type": "concept",
+              "title": "Fajans method"
+            },
+            {
+              "type": "concept",
+              "title": "Adsorption indicator"
+            },
+            {
+              "type": "concept",
+              "title": "Silver nitrate titration"
+            },
+            {
+              "type": "concept",
+              "title": "Chloride determination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Redox Chemistry and Electroanalytical Methods",
+      "description": "Analyze electron-transfer reactions and electrochemical signals for concentration and mechanism information.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Redox equilibria",
+          "description": "Students connect electron transfer to measurable potentials and titration behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidation number"
+            },
+            {
+              "type": "concept",
+              "title": "Half reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Standard potential"
+            },
+            {
+              "type": "concept",
+              "title": "Nernst equation"
+            },
+            {
+              "type": "concept",
+              "title": "Formal potential"
+            },
+            {
+              "type": "concept",
+              "title": "Pe diagram"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Redox titrations",
+          "description": "This subtopic covers concentration analysis using electron-transfer stoichiometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permanganate titration"
+            },
+            {
+              "type": "concept",
+              "title": "Dichromate titration"
+            },
+            {
+              "type": "concept",
+              "title": "Iodometry"
+            },
+            {
+              "type": "concept",
+              "title": "Iodimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Redox indicator"
+            },
+            {
+              "type": "concept",
+              "title": "Potentiometric endpoint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electroanalytical techniques",
+          "description": "Students learn how current, potential, and charge report concentration and mechanism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Potentiometry"
+            },
+            {
+              "type": "concept",
+              "title": "Voltammetry"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclic voltammetry"
+            },
+            {
+              "type": "concept",
+              "title": "Amperometry"
+            },
+            {
+              "type": "concept",
+              "title": "Coulometry"
+            },
+            {
+              "type": "concept",
+              "title": "Polarography"
+            },
+            {
+              "type": "concept",
+              "title": "Ion-selective electrode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spectrophotometry and Molecular Spectroscopy",
+      "description": "Use light absorption and emission to quantify analytes and interpret molecular information.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Light absorption and Beer-Lambert law",
+          "description": "Students learn the quantitative link between absorbance and concentration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absorbance"
+            },
+            {
+              "type": "concept",
+              "title": "Transmittance"
+            },
+            {
+              "type": "concept",
+              "title": "Molar absorptivity"
+            },
+            {
+              "type": "concept",
+              "title": "Path length"
+            },
+            {
+              "type": "concept",
+              "title": "Beer-Lambert law"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration curve"
+            },
+            {
+              "type": "concept",
+              "title": "Stray light"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "UV-Vis and fluorescence methods",
+          "description": "This subtopic develops common molecular methods for sensitive quantitative analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chromophore"
+            },
+            {
+              "type": "concept",
+              "title": "Auxochrome"
+            },
+            {
+              "type": "concept",
+              "title": "Lambda max"
+            },
+            {
+              "type": "concept",
+              "title": "Fluorescence"
+            },
+            {
+              "type": "concept",
+              "title": "Quenching"
+            },
+            {
+              "type": "concept",
+              "title": "Inner-filter effect"
+            },
+            {
+              "type": "concept",
+              "title": "Standard addition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "IR, Raman, and molecular identification",
+          "description": "Students use vibrational spectroscopy to identify functional groups and molecular environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stretching modes"
+            },
+            {
+              "type": "concept",
+              "title": "Bending modes"
+            },
+            {
+              "type": "concept",
+              "title": "Fingerprint region"
+            },
+            {
+              "type": "concept",
+              "title": "Raman shift"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline correction"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral libraries"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Atomic Spectroscopy and Elemental Analysis",
+      "description": "Measure elements with flame, graphite furnace, plasma, and X-ray based techniques.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atomic absorption and emission",
+          "description": "Students learn how atomic transitions quantify elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flame AAS"
+            },
+            {
+              "type": "concept",
+              "title": "Graphite furnace AAS"
+            },
+            {
+              "type": "concept",
+              "title": "Hollow cathode lamp"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic emission"
+            },
+            {
+              "type": "concept",
+              "title": "Self-absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Background correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plasma-based methods",
+          "description": "This subtopic introduces high-performance elemental analysis for trace metals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ICP-OES"
+            },
+            {
+              "type": "concept",
+              "title": "ICP-MS"
+            },
+            {
+              "type": "concept",
+              "title": "Plasma torch"
+            },
+            {
+              "type": "concept",
+              "title": "Nebulizer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision cell"
+            },
+            {
+              "type": "concept",
+              "title": "Isobaric interference"
+            },
+            {
+              "type": "concept",
+              "title": "Internal standards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "X-ray and surface elemental methods",
+          "description": "Students see complementary approaches for solids, surfaces, and materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "XRF"
+            },
+            {
+              "type": "concept",
+              "title": "XPS"
+            },
+            {
+              "type": "concept",
+              "title": "Auger spectroscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix correction"
+            },
+            {
+              "type": "concept",
+              "title": "Surface sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Standardless analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chromatography and Separation Science",
+      "description": "Separate complex mixtures and quantify components using GC, HPLC, and modern separation metrics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Separation fundamentals",
+          "description": "Students learn the physical metrics that describe chromatographic performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationary phase"
+            },
+            {
+              "type": "concept",
+              "title": "Mobile phase"
+            },
+            {
+              "type": "concept",
+              "title": "Partition coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Retention factor k"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity alpha"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution Rs"
+            },
+            {
+              "type": "concept",
+              "title": "Plate number N"
+            },
+            {
+              "type": "concept",
+              "title": "Van Deemter equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gas chromatography",
+          "description": "This subtopic covers volatile and semi-volatile analyte separation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carrier gas"
+            },
+            {
+              "type": "concept",
+              "title": "Capillary column"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature programming"
+            },
+            {
+              "type": "concept",
+              "title": "FID"
+            },
+            {
+              "type": "concept",
+              "title": "TCD"
+            },
+            {
+              "type": "concept",
+              "title": "ECD"
+            },
+            {
+              "type": "concept",
+              "title": "Headspace sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Split injection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Liquid chromatography",
+          "description": "Students learn modern LC methods for polar, nonvolatile, and thermally fragile analytes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HPLC"
+            },
+            {
+              "type": "concept",
+              "title": "UHPLC"
+            },
+            {
+              "type": "concept",
+              "title": "Reversed phase"
+            },
+            {
+              "type": "concept",
+              "title": "Normal phase"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient elution"
+            },
+            {
+              "type": "concept",
+              "title": "C18 column"
+            },
+            {
+              "type": "concept",
+              "title": "UV detector"
+            },
+            {
+              "type": "concept",
+              "title": "Fluorescence detector"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mass Spectrometry and Hyphenated Methods",
+      "description": "Connect ionization, mass analysis, fragmentation, and coupled separations to identification and quantitation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ionization and mass analyzers",
+          "description": "Students learn how molecules become ions and how mass-to-charge is measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron ionization"
+            },
+            {
+              "type": "concept",
+              "title": "Electrospray ionization"
+            },
+            {
+              "type": "concept",
+              "title": "MALDI"
+            },
+            {
+              "type": "concept",
+              "title": "Quadrupole"
+            },
+            {
+              "type": "concept",
+              "title": "Time-of-flight"
+            },
+            {
+              "type": "concept",
+              "title": "Orbitrap"
+            },
+            {
+              "type": "concept",
+              "title": "Ion trap"
+            },
+            {
+              "type": "concept",
+              "title": "M/z"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fragmentation and identification",
+          "description": "This subtopic teaches interpretation of mass spectra and molecular evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecular ion"
+            },
+            {
+              "type": "concept",
+              "title": "Base peak"
+            },
+            {
+              "type": "concept",
+              "title": "Isotope pattern"
+            },
+            {
+              "type": "concept",
+              "title": "Fragment ion"
+            },
+            {
+              "type": "concept",
+              "title": "Tandem MS"
+            },
+            {
+              "type": "concept",
+              "title": "Collision-induced dissociation"
+            },
+            {
+              "type": "concept",
+              "title": "Library search"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coupled techniques",
+          "description": "Students see how separations and MS combine for complex mixtures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GC-MS"
+            },
+            {
+              "type": "concept",
+              "title": "LC-MS"
+            },
+            {
+              "type": "concept",
+              "title": "LC-MS/MS"
+            },
+            {
+              "type": "concept",
+              "title": "Selected ion monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple reaction monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "High-resolution MS"
+            },
+            {
+              "type": "concept",
+              "title": "Proteomics preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instrument Signals, Noise, Automation, and Method Validation",
+      "description": "Understand how instruments convert chemistry into data and how methods are validated for real decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Signals, noise, and electronics",
+          "description": "Students learn what limits instrumental measurements and how signal quality is improved.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal-to-noise ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline drift"
+            },
+            {
+              "type": "concept",
+              "title": "Shot noise"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal noise"
+            },
+            {
+              "type": "concept",
+              "title": "1/f noise"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Lock-in detection"
+            },
+            {
+              "type": "concept",
+              "title": "Data acquisition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Automation and lab workflow",
+          "description": "This subtopic connects instruments to modern sample throughput and data handling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Autosampler"
+            },
+            {
+              "type": "concept",
+              "title": "Robotic preparation"
+            },
+            {
+              "type": "concept",
+              "title": "LIMS"
+            },
+            {
+              "type": "concept",
+              "title": "Barcoding"
+            },
+            {
+              "type": "concept",
+              "title": "Batch sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Carryover"
+            },
+            {
+              "type": "concept",
+              "title": "System suitability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method validation",
+          "description": "Students learn the formal criteria for proving an analytical method works.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Precision"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Range"
+            },
+            {
+              "type": "concept",
+              "title": "Robustness"
+            },
+            {
+              "type": "concept",
+              "title": "Ruggedness"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix spike"
+            },
+            {
+              "type": "concept",
+              "title": "Validation protocol"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemometrics, Multivariate Data, and Analytical Informatics",
+      "description": "Use modern data tools for calibration, classification, pattern recognition, and high-dimensional chemical data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Multivariate calibration",
+          "description": "Students learn how multiple signals can predict concentration when single-wavelength calibration is not enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiple linear regression"
+            },
+            {
+              "type": "concept",
+              "title": "Principal component regression"
+            },
+            {
+              "type": "concept",
+              "title": "Partial least squares"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-validation"
+            },
+            {
+              "type": "concept",
+              "title": "Latent variables"
+            },
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pattern recognition and classification",
+          "description": "This subtopic shows how analytical data can identify sample type, source, or authenticity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PCA"
+            },
+            {
+              "type": "concept",
+              "title": "Cluster analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Linear discriminant analysis"
+            },
+            {
+              "type": "concept",
+              "title": "SIMCA"
+            },
+            {
+              "type": "concept",
+              "title": "Classification model"
+            },
+            {
+              "type": "concept",
+              "title": "Confusion matrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data integrity and reproducibility",
+          "description": "Students learn modern expectations for trustworthy analytical data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Audit trail"
+            },
+            {
+              "type": "concept",
+              "title": "Version control"
+            },
+            {
+              "type": "concept",
+              "title": "FAIR data"
+            },
+            {
+              "type": "concept",
+              "title": "Electronic lab notebook"
+            },
+            {
+              "type": "concept",
+              "title": "Raw data retention"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible scripts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quality Assurance, Ethics, Safety, and Applied Analytical Projects",
+      "description": "Integrate QA/QC, lab safety, documentation, ethics, and project design in realistic analytical work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quality control systems",
+          "description": "Students learn the checks that keep routine analytical results reliable over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control chart"
+            },
+            {
+              "type": "concept",
+              "title": "Blank"
+            },
+            {
+              "type": "concept",
+              "title": "Duplicate"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix spike"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration verification"
+            },
+            {
+              "type": "concept",
+              "title": "Proficiency testing"
+            },
+            {
+              "type": "concept",
+              "title": "Standard operating procedure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics, safety, and regulation",
+          "description": "This subtopic frames analytical chemistry as professional work with consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemical hygiene plan"
+            },
+            {
+              "type": "concept",
+              "title": "PPE"
+            },
+            {
+              "type": "concept",
+              "title": "Waste disposal"
+            },
+            {
+              "type": "concept",
+              "title": "GLP"
+            },
+            {
+              "type": "concept",
+              "title": "ISO 17025"
+            },
+            {
+              "type": "concept",
+              "title": "Data falsification"
+            },
+            {
+              "type": "concept",
+              "title": "Conflict of interest"
+            },
+            {
+              "type": "concept",
+              "title": "Forensic responsibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied project design",
+          "description": "Students synthesize the course by designing, validating, and communicating a complete method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Method comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Sample matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Validation plan"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty budget"
+            },
+            {
+              "type": "concept",
+              "title": "Technical report"
+            },
+            {
+              "type": "concept",
+              "title": "Oral presentation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

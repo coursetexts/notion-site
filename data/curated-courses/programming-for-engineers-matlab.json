@@ -1,0 +1,776 @@
+{
+  "slug": "programming-for-engineers-matlab",
+  "title": "Programming for Engineers (MATLAB)",
+  "description": "Programming for Engineers (MATLAB) introduces first-year mechanical engineering students to MATLAB as a practical environment for engineering computation. The course emphasizes scripts, arrays, matrices, functions, visualization, data import, debugging, numerical methods, ODE simulation, and applied mechanical engineering mini-projects.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "MATLAB Environment, Scripts, and Engineering Workflow",
+      "description": "Students learn how MATLAB is organized as an engineering computing environment: command window, editor, workspace, paths, scripts, Live Scripts, and help tools.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "MATLAB interface",
+          "description": "The point is to help students become fluent in the workspace where they will write, run, inspect, and revise code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Command Window and Editor"
+            },
+            {
+              "type": "concept",
+              "title": "Workspace and variable browser"
+            },
+            {
+              "type": "concept",
+              "title": "Current folder, paths, and help documentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scripts and Live Scripts",
+          "description": "Students learn when to use quick scripts, polished Live Scripts, and reusable code files.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Script organization"
+            },
+            {
+              "type": "concept",
+              "title": "Live Script narration and outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Cells, sections, and runnable examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering workflow habits",
+          "description": "This subtopic frames code as part of a repeatable engineering process, not just a calculator replacement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement to computation plan"
+            },
+            {
+              "type": "concept",
+              "title": "Units and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Readable file and folder structure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Variables, Data Types, Operators, and Expressions",
+      "description": "This module builds the basic language mechanics students need before they can solve engineering problems computationally.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Variables and assignment",
+          "description": "Students learn how MATLAB stores values and how names, values, and workspace state interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Naming conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Scalar variables"
+            },
+            {
+              "type": "concept",
+              "title": "Clearing and inspecting workspace values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data types",
+          "description": "Types affect storage, operations, and interpretation of engineering data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "double, logical, char, string"
+            },
+            {
+              "type": "concept",
+              "title": "Type conversion"
+            },
+            {
+              "type": "concept",
+              "title": "NaN, Inf, and missing values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operators and expressions",
+          "description": "This gives students the mechanics for turning formulas into executable code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arithmetic operators"
+            },
+            {
+              "type": "concept",
+              "title": "Relational and logical operators"
+            },
+            {
+              "type": "concept",
+              "title": "Operator precedence and parentheses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Arrays, Vectors, Matrices, and Indexing",
+      "description": "Students learn MATLAB's central idea: most engineering computation becomes clearer when data is represented as arrays and matrices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Array construction",
+          "description": "Students learn to create the structures MATLAB is built around.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Row and column vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Ranges, linspace, and zeros/ones helpers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Indexing",
+          "description": "Indexing is the gateway to extracting, replacing, and analyzing selected parts of engineering data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear indexing"
+            },
+            {
+              "type": "concept",
+              "title": "Row-column indexing"
+            },
+            {
+              "type": "concept",
+              "title": "Logical indexing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrix operations",
+          "description": "Students learn the difference between matrix algebra and element-by-element operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transpose"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix multiplication"
+            },
+            {
+              "type": "concept",
+              "title": "Elementwise operations with dot syntax"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vectorization and Matrix-Based Problem Solving",
+      "description": "This topic helps students move from loop-by-loop thinking toward concise, efficient MATLAB expressions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vectorized thinking",
+          "description": "The goal is to express whole calculations over arrays in a compact, readable form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Broadcasting/implicit expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding unnecessary loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance basics",
+          "description": "Students learn that implementation style affects speed and clarity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preallocation"
+            },
+            {
+              "type": "concept",
+              "title": "Timing code"
+            },
+            {
+              "type": "concept",
+              "title": "Memory-aware array use"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrix problem formulation",
+          "description": "Students practice turning engineering equations into matrix form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear systems"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sweeps"
+            },
+            {
+              "type": "concept",
+              "title": "Batch computations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditionals, Loops, and Program Control",
+      "description": "Students learn how MATLAB programs make decisions, repeat calculations, and manage iterative engineering procedures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conditional logic",
+          "description": "Students learn to choose computational paths based on data, assumptions, or engineering criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "if, elseif, else"
+            },
+            {
+              "type": "concept",
+              "title": "switch statements"
+            },
+            {
+              "type": "concept",
+              "title": "Logical masks versus branches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loops",
+          "description": "Loops are necessary for iterative algorithms, simulations, and repeated operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "for loops"
+            },
+            {
+              "type": "concept",
+              "title": "while loops"
+            },
+            {
+              "type": "concept",
+              "title": "Loop counters and stopping conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control-flow reliability",
+          "description": "This subtopic helps students avoid common logic mistakes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary cases"
+            },
+            {
+              "type": "concept",
+              "title": "Break and continue"
+            },
+            {
+              "type": "concept",
+              "title": "Infinite-loop prevention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions and Modular Programming",
+      "description": "Students learn to package calculations into reusable functions with clear inputs, outputs, and documentation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Function files",
+          "description": "Students learn to separate reusable calculations from one-off scripts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function signatures"
+            },
+            {
+              "type": "concept",
+              "title": "Input and output arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Local variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Function design",
+          "description": "Good function design makes engineering code easier to debug, test, and reuse.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-responsibility functions"
+            },
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Docstrings and help text"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Built-in and custom functions",
+          "description": "Students learn to combine MATLAB's library tools with their own problem-specific functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function handles"
+            },
+            {
+              "type": "concept",
+              "title": "Anonymous functions"
+            },
+            {
+              "type": "concept",
+              "title": "Nested helper functions when useful"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plotting, Visualization, and Engineering Communication",
+      "description": "This module teaches students to turn numerical results into readable figures that support engineering interpretation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic plots",
+          "description": "Plots help students see trends, compare models, and communicate results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "plot, scatter, bar, histogram"
+            },
+            {
+              "type": "concept",
+              "title": "Labels, titles, legends, and units"
+            },
+            {
+              "type": "concept",
+              "title": "Subplots and multiple data series"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering visualization",
+          "description": "Students learn formats common in engineering reports and labs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semilog and loglog plots"
+            },
+            {
+              "type": "concept",
+              "title": "Contour and surface plots"
+            },
+            {
+              "type": "concept",
+              "title": "Error bars and fitted curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Figure quality",
+          "description": "This turns a plot from a quick check into a defensible engineering artifact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Readable scales"
+            },
+            {
+              "type": "concept",
+              "title": "Exporting figures"
+            },
+            {
+              "type": "concept",
+              "title": "Captions and interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "File Input/Output, Tables, and Data Import",
+      "description": "Students learn how MATLAB interacts with lab data, measurement files, spreadsheets, and structured datasets.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reading data",
+          "description": "Students learn how to bring experimental or design data into MATLAB.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSV and spreadsheet import"
+            },
+            {
+              "type": "concept",
+              "title": "readtable and readmatrix"
+            },
+            {
+              "type": "concept",
+              "title": "Data import tool"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Working with tables",
+          "description": "Tables support named columns and mixed data, which are common in lab and test datasets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Table variables"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering rows"
+            },
+            {
+              "type": "concept",
+              "title": "Summary statistics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Writing outputs",
+          "description": "Students learn to save computational results for reports, later analysis, or collaboration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "writetable and writematrix"
+            },
+            {
+              "type": "concept",
+              "title": "Saving MAT files"
+            },
+            {
+              "type": "concept",
+              "title": "Exporting figures and reports"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Debugging, Error Handling, and Code Quality",
+      "description": "Students practice finding mistakes, checking assumptions, and making MATLAB code easier to trust and reuse.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Debugging tools",
+          "description": "Students learn systematic ways to locate the smallest source of a problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breakpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Step through execution"
+            },
+            {
+              "type": "concept",
+              "title": "Inspecting variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error handling",
+          "description": "Robust engineering scripts should fail clearly and protect against invalid inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "try/catch"
+            },
+            {
+              "type": "concept",
+              "title": "Assertions"
+            },
+            {
+              "type": "concept",
+              "title": "Input checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Code quality",
+          "description": "This subtopic encourages habits that make MATLAB code easier to review and maintain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Comments that explain intent"
+            },
+            {
+              "type": "concept",
+              "title": "Consistent formatting"
+            },
+            {
+              "type": "concept",
+              "title": "Testing against known cases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Methods for Engineering Problems",
+      "description": "This module introduces common computational methods used across engineering: root finding, interpolation, regression, integration, and linear systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Root finding and optimization",
+          "description": "Students learn how computational tools solve equations that are difficult or impossible to solve by hand.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "fzero and roots"
+            },
+            {
+              "type": "concept",
+              "title": "Nonlinear equations"
+            },
+            {
+              "type": "concept",
+              "title": "Introductory optimization ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data fitting and interpolation",
+          "description": "Engineers often need models from data, so students practice fitting and estimating values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "polyfit and polyval"
+            },
+            {
+              "type": "concept",
+              "title": "Interpolation"
+            },
+            {
+              "type": "concept",
+              "title": "Residuals and goodness of fit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integration and linear systems",
+          "description": "These tools appear throughout mechanics, fluids, thermal systems, and design calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Numerical quadrature"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix solve operator"
+            },
+            {
+              "type": "concept",
+              "title": "Conditioning and residual checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "ODE Solvers, Simulation, and Model-Based Computation",
+      "description": "Students connect programming to dynamic engineering systems by simulating models and interpreting solution behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ODE modeling",
+          "description": "Students learn to translate dynamic systems into derivative functions and initial conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State variables"
+            },
+            {
+              "type": "concept",
+              "title": "Parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Initial-value problems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "MATLAB ODE solvers",
+          "description": "The goal is to use built-in solvers intelligently rather than treating them as black boxes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ode45 basics"
+            },
+            {
+              "type": "concept",
+              "title": "Solver tolerances"
+            },
+            {
+              "type": "concept",
+              "title": "Stiffness preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation interpretation",
+          "description": "Students learn to judge whether a simulation makes engineering sense.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time histories"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity to parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Validation against limiting cases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mechanical Engineering Applications and Mini-Projects",
+      "description": "The course closes by applying MATLAB to mechanics, design, thermal/fluid, vibrations, controls, or experimental-data problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanics and design calculations",
+          "description": "Students apply MATLAB to repeated calculations and parameter studies in mechanics and design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress and strain calculations"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanism kinematics"
+            },
+            {
+              "type": "concept",
+              "title": "Design sweeps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal, fluid, and vibration examples",
+          "description": "These examples show how one computing skillset transfers across ME domains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat transfer calculations"
+            },
+            {
+              "type": "concept",
+              "title": "Flow correlations"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration response plots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated mini-projects",
+          "description": "Projects bring together scripts, functions, plots, files, debugging, and explanation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Project proposal"
+            },
+            {
+              "type": "concept",
+              "title": "Working computation and validation"
+            },
+            {
+              "type": "concept",
+              "title": "Final code, figures, and short report"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

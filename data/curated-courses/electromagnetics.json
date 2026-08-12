@@ -1,0 +1,1196 @@
+{
+  "slug": "electromagnetics",
+  "title": "Electromagnetics",
+  "description": "Electromagnetics develops vector calculus and Maxwell's equations into electrostatics, magnetostatics, waves, transmission lines, waveguides, antennas, and RF/microwave applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Vector Analysis and Coordinate Systems",
+      "description": "Use vector calculus and coordinate systems as the language for fields, flux, circulation, and wave behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vector fields and physical interpretation",
+          "description": "The point is to see fields as quantities spread through space, with direction and magnitude at each point.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scalar versus vector fields"
+            },
+            {
+              "type": "concept",
+              "title": "Field lines and equipotential surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            },
+            {
+              "type": "concept",
+              "title": "Units and dimensional checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coordinate systems",
+          "description": "Coordinate choices make hard geometry manageable and keep field equations aligned with symmetry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Unit vectors and scale factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vector calculus operators",
+          "description": "Gradient, divergence, and curl describe how fields change, spread, and circulate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gradient and directional derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Divergence and flux density"
+            },
+            {
+              "type": "concept",
+              "title": "Curl and circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Laplacian in common coordinates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integral theorems",
+          "description": "Integral theorems convert local field behavior into global balances over curves, surfaces, and volumes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divergence theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Stokes' theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Line, surface, and volume integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing integration surfaces"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electrostatics",
+      "description": "Analyze stationary electric charges, fields, potential, capacitance, and dielectric effects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coulomb's law and electric field",
+          "description": "This is the starting model for how stationary charges create forces and fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point charges"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous charge distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Electric field intensity"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition of fields"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gauss's law",
+          "description": "Gauss's law turns symmetry into a powerful shortcut for field computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric flux"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical, cylindrical, and planar symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Integral and differential forms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electric potential",
+          "description": "Potential converts field problems into scalar-energy problems that are often easier to solve.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Potential difference"
+            },
+            {
+              "type": "concept",
+              "title": "Relationship between field and potential"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson's equation"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace's equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacitance and dielectrics",
+          "description": "Capacitance links field geometry and material response to stored electric energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parallel-plate, coaxial, and spherical capacitors"
+            },
+            {
+              "type": "concept",
+              "title": "Permittivity"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Dielectric breakdown"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Magnetostatics",
+      "description": "Analyze steady currents, magnetic flux density, magnetic forces, and magnetic materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnetic forces and flux density",
+          "description": "Magnetostatics begins with how currents and moving charges experience magnetic force.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lorentz force"
+            },
+            {
+              "type": "concept",
+              "title": "Force on current-carrying conductors"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic flux density"
+            },
+            {
+              "type": "concept",
+              "title": "Torque on current loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biot-Savart and Ampere laws",
+          "description": "These laws let students compute magnetic fields from steady current distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biot-Savart law"
+            },
+            {
+              "type": "concept",
+              "title": "Ampere's circuital law"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry-based field solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic vector potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic materials",
+          "description": "Materials determine how magnetic fields concentrate, store energy, and produce losses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetization"
+            },
+            {
+              "type": "concept",
+              "title": "Linear and nonlinear media"
+            },
+            {
+              "type": "concept",
+              "title": "Hysteresis intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inductance",
+          "description": "Inductance measures magnetic energy storage and is the field foundation beneath circuit inductors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self-inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Mutual inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Flux linkage"
+            },
+            {
+              "type": "concept",
+              "title": "Energy in magnetic fields"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boundary Conditions and Material Media",
+      "description": "Apply constitutive relations and interface conditions so field solutions match real materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Constitutive relations",
+          "description": "Constitutive relations connect abstract field quantities to the actual media supporting them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permittivity"
+            },
+            {
+              "type": "concept",
+              "title": "Permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Loss tangent and complex material parameters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interface conditions",
+          "description": "Boundary conditions enforce physical continuity and jumps at material interfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangential electric field"
+            },
+            {
+              "type": "concept",
+              "title": "Tangential magnetic field"
+            },
+            {
+              "type": "concept",
+              "title": "Normal electric flux density"
+            },
+            {
+              "type": "concept",
+              "title": "Normal magnetic flux density"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conductors, dielectrics, and magnetic media",
+          "description": "Different media change how fields penetrate, store energy, and dissipate power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perfect conductors"
+            },
+            {
+              "type": "concept",
+              "title": "Good conductors"
+            },
+            {
+              "type": "concept",
+              "title": "Lossless and lossy dielectrics"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic materials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary value problems",
+          "description": "Boundary value methods help solve realistic field geometries beyond simple symmetry cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Laplace equation setups"
+            },
+            {
+              "type": "concept",
+              "title": "Separation of variables intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Method of images"
+            },
+            {
+              "type": "concept",
+              "title": "Uniqueness theorem intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Maxwell's Equations",
+      "description": "Unify electric and magnetic field laws into differential and integral forms for static and time-varying systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Integral forms",
+          "description": "The integral laws connect field behavior to measurable charge, current, flux, and circulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gauss's law for electricity"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss's law for magnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Faraday's law"
+            },
+            {
+              "type": "concept",
+              "title": "Ampere-Maxwell law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Differential forms",
+          "description": "Differential forms describe local field behavior at each point in space and time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divergence equations"
+            },
+            {
+              "type": "concept",
+              "title": "Curl equations"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Local conservation of charge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Displacement current",
+          "description": "Displacement current is the correction that makes time-varying electric fields produce magnetic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitor example"
+            },
+            {
+              "type": "concept",
+              "title": "Current continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Time-varying fields"
+            },
+            {
+              "type": "concept",
+              "title": "Physical interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Potentials and gauges",
+          "description": "Potentials provide alternate tools for solving and interpreting electromagnetic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scalar potential"
+            },
+            {
+              "type": "concept",
+              "title": "Vector potential"
+            },
+            {
+              "type": "concept",
+              "title": "Lorenz gauge intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Retarded potential preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy, Power, and the Poynting Theorem",
+      "description": "Track electromagnetic energy storage, power flow, loss, and force using field quantities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field energy density",
+          "description": "Energy density helps students locate where electromagnetic systems actually store energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric field energy"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic field energy"
+            },
+            {
+              "type": "concept",
+              "title": "Energy in capacitors and inductors"
+            },
+            {
+              "type": "concept",
+              "title": "Material effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Poynting vector",
+          "description": "The Poynting vector describes direction and density of electromagnetic power flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instantaneous power flow"
+            },
+            {
+              "type": "concept",
+              "title": "Time-average power"
+            },
+            {
+              "type": "concept",
+              "title": "Power crossing a surface"
+            },
+            {
+              "type": "concept",
+              "title": "Interpretation in circuits and waves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loss and dissipation",
+          "description": "Loss models explain heating, attenuation, and efficiency limits in real systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ohmic loss"
+            },
+            {
+              "type": "concept",
+              "title": "Dielectric loss"
+            },
+            {
+              "type": "concept",
+              "title": "Conductor skin effect"
+            },
+            {
+              "type": "concept",
+              "title": "Quality factor intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiation pressure and momentum",
+          "description": "Momentum ideas connect fields to mechanical force, radiation, and advanced applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Momentum density intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure on conductors"
+            },
+            {
+              "type": "concept",
+              "title": "Force from fields"
+            },
+            {
+              "type": "concept",
+              "title": "Applications in optics and antennas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wave Propagation",
+      "description": "Derive and interpret electromagnetic waves in free space, lossy media, conductors, and dielectrics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Wave equation",
+          "description": "The wave equation shows how Maxwell's equations predict self-sustaining EM waves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derivation in source-free media"
+            },
+            {
+              "type": "concept",
+              "title": "Wave speed"
+            },
+            {
+              "type": "concept",
+              "title": "Intrinsic impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Phasor representation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lossless and lossy media",
+          "description": "Media determine speed, attenuation, phase shift, and power transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Propagation constant"
+            },
+            {
+              "type": "concept",
+              "title": "Attenuation constant"
+            },
+            {
+              "type": "concept",
+              "title": "Phase constant"
+            },
+            {
+              "type": "concept",
+              "title": "Skin depth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reflection and transmission",
+          "description": "Interface behavior explains standing waves, matching, and shielding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal incidence"
+            },
+            {
+              "type": "concept",
+              "title": "Reflection coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Transmission coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Power balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dispersion",
+          "description": "Dispersion matters when different frequencies travel differently through a medium or guide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Group velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency-dependent material response"
+            },
+            {
+              "type": "concept",
+              "title": "Pulse distortion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transmission Lines",
+      "description": "Model high-frequency interconnects where voltage and current vary along the line.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Distributed circuit model",
+          "description": "Transmission lines show when ordinary lumped circuit thinking is no longer enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Per-unit-length R, L, G, C"
+            },
+            {
+              "type": "concept",
+              "title": "Telegrapher equations"
+            },
+            {
+              "type": "concept",
+              "title": "Lossless-line approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Characteristic impedance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Traveling and standing waves",
+          "description": "Wave viewpoints explain voltage/current variation along cables and traces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forward and reflected waves"
+            },
+            {
+              "type": "concept",
+              "title": "Standing wave ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage maxima and minima"
+            },
+            {
+              "type": "concept",
+              "title": "Short and open circuits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Impedance matching",
+          "description": "Matching maximizes power transfer and prevents harmful reflections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Input impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Quarter-wave transformer"
+            },
+            {
+              "type": "concept",
+              "title": "Stub matching intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Smith chart and practical lines",
+          "description": "Smith chart methods make impedance transformations visual and design-friendly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalized impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Admittance view"
+            },
+            {
+              "type": "concept",
+              "title": "Microstrip and coax examples"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement with network analyzers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plane Waves and Polarization",
+      "description": "Describe wave orientation, phase, impedance, reflection, transmission, and polarization states.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Uniform plane waves",
+          "description": "Plane waves are the simplest complete EM wave model and a baseline for more complex propagation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Field orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Wave vector"
+            },
+            {
+              "type": "concept",
+              "title": "E-H relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Power flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polarization states",
+          "description": "Polarization describes how the electric field vector moves as the wave travels.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Circular polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Elliptical polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization mismatch"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oblique incidence",
+          "description": "Oblique incidence prepares students for real interfaces, radomes, films, and propagation paths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TE and TM waves"
+            },
+            {
+              "type": "concept",
+              "title": "Snell's law"
+            },
+            {
+              "type": "concept",
+              "title": "Fresnel coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Brewster angle and total internal reflection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conductors and shielding",
+          "description": "Conductors reshape and attenuate fields in practical systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary behavior at conductors"
+            },
+            {
+              "type": "concept",
+              "title": "Skin effect"
+            },
+            {
+              "type": "concept",
+              "title": "Shielding effectiveness"
+            },
+            {
+              "type": "concept",
+              "title": "Surface current intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Waveguides and Cavities",
+      "description": "Study guided modes, cutoff, dispersion, and resonant field patterns in bounded structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Guided-wave modes",
+          "description": "Modes describe the field patterns that can propagate in a bounded structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TE modes"
+            },
+            {
+              "type": "concept",
+              "title": "TM modes"
+            },
+            {
+              "type": "concept",
+              "title": "TEM mode contrast"
+            },
+            {
+              "type": "concept",
+              "title": "Mode indices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cutoff and dispersion",
+          "description": "Cutoff explains why guides pass some frequencies and reject others.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cutoff frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Guide wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Phase and group velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant mode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rectangular and circular waveguides",
+          "description": "Common geometries make abstract mode concepts concrete and design-relevant.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rectangular guide field patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Circular guide intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Power handling"
+            },
+            {
+              "type": "concept",
+              "title": "Losses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resonant cavities",
+          "description": "Cavities store electromagnetic energy at specific resonant frequencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standing-wave fields"
+            },
+            {
+              "type": "concept",
+              "title": "Quality factor"
+            },
+            {
+              "type": "concept",
+              "title": "Resonant frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Microwave and accelerator examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Antennas and Radiation",
+      "description": "Connect time-varying currents to radiated fields, antenna patterns, gain, and link behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Radiation mechanisms",
+          "description": "Radiation links time-varying currents to fields that carry energy away from a source.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Retarded-field intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Current elements"
+            },
+            {
+              "type": "concept",
+              "title": "Near field versus far field"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation resistance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Antenna parameters",
+          "description": "Antenna metrics translate field behavior into design and link-budget quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radiation pattern"
+            },
+            {
+              "type": "concept",
+              "title": "Directivity"
+            },
+            {
+              "type": "concept",
+              "title": "Gain"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency and bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical antennas",
+          "description": "Canonical antenna types give students reusable mental models for real wireless systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hertzian dipole"
+            },
+            {
+              "type": "concept",
+              "title": "Half-wave dipole"
+            },
+            {
+              "type": "concept",
+              "title": "Monopole"
+            },
+            {
+              "type": "concept",
+              "title": "Loop and aperture antennas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Arrays",
+          "description": "Arrays shape beams by controlling phase and spacing across multiple radiating elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array factor"
+            },
+            {
+              "type": "concept",
+              "title": "Beam steering"
+            },
+            {
+              "type": "concept",
+              "title": "Grating lobes"
+            },
+            {
+              "type": "concept",
+              "title": "Phased-array intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "RF and Microwave Applications",
+      "description": "Apply electromagnetics to matching networks, microwave components, wireless links, and simulation workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microwave network concepts",
+          "description": "Network tools let students connect field behavior to measurable RF system performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S-parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Return loss"
+            },
+            {
+              "type": "concept",
+              "title": "Insertion loss"
+            },
+            {
+              "type": "concept",
+              "title": "VSWR"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Passive microwave components",
+          "description": "Components illustrate how guided waves are split, filtered, coupled, and transformed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Couplers"
+            },
+            {
+              "type": "concept",
+              "title": "Filters"
+            },
+            {
+              "type": "concept",
+              "title": "Power dividers"
+            },
+            {
+              "type": "concept",
+              "title": "Resonators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wireless and sensing systems",
+          "description": "Applications show how EM ideas become communications, radar, and sensing technology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Link budget"
+            },
+            {
+              "type": "concept",
+              "title": "Path loss"
+            },
+            {
+              "type": "concept",
+              "title": "Radar equation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "EM compatibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and measurement",
+          "description": "Modern EM work depends on numerical solvers and careful measurement practice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite element method intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Finite difference time domain intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Vector network analyzer basics"
+            },
+            {
+              "type": "concept",
+              "title": "Anechoic and near-field measurement"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

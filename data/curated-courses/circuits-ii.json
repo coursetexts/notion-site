@@ -1,0 +1,842 @@
+{
+  "slug": "circuits-ii",
+  "title": "Circuits II",
+  "description": "Develop fluency with AC circuit analysis, power, coupled circuits, frequency response, filters, Laplace methods, and transfer functions.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Phasors and Impedance",
+      "description": "This section converts sinusoidal time-domain signals into complex-number form. The point is to make capacitors and inductors behave like frequency-dependent impedances so AC circuits can be solved with familiar linear algebra.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sinusoidal representation",
+          "description": "Students learn how amplitude, phase, angular frequency, and time shifts map into phasor notation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peak versus RMS values"
+            },
+            {
+              "type": "concept",
+              "title": "Phase angle and reference choices"
+            },
+            {
+              "type": "concept",
+              "title": "Euler form, rectangular form, and polar form"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complex impedance",
+          "description": "Students learn how resistors, capacitors, and inductors behave in sinusoidal steady state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistive impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive reactance and current lag"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitive reactance and current lead"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Admittance and equivalent networks",
+          "description": "Students build faster methods for series-parallel AC simplification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Admittance, conductance, and susceptance"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel impedance combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency-dependent voltage and current division"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and interpretation",
+          "description": "Students connect phasors to lab instruments and real waveforms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oscilloscope phase measurements"
+            },
+            {
+              "type": "concept",
+              "title": "Function-generator references"
+            },
+            {
+              "type": "concept",
+              "title": "RMS meters and complex impedance estimation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "AC Steady-state Analysis",
+      "description": "This section applies the full Circuits I toolkit to AC networks. Students learn that nodal, mesh, Thevenin, Norton, and superposition methods still work once impedances and phasors are used consistently.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nodal analysis with phasors",
+          "description": "Students solve AC circuits by writing KCL equations in the frequency domain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Node-voltage setup"
+            },
+            {
+              "type": "concept",
+              "title": "Dependent sources"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix form for multiple nodes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mesh analysis with phasors",
+          "description": "Students solve loop-current problems where voltage sources and series impedances dominate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "KVL with complex impedances"
+            },
+            {
+              "type": "concept",
+              "title": "Current sharing and coupled meshes"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing mesh versus nodal methods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Source transformations and equivalents",
+          "description": "Students simplify AC circuits without losing terminal behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thevenin and Norton equivalents in AC"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum power transfer setup"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition with sinusoidal sources"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and lab comparison",
+          "description": "Students learn to check hand analysis against practical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SPICE AC analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Breadboard or bench measurement limits"
+            },
+            {
+              "type": "concept",
+              "title": "Component tolerance and parasitic effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "AC Power (Real, Reactive, Apparent)",
+      "description": "Power in AC circuits requires more than multiplying voltage and current magnitudes. Students learn how real work, stored energy exchange, and source loading appear in complex power calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Instantaneous and average power",
+          "description": "Students see how power varies through the sinusoidal cycle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instantaneous power waveforms"
+            },
+            {
+              "type": "concept",
+              "title": "Average power in resistive loads"
+            },
+            {
+              "type": "concept",
+              "title": "Power absorbed versus delivered"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complex power quantities",
+          "description": "Students learn the engineering meanings of P, Q, S, and power factor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real power in watts"
+            },
+            {
+              "type": "concept",
+              "title": "Reactive power in vars"
+            },
+            {
+              "type": "concept",
+              "title": "Apparent power in volt-amperes"
+            },
+            {
+              "type": "concept",
+              "title": "Power triangle and sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power-factor correction",
+          "description": "Students learn why utilities and industrial systems care about reactive power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lagging and leading loads"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitor-bank correction"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency, current reduction, and voltage regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and safety",
+          "description": "Students connect calculations to wattmeters and safe AC practice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RMS voltage and current"
+            },
+            {
+              "type": "concept",
+              "title": "Instrument ratings"
+            },
+            {
+              "type": "concept",
+              "title": "Grounding, isolation, and high-power precautions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Three-phase Circuits",
+      "description": "Three-phase analysis introduces the dominant architecture of electric power systems. The goal is to understand balanced systems first, then recognize what changes when loads or sources are not ideal.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Balanced three-phase sources",
+          "description": "Students learn the geometry and notation of three sinusoidal phases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Line-to-line versus line-to-neutral voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Wye and delta source connections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Balanced loads",
+          "description": "Students solve common wye and delta load configurations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Per-phase equivalent analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Line and phase currents"
+            },
+            {
+              "type": "concept",
+              "title": "Total three-phase power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unbalanced and neutral effects",
+          "description": "Students learn why real distribution systems need careful current accounting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neutral current"
+            },
+            {
+              "type": "concept",
+              "title": "Unbalanced load calculations"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage drops and practical limitations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students connect theory to power delivery and machines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transmission and distribution context"
+            },
+            {
+              "type": "concept",
+              "title": "Motor loads"
+            },
+            {
+              "type": "concept",
+              "title": "Transformer banks and industrial power panels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Magnetically Coupled Circuits",
+      "description": "This section explains circuits that interact through magnetic fields rather than direct wiring. Students learn how mutual inductance and transformer action support power conversion, isolation, impedance matching, and sensing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mutual inductance",
+          "description": "Students learn how one coil's changing current induces voltage in another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self versus mutual inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient of coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Dot convention and polarity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coupled-circuit equations",
+          "description": "Students write circuit equations that include mutual terms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "KVL with coupled inductors"
+            },
+            {
+              "type": "concept",
+              "title": "Series aiding and opposing connections"
+            },
+            {
+              "type": "concept",
+              "title": "Energy and sign checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ideal transformers",
+          "description": "Students learn the first-order model for voltage, current, and impedance transformation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turns ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Reflected impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Power conservation in ideal transformers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonideal transformer behavior",
+          "description": "Students understand why real components depart from ideal models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Winding resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Leakage inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Core loss, saturation, and bandwidth"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response",
+      "description": "Frequency response shows how a circuit treats different sinusoidal inputs. Students learn to describe gain, phase shift, resonance, bandwidth, and selectivity as design and diagnostic tools.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Response definitions",
+          "description": "Students learn what magnitude and phase response mean physically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain and attenuation"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift and delay"
+            },
+            {
+              "type": "concept",
+              "title": "Input-output sinusoid interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RC, RL, and RLC behavior",
+          "description": "Students analyze common first- and second-order circuit responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low-pass and high-pass RC/RL circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Quality factor and damping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bandwidth and cutoff",
+          "description": "Students identify the useful operating range of circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Half-power frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity and rolloff"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental frequency sweeps",
+          "description": "Students learn how response is measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sine-sweep testing"
+            },
+            {
+              "type": "concept",
+              "title": "Network analyzer concepts"
+            },
+            {
+              "type": "concept",
+              "title": "SPICE AC sweep setup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bode Plots",
+      "description": "Bode plots compress frequency response into a readable engineering sketch. Students learn to predict behavior from poles and zeros and to communicate circuit performance across decades of frequency.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnitude plots",
+          "description": "Students learn log-scale gain representation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decibels"
+            },
+            {
+              "type": "concept",
+              "title": "Asymptotic slopes"
+            },
+            {
+              "type": "concept",
+              "title": "Break frequencies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase plots",
+          "description": "Students learn how poles and zeros affect phase.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase contribution of a pole"
+            },
+            {
+              "type": "concept",
+              "title": "Phase contribution of a zero"
+            },
+            {
+              "type": "concept",
+              "title": "Approximate versus exact phase curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pole-zero interpretation",
+          "description": "Students connect algebraic factors to physical circuit behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real poles and zeros"
+            },
+            {
+              "type": "concept",
+              "title": "Complex pole pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant poles and bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design reading skills",
+          "description": "Students use plots to judge whether a circuit meets specifications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain margin intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Noise and signal-band separation"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing measured and predicted response"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Passive and Active Filters",
+      "description": "Filtering turns frequency-response theory into a design tool. Students learn to choose circuit structures that pass wanted frequencies, reject unwanted frequencies, and condition signals before later stages.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Passive filter structures",
+          "description": "Students understand simple filters built from R, L, and C elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RC low-pass and high-pass filters"
+            },
+            {
+              "type": "concept",
+              "title": "RLC band-pass and band-stop filters"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Active filter structures",
+          "description": "Students use op-amps to improve gain, buffering, and design flexibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverting and non-inverting filter topologies"
+            },
+            {
+              "type": "concept",
+              "title": "Sallen-Key filters"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-feedback filters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Filter specifications",
+          "description": "Students translate application needs into design numbers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cutoff frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Passband and stopband"
+            },
+            {
+              "type": "concept",
+              "title": "Ripple, attenuation, and order"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation checks",
+          "description": "Students learn that designed filters must be verified.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Component tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Op-amp bandwidth and slew-rate limits"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation, breadboard testing, and measurement comparison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace Transform Analysis",
+      "description": "The Laplace transform lets students analyze circuits before they settle into steady state. It unifies transient response, initial conditions, forcing functions, and s-domain impedance methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transform basics",
+          "description": "Students learn the operational rules needed for circuit analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Common transform pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity and differentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Partial fractions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "S-domain circuit elements",
+          "description": "Students represent R, L, and C components directly in the s-domain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistor impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Inductor impedance and initial current"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitor impedance and initial voltage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient response",
+          "description": "Students solve step, impulse, and switched-circuit problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural and forced response"
+            },
+            {
+              "type": "concept",
+              "title": "Initial and final value checks"
+            },
+            {
+              "type": "concept",
+              "title": "First- and second-order transients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical use",
+          "description": "Students connect s-domain analysis to simulation and design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Switching circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Control and signal-chain connections"
+            },
+            {
+              "type": "concept",
+              "title": "Why Laplace complements phasor analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transfer Functions",
+      "description": "Transfer functions describe how a circuit maps an input to an output. This final topic ties together filters, frequency response, transients, poles, zeros, stability, and design specifications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Input-output modeling",
+          "description": "Students define the quantity a circuit is meant to transform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voltage gain"
+            },
+            {
+              "type": "concept",
+              "title": "Current gain"
+            },
+            {
+              "type": "concept",
+              "title": "Transimpedance and transadmittance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deriving H(s)",
+          "description": "Students learn several ways to obtain transfer functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Circuit equations in the s-domain"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage/current divider methods"
+            },
+            {
+              "type": "concept",
+              "title": "Nodal and mesh derivations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Poles, zeros, and stability",
+          "description": "Students infer behavior from the denominator and numerator.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pole locations and time constants"
+            },
+            {
+              "type": "concept",
+              "title": "Zeros and attenuation"
+            },
+            {
+              "type": "concept",
+              "title": "Stability and physical realizability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design and validation",
+          "description": "Students use transfer functions to meet requirements and test results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Target bandwidth and gain"
+            },
+            {
+              "type": "concept",
+              "title": "Filter-order selection"
+            },
+            {
+              "type": "concept",
+              "title": "Measured versus modeled transfer functions"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

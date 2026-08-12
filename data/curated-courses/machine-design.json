@@ -1,0 +1,1004 @@
+{
+  "slug": "machine-design",
+  "title": "Machine Design",
+  "description": "Machine Design covers stress and failure theories, fatigue, shafts, bearings, gears, belt and chain drives, clutches and brakes, joints, springs, and the design process through projects, tolerancing, manufacturing, optimization, and validation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Stress Analysis and Failure Theories",
+      "description": "Machine design begins by predicting whether parts can carry loads without yielding, fracturing, buckling, or otherwise failing in service.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Load paths and free-body models",
+          "description": "Students learn to reduce real components to force and moment models that can be analyzed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial, bending, torsional, and transverse loads"
+            },
+            {
+              "type": "concept",
+              "title": "Combined loading"
+            },
+            {
+              "type": "concept",
+              "title": "Critical sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stress states",
+          "description": "Machine elements often experience combined normal and shear stresses, so stress transformation matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Principal stresses"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum shear stress"
+            },
+            {
+              "type": "concept",
+              "title": "Mohr's circle context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Static failure theories",
+          "description": "Failure theories translate multiaxial stress states into design criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maximum shear stress theory"
+            },
+            {
+              "type": "concept",
+              "title": "Distortion energy / von Mises theory"
+            },
+            {
+              "type": "concept",
+              "title": "Brittle material criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Factors of safety",
+          "description": "Safety factors account for uncertainty in loads, materials, modeling, and consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design factor versus safety factor"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Consequences of failure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fatigue and Infinite-Life Design",
+      "description": "Many machine parts fail after repeated loading even when peak stresses are below static strength. Fatigue design teaches students how to design for life.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fatigue mechanisms",
+          "description": "Students learn why cracks initiate and grow under cyclic stress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crack initiation"
+            },
+            {
+              "type": "concept",
+              "title": "Crack propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Surface and notch effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "S-N curves and endurance limits",
+          "description": "S-N data connect alternating stress to expected life.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite-life region"
+            },
+            {
+              "type": "concept",
+              "title": "Endurance limit"
+            },
+            {
+              "type": "concept",
+              "title": "Material and surface corrections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mean stress corrections",
+          "description": "Real fatigue loads often combine alternating and mean stress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Goodman relation"
+            },
+            {
+              "type": "concept",
+              "title": "Gerber relation"
+            },
+            {
+              "type": "concept",
+              "title": "Soderberg criterion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Infinite-life and variable-loading design",
+          "description": "Students learn to size components for long life under realistic loading histories.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Modified endurance strength"
+            },
+            {
+              "type": "concept",
+              "title": "Cumulative damage"
+            },
+            {
+              "type": "concept",
+              "title": "Miner's rule"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shafts and Shaft Components",
+      "description": "Shafts transmit power and support rotating elements. Their design combines stress, deflection, fatigue, keyways, shoulders, bearings, and assembly constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Power transmission in shafts",
+          "description": "Students connect torque, speed, power, and geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Torque-power-speed relation"
+            },
+            {
+              "type": "concept",
+              "title": "Torsional shear stress"
+            },
+            {
+              "type": "concept",
+              "title": "Combined bending and torsion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Shaft layout",
+          "description": "Layout choices determine where loads enter, where bearings sit, and where stress concentrations arise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shoulders and fillets"
+            },
+            {
+              "type": "concept",
+              "title": "Keyseats and splines"
+            },
+            {
+              "type": "concept",
+              "title": "Retaining rings and collars"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deflection and stiffness",
+          "description": "Shafts must be strong enough and stiff enough for gears, bearings, seals, and alignment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lateral deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Twist angle"
+            },
+            {
+              "type": "concept",
+              "title": "Critical speed context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fatigue design of shafts",
+          "description": "Rotating shafts often see fully reversed bending and steady torsion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress concentration factors"
+            },
+            {
+              "type": "concept",
+              "title": "Marin factors"
+            },
+            {
+              "type": "concept",
+              "title": "Goodman design for shafts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bearings (Rolling and Journal)",
+      "description": "Bearings support motion while controlling friction, load, alignment, life, and lubrication. Design selection matters for reliability and maintenance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rolling-element bearing types",
+          "description": "Students learn how bearing geometry changes load capacity and application fit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ball bearings"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical and tapered rollers"
+            },
+            {
+              "type": "concept",
+              "title": "Thrust bearings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bearing life and selection",
+          "description": "Bearing ratings let designers estimate life under load and speed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basic dynamic load rating"
+            },
+            {
+              "type": "concept",
+              "title": "L10 life"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent bearing load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Journal bearings",
+          "description": "Journal bearings rely on fluid films and are common in high-load or high-speed systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrodynamic lubrication"
+            },
+            {
+              "type": "concept",
+              "title": "Sommerfeld number context"
+            },
+            {
+              "type": "concept",
+              "title": "Clearance and viscosity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mounting and failure modes",
+          "description": "A good bearing choice can fail if mounting, lubrication, or alignment is wrong.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fits and preload"
+            },
+            {
+              "type": "concept",
+              "title": "Lubrication and contamination"
+            },
+            {
+              "type": "concept",
+              "title": "Spalling, brinelling, and wear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gears (Spur, Helical, Bevel)",
+      "description": "Gears transmit motion and power with controlled speed ratios. Gear design balances tooth geometry, stress, wear, noise, and manufacturability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gear terminology and geometry",
+          "description": "Students learn the vocabulary and geometry needed to specify gear pairs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pitch circle and module/diametral pitch"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure angle"
+            },
+            {
+              "type": "concept",
+              "title": "Contact ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spur and helical gears",
+          "description": "Spur and helical gears are common parallel-shaft power transmission elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tooth bending stress"
+            },
+            {
+              "type": "concept",
+              "title": "Contact stress"
+            },
+            {
+              "type": "concept",
+              "title": "Helix angle and axial thrust"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bevel gears",
+          "description": "Bevel gears transmit power between intersecting shafts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Straight and spiral bevel gears"
+            },
+            {
+              "type": "concept",
+              "title": "Mounting geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Load and alignment issues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gear trains and design tradeoffs",
+          "description": "Gear systems require ratio planning and packaging decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple and compound trains"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency and backlash"
+            },
+            {
+              "type": "concept",
+              "title": "Lubrication, noise, and wear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Belt and Chain Drives",
+      "description": "Belts and chains provide flexible power transmission options when shafts are separated or when shock, cost, or alignment considerations matter.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Belt drive types",
+          "description": "Belt choice affects slip, power capacity, maintenance, and packaging.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flat belts"
+            },
+            {
+              "type": "concept",
+              "title": "V-belts"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronous belts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Belt-drive design",
+          "description": "Students learn the force and power relationships behind belt selection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tension ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Wrap angle"
+            },
+            {
+              "type": "concept",
+              "title": "Belt speed and power rating"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chain drives",
+          "description": "Chains provide positive drive without slip but introduce polygonal action and lubrication needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roller chains"
+            },
+            {
+              "type": "concept",
+              "title": "Sprocket selection"
+            },
+            {
+              "type": "concept",
+              "title": "Chain speed and lubrication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selection tradeoffs",
+          "description": "Belts and chains are chosen by balancing cost, precision, noise, efficiency, and service conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Center distance"
+            },
+            {
+              "type": "concept",
+              "title": "Shock loading"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance and guard requirements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Clutches and Brakes",
+      "description": "Clutches and brakes control engagement, motion, and stopping. Their design involves friction, heat generation, wear, actuation, and safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Friction fundamentals",
+          "description": "Students learn how friction transmits torque and dissipates energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficient of friction"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform wear and uniform pressure assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Contact area effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clutch types",
+          "description": "Clutches engage and disengage power transmission.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plate clutches"
+            },
+            {
+              "type": "concept",
+              "title": "Cone clutches"
+            },
+            {
+              "type": "concept",
+              "title": "Overrunning clutches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Brake types",
+          "description": "Brakes convert kinetic energy into heat and must stop motion reliably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Disc brakes"
+            },
+            {
+              "type": "concept",
+              "title": "Drum brakes"
+            },
+            {
+              "type": "concept",
+              "title": "Band brakes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal and wear considerations",
+          "description": "Friction devices are limited by heat, wear, and material behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature rise"
+            },
+            {
+              "type": "concept",
+              "title": "Friction materials and fade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bolted and Welded Joints",
+      "description": "Joints are common failure points. Students learn how fasteners and welds carry load, maintain preload, and create manufacturable assemblies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bolted joint mechanics",
+          "description": "Preload changes how a joint carries external load and resists separation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bolt stiffness and member stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Preload and proof strength"
+            },
+            {
+              "type": "concept",
+              "title": "Joint separation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bolted joint failure modes",
+          "description": "Fasteners can fail through many paths, so design checks must be systematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tension and shear failure"
+            },
+            {
+              "type": "concept",
+              "title": "Bearing and tear-out"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue in bolts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Welded joint types",
+          "description": "Weld geometry determines load path and inspection needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fillet welds"
+            },
+            {
+              "type": "concept",
+              "title": "Groove welds"
+            },
+            {
+              "type": "concept",
+              "title": "Plug and slot welds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Weld design and quality",
+          "description": "Welds require design, process, and inspection thinking.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Throat area"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentric loading"
+            },
+            {
+              "type": "concept",
+              "title": "Distortion, defects, and inspection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Springs",
+      "description": "Springs store energy, provide force, absorb shock, and control motion. Spring design combines stress, deflection, fatigue, and manufacturability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spring types",
+          "description": "Different spring forms suit different force, motion, and packaging needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compression springs"
+            },
+            {
+              "type": "concept",
+              "title": "Extension springs"
+            },
+            {
+              "type": "concept",
+              "title": "Torsion springs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Helical compression spring design",
+          "description": "Compression springs are a core machine-design example because stress and deflection are tightly coupled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spring rate"
+            },
+            {
+              "type": "concept",
+              "title": "Wahl correction factor"
+            },
+            {
+              "type": "concept",
+              "title": "Solid height and surge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spring materials and fatigue",
+          "description": "Springs frequently see cyclic loading and must be designed for life.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Music wire and alloy steels"
+            },
+            {
+              "type": "concept",
+              "title": "Shot peening"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue safety factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spring selection and application",
+          "description": "Students learn when to design a spring and when to select a catalog part.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Catalog selection"
+            },
+            {
+              "type": "concept",
+              "title": "Preload and installation"
+            },
+            {
+              "type": "concept",
+              "title": "Buckling and guides"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Projects",
+      "description": "Projects integrate analysis, component selection, modeling, drawings, cost, manufacturing, testing, and communication into a realistic design workflow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem definition",
+          "description": "A good project begins with a clear statement of what the machine must do and under what constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Use cases and load cases"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concept generation and selection",
+          "description": "Students practice creating alternatives and selecting based on evidence rather than preference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Morphological charts"
+            },
+            {
+              "type": "concept",
+              "title": "Pugh matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Detailed design and documentation",
+          "description": "Project work forces students to turn analysis into drawings, BOMs, and buildable designs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CAD models and drawings"
+            },
+            {
+              "type": "concept",
+              "title": "Bill of materials"
+            },
+            {
+              "type": "concept",
+              "title": "Design calculations package"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prototype, test, and iterate",
+          "description": "Testing reveals whether the design works and where assumptions were wrong.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Test plans"
+            },
+            {
+              "type": "concept",
+              "title": "Failure diagnosis"
+            },
+            {
+              "type": "concept",
+              "title": "Design iteration and final presentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Process, Requirements, and Decision-Making",
+      "description": "This added synthesis topic makes the course more than a catalog of components by teaching students how design problems are framed and decisions are justified.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Requirements and stakeholder needs",
+          "description": "Students learn to translate vague needs into measurable design requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Customer and user needs"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and priorities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concept development",
+          "description": "Concept work keeps students from jumping too quickly to the first workable mechanism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideation methods"
+            },
+            {
+              "type": "concept",
+              "title": "Functional decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Benchmarking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision methods",
+          "description": "Decision tools make tradeoffs visible and defensible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Screening matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted scoring"
+            },
+            {
+              "type": "concept",
+              "title": "Risk and uncertainty in decisions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design reviews and documentation",
+          "description": "Professional machine design depends on communicating assumptions, calculations, and evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preliminary and critical design reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Calculation notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Traceability from requirement to verification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tolerancing, Manufacturing, Optimization, and Validation",
+      "description": "This added topic connects machine-element calculations to real production, assembly, performance improvement, and verification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tolerancing and fits",
+          "description": "Tolerances determine whether parts assemble, move, and perform as intended.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clearance, transition, and interference fits"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance stackups"
+            },
+            {
+              "type": "concept",
+              "title": "GD&T context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design for manufacturing and assembly",
+          "description": "Design choices should fit available manufacturing processes and assembly constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machining, casting, forming, and additive manufacturing"
+            },
+            {
+              "type": "concept",
+              "title": "DFMA principles"
+            },
+            {
+              "type": "concept",
+              "title": "Standard parts and process capability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization formulation",
+          "description": "Optimization helps students improve designs subject to constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objective functions"
+            },
+            {
+              "type": "concept",
+              "title": "Design variables"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing and validation",
+          "description": "Validation closes the loop between predicted performance and actual behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prototype tests"
+            },
+            {
+              "type": "concept",
+              "title": "Instrumentation and data collection"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance criteria and design iteration"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

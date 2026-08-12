@@ -1,0 +1,1233 @@
+{
+  "slug": "linear-algebra",
+  "title": "Linear Algebra",
+  "description": "Linear algebra studies linear structure and its computational realization. Students learn to move among equations, matrices, transformations, geometry, proofs, and software; to select and justify decompositions; and to interpret models drawn from computing, economics, engineering, mathematics, and physics. Conceptual understanding, reliable computation, and communication receive equal weight.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Linear Systems and Elimination",
+      "description": "Linear systems are the computational doorway to the subject: they turn constraints, balances, circuits, equilibrium conditions, and fitted models into equations that can be solved and interpreted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Modeling with linear equations",
+          "description": "Translate scientific, engineering, computing, and economic relationships into a system Ax=b.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unknowns, equations, and constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Consistent, inconsistent, and underdetermined models"
+            },
+            {
+              "type": "concept",
+              "title": "Homogeneous versus nonhomogeneous systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gaussian elimination and row reduction",
+          "description": "Use reversible row operations to expose the solution structure efficiently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Echelon and reduced echelon forms"
+            },
+            {
+              "type": "concept",
+              "title": "Pivots and free variables"
+            },
+            {
+              "type": "concept",
+              "title": "Back substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Operation counts and implementation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solution sets and rank",
+          "description": "Read existence and uniqueness from pivots, rank, and nullity rather than from computation alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rank conditions for solvability"
+            },
+            {
+              "type": "concept",
+              "title": "Particular plus homogeneous solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric interpretation of solution sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrix inverses and factorizations",
+          "description": "Understand when an inverse exists, while preferring reusable factorizations for actual computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Invertible matrix theorem"
+            },
+            {
+              "type": "concept",
+              "title": "LU factorization and pivoting"
+            },
+            {
+              "type": "concept",
+              "title": "Solving multiple right-hand sides"
+            },
+            {
+              "type": "concept",
+              "title": "Why explicit inversion is often avoided"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vectors, Geometry, and Matrix Algebra",
+      "description": "Vectors encode state, direction, features, forces, portfolios, signals, and quantum amplitudes. Matrix algebra provides the compact language for manipulating many coupled quantities at once.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vectors and geometry",
+          "description": "Build geometric intuition for length, direction, angle, projection, and linear combination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinates in R^n"
+            },
+            {
+              "type": "concept",
+              "title": "Norms and distances"
+            },
+            {
+              "type": "concept",
+              "title": "Dot products and angles"
+            },
+            {
+              "type": "concept",
+              "title": "Lines, planes, and hyperplanes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrix operations",
+          "description": "Treat matrices as both arrays of data and operators that act on vectors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Addition and scalar multiplication"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix-vector and matrix-matrix products"
+            },
+            {
+              "type": "concept",
+              "title": "Transpose and block matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Identity and inverse"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structure and special matrices",
+          "description": "Recognize structure that simplifies theory and algorithms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diagonal, triangular, and permutation matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetric and skew-symmetric matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Sparse and banded matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Stochastic and graph matrices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complex scalars",
+          "description": "Extend the language to oscillations, circuits, Fourier methods, and quantum mechanics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complex vectors and matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate transpose"
+            },
+            {
+              "type": "concept",
+              "title": "Hermitian and unitary matrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vector Spaces, Subspaces, Basis, and Dimension",
+      "description": "Abstract vector spaces reveal that polynomials, functions, signals, matrices, and data sets share the same linear structure. This is where linear algebra becomes a reusable theory rather than a collection of matrix tricks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vector spaces and subspaces",
+          "description": "Identify when a collection supports linear combination and therefore linear reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axioms and examples"
+            },
+            {
+              "type": "concept",
+              "title": "Subspace test"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial, function, and matrix spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Sum and intersection of subspaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Span and independence",
+          "description": "Separate redundant generators from genuinely new directions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spanning sets"
+            },
+            {
+              "type": "concept",
+              "title": "Linear dependence relations"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal generating sets"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinates from generators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Basis and dimension",
+          "description": "Choose an efficient coordinate system and measure the degrees of freedom.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basis construction"
+            },
+            {
+              "type": "concept",
+              "title": "Dimension theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Change of basis"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-dimensional isomorphism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Four fundamental subspaces",
+          "description": "Connect a matrix to its column, row, null, and left-null spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Column and row spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Null and left-null spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonal complements"
+            },
+            {
+              "type": "concept",
+              "title": "Rank-nullity theorem"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Transformations and Representations",
+      "description": "A matrix is best understood as a representation of a linear transformation. This viewpoint connects geometry, algorithms, coordinate changes, graphics, dynamics, and physical operators.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Definition and examples",
+          "description": "Decide whether a mapping preserves addition and scalar multiplication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiation and integration"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluation and filtering operators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kernel and image",
+          "description": "Use the null space and range to describe lost and reachable information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Injectivity and surjectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Rank-nullity for maps"
+            },
+            {
+              "type": "concept",
+              "title": "Preimages and solvability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrix representations",
+          "description": "Represent the same transformation in different bases and compose transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Composition and matrix multiplication"
+            },
+            {
+              "type": "concept",
+              "title": "Change-of-basis matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Similar matrices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Affine and homogeneous-coordinate models",
+          "description": "Extend linear machinery to translations used in graphics and robotics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Affine maps"
+            },
+            {
+              "type": "concept",
+              "title": "Homogeneous coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Rotations, reflections, scalings, and shears"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Determinants, Orientation, and Volume",
+      "description": "The determinant compresses invertibility, orientation, and volume scaling into one scalar. Its conceptual role matters more than hand-expanding large matrices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Definition and computation",
+          "description": "Compute determinants using structure and elimination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permutation and cofactor definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Row-operation rules"
+            },
+            {
+              "type": "concept",
+              "title": "Triangular matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace expansion for small cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Geometric meaning",
+          "description": "Interpret determinant magnitude as volume scaling and sign as orientation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area and volume"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation reversal"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobian connection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Algebraic consequences",
+          "description": "Use determinants to characterize invertibility and eigenvalues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiplicativity"
+            },
+            {
+              "type": "concept",
+              "title": "Determinant of inverse and transpose"
+            },
+            {
+              "type": "concept",
+              "title": "Cramer\u2019s rule as theory"
+            },
+            {
+              "type": "concept",
+              "title": "Characteristic polynomial"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Connect determinants to coordinate changes, stability, and coupled models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wronskian-style independence intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Change of variables"
+            },
+            {
+              "type": "concept",
+              "title": "Small-matrix engineering and economic models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inner Products, Orthogonality, and Least Squares",
+      "description": "Inner products add measurement to vector spaces. Orthogonality then turns approximation, estimation, decomposition, and error analysis into clean geometric problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inner products and norms",
+          "description": "Generalize dot products to measure similarity, energy, and length.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inner-product axioms"
+            },
+            {
+              "type": "concept",
+              "title": "Induced norms and angles"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy\u2013Schwarz and triangle inequalities"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted inner products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orthogonality and projections",
+          "description": "Decompose a vector into explained and residual components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthogonal complements"
+            },
+            {
+              "type": "concept",
+              "title": "Projection onto a vector or subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Projection matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Best-approximation theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gram\u2013Schmidt and QR",
+          "description": "Construct stable orthonormal coordinates and factor matrices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classical and modified Gram\u2013Schmidt"
+            },
+            {
+              "type": "concept",
+              "title": "Orthonormal bases"
+            },
+            {
+              "type": "concept",
+              "title": "QR factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Householder reflections conceptually"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Least squares",
+          "description": "Solve inconsistent systems by minimizing residual energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal equations"
+            },
+            {
+              "type": "concept",
+              "title": "QR solution"
+            },
+            {
+              "type": "concept",
+              "title": "Linear regression"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted least squares and residual diagnostics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Eigenvalues, Eigenvectors, and Dynamical Modes",
+      "description": "Eigenvectors identify directions that a transformation preserves, while eigenvalues measure their amplification, decay, or phase change. They expose the natural modes of systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Eigenvalue problem",
+          "description": "Find and interpret solutions of Av=\u03bbv.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic polynomial"
+            },
+            {
+              "type": "concept",
+              "title": "Algebraic and geometric multiplicity"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenspaces"
+            },
+            {
+              "type": "concept",
+              "title": "Complex eigenpairs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagonalization",
+          "description": "Replace a coupled operator with independent modal coordinates when possible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Criteria for diagonalizability"
+            },
+            {
+              "type": "concept",
+              "title": "A=PDP\u207b\u00b9"
+            },
+            {
+              "type": "concept",
+              "title": "Powers and matrix functions"
+            },
+            {
+              "type": "concept",
+              "title": "Defective matrices and Jordan-form awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linear dynamical systems",
+          "description": "Use eigenstructure to predict repeated and continuous evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete systems x_{k+1}=Ax_k"
+            },
+            {
+              "type": "concept",
+              "title": "Stability and dominant modes"
+            },
+            {
+              "type": "concept",
+              "title": "Systems of linear ODEs"
+            },
+            {
+              "type": "concept",
+              "title": "Steady states and Markov chains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Application modes",
+          "description": "Interpret eigenvectors in physical, computational, and economic settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal modes and vibrations"
+            },
+            {
+              "type": "concept",
+              "title": "Principal directions"
+            },
+            {
+              "type": "concept",
+              "title": "PageRank and network centrality"
+            },
+            {
+              "type": "concept",
+              "title": "Input\u2013output and transition models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Symmetric, Hermitian, and Positive-Definite Operators",
+      "description": "Symmetry produces the cleanest and most useful spectral theory: real eigenvalues, orthogonal modes, stable quadratic energies, and reliable optimization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spectral theorem",
+          "description": "Diagonalize real symmetric and complex Hermitian operators using orthonormal eigenvectors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthogonal/unitary diagonalization"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh quotient"
+            },
+            {
+              "type": "concept",
+              "title": "Min\u2013max intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quadratic forms",
+          "description": "Analyze curvature, energy, covariance, and local optimization models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "X\u1d40Ax and x*Ax"
+            },
+            {
+              "type": "concept",
+              "title": "Classification by eigenvalues"
+            },
+            {
+              "type": "concept",
+              "title": "Principal axes"
+            },
+            {
+              "type": "concept",
+              "title": "Constrained extrema"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Positive definiteness",
+          "description": "Recognize matrices that define genuine energy or curvature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Eigenvalue and pivot tests"
+            },
+            {
+              "type": "concept",
+              "title": "Cholesky factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance and Gram matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Convex quadratic objectives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Generalized eigenproblems",
+          "description": "Model competing mass/energy metrics and constrained modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Av=\u03bbBv"
+            },
+            {
+              "type": "concept",
+              "title": "Mass and stiffness matrices"
+            },
+            {
+              "type": "concept",
+              "title": "B-orthogonality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Singular Value Decomposition and Low-Rank Approximation",
+      "description": "SVD is the universal matrix decomposition: it works for every rectangular matrix and reveals rank, conditioning, dominant patterns, and the best compressed approximation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Singular values and vectors",
+          "description": "Interpret A as orthogonal rotation, axis scaling, and another rotation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "A=U\u03a3V*"
+            },
+            {
+              "type": "concept",
+              "title": "Connection to A*A and AA*"
+            },
+            {
+              "type": "concept",
+              "title": "Rank and fundamental subspaces"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric action on the unit sphere"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pseudoinverse",
+          "description": "Define a principled solution when a system is rectangular or singular.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moore\u2013Penrose conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum-norm solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Least squares via SVD"
+            },
+            {
+              "type": "concept",
+              "title": "Regularization awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Low-rank approximation",
+          "description": "Keep the most informative directions and discard weaker structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Eckart\u2013Young theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Truncated SVD"
+            },
+            {
+              "type": "concept",
+              "title": "Compression and denoising"
+            },
+            {
+              "type": "concept",
+              "title": "Latent-factor interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data applications",
+          "description": "Connect SVD to PCA, embeddings, recommendation, and signal processing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Centering and covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Principal component scores"
+            },
+            {
+              "type": "concept",
+              "title": "Image compression"
+            },
+            {
+              "type": "concept",
+              "title": "Latent semantic analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Linear Algebra, Conditioning, and Computation",
+      "description": "Real problems are solved with finite precision on large or structured matrices. Numerical linear algebra explains which algorithms are trustworthy, scalable, and appropriate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Floating-point error",
+          "description": "Distinguish mathematical exactness from computed reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roundoff and cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Forward and backward error"
+            },
+            {
+              "type": "concept",
+              "title": "Residual versus solution error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditioning and stability",
+          "description": "Separate sensitivity inherent in a problem from instability introduced by an algorithm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix and problem condition numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Well- and ill-conditioned systems"
+            },
+            {
+              "type": "concept",
+              "title": "Stable versus unstable algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling and pivoting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Direct methods",
+          "description": "Choose factorizations suited to matrix structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LU with pivoting"
+            },
+            {
+              "type": "concept",
+              "title": "QR and Cholesky"
+            },
+            {
+              "type": "concept",
+              "title": "Cost and storage"
+            },
+            {
+              "type": "concept",
+              "title": "Sparse structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Iterative and large-scale methods",
+          "description": "Solve systems and eigenproblems too large for dense factorization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jacobi and Gauss\u2013Seidel intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate-gradient conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Power iteration"
+            },
+            {
+              "type": "concept",
+              "title": "Krylov-subspace awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational practice",
+          "description": "Use software without surrendering mathematical judgment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NumPy/SciPy or MATLAB workflows"
+            },
+            {
+              "type": "concept",
+              "title": "Shape and rank checks"
+            },
+            {
+              "type": "concept",
+              "title": "Testing with residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible notebooks and visualization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Proof, Abstraction, and Mathematical Communication",
+      "description": "A strong course should teach students to justify claims, identify assumptions, and move fluently between computation, geometry, and proof. These habits make the subject durable across disciplines.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Logic and proof patterns",
+          "description": "Build concise arguments appropriate to linear algebra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct proof"
+            },
+            {
+              "type": "concept",
+              "title": "Contrapositive and contradiction"
+            },
+            {
+              "type": "concept",
+              "title": "If-and-only-if structure"
+            },
+            {
+              "type": "concept",
+              "title": "Counterexamples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proving subspace and basis claims",
+          "description": "Use definitions precisely to verify structural properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closure arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Independence and spanning proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Uniqueness of coordinates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Theorem connections",
+          "description": "Organize results as a network rather than isolated facts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Invertible matrix theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Rank-nullity"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonal decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral theorem assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communication and validation",
+          "description": "Explain results in words, symbols, pictures, and code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dimension and unit checks"
+            },
+            {
+              "type": "concept",
+              "title": "Interpretation of computed output"
+            },
+            {
+              "type": "concept",
+              "title": "Clear notation"
+            },
+            {
+              "type": "concept",
+              "title": "Proof\u2013computation cross-checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Applications Across the Seven Degrees",
+      "description": "Applications consolidate the course by showing how the same structures recur in computing, economics, engineering, mathematics, and physics. Students should model, compute, interpret, and critique\u2014not merely substitute numbers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Computer science and computer engineering",
+          "description": "Use matrices as data structures and transformations in intelligent and digital systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Graphics and homogeneous transforms"
+            },
+            {
+              "type": "concept",
+              "title": "Machine learning and embeddings"
+            },
+            {
+              "type": "concept",
+              "title": "Graphs and spectral clustering"
+            },
+            {
+              "type": "concept",
+              "title": "Error-correcting codes and state-space computation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Economics",
+          "description": "Represent interdependent sectors, dynamic adjustment, estimation, and optimization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Leontief input\u2013output models"
+            },
+            {
+              "type": "concept",
+              "title": "Markov and transition models"
+            },
+            {
+              "type": "concept",
+              "title": "Least-squares econometrics"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic optimization and comparative statics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanical engineering",
+          "description": "Expose modes, constraints, and reduced models of physical systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Mass\u2013spring and vibration eigenproblems"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid-body transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-element matrix awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrical engineering",
+          "description": "Analyze signals, circuits, estimation, and state-space systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodal circuit equations"
+            },
+            {
+              "type": "concept",
+              "title": "Phasors and complex vector spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Least-squares estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Controllability/observability awareness"
+            },
+            {
+              "type": "concept",
+              "title": "SVD in MIMO and signal processing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mathematics and physics",
+          "description": "Unify abstract structure with operators, symmetries, and quantum states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proof-oriented vector spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral decompositions"
+            },
+            {
+              "type": "concept",
+              "title": "Dirac notation awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Hermitian observables and unitary evolution"
+            },
+            {
+              "type": "concept",
+              "title": "Normal modes and principal axes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone modeling workflow",
+          "description": "Complete an end-to-end interdisciplinary investigation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Formulate assumptions and variables"
+            },
+            {
+              "type": "concept",
+              "title": "Select a representation or factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Implement and validate"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret sensitivity and limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Communicate results to a disciplinary audience"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1296 @@
+{
+  "slug": "probability-and-random-processes",
+  "title": "Probability and Random Processes",
+  "description": "Probability and Random Processes develops probability foundations through random variables, distributions, expectation, limit theorems, stochastic processes, Markov chains, random signals and noise, estimation, and engineering simulation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Probability Axioms and Counting",
+      "description": "This section develops probability axioms and counting through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make probability axioms and counting precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Event"
+            },
+            {
+              "type": "concept",
+              "title": "Axiom"
+            },
+            {
+              "type": "concept",
+              "title": "Complement"
+            },
+            {
+              "type": "concept",
+              "title": "Union"
+            },
+            {
+              "type": "concept",
+              "title": "Intersection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with probability axioms and counting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample space in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare event with axiom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample space affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditional Probability and Independence",
+      "description": "This section develops conditional probability and independence through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make conditional probability and independence precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Event"
+            },
+            {
+              "type": "concept",
+              "title": "Axiom"
+            },
+            {
+              "type": "concept",
+              "title": "Complement"
+            },
+            {
+              "type": "concept",
+              "title": "Union"
+            },
+            {
+              "type": "concept",
+              "title": "Intersection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with conditional probability and independence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample space in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare event with axiom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditional independence"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample space affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables and Distributions",
+      "description": "This section develops random variables and distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make random variables and distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PMF"
+            },
+            {
+              "type": "concept",
+              "title": "PDF"
+            },
+            {
+              "type": "concept",
+              "title": "CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with random variables and distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply PMF in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare PDF with CDF"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how PMF affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Common Discrete and Continuous Distributions",
+      "description": "This section develops common discrete and continuous distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make common discrete and continuous distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson"
+            },
+            {
+              "type": "concept",
+              "title": "Negative binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Normal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with common discrete and continuous distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Bernoulli in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare binomial with geometric"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gamma"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Bernoulli affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint Distributions and Correlation",
+      "description": "This section develops joint distributions and correlation through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make joint distributions and correlation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint PMF"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with joint distributions and correlation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply joint PMF in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare marginal distribution with conditional distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how joint PMF affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions of Random Variables",
+      "description": "This section develops functions of random variables through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make functions of random variables precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PMF"
+            },
+            {
+              "type": "concept",
+              "title": "PDF"
+            },
+            {
+              "type": "concept",
+              "title": "CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with functions of random variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply PMF in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare PDF with CDF"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how PMF affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Expectation, Variance, and Moments",
+      "description": "This section develops expectation, variance, and moments through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make expectation, variance, and moments precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Markov chain"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson process"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with expectation, variance, and moments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample space in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare random variable with joint distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of white noise"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample space affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Limit Theorems and the Central Limit Theorem",
+      "description": "This section develops limit theorems and the central limit theorem through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make limit theorems and the central limit theorem precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Law of large numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence in probability"
+            },
+            {
+              "type": "concept",
+              "title": "Normal approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with limit theorems and the central limit theorem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply law of large numbers in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare central limit theorem with convergence in probability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how law of large numbers affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Introduction to Stochastic Processes",
+      "description": "This section develops introduction to stochastic processes through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make introduction to stochastic processes precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample path"
+            },
+            {
+              "type": "concept",
+              "title": "State space"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Autocorrelation"
+            },
+            {
+              "type": "concept",
+              "title": "Transition probability"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with introduction to stochastic processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample path in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare state space with stationarity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample path affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Poisson Processes and Arrival Models",
+      "description": "This section develops poisson processes and arrival models through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make poisson processes and arrival models precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Markov chain"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson process"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with poisson processes and arrival models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample space in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare random variable with joint distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of white noise"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample space affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Markov Chains",
+      "description": "This section develops markov chains through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make markov chains precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transition matrix"
+            },
+            {
+              "type": "concept",
+              "title": "State"
+            },
+            {
+              "type": "concept",
+              "title": "Absorbing state"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Chapman-Kolmogorov"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with markov chains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply transition matrix in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare state with absorbing state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how transition matrix affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Signals and Noise",
+      "description": "This section develops random signals and noise through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make random signals and noise precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power spectral density"
+            },
+            {
+              "type": "concept",
+              "title": "White noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Autocorrelation"
+            },
+            {
+              "type": "concept",
+              "title": "Filter"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with random signals and noise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply power spectral density in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare white noise with SNR"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how power spectral density affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Estimation and Detection",
+      "description": "This section develops estimation and detection through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make estimation and detection precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Margin of error"
+            },
+            {
+              "type": "concept",
+              "title": "Unbiased estimator"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with estimation and detection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply point estimate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare confidence interval with margin of error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how point estimate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Applications and Simulation",
+      "description": "This section develops engineering applications and simulation through the concrete vocabulary, procedures, examples, and checks students need in Probability and Random Processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make engineering applications and simulation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Joint distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Markov chain"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson process"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with engineering applications and simulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Derive expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Find marginal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample space in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare random variable with joint distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of white noise"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample space affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

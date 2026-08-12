@@ -1,0 +1,768 @@
+{
+  "slug": "microprocessors-and-embedded-systems",
+  "title": "Microprocessors and Embedded Systems",
+  "description": "Microprocessors and Embedded Systems covers processor organization, assembly and ISA, memory/I/O interfacing, interrupts, timers, embedded C, UART/SPI/I2C, real-time constraints, and an integrated embedded design project.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Microprocessor Architecture",
+      "description": "Understand the internal organization of processors and microcontrollers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Processor Organization",
+          "description": "Architecture gives students a map of the hardware executing their code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CPU Datapath"
+            },
+            {
+              "type": "concept",
+              "title": "Control unit"
+            },
+            {
+              "type": "concept",
+              "title": "Registers"
+            },
+            {
+              "type": "concept",
+              "title": "ALU"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microcontrollers Versus Microprocessors",
+          "description": "This distinction clarifies why embedded systems often use integrated chips.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "On-chip memory"
+            },
+            {
+              "type": "concept",
+              "title": "GPIO"
+            },
+            {
+              "type": "concept",
+              "title": "Timers"
+            },
+            {
+              "type": "concept",
+              "title": "Peripheral blocks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Execution Model",
+          "description": "Understanding execution helps explain performance and debugging behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fetch-Decode-Execute"
+            },
+            {
+              "type": "concept",
+              "title": "Pipelines"
+            },
+            {
+              "type": "concept",
+              "title": "Clock cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Reset and boot sequence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Assembly Language",
+      "description": "Use low-level instructions to see how software maps onto hardware.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Assembly Syntax",
+          "description": "Assembly exposes the exact operations the processor can perform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mnemonics"
+            },
+            {
+              "type": "concept",
+              "title": "Operands"
+            },
+            {
+              "type": "concept",
+              "title": "Labels"
+            },
+            {
+              "type": "concept",
+              "title": "Assembler directives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data Movement and Arithmetic",
+          "description": "Most embedded firmware depends on careful movement and manipulation of small data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load and store"
+            },
+            {
+              "type": "concept",
+              "title": "Arithmetic instructions"
+            },
+            {
+              "type": "concept",
+              "title": "Logic instructions"
+            },
+            {
+              "type": "concept",
+              "title": "Shifts and masks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control Flow",
+          "description": "Branches and calls implement decisions, loops, and functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional branches"
+            },
+            {
+              "type": "concept",
+              "title": "Loops"
+            },
+            {
+              "type": "concept",
+              "title": "Subroutines"
+            },
+            {
+              "type": "concept",
+              "title": "Stack use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instruction Set Architecture",
+      "description": "Study the contract between hardware and software through instructions, registers, and addressing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ISA Elements",
+          "description": "The ISA is the programmer-visible model of the processor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Registers"
+            },
+            {
+              "type": "concept",
+              "title": "Instruction formats"
+            },
+            {
+              "type": "concept",
+              "title": "Status flags"
+            },
+            {
+              "type": "concept",
+              "title": "Privilege modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Addressing Modes",
+          "description": "Addressing modes determine how instructions find operands.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Immediate"
+            },
+            {
+              "type": "concept",
+              "title": "Register"
+            },
+            {
+              "type": "concept",
+              "title": "Direct"
+            },
+            {
+              "type": "concept",
+              "title": "Indexed and indirect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RISC and Embedded ISA Concepts",
+          "description": "Embedded processors often use RISC ideas to balance efficiency and simplicity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ARM Cortex-M"
+            },
+            {
+              "type": "concept",
+              "title": "Thumb instructions"
+            },
+            {
+              "type": "concept",
+              "title": "Load-store design"
+            },
+            {
+              "type": "concept",
+              "title": "Code density"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory and I/O Interfacing",
+      "description": "Connect processors to memory, ports, buses, and external devices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Memory Organization",
+          "description": "Memory layout is essential for firmware, startup, and linker behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flash"
+            },
+            {
+              "type": "concept",
+              "title": "SRAM"
+            },
+            {
+              "type": "concept",
+              "title": "Memory map"
+            },
+            {
+              "type": "concept",
+              "title": "Stack and heap"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory-Mapped I/O",
+          "description": "Memory-mapped registers let software control hardware peripherals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peripheral registers"
+            },
+            {
+              "type": "concept",
+              "title": "Bit fields"
+            },
+            {
+              "type": "concept",
+              "title": "Volatile access"
+            },
+            {
+              "type": "concept",
+              "title": "Read-modify-write"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "External Interfacing",
+          "description": "Embedded systems must connect safely and reliably to external hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Buses"
+            },
+            {
+              "type": "concept",
+              "title": "Address decoding"
+            },
+            {
+              "type": "concept",
+              "title": "GPIO"
+            },
+            {
+              "type": "concept",
+              "title": "Level shifting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interrupts",
+      "description": "Use asynchronous event handling for responsive embedded systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Interrupt Concepts",
+          "description": "Interrupts let hardware events preempt normal code flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interrupt request"
+            },
+            {
+              "type": "concept",
+              "title": "Vector table"
+            },
+            {
+              "type": "concept",
+              "title": "Priority"
+            },
+            {
+              "type": "concept",
+              "title": "Latency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interrupt Service Routines",
+          "description": "ISRs must be short, correct, and safe under concurrency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ISR Structure"
+            },
+            {
+              "type": "concept",
+              "title": "Shared data"
+            },
+            {
+              "type": "concept",
+              "title": "Volatile variables"
+            },
+            {
+              "type": "concept",
+              "title": "Critical sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exceptions and Fault Handling",
+          "description": "Faults provide a controlled way to detect and diagnose hardware/software failures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reset"
+            },
+            {
+              "type": "concept",
+              "title": "Hard fault"
+            },
+            {
+              "type": "concept",
+              "title": "Bus fault"
+            },
+            {
+              "type": "concept",
+              "title": "Debugging fault status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Timers and Counters",
+      "description": "Measure time, generate periodic events, and control hardware timing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Timer Basics",
+          "description": "Timers provide precise timing independent of software loops.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clock sources"
+            },
+            {
+              "type": "concept",
+              "title": "Prescalers"
+            },
+            {
+              "type": "concept",
+              "title": "Compare match"
+            },
+            {
+              "type": "concept",
+              "title": "Overflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "PWM and Waveform Generation",
+          "description": "PWM is a core method for controlling power, motors, LEDs, and actuators.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Duty cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Capture/compare"
+            },
+            {
+              "type": "concept",
+              "title": "Motor and LED control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement Applications",
+          "description": "Counters let firmware measure physical events and signal timing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input capture"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Pulse width"
+            },
+            {
+              "type": "concept",
+              "title": "Time-of-flight preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Embedded C Programming",
+      "description": "Write efficient firmware that interacts with registers, peripherals, and hardware constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "C for Hardware",
+          "description": "Embedded C must respect memory, registers, and compiler behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pointers"
+            },
+            {
+              "type": "concept",
+              "title": "Bitwise operations"
+            },
+            {
+              "type": "concept",
+              "title": "Volatile"
+            },
+            {
+              "type": "concept",
+              "title": "Struct overlays"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Firmware Organization",
+          "description": "Good structure makes firmware testable and maintainable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware abstraction"
+            },
+            {
+              "type": "concept",
+              "title": "State machines"
+            },
+            {
+              "type": "concept",
+              "title": "Build systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging and Tooling",
+          "description": "Embedded debugging combines software tools with hardware observation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "JTAG/SWD"
+            },
+            {
+              "type": "concept",
+              "title": "Breakpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Watch variables"
+            },
+            {
+              "type": "concept",
+              "title": "Logic analyzers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Peripheral Interfacing (UART, SPI, I2C)",
+      "description": "Communicate with sensors, modules, and external integrated circuits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "UART",
+          "description": "UART is a simple serial link useful for debugging and device communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Baud rate"
+            },
+            {
+              "type": "concept",
+              "title": "Frames"
+            },
+            {
+              "type": "concept",
+              "title": "TX/RX"
+            },
+            {
+              "type": "concept",
+              "title": "Serial console"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "SPI",
+          "description": "SPI supports fast full-duplex communication with many sensors and chips.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clock polarity and phase"
+            },
+            {
+              "type": "concept",
+              "title": "Chip select"
+            },
+            {
+              "type": "concept",
+              "title": "Full duplex"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "I2C",
+          "description": "I2C supports multi-device two-wire communication with addressing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pull-up resistors"
+            },
+            {
+              "type": "concept",
+              "title": "Device addresses"
+            },
+            {
+              "type": "concept",
+              "title": "ACK/NACK"
+            },
+            {
+              "type": "concept",
+              "title": "Bus arbitration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Real-Time Considerations",
+      "description": "Design embedded software under timing, resource, reliability, and concurrency constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Timing Constraints",
+          "description": "Real-time design focuses on meeting deadlines, not just average speed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlines"
+            },
+            {
+              "type": "concept",
+              "title": "Jitter"
+            },
+            {
+              "type": "concept",
+              "title": "Worst-Case Execution Time"
+            },
+            {
+              "type": "concept",
+              "title": "Latency budgets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concurrency and Scheduling",
+          "description": "Embedded firmware often manages several activities at once.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polling"
+            },
+            {
+              "type": "concept",
+              "title": "Interrupt-driven design"
+            },
+            {
+              "type": "concept",
+              "title": "Cooperative scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "RTOS Tasks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reliability and Validation",
+          "description": "Embedded systems must behave predictably in physical environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Watchdogs"
+            },
+            {
+              "type": "concept",
+              "title": "Brownout handling"
+            },
+            {
+              "type": "concept",
+              "title": "Defensive coding"
+            },
+            {
+              "type": "concept",
+              "title": "Test and validation plans"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Embedded Design Project",
+      "description": "Integrate hardware and firmware in a working embedded prototype.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project Definition",
+          "description": "A good project begins with a clear behavior target and hardware boundary.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Bill of Materials"
+            },
+            {
+              "type": "concept",
+              "title": "Block diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Interface list"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integration",
+          "description": "Integration is where firmware, electronics, and timing assumptions meet.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor readout"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator control"
+            },
+            {
+              "type": "concept",
+              "title": "Power considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Firmware modules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Demonstration and Documentation",
+          "description": "The final project should prove function and explain design decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Test results"
+            },
+            {
+              "type": "concept",
+              "title": "Demo procedure"
+            },
+            {
+              "type": "concept",
+              "title": "Schematic notes"
+            },
+            {
+              "type": "concept",
+              "title": "Code and design review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

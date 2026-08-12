@@ -1,0 +1,1087 @@
+{
+  "slug": "circuits",
+  "title": "Circuits",
+  "description": "Circuits develops DC and AC circuit analysis from elements and Kirchhoff's laws through nodal/mesh methods, equivalents, op-amps, RC/RL/RLC transients, phasors, power, filters, and practical measurement.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Circuit Elements and Electrical Quantities",
+      "description": "This opening section gives students the vocabulary of circuits: what voltage, current, resistance, capacitance, inductance, and power mean physically and mathematically.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Voltage, Current, Charge, and Power",
+          "description": "These quantities are the language used to describe what a circuit is doing and whether energy is being stored, delivered, or dissipated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reference directions and passive sign convention"
+            },
+            {
+              "type": "concept",
+              "title": "Instantaneous and average power"
+            },
+            {
+              "type": "concept",
+              "title": "Energy delivered and absorbed"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resistors",
+          "description": "Resistors provide the simplest model of electrical opposition and are the building blocks for dividers, loads, and bias networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistance and conductance"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage and current dividers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacitors",
+          "description": "Capacitors store energy in electric fields, making them central to timing, filtering, coupling, and transient behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitance and stored energy"
+            },
+            {
+              "type": "concept",
+              "title": "Current-voltage relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Initial voltage continuity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inductors",
+          "description": "Inductors store energy in magnetic fields and shape current dynamics, filters, power conversion, and electromagnetic behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inductance and stored energy"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage-current relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Initial current continuity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ohm's Law and Kirchhoff's Laws",
+      "description": "Circuit analysis rests on local component laws plus network conservation laws. This section turns circuit diagrams into solvable equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ohm's Law",
+          "description": "Ohm's law connects voltage, current, and resistance in linear resistive elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "V-I Characteristic"
+            },
+            {
+              "type": "concept",
+              "title": "Linear versus nonlinear behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Power dissipation in resistors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kirchhoff's Current Law",
+          "description": "KCL expresses charge conservation at circuit nodes and is the foundation of nodal analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Node definition"
+            },
+            {
+              "type": "concept",
+              "title": "Current entering and leaving a node"
+            },
+            {
+              "type": "concept",
+              "title": "Supernodes preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kirchhoff's Voltage Law",
+          "description": "KVL expresses energy conservation around loops and is the foundation of mesh analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop and mesh definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage rise/drop conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Dependent and independent sources in loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Source Models",
+          "description": "Sources represent the external energy or signal inputs that drive a circuit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent voltage sources"
+            },
+            {
+              "type": "concept",
+              "title": "Independent current sources"
+            },
+            {
+              "type": "concept",
+              "title": "Dependent sources"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Resistive Circuit Analysis",
+      "description": "Before adding dynamics and AC behavior, students need fluency with resistive networks, equivalent resistance, and source/load interactions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Series and Parallel Reduction",
+          "description": "Reduction methods simplify networks while preserving the behavior seen at chosen terminals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equivalent resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Conductance shortcuts"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of simple reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Voltage and Current Division",
+          "description": "Divider rules are fast analysis tools and practical design patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loaded voltage dividers"
+            },
+            {
+              "type": "concept",
+              "title": "Current division"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor and bias examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dependent-Source Circuits",
+          "description": "Dependent sources model amplifiers and controlled behavior, so they prepare students for op-amps and electronics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voltage-controlled sources"
+            },
+            {
+              "type": "concept",
+              "title": "Current-controlled sources"
+            },
+            {
+              "type": "concept",
+              "title": "Test-source methods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearity and Superposition",
+          "description": "Superposition lets students separate source contributions in linear circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turning off independent sources"
+            },
+            {
+              "type": "concept",
+              "title": "Handling dependent sources"
+            },
+            {
+              "type": "concept",
+              "title": "Power is not superposed directly"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nodal and Mesh Analysis",
+      "description": "Nodal and mesh methods are systematic equation-building techniques. They replace guesswork with repeatable procedures for circuits that cannot be simplified by inspection.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nodal Analysis",
+          "description": "Nodal analysis solves for node voltages using KCL and is usually the most general method for circuit work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reference node selection"
+            },
+            {
+              "type": "concept",
+              "title": "Conductance form"
+            },
+            {
+              "type": "concept",
+              "title": "Current-source handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Supernodes",
+          "description": "Supernodes handle voltage sources between non-reference nodes without breaking KCL logic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voltage constraints"
+            },
+            {
+              "type": "concept",
+              "title": "KCL around a supernode"
+            },
+            {
+              "type": "concept",
+              "title": "Dependent-source cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mesh Analysis",
+          "description": "Mesh analysis solves for loop currents using KVL and is efficient for planar circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mesh-current definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Shared-element voltages"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage-source handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Supermeshes and Method Selection",
+          "description": "Supermeshes handle current sources between meshes, while method selection teaches students to choose the least painful analysis route.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Current-source constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Planar-circuit limits"
+            },
+            {
+              "type": "concept",
+              "title": "Nodal versus mesh tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thevenin and Norton Equivalents",
+      "description": "Equivalent circuits compress a complicated network into a simpler source-resistance model, which is invaluable for loading, power transfer, and modular design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Terminal Behavior",
+          "description": "Equivalent circuits preserve what an external load sees at a pair of terminals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-circuit voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Short-circuit current"
+            },
+            {
+              "type": "concept",
+              "title": "Input and output resistance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thevenin Equivalent",
+          "description": "Thevenin form turns a linear network into one voltage source and one resistance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finding Vth"
+            },
+            {
+              "type": "concept",
+              "title": "Finding Rth"
+            },
+            {
+              "type": "concept",
+              "title": "Test-source method with dependent sources"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Norton Equivalent",
+          "description": "Norton form uses a current source and parallel resistance, giving an alternate but equivalent view.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finding In"
+            },
+            {
+              "type": "concept",
+              "title": "Source transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Thevenin-Norton Conversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maximum Power Transfer",
+          "description": "Power-transfer analysis shows how load choice changes delivered power and efficiency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matched load condition"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "Practical source loading"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operational Amplifiers",
+      "description": "Op-amps bridge circuit analysis and practical electronics by using feedback to create predictable amplifiers, buffers, summing circuits, and active filters.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ideal Op-Amp Assumptions",
+          "description": "The ideal model lets students analyze feedback circuits without immediately wrestling with device physics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infinite open-loop gain"
+            },
+            {
+              "type": "concept",
+              "title": "Input current approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Virtual short concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Negative Feedback Configurations",
+          "description": "Feedback topologies create stable, useful relationships between input and output.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverting amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "Non-inverting amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage follower"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal-Conditioning Circuits",
+          "description": "Op-amps are practical tools for scaling, combining, and shaping signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Summing amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "Difference amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "Integrator and differentiator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonideal Behavior",
+          "description": "Nonideal limits explain why real circuits depart from ideal calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation and output swing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth and slew rate"
+            },
+            {
+              "type": "concept",
+              "title": "Input offset and bias current"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First-Order Circuits: RC and RL Transients",
+      "description": "First-order circuits introduce time dependence. Students learn how stored energy changes after switching events and how time constants shape response speed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Switching Behavior",
+          "description": "Switches create initial-value problems that reveal how capacitors and inductors respond over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial and final conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity of capacitor voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity of inductor current"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RC Circuits",
+          "description": "RC circuits are the foundation of timing, smoothing, coupling, and simple filtering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Charging and discharging"
+            },
+            {
+              "type": "concept",
+              "title": "Time Constant tau = RC"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RL Circuits",
+          "description": "RL circuits describe current buildup and decay in inductive systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural response"
+            },
+            {
+              "type": "concept",
+              "title": "Forced response"
+            },
+            {
+              "type": "concept",
+              "title": "Time Constant tau = L/R"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "General First-Order Solution",
+          "description": "A unified solution form helps students recognize the same mathematics across RC and RL cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural plus forced response"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential approach to final value"
+            },
+            {
+              "type": "concept",
+              "title": "Settling-time estimates"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Second-Order Circuits: RLC Dynamics",
+      "description": "RLC circuits introduce oscillation, damping, resonance, and richer transient behavior that later connect to filters and frequency response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Series and Parallel RLC Models",
+          "description": "RLC models combine energy storage in electric and magnetic fields with resistive dissipation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series RLC"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel RLC"
+            },
+            {
+              "type": "concept",
+              "title": "State variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Natural Response",
+          "description": "The natural response shows what a circuit does after stored energy is released without a continuing input.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic equation"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Step Response",
+          "description": "Step response connects source changes to underdamped, critically damped, or overdamped circuit behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Underdamped response"
+            },
+            {
+              "type": "concept",
+              "title": "Critically damped response"
+            },
+            {
+              "type": "concept",
+              "title": "Overdamped response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resonance",
+          "description": "Resonance explains why circuits can selectively amplify or suppress signals near particular frequencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resonant frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Quality factor"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "AC Steady-State Analysis",
+      "description": "AC steady-state analysis lets students analyze sinusoidal circuits without solving differential equations every time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sinusoidal Signals",
+          "description": "Sinusoids are the standard model for power systems, signals, oscillators, and frequency-domain testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Amplitude, phase, and frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Angular frequency"
+            },
+            {
+              "type": "concept",
+              "title": "RMS Values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complex Representation",
+          "description": "Complex numbers encode magnitude and phase compactly for sinusoidal analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler form"
+            },
+            {
+              "type": "concept",
+              "title": "Rectangular and polar form"
+            },
+            {
+              "type": "concept",
+              "title": "Complex arithmetic review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Impedance-Based Circuit Laws",
+          "description": "Impedance extends Ohm's and Kirchhoff's laws to AC circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistor impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitor impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Inductor impedance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "AC Circuit Solution Methods",
+          "description": "The same nodal, mesh, and equivalent-circuit tools work in the phasor domain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AC Nodal Analysis"
+            },
+            {
+              "type": "concept",
+              "title": "AC Mesh Analysis"
+            },
+            {
+              "type": "concept",
+              "title": "AC Thevenin and Norton Equivalents"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phasors and Impedance",
+      "description": "Phasors and impedance are the bridge between time-domain sinusoidal signals and algebraic circuit calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phasor Transformation",
+          "description": "Phasor transformation turns sinusoidal time functions into complex constants for easier analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time-to-phasor conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Phasor-to-time conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Reference phase choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Impedance and Admittance",
+          "description": "Impedance and admittance summarize how circuit elements oppose or admit sinusoidal current.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reactance"
+            },
+            {
+              "type": "concept",
+              "title": "Admittance"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel combinations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase Relationships",
+          "description": "Phase tells students whether voltage and current are aligned, leading, or lagging.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitive phase lead"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive phase lag"
+            },
+            {
+              "type": "concept",
+              "title": "Power-factor intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frequency-Dependent Behavior",
+          "description": "Impedance changes with frequency, which is the core idea behind filters and resonance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low-frequency limits"
+            },
+            {
+              "type": "concept",
+              "title": "High-frequency limits"
+            },
+            {
+              "type": "concept",
+              "title": "Asymptotic reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power in DC and AC Circuits",
+      "description": "Power analysis connects circuit behavior to energy use, heating, source sizing, efficiency, and real-world electrical safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DC Power",
+          "description": "DC power calculations show where energy is delivered and dissipated in resistive circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P = VI, I^2R, and V^2/R"
+            },
+            {
+              "type": "concept",
+              "title": "Power balance"
+            },
+            {
+              "type": "concept",
+              "title": "Source and load roles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "AC Average Power",
+          "description": "Average power captures real energy transfer in sinusoidal steady state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RMS Voltage and Current"
+            },
+            {
+              "type": "concept",
+              "title": "Real power"
+            },
+            {
+              "type": "concept",
+              "title": "Power factor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reactive and Apparent Power",
+          "description": "Reactive and apparent power explain energy exchange in inductive and capacitive systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reactive power"
+            },
+            {
+              "type": "concept",
+              "title": "Apparent power"
+            },
+            {
+              "type": "concept",
+              "title": "Power triangle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical Power Considerations",
+          "description": "Practical circuits must account for ratings, heat, and safe operating limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Component power ratings"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal margin"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency and loading"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response and Filters",
+      "description": "Frequency response explains how circuits treat different signal frequencies, while filters turn that behavior into useful design patterns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transfer Functions",
+          "description": "A transfer function describes output-input behavior as a function of frequency or complex variable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain"
+            },
+            {
+              "type": "concept",
+              "title": "Poles and zeros"
+            },
+            {
+              "type": "concept",
+              "title": "Network functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bode Plots",
+          "description": "Bode plots make magnitude and phase behavior visible over wide frequency ranges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnitude plots"
+            },
+            {
+              "type": "concept",
+              "title": "Phase plots"
+            },
+            {
+              "type": "concept",
+              "title": "Corner-frequency approximations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Passive Filters",
+          "description": "Passive filters use R, L, and C elements to select or reject frequency bands.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low-pass filters"
+            },
+            {
+              "type": "concept",
+              "title": "High-pass filters"
+            },
+            {
+              "type": "concept",
+              "title": "Band-pass and band-stop filters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Active Filters",
+          "description": "Active filters use op-amps to add gain, buffering, and sharper frequency shaping.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order active filters"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order active filters"
+            },
+            {
+              "type": "concept",
+              "title": "Design tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Measurement, Simulation, and Practical Debugging",
+      "description": "A circuits course should not stop at equations. Students need to measure real circuits, simulate ideas, and debug when physical behavior disagrees with the schematic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simulation Tools",
+          "description": "Simulation helps students test circuit behavior quickly and visualize voltage, current, and transient response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Falstad-Style Visual Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "SPICE Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting simulation limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bench Instruments",
+          "description": "Measurement skills connect theory to hardware and teach what circuit quantities actually look like.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Digital multimeter"
+            },
+            {
+              "type": "concept",
+              "title": "Oscilloscope"
+            },
+            {
+              "type": "concept",
+              "title": "Function generator and power supply"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prototyping Practice",
+          "description": "Prototyping exposes nonideal details that paper analysis often hides.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breadboards and wiring"
+            },
+            {
+              "type": "concept",
+              "title": "Grounding and reference nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Component tolerances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging Workflow",
+          "description": "Debugging teaches students to isolate faults systematically instead of changing parts at random.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Predict-measure-compare loop"
+            },
+            {
+              "type": "concept",
+              "title": "Checking power and continuity first"
+            },
+            {
+              "type": "concept",
+              "title": "Documenting assumptions and findings"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1072 @@
+{
+  "slug": "operations-research-ii-stochastic",
+  "title": "Operations Research II (Stochastic)",
+  "description": "Operations Research II (Stochastic) teaches students to model and improve systems affected by uncertainty. Students study probability models, Markov chains, Poisson processes, queues, stochastic inventory, decision analysis, Markov decision processes, reliability, simulation, Monte Carlo risk analysis, and stochastic optimization applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Probability Review for Stochastic Operations Research",
+      "description": "This opening topic refreshes the probability tools needed to model uncertainty in operations systems. Students learn to move from deterministic OR thinking to probabilistic descriptions of demand, arrivals, service, failures, and decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Random variables and distributions",
+          "description": "Students review the distributions most often used in stochastic OR models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete vs. Continuous Variables"
+            },
+            {
+              "type": "concept",
+              "title": "Bernoulli and binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential"
+            },
+            {
+              "type": "concept",
+              "title": "Normal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Expectation and variability",
+          "description": "Students learn the summary measures used in performance and risk calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional expectation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling assumptions",
+          "description": "Students practice selecting probability models that fit operations data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence"
+            },
+            {
+              "type": "concept",
+              "title": "Memorylessness"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical fitting"
+            },
+            {
+              "type": "concept",
+              "title": "Reasonableness checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete-Time Markov Chains",
+      "description": "Markov chains model systems that move among states with transition probabilities. Students learn how state models describe inventory, reliability, queues, games, service systems, and operational policies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Markov property and transition matrices",
+          "description": "Students learn how to represent one-step probabilistic movement among states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Transition probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Transition matrix"
+            },
+            {
+              "type": "concept",
+              "title": "n-Step Transitions"
+            },
+            {
+              "type": "concept",
+              "title": "State diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Long-run behavior",
+          "description": "Students analyze steady-state probabilities and recurrent behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationary distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Transient states"
+            },
+            {
+              "type": "concept",
+              "title": "Recurrent states"
+            },
+            {
+              "type": "concept",
+              "title": "Absorbing states"
+            },
+            {
+              "type": "concept",
+              "title": "Expected time to absorption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students connect Markov chains to practical industrial engineering settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machine condition"
+            },
+            {
+              "type": "concept",
+              "title": "Customer states"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory level"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance states"
+            },
+            {
+              "type": "concept",
+              "title": "Service systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Poisson Processes and Continuous-Time Stochastic Models",
+      "description": "Poisson processes are a foundation for arrivals, failures, calls, orders, and events over time. Students learn how event timing models support queueing, reliability, and simulation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Poisson process fundamentals",
+          "description": "Students learn the assumptions and consequences of Poisson arrivals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Event counts"
+            },
+            {
+              "type": "concept",
+              "title": "Rate parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Independent increments"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary increments"
+            },
+            {
+              "type": "concept",
+              "title": "Interarrival times"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exponential and related distributions",
+          "description": "Students connect continuous-time event models to memoryless waiting times.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Memoryless property"
+            },
+            {
+              "type": "concept",
+              "title": "Gamma/Erlang Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Competing exponentials"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum time to event"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonhomogeneous and compound ideas",
+          "description": "Students get an applied view of models beyond the simplest case.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time-varying rates"
+            },
+            {
+              "type": "concept",
+              "title": "Thinning"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            },
+            {
+              "type": "concept",
+              "title": "Batch arrivals"
+            },
+            {
+              "type": "concept",
+              "title": "Data fit limitations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Queueing Theory Fundamentals",
+      "description": "Queues describe waiting lines in manufacturing, healthcare, call centers, transportation, computing, and service operations. Students learn how variability and capacity interact to create delay.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Queueing notation and measures",
+          "description": "Students learn the language and performance metrics of queueing systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kendall Notation"
+            },
+            {
+              "type": "concept",
+              "title": "Arrival rate"
+            },
+            {
+              "type": "concept",
+              "title": "Service rate"
+            },
+            {
+              "type": "concept",
+              "title": "Utilization"
+            },
+            {
+              "type": "concept",
+              "title": "Waiting time"
+            },
+            {
+              "type": "concept",
+              "title": "Queue length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Single-server queues",
+          "description": "Students analyze the core queueing model and its operating lessons.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "M/M/1"
+            },
+            {
+              "type": "concept",
+              "title": "Stability condition"
+            },
+            {
+              "type": "concept",
+              "title": "Little's Law"
+            },
+            {
+              "type": "concept",
+              "title": "Average delay"
+            },
+            {
+              "type": "concept",
+              "title": "Service variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Managerial interpretation",
+          "description": "Students connect queue formulas to staffing and capacity decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity cushion"
+            },
+            {
+              "type": "concept",
+              "title": "Wait-time targets"
+            },
+            {
+              "type": "concept",
+              "title": "Service level"
+            },
+            {
+              "type": "concept",
+              "title": "Cost-delay tradeoff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Queueing Models, Networks, and Service-System Design",
+      "description": "Real operations often involve multiple servers, priorities, finite capacity, and networks of stations. This topic extends queueing tools to more realistic systems and design choices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Multi-server and finite queues",
+          "description": "Students learn models for pooled service and limited waiting room.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "M/M/c"
+            },
+            {
+              "type": "concept",
+              "title": "Finite capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Blocking"
+            },
+            {
+              "type": "concept",
+              "title": "Erlang Loss Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Server pooling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Priority and network queues",
+          "description": "Students see how routing and service rules alter performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Priority queues"
+            },
+            {
+              "type": "concept",
+              "title": "Tandem queues"
+            },
+            {
+              "type": "concept",
+              "title": "Jackson Network Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Routing probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Bottleneck stations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service-system design",
+          "description": "Students use models to compare operational alternatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Staffing"
+            },
+            {
+              "type": "concept",
+              "title": "Pooling vs. Specialization"
+            },
+            {
+              "type": "concept",
+              "title": "Appointment systems"
+            },
+            {
+              "type": "concept",
+              "title": "Call center examples"
+            },
+            {
+              "type": "concept",
+              "title": "Manufacturing cells"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stochastic Inventory Theory",
+      "description": "Inventory systems must balance stockout risk, holding cost, ordering cost, and uncertain demand. Students learn probability-based inventory models used in production, retail, healthcare, and supply chains.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Demand uncertainty",
+          "description": "Students model demand variability and forecast error in inventory decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Lead-time demand"
+            },
+            {
+              "type": "concept",
+              "title": "Safety stock"
+            },
+            {
+              "type": "concept",
+              "title": "Service level"
+            },
+            {
+              "type": "concept",
+              "title": "Stockout probability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classic stochastic policies",
+          "description": "Students learn common replenishment rules and cost structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newsvendor model"
+            },
+            {
+              "type": "concept",
+              "title": "Base-stock policy"
+            },
+            {
+              "type": "concept",
+              "title": "Reorder point"
+            },
+            {
+              "type": "concept",
+              "title": "Order-up-to level"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous vs. Periodic Review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational tradeoffs",
+          "description": "Students connect inventory choices to service, cost, and risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Holding cost"
+            },
+            {
+              "type": "concept",
+              "title": "Shortage cost"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle stock"
+            },
+            {
+              "type": "concept",
+              "title": "Risk pooling"
+            },
+            {
+              "type": "concept",
+              "title": "Supply uncertainty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Decision Analysis Under Uncertainty",
+      "description": "Decision analysis provides structured tools for choosing among alternatives when outcomes are uncertain. Students learn how probabilities, values, and preferences shape rational decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Decision trees",
+          "description": "Students represent sequential decisions and uncertain outcomes graphically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Chance nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Payoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Rollback analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Value of information",
+          "description": "Students learn when additional data or tests are worth obtaining.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expected value of perfect information"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value of sample information"
+            },
+            {
+              "type": "concept",
+              "title": "Bayesian Updating Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk preferences",
+          "description": "Students compare expected value with risk-aware decision criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Utility functions"
+            },
+            {
+              "type": "concept",
+              "title": "Risk aversion"
+            },
+            {
+              "type": "concept",
+              "title": "Certainty equivalent"
+            },
+            {
+              "type": "concept",
+              "title": "Maximin"
+            },
+            {
+              "type": "concept",
+              "title": "Minimax regret"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Markov Decision Processes and Dynamic Programming",
+      "description": "MDPs combine Markov state transitions with controllable actions and rewards. Students learn how policies can be optimized when decisions unfold over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "MDP Formulation",
+          "description": "Students define the elements of a stochastic sequential decision model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Actions"
+            },
+            {
+              "type": "concept",
+              "title": "Transition probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Rewards/costs"
+            },
+            {
+              "type": "concept",
+              "title": "Discount factor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Policy evaluation and improvement",
+          "description": "Students learn the logic of finding better actions over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Policy"
+            },
+            {
+              "type": "concept",
+              "title": "Value function"
+            },
+            {
+              "type": "concept",
+              "title": "Bellman Equation"
+            },
+            {
+              "type": "concept",
+              "title": "Value iteration"
+            },
+            {
+              "type": "concept",
+              "title": "Policy iteration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students connect MDPs to practical OR decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maintenance"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory control"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity management"
+            },
+            {
+              "type": "concept",
+              "title": "Routing"
+            },
+            {
+              "type": "concept",
+              "title": "Healthcare operations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reliability Theory and Maintenance Models",
+      "description": "Reliability models help engineers understand failure risk, system availability, and maintenance timing. This topic links stochastic processes to equipment, production systems, and infrastructure decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Failure-time models",
+          "description": "Students learn probability models for component lifetimes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reliability function"
+            },
+            {
+              "type": "concept",
+              "title": "Hazard rate"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential lifetime"
+            },
+            {
+              "type": "concept",
+              "title": "Weibull Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Mean time to failure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System reliability",
+          "description": "Students analyze how components combine into system-level performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series systems"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel systems"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Availability"
+            },
+            {
+              "type": "concept",
+              "title": "Common-Cause Failure Awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maintenance decisions",
+          "description": "Students connect reliability to preventive and corrective maintenance policies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preventive maintenance"
+            },
+            {
+              "type": "concept",
+              "title": "Replacement models"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Downtime cost"
+            },
+            {
+              "type": "concept",
+              "title": "Condition-based maintenance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stochastic Simulation and Discrete-Event Modeling",
+      "description": "Simulation is used when analytic formulas are too restrictive or system logic is too complex. Students learn to build, verify, and interpret stochastic simulations responsibly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simulation model structure",
+          "description": "Students learn the pieces of a discrete-event simulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entities"
+            },
+            {
+              "type": "concept",
+              "title": "Events"
+            },
+            {
+              "type": "concept",
+              "title": "Resources"
+            },
+            {
+              "type": "concept",
+              "title": "Queues"
+            },
+            {
+              "type": "concept",
+              "title": "Event calendar"
+            },
+            {
+              "type": "concept",
+              "title": "State variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Random input modeling",
+          "description": "Students generate and use stochastic inputs in simulations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random number generation"
+            },
+            {
+              "type": "concept",
+              "title": "Random variates"
+            },
+            {
+              "type": "concept",
+              "title": "Input distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Warm-up period"
+            },
+            {
+              "type": "concept",
+              "title": "Replication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Output analysis",
+          "description": "Students interpret simulation results with uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confidence intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Replication averages"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-State vs. Terminating Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Validation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Monte Carlo Risk Analysis and Stochastic Optimization",
+      "description": "Monte Carlo and stochastic optimization help decision-makers evaluate risk and choose policies under uncertainty. Students learn how to simulate uncertain outcomes and optimize decisions without pretending the future is fixed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Monte Carlo risk analysis",
+          "description": "Students estimate distributions of outcomes, not just point estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scenario sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Output distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Percentiles"
+            },
+            {
+              "type": "concept",
+              "title": "Risk metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stochastic optimization concepts",
+          "description": "Students learn how optimization changes when inputs are uncertain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expected-cost objective"
+            },
+            {
+              "type": "concept",
+              "title": "Chance Constraints Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Sample average approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Robustness"
+            },
+            {
+              "type": "concept",
+              "title": "Policy comparison"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision communication",
+          "description": "Students learn to present uncertainty in a usable way.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tornado charts"
+            },
+            {
+              "type": "concept",
+              "title": "Fan charts"
+            },
+            {
+              "type": "concept",
+              "title": "Risk tables"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption logs"
+            },
+            {
+              "type": "concept",
+              "title": "Managerial recommendations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applied Stochastic OR Project",
+      "description": "The course culminates in an applied project where students model an uncertain operations system, choose an appropriate stochastic method, analyze alternatives, and communicate a defensible recommendation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem formulation",
+          "description": "Students define a real operations problem with uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Decision variables"
+            },
+            {
+              "type": "concept",
+              "title": "Random inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Performance measures"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model implementation",
+          "description": "Students build an analytic, simulation, or hybrid model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Queueing model"
+            },
+            {
+              "type": "concept",
+              "title": "Markov model"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory model"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation model"
+            },
+            {
+              "type": "concept",
+              "title": "Spreadsheet/Python/R Implementation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recommendation and validation",
+          "description": "Students interpret results and stress-test assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Model limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Validation checks"
+            },
+            {
+              "type": "concept",
+              "title": "Policy recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

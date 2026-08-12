@@ -1,0 +1,850 @@
+{
+  "slug": "biomedical-signals-and-systems",
+  "title": "Biomedical Signals and Systems",
+  "description": "Biomedical Signals and Systems teaches students to model, acquire, process, analyze, and interpret physiological signals using signals-and-systems theory and biomedical engineering judgment.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Continuous- and discrete-time signals",
+      "description": "This opening section gives students the language for describing signals before any filtering or analysis begins. The goal is to see physiological measurements as structured data: waveforms with units, timing, amplitude, morphology, and sampling choices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Signal representations",
+          "description": "Students learn to distinguish continuous waveforms from sampled sequences and to describe each with appropriate notation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent variable, amplitude, units, duration, and sampling index"
+            },
+            {
+              "type": "concept",
+              "title": "Analog waveforms versus digital records"
+            },
+            {
+              "type": "concept",
+              "title": "Deterministic, random, periodic, aperiodic, energy, and power signals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical waveform examples",
+          "description": "The abstract notation is connected to real signals students will analyze later.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ECG Voltage Traces and Cardiac Cycles"
+            },
+            {
+              "type": "concept",
+              "title": "EEG Rhythms and Neural Oscillations"
+            },
+            {
+              "type": "concept",
+              "title": "EMG Bursts, PPG Pulses, Pressure Traces, and Respiratory Signals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Basic operations on signals",
+          "description": "Operations help students model alignment, scaling, normalization, and comparison of recordings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time shifting, scaling, reversal, and windowing"
+            },
+            {
+              "type": "concept",
+              "title": "Amplitude scaling, baseline removal, and normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Signal arithmetic and segmentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement context",
+          "description": "Students learn that signals are shaped by physiology, sensors, and data-acquisition choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor placement and reference choices"
+            },
+            {
+              "type": "concept",
+              "title": "Units, calibration, and dynamic range"
+            },
+            {
+              "type": "concept",
+              "title": "Artifacts from motion, electrode contact, mains interference, and physiology outside the target system"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear time-invariant systems",
+      "description": "LTI systems provide the central model for many filters, sensors, and simplified physiological subsystems. The point is not that every biological process is linear, but that linear models are powerful approximations when used carefully.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linearity and superposition",
+          "description": "Students learn when outputs can be decomposed into responses to simpler inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Additivity and homogeneity"
+            },
+            {
+              "type": "concept",
+              "title": "Where biomedical systems are locally linear"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of linear approximations in saturation, thresholds, and nonlinear physiology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time invariance",
+          "description": "This concept clarifies whether a system behaves the same way at different times.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shift-invariance tests"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary versus changing systems"
+            },
+            {
+              "type": "concept",
+              "title": "Examples from filters, amplifiers, and physiological regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System properties",
+          "description": "Students learn the vocabulary for judging system behavior before solving equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Causality, memory, stability, and invertibility"
+            },
+            {
+              "type": "concept",
+              "title": "Static versus dynamic systems"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions and system state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical system models",
+          "description": "The course connects LTI thinking to real measurement and physiology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor and amplifier chains"
+            },
+            {
+              "type": "concept",
+              "title": "Respiratory, cardiovascular, and neural response models"
+            },
+            {
+              "type": "concept",
+              "title": "Filter blocks in bedside monitors and wearable devices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convolution and impulse response",
+      "description": "Convolution explains how an input waveform is transformed by a system with memory. For biomedical engineering, it is the bridge between physical measurement chains, filtering, and interpretation of delayed or smeared signals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Impulse response meaning",
+          "description": "Students learn that the impulse response is a complete description of an LTI system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit impulse and unit sample"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse-response measurement and interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Biomedical examples such as sensor response time and hemodynamic response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convolution mechanics",
+          "description": "Students practice the operation visually, analytically, and computationally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Discrete convolution sum"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical convolution and numerical implementation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System memory and smoothing",
+          "description": "Convolution reveals why filters smooth, delay, or spread signal features.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moving-average filters"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential smoothing"
+            },
+            {
+              "type": "concept",
+              "title": "Delay, ringing, and transient response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications to physiological data",
+          "description": "Students use convolution to interpret realistic waveform processing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ECG Smoothing and QRS Morphology Effects"
+            },
+            {
+              "type": "concept",
+              "title": "Artifact spreading through filters"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse-like events in neural or muscular recordings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fourier series and Fourier transforms",
+      "description": "This section teaches students to analyze signals by frequency content. The point is to recognize rhythms, bandwidth, noise sources, and periodic structure that may be hidden in the time-domain trace.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Frequency-domain intuition",
+          "description": "Students learn what a spectrum says about a signal.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sinusoids as building blocks"
+            },
+            {
+              "type": "concept",
+              "title": "Magnitude, phase, harmonics, and bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Periodicity, rhythm, and spectral peaks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fourier series",
+          "description": "Students represent periodic signals as sums of harmonically related sinusoids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trigonometric and complex forms"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic content and waveform shape"
+            },
+            {
+              "type": "concept",
+              "title": "Examples from cardiac and respiratory cycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fourier transform",
+          "description": "Students extend frequency analysis to nonperiodic or finite-duration signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous-time Fourier transform"
+            },
+            {
+              "type": "concept",
+              "title": "Discrete-time Fourier transform"
+            },
+            {
+              "type": "concept",
+              "title": "Fast Fourier Transform as a Computational Tool"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical spectral analysis",
+          "description": "Students connect spectra to physiological interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EEG Frequency Bands"
+            },
+            {
+              "type": "concept",
+              "title": "Heart-rate variability frequency bands"
+            },
+            {
+              "type": "concept",
+              "title": "EMG Median Frequency and Fatigue Analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Power-line interference and notch filtering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling, aliasing, and reconstruction",
+      "description": "Sampling determines what information enters the digital record. Students learn how to choose sampling rates, avoid aliasing, and understand when reconstruction from samples is mathematically and practically credible.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling theorem",
+          "description": "Students learn the core requirement for preserving signal frequency content.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nyquist Rate and Nyquist Frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Bandlimited assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Oversampling and practical safety margins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aliasing",
+          "description": "Students learn how high-frequency content can masquerade as lower-frequency content.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alias frequency calculations"
+            },
+            {
+              "type": "concept",
+              "title": "Motion and mains-noise examples"
+            },
+            {
+              "type": "concept",
+              "title": "Why anti-alias filtering matters before digitization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantization and ADC basics",
+          "description": "Students connect sampling to data-acquisition hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bit Depth, Resolution, and Dynamic Range"
+            },
+            {
+              "type": "concept",
+              "title": "Quantization noise"
+            },
+            {
+              "type": "concept",
+              "title": "Clipping and saturation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reconstruction and interpolation",
+          "description": "Students understand what can and cannot be recovered from sampled data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal reconstruction concept"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-order hold and interpolation"
+            },
+            {
+              "type": "concept",
+              "title": "Resampling, decimation, and synchronization across channels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace and z-transform methods",
+      "description": "Transforms give compact ways to analyze dynamic systems, filters, and stability. The goal is to make differential and difference equations usable for design and interpretation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Laplace transform foundations",
+          "description": "Students learn to solve and interpret continuous-time system behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transform pairs and regions of convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Initial and final value ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Z-transform foundations",
+          "description": "Students learn the discrete-time analogue needed for digital filters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Z-Transform Pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Difference equations"
+            },
+            {
+              "type": "concept",
+              "title": "Unit circle and frequency response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Poles, zeros, and stability",
+          "description": "Students use pole-zero structure to predict system behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pole locations and decay/growth"
+            },
+            {
+              "type": "concept",
+              "title": "Zeros and frequency suppression"
+            },
+            {
+              "type": "concept",
+              "title": "Stability criteria in continuous and discrete domains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical modeling uses",
+          "description": "Students apply transform methods to realistic signal and system questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order sensor dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Compartment-style physiological models"
+            },
+            {
+              "type": "concept",
+              "title": "Digital filter transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Modeling delays and feedback effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digital filter design",
+      "description": "Filtering is one of the most practical skills in biomedical signal analysis. Students learn to remove noise and artifacts without destroying the signal features that matter physiologically or clinically.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Filter specifications",
+          "description": "Students learn to define what a filter must do before choosing a method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Passband, stopband, cutoff, ripple, and attenuation"
+            },
+            {
+              "type": "concept",
+              "title": "Low-pass, high-pass, band-pass, band-stop, and notch filters"
+            },
+            {
+              "type": "concept",
+              "title": "Biomedical Constraints Such as Preserving ECG QRS Morphology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "FIR and IIR filters",
+          "description": "Students compare major digital filter families.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse response length"
+            },
+            {
+              "type": "concept",
+              "title": "Butterworth, Chebyshev, and Elliptic IIR Designs"
+            },
+            {
+              "type": "concept",
+              "title": "Windowed and Equiripple FIR Designs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation effects",
+          "description": "Students learn that filter equations have practical consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase delay and group delay"
+            },
+            {
+              "type": "concept",
+              "title": "Forward-backward zero-phase filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical stability and edge effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical filtering cases",
+          "description": "Students apply filters to common physiological recordings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Baseline Wander Removal in ECG"
+            },
+            {
+              "type": "concept",
+              "title": "Power-line notch filtering"
+            },
+            {
+              "type": "concept",
+              "title": "EMG Band-Pass Filtering"
+            },
+            {
+              "type": "concept",
+              "title": "EEG Artifact and Rhythm Preservation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time-frequency analysis",
+      "description": "Many biomedical signals change over time, so a single spectrum can hide important dynamics. This section helps students analyze transient events, bursts, changing rhythms, and state transitions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Short-time Fourier transform",
+          "description": "Students learn the basic windowed approach to changing spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Window length and overlap"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrogram interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Time-frequency resolution tradeoff"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wavelet concepts",
+          "description": "Students learn why multiscale methods are useful for transient biomedical signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mother wavelet and scale"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous versus discrete wavelet transform"
+            },
+            {
+              "type": "concept",
+              "title": "Denoising and event localization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Event-related analysis",
+          "description": "Students connect time-frequency tools to physiological events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EEG Event-Related Desynchronization"
+            },
+            {
+              "type": "concept",
+              "title": "EMG Activation Bursts"
+            },
+            {
+              "type": "concept",
+              "title": "Seizure, sleep, and arrhythmia examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical interpretation",
+          "description": "Students learn to avoid over-reading colorful plots.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Color scales and normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Edge effects and window artifacts"
+            },
+            {
+              "type": "concept",
+              "title": "Statistical comparison of time-frequency features"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Noise reduction and feature extraction",
+      "description": "This section turns signal processing into usable measurements. Students learn to clean data, detect meaningful events, and extract features that can support physiology, device testing, or clinical decision support.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Noise and artifact taxonomy",
+          "description": "Students learn to identify what kind of contamination they are dealing with.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "White and colored noise"
+            },
+            {
+              "type": "concept",
+              "title": "Motion artifacts and electrode artifacts"
+            },
+            {
+              "type": "concept",
+              "title": "Mains interference, muscle artifacts, and sensor drift"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Denoising strategies",
+          "description": "Students compare methods for improving signal quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Filtering and smoothing"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive filtering concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Artifact rejection, interpolation, and robust preprocessing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feature extraction",
+          "description": "Students learn how waveforms become quantitative descriptors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peak detection and interval features"
+            },
+            {
+              "type": "concept",
+              "title": "Amplitude, area, slope, and morphology features"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral power, entropy, and variability features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation and uncertainty",
+          "description": "Students learn that extracted features need evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ground truth annotations"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity, specificity, error, and agreement"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducibility, missing data, and patient variability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Physiological signal analysis project",
+      "description": "The project pulls the course together through a realistic workflow. Students select or receive a physiological dataset, define an analysis question, process the data, validate their choices, and communicate results responsibly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project framing",
+          "description": "Students learn to turn a biomedical recording into an answerable engineering question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal type and physiology background"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis or design objective"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical, privacy, and dataset-use constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analysis pipeline",
+          "description": "Students build a transparent sequence from raw data to results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data loading and annotation review"
+            },
+            {
+              "type": "concept",
+              "title": "Preprocessing and quality control"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering, segmentation, and feature extraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evaluation",
+          "description": "Students test whether their analysis is credible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Comparison against annotations or expected physiology"
+            },
+            {
+              "type": "concept",
+              "title": "Error analysis and sensitivity to parameter choices"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization and reproducibility checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communication",
+          "description": "Students practice explaining both engineering methods and biomedical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Methods narrative and signal plots"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical or device-design implications"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

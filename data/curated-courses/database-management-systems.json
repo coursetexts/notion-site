@@ -1,0 +1,1388 @@
+{
+  "slug": "database-management-systems",
+  "title": "Database Management Systems",
+  "description": "A database management course covering relational design, ER modeling, normalization, SQL, joins, procedures, triggers, transactions, indexing, performance, backup, recovery, NoSQL, administration, security, and a database project.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Database Purpose, Architecture, and DBMS Roles",
+      "description": "This section develops database purpose, architecture, and dbms roles through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make database purpose, architecture, and dbms roles precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            },
+            {
+              "type": "concept",
+              "title": "SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with database purpose, architecture, and dbms roles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Schema with SQL"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of NoSQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Relational Model and Relational Algebra Basics",
+      "description": "This section develops relational model and relational algebra basics through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make relational model and relational algebra basics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Tuple"
+            },
+            {
+              "type": "concept",
+              "title": "Attribute"
+            },
+            {
+              "type": "concept",
+              "title": "Primary key"
+            },
+            {
+              "type": "concept",
+              "title": "Foreign key"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with relational model and relational algebra basics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tuple with attribute"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Entity-Relationship Modeling and Requirements",
+      "description": "This section develops entity-relationship modeling and requirements through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make entity-relationship modeling and requirements precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entity"
+            },
+            {
+              "type": "concept",
+              "title": "Relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Cardinality"
+            },
+            {
+              "type": "concept",
+              "title": "Participation"
+            },
+            {
+              "type": "concept",
+              "title": "ER Diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with entity-relationship modeling and requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply entity in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare relationship with cardinality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how entity affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Normalization and Functional Dependencies",
+      "description": "This section develops normalization and functional dependencies through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make normalization and functional dependencies precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "1NF"
+            },
+            {
+              "type": "concept",
+              "title": "2NF"
+            },
+            {
+              "type": "concept",
+              "title": "3NF"
+            },
+            {
+              "type": "concept",
+              "title": "BCNF"
+            },
+            {
+              "type": "concept",
+              "title": "Functional dependency"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with normalization and functional dependencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply 1NF in a Worked Example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare 2NF with 3NF"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain How 1NF Affects Interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "SQL DDL, DML, DQL, and Data Types",
+      "description": "This section develops sql ddl, dml, dql, and data types through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make sql ddl, dml, dql, and data types precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SELECT"
+            },
+            {
+              "type": "concept",
+              "title": "JOIN"
+            },
+            {
+              "type": "concept",
+              "title": "GROUP BY"
+            },
+            {
+              "type": "concept",
+              "title": "Subquery"
+            },
+            {
+              "type": "concept",
+              "title": "Window function"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with sql ddl, dml, dql, and data types.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply SELECT in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare JOIN with GROUP BY"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how SELECT affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joins, Subqueries, Aggregation, and Window Functions",
+      "description": "This section develops joins, subqueries, aggregation, and window functions through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make joins, subqueries, aggregation, and window functions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            },
+            {
+              "type": "concept",
+              "title": "SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with joins, subqueries, aggregation, and window functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Schema with SQL"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of NoSQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Views, Stored Procedures, Triggers, and Constraints",
+      "description": "This section develops views, stored procedures, triggers, and constraints through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make views, stored procedures, triggers, and constraints precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            },
+            {
+              "type": "concept",
+              "title": "SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with views, stored procedures, triggers, and constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Schema with SQL"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of NoSQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transactions, ACID, and Isolation",
+      "description": "This section develops transactions, acid, and isolation through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make transactions, acid, and isolation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ACID"
+            },
+            {
+              "type": "concept",
+              "title": "Commit"
+            },
+            {
+              "type": "concept",
+              "title": "Rollback"
+            },
+            {
+              "type": "concept",
+              "title": "Isolation level"
+            },
+            {
+              "type": "concept",
+              "title": "Serializability"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with transactions, acid, and isolation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ACID in a Worked Example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare commit with rollback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain How ACID Affects Interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Concurrency Control and Locking",
+      "description": "This section develops concurrency control and locking through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make concurrency control and locking precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lock"
+            },
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Two-phase locking"
+            },
+            {
+              "type": "concept",
+              "title": "MVCC"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with concurrency control and locking.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply lock in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Deadlock with Two-Phase Locking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how lock affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Indexing, Query Plans, and Performance Tuning",
+      "description": "This section develops indexing, query plans, and performance tuning through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make indexing, query plans, and performance tuning precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection"
+            },
+            {
+              "type": "concept",
+              "title": "Projection"
+            },
+            {
+              "type": "concept",
+              "title": "Join algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Optimizer"
+            },
+            {
+              "type": "concept",
+              "title": "Cost estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with indexing, query plans, and performance tuning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply selection in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare projection with join algorithm"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how selection affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Backup, Recovery, Logging, and Maintenance",
+      "description": "This section develops backup, recovery, logging, and maintenance through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make backup, recovery, logging, and maintenance precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write-ahead log"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Redo"
+            },
+            {
+              "type": "concept",
+              "title": "Undo"
+            },
+            {
+              "type": "concept",
+              "title": "Crash recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with backup, recovery, logging, and maintenance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Write-Ahead Log in a Worked Example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Checkpoint with Redo"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain How Write-Ahead Log Affects Interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "NoSQL and Document Databases",
+      "description": "This section develops nosql and document databases through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make nosql and document databases precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Document store"
+            },
+            {
+              "type": "concept",
+              "title": "Key-value store"
+            },
+            {
+              "type": "concept",
+              "title": "Column family"
+            },
+            {
+              "type": "concept",
+              "title": "Graph database"
+            },
+            {
+              "type": "concept",
+              "title": "Eventual consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with nosql and document databases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply document store in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare key-value store with column family"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how document store affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Database Administration, Users, Roles, and Security",
+      "description": "This section develops database administration, users, roles, and security through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make database administration, users, roles, and security precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            },
+            {
+              "type": "concept",
+              "title": "SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with database administration, users, roles, and security.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Schema with SQL"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of NoSQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Governance, Privacy, and Operational Monitoring",
+      "description": "This section develops data governance, privacy, and operational monitoring through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make data governance, privacy, and operational monitoring precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            },
+            {
+              "type": "concept",
+              "title": "SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with data governance, privacy, and operational monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Schema with SQL"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of NoSQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applied Database Design and Implementation Project",
+      "description": "This section develops applied database design and implementation project through the concrete vocabulary, procedures, examples, and checks students need in Database Management Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make applied database design and implementation project precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Schema"
+            },
+            {
+              "type": "concept",
+              "title": "SQL"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with applied database design and implementation project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write SQL Queries"
+            },
+            {
+              "type": "concept",
+              "title": "Design ER Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Normalize schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Schema with SQL"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Update anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian join"
+            },
+            {
+              "type": "concept",
+              "title": "Missing key"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for Misuse of NoSQL"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1072 @@
+{
+  "slug": "power-systems-power-electronics",
+  "title": "Power Systems / Power Electronics",
+  "description": "Power Systems / Power Electronics covers three-phase grids, network modeling, power flow, faults and protection, stability and renewables, plus converters, PWM, control, and motor/EV drives.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Power System Fundamentals and Three-Phase Power",
+      "description": "Builds the language of electric power: why grids use sinusoidal three-phase quantities, how real/reactive/apparent power are interpreted, and how balanced and unbalanced operating conditions are represented.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Grid architecture and terminology",
+          "description": "Students learn the basic roles of generation, transmission, substations, distribution feeders, loads, and interconnections so later calculations have a physical map.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bulk power system"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution networks"
+            },
+            {
+              "type": "concept",
+              "title": "Load types"
+            },
+            {
+              "type": "concept",
+              "title": "Single-line diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Three-phase quantities",
+          "description": "Three-phase analysis is the shorthand that makes large AC systems tractable and reveals how power is transferred efficiently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line and phase values"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced loads"
+            },
+            {
+              "type": "concept",
+              "title": "Delta and wye connections"
+            },
+            {
+              "type": "concept",
+              "title": "Power factor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Real, reactive, and apparent power",
+          "description": "These quantities explain what energy is consumed, what energy oscillates through fields, and how equipment must be rated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complex power"
+            },
+            {
+              "type": "concept",
+              "title": "Power triangle"
+            },
+            {
+              "type": "concept",
+              "title": "Reactive compensation"
+            },
+            {
+              "type": "concept",
+              "title": "Power-factor correction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Generation, Transmission, Distribution, and Loads",
+      "description": "Connects electrical calculations to the physical grid, from generating plants and renewable resources to transmission corridors, substations, feeders, and customer demand.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Generation technologies",
+          "description": "Students compare how conventional, renewable, and storage-backed resources create electrical power and impose operating constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synchronous generation"
+            },
+            {
+              "type": "concept",
+              "title": "Wind and solar plants"
+            },
+            {
+              "type": "concept",
+              "title": "Hydro and storage"
+            },
+            {
+              "type": "concept",
+              "title": "Inverter-based resources"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transmission and substation functions",
+          "description": "Transmission equipment is studied as the high-voltage backbone that moves power while managing losses, voltage, and reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voltage transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Substations"
+            },
+            {
+              "type": "concept",
+              "title": "Switchgear"
+            },
+            {
+              "type": "concept",
+              "title": "Interconnection points"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distribution and load behavior",
+          "description": "Distribution systems show how end-use demand, feeder design, and load diversity shape the final delivery of power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radial and network feeders"
+            },
+            {
+              "type": "concept",
+              "title": "Load curves"
+            },
+            {
+              "type": "concept",
+              "title": "Demand diversity"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage regulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Per-Unit System and Network Modeling",
+      "description": "Gives students the normalization and circuit-modeling tools used to compare equipment at different voltage levels without drowning in transformer ratios.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Base quantities",
+          "description": "Per-unit notation turns voltage, current, impedance, and power into scaled values that are easier to compare across a system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MVA base"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage base"
+            },
+            {
+              "type": "concept",
+              "title": "Impedance base"
+            },
+            {
+              "type": "concept",
+              "title": "Base conversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Single-line and impedance diagrams",
+          "description": "Network diagrams reduce complex grids to analyzable models while preserving the relationships needed for calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-line diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Reactance diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Transformer representation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Admittance and bus models",
+          "description": "Bus-admittance modeling prepares students for power-flow, fault, and simulation work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Y-bus construction"
+            },
+            {
+              "type": "concept",
+              "title": "Branch admittances"
+            },
+            {
+              "type": "concept",
+              "title": "Shunt elements"
+            },
+            {
+              "type": "concept",
+              "title": "Sparse matrix structure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transformers and Electric Machines",
+      "description": "Links magnetic energy conversion to grid operation and motor-drive applications, giving students the device-level intuition behind voltage conversion and electromechanical power.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transformer principles",
+          "description": "Transformers explain how voltage levels are changed, isolation is achieved, and impedance is reflected across windings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal transformer"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent circuit"
+            },
+            {
+              "type": "concept",
+              "title": "Regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synchronous and induction machines",
+          "description": "Machine models help students understand generators, motors, reactive power, and torque production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synchronous generator basics"
+            },
+            {
+              "type": "concept",
+              "title": "Induction motor slip"
+            },
+            {
+              "type": "concept",
+              "title": "Torque-speed curves"
+            },
+            {
+              "type": "concept",
+              "title": "Machine losses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Machines in converter-fed systems",
+          "description": "Power electronics changes how machines are started, controlled, and protected in modern drives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variable frequency drives"
+            },
+            {
+              "type": "concept",
+              "title": "Motor starting"
+            },
+            {
+              "type": "concept",
+              "title": "Field-oriented control concept"
+            },
+            {
+              "type": "concept",
+              "title": "Drive ratings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transmission Lines and Grid Components",
+      "description": "Develops the circuit models for lines, cables, breakers, capacitors, reactors, and compensating devices that determine voltage, loading, and losses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Line parameters",
+          "description": "Students learn how resistance, inductance, capacitance, and conductance arise from physical line construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Shunt admittance"
+            },
+            {
+              "type": "concept",
+              "title": "Short/medium/long line models"
+            },
+            {
+              "type": "concept",
+              "title": "Charging current"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Voltage regulation and losses",
+          "description": "Line models are used to predict receiving-end voltage, power transfer limits, and efficiency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voltage drop"
+            },
+            {
+              "type": "concept",
+              "title": "Ferranti effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal limits"
+            },
+            {
+              "type": "concept",
+              "title": "Loss calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compensation equipment",
+          "description": "Reactive and flexible AC devices are introduced as tools for voltage support and transfer capability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitor banks"
+            },
+            {
+              "type": "concept",
+              "title": "Reactors"
+            },
+            {
+              "type": "concept",
+              "title": "Tap changers"
+            },
+            {
+              "type": "concept",
+              "title": "FACTS concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power Flow Analysis and Newton-Raphson Methods",
+      "description": "Shows how engineers solve for bus voltages, angles, line flows, and losses under normal operating conditions, using the same concepts embedded in industry software.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Power-flow problem setup",
+          "description": "Students define buses, loads, generation, and constraints so the network equations match the operating question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slack bus"
+            },
+            {
+              "type": "concept",
+              "title": "PV and PQ buses"
+            },
+            {
+              "type": "concept",
+              "title": "Specified and unknown variables"
+            },
+            {
+              "type": "concept",
+              "title": "Operating limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gauss-Seidel and Newton-Raphson methods",
+          "description": "Iterative methods translate nonlinear AC power equations into solvable numerical workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mismatch equations"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobian matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Initialization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpreting results",
+          "description": "Power-flow output becomes actionable when students can diagnose overloads, voltage problems, and sensitivity to changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line loading"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage profile"
+            },
+            {
+              "type": "concept",
+              "title": "Losses"
+            },
+            {
+              "type": "concept",
+              "title": "Contingency scenarios"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fault Analysis, Symmetrical Components, and Protection",
+      "description": "Prepares students to calculate short-circuit currents and understand how protective devices isolate faults without unnecessary service interruption.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Symmetrical faults",
+          "description": "Balanced three-phase faults establish the baseline for short-circuit current magnitude and equipment duty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thevenin equivalent"
+            },
+            {
+              "type": "concept",
+              "title": "Fault MVA"
+            },
+            {
+              "type": "concept",
+              "title": "Breaker rating"
+            },
+            {
+              "type": "concept",
+              "title": "Current-limiting assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Symmetrical components",
+          "description": "Sequence networks make unbalanced faults analyzable by decomposing them into positive, negative, and zero-sequence systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence quantities"
+            },
+            {
+              "type": "concept",
+              "title": "Sequence networks"
+            },
+            {
+              "type": "concept",
+              "title": "Ground paths"
+            },
+            {
+              "type": "concept",
+              "title": "Line-to-ground faults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protection and relaying",
+          "description": "Protection converts fault analysis into settings and coordination decisions that keep people and equipment safe.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overcurrent relays"
+            },
+            {
+              "type": "concept",
+              "title": "Differential protection"
+            },
+            {
+              "type": "concept",
+              "title": "Distance relays"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination curves"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power System Stability, Voltage/Frequency Control, and Operations",
+      "description": "Extends beyond steady-state calculations into how the grid survives disturbances, balances supply and demand, and maintains usable voltage and frequency.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rotor angle, voltage, and frequency stability",
+          "description": "Stability concepts explain why a mathematically feasible operating point still may not survive a disturbance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transient stability"
+            },
+            {
+              "type": "concept",
+              "title": "Small-signal stability"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage collapse"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Economic dispatch and operation",
+          "description": "Dispatch introduces the optimization and operational constraints behind real-time generation scheduling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incremental cost"
+            },
+            {
+              "type": "concept",
+              "title": "Generator limits"
+            },
+            {
+              "type": "concept",
+              "title": "Reserve margin"
+            },
+            {
+              "type": "concept",
+              "title": "Unit commitment concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control mechanisms",
+          "description": "Students connect control loops and grid equipment to frequency, voltage, and power-sharing objectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Automatic generation control"
+            },
+            {
+              "type": "concept",
+              "title": "Excitation systems"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Primary and secondary frequency control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Renewable Integration, Energy Storage, Smart Grids, and Resilience",
+      "description": "Places classical power engineering into the modern grid, where inverter-based resources, storage, digital controls, reliability, and resilience are central design concerns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Renewable and inverter-based resources",
+          "description": "Students learn why wind, solar, and converter-interfaced generation change fault current, inertia, voltage support, and control behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grid-following inverters"
+            },
+            {
+              "type": "concept",
+              "title": "Grid-forming concept"
+            },
+            {
+              "type": "concept",
+              "title": "Variability"
+            },
+            {
+              "type": "concept",
+              "title": "Interconnection requirements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy storage and demand flexibility",
+          "description": "Storage and flexible loads are treated as operating tools for balancing, peak reduction, and resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Battery systems"
+            },
+            {
+              "type": "concept",
+              "title": "State of charge"
+            },
+            {
+              "type": "concept",
+              "title": "Demand response"
+            },
+            {
+              "type": "concept",
+              "title": "Microgrids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Smart-grid resilience",
+          "description": "Digital monitoring and automation are introduced alongside reliability and recovery objectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SCADA"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution automation"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability indices"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power Semiconductor Devices and Gate Drives",
+      "description": "Introduces the switching devices that make modern conversion possible and the driver circuits that turn ideal switching diagrams into working hardware.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Power semiconductor families",
+          "description": "Students compare devices by voltage, current, switching speed, conduction loss, and application domain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diodes"
+            },
+            {
+              "type": "concept",
+              "title": "MOSFETs"
+            },
+            {
+              "type": "concept",
+              "title": "IGBTs"
+            },
+            {
+              "type": "concept",
+              "title": "SiC and GaN devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Switching behavior and losses",
+          "description": "Switching is studied as a nonideal process that sets efficiency, thermal stress, and electromagnetic noise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conduction loss"
+            },
+            {
+              "type": "concept",
+              "title": "Turn-on/turn-off loss"
+            },
+            {
+              "type": "concept",
+              "title": "Reverse recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Safe operating area"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gate-drive requirements",
+          "description": "Gate drives provide the interface between control signals and high-energy switches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Dead time"
+            },
+            {
+              "type": "concept",
+              "title": "Desaturation protection"
+            },
+            {
+              "type": "concept",
+              "title": "Layout-sensitive loops"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power Electronic Converter Topologies",
+      "description": "Builds the converter vocabulary students need for regulated DC supplies, renewable interfaces, motor drives, and grid-connected systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DC-DC converters",
+          "description": "Basic chopper circuits show how switching and energy storage regulate DC voltage and current.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Buck"
+            },
+            {
+              "type": "concept",
+              "title": "Boost"
+            },
+            {
+              "type": "concept",
+              "title": "Buck-boost"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous and discontinuous conduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Isolated converters",
+          "description": "Isolation and high-frequency transformers expand converter design for safety, voltage scaling, and power density.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flyback"
+            },
+            {
+              "type": "concept",
+              "title": "Forward"
+            },
+            {
+              "type": "concept",
+              "title": "Half-bridge"
+            },
+            {
+              "type": "concept",
+              "title": "Full-bridge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Converter performance metrics",
+          "description": "Topology choice is tied to efficiency, ripple, device stress, control complexity, and application fit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voltage conversion ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Current ripple"
+            },
+            {
+              "type": "concept",
+              "title": "Device stress"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rectifiers, Inverters, PWM, and Harmonics",
+      "description": "Covers conversion between AC and DC and the modulation techniques that shape output voltage, current quality, and harmonic content.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rectifiers and AC-DC conversion",
+          "description": "Students learn how diode and controlled rectifiers produce DC from AC while affecting source currents and power quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-phase rectifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Three-phase rectifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Controlled rectification"
+            },
+            {
+              "type": "concept",
+              "title": "Power factor effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inverters and DC-AC conversion",
+          "description": "Inverters are studied as the foundation for motor drives, grid-tied renewables, UPS systems, and AC power supplies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Half-bridge inverter"
+            },
+            {
+              "type": "concept",
+              "title": "Full-bridge inverter"
+            },
+            {
+              "type": "concept",
+              "title": "Three-phase inverter"
+            },
+            {
+              "type": "concept",
+              "title": "Grid-tied inverter concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "PWM and harmonic analysis",
+          "description": "Modulation explains how switching patterns determine fundamental output, harmonics, filtering needs, and losses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sinusoidal PWM"
+            },
+            {
+              "type": "concept",
+              "title": "Space-vector PWM concept"
+            },
+            {
+              "type": "concept",
+              "title": "THD"
+            },
+            {
+              "type": "concept",
+              "title": "Output filters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Converter Control, Magnetics, Thermal Design, EMI, and Safety",
+      "description": "Turns converter circuits into engineered systems by addressing regulation, passive components, heat removal, electromagnetic compatibility, and safe operation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Feedback control of converters",
+          "description": "Closed-loop control keeps voltage, current, or power regulated under load and input disturbances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Averaged models"
+            },
+            {
+              "type": "concept",
+              "title": "Current-mode control"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage-mode control"
+            },
+            {
+              "type": "concept",
+              "title": "Compensation basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetics and passive components",
+          "description": "Inductors, transformers, and capacitors determine ripple, energy storage, size, cost, and reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Core selection"
+            },
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Copper and core losses"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitor ripple current"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal, EMI, and safety design",
+          "description": "High-power switching hardware must manage heat, noise, isolation, creepage, clearance, and standards constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat sinks"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal resistance"
+            },
+            {
+              "type": "concept",
+              "title": "EMI filters"
+            },
+            {
+              "type": "concept",
+              "title": "Isolation and grounding"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Motor Drives, EV Powertrains, and Applications",
+      "description": "Applies power electronics to motion, electrified transportation, renewable systems, and industrial power conversion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Motor drive architecture",
+          "description": "Students connect converters, sensors, control loops, machines, and mechanical loads into a complete drive system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DC drives"
+            },
+            {
+              "type": "concept",
+              "title": "Induction motor drives"
+            },
+            {
+              "type": "concept",
+              "title": "PMSM/BLDC drives"
+            },
+            {
+              "type": "concept",
+              "title": "Torque and speed control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "EV and battery-charging systems",
+          "description": "Transportation applications show how conversion, storage, thermal limits, safety, and controls interact in a high-impact domain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Onboard chargers"
+            },
+            {
+              "type": "concept",
+              "title": "DC fast charging"
+            },
+            {
+              "type": "concept",
+              "title": "Traction inverters"
+            },
+            {
+              "type": "concept",
+              "title": "Regenerative braking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Application integration",
+          "description": "Students close the course by matching power-system and converter choices to practical engineering use cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Renewable interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "UPS systems"
+            },
+            {
+              "type": "concept",
+              "title": "Industrial drives"
+            },
+            {
+              "type": "concept",
+              "title": "Microgrid converters"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

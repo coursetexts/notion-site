@@ -1,0 +1,1416 @@
+{
+  "slug": "networking-fundamentals",
+  "title": "Networking Fundamentals",
+  "description": "Networking Fundamentals covers layered models and physical connectivity through Ethernet, addressing, routing, transport, application protocols, wireless, security, cloud networking, and design, closing with monitoring, troubleshooting, professional administration, and an integrated capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Network Models and Internet Architecture",
+      "description": "Explain how layered models, encapsulation, standards, and Internet architecture let heterogeneous systems communicate reliably.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Network Models and Internet Architecture",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "OSI Model"
+            },
+            {
+              "type": "concept",
+              "title": "TCP/IP Model"
+            },
+            {
+              "type": "concept",
+              "title": "Encapsulation"
+            },
+            {
+              "type": "concept",
+              "title": "Standards bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Internet architecture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Network Models and Internet Architecture",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protocol diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Packet walkthroughs"
+            },
+            {
+              "type": "concept",
+              "title": "Layered troubleshooting"
+            },
+            {
+              "type": "concept",
+              "title": "RFC Reading"
+            },
+            {
+              "type": "concept",
+              "title": "Topology sketches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Network Models and Internet Architecture",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shared vocabulary"
+            },
+            {
+              "type": "concept",
+              "title": "Troubleshooting scope"
+            },
+            {
+              "type": "concept",
+              "title": "Vendor-neutral thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Design communication"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Physical Layer, Media, and Network Hardware",
+      "description": "Understand how signals, cabling, wireless media, and network devices create the physical foundation for connectivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Physical Layer, Media, and Network Hardware",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Copper cabling"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber optics"
+            },
+            {
+              "type": "concept",
+              "title": "Radio frequency basics"
+            },
+            {
+              "type": "concept",
+              "title": "NICs"
+            },
+            {
+              "type": "concept",
+              "title": "Switches and routers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Physical Layer, Media, and Network Hardware",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cable testing"
+            },
+            {
+              "type": "concept",
+              "title": "Link lights"
+            },
+            {
+              "type": "concept",
+              "title": "Interface status commands"
+            },
+            {
+              "type": "concept",
+              "title": "Speed/Duplex Checks"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware inventories"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Physical Layer, Media, and Network Hardware",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacity planning"
+            },
+            {
+              "type": "concept",
+              "title": "Installation quality"
+            },
+            {
+              "type": "concept",
+              "title": "Failure isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Device selection"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation discipline"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Link Layer, Ethernet, Switching, and VLANs",
+      "description": "Analyze how local networks move frames, segment traffic, and control broadcast domains.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Data Link Layer, Ethernet, Switching, and VLANs",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ethernet frames"
+            },
+            {
+              "type": "concept",
+              "title": "MAC Addresses"
+            },
+            {
+              "type": "concept",
+              "title": "Switching"
+            },
+            {
+              "type": "concept",
+              "title": "Broadcast domains"
+            },
+            {
+              "type": "concept",
+              "title": "VLANs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Data Link Layer, Ethernet, Switching, and VLANs",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Switch configuration"
+            },
+            {
+              "type": "concept",
+              "title": "MAC Tables"
+            },
+            {
+              "type": "concept",
+              "title": "VLAN Tagging"
+            },
+            {
+              "type": "concept",
+              "title": "Trunk ports"
+            },
+            {
+              "type": "concept",
+              "title": "Spanning tree inspection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Data Link Layer, Ethernet, Switching, and VLANs",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LAN Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Loop prevention"
+            },
+            {
+              "type": "concept",
+              "title": "Access-layer design"
+            },
+            {
+              "type": "concept",
+              "title": "Performance isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Operational clarity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "IP Addressing, Subnetting, and IPv6",
+      "description": "Design and interpret addressing plans that support routing, growth, security boundaries, and efficient administration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of IP Addressing, Subnetting, and IPv6",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IPv4"
+            },
+            {
+              "type": "concept",
+              "title": "CIDR"
+            },
+            {
+              "type": "concept",
+              "title": "Subnet masks"
+            },
+            {
+              "type": "concept",
+              "title": "Default gateways"
+            },
+            {
+              "type": "concept",
+              "title": "IPv6 Addressing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for IP Addressing, Subnetting, and IPv6",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subnet calculations"
+            },
+            {
+              "type": "concept",
+              "title": "Addressing tables"
+            },
+            {
+              "type": "concept",
+              "title": "Ping and traceroute"
+            },
+            {
+              "type": "concept",
+              "title": "IP Configuration Commands"
+            },
+            {
+              "type": "concept",
+              "title": "Lab address plans"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of IP Addressing, Subnetting, and IPv6",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scalable addressing"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced conflicts"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud VPC Design"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "ARP, ICMP, NAT, DHCP, and Network Services",
+      "description": "Understand the support protocols and services that make IP networks usable in everyday environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of ARP, ICMP, NAT, DHCP, and Network Services",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ARP"
+            },
+            {
+              "type": "concept",
+              "title": "ICMP"
+            },
+            {
+              "type": "concept",
+              "title": "NAT/PAT"
+            },
+            {
+              "type": "concept",
+              "title": "DHCP"
+            },
+            {
+              "type": "concept",
+              "title": "Name and address resolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for ARP, ICMP, NAT, DHCP, and Network Services",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ARP Tables"
+            },
+            {
+              "type": "concept",
+              "title": "DHCP Scopes"
+            },
+            {
+              "type": "concept",
+              "title": "NAT Rules"
+            },
+            {
+              "type": "concept",
+              "title": "Packet captures"
+            },
+            {
+              "type": "concept",
+              "title": "Diagnostic commands"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of ARP, ICMP, NAT, DHCP, and Network Services",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Client connectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Address automation"
+            },
+            {
+              "type": "concept",
+              "title": "Perimeter design"
+            },
+            {
+              "type": "concept",
+              "title": "Incident triage"
+            },
+            {
+              "type": "concept",
+              "title": "Service dependency mapping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Routing Concepts and Dynamic Routing Protocols",
+      "description": "Explain how packets move between networks and how routers select paths through small and large internetworks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Routing Concepts and Dynamic Routing Protocols",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routing tables"
+            },
+            {
+              "type": "concept",
+              "title": "Static routes"
+            },
+            {
+              "type": "concept",
+              "title": "Default routes"
+            },
+            {
+              "type": "concept",
+              "title": "Path selection"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic routing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Routing Concepts and Dynamic Routing Protocols",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Route inspection"
+            },
+            {
+              "type": "concept",
+              "title": "Static route labs"
+            },
+            {
+              "type": "concept",
+              "title": "OSPF concepts"
+            },
+            {
+              "type": "concept",
+              "title": "BGP concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Traceroute analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Routing Concepts and Dynamic Routing Protocols",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multi-site connectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "WAN design"
+            },
+            {
+              "type": "concept",
+              "title": "Internet reachability"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transport Layer: TCP, UDP, Ports, and Reliability",
+      "description": "Distinguish reliable streams from connectionless datagrams and explain how ports support applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Transport Layer: TCP, UDP, Ports, and Reliability",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TCP handshake"
+            },
+            {
+              "type": "concept",
+              "title": "UDP datagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Ports"
+            },
+            {
+              "type": "concept",
+              "title": "Flow control"
+            },
+            {
+              "type": "concept",
+              "title": "Retransmission"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Transport Layer: TCP, UDP, Ports, and Reliability",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Netstat/ss"
+            },
+            {
+              "type": "concept",
+              "title": "Packet captures"
+            },
+            {
+              "type": "concept",
+              "title": "Port testing"
+            },
+            {
+              "type": "concept",
+              "title": "Latency checks"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Transport Layer: TCP, UDP, Ports, and Reliability",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Application troubleshooting"
+            },
+            {
+              "type": "concept",
+              "title": "Firewall rules"
+            },
+            {
+              "type": "concept",
+              "title": "Performance diagnosis"
+            },
+            {
+              "type": "concept",
+              "title": "Service mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol selection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Application Protocols: HTTP, DNS, SMTP, SSH, and TLS",
+      "description": "Connect network foundations to the protocols users and systems rely on every day.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Application Protocols: HTTP, DNS, SMTP, SSH, and TLS",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HTTP"
+            },
+            {
+              "type": "concept",
+              "title": "DNS"
+            },
+            {
+              "type": "concept",
+              "title": "SMTP"
+            },
+            {
+              "type": "concept",
+              "title": "SSH"
+            },
+            {
+              "type": "concept",
+              "title": "TLS certificates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Application Protocols: HTTP, DNS, SMTP, SSH, and TLS",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNS lookups"
+            },
+            {
+              "type": "concept",
+              "title": "HTTP header inspection"
+            },
+            {
+              "type": "concept",
+              "title": "TLS checks"
+            },
+            {
+              "type": "concept",
+              "title": "SSH testing"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol trace review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Application Protocols: HTTP, DNS, SMTP, SSH, and TLS",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Web troubleshooting"
+            },
+            {
+              "type": "concept",
+              "title": "Email delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Secure administration"
+            },
+            {
+              "type": "concept",
+              "title": "Certificate hygiene"
+            },
+            {
+              "type": "concept",
+              "title": "User-facing reliability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wireless Networking and Mobility",
+      "description": "Design and troubleshoot wireless networks while accounting for radio behavior, security, roaming, and user experience.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Wireless Networking and Mobility",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "802.11 Standards"
+            },
+            {
+              "type": "concept",
+              "title": "Channels"
+            },
+            {
+              "type": "concept",
+              "title": "Interference"
+            },
+            {
+              "type": "concept",
+              "title": "Roaming"
+            },
+            {
+              "type": "concept",
+              "title": "WPA Security"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Wireless Networking and Mobility",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Site surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Signal analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Channel planning"
+            },
+            {
+              "type": "concept",
+              "title": "SSID Design"
+            },
+            {
+              "type": "concept",
+              "title": "Wireless controller basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Wireless Networking and Mobility",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Campus Wi-Fi"
+            },
+            {
+              "type": "concept",
+              "title": "Mobile work"
+            },
+            {
+              "type": "concept",
+              "title": "Guest access"
+            },
+            {
+              "type": "concept",
+              "title": "Performance tuning"
+            },
+            {
+              "type": "concept",
+              "title": "Secure wireless operations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Network Security Fundamentals",
+      "description": "Apply foundational security controls to protect confidentiality, integrity, availability, and trusted access.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Network Security Fundamentals",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CIA Triad"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Firewalls"
+            },
+            {
+              "type": "concept",
+              "title": "VPNs"
+            },
+            {
+              "type": "concept",
+              "title": "Zero trust basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Network Security Fundamentals",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ACLs"
+            },
+            {
+              "type": "concept",
+              "title": "Firewall policy review"
+            },
+            {
+              "type": "concept",
+              "title": "VPN Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Secure management"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerability awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Network Security Fundamentals",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Least privilege"
+            },
+            {
+              "type": "concept",
+              "title": "Secure remote access"
+            },
+            {
+              "type": "concept",
+              "title": "Incident containment"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Networking and Virtual Networks",
+      "description": "Translate networking fundamentals into cloud environments where routing, security, load balancing, and identity are software-defined.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Cloud Networking and Virtual Networks",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "VPCs/VNets"
+            },
+            {
+              "type": "concept",
+              "title": "Subnets"
+            },
+            {
+              "type": "concept",
+              "title": "Security groups"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud routing"
+            },
+            {
+              "type": "concept",
+              "title": "Load balancers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Cloud Networking and Virtual Networks",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cloud network diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Route tables"
+            },
+            {
+              "type": "concept",
+              "title": "Security group rules"
+            },
+            {
+              "type": "concept",
+              "title": "NAT Gateways"
+            },
+            {
+              "type": "concept",
+              "title": "DNS Zones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Cloud Networking and Virtual Networks",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hybrid cloud"
+            },
+            {
+              "type": "concept",
+              "title": "Scalable services"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud cost awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Secure architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Deployment readiness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Network Design, Architecture, and Documentation",
+      "description": "Create network designs that fit business needs, security boundaries, growth expectations, and operational support.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Network Design, Architecture, and Documentation",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Topology"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Service-level needs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Network Design, Architecture, and Documentation",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logical diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Physical diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "IP Plans"
+            },
+            {
+              "type": "concept",
+              "title": "Design reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture decision records"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Network Design, Architecture, and Documentation",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Change control"
+            },
+            {
+              "type": "concept",
+              "title": "Maintainability"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity planning"
+            },
+            {
+              "type": "concept",
+              "title": "Operational handoff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Network Observability, Monitoring, and Performance",
+      "description": "Measure network behavior so teams can detect problems, understand capacity, and improve reliability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Network Observability, Monitoring, and Performance",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Jitter"
+            },
+            {
+              "type": "concept",
+              "title": "Packet loss"
+            },
+            {
+              "type": "concept",
+              "title": "Availability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Network Observability, Monitoring, and Performance",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SNMP Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Logs"
+            },
+            {
+              "type": "concept",
+              "title": "Flow data"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Synthetic checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Network Observability, Monitoring, and Performance",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Service reliability"
+            },
+            {
+              "type": "concept",
+              "title": "SLA Reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity management"
+            },
+            {
+              "type": "concept",
+              "title": "Proactive alerts"
+            },
+            {
+              "type": "concept",
+              "title": "Executive visibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Troubleshooting Methodology and Packet Analysis",
+      "description": "Use disciplined troubleshooting to isolate faults across layers, devices, applications, and user environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Troubleshooting Methodology and Packet Analysis",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symptoms"
+            },
+            {
+              "type": "concept",
+              "title": "Hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Baselines"
+            },
+            {
+              "type": "concept",
+              "title": "Root cause"
+            },
+            {
+              "type": "concept",
+              "title": "Escalation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Troubleshooting Methodology and Packet Analysis",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wireshark"
+            },
+            {
+              "type": "concept",
+              "title": "Ping"
+            },
+            {
+              "type": "concept",
+              "title": "Traceroute"
+            },
+            {
+              "type": "concept",
+              "title": "nslookup/dig"
+            },
+            {
+              "type": "concept",
+              "title": "Layered troubleshooting checklists"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Troubleshooting Methodology and Packet Analysis",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Faster resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Incident documentation"
+            },
+            {
+              "type": "concept",
+              "title": "User communication"
+            },
+            {
+              "type": "concept",
+              "title": "Post-incident learning"
+            },
+            {
+              "type": "concept",
+              "title": "Support maturity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Professional Practice, Ethics, and Network Administration",
+      "description": "Develop the judgment expected of network administrators who handle access, monitoring, privacy, and critical infrastructure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Professional Practice, Ethics, and Network Administration",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Professional responsibility"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptable use"
+            },
+            {
+              "type": "concept",
+              "title": "Change windows"
+            },
+            {
+              "type": "concept",
+              "title": "Audit trails"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Professional Practice, Ethics, and Network Administration",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Runbooks"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance plans"
+            },
+            {
+              "type": "concept",
+              "title": "Access reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Change records"
+            },
+            {
+              "type": "concept",
+              "title": "Communication templates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Professional Practice, Ethics, and Network Administration",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trustworthy administration"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Accountable changes"
+            },
+            {
+              "type": "concept",
+              "title": "User impact awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Career readiness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Networking Design and Troubleshooting Capstone",
+      "description": "Synthesize protocols, addressing, switching, routing, wireless, security, cloud, monitoring, and troubleshooting in a complete network design and incident-response project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Integrated Networking Design and Troubleshooting Capstone",
+          "description": "This subtopic gives students the vocabulary and mental model needed to understand the topic before configuring devices or diagnosing faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business scenario"
+            },
+            {
+              "type": "concept",
+              "title": "Topology"
+            },
+            {
+              "type": "concept",
+              "title": "Addressing plan"
+            },
+            {
+              "type": "concept",
+              "title": "Security assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Success criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Integrated Networking Design and Troubleshooting Capstone",
+          "description": "This subtopic turns the concept into professional practice through diagrams, commands, packet analysis, labs, and configuration habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Packet trace"
+            },
+            {
+              "type": "concept",
+              "title": "Network diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration plan"
+            },
+            {
+              "type": "concept",
+              "title": "Troubleshooting log"
+            },
+            {
+              "type": "concept",
+              "title": "Final presentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational Use of Integrated Networking Design and Troubleshooting Capstone",
+          "description": "This subtopic emphasizes how the topic supports reliable, secure, observable, and business-aligned networks in real organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Portfolio project"
+            },
+            {
+              "type": "concept",
+              "title": "Defensible design"
+            },
+            {
+              "type": "concept",
+              "title": "Operational readiness"
+            },
+            {
+              "type": "concept",
+              "title": "Incident narrative"
+            },
+            {
+              "type": "concept",
+              "title": "Peer critique"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

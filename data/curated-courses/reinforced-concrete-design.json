@@ -1,0 +1,996 @@
+{
+  "slug": "reinforced-concrete-design",
+  "title": "Reinforced Concrete Design",
+  "description": "Reinforced Concrete Design is a senior civil elective emphasizing ACI-based strength design, member analysis, detailing, serviceability, and constructability for beams, slabs, columns, foundations, and frames.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Properties of Concrete and Reinforcing Steel",
+      "description": "Establishes how concrete and steel behave separately and together, including strength, stiffness, strain compatibility, durability, and variability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Concrete behavior",
+          "description": "Students learn why concrete is strong in compression, weak in tension, and sensitive to curing, cracking, creep, shrinkage, and durability conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compressive strength"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus of elasticity"
+            },
+            {
+              "type": "concept",
+              "title": "Creep and shrinkage"
+            },
+            {
+              "type": "concept",
+              "title": "Durability exposure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reinforcing steel behavior",
+          "description": "Steel provides reliable tensile strength and ductility when it is properly placed, developed, and protected.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Yield strength"
+            },
+            {
+              "type": "concept",
+              "title": "Stress-strain behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Bar sizes and grades"
+            },
+            {
+              "type": "concept",
+              "title": "Corrosion protection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composite action",
+          "description": "Reinforced concrete design depends on strain compatibility, bond, and force equilibrium between concrete and steel.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bond stress"
+            },
+            {
+              "type": "concept",
+              "title": "Strain compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Cracking"
+            },
+            {
+              "type": "concept",
+              "title": "Tension stiffening concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Strength Design Philosophy and ACI 318 Framework",
+      "description": "Introduces the limit-state design approach used by ACI 318, including load combinations, strength reduction factors, ductility, and safety margins.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Limit states and design strength",
+          "description": "Students distinguish nominal strength, design strength, factored loads, and acceptable performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nominal strength"
+            },
+            {
+              "type": "concept",
+              "title": "Phi factors"
+            },
+            {
+              "type": "concept",
+              "title": "Factored load effects"
+            },
+            {
+              "type": "concept",
+              "title": "Failure modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Load combinations",
+          "description": "Load combinations organize gravity, lateral, environmental, and service loads into code-checkable cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dead load"
+            },
+            {
+              "type": "concept",
+              "title": "Live load"
+            },
+            {
+              "type": "concept",
+              "title": "Wind/seismic load context"
+            },
+            {
+              "type": "concept",
+              "title": "Strength combinations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Code workflow",
+          "description": "Students learn to navigate ACI-style design checks rather than treating formulas as disconnected recipes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ACI 318 organization"
+            },
+            {
+              "type": "concept",
+              "title": "Notation"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum/maximum reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection and constructability links"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flexural Analysis and Design of Beams",
+      "description": "Develops the most central RC member design skill: computing moment strength and selecting reinforcement for ductile beam behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Section analysis",
+          "description": "Students calculate moment capacity using equilibrium, strain compatibility, and equivalent stress blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neutral axis"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent rectangular stress block"
+            },
+            {
+              "type": "concept",
+              "title": "Tension-controlled sections"
+            },
+            {
+              "type": "concept",
+              "title": "Compression-controlled behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Beam design",
+          "description": "Design turns a required factored moment into bar selection, spacing, cover, and practical detailing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Required steel area"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum steel"
+            },
+            {
+              "type": "concept",
+              "title": "Bar layout"
+            },
+            {
+              "type": "concept",
+              "title": "Effective depth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ductility and failure behavior",
+          "description": "Students learn to favor ductile flexural yielding rather than brittle compression or shear failures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strain limits"
+            },
+            {
+              "type": "concept",
+              "title": "Under-reinforced behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Over-reinforced behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Moment-curvature concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shear Design",
+      "description": "Explains how diagonal cracking and shear transfer mechanisms are checked and reinforced so beams do not fail suddenly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Shear behavior",
+          "description": "Students learn why shear cracking is different from flexural cracking and often more brittle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diagonal tension"
+            },
+            {
+              "type": "concept",
+              "title": "Aggregate interlock"
+            },
+            {
+              "type": "concept",
+              "title": "Dowel action"
+            },
+            {
+              "type": "concept",
+              "title": "Compression strut concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concrete and steel shear strength",
+          "description": "Design separates nominal concrete contribution from transverse reinforcement contribution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vc"
+            },
+            {
+              "type": "concept",
+              "title": "Vs"
+            },
+            {
+              "type": "concept",
+              "title": "Stirrups"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum spacing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Detailing for shear",
+          "description": "Students connect calculations to stirrup layout, anchorage, spacing zones, and constructability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closed stirrups"
+            },
+            {
+              "type": "concept",
+              "title": "Support regions"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum shear reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Bar bends and hooks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Development Length, Anchorage, and Bar Splices",
+      "description": "Shows how reinforcement actually develops force through bond, hooks, embedment, and splice detailing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bond and development",
+          "description": "Students learn why a bar must extend far enough beyond a critical section to reach its design stress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Development length"
+            },
+            {
+              "type": "concept",
+              "title": "Bond stress"
+            },
+            {
+              "type": "concept",
+              "title": "Concrete cover"
+            },
+            {
+              "type": "concept",
+              "title": "Confinement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Anchorage and hooks",
+          "description": "Anchorage details help transfer forces when straight embedment is not sufficient or space is limited.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard hooks"
+            },
+            {
+              "type": "concept",
+              "title": "Headed bars"
+            },
+            {
+              "type": "concept",
+              "title": "End anchorage"
+            },
+            {
+              "type": "concept",
+              "title": "Bar termination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Splices and continuity",
+          "description": "Splices let reinforcement continue through real construction lengths while preserving force transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lap splices"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical splices"
+            },
+            {
+              "type": "concept",
+              "title": "Tension vs. compression splices"
+            },
+            {
+              "type": "concept",
+              "title": "Staggering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Serviceability, Cracking, and Deflection",
+      "description": "Adds the usability side of design: members must not only be strong, but also control deflection, cracking, vibration, and long-term deformation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Crack control",
+          "description": "Students learn how bar spacing, cover, tension stress, and detailing influence visible cracking.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flexural cracks"
+            },
+            {
+              "type": "concept",
+              "title": "Bar spacing"
+            },
+            {
+              "type": "concept",
+              "title": "Cover"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure concerns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deflection control",
+          "description": "Deflection checks protect function, finishes, partitions, drainage, and user perception.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Immediate deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Long-term deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Effective moment of inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Span-depth limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time-dependent effects",
+          "description": "Concrete continues to deform after loading, making creep and shrinkage important in serviceability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Creep"
+            },
+            {
+              "type": "concept",
+              "title": "Shrinkage"
+            },
+            {
+              "type": "concept",
+              "title": "Sustained loads"
+            },
+            {
+              "type": "concept",
+              "title": "Camber concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "One-Way and Two-Way Slabs",
+      "description": "Extends flexural design to floor systems, where load paths, support conditions, distribution reinforcement, and punching behavior matter.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-way slab design",
+          "description": "One-way slabs behave like wide beams spanning primarily in one direction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tributary width"
+            },
+            {
+              "type": "concept",
+              "title": "Main reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature/shrinkage steel"
+            },
+            {
+              "type": "concept",
+              "title": "Span-depth checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Two-way slab behavior",
+          "description": "Two-way systems distribute load in both directions and require attention to support layout and moment transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flat plates"
+            },
+            {
+              "type": "concept",
+              "title": "Column strips"
+            },
+            {
+              "type": "concept",
+              "title": "Middle strips"
+            },
+            {
+              "type": "concept",
+              "title": "Direct design concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Punching shear",
+          "description": "Slabs around columns can fail by punching, requiring local checks and sometimes shear reinforcement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical perimeter"
+            },
+            {
+              "type": "concept",
+              "title": "Column reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Drop panels"
+            },
+            {
+              "type": "concept",
+              "title": "Shear studs concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Columns: Axial and Combined Loading",
+      "description": "Covers compression members subjected to axial load and bending, including interaction behavior, slenderness, confinement, and detailing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Short column capacity",
+          "description": "Students learn the basic axial strength model for tied and spiral columns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gross area"
+            },
+            {
+              "type": "concept",
+              "title": "Longitudinal steel"
+            },
+            {
+              "type": "concept",
+              "title": "Ties and spirals"
+            },
+            {
+              "type": "concept",
+              "title": "Strength reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Axial-flexural interaction",
+          "description": "Most columns carry axial load and moment together, so design uses interaction thinking rather than one isolated formula.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interaction diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentricity"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced condition"
+            },
+            {
+              "type": "concept",
+              "title": "Biaxial bending concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Slenderness and detailing",
+          "description": "Column performance depends on stability, confinement, bar spacing, ties, and constructability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slenderness effects"
+            },
+            {
+              "type": "concept",
+              "title": "Tie spacing"
+            },
+            {
+              "type": "concept",
+              "title": "Clear spacing"
+            },
+            {
+              "type": "concept",
+              "title": "Lap splice regions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Footings and Foundations",
+      "description": "Connects member design to soil-supported elements that spread column and wall loads safely into the ground.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Isolated footing design",
+          "description": "Students design footing dimensions and reinforcement to satisfy bearing, flexure, and shear.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil bearing pressure"
+            },
+            {
+              "type": "concept",
+              "title": "One-way shear"
+            },
+            {
+              "type": "concept",
+              "title": "Punching shear"
+            },
+            {
+              "type": "concept",
+              "title": "Flexural reinforcement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Combined and strap footings",
+          "description": "More complex footing systems address property lines, eccentric loads, and multiple columns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Combined footings"
+            },
+            {
+              "type": "concept",
+              "title": "Strap beams"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentricity"
+            },
+            {
+              "type": "concept",
+              "title": "Load distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Detailing and constructability",
+          "description": "Foundation drawings require clear cover, dowels, development, and coordination with geotechnical assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Column dowels"
+            },
+            {
+              "type": "concept",
+              "title": "Cover"
+            },
+            {
+              "type": "concept",
+              "title": "Construction joints"
+            },
+            {
+              "type": "concept",
+              "title": "Subgrade preparation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Walls, Retaining Walls, and Lateral Members",
+      "description": "Broadens the course from beams and columns to vertical members resisting soil pressure, gravity loads, and lateral forces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Structural walls",
+          "description": "Structural walls resist axial load, bending, and shear in buildings and can be central to lateral systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wall reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary elements concept"
+            },
+            {
+              "type": "concept",
+              "title": "Shear friction"
+            },
+            {
+              "type": "concept",
+              "title": "Openings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Retaining walls",
+          "description": "Retaining wall design combines soil pressure, stability, flexure, shear, and drainage details.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Active pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Sliding"
+            },
+            {
+              "type": "concept",
+              "title": "Overturning"
+            },
+            {
+              "type": "concept",
+              "title": "Drainage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lateral load path",
+          "description": "Students connect RC member design to diaphragms, frames, walls, and foundations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diaphragm forces"
+            },
+            {
+              "type": "concept",
+              "title": "Collectors"
+            },
+            {
+              "type": "concept",
+              "title": "Shear walls"
+            },
+            {
+              "type": "concept",
+              "title": "Load transfer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frames and Seismic Considerations",
+      "description": "Introduces ductile reinforced concrete frame behavior and seismic detailing principles without turning the course into a full earthquake engineering sequence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Frame behavior",
+          "description": "Frames distribute moments and shears through beams, columns, joints, and foundations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment frames"
+            },
+            {
+              "type": "concept",
+              "title": "Joint equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Sidesway"
+            },
+            {
+              "type": "concept",
+              "title": "Gravity vs. lateral combinations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ductile detailing",
+          "description": "Seismic performance relies on confinement, continuity, and preventing brittle failure mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confinement ties"
+            },
+            {
+              "type": "concept",
+              "title": "Strong-column weak-beam concept"
+            },
+            {
+              "type": "concept",
+              "title": "Plastic hinge regions"
+            },
+            {
+              "type": "concept",
+              "title": "Shear capacity design concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance and code context",
+          "description": "Students learn the purpose of seismic design categories and detailing requirements at a conceptual level.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ductility"
+            },
+            {
+              "type": "concept",
+              "title": "Energy dissipation"
+            },
+            {
+              "type": "concept",
+              "title": "Drift"
+            },
+            {
+              "type": "concept",
+              "title": "Special detailing overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Prestressed and Precast Concrete Awareness",
+      "description": "Provides enough prestressed and precast context for students to recognize when ordinary RC assumptions change and when specialized design is needed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Prestressing principles",
+          "description": "Prestressing places concrete in compression to improve service behavior and span capability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pre-tensioning"
+            },
+            {
+              "type": "concept",
+              "title": "Post-tensioning"
+            },
+            {
+              "type": "concept",
+              "title": "Prestress losses"
+            },
+            {
+              "type": "concept",
+              "title": "Tendon profile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prestressed member behavior",
+          "description": "Students compare flexure, cracking, deflection, and shear in prestressed members against ordinary RC members.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Service stress"
+            },
+            {
+              "type": "concept",
+              "title": "Ultimate strength"
+            },
+            {
+              "type": "concept",
+              "title": "Camber"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precast systems",
+          "description": "Precast concrete introduces plant production, connections, transportation, erection, and tolerances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hollow-core slabs"
+            },
+            {
+              "type": "concept",
+              "title": "Precast beams"
+            },
+            {
+              "type": "concept",
+              "title": "Connections"
+            },
+            {
+              "type": "concept",
+              "title": "Erection loads"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Detailing, Construction, and Design Documentation",
+      "description": "Closes the course by translating calculations into buildable drawings, schedules, details, and design narratives.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reinforcement detailing",
+          "description": "Good detailing makes the design constructible and protects the assumptions used in calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bar marks"
+            },
+            {
+              "type": "concept",
+              "title": "Spacing"
+            },
+            {
+              "type": "concept",
+              "title": "Cover"
+            },
+            {
+              "type": "concept",
+              "title": "Congestion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Construction considerations",
+          "description": "Students learn how formwork, placement, consolidation, curing, tolerances, and inspection affect structural performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Formwork"
+            },
+            {
+              "type": "concept",
+              "title": "Concrete placement"
+            },
+            {
+              "type": "concept",
+              "title": "Curing"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design documentation",
+          "description": "Final deliverables must show assumptions, loads, calculations, code checks, and drawings clearly enough for review.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calculation package"
+            },
+            {
+              "type": "concept",
+              "title": "Design drawings"
+            },
+            {
+              "type": "concept",
+              "title": "Bar schedules"
+            },
+            {
+              "type": "concept",
+              "title": "Peer review checklist"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

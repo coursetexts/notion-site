@@ -1,0 +1,608 @@
+{
+  "slug": "thermodynamics",
+  "title": "Thermodynamics",
+  "description": "An engineering thermodynamics course on properties, energy, work, heat, first and second law analysis, entropy, exergy, cycles, mixtures, psychrometrics, combustion, and energy-system design.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Thermodynamic Systems, Properties, and State",
+      "description": "Sets up the language of systems, boundaries, states, properties, and equilibrium.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closed systems, control volumes, surroundings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Intensive and extensive properties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State postulate, equilibrium, processes, and cycles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pure Substance Properties and Property Tables",
+      "description": "Teaches how to determine states and properties for common working fluids.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase diagrams, saturation, compressed liquid, superheated vapor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quality, interpolation, and property tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steam, refrigerants, idealized fluids, and reference states"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ideal Gas and Real Gas Models",
+      "description": "Builds practical models for gases in engines, turbines, compressors, and nozzles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal gas equation and specific heats"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compressibility factor and real gas behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixtures, partial pressures, and model limitations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work, Heat, and Energy Transfer",
+      "description": "Clarifies the path-dependent ways energy crosses a system boundary.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary work, shaft work, electrical work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat transfer modes and sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kinetic, potential, internal energy, enthalpy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First Law for Closed Systems",
+      "description": "Applies energy conservation to fixed-mass systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy balance and process diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant pressure, constant volume, isothermal, adiabatic, polytropic processes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transient closed-system examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First Law for Control Volumes",
+      "description": "Extends energy analysis to devices with mass flow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steady-flow energy equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turbines, compressors, pumps, nozzles, diffusers, heat exchangers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unsteady filling and emptying problems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Second Law and Heat Engines",
+      "description": "Introduces directionality, irreversibility, and performance limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kelvin-Planck and Clausius statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat engines, refrigerators, heat pumps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carnot cycle, thermal efficiency, COP, and reversibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Entropy and Isentropic Processes",
+      "description": "Develops entropy as a property and a measure of irreversibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entropy change for solids, liquids, ideal gases, and vapors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "T-s diagrams and isentropic relations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entropy generation and the increase of entropy principle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Exergy and Availability Analysis",
+      "description": "Shows how to measure useful work potential and locate losses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dead state, availability, reversible work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exergy destruction and second-law efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Component and system exergy balances"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vapor Power Cycles",
+      "description": "Analyzes steam power plants and Rankine-cycle improvements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple Rankine cycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Superheat, reheat, regeneration, feedwater heaters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal efficiency, back work, and practical plant losses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gas Power and Propulsion Cycles",
+      "description": "Covers engines and aerospace-relevant cycles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Otto, Diesel, dual, Brayton cycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compressor/turbine efficiency, regeneration, intercooling, reheating"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jet propulsion and gas turbine applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Refrigeration and Heat Pump Cycles",
+      "description": "Studies systems that move heat from low to high temperature.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vapor-compression refrigeration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absorption refrigeration and heat pumps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Refrigerants, environmental constraints, and performance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gas Mixtures and Psychrometrics",
+      "description": "Applies thermodynamics to air-water vapor mixtures and HVAC contexts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixture composition, humidity ratio, relative humidity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Psychrometric charts and processes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cooling, heating, humidification, dehumidification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reactive Systems and Combustion",
+      "description": "Applies energy balances to chemical reactions and fuels.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stoichiometry, air-fuel ratio, equivalence ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enthalpy of formation, heating values, adiabatic flame temperature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Combustion efficiency, emissions, and aerospace/engine applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Energy-System Design Case",
+      "description": "Brings the course together through realistic energy-system modeling and decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle selection and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "Why it matters: This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Property calculations, first-law and second-law metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "Why it matters: This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tradeoffs among efficiency, cost, emissions, safety, and constraints"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "slug": "surveying",
+  "title": "Surveying",
+  "description": "Surveying is an early civil engineering course with a field-and-computation emphasis, building from measurement fundamentals through control, GNSS, construction layout, boundaries, GIS, and modern geospatial methods.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Surveying Fundamentals",
+      "description": "Introduces surveying as the measurement framework that connects civil designs to real ground, legal parcels, and constructed work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Purpose and types of surveys",
+          "description": "Students learn why engineers survey: to map existing conditions, establish control, define boundaries, and guide construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Topographic surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Control surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Construction surveys"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field safety and workflow",
+          "description": "Field work requires planning, communication, traffic awareness, equipment care, and defensible notes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Job hazard awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Crew roles"
+            },
+            {
+              "type": "concept",
+              "title": "Field notes"
+            },
+            {
+              "type": "concept",
+              "title": "Instrument setup"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement concepts",
+          "description": "Students distinguish accuracy, precision, resolution, repeatability, and blunders before using instruments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy vs. precision"
+            },
+            {
+              "type": "concept",
+              "title": "Systematic error"
+            },
+            {
+              "type": "concept",
+              "title": "Random error"
+            },
+            {
+              "type": "concept",
+              "title": "Mistakes and checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Distance Measurement",
+      "description": "Covers direct and electronic distance measurement methods and the corrections needed to turn raw observations into reliable project distances.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Taping and chaining",
+          "description": "Traditional distance measurement teaches corrections, alignment, slope, and field discipline.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal distance"
+            },
+            {
+              "type": "concept",
+              "title": "Slope correction"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature correction"
+            },
+            {
+              "type": "concept",
+              "title": "Tension and sag"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electronic distance measurement",
+          "description": "EDM and total stations measure distance rapidly but still require atmospheric, prism, and setup awareness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EDM principle"
+            },
+            {
+              "type": "concept",
+              "title": "Prism constants"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric correction"
+            },
+            {
+              "type": "concept",
+              "title": "Reflectorless measurements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distance quality control",
+          "description": "Students learn to check distance measurements with repetitions, closure, and independent observations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Redundant measurements"
+            },
+            {
+              "type": "concept",
+              "title": "Check shots"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Blunder detection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Angle Measurement with Theodolites and Total Stations",
+      "description": "Builds skill in horizontal and vertical angle observations, instrument setup, and angular error control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Instrument setup",
+          "description": "Good angle measurement begins with centering, leveling, focusing, and orientation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tripod setup"
+            },
+            {
+              "type": "concept",
+              "title": "Plumb/optical centering"
+            },
+            {
+              "type": "concept",
+              "title": "Leveling"
+            },
+            {
+              "type": "concept",
+              "title": "Backsight orientation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Horizontal and vertical angles",
+          "description": "Students learn how angular observations define directions, elevations, traverses, and layout lines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal angles"
+            },
+            {
+              "type": "concept",
+              "title": "Zenith angles"
+            },
+            {
+              "type": "concept",
+              "title": "Face left/right"
+            },
+            {
+              "type": "concept",
+              "title": "Repetition method"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Total station operation",
+          "description": "Total stations combine angle, distance, and data collection into a practical field workflow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Station setup"
+            },
+            {
+              "type": "concept",
+              "title": "Feature coding"
+            },
+            {
+              "type": "concept",
+              "title": "Data collector"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeout functions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Leveling and Elevation Control",
+      "description": "Teaches how elevations are established, transferred, checked, and used for grading, drainage, foundations, and construction control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Differential leveling",
+          "description": "Students learn to determine elevation differences using backsights, foresights, and benchmarks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Benchmark"
+            },
+            {
+              "type": "concept",
+              "title": "Backsight"
+            },
+            {
+              "type": "concept",
+              "title": "Foresight"
+            },
+            {
+              "type": "concept",
+              "title": "Height of instrument"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Profile and cross-section leveling",
+          "description": "Leveling supports roadway, utility, site, and drainage design by describing ground and grade changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Profile leveling"
+            },
+            {
+              "type": "concept",
+              "title": "Cross sections"
+            },
+            {
+              "type": "concept",
+              "title": "Stationing"
+            },
+            {
+              "type": "concept",
+              "title": "Grade breaks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Leveling errors and closure",
+          "description": "Reliable elevation work depends on closures, balanced sights, and adjustment of misclosure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop closure"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced sight lengths"
+            },
+            {
+              "type": "concept",
+              "title": "Curvature and refraction"
+            },
+            {
+              "type": "concept",
+              "title": "Misclosure adjustment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Topographic Surveys",
+      "description": "Shows how survey measurements become maps of terrain, features, utilities, drainage, and site constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Feature collection",
+          "description": "Students learn to collect natural and built features with enough detail for civil design decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breaklines"
+            },
+            {
+              "type": "concept",
+              "title": "Utilities"
+            },
+            {
+              "type": "concept",
+              "title": "Trees and structures"
+            },
+            {
+              "type": "concept",
+              "title": "Drainage features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contours and terrain modeling",
+          "description": "Elevation observations are transformed into contours, surfaces, and terrain models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contour interval"
+            },
+            {
+              "type": "concept",
+              "title": "TIN surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Digital terrain models"
+            },
+            {
+              "type": "concept",
+              "title": "Spot elevations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Map deliverables",
+          "description": "Topographic survey products must be readable, scaled, documented, and tied to control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan sheets"
+            },
+            {
+              "type": "concept",
+              "title": "Legend"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Survey notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Traverse Computation",
+      "description": "Develops the calculation framework for control networks, coordinate closure, and adjusted positions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Open and closed traverses",
+          "description": "Students learn how traverse geometry supports mapping, control, and construction layout.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interior angles"
+            },
+            {
+              "type": "concept",
+              "title": "Azimuths and bearings"
+            },
+            {
+              "type": "concept",
+              "title": "Latitudes and departures"
+            },
+            {
+              "type": "concept",
+              "title": "Traverse stations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Closure and adjustment",
+          "description": "Traverse closure reveals accumulated error and provides a basis for adjusted coordinates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angular misclosure"
+            },
+            {
+              "type": "concept",
+              "title": "Linear misclosure"
+            },
+            {
+              "type": "concept",
+              "title": "Relative precision"
+            },
+            {
+              "type": "concept",
+              "title": "Compass rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coordinate computation",
+          "description": "Adjusted traverses produce coordinates used for CAD, GIS, design, and stakeout.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Northing/easting"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate inverses"
+            },
+            {
+              "type": "concept",
+              "title": "Area computation"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate geometry"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coordinate Systems, Projections, and Datums",
+      "description": "Explains how local measurements connect to state plane, UTM, geodetic datums, vertical datums, and map projections.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Horizontal datums and coordinate systems",
+          "description": "Students learn why coordinates are only meaningful when tied to a defined reference frame.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geodetic datums"
+            },
+            {
+              "type": "concept",
+              "title": "State Plane"
+            },
+            {
+              "type": "concept",
+              "title": "UTM"
+            },
+            {
+              "type": "concept",
+              "title": "Local project coordinates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Map projections",
+          "description": "Projection choice controls distortion in distance, area, direction, and scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale factor"
+            },
+            {
+              "type": "concept",
+              "title": "Grid vs. ground"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence angle"
+            },
+            {
+              "type": "concept",
+              "title": "Projection distortion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vertical datums",
+          "description": "Elevation systems require their own datum and geoid context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NAVD88 concept"
+            },
+            {
+              "type": "concept",
+              "title": "Ellipsoid height"
+            },
+            {
+              "type": "concept",
+              "title": "Orthometric height"
+            },
+            {
+              "type": "concept",
+              "title": "Geoid model"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Measurement Error, Least Squares, and Quality Control",
+      "description": "Gives students the statistical and procedural tools to evaluate measurement quality instead of only performing field routines.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Error sources",
+          "description": "Students identify instrument, environmental, human, and model errors before interpreting results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instrument error"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric effects"
+            },
+            {
+              "type": "concept",
+              "title": "Setup error"
+            },
+            {
+              "type": "concept",
+              "title": "Observation blunders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Redundancy and adjustment",
+          "description": "Redundant observations allow surveyors to estimate uncertainty and distribute residuals consistently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted observations"
+            },
+            {
+              "type": "concept",
+              "title": "Least-squares concept"
+            },
+            {
+              "type": "concept",
+              "title": "Network adjustment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality assurance",
+          "description": "Survey deliverables require documented tolerances, checks, metadata, and review.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tolerance standards"
+            },
+            {
+              "type": "concept",
+              "title": "Checklists"
+            },
+            {
+              "type": "concept",
+              "title": "Independent checks"
+            },
+            {
+              "type": "concept",
+              "title": "QA/QC reports"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "GPS and GNSS",
+      "description": "Introduces satellite positioning methods, errors, datums, and workflows used in modern civil field work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "GNSS principles",
+          "description": "Students learn how satellite signals, timing, and geometry produce position estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Satellites and receivers"
+            },
+            {
+              "type": "concept",
+              "title": "Pseudorange"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier phase concept"
+            },
+            {
+              "type": "concept",
+              "title": "Dilution of precision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field methods",
+          "description": "Different GNSS workflows trade accuracy, speed, equipment cost, and post-processing needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static surveying"
+            },
+            {
+              "type": "concept",
+              "title": "RTK"
+            },
+            {
+              "type": "concept",
+              "title": "Network RTK"
+            },
+            {
+              "type": "concept",
+              "title": "Post-processing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GNSS limitations",
+          "description": "Satellite positioning is powerful but vulnerable to obstruction, multipath, atmospheric delay, and datum mistakes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multipath"
+            },
+            {
+              "type": "concept",
+              "title": "Canopy/urban obstruction"
+            },
+            {
+              "type": "concept",
+              "title": "Ionospheric delay"
+            },
+            {
+              "type": "concept",
+              "title": "Datum transformation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Construction Surveying and Layout",
+      "description": "Connects design drawings to field stakes, grades, offsets, alignments, and as-built verification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stakeout fundamentals",
+          "description": "Students learn how to lay out points, lines, grades, and offsets from design coordinates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point stakeout"
+            },
+            {
+              "type": "concept",
+              "title": "Offset stakes"
+            },
+            {
+              "type": "concept",
+              "title": "Cut/fill marks"
+            },
+            {
+              "type": "concept",
+              "title": "Grade stakes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Civil infrastructure layout",
+          "description": "Construction surveying supports roads, utilities, buildings, drainage, and site grading.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Centerlines"
+            },
+            {
+              "type": "concept",
+              "title": "Curves"
+            },
+            {
+              "type": "concept",
+              "title": "Utility layout"
+            },
+            {
+              "type": "concept",
+              "title": "Foundation layout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "As-built surveys",
+          "description": "As-builts document what was constructed and support inspection, payment, maintenance, and future design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "As-built points"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance checks"
+            },
+            {
+              "type": "concept",
+              "title": "Redlines"
+            },
+            {
+              "type": "concept",
+              "title": "Record drawings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boundary, Legal, and Professional Practice",
+      "description": "Introduces the legal and professional context of land surveying so students understand monuments, deeds, boundaries, and licensure boundaries.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boundary evidence",
+          "description": "Boundary work depends on reconciling records, monuments, occupation, and measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deeds"
+            },
+            {
+              "type": "concept",
+              "title": "Plats"
+            },
+            {
+              "type": "concept",
+              "title": "Monuments"
+            },
+            {
+              "type": "concept",
+              "title": "Adjoiners"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Legal descriptions",
+          "description": "Students learn common ways parcels are described and why ambiguity matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metes and bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Lot and block"
+            },
+            {
+              "type": "concept",
+              "title": "Public Land Survey System concept"
+            },
+            {
+              "type": "concept",
+              "title": "Easements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional responsibility",
+          "description": "Civil engineers should recognize when licensed surveyors are required and how survey records must be handled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Licensure"
+            },
+            {
+              "type": "concept",
+              "title": "Ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible charge"
+            },
+            {
+              "type": "concept",
+              "title": "Record retention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "GIS Basics and Spatial Data Workflows",
+      "description": "Shows how survey data moves into GIS/CAD environments for mapping, analysis, design, and asset management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial data models",
+          "description": "Students learn how points, lines, polygons, rasters, and surfaces represent real-world features.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector data"
+            },
+            {
+              "type": "concept",
+              "title": "Raster data"
+            },
+            {
+              "type": "concept",
+              "title": "Attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Topology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GIS mapping and analysis",
+          "description": "Survey data becomes more useful when joined, symbolized, queried, and analyzed spatially.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Layer management"
+            },
+            {
+              "type": "concept",
+              "title": "Joins"
+            },
+            {
+              "type": "concept",
+              "title": "Buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Overlays"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CAD/GIS integration",
+          "description": "Civil projects often move between survey controllers, CAD drawings, and GIS databases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "File formats"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Data cleaning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Remote Sensing, UAS, and Modern Geospatial Deliverables",
+      "description": "Gives students awareness of lidar, photogrammetry, drones, imagery, and modern digital deliverables increasingly used alongside conventional surveying.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Photogrammetry and UAS mapping",
+          "description": "Students learn how images can produce orthomosaics, point clouds, and surface models when properly controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ground control points"
+            },
+            {
+              "type": "concept",
+              "title": "Flight planning"
+            },
+            {
+              "type": "concept",
+              "title": "Orthomosaic"
+            },
+            {
+              "type": "concept",
+              "title": "Structure from motion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lidar and point clouds",
+          "description": "Lidar captures dense 3D measurements that support terrain, infrastructure, and asset documentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point density"
+            },
+            {
+              "type": "concept",
+              "title": "Classification"
+            },
+            {
+              "type": "concept",
+              "title": "Digital elevation models"
+            },
+            {
+              "type": "concept",
+              "title": "Scan registration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deliverables and ethics",
+          "description": "Modern geospatial products must communicate uncertainty, privacy constraints, and fitness for purpose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy statements"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Fit-for-use evaluation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

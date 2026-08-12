@@ -1,0 +1,1032 @@
+{
+  "slug": "statistics-biostatistics",
+  "title": "Statistics / Biostatistics",
+  "description": "Develops practical statistical fluency for environmental and biological data: study design, uncertainty, inference, modeling, visualization, reproducible workflows, and responsible communication.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Statistical Thinking for Environmental and Biological Data",
+      "description": "This opening topic frames statistics as a disciplined way to learn from variable, incomplete, and context-rich environmental and biological observations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Statistical questions",
+          "description": "Students learn to turn environmental questions into measurable variables and defensible analyses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "research questions"
+            },
+            {
+              "type": "concept",
+              "title": "populations and samples"
+            },
+            {
+              "type": "concept",
+              "title": "response and explanatory variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variability and uncertainty",
+          "description": "The point of statistics is not to remove variability but to describe and reason with it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "natural variability"
+            },
+            {
+              "type": "concept",
+              "title": "measurement error"
+            },
+            {
+              "type": "concept",
+              "title": "sampling variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Causal and associational claims",
+          "description": "Students learn why statistical association is not automatically cause.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "confounding"
+            },
+            {
+              "type": "concept",
+              "title": "randomization"
+            },
+            {
+              "type": "concept",
+              "title": "causal diagrams preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Types and Study Design",
+      "description": "Good analysis begins before data collection. This unit teaches students how design choices shape what conclusions are possible.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Data types and structure",
+          "description": "Students learn to recognize the form of data before choosing methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "categorical and quantitative variables"
+            },
+            {
+              "type": "concept",
+              "title": "counts, rates, and proportions"
+            },
+            {
+              "type": "concept",
+              "title": "paired and independent observations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Observational studies",
+          "description": "Many environmental and health questions rely on observational evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "cross-sectional studies"
+            },
+            {
+              "type": "concept",
+              "title": "cohort and case-control logic"
+            },
+            {
+              "type": "concept",
+              "title": "bias and confounding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental design",
+          "description": "Experiments give stronger causal evidence when designed carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "random assignment"
+            },
+            {
+              "type": "concept",
+              "title": "blocking"
+            },
+            {
+              "type": "concept",
+              "title": "replication and controls"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Management, Cleaning, and Reproducible Workflows",
+      "description": "World-class applied statistics includes the practical craft of making data trustworthy and analyses repeatable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Data organization",
+          "description": "Students learn tidy, documented data structures that support analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "data dictionaries"
+            },
+            {
+              "type": "concept",
+              "title": "tidy data"
+            },
+            {
+              "type": "concept",
+              "title": "metadata"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cleaning and validation",
+          "description": "Students learn to detect data problems without quietly inventing results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "missing values"
+            },
+            {
+              "type": "concept",
+              "title": "outliers"
+            },
+            {
+              "type": "concept",
+              "title": "range checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducible analysis",
+          "description": "Environmental decisions need analyses others can inspect and rerun.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "R/RStudio or Python notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "scripted workflows"
+            },
+            {
+              "type": "concept",
+              "title": "versioned outputs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Descriptive Statistics and Visualization",
+      "description": "Descriptive work helps students see patterns, anomalies, and uncertainty before formal modeling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Numerical summaries",
+          "description": "Students learn compact ways to describe center, spread, and position.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "mean and median"
+            },
+            {
+              "type": "concept",
+              "title": "variance and standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "quantiles and IQR"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exploratory visualization",
+          "description": "Graphs reveal distributional shape, group differences, and relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "histograms and density plots"
+            },
+            {
+              "type": "concept",
+              "title": "boxplots"
+            },
+            {
+              "type": "concept",
+              "title": "scatterplots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental visualization",
+          "description": "Students connect statistical graphics to maps, time series, and monitoring data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "hydrographs"
+            },
+            {
+              "type": "concept",
+              "title": "seasonal plots"
+            },
+            {
+              "type": "concept",
+              "title": "spatial choropleths preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Probability Foundations and Distributions",
+      "description": "Probability gives the mathematical language for uncertainty, sampling variation, and model-based inference.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability rules",
+          "description": "Students learn the rules behind risk, dependence, and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "addition and multiplication rules"
+            },
+            {
+              "type": "concept",
+              "title": "conditional probability"
+            },
+            {
+              "type": "concept",
+              "title": "independence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Random variables",
+          "description": "Random variables connect real measurements to probability models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "expected value"
+            },
+            {
+              "type": "concept",
+              "title": "variance"
+            },
+            {
+              "type": "concept",
+              "title": "standardization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Core distributions",
+          "description": "Students learn distributions that recur in biological and environmental analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "binomial"
+            },
+            {
+              "type": "concept",
+              "title": "normal"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson and exponential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling, Estimation, and Environmental Monitoring",
+      "description": "Sampling design determines whether an estimate is useful for science, management, or policy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling strategies",
+          "description": "Students compare designs for field and biological data collection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "simple random sampling"
+            },
+            {
+              "type": "concept",
+              "title": "stratified sampling"
+            },
+            {
+              "type": "concept",
+              "title": "cluster and systematic sampling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Point estimates",
+          "description": "Estimates summarize unknown population quantities from sample data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sample mean and proportion"
+            },
+            {
+              "type": "concept",
+              "title": "standard error"
+            },
+            {
+              "type": "concept",
+              "title": "bias and precision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Monitoring programs",
+          "description": "Students learn how repeated data collection supports environmental decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "baseline monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "trend monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "QA/QC and chain of custody"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Confidence Intervals and Uncertainty Quantification",
+      "description": "Confidence intervals teach students to communicate estimates with uncertainty instead of pretending one number is exact.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Interval estimation",
+          "description": "Students learn what intervals do and do not mean.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "confidence level"
+            },
+            {
+              "type": "concept",
+              "title": "margin of error"
+            },
+            {
+              "type": "concept",
+              "title": "interpretation pitfalls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intervals for common quantities",
+          "description": "Students practice intervals for means, proportions, and differences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "one-sample intervals"
+            },
+            {
+              "type": "concept",
+              "title": "two-sample intervals"
+            },
+            {
+              "type": "concept",
+              "title": "paired intervals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty communication",
+          "description": "Students learn to present uncertainty honestly to scientific and public audiences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "error bars"
+            },
+            {
+              "type": "concept",
+              "title": "plain-language interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "decision relevance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Testing and Evidence",
+      "description": "Hypothesis tests formalize evidence against a reference claim, but they must be used with judgment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Testing logic",
+          "description": "Students learn the structure and limitations of null-hypothesis testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "null and alternative hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "test statistics"
+            },
+            {
+              "type": "concept",
+              "title": "p-values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common tests",
+          "description": "Students apply tests for means, proportions, and paired designs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "t-tests"
+            },
+            {
+              "type": "concept",
+              "title": "proportion tests"
+            },
+            {
+              "type": "concept",
+              "title": "paired tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power and errors",
+          "description": "Students learn that non-significant results are not the same as no effect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Type I and Type II errors"
+            },
+            {
+              "type": "concept",
+              "title": "statistical power"
+            },
+            {
+              "type": "concept",
+              "title": "effect size"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Correlation, Linear Regression, and Prediction",
+      "description": "Regression helps students describe relationships, adjust for predictors, and make cautious predictions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Correlation",
+          "description": "Students learn how to quantify association while respecting its limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pearson correlation"
+            },
+            {
+              "type": "concept",
+              "title": "rank correlation"
+            },
+            {
+              "type": "concept",
+              "title": "nonlinear patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simple linear regression",
+          "description": "Regression turns a relationship into an estimated model with uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "slope and intercept"
+            },
+            {
+              "type": "concept",
+              "title": "residuals"
+            },
+            {
+              "type": "concept",
+              "title": "R-squared"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagnostics and prediction",
+          "description": "Students learn to check whether a model is credible enough to use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "residual plots"
+            },
+            {
+              "type": "concept",
+              "title": "influence and leverage"
+            },
+            {
+              "type": "concept",
+              "title": "prediction intervals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multiple Regression and Model Building",
+      "description": "Environmental and biological systems usually involve several interacting predictors, so students need a careful introduction to multivariable modeling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Multiple predictors",
+          "description": "Students learn how models can adjust for multiple variables at once.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "confounding control"
+            },
+            {
+              "type": "concept",
+              "title": "indicator variables"
+            },
+            {
+              "type": "concept",
+              "title": "interaction terms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model selection and validation",
+          "description": "Students learn that a model must be useful beyond the data used to fit it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "train/test splits"
+            },
+            {
+              "type": "concept",
+              "title": "AIC or adjusted R-squared preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpretation in context",
+          "description": "Students practice translating coefficients into environmental or biological meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "units and scaling"
+            },
+            {
+              "type": "concept",
+              "title": "practical significance"
+            },
+            {
+              "type": "concept",
+              "title": "limitations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "ANOVA and Designed Experiments",
+      "description": "ANOVA connects experimental design to inference when comparing several groups or treatments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-way ANOVA",
+          "description": "Students learn how to compare group means while controlling overall error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "between- and within-group variation"
+            },
+            {
+              "type": "concept",
+              "title": "F statistic"
+            },
+            {
+              "type": "concept",
+              "title": "post-hoc comparisons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Factorial designs",
+          "description": "Factorial designs reveal interactions among treatments or environmental conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "main effects"
+            },
+            {
+              "type": "concept",
+              "title": "interactions"
+            },
+            {
+              "type": "concept",
+              "title": "blocking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Repeated and nested designs",
+          "description": "Environmental data often contain structure that violates simple independence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "repeated measures"
+            },
+            {
+              "type": "concept",
+              "title": "nested sampling"
+            },
+            {
+              "type": "concept",
+              "title": "random effects preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Categorical Data and Risk Measures",
+      "description": "Biostatistics and environmental health often involve counts, proportions, disease status, exposure categories, and risk comparisons.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Contingency tables",
+          "description": "Students learn to analyze relationships between categorical variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "chi-square tests"
+            },
+            {
+              "type": "concept",
+              "title": "Fisher exact test"
+            },
+            {
+              "type": "concept",
+              "title": "expected counts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk and association measures",
+          "description": "Risk measures turn counts into interpretable public-health evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "relative risk"
+            },
+            {
+              "type": "concept",
+              "title": "odds ratio"
+            },
+            {
+              "type": "concept",
+              "title": "risk difference"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Logistic regression preview",
+          "description": "Students see how binary outcomes can be modeled with predictors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "log odds"
+            },
+            {
+              "type": "concept",
+              "title": "classification threshold"
+            },
+            {
+              "type": "concept",
+              "title": "confounding adjustment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonparametric and Robust Methods",
+      "description": "Not all data satisfy textbook assumptions. This unit gives students tools for skewed, ordinal, or outlier-prone data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rank-based methods",
+          "description": "Students learn alternatives when normal-model assumptions are weak.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wilcoxon tests"
+            },
+            {
+              "type": "concept",
+              "title": "Mann-Whitney test"
+            },
+            {
+              "type": "concept",
+              "title": "Kruskal-Wallis test"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Robust summaries",
+          "description": "Robust methods reduce sensitivity to extreme values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "median and MAD"
+            },
+            {
+              "type": "concept",
+              "title": "trimmed means"
+            },
+            {
+              "type": "concept",
+              "title": "resistant regression preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Permutation and bootstrap ideas",
+          "description": "Simulation-based methods make inference more intuitive and flexible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "resampling logic"
+            },
+            {
+              "type": "concept",
+              "title": "bootstrap confidence intervals"
+            },
+            {
+              "type": "concept",
+              "title": "permutation tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time Series, Spatial Data, and Environmental Dependence",
+      "description": "Environmental data are often correlated in time and space, so students need to recognize dependence even in an introductory course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Temporal dependence",
+          "description": "Students learn why repeated measurements over time are not independent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "trends"
+            },
+            {
+              "type": "concept",
+              "title": "seasonality"
+            },
+            {
+              "type": "concept",
+              "title": "autocorrelation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spatial dependence",
+          "description": "Nearby locations often resemble each other, affecting maps and inference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "spatial clustering"
+            },
+            {
+              "type": "concept",
+              "title": "Moran's I intuition"
+            },
+            {
+              "type": "concept",
+              "title": "scale and resolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied environmental examples",
+          "description": "Students connect dependence to monitoring and prediction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "air-quality series"
+            },
+            {
+              "type": "concept",
+              "title": "streamflow records"
+            },
+            {
+              "type": "concept",
+              "title": "species observations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ethics, Equity, and Communication of Statistics",
+      "description": "Statistics affects environmental and health decisions, so students must communicate honestly and consider who is represented or harmed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ethical data practice",
+          "description": "Students learn responsibility in data collection, analysis, and reporting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "privacy and consent"
+            },
+            {
+              "type": "concept",
+              "title": "data provenance"
+            },
+            {
+              "type": "concept",
+              "title": "selective reporting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equity and representation",
+          "description": "Sampling and modeling choices can hide or reveal environmental injustice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "under-sampled communities"
+            },
+            {
+              "type": "concept",
+              "title": "aggregate masking"
+            },
+            {
+              "type": "concept",
+              "title": "environmental justice indicators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical communication",
+          "description": "Students learn to explain results clearly without overstating certainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "plain-language summaries"
+            },
+            {
+              "type": "concept",
+              "title": "visual communication"
+            },
+            {
+              "type": "concept",
+              "title": "limitations and assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Data Analysis Project",
+      "description": "The course culminates in an applied project where students move from question to data, analysis, interpretation, and communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project design",
+          "description": "Students define a question that can be answered with available environmental or biological data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "research question"
+            },
+            {
+              "type": "concept",
+              "title": "variables and data sources"
+            },
+            {
+              "type": "concept",
+              "title": "analysis plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analysis workflow",
+          "description": "Students practice the full applied statistics process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "cleaning and visualization"
+            },
+            {
+              "type": "concept",
+              "title": "inference or modeling"
+            },
+            {
+              "type": "concept",
+              "title": "diagnostics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reporting and reflection",
+          "description": "Students produce a transparent report that connects results to context and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "methods section"
+            },
+            {
+              "type": "concept",
+              "title": "figures and tables"
+            },
+            {
+              "type": "concept",
+              "title": "decision implications"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1087 @@
+{
+  "slug": "solid-state-condensed-matter-physics",
+  "title": "Solid State / Condensed Matter Physics",
+  "description": "An advanced undergraduate Physics course strengthened with graduate condensed matter, computation, experiments, and quantum-materials context.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Crystal lattices and reciprocal space",
+      "description": "Establish the geometric language of periodic solids so students can describe real crystals and reason in momentum space.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Real-space crystal structure",
+          "description": "The point is to turn the visual idea of a crystal into precise mathematical descriptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lattice plus basis"
+            },
+            {
+              "type": "concept",
+              "title": "Primitive and conventional cells"
+            },
+            {
+              "type": "concept",
+              "title": "Common cubic structures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reciprocal lattice",
+          "description": "Reciprocal space is the natural setting for diffraction, waves in crystals, and electronic band structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reciprocal vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Miller indices"
+            },
+            {
+              "type": "concept",
+              "title": "Brillouin zones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Crystal symmetry",
+          "description": "Symmetry reduces complexity and predicts degeneracies, selection rules, and allowed physical behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point groups conceptually"
+            },
+            {
+              "type": "concept",
+              "title": "Translation symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry operations in examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structure-property intuition",
+          "description": "Students connect geometry to density, coordination, packing, and material classes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordination number"
+            },
+            {
+              "type": "concept",
+              "title": "Packing fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Structure prototypes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "X-ray diffraction and structure determination",
+      "description": "Show how crystal structures are measured rather than merely assumed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bragg diffraction",
+          "description": "Learn the simplest route from constructive interference to lattice spacing measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bragg law"
+            },
+            {
+              "type": "concept",
+              "title": "Plane spacing"
+            },
+            {
+              "type": "concept",
+              "title": "Peak indexing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scattering and structure factor",
+          "description": "Understand how basis atoms and symmetry shape diffraction intensities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atomic form factor"
+            },
+            {
+              "type": "concept",
+              "title": "Allowed and forbidden peaks"
+            },
+            {
+              "type": "concept",
+              "title": "Powder versus single-crystal patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reciprocal-space measurements",
+          "description": "Read diffraction data as maps of reciprocal lattice information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ewald sphere"
+            },
+            {
+              "type": "concept",
+              "title": "Scattering vector"
+            },
+            {
+              "type": "concept",
+              "title": "Peak broadening"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Real materials interpretation",
+          "description": "Use diffraction to infer phase, strain, defects, and crystallite size.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scherrer broadening"
+            },
+            {
+              "type": "concept",
+              "title": "Texture"
+            },
+            {
+              "type": "concept",
+              "title": "Phase identification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phonons and lattice vibrations",
+      "description": "Explain how collective vibrations of atoms carry heat, interact with electrons, and shape material properties.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "1D lattice models",
+          "description": "Simple chains reveal how coupled oscillators become collective waves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monoatomic chain"
+            },
+            {
+              "type": "concept",
+              "title": "Diatomic chain"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phonon dispersion",
+          "description": "Dispersion relations show which vibrations exist and how they move through a crystal.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acoustic modes"
+            },
+            {
+              "type": "concept",
+              "title": "Optical modes"
+            },
+            {
+              "type": "concept",
+              "title": "Group velocity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal properties",
+          "description": "Phonons explain heat capacity beyond classical equipartition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Einstein model"
+            },
+            {
+              "type": "concept",
+              "title": "Debye model"
+            },
+            {
+              "type": "concept",
+              "title": "Low-temperature limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phonon interactions",
+          "description": "Real materials require scattering, anharmonicity, and coupling to other excitations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Umklapp scattering"
+            },
+            {
+              "type": "concept",
+              "title": "Electron-phonon coupling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Free-electron and band theory",
+      "description": "Move from isolated atoms to electrons in solids, explaining conductors, insulators, and the origin of bands.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical and quantum electron gases",
+          "description": "Compare Drude intuition with the quantum Fermi sea that actually governs metals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drude conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Fermi energy"
+            },
+            {
+              "type": "concept",
+              "title": "Sommerfeld heat capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bloch theorem",
+          "description": "Use periodicity to simplify electron wavefunctions in crystals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crystal momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Bloch waves"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced-zone scheme"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Band formation",
+          "description": "Understand how periodic potentials split energies into allowed bands and forbidden gaps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nearly-free electron model"
+            },
+            {
+              "type": "concept",
+              "title": "Tight-binding model"
+            },
+            {
+              "type": "concept",
+              "title": "Band gaps at zone boundaries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fermi surfaces",
+          "description": "Use momentum-space geometry to predict metallic behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermi surface topology"
+            },
+            {
+              "type": "concept",
+              "title": "Effective mass"
+            },
+            {
+              "type": "concept",
+              "title": "Density of states"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Semiconductors",
+      "description": "Connect band theory to the materials and junctions behind modern electronics, sensors, photonics, and energy devices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Carrier statistics",
+          "description": "The point is to quantify how electrons and holes populate bands.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermi level"
+            },
+            {
+              "type": "concept",
+              "title": "Effective density of states"
+            },
+            {
+              "type": "concept",
+              "title": "Intrinsic carrier concentration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Doping",
+          "description": "Doping controls carrier type and density, turning quantum band structure into engineering capability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Donors and acceptors"
+            },
+            {
+              "type": "concept",
+              "title": "N-type and p-type"
+            },
+            {
+              "type": "concept",
+              "title": "Compensation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Junction physics",
+          "description": "p-n junctions reveal built-in fields, depletion regions, and rectification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Depletion approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Built-in voltage"
+            },
+            {
+              "type": "concept",
+              "title": "I-V behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Semiconductor devices",
+          "description": "Students connect condensed matter physics to real technologies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diodes and LEDs"
+            },
+            {
+              "type": "concept",
+              "title": "Photovoltaics"
+            },
+            {
+              "type": "concept",
+              "title": "Field-effect transistors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Defects, surfaces, and disorder",
+      "description": "Make the course realistic: real solids are never perfect, and imperfections often determine properties.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Point defects",
+          "description": "Small deviations from ideal order can dominate transport, color, diffusion, and reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vacancies"
+            },
+            {
+              "type": "concept",
+              "title": "Interstitials"
+            },
+            {
+              "type": "concept",
+              "title": "Substitutional impurities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Extended defects",
+          "description": "Dislocations and grain boundaries explain strength, scattering, and materials behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Edge and screw dislocations"
+            },
+            {
+              "type": "concept",
+              "title": "Grain boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Strain fields"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surfaces and interfaces",
+          "description": "Modern devices often rely on physics that happens where materials meet.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface states"
+            },
+            {
+              "type": "concept",
+              "title": "Heterostructures"
+            },
+            {
+              "type": "concept",
+              "title": "Interface roughness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Disorder and localization",
+          "description": "Disorder changes wave propagation and can suppress conduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean free path"
+            },
+            {
+              "type": "concept",
+              "title": "Anderson localization overview"
+            },
+            {
+              "type": "concept",
+              "title": "Amorphous solids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Magnetism and spin systems",
+      "description": "Explain how microscopic magnetic moments produce macroscopic magnetic phases and spin-based technologies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnetic moments",
+          "description": "Connect electron spin and orbital motion to material magnetism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bohr magneton"
+            },
+            {
+              "type": "concept",
+              "title": "Hund's rules conceptually"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus itinerant moments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic ordering",
+          "description": "Collective interactions create phases with long-range spin order.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ferromagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Antiferromagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Ferrimagnetism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exchange and domains",
+          "description": "Students learn why magnetic order forms and why samples split into domains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exchange interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Anisotropy"
+            },
+            {
+              "type": "concept",
+              "title": "Domain walls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spin excitations and devices",
+          "description": "Modern condensed matter uses spin as an active degree of freedom.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnons"
+            },
+            {
+              "type": "concept",
+              "title": "Giant magnetoresistance"
+            },
+            {
+              "type": "concept",
+              "title": "Spintronics overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Superconductivity",
+      "description": "Introduce a landmark quantum phase where resistance vanishes and magnetic fields are expelled.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phenomenology",
+          "description": "Start with the observable signatures that distinguish superconductivity from perfect conductivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zero resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Meissner effect"
+            },
+            {
+              "type": "concept",
+              "title": "Critical temperature and field"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microscopic pairing",
+          "description": "Understand the conceptual role of electron-phonon coupling and Cooper pairs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Attractive interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Energy gap"
+            },
+            {
+              "type": "concept",
+              "title": "BCS overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Type I and Type II behavior",
+          "description": "Different superconductors respond to fields in fundamentally different ways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coherence length"
+            },
+            {
+              "type": "concept",
+              "title": "Penetration depth"
+            },
+            {
+              "type": "concept",
+              "title": "Vortices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications and frontiers",
+          "description": "Show why superconductivity matters scientifically and technologically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SQUIDs"
+            },
+            {
+              "type": "concept",
+              "title": "MRI magnets"
+            },
+            {
+              "type": "concept",
+              "title": "High-Tc overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transport properties",
+      "description": "Teach how charge, heat, and spin move through materials and how experiments extract material parameters.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electrical conductivity",
+          "description": "Relate current flow to carriers, scattering time, and band structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mobility"
+            },
+            {
+              "type": "concept",
+              "title": "Relaxation time"
+            },
+            {
+              "type": "concept",
+              "title": "Matthiessen's rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hall effect",
+          "description": "Use transverse voltage to infer carrier sign, density, and mobility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hall coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Single-band model"
+            },
+            {
+              "type": "concept",
+              "title": "Anomalous Hall overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal transport",
+          "description": "Heat flow reveals phonons, electrons, and scattering mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Wiedemann-Franz law"
+            },
+            {
+              "type": "concept",
+              "title": "Thermoelectric effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetotransport",
+          "description": "Magnetic fields probe Fermi surfaces, disorder, and quantum behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnetoresistance"
+            },
+            {
+              "type": "concept",
+              "title": "Shubnikov-de Haas concept"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum Hall preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phase transitions and collective behavior",
+      "description": "Give students a unifying lens for why materials change state and why collective phenomena emerge.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Order parameters",
+          "description": "Identify the variable that captures what changes across a phase transition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnetization"
+            },
+            {
+              "type": "concept",
+              "title": "Density waves"
+            },
+            {
+              "type": "concept",
+              "title": "Superconducting order parameter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Symmetry breaking",
+          "description": "Many phases are best understood by the symmetries they lose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous versus discrete symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Degeneracy"
+            },
+            {
+              "type": "concept",
+              "title": "Goldstone-mode intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mean-field theory",
+          "description": "Approximate many-body behavior with a tractable self-consistent picture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Landau free energy"
+            },
+            {
+              "type": "concept",
+              "title": "Critical temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Stability criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Critical phenomena",
+          "description": "Near transitions, fluctuations dominate and universal behavior can appear.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Correlation length"
+            },
+            {
+              "type": "concept",
+              "title": "Critical exponents"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Low-dimensional materials",
+      "description": "Explore how material properties change when electrons, phonons, and excitations are confined to reduced dimensions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dimensional confinement",
+          "description": "Reduced dimension changes allowed states and sharpens quantum effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantum wells"
+            },
+            {
+              "type": "concept",
+              "title": "Nanowires"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum dots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Graphene and 2D materials",
+          "description": "Graphene shows how lattice symmetry can produce unusual electronic dispersion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Honeycomb lattice"
+            },
+            {
+              "type": "concept",
+              "title": "Dirac cones"
+            },
+            {
+              "type": "concept",
+              "title": "Transition-metal dichalcogenides"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mesoscopic physics",
+          "description": "At small scales, phase coherence and boundaries matter directly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ballistic transport"
+            },
+            {
+              "type": "concept",
+              "title": "Conductance quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Coherence length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nanomaterials applications",
+          "description": "Students connect low-dimensional physics to devices and materials platforms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Flexible electronics"
+            },
+            {
+              "type": "concept",
+              "title": "Nanophotonics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Topological and quantum materials",
+      "description": "Add the contemporary frontier: phases can be classified not only by symmetry but also by topology and quantum geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quantum Hall effect",
+          "description": "Use a precise transport phenomenon to introduce topology in condensed matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Landau levels"
+            },
+            {
+              "type": "concept",
+              "title": "Edge states"
+            },
+            {
+              "type": "concept",
+              "title": "Quantized Hall conductance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Berry phase and topology",
+          "description": "Learn the conceptual bridge from wavefunction geometry to robust material properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Berry curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Chern number concept"
+            },
+            {
+              "type": "concept",
+              "title": "Bulk-boundary correspondence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Topological insulators and semimetals",
+          "description": "Understand materials with protected boundary states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface states"
+            },
+            {
+              "type": "concept",
+              "title": "Spin-momentum locking"
+            },
+            {
+              "type": "concept",
+              "title": "Dirac and Weyl points"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strong correlations overview",
+          "description": "See where independent-electron pictures break down.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mott insulators"
+            },
+            {
+              "type": "concept",
+              "title": "Heavy fermions"
+            },
+            {
+              "type": "concept",
+              "title": "Correlated superconductivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Device, computational, and materials case studies",
+      "description": "Synthesize the course through real materials, measurements, and computational/materials-data workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental probes",
+          "description": "Students learn which tools reveal structure, excitations, and electronic properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ARPES"
+            },
+            {
+              "type": "concept",
+              "title": "STM/STS"
+            },
+            {
+              "type": "concept",
+              "title": "Neutron and X-ray scattering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electronic-structure workflows",
+          "description": "Use modern databases and calculations as part of materials reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Density functional theory concept"
+            },
+            {
+              "type": "concept",
+              "title": "Materials Project"
+            },
+            {
+              "type": "concept",
+              "title": "Band-structure interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Device case studies",
+          "description": "Apply condensed matter ideas to concrete technologies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LEDs and lasers"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic memory"
+            },
+            {
+              "type": "concept",
+              "title": "Superconducting sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Research communication",
+          "description": "Translate a materials question into an evidence-backed technical argument.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Literature figures"
+            },
+            {
+              "type": "concept",
+              "title": "Data provenance"
+            },
+            {
+              "type": "concept",
+              "title": "Short research memo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

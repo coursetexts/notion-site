@@ -1,0 +1,1296 @@
+{
+  "slug": "quantum-mechanics-i",
+  "title": "Quantum Mechanics I",
+  "description": "A first course in quantum mechanics covering wave-particle duality, wave functions, operators and observables, the Schrodinger equation, one-dimensional potentials, tunneling, the harmonic oscillator, Hilbert space, uncertainty, angular momentum, the hydrogen atom, spin, identical particles, and introductory approximation methods.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Wave-Particle Duality and Quantum Postulates",
+      "description": "Builds conceptual fluency and applied skill with wave-particle duality and quantum postulates.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes wave-particle duality and quantum postulates precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "De Broglie wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Double slit"
+            },
+            {
+              "type": "concept",
+              "title": "Wave packet"
+            },
+            {
+              "type": "concept",
+              "title": "Probability amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Born rule"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with wave-particle duality and quantum postulates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply de Broglie wavelength in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare double slit with wave packet"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where wave-particle duality and quantum postulates succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how de Broglie wavelength changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wave Functions and Probability",
+      "description": "Builds conceptual fluency and applied skill with wave functions and probability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes wave functions and probability precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "De Broglie wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Double slit"
+            },
+            {
+              "type": "concept",
+              "title": "Wave packet"
+            },
+            {
+              "type": "concept",
+              "title": "Probability amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Born rule"
+            },
+            {
+              "type": "concept",
+              "title": "Sample space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with wave functions and probability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply de Broglie wavelength in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare double slit with wave packet"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where wave functions and probability succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of independence"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how de Broglie wavelength changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operators, Observables, and Commutators",
+      "description": "Builds conceptual fluency and applied skill with operators, observables, and commutators.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes operators, observables, and commutators precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hermitian operator"
+            },
+            {
+              "type": "concept",
+              "title": "Commutator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenbasis"
+            },
+            {
+              "type": "concept",
+              "title": "Observable"
+            },
+            {
+              "type": "concept",
+              "title": "Projection postulate"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with operators, observables, and commutators.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Hermitian operator in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare commutator with eigenbasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where operators, observables, and commutators succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Hermitian operator changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Time-Independent Schrodinger Equation",
+      "description": "Builds conceptual fluency and applied skill with the time-independent schrodinger equation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes the time-independent schrodinger equation precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary state"
+            },
+            {
+              "type": "concept",
+              "title": "Time evolution"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Energy eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with the time-independent schrodinger equation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare stationary state with time evolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where the time-independent schrodinger equation succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "One-Dimensional Potentials and Bound States",
+      "description": "Builds conceptual fluency and applied skill with one-dimensional potentials and bound states.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes one-dimensional potentials and bound states precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infinite well"
+            },
+            {
+              "type": "concept",
+              "title": "Finite well"
+            },
+            {
+              "type": "concept",
+              "title": "Barrier"
+            },
+            {
+              "type": "concept",
+              "title": "Tunneling"
+            },
+            {
+              "type": "concept",
+              "title": "Bound state"
+            },
+            {
+              "type": "concept",
+              "title": "Scattering state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with one-dimensional potentials and bound states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply infinite well in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare finite well with barrier"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where one-dimensional potentials and bound states succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how infinite well changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tunneling and Finite Wells",
+      "description": "Builds conceptual fluency and applied skill with tunneling and finite wells.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes tunneling and finite wells precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ket"
+            },
+            {
+              "type": "concept",
+              "title": "Bra"
+            },
+            {
+              "type": "concept",
+              "title": "Operator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenstate"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with tunneling and finite wells.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ket in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare bra with operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where tunneling and finite wells succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ket changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Harmonic Oscillator",
+      "description": "Builds conceptual fluency and applied skill with the harmonic oscillator.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes the harmonic oscillator precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ladder operator"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-point energy"
+            },
+            {
+              "type": "concept",
+              "title": "Hermite polynomial"
+            },
+            {
+              "type": "concept",
+              "title": "Number state"
+            },
+            {
+              "type": "concept",
+              "title": "Coherent state"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with the harmonic oscillator.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ladder operator in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare zero-point energy with Hermite polynomial"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where the harmonic oscillator succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ladder operator changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hilbert Space Formalism",
+      "description": "Builds conceptual fluency and applied skill with hilbert space formalism.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes hilbert space formalism precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ket"
+            },
+            {
+              "type": "concept",
+              "title": "Bra"
+            },
+            {
+              "type": "concept",
+              "title": "Operator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenstate"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with hilbert space formalism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ket in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare bra with operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where hilbert space formalism succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ket changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Uncertainty Principle",
+      "description": "Builds conceptual fluency and applied skill with uncertainty principle.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes uncertainty principle precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ket"
+            },
+            {
+              "type": "concept",
+              "title": "Bra"
+            },
+            {
+              "type": "concept",
+              "title": "Operator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenstate"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with uncertainty principle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ket in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare bra with operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where uncertainty principle succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ket changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Angular Momentum",
+      "description": "Builds conceptual fluency and applied skill with angular momentum.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes angular momentum precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "J squared"
+            },
+            {
+              "type": "concept",
+              "title": "J_z"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical harmonics"
+            },
+            {
+              "type": "concept",
+              "title": "Ladder operators"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic quantum number"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with angular momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply J squared in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare J_z with spherical harmonics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where angular momentum succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how J squared changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hydrogen Atom",
+      "description": "Builds conceptual fluency and applied skill with hydrogen atom.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes hydrogen atom precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ket"
+            },
+            {
+              "type": "concept",
+              "title": "Bra"
+            },
+            {
+              "type": "concept",
+              "title": "Operator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenstate"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with hydrogen atom.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ket in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare bra with operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where hydrogen atom succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ket changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spin and Two-State Systems",
+      "description": "Builds conceptual fluency and applied skill with spin and two-state systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes spin and two-state systems precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spinor"
+            },
+            {
+              "type": "concept",
+              "title": "Pauli matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Stern-Gerlach"
+            },
+            {
+              "type": "concept",
+              "title": "Two-level system"
+            },
+            {
+              "type": "concept",
+              "title": "Spin measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with spin and two-state systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply spinor in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Pauli matrices with Stern-Gerlach"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where spin and two-state systems succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how spinor changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Addition of Angular Momenta and Identical Particles",
+      "description": "Builds conceptual fluency and applied skill with addition of angular momenta and identical particles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes addition of angular momenta and identical particles precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "J squared"
+            },
+            {
+              "type": "concept",
+              "title": "J_z"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical harmonics"
+            },
+            {
+              "type": "concept",
+              "title": "Ladder operators"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic quantum number"
+            },
+            {
+              "type": "concept",
+              "title": "Ket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with addition of angular momenta and identical particles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply J squared in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare J_z with spherical harmonics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where addition of angular momenta and identical particles succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how J squared changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Introduction to Approximation Methods",
+      "description": "Builds conceptual fluency and applied skill with introduction to approximation methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes introduction to approximation methods precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ket"
+            },
+            {
+              "type": "concept",
+              "title": "Bra"
+            },
+            {
+              "type": "concept",
+              "title": "Operator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenstate"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with introduction to approximation methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalize a wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Solve an eigenvalue equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compute expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ket in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare bra with operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where introduction to approximation methods succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of hbar"
+            },
+            {
+              "type": "concept",
+              "title": "Hermiticity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizability"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ket changes the interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

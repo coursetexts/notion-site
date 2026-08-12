@@ -1,0 +1,1296 @@
+{
+  "slug": "organic-chemistry-i",
+  "title": "Organic Chemistry I",
+  "description": "An introductory organic chemistry course covering structure and bonding, resonance, acid-base chemistry, alkanes and cycloalkanes, stereochemistry, reaction mechanisms, alkenes and alkynes, substitution and elimination, alcohols/ethers/epoxides, and structure determination by IR and NMR spectroscopy.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Structure, Bonding, and Hybridization",
+      "description": "This section develops structure, bonding, and hybridization through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make structure, bonding, and hybridization precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lewis structure"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge"
+            },
+            {
+              "type": "concept",
+              "title": "Hybridization"
+            },
+            {
+              "type": "concept",
+              "title": "Bond angle"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole moment"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with structure, bonding, and hybridization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Lewis structure in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare formal charge with hybridization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of hybrid orbital"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Lewis structure affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Resonance, Formal Charge, and Molecular Orbitals",
+      "description": "This section develops resonance, formal charge, and molecular orbitals through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make resonance, formal charge, and molecular orbitals precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resonance contributor"
+            },
+            {
+              "type": "concept",
+              "title": "Major contributor"
+            },
+            {
+              "type": "concept",
+              "title": "Delocalization"
+            },
+            {
+              "type": "concept",
+              "title": "Allylic position"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with resonance, formal charge, and molecular orbitals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply resonance contributor in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare major contributor with delocalization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how resonance contributor affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Acid-Base Chemistry",
+      "description": "This section develops acid-base chemistry through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make acid-base chemistry precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PKa"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate base"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive effect"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance stabilization"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent effect"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with acid-base chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply pKa in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare conjugate base with inductive effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how pKa affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkanes and Cycloalkanes",
+      "description": "This section develops alkanes and cycloalkanes through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make alkanes and cycloalkanes precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constitutional isomer"
+            },
+            {
+              "type": "concept",
+              "title": "Conformation"
+            },
+            {
+              "type": "concept",
+              "title": "Newman projection"
+            },
+            {
+              "type": "concept",
+              "title": "Anti"
+            },
+            {
+              "type": "concept",
+              "title": "Gauche"
+            },
+            {
+              "type": "concept",
+              "title": "Chair conformation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with alkanes and cycloalkanes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply constitutional isomer in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare conformation with Newman projection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how constitutional isomer affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conformations and Ring Strain",
+      "description": "This section develops conformations and ring strain through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make conformations and ring strain precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            },
+            {
+              "type": "concept",
+              "title": "Electrophile"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Carbocation"
+            },
+            {
+              "type": "concept",
+              "title": "Stereocenter"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance form"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with conformations and ring strain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply nucleophile in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare electrophile with leaving group"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of pi bond"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how nucleophile affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stereochemistry and Chirality",
+      "description": "This section develops stereochemistry and chirality through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make stereochemistry and chirality precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chiral center"
+            },
+            {
+              "type": "concept",
+              "title": "Enantiomer"
+            },
+            {
+              "type": "concept",
+              "title": "Diastereomer"
+            },
+            {
+              "type": "concept",
+              "title": "Meso compound"
+            },
+            {
+              "type": "concept",
+              "title": "R/S designation"
+            },
+            {
+              "type": "concept",
+              "title": "Optical activity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with stereochemistry and chirality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply chiral center in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare enantiomer with diastereomer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of O-H broad peak"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how chiral center affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reaction Mechanisms and Energy Diagrams",
+      "description": "This section develops reaction mechanisms and energy diagrams through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make reaction mechanisms and energy diagrams precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Curved arrow"
+            },
+            {
+              "type": "concept",
+              "title": "Transition state"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            },
+            {
+              "type": "concept",
+              "title": "Rate-determining step"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with reaction mechanisms and energy diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply curved arrow in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare transition state with intermediate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how curved arrow affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkenes and Addition Reactions",
+      "description": "This section develops alkenes and addition reactions through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make alkenes and addition reactions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Markovnikov addition"
+            },
+            {
+              "type": "concept",
+              "title": "Anti-Markovnikov addition"
+            },
+            {
+              "type": "concept",
+              "title": "Syn addition"
+            },
+            {
+              "type": "concept",
+              "title": "Anti addition"
+            },
+            {
+              "type": "concept",
+              "title": "Carbocation rearrangement"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with alkenes and addition reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Markovnikov addition in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare anti-Markovnikov addition with syn addition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Markovnikov addition affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkynes and Pi Systems",
+      "description": "This section develops alkynes and pi systems through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make alkynes and pi systems precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Terminal alkyne"
+            },
+            {
+              "type": "concept",
+              "title": "Acetylide"
+            },
+            {
+              "type": "concept",
+              "title": "Hydration"
+            },
+            {
+              "type": "concept",
+              "title": "Hydroboration"
+            },
+            {
+              "type": "concept",
+              "title": "Alkylation"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with alkynes and pi systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply terminal alkyne in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare acetylide with hydration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how terminal alkyne affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkyl Halides and Substitution Reactions",
+      "description": "This section develops alkyl halides and substitution reactions through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make alkyl halides and substitution reactions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alkyl halide"
+            },
+            {
+              "type": "concept",
+              "title": "Primary substrate"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary substrate"
+            },
+            {
+              "type": "concept",
+              "title": "Tertiary substrate"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Polar aprotic solvent"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with alkyl halides and substitution reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply alkyl halide in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare primary substrate with secondary substrate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of backside attack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how alkyl halide affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Elimination Reactions",
+      "description": "This section develops elimination reactions through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make elimination reactions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "E1"
+            },
+            {
+              "type": "concept",
+              "title": "E2"
+            },
+            {
+              "type": "concept",
+              "title": "Zaitsev product"
+            },
+            {
+              "type": "concept",
+              "title": "Hofmann product"
+            },
+            {
+              "type": "concept",
+              "title": "Anti-periplanar geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with elimination reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply E1 in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare E2 with Zaitsev product"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how E1 affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alcohols, Ethers, and Epoxides",
+      "description": "This section develops alcohols, ethers, and epoxides through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make alcohols, ethers, and epoxides precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Tosylate"
+            },
+            {
+              "type": "concept",
+              "title": "Ether synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Epoxide opening"
+            },
+            {
+              "type": "concept",
+              "title": "Protecting group"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with alcohols, ethers, and epoxides.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply oxidation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tosylate with ether synthesis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how oxidation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "IR Spectroscopy",
+      "description": "This section develops ir spectroscopy through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make ir spectroscopy precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stretching frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonyl peak"
+            },
+            {
+              "type": "concept",
+              "title": "O-H broad peak"
+            },
+            {
+              "type": "concept",
+              "title": "Fingerprint region"
+            },
+            {
+              "type": "concept",
+              "title": "Functional group"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with ir spectroscopy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply stretching frequency in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carbonyl peak with O-H broad peak"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how stretching frequency affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "NMR Spectroscopy and Structure Determination",
+      "description": "This section develops nmr spectroscopy and structure determination through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make nmr spectroscopy and structure determination precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lewis structure"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge"
+            },
+            {
+              "type": "concept",
+              "title": "Hybridization"
+            },
+            {
+              "type": "concept",
+              "title": "Bond angle"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole moment"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with nmr spectroscopy and structure determination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Draw curved-arrow mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Rank acidity and basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Assign R/S configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Lewis structure in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare formal charge with hybridization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet violations"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge errors"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong stereochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Lewis structure affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

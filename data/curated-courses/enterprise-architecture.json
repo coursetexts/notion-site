@@ -1,0 +1,968 @@
+{
+  "slug": "enterprise-architecture",
+  "title": "Enterprise Architecture",
+  "description": "An advanced IT course on aligning systems with business strategy\u2014covering EA frameworks, business/information/application/technology architecture, IT governance, SOA, cloud, security, roadmaps, change management, and a portfolio-ready enterprise architecture capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Enterprise Architecture Purpose, Value, and IT-Business Alignment",
+      "description": "Frame enterprise architecture as the discipline that connects business strategy, operating model, information, applications, technology, governance, and change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "EA as Alignment Discipline",
+          "description": "Students learn why architecture exists: to make technology decisions traceable to strategy and business outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business strategy and operating model"
+            },
+            {
+              "type": "concept",
+              "title": "Capabilities, processes, information, applications, and technology"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture as a bridge between executives and delivery teams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Value of architecture",
+          "description": "The gist is to show how EA reduces complexity and increases organizational agility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standardization and reuse"
+            },
+            {
+              "type": "concept",
+              "title": "Risk reduction and compliance support"
+            },
+            {
+              "type": "concept",
+              "title": "Cost, resilience, scalability, and faster change"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Architecture scope",
+          "description": "Learners distinguish enterprise architecture from solution, software, data, and infrastructure architecture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enterprise-wide concerns"
+            },
+            {
+              "type": "concept",
+              "title": "Domain and solution architecture boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture portfolio and governance cadence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enterprise Architecture Frameworks: TOGAF, Zachman, ArchiMate, and Viewpoints",
+      "description": "Compare major EA frameworks and learn how architects choose viewpoints, artifacts, and methods for different audiences.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "TOGAF and ADM",
+          "description": "Students learn a structured method for architecture development.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Architecture vision"
+            },
+            {
+              "type": "concept",
+              "title": "Business, data, application, and technology architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Opportunities, migration planning, governance, and change management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Zachman and classification",
+          "description": "The point is to understand architecture from multiple stakeholder perspectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "What, how, where, who, when, and why"
+            },
+            {
+              "type": "concept",
+              "title": "Planner, owner, designer, builder, subcontractor, and user perspectives"
+            },
+            {
+              "type": "concept",
+              "title": "Completeness and traceability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ArchiMate and viewpoints",
+          "description": "Learners represent architecture consistently for communication and analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business, application, technology, strategy, and motivation layers"
+            },
+            {
+              "type": "concept",
+              "title": "Viewpoints for stakeholders"
+            },
+            {
+              "type": "concept",
+              "title": "Modeling notation, relationships, and abstraction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Business Architecture, Operating Models, Capabilities, and Value Streams",
+      "description": "Map what the organization does and how work creates value before designing applications or technology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Operating models",
+          "description": "Students connect organizational strategy to how work is coordinated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diversification, coordination, replication, and unification"
+            },
+            {
+              "type": "concept",
+              "title": "Standardization versus local autonomy"
+            },
+            {
+              "type": "concept",
+              "title": "Enterprise-wide versus business-unit architecture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capability mapping",
+          "description": "The gist is to map what the organization must be able to do.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Core, supporting, and differentiating capabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Capability maturity and heat maps"
+            },
+            {
+              "type": "concept",
+              "title": "Investment prioritization and gap analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Value streams and processes",
+          "description": "Learners model how value is created from customer need to outcome.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Value stream stages"
+            },
+            {
+              "type": "concept",
+              "title": "Process ownership and handoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Pain points, bottlenecks, and improvement opportunities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Information Architecture, Data Governance, Master Data, and Analytics Alignment",
+      "description": "Design enterprise information structures that support operations, analytics, trust, compliance, and decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Information architecture",
+          "description": "Students design how information is structured, shared, and used across the enterprise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conceptual data models"
+            },
+            {
+              "type": "concept",
+              "title": "Information domains and data flows"
+            },
+            {
+              "type": "concept",
+              "title": "Data lineage and ownership"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Master data and governance",
+          "description": "The point is to make enterprise data trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Customer, product, supplier, employee, and asset data"
+            },
+            {
+              "type": "concept",
+              "title": "Data stewards and governance councils"
+            },
+            {
+              "type": "concept",
+              "title": "Quality rules, standards, and lifecycle management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytics alignment",
+          "description": "Learners connect architecture to decision-making.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "BI, Reporting, and Self-Service Analytics"
+            },
+            {
+              "type": "concept",
+              "title": "Data warehouse, lake, and lakehouse context"
+            },
+            {
+              "type": "concept",
+              "title": "Metrics definitions and semantic consistency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Application Architecture, Portfolios, Integration, and Rationalization",
+      "description": "Analyze application landscapes, dependencies, lifecycle risk, and opportunities to simplify or modernize systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Application portfolio",
+          "description": "Students learn to inventory and assess enterprise applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Application capabilities and ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Lifecycle stage, cost, risk, and business criticality"
+            },
+            {
+              "type": "concept",
+              "title": "Technical fit and business fit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rationalization",
+          "description": "The gist is to reduce duplication and complexity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tolerate, invest, migrate, eliminate, and consolidate decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Redundant systems and shadow IT"
+            },
+            {
+              "type": "concept",
+              "title": "Modernization candidates and roadmap sequencing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Application architecture patterns",
+          "description": "Learners compare common application styles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monoliths, modular systems, microservices, and packaged applications"
+            },
+            {
+              "type": "concept",
+              "title": "ERP, CRM, SaaS, and Custom Systems"
+            },
+            {
+              "type": "concept",
+              "title": "Frontend, Backend, API, and Integration Layers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Technology Architecture: Infrastructure, Cloud, Platforms, Security, and Operations",
+      "description": "Connect compute, network, storage, platform, identity, and operations choices to enterprise capability needs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Infrastructure foundations",
+          "description": "Students connect compute, storage, networks, and platforms to enterprise needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Servers, virtualization, containers, and endpoints"
+            },
+            {
+              "type": "concept",
+              "title": "LAN, WAN, Internet, and Cloud Networking"
+            },
+            {
+              "type": "concept",
+              "title": "Storage, backup, disaster recovery, and data centers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Platform architecture",
+          "description": "The point is to evaluate platforms as shared enterprise capabilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cloud platforms"
+            },
+            {
+              "type": "concept",
+              "title": "Identity platforms"
+            },
+            {
+              "type": "concept",
+              "title": "Integration Platforms, Observability, and DevOps Tooling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational architecture",
+          "description": "Learners include run-time needs in architecture decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monitoring, logging, incident response, and support"
+            },
+            {
+              "type": "concept",
+              "title": "Availability, capacity, performance, and maintainability"
+            },
+            {
+              "type": "concept",
+              "title": "Service management and operating model"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "IT Governance, Architecture Governance, Standards, Principles, and Decision Rights",
+      "description": "Learn how architecture decisions are guided, reviewed, documented, and aligned with organizational priorities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Governance structures",
+          "description": "Students learn how architecture decisions are made and enforced.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Architecture review boards"
+            },
+            {
+              "type": "concept",
+              "title": "Decision rights and escalation paths"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture principles and standards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Architecture controls",
+          "description": "The gist is to balance consistency with delivery speed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reference architectures and patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Waivers and exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance, audit, and policy alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Portfolio governance",
+          "description": "Learners align technology investments to strategy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roadmaps and investment portfolios"
+            },
+            {
+              "type": "concept",
+              "title": "Risk, cost, and value tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Metrics and architecture maturity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Service-Oriented Architecture, APIs, Event-Driven Architecture, and Integration Patterns",
+      "description": "Understand how enterprise systems communicate through services, APIs, events, data flows, and integration platforms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "SOA and Service Thinking",
+          "description": "Students understand architecture around reusable business services.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Service contracts"
+            },
+            {
+              "type": "concept",
+              "title": "Loose coupling and reuse"
+            },
+            {
+              "type": "concept",
+              "title": "Service catalogs and governance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "API Architecture",
+          "description": "The point is to expose capabilities securely and consistently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "REST, GraphQL, gRPC, and API Gateways"
+            },
+            {
+              "type": "concept",
+              "title": "Authentication, authorization, rate limits, and versioning"
+            },
+            {
+              "type": "concept",
+              "title": "Developer experience and documentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Event-driven and integration patterns",
+          "description": "Learners design for asynchronous and cross-system workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Messaging, queues, event streams, and pub/sub"
+            },
+            {
+              "type": "concept",
+              "title": "ETL, EDI, iPaaS, and ESB Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability, retries, idempotency, and observability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud and Enterprise Architecture: Hybrid, SaaS, Containers, Kubernetes, and FinOps",
+      "description": "Evaluate cloud and platform decisions through architecture, cost, governance, reliability, and organizational fit.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cloud architecture choices",
+          "description": "Students evaluate cloud as an architectural and operating model shift.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IaaS, PaaS, SaaS, Serverless, and Managed Services"
+            },
+            {
+              "type": "concept",
+              "title": "Public, private, hybrid, and multi-cloud"
+            },
+            {
+              "type": "concept",
+              "title": "Landing zones, identity, networking, and policy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modern platforms",
+          "description": "The gist is to understand containers and platform engineering in enterprise context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Docker and Kubernetes"
+            },
+            {
+              "type": "concept",
+              "title": "CI/CD, DevOps, and Infrastructure as Code"
+            },
+            {
+              "type": "concept",
+              "title": "Platform teams and self-service capabilities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cloud economics and governance",
+          "description": "Learners include cost and control in architecture designs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FinOps and Tagging"
+            },
+            {
+              "type": "concept",
+              "title": "Reserved capacity and autoscaling"
+            },
+            {
+              "type": "concept",
+              "title": "Data residency, vendor lock-in, and shared responsibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Security, Risk, Compliance, Privacy, and Resilience Architecture",
+      "description": "Embed security, privacy, risk management, continuity, and compliance into enterprise architecture rather than treating them as afterthoughts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Security architecture",
+          "description": "Students embed security into the architecture rather than adding it afterward.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zero trust, identity, and least privilege"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation, encryption, and secrets management"
+            },
+            {
+              "type": "concept",
+              "title": "Secure development and deployment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk and compliance",
+          "description": "The point is to make architectural risk visible and manageable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threat modeling and risk registers"
+            },
+            {
+              "type": "concept",
+              "title": "Policies, standards, and regulatory obligations"
+            },
+            {
+              "type": "concept",
+              "title": "Audit evidence and control mapping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resilience architecture",
+          "description": "Learners design for failure and recovery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Availability, backup, disaster recovery, and business continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Observability and incident response"
+            },
+            {
+              "type": "concept",
+              "title": "RTO, RPO, and Resilience Tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Architecture Modeling, Documentation, Diagrams, and Communication",
+      "description": "Create clear architecture artifacts that help technical and business stakeholders understand decisions and tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Architecture artifacts",
+          "description": "Students learn to create artifacts that answer specific stakeholder questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Current-state and target-state diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Capability maps, application maps, data flow diagrams, and deployment views"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture decision records and design rationales"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagramming and notation",
+          "description": "The gist is to communicate clearly at the right level of abstraction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ArchiMate, UML, C4, BPMN, and Informal Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Viewpoints and audience fit"
+            },
+            {
+              "type": "concept",
+              "title": "Visual clarity, legends, and traceability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Narrative communication",
+          "description": "Learners tell the story behind the architecture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summaries"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff explanations"
+            },
+            {
+              "type": "concept",
+              "title": "Risks, assumptions, constraints, and recommendations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Architecture Roadmaps, Migration Planning, Modernization, and Technical Debt",
+      "description": "Plan transition states that move from current architecture to target architecture while managing risk and dependencies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Current-to-target planning",
+          "description": "Students learn to sequence architecture change responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Baseline architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Target architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Transition states and dependencies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modernization strategy",
+          "description": "The point is to choose the right modernization path for each system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rehost, replatform, refactor, replace, retire, and retain"
+            },
+            {
+              "type": "concept",
+              "title": "Legacy constraints and integration risk"
+            },
+            {
+              "type": "concept",
+              "title": "Data migration and cutover planning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Technical debt management",
+          "description": "Learners assess debt as an architectural portfolio concern.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Debt identification and scoring"
+            },
+            {
+              "type": "concept",
+              "title": "Risk, cost, and business impact"
+            },
+            {
+              "type": "concept",
+              "title": "Remediation roadmaps and prioritization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Change Management, Stakeholder Engagement, Adoption, and Organizational Politics",
+      "description": "Prepare architecture work to be adopted by people, teams, budgets, and governance bodies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stakeholder engagement",
+          "description": "Students learn that architecture succeeds through people and decision-making.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder maps"
+            },
+            {
+              "type": "concept",
+              "title": "Interviews, workshops, and feedback loops"
+            },
+            {
+              "type": "concept",
+              "title": "Sponsorship and communication planning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Change management",
+          "description": "The gist is to support adoption, not just publish diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Readiness and impact analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Training, support, and transition planning"
+            },
+            {
+              "type": "concept",
+              "title": "Resistance and incentive alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Architecture influence",
+          "description": "Learners practice the soft skills of architecture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facilitation and negotiation"
+            },
+            {
+              "type": "concept",
+              "title": "Conflict resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Building credibility with technical and business teams"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Architecture Evaluation, Metrics, Quality Attributes, and Tradeoff Analysis",
+      "description": "Evaluate architecture alternatives using measurable quality attributes, business outcomes, and risk criteria.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quality attributes",
+          "description": "Students evaluate architectures using nonfunctional requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scalability, reliability, performance, security, usability, maintainability, and interoperability"
+            },
+            {
+              "type": "concept",
+              "title": "Availability and resilience targets"
+            },
+            {
+              "type": "concept",
+              "title": "Cost and operational complexity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tradeoff analysis",
+          "description": "The point is to make architecture decisions explicit and defensible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Architecture alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Decision matrices and weighted criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Risk, constraints, assumptions, and consequences"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Architecture metrics",
+          "description": "Learners connect architecture health to measurable signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Portfolio complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Reuse, standard compliance, technical debt, and delivery speed"
+            },
+            {
+              "type": "concept",
+              "title": "Outcome metrics and value realization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enterprise Architecture Capstone: Current-State, Target-State, and Transformation Portfolio",
+      "description": "Synthesize frameworks, modeling, strategy, governance, roadmaps, cloud, data, security, and change in a complete EA portfolio.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Current-state assessment",
+          "description": "Students analyze a realistic enterprise or case organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business goals and constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Capability, application, data, technology, and security landscape"
+            },
+            {
+              "type": "concept",
+              "title": "Pain points, risks, and opportunities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Target-state architecture",
+          "description": "The point is to propose a coherent future architecture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business, information, application, and technology views"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud, integration, security, and governance choices"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture principles and decision log"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transformation portfolio",
+          "description": "Learners produce a professional architecture deliverable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roadmap, migration waves, dependencies, and risks"
+            },
+            {
+              "type": "concept",
+              "title": "Metrics, governance, and change plan"
+            },
+            {
+              "type": "concept",
+              "title": "Final presentation and portfolio-ready artifact set"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

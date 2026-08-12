@@ -1,0 +1,968 @@
+{
+  "slug": "environmental-chemistry",
+  "title": "Environmental Chemistry",
+  "description": "Studies the chemical processes that govern air, water, soil, sediments, climate systems, and contaminants\u2014integrating equilibrium, kinetics, redox, speciation, partitioning, atmospheric chemistry, nutrient cycles, contaminant fate, analytical QA/QC, treatment, green chemistry, and decision-oriented case analysis.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Environmental Chemical Systems, Units, Mass Balance, and Thermodynamics",
+      "description": "Students learn to treat air, water, soils, sediments, and biota as coupled chemical systems governed by mass, energy, and equilibrium constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Environmental compartments",
+          "description": "The point is to see chemical behavior across connected reservoirs rather than isolated beakers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atmosphere, hydrosphere, lithosphere, and biosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Open versus closed systems"
+            },
+            {
+              "type": "concept",
+              "title": "Residence time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass balance",
+          "description": "Mass balance gives students a disciplined way to track sources, sinks, accumulation, and transport.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control volumes"
+            },
+            {
+              "type": "concept",
+              "title": "Steady and transient balances"
+            },
+            {
+              "type": "concept",
+              "title": "Loading rates and dilution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamic foundations",
+          "description": "Environmental reactions are constrained by energy, activity, and equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activities and ionic strength"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium constants"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs energy and reaction direction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aquatic Equilibria, Acid-Base Chemistry, and Alkalinity",
+      "description": "This module develops the equilibrium tools used to interpret natural waters, wastewater, oceans, and acidification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Acid-base systems",
+          "description": "Natural-water pH is controlled by weak acids, bases, buffering, and gas exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pH and pKa"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Open and closed CO2 systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alkalinity",
+          "description": "Alkalinity is a practical measure of acid-neutralizing capacity and water-system resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definition and titration"
+            },
+            {
+              "type": "concept",
+              "title": "Conservative behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Alkalinity versus pH"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equilibrium modeling",
+          "description": "Students learn to solve water chemistry problems quantitatively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Charge balance"
+            },
+            {
+              "type": "concept",
+              "title": "Mass balance"
+            },
+            {
+              "type": "concept",
+              "title": "Speciation diagrams"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carbonate System, Ocean Acidification, and Climate-Relevant Aqueous Chemistry",
+      "description": "Students study carbonate chemistry as a master variable for pH, alkalinity, buffering, and carbon cycling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Carbonate equilibria",
+          "description": "Carbonate chemistry links atmospheric CO2 to water pH and mineral stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CO2 dissolution"
+            },
+            {
+              "type": "concept",
+              "title": "Bicarbonate and carbonate"
+            },
+            {
+              "type": "concept",
+              "title": "Henry's law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ocean acidification",
+          "description": "Students connect chemical shifts to ecological and geochemical consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Revelle factor preview"
+            },
+            {
+              "type": "concept",
+              "title": "Calcite and aragonite saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Marine biological impacts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon accounting in waters",
+          "description": "Carbon measurements require careful distinction among related quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DIC"
+            },
+            {
+              "type": "concept",
+              "title": "Total alkalinity"
+            },
+            {
+              "type": "concept",
+              "title": "pCO2 and buffering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Redox Chemistry in Natural and Engineered Environments",
+      "description": "This topic explains how electron-transfer conditions control metals, nutrients, contaminants, and microbial processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Redox potential",
+          "description": "Redox conditions determine which species are stable and mobile.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron activity"
+            },
+            {
+              "type": "concept",
+              "title": "pe and Eh"
+            },
+            {
+              "type": "concept",
+              "title": "Nernst equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental redox sequences",
+          "description": "Microbial and chemical processes consume electron acceptors in predictable order.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxygen, nitrate, manganese, iron, sulfate, and methane zones"
+            },
+            {
+              "type": "concept",
+              "title": "Sediments and aquifers"
+            },
+            {
+              "type": "concept",
+              "title": "Redox gradients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Redox transformations",
+          "description": "Many contaminants and nutrients change fate when oxidized or reduced.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arsenic and chromium"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogen transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Advanced oxidation preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metal Speciation, Complexation, Toxicity, and Bioavailability",
+      "description": "Students learn that total concentration is rarely enough; chemical form controls mobility, toxicity, and treatment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Speciation",
+          "description": "Chemical form controls solubility, transport, and biological uptake.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free ions"
+            },
+            {
+              "type": "concept",
+              "title": "Complexes"
+            },
+            {
+              "type": "concept",
+              "title": "Precipitates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complexation and ligands",
+          "description": "Natural and synthetic ligands can mobilize or immobilize metals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dissolved organic matter"
+            },
+            {
+              "type": "concept",
+              "title": "Chelation"
+            },
+            {
+              "type": "concept",
+              "title": "Stability constants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bioavailability and toxicity",
+          "description": "Risk depends on exposure to biologically active forms, not just total metal concentration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hardness effects"
+            },
+            {
+              "type": "concept",
+              "title": "Biotic ligand model concept"
+            },
+            {
+              "type": "concept",
+              "title": "Essential versus toxic metals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sorption, Partitioning, Interfaces, Soils, and Sediments",
+      "description": "This module connects molecular interactions at surfaces to contaminant fate in terrestrial and aquatic systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sorption mechanisms",
+          "description": "Surfaces control contaminant retention and release.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adsorption"
+            },
+            {
+              "type": "concept",
+              "title": "Ion exchange"
+            },
+            {
+              "type": "concept",
+              "title": "Surface complexation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Partitioning",
+          "description": "Organic compounds distribute among water, air, solids, and biota according to molecular properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Henry's law constant"
+            },
+            {
+              "type": "concept",
+              "title": "Kow and Koc"
+            },
+            {
+              "type": "concept",
+              "title": "Bioaccumulation factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil and sediment chemistry",
+          "description": "Soils and sediments are reactive chemical matrices, not inert storage bins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clay minerals"
+            },
+            {
+              "type": "concept",
+              "title": "Cation exchange capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Organic matter and black carbon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Atmospheric Composition, Photochemistry, Radicals, and Ozone",
+      "description": "Students learn how sunlight and reactive species drive atmospheric transformation and air quality.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atmospheric composition",
+          "description": "Students learn the chemical baseline of the atmosphere and why trace gases matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Major and trace gases"
+            },
+            {
+              "type": "concept",
+              "title": "Troposphere and stratosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Residence time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Photochemistry and radicals",
+          "description": "Sunlight initiates radical chains that transform pollutants and control oxidizing capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Photolysis"
+            },
+            {
+              "type": "concept",
+              "title": "OH radical"
+            },
+            {
+              "type": "concept",
+              "title": "NOx and VOC chemistry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ozone chemistry",
+          "description": "Ozone is protective in the stratosphere and harmful in the troposphere.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chapman cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Smog formation"
+            },
+            {
+              "type": "concept",
+              "title": "Ozone depletion chemistry"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aerosols, Particulate Matter, Deposition, and Atmospheric-Water Coupling",
+      "description": "This topic covers particles and deposition as chemical links among air, water, soil, ecosystems, and health.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Aerosol formation",
+          "description": "Particles form directly from emissions or through gas-to-particle conversion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary and secondary aerosols"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleation and growth"
+            },
+            {
+              "type": "concept",
+              "title": "Sulfate, nitrate, and organic aerosol"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Particle properties and impacts",
+          "description": "Particle size and composition determine transport, visibility, climate, and health effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PM2.5 and PM10"
+            },
+            {
+              "type": "concept",
+              "title": "Optical properties"
+            },
+            {
+              "type": "concept",
+              "title": "Hygroscopic growth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deposition and cloud chemistry",
+          "description": "Atmospheric chemistry returns to surfaces through wet and dry deposition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acid deposition"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud and fog reactions"
+            },
+            {
+              "type": "concept",
+              "title": "National Atmospheric Deposition Program context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nutrient Chemistry, Eutrophication, and Biogeochemical Cycles",
+      "description": "Students study nitrogen, phosphorus, sulfur, carbon, and trace elements as cycling chemical networks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nitrogen chemistry",
+          "description": "Nitrogen changes oxidation state and mobility through biological and chemical pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ammonium and nitrate"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrification and denitrification"
+            },
+            {
+              "type": "concept",
+              "title": "N2O emissions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phosphorus chemistry",
+          "description": "Phosphorus often limits aquatic productivity and is strongly controlled by sorption and precipitation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthophosphate"
+            },
+            {
+              "type": "concept",
+              "title": "Iron-bound phosphorus"
+            },
+            {
+              "type": "concept",
+              "title": "Internal loading"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Eutrophication and cycles",
+          "description": "Nutrient enrichment links chemistry to ecosystem response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Algal blooms"
+            },
+            {
+              "type": "concept",
+              "title": "Hypoxia"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon, sulfur, and trace nutrient cycles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Organic Contaminant Fate, Transport, and Transformation",
+      "description": "This module develops environmental organic chemistry for pollutants, pesticides, solvents, fuels, and natural organic matter.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Molecular properties",
+          "description": "Chemical structure helps predict persistence, volatility, solubility, and partitioning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarity and ionization"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrophobicity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport and fate",
+          "description": "Organic contaminants move and transform through coupled physical, chemical, and biological processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Advection and dispersion"
+            },
+            {
+              "type": "concept",
+              "title": "Volatilization"
+            },
+            {
+              "type": "concept",
+              "title": "Biodegradation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transformation pathways",
+          "description": "Environmental reactions can detoxify compounds or create harmful products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Photolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation and reduction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Emerging Contaminants, PFAS, Microplastics, and Chemical Risk",
+      "description": "Students examine modern contaminant classes and why persistence, exposure, and uncertainty make them difficult.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PFAS chemistry",
+          "description": "PFAS illustrate persistence, mobility, and analytical difficulty in modern environmental chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fluorinated surfactants"
+            },
+            {
+              "type": "concept",
+              "title": "Precursors and terminal products"
+            },
+            {
+              "type": "concept",
+              "title": "Sorption and mobility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microplastics and additives",
+          "description": "Plastic particles and additives create physical and chemical exposure questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Particle size and weathering"
+            },
+            {
+              "type": "concept",
+              "title": "Additive leaching"
+            },
+            {
+              "type": "concept",
+              "title": "Sorption of co-contaminants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk framing",
+          "description": "Students learn to connect hazard, exposure, uncertainty, and decision-making.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dose-response basics"
+            },
+            {
+              "type": "concept",
+              "title": "Mixtures"
+            },
+            {
+              "type": "concept",
+              "title": "Precaution and data gaps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Analytical Methods, Sampling, QA/QC, and Data Interpretation",
+      "description": "This topic teaches how environmental chemistry evidence is generated, validated, and interpreted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling design",
+          "description": "Environmental data are only as good as the field strategy behind them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spatial and temporal variability"
+            },
+            {
+              "type": "concept",
+              "title": "Grab versus composite samples"
+            },
+            {
+              "type": "concept",
+              "title": "Preservation and chain of custody"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytical methods",
+          "description": "Students learn which measurements reveal which chemical forms and why method choice matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spectroscopy and chromatography"
+            },
+            {
+              "type": "concept",
+              "title": "ICP and mass spectrometry"
+            },
+            {
+              "type": "concept",
+              "title": "Field sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "QA/QC and interpretation",
+          "description": "Quality controls make environmental claims defensible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blanks, duplicates, and spikes"
+            },
+            {
+              "type": "concept",
+              "title": "Detection limits"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and data visualization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Treatment, Remediation, and Green Chemistry Technologies",
+      "description": "Students connect chemistry to engineered interventions that prevent, remove, transform, or immobilize contaminants.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water and wastewater treatment chemistry",
+          "description": "Treatment processes manipulate chemistry to remove or transform contaminants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coagulation and precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Adsorption and membranes"
+            },
+            {
+              "type": "concept",
+              "title": "Disinfection and byproducts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Remediation",
+          "description": "Contaminated sites require chemical strategies matched to contaminant and matrix.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pump-and-treat"
+            },
+            {
+              "type": "concept",
+              "title": "In situ chemical oxidation/reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Monitored natural attenuation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Green chemistry",
+          "description": "Prevention is often better than cleanup, so students learn safer chemical design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Twelve principles"
+            },
+            {
+              "type": "concept",
+              "title": "Life-cycle thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Benign solvents and feedstocks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate Chemistry, Greenhouse Gases, and Earth-System Feedbacks",
+      "description": "This module links molecular chemistry to climate forcing, feedbacks, and environmental change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Greenhouse gases",
+          "description": "Molecular absorption properties determine radiative forcing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CO2, CH4, N2O, and halocarbons"
+            },
+            {
+              "type": "concept",
+              "title": "Global warming potential"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric lifetime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Climate feedback chemistry",
+          "description": "Chemical processes feed back into warming, air quality, and ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Methane feedbacks"
+            },
+            {
+              "type": "concept",
+              "title": "Aerosol-cloud interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Permafrost and carbon release"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Climate mitigation chemistry",
+          "description": "Chemistry is central to emissions reduction and carbon management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon capture and storage"
+            },
+            {
+              "type": "concept",
+              "title": "Negative emissions chemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Energy and materials links"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Chemistry Case Study and Field-to-Policy Project",
+      "description": "The course culminates in a rigorous case analysis connecting field data, chemical mechanisms, uncertainty, impacts, and decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Case framing",
+          "description": "Students define a real environmental chemistry problem with stakeholders, mechanisms, and evidence needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Conceptual site model"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure pathways"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data and mechanism synthesis",
+          "description": "The project integrates chemical calculations, field or public data, and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Speciation or fate modeling"
+            },
+            {
+              "type": "concept",
+              "title": "QA/QC review"
+            },
+            {
+              "type": "concept",
+              "title": "Risk or impact interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communication and decision support",
+          "description": "High-quality work explains chemistry clearly enough to support action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Technical memo"
+            },
+            {
+              "type": "concept",
+              "title": "Policy or remediation recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Figures, limitations, and next steps"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

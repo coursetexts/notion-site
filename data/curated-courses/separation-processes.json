@@ -1,0 +1,776 @@
+{
+  "slug": "separation-processes",
+  "title": "Separation Processes",
+  "description": "Separation Processes covers the principles and design methods used to separate chemical mixtures in industrial processes. Students apply phase equilibrium, mass transfer, staged-contact methods, and equipment design to distillation, absorption, stripping, extraction, leaching, membranes, adsorption, drying, and integrated process systems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Phase Equilibrium and Mass Transfer Foundations",
+      "description": "Students connect thermodynamics and transport to separations by learning how phase equilibrium and interphase mass transfer make separation possible.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase equilibrium",
+          "description": "The point is to understand the thermodynamic limits that tell us whether a separation is feasible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "VLE, LLE, and solid-fluid equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Raoult's law, Henry's law, and activity coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium diagrams and tie lines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass transfer",
+          "description": "Students learn why separations take time and area rather than happening instantly at equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion and film theory"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-transfer coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Driving forces and resistance concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Balances for separations",
+          "description": "Material and energy balances anchor every separation design calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Component balances"
+            },
+            {
+              "type": "concept",
+              "title": "Overall balances"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy and heat-duty terms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Equilibrium-Stage Concept",
+      "description": "This module introduces idealized stages as the central design abstraction for distillation, absorption, extraction, and other staged operations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ideal stages",
+          "description": "Stages let students represent contact between phases with a tractable design model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium leaving streams"
+            },
+            {
+              "type": "concept",
+              "title": "Stage efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Countercurrent contacting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operating lines",
+          "description": "Operating lines connect mass balances to graphical and algebraic design methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rectifying and stripping lines"
+            },
+            {
+              "type": "concept",
+              "title": "Absorption operating lines"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent-to-feed ratio effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stage-to-real equipment link",
+          "description": "Students learn that ideal stages must be adjusted for real hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tray efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "HETP concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Packing versus trays"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flash Distillation",
+      "description": "Students learn the simplest vapor-liquid separation problem and use it to build intuition for equilibrium calculations and phase splits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flash calculations",
+          "description": "Flash distillation teaches phase splits and equilibrium in the simplest useful separation setting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rachford-Rice equation"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Bubble-point and dew-point checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Binary flash",
+          "description": "Binary examples build intuition before moving to multicomponent systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "x-y diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Lever-rule interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and pressure effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process uses",
+          "description": "Students see where flash drums appear in plants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial vaporization"
+            },
+            {
+              "type": "concept",
+              "title": "Knockout drums"
+            },
+            {
+              "type": "concept",
+              "title": "Pre-separation before downstream units"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multistage Distillation",
+      "description": "This topic develops staged distillation design for binary and multicomponent mixtures, including reflux, trays, and design tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Binary distillation design",
+          "description": "Students learn how reflux and stages create sharper separations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "McCabe-Thiele method"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum reflux"
+            },
+            {
+              "type": "concept",
+              "title": "Total reflux and minimum stages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tray and column operation",
+          "description": "The gist is connecting graphical design to actual column behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feed condition q-line"
+            },
+            {
+              "type": "concept",
+              "title": "Condenser and reboiler roles"
+            },
+            {
+              "type": "concept",
+              "title": "Flooding, weeping, and entrainment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multicomponent distillation",
+          "description": "Students get a practical introduction to real mixture separations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Light and heavy keys"
+            },
+            {
+              "type": "concept",
+              "title": "Fenske-Underwood-Gilliland overview"
+            },
+            {
+              "type": "concept",
+              "title": "Shortcut versus rigorous simulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Absorption and Stripping",
+      "description": "Students learn how gas-liquid contact is used to remove or recover solutes from process streams.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gas-liquid contacting",
+          "description": "Students learn how a liquid solvent removes a gas-phase solute or releases it during stripping.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absorbers and strippers"
+            },
+            {
+              "type": "concept",
+              "title": "Solubility and Henry's law"
+            },
+            {
+              "type": "concept",
+              "title": "Countercurrent operation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design methods",
+          "description": "Design connects equilibrium, operating lines, and transfer units.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kremser method"
+            },
+            {
+              "type": "concept",
+              "title": "NTU/HTU ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent rate selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Examples show why absorption matters in environmental and process industries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acid gas removal"
+            },
+            {
+              "type": "concept",
+              "title": "VOC recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Steam stripping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Liquid-Liquid Extraction",
+      "description": "This module focuses on using a solvent phase to selectively separate components when distillation is impractical or inefficient.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solvent selection",
+          "description": "The point is to choose a solvent that improves separation without creating new problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent recovery and toxicity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ternary phase behavior",
+          "description": "Students learn to read phase diagrams used in extraction design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binodal curves"
+            },
+            {
+              "type": "concept",
+              "title": "Tie lines"
+            },
+            {
+              "type": "concept",
+              "title": "Plait point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stage calculations",
+          "description": "Extraction design applies staged-contact logic to liquid phases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-stage extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Crosscurrent extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Countercurrent extraction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Leaching and Solid-Liquid Extraction",
+      "description": "Students study how soluble material is removed from solids using solvent contact and mass-transfer principles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solid-liquid contact",
+          "description": "Students learn how solute leaves a solid matrix and enters a solvent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Washing and diffusion limits"
+            },
+            {
+              "type": "concept",
+              "title": "Particle size effects"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent penetration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Leaching design",
+          "description": "The design problem balances yield, solvent use, and contact time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Batch leaching"
+            },
+            {
+              "type": "concept",
+              "title": "Countercurrent leaching"
+            },
+            {
+              "type": "concept",
+              "title": "Retention and underflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Industrial examples",
+          "description": "Applications make the unit operation concrete.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mineral extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Food and oil extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Pharmaceutical extraction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Membrane Separations",
+      "description": "This topic introduces pressure-, concentration-, and selectivity-driven separations using modern membrane systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane transport",
+          "description": "Students learn how selective barriers separate components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permeability and selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Flux equations"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration polarization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane processes",
+          "description": "Different driving forces support different applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microfiltration, ultrafiltration, nanofiltration"
+            },
+            {
+              "type": "concept",
+              "title": "Reverse osmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Gas separation and pervaporation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Module and system design",
+          "description": "Membrane performance depends on module layout and fouling control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spiral-wound and hollow-fiber modules"
+            },
+            {
+              "type": "concept",
+              "title": "Fouling and cleaning"
+            },
+            {
+              "type": "concept",
+              "title": "Stage cut and recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Adsorption and Ion Exchange",
+      "description": "Students learn how surfaces and solid media capture selected components for purification, recovery, or polishing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Adsorption equilibrium",
+          "description": "Students learn how solids take up solutes and how capacity is represented.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isotherms"
+            },
+            {
+              "type": "concept",
+              "title": "Surface area and pore structure"
+            },
+            {
+              "type": "concept",
+              "title": "Activated carbon and zeolites"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fixed-bed operation",
+          "description": "This subtopic connects adsorption behavior to column breakthrough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breakthrough curves"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-transfer zones"
+            },
+            {
+              "type": "concept",
+              "title": "Bed regeneration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ion exchange",
+          "description": "Students learn a related separation method driven by charge and resin selectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resins"
+            },
+            {
+              "type": "concept",
+              "title": "Water softening"
+            },
+            {
+              "type": "concept",
+              "title": "Regeneration cycles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Drying and Humidification",
+      "description": "This module covers gas-vapor-solid operations where heat and mass transfer determine moisture removal and air-water behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Psychrometrics",
+          "description": "Students learn how air-water vapor mixtures are represented and used in humidification and drying.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Humidity, relative humidity, and wet-bulb temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Psychrometric charts"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic saturation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drying mechanisms",
+          "description": "Drying design depends on heat and mass transfer from wet solids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant-rate drying"
+            },
+            {
+              "type": "concept",
+              "title": "Falling-rate drying"
+            },
+            {
+              "type": "concept",
+              "title": "Moisture content and drying curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equipment",
+          "description": "Students connect drying theory to industrial hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tray dryers"
+            },
+            {
+              "type": "concept",
+              "title": "Rotary dryers"
+            },
+            {
+              "type": "concept",
+              "title": "Spray dryers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equipment Design and Sizing",
+      "description": "Students connect separation calculations to real equipment geometry, hydraulics, capacity, pressure drop, and operating limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Column internals",
+          "description": "The point is to translate required stages or transfer units into real columns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trays, packing, distributors"
+            },
+            {
+              "type": "concept",
+              "title": "Column diameter"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure drop"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacity and hydraulics",
+          "description": "Students learn operating constraints that can limit performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flooding"
+            },
+            {
+              "type": "concept",
+              "title": "Weeping"
+            },
+            {
+              "type": "concept",
+              "title": "Entrainment and foaming"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design documentation",
+          "description": "Separation designs need clear calculations and equipment specifications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design basis"
+            },
+            {
+              "type": "concept",
+              "title": "Sizing margins"
+            },
+            {
+              "type": "concept",
+              "title": "PFD/P&ID-level information"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Integration, Simulation, Safety, and Sustainability",
+      "description": "The course closes by placing separation units inside larger process systems, where economics, energy use, safety, and environmental impacts drive design choices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy integration",
+          "description": "Students learn why separations dominate plant energy use and how design can reduce utilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reboiler and condenser duties"
+            },
+            {
+              "type": "concept",
+              "title": "Heat integration"
+            },
+            {
+              "type": "concept",
+              "title": "Reflux-energy tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and optimization",
+          "description": "Process simulators help evaluate realistic mixtures and design alternatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shortcut models"
+            },
+            {
+              "type": "concept",
+              "title": "Rigorous column models"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety and sustainability",
+          "description": "Students connect separation choices to hazards and environmental impact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure and relief considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent safety"
+            },
+            {
+              "type": "concept",
+              "title": "Waste, emissions, and lifecycle considerations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

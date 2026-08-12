@@ -1,0 +1,904 @@
+{
+  "slug": "optics",
+  "title": "Optics",
+  "description": "Optics develops a rigorous understanding of light as rays, waves, electromagnetic fields, beams, photons, and engineered signals. The course integrates classical optics, photonics, imaging, lasers, nonlinear optics, guided-wave systems, optical communications, sensing, quantum optics, and laboratory design.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Optical Field Foundations and Electromagnetic Waves",
+      "description": "Students ground optics in Maxwell's equations, wave propagation, energy flow, and the physical meaning of optical fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Maxwell-to-waves connection",
+          "description": "The point is to see optics as an electromagnetic wave theory with measurable fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wave equation"
+            },
+            {
+              "type": "concept",
+              "title": "Plane waves"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy and momentum",
+          "description": "Students learn what optical power, intensity, and momentum mean physically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poynting vector"
+            },
+            {
+              "type": "concept",
+              "title": "Irradiance"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation pressure preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Material response",
+          "description": "Optical behavior depends on how matter polarizes in response to fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Refractive index"
+            },
+            {
+              "type": "concept",
+              "title": "Dispersion"
+            },
+            {
+              "type": "concept",
+              "title": "Absorption"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geometrical Optics and Imaging Systems",
+      "description": "This module treats light as rays to analyze lenses, mirrors, imaging, stops, pupils, and first-order optical systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ray tracing",
+          "description": "Ray methods give fast, practical tools for designing first-order systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reflection and refraction"
+            },
+            {
+              "type": "concept",
+              "title": "Snell's law"
+            },
+            {
+              "type": "concept",
+              "title": "Paraxial approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lenses and mirrors",
+          "description": "Students analyze image formation with standard optical elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thin and thick lenses"
+            },
+            {
+              "type": "concept",
+              "title": "Mirrors"
+            },
+            {
+              "type": "concept",
+              "title": "Lensmaker's equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System layout",
+          "description": "Imaging systems depend on stops, pupils, fields, and magnification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aperture stop"
+            },
+            {
+              "type": "concept",
+              "title": "Entrance and exit pupils"
+            },
+            {
+              "type": "concept",
+              "title": "Field of view"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optical Design, Aberrations, and Instrumentation",
+      "description": "Students learn why real systems depart from paraxial ideal behavior and how optical instruments are designed, aligned, and evaluated.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Aberrations",
+          "description": "Students learn why real images blur even when ray optics predicts a perfect focus.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spherical aberration"
+            },
+            {
+              "type": "concept",
+              "title": "Coma and astigmatism"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatic aberration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optical instruments",
+          "description": "Instrumentation examples connect theory to cameras, microscopes, telescopes, and spectrometers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microscope objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Telescopes"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrographs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design practice",
+          "description": "Optical design requires tolerances, alignment, and measurable performance criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spot diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "MTF"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance and alignment basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wave Propagation, Gaussian Beams, and Resonators",
+      "description": "This topic develops beam propagation, Gaussian modes, cavity stability, and resonator behavior that are essential for lasers and photonics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gaussian beams",
+          "description": "Many laser beams are best modeled by Gaussian beam propagation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Beam waist"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh range"
+            },
+            {
+              "type": "concept",
+              "title": "Divergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ABCD matrices",
+          "description": "Matrix methods simplify propagation through paraxial optical systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ray-transfer matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Q-parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Stable propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resonators",
+          "description": "Optical cavities select modes and shape laser output.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cavity stability"
+            },
+            {
+              "type": "concept",
+              "title": "Longitudinal and transverse modes"
+            },
+            {
+              "type": "concept",
+              "title": "Mode matching"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interference, Coherence, and Interferometry",
+      "description": "Students study how phase relationships create measurable intensity patterns and enable precision measurement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Two-beam interference",
+          "description": "Students learn how phase differences become intensity fringes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Path difference"
+            },
+            {
+              "type": "concept",
+              "title": "Fringe visibility"
+            },
+            {
+              "type": "concept",
+              "title": "Michelson and Mach-Zehnder interferometers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coherence",
+          "description": "Coherence determines whether interference survives real source bandwidth and size.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temporal coherence"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial coherence"
+            },
+            {
+              "type": "concept",
+              "title": "Coherence length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precision measurement",
+          "description": "Interferometry turns small length or phase changes into measurable signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase shifting"
+            },
+            {
+              "type": "concept",
+              "title": "Heterodyne detection"
+            },
+            {
+              "type": "concept",
+              "title": "Metrology applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diffraction, Apertures, and Resolution",
+      "description": "This module explains how finite apertures shape light, limit imaging resolution, and define the point-spread function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Diffraction regimes",
+          "description": "Propagation from finite apertures produces predictable spreading and structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Huygens-Fresnel principle"
+            },
+            {
+              "type": "concept",
+              "title": "Fresnel diffraction"
+            },
+            {
+              "type": "concept",
+              "title": "Fraunhofer diffraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aperture functions",
+          "description": "Aperture shape controls optical response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single slit"
+            },
+            {
+              "type": "concept",
+              "title": "Circular aperture and Airy pattern"
+            },
+            {
+              "type": "concept",
+              "title": "Gratings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resolution limits",
+          "description": "Diffraction sets fundamental limits on imaging and focusing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rayleigh criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical aperture"
+            },
+            {
+              "type": "concept",
+              "title": "Point-spread function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fourier Optics and Computational Imaging",
+      "description": "Students learn how lenses, propagation, and apertures manipulate spatial frequency content and enable modern imaging methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial frequency",
+          "description": "Images can be understood as combinations of spatial-frequency components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier transforms"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency filtering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lenses as Fourier processors",
+          "description": "A lens can physically perform Fourier-transform operations under the right conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier plane"
+            },
+            {
+              "type": "concept",
+              "title": "4f systems"
+            },
+            {
+              "type": "concept",
+              "title": "Optical filtering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational imaging",
+          "description": "Modern imaging combines optics, sensors, and algorithms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deconvolution"
+            },
+            {
+              "type": "concept",
+              "title": "Phase retrieval"
+            },
+            {
+              "type": "concept",
+              "title": "Synthetic aperture and coded imaging preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Polarization, Birefringence, and Anisotropic Media",
+      "description": "This topic covers the vector nature of light and how materials and optical elements transform polarization states.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polarization states",
+          "description": "Polarization describes the vector orientation and phase of the optical field.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear, circular, elliptical"
+            },
+            {
+              "type": "concept",
+              "title": "Jones vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Stokes parameters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polarization optics",
+          "description": "Optical elements can analyze or transform polarization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarizers"
+            },
+            {
+              "type": "concept",
+              "title": "Wave plates"
+            },
+            {
+              "type": "concept",
+              "title": "Jones and Mueller matrices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Anisotropic media",
+          "description": "Birefringent materials split and retard polarization components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ordinary and extraordinary rays"
+            },
+            {
+              "type": "concept",
+              "title": "Crystal optics"
+            },
+            {
+              "type": "concept",
+              "title": "Optical activity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lasers, Optical Sources, and Photodetectors",
+      "description": "Students connect gain, resonators, source coherence, detector physics, and noise to practical optical systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Laser physics",
+          "description": "Lasers arise from gain, feedback, and population inversion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stimulated emission"
+            },
+            {
+              "type": "concept",
+              "title": "Threshold"
+            },
+            {
+              "type": "concept",
+              "title": "Rate equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optical sources",
+          "description": "Different sources have different spectra, coherence, power, and modulation properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LEDs"
+            },
+            {
+              "type": "concept",
+              "title": "Diode lasers"
+            },
+            {
+              "type": "concept",
+              "title": "Supercontinuum and broadband sources"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Photodetection",
+          "description": "Detectors convert photons into electrical signals with noise and bandwidth limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Photodiodes and APDs"
+            },
+            {
+              "type": "concept",
+              "title": "Shot noise and dark current"
+            },
+            {
+              "type": "concept",
+              "title": "Responsivity and NEP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonlinear Optics and Light-Matter Interaction",
+      "description": "This module introduces intensity-dependent optical response, frequency conversion, ultrafast effects, and modern nonlinear applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nonlinear susceptibility",
+          "description": "At high intensity, material response can depend nonlinearly on field strength.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second- and third-order response"
+            },
+            {
+              "type": "concept",
+              "title": "Phase matching"
+            },
+            {
+              "type": "concept",
+              "title": "Intensity-dependent index"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frequency conversion",
+          "description": "Nonlinear media can create new optical frequencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second-harmonic generation"
+            },
+            {
+              "type": "concept",
+              "title": "Sum/difference frequency generation"
+            },
+            {
+              "type": "concept",
+              "title": "Optical parametric processes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ultrafast and nonlinear effects",
+          "description": "Short pulses and high intensities reveal rich light-matter dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self-phase modulation"
+            },
+            {
+              "type": "concept",
+              "title": "Solitons"
+            },
+            {
+              "type": "concept",
+              "title": "Kerr effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fiber Optics, Waveguides, and Integrated Photonics",
+      "description": "Students study guided-wave optics from optical fibers through silicon photonics and chip-scale devices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Guided modes",
+          "description": "Waveguides confine light and determine modal propagation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total internal reflection"
+            },
+            {
+              "type": "concept",
+              "title": "Mode cutoff"
+            },
+            {
+              "type": "concept",
+              "title": "Effective index"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fiber optics",
+          "description": "Fibers enable low-loss long-distance transmission and sensing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-mode and multimode fiber"
+            },
+            {
+              "type": "concept",
+              "title": "Dispersion"
+            },
+            {
+              "type": "concept",
+              "title": "Loss and nonlinearities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated photonics",
+          "description": "Chip-scale optics brings waveguides, resonators, modulators, and detectors together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Silicon photonics"
+            },
+            {
+              "type": "concept",
+              "title": "Ring resonators"
+            },
+            {
+              "type": "concept",
+              "title": "Photonic integrated circuits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optical Communications, Sensing, and Photonic Systems",
+      "description": "This topic applies optics to links, modulation, link budgets, sensing, microscopy, spectroscopy, and measurement systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Optical links",
+          "description": "Communications systems require source, fiber, modulator, detector, and noise budgets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Link budgets"
+            },
+            {
+              "type": "concept",
+              "title": "WDM"
+            },
+            {
+              "type": "concept",
+              "title": "Receiver sensitivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optical sensing",
+          "description": "Optics can measure displacement, strain, fields, chemistry, and biological signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fiber Bragg gratings"
+            },
+            {
+              "type": "concept",
+              "title": "LIDAR"
+            },
+            {
+              "type": "concept",
+              "title": "Interferometric sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Imaging and spectroscopy systems",
+          "description": "Photonics supports measurement across science and engineering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Spectroscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Hyperspectral and biomedical imaging"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quantum Optics and Modern Photonic Frontiers",
+      "description": "Students see how photons, quantum states, entanglement, and photon statistics extend classical optics into modern research.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Photon statistics",
+          "description": "Quantum optics treats light as quantum states as well as waves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coherent states"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal and single-photon light"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantum photonic devices",
+          "description": "Devices generate, manipulate, and detect quantum optical states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-photon sources"
+            },
+            {
+              "type": "concept",
+              "title": "SPADs and superconducting detectors"
+            },
+            {
+              "type": "concept",
+              "title": "Entangled photon pairs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frontier applications",
+          "description": "Modern optics connects to quantum information, precision metrology, and integrated systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantum communication"
+            },
+            {
+              "type": "concept",
+              "title": "Optical clocks"
+            },
+            {
+              "type": "concept",
+              "title": "Photonic quantum computing preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optical Laboratory, Measurement, and Design Project",
+      "description": "The course closes by integrating experimental alignment, uncertainty, safety, design, simulation, and communication in a capstone optical system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lab practice and safety",
+          "description": "Optics training requires careful alignment and safe handling of sources and components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Laser safety"
+            },
+            {
+              "type": "concept",
+              "title": "Alignment workflows"
+            },
+            {
+              "type": "concept",
+              "title": "Clean optics handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and uncertainty",
+          "description": "Students learn to trust results by quantifying errors and repeatability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Detector calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Signal-to-noise analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design project",
+          "description": "The project integrates theory, simulation, experiment, and communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Optical layout and simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Final report and demonstration"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

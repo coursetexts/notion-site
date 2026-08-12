@@ -1,0 +1,968 @@
+{
+  "slug": "programming-i",
+  "title": "Programming I",
+  "description": "A foundational undergraduate introduction to programming covering variables, data types, control flow, functions, collections, file I/O, object-oriented foundations, recursion, debugging, testing, Git, APIs, professional code style, applied IT scripting, and a portfolio-ready capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Programming Mindset, Tools, Workflow, and Computational Problem Solving",
+      "description": "Begin with how programmers think, set up tools, break problems down, and work professionally.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Computational thinking",
+          "description": "Students learn to translate messy problems into clear steps a computer can execute.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Pattern recognition"
+            },
+            {
+              "type": "concept",
+              "title": "Abstraction and algorithm design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Development environment",
+          "description": "The point is to get comfortable writing, running, and organizing code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interpreter or compiler"
+            },
+            {
+              "type": "concept",
+              "title": "IDE/Editor Setup"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal basics and project folders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Programming habits",
+          "description": "Learners begin practicing habits that reduce frustration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incremental development"
+            },
+            {
+              "type": "concept",
+              "title": "Frequent testing"
+            },
+            {
+              "type": "concept",
+              "title": "Reading errors carefully"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Variables, Data Types, Expressions, Operators, and Input/Output",
+      "description": "Build the basic vocabulary for storing values, computing results, and interacting with users.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Values and variables",
+          "description": "Students learn how programs store and name information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Naming conventions"
+            },
+            {
+              "type": "concept",
+              "title": "State changes over time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Types and expressions",
+          "description": "The gist is to predict how computations behave.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integers, Floats, Strings, Booleans"
+            },
+            {
+              "type": "concept",
+              "title": "Arithmetic, comparison, and logical operators"
+            },
+            {
+              "type": "concept",
+              "title": "Type conversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Input and output",
+          "description": "Learners make programs interactive and understandable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Console input"
+            },
+            {
+              "type": "concept",
+              "title": "Formatted output"
+            },
+            {
+              "type": "concept",
+              "title": "User prompts and validation basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditionals, Boolean Logic, Control Flow, and Decision Design",
+      "description": "Learn how programs choose different paths based on data, rules, and conditions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boolean logic",
+          "description": "Students learn how conditions are evaluated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "True/False Expressions"
+            },
+            {
+              "type": "concept",
+              "title": "and, or, not"
+            },
+            {
+              "type": "concept",
+              "title": "Truth tables and operator precedence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Branching",
+          "description": "The point is to control which code runs under which conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "if, elif/else"
+            },
+            {
+              "type": "concept",
+              "title": "Nested conditionals"
+            },
+            {
+              "type": "concept",
+              "title": "Guard clauses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision design",
+          "description": "Learners model real rules without creating confusing code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutually exclusive cases"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary cases"
+            },
+            {
+              "type": "concept",
+              "title": "Readable condition names"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Loops, Iteration Patterns, Accumulators, and Repetition Control",
+      "description": "Use repetition to process data, automate tasks, and build efficient solutions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Loop types",
+          "description": "Students learn to repeat work predictably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "for Loops"
+            },
+            {
+              "type": "concept",
+              "title": "while Loops"
+            },
+            {
+              "type": "concept",
+              "title": "Loop counters and ranges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common patterns",
+          "description": "The gist is to recognize recurring loop structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Counting and summing"
+            },
+            {
+              "type": "concept",
+              "title": "Searching and filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Max/Min and Aggregation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loop control",
+          "description": "Learners avoid infinite loops and off-by-one errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "break and continue"
+            },
+            {
+              "type": "concept",
+              "title": "Sentinel values"
+            },
+            {
+              "type": "concept",
+              "title": "Loop invariants and tracing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions, Parameters, Return Values, Scope, and Decomposition",
+      "description": "Organize programs into reusable pieces that are easier to read, test, and maintain.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Function design",
+          "description": "Students organize programs into named reusable actions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function signatures"
+            },
+            {
+              "type": "concept",
+              "title": "Parameters and arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Return values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scope and data flow",
+          "description": "The point is to know where values live and how they move.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local and global variables"
+            },
+            {
+              "type": "concept",
+              "title": "Mutable versus immutable values"
+            },
+            {
+              "type": "concept",
+              "title": "Side effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decomposition",
+          "description": "Learners break large programs into testable pieces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single responsibility"
+            },
+            {
+              "type": "concept",
+              "title": "Helper functions"
+            },
+            {
+              "type": "concept",
+              "title": "Top-down and bottom-up design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lists, Arrays, Strings, Dictionaries, and Core Data Collections",
+      "description": "Represent groups of data and choose appropriate structures for common programming tasks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sequences",
+          "description": "Students represent ordered data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lists/Arrays"
+            },
+            {
+              "type": "concept",
+              "title": "Indexing and slicing"
+            },
+            {
+              "type": "concept",
+              "title": "Iteration over collections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strings as data",
+          "description": "The gist is to process text carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "String methods"
+            },
+            {
+              "type": "concept",
+              "title": "Parsing and formatting"
+            },
+            {
+              "type": "concept",
+              "title": "Search, split, join, and validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Associative collections",
+          "description": "Learners map keys to values for practical programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dictionaries/Maps"
+            },
+            {
+              "type": "concept",
+              "title": "Counting frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Records and nested structures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Algorithms, Pseudocode, Tracing, Complexity Intuition, and Problem-Solving Patterns",
+      "description": "Develop algorithmic reasoning and learn how to plan before coding.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Algorithm planning",
+          "description": "Students practice solving before typing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pseudocode"
+            },
+            {
+              "type": "concept",
+              "title": "Flowcharts"
+            },
+            {
+              "type": "concept",
+              "title": "Examples and counterexamples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tracing",
+          "description": "The point is to understand exactly what code does.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace tables"
+            },
+            {
+              "type": "concept",
+              "title": "Manual execution"
+            },
+            {
+              "type": "concept",
+              "title": "State diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Efficiency intuition",
+          "description": "Learners get an early feel for performance tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear versus nested loops"
+            },
+            {
+              "type": "concept",
+              "title": "Input size"
+            },
+            {
+              "type": "concept",
+              "title": "Simple Big-O Vocabulary"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "File I/O, Data Formats, Exceptions, and Persistent Data",
+      "description": "Read, write, validate, and safely handle data beyond a single program run.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reading and writing files",
+          "description": "Students learn to persist information beyond one run.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Opening and closing files"
+            },
+            {
+              "type": "concept",
+              "title": "Reading lines"
+            },
+            {
+              "type": "concept",
+              "title": "Writing text output"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data formats",
+          "description": "The gist is to use simple structured files.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSV"
+            },
+            {
+              "type": "concept",
+              "title": "JSON Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration and log files"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exceptions",
+          "description": "Learners handle failure without crashing unnecessarily.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "try/except"
+            },
+            {
+              "type": "concept",
+              "title": "File-not-found and conversion errors"
+            },
+            {
+              "type": "concept",
+              "title": "Clear user messages"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Debugging, Testing, Assertions, Error Messages, and Defensive Programming",
+      "description": "Build habits for finding mistakes, proving behavior, and writing more reliable programs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Debugging strategy",
+          "description": "Students learn systematic ways to find faults.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reproduce the bug"
+            },
+            {
+              "type": "concept",
+              "title": "Isolate the cause"
+            },
+            {
+              "type": "concept",
+              "title": "Use print/Debugger/Logging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing basics",
+          "description": "The point is to check behavior intentionally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Manual tests"
+            },
+            {
+              "type": "concept",
+              "title": "Unit tests"
+            },
+            {
+              "type": "concept",
+              "title": "Expected versus actual results"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Defensive programming",
+          "description": "Learners write code that anticipates bad input and edge cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assertions"
+            },
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary and error cases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Object-Oriented Foundations, Reusable Modules, and Program Organization",
+      "description": "Introduce objects, modules, and organization patterns that prepare students for Programming II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Objects and classes",
+          "description": "Students get a first look at modeling data plus behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classes and instances"
+            },
+            {
+              "type": "concept",
+              "title": "Attributes and methods"
+            },
+            {
+              "type": "concept",
+              "title": "Constructors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modules",
+          "description": "The gist is to organize code across files and reuse existing code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Importing modules"
+            },
+            {
+              "type": "concept",
+              "title": "Writing simple modules"
+            },
+            {
+              "type": "concept",
+              "title": "Namespaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Program structure",
+          "description": "Learners prepare for larger projects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Main functions"
+            },
+            {
+              "type": "concept",
+              "title": "Separation of concerns"
+            },
+            {
+              "type": "concept",
+              "title": "Readable project layout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Recursion, Nested Structures, and Thinking in Smaller Subproblems",
+      "description": "Learn recursive thinking as a powerful way to express repeated substructure and divide-and-conquer logic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Recursive thinking",
+          "description": "Students learn to solve a problem by solving smaller versions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base cases"
+            },
+            {
+              "type": "concept",
+              "title": "Recursive cases"
+            },
+            {
+              "type": "concept",
+              "title": "Call stack intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recursive examples",
+          "description": "The point is to see where recursion fits naturally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factorial and Fibonacci"
+            },
+            {
+              "type": "concept",
+              "title": "Nested lists"
+            },
+            {
+              "type": "concept",
+              "title": "Tree-like structures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recursion tradeoffs",
+          "description": "Learners compare recursion to iteration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Readability"
+            },
+            {
+              "type": "concept",
+              "title": "Performance"
+            },
+            {
+              "type": "concept",
+              "title": "Stack depth and termination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Libraries, APIs, Packages, Documentation, and Code Reuse",
+      "description": "Use existing tools responsibly and learn how to read documentation like a working programmer.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Using libraries",
+          "description": "Students learn not to reinvent every tool.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard library"
+            },
+            {
+              "type": "concept",
+              "title": "Third-party packages"
+            },
+            {
+              "type": "concept",
+              "title": "Package installation basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation skills",
+          "description": "The gist is to become independent with unfamiliar tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reading examples"
+            },
+            {
+              "type": "concept",
+              "title": "Function signatures"
+            },
+            {
+              "type": "concept",
+              "title": "Searching docs and error messages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "APIs and Data Access",
+          "description": "Learners get a light introduction to external data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HTTP/API Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Requests and responses"
+            },
+            {
+              "type": "concept",
+              "title": "JSON Returned from Services"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Version Control, Code Style, Collaboration, and Professional Development Practices",
+      "description": "Build professional programming workflow habits early: readable code, Git, reviews, and collaboration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Version control",
+          "description": "Students learn to save and explain code history.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Git Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Commits and messages"
+            },
+            {
+              "type": "concept",
+              "title": "Branches and GitHub"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Code style",
+          "description": "The point is to write code humans can read.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Naming"
+            },
+            {
+              "type": "concept",
+              "title": "Formatting"
+            },
+            {
+              "type": "concept",
+              "title": "Comments and docstrings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collaboration",
+          "description": "Learners practice lightweight professional workflow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Issues and tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Code review basics"
+            },
+            {
+              "type": "concept",
+              "title": "Academic integrity and responsible help-seeking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applied IT Programming: Automation, Data, Web, Security, and Practical Scripts",
+      "description": "Connect programming fundamentals to IT tasks such as automation, data processing, web basics, and safe handling of inputs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Automation scripts",
+          "description": "Students apply programming to real IT tasks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "File organization"
+            },
+            {
+              "type": "concept",
+              "title": "Log parsing"
+            },
+            {
+              "type": "concept",
+              "title": "System or data cleanup tasks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data and web basics",
+          "description": "The gist is to connect programming to later IT courses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSV Analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Simple reports"
+            },
+            {
+              "type": "concept",
+              "title": "Intro Web/API Data Use"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safe programming",
+          "description": "Learners consider security and ethics even in beginner code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input handling"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets and credentials"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy and responsible data use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Programming I Capstone: Design, Build, Test, Document, and Present a Practical Program",
+      "description": "Synthesize the course into a complete, tested, documented beginner project suitable for a portfolio.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project design",
+          "description": "Students scope a useful beginner-level program.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Requirements and user stories"
+            },
+            {
+              "type": "concept",
+              "title": "Data and feature plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation and testing",
+          "description": "The point is to integrate course skills into working software.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functions and collections"
+            },
+            {
+              "type": "concept",
+              "title": "Files or APIs"
+            },
+            {
+              "type": "concept",
+              "title": "Debugging and test cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Delivery and reflection",
+          "description": "Learners produce a portfolio-ready artifact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "README and User Guide"
+            },
+            {
+              "type": "concept",
+              "title": "Demo and presentation"
+            },
+            {
+              "type": "concept",
+              "title": "Lessons learned and next steps"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

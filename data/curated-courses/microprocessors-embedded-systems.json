@@ -1,0 +1,1416 @@
+{
+  "slug": "microprocessors-embedded-systems",
+  "title": "Microprocessors / Embedded Systems",
+  "description": "By the end of the course, students should be able to reason across the hardware/software boundary, evaluate processor and memory-system tradeoffs, build reliable embedded firmware, use real-time operating system concepts, design with peripherals and interrupts, apply co-design and accelerator thinking, and validate embedded systems against timing, power, safety, reliability, and security requirements.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Hardware-Software Interface and Computer Organization",
+      "description": "Build the conceptual bridge between programs, compilers, operating systems, digital logic, and physical hardware execution.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Abstraction layers",
+          "description": "Students learn how software abstractions map onto hardware mechanisms and physical constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Applications"
+            },
+            {
+              "type": "concept",
+              "title": "Compilers"
+            },
+            {
+              "type": "concept",
+              "title": "Operating systems"
+            },
+            {
+              "type": "concept",
+              "title": "Instruction sets"
+            },
+            {
+              "type": "concept",
+              "title": "Digital logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Machine-level execution",
+          "description": "This subtopic explains how high-level code becomes instructions, memory accesses, and device interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assembly language"
+            },
+            {
+              "type": "concept",
+              "title": "Registers"
+            },
+            {
+              "type": "concept",
+              "title": "Stack and heap"
+            },
+            {
+              "type": "concept",
+              "title": "Calling conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Memory-mapped I/O"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computer organization",
+          "description": "Students build a mental model of the components inside a computer system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Processor core"
+            },
+            {
+              "type": "concept",
+              "title": "Memory subsystem"
+            },
+            {
+              "type": "concept",
+              "title": "Interconnect"
+            },
+            {
+              "type": "concept",
+              "title": "I/O devices"
+            },
+            {
+              "type": "concept",
+              "title": "Clock and reset"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instruction Set Architecture and RISC-V/Arm Ecosystems",
+      "description": "Analyze instruction sets, addressing modes, privilege levels, ABI conventions, and modern open and commercial processor ecosystems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ISA concepts",
+          "description": "Students learn what an instruction set specifies and why ISA design shapes software and hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instruction formats"
+            },
+            {
+              "type": "concept",
+              "title": "Registers"
+            },
+            {
+              "type": "concept",
+              "title": "Addressing modes"
+            },
+            {
+              "type": "concept",
+              "title": "Load-store design"
+            },
+            {
+              "type": "concept",
+              "title": "Control flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RISC-V and Arm",
+          "description": "This subtopic compares open and commercial processor ecosystems used in modern embedded systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RISC-V base ISA"
+            },
+            {
+              "type": "concept",
+              "title": "RISC-V extensions"
+            },
+            {
+              "type": "concept",
+              "title": "Arm Cortex-M"
+            },
+            {
+              "type": "concept",
+              "title": "Arm Cortex-A"
+            },
+            {
+              "type": "concept",
+              "title": "Thumb and compressed instructions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Privilege and software interface",
+          "description": "Students connect architecture with operating systems, firmware, and application binaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Privilege modes"
+            },
+            {
+              "type": "concept",
+              "title": "Exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "System calls"
+            },
+            {
+              "type": "concept",
+              "title": "ABI"
+            },
+            {
+              "type": "concept",
+              "title": "Memory protection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Datapaths, Control, and Processor Microarchitecture",
+      "description": "Design and evaluate datapaths, control units, ALUs, registers, buses, and microarchitectural tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Datapath elements",
+          "description": "Students learn how processor hardware executes instructions step by step.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ALU"
+            },
+            {
+              "type": "concept",
+              "title": "Register file"
+            },
+            {
+              "type": "concept",
+              "title": "Program counter"
+            },
+            {
+              "type": "concept",
+              "title": "Multiplexers"
+            },
+            {
+              "type": "concept",
+              "title": "Immediate generation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control design",
+          "description": "This subtopic shows how instructions coordinate datapath behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hardwired control"
+            },
+            {
+              "type": "concept",
+              "title": "Microcoded control"
+            },
+            {
+              "type": "concept",
+              "title": "Control signals"
+            },
+            {
+              "type": "concept",
+              "title": "Decode logic"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-state machines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microarchitectural tradeoffs",
+          "description": "Students learn to evaluate designs beyond functional correctness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clock period"
+            },
+            {
+              "type": "concept",
+              "title": "Critical path"
+            },
+            {
+              "type": "concept",
+              "title": "CPI"
+            },
+            {
+              "type": "concept",
+              "title": "Area"
+            },
+            {
+              "type": "concept",
+              "title": "Design complexity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pipelining, Hazards, and Superscalar Execution",
+      "description": "Understand instruction-level parallelism, pipeline hazards, forwarding, prediction, out-of-order execution, and performance limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pipeline fundamentals",
+          "description": "Students learn why pipelining improves throughput and what limits it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pipeline stages"
+            },
+            {
+              "type": "concept",
+              "title": "Latency vs throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Clocking"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline registers"
+            },
+            {
+              "type": "concept",
+              "title": "CPI idealization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hazards and mitigation",
+          "description": "This subtopic covers the main correctness and performance challenges in pipelined execution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Control hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Structural hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Forwarding"
+            },
+            {
+              "type": "concept",
+              "title": "Stalls and bubbles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Advanced execution",
+          "description": "Students build a working vocabulary for modern high-performance processors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Branch prediction"
+            },
+            {
+              "type": "concept",
+              "title": "Superscalar issue"
+            },
+            {
+              "type": "concept",
+              "title": "Out-of-order execution"
+            },
+            {
+              "type": "concept",
+              "title": "Speculation"
+            },
+            {
+              "type": "concept",
+              "title": "Reorder buffers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory Hierarchy, Caches, Virtual Memory, and Coherence",
+      "description": "Model the memory system from registers to caches, DRAM, TLBs, virtual memory, and multicore coherence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cache organization",
+          "description": "Students learn how locality enables fast average memory access.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cache lines"
+            },
+            {
+              "type": "concept",
+              "title": "Associativity"
+            },
+            {
+              "type": "concept",
+              "title": "Replacement policies"
+            },
+            {
+              "type": "concept",
+              "title": "Write policies"
+            },
+            {
+              "type": "concept",
+              "title": "Miss penalties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Virtual memory",
+          "description": "This subtopic connects memory management with hardware translation and protection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pages"
+            },
+            {
+              "type": "concept",
+              "title": "TLBs"
+            },
+            {
+              "type": "concept",
+              "title": "Page tables"
+            },
+            {
+              "type": "concept",
+              "title": "Protection bits"
+            },
+            {
+              "type": "concept",
+              "title": "Page faults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multicore memory systems",
+          "description": "Students learn why shared memory creates consistency and communication challenges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cache coherence"
+            },
+            {
+              "type": "concept",
+              "title": "Memory consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic operations"
+            },
+            {
+              "type": "concept",
+              "title": "False sharing"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronization cost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Performance, Energy, Area, and Reliability Metrics",
+      "description": "Use quantitative methods to evaluate architecture and embedded-system choices under speed, power, cost, thermal, and reliability constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quantitative performance",
+          "description": "Students learn to evaluate architecture with evidence rather than intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Execution time"
+            },
+            {
+              "type": "concept",
+              "title": "CPI"
+            },
+            {
+              "type": "concept",
+              "title": "Clock rate"
+            },
+            {
+              "type": "concept",
+              "title": "Amdahl's law"
+            },
+            {
+              "type": "concept",
+              "title": "Benchmarking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy and power",
+          "description": "This subtopic prepares students to design under battery, thermal, and data-center constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic power"
+            },
+            {
+              "type": "concept",
+              "title": "Leakage power"
+            },
+            {
+              "type": "concept",
+              "title": "Energy per operation"
+            },
+            {
+              "type": "concept",
+              "title": "DVFS"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reliability and cost",
+          "description": "Students learn how embedded products balance performance with long-term dependability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soft errors"
+            },
+            {
+              "type": "concept",
+              "title": "Aging"
+            },
+            {
+              "type": "concept",
+              "title": "Watchdogs"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Bill of materials"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Parallelism, GPUs, Accelerators, and Heterogeneous Computing",
+      "description": "Understand data-level, thread-level, and domain-specific acceleration across CPUs, GPUs, FPGAs, and custom hardware.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Forms of parallelism",
+          "description": "Students learn how systems exploit parallel work at multiple scales.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instruction-level parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Data-level parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Thread-level parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Task parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline parallelism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accelerator architectures",
+          "description": "This subtopic introduces hardware built for specialized workloads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPUs"
+            },
+            {
+              "type": "concept",
+              "title": "DSPs"
+            },
+            {
+              "type": "concept",
+              "title": "FPGAs"
+            },
+            {
+              "type": "concept",
+              "title": "NPUs"
+            },
+            {
+              "type": "concept",
+              "title": "ASIC accelerators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Programming implications",
+          "description": "Students learn why acceleration changes software structure and memory movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SIMD"
+            },
+            {
+              "type": "concept",
+              "title": "CUDA concepts"
+            },
+            {
+              "type": "concept",
+              "title": "DMA transfers"
+            },
+            {
+              "type": "concept",
+              "title": "Kernel launch overhead"
+            },
+            {
+              "type": "concept",
+              "title": "Data locality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microcontrollers, SoCs, and Embedded Peripherals",
+      "description": "Work with microcontroller and SoC architectures, buses, GPIO, timers, ADCs, PWM, DMA, and communication peripherals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microcontroller architecture",
+          "description": "Students learn the structure and constraints of embedded processing platforms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cortex-M class cores"
+            },
+            {
+              "type": "concept",
+              "title": "RISC-V microcontrollers"
+            },
+            {
+              "type": "concept",
+              "title": "Flash memory"
+            },
+            {
+              "type": "concept",
+              "title": "SRAM"
+            },
+            {
+              "type": "concept",
+              "title": "Clock trees"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Peripheral interfaces",
+          "description": "This subtopic teaches the devices that connect embedded software to the physical world.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPIO"
+            },
+            {
+              "type": "concept",
+              "title": "UART"
+            },
+            {
+              "type": "concept",
+              "title": "SPI"
+            },
+            {
+              "type": "concept",
+              "title": "I2C"
+            },
+            {
+              "type": "concept",
+              "title": "CAN"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "SoC integration",
+          "description": "Students understand how modern embedded systems combine processing, memory, and specialized blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AMBA buses"
+            },
+            {
+              "type": "concept",
+              "title": "DMA"
+            },
+            {
+              "type": "concept",
+              "title": "ADC and DAC"
+            },
+            {
+              "type": "concept",
+              "title": "PWM"
+            },
+            {
+              "type": "concept",
+              "title": "Timers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Real-Time Operating Systems and Scheduling",
+      "description": "Explain RTOS kernels, tasks, synchronization, timing guarantees, scheduling, latency, and deadline-driven design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "RTOS kernel concepts",
+          "description": "Students learn why embedded operating systems differ from general-purpose operating systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Threads"
+            },
+            {
+              "type": "concept",
+              "title": "Context switching"
+            },
+            {
+              "type": "concept",
+              "title": "Tick interrupts"
+            },
+            {
+              "type": "concept",
+              "title": "Kernel services"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scheduling and timing",
+          "description": "This subtopic focuses on deadline-driven execution and latency control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rate-monotonic scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Earliest-deadline-first"
+            },
+            {
+              "type": "concept",
+              "title": "Priority inversion"
+            },
+            {
+              "type": "concept",
+              "title": "Jitter"
+            },
+            {
+              "type": "concept",
+              "title": "Worst-case execution time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synchronization",
+          "description": "Students learn how concurrent firmware shares resources without breaking timing guarantees.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutexes"
+            },
+            {
+              "type": "concept",
+              "title": "Semaphores"
+            },
+            {
+              "type": "concept",
+              "title": "Queues"
+            },
+            {
+              "type": "concept",
+              "title": "Event groups"
+            },
+            {
+              "type": "concept",
+              "title": "Critical sections"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interrupts, Timers, Device Drivers, and Bare-Metal Firmware",
+      "description": "Design low-level firmware that safely connects software to devices, interrupts, timers, memory-mapped I/O, and boot flows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Interrupt handling",
+          "description": "Students learn how processors respond to asynchronous hardware events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interrupt vectors"
+            },
+            {
+              "type": "concept",
+              "title": "ISR design"
+            },
+            {
+              "type": "concept",
+              "title": "Nested interrupts"
+            },
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Debouncing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Timers and low-level firmware",
+          "description": "This subtopic connects timekeeping with control loops, communication, and scheduling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SysTick"
+            },
+            {
+              "type": "concept",
+              "title": "Capture compare"
+            },
+            {
+              "type": "concept",
+              "title": "PWM generation"
+            },
+            {
+              "type": "concept",
+              "title": "Watchdog timers"
+            },
+            {
+              "type": "concept",
+              "title": "Boot startup"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Device drivers",
+          "description": "Students learn disciplined patterns for controlling hardware peripherals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Memory-mapped registers"
+            },
+            {
+              "type": "concept",
+              "title": "Polling vs interrupt I/O"
+            },
+            {
+              "type": "concept",
+              "title": "Driver abstraction"
+            },
+            {
+              "type": "concept",
+              "title": "HAL design"
+            },
+            {
+              "type": "concept",
+              "title": "Error handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Embedded Software Engineering, Toolchains, and Debugging",
+      "description": "Use cross-compilation, linker scripts, debugging tools, tracing, testing, and disciplined firmware engineering workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Build and deployment workflow",
+          "description": "Students learn the tools that turn embedded code into runnable firmware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cross-compilers"
+            },
+            {
+              "type": "concept",
+              "title": "Linker scripts"
+            },
+            {
+              "type": "concept",
+              "title": "Startup files"
+            },
+            {
+              "type": "concept",
+              "title": "Binary images"
+            },
+            {
+              "type": "concept",
+              "title": "Flashing tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging and tracing",
+          "description": "This subtopic emphasizes observability in systems with limited visibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "JTAG"
+            },
+            {
+              "type": "concept",
+              "title": "SWD"
+            },
+            {
+              "type": "concept",
+              "title": "Breakpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Trace buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Logic analyzers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Firmware quality",
+          "description": "Students learn practices that keep embedded code maintainable and testable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit tests"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware abstraction"
+            },
+            {
+              "type": "concept",
+              "title": "Static analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Coding standards"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous integration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hardware-Software Co-Design and FPGA Prototyping",
+      "description": "Partition functions across hardware and software using HDL, HLS, FPGA prototyping, interfaces, and system-level tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Partitioning decisions",
+          "description": "Students learn to decide which functions belong in software, firmware, FPGA logic, or custom hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latency targets"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput targets"
+            },
+            {
+              "type": "concept",
+              "title": "Flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Power budget"
+            },
+            {
+              "type": "concept",
+              "title": "Development cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "FPGA and HDL foundations",
+          "description": "This subtopic introduces programmable logic as a prototyping and acceleration platform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Verilog and VHDL"
+            },
+            {
+              "type": "concept",
+              "title": "RTL design"
+            },
+            {
+              "type": "concept",
+              "title": "Synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Timing closure"
+            },
+            {
+              "type": "concept",
+              "title": "IP blocks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System integration",
+          "description": "Students learn how hardware accelerators connect to processors and memory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AXI interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Memory-mapped accelerators"
+            },
+            {
+              "type": "concept",
+              "title": "DMA"
+            },
+            {
+              "type": "concept",
+              "title": "Interrupt integration"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware-in-the-loop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Embedded DSP, Control, and Sensor Interfaces",
+      "description": "Connect architecture with signal processing, sampled-data control, sensors, actuators, and real-time estimation workloads.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Real-time signal processing",
+          "description": "Students connect DSP algorithms to finite, real-time embedded implementation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-point arithmetic"
+            },
+            {
+              "type": "concept",
+              "title": "FIR filters"
+            },
+            {
+              "type": "concept",
+              "title": "FFT workloads"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Embedded control loops",
+          "description": "This subtopic links control theory with implementation timing and numerical constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample periods"
+            },
+            {
+              "type": "concept",
+              "title": "PID control"
+            },
+            {
+              "type": "concept",
+              "title": "State estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loop latency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensors and actuators",
+          "description": "Students learn how embedded systems measure, filter, and act on physical signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "ADC timing"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Motor drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor fusion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Embedded Security, Safety, and Trustworthy Systems",
+      "description": "Address secure boot, isolation, side channels, fault tolerance, functional safety, and dependable embedded-system design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Security foundations",
+          "description": "Students learn how embedded devices establish trust and resist attack.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Secure boot"
+            },
+            {
+              "type": "concept",
+              "title": "Firmware signing"
+            },
+            {
+              "type": "concept",
+              "title": "Key storage"
+            },
+            {
+              "type": "concept",
+              "title": "Debug-port locking"
+            },
+            {
+              "type": "concept",
+              "title": "Update integrity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hardware attack surfaces",
+          "description": "This subtopic introduces threats that arise below normal software layers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Side channels"
+            },
+            {
+              "type": "concept",
+              "title": "Fault injection"
+            },
+            {
+              "type": "concept",
+              "title": "Bus probing"
+            },
+            {
+              "type": "concept",
+              "title": "Memory disclosure"
+            },
+            {
+              "type": "concept",
+              "title": "Supply-chain risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety and dependability",
+          "description": "Students learn how embedded systems fail safely in critical environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Watchdogs"
+            },
+            {
+              "type": "concept",
+              "title": "Fail-safe states"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Fault detection"
+            },
+            {
+              "type": "concept",
+              "title": "Functional safety concepts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Validation, Verification, Profiling, and System Integration",
+      "description": "Validate hardware and firmware through simulation, emulation, instrumentation, profiling, formal thinking, and integration testing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Verification methods",
+          "description": "Students learn to prove and test correctness across hardware and firmware boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Assertions"
+            },
+            {
+              "type": "concept",
+              "title": "Test benches"
+            },
+            {
+              "type": "concept",
+              "title": "Formal checks"
+            },
+            {
+              "type": "concept",
+              "title": "Code review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Profiling and measurement",
+          "description": "This subtopic teaches evidence-driven performance, timing, and energy evaluation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle counters"
+            },
+            {
+              "type": "concept",
+              "title": "Power measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Latency tracing"
+            },
+            {
+              "type": "concept",
+              "title": "Cache profiling"
+            },
+            {
+              "type": "concept",
+              "title": "Memory footprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integration and validation",
+          "description": "Students learn to qualify systems against requirements under realistic conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bring-up plans"
+            },
+            {
+              "type": "concept",
+              "title": "Regression tests"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental testing"
+            },
+            {
+              "type": "concept",
+              "title": "EMI awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Embedded Architecture Design Capstone",
+      "description": "Synthesize architecture, firmware, timing, power, reliability, security, debugging, and validation in a complete embedded-system project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "System definition",
+          "description": "Students scope a realistic embedded system before selecting hardware and software approaches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Use cases"
+            },
+            {
+              "type": "concept",
+              "title": "Timing constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Power budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Architecture and implementation",
+          "description": "This subtopic integrates processor choice, firmware design, interfaces, timing, and test strategy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Processor selection"
+            },
+            {
+              "type": "concept",
+              "title": "RTOS vs bare metal"
+            },
+            {
+              "type": "concept",
+              "title": "Peripheral map"
+            },
+            {
+              "type": "concept",
+              "title": "Driver plan"
+            },
+            {
+              "type": "concept",
+              "title": "Prototype milestones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evaluation and communication",
+          "description": "Students present engineering decisions with defensible evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Performance results"
+            },
+            {
+              "type": "concept",
+              "title": "Power results"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Security review"
+            },
+            {
+              "type": "concept",
+              "title": "Technical briefing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1072 @@
+{
+  "slug": "introduction-to-industrial-engineering",
+  "title": "Introduction to Industrial Engineering",
+  "description": "This syllabus is designed as an entry point into industrial and systems engineering: students learn how IE improves work systems through measurement, modeling, people-centered design, quality, operations, analytics, and continuous improvement.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Industrial Engineering Profession, Roles, and Career Pathways",
+      "description": "Introduce industrial and systems engineering as a profession focused on improving complex work systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "What Industrial Engineers Improve",
+          "description": "Students learn the scope of IE: not one machine or one department, but whole systems of work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Industrial engineering, systems engineering, operations engineering, and process improvement"
+            },
+            {
+              "type": "concept",
+              "title": "People, machines, materials, information, money, energy, and time as system elements"
+            },
+            {
+              "type": "concept",
+              "title": "Manufacturing, healthcare, logistics, retail, aviation, public services, finance, and technology systems"
+            },
+            {
+              "type": "concept",
+              "title": "Productivity, quality, safety, cost, delivery, sustainability, and customer experience"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Career Roles and Professional Identity",
+          "description": "This subtopic helps students see how the major leads into real jobs and professional communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Industrial engineer, operations analyst, quality engineer, process improvement analyst, manufacturing engineer, and supply chain analyst"
+            },
+            {
+              "type": "concept",
+              "title": "Operations research analyst, ergonomist, simulation analyst, facilities planner, and continuous improvement specialist"
+            },
+            {
+              "type": "concept",
+              "title": "IISE, INFORMS, ASQ, ASCM, HFES, and professional certifications"
+            },
+            {
+              "type": "concept",
+              "title": "Consulting, internal improvement teams, engineering management, and analytics pathways"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Historical Development and Modern IE",
+          "description": "The point is to connect classic IE tools to modern analytics and human-centered systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scientific management, time study, motion study, Gilbreth, Taylor, Gantt, Shewhart, Deming, and Toyota Production System"
+            },
+            {
+              "type": "concept",
+              "title": "Operations research, systems thinking, human factors, quality engineering, and supply chain management"
+            },
+            {
+              "type": "concept",
+              "title": "Digital transformation, Industry 4.0, automation, data analytics, AI, and cyber-physical systems"
+            },
+            {
+              "type": "concept",
+              "title": "Ethics, worker dignity, safety, equity, and sustainable productivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Systems Thinking and Process View of Organizations",
+      "description": "Develop the habit of seeing organizations as connected systems of people, materials, information, equipment, and decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Systems Concepts",
+          "description": "Students learn vocabulary for describing interconnected work systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundary, environment, input, output, feedback, constraint, and stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Subsystem, interface, dependency, delay, feedback loop, and emergent behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Open system, closed system, socio-technical system, and complex adaptive system"
+            },
+            {
+              "type": "concept",
+              "title": "Local optimum, global optimum, trade-off, and unintended consequence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process Mapping and Flow",
+          "description": "The goal is to make work visible before trying to improve it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process map, flowchart, SIPOC, swimlane diagram, value stream map, and spaghetti diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Activity, queue, delay, transport, inspection, rework, and handoff"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle time, lead time, throughput, work-in-process, and bottleneck"
+            },
+            {
+              "type": "concept",
+              "title": "Voice of customer, voice of process, and process owner"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System Performance and Feedback",
+          "description": "This subtopic connects process structure to measured outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feedback control, reinforcing loop, balancing loop, stock, flow, and delay"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity, demand, variability, utilization, and service level"
+            },
+            {
+              "type": "concept",
+              "title": "Causal loop diagram and simple stock-flow thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Operations examples: emergency department, warehouse, production line, call center, and airport security"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Productivity, Efficiency, Effectiveness, and Performance Measurement",
+      "description": "Define how industrial engineers measure performance, value, waste, productivity, and system outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Productivity and Efficiency Measures",
+          "description": "Students learn how IE quantifies output relative to resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Labor productivity, machine productivity, multifactor productivity, and total factor productivity"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency, effectiveness, utilization, yield, throughput, and capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Standard time, actual time, earned hours, and labor variance"
+            },
+            {
+              "type": "concept",
+              "title": "Value-added time, non-value-added time, and process cycle efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance Metrics and Dashboards",
+          "description": "The point is to choose metrics that reflect the system's real goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Key performance indicator, balanced scorecard, leading indicator, and lagging indicator"
+            },
+            {
+              "type": "concept",
+              "title": "Cost, quality, delivery, safety, morale, sustainability, and flexibility metrics"
+            },
+            {
+              "type": "concept",
+              "title": "On-time delivery, defect rate, first-pass yield, takt attainment, and customer wait time"
+            },
+            {
+              "type": "concept",
+              "title": "Metric definition, data source, owner, frequency, and target"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trade-Offs and Measurement Pitfalls",
+          "description": "Students learn that bad metrics can distort behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Goodhart's law, gaming, suboptimization, vanity metric, and metric overload"
+            },
+            {
+              "type": "concept",
+              "title": "Short-term versus long-term performance"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency versus resilience, utilization versus waiting time, and cost versus quality"
+            },
+            {
+              "type": "concept",
+              "title": "Data validity, operational definition, denominator choice, and fairness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Problem-Solving Methodology and Engineering Improvement Projects",
+      "description": "Introduce structured problem solving, root cause analysis, project scoping, and evidence-based improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Structured Problem Solving",
+          "description": "Students learn repeatable ways to move from symptoms to root causes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement, scope, objective, constraint, assumption, and deliverable"
+            },
+            {
+              "type": "concept",
+              "title": "DMAIC, PDCA, A3 thinking, 8D, and engineering design process"
+            },
+            {
+              "type": "concept",
+              "title": "Current condition, target condition, gap, root cause, countermeasure, and follow-up"
+            },
+            {
+              "type": "concept",
+              "title": "Project charter, stakeholder, sponsor, timeline, and success metric"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Root Cause and Cause Analysis Tools",
+          "description": "This subtopic equips students with practical diagnostic tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Five whys, fishbone diagram, cause-and-effect matrix, and Pareto chart"
+            },
+            {
+              "type": "concept",
+              "title": "Process observation, gemba walk, check sheet, and stratification"
+            },
+            {
+              "type": "concept",
+              "title": "Failure mode and effects analysis, severity, occurrence, detection, and risk priority number"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis, evidence, validation, and avoiding blame-focused analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Improvement Project Execution",
+          "description": "The point is to turn analysis into implemented change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Baseline measurement, pilot test, implementation plan, control plan, and standard work"
+            },
+            {
+              "type": "concept",
+              "title": "Before/after comparison, sustainment, audit, and handoff"
+            },
+            {
+              "type": "concept",
+              "title": "Change management, stakeholder communication, and training"
+            },
+            {
+              "type": "concept",
+              "title": "Benefit estimate, hard savings, soft savings, and lessons learned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data, Statistics, and Analytics for Industrial Engineering",
+      "description": "Show how IE uses data to understand variation, forecast performance, and support decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Operational Data Basics",
+          "description": "Students learn what kinds of data IE problems usually produce.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle time, wait time, demand, defects, downtime, inventory, arrivals, and service times"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous data, discrete data, categorical data, time series, and event log"
+            },
+            {
+              "type": "concept",
+              "title": "Data collection plan, sampling plan, operational definition, and measurement system"
+            },
+            {
+              "type": "concept",
+              "title": "Missing data, outlier, duplicate record, timestamp, and unit consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Descriptive and Inferential Thinking",
+          "description": "The goal is to understand variation before making decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean, median, standard deviation, range, percentile, histogram, and boxplot"
+            },
+            {
+              "type": "concept",
+              "title": "Common-cause variation, special-cause variation, sampling error, and confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation, regression, hypothesis test, p-value, and practical significance"
+            },
+            {
+              "type": "concept",
+              "title": "Capability, forecast error, and prediction interval as IE applications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytics and Visualization",
+          "description": "Students see how analysis supports communication and action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dashboard, control chart, scatterplot, run chart, Pareto chart, and heat map"
+            },
+            {
+              "type": "concept",
+              "title": "Excel, Python, R, SQL, BI tool, and data table"
+            },
+            {
+              "type": "concept",
+              "title": "Data cleaning, transformation, aggregation, and reproducibility"
+            },
+            {
+              "type": "concept",
+              "title": "Insight, recommendation, caveat, and decision support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operations Research and Optimization Overview",
+      "description": "Survey deterministic decision models used to allocate scarce resources and improve systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Optimization Modeling Language",
+          "description": "Students learn the basic grammar of operations research models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision variable, objective function, constraint, parameter, feasible region, and optimal solution"
+            },
+            {
+              "type": "concept",
+              "title": "Linear programming, integer programming, binary variable, and mixed-integer model"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis, shadow price, reduced cost, and binding constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Solver, spreadsheet model, algebraic model, and model validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classic Deterministic Models",
+          "description": "This subtopic surveys the IE models students will meet later in depth.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Product mix, blending, workforce scheduling, assignment, transportation, and transshipment"
+            },
+            {
+              "type": "concept",
+              "title": "Shortest path, minimum spanning tree, maximum flow, and network design"
+            },
+            {
+              "type": "concept",
+              "title": "Facility location, set covering, lot sizing, and cutting stock as advanced examples"
+            },
+            {
+              "type": "concept",
+              "title": "Model assumption, objective trade-off, and interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision and Trade-Off Analysis",
+          "description": "The point is to frame optimization as disciplined decision support, not magic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cost minimization, profit maximization, service maximization, and risk reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Single objective, multiobjective, weighted score, and Pareto frontier"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario, what-if analysis, robustness, and sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical constraints, fairness constraints, and stakeholder criteria"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stochastic Models, Queues, and Simulation Overview",
+      "description": "Introduce uncertain systems, waiting lines, random arrivals, and simulation as IE modeling tools.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Uncertainty in IE Systems",
+          "description": "Students learn why randomness changes system behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random arrival, random service time, demand uncertainty, machine failure, and processing variability"
+            },
+            {
+              "type": "concept",
+              "title": "Probability distribution, expected value, variance, and empirical distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson arrivals, exponential service, normal variation, and triangular estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Risk, uncertainty, variability, and buffer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Queueing Concepts",
+          "description": "This subtopic introduces waiting-line behavior common in service and production systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arrival rate, service rate, utilization, queue length, waiting time, and system time"
+            },
+            {
+              "type": "concept",
+              "title": "Single server, multiple server, finite capacity, and priority queue"
+            },
+            {
+              "type": "concept",
+              "title": "M/M/1, M/M/c, bottleneck, and pooling effect as introductory ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Call center, clinic, checkout line, repair shop, and production queue examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation Concepts",
+          "description": "The point is to model complex systems when formulas are too simple.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete-event simulation, entity, event, resource, queue, and clock"
+            },
+            {
+              "type": "concept",
+              "title": "Replication, warm-up period, random seed, confidence interval, and validation"
+            },
+            {
+              "type": "concept",
+              "title": "Input modeling, output analysis, animation, and scenario comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation software, spreadsheet simulation, and Monte Carlo preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Manufacturing and Service Systems Overview",
+      "description": "Compare production and service environments, process types, flow patterns, and operational trade-offs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Manufacturing Systems",
+          "description": "Students learn common production environments and their flow logic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Job shop, batch production, assembly line, continuous flow, and cellular manufacturing"
+            },
+            {
+              "type": "concept",
+              "title": "Routing, setup, work center, bill of materials, and production order"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput, WIP, cycle time, capacity, bottleneck, and line balance"
+            },
+            {
+              "type": "concept",
+              "title": "Make-to-stock, make-to-order, engineer-to-order, and mass customization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service Systems",
+          "description": "This subtopic shows that IE also improves intangible, customer-facing work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Service encounter, customer arrival, service blueprint, front stage, and back stage"
+            },
+            {
+              "type": "concept",
+              "title": "Waiting time, service level, no-show, appointment scheduling, and triage"
+            },
+            {
+              "type": "concept",
+              "title": "Healthcare, banking, hospitality, transportation, retail, and government services"
+            },
+            {
+              "type": "concept",
+              "title": "Customer experience, reliability, responsiveness, and service recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacity and Flow Trade-Offs",
+          "description": "The goal is to compare systems using flow, variability, and capacity concepts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Little's Law, takt time, bottleneck rate, throughput time, and utilization"
+            },
+            {
+              "type": "concept",
+              "title": "Batch size, setup time, transfer batch, and lot splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity cushion, demand seasonality, and resource flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Flow efficiency, responsiveness, and cost trade-offs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work Design, Methods Engineering, and Human Factors",
+      "description": "Introduce work measurement, ergonomic design, safety, and the interaction between humans and systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Methods Engineering and Work Measurement",
+          "description": "Students learn how IE improves work methods with evidence and respect for workers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Method study, work simplification, standard work, and best-known method"
+            },
+            {
+              "type": "concept",
+              "title": "Time study, work sampling, predetermined time systems, and standard time"
+            },
+            {
+              "type": "concept",
+              "title": "Allowance, rating factor, normal time, and observed time"
+            },
+            {
+              "type": "concept",
+              "title": "Process chart, two-hand chart, and motion economy principles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human Factors and Ergonomics",
+          "description": "This subtopic centers the fit between people, tasks, tools, and environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anthropometry, posture, reach envelope, visibility, and control-display compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Cognitive workload, mental model, attention, fatigue, and human error"
+            },
+            {
+              "type": "concept",
+              "title": "Manual materials handling, lifting equation, repetitive motion, and musculoskeletal disorder risk"
+            },
+            {
+              "type": "concept",
+              "title": "NIOSH, OSHA, workstation design, and safety culture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety and Human-Centered Systems",
+          "description": "The point is to treat people as system designers and system users, not interchangeable labor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard, risk, near miss, incident, and hierarchy of controls"
+            },
+            {
+              "type": "concept",
+              "title": "Job safety analysis, standard operating procedure, and training design"
+            },
+            {
+              "type": "concept",
+              "title": "Usability, accessibility, inclusion, and worker participation"
+            },
+            {
+              "type": "concept",
+              "title": "Automation, human-machine interface, and decision support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quality Fundamentals, Statistical Process Control, and Six Sigma",
+      "description": "Explain quality as conformance, capability, variation reduction, and customer-focused improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quality Concepts",
+          "description": "Students learn quality as both customer value and process capability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quality, grade, conformance, fitness for use, customer requirement, and critical-to-quality characteristic"
+            },
+            {
+              "type": "concept",
+              "title": "Defect, defective unit, nonconformance, rework, scrap, and warranty"
+            },
+            {
+              "type": "concept",
+              "title": "Cost of quality, prevention cost, appraisal cost, internal failure, and external failure"
+            },
+            {
+              "type": "concept",
+              "title": "ISO 9001, quality management system, and continuous improvement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical Process Control",
+          "description": "This subtopic introduces variation monitoring and process stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Common cause, special cause, control limit, specification limit, and rational subgroup"
+            },
+            {
+              "type": "concept",
+              "title": "X-bar chart, R chart, individuals chart, p chart, c chart, and u chart"
+            },
+            {
+              "type": "concept",
+              "title": "Run rule, out-of-control signal, process stability, and false alarm"
+            },
+            {
+              "type": "concept",
+              "title": "Process capability, Cp, Cpk, sigma level, and yield"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Six Sigma and Quality Improvement",
+          "description": "The goal is to connect statistical tools to structured improvement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DMAIC, define, measure, analyze, improve, and control"
+            },
+            {
+              "type": "concept",
+              "title": "DPMO, sigma level, defect opportunity, and rolled throughput yield"
+            },
+            {
+              "type": "concept",
+              "title": "Voice of customer, CTQ tree, and measurement system analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Green Belt, Black Belt, control plan, and sustainment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lean Systems, Continuous Improvement, and Waste Reduction",
+      "description": "Introduce lean thinking, value streams, flow, pull, standard work, and continuous improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lean Principles",
+          "description": "Students learn the language of value, flow, pull, and continuous improvement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Value, value stream, flow, pull, perfection, and customer-defined value"
+            },
+            {
+              "type": "concept",
+              "title": "Muda, mura, muri, and the eight wastes"
+            },
+            {
+              "type": "concept",
+              "title": "Kaizen, gemba, respect for people, and standard work"
+            },
+            {
+              "type": "concept",
+              "title": "Toyota Production System, jidoka, just-in-time, and takt time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lean Tools",
+          "description": "This subtopic gives students practical tools for observing and improving flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "5S, visual management, kanban, Andon, SMED, and poka-yoke"
+            },
+            {
+              "type": "concept",
+              "title": "Value stream map, current state, future state, process family, and takt calculation"
+            },
+            {
+              "type": "concept",
+              "title": "Cellular layout, one-piece flow, supermarket, and heijunka"
+            },
+            {
+              "type": "concept",
+              "title": "A3 report, daily management, and leader standard work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous Improvement Culture",
+          "description": "The point is to see lean as a management system, not a toolkit checklist.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Psychological safety, suggestion system, coaching, and problem-solving routines"
+            },
+            {
+              "type": "concept",
+              "title": "Standardization and improvement as paired activities"
+            },
+            {
+              "type": "concept",
+              "title": "Sustainment, audit, metric review, and escalation process"
+            },
+            {
+              "type": "concept",
+              "title": "Risks of superficial lean, tool copying, and cost-cutting misuse"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supply Chains, Logistics, Inventory, and Facility Layout Overview",
+      "description": "Survey the flow of materials and information across facilities, inventories, transport, and networks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Supply Chain Structure",
+          "description": "Students learn how products and information move across organizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supplier, manufacturer, distributor, retailer, customer, and reverse logistics"
+            },
+            {
+              "type": "concept",
+              "title": "Material flow, information flow, cash flow, and demand signal"
+            },
+            {
+              "type": "concept",
+              "title": "Procurement, sourcing, production, warehousing, transportation, and fulfillment"
+            },
+            {
+              "type": "concept",
+              "title": "Bullwhip effect, lead time, service level, and coordination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inventory and Logistics Basics",
+          "description": "This subtopic introduces buffers and movement decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle stock, safety stock, pipeline inventory, reorder point, and economic order quantity"
+            },
+            {
+              "type": "concept",
+              "title": "ABC analysis, stockout, fill rate, and inventory turnover"
+            },
+            {
+              "type": "concept",
+              "title": "Mode choice, shipment consolidation, routing, and last-mile delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Warehouse, picking, packing, receiving, slotting, and cross-docking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Facility Layout and Location",
+          "description": "The point is to connect physical arrangement to flow, cost, safety, and service.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process layout, product layout, cellular layout, fixed-position layout, and hybrid layout"
+            },
+            {
+              "type": "concept",
+              "title": "From-to chart, relationship chart, load-distance score, and block layout"
+            },
+            {
+              "type": "concept",
+              "title": "Facility location, service area, center-of-gravity method, and network trade-offs"
+            },
+            {
+              "type": "concept",
+              "title": "Material handling, aisle design, storage density, and worker travel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Economics, Project Management, Ethics, and Sustainability",
+      "description": "Connect IE decisions to costs, schedules, stakeholders, ethics, sustainability, and professional responsibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Engineering Economics for IE Decisions",
+          "description": "Students learn that improvement ideas must be economically defensible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fixed cost, variable cost, labor cost, overhead, savings, and avoided cost"
+            },
+            {
+              "type": "concept",
+              "title": "Cash flow, present worth, net present value, payback period, and return on investment"
+            },
+            {
+              "type": "concept",
+              "title": "Cost-benefit analysis, sensitivity analysis, and break-even point"
+            },
+            {
+              "type": "concept",
+              "title": "Hard savings, soft savings, opportunity cost, and implementation cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Project Management Basics",
+          "description": "This subtopic helps students plan and execute small IE projects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope, deliverable, milestone, task, dependency, and resource"
+            },
+            {
+              "type": "concept",
+              "title": "Gantt chart, critical path, PERT, risk register, and issue log"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder analysis, communication plan, and change control"
+            },
+            {
+              "type": "concept",
+              "title": "Project closeout, lessons learned, and benefits tracking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics and Sustainable Systems",
+          "description": "The point is to improve systems responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Professional responsibility, data ethics, worker privacy, and conflict of interest"
+            },
+            {
+              "type": "concept",
+              "title": "Safety, equity, accessibility, and human dignity"
+            },
+            {
+              "type": "concept",
+              "title": "Sustainability, energy use, waste, emissions, circular economy, and life-cycle thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Trade-offs among productivity, people, profit, planet, and resilience"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "IE Tools, Software, Communication, and Capstone Mini-Project",
+      "description": "Introduce common IE software, modeling tools, visualization, communication, and project reporting.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Common IE Tools and Software",
+          "description": "Students learn what tools support analysis, modeling, and communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Excel, Solver, Python, R, SQL, Tableau/Power BI, Minitab, and JMP"
+            },
+            {
+              "type": "concept",
+              "title": "Arena, Simio, AnyLogic, FlexSim, and discrete-event simulation tools"
+            },
+            {
+              "type": "concept",
+              "title": "AutoCAD, facility layout tools, ERP/MRP systems, and process mining tools"
+            },
+            {
+              "type": "concept",
+              "title": "Version control, documentation, reproducibility, and file organization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Technical Communication",
+          "description": "The goal is to turn analysis into a recommendation others can understand and act on.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary, problem statement, method, results, recommendation, and appendix"
+            },
+            {
+              "type": "concept",
+              "title": "Chart selection, dashboard design, annotation, and data storytelling"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption, limitation, sensitivity result, and implementation risk"
+            },
+            {
+              "type": "concept",
+              "title": "Presentation, poster, memo, and stakeholder briefing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intro IE Mini-Project",
+          "description": "The final project lets students practice the IE mindset on a real or simulated system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System selection, stakeholder need, baseline data, and process map"
+            },
+            {
+              "type": "concept",
+              "title": "Root cause analysis, metric definition, and improvement alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Estimated impact, cost, risk, and implementation plan"
+            },
+            {
+              "type": "concept",
+              "title": "Final report, oral presentation, and reflection on IE career interests"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

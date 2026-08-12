@@ -1,0 +1,1652 @@
+{
+  "slug": "physics-ii",
+  "title": "Physics II",
+  "description": "A second-semester physics course covering electrostatics, circuits, magnetism, electromagnetic induction, AC circuits, Maxwell's equations and EM waves, geometric and wave optics, and laboratory/simulation applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Physics II Overview: Fields, Circuits, Waves, and Models",
+      "description": "Frame Physics II as a unified course on electromagnetic interaction, circuit behavior, waves, optics, and scientific modeling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Course scope and unifying themes",
+          "description": "Students see the course as one story about fields, energy, charge flow, oscillation, and wave propagation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Field model"
+            },
+            {
+              "type": "concept",
+              "title": "Energy model"
+            },
+            {
+              "type": "concept",
+              "title": "Circuit model"
+            },
+            {
+              "type": "concept",
+              "title": "Wave model"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mathematical toolkit",
+          "description": "This subtopic refreshes the math habits needed for reliable Physics II problem solving.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Dot product"
+            },
+            {
+              "type": "concept",
+              "title": "Cross product"
+            },
+            {
+              "type": "concept",
+              "title": "Line integral"
+            },
+            {
+              "type": "concept",
+              "title": "Surface integral"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Differential reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling and approximation",
+          "description": "Students learn to identify idealizations and know when they are useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point charge"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous charge distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal wire"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal battery"
+            },
+            {
+              "type": "concept",
+              "title": "Lumped element model"
+            },
+            {
+              "type": "concept",
+              "title": "Thin lens approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small-angle approximation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electric Charge, Coulomb's Law, and Electric Fields",
+      "description": "Develop the field concept from forces between charges and use superposition to model electric influence in space.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Charge and electric force",
+          "description": "Students build the force law that starts electrostatics and learn how charge behaves in matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive charge"
+            },
+            {
+              "type": "concept",
+              "title": "Negative charge"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation of charge"
+            },
+            {
+              "type": "concept",
+              "title": "Quantization of charge"
+            },
+            {
+              "type": "concept",
+              "title": "Coulomb's law"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse-square law"
+            },
+            {
+              "type": "concept",
+              "title": "Permittivity of free space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electric field concept",
+          "description": "This subtopic shifts attention from direct force between objects to a field defined at each point in space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric field vector"
+            },
+            {
+              "type": "concept",
+              "title": "Test charge"
+            },
+            {
+              "type": "concept",
+              "title": "Field lines"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition principle"
+            },
+            {
+              "type": "concept",
+              "title": "Point-charge field"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole field"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous charge distributions",
+          "description": "Students learn to compute fields from extended objects by summing infinitesimal charge elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear charge density"
+            },
+            {
+              "type": "concept",
+              "title": "Surface charge density"
+            },
+            {
+              "type": "concept",
+              "title": "Volume charge density"
+            },
+            {
+              "type": "concept",
+              "title": "Ring of charge"
+            },
+            {
+              "type": "concept",
+              "title": "Charged disk"
+            },
+            {
+              "type": "concept",
+              "title": "Charged rod"
+            },
+            {
+              "type": "concept",
+              "title": "Electric dipole moment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electric Flux, Gauss's Law, and Symmetry",
+      "description": "Use flux and symmetry to calculate electric fields and understand field sources at a deeper level.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electric flux",
+          "description": "Students interpret flux as a measure of field passing through a surface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area vector"
+            },
+            {
+              "type": "concept",
+              "title": "Closed surface"
+            },
+            {
+              "type": "concept",
+              "title": "Flux integral"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform field flux"
+            },
+            {
+              "type": "concept",
+              "title": "Sign of flux"
+            },
+            {
+              "type": "concept",
+              "title": "Solid angle idea"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gauss's law",
+          "description": "This subtopic connects enclosed charge to total electric flux and reveals the source structure of electric fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gaussian surface"
+            },
+            {
+              "type": "concept",
+              "title": "Enclosed charge"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon naught"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Planar symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conductors in electrostatic equilibrium",
+          "description": "Students learn how charges arrange themselves in conductors and why internal fields vanish.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric field inside conductor"
+            },
+            {
+              "type": "concept",
+              "title": "Surface charge"
+            },
+            {
+              "type": "concept",
+              "title": "Equipotential conductor"
+            },
+            {
+              "type": "concept",
+              "title": "Cavity shielding"
+            },
+            {
+              "type": "concept",
+              "title": "Faraday cage"
+            },
+            {
+              "type": "concept",
+              "title": "Field near conductor surface"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electric Potential, Voltage, and Electrostatic Energy",
+      "description": "Connect electric fields to potential energy, voltage, and work done on charges.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Potential energy and electric potential",
+          "description": "Students connect force and field descriptions to energy and voltage descriptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Electric potential"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Reference potential"
+            },
+            {
+              "type": "concept",
+              "title": "Electron volt"
+            },
+            {
+              "type": "concept",
+              "title": "Work by electric field"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Potential from charge distributions",
+          "description": "This subtopic uses scalar potential to simplify many electrostatic calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Potential of point charge"
+            },
+            {
+              "type": "concept",
+              "title": "Potential of dipole"
+            },
+            {
+              "type": "concept",
+              "title": "Potential integral"
+            },
+            {
+              "type": "concept",
+              "title": "Equipotential surface"
+            },
+            {
+              "type": "concept",
+              "title": "Potential gradient"
+            },
+            {
+              "type": "concept",
+              "title": "E equals minus grad V"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy in electric fields",
+          "description": "Students learn where electrostatic energy is stored and how it scales with field strength.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Field energy density"
+            },
+            {
+              "type": "concept",
+              "title": "Energy of charge assembly"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitor energy preview"
+            },
+            {
+              "type": "concept",
+              "title": "Potential maps"
+            },
+            {
+              "type": "concept",
+              "title": "Breakdown field"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capacitance, Dielectrics, and Energy Storage",
+      "description": "Analyze capacitors, dielectric materials, and electric-field energy in physical and circuit contexts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capacitance fundamentals",
+          "description": "Students learn how geometry determines charge storage per volt.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitance"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel-plate capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "Series capacitors"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel capacitors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dielectrics and polarization",
+          "description": "This subtopic explains how materials modify electric fields and capacitance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dielectric constant"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Bound charge"
+            },
+            {
+              "type": "concept",
+              "title": "Dielectric strength"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular dipoles"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitor with dielectric"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacitor energy and applications",
+          "description": "Students connect stored electric energy to devices and transients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "U = one-half C V squared"
+            },
+            {
+              "type": "concept",
+              "title": "Energy density"
+            },
+            {
+              "type": "concept",
+              "title": "Camera flash"
+            },
+            {
+              "type": "concept",
+              "title": "Defibrillator"
+            },
+            {
+              "type": "concept",
+              "title": "Filter capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "RC timing preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Current, Resistance, and DC Circuit Foundations",
+      "description": "Build the microscopic and macroscopic models of current, resistance, power, and steady-state circuits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Current and drift",
+          "description": "Students connect microscopic carrier motion to macroscopic current.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric current"
+            },
+            {
+              "type": "concept",
+              "title": "Current density"
+            },
+            {
+              "type": "concept",
+              "title": "Drift velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Charge carriers"
+            },
+            {
+              "type": "concept",
+              "title": "Electron mobility"
+            },
+            {
+              "type": "concept",
+              "title": "Conventional current"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resistance and Ohm's law",
+          "description": "This subtopic explains when voltage and current are proportional and what sets resistance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Resistivity"
+            },
+            {
+              "type": "concept",
+              "title": "Conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Ohm's law"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Non-ohmic device"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrical power and energy",
+          "description": "Students learn how circuits transfer energy to loads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power P = IV"
+            },
+            {
+              "type": "concept",
+              "title": "Joule heating"
+            },
+            {
+              "type": "concept",
+              "title": "Battery emf"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Internal resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Energy cost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Circuit Analysis Methods and Measurement",
+      "description": "Use Kirchhoff's laws and measurement practices to solve multi-loop circuits and interpret real instruments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Kirchhoff's laws",
+          "description": "Students learn the conservation laws that govern lumped DC circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Junction rule"
+            },
+            {
+              "type": "concept",
+              "title": "Loop rule"
+            },
+            {
+              "type": "concept",
+              "title": "Node"
+            },
+            {
+              "type": "concept",
+              "title": "Branch"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh"
+            },
+            {
+              "type": "concept",
+              "title": "Ground"
+            },
+            {
+              "type": "concept",
+              "title": "Sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equivalent circuits",
+          "description": "This subtopic builds efficient reduction and analysis habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series resistors"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel resistors"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage divider"
+            },
+            {
+              "type": "concept",
+              "title": "Current divider"
+            },
+            {
+              "type": "concept",
+              "title": "Thevenin equivalent"
+            },
+            {
+              "type": "concept",
+              "title": "Norton equivalent"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Meters and real measurements",
+          "description": "Students learn how instruments affect the circuits they measure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ammeter"
+            },
+            {
+              "type": "concept",
+              "title": "Voltmeter"
+            },
+            {
+              "type": "concept",
+              "title": "Ohmmeter"
+            },
+            {
+              "type": "concept",
+              "title": "Multimeter"
+            },
+            {
+              "type": "concept",
+              "title": "Oscilloscope preview"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement uncertainty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Magnetic Fields and Magnetic Forces",
+      "description": "Study how moving charges and currents respond to magnetic fields through forces and torques.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnetic force on moving charges",
+          "description": "Students learn the velocity-dependent force that defines magnetic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lorentz force"
+            },
+            {
+              "type": "concept",
+              "title": "Right-hand rule"
+            },
+            {
+              "type": "concept",
+              "title": "Charge sign"
+            },
+            {
+              "type": "concept",
+              "title": "Circular motion"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclotron radius"
+            },
+            {
+              "type": "concept",
+              "title": "Mass spectrometer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic force on currents",
+          "description": "This subtopic connects microscopic charge motion to macroscopic force on wires.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force on current-carrying wire"
+            },
+            {
+              "type": "concept",
+              "title": "Current loop"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic dipole moment"
+            },
+            {
+              "type": "concept",
+              "title": "Torque on loop"
+            },
+            {
+              "type": "concept",
+              "title": "Motor principle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Charged particles in fields",
+          "description": "Students analyze combined electric and magnetic fields in devices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Velocity selector"
+            },
+            {
+              "type": "concept",
+              "title": "Hall effect"
+            },
+            {
+              "type": "concept",
+              "title": "Crossed fields"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic bottle idea"
+            },
+            {
+              "type": "concept",
+              "title": "Aurora context"
+            },
+            {
+              "type": "concept",
+              "title": "Particle accelerator preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sources of Magnetism and Ampere's Law",
+      "description": "Calculate magnetic fields from currents and connect magnetic behavior to field circulation and material response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biot-Savart law",
+          "description": "Students calculate magnetic fields from current elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Current element"
+            },
+            {
+              "type": "concept",
+              "title": "Straight wire"
+            },
+            {
+              "type": "concept",
+              "title": "Circular loop"
+            },
+            {
+              "type": "concept",
+              "title": "Field on axis"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            },
+            {
+              "type": "concept",
+              "title": "Permeability of free space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ampere's law",
+          "description": "This subtopic uses circulation and symmetry to compute magnetic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Amperian loop"
+            },
+            {
+              "type": "concept",
+              "title": "Enclosed current"
+            },
+            {
+              "type": "concept",
+              "title": "Long straight wire"
+            },
+            {
+              "type": "concept",
+              "title": "Solenoid"
+            },
+            {
+              "type": "concept",
+              "title": "Toroid"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement current preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic materials",
+          "description": "Students learn how matter responds to magnetic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diamagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Paramagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Ferromagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Domains"
+            },
+            {
+              "type": "concept",
+              "title": "Hysteresis"
+            },
+            {
+              "type": "concept",
+              "title": "Relative permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic susceptibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electromagnetic Induction and Faraday's Law",
+      "description": "Understand changing magnetic flux as a source of induced emf, current, and electric fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnetic flux and induced emf",
+          "description": "Students learn how changing magnetic flux creates voltage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnetic flux"
+            },
+            {
+              "type": "concept",
+              "title": "Faraday's law"
+            },
+            {
+              "type": "concept",
+              "title": "Induced emf"
+            },
+            {
+              "type": "concept",
+              "title": "Lenz's law"
+            },
+            {
+              "type": "concept",
+              "title": "Motional emf"
+            },
+            {
+              "type": "concept",
+              "title": "Flux linkage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Induced currents and energy",
+          "description": "This subtopic connects induction to conservation of energy and real devices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Eddy currents"
+            },
+            {
+              "type": "concept",
+              "title": "Back emf"
+            },
+            {
+              "type": "concept",
+              "title": "Generator"
+            },
+            {
+              "type": "concept",
+              "title": "Transformer"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic braking"
+            },
+            {
+              "type": "concept",
+              "title": "Induction cooktop"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonconservative electric fields",
+          "description": "Students see that changing magnetic fields create circulating electric fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Induced electric field"
+            },
+            {
+              "type": "concept",
+              "title": "Line integral of E"
+            },
+            {
+              "type": "concept",
+              "title": "Curl idea"
+            },
+            {
+              "type": "concept",
+              "title": "Field circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Maxwell-Faraday equation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inductance, RL/LC/RLC Transients, and Energy Exchange",
+      "description": "Analyze time-dependent circuits where electric and magnetic energy exchange through inductors and capacitors.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Self-inductance and mutual inductance",
+          "description": "Students learn how changing current creates emf in the same or nearby circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inductor"
+            },
+            {
+              "type": "concept",
+              "title": "Self-inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Mutual inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Transformer coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Solenoid inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Back emf"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient circuits",
+          "description": "This subtopic analyzes time evolution after switches change circuit conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RC time constant"
+            },
+            {
+              "type": "concept",
+              "title": "RL time constant"
+            },
+            {
+              "type": "concept",
+              "title": "Charging capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "Discharging capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential response"
+            },
+            {
+              "type": "concept",
+              "title": "Initial condition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oscillations and damping",
+          "description": "Students connect circuit dynamics to mechanical oscillation ideas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LC oscillation"
+            },
+            {
+              "type": "concept",
+              "title": "RLC circuit"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Damping"
+            },
+            {
+              "type": "concept",
+              "title": "Underdamped response"
+            },
+            {
+              "type": "concept",
+              "title": "Quality factor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "AC Circuits, Phasors, Impedance, and Power",
+      "description": "Extend circuit analysis to sinusoidal signals, frequency response, resonance, and AC power.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sinusoidal steady state",
+          "description": "Students learn to represent time-varying voltage and current compactly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AC source"
+            },
+            {
+              "type": "concept",
+              "title": "Rms value"
+            },
+            {
+              "type": "concept",
+              "title": "Phase angle"
+            },
+            {
+              "type": "concept",
+              "title": "Phasor"
+            },
+            {
+              "type": "concept",
+              "title": "Angular frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency domain"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Impedance and resonance",
+          "description": "This subtopic develops the circuit equivalents of resistance for capacitors and inductors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitive reactance"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive reactance"
+            },
+            {
+              "type": "concept",
+              "title": "Complex impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Series RLC"
+            },
+            {
+              "type": "concept",
+              "title": "Resonant frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "AC power",
+          "description": "Students learn why voltage-current phase matters for energy delivery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instantaneous power"
+            },
+            {
+              "type": "concept",
+              "title": "Average power"
+            },
+            {
+              "type": "concept",
+              "title": "Power factor"
+            },
+            {
+              "type": "concept",
+              "title": "Reactive power"
+            },
+            {
+              "type": "concept",
+              "title": "Impedance matching"
+            },
+            {
+              "type": "concept",
+              "title": "Transformer power"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Maxwell's Equations and Electromagnetic Waves",
+      "description": "Unify electricity and magnetism and show how changing fields propagate as light and radio waves.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Maxwell's equations in integral form",
+          "description": "Students organize E&M into four field laws with physical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gauss's law for E"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss's law for magnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Faraday's law"
+            },
+            {
+              "type": "concept",
+              "title": "Ampere-Maxwell law"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement current"
+            },
+            {
+              "type": "concept",
+              "title": "Source terms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electromagnetic waves",
+          "description": "This subtopic shows that self-sustaining fields travel through space at light speed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wave speed c"
+            },
+            {
+              "type": "concept",
+              "title": "Plane wave"
+            },
+            {
+              "type": "concept",
+              "title": "Transverse fields"
+            },
+            {
+              "type": "concept",
+              "title": "E-B relation"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization direction"
+            },
+            {
+              "type": "concept",
+              "title": "Poynting vector"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectrum and radiation applications",
+          "description": "Students connect waves to communication, imaging, energy transfer, and safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radio waves"
+            },
+            {
+              "type": "concept",
+              "title": "Microwaves"
+            },
+            {
+              "type": "concept",
+              "title": "Infrared"
+            },
+            {
+              "type": "concept",
+              "title": "Visible light"
+            },
+            {
+              "type": "concept",
+              "title": "Ultraviolet"
+            },
+            {
+              "type": "concept",
+              "title": "X-rays"
+            },
+            {
+              "type": "concept",
+              "title": "Intensity"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation pressure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geometric Optics and Optical Instruments",
+      "description": "Use ray models to understand reflection, refraction, lenses, mirrors, and image formation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reflection and refraction",
+          "description": "Students use ray laws to model how light changes direction at surfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Law of reflection"
+            },
+            {
+              "type": "concept",
+              "title": "Snell's law"
+            },
+            {
+              "type": "concept",
+              "title": "Index of refraction"
+            },
+            {
+              "type": "concept",
+              "title": "Total internal reflection"
+            },
+            {
+              "type": "concept",
+              "title": "Critical angle"
+            },
+            {
+              "type": "concept",
+              "title": "Dispersion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mirrors and lenses",
+          "description": "This subtopic develops image formation with simple optical elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concave mirror"
+            },
+            {
+              "type": "concept",
+              "title": "Convex mirror"
+            },
+            {
+              "type": "concept",
+              "title": "Thin lens equation"
+            },
+            {
+              "type": "concept",
+              "title": "Magnification"
+            },
+            {
+              "type": "concept",
+              "title": "Real image"
+            },
+            {
+              "type": "concept",
+              "title": "Virtual image"
+            },
+            {
+              "type": "concept",
+              "title": "Ray diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optical instruments",
+          "description": "Students connect geometric optics to devices that extend vision and measurement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Camera"
+            },
+            {
+              "type": "concept",
+              "title": "Eye"
+            },
+            {
+              "type": "concept",
+              "title": "Magnifier"
+            },
+            {
+              "type": "concept",
+              "title": "Microscope"
+            },
+            {
+              "type": "concept",
+              "title": "Telescope"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber optic cable"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical aperture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wave Optics: Interference, Diffraction, and Polarization",
+      "description": "Use the wave model of light to explain interference patterns, diffraction limits, and polarization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Interference",
+          "description": "Students learn how coherent waves combine constructively or destructively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Path difference"
+            },
+            {
+              "type": "concept",
+              "title": "Phase difference"
+            },
+            {
+              "type": "concept",
+              "title": "Young's double slit"
+            },
+            {
+              "type": "concept",
+              "title": "Thin-film interference"
+            },
+            {
+              "type": "concept",
+              "title": "Coherence"
+            },
+            {
+              "type": "concept",
+              "title": "Fringe spacing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diffraction",
+          "description": "This subtopic explains spreading, resolution limits, and the wave nature of light.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-slit diffraction"
+            },
+            {
+              "type": "concept",
+              "title": "Diffraction grating"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Airy disk"
+            },
+            {
+              "type": "concept",
+              "title": "Resolving power"
+            },
+            {
+              "type": "concept",
+              "title": "Bragg diffraction preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polarization",
+          "description": "Students learn how light's transverse field direction affects transmission and scattering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Circular polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Malus's law"
+            },
+            {
+              "type": "concept",
+              "title": "Polarizer"
+            },
+            {
+              "type": "concept",
+              "title": "Brewster angle"
+            },
+            {
+              "type": "concept",
+              "title": "Birefringence"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization by reflection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Laboratory, Simulation, and Applications",
+      "description": "Use experiments, simulations, and applied projects to connect theory to measurement, technology, and biological/engineering contexts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core laboratory measurements",
+          "description": "Students practice turning E&M and optics concepts into real measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric field mapping"
+            },
+            {
+              "type": "concept",
+              "title": "RC circuit timing"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic field mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Induction experiment"
+            },
+            {
+              "type": "concept",
+              "title": "Lens focal length"
+            },
+            {
+              "type": "concept",
+              "title": "Diffraction wavelength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and computation",
+          "description": "This subtopic uses computational tools to visualize fields, circuits, waves, and optical systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PhET simulations"
+            },
+            {
+              "type": "concept",
+              "title": "Spreadsheet modeling"
+            },
+            {
+              "type": "concept",
+              "title": "Python plotting"
+            },
+            {
+              "type": "concept",
+              "title": "Field-line visualization"
+            },
+            {
+              "type": "concept",
+              "title": "Circuit simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied contexts",
+          "description": "Students synthesize the course through examples from engineering, biology, chemistry, and technology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Medical imaging"
+            },
+            {
+              "type": "concept",
+              "title": "Bioelectricity"
+            },
+            {
+              "type": "concept",
+              "title": "Sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Motors"
+            },
+            {
+              "type": "concept",
+              "title": "Wireless communication"
+            },
+            {
+              "type": "concept",
+              "title": "Solar cells"
+            },
+            {
+              "type": "concept",
+              "title": "Optical instruments"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

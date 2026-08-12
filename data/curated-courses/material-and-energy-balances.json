@@ -1,0 +1,1080 @@
+{
+  "slug": "material-and-energy-balances",
+  "title": "Material and Energy Balances",
+  "description": "Material and Energy Balances teaches students to translate chemical processes into flowcharts, variables, equations, and defensible calculations. Students learn units, process variables, nonreactive and reactive material balances, recycle and purge systems, gas and vapor systems, multiphase systems, energy balances, combined balances, and practical process data interpretation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Engineering Calculation Framework, Units, and Dimensions",
+      "description": "This opening topic builds the calculation discipline chemical engineers need before touching process balances. Students learn to make quantities, units, basis choices, and estimates explicit so later balance work is reliable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Unit systems and conversions",
+          "description": "Students practice moving between SI, English, engineering, and process-industry units without losing physical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base and derived units"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional homogeneity"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion factors"
+            },
+            {
+              "type": "concept",
+              "title": "Force and mass units"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature scales"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Basis selection",
+          "description": "Students learn how choosing a calculation basis simplifies a problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass basis"
+            },
+            {
+              "type": "concept",
+              "title": "Mole basis"
+            },
+            {
+              "type": "concept",
+              "title": "Time basis"
+            },
+            {
+              "type": "concept",
+              "title": "Dry and wet basis"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling results"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering reasonableness",
+          "description": "Students build habits for checking whether answers make sense.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Order-of-magnitude checks"
+            },
+            {
+              "type": "concept",
+              "title": "Significant figures"
+            },
+            {
+              "type": "concept",
+              "title": "Physical bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Unit checks"
+            },
+            {
+              "type": "concept",
+              "title": "Sanity checks against process context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Variables, Flowcharts, and Degrees of Freedom",
+      "description": "Material and energy balances are easiest when the process is represented clearly. This topic teaches students to translate words and plant sketches into variables, streams, flowcharts, and solvable equation sets.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Process variables",
+          "description": "Students learn the stream properties used throughout chemical engineering calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Molar flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Composition"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Density"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flowcharting and labeling",
+          "description": "Students practice drawing clear diagrams that support equation writing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stream numbering"
+            },
+            {
+              "type": "concept",
+              "title": "Known and unknown variables"
+            },
+            {
+              "type": "concept",
+              "title": "Component labels"
+            },
+            {
+              "type": "concept",
+              "title": "Unit operation boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Overall process boundary"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Degrees of freedom analysis",
+          "description": "Students determine whether a balance problem has enough information to solve.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unknown count"
+            },
+            {
+              "type": "concept",
+              "title": "Independent equations"
+            },
+            {
+              "type": "concept",
+              "title": "Specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Redundant equations"
+            },
+            {
+              "type": "concept",
+              "title": "Underspecified systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Material Balances on Single-Unit Nonreactive Processes",
+      "description": "Single-unit balances are the first full balance models students learn. The goal is to apply conservation of mass to mixers, separators, evaporators, dryers, and other nonreactive unit operations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Total and component balances",
+          "description": "Students distinguish overall mass conservation from species-specific conservation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total mass balance"
+            },
+            {
+              "type": "concept",
+              "title": "Component balances"
+            },
+            {
+              "type": "concept",
+              "title": "Solute and solvent balances"
+            },
+            {
+              "type": "concept",
+              "title": "Inlet-outlet accounting"
+            },
+            {
+              "type": "concept",
+              "title": "Steady state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common nonreactive units",
+          "description": "Students model standard process equipment used throughout the curriculum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixers"
+            },
+            {
+              "type": "concept",
+              "title": "Splitters"
+            },
+            {
+              "type": "concept",
+              "title": "Separators"
+            },
+            {
+              "type": "concept",
+              "title": "Evaporators"
+            },
+            {
+              "type": "concept",
+              "title": "Dryers"
+            },
+            {
+              "type": "concept",
+              "title": "Crystallizers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composition calculations",
+          "description": "Students move comfortably among mass fractions, mole fractions, concentrations, and flow rates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass percent"
+            },
+            {
+              "type": "concept",
+              "title": "Mole percent"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-to-mole conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Average molecular weight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Material Balances with Chemical Reactions",
+      "description": "Reactive balances connect stoichiometry to process stream accounting. Students learn how chemical conversion changes component flows and how to track limiting reactants, products, and excess feed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reaction stoichiometry",
+          "description": "Students use balanced reactions to relate reactants and products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stoichiometric coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Limiting reactant"
+            },
+            {
+              "type": "concept",
+              "title": "Excess reactant"
+            },
+            {
+              "type": "concept",
+              "title": "Theoretical yield"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction extent"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conversion and yield",
+          "description": "Students interpret performance measures used in reactors and process design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fractional conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Yield"
+            },
+            {
+              "type": "concept",
+              "title": "Unreacted feed"
+            },
+            {
+              "type": "concept",
+              "title": "Product distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reactive balance setup",
+          "description": "Students write balances that account for generation and consumption.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Species balance"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic balance"
+            },
+            {
+              "type": "concept",
+              "title": "Extent-of-reaction method"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Inert species"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multi-Unit Processes, Recycle, Bypass, and Purge",
+      "description": "Real processes are networks, not isolated units. This topic teaches students how recycle, bypass, and purge streams affect process performance and make balance calculations more realistic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Process networks",
+          "description": "Students learn to choose system boundaries for overall and unit-level balances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overall boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Subsystem boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Tear streams"
+            },
+            {
+              "type": "concept",
+              "title": "Sequential solution"
+            },
+            {
+              "type": "concept",
+              "title": "Simultaneous equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recycle and bypass",
+          "description": "Students analyze streams that return material or avoid part of the process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recycle ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Single-pass conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Overall conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Bypass fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Product blending"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Purge streams",
+          "description": "Students learn why purges are needed to prevent inert or impurity buildup.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inert accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Purge fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Recycle loop composition"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-state impurity balance"
+            },
+            {
+              "type": "concept",
+              "title": "Loss of valuable material"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gas, Vapor, and Humidity Systems",
+      "description": "Many chemical processes involve gases, vapors, evaporation, condensation, and humid air. Students learn property relationships that make gas and vapor balances physically correct.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gas laws and mixtures",
+          "description": "Students apply ideal and real-gas thinking to process streams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal gas law"
+            },
+            {
+              "type": "concept",
+              "title": "Partial pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Mole fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Standard conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vapor-liquid equilibrium basics",
+          "description": "Students learn how saturation and vapor pressure affect process calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vapor pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Raoult's law awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Relative humidity"
+            },
+            {
+              "type": "concept",
+              "title": "Dew point"
+            },
+            {
+              "type": "concept",
+              "title": "Condensation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Humidification and drying",
+          "description": "Students apply balances to air-water systems and solids drying.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Humidity"
+            },
+            {
+              "type": "concept",
+              "title": "Psychrometric concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Wet-bulb temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Drying rate basics"
+            },
+            {
+              "type": "concept",
+              "title": "Moisture content"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Single- and Multiphase Systems",
+      "description": "Process streams often contain multiple phases whose compositions and amounts depend on equilibrium, solubility, and phase behavior. This section prepares students to handle phase splits in balance calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase descriptions",
+          "description": "Students identify and label liquid, vapor, solid, and mixed-phase streams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single phase"
+            },
+            {
+              "type": "concept",
+              "title": "Two-phase mixture"
+            },
+            {
+              "type": "concept",
+              "title": "Saturated liquid"
+            },
+            {
+              "type": "concept",
+              "title": "Saturated vapor"
+            },
+            {
+              "type": "concept",
+              "title": "Quality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase equilibrium calculations",
+          "description": "Students use simple relationships and data tables to determine phase amounts and compositions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solubility"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Flash calculation awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Lever-rule thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiphase balance applications",
+          "description": "Students solve balances involving phase change, extraction, and crystallization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaporation"
+            },
+            {
+              "type": "concept",
+              "title": "Condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Liquid-liquid extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Crystallization"
+            },
+            {
+              "type": "concept",
+              "title": "Precipitation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Balances on Nonreactive Processes",
+      "description": "Energy balances explain heating, cooling, phase change, compression, and flow work in process units. Students learn to combine the first law with property data for nonreactive systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy balance forms",
+          "description": "Students learn which terms matter under common process assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal energy"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetic energy"
+            },
+            {
+              "type": "concept",
+              "title": "Potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Heat"
+            },
+            {
+              "type": "concept",
+              "title": "Shaft work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensible and latent heat",
+          "description": "Students calculate energy changes from temperature changes and phase changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Reference state"
+            },
+            {
+              "type": "concept",
+              "title": "Latent heat"
+            },
+            {
+              "type": "concept",
+              "title": "Steam tables awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy charts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common unit operations",
+          "description": "Students apply energy balances to standard nonreactive equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat exchangers"
+            },
+            {
+              "type": "concept",
+              "title": "Condensers"
+            },
+            {
+              "type": "concept",
+              "title": "Evaporators"
+            },
+            {
+              "type": "concept",
+              "title": "Pumps"
+            },
+            {
+              "type": "concept",
+              "title": "Compressors"
+            },
+            {
+              "type": "concept",
+              "title": "Turbines"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Balances with Chemical Reactions",
+      "description": "Reactive energy balances show how chemistry and heat effects interact. Students learn to calculate heats of reaction, adiabatic temperature changes, and heating or cooling duties for reacting systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heat of reaction",
+          "description": "Students calculate reaction enthalpy using formation data and reference states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard heat of reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Heat of formation"
+            },
+            {
+              "type": "concept",
+              "title": "Hess's law"
+            },
+            {
+              "type": "concept",
+              "title": "Reference temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reactive process energy balances",
+          "description": "Students combine material balances, reaction stoichiometry, and energy terms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extent of reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic operation"
+            },
+            {
+              "type": "concept",
+              "title": "Isothermal operation"
+            },
+            {
+              "type": "concept",
+              "title": "Heat duty"
+            },
+            {
+              "type": "concept",
+              "title": "Product temperature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Combustion and fuels",
+          "description": "Students apply reactive balances to fuel systems and emissions context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complete combustion"
+            },
+            {
+              "type": "concept",
+              "title": "Excess air"
+            },
+            {
+              "type": "concept",
+              "title": "Flue gas"
+            },
+            {
+              "type": "concept",
+              "title": "Heating value"
+            },
+            {
+              "type": "concept",
+              "title": "Stack gas analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Combined Material and Energy Balances",
+      "description": "Industrial calculations often require solving material and energy balances together. This topic integrates earlier skills into complete process models with recycle, reactions, phase changes, and heat effects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sequential vs. coupled solution",
+          "description": "Students decide whether material balances can be solved before energy balances or must be solved together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Known stream flows"
+            },
+            {
+              "type": "concept",
+              "title": "Unknown temperatures"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled variables"
+            },
+            {
+              "type": "concept",
+              "title": "Iterative solution"
+            },
+            {
+              "type": "concept",
+              "title": "Equation ordering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process case studies",
+          "description": "Students solve integrated balances for realistic units and process sections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaporator with heat duty"
+            },
+            {
+              "type": "concept",
+              "title": "Reactor with cooling"
+            },
+            {
+              "type": "concept",
+              "title": "Dryer with humid air"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion furnace"
+            },
+            {
+              "type": "concept",
+              "title": "Recycle reactor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical and spreadsheet methods",
+          "description": "Students use computational tools without losing chemical engineering judgment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spreadsheet layout"
+            },
+            {
+              "type": "concept",
+              "title": "Goal seek"
+            },
+            {
+              "type": "concept",
+              "title": "Solver"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sweeps"
+            },
+            {
+              "type": "concept",
+              "title": "Error checking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Data, Safety, and Environmental Balance Applications",
+      "description": "Balances are used to interpret plant data, detect losses, assess safety risks, and estimate environmental impacts. This topic helps students see balances as practical engineering tools, not just textbook equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Process data reconciliation",
+          "description": "Students learn how real measurements can be noisy or inconsistent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flowmeter data"
+            },
+            {
+              "type": "concept",
+              "title": "Composition data"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement error"
+            },
+            {
+              "type": "concept",
+              "title": "Closure checks"
+            },
+            {
+              "type": "concept",
+              "title": "Missing data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety-related balances",
+          "description": "Students connect balances to hazards created by accumulation, heat release, and pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Runaway risk"
+            },
+            {
+              "type": "concept",
+              "title": "Relief scenarios"
+            },
+            {
+              "type": "concept",
+              "title": "Flammable mixtures"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen demand"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental balances",
+          "description": "Students estimate emissions, waste, water use, and resource efficiency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass loss"
+            },
+            {
+              "type": "concept",
+              "title": "Wastewater loading"
+            },
+            {
+              "type": "concept",
+              "title": "Air emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon dioxide generation"
+            },
+            {
+              "type": "concept",
+              "title": "Material efficiency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Process Calculation Project",
+      "description": "The course culminates in a project where students build and communicate a full process calculation. The point is to integrate flowcharts, balances, property data, reactions, energy effects, and engineering interpretation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project scoping",
+          "description": "Students define a process, boundaries, assumptions, and needed data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process selection"
+            },
+            {
+              "type": "concept",
+              "title": "Basis statement"
+            },
+            {
+              "type": "concept",
+              "title": "Stream table"
+            },
+            {
+              "type": "concept",
+              "title": "Data sources"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calculation package",
+          "description": "Students assemble clear material and energy balance calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flowchart"
+            },
+            {
+              "type": "concept",
+              "title": "Degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Material balance"
+            },
+            {
+              "type": "concept",
+              "title": "Energy balance"
+            },
+            {
+              "type": "concept",
+              "title": "Spreadsheet or code checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering communication",
+          "description": "Students present results as a defensible engineering deliverable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "Calculation notes"
+            },
+            {
+              "type": "concept",
+              "title": "Tables and figures"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

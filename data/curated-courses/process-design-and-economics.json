@@ -1,0 +1,996 @@
+{
+  "slug": "process-design-and-economics",
+  "title": "Process Design and Economics",
+  "description": "This syllabus is designed for a senior chemical engineering course that bridges core ChE science with plant-scale design decisions. Students should leave able to synthesize a flowsheet, size major equipment, simulate and validate a design, estimate capital and operating costs, evaluate profitability, and defend safety, environmental, and economic recommendations.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Process Synthesis and Flowsheet Development",
+      "description": "Introduces the creative core of process design: turning chemistry, separations, recycle structures, utilities, and constraints into a coherent plant flowsheet.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design basis and process objectives",
+          "description": "Students learn to define the production target, feed assumptions, product specifications, and design boundaries before calculating anything.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design basis"
+            },
+            {
+              "type": "concept",
+              "title": "Feed/product specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Battery limits"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reaction-separation-recycle structure",
+          "description": "Flowsheet synthesis connects reactors, separation trains, recycle loops, purge streams, and heat recovery into a workable system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reactor placement"
+            },
+            {
+              "type": "concept",
+              "title": "Separation sequencing"
+            },
+            {
+              "type": "concept",
+              "title": "Recycle and purge"
+            },
+            {
+              "type": "concept",
+              "title": "Process alternatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process flow diagrams",
+          "description": "PFDs communicate the material and energy logic of the plant and become the backbone for simulation and costing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stream numbering"
+            },
+            {
+              "type": "concept",
+              "title": "Major equipment"
+            },
+            {
+              "type": "concept",
+              "title": "Utility streams"
+            },
+            {
+              "type": "concept",
+              "title": "PFD conventions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Material and Energy Balances for Design",
+      "description": "Makes sure students can close the balances that every design decision depends on, especially around recycle, purge, conversion, yields, and energy integration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Steady-state process balances",
+          "description": "Mass and energy balances are used to size streams, estimate duties, and detect impossible designs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Component balances"
+            },
+            {
+              "type": "concept",
+              "title": "Overall balances"
+            },
+            {
+              "type": "concept",
+              "title": "Heat duties"
+            },
+            {
+              "type": "concept",
+              "title": "Degrees of freedom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recycle and purge calculations",
+          "description": "Recycle structures improve yield and economics but require careful handling of accumulation and inert buildup.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recycle ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Purge fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Single-pass conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Overall conversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Utility and heat-duty estimation",
+          "description": "Energy requirements are translated into steam, cooling water, refrigeration, fuel, and electrical utility needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heating curves"
+            },
+            {
+              "type": "concept",
+              "title": "Cooling loads"
+            },
+            {
+              "type": "concept",
+              "title": "Utility selection"
+            },
+            {
+              "type": "concept",
+              "title": "Energy intensity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equipment Sizing and Selection",
+      "description": "Turns the flowsheet into physical equipment with preliminary sizes, operating ranges, materials, and constraints suitable for cost estimation and design review.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Major equipment sizing",
+          "description": "Students estimate sizes for reactors, vessels, heat exchangers, pumps, compressors, and separation units at a scoping level.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residence time"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-transfer area"
+            },
+            {
+              "type": "concept",
+              "title": "Pump/compressor power"
+            },
+            {
+              "type": "concept",
+              "title": "Column diameter and height"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equipment selection tradeoffs",
+          "description": "Selection is framed as a balance among performance, cost, reliability, controllability, safety, and maintainability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Batch vs. continuous"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel equipment"
+            },
+            {
+              "type": "concept",
+              "title": "Materials of construction"
+            },
+            {
+              "type": "concept",
+              "title": "Sparing and turndown"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design margins and practical constraints",
+          "description": "Students learn why real equipment includes margins, vendor ranges, pressure drops, fouling factors, and constructability limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design factors"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure rating"
+            },
+            {
+              "type": "concept",
+              "title": "Fouling allowance"
+            },
+            {
+              "type": "concept",
+              "title": "Layout constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Simulation Software",
+      "description": "Develops practical fluency in simulation tools while emphasizing that software output must be checked against engineering judgment and independent calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Property methods and component data",
+          "description": "Students learn that thermodynamic models determine whether simulation results are meaningful for real mixtures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equation-of-state models"
+            },
+            {
+              "type": "concept",
+              "title": "Activity coefficient models"
+            },
+            {
+              "type": "concept",
+              "title": "Property databases"
+            },
+            {
+              "type": "concept",
+              "title": "Data quality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flowsheet modeling workflow",
+          "description": "Simulation becomes a systematic process of specifying units, convergence blocks, recycles, and design specs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit operation blocks"
+            },
+            {
+              "type": "concept",
+              "title": "Recycle convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Design specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity runs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model validation and sanity checks",
+          "description": "Students compare simulation results with hand calculations, literature values, and physical expectations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Balance closure"
+            },
+            {
+              "type": "concept",
+              "title": "Limiting cases"
+            },
+            {
+              "type": "concept",
+              "title": "Equipment constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Error diagnosis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capital Cost Estimation",
+      "description": "Shows how preliminary equipment sizes become installed capital estimates, with explicit attention to uncertainty and estimate class.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Purchased equipment cost",
+          "description": "Students estimate base equipment cost from size, capacity, pressure, material, and scaling correlations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cost-capacity scaling"
+            },
+            {
+              "type": "concept",
+              "title": "Cost indexes"
+            },
+            {
+              "type": "concept",
+              "title": "Material factors"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Installed and indirect costs",
+          "description": "Total capital includes installation, piping, instrumentation, electrical, buildings, engineering, contingency, and working capital.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct costs"
+            },
+            {
+              "type": "concept",
+              "title": "Indirect costs"
+            },
+            {
+              "type": "concept",
+              "title": "Lang factors"
+            },
+            {
+              "type": "concept",
+              "title": "Contingency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Estimate accuracy and uncertainty",
+          "description": "Cost numbers are interpreted as decision-support estimates rather than exact predictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate classes"
+            },
+            {
+              "type": "concept",
+              "title": "Escalation"
+            },
+            {
+              "type": "concept",
+              "title": "Learning curves"
+            },
+            {
+              "type": "concept",
+              "title": "Cost uncertainty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operating Cost Estimation",
+      "description": "Builds the annual cost model that links raw materials, utilities, labor, maintenance, waste treatment, and overhead to plant profitability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Variable costs",
+          "description": "Variable costs scale with production and often dominate chemical-process economics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feedstock cost"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst and chemicals"
+            },
+            {
+              "type": "concept",
+              "title": "Utilities"
+            },
+            {
+              "type": "concept",
+              "title": "Waste disposal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fixed and semi-fixed costs",
+          "description": "Fixed costs keep the plant running regardless of throughput and shape break-even behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Labor"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance"
+            },
+            {
+              "type": "concept",
+              "title": "Insurance and taxes"
+            },
+            {
+              "type": "concept",
+              "title": "Plant overhead"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cost of manufacturing",
+          "description": "Students combine cost categories into a clear cost-of-goods or cost-of-manufacturing model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct manufacturing cost"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed manufacturing cost"
+            },
+            {
+              "type": "concept",
+              "title": "General expenses"
+            },
+            {
+              "type": "concept",
+              "title": "Unit production cost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Profitability Analysis and Project Evaluation",
+      "description": "Translates process performance into business decisions using discounted cash flow and project evaluation metrics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cash-flow construction",
+          "description": "Students build project cash flows from capital spending, revenue, operating costs, taxes, depreciation, and working capital.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Revenue model"
+            },
+            {
+              "type": "concept",
+              "title": "Depreciation"
+            },
+            {
+              "type": "concept",
+              "title": "Taxes"
+            },
+            {
+              "type": "concept",
+              "title": "Working capital recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Economic metrics",
+          "description": "Decision metrics compare alternatives across time and risk using consistent financial assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NPV"
+            },
+            {
+              "type": "concept",
+              "title": "IRR"
+            },
+            {
+              "type": "concept",
+              "title": "Payback period"
+            },
+            {
+              "type": "concept",
+              "title": "Benefit-cost ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "After-tax and inflation effects",
+          "description": "More realistic analysis includes tax treatment, depreciation schedules, escalation, and real versus nominal assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MACRS concept"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation"
+            },
+            {
+              "type": "concept",
+              "title": "Discount rate"
+            },
+            {
+              "type": "concept",
+              "title": "After-tax cash flow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Decision Analysis, Sensitivity, and Risk",
+      "description": "Gives students tools to make defensible recommendations when prices, yields, capital costs, demand, and technical performance are uncertain.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sensitivity analysis",
+          "description": "Students identify which assumptions drive project value and where better data would matter most.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-factor sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Tornado charts"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Break-even analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision trees and expected value",
+          "description": "Decision analysis frames staged projects, uncertain outcomes, and information-gathering choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Chance nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Expected monetary value"
+            },
+            {
+              "type": "concept",
+              "title": "Value of information"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multi-criteria tradeoffs",
+          "description": "Not every design decision is purely financial; students compare safety, emissions, operability, schedule, and strategic fit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weighted scoring"
+            },
+            {
+              "type": "concept",
+              "title": "Risk-adjusted selection"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation rationale"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Optimization",
+      "description": "Shows how engineers improve a process by choosing decision variables, constraints, and objective functions tied to cost, profit, energy, yield, or emissions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Objective functions and constraints",
+          "description": "Optimization begins by clearly stating what is being improved and what physical, economic, and safety limits must hold.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Profit maximization"
+            },
+            {
+              "type": "concept",
+              "title": "Cost minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Specification constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design-variable selection",
+          "description": "Students learn to identify variables that are controllable and meaningful at design stage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature and pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Recycle ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Equipment size"
+            },
+            {
+              "type": "concept",
+              "title": "Utility choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization with simulation",
+          "description": "Simulation-based optimization is treated as an iterative engineering workflow, not a black-box answer machine.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity studies"
+            },
+            {
+              "type": "concept",
+              "title": "Solver settings"
+            },
+            {
+              "type": "concept",
+              "title": "Local optima"
+            },
+            {
+              "type": "concept",
+              "title": "Feasible design space"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Safety and HAZOP Analysis",
+      "description": "Places process safety at the center of design, using structured hazard identification and inherently safer thinking before finalizing equipment and economics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hazard identification",
+          "description": "Students learn to recognize chemical, thermal, pressure, toxicity, flammability, and reactivity hazards in a flowsheet.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Material hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Runaway reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Toxic releases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "HAZOP method",
+          "description": "HAZOP provides a structured team method for finding deviations, causes, consequences, safeguards, and recommendations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Guide words"
+            },
+            {
+              "type": "concept",
+              "title": "Nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Causes and consequences"
+            },
+            {
+              "type": "concept",
+              "title": "Safeguards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relief and inherently safer design",
+          "description": "Safety is improved by eliminating hazards where possible and protecting against credible overpressure or loss-of-control events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relief valves"
+            },
+            {
+              "type": "concept",
+              "title": "Layers of protection"
+            },
+            {
+              "type": "concept",
+              "title": "Minimize/substitute/moderate/simplify"
+            },
+            {
+              "type": "concept",
+              "title": "Emergency scenarios"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental and Sustainability Considerations",
+      "description": "Expands process design beyond economics to emissions, waste, water, energy intensity, lifecycle effects, and regulatory expectations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Environmental releases and waste",
+          "description": "Students estimate and reduce air, water, and solid-waste impacts from process alternatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Effluents"
+            },
+            {
+              "type": "concept",
+              "title": "Waste treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Permitting context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy efficiency and integration",
+          "description": "Energy use is treated as both an operating-cost issue and an environmental performance driver.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Pinch concept"
+            },
+            {
+              "type": "concept",
+              "title": "Utility minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon intensity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainability metrics",
+          "description": "Students evaluate designs with broader metrics that can influence process selection and stakeholder acceptance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Life-cycle thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Water use"
+            },
+            {
+              "type": "concept",
+              "title": "E-factor concept"
+            },
+            {
+              "type": "concept",
+              "title": "Circularity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Case Studies and Alternative Evaluation",
+      "description": "Uses realistic cases to integrate flowsheet synthesis, sizing, simulation, economics, safety, environment, and uncertainty into complete design choices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Case-study framing",
+          "description": "Students practice translating an open-ended industrial problem into assumptions, alternatives, and evaluation criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Market assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Technology alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternative comparison",
+          "description": "Design alternatives are compared using consistent technical and economic assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base case"
+            },
+            {
+              "type": "concept",
+              "title": "Process intensification"
+            },
+            {
+              "type": "concept",
+              "title": "Feedstock alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Utility alternatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lessons learned",
+          "description": "Case review helps students see how design decisions interact and how early assumptions can dominate later results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Failure modes"
+            },
+            {
+              "type": "concept",
+              "title": "Scale-up issues"
+            },
+            {
+              "type": "concept",
+              "title": "Review questions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Report, Presentation, and Professional Review",
+      "description": "Makes the course deliverable-ready by teaching students to communicate assumptions, calculations, risks, economics, and recommendations in professional design-review formats.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Technical design report",
+          "description": "Students learn to document a design so another engineer can audit the basis, calculations, and recommendation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "Design basis"
+            },
+            {
+              "type": "concept",
+              "title": "PFDs and stream tables"
+            },
+            {
+              "type": "concept",
+              "title": "Appendices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Economic recommendation",
+          "description": "The final economic argument must connect technical performance, uncertainty, and decision criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Investment summary"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity results"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Go/no-go recommendation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oral design defense",
+          "description": "Presentation practice prepares students to answer questions from technical, safety, business, and management audiences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slide structure"
+            },
+            {
+              "type": "concept",
+              "title": "Design review questions"
+            },
+            {
+              "type": "concept",
+              "title": "Team roles"
+            },
+            {
+              "type": "concept",
+              "title": "Professional response"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

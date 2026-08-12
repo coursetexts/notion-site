@@ -1,0 +1,768 @@
+{
+  "slug": "introduction-to-aerospace-engineering",
+  "title": "Introduction to Aerospace Engineering",
+  "description": "Introduction to Aerospace Engineering surveys aircraft and spacecraft systems, aerodynamics, propulsion, atmosphere and orbits, systems engineering, and a small design project.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "History of Flight and Spaceflight",
+      "description": "Trace how aircraft, rockets, satellites, and missions developed into modern aerospace systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Early flight and aeronautical milestones",
+          "description": "The point is to see aerospace engineering as a sequence of technical breakthroughs, not just a collection of formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kites, gliders, and ballooning"
+            },
+            {
+              "type": "concept",
+              "title": "Wright brothers and controlled powered flight"
+            },
+            {
+              "type": "concept",
+              "title": "World War-era aircraft development"
+            },
+            {
+              "type": "concept",
+              "title": "Commercial aviation growth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rocketry and spaceflight milestones",
+          "description": "Spaceflight history shows how propulsion, guidance, materials, and mission operations matured together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Early rocketry"
+            },
+            {
+              "type": "concept",
+              "title": "Sputnik and the Space Race"
+            },
+            {
+              "type": "concept",
+              "title": "Apollo and lunar exploration"
+            },
+            {
+              "type": "concept",
+              "title": "Space Shuttle, ISS, and reusable launch vehicles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modern aerospace trends",
+          "description": "Current trends help students connect the introductory course to the industry they are entering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uncrewed aircraft systems"
+            },
+            {
+              "type": "concept",
+              "title": "Commercial spaceflight"
+            },
+            {
+              "type": "concept",
+              "title": "Small satellites and CubeSats"
+            },
+            {
+              "type": "concept",
+              "title": "Sustainable aviation and advanced air mobility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Aerospace Engineering Profession",
+      "description": "Understand aerospace roles, disciplines, ethics, standards, safety culture, and career pathways.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Aerospace disciplines",
+          "description": "Students need a map of the field so later technical courses feel connected rather than isolated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aerodynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Structures and materials"
+            },
+            {
+              "type": "concept",
+              "title": "Propulsion"
+            },
+            {
+              "type": "concept",
+              "title": "Controls, avionics, and guidance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional practice",
+          "description": "Aerospace work is constrained by safety, certification, teamwork, and public responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ethics and public safety"
+            },
+            {
+              "type": "concept",
+              "title": "Certification and regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Technical communication"
+            },
+            {
+              "type": "concept",
+              "title": "Interdisciplinary teamwork"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Career pathways",
+          "description": "This helps students understand where aerospace skills are used across government, industry, and research.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aircraft and spacecraft design"
+            },
+            {
+              "type": "concept",
+              "title": "Testing and operations"
+            },
+            {
+              "type": "concept",
+              "title": "Research and development"
+            },
+            {
+              "type": "concept",
+              "title": "Defense, civil, and commercial sectors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Anatomy of Aircraft",
+      "description": "Identify major aircraft components and explain how they work together to produce controlled flight.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Airframe components",
+          "description": "The airframe gives an aircraft shape, strength, and aerodynamic function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fuselage"
+            },
+            {
+              "type": "concept",
+              "title": "Wings"
+            },
+            {
+              "type": "concept",
+              "title": "Empennage"
+            },
+            {
+              "type": "concept",
+              "title": "Landing gear"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control and stability surfaces",
+          "description": "Control surfaces explain how pilots and autopilots command aircraft motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ailerons"
+            },
+            {
+              "type": "concept",
+              "title": "Elevators"
+            },
+            {
+              "type": "concept",
+              "title": "Rudder"
+            },
+            {
+              "type": "concept",
+              "title": "Flaps and high-lift devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aircraft systems",
+          "description": "Aircraft are integrated machines, not just wings and engines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fuel systems"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulics and actuation"
+            },
+            {
+              "type": "concept",
+              "title": "Avionics and sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental control and electrical power"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Anatomy of Spacecraft",
+      "description": "Identify major spacecraft subsystems and how they support missions beyond the atmosphere.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spacecraft bus",
+          "description": "The bus provides the common infrastructure that keeps a spacecraft alive and controllable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Structure"
+            },
+            {
+              "type": "concept",
+              "title": "Power subsystem"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal control"
+            },
+            {
+              "type": "concept",
+              "title": "Command and data handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Payload and mission equipment",
+          "description": "Payloads define what the spacecraft is actually sent to accomplish.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Science instruments"
+            },
+            {
+              "type": "concept",
+              "title": "Communications payloads"
+            },
+            {
+              "type": "concept",
+              "title": "Earth observation sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Crew or cargo systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spacecraft operations subsystems",
+          "description": "Operations subsystems let the vehicle communicate, orient itself, and survive its environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Telemetry, tracking, and command"
+            },
+            {
+              "type": "concept",
+              "title": "Attitude determination and control"
+            },
+            {
+              "type": "concept",
+              "title": "Propulsion for stationkeeping"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation and micrometeoroid protection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Basic Aerodynamics",
+      "description": "Introduce lift, drag, pressure, flow, and airfoil ideas that explain atmospheric flight.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fluid flow fundamentals",
+          "description": "Aerodynamics starts with how air moves and how that motion creates pressure and forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Bernoulli intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds number"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lift and drag",
+          "description": "Lift and drag are the core performance forces for aircraft and many launch vehicles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angle of attack"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure and shear contributions"
+            },
+            {
+              "type": "concept",
+              "title": "Lift and drag coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Stall intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Airfoils and wings",
+          "description": "Airfoil and wing concepts explain why shape, aspect ratio, and flow separation matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Airfoil geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Camber and thickness"
+            },
+            {
+              "type": "concept",
+              "title": "Wing planform"
+            },
+            {
+              "type": "concept",
+              "title": "Induced drag and wingtip vortices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Basic Propulsion",
+      "description": "Compare propellers, jet engines, rockets, and emerging propulsion concepts through thrust and energy conversion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thrust and momentum",
+          "description": "Propulsion converts energy into momentum change, producing thrust.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control-volume intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Mass flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Thrust equation"
+            },
+            {
+              "type": "concept",
+              "title": "Specific impulse overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Air-breathing engines",
+          "description": "Air-breathing propulsion powers most atmospheric aircraft.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Propellers"
+            },
+            {
+              "type": "concept",
+              "title": "Turbojets"
+            },
+            {
+              "type": "concept",
+              "title": "Turbofans"
+            },
+            {
+              "type": "concept",
+              "title": "Ramjets and scramjets preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rocket propulsion",
+          "description": "Rockets carry their own oxidizer and work in atmosphere or vacuum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemical rockets"
+            },
+            {
+              "type": "concept",
+              "title": "Solid and liquid propellants"
+            },
+            {
+              "type": "concept",
+              "title": "Nozzle expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Electric and advanced propulsion preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flight Environment and Atmosphere",
+      "description": "Relate atmospheric properties, weather, loads, and operating environment to aerospace vehicle performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Standard atmosphere",
+          "description": "The atmosphere sets density, pressure, temperature, and speed-of-sound conditions for flight.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Troposphere and stratosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure and density variation"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature profiles"
+            },
+            {
+              "type": "concept",
+              "title": "Speed of sound and Mach number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loads and operating environment",
+          "description": "Vehicles must survive forces and environmental conditions throughout the mission.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "G-loads"
+            },
+            {
+              "type": "concept",
+              "title": "Gusts and turbulence"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal environment"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration and acoustics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Weather and mission constraints",
+          "description": "Weather and environment shape safety, performance, and operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wind and crosswinds"
+            },
+            {
+              "type": "concept",
+              "title": "Icing"
+            },
+            {
+              "type": "concept",
+              "title": "Thunderstorms"
+            },
+            {
+              "type": "concept",
+              "title": "Launch and landing constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Orbital Mechanics Overview",
+      "description": "Introduce gravity, orbits, orbital elements, and basic maneuvers used in astronautics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Two-body motion",
+          "description": "Orbital mechanics begins with gravity and the motion of one body around another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newtonian gravitation"
+            },
+            {
+              "type": "concept",
+              "title": "Circular and elliptical orbits"
+            },
+            {
+              "type": "concept",
+              "title": "Orbital period"
+            },
+            {
+              "type": "concept",
+              "title": "Specific orbital energy intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orbital elements",
+          "description": "Orbital elements provide a shared language for describing where a spacecraft is and how it moves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semi-major axis"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentricity"
+            },
+            {
+              "type": "concept",
+              "title": "Inclination"
+            },
+            {
+              "type": "concept",
+              "title": "Argument and node angles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maneuvers and mission geometry",
+          "description": "Maneuvers show how spacecraft change orbits within fuel limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Delta-v"
+            },
+            {
+              "type": "concept",
+              "title": "Hohmann transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Plane change"
+            },
+            {
+              "type": "concept",
+              "title": "Rendezvous and phasing preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Systems Engineering Basics",
+      "description": "Frame aerospace vehicles as integrated systems shaped by requirements, interfaces, trades, risk, and verification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Requirements and mission objectives",
+          "description": "Requirements translate mission goals into measurable engineering targets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder needs"
+            },
+            {
+              "type": "concept",
+              "title": "Functional requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Performance requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interfaces and trade studies",
+          "description": "Aerospace design is full of coupled decisions where one subsystem changes another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass, cost, and performance trades"
+            },
+            {
+              "type": "concept",
+              "title": "Subsystem interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Margins and budgets"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk, verification, and lifecycle",
+          "description": "Safety-critical systems require evidence that they work as intended.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard identification"
+            },
+            {
+              "type": "concept",
+              "title": "Verification and validation"
+            },
+            {
+              "type": "concept",
+              "title": "Testing pyramid"
+            },
+            {
+              "type": "concept",
+              "title": "Concept, design, build, test, operate lifecycle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Introductory Design Project",
+      "description": "Use a small design challenge to synthesize aerodynamics, structures, propulsion, mission goals, and communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem framing",
+          "description": "A good project starts by understanding the mission before drawing a vehicle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mission statement"
+            },
+            {
+              "type": "concept",
+              "title": "Design criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Success metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concept generation and sizing",
+          "description": "Concept work gives students a first taste of engineering tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Brainstorming configurations"
+            },
+            {
+              "type": "concept",
+              "title": "Back-of-the-envelope sizing"
+            },
+            {
+              "type": "concept",
+              "title": "Mass and performance estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Sketching and simple CAD"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing and communication",
+          "description": "Intro projects should end with evidence and a clear engineering story.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prototype or simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Data collection"
+            },
+            {
+              "type": "concept",
+              "title": "Design review presentation"
+            },
+            {
+              "type": "concept",
+              "title": "Reflection on limitations and next steps"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

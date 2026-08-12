@@ -1,0 +1,1072 @@
+{
+  "slug": "programming-for-engineers-matlab-python",
+  "title": "Programming for Engineers (MATLAB/Python)",
+  "description": "Teaches MATLAB and Python for engineering computation\u2014covering workflow, data structures, control flow, modular code, data handling, visualization, debugging, numerical methods, simulation, optimization, and an applied capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Engineering Programming Mindset, Tools, and Workflow",
+      "description": "Set up MATLAB and Python environments while learning how engineers translate physical problems into computational steps.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem formulation for computation",
+          "description": "Students learn that engineering code starts with a physical question, assumptions, variables, and a plan before syntax enters the picture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "inputs, outputs, parameters, constants"
+            },
+            {
+              "type": "concept",
+              "title": "units, dimensions, and conversion factors"
+            },
+            {
+              "type": "concept",
+              "title": "assumptions, boundary conditions, and constraints"
+            },
+            {
+              "type": "concept",
+              "title": "algorithm sketching and pseudocode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "MATLAB and Python environments",
+          "description": "This subtopic builds fluency in the tools students will use for assignments, labs, and future engineering work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MATLAB desktop, editor, command window, workspace"
+            },
+            {
+              "type": "concept",
+              "title": "Python interpreter, IDEs, virtual environments, Jupyter notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "packages and toolboxes: NumPy, SciPy, matplotlib, pandas"
+            },
+            {
+              "type": "concept",
+              "title": "path management and working directories"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering workflow habits",
+          "description": "Good computational work needs organization, naming, documentation, and repeatable execution from the beginning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "script organization and project folders"
+            },
+            {
+              "type": "concept",
+              "title": "comments, docstrings, and README files"
+            },
+            {
+              "type": "concept",
+              "title": "incremental development"
+            },
+            {
+              "type": "concept",
+              "title": "version control basics with Git"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Variables, Data Types, Operators, and Expressions",
+      "description": "Use core language elements to represent quantities, formulas, units, and engineering calculations accurately.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Variables and assignment",
+          "description": "Variables let students name engineering quantities and reuse them in calculations without hiding meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "scalar assignment"
+            },
+            {
+              "type": "concept",
+              "title": "naming conventions"
+            },
+            {
+              "type": "concept",
+              "title": "constants versus calculated variables"
+            },
+            {
+              "type": "concept",
+              "title": "workspace inspection and variable scope"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data types and precision",
+          "description": "Students need to know how computers represent numbers and text so calculations do not quietly mislead them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "integers, floating-point numbers, strings, booleans"
+            },
+            {
+              "type": "concept",
+              "title": "floating-point rounding and machine precision"
+            },
+            {
+              "type": "concept",
+              "title": "NaN, Inf, and missing values"
+            },
+            {
+              "type": "concept",
+              "title": "type conversion and casting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Expressions and operators",
+          "description": "Expressions are the building blocks for formulas, model equations, and engineering calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "arithmetic operators and precedence"
+            },
+            {
+              "type": "concept",
+              "title": "relational operators"
+            },
+            {
+              "type": "concept",
+              "title": "logical operators"
+            },
+            {
+              "type": "concept",
+              "title": "elementwise versus matrix operators in MATLAB"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Arrays, Vectors, Matrices, and Indexing",
+      "description": "Work with vectorized data structures that are central to MATLAB, NumPy, linear algebra, measurements, and simulations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Array construction and indexing",
+          "description": "Arrays are the native structure for data, signals, spatial grids, and engineering unknowns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "row and column vectors"
+            },
+            {
+              "type": "concept",
+              "title": "matrix creation and reshaping"
+            },
+            {
+              "type": "concept",
+              "title": "one-based MATLAB indexing versus zero-based Python indexing"
+            },
+            {
+              "type": "concept",
+              "title": "slicing, masks, and logical indexing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vector and matrix operations",
+          "description": "This subtopic connects programming syntax to linear algebra and efficient engineering computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "dot product, matrix multiplication, transpose"
+            },
+            {
+              "type": "concept",
+              "title": "elementwise operations"
+            },
+            {
+              "type": "concept",
+              "title": "broadcasting in NumPy"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB implicit expansion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data structures beyond arrays",
+          "description": "Students learn when a table, list, dictionary, or structure is more appropriate than a plain numerical matrix.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Python lists, tuples, dictionaries"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB cell arrays, structures, and tables"
+            },
+            {
+              "type": "concept",
+              "title": "pandas DataFrame basics"
+            },
+            {
+              "type": "concept",
+              "title": "heterogeneous data and metadata"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditionals, Boolean Logic, and Control Flow",
+      "description": "Build programs that make decisions based on thresholds, operating regimes, validation checks, and design constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "If/else decision structures",
+          "description": "Conditionals allow code to react to engineering regimes, constraints, and validity checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "if, elif/elseif, else"
+            },
+            {
+              "type": "concept",
+              "title": "nested conditionals"
+            },
+            {
+              "type": "concept",
+              "title": "threshold checks"
+            },
+            {
+              "type": "concept",
+              "title": "piecewise engineering formulas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boolean logic and comparisons",
+          "description": "Boolean expressions define the conditions under which decisions, filters, and safety checks occur.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "and, or, not"
+            },
+            {
+              "type": "concept",
+              "title": "comparison chaining"
+            },
+            {
+              "type": "concept",
+              "title": "logical arrays"
+            },
+            {
+              "type": "concept",
+              "title": "tolerances instead of exact floating-point equality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Input validation and guard clauses",
+          "description": "Students learn to protect calculations from invalid values before they produce misleading results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "range checks"
+            },
+            {
+              "type": "concept",
+              "title": "division-by-zero prevention"
+            },
+            {
+              "type": "concept",
+              "title": "domain checks for logarithms and square roots"
+            },
+            {
+              "type": "concept",
+              "title": "clear error messages"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Loops, Iteration, and Vectorization",
+      "description": "Implement repeated calculations efficiently and decide when loops, vectorized operations, or built-in functions are the right tool.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "For loops and while loops",
+          "description": "Loops express repetition, convergence, time stepping, and processing of repeated measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "for loops over indices and values"
+            },
+            {
+              "type": "concept",
+              "title": "while loops for convergence"
+            },
+            {
+              "type": "concept",
+              "title": "break and continue"
+            },
+            {
+              "type": "concept",
+              "title": "loop counters and accumulators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vectorization and built-in functions",
+          "description": "Vectorization is central to MATLAB and scientific Python because it makes code shorter, clearer, and often faster.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "array operations instead of scalar loops"
+            },
+            {
+              "type": "concept",
+              "title": "preallocation"
+            },
+            {
+              "type": "concept",
+              "title": "map-style operations"
+            },
+            {
+              "type": "concept",
+              "title": "built-in reductions such as sum, mean, max, and norm"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Iteration patterns in engineering",
+          "description": "Students connect loop mechanics to real tasks such as convergence, simulation, and parameter sweeps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "fixed-point iteration"
+            },
+            {
+              "type": "concept",
+              "title": "time stepping"
+            },
+            {
+              "type": "concept",
+              "title": "parameter grids"
+            },
+            {
+              "type": "concept",
+              "title": "stopping criteria and tolerances"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions, Scripts, Modules, and Modular Programming",
+      "description": "Organize code into reusable components with clear inputs, outputs, documentation, and testable behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Function design",
+          "description": "Functions help students turn repeated calculations into named, testable, reusable tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "input arguments and return values"
+            },
+            {
+              "type": "concept",
+              "title": "local variables"
+            },
+            {
+              "type": "concept",
+              "title": "default arguments"
+            },
+            {
+              "type": "concept",
+              "title": "multiple outputs in MATLAB and Python"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scripts, modules, and notebooks",
+          "description": "Students learn the difference between quick exploratory code and reusable project code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MATLAB scripts versus functions"
+            },
+            {
+              "type": "concept",
+              "title": "Python modules and imports"
+            },
+            {
+              "type": "concept",
+              "title": "Jupyter notebook cells"
+            },
+            {
+              "type": "concept",
+              "title": "main scripts and helper files"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation and interface clarity",
+          "description": "Clear function interfaces make engineering code easier to review, reuse, and verify.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "docstrings and help text"
+            },
+            {
+              "type": "concept",
+              "title": "units in comments"
+            },
+            {
+              "type": "concept",
+              "title": "preconditions and postconditions"
+            },
+            {
+              "type": "concept",
+              "title": "examples and usage notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Import, File Input/Output, and Engineering Data Cleaning",
+      "description": "Read, write, clean, and structure experimental, simulation, and tabular engineering data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reading and writing files",
+          "description": "Engineers often begin with measured or simulated files, so students need reliable data access skills.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSV, TXT, XLSX, MAT, JSON"
+            },
+            {
+              "type": "concept",
+              "title": "relative and absolute paths"
+            },
+            {
+              "type": "concept",
+              "title": "headers and delimiters"
+            },
+            {
+              "type": "concept",
+              "title": "saving results and figures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data cleaning and transformation",
+          "description": "Raw data usually needs units, missing values, filtering, and reshaping before analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "missing values"
+            },
+            {
+              "type": "concept",
+              "title": "outlier flags"
+            },
+            {
+              "type": "concept",
+              "title": "unit conversions"
+            },
+            {
+              "type": "concept",
+              "title": "sorting, grouping, and merging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering data provenance",
+          "description": "Students learn to preserve where data came from and what processing steps changed it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "metadata"
+            },
+            {
+              "type": "concept",
+              "title": "raw versus processed data folders"
+            },
+            {
+              "type": "concept",
+              "title": "timestamped outputs"
+            },
+            {
+              "type": "concept",
+              "title": "reproducible import pipelines"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plotting, Visualization, and Communication of Results",
+      "description": "Create clear plots and visual summaries that support engineering interpretation and technical communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core plot types",
+          "description": "Plots make numerical results interpretable and help engineers notice patterns or errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "line plots, scatter plots, bar charts"
+            },
+            {
+              "type": "concept",
+              "title": "histograms and box plots"
+            },
+            {
+              "type": "concept",
+              "title": "contour and surface plots"
+            },
+            {
+              "type": "concept",
+              "title": "subplots and overlays"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plot formatting and readability",
+          "description": "A correct plot still fails if labels, scales, or legends make it hard to read.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "axis labels with units"
+            },
+            {
+              "type": "concept",
+              "title": "legends and annotations"
+            },
+            {
+              "type": "concept",
+              "title": "linear versus logarithmic scales"
+            },
+            {
+              "type": "concept",
+              "title": "color choices and marker styles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communicating engineering results",
+          "description": "Students learn to pair visual outputs with concise interpretation and defensible conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "figure captions"
+            },
+            {
+              "type": "concept",
+              "title": "uncertainty bands"
+            },
+            {
+              "type": "concept",
+              "title": "comparison to theory or specification"
+            },
+            {
+              "type": "concept",
+              "title": "exporting publication-quality figures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Debugging, Error Handling, Testing, and Reproducibility",
+      "description": "Diagnose code behavior, handle failures, validate results, and make engineering computations repeatable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Debugging strategies",
+          "description": "Debugging turns confusion into evidence by inspecting state, isolating causes, and testing assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "reading tracebacks and error messages"
+            },
+            {
+              "type": "concept",
+              "title": "breakpoints and step-through debugging"
+            },
+            {
+              "type": "concept",
+              "title": "print/log inspection"
+            },
+            {
+              "type": "concept",
+              "title": "minimal reproducible examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error handling and robustness",
+          "description": "Engineering code should fail clearly or recover predictably when inputs are imperfect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "try/except in Python"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB try/catch"
+            },
+            {
+              "type": "concept",
+              "title": "warnings versus errors"
+            },
+            {
+              "type": "concept",
+              "title": "assertions and sanity checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing and reproducibility",
+          "description": "Students learn to trust results by rerunning code and checking against known answers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "unit tests"
+            },
+            {
+              "type": "concept",
+              "title": "regression tests"
+            },
+            {
+              "type": "concept",
+              "title": "random seeds"
+            },
+            {
+              "type": "concept",
+              "title": "environment files and dependency notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Methods I: Roots, Linear Systems, Interpolation, and Curve Fitting",
+      "description": "Apply foundational numerical techniques to solve equations, fit models, and approximate engineering relationships.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Root finding",
+          "description": "Root finding solves equations that cannot be rearranged cleanly, a common engineering modeling task.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "bisection method"
+            },
+            {
+              "type": "concept",
+              "title": "Newton-Raphson method"
+            },
+            {
+              "type": "concept",
+              "title": "secant method"
+            },
+            {
+              "type": "concept",
+              "title": "convergence criteria and failure modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linear systems and least squares",
+          "description": "Many engineering models reduce to systems of equations or best-fit parameter estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ax=b notation"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian elimination intuition"
+            },
+            {
+              "type": "concept",
+              "title": "matrix conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "least-squares fitting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpolation and curve fitting",
+          "description": "Students approximate relationships between measured or simulated data points.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "linear and polynomial interpolation"
+            },
+            {
+              "type": "concept",
+              "title": "splines"
+            },
+            {
+              "type": "concept",
+              "title": "regression models"
+            },
+            {
+              "type": "concept",
+              "title": "residual analysis and overfitting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Methods II: Integration, Differentiation, and Differential Equations",
+      "description": "Use computational tools to approximate rates, accumulated quantities, and dynamic systems described by ODEs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Numerical differentiation and integration",
+          "description": "Students approximate slopes and accumulated quantities from functions or data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "finite differences"
+            },
+            {
+              "type": "concept",
+              "title": "trapezoidal rule"
+            },
+            {
+              "type": "concept",
+              "title": "Simpson's rule"
+            },
+            {
+              "type": "concept",
+              "title": "error behavior and step size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Initial-value ODE solving",
+          "description": "ODE solvers model dynamic engineering systems such as motion, circuits, heat transfer, and reactors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler method"
+            },
+            {
+              "type": "concept",
+              "title": "Runge-Kutta methods"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB ode45"
+            },
+            {
+              "type": "concept",
+              "title": "SciPy solve_ivp"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stiffness and solver choices",
+          "description": "Solver selection matters when dynamic systems have multiple time scales or stability restrictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "stiff versus nonstiff systems"
+            },
+            {
+              "type": "concept",
+              "title": "absolute and relative tolerances"
+            },
+            {
+              "type": "concept",
+              "title": "adaptive step size"
+            },
+            {
+              "type": "concept",
+              "title": "event detection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Simulation, Monte Carlo Methods, and Parameter Studies",
+      "description": "Explore uncertainty, sensitivity, and system behavior through repeated computational experiments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deterministic simulation",
+          "description": "Simulation lets students explore system behavior without requiring a physical prototype for every scenario.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "state update equations"
+            },
+            {
+              "type": "concept",
+              "title": "time histories"
+            },
+            {
+              "type": "concept",
+              "title": "discrete-event versus continuous simulation"
+            },
+            {
+              "type": "concept",
+              "title": "model validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Parameter sweeps and sensitivity",
+          "description": "Parameter studies show which assumptions or design variables most strongly affect outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "looped parameter grids"
+            },
+            {
+              "type": "concept",
+              "title": "sensitivity plots"
+            },
+            {
+              "type": "concept",
+              "title": "nondimensional groups"
+            },
+            {
+              "type": "concept",
+              "title": "local versus global sensitivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Monte Carlo simulation",
+          "description": "Monte Carlo methods help students study uncertainty, variability, and risk in engineering calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "random variables"
+            },
+            {
+              "type": "concept",
+              "title": "sampling distributions"
+            },
+            {
+              "type": "concept",
+              "title": "random seed control"
+            },
+            {
+              "type": "concept",
+              "title": "confidence intervals from simulation output"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optimization and Engineering Design Computation",
+      "description": "Use computational search and constrained optimization to support engineering design choices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Optimization problem setup",
+          "description": "Students learn to express design goals and limitations as computational objectives and constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "decision variables"
+            },
+            {
+              "type": "concept",
+              "title": "objective functions"
+            },
+            {
+              "type": "concept",
+              "title": "equality and inequality constraints"
+            },
+            {
+              "type": "concept",
+              "title": "bounds and feasibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical optimization tools",
+          "description": "This subtopic introduces practical solvers without turning the course into a full optimization theory class.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "grid search"
+            },
+            {
+              "type": "concept",
+              "title": "gradient-free search"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB fmincon and linprog awareness"
+            },
+            {
+              "type": "concept",
+              "title": "SciPy optimize routines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design tradeoff interpretation",
+          "description": "Optimization output only becomes useful when students can interpret tradeoffs and check whether the answer is physically reasonable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sensitivity to initial guess"
+            },
+            {
+              "type": "concept",
+              "title": "local versus global optima"
+            },
+            {
+              "type": "concept",
+              "title": "constraint activity"
+            },
+            {
+              "type": "concept",
+              "title": "engineering judgment and safety factors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Engineering Applications and Capstone Project",
+      "description": "Combine programming, data analysis, numerical methods, visualization, and documentation in an applied engineering project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Applied engineering case studies",
+          "description": "Case studies show how programming supports mechanics, circuits, fluids, thermodynamics, and data analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "projectile motion or vibrations"
+            },
+            {
+              "type": "concept",
+              "title": "heat-transfer cooling curves"
+            },
+            {
+              "type": "concept",
+              "title": "circuit response"
+            },
+            {
+              "type": "concept",
+              "title": "fluid-flow pressure drop or pump curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone project workflow",
+          "description": "A capstone helps students practice planning, implementation, validation, visualization, and reporting in one coherent task.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "model or data source"
+            },
+            {
+              "type": "concept",
+              "title": "verification tests"
+            },
+            {
+              "type": "concept",
+              "title": "final report and code submission"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional code review and presentation",
+          "description": "Students finish by communicating not only what their code produced, but why it is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "code readability review"
+            },
+            {
+              "type": "concept",
+              "title": "peer testing"
+            },
+            {
+              "type": "concept",
+              "title": "limitations and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "technical presentation of results"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

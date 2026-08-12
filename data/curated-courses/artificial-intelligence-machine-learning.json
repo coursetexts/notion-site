@@ -1,0 +1,844 @@
+{
+  "slug": "artificial-intelligence-machine-learning",
+  "title": "Artificial Intelligence / Machine Learning",
+  "description": "A course covering intelligent search, constraint and adversarial reasoning, knowledge representation, probabilistic models, supervised and unsupervised learning, neural networks, reinforcement learning, NLP, and responsible model evaluation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Search Algorithms (BFS, DFS, A*)",
+      "description": "Understand how intelligent agents explore state spaces to solve problems when the answer is not immediately known.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "State-space formulation",
+          "description": "Search begins by translating a problem into states, actions, goals, and costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial state"
+            },
+            {
+              "type": "concept",
+              "title": "Successor function"
+            },
+            {
+              "type": "concept",
+              "title": "Goal test"
+            },
+            {
+              "type": "concept",
+              "title": "Path cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uninformed search",
+          "description": "Uninformed methods explore systematically when no domain-specific guidance is available.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breadth-first search"
+            },
+            {
+              "type": "concept",
+              "title": "Depth-first search"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform-cost search"
+            },
+            {
+              "type": "concept",
+              "title": "Completeness and optimality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heuristic search",
+          "description": "Heuristics use problem knowledge to guide search toward promising states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Greedy best-first search"
+            },
+            {
+              "type": "concept",
+              "title": "A* search"
+            },
+            {
+              "type": "concept",
+              "title": "Admissible heuristics"
+            },
+            {
+              "type": "concept",
+              "title": "Consistency and tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Constraint Satisfaction Problems",
+      "description": "Represent problems as variables, domains, and constraints so search can be made more efficient and structured.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CSP representation",
+          "description": "CSPs make structure explicit by separating variables, possible values, and rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variables"
+            },
+            {
+              "type": "concept",
+              "title": "Domains"
+            },
+            {
+              "type": "concept",
+              "title": "Unary and binary constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint graphs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Backtracking and pruning",
+          "description": "CSP solvers reduce wasted search by detecting conflicts early.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Backtracking search"
+            },
+            {
+              "type": "concept",
+              "title": "Forward checking"
+            },
+            {
+              "type": "concept",
+              "title": "Arc consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heuristics and applications",
+          "description": "Good ordering choices can make hard-looking problems tractable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum remaining values"
+            },
+            {
+              "type": "concept",
+              "title": "Degree heuristic"
+            },
+            {
+              "type": "concept",
+              "title": "Least-constraining value"
+            },
+            {
+              "type": "concept",
+              "title": "Scheduling and map coloring"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Adversarial Search (Minimax, Alpha-Beta)",
+      "description": "Model competitive decision making in games and strategic environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Game-tree modeling",
+          "description": "Adversarial search models decisions when another agent is trying to improve its own outcome.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States and actions"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal tests"
+            },
+            {
+              "type": "concept",
+              "title": "Utility functions"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-sum assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Minimax reasoning",
+          "description": "Minimax chooses actions by assuming the opponent responds optimally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Max nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Min nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Depth limits"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluation functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pruning and practical play",
+          "description": "Pruning and approximation make game search feasible under time limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alpha-beta pruning"
+            },
+            {
+              "type": "concept",
+              "title": "Move ordering"
+            },
+            {
+              "type": "concept",
+              "title": "Iterative deepening"
+            },
+            {
+              "type": "concept",
+              "title": "Imperfect-information caveats"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Knowledge Representation and Logic",
+      "description": "Represent facts, rules, and relationships so systems can reason explicitly about the world.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Logical representation",
+          "description": "Logic gives AI systems a precise language for facts, rules, and inference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Propositional logic"
+            },
+            {
+              "type": "concept",
+              "title": "First-order logic"
+            },
+            {
+              "type": "concept",
+              "title": "Predicates and quantifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Knowledge bases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inference",
+          "description": "Inference derives new conclusions from represented knowledge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entailment"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Forward chaining"
+            },
+            {
+              "type": "concept",
+              "title": "Backward chaining"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Representation tradeoffs",
+          "description": "Different representations balance expressiveness, efficiency, and maintainability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ontologies"
+            },
+            {
+              "type": "concept",
+              "title": "Semantic networks"
+            },
+            {
+              "type": "concept",
+              "title": "Rules"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-world versus open-world assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Probabilistic Reasoning and Bayes Nets",
+      "description": "Reason under uncertainty using probability, conditional dependence, and graphical models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability foundations",
+          "description": "AI systems often need to act with incomplete or noisy information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random variables"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional probability"
+            },
+            {
+              "type": "concept",
+              "title": "Bayes rule"
+            },
+            {
+              "type": "concept",
+              "title": "Independence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bayesian networks",
+          "description": "Bayes nets represent conditional dependence compactly using graphs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Directed acyclic graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional probability tables"
+            },
+            {
+              "type": "concept",
+              "title": "D-separation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Causal interpretation cautions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inference under uncertainty",
+          "description": "Probabilistic inference supports diagnosis, prediction, and decision support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exact inference"
+            },
+            {
+              "type": "concept",
+              "title": "Approximate inference"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Naive Bayes as a special case"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supervised Learning (Regression, Classification)",
+      "description": "Train models from labeled data to predict continuous values or categories.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Learning workflow",
+          "description": "Supervised learning turns labeled examples into models that generalize to new cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Training and test data"
+            },
+            {
+              "type": "concept",
+              "title": "Features and labels"
+            },
+            {
+              "type": "concept",
+              "title": "Loss functions"
+            },
+            {
+              "type": "concept",
+              "title": "Pipelines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Core algorithms",
+          "description": "Students learn several model families and when they tend to work well.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear regression"
+            },
+            {
+              "type": "concept",
+              "title": "Logistic regression"
+            },
+            {
+              "type": "concept",
+              "title": "Decision trees"
+            },
+            {
+              "type": "concept",
+              "title": "SVMs and k-nearest neighbors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Generalization and regularization",
+          "description": "Good models control overfitting while capturing useful patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias-variance tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "L1 and L2 regularization"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-validation"
+            },
+            {
+              "type": "concept",
+              "title": "Feature engineering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Unsupervised Learning (Clustering, PCA)",
+      "description": "Find structure in unlabeled data through grouping, representation learning, and dimensionality reduction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Clustering",
+          "description": "Clustering groups examples when labels are unavailable or exploratory structure is needed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "K-means"
+            },
+            {
+              "type": "concept",
+              "title": "Hierarchical clustering"
+            },
+            {
+              "type": "concept",
+              "title": "DBSCAN overview"
+            },
+            {
+              "type": "concept",
+              "title": "Cluster validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensionality reduction",
+          "description": "Dimensionality reduction compresses data while preserving important variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Principal components"
+            },
+            {
+              "type": "concept",
+              "title": "Explained variance"
+            },
+            {
+              "type": "concept",
+              "title": "Projection"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Representation and discovery",
+          "description": "Unsupervised methods support exploration, preprocessing, and anomaly detection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latent structure"
+            },
+            {
+              "type": "concept",
+              "title": "Embeddings"
+            },
+            {
+              "type": "concept",
+              "title": "Anomaly detection"
+            },
+            {
+              "type": "concept",
+              "title": "Preprocessing for supervised models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Neural Networks and Deep Learning",
+      "description": "Build models that learn layered representations for vision, language, prediction, and control tasks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Neural network basics",
+          "description": "Neural networks learn nonlinear functions through layers of weighted transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perceptrons"
+            },
+            {
+              "type": "concept",
+              "title": "Activation functions"
+            },
+            {
+              "type": "concept",
+              "title": "Hidden layers"
+            },
+            {
+              "type": "concept",
+              "title": "Output layers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Training deep models",
+          "description": "Deep learning depends on optimization, data scale, and careful tuning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Backpropagation"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient descent"
+            },
+            {
+              "type": "concept",
+              "title": "Learning rates"
+            },
+            {
+              "type": "concept",
+              "title": "Regularization and dropout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Architectures and applications",
+          "description": "Different architectures suit different data types and tasks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convolutional networks"
+            },
+            {
+              "type": "concept",
+              "title": "Recurrent models overview"
+            },
+            {
+              "type": "concept",
+              "title": "Transformers overview"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer learning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reinforcement Learning",
+      "description": "Study agents that learn by acting, receiving rewards, and improving policies over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Agent-environment framework",
+          "description": "Reinforcement learning studies sequential decision making through interaction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Actions"
+            },
+            {
+              "type": "concept",
+              "title": "Rewards"
+            },
+            {
+              "type": "concept",
+              "title": "Policies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Value-based learning",
+          "description": "Value methods estimate long-term return for actions or states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Return"
+            },
+            {
+              "type": "concept",
+              "title": "Discount factor"
+            },
+            {
+              "type": "concept",
+              "title": "Value functions"
+            },
+            {
+              "type": "concept",
+              "title": "Q-learning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exploration and control",
+          "description": "Agents must balance trying new actions with using what they already know.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exploration versus exploitation"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-greedy policies"
+            },
+            {
+              "type": "concept",
+              "title": "Policy improvement"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation environments"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Natural Language Processing",
+      "description": "Apply AI and ML methods to language understanding, generation, retrieval, and representation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Text representation",
+          "description": "NLP begins by turning language into computational representations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tokenization"
+            },
+            {
+              "type": "concept",
+              "title": "Bag-of-words"
+            },
+            {
+              "type": "concept",
+              "title": "TF-IDF"
+            },
+            {
+              "type": "concept",
+              "title": "Embeddings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Core NLP tasks",
+          "description": "Students learn how ML is applied to common language problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Text classification"
+            },
+            {
+              "type": "concept",
+              "title": "Sequence labeling"
+            },
+            {
+              "type": "concept",
+              "title": "Information retrieval"
+            },
+            {
+              "type": "concept",
+              "title": "Question answering overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modern language models",
+          "description": "Large neural language models extend NLP into generation and instruction-following systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transformers"
+            },
+            {
+              "type": "concept",
+              "title": "Pretraining and fine-tuning"
+            },
+            {
+              "type": "concept",
+              "title": "Prompting basics"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluation challenges"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Model Evaluation, Bias, Explainability, Privacy, and Responsible AI",
+      "description": "Evaluate models rigorously and understand the ethical, social, privacy, and reliability issues involved in AI deployment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Evaluation and validation",
+          "description": "AI systems must be tested with metrics that match the decision context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Train-validation-test splits"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy, precision, recall, and F1"
+            },
+            {
+              "type": "concept",
+              "title": "ROC and calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Hyperparameter tuning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fairness and explainability",
+          "description": "Responsible ML examines whether model behavior is understandable and equitable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias sources"
+            },
+            {
+              "type": "concept",
+              "title": "Fairness metrics overview"
+            },
+            {
+              "type": "concept",
+              "title": "Feature importance"
+            },
+            {
+              "type": "concept",
+              "title": "Local explanations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Privacy, safety, and governance",
+          "description": "Deployment raises risks that go beyond model accuracy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Model cards"
+            },
+            {
+              "type": "concept",
+              "title": "NIST AI RMF"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and drift"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

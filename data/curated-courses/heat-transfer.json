@@ -1,0 +1,1004 @@
+{
+  "slug": "heat-transfer",
+  "title": "Heat Transfer",
+  "description": "Heat Transfer covers conduction, convection, radiation, phase change, and heat exchangers, with synthesis topics on thermal systems modeling and mass-transfer analogies for engineering thermal design.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Modes of Heat Transfer Overview",
+      "description": "This opening topic frames heat transfer as energy moving because of temperature differences. Students learn when conduction, convection, radiation, and combined modes dominate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermal energy and temperature gradients",
+          "description": "Students learn the physical driver for heat transfer and why temperature fields are central to analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature difference as driving force"
+            },
+            {
+              "type": "concept",
+              "title": "Heat rate versus heat flux"
+            },
+            {
+              "type": "concept",
+              "title": "Control volumes and energy balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conduction",
+          "description": "Conduction explains heat flow through solids and stationary media by molecular and lattice interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier's law"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Plane-wall intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convection",
+          "description": "Convection combines heat diffusion at a surface with fluid motion near that surface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton's law of cooling"
+            },
+            {
+              "type": "concept",
+              "title": "Heat transfer coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary-layer idea"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiation",
+          "description": "Radiation transfers energy by electromagnetic emission and can matter even through vacuum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blackbody concept"
+            },
+            {
+              "type": "concept",
+              "title": "Emissivity"
+            },
+            {
+              "type": "concept",
+              "title": "Surface exchange overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conduction (1D Steady-State)",
+      "description": "Steady one-dimensional conduction is the first quantitative model students use to connect geometry, material properties, and temperature difference to heat flow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fourier's law in one dimension",
+          "description": "Fourier's law turns a temperature gradient into heat flux.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Sign convention"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal conductivity units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal resistance networks",
+          "description": "Resistance networks make conduction problems look like circuit problems, which is useful for layered systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plane walls"
+            },
+            {
+              "type": "concept",
+              "title": "Cylinders and spheres"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel thermal resistances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contact resistance",
+          "description": "Real interfaces are imperfect, so contact resistance can dominate practical assemblies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface roughness"
+            },
+            {
+              "type": "concept",
+              "title": "Interface pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal interface materials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat generation",
+          "description": "Internal generation appears in electronics, nuclear fuel, batteries, and biological or chemical systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform heat generation"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multi-Dimensional Conduction",
+      "description": "Many real objects do not conduct heat in only one direction. This topic expands conduction analysis to fins, shape factors, and spatial temperature fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Two- and three-dimensional temperature fields",
+          "description": "Students learn when one-dimensional assumptions break down.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isotherms and heat-flow lines"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary-condition effects"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry arguments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Extended surfaces and fins",
+          "description": "Fins increase heat transfer area but introduce temperature variation along the fin.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fin equation"
+            },
+            {
+              "type": "concept",
+              "title": "Fin efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Fin effectiveness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Shape factors",
+          "description": "Shape factors provide practical estimates for conduction through complex geometries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conduction shape factor concept"
+            },
+            {
+              "type": "concept",
+              "title": "Buried pipes and corners"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of tabulated factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical conduction preview",
+          "description": "Students see why numerical methods become necessary for complex geometry and mixed boundary conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite-difference grids"
+            },
+            {
+              "type": "concept",
+              "title": "Node energy balances"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary-node treatment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transient Conduction",
+      "description": "Transient conduction studies how temperature changes with time during heating, cooling, quenching, start-up, or thermal cycling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lumped capacitance method",
+          "description": "Lumped analysis is the simplest time-dependent thermal model when internal temperature gradients are small.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biot number"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal time constant"
+            },
+            {
+              "type": "concept",
+              "title": "Newtonian cooling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "One-term and chart solutions",
+          "description": "Approximate transient solutions help analyze slabs, cylinders, and spheres when internal gradients matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier number"
+            },
+            {
+              "type": "concept",
+              "title": "Heisler chart logic"
+            },
+            {
+              "type": "concept",
+              "title": "Centerline and surface temperature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Semi-infinite solids",
+          "description": "Short-time heating and cooling often behave like heat transfer into a semi-infinite medium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal penetration depth"
+            },
+            {
+              "type": "concept",
+              "title": "Error-function solution"
+            },
+            {
+              "type": "concept",
+              "title": "Surface temperature boundary conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal cycling and response",
+          "description": "Students learn to interpret transient response for design reliability and control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Start-up and shutdown"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal shock"
+            },
+            {
+              "type": "concept",
+              "title": "Time-to-target-temperature estimates"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convection Fundamentals",
+      "description": "Convection depends on both fluid mechanics and thermal diffusion. Students learn how boundary layers, dimensionless numbers, and correlations organize the complexity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boundary layers",
+          "description": "Boundary layers explain why surface heat transfer is controlled by near-wall velocity and temperature gradients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Velocity boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar and turbulent behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensionless groups",
+          "description": "Dimensionless numbers summarize competing effects and guide correlation use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds number"
+            },
+            {
+              "type": "concept",
+              "title": "Prandtl number"
+            },
+            {
+              "type": "concept",
+              "title": "Nusselt number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat transfer coefficients",
+          "description": "The heat transfer coefficient packages complex convection physics into a practical design parameter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local versus average coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Film temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Property evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analogy to momentum transfer",
+          "description": "Momentum and heat transfer share boundary-layer structure, enabling useful engineering analogies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Colburn analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Friction factor connections"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Forced Convection",
+      "description": "Forced convection occurs when fans, pumps, wind, or other imposed flows move fluid over or through heated surfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "External forced convection",
+          "description": "External-flow correlations predict heat transfer from plates, cylinders, spheres, and bodies in flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flat plate correlations"
+            },
+            {
+              "type": "concept",
+              "title": "Cylinder crossflow"
+            },
+            {
+              "type": "concept",
+              "title": "Flow separation effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Internal forced convection",
+          "description": "Internal-flow models support pipe, duct, cooling channel, and heat-exchanger design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrodynamic and thermal entry lengths"
+            },
+            {
+              "type": "concept",
+              "title": "Fully developed flow"
+            },
+            {
+              "type": "concept",
+              "title": "Constant wall temperature and heat flux"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laminar and turbulent correlations",
+          "description": "Students learn to choose correlations based on geometry, flow regime, and boundary conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dittus-Boelter correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Sieder-Tate correction"
+            },
+            {
+              "type": "concept",
+              "title": "Gnielinski-style correlation context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure drop and pumping power",
+          "description": "Heat transfer gains often come with flow-resistance costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Friction factor"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure loss"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal-hydraulic tradeoff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Natural Convection",
+      "description": "Natural convection is driven by buoyancy, making it central to passive cooling, building heat loss, environmental flows, and electronics enclosures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Buoyancy-driven flow",
+          "description": "Students learn how density differences create motion without a fan or pump.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal expansion coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Body force"
+            },
+            {
+              "type": "concept",
+              "title": "Stable and unstable stratification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Natural convection dimensionless groups",
+          "description": "Special dimensionless numbers capture buoyancy and diffusion effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grashof number"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh number"
+            },
+            {
+              "type": "concept",
+              "title": "Prandtl number role"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "External natural convection",
+          "description": "Common surface geometries have useful natural-convection correlations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertical plates"
+            },
+            {
+              "type": "concept",
+              "title": "Horizontal plates"
+            },
+            {
+              "type": "concept",
+              "title": "Cylinders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enclosures and mixed convection",
+          "description": "Real systems often combine buoyancy with confinement or forced flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enclosed air gaps"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed convection"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal plumes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boiling and Condensation",
+      "description": "Phase-change heat transfer can move large heat rates with small temperature differences, but it also introduces regimes, limits, and safety concerns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boiling regimes",
+          "description": "Students learn how boiling behavior changes from isolated bubbles to crisis conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleate boiling"
+            },
+            {
+              "type": "concept",
+              "title": "Transition boiling"
+            },
+            {
+              "type": "concept",
+              "title": "Film boiling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boiling curves and critical heat flux",
+          "description": "The boiling curve is essential for understanding performance and failure limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wall superheat"
+            },
+            {
+              "type": "concept",
+              "title": "Critical heat flux"
+            },
+            {
+              "type": "concept",
+              "title": "Leidenfrost point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Condensation modes",
+          "description": "Condensation can occur as a film or droplets, with very different heat-transfer performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Film condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Dropwise condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Surface condition effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase-change applications",
+          "description": "Students connect phase change to real thermal systems and equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaporators and condensers"
+            },
+            {
+              "type": "concept",
+              "title": "Heat pipes"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal management limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Heat Exchangers",
+      "description": "Heat exchangers are a major engineering application where conduction and convection are combined into practical equipment for energy transfer.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heat-exchanger types",
+          "description": "Students learn the main configurations and when each is useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parallel flow"
+            },
+            {
+              "type": "concept",
+              "title": "Counterflow"
+            },
+            {
+              "type": "concept",
+              "title": "Shell-and-tube and compact exchangers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Log mean temperature difference method",
+          "description": "LMTD analysis converts changing temperature differences into a design calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy balance"
+            },
+            {
+              "type": "concept",
+              "title": "LMTD derivation logic"
+            },
+            {
+              "type": "concept",
+              "title": "Correction factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effectiveness-NTU method",
+          "description": "Effectiveness-NTU is useful when outlet temperatures are unknown or exchanger sizing is being compared.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat capacity rate"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum possible heat transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Effectiveness relations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design constraints",
+          "description": "Real exchanger design balances heat transfer, pressure drop, fouling, cost, and maintainability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overall heat transfer coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Fouling resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure drop and pumping power"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Radiation Heat Transfer",
+      "description": "Radiation heat transfer governs high-temperature systems, furnaces, solar energy, spacecraft thermal control, and surface-to-surface exchange.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Blackbody radiation",
+          "description": "Blackbody laws provide the ideal reference for thermal emission.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stefan-Boltzmann law"
+            },
+            {
+              "type": "concept",
+              "title": "Planck distribution context"
+            },
+            {
+              "type": "concept",
+              "title": "Wien displacement law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Real surfaces",
+          "description": "Real materials emit, absorb, reflect, and transmit radiation in wavelength- and direction-dependent ways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emissivity"
+            },
+            {
+              "type": "concept",
+              "title": "Absorptivity and reflectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Gray-surface assumption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "View factors",
+          "description": "Geometry controls how much radiation leaving one surface reaches another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "View-factor definition"
+            },
+            {
+              "type": "concept",
+              "title": "Reciprocity"
+            },
+            {
+              "type": "concept",
+              "title": "Summation rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiation exchange networks",
+          "description": "Network methods make enclosure radiation calculations manageable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Space resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation shields"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermal Systems, Properties, and Numerical Modeling",
+      "description": "This added synthesis topic connects heat transfer theory to design practice, material data, and computational modeling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermophysical properties",
+          "description": "Accurate properties are necessary for credible heat-transfer calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Specific heat and density"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature-dependent properties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal resistance and capacitance models",
+          "description": "Simple system-level models help estimate temperatures before detailed simulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RC thermal networks"
+            },
+            {
+              "type": "concept",
+              "title": "Electronic cooling analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Model order and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical methods",
+          "description": "Numerical modeling handles geometries, property variation, and coupled boundary conditions that closed-form methods cannot.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite difference"
+            },
+            {
+              "type": "concept",
+              "title": "Finite volume context"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh and timestep sensitivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design and validation workflow",
+          "description": "Students learn to connect calculations, simulations, measurements, and engineering decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Benchmark cases"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and validation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mass Transfer Analogies and Coupled Transport",
+      "description": "This added topic introduces mass-transfer parallels and coupled heat/mass problems, reflecting the chemical engineering and graduate transport context around the course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Diffusion fundamentals",
+          "description": "Diffusion provides the mass-transfer counterpart to conduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fick's law"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration gradients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convective mass transfer",
+          "description": "Convective mass transfer mirrors convective heat transfer through boundary layers and coefficients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass transfer coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Sherwood number"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds/Schmidt/Prandtl analogies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simultaneous heat and mass transfer",
+          "description": "Many real systems transfer heat and mass at the same time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaporation"
+            },
+            {
+              "type": "concept",
+              "title": "Drying"
+            },
+            {
+              "type": "concept",
+              "title": "Humidification and condensation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications and limits",
+          "description": "Students learn where analogies are useful and where phase change, reactions, or property variation complicate them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cooling towers"
+            },
+            {
+              "type": "concept",
+              "title": "Drying equipment"
+            },
+            {
+              "type": "concept",
+              "title": "Biological and environmental transport examples"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

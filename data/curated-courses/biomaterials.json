@@ -1,0 +1,1148 @@
+{
+  "slug": "biomaterials",
+  "title": "Biomaterials",
+  "description": "A biomedical-engineering biomaterials course moving from material classes and interfaces to host response, mechanics, degradation, manufacturing, regulatory evidence, and design synthesis.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Biomaterials Field Overview, Medical-Device Context, and Design Requirements",
+      "description": "Define biomaterials, device indications, clinical constraints, and design inputs for medical implants and devices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biomaterial Definitions and Device Context",
+          "description": "This subtopic clarifies what counts as a biomaterial and why the same material can perform differently across device contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biomaterial versus biological material"
+            },
+            {
+              "type": "concept",
+              "title": "Medical device, implant, scaffold, dressing, and diagnostic interface"
+            },
+            {
+              "type": "concept",
+              "title": "Intended use, indication, contraindication, and patient population"
+            },
+            {
+              "type": "concept",
+              "title": "Temporary, permanent, external communicating, and implantable contact categories"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design Inputs, Use Environment, and Performance Criteria",
+          "description": "The point is to translate clinical need into measurable engineering requirements before choosing a material.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design input, design output, verification, and validation"
+            },
+            {
+              "type": "concept",
+              "title": "Use environment: pH, enzymes, oxygen, salts, temperature, and motion"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical load case, fluid exposure, tissue contact, and service life"
+            },
+            {
+              "type": "concept",
+              "title": "Risk controls, failure modes, and acceptance criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Medical-Device Examples and Trade-Off Thinking",
+          "description": "Examples help students see biomaterials as design choices with benefits, compromises, and constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hip stem, dental implant, vascular graft, stent, catheter, contact lens, and wound dressing"
+            },
+            {
+              "type": "concept",
+              "title": "Biocompatibility versus mechanical strength"
+            },
+            {
+              "type": "concept",
+              "title": "Degradation versus long-term stability"
+            },
+            {
+              "type": "concept",
+              "title": "Manufacturability, cost, sterilization, and regulatory evidence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Materials Classes Used in Medicine: Polymers, Metals, Ceramics, and Composites",
+      "description": "Compare the major materials families used in medicine and match their properties to device functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polymers and Elastomers",
+          "description": "Students learn why soft, processable materials dominate many flexible devices and drug-delivery systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermoplastic, thermoset, elastomer, hydrogel, and biodegradable polymer"
+            },
+            {
+              "type": "concept",
+              "title": "Polyethylene, Polyurethane, Silicone, PMMA, PLA, PGA, PLGA, and PEG"
+            },
+            {
+              "type": "concept",
+              "title": "Glass-transition temperature, crystallinity, molecular weight, and chain mobility"
+            },
+            {
+              "type": "concept",
+              "title": "Additives, plasticizers, leachables, and extractables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metals and Alloys",
+          "description": "Metals matter because load-bearing implants require strength, fatigue resistance, and corrosion control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Titanium alloys, stainless steel, cobalt-chromium, tantalum, magnesium, and nitinol"
+            },
+            {
+              "type": "concept",
+              "title": "Elastic modulus, yield strength, fracture toughness, and fatigue strength"
+            },
+            {
+              "type": "concept",
+              "title": "Passivation layer, galvanic couple, pitting corrosion, and fretting corrosion"
+            },
+            {
+              "type": "concept",
+              "title": "Shape-memory effect and superelasticity in nitinol"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ceramics, Glasses, and Composites",
+          "description": "This section shows how brittle, bioactive, or composite materials can solve problems that polymers and metals cannot solve alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alumina, zirconia, hydroxyapatite, tricalcium phosphate, and bioactive glass"
+            },
+            {
+              "type": "concept",
+              "title": "Brittleness, hardness, wear resistance, and fracture toughness"
+            },
+            {
+              "type": "concept",
+              "title": "Bioinert, bioactive, and resorbable ceramics"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber reinforcement, particle reinforcement, and matrix-interface bonding"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Surface Chemistry, Wettability, and Protein Adsorption",
+      "description": "Explain how surface energy, chemistry, topography, and adsorbed proteins shape early biological response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Surface Energy and Wettability",
+          "description": "The gist is that biology first encounters the surface, not the bulk material.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contact angle, hydrophilicity, hydrophobicity, and surface energy"
+            },
+            {
+              "type": "concept",
+              "title": "Polar, nonpolar, charged, and zwitterionic functional groups"
+            },
+            {
+              "type": "concept",
+              "title": "Roughness, topography, nanoscale texture, and surface area"
+            },
+            {
+              "type": "concept",
+              "title": "Surface treatment, plasma activation, silanization, and grafting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protein Adsorption and Protein Corona",
+          "description": "Students learn that adsorbed proteins often mediate the first biological conversation between a material and tissue.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Albumin, fibrinogen, fibronectin, collagen, vitronectin, and immunoglobulins"
+            },
+            {
+              "type": "concept",
+              "title": "Adsorption kinetics, desorption, denaturation, and competitive exchange"
+            },
+            {
+              "type": "concept",
+              "title": "Vroman effect and changing protein layers over time"
+            },
+            {
+              "type": "concept",
+              "title": "Protein corona around nanoparticles and particulate biomaterials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surface Characterization Methods",
+          "description": "Measurement tools give students evidence for claims about surface chemistry and biological response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contact-angle goniometry"
+            },
+            {
+              "type": "concept",
+              "title": "X-Ray Photoelectron Spectroscopy and Elemental Composition"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic force microscopy and surface roughness"
+            },
+            {
+              "type": "concept",
+              "title": "Scanning electron microscopy and topographic imaging"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell-Material Interactions and Tissue Integration",
+      "description": "Connect extracellular matrix cues, cell adhesion, cytocompatibility, and tissue integration to biomaterial performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell Adhesion and Extracellular Matrix Cues",
+          "description": "This subtopic explains how cells read adsorbed proteins, ligand patterns, and matrix-like signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integrins, focal adhesions, actin cytoskeleton, and mechanotransduction"
+            },
+            {
+              "type": "concept",
+              "title": "RGD Peptide, Collagen, Laminin, Fibronectin, and Glycosaminoglycans"
+            },
+            {
+              "type": "concept",
+              "title": "Cell attachment, spreading, migration, proliferation, and differentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Ligand density, stiffness, and topographic guidance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cytocompatibility and Cell Assays",
+          "description": "Students need to know how cell-based tests generate early evidence of material safety and function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cytotoxicity, viability, proliferation, apoptosis, and necrosis"
+            },
+            {
+              "type": "concept",
+              "title": "MTT, Resazurin, Live/Dead Staining, LDH Release, and Microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Direct-contact, extract, and indirect-contact assay formats"
+            },
+            {
+              "type": "concept",
+              "title": "Positive control, negative control, dose, exposure time, and interpretation limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue Integration and Remodeling",
+          "description": "The goal is to connect cell behavior to longer-term integration or isolation of an implanted material.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Osteointegration, endothelialization, epithelialization, and soft-tissue integration"
+            },
+            {
+              "type": "concept",
+              "title": "Fibroblast activity, collagen deposition, matrix remodeling, and scar formation"
+            },
+            {
+              "type": "concept",
+              "title": "Macrophage phenotype, tissue ingrowth, and vascularization"
+            },
+            {
+              "type": "concept",
+              "title": "Integration versus encapsulation versus rejection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biocompatibility, Inflammation, and Host Response",
+      "description": "Analyze acute and chronic tissue responses, foreign body reaction, hemocompatibility, and immune compatibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inflammation and Foreign Body Reaction",
+          "description": "This subtopic helps students trace the classic sequence from injury to repair, chronic inflammation, or encapsulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hemostasis, clotting, complement activation, and acute inflammation"
+            },
+            {
+              "type": "concept",
+              "title": "Neutrophils, monocytes, macrophages, fibroblasts, and foreign body giant cells"
+            },
+            {
+              "type": "concept",
+              "title": "Chronic inflammation, granulation tissue, fibrous capsule, and foreign body reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution, scarring, integration, and implant isolation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hemocompatibility and Thrombosis",
+          "description": "Blood-contacting materials require special attention because small surface differences can trigger clotting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Platelet adhesion, platelet activation, thrombus formation, and embolic risk"
+            },
+            {
+              "type": "concept",
+              "title": "Coagulation cascade, intrinsic pathway, extrinsic pathway, and fibrin formation"
+            },
+            {
+              "type": "concept",
+              "title": "Hemolysis, complement, leukocyte activation, and endothelial response"
+            },
+            {
+              "type": "concept",
+              "title": "Anticoagulant coatings, heparinization, and nitric-oxide-releasing surfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological Evaluation Endpoints",
+          "description": "Students learn the vocabulary used to decide which biological safety tests belong in a device evidence plan.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cytotoxicity, sensitization, irritation, acute systemic toxicity, and subchronic toxicity"
+            },
+            {
+              "type": "concept",
+              "title": "Genotoxicity, implantation, pyrogenicity, and hemocompatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Material-mediated pyrogen, extractables, leachables, and degradation products"
+            },
+            {
+              "type": "concept",
+              "title": "Risk-Based Endpoint Selection Under ISO 10993 Logic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mechanical Properties, Viscoelasticity, Wear, and Fatigue",
+      "description": "Use engineering mechanics to evaluate stiffness, strength, toughness, creep, fatigue, and wear in biomaterials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stress-Strain Behavior",
+          "description": "The point is to read mechanical curves as evidence of whether a material can survive its intended load.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress, strain, elastic modulus, yield strength, ultimate tensile strength, and elongation"
+            },
+            {
+              "type": "concept",
+              "title": "Toughness, resilience, ductility, brittleness, and fracture strain"
+            },
+            {
+              "type": "concept",
+              "title": "Compression, tension, bending, torsion, and shear tests"
+            },
+            {
+              "type": "concept",
+              "title": "Anisotropy, strain rate, hydration, and temperature effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Viscoelasticity, Creep, and Relaxation",
+          "description": "Soft biomaterials and tissues often respond over time, so students need time-dependent mechanics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elastic response, viscous response, hysteresis, and damping"
+            },
+            {
+              "type": "concept",
+              "title": "Creep, stress relaxation, dynamic mechanical analysis, and storage/loss modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Maxwell, Kelvin-Voigt, and standard linear solid models"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrogel swelling, polymer chain mobility, and tissue-like mechanics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fatigue, Wear, and Particulate Debris",
+          "description": "Long-lived implants can fail after repeated loads or wear even when single-load strength looks adequate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S-N Curve, Fatigue Limit, Crack Initiation, Crack Propagation, and Fracture Surface"
+            },
+            {
+              "type": "concept",
+              "title": "Abrasive wear, adhesive wear, fretting wear, and third-body wear"
+            },
+            {
+              "type": "concept",
+              "title": "Wear debris, polyethylene particles, osteolysis, and macrophage activation"
+            },
+            {
+              "type": "concept",
+              "title": "Tribology, lubrication, articulation surfaces, and simulator testing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Degradation, Corrosion, Resorption, and Long-Term Stability",
+      "description": "Predict how polymers, metals, ceramics, and composites change in the body over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polymer Degradation and Erosion",
+          "description": "Students learn how degradable materials lose mass, strength, and function over clinically relevant time scales.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrolysis, enzymatic degradation, oxidation, and chain scission"
+            },
+            {
+              "type": "concept",
+              "title": "Bulk erosion, surface erosion, autocatalysis, and mass loss"
+            },
+            {
+              "type": "concept",
+              "title": "PLA, PGA, PLGA, Polycaprolactone, and Biodegradable Sutures"
+            },
+            {
+              "type": "concept",
+              "title": "Degradation products, local pH, inflammatory response, and mechanical retention"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metal Corrosion and Passivation",
+          "description": "The goal is to understand why corrosion control is central to implant safety and longevity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Passivation layer, oxide film, breakdown potential, and repassivation"
+            },
+            {
+              "type": "concept",
+              "title": "Pitting corrosion, crevice corrosion, galvanic corrosion, and fretting corrosion"
+            },
+            {
+              "type": "concept",
+              "title": "Ion release, nickel sensitivity, cobalt/chromium concerns, and inflammatory effects"
+            },
+            {
+              "type": "concept",
+              "title": "Electrochemical testing, polarization curves, and simulated body fluid"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ceramic Resorption and Stability",
+          "description": "Ceramics can be stable, bioactive, or resorbable; matching that behavior to the clinical job is the key.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydroxyapatite, tricalcium phosphate, bioactive glass, alumina, and zirconia"
+            },
+            {
+              "type": "concept",
+              "title": "Dissolution, resorption, bone bonding, and mineral exchange"
+            },
+            {
+              "type": "concept",
+              "title": "Phase stability, transformation toughening, and aging in zirconia"
+            },
+            {
+              "type": "concept",
+              "title": "Long-term fixation, brittleness, and particle generation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Polymers, Hydrogels, and Soft Biomaterials",
+      "description": "Study soft and degradable biomaterials used in drug delivery, wound care, scaffolds, and tissue interfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polymer Chemistry and Structure",
+          "description": "This section connects molecular design to bulk behavior in soft medical materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monomer, repeat unit, copolymer, block copolymer, and network polymer"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular weight, polydispersity, crystallinity, and glass-transition temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Crosslinking, chain entanglement, plasticization, and solvent uptake"
+            },
+            {
+              "type": "concept",
+              "title": "Synthetic polymers versus natural polymers such as collagen, gelatin, chitosan, and alginate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydrogel Properties",
+          "description": "Hydrogels are useful because their water-rich networks can mimic tissue-like environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Swelling ratio, mesh size, crosslink density, and equilibrium water content"
+            },
+            {
+              "type": "concept",
+              "title": "Physical crosslinks, covalent crosslinks, ionic gels, and thermoresponsive gels"
+            },
+            {
+              "type": "concept",
+              "title": "PEG, PHEMA, Alginate, Hyaluronic Acid, Collagen, and Fibrin Gels"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion, permeability, mechanical softness, and cell encapsulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soft Biomaterial Applications",
+          "description": "Applications make the property-function relationship concrete for students.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contact lenses, wound dressings, injectable gels, tissue adhesives, and soft-tissue fillers"
+            },
+            {
+              "type": "concept",
+              "title": "Drug depots, microspheres, nanoparticles, and hydrogel release platforms"
+            },
+            {
+              "type": "concept",
+              "title": "Sutures, meshes, membranes, and resorbable fixation devices"
+            },
+            {
+              "type": "concept",
+              "title": "Sterility, hydration, shelf stability, and handling in clinical use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metals, Ceramics, Coatings, and Hard-Tissue Interfaces",
+      "description": "Examine load-bearing and hard-tissue materials, including alloys, bioactive ceramics, coatings, and osseointegration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Load-Bearing Metallic Implants",
+          "description": "Students see why alloy choice, fatigue behavior, and fixation strategy determine hard-tissue device success.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Titanium hip stem, cobalt-chromium femoral head, stainless-steel fracture plate, and dental implant"
+            },
+            {
+              "type": "concept",
+              "title": "Stress shielding, modulus mismatch, osseointegration, and implant loosening"
+            },
+            {
+              "type": "concept",
+              "title": "Surface roughening, porous coating, grit blasting, and additive manufacturing"
+            },
+            {
+              "type": "concept",
+              "title": "Nickel-titanium stents and superelastic deformation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bioactive and Bioinert Ceramics",
+          "description": "This subtopic distinguishes ceramics that bond with tissue from ceramics used mainly for hardness and wear resistance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydroxyapatite coating, bioactive glass, calcium phosphate cement, alumina, and zirconia"
+            },
+            {
+              "type": "concept",
+              "title": "Osteoconduction, bone apposition, and mineralized interface formation"
+            },
+            {
+              "type": "concept",
+              "title": "Wear couples in joint replacements and ceramic-on-ceramic articulation"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture toughness, flaw sensitivity, and reliability concerns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coatings and Interface Engineering",
+          "description": "Coatings let engineers tune the interface while preserving favorable bulk properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plasma-sprayed hydroxyapatite, titanium plasma spray, anodization, and sol-gel coatings"
+            },
+            {
+              "type": "concept",
+              "title": "Diamond-like carbon, drug-eluting coatings, and antimicrobial coatings"
+            },
+            {
+              "type": "concept",
+              "title": "Coating adhesion, delamination, thickness, roughness, and porosity"
+            },
+            {
+              "type": "concept",
+              "title": "Interfacial shear strength, scratch testing, and coating durability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sterilization, Manufacturing, Packaging, and Shelf-Life Constraints",
+      "description": "Understand how processing, sterilization, packaging, and storage alter material properties and device safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sterilization Methods and Material Effects",
+          "description": "Students learn that sterilization is not a final checkbox; it can change chemistry, mechanics, and biological response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ethylene oxide, gamma irradiation, electron beam, autoclave, dry heat, and gas plasma"
+            },
+            {
+              "type": "concept",
+              "title": "Sterility assurance level, bioburden, endotoxin, and residual sterilant"
+            },
+            {
+              "type": "concept",
+              "title": "Polymer chain scission, crosslinking, oxidation, hydrolysis, and embrittlement"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility of hydrogels, coatings, electronics, and drug-loaded devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manufacturing and Processing Constraints",
+          "description": "The point is to make material choices that can actually be produced reliably and cleanly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Injection molding, extrusion, machining, sintering, electrospinning, casting, and additive manufacturing"
+            },
+            {
+              "type": "concept",
+              "title": "Cleanroom, GMP, Process Validation, Lot Traceability, and Contamination Control"
+            },
+            {
+              "type": "concept",
+              "title": "Surface finish, dimensional tolerance, residual stress, and post-processing"
+            },
+            {
+              "type": "concept",
+              "title": "Scalability, repeatability, yield, and cost constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Packaging, Aging, and Shelf Life",
+          "description": "Packaging and storage protect both sterility and material performance until clinical use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sterile barrier system, seal integrity, moisture barrier, oxygen barrier, and labeling"
+            },
+            {
+              "type": "concept",
+              "title": "Accelerated aging, real-time aging, temperature, humidity, and light exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Leachables, extractables, oxidation, hydrolysis, and package-material interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Shelf-life claims, expiration dating, and shipping stress"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Drug Delivery Materials and Controlled Release",
+      "description": "Explain how biomaterials control release through diffusion, swelling, erosion, degradation, and device architecture.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Release Mechanisms",
+          "description": "This subtopic explains how materials turn a dose into a time profile.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion-controlled release, swelling-controlled release, degradation-controlled release, and osmotic release"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix system, reservoir system, membrane control, and depot formulation"
+            },
+            {
+              "type": "concept",
+              "title": "Burst release, lag phase, zero-order release, first-order release, and sustained release"
+            },
+            {
+              "type": "concept",
+              "title": "Fickian Diffusion, Higuchi Model, and Erosion-Coupled Transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drug Carriers and Form Factors",
+          "description": "Students compare carrier architectures and how they affect payload, release, targeting, and manufacturability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microspheres, nanoparticles, liposomes, micelles, implants, patches, and hydrogels"
+            },
+            {
+              "type": "concept",
+              "title": "PLGA Particles, PEGylation, Surface Charge, Particle Size, and Biodistribution"
+            },
+            {
+              "type": "concept",
+              "title": "Encapsulation efficiency, drug loading, release medium, and sink conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Local delivery versus systemic delivery and passive versus active targeting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability, Safety, and Evaluation",
+          "description": "Drug delivery materials must preserve the therapy while avoiding unsafe degradation or dose profiles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protein stability, drug-polymer compatibility, crystallization, and hydrolysis"
+            },
+            {
+              "type": "concept",
+              "title": "In vitro release assay, dialysis, sampling schedule, and cumulative release"
+            },
+            {
+              "type": "concept",
+              "title": "Sterilization impact on drug potency and carrier integrity"
+            },
+            {
+              "type": "concept",
+              "title": "Dose dumping, local toxicity, immune response, and degradation byproducts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Implants, Scaffolds, Wound-Healing Materials, and Tissue Engineering",
+      "description": "Integrate biomaterials with scaffold architecture, tissue ingrowth, wound healing, vascularization, and regeneration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scaffold Design Variables",
+          "description": "The point is to make scaffold architecture serve cell entry, nutrient transport, mechanics, and degradation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Porosity, pore size, interconnectivity, tortuosity, and surface area"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber diameter, electrospun mat, 3D-printed lattice, and porous foam"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical stiffness, degradation rate, and tissue-specific geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Cell seeding, cell infiltration, and matrix deposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wound-Healing and Regeneration Concepts",
+          "description": "Students connect material design to hemostasis, inflammation, proliferation, remodeling, and tissue repair.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hemostatic dressing, moisture balance, exudate control, and oxygen permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Inflammatory phase, proliferative phase, granulation tissue, and remodeling phase"
+            },
+            {
+              "type": "concept",
+              "title": "Growth factors, morphogen gradients, cytokines, and extracellular matrix signals"
+            },
+            {
+              "type": "concept",
+              "title": "Angiogenesis, vascularization, and mass-transport limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue-Engineering Translation",
+          "description": "This subtopic frames the gap between promising constructs and clinical products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bioreactor, mechanical stimulation, perfusion, and nutrient transport"
+            },
+            {
+              "type": "concept",
+              "title": "Autologous cells, allogeneic cells, stem cells, and immunogenicity"
+            },
+            {
+              "type": "concept",
+              "title": "Construct characterization, imaging, mechanical testing, and histology"
+            },
+            {
+              "type": "concept",
+              "title": "Scale-up, sterility, regulatory classification, and reimbursement constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biofilms, Infection Prevention, and Antimicrobial Strategies",
+      "description": "Analyze microbial adhesion, conditioning films, biofilm formation, and antimicrobial material strategies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microbial Adhesion and Biofilm Formation",
+          "description": "Students learn how device surfaces can become protected microbial communities rather than simple contamination sites.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditioning film, bacterial adhesion, reversible attachment, and irreversible attachment"
+            },
+            {
+              "type": "concept",
+              "title": "Extracellular polymeric substance, quorum sensing, microcolonies, and mature biofilm"
+            },
+            {
+              "type": "concept",
+              "title": "Staphylococcus aureus, Staphylococcus epidermidis, Pseudomonas, and Candida"
+            },
+            {
+              "type": "concept",
+              "title": "Antibiotic tolerance, immune evasion, and chronic device infection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Antifouling and Bactericidal Surfaces",
+          "description": "The gist is to compare surfaces that resist attachment with surfaces that actively kill microbes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PEG, Zwitterionic Coatings, Superhydrophilic Surfaces, and Low-Fouling Polymers"
+            },
+            {
+              "type": "concept",
+              "title": "Silver, copper, antimicrobial peptides, quaternary ammonium groups, and nitric oxide release"
+            },
+            {
+              "type": "concept",
+              "title": "Contact-killing surface, eluting coating, and triggered-release system"
+            },
+            {
+              "type": "concept",
+              "title": "Cytotoxicity trade-offs, depletion, resistance pressure, and durability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing Infection-Prevention Strategies",
+          "description": "Students need evidence tools for judging whether an antimicrobial material really works.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zone of inhibition, colony-forming units, live/dead staining, and crystal violet assay"
+            },
+            {
+              "type": "concept",
+              "title": "Static Biofilm Model, Flow-Cell Model, CDC Biofilm Reactor, and Animal Infection Model"
+            },
+            {
+              "type": "concept",
+              "title": "Sterility testing versus antimicrobial performance testing"
+            },
+            {
+              "type": "concept",
+              "title": "Controls, inoculum size, exposure time, and clinically relevant endpoints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Testing Standards, ISO 10993, FDA Pathways, and Regulatory Evidence",
+      "description": "Connect device contact category, biological endpoints, standards, verification tests, and regulatory submissions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ISO 10993 Biological Evaluation Logic",
+          "description": "This subtopic gives students a practical framework for selecting biological tests from device contact and risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ISO 10993-1, Biological Evaluation Plan, and Biological Evaluation Report"
+            },
+            {
+              "type": "concept",
+              "title": "Contact type: surface, external communicating, and implant"
+            },
+            {
+              "type": "concept",
+              "title": "Contact duration: limited, prolonged, and permanent"
+            },
+            {
+              "type": "concept",
+              "title": "Endpoint matrix, existing data, chemical characterization, and risk assessment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Device Testing and Verification Evidence",
+          "description": "Regulatory evidence includes much more than one biocompatibility test.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mechanical testing, fatigue testing, wear testing, corrosion testing, and degradation testing"
+            },
+            {
+              "type": "concept",
+              "title": "Sterility, endotoxin, packaging validation, shelf life, and transport simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical characterization, extractables, leachables, and toxicological risk assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Bench testing, animal testing, clinical evidence, and post-market surveillance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "FDA Pathways and Documentation",
+          "description": "Students learn how biomaterials decisions become part of a submission story.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "510(k), De Novo, PMA, Predicate Device, and Substantial Equivalence"
+            },
+            {
+              "type": "concept",
+              "title": "Design history file, design control, risk management, and verification records"
+            },
+            {
+              "type": "concept",
+              "title": "Material change, process change, and biocompatibility re-evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Labeling, instructions for use, contraindications, and warnings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Failure Analysis, Materials Selection, and Biomaterials Design Project",
+      "description": "Synthesize material properties, biological response, manufacturing, and regulation into a defensible design decision.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Materials Selection Frameworks",
+          "description": "The point is to choose materials with evidence, not preference or familiarity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional requirements, constraints, objectives, and free variables"
+            },
+            {
+              "type": "concept",
+              "title": "Ashby Chart, Property Map, Trade-Off Matrix, and Weighted Decision Matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Biological, mechanical, manufacturing, sterilization, regulatory, and cost criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Screening, ranking, sensitivity analysis, and justification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Failure Modes and Root Cause Analysis",
+          "description": "Students learn to diagnose failures by linking symptoms to materials, biology, processing, and use conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fracture, fatigue, wear, corrosion, delamination, degradation, infection, and loosening"
+            },
+            {
+              "type": "concept",
+              "title": "Fractography, explant analysis, microscopy, spectroscopy, and mechanical retesting"
+            },
+            {
+              "type": "concept",
+              "title": "Root cause analysis, fishbone diagram, fault tree, and five whys"
+            },
+            {
+              "type": "concept",
+              "title": "FMEA: Severity, Occurrence, Detection, and Risk Priority Number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone Biomaterials Design Project",
+          "description": "The project pulls the course together by requiring a defensible material system and evidence plan.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clinical need statement, device requirements, and use environment"
+            },
+            {
+              "type": "concept",
+              "title": "Candidate materials, surface treatments, and manufacturing route"
+            },
+            {
+              "type": "concept",
+              "title": "Biocompatibility plan, mechanical tests, degradation tests, and sterilization plan"
+            },
+            {
+              "type": "concept",
+              "title": "Failure analysis, risk controls, regulatory pathway, and final recommendation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

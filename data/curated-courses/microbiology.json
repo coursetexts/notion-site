@@ -1,0 +1,568 @@
+{
+  "slug": "microbiology",
+  "title": "Microbiology",
+  "description": "A broad course on microbial structure, growth, metabolism, genetics, diversity, pathogenesis, immunity, antimicrobial control, diagnostics, and applied microbiology.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Scope of Microbiology and Microbial Worlds",
+      "description": "Frames microbes as cellular, viral, environmental, clinical, and industrial agents.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bacteria, archaea, fungi, protozoa, algae, viruses, and prions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "History of microbiology and germ theory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microbes in health, disease, food, ecosystems, and biotechnology"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microbial Cell Structure and Function",
+      "description": "Explains how microbial anatomy supports survival, identification, and treatment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell walls, membranes, capsules, pili, flagella, spores"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gram-positive, Gram-negative, acid-fast, and atypical cells"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microscopy, staining, and structural interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microbial Growth, Nutrition, and Control",
+      "description": "Shows how microbes grow and how physical and chemical methods limit them.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Growth curves, culture conditions, oxygen use, temperature, pH, water activity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sterilization, disinfection, antisepsis, pasteurization, filtration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sanitation, aseptic technique, and infection prevention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microbial Metabolism and Physiology",
+      "description": "Connects energy pathways to ecological roles, lab identification, and industrial use.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermentation, respiration, photosynthesis, and anaerobic metabolism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enzymes, nutrients, transport, and regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metabolic tests and biochemical identification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microbial Genetics and Genomics",
+      "description": "Covers inheritance, mutation, gene regulation, and genome-based identification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNA replication, mutation, repair, and gene expression"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plasmids, transformation, transduction, conjugation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PCR, sequencing, phylogeny, and microbial genomics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Viruses and Viral Replication",
+      "description": "Distinguishes viruses from cells and explains viral life cycles and disease.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Viral structure, genomes, hosts, and replication strategies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lytic, lysogenic, latent, and persistent infection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Antivirals, vaccines, and viral diagnostics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microbial Diversity and Taxonomy",
+      "description": "Builds the ability to classify and compare organisms across microbial groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bacterial and archaeal diversity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fungi, protozoa, helminths, and medically relevant eukaryotes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Taxonomy, phylogenetics, and ecological niches"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Host-Microbe Interactions and Immunity",
+      "description": "Introduces how hosts recognize, tolerate, or eliminate microbes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Innate immunity, barriers, inflammation, phagocytes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adaptive immunity, antibodies, T cells, memory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal microbiota, dysbiosis, and immune evasion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pathogenesis, Virulence, and Infectious Disease",
+      "description": "Explains how microbes cause disease and why infections differ by host and tissue.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adhesion, invasion, toxins, biofilms, and immune damage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transmission routes, reservoirs, portals, and infectious dose"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Body-system infections and opportunistic pathogens"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Antimicrobials and Resistance",
+      "description": "Develops reasoning about antimicrobial mechanisms, resistance, and stewardship.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Antibiotic targets and mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistance genes, enzymes, efflux, altered targets, and biofilms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Susceptibility testing, stewardship, and public health risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diagnostic Microbiology and Laboratory Methods",
+      "description": "Covers how organisms are detected, identified, and reported.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specimen collection, culture, staining, biochemical tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Immunoassays, PCR, sequencing, MALDI-TOF, and rapid tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biosafety, quality control, and interpretation of results"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental, Industrial, and Food Microbiology",
+      "description": "Applies microbiology to ecosystems, production, nutrition, and safety.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nutrient cycling, soil and water microbiology, bioremediation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermentation, probiotics, biotechnology, and industrial products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Foodborne pathogens, spoilage, preservation, and sanitation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Epidemiology, Infection Prevention, and One Health",
+      "description": "Links microbiology to outbreaks, surveillance, and shared human-animal-environment health.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outbreak investigation, R0, surveillance, and reporting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Healthcare-associated infections and infection control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zoonoses, antimicrobial resistance ecology, and One Health"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microbiology Case Analysis and Research Literacy",
+      "description": "Integrates organism knowledge with evidence-based problem solving.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reading primary literature and outbreak reports"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Case-based pathogen identification and treatment reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lab report writing, data interpretation, and ethical biosafety practice"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

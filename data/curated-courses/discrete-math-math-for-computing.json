@@ -1,0 +1,1253 @@
+{
+  "slug": "discrete-math-math-for-computing",
+  "title": "Discrete Math / Math for Computing",
+  "description": "A foundational course developing the discrete mathematical thinking needed for programming, databases, networks, security, automation, cloud systems, and algorithms. Covers logic, sets, proof, combinatorics, probability, graphs, Boolean algebra, number theory, automata, and algorithms\u2014including recurrences, complexity, invariants, state-machine modeling, and IT-specific applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Mathematical Thinking for Computing and IT Systems",
+      "description": "Introduces discrete mathematics as the language behind software, databases, networks, security, automation, and algorithms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Why discrete math matters",
+          "description": "Students learn that computing is built from finite structures, rules, decisions, and transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Programs and algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Data structures and databases"
+            },
+            {
+              "type": "concept",
+              "title": "Networks, security, and automation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Abstraction",
+          "description": "This subtopic helps students separate essential structure from surface details.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Models and representations"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Mapping real systems to mathematical objects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precision and notation",
+          "description": "Students learn to express ideas unambiguously.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variables and statements"
+            },
+            {
+              "type": "concept",
+              "title": "Definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Mathematical symbols used in computing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Problem-solving habits",
+          "description": "The goal is to build persistence and method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Try examples"
+            },
+            {
+              "type": "concept",
+              "title": "Look for patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Generalize and verify"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Logic, Propositions, Predicates, and Formal Reasoning",
+      "description": "Builds the foundation for precise conditions, program branches, specifications, queries, and security rules.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Propositional logic",
+          "description": "Students learn how true/false statements combine, which supports programming conditions and specifications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negation, conjunction, disjunction, implication, and biconditional"
+            },
+            {
+              "type": "concept",
+              "title": "Truth tables"
+            },
+            {
+              "type": "concept",
+              "title": "Logical equivalence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Predicates and quantifiers",
+          "description": "This subtopic moves from single statements to claims about collections of objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Universal and existential quantifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Nested quantifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Negating quantified statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rules of inference",
+          "description": "Students learn how valid conclusions follow from premises.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Modus Ponens and Modus Tollens"
+            },
+            {
+              "type": "concept",
+              "title": "Contrapositive reasoning"
+            },
+            {
+              "type": "concept",
+              "title": "Valid and invalid arguments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Logic in IT",
+          "description": "The point is to connect formal logic to everyday computing tasks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional statements"
+            },
+            {
+              "type": "concept",
+              "title": "Database filters"
+            },
+            {
+              "type": "concept",
+              "title": "Access policies and validation rules"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Proof Techniques, Induction, Invariants, and Correctness",
+      "description": "Teaches students to justify why a rule, algorithm, or system property is always true.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Direct and contrapositive proofs",
+          "description": "Students learn core proof patterns for clear mathematical arguments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Implications"
+            },
+            {
+              "type": "concept",
+              "title": "If-and-Only-If Statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contradiction and cases",
+          "description": "This subtopic helps students reason when direct proof is awkward.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proof by contradiction"
+            },
+            {
+              "type": "concept",
+              "title": "Exhaustive cases"
+            },
+            {
+              "type": "concept",
+              "title": "Counterexamples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mathematical induction",
+          "description": "Students learn the standard method for proving claims about all positive integers and recursive structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base case"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Strong induction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Invariants and correctness",
+          "description": "The goal is to justify loops, algorithms, and system properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop invariants"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditions and postconditions"
+            },
+            {
+              "type": "concept",
+              "title": "Termination arguments"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sets, Functions, Relations, and Data Models",
+      "description": "Connects mathematical structures to databases, APIs, mappings, equivalence classes, and system relationships.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sets and operations",
+          "description": "Students learn the language of collections used in data, permissions, and queries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Union, intersection, difference, and complement"
+            },
+            {
+              "type": "concept",
+              "title": "Subsets and power sets"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functions",
+          "description": "This subtopic connects inputs to outputs in programs, APIs, and data transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain, codomain, and range"
+            },
+            {
+              "type": "concept",
+              "title": "Injective, surjective, and bijective functions"
+            },
+            {
+              "type": "concept",
+              "title": "Composition and inverse functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relations",
+          "description": "Students learn how objects can be connected or ordered.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary relations"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence relations"
+            },
+            {
+              "type": "concept",
+              "title": "Partial orders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data modeling connections",
+          "description": "The point is to link set/relation theory to databases and information systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tables and keys"
+            },
+            {
+              "type": "concept",
+              "title": "Many-to-many relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Entity relationships"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Counting, Combinatorics, Pigeonhole Principle, and Inclusion-Exclusion",
+      "description": "Develops methods for counting possibilities, configurations, passwords, collisions, and outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic counting rules",
+          "description": "Students learn how to count possibilities without listing them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum and product rules"
+            },
+            {
+              "type": "concept",
+              "title": "Permutations"
+            },
+            {
+              "type": "concept",
+              "title": "Combinations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pigeonhole principle",
+          "description": "This subtopic shows why collisions or repetitions must happen in constrained systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple and generalized forms"
+            },
+            {
+              "type": "concept",
+              "title": "Hash collisions"
+            },
+            {
+              "type": "concept",
+              "title": "Resource allocation examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inclusion-exclusion",
+          "description": "Students learn to count overlapping categories accurately.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-set and three-set formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Counting complements"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding double-counting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "The goal is to reason about passwords, testing, configurations, and search spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Password spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Test cases"
+            },
+            {
+              "type": "concept",
+              "title": "Scheduling and assignment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete Probability, Random Processes, and Risk Reasoning",
+      "description": "Introduces probabilistic thinking for reliability, security, analytics, testing, and uncertainty in computing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability foundations",
+          "description": "Students learn how to measure uncertainty in finite sample spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample spaces and events"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional probability"
+            },
+            {
+              "type": "concept",
+              "title": "Independence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Counting and probability",
+          "description": "This subtopic connects combinatorics to likelihood.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equally likely outcomes"
+            },
+            {
+              "type": "concept",
+              "title": "Permutations and combinations in probability"
+            },
+            {
+              "type": "concept",
+              "title": "Bayes Rule Basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Random variables",
+          "description": "Students learn to summarize uncertain outcomes numerically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expected value"
+            },
+            {
+              "type": "concept",
+              "title": "Variance intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Bernoulli and Binomial Examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computing risk",
+          "description": "The point is to use probability in IT contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Security risk intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Randomized algorithms and testing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Recurrences, Growth Rates, and Algorithmic Complexity",
+      "description": "Links discrete math to algorithm performance, recursive processes, scaling behavior, and resource planning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sequences and recurrences",
+          "description": "Students learn how recursive processes are described mathematically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arithmetic and geometric sequences"
+            },
+            {
+              "type": "concept",
+              "title": "Recursive definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Closed forms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solving recurrences",
+          "description": "This subtopic supports algorithm analysis and repeated-process modeling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Iteration method"
+            },
+            {
+              "type": "concept",
+              "title": "Substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Divide-and-conquer patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Asymptotic growth",
+          "description": "Students learn how to compare scaling behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Big-O, Big-Omega, and Big-Theta"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial, logarithmic, exponential, and factorial growth"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant terms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complexity in IT systems",
+          "description": "The goal is to connect growth rates to performance and resource planning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input size"
+            },
+            {
+              "type": "concept",
+              "title": "Time and space tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Scalability warnings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Graphs, Trees, Networks, and Path Problems",
+      "description": "Covers the structures behind networks, file systems, routing, dependency graphs, social graphs, and workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Graph fundamentals",
+          "description": "Students learn the structure used to model connections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertices and edges"
+            },
+            {
+              "type": "concept",
+              "title": "Directed and undirected graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Degree, walks, paths, and cycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trees",
+          "description": "This subtopic covers hierarchical structures used throughout computing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rooted trees"
+            },
+            {
+              "type": "concept",
+              "title": "Binary trees"
+            },
+            {
+              "type": "concept",
+              "title": "Spanning trees"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Graph algorithms",
+          "description": "Students learn common computational questions on networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breadth-first and depth-first search"
+            },
+            {
+              "type": "concept",
+              "title": "Shortest paths"
+            },
+            {
+              "type": "concept",
+              "title": "Connectivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "IT applications",
+          "description": "The point is to model real systems as graphs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Computer networks"
+            },
+            {
+              "type": "concept",
+              "title": "File systems and dependency graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Social and access graphs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boolean Algebra, Digital Logic, and Decision Structures",
+      "description": "Shows how logical algebra supports circuits, conditionals, search filters, access rules, and simplification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boolean algebra",
+          "description": "Students learn the algebra of true/false values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AND, OR, NOT"
+            },
+            {
+              "type": "concept",
+              "title": "Identities and laws"
+            },
+            {
+              "type": "concept",
+              "title": "Simplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Logic circuits",
+          "description": "This subtopic connects Boolean expressions to hardware and digital systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gates"
+            },
+            {
+              "type": "concept",
+              "title": "Combinational circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Truth tables to circuits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision structures",
+          "description": "Students learn how Boolean logic governs software behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "If statements"
+            },
+            {
+              "type": "concept",
+              "title": "Compound conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Short-circuit evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical simplification",
+          "description": "The goal is to reduce complexity and errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "De Morgan Laws"
+            },
+            {
+              "type": "concept",
+              "title": "Karnaugh Map Intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Testing logical conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Number Theory, Modular Arithmetic, Hashing, and Cryptographic Foundations",
+      "description": "Connects divisibility and modular arithmetic to hashing, checksums, calendars, IDs, and public-key cryptography.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Divisibility and primes",
+          "description": "Students learn basic number properties used in computing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Greatest common divisor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modular arithmetic",
+          "description": "This subtopic explains arithmetic with wraparound behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Congruence"
+            },
+            {
+              "type": "concept",
+              "title": "Modular addition and multiplication"
+            },
+            {
+              "type": "concept",
+              "title": "Calendars and checksums"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Euclidean algorithm",
+          "description": "Students learn an efficient algorithm with cryptographic importance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GCD Computation"
+            },
+            {
+              "type": "concept",
+              "title": "Extended Euclidean Algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Modular inverses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computing applications",
+          "description": "The point is to connect number theory to real IT mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hashing"
+            },
+            {
+              "type": "concept",
+              "title": "Checksums"
+            },
+            {
+              "type": "concept",
+              "title": "RSA Intuition and Public-Key Cryptography"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Automata, Regular Languages, State Machines, and Parsing",
+      "description": "Builds the theory behind pattern matching, protocol states, validation, workflow engines, and simple computation models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "State machines",
+          "description": "Students learn to model systems by states and transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Accepting states"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finite automata",
+          "description": "This subtopic introduces formal machines for recognizing patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deterministic Finite Automata"
+            },
+            {
+              "type": "concept",
+              "title": "Nondeterministic Finite Automata"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regular expressions and languages",
+          "description": "Students connect automata to tools they use in programming and IT operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular languages"
+            },
+            {
+              "type": "concept",
+              "title": "Regex Patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Validation and search"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "The goal is to model protocols, workflows, and parsers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol states"
+            },
+            {
+              "type": "concept",
+              "title": "Lexical analysis basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete Structures in Databases, Networking, Security, and Cloud Systems",
+      "description": "Applies the course tools to practical IT contexts and architectural reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Databases",
+          "description": "Students apply sets and relations to structured data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Keys and relations"
+            },
+            {
+              "type": "concept",
+              "title": "Joins"
+            },
+            {
+              "type": "concept",
+              "title": "Integrity constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Networking",
+          "description": "This subtopic uses graphs and probability to reason about networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routing graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Connectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability and redundancy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Security",
+          "description": "Students connect logic and number theory to security mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Access-control rules"
+            },
+            {
+              "type": "concept",
+              "title": "Threat paths"
+            },
+            {
+              "type": "concept",
+              "title": "Cryptographic primitives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cloud and operations",
+          "description": "The point is to see discrete structures in modern IT architecture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dependency graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Queues and workflows"
+            },
+            {
+              "type": "concept",
+              "title": "Resource allocation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Algorithms Basics, Pseudocode, Search, Sorting, and Verification",
+      "description": "Introduces algorithmic design and analysis with enough rigor for later programming, data structures, and systems courses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Algorithm representation",
+          "description": "Students learn to write steps clearly before coding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pseudocode"
+            },
+            {
+              "type": "concept",
+              "title": "Inputs and outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditions and postconditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Search and sorting",
+          "description": "This subtopic introduces core algorithm families.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear and binary search"
+            },
+            {
+              "type": "concept",
+              "title": "Selection and insertion sort"
+            },
+            {
+              "type": "concept",
+              "title": "Merge sort intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Correctness and testing",
+          "description": "Students learn to argue and test that algorithms work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop invariants"
+            },
+            {
+              "type": "concept",
+              "title": "Edge cases"
+            },
+            {
+              "type": "concept",
+              "title": "Test-case design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Efficiency",
+          "description": "The goal is to connect algorithm choice to performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Counting operations"
+            },
+            {
+              "type": "concept",
+              "title": "Best, worst, and average cases"
+            },
+            {
+              "type": "concept",
+              "title": "Space usage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computational Tools, Notation, and Problem-Solving Practice",
+      "description": "Uses code, diagrams, tables, and symbolic notation to make discrete reasoning concrete and repeatable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Using code to explore math",
+          "description": "Students learn to test patterns and simulate examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Python Snippets"
+            },
+            {
+              "type": "concept",
+              "title": "Tables and traces"
+            },
+            {
+              "type": "concept",
+              "title": "Random experiments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Visualization tools",
+          "description": "This subtopic makes abstract structures visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Graph diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Truth tables"
+            },
+            {
+              "type": "concept",
+              "title": "State transition diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Notation fluency",
+          "description": "Students practice reading and writing mathematical expressions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Set notation"
+            },
+            {
+              "type": "concept",
+              "title": "Summation notation"
+            },
+            {
+              "type": "concept",
+              "title": "Function and relation notation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Problem-solving routines",
+          "description": "The goal is to build confidence through repeatable strategies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Break into cases"
+            },
+            {
+              "type": "concept",
+              "title": "Work small examples"
+            },
+            {
+              "type": "concept",
+              "title": "Check units and assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capstone Computing Math Portfolio and Applied Modeling Project",
+      "description": "Integrates logic, proof, counting, probability, graphs, automata, and algorithms in a practical IT problem.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Applied problem selection",
+          "description": "Students choose a computing scenario that benefits from discrete modeling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Network model"
+            },
+            {
+              "type": "concept",
+              "title": "Access-control model"
+            },
+            {
+              "type": "concept",
+              "title": "Workflow or automata model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated analysis",
+          "description": "This subtopic combines several course tools in one project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logic and sets"
+            },
+            {
+              "type": "concept",
+              "title": "Graphs or automata"
+            },
+            {
+              "type": "concept",
+              "title": "Counting or probability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation sketch",
+          "description": "Students connect math to computing practice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pseudocode"
+            },
+            {
+              "type": "concept",
+              "title": "Data structures"
+            },
+            {
+              "type": "concept",
+              "title": "Tool or code demonstration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Portfolio communication",
+          "description": "The final goal is to explain the model clearly to technical and nontechnical readers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions and limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Results and recommendations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

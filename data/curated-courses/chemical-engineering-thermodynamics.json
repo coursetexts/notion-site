@@ -1,0 +1,1072 @@
+{
+  "slug": "chemical-engineering-thermodynamics",
+  "title": "Chemical Engineering Thermodynamics",
+  "description": "This syllabus treats thermodynamics as the bridge between process equipment, property methods, phase behavior, and reaction equilibrium. It is suitable for a core chemical engineering course after material and energy balances and before separations, reactors, and process design.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Thermodynamic Modeling for Chemical Engineering Systems",
+      "description": "Frame chemical engineering thermodynamics as property modeling, energy accounting, equilibrium prediction, and process decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermodynamic Vocabulary and Scope",
+          "description": "This subtopic establishes the language used to turn physical processes into solvable thermodynamic models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System, surroundings, boundary, closed system, open system, isolated system"
+            },
+            {
+              "type": "concept",
+              "title": "State, process, path, cycle, equilibrium state, and steady state"
+            },
+            {
+              "type": "concept",
+              "title": "Intensive property, extensive property, specific property, and molar property"
+            },
+            {
+              "type": "concept",
+              "title": "Simple compressible substance, phase, component, and degree of freedom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling Assumptions and Sign Conventions",
+          "description": "Students learn to state assumptions clearly so calculations are interpretable and reproducible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat sign convention, work sign convention, shaft work, boundary work, and flow work"
+            },
+            {
+              "type": "concept",
+              "title": "Steady versus transient operation"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic, isothermal, isobaric, isochoric, reversible, irreversible, and internally reversible processes"
+            },
+            {
+              "type": "concept",
+              "title": "Neglecting kinetic energy, potential energy, pressure drop, or heat loss when justified"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Property Needs in Chemical Processes",
+          "description": "The point is to connect thermodynamics to process equipment, separations, reactors, and property packages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature, pressure, composition, phase fraction, enthalpy, entropy, and Gibbs energy"
+            },
+            {
+              "type": "concept",
+              "title": "Property database, property correlation, equation of state, and activity-coefficient model"
+            },
+            {
+              "type": "concept",
+              "title": "Process simulator property package and method selection"
+            },
+            {
+              "type": "concept",
+              "title": "Energy balance, phase equilibrium, and reaction equilibrium as linked calculations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First Law for Closed Systems",
+      "description": "Apply energy conservation to non-flow systems with heat, work, internal energy, and phase change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Closed-System Energy Balance",
+          "description": "This subtopic teaches the basic accounting rule for energy in non-flow systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal energy change, heat transfer, and work transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary work integral and P-V work"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-volume, constant-pressure, isothermal, and adiabatic processes"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid tank, piston-cylinder device, spring-loaded piston, and two-phase vessel"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat Capacity and Sensible Energy",
+          "description": "Students learn how temperature changes translate into internal-energy and enthalpy changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant-volume heat capacity and constant-pressure heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal-gas heat-capacity functions and temperature dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Sensible heat, latent heat, and reference state"
+            },
+            {
+              "type": "concept",
+              "title": "Calorimetry-style calculations and tabulated property changes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase Change in Closed Systems",
+          "description": "This section connects energy balances to vaporization, condensation, melting, and quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturated liquid, saturated vapor, compressed liquid, superheated vapor, and two-phase mixture"
+            },
+            {
+              "type": "concept",
+              "title": "Quality, latent heat, internal energy of vaporization, and enthalpy of vaporization"
+            },
+            {
+              "type": "concept",
+              "title": "Heating at fixed volume versus heating at fixed pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Mass fraction vaporized and final-state determination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First Law for Open Systems and Flow Processes",
+      "description": "Analyze steady and unsteady flow devices using enthalpy, shaft work, flow work, kinetic energy, and potential energy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Steady-Flow Energy Equation",
+          "description": "The goal is to analyze real process equipment using enthalpy and flow work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass flow rate, control volume, inlet, outlet, and steady-state balance"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy, shaft work, heat transfer, kinetic energy, and potential energy terms"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine, compressor, pump, nozzle, diffuser, heat exchanger, and throttling valve"
+            },
+            {
+              "type": "concept",
+              "title": "Single-inlet/single-outlet and multiple-stream control volumes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unsteady Flow and Transient Balances",
+          "description": "Students learn how tanks, filling operations, and discharge processes differ from steady equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accumulation of mass and energy"
+            },
+            {
+              "type": "concept",
+              "title": "Charging, discharging, blowdown, and startup/shutdown operations"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform-state and uniform-flow approximations"
+            },
+            {
+              "type": "concept",
+              "title": "Transient mixing tank and pressure vessel examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical Engineering Unit Applications",
+          "description": "This subtopic gives the first law a process-engineering context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steam generation, condensers, evaporators, flash drums, and heat exchangers"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing of ideal gases and liquid streams"
+            },
+            {
+              "type": "concept",
+              "title": "Joule-Thomson throttling and valve calculations"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic flame temperature as an energy-balance extension"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pure-Substance Properties and Property Data",
+      "description": "Use tables, diagrams, databases, and correlations to evaluate thermodynamic states of pure substances.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase Diagrams and State Location",
+          "description": "Students learn to identify the physical state before calculating properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P-v, T-v, P-T, T-s, and H-s diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Triple point, critical point, saturation dome, and supercritical region"
+            },
+            {
+              "type": "concept",
+              "title": "Compressed liquid, subcooled liquid, saturated mixture, superheated vapor"
+            },
+            {
+              "type": "concept",
+              "title": "Quality lines, vapor pressure curve, and phase boundary"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Property Tables and Databases",
+          "description": "The point is to use data sources accurately and recognize interpolation limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation tables, superheated-vapor tables, compressed-liquid tables"
+            },
+            {
+              "type": "concept",
+              "title": "Interpolation in temperature, pressure, and quality"
+            },
+            {
+              "type": "concept",
+              "title": "Reference states and consistency across data sources"
+            },
+            {
+              "type": "concept",
+              "title": "NIST Chemistry WebBook, steam tables, and refrigerant tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Correlations for Pure-Substance Properties",
+          "description": "Students learn when tabulated data can be replaced by correlations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Antoine equation, vapor-pressure correlations, and normal boiling point"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-capacity polynomials and enthalpy departure"
+            },
+            {
+              "type": "concept",
+              "title": "Clapeyron and Clausius-Clapeyron equations"
+            },
+            {
+              "type": "concept",
+              "title": "Acentric factor and corresponding-states properties"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equations of State and Real-Fluid Behavior",
+      "description": "Model real gases and fluids using virial, cubic, corresponding-states, and departure-function methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ideal Gas and Virial Models",
+          "description": "This section starts with simple models and shows where real-gas corrections enter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal-gas law, compressibility factor, and Z chart"
+            },
+            {
+              "type": "concept",
+              "title": "Second virial coefficient, third virial coefficient, and density expansions"
+            },
+            {
+              "type": "concept",
+              "title": "Boyle temperature and low-pressure behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Mixture virial coefficients and combining rules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cubic Equations of State",
+          "description": "Students learn widely used process models for vapor-liquid and real-fluid calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Van der Waals, Redlich-Kwong, Soave-Redlich-Kwong, and Peng-Robinson equations"
+            },
+            {
+              "type": "concept",
+              "title": "Attraction parameter, co-volume parameter, alpha function, and acentric factor"
+            },
+            {
+              "type": "concept",
+              "title": "Cubic roots, liquid root, vapor root, and metastable roots"
+            },
+            {
+              "type": "concept",
+              "title": "Critical constants, binary interaction parameter, and mixing rules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Departure and Residual Properties",
+          "description": "The goal is to calculate real-fluid property changes relative to ideal-gas reference behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residual enthalpy, residual entropy, residual Gibbs energy, and residual volume"
+            },
+            {
+              "type": "concept",
+              "title": "Departure functions from equations of state"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal-gas contribution plus residual contribution"
+            },
+            {
+              "type": "concept",
+              "title": "Fugacity coefficient from equation-of-state models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Second Law, Entropy, and Irreversibility",
+      "description": "Use entropy balances and the second law to judge feasibility, losses, and process direction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Entropy Balance",
+          "description": "Students learn the second-law accounting equation for process feasibility and losses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entropy transfer with heat, entropy generation, and entropy accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-system entropy balance and control-volume entropy balance"
+            },
+            {
+              "type": "concept",
+              "title": "Reversible heat transfer and Clausius inequality"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy changes for ideal gases, liquids, solids, and phase changes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Irreversibility in Process Equipment",
+          "description": "This subtopic helps students identify why real equipment cannot reach ideal performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Friction, pressure drop, finite-temperature heat transfer, mixing, throttling, and chemical reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Isentropic turbine, isentropic compressor, and isentropic efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic throttling and Joule-Thomson effect"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum work, lost work, and entropy generation minimization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Second-Law Feasibility Tests",
+          "description": "The point is to determine whether a proposed process can occur as written.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entropy generation greater than or equal to zero"
+            },
+            {
+              "type": "concept",
+              "title": "Heat engine, refrigerator, and heat pump limits"
+            },
+            {
+              "type": "concept",
+              "title": "Carnot efficiency and coefficient of performance"
+            },
+            {
+              "type": "concept",
+              "title": "Reversibility, impossibility, and process direction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Exergy, Availability, and Process Efficiency",
+      "description": "Quantify useful work potential and destroyed work in process equipment and cycles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Exergy Concepts",
+          "description": "Exergy translates thermodynamics into useful-work potential relative to an environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dead state, restricted dead state, environment temperature and pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Physical exergy, chemical exergy, flow exergy, and nonflow exergy"
+            },
+            {
+              "type": "concept",
+              "title": "Availability, useful work, reversible work, and lost work"
+            },
+            {
+              "type": "concept",
+              "title": "Gouy-Stodola theorem and exergy destruction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exergy Balances for Equipment",
+          "description": "Students learn to locate inefficiency across individual process units.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control-volume exergy balance"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine, compressor, pump, heat exchanger, valve, and reactor exergy terms"
+            },
+            {
+              "type": "concept",
+              "title": "Exergy transfer by heat, work, and mass flow"
+            },
+            {
+              "type": "concept",
+              "title": "Second-law efficiency and rational efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process-Level Exergy Analysis",
+          "description": "This subtopic connects equipment calculations to process improvement decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pinch-like thinking, heat recovery, and wasted work potential"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion, separation, mixing, and reaction irreversibility"
+            },
+            {
+              "type": "concept",
+              "title": "Exergy destruction map and process bottleneck"
+            },
+            {
+              "type": "concept",
+              "title": "Trade-offs between efficiency, cost, complexity, and safety"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power, Refrigeration, Heat Pump, and Liquefaction Cycles",
+      "description": "Apply first-law and second-law tools to thermal cycles relevant to chemical and energy systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Power Cycles",
+          "description": "Students apply thermodynamic balances to cycles that convert heat into work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carnot cycle, Rankine cycle, reheat, regeneration, and boiler/condenser roles"
+            },
+            {
+              "type": "concept",
+              "title": "Brayton cycle, pressure ratio, compressor work, and turbine work"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal efficiency, back work ratio, and net work"
+            },
+            {
+              "type": "concept",
+              "title": "Steam power, gas turbine, and combined-cycle concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Refrigeration and Heat Pump Cycles",
+          "description": "The gist is to calculate how work moves heat from low temperature to high temperature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vapor-compression refrigeration cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Evaporator, compressor, condenser, expansion valve, and refrigerant"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient of performance, superheating, subcooling, and compressor efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Absorption refrigeration and working-fluid pairs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Liquefaction and Cryogenic Processes",
+          "description": "Chemical engineers use thermodynamics to design low-temperature separation and gas-processing systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joule-Thomson expansion, inversion temperature, and throttling"
+            },
+            {
+              "type": "concept",
+              "title": "Linde cycle, Claude cycle, and cascade refrigeration"
+            },
+            {
+              "type": "concept",
+              "title": "Flash separation after throttling"
+            },
+            {
+              "type": "concept",
+              "title": "Natural gas processing, air separation, and cryogenic safety"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermodynamic Property Relations and Maxwell Relations",
+      "description": "Derive and use property identities that connect measurable variables to U, H, A, G, S, P, V, and T.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fundamental Equations and Potentials",
+          "description": "This subtopic shows how U, H, A, and G organize thermodynamic information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal energy U, enthalpy H, Helmholtz energy A, and Gibbs energy G"
+            },
+            {
+              "type": "concept",
+              "title": "Natural variables and exact differentials"
+            },
+            {
+              "type": "concept",
+              "title": "Legendre transforms and thermodynamic potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical potential as partial molar Gibbs energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maxwell Relations and Measurable Derivatives",
+          "description": "Students learn to replace hard-to-measure derivatives with measurable property relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maxwell relations from exact differentials"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal expansion coefficient, isothermal compressibility, and heat capacities"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclic rule, reciprocity relation, and chain rule for partial derivatives"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy and enthalpy changes from P-V-T data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Useful Property Identities",
+          "description": "The goal is practical calculation of property changes for real substances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gibbs-Helmholtz equation"
+            },
+            {
+              "type": "concept",
+              "title": "Clapeyron equation and phase-transition slope"
+            },
+            {
+              "type": "concept",
+              "title": "Residual-property identities"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-capacity relationships and speed-of-sound connections"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mixture Properties, Partial Molar Quantities, and Excess Properties",
+      "description": "Extend thermodynamics from pure fluids to mixtures using chemical potential, partial molar properties, residual properties, and excess functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Partial Molar Properties",
+          "description": "Students learn how each component contributes to mixture properties in a composition-dependent way.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial molar volume, partial molar enthalpy, partial molar entropy, and partial molar Gibbs energy"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical potential and composition derivatives"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs-Duhem equation and consistency constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent-intercept method and apparent molar properties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ideal and Nonideal Mixtures",
+          "description": "This subtopic distinguishes mixture models that ignore interactions from models that account for them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal-gas mixture, ideal solution, Raoult's law, and Henry's law"
+            },
+            {
+              "type": "concept",
+              "title": "Excess Gibbs energy, excess enthalpy, excess entropy, and excess volume"
+            },
+            {
+              "type": "concept",
+              "title": "Activity, activity coefficient, fugacity, and fugacity coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Azeotrope, miscibility gap, and nonideal mixing behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Residual Properties of Mixtures",
+          "description": "The point is to compute real-fluid mixture properties using equations of state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixture residual Gibbs energy, residual enthalpy, and residual entropy"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing rules, binary interaction parameter, and pseudo-critical properties"
+            },
+            {
+              "type": "concept",
+              "title": "Fugacity coefficients in mixtures"
+            },
+            {
+              "type": "concept",
+              "title": "Property package selection for hydrocarbon, polar, and associating systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fugacity, Chemical Potential, and Equilibrium Criteria",
+      "description": "Use fugacity and chemical potential to express equilibrium in real-fluid systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Chemical Potential as an Equilibrium Tool",
+          "description": "Chemical potential provides a single language for phase, chemical, and material equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemical potential, molar Gibbs energy, and partial molar Gibbs energy"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium as equal chemical potential across phases"
+            },
+            {
+              "type": "concept",
+              "title": "Stability, spontaneity, and Gibbs energy minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature, pressure, and composition effects on chemical potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fugacity and Fugacity Coefficients",
+          "description": "Students learn why fugacity replaces pressure for real gases and real fluids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fugacity, fugacity coefficient, standard state, and reference state"
+            },
+            {
+              "type": "concept",
+              "title": "Pure-component fugacity from P-V-T data"
+            },
+            {
+              "type": "concept",
+              "title": "Mixture fugacity and component fugacity"
+            },
+            {
+              "type": "concept",
+              "title": "Equation-of-state calculation of fugacity coefficient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equilibrium Criteria Across Systems",
+          "description": "The goal is to set up the correct equality before solving any numerical problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "VLE criterion, LLE criterion, SLE criterion, and vapor-solid equilibrium criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Phi-phi, gamma-phi, and gamma-gamma formulations"
+            },
+            {
+              "type": "concept",
+              "title": "K-value definition and distribution ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Thermodynamic consistency and phase stability checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phase Equilibria: VLE, LLE, SLE, and Flash Calculations",
+      "description": "Predict phase splits and compositions for nonreactive mixtures using K-values, activity models, and equations of state.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vapor-Liquid Equilibrium",
+          "description": "Students learn the central equilibrium calculation used in distillation, absorption, stripping, and flash processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bubble point, dew point, relative volatility, and K-value"
+            },
+            {
+              "type": "concept",
+              "title": "Raoult's law, modified Raoult's law, Henry's law, and Poynting correction"
+            },
+            {
+              "type": "concept",
+              "title": "T-x-y diagram, P-x-y diagram, y-x diagram, and azeotrope"
+            },
+            {
+              "type": "concept",
+              "title": "Low-pressure VLE, high-pressure VLE, and equation-of-state VLE"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Liquid-Liquid and Solid-Liquid Equilibrium",
+          "description": "This subtopic covers phase splits beyond vapor-liquid behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Miscibility gap, tie line, plait point, binodal curve, and ternary diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution coefficient and extraction equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Solubility, crystallization, eutectic point, and solid solution"
+            },
+            {
+              "type": "concept",
+              "title": "Polymer solution and electrolyte solution considerations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flash Calculations",
+          "description": "The point is to solve material and equilibrium balances together for phase split and compositions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isothermal flash, adiabatic flash, and pressure-temperature flash"
+            },
+            {
+              "type": "concept",
+              "title": "Rachford-Rice equation and vapor fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Successive substitution, Newton method, and convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Phase stability, initial estimates, and material-balance closure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Activity Coefficients and Nonideal Liquid Solutions",
+      "description": "Model nonideal liquid phases using excess-Gibbs-energy models and composition-dependent activity coefficients.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Activity-Coefficient Definitions",
+          "description": "Students learn how nonideal liquid behavior enters equilibrium calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activity, activity coefficient, standard state, and reference-state convention"
+            },
+            {
+              "type": "concept",
+              "title": "Henry's-law standard state versus Raoult's-law standard state"
+            },
+            {
+              "type": "concept",
+              "title": "Infinite-dilution activity coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Excess Gibbs energy and gamma model connection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Local-Composition and Empirical Models",
+          "description": "This subtopic gives students the named models used in process simulators and design calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Margules, van Laar, Wilson, NRTL, UNIQUAC, and UNIFAC"
+            },
+            {
+              "type": "concept",
+              "title": "Binary parameters, temperature dependence, and regression from VLE/LLE data"
+            },
+            {
+              "type": "concept",
+              "title": "Local composition, molecular size, surface area, and group contribution"
+            },
+            {
+              "type": "concept",
+              "title": "Model-selection limits for polar, associating, electrolyte, and polymer systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data Regression and Consistency",
+          "description": "The goal is to use experimental data responsibly rather than treating model output as automatically true.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parameter estimation, objective function, residuals, and confidence"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs-Duhem consistency and area tests"
+            },
+            {
+              "type": "concept",
+              "title": "Azeotrope prediction, LLE split prediction, and extrapolation risk"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison against NIST, DECHEMA-style data, and literature data"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Reaction and Multireaction Equilibrium",
+      "description": "Predict equilibrium conversion and composition for reacting systems using Gibbs energy minimization and equilibrium constants.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Single-Reaction Equilibrium",
+          "description": "Students learn how equilibrium constants connect thermodynamics to reactor composition limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard Gibbs energy of reaction, equilibrium constant, and reaction quotient"
+            },
+            {
+              "type": "concept",
+              "title": "Extent of reaction, conversion, selectivity, and equilibrium composition"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature dependence, van't Hoff equation, and heat of reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure effects and inert effects for gas-phase reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multireaction and Multiphase Equilibrium",
+          "description": "This subtopic reflects real processes where several reactions and phases interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent reactions, stoichiometric matrix, and reaction coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs energy minimization and element balances"
+            },
+            {
+              "type": "concept",
+              "title": "Simultaneous reaction and phase equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Gas-solid, gas-liquid, liquid-liquid reactive systems, and precipitation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process Applications and Equilibrium Limits",
+          "description": "The final section ties reaction equilibrium to process choices and design intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ammonia synthesis, steam methane reforming, water-gas shift, esterification, and combustion"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium conversion versus kinetic limitation"
+            },
+            {
+              "type": "concept",
+              "title": "Le Chatelier's principle, temperature choice, pressure choice, and separation coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Reactive distillation, recycle, purge, and equilibrium-stage thinking"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

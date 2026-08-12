@@ -1,0 +1,904 @@
+{
+  "slug": "manufacturing-processes",
+  "title": "Manufacturing Processes",
+  "description": "A survey and applied design course covering major manufacturing processes, materials-process relationships, process planning, CNC/CAD/CAM, metrology, quality control, economics, sustainability, and design for manufacturability.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Manufacturing Strategy, Materials, and Process Selection",
+      "description": "This opening topic frames manufacturing as an engineering decision system: the right process depends on function, material behavior, tolerances, quantity, cost, and lifecycle priorities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Manufacturing process families",
+          "description": "Why it matters: Students learn the map of manufacturing so later details fit into a usable decision framework.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary shaping, forming, subtractive, joining, surface processing, additive, and assembly"
+            },
+            {
+              "type": "concept",
+              "title": "Process capability windows: geometry, material, tolerance, throughput, and cost"
+            },
+            {
+              "type": "concept",
+              "title": "Product lifecycle stages from prototype to production ramp"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering materials for manufacturing",
+          "description": "Why it matters: The goal is to connect material properties to what can realistically be made.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metals, polymers, ceramics, composites, and powders"
+            },
+            {
+              "type": "concept",
+              "title": "Strength, ductility, hardness, melting behavior, thermal properties, and machinability"
+            },
+            {
+              "type": "concept",
+              "title": "Processing-structure-property relationships"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process selection logic",
+          "description": "Why it matters: Students practice choosing processes by balancing constraints rather than memorizing isolated methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Part function, material compatibility, geometry, tolerance, surface finish, and production volume"
+            },
+            {
+              "type": "concept",
+              "title": "Make-buy decisions, supplier capability, and equipment availability"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs among performance, cost, speed, quality, and sustainability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Casting, Molding, and Primary Shaping Processes",
+      "description": "Casting and molding introduce how liquid or softened material becomes a finished or near-net-shape part, making this topic central for metals, polymers, and high-volume production.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Foundry fundamentals",
+          "description": "Why it matters: Students see how molten metal handling, solidification, and tooling shape final quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Patterns, molds, cores, gating, risers, shrinkage, and feeding"
+            },
+            {
+              "type": "concept",
+              "title": "Sand casting, investment casting, die casting, and permanent mold casting"
+            },
+            {
+              "type": "concept",
+              "title": "Solidification defects, porosity, inclusions, and hot tears"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polymer molding foundations",
+          "description": "Why it matters: The point is to understand why plastic part design depends so strongly on tooling and flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Injection molding, compression molding, blow molding, thermoforming, and extrusion molding"
+            },
+            {
+              "type": "concept",
+              "title": "Flow length, cooling, shrinkage, warpage, draft, ribs, bosses, and sink marks"
+            },
+            {
+              "type": "concept",
+              "title": "Thermoplastics versus thermosets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Casting and molding design rules",
+          "description": "Why it matters: Students learn to design parts that a real shop can produce consistently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parting lines, draft angles, wall thickness, corner radii, and ejection"
+            },
+            {
+              "type": "concept",
+              "title": "Tooling cost and volume economics"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection needs for internal and surface defects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bulk Deformation: Forging, Rolling, Extrusion, and Drawing",
+      "description": "Bulk deformation processes reshape material through plastic flow, so the emphasis is on force, temperature, tooling, grain flow, and property changes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deformation mechanics",
+          "description": "Why it matters: Students learn why plastic deformation can improve strength but also create defects if poorly controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress-strain behavior beyond yield"
+            },
+            {
+              "type": "concept",
+              "title": "Cold, warm, and hot working"
+            },
+            {
+              "type": "concept",
+              "title": "Work hardening, recrystallization, anisotropy, and grain flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major bulk forming processes",
+          "description": "Why it matters: The goal is to distinguish process capabilities and when each process is economically appropriate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forging, rolling, extrusion, wire drawing, bar drawing, and swaging"
+            },
+            {
+              "type": "concept",
+              "title": "Open-die versus closed-die tooling"
+            },
+            {
+              "type": "concept",
+              "title": "Load, friction, lubrication, temperature, and die wear"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forming defects and quality",
+          "description": "Why it matters: Students learn the failure modes that limit manufacturability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cracks, laps, seams, residual stresses, center burst, and dimensional variation"
+            },
+            {
+              "type": "concept",
+              "title": "Process maps, forming limits, and lubrication control"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection and post-forming heat treatment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sheet Metal Forming and Pressworking",
+      "description": "Sheet forming covers the processes used for enclosures, vehicle bodies, appliances, brackets, and stamped components where thin material must hold precise shape.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sheet forming operations",
+          "description": "Why it matters: Students learn the standard operations behind high-volume metal parts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shearing, blanking, punching, bending, deep drawing, stretching, and roll forming"
+            },
+            {
+              "type": "concept",
+              "title": "Presses, dies, punches, blank holders, and progressive tooling"
+            },
+            {
+              "type": "concept",
+              "title": "Springback, bend allowance, bend radius, and neutral axis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Formability and failure",
+          "description": "Why it matters: The point is to predict when sheet material can stretch or draw without tearing or wrinkling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forming-limit diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Wrinkling, tearing, earing, thinning, and residual stress"
+            },
+            {
+              "type": "concept",
+              "title": "Material anisotropy and lubrication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design for stamped parts",
+          "description": "Why it matters: Students connect part design choices to tooling complexity and production yield.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hole-to-edge spacing, bend relief, corner radii, and consistent wall features"
+            },
+            {
+              "type": "concept",
+              "title": "Tooling cost, nesting, scrap, and production volume"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance stack-up and secondary operations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Machining Fundamentals and Cutting Processes",
+      "description": "Machining is the core subtractive process family; students learn how tools remove material while controlling accuracy, surface finish, tool life, and cost.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cutting mechanics",
+          "description": "Why it matters: This subtopic explains what happens at the tool-chip interface and why cutting conditions matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chip formation, shear plane, built-up edge, cutting forces, and power"
+            },
+            {
+              "type": "concept",
+              "title": "Tool materials, coatings, rake angle, clearance angle, and wear"
+            },
+            {
+              "type": "concept",
+              "title": "Speed, feed, depth of cut, material removal rate, and tool life"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common machining operations",
+          "description": "Why it matters: Students learn what each machine tool does and which geometries it produces well.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turning, facing, boring, drilling, reaming, tapping, milling, broaching, sawing, and shaping"
+            },
+            {
+              "type": "concept",
+              "title": "Workholding, fixturing, datums, and setup planning"
+            },
+            {
+              "type": "concept",
+              "title": "Manual versus CNC machine tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Machining economics and quality",
+          "description": "Why it matters: The goal is to make process plans that meet tolerance without wasting time or tooling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle time, setup time, tool change time, and batch size"
+            },
+            {
+              "type": "concept",
+              "title": "Surface finish, dimensional accuracy, burrs, chatter, and heat effects"
+            },
+            {
+              "type": "concept",
+              "title": "Roughing and finishing strategy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Abrasive Machining, Finishing, and Surface Treatments",
+      "description": "Finishing processes determine final accuracy, surface integrity, wear behavior, and appearance, especially when conventional machining cannot deliver required tolerances.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Abrasive processes",
+          "description": "Why it matters: Students learn how small cutting grains create precision surfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grinding, honing, lapping, polishing, abrasive blasting, and superfinishing"
+            },
+            {
+              "type": "concept",
+              "title": "Wheel selection, grit size, bond type, dressing, and coolant"
+            },
+            {
+              "type": "concept",
+              "title": "Burn, residual stress, and surface damage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surface engineering",
+          "description": "Why it matters: This subtopic shows how surfaces can be modified without changing the bulk material.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat treatment, carburizing, nitriding, shot peening, anodizing, plating, coating, and painting"
+            },
+            {
+              "type": "concept",
+              "title": "Hardness, corrosion resistance, fatigue strength, friction, and wear"
+            },
+            {
+              "type": "concept",
+              "title": "Adhesion, coating thickness, and environmental controls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surface measurement",
+          "description": "Why it matters: Students learn to specify and verify surface quality with engineering language.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roughness parameters such as Ra and Rz"
+            },
+            {
+              "type": "concept",
+              "title": "Surface texture symbols and drawing notes"
+            },
+            {
+              "type": "concept",
+              "title": "Profilometry, visual standards, and functional surface requirements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joining, Welding, Fastening, and Assembly",
+      "description": "Joining processes turn individual parts into products, so this topic connects material compatibility, heat effects, joint design, inspection, and assembly efficiency.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Welding and thermal joining",
+          "description": "Why it matters: Students learn the main fusion and solid-state joining processes and their risks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arc welding, resistance welding, laser welding, brazing, soldering, friction welding, and ultrasonic welding"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-affected zones, distortion, residual stress, and metallurgical changes"
+            },
+            {
+              "type": "concept",
+              "title": "Weld symbols, joint preparation, filler metals, shielding, and process variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanical fastening and adhesives",
+          "description": "Why it matters: The goal is to compare joining options when welding is impractical or undesirable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bolts, screws, rivets, clips, inserts, snap fits, and press fits"
+            },
+            {
+              "type": "concept",
+              "title": "Adhesive bonding, surface preparation, cure conditions, and joint loading"
+            },
+            {
+              "type": "concept",
+              "title": "Disassembly, maintenance, vibration, corrosion, and mixed-material assemblies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Assembly process design",
+          "description": "Why it matters: Students learn to reduce cost and defects through product and fixture design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design for assembly principles"
+            },
+            {
+              "type": "concept",
+              "title": "Poka-yoke, fixtures, jigs, sequence planning, and ergonomic assembly"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection points and rework loops"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Polymer, Composite, Ceramic, and Powder Processing",
+      "description": "This topic extends manufacturing beyond conventional metals, emphasizing how material class changes processing constraints, tooling, defects, and applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polymer processing",
+          "description": "Why it matters: Students connect polymer behavior to everyday manufacturing methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extrusion, injection molding, blow molding, thermoforming, compression molding, and rotational molding"
+            },
+            {
+              "type": "concept",
+              "title": "Viscosity, temperature, cooling rate, shrinkage, and warpage"
+            },
+            {
+              "type": "concept",
+              "title": "Recycling, additives, fillers, and design for molded plastics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composite and ceramic processing",
+          "description": "Why it matters: The point is to understand why brittle and anisotropic materials demand different process controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Layup, filament winding, resin transfer molding, pultrusion, autoclave curing, slip casting, pressing, and sintering"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber orientation, resin content, voids, delamination, and cure cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Ceramic shrinkage, green strength, densification, and thermal shock"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Powder metallurgy",
+          "description": "Why it matters: Students learn how parts can be built from powders when melting or machining is inefficient.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Powder production, blending, compaction, sintering, infiltration, and hot isostatic pressing"
+            },
+            {
+              "type": "concept",
+              "title": "Porosity, density, particle size, and dimensional change"
+            },
+            {
+              "type": "concept",
+              "title": "Bearings, gears, filters, cutting tools, and near-net-shape parts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Additive Manufacturing and Rapid Prototyping",
+      "description": "Additive manufacturing is treated as both a prototyping tool and a production process family with its own design rules, materials, economics, and qualification challenges.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Additive process categories",
+          "description": "Why it matters: Students learn the major AM technologies and what each can make well.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Material extrusion, vat photopolymerization, powder bed fusion, binder jetting, directed energy deposition, sheet lamination, and material jetting"
+            },
+            {
+              "type": "concept",
+              "title": "Metals, polymers, ceramics, composites, and support materials"
+            },
+            {
+              "type": "concept",
+              "title": "Build orientation, supports, layer thickness, infill, and post-processing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design for additive manufacturing",
+          "description": "Why it matters: The goal is to exploit AM advantages without ignoring process limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Topology optimization, lattice structures, consolidation, internal channels, and mass customization"
+            },
+            {
+              "type": "concept",
+              "title": "Overhangs, anisotropy, tolerance, surface finish, and minimum feature size"
+            },
+            {
+              "type": "concept",
+              "title": "Support removal, heat treatment, machining allowance, and finishing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Qualification and production use",
+          "description": "Why it matters: Students learn why printing a part is different from certifying a repeatable process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process monitoring, material traceability, build records, and inspection"
+            },
+            {
+              "type": "concept",
+              "title": "Cost models for prototype, bridge, and production quantities"
+            },
+            {
+              "type": "concept",
+              "title": "Failure modes, standards, and acceptance testing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "CNC, CAD/CAM, Automation, and Smart Manufacturing",
+      "description": "Modern manufacturing depends on digital instructions, automated equipment, connected data, and feedback control, making this topic the bridge from individual processes to production systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CNC programming and CAM workflow",
+          "description": "Why it matters: Students learn how digital geometry becomes machine motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CAD models, setup sheets, tool libraries, toolpaths, post-processors, and G-code"
+            },
+            {
+              "type": "concept",
+              "title": "Work coordinate systems, feeds and speeds, cutter compensation, and simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Collision checking, verification, and first-article approval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Automation and production equipment",
+          "description": "Why it matters: The point is to understand how automation changes capability, safety, consistency, and cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Robots, conveyors, automated inspection, pallet changers, feeders, and flexible manufacturing cells"
+            },
+            {
+              "type": "concept",
+              "title": "Sensors, actuators, PLCs, machine vision, and industrial safety"
+            },
+            {
+              "type": "concept",
+              "title": "Changeover, uptime, maintenance, and human-machine collaboration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Smart manufacturing data",
+          "description": "Why it matters: Students learn to use manufacturing data for monitoring and improvement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Digital twins, MES, SCADA, IIoT, machine connectivity, and data standards"
+            },
+            {
+              "type": "concept",
+              "title": "OEE, downtime tracking, process dashboards, and alarms"
+            },
+            {
+              "type": "concept",
+              "title": "Cybersecurity and data integrity in connected factories"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Planning, Routing, Tooling, and Production Ramp",
+      "description": "Process planning turns a design into an executable manufacturing route, so students practice sequencing operations, selecting tooling, estimating capacity, and preparing for scale-up.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Routing and operation planning",
+          "description": "Why it matters: Students learn to write a practical route sheet for a part.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Operation sequence, setup strategy, datum transfer, work instructions, and inspection hold points"
+            },
+            {
+              "type": "concept",
+              "title": "Machine selection, fixture selection, tool selection, and outsourcing decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Process sheets, travelers, bills of materials, and revision control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tooling and fixtures",
+          "description": "Why it matters: The goal is to see tooling as a major driver of accuracy, speed, repeatability, and cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jigs, fixtures, dies, molds, cutting tools, gauges, and custom workholding"
+            },
+            {
+              "type": "concept",
+              "title": "Tool life, maintainability, spare tooling, and setup reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Capital cost versus per-part cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prototype to production ramp",
+          "description": "Why it matters: Students learn why processes that work once must be stabilized before scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pilot builds, first articles, capability studies, and production readiness reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Supplier qualification, documentation, training, and control plans"
+            },
+            {
+              "type": "concept",
+              "title": "Ramp risks: yield loss, bottlenecks, changeovers, and late design changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metrology, Tolerancing, Process Capability, and Quality Control",
+      "description": "Manufacturing quality requires measurable specifications, capable processes, and feedback systems that detect variation before it becomes field failure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement systems and metrology",
+          "description": "Why it matters: Students learn how to verify parts with appropriate instruments and uncertainty awareness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calipers, micrometers, height gauges, CMMs, optical comparators, gauges, and scanners"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy, precision, resolution, repeatability, reproducibility, calibration, and traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Gauge R&R and measurement system analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tolerancing and GD&T foundations",
+          "description": "Why it matters: The point is to communicate manufacturable requirements clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Datums, basic dimensions, position, flatness, parallelism, perpendicularity, runout, and profile"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance stack-up and functional dimensioning"
+            },
+            {
+              "type": "concept",
+              "title": "Drawing interpretation and inspection planning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical quality and capability",
+          "description": "Why it matters: Students learn to separate normal variation from process trouble.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control charts, process capability indices Cp and Cpk, sampling plans, and acceptance criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Pareto charts, root cause analysis, corrective action, and continuous improvement"
+            },
+            {
+              "type": "concept",
+              "title": "Scrap, rework, yield, and cost of poor quality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design for Manufacturing, Assembly, Cost, and Sustainability",
+      "description": "This topic asks students to redesign parts and products so they are easier to make, assemble, inspect, repair, and recycle.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design for manufacturability",
+          "description": "Why it matters: Students learn to spot features that drive unnecessary manufacturing difficulty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feature simplification, standard stock sizes, minimum radii, wall thickness, tolerance relaxation, and material substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Process-specific design rules for casting, molding, machining, sheet metal, welding, and additive manufacturing"
+            },
+            {
+              "type": "concept",
+              "title": "Design reviews with manufacturing engineers and suppliers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manufacturing economics",
+          "description": "Why it matters: The goal is to estimate cost drivers well enough to compare alternatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fixed cost, variable cost, tooling cost, labor, cycle time, material utilization, scrap, overhead, and learning curves"
+            },
+            {
+              "type": "concept",
+              "title": "Break-even analysis and quantity-sensitive process choice"
+            },
+            {
+              "type": "concept",
+              "title": "Cost of quality, inspection cost, and inventory implications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainable and circular manufacturing",
+          "description": "Why it matters: Students learn to include environmental and lifecycle concerns in process decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy use, material yield, emissions, coolant, waste, and hazardous substances"
+            },
+            {
+              "type": "concept",
+              "title": "Design for repair, remanufacturing, recycling, and disassembly"
+            },
+            {
+              "type": "concept",
+              "title": "Lifecycle assessment basics and circular manufacturing strategies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Manufacturing Case Study and Process Plan",
+      "description": "The final topic integrates course knowledge into a realistic engineering deliverable: select a part, choose processes, justify tradeoffs, and document a defensible production plan.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Part and requirement analysis",
+          "description": "Why it matters: Students start by translating a product need into manufacturing requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function, loads, environment, materials, geometry, tolerances, finish, regulatory needs, and volume"
+            },
+            {
+              "type": "concept",
+              "title": "Critical-to-quality characteristics"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions, constraints, and risk register"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process comparison and justification",
+          "description": "Why it matters: The point is to make a reasoned recommendation rather than a list of options.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Candidate process matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Cost, quality, capability, lead time, equipment, supplier, and sustainability tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Prototype, low-volume, and high-volume alternatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Final manufacturing plan",
+          "description": "Why it matters: Students produce a concise plan that resembles professional manufacturing documentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routing, tooling, fixtures, inspection plan, quality controls, and production ramp steps"
+            },
+            {
+              "type": "concept",
+              "title": "Manufacturing economics and break-even estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Presentation of decisions, risks, and next experiments"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

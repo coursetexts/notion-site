@@ -1,0 +1,1628 @@
+{
+  "slug": "thermodynamics-and-statistical-mechanics",
+  "title": "Thermodynamics and Statistical Mechanics",
+  "description": "A course connecting thermodynamics and statistical mechanics: macroscopic state descriptions, laws and potentials, ensembles and partition functions, classical and quantum gases, phase transitions, fluctuations, and integrated laboratory and computational practice.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Thermal Physics Overview, State Variables, and Equilibrium",
+      "description": "Frame thermodynamics and statistical mechanics as one connected theory: macroscopic state descriptions emerge from microscopic degrees of freedom.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scope and levels of description",
+          "description": "This subtopic clarifies what thermodynamics describes macroscopically and what statistical mechanics explains microscopically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Macroscopic variables"
+            },
+            {
+              "type": "concept",
+              "title": "Microscopic degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Coarse graining"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium versus nonequilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Thermodynamic limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems, surroundings, and constraints",
+          "description": "Students learn to specify what can cross a boundary and which variables are held fixed before choosing an equation or ensemble.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isolated systems"
+            },
+            {
+              "type": "concept",
+              "title": "Closed systems"
+            },
+            {
+              "type": "concept",
+              "title": "Open systems"
+            },
+            {
+              "type": "concept",
+              "title": "Diathermal walls"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic walls"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed N, V, E, T, P, or chemical potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equilibrium and state functions",
+          "description": "The point is to recognize when a small set of variables fully characterizes a state and when path history matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State functions"
+            },
+            {
+              "type": "concept",
+              "title": "Path functions"
+            },
+            {
+              "type": "concept",
+              "title": "Quasi-static processes"
+            },
+            {
+              "type": "concept",
+              "title": "Relaxation to equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Intensive variables"
+            },
+            {
+              "type": "concept",
+              "title": "Extensive variables"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Temperature, Zeroth Law, and Equations of State",
+      "description": "Develop temperature, pressure, volume, and material properties as measurable state variables tied together by equations of state.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermal equilibrium and temperature",
+          "description": "This subtopic gives temperature a precise operational meaning before linking it to microscopic energy sharing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zeroth law"
+            },
+            {
+              "type": "concept",
+              "title": "Thermometers"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal contact"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical temperature scales"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Negative temperature caveat"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equations of state",
+          "description": "Students learn to use models that connect pressure, volume, temperature, and amount of substance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal gas law"
+            },
+            {
+              "type": "concept",
+              "title": "Van der Waals equation"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility factor"
+            },
+            {
+              "type": "concept",
+              "title": "Isotherms"
+            },
+            {
+              "type": "concept",
+              "title": "Critical point"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Material properties and measurements",
+          "description": "The goal is to connect state equations to measured thermal behavior in gases, liquids, solids, and mixtures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal expansion coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Isothermal compressibility"
+            },
+            {
+              "type": "concept",
+              "title": "Heat capacities"
+            },
+            {
+              "type": "concept",
+              "title": "Calorimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Phase diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Property tables"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work, Heat, Internal Energy, and the First Law",
+      "description": "Build energy accounting for thermal systems, distinguishing path-dependent transfers from state functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy transfers",
+          "description": "Students distinguish energy stored in a system from energy transferred through mechanical work or heating.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal energy U"
+            },
+            {
+              "type": "concept",
+              "title": "Heat Q"
+            },
+            {
+              "type": "concept",
+              "title": "Work W"
+            },
+            {
+              "type": "concept",
+              "title": "Sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "PV work"
+            },
+            {
+              "type": "concept",
+              "title": "Non-PV work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "First-law accounting",
+          "description": "This subtopic builds the habit of writing energy balances that match the physical process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Delta U = Q - W convention"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclic processes"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-volume paths"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-pressure paths"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic processes"
+            },
+            {
+              "type": "concept",
+              "title": "Free expansion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat capacities and enthalpy",
+          "description": "Students use measurable heat capacities and enthalpy to solve real thermal-process problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "C_V"
+            },
+            {
+              "type": "concept",
+              "title": "C_P"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy H"
+            },
+            {
+              "type": "concept",
+              "title": "Latent heat"
+            },
+            {
+              "type": "concept",
+              "title": "Joule expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Joule-Thomson effect"
+            },
+            {
+              "type": "concept",
+              "title": "Calorimetric measurements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Entropy, Reversibility, and the Second Law",
+      "description": "Introduce entropy as both a thermodynamic state function and a statistical measure of multiplicity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reversible and irreversible processes",
+          "description": "The point is to see why ideal reversible paths are calculation tools and irreversible processes generate entropy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quasi-static limit"
+            },
+            {
+              "type": "concept",
+              "title": "Friction"
+            },
+            {
+              "type": "concept",
+              "title": "Heat flow across finite temperature differences"
+            },
+            {
+              "type": "concept",
+              "title": "Free expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy production"
+            },
+            {
+              "type": "concept",
+              "title": "Clausius inequality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamic entropy",
+          "description": "Students learn entropy as a state function that constrains allowed macroscopic changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DS = delta Q_rev / T"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy change of ideal gases"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy of mixing"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic reversible processes"
+            },
+            {
+              "type": "concept",
+              "title": "Isentropic processes"
+            },
+            {
+              "type": "concept",
+              "title": "Third law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Second-law statements and consequences",
+          "description": "This subtopic connects Kelvin-Planck, Clausius, and entropy statements into one coherent limit on processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kelvin-Planck statement"
+            },
+            {
+              "type": "concept",
+              "title": "Clausius statement"
+            },
+            {
+              "type": "concept",
+              "title": "Perpetual motion of the second kind"
+            },
+            {
+              "type": "concept",
+              "title": "Heat engine limits"
+            },
+            {
+              "type": "concept",
+              "title": "Arrow of time"
+            },
+            {
+              "type": "concept",
+              "title": "Spontaneity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermodynamic Potentials, Maxwell Relations, and Stability",
+      "description": "Use Legendre transforms to choose the right potential for a constraint and derive relations among measurable response functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Legendre transforms and natural variables",
+          "description": "Students learn why different potentials are useful under different experimental constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal energy U(S,V,N)"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy H(S,P,N)"
+            },
+            {
+              "type": "concept",
+              "title": "Helmholtz free energy F(T,V,N)"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs free energy G(T,P,N)"
+            },
+            {
+              "type": "concept",
+              "title": "Grand potential Omega"
+            },
+            {
+              "type": "concept",
+              "title": "Natural variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maxwell relations and response functions",
+          "description": "The goal is to extract useful measurable relations from exact differentials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exact differentials"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed partial derivatives"
+            },
+            {
+              "type": "concept",
+              "title": "Maxwell relations"
+            },
+            {
+              "type": "concept",
+              "title": "Heat capacity relations"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclic rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability and convexity",
+          "description": "Students connect equilibrium to minima or extrema of the right potential and to positive response functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entropy maximum principle"
+            },
+            {
+              "type": "concept",
+              "title": "Free-energy minimum principle"
+            },
+            {
+              "type": "concept",
+              "title": "Positive heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Positive compressibility"
+            },
+            {
+              "type": "concept",
+              "title": "Convexity and concavity"
+            },
+            {
+              "type": "concept",
+              "title": "Metastability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engines, Refrigerators, Free Energy, and Response Functions",
+      "description": "Connect abstract laws to cycles, limits on performance, free-energy minimization, and material responses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heat engines and cycles",
+          "description": "This subtopic turns the second law into quantitative performance limits for cyclic devices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carnot cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Otto cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Diesel cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Rankine cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Brayton cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "PV and TS diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Refrigerators, heat pumps, and exergy",
+          "description": "Students learn how work can move heat against a temperature gradient and how available work is limited.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficient of performance"
+            },
+            {
+              "type": "concept",
+              "title": "Reversed Carnot cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Exergy"
+            },
+            {
+              "type": "concept",
+              "title": "Availability"
+            },
+            {
+              "type": "concept",
+              "title": "Dead state"
+            },
+            {
+              "type": "concept",
+              "title": "Irreversibility losses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Free energy and equilibrium criteria",
+          "description": "The goal is to know which free energy decides spontaneity under common laboratory constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Helmholtz minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Phase equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs-Duhem relation"
+            },
+            {
+              "type": "concept",
+              "title": "Clapeyron equation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microstates, Macrostates, Probability, and the Statistical Meaning of Entropy",
+      "description": "Move from continuum thermodynamics to microscopic counting, probability distributions, and Boltzmann's entropy formula.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Counting microstates",
+          "description": "Students learn how many microscopic arrangements correspond to the same observed macrostate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microstate"
+            },
+            {
+              "type": "concept",
+              "title": "Macrostate"
+            },
+            {
+              "type": "concept",
+              "title": "Multiplicity Omega"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration counting"
+            },
+            {
+              "type": "concept",
+              "title": "Distinguishable versus indistinguishable particles"
+            },
+            {
+              "type": "concept",
+              "title": "Stirling approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Probability distributions",
+          "description": "This subtopic gives the probability language needed for ensembles and fluctuations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Expectation value"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Most probable macrostate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boltzmann entropy",
+          "description": "The key idea is that entropy measures the logarithm of accessible microscopic possibilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S = k_B ln Omega"
+            },
+            {
+              "type": "concept",
+              "title": "Boltzmann constant"
+            },
+            {
+              "type": "concept",
+              "title": "Additivity of entropy"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy maximization"
+            },
+            {
+              "type": "concept",
+              "title": "Information interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing entropy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microcanonical Ensemble and Isolated Systems",
+      "description": "Analyze isolated systems with fixed energy, particle number, and volume as the foundation for equilibrium statistical mechanics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equal a priori probabilities",
+          "description": "Students learn the postulate that accessible states of an isolated equilibrium system are equally likely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy shell"
+            },
+            {
+              "type": "concept",
+              "title": "Phase space volume"
+            },
+            {
+              "type": "concept",
+              "title": "Density of states"
+            },
+            {
+              "type": "concept",
+              "title": "Ergodic hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Liouville theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Coarse-grained cells"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temperature and pressure from entropy",
+          "description": "This subtopic derives thermodynamic variables from derivatives of entropy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "1/T = partial S/partial E"
+            },
+            {
+              "type": "concept",
+              "title": "P/T = partial S/partial V"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical potential from entropy"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium between subsystems"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal contact"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications to simple systems",
+          "description": "Students practice microcanonical reasoning on models where counting is transparent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Einstein solid"
+            },
+            {
+              "type": "concept",
+              "title": "Two-state paramagnet"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal gas phase-space counting"
+            },
+            {
+              "type": "concept",
+              "title": "Spin systems"
+            },
+            {
+              "type": "concept",
+              "title": "Negative temperature examples"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-size effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Canonical Ensemble and the Partition Function",
+      "description": "Study systems in thermal contact with a reservoir and use the partition function as a generator of thermodynamic quantities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "System plus reservoir derivation",
+          "description": "Students see how the Boltzmann factor emerges when a small system exchanges energy with a large heat bath.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat reservoir"
+            },
+            {
+              "type": "concept",
+              "title": "Boltzmann factor"
+            },
+            {
+              "type": "concept",
+              "title": "Beta = 1/k_B T"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Energy probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Partition function as generator",
+          "description": "The partition function becomes the central object for calculating energy, entropy, pressure, and heat capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Z"
+            },
+            {
+              "type": "concept",
+              "title": "Ln Z"
+            },
+            {
+              "type": "concept",
+              "title": "Helmholtz free energy"
+            },
+            {
+              "type": "concept",
+              "title": "Mean energy"
+            },
+            {
+              "type": "concept",
+              "title": "Energy fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Factorization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical applications",
+          "description": "Students build fluency by solving standard models exactly or approximately.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-level system"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic oscillator"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid rotor"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal gas"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic moments"
+            },
+            {
+              "type": "concept",
+              "title": "Schottky anomaly"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Grand Canonical Ensemble and Chemical Potential",
+      "description": "Extend ensemble methods to systems that exchange particles as well as energy, including gases, adsorption, and open systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Particle exchange and chemical potential",
+          "description": "This subtopic explains chemical potential as the energy cost or benefit of adding particles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mu"
+            },
+            {
+              "type": "concept",
+              "title": "Open systems"
+            },
+            {
+              "type": "concept",
+              "title": "Reservoir of particles"
+            },
+            {
+              "type": "concept",
+              "title": "Fugacity"
+            },
+            {
+              "type": "concept",
+              "title": "Activity"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusive equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs factor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Grand partition function",
+          "description": "Students learn the ensemble that naturally handles variable particle number and occupation statistics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Xi"
+            },
+            {
+              "type": "concept",
+              "title": "Grand potential"
+            },
+            {
+              "type": "concept",
+              "title": "Average particle number"
+            },
+            {
+              "type": "concept",
+              "title": "Number fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure relation"
+            },
+            {
+              "type": "concept",
+              "title": "Occupation numbers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications of the grand ensemble",
+          "description": "The goal is to use variable-particle methods in gases, adsorption, and quantum systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classical ideal gas"
+            },
+            {
+              "type": "concept",
+              "title": "Lattice gas"
+            },
+            {
+              "type": "concept",
+              "title": "Langmuir adsorption"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal Bose gas"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal Fermi gas"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical reactions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Classical Ideal Gases, Equipartition, and Interacting Systems",
+      "description": "Apply ensemble tools to classical gases, molecular degrees of freedom, virial corrections, and the limits of ideal behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Kinetic theory and Maxwell distribution",
+          "description": "Students connect molecular motion to pressure, temperature, and transport intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maxwell-Boltzmann speed distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Most probable speed"
+            },
+            {
+              "type": "concept",
+              "title": "Mean speed"
+            },
+            {
+              "type": "concept",
+              "title": "Rms speed"
+            },
+            {
+              "type": "concept",
+              "title": "Mean free path"
+            },
+            {
+              "type": "concept",
+              "title": "Collision rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equipartition and molecular degrees of freedom",
+          "description": "This subtopic explains when energy is shared equally and why quantum effects can freeze modes out.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equipartition theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Translational modes"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational modes"
+            },
+            {
+              "type": "concept",
+              "title": "Vibrational modes"
+            },
+            {
+              "type": "concept",
+              "title": "Heat capacity of gases"
+            },
+            {
+              "type": "concept",
+              "title": "Classical limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interactions and corrections to ideal behavior",
+          "description": "Students learn the first corrections that appear when molecules are not pointlike and noninteracting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Van der Waals parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Virial expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Second virial coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Pair potential"
+            },
+            {
+              "type": "concept",
+              "title": "Cluster expansion idea"
+            },
+            {
+              "type": "concept",
+              "title": "Excluded volume"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quantum Statistical Mechanics: Bose-Einstein and Fermi-Dirac Statistics",
+      "description": "Develop indistinguishability, quantum occupations, and the statistical behavior of bosons and fermions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Indistinguishability and occupation numbers",
+          "description": "Students learn why quantum particles cannot be counted like labeled classical particles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symmetrization"
+            },
+            {
+              "type": "concept",
+              "title": "Antisymmetrization"
+            },
+            {
+              "type": "concept",
+              "title": "Bosons"
+            },
+            {
+              "type": "concept",
+              "title": "Fermions"
+            },
+            {
+              "type": "concept",
+              "title": "Pauli exclusion principle"
+            },
+            {
+              "type": "concept",
+              "title": "Occupation-number representation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantum distribution functions",
+          "description": "This subtopic derives the occupation rules for bosons and fermions in thermal equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bose-Einstein distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Fermi-Dirac distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Classical Maxwell-Boltzmann limit"
+            },
+            {
+              "type": "concept",
+              "title": "Density of states"
+            },
+            {
+              "type": "concept",
+              "title": "Degeneracy parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Fugacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fermi systems and Bose systems",
+          "description": "Students connect statistics to real matter, from electrons in metals to cold atoms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermi energy"
+            },
+            {
+              "type": "concept",
+              "title": "Fermi temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate electron gas"
+            },
+            {
+              "type": "concept",
+              "title": "Bose-Einstein condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Critical temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Macroscopic occupation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Blackbody Radiation, Phonons, and Quantum Gases",
+      "description": "Use quantum statistics to explain radiation, heat capacity, lattice vibrations, and degenerate gases.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Photon gas and blackbody spectrum",
+          "description": "Students use Bose statistics for particles with zero chemical potential to explain thermal radiation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planck distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Stefan-Boltzmann law"
+            },
+            {
+              "type": "concept",
+              "title": "Wien displacement law"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh-Jeans limit"
+            },
+            {
+              "type": "concept",
+              "title": "Ultraviolet catastrophe"
+            },
+            {
+              "type": "concept",
+              "title": "Photon density of states"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lattice vibrations and heat capacity",
+          "description": "This subtopic explains solids as collections of quantized vibrational modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phonons"
+            },
+            {
+              "type": "concept",
+              "title": "Einstein model"
+            },
+            {
+              "type": "concept",
+              "title": "Debye model"
+            },
+            {
+              "type": "concept",
+              "title": "Debye temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Low-temperature T cubed law"
+            },
+            {
+              "type": "concept",
+              "title": "Dulong-Petit limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Degenerate gases and modern examples",
+          "description": "Students see how quantum statistics underpins laboratory and condensed-matter systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ultracold gases"
+            },
+            {
+              "type": "concept",
+              "title": "Bose condensates"
+            },
+            {
+              "type": "concept",
+              "title": "White-dwarf pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Electron heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Sommerfeld expansion idea"
+            },
+            {
+              "type": "concept",
+              "title": "Superfluidity preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phase Transitions, Critical Phenomena, and Order Parameters",
+      "description": "Analyze changes of phase, symmetry breaking, critical behavior, and models that reveal collective phenomena.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "First-order transitions and coexistence",
+          "description": "Students analyze discontinuous transitions where phases coexist and latent heat matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latent heat"
+            },
+            {
+              "type": "concept",
+              "title": "Coexistence curve"
+            },
+            {
+              "type": "concept",
+              "title": "Clapeyron equation"
+            },
+            {
+              "type": "concept",
+              "title": "Phase rule"
+            },
+            {
+              "type": "concept",
+              "title": "Metastability"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleation"
+            },
+            {
+              "type": "concept",
+              "title": "Hysteresis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous transitions and critical behavior",
+          "description": "This subtopic introduces universality and scaling near critical points.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Order parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Critical exponent"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation length"
+            },
+            {
+              "type": "concept",
+              "title": "Susceptibility"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling laws"
+            },
+            {
+              "type": "concept",
+              "title": "Universality class"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model systems and mean-field theory",
+          "description": "Students use solvable or approximate models to understand collective behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ising model"
+            },
+            {
+              "type": "concept",
+              "title": "Lattice gas mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Landau free energy"
+            },
+            {
+              "type": "concept",
+              "title": "Mean-field approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Spontaneous symmetry breaking"
+            },
+            {
+              "type": "concept",
+              "title": "Renormalization-group preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluctuations, Transport, Nonequilibrium Ideas, and Simulations",
+      "description": "Introduce fluctuations and kinetic viewpoints that bridge equilibrium statistical mechanics with real dynamics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fluctuations around equilibrium",
+          "description": "Students learn that equilibrium has measurable variation, not static perfection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Particle-number fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Fluctuation-response relations"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation functions"
+            },
+            {
+              "type": "concept",
+              "title": "Susceptibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport and kinetic ideas",
+          "description": "This subtopic previews how microscopic motion produces macroscopic flow of heat, particles, and momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion equation"
+            },
+            {
+              "type": "concept",
+              "title": "Fick's law"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Viscosity"
+            },
+            {
+              "type": "concept",
+              "title": "Boltzmann equation idea"
+            },
+            {
+              "type": "concept",
+              "title": "Relaxation time approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational statistical mechanics",
+          "description": "Students use simulation to explore systems too complex for closed-form calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monte Carlo sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Metropolis algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-size scaling"
+            },
+            {
+              "type": "concept",
+              "title": "Random-number quality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Thermal Physics Lab, Computation, and Capstone",
+      "description": "Practice using data, computation, and synthesis projects to make thermal and statistical reasoning operational.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental thermal physics",
+          "description": "Students connect theory to measurement, uncertainty, and real material behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calorimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal conductivity measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Blackbody spectrum measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-capacity data"
+            },
+            {
+              "type": "concept",
+              "title": "Thermometry calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data and computation workflows",
+          "description": "The goal is to make calculation reproducible and to compare models against data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Python notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Curve fitting"
+            },
+            {
+              "type": "concept",
+              "title": "Error bars"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensionless variables"
+            },
+            {
+              "type": "concept",
+              "title": "Model residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter estimation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone synthesis",
+          "description": "Students demonstrate that they can move between laws, ensembles, data, and physical interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase-transition case study"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum gas case study"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-engine analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Materials thermal properties"
+            },
+            {
+              "type": "concept",
+              "title": "Research-style presentation"
+            },
+            {
+              "type": "concept",
+              "title": "Technical writing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1012 @@
+{
+  "slug": "biotransport-fluid-mechanics",
+  "title": "Biotransport / Fluid Mechanics",
+  "description": "Biotransport / Fluid Mechanics applies conservation laws, fluid mechanics, and mass and heat transfer to living systems and biomedical devices\u2014from physiological pressure and vessel flow through diffusion, membranes, thermoregulation, hemodynamics, and design analysis.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Conservation Laws and Biological Control Volumes",
+      "description": "The course begins with the bookkeeping laws that make biological transport quantitative: what enters, leaves, accumulates, and reacts inside a chosen biological region.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Control volumes and system boundaries",
+          "description": "This is the habit of drawing the right boundary around a vessel segment, organ compartment, device, or cell layer so a transport problem becomes solvable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open versus closed systems"
+            },
+            {
+              "type": "concept",
+              "title": "Steady versus unsteady balances"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing boundaries for vessels, lungs, kidneys, and bioreactors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass conservation",
+          "description": "Mass balances explain how flow rates, concentrations, and accumulation connect in physiological and engineered systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Incompressibility assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Source and sink terms for reactions or exchange"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Momentum conservation",
+          "description": "Momentum balances turn forces and pressure differences into predictions of flow and shear.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear momentum balance"
+            },
+            {
+              "type": "concept",
+              "title": "Body forces and surface forces"
+            },
+            {
+              "type": "concept",
+              "title": "Wall shear stress as a biological signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy conservation",
+          "description": "Energy balances show when heat, work, and internal energy matter in perfusion, thermal therapies, and device operation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mechanical energy equation"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal energy balance"
+            },
+            {
+              "type": "concept",
+              "title": "Dissipation and viscous losses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluid Statics and Physiological Pressure Fields",
+      "description": "Static pressure is the simplest fluid-mechanics idea, but it is central to blood pressure, cerebrospinal fluid pressure, edema, ocular pressure, and device calibration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydrostatic pressure",
+          "description": "Hydrostatics explains how pressure changes with height and density before flow even begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure-depth relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Gauge versus absolute pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Posture effects in circulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure measurement",
+          "description": "Students learn how pressure values are obtained and interpreted in clinical and experimental contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Manometry"
+            },
+            {
+              "type": "concept",
+              "title": "Transducers and calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Mean, systolic, and diastolic pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure forces on surfaces",
+          "description": "Pressure fields create net forces on valves, vessel walls, and biomedical device components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distributed pressure loading"
+            },
+            {
+              "type": "concept",
+              "title": "Resultant force and center of pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance and deformation context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buoyancy and body forces",
+          "description": "Body-force concepts help explain sedimentation, centrifugation, and density-driven separation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Archimedes Principle"
+            },
+            {
+              "type": "concept",
+              "title": "Centrifugal body forces"
+            },
+            {
+              "type": "concept",
+              "title": "Cell and particle settling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluid Properties, Viscosity, and Constitutive Models",
+      "description": "Biological fluids are often not simple water-like liquids. This section connects measurable properties to the equations used later in the course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Density, viscosity, and surface tension",
+          "description": "These properties set the scale of pressure drop, shear stress, capillary effects, and device behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic and kinematic viscosity"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Surface tension and capillarity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Newtonian fluids",
+          "description": "Newtonian models are the first approximation for plasma, saline, and many dilute biological fluids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear stress-strain-rate relation"
+            },
+            {
+              "type": "concept",
+              "title": "Shear rate"
+            },
+            {
+              "type": "concept",
+              "title": "Viscometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Non-Newtonian biological fluids",
+          "description": "Blood, mucus, synovial fluid, and cell suspensions often require richer models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear thinning"
+            },
+            {
+              "type": "concept",
+              "title": "Yield stress"
+            },
+            {
+              "type": "concept",
+              "title": "Viscoelasticity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constitutive model selection",
+          "description": "Model choice matters because a simple equation can either clarify the physics or hide the dominant behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power-law model"
+            },
+            {
+              "type": "concept",
+              "title": "Casson and Carreau Models"
+            },
+            {
+              "type": "concept",
+              "title": "When Newtonian assumptions are acceptable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Governing Equations: Navier-Stokes and Simplifications",
+      "description": "The governing equations unify the conservation laws with material behavior. Students learn when to use the full equations and when a simpler form is more useful.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Kinematics of flow",
+          "description": "Kinematics describes motion before asking what caused it, giving students the language of velocity fields and deformation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Streamlines and pathlines"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity gradients"
+            },
+            {
+              "type": "concept",
+              "title": "Strain rate and rotation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Navier-Stokes Equations",
+          "description": "The Navier-Stokes equations encode mass and momentum transport for viscous fluids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Differential momentum balance"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure, viscous, and inertial terms"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary and initial conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common simplifications",
+          "description": "Most useful biomedical calculations come from carefully justified simplifications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steady flow"
+            },
+            {
+              "type": "concept",
+              "title": "Incompressible flow"
+            },
+            {
+              "type": "concept",
+              "title": "Fully developed flow"
+            },
+            {
+              "type": "concept",
+              "title": "Creeping-flow limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary conditions in biological systems",
+          "description": "Biological boundaries can move, slip, deform, or exchange mass, so boundary conditions need physical interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "No-slip condition"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Moving walls and compliant vessels"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laminar Internal Flow in Pipes and Blood Vessels",
+      "description": "Internal flow models provide the first quantitative bridge from pressure gradients to flow rates in vessels, catheters, tubing, and microfluidic channels.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Poiseuille Flow",
+          "description": "Poiseuille flow gives a clean model for how vessel radius, viscosity, and pressure gradient control flow rate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parabolic velocity profile"
+            },
+            {
+              "type": "concept",
+              "title": "Hagen-Poiseuille Law"
+            },
+            {
+              "type": "concept",
+              "title": "Resistance scaling with radius"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure drop and hydraulic resistance",
+          "description": "Resistance concepts let students treat vascular networks and devices with circuit-like intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series and parallel resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Entrance effects"
+            },
+            {
+              "type": "concept",
+              "title": "Minor losses in fittings and junctions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wall shear stress",
+          "description": "Shear stress affects endothelial biology, platelet activation, and device safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear-rate distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Physiological shear ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Hemolysis and thrombosis relevance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pulsatile and compliant-vessel flow",
+          "description": "Cardiovascular flow is time-varying and vessel walls are elastic, so steady rigid-tube models need careful extension.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Womersley Number"
+            },
+            {
+              "type": "concept",
+              "title": "Wave propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance and pressure-flow phase lag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dimensional Analysis, Scaling, and Similarity",
+      "description": "Scaling helps students decide what terms matter, compare systems of different sizes, and design experiments that preserve the important physics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dimensional homogeneity",
+          "description": "Checking dimensions catches errors and reveals useful parameter groupings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Unit consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Nondimensional variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Key dimensionless numbers",
+          "description": "Dimensionless groups summarize competing transport mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds Number"
+            },
+            {
+              "type": "concept",
+              "title": "Peclet Number"
+            },
+            {
+              "type": "concept",
+              "title": "Prandtl and Schmidt Numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Womersley and Deborah Numbers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scaling laws in physiology",
+          "description": "Scaling connects microvascular, organ-level, and whole-body transport behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Length and time scales"
+            },
+            {
+              "type": "concept",
+              "title": "Surface-area-to-volume ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Allometric thinking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Similarity and model design",
+          "description": "Similarity rules help students build bench experiments and computational models that mean something biologically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of scaled models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diffusion, Convection, and Mass Transfer",
+      "description": "Mass transfer is the language of oxygen delivery, solute clearance, nutrient supply, metabolite removal, and transport-limited therapy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fickian Diffusion",
+          "description": "Diffusion describes molecular spreading driven by concentration gradients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fick's First and Second Laws"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Transient diffusion length scales"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convective transport",
+          "description": "Convection moves material with the fluid and often dominates in blood flow and perfused devices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Advection equation"
+            },
+            {
+              "type": "concept",
+              "title": "Residence time"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing versus plug flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convection-diffusion competition",
+          "description": "Students learn to identify whether transport is diffusion-limited, flow-limited, or mixed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peclet Number Interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary layers"
+            },
+            {
+              "type": "concept",
+              "title": "Taylor dispersion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass-transfer coefficients",
+          "description": "Coefficient models turn complex boundary-layer behavior into practical engineering calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Film theory"
+            },
+            {
+              "type": "concept",
+              "title": "Sherwood Number"
+            },
+            {
+              "type": "concept",
+              "title": "Correlations and limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transport Across Membranes and Porous Biological Media",
+      "description": "Many biological barriers behave like membranes or porous media, including capillaries, epithelium, dialysis membranes, tissues, and scaffolds.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane permeability",
+          "description": "Permeability relates concentration differences to flux across a selective barrier.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partitioning"
+            },
+            {
+              "type": "concept",
+              "title": "Permeability coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity and rejection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Osmosis and filtration",
+          "description": "Osmotic and hydraulic driving forces explain fluid exchange in capillaries, kidneys, and dialysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Starling forces"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Ultrafiltration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Porous-media flow",
+          "description": "Porous-media models describe transport through tissues, gels, scaffolds, and packed-cell regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Darcy's Law"
+            },
+            {
+              "type": "concept",
+              "title": "Porosity and tortuosity"
+            },
+            {
+              "type": "concept",
+              "title": "Interstitial flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coupled solute and fluid transport",
+          "description": "Membranes and tissues often couple pressure-driven flow with diffusion and binding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solvent drag"
+            },
+            {
+              "type": "concept",
+              "title": "Hindered diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction-diffusion in tissues"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Heat Transfer and Thermoregulation",
+      "description": "Heat transfer matters in physiology, implants, cryopreservation, hyperthermia, ablation, and thermal safety for medical devices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conduction in tissue",
+          "description": "Conduction models explain how heat spreads through tissue when perfusion or convection is limited.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier's Law"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal diffusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Layered tissues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convection and perfusion",
+          "description": "Blood flow can remove or deliver heat, changing temperature fields dramatically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton's Law of Cooling"
+            },
+            {
+              "type": "concept",
+              "title": "Perfusion terms"
+            },
+            {
+              "type": "concept",
+              "title": "Bioheat equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal boundary conditions",
+          "description": "Boundary assumptions determine whether a model represents skin cooling, device heating, or internal therapy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fixed temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed heat flux"
+            },
+            {
+              "type": "concept",
+              "title": "Convective boundary condition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical thermal applications",
+          "description": "Applications show why thermal transport must be controlled rather than treated as a side effect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ablation"
+            },
+            {
+              "type": "concept",
+              "title": "Cryotherapy"
+            },
+            {
+              "type": "concept",
+              "title": "Implant and wearable-device heating"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Microcirculation, Hemodynamics, and Respiratory Transport",
+      "description": "This section applies core transport principles to the cardiovascular and pulmonary systems where flow, exchange, and geometry are tightly coupled.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microvascular flow",
+          "description": "Small-vessel flow introduces cell-scale effects that are invisible in large-pipe models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fahraeus-Lindqvist Effect"
+            },
+            {
+              "type": "concept",
+              "title": "Plasma skimming"
+            },
+            {
+              "type": "concept",
+              "title": "Capillary transit time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hemodynamics in larger vessels",
+          "description": "Large-vessel flow connects pressure, pulsatility, wall shear, and vascular disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arterial waveforms"
+            },
+            {
+              "type": "concept",
+              "title": "Stenosis and separation"
+            },
+            {
+              "type": "concept",
+              "title": "Aneurysm flow features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Respiratory gas exchange",
+          "description": "Gas exchange combines diffusion, convection, and reaction with hemoglobin.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alveolar diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Ventilation-perfusion matching"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen and carbon dioxide transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clinical interpretation",
+          "description": "Transport models help interpret measurements and pathologies without oversimplifying physiology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blood pressure and flow data"
+            },
+            {
+              "type": "concept",
+              "title": "Pulse oximetry context"
+            },
+            {
+              "type": "concept",
+              "title": "Disease-driven transport changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Drug Delivery, Bioreactors, and Tissue Transport Cases",
+      "description": "Case studies turn transport principles into design tools for therapies, devices, engineered tissues, and experimental platforms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Drug transport and release",
+          "description": "Drug-delivery problems require coupling release kinetics, diffusion, convection, and biological barriers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controlled release"
+            },
+            {
+              "type": "concept",
+              "title": "Target-site concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Clearance and uptake"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bioreactor transport",
+          "description": "Bioreactors must deliver oxygen and nutrients while controlling shear and waste removal.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixing and residence time"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Shear-sensitive cells"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue-engineering transport",
+          "description": "Engineered tissues fail if cells are too far from oxygen and nutrient supply.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion limits"
+            },
+            {
+              "type": "concept",
+              "title": "Scaffold permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Perfusion culture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical device design cases",
+          "description": "Device examples help students practice translating models into design constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dialysis"
+            },
+            {
+              "type": "concept",
+              "title": "Vascular grafts and stents"
+            },
+            {
+              "type": "concept",
+              "title": "Lab-on-a-chip systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Measurement, Modeling, and Design Analysis",
+      "description": "The final topic makes the course practical: students learn how to measure transport, validate models, and communicate design tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental measurement",
+          "description": "Measurement methods teach students how transport quantities are observed and what uncertainty comes with them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow-rate measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure and shear estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Particle image velocimetry and tracer methods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational modeling",
+          "description": "Computational tools extend analytical models to realistic geometries and coupled physics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite-volume and finite-element ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh and boundary-condition sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Verification and validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Parameter estimation",
+          "description": "Biomedical transport models often depend on parameters that must be inferred from data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fitting diffusivity or permeability"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design communication",
+          "description": "Engineering judgment is demonstrated by explaining assumptions, limits, and consequences clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Biological safety and performance metrics"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

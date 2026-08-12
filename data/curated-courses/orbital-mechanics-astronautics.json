@@ -1,0 +1,1072 @@
+{
+  "slug": "orbital-mechanics-astronautics",
+  "title": "Orbital Mechanics / Astronautics",
+  "description": "This syllabus treats orbital mechanics as an applied astronautics course: students move from two-body motion and orbit elements to maneuvers, rendezvous, interplanetary trajectories, perturbations, re-entry, and spacecraft mission design.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Astronautics Context, Space Mission Architecture, and Space Environment",
+      "description": "Introduce astronautics as the engineering of spacecraft missions, orbital regimes, and the space operating environment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mission Architecture",
+          "description": "Students learn how orbital mechanics fits into the broader design of a space mission.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mission objective, payload, spacecraft bus, launch vehicle, ground segment, and operations concept"
+            },
+            {
+              "type": "concept",
+              "title": "LEO, MEO, GEO, HEO, cislunar, heliocentric, and interplanetary mission classes"
+            },
+            {
+              "type": "concept",
+              "title": "Science, communication, navigation, Earth observation, crewed, defense, and technology demonstration missions"
+            },
+            {
+              "type": "concept",
+              "title": "Requirements, constraints, interfaces, margins, and mission phases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Space Environment",
+          "description": "The point is to understand the environment that shapes orbit choice and spacecraft design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vacuum, microgravity, plasma, atomic oxygen, radiation belts, solar wind, and micrometeoroids"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal cycling, eclipse, sunlight, albedo, and Earth infrared radiation"
+            },
+            {
+              "type": "concept",
+              "title": "Space weather, solar activity, geomagnetic storms, and single-event effects"
+            },
+            {
+              "type": "concept",
+              "title": "Debris environment, conjunction risk, and space situational awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spacecraft System Overview",
+          "description": "This subtopic gives students a working vocabulary for spacecraft constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Structure, power, thermal control, propulsion, attitude control, communications, avionics, and payload"
+            },
+            {
+              "type": "concept",
+              "title": "Mass budget, power budget, link budget, propellant budget, and thermal balance"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability, redundancy, fault protection, and autonomy"
+            },
+            {
+              "type": "concept",
+              "title": "Launch loads, vibration, deployment, commissioning, and end-of-life disposal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coordinate Systems, Time Systems, and Reference Frames",
+      "description": "Define the frames, time scales, and geometry used to describe spacecraft position and velocity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reference Frames",
+          "description": "Students need frames before they can describe position, velocity, and attitude correctly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inertial frame, Earth-centered inertial frame, Earth-centered Earth-fixed frame, and perifocal frame"
+            },
+            {
+              "type": "concept",
+              "title": "Topocentric horizon frame, local vertical/local horizontal frame, and body frame"
+            },
+            {
+              "type": "concept",
+              "title": "Right ascension, declination, latitude, longitude, altitude, azimuth, and elevation"
+            },
+            {
+              "type": "concept",
+              "title": "Frame transformation, rotation matrix, direction cosine matrix, and quaternion preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time Systems and Earth Orientation",
+          "description": "Time definitions matter because orbit prediction is a time-sensitive geometric calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UTC, TAI, TT, UT1, Julian date, sidereal time, and leap second"
+            },
+            {
+              "type": "concept",
+              "title": "Greenwich sidereal time, local sidereal time, and Earth rotation angle"
+            },
+            {
+              "type": "concept",
+              "title": "Precession, nutation, polar motion, and Earth orientation parameters as advanced context"
+            },
+            {
+              "type": "concept",
+              "title": "Epoch, time of periapsis passage, and propagation interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vector Geometry for Orbits",
+          "description": "The goal is to make orbital equations geometrically meaningful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position vector, velocity vector, acceleration vector, angular momentum vector, and eccentricity vector"
+            },
+            {
+              "type": "concept",
+              "title": "Specific mechanical energy, node vector, line of apsides, and orbital plane"
+            },
+            {
+              "type": "concept",
+              "title": "Dot product, cross product, projection, and vector norm"
+            },
+            {
+              "type": "concept",
+              "title": "Right-handed coordinate system and sign convention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Two-Body Problem and Equations of Orbital Motion",
+      "description": "Derive and interpret the ideal gravitational two-body model underlying most orbital mechanics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Newtonian Gravity and Relative Motion",
+          "description": "This subtopic develops the ideal model behind Keplerian orbits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton's law of gravitation, gravitational parameter, reduced mass, and relative position"
+            },
+            {
+              "type": "concept",
+              "title": "Equation of relative motion and inverse-square central force"
+            },
+            {
+              "type": "concept",
+              "title": "Point mass assumption, spherical body assumption, and isolated two-body approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration due to gravity and standard gravitational parameter mu"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conservation Laws",
+          "description": "Students learn why ideal orbits are conic sections with constant orbital properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specific angular momentum, conservation of angular momentum, and orbital plane"
+            },
+            {
+              "type": "concept",
+              "title": "Specific mechanical energy, bound orbit, escape condition, and hyperbolic excess velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentricity vector, Laplace-Runge-Lenz vector, and line of apsides"
+            },
+            {
+              "type": "concept",
+              "title": "Circular, elliptical, parabolic, and hyperbolic conics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conic Orbit Geometry",
+          "description": "The point is to connect equations to orbit shape and mission behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semi-major axis, semi-latus rectum, eccentricity, periapsis, apoapsis, and radius equation"
+            },
+            {
+              "type": "concept",
+              "title": "True anomaly, flight-path angle, and orbital speed"
+            },
+            {
+              "type": "concept",
+              "title": "Vis-viva equation and circular speed"
+            },
+            {
+              "type": "concept",
+              "title": "Escape velocity and characteristic energy C3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Classical Orbital Elements and State Vector Conversion",
+      "description": "Represent orbits using six classical elements and convert between elements and position-velocity vectors.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical Orbital Elements",
+          "description": "Students learn the standard six numbers used to define a Keplerian orbit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semi-major axis, eccentricity, inclination, right ascension of ascending node, argument of periapsis, and true anomaly"
+            },
+            {
+              "type": "concept",
+              "title": "Ascending node, descending node, periapsis direction, and orbital plane orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Special cases: circular orbit, equatorial orbit, and singular elements"
+            },
+            {
+              "type": "concept",
+              "title": "Mean anomaly and epoch as alternate element components"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State Vector to Elements",
+          "description": "This subtopic turns position and velocity into orbit geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specific angular momentum vector, node vector, eccentricity vector, and energy"
+            },
+            {
+              "type": "concept",
+              "title": "Inclination from angular momentum, RAAN from node vector, and argument of periapsis from geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Quadrant checks, atan2 usage, and numerical tolerances"
+            },
+            {
+              "type": "concept",
+              "title": "Handling circular, equatorial, parabolic, and hyperbolic edge cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Elements to State Vector",
+          "description": "The goal is to generate position and velocity from orbital elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perifocal coordinates, p-q-w frame, and conic radius"
+            },
+            {
+              "type": "concept",
+              "title": "Perifocal velocity, flight-path geometry, and rotation sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Rotation by RAAN, inclination, and argument of periapsis"
+            },
+            {
+              "type": "concept",
+              "title": "State vector validation using energy, angular momentum, and vis-viva"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Kepler's Laws, Anomalies, and Orbit Propagation",
+      "description": "Use Keplerian motion to predict spacecraft position as a function of time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Kepler's Laws and Periodic Motion",
+          "description": "Students learn how orbit size and timing are linked.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kepler's first, second, and third laws"
+            },
+            {
+              "type": "concept",
+              "title": "Orbital period, mean motion, areal velocity, and time since periapsis"
+            },
+            {
+              "type": "concept",
+              "title": "Circular orbit speed, elliptical period, and semi-major-axis dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of Keplerian propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Anomalies and Kepler's Equation",
+          "description": "This subtopic gives the machinery for finding spacecraft position at a given time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "True anomaly, eccentric anomaly, mean anomaly, and mean motion"
+            },
+            {
+              "type": "concept",
+              "title": "Kepler's equation for elliptical orbits"
+            },
+            {
+              "type": "concept",
+              "title": "Newton iteration for Kepler's equation and convergence concerns"
+            },
+            {
+              "type": "concept",
+              "title": "Hyperbolic anomaly and hyperbolic Kepler equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orbit Propagation",
+          "description": "The point is to predict future state under ideal two-body assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time of flight, propagation from epoch, and anomaly update"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrange f and g functions as an alternate propagation method"
+            },
+            {
+              "type": "concept",
+              "title": "Universal variables, Stumpff functions, and conic-independent propagation preview"
+            },
+            {
+              "type": "concept",
+              "title": "Propagation error and need for perturbation models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ground Tracks, Visibility, and Orbit Design",
+      "description": "Analyze how orbital geometry affects coverage, revisit, communication windows, and ground station access.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Orbital Regimes and Mission Fit",
+          "description": "Students connect orbit choices to mission objectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low Earth orbit, medium Earth orbit, geostationary orbit, geosynchronous orbit, highly elliptical orbit, and cislunar orbit"
+            },
+            {
+              "type": "concept",
+              "title": "Polar orbit, sun-synchronous orbit, frozen orbit, Molniya orbit, and repeat ground-track orbit"
+            },
+            {
+              "type": "concept",
+              "title": "Altitude, inclination, eccentricity, period, coverage, revisit, and radiation environment"
+            },
+            {
+              "type": "concept",
+              "title": "Earth observation, communications, navigation, reconnaissance, and science missions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ground Tracks and Access",
+          "description": "This subtopic shows how orbital motion appears from Earth.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ground track, subsatellite point, nodal regression, and Earth rotation"
+            },
+            {
+              "type": "concept",
+              "title": "Visibility cone, elevation mask, horizon, pass duration, and contact window"
+            },
+            {
+              "type": "concept",
+              "title": "Ground station, line of sight, footprint, and swath width"
+            },
+            {
+              "type": "concept",
+              "title": "Revisit time, coverage gap, and constellation coverage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orbit Design Trade-Offs",
+          "description": "The goal is to compare orbit choices with mission constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Launch site latitude, inclination access, delta-v cost, and range safety"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution, coverage, latency, power, thermal, drag, and communications constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Constellation spacing, phasing, plane count, and Walker constellation preview"
+            },
+            {
+              "type": "concept",
+              "title": "End-of-life disposal and debris mitigation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Orbit Determination, Tracking, and Navigation",
+      "description": "Estimate spacecraft state from observations and understand navigation uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tracking Measurements",
+          "description": "Students learn what observations can tell us about spacecraft state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Range, range rate, Doppler, angles-only tracking, right ascension, declination, azimuth, and elevation"
+            },
+            {
+              "type": "concept",
+              "title": "Ground station geometry, measurement noise, bias, and time tag"
+            },
+            {
+              "type": "concept",
+              "title": "Two-line element, radar tracking, optical tracking, and GNSS receiver data"
+            },
+            {
+              "type": "concept",
+              "title": "Observation residual and measurement model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Initial Orbit Determination",
+          "description": "This subtopic introduces how an orbit can be inferred from limited observations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gauss method, Gibbs method, Lambert problem, and angles-only problem as named methods"
+            },
+            {
+              "type": "concept",
+              "title": "Line-of-sight vector, observation arc, and preliminary orbit"
+            },
+            {
+              "type": "concept",
+              "title": "Three-position vector method and velocity estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Ambiguity, observability, and geometry strength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Estimation and Navigation Uncertainty",
+          "description": "The point is to treat orbit knowledge as uncertain and updateable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Least squares, weighted least squares, state estimate, covariance, and residual"
+            },
+            {
+              "type": "concept",
+              "title": "Extended Kalman filter, process noise, measurement noise, and prediction/update cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Orbit determination accuracy, dilution of precision, and covariance propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Autonomous navigation and ground-based navigation trade-offs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Impulsive Orbital Maneuvers and Delta-V Budgeting",
+      "description": "Analyze velocity changes for orbit raising, lowering, phasing, inclination changes, and mission budgets.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Impulsive Maneuver Basics",
+          "description": "Students learn how instantaneous velocity changes alter orbits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Delta-v vector, prograde burn, retrograde burn, radial burn, and normal burn"
+            },
+            {
+              "type": "concept",
+              "title": "Periapsis burn, apoapsis burn, impulsive approximation, and finite-burn limitation"
+            },
+            {
+              "type": "concept",
+              "title": "Vis-viva equation for pre/post maneuver speed"
+            },
+            {
+              "type": "concept",
+              "title": "Orbit raising, orbit lowering, circularization, and deorbit burn"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Delta-V and Propellant",
+          "description": "This subtopic connects orbital mechanics to propulsion sizing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total delta-v budget, maneuver margin, gravity loss, drag loss, and finite-burn loss"
+            },
+            {
+              "type": "concept",
+              "title": "Tsiolkovsky rocket equation, specific impulse, effective exhaust velocity, and mass ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Dry mass, wet mass, propellant mass, and payload fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical propulsion, electric propulsion, thrust level, and burn duration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maneuver Planning",
+          "description": "The goal is to plan sequences rather than isolated burns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maneuver node, burn timing, burn direction, and target orbit"
+            },
+            {
+              "type": "concept",
+              "title": "Apse line rotation, inclination correction, argument-of-periapsis adjustment, and phasing"
+            },
+            {
+              "type": "concept",
+              "title": "Combined maneuver and split maneuver trade-offs"
+            },
+            {
+              "type": "concept",
+              "title": "Operational constraints: ground contact, eclipse, thermal, plume, and collision avoidance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hohmann Transfers, Plane Changes, and Rendezvous",
+      "description": "Study common transfer strategies and the geometry of meeting another spacecraft.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hohmann and Bi-Elliptic Transfers",
+          "description": "Students learn the standard energy-efficient transfer patterns between circular orbits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hohmann transfer, transfer ellipse, perigee burn, apogee burn, and circularization"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer time, transfer semi-major axis, and total delta-v"
+            },
+            {
+              "type": "concept",
+              "title": "Bi-elliptic transfer, intermediate apoapsis, and when it can help"
+            },
+            {
+              "type": "concept",
+              "title": "LEO-to-GEO transfer, GTO, and apogee kick motor context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plane Changes and Combined Maneuvers",
+          "description": "This subtopic covers costly geometry changes in orbital planes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inclination change, node line, normal burn, and plane-change angle"
+            },
+            {
+              "type": "concept",
+              "title": "Plane-change delta-v and dependence on speed"
+            },
+            {
+              "type": "concept",
+              "title": "Combined plane change with speed change"
+            },
+            {
+              "type": "concept",
+              "title": "Best location for plane change and apogee advantage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rendezvous Phasing",
+          "description": "The point is to arrive at the same place at the same time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phasing orbit, phase angle, synodic period, and catch-up time"
+            },
+            {
+              "type": "concept",
+              "title": "Lead angle, chase vehicle, target vehicle, and transfer window"
+            },
+            {
+              "type": "concept",
+              "title": "Coelliptic rendezvous, terminal phase, and closing rate"
+            },
+            {
+              "type": "concept",
+              "title": "ISS rendezvous, docking corridor, and safety constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Relative Motion and Proximity Operations",
+      "description": "Model nearby spacecraft motion for docking, inspection, formation flying, and safety zones.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Relative Motion Frames",
+          "description": "Students learn how nearby spacecraft motion is described from the target spacecraft.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local vertical/local horizontal frame, radial/in-track/cross-track directions, and Hill frame"
+            },
+            {
+              "type": "concept",
+              "title": "Relative position, relative velocity, line of sight, and range rate"
+            },
+            {
+              "type": "concept",
+              "title": "Target orbit, chaser orbit, and relative orbital elements"
+            },
+            {
+              "type": "concept",
+              "title": "Keep-out sphere, approach corridor, and passive safety"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hill-Clohessy-Wiltshire Equations",
+          "description": "This subtopic introduces the classic linear model for nearby circular-orbit motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearized relative motion, mean motion, radial equation, along-track equation, and cross-track equation"
+            },
+            {
+              "type": "concept",
+              "title": "Natural relative motion, drift, bounded motion, and periodic relative orbit"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response and relative maneuver planning"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions: circular reference orbit, small separation, and two-body dynamics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proximity Operations and Formation Flying",
+          "description": "The goal is to connect relative motion to mission operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rendezvous, docking, berthing, inspection, servicing, and formation flying"
+            },
+            {
+              "type": "concept",
+              "title": "Approach ellipsoid, collision avoidance maneuver, and abort trajectory"
+            },
+            {
+              "type": "concept",
+              "title": "Relative navigation sensors: lidar, camera, radar, and GPS"
+            },
+            {
+              "type": "concept",
+              "title": "Autonomous guidance, fault detection, and operational procedures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interplanetary Trajectories and Patched-Conic Mission Design",
+      "description": "Extend two-body methods to heliocentric transfers and planetary encounters.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Patched-Conic Approximation",
+          "description": "Students learn a tractable way to design multi-body deep-space missions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sphere of influence, heliocentric transfer, planet-centered hyperbola, and patch point"
+            },
+            {
+              "type": "concept",
+              "title": "Departure hyperbola, arrival hyperbola, v-infinity vector, and C3"
+            },
+            {
+              "type": "concept",
+              "title": "Parking orbit departure and hyperbolic escape"
+            },
+            {
+              "type": "concept",
+              "title": "Capture burn, flyby, and direct entry options"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interplanetary Transfers",
+          "description": "This subtopic extends Hohmann thinking beyond Earth orbit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heliocentric Hohmann transfer, synodic period, launch window, and phase angle"
+            },
+            {
+              "type": "concept",
+              "title": "Time of flight, transfer angle, Lambert problem, and porkchop plot"
+            },
+            {
+              "type": "concept",
+              "title": "Mars transfer, Venus transfer, outer planet transfer, and asteroid rendezvous examples"
+            },
+            {
+              "type": "concept",
+              "title": "Arrival speed, entry speed, and capture delta-v"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mission Design Constraints",
+          "description": "The goal is to balance trajectory math with spacecraft and operations constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Launch vehicle capability, launch energy, declination of launch asymptote, and launch site"
+            },
+            {
+              "type": "concept",
+              "title": "Power, communications, thermal environment, radiation, and planetary protection"
+            },
+            {
+              "type": "concept",
+              "title": "Trajectory correction maneuver, navigation uncertainty, and deep-space tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Science objectives, operations timeline, and contingency margins"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gravity Assists and Low-Energy Trajectory Concepts",
+      "description": "Analyze how planetary flybys reshape heliocentric energy and mission geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flyby Geometry",
+          "description": "Students learn how a planet can redirect heliocentric velocity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Powered flyby, unpowered flyby, v-infinity incoming, v-infinity outgoing, and turn angle"
+            },
+            {
+              "type": "concept",
+              "title": "B-plane, impact parameter, periapsis radius, and flyby altitude"
+            },
+            {
+              "type": "concept",
+              "title": "Planetocentric hyperbola and heliocentric velocity change"
+            },
+            {
+              "type": "concept",
+              "title": "Leading-side flyby, trailing-side flyby, energy gain, and energy loss"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gravity-Assist Mission Design",
+          "description": "This subtopic shows why flybys are central to deep-space missions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gravity-assist sequence, resonant flyby, pump angle, and targeting"
+            },
+            {
+              "type": "concept",
+              "title": "Voyager, Galileo, Cassini, Parker Solar Probe, and Europa/outer-planet mission examples"
+            },
+            {
+              "type": "concept",
+              "title": "Launch energy reduction, inclination change, and mission duration trade-off"
+            },
+            {
+              "type": "concept",
+              "title": "Navigation accuracy and planetary encounter constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Low-Energy Trajectory Ideas",
+          "description": "The point is to preview modern trajectory design beyond simple conics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Restricted three-body problem, Lagrange point, invariant manifold, and weak stability boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Ballistic capture, lunar transfer, and cislunar trajectory"
+            },
+            {
+              "type": "concept",
+              "title": "Low-thrust trajectory preview and continuous acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Trade-offs among time, propellant, complexity, and navigation risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Orbital Perturbations, Stationkeeping, and Long-Term Evolution",
+      "description": "Account for non-ideal forces that change real spacecraft orbits over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Perturbing Forces",
+          "description": "Students learn why real orbits depart from ideal Keplerian motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Earth oblateness, J2 perturbation, atmospheric drag, solar radiation pressure, third-body gravity, and thrust errors"
+            },
+            {
+              "type": "concept",
+              "title": "Secular effect, periodic effect, and short-period variation"
+            },
+            {
+              "type": "concept",
+              "title": "Osculating elements versus mean elements"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation acceleration and numerical propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Perturbation Effects",
+          "description": "This subtopic connects perturbations to operational orbit behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodal regression, apsidal rotation, drag decay, eccentricity change, and inclination drift"
+            },
+            {
+              "type": "concept",
+              "title": "Sun-synchronous orbit design from J2 nodal regression"
+            },
+            {
+              "type": "concept",
+              "title": "Frozen orbit, repeat ground track, and atmospheric density variability"
+            },
+            {
+              "type": "concept",
+              "title": "Lunar/solar perturbations for GEO, HEO, and cislunar orbits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stationkeeping and End-of-Life",
+          "description": "The goal is to manage orbital evolution over the mission life.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationkeeping box, north-south stationkeeping, east-west stationkeeping, and inclination control"
+            },
+            {
+              "type": "concept",
+              "title": "Drag makeup, orbit maintenance, collision avoidance, and conjunction assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Deorbit, graveyard orbit, passivation, and disposal orbit"
+            },
+            {
+              "type": "concept",
+              "title": "Space debris mitigation, 25-year rule context, and operational risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Re-Entry, Spacecraft Systems, and Integrated Mission Analysis Project",
+      "description": "Connect orbital mechanics to spacecraft subsystems, atmospheric entry, operations, and mission design synthesis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Re-Entry and Entry Dynamics",
+          "description": "Students learn the first-order mechanics of returning through an atmosphere.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entry interface, ballistic coefficient, lift-to-drag ratio, heating rate, deceleration, and stagnation point"
+            },
+            {
+              "type": "concept",
+              "title": "Ballistic entry, lifting entry, skip entry, and corridor concept"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal protection system, ablator, heat shield, and peak heat load"
+            },
+            {
+              "type": "concept",
+              "title": "Landing ellipse, guidance, and recovery constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spacecraft Systems Coupled to Orbits",
+          "description": "This subtopic ties orbit design to spacecraft engineering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power generation, eclipse duration, battery sizing, and solar array pointing"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal control, radiator view factor, albedo, and beta angle"
+            },
+            {
+              "type": "concept",
+              "title": "Communications link, antenna pointing, ground contact, and data volume"
+            },
+            {
+              "type": "concept",
+              "title": "Attitude determination and control, reaction wheel, magnetorquer, thruster, and star tracker"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mission Analysis Project",
+          "description": "The final project asks students to integrate orbital mechanics with mission constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mission objective, orbit selection, access analysis, and ground track"
+            },
+            {
+              "type": "concept",
+              "title": "Maneuver plan, delta-v budget, propellant estimate, and launch constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation assessment, stationkeeping strategy, and disposal plan"
+            },
+            {
+              "type": "concept",
+              "title": "Technical report, plots, assumptions, limitations, and design recommendation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

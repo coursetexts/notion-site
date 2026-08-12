@@ -1,0 +1,1002 @@
+{
+  "slug": "algorithms",
+  "title": "Algorithms",
+  "description": "Algorithm design, analysis, and complexity: asymptotic analysis, divide and conquer, greedy methods, dynamic programming, graphs, shortest paths, MSTs, network flow, NP-completeness, and approximation and randomized algorithms.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Asymptotic Analysis and Recurrences",
+      "description": "This opening section gives students the language for comparing algorithms independent of machine speed or small input quirks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Growth-rate notation",
+          "description": "Students learn to express upper, lower, and tight bounds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Big-O"
+            },
+            {
+              "type": "concept",
+              "title": "Big-Omega"
+            },
+            {
+              "type": "concept",
+              "title": "Big-Theta"
+            },
+            {
+              "type": "concept",
+              "title": "Little-o and little-omega"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Worst, average, and best case",
+          "description": "Different analyses answer different engineering questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input families"
+            },
+            {
+              "type": "concept",
+              "title": "Adversarial inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Expected running time"
+            },
+            {
+              "type": "concept",
+              "title": "Amortized preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recurrences",
+          "description": "Many recursive algorithms are analyzed through recurrence relations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Substitution method"
+            },
+            {
+              "type": "concept",
+              "title": "Recursion trees"
+            },
+            {
+              "type": "concept",
+              "title": "Master theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Akra-Bazzi preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proof habits",
+          "description": "Algorithm analysis requires clear claims and careful inequalities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Induction"
+            },
+            {
+              "type": "concept",
+              "title": "Bounding sums"
+            },
+            {
+              "type": "concept",
+              "title": "Logarithm rules"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant terms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Divide and Conquer",
+      "description": "Divide and conquer teaches students to solve large problems by splitting them into independent pieces, then combining the answers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Recursive decomposition",
+          "description": "Students learn how problem size shrinks across recursive calls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base cases"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced versus unbalanced splits"
+            },
+            {
+              "type": "concept",
+              "title": "Combine steps"
+            },
+            {
+              "type": "concept",
+              "title": "Recursion depth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sorting examples",
+          "description": "Sorting gives concrete examples of recurrence-driven analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Merge sort"
+            },
+            {
+              "type": "concept",
+              "title": "Quick sort"
+            },
+            {
+              "type": "concept",
+              "title": "Partitioning"
+            },
+            {
+              "type": "concept",
+              "title": "Stability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selection and searching",
+          "description": "Divide-and-conquer can locate information without full sorting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary search"
+            },
+            {
+              "type": "concept",
+              "title": "Quickselect"
+            },
+            {
+              "type": "concept",
+              "title": "Median of medians"
+            },
+            {
+              "type": "concept",
+              "title": "Order statistics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Correctness and analysis",
+          "description": "Students connect recursive structure to proofs and costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inductive correctness"
+            },
+            {
+              "type": "concept",
+              "title": "Recurrence setup"
+            },
+            {
+              "type": "concept",
+              "title": "Work per level"
+            },
+            {
+              "type": "concept",
+              "title": "Space costs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Greedy Algorithms",
+      "description": "Greedy algorithms are simple and fast when the problem structure allows local choices to compose into a global optimum.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Greedy-choice property",
+          "description": "Students learn what must be true for greedy decisions to be safe.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local choice"
+            },
+            {
+              "type": "concept",
+              "title": "Global optimality"
+            },
+            {
+              "type": "concept",
+              "title": "Stays-ahead proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Exchange arguments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scheduling and intervals",
+          "description": "Interval problems make greedy proof patterns visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activity selection"
+            },
+            {
+              "type": "concept",
+              "title": "Interval partitioning"
+            },
+            {
+              "type": "concept",
+              "title": "Deadline scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Counterexamples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coding and compression",
+          "description": "Huffman coding shows greedy algorithms in information representation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prefix codes"
+            },
+            {
+              "type": "concept",
+              "title": "Priority queues"
+            },
+            {
+              "type": "concept",
+              "title": "Tree construction"
+            },
+            {
+              "type": "concept",
+              "title": "Optimal merge patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proof techniques",
+          "description": "The core skill is proving why a greedy choice cannot hurt.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exchange proof"
+            },
+            {
+              "type": "concept",
+              "title": "Cut-and-paste proof"
+            },
+            {
+              "type": "concept",
+              "title": "Matroid preview"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal counterexample"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dynamic Programming",
+      "description": "Dynamic programming handles problems where brute-force recursion repeats the same subproblems and optimal solutions contain optimal smaller solutions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DP formulation",
+          "description": "Students learn to define states and transitions before writing code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State variables"
+            },
+            {
+              "type": "concept",
+              "title": "Recurrence relation"
+            },
+            {
+              "type": "concept",
+              "title": "Base cases"
+            },
+            {
+              "type": "concept",
+              "title": "Answer extraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memoization and tabulation",
+          "description": "Two implementation styles expose the same dependency structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Top-down DP"
+            },
+            {
+              "type": "concept",
+              "title": "Bottom-up DP"
+            },
+            {
+              "type": "concept",
+              "title": "Iteration order"
+            },
+            {
+              "type": "concept",
+              "title": "Space compression"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classic sequence problems",
+          "description": "Sequence DP builds intuition for alignment and subsequence structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fibonacci as toy model"
+            },
+            {
+              "type": "concept",
+              "title": "Longest common subsequence"
+            },
+            {
+              "type": "concept",
+              "title": "Edit distance"
+            },
+            {
+              "type": "concept",
+              "title": "Knapsack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Advanced patterns",
+          "description": "Students learn to recognize DP beyond textbook examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tree DP"
+            },
+            {
+              "type": "concept",
+              "title": "Bitmask DP"
+            },
+            {
+              "type": "concept",
+              "title": "DAG DP"
+            },
+            {
+              "type": "concept",
+              "title": "Reconstruction of solutions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Graph Algorithms (BFS, DFS)",
+      "description": "Graph traversal is the foundation for reasoning about networks, dependencies, connectivity, and reachability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Graph representations",
+          "description": "Representation choices affect performance and implementation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adjacency lists"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Edge lists"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted versus unweighted graphs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Breadth-first search",
+          "description": "BFS explores by distance layers in unweighted graphs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Queues"
+            },
+            {
+              "type": "concept",
+              "title": "Levels"
+            },
+            {
+              "type": "concept",
+              "title": "Shortest unweighted paths"
+            },
+            {
+              "type": "concept",
+              "title": "Parent trees"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Depth-first search",
+          "description": "DFS exposes recursive structure in graphs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discovery/finish times"
+            },
+            {
+              "type": "concept",
+              "title": "Tree/back/cross edges"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle detection"
+            },
+            {
+              "type": "concept",
+              "title": "Topological sort"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connectivity structures",
+          "description": "Traversals support higher-level graph decomposition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Connected components"
+            },
+            {
+              "type": "concept",
+              "title": "Strongly connected components"
+            },
+            {
+              "type": "concept",
+              "title": "Articulation points preview"
+            },
+            {
+              "type": "concept",
+              "title": "Bridges preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shortest Paths",
+      "description": "Shortest-path algorithms teach students to match problem assumptions to the right method and proof invariant.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Unweighted and DAG paths",
+          "description": "Special cases can be solved faster than the general problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "BFS shortest paths"
+            },
+            {
+              "type": "concept",
+              "title": "DAG relaxation"
+            },
+            {
+              "type": "concept",
+              "title": "Topological order"
+            },
+            {
+              "type": "concept",
+              "title": "Path reconstruction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dijkstra's algorithm",
+          "description": "Nonnegative edge weights permit a greedy frontier method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Priority queues"
+            },
+            {
+              "type": "concept",
+              "title": "Relaxation"
+            },
+            {
+              "type": "concept",
+              "title": "Settled vertices"
+            },
+            {
+              "type": "concept",
+              "title": "Nonnegative-weight requirement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bellman-Ford",
+          "description": "Negative edges require repeated relaxation and cycle detection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative weights"
+            },
+            {
+              "type": "concept",
+              "title": "Negative cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Edge relaxation passes"
+            },
+            {
+              "type": "concept",
+              "title": "Difference constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "All-pairs shortest paths",
+          "description": "Some applications need distances among every pair of vertices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Floyd-Warshall"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated Dijkstra"
+            },
+            {
+              "type": "concept",
+              "title": "Transitive closure"
+            },
+            {
+              "type": "concept",
+              "title": "Path matrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Minimum Spanning Trees",
+      "description": "Minimum spanning trees model least-cost connection problems and introduce cut/cycle proof techniques.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "MST problem structure",
+          "description": "Students learn what makes spanning trees and minimum weight special.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Connected weighted graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Spanning trees"
+            },
+            {
+              "type": "concept",
+              "title": "Acyclicity"
+            },
+            {
+              "type": "concept",
+              "title": "Optimal substructure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kruskal's algorithm",
+          "description": "Kruskal adds safe edges in increasing weight order.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Edge sorting"
+            },
+            {
+              "type": "concept",
+              "title": "Union-find"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle avoidance"
+            },
+            {
+              "type": "concept",
+              "title": "Cut property"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prim's algorithm",
+          "description": "Prim grows a tree outward from a starting vertex.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Priority queues"
+            },
+            {
+              "type": "concept",
+              "title": "Frontier edges"
+            },
+            {
+              "type": "concept",
+              "title": "Dense versus sparse graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Correctness proofs",
+          "description": "MST algorithms are a clean setting for exchange and cut arguments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Safe edges"
+            },
+            {
+              "type": "concept",
+              "title": "Cut property"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle property"
+            },
+            {
+              "type": "concept",
+              "title": "Uniqueness conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Network Flow",
+      "description": "Network flow turns capacity-constrained movement through a graph into a powerful modeling tool for matching, cuts, and allocation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flow networks",
+          "description": "Students learn the vocabulary of sources, sinks, capacities, and conservation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source and sink"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Flow conservation"
+            },
+            {
+              "type": "concept",
+              "title": "Residual networks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Max-flow algorithms",
+          "description": "Augmenting-path methods build flow iteratively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ford-Fulkerson"
+            },
+            {
+              "type": "concept",
+              "title": "Edmonds-Karp"
+            },
+            {
+              "type": "concept",
+              "title": "Augmenting paths"
+            },
+            {
+              "type": "concept",
+              "title": "Residual capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Max-flow min-cut theorem",
+          "description": "The theorem gives both an algorithmic target and a certificate of optimality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S-t cuts"
+            },
+            {
+              "type": "concept",
+              "title": "Cut capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Duality intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Optimality certificate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Flow models many discrete allocation problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bipartite matching"
+            },
+            {
+              "type": "concept",
+              "title": "Project selection"
+            },
+            {
+              "type": "concept",
+              "title": "Circulation preview"
+            },
+            {
+              "type": "concept",
+              "title": "Image segmentation preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "NP-Completeness",
+      "description": "NP-completeness teaches students how to recognize when exact efficient algorithms are unlikely and how reductions transfer hardness.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Complexity classes",
+          "description": "Students distinguish verification from solution search.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P"
+            },
+            {
+              "type": "concept",
+              "title": "NP"
+            },
+            {
+              "type": "concept",
+              "title": "Co-NP preview"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reductions",
+          "description": "Reductions are the proof mechanism for comparing problem difficulty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Many-one reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Correctness both directions"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction chains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical hard problems",
+          "description": "Students learn a small toolkit of source problems for reductions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SAT"
+            },
+            {
+              "type": "concept",
+              "title": "3-SAT"
+            },
+            {
+              "type": "concept",
+              "title": "Clique"
+            },
+            {
+              "type": "concept",
+              "title": "Vertex Cover"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian Cycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Algorithmic consequences",
+          "description": "Hardness guides practical choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exact exponential algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Heuristics"
+            },
+            {
+              "type": "concept",
+              "title": "Parameterized preview"
+            },
+            {
+              "type": "concept",
+              "title": "Approximation strategy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Approximation and Randomized Algorithms",
+      "description": "This final section shows how to design useful algorithms when exact deterministic polynomial-time solutions are unavailable or unnecessary.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Approximation guarantees",
+          "description": "Students learn to quantify near-optimal solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Approximation ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute versus relative error"
+            },
+            {
+              "type": "concept",
+              "title": "Minimization versus maximization"
+            },
+            {
+              "type": "concept",
+              "title": "Lower bounds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classic approximations",
+          "description": "Examples show common design techniques.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertex cover 2-approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Set cover greedy approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Metric TSP preview"
+            },
+            {
+              "type": "concept",
+              "title": "Load balancing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Randomized algorithms",
+          "description": "Randomness can simplify design and improve expected performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Las Vegas algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Randomized quicksort"
+            },
+            {
+              "type": "concept",
+              "title": "Random sampling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Probabilistic analysis",
+          "description": "Students learn the basic tools for bounding random behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity of expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Markov inequality"
+            },
+            {
+              "type": "concept",
+              "title": "Chernoff preview"
+            },
+            {
+              "type": "concept",
+              "title": "Hashing applications"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

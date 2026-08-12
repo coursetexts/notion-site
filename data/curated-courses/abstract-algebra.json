@@ -1,0 +1,608 @@
+{
+  "slug": "abstract-algebra",
+  "title": "Abstract Algebra",
+  "description": "A proof-based algebra course covering groups, homomorphisms, quotient structures, group actions, rings, ideals, integral domains, fields, polynomial rings, factorization, field extensions, Galois theory, and applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Proof Language and Algebraic Structures",
+      "description": "Prepares students for abstraction, definitions, examples, and proof methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sets, functions, relations, equivalence classes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary operations, closure, identity, inverses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct proof, contradiction, induction, and counterexamples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Groups and Subgroups",
+      "description": "Introduces groups as symmetry systems and algebraic structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Group axioms and examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subgroups and subgroup tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dihedral, matrix, modular, and symmetry groups"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cyclic Groups and Generators",
+      "description": "Develops the simplest and most important class of groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orders of elements and groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generators, cyclic subgroups, and modular arithmetic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classification of subgroups of cyclic groups"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Permutation Groups",
+      "description": "Connects algebra to symmetry and rearrangement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symmetric and alternating groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle notation, transpositions, parity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cayley's theorem and group representations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cosets and Lagrange's Theorem",
+      "description": "Shows how subgroup structure constrains finite groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Left and right cosets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Index, partitions, and Lagrange theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Applications to element orders and group size"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Normal Subgroups and Quotient Groups",
+      "description": "Builds new groups by collapsing compatible subgroups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normality tests and examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quotient group construction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple groups and composition intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Homomorphisms and Isomorphisms",
+      "description": "Explains structure-preserving maps and algebraic sameness.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kernels, images, injective and surjective maps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isomorphism theorems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Automorphisms and structural classification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Group Actions and Sylow Theory",
+      "description": "Uses actions to extract deep information about finite groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Actions, orbits, stabilizers, orbit-stabilizer theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Class equation and conjugacy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sylow theorems and applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rings, Subrings, and Ideals",
+      "description": "Introduces algebraic systems with addition and multiplication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ring axioms and examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subrings, units, zero divisors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideals and quotient rings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integral Domains, Fields, and Field Arithmetic",
+      "description": "Separates rings with strong cancellation and division properties.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integral domains and fields"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic, prime fields, field examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Field of fractions and algebraic properties"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Polynomial Rings and Factorization",
+      "description": "Studies algebraic expressions as objects with their own structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polynomial rings over fields and domains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Division algorithm, roots, irreducibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UFDs, PIDs, Euclidean domains, and factorization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modules and Linear-Algebra Connections",
+      "description": "Generalizes vector spaces over rings and links algebra to linear structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Modules, submodules, quotient modules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free modules and examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Structure theorem intuition and applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field Extensions and Algebraic Elements",
+      "description": "Develops larger fields from smaller ones to solve polynomial questions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extension degree and towers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Algebraic and transcendental elements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Splitting fields and algebraic closure ideas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Galois Theory and Solvability",
+      "description": "Connects roots of polynomials to symmetry groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Automorphism groups of field extensions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Galois correspondence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solvability by radicals and classical construction problems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Fields, Applications, and Computation",
+      "description": "Shows abstract algebra at work in coding, cryptography, and computation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite field construction and arithmetic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coding theory and cryptographic examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SageMath/GAP computations and algebraic experimentation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

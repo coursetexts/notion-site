@@ -1,0 +1,921 @@
+{
+  "slug": "environmental-engineering",
+  "title": "Environmental Engineering",
+  "description": "Environmental Engineering covers water and wastewater treatment, air pollution control, solid and hazardous waste, regulations, risk assessment, sustainability, climate impacts, and equitable resilient community systems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Water Quality",
+      "description": "This section teaches students to define what makes water usable, safe, impaired, or treatable. The aim is to connect field data, environmental chemistry, ecology, and public-health standards.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water-quality parameters",
+          "description": "Students learn the core measurements used to describe water condition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pH, alkalinity, hardness, and conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Dissolved oxygen, BOD, COD, and TOC"
+            },
+            {
+              "type": "concept",
+              "title": "Turbidity, color, taste, odor, and temperature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contaminants and sources",
+          "description": "Students connect pollutants to land use, infrastructure, and natural processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nutrients, pathogens, metals, and organic chemicals"
+            },
+            {
+              "type": "concept",
+              "title": "Point and nonpoint sources"
+            },
+            {
+              "type": "concept",
+              "title": "Stormwater, agriculture, industry, and septic systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sampling and monitoring",
+          "description": "Students learn how data quality shapes engineering decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grab versus composite sampling"
+            },
+            {
+              "type": "concept",
+              "title": "QA/QC, detection limits, and chain of custody"
+            },
+            {
+              "type": "concept",
+              "title": "Field probes, lab methods, and remote sensing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Standards and interpretation",
+          "description": "Students translate measurements into action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drinking-water and surface-water criteria"
+            },
+            {
+              "type": "concept",
+              "title": "TMDLs and impairment categories"
+            },
+            {
+              "type": "concept",
+              "title": "Trend analysis and uncertainty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water Treatment Processes",
+      "description": "This section covers the unit processes that turn raw water into finished water. Students learn process selection, design logic, and performance evaluation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Source-water assessment",
+          "description": "Students learn how raw-water quality drives treatment strategy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Groundwater versus surface water"
+            },
+            {
+              "type": "concept",
+              "title": "Natural organic matter and turbidity"
+            },
+            {
+              "type": "concept",
+              "title": "Seasonal variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physical and chemical treatment",
+          "description": "Students study the standard treatment train.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coagulation and flocculation"
+            },
+            {
+              "type": "concept",
+              "title": "Sedimentation and clarification"
+            },
+            {
+              "type": "concept",
+              "title": "Granular filtration and membrane filtration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Disinfection and oxidation",
+          "description": "Students learn how pathogens and chemical contaminants are controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chlorination, chloramines, ozone, and UV"
+            },
+            {
+              "type": "concept",
+              "title": "CT concepts and pathogen inactivation"
+            },
+            {
+              "type": "concept",
+              "title": "Disinfection byproducts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process design and operation",
+          "description": "Students evaluate whether treatment meets performance goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass balances and reactor concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical dose, hydraulics, and detention time"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot testing, monitoring, and reliability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wastewater Treatment",
+      "description": "This section follows wastewater from collection through treatment and residuals management. The point is to see wastewater as both a pollutant load and a recoverable water/resource stream.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Wastewater characterization",
+          "description": "Students learn the influent properties that control treatment design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow variation and peaking factors"
+            },
+            {
+              "type": "concept",
+              "title": "BOD, COD, TSS, nutrients, and pathogens"
+            },
+            {
+              "type": "concept",
+              "title": "Domestic versus industrial wastewater"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Preliminary and primary treatment",
+          "description": "Students study the first solids and debris removal stages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Screening and grit removal"
+            },
+            {
+              "type": "concept",
+              "title": "Primary sedimentation"
+            },
+            {
+              "type": "concept",
+              "title": "Sludge production"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological treatment",
+          "description": "Students learn how microbes remove organic matter and nutrients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activated sludge and biofilm processes"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrification and denitrification"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorus removal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Residuals and reuse",
+          "description": "Students examine what happens after the main liquid stream is treated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solids thickening, digestion, and dewatering"
+            },
+            {
+              "type": "concept",
+              "title": "Effluent disinfection"
+            },
+            {
+              "type": "concept",
+              "title": "Water reuse and resource recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Air Pollution and Control",
+      "description": "Air pollution engineering links emissions, atmospheric behavior, human exposure, and control technology. Students learn how to quantify pollutants and select controls.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pollutant types and effects",
+          "description": "Students identify key air pollutants and why they matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Particulate matter, ozone, NOx, SOx, CO, VOCs, and toxics"
+            },
+            {
+              "type": "concept",
+              "title": "Health and ecological impacts"
+            },
+            {
+              "type": "concept",
+              "title": "Indoor versus outdoor air context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Emission sources",
+          "description": "Students connect pollution to combustion, industry, transport, and area sources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationary and mobile sources"
+            },
+            {
+              "type": "concept",
+              "title": "Emission factors and inventories"
+            },
+            {
+              "type": "concept",
+              "title": "Stack parameters and monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Atmospheric fate",
+          "description": "Students learn how pollutants move and transform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dispersion basics"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical transformation and secondary pollutants"
+            },
+            {
+              "type": "concept",
+              "title": "Meteorology and inversions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control technologies",
+          "description": "Students select devices and strategies for pollutant reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclones, scrubbers, filters, and electrostatic precipitators"
+            },
+            {
+              "type": "concept",
+              "title": "Catalytic and adsorption controls"
+            },
+            {
+              "type": "concept",
+              "title": "Source reduction and regulatory compliance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Solid Waste Management",
+      "description": "This section treats waste as a material-flow and public-infrastructure problem. Students learn how collection, diversion, treatment, and disposal systems are planned.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Waste generation and characterization",
+          "description": "Students learn what is in the waste stream.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Municipal, commercial, construction, and organics streams"
+            },
+            {
+              "type": "concept",
+              "title": "Composition studies"
+            },
+            {
+              "type": "concept",
+              "title": "Generation rates and forecasting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collection and transfer",
+          "description": "Students examine logistics and cost drivers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routing, transfer stations, and fleet considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Worker safety"
+            },
+            {
+              "type": "concept",
+              "title": "Service equity and access"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recycling and organics recovery",
+          "description": "Students evaluate diversion strategies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Material recovery facilities"
+            },
+            {
+              "type": "concept",
+              "title": "Composting and anaerobic digestion"
+            },
+            {
+              "type": "concept",
+              "title": "Contamination and market constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Landfills and disposal",
+          "description": "Students learn engineered containment and long-term management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Liners and leachate collection"
+            },
+            {
+              "type": "concept",
+              "title": "Landfill gas"
+            },
+            {
+              "type": "concept",
+              "title": "Closure, monitoring, and post-closure care"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hazardous Waste",
+      "description": "Hazardous waste requires careful classification, containment, treatment, and documentation. Students learn how engineering controls reduce risk across storage, transport, treatment, and disposal.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hazard identification",
+          "description": "Students learn what makes a waste hazardous.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ignitability, corrosivity, reactivity, and toxicity"
+            },
+            {
+              "type": "concept",
+              "title": "Listed and characteristic wastes"
+            },
+            {
+              "type": "concept",
+              "title": "Industrial and laboratory examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fate and transport",
+          "description": "Students understand how hazardous contaminants move through systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sorption, volatilization, biodegradation, and persistence"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater plumes"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor intrusion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Treatment and remediation",
+          "description": "Students compare approaches to risk reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stabilization and solidification"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal, chemical, and biological treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Pump-and-treat, in-situ treatment, and monitored natural attenuation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Management and documentation",
+          "description": "Students connect technical handling to compliance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cradle-to-grave tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Storage and transport requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Emergency response planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Regulations",
+      "description": "This section gives students the rules-of-the-road for professional environmental engineering. The goal is not legal memorization, but knowing how regulations structure design, permitting, monitoring, and accountability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Regulatory frameworks",
+          "description": "Students learn the major areas of environmental law and standards.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clean Water Act and Safe Drinking Water Act context"
+            },
+            {
+              "type": "concept",
+              "title": "Clean Air Act context"
+            },
+            {
+              "type": "concept",
+              "title": "RCRA/CERCLA hazardous waste context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Permitting and compliance",
+          "description": "Students learn how design connects to permits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discharge permits"
+            },
+            {
+              "type": "concept",
+              "title": "Air permits"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring, reporting, and recordkeeping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Standards and guidance",
+          "description": "Students distinguish enforceable limits from guidance and best practice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Numeric criteria and technology-based limits"
+            },
+            {
+              "type": "concept",
+              "title": "Design standards"
+            },
+            {
+              "type": "concept",
+              "title": "Professional codes and agency guidance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering ethics",
+          "description": "Students learn professional responsibilities around public welfare.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Duty to protect health and safety"
+            },
+            {
+              "type": "concept",
+              "title": "Transparency and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Whistleblowing and conflicts of interest"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Risk Assessment",
+      "description": "Risk assessment turns exposure, hazard, and uncertainty into a basis for decisions. Students learn to estimate risk while recognizing assumptions and limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hazard and dose-response",
+          "description": "Students learn how toxicity information is interpreted.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acute versus chronic effects"
+            },
+            {
+              "type": "concept",
+              "title": "Reference doses and cancer slope factors"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitive populations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exposure assessment",
+          "description": "Students estimate who contacts what, how much, and for how long.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ingestion, inhalation, and dermal pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure factors"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario development"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk characterization",
+          "description": "Students combine exposure and toxicity into interpretable risk metrics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard quotient and hazard index"
+            },
+            {
+              "type": "concept",
+              "title": "Excess lifetime cancer risk"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk communication and management",
+          "description": "Students learn how results inform action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Comparative risk"
+            },
+            {
+              "type": "concept",
+              "title": "Precaution and cost-benefit context"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder communication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sustainable Engineering",
+      "description": "Sustainable engineering asks students to design systems that work technically while reducing resource use and long-term harm. It turns environmental engineering from end-of-pipe control toward systems improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sustainability metrics",
+          "description": "Students learn how to measure environmental performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy, water, carbon, materials, and land indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Triple bottom line"
+            },
+            {
+              "type": "concept",
+              "title": "Performance benchmarks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Life-cycle thinking",
+          "description": "Students assess impacts beyond the immediate project boundary.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Life-cycle assessment stages"
+            },
+            {
+              "type": "concept",
+              "title": "Embodied energy and emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs and system boundaries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resource recovery",
+          "description": "Students learn how treatment systems can recover value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water reuse"
+            },
+            {
+              "type": "concept",
+              "title": "Nutrient recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Biogas and energy recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design integration",
+          "description": "Students translate sustainability goals into design choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Green procurement"
+            },
+            {
+              "type": "concept",
+              "title": "Low-impact materials"
+            },
+            {
+              "type": "concept",
+              "title": "Operations, maintenance, and adaptive management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate Change Impact",
+      "description": "This section connects climate science to environmental infrastructure design. Students learn to evaluate changing hazards, uncertain futures, and adaptation needs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Climate hazards",
+          "description": "Students identify hazards relevant to environmental systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extreme precipitation and flooding"
+            },
+            {
+              "type": "concept",
+              "title": "Drought and water scarcity"
+            },
+            {
+              "type": "concept",
+              "title": "Heat, wildfire smoke, and sea-level rise"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Infrastructure vulnerability",
+          "description": "Students assess how systems fail or degrade under climate stress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water and wastewater facilities"
+            },
+            {
+              "type": "concept",
+              "title": "Stormwater and drainage systems"
+            },
+            {
+              "type": "concept",
+              "title": "Waste sites and contaminated land"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptation and resilience",
+          "description": "Students learn strategies for flexible and robust design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design storms and updated IDF curves"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy and backup power"
+            },
+            {
+              "type": "concept",
+              "title": "Managed retreat, elevation, and floodproofing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Climate mitigation links",
+          "description": "Students connect environmental engineering to emissions reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Methane from wastewater and landfills"
+            },
+            {
+              "type": "concept",
+              "title": "Energy efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Low-carbon treatment and materials"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Justice, Green Infrastructure, and Resilient Community Systems",
+      "description": "This final section brings technical design into community context. Students learn to design with equity, distributed natural systems, and resilience rather than treating communities as afterthoughts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Environmental justice foundations",
+          "description": "Students learn how environmental burdens and benefits are unevenly distributed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cumulative impacts"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure disparities"
+            },
+            {
+              "type": "concept",
+              "title": "Procedural, distributive, and restorative justice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Community-centered engineering",
+          "description": "Students practice incorporating lived experience and local priorities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Participatory design"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible communication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Green infrastructure",
+          "description": "Students evaluate nature-based and hybrid systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bioretention, rain gardens, bioswales, and permeable pavements"
+            },
+            {
+              "type": "concept",
+              "title": "Urban tree canopy and heat reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance and performance monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resilient community systems",
+          "description": "Students connect infrastructure reliability to social capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distributed water and stormwater systems"
+            },
+            {
+              "type": "concept",
+              "title": "Emergency preparedness"
+            },
+            {
+              "type": "concept",
+              "title": "Co-benefits for health, mobility, and public space"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

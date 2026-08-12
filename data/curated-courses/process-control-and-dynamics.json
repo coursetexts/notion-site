@@ -1,0 +1,776 @@
+{
+  "slug": "process-control-and-dynamics",
+  "title": "Process Control and Dynamics",
+  "description": "Process Control and Dynamics develops the modeling, analysis, and implementation skills needed to understand and control dynamic chemical and process systems. Students move from unsteady-state balances and transfer functions into feedback control, PID tuning, stability, frequency response, instrumentation, simulation, and plant safety considerations.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Process Dynamics Modeling and Dynamic Balances",
+      "description": "Students learn how chemical processes change with time, and how conservation laws become dynamic models for tanks, reactors, heat exchangers, and separation units.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dynamic conservation laws",
+          "description": "Process behavior is viewed as accumulation plus flows, reactions, and heat effects rather than as isolated equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total and component mass balances"
+            },
+            {
+              "type": "concept",
+              "title": "Energy balances with heat transfer and reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Degrees of freedom and simplifying assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unit-operation models",
+          "description": "Students learn how the same modeling pattern appears across tanks, reactors, heat exchangers, and separation equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixing tanks and surge vessels"
+            },
+            {
+              "type": "concept",
+              "title": "CSTRs and batch reactors"
+            },
+            {
+              "type": "concept",
+              "title": "Heat exchangers, jackets, and coils"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process variables and disturbances",
+          "description": "This subtopic clarifies what can be measured, what can be manipulated, and what arrives from outside the loop.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controlled variables"
+            },
+            {
+              "type": "concept",
+              "title": "Manipulated variables"
+            },
+            {
+              "type": "concept",
+              "title": "Load disturbances and unmeasured inputs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace Transforms and Linearization for Process Control",
+      "description": "This module builds the mathematical bridge between nonlinear process equations and the linear input-output models used in classical control analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deviation variables",
+          "description": "Deviation variables keep the focus on changes from an operating point, which is how many industrial controllers are designed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nominal operating points"
+            },
+            {
+              "type": "concept",
+              "title": "Input and output perturbations"
+            },
+            {
+              "type": "concept",
+              "title": "Physical meaning of zero initial deviation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearization",
+          "description": "Students learn how to approximate nonlinear equations so classical control tools can be applied responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Taylor-series first-order approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobian terms and sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of linear models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laplace-domain solution methods",
+          "description": "The goal is to make dynamic response easier to solve and combine using algebraic relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transforming differential equations"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse transforms and response interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transfer Functions and Block-Diagram Models",
+      "description": "Students convert process models into compact input-output relationships and learn how controllers, sensors, actuators, and processes connect in a control loop.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transfer-function construction",
+          "description": "Students learn to describe each plant element as an input-output block with gain and dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement and transmitter dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Valve and actuator dynamics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Block diagrams",
+          "description": "Block diagrams make control-loop structure visible and help students reason about signal paths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Summing junctions"
+            },
+            {
+              "type": "concept",
+              "title": "Series, parallel, and feedback combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance-entry points"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Closed-loop relationships",
+          "description": "The gist is that controller behavior must be evaluated in the loop, not only as a standalone device.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Servo transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity and complementary sensitivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First- and Second-Order Process Responses",
+      "description": "This topic gives students the vocabulary for recognizing process behavior from step tests, data trends, and model parameters.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "First-order plus dead-time behavior",
+          "description": "Many process units can be approximated well enough by gain, time constant, and delay for controller tuning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process gain"
+            },
+            {
+              "type": "concept",
+              "title": "Time constant"
+            },
+            {
+              "type": "concept",
+              "title": "Transportation and measurement dead time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Second-order behavior",
+          "description": "Students learn to recognize underdamped, overdamped, and critically damped responses in process data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Overshoot and oscillation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonstandard responses",
+          "description": "Some real processes do not behave like simple lags, so students need warning signs for special treatment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integrating processes"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse response"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-lag approximations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Feedback Control Loops and Closed-Loop Behavior",
+      "description": "Students study the logic of feedback control: measure the process, compare it to a target, and take corrective action while managing tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Feedback architecture",
+          "description": "Students learn the basic closed-loop pattern used throughout process plants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controller, process, sensor, and final element"
+            },
+            {
+              "type": "concept",
+              "title": "Negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Manual versus automatic mode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance measures",
+          "description": "This subtopic gives students practical criteria for judging whether a loop is good enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Offset"
+            },
+            {
+              "type": "concept",
+              "title": "Rise time and settling time"
+            },
+            {
+              "type": "concept",
+              "title": "Overshoot and integrated error criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Disturbance rejection",
+          "description": "Regulatory control is central in chemical plants because production must remain stable despite changing loads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load changes"
+            },
+            {
+              "type": "concept",
+              "title": "Setpoint tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs between speed and robustness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "PID Controllers and Controller Tuning",
+      "description": "The core industrial controller is introduced as a practical design tool whose proportional, integral, and derivative modes shape loop behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PID modes",
+          "description": "Students learn what each controller mode contributes to speed, offset removal, and damping.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proportional gain"
+            },
+            {
+              "type": "concept",
+              "title": "Integral reset"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative action"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tuning approaches",
+          "description": "Tuning connects model parameters and observed data to controller settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-loop process-reaction curve tuning"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-loop ultimate gain methods"
+            },
+            {
+              "type": "concept",
+              "title": "IMC and lambda tuning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation issues",
+          "description": "Real PID loops include features that prevent poor behavior during saturation, noise, or mode changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anti-reset windup"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Output limits and bumpless transfer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stability Analysis and Control Robustness",
+      "description": "Students learn why a controller that works in one condition can become unsafe or ineffective when gains, time delays, or operating conditions shift.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Closed-loop stability",
+          "description": "Students learn how controller choices move poles and determine whether responses decay or grow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic equation"
+            },
+            {
+              "type": "concept",
+              "title": "Pole locations"
+            },
+            {
+              "type": "concept",
+              "title": "Effect of gain and dead time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classical stability tests",
+          "description": "These tools provide structured ways to assess stability without relying only on trial-and-error simulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routh-Hurwitz criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Root locus sketches"
+            },
+            {
+              "type": "concept",
+              "title": "Nyquist stability concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Robustness",
+          "description": "A loop must tolerate model error, plant drift, fouling, and operating changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain and phase margins"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and nonlinear operation"
+            },
+            {
+              "type": "concept",
+              "title": "Conservative tuning choices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response and Loop-Shaping Concepts",
+      "description": "Frequency-domain methods help students understand how loops react to disturbances at different speeds and how stability margins are judged in practice.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Frequency response fundamentals",
+          "description": "Students learn how systems respond to slow and fast disturbances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sinusoidal inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Magnitude ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Phase lag"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bode analysis",
+          "description": "Bode plots provide a compact picture of process speed, delay, and loop stability margin.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Log-frequency plots"
+            },
+            {
+              "type": "concept",
+              "title": "Corner frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Dead-time phase effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loop-shaping tradeoffs",
+          "description": "This subtopic links bandwidth and margins to practical decisions about controller aggressiveness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bandwidth and disturbance rejection"
+            },
+            {
+              "type": "concept",
+              "title": "Noise amplification"
+            },
+            {
+              "type": "concept",
+              "title": "Gain crossover and phase crossover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cascade, Feedforward, Ratio, and Multivariable Control",
+      "description": "This module extends beyond single-loop feedback into common industrial strategies for faster disturbance rejection and coordinated plant operation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cascade control",
+          "description": "Cascade control uses a fast inner loop to reduce disturbances before they reach the primary controlled variable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary and secondary variables"
+            },
+            {
+              "type": "concept",
+              "title": "Inner-loop speed requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature-flow and level-flow examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feedforward and ratio control",
+          "description": "Students learn how to act on measured disturbances before feedback error appears.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Disturbance measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Static and dynamic compensation"
+            },
+            {
+              "type": "concept",
+              "title": "Blend and fuel-air ratio control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multivariable control",
+          "description": "Most plants have interacting variables, so students need tools for recognizing and reducing loop interaction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relative gain array concept"
+            },
+            {
+              "type": "concept",
+              "title": "Decoupling"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint-aware control and MPC preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Instrumentation, Sensors, Actuators, and Final Control Elements",
+      "description": "Control quality depends on field hardware, so students learn how measurements, valves, transmitters, and actuators shape real loop performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement systems",
+          "description": "The goal is to understand the strengths and limits of common plant measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow, level, pressure, and temperature sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Composition analyzers"
+            },
+            {
+              "type": "concept",
+              "title": "Transmitters and signal ranges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Final control elements",
+          "description": "Students learn why valves and actuators often dominate control-loop performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Valve sizing and characteristics"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Stiction, hysteresis, and saturation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instrumentation reliability",
+          "description": "Good control requires trustworthy measurements and predictable hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Noise and filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy and fault detection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digital Implementation, Simulation, and Model Validation",
+      "description": "Students connect theory to practice by simulating loops, estimating model parameters, validating plant data, and implementing controllers in digital platforms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simulation workflows",
+          "description": "Students use simulation to test controller decisions before trying them on a plant.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic model setup"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario testing"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing open-loop and closed-loop runs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model validation",
+          "description": "The point is to check whether a model is useful for the operating range and purpose at hand.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Step-test data"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Residuals and validation data sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Digital control implementation",
+          "description": "Students learn the practical details that appear when continuous controllers run on sampled systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample time selection"
+            },
+            {
+              "type": "concept",
+              "title": "Discrete PID forms"
+            },
+            {
+              "type": "concept",
+              "title": "Data latency and historian integration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alarm Management, Safety-Instrumented Systems, and Industrial Cybersecurity",
+      "description": "The course closes by placing process control inside the larger plant safety environment, where alarms, interlocks, SIS layers, and cybersecurity protect people and equipment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Alarm management",
+          "description": "Students learn how alarms support operator response instead of overwhelming it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alarm philosophy"
+            },
+            {
+              "type": "concept",
+              "title": "Rationalization and prioritization"
+            },
+            {
+              "type": "concept",
+              "title": "Nuisance alarms and alarm floods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety-instrumented systems",
+          "description": "SIS content shows how independent protection layers complement regulatory control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Safety instrumented functions"
+            },
+            {
+              "type": "concept",
+              "title": "Sensors, logic solvers, and final elements"
+            },
+            {
+              "type": "concept",
+              "title": "Trips, interlocks, and proof testing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Industrial cybersecurity",
+          "description": "Modern process control also requires protecting control networks and automation assets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ICS network zones and conduits"
+            },
+            {
+              "type": "concept",
+              "title": "Access control and patch management"
+            },
+            {
+              "type": "concept",
+              "title": "Incident response and backup recovery"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

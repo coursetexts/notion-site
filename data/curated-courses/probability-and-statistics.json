@@ -1,0 +1,998 @@
+{
+  "slug": "probability-and-statistics",
+  "title": "Probability and Statistics",
+  "description": "This course prepares computer science students for algorithms, machine learning, randomized systems, data analysis, simulation, and empirical evaluation. It covers probability rules, Bayes' theorem, random variables, distributions, expectation, joint distributions, the CLT, estimation, hypothesis testing, and regression and statistical learning basics.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Probability Axioms and Counting",
+      "description": "This section gives students the formal rules and counting tools needed to model uncertainty before moving into random variables.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sample spaces and events",
+          "description": "Students learn how to describe possible outcomes and the events built from them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Events"
+            },
+            {
+              "type": "concept",
+              "title": "Set operations"
+            },
+            {
+              "type": "concept",
+              "title": "Event complements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Probability axioms",
+          "description": "Axioms make probability calculations consistent and checkable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nonnegativity"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Additivity"
+            },
+            {
+              "type": "concept",
+              "title": "Probability of complements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Counting methods",
+          "description": "Counting supports probability in finite spaces and algorithm analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permutations"
+            },
+            {
+              "type": "concept",
+              "title": "Combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Multiplication rule"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inclusion-exclusion",
+          "description": "Students learn how to handle overlaps between events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-event formula"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple events"
+            },
+            {
+              "type": "concept",
+              "title": "Overcounting"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to reliability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditional Probability and Bayes' Theorem",
+      "description": "Conditional probability teaches students how information changes uncertainty and why independence is a modeling assumption, not a default.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conditional probability",
+          "description": "Students calculate probabilities restricted to known information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definition"
+            },
+            {
+              "type": "concept",
+              "title": "Conditioning event"
+            },
+            {
+              "type": "concept",
+              "title": "Tree diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Independence",
+          "description": "Independence simplifies models but must be justified.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent events"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional independence"
+            },
+            {
+              "type": "concept",
+              "title": "Pairwise versus mutual independence"
+            },
+            {
+              "type": "concept",
+              "title": "Common mistakes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bayes' theorem",
+          "description": "Bayes' theorem updates beliefs from evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prior"
+            },
+            {
+              "type": "concept",
+              "title": "Likelihood"
+            },
+            {
+              "type": "concept",
+              "title": "Posterior"
+            },
+            {
+              "type": "concept",
+              "title": "Normalizing constant"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CS applications",
+          "description": "Conditional reasoning appears in spam filters, diagnostics, and ML models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base-rate fallacy"
+            },
+            {
+              "type": "concept",
+              "title": "Naive Bayes"
+            },
+            {
+              "type": "concept",
+              "title": "Classification"
+            },
+            {
+              "type": "concept",
+              "title": "False positives"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables (Discrete and Continuous)",
+      "description": "Random variables turn outcomes into numbers so uncertainty can be analyzed with functions, plots, and computation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Discrete random variables",
+          "description": "Students model countable outcomes with probability mass functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PMF"
+            },
+            {
+              "type": "concept",
+              "title": "Support"
+            },
+            {
+              "type": "concept",
+              "title": "CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Indicator variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous random variables",
+          "description": "Students model intervals and densities rather than point probabilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PDF"
+            },
+            {
+              "type": "concept",
+              "title": "CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Density interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Area under curve"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transformations",
+          "description": "Functions of random variables create new quantities of interest.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Monotone transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Change-of-variable preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational representation",
+          "description": "Students learn how random variables are sampled and summarized in code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random number generators"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Histograms"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical CDFs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Common Distributions (Binomial, Poisson, Normal)",
+      "description": "Common distributions are reusable models; the point is to know when a distribution fits and what assumptions it carries.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Discrete distributions",
+          "description": "Students learn models for trials, counts, and waiting times.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous distributions",
+          "description": "Students learn models for measurement, waiting, and noise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Normal"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential"
+            },
+            {
+              "type": "concept",
+              "title": "T distribution preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model assumptions",
+          "description": "Distributions are useful only when their assumptions match the setting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent trials"
+            },
+            {
+              "type": "concept",
+              "title": "Constant rates"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Tail behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Approximation links",
+          "description": "Some distributions approximate others under limiting conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binomial-to-normal"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity correction"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Expectation, Variance, and Moments",
+      "description": "Expectation and variance summarize random variables and support risk, error, and algorithmic performance analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Expected value",
+          "description": "Expectation is a long-run average and a powerful algebraic tool.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weighted averages"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity of expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Indicator method"
+            },
+            {
+              "type": "concept",
+              "title": "Expected runtime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variance and standard deviation",
+          "description": "Variance measures spread around the mean.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variance formula"
+            },
+            {
+              "type": "concept",
+              "title": "Standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Chebyshev intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moments and shape",
+          "description": "Higher moments describe distribution shape beyond center and spread.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Raw moments"
+            },
+            {
+              "type": "concept",
+              "title": "Central moments"
+            },
+            {
+              "type": "concept",
+              "title": "Skewness"
+            },
+            {
+              "type": "concept",
+              "title": "Kurtosis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Covariance preview",
+          "description": "Expected products help describe relationships between variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Uncorrelated versus independent"
+            },
+            {
+              "type": "concept",
+              "title": "Variance of sums"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint and Marginal Distributions",
+      "description": "This section models multiple random quantities together, which is essential for data, ML features, and dependent systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Joint distributions",
+          "description": "Students represent how variables behave together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint PMF/PDF"
+            },
+            {
+              "type": "concept",
+              "title": "Joint CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Support regions"
+            },
+            {
+              "type": "concept",
+              "title": "Tables and density surfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Marginal distributions",
+          "description": "Marginals describe one variable after summing or integrating out others.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Marginal PMFs"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal PDFs"
+            },
+            {
+              "type": "concept",
+              "title": "Summation"
+            },
+            {
+              "type": "concept",
+              "title": "Integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditional distributions",
+          "description": "Conditioning variables is the foundation of prediction and inference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional PMF/PDF"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional variance"
+            },
+            {
+              "type": "concept",
+              "title": "Bayesian updating"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dependence measures",
+          "description": "Students distinguish association from causation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Scatterplots"
+            },
+            {
+              "type": "concept",
+              "title": "Dependence examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Central Limit Theorem",
+      "description": "The CLT explains why averages often behave normally and why many statistical procedures work approximately.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Law of large numbers",
+          "description": "LLN explains why sample averages stabilize.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample mean"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Estimation consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sampling distributions",
+          "description": "Students learn that statistics themselves vary across samples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample mean distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error"
+            },
+            {
+              "type": "concept",
+              "title": "Sample proportion"
+            },
+            {
+              "type": "concept",
+              "title": "Resampling intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Central limit theorem",
+          "description": "CLT gives a normal approximation for sums and averages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Finite variance"
+            },
+            {
+              "type": "concept",
+              "title": "Normal approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational experiments",
+          "description": "Simulations make limit theorems tangible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monte Carlo simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Histogram of means"
+            },
+            {
+              "type": "concept",
+              "title": "Approximation diagnostics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Estimation and Confidence Intervals",
+      "description": "Estimation turns data into plausible values for unknown parameters, while intervals show uncertainty honestly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Point estimation",
+          "description": "Students learn how a statistic estimates a parameter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample mean"
+            },
+            {
+              "type": "concept",
+              "title": "Sample proportion"
+            },
+            {
+              "type": "concept",
+              "title": "Sample variance"
+            },
+            {
+              "type": "concept",
+              "title": "Bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Standard error",
+          "description": "Standard error measures estimator variability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard deviation versus standard error"
+            },
+            {
+              "type": "concept",
+              "title": "Estimated SE"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size effects"
+            },
+            {
+              "type": "concept",
+              "title": "Margin of error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Confidence intervals",
+          "description": "Intervals communicate uncertainty from sampling variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Z intervals"
+            },
+            {
+              "type": "concept",
+              "title": "T intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Proportion intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bootstrap methods",
+          "description": "Bootstrap gives a computational approach to uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resampling with replacement"
+            },
+            {
+              "type": "concept",
+              "title": "Bootstrap distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Percentile intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Testing",
+      "description": "Hypothesis testing teaches students to evaluate statistical evidence while keeping error rates and practical meaning in view.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Testing framework",
+          "description": "Students define claims before looking for evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Test statistic"
+            },
+            {
+              "type": "concept",
+              "title": "Rejection region"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "P-values and decisions",
+          "description": "p-values measure compatibility with a null model, not the probability the null is true.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P-value definition"
+            },
+            {
+              "type": "concept",
+              "title": "Significance level"
+            },
+            {
+              "type": "concept",
+              "title": "One-sided tests"
+            },
+            {
+              "type": "concept",
+              "title": "Two-sided tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Errors and power",
+          "description": "Good testing balances false positives and false negatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Type I error"
+            },
+            {
+              "type": "concept",
+              "title": "Type II error"
+            },
+            {
+              "type": "concept",
+              "title": "Power"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common tests",
+          "description": "Students apply tests to means, proportions, and categorical data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-sample tests"
+            },
+            {
+              "type": "concept",
+              "title": "Two-sample tests"
+            },
+            {
+              "type": "concept",
+              "title": "Chi-square tests"
+            },
+            {
+              "type": "concept",
+              "title": "Paired tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Regression and Statistical Learning Basics",
+      "description": "This final section previews modeling relationships, prediction, and the statistical thinking behind machine learning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simple linear regression",
+          "description": "Students model a response as a linear function of one predictor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slope"
+            },
+            {
+              "type": "concept",
+              "title": "Intercept"
+            },
+            {
+              "type": "concept",
+              "title": "Least squares"
+            },
+            {
+              "type": "concept",
+              "title": "Residuals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model evaluation",
+          "description": "Models must be checked against data and assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "R-squared"
+            },
+            {
+              "type": "concept",
+              "title": "Residual plots"
+            },
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Influential points"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiple regression preview",
+          "description": "More predictors introduce interpretation and overfitting issues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding"
+            },
+            {
+              "type": "concept",
+              "title": "Multicollinearity"
+            },
+            {
+              "type": "concept",
+              "title": "Feature scaling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical learning habits",
+          "description": "CS students need the bridge from inference to prediction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Train/test split"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-validation preview"
+            },
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Classification preview"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1004 @@
+{
+  "slug": "engineering-graphics-cad",
+  "title": "Engineering Graphics/CAD",
+  "description": "Builds fluency in engineering drawing standards, orthographic and pictorial projection, section and auxiliary views, dimensioning and GD&T, fits and finishes, 2D drafting, 3D solid modeling, assemblies and BOMs, and professional CAD review workflows.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Engineering Drawing Standards (ANSI/ISO)",
+      "description": "Engineering graphics begins with shared drawing conventions. Standards let designers, manufacturers, reviewers, and field teams interpret drawings consistently.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Purpose of standards",
+          "description": "Students learn why engineering drawings are governed by conventions rather than personal preference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Communication across teams"
+            },
+            {
+              "type": "concept",
+              "title": "Reducing ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Legal and manufacturing implications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sheet organization",
+          "description": "A drawing sheet organizes information so a reader can quickly understand the part, assembly, scale, and revision state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Title block"
+            },
+            {
+              "type": "concept",
+              "title": "Drawing number and revision"
+            },
+            {
+              "type": "concept",
+              "title": "Scale, units, and projection symbol"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Line types and lettering",
+          "description": "Line types and lettering make geometry, hidden features, centers, and annotations readable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Object, hidden, center, and construction lines"
+            },
+            {
+              "type": "concept",
+              "title": "Line hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Legible annotation practice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ANSI/ISO comparison",
+          "description": "Students learn that drawing standards vary by region and organization, so standards must be identified explicitly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Third-angle versus first-angle projection"
+            },
+            {
+              "type": "concept",
+              "title": "Common symbol differences"
+            },
+            {
+              "type": "concept",
+              "title": "Company and project drafting standards"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Orthographic Projection",
+      "description": "Orthographic projection is the core skill for representing 3D objects with precise 2D views that can be manufactured, inspected, or modeled.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Principal views",
+          "description": "Students learn how front, top, and side views describe object shape without perspective distortion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Front-view selection"
+            },
+            {
+              "type": "concept",
+              "title": "Top and right-side alignment"
+            },
+            {
+              "type": "concept",
+              "title": "View placement conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Projection theory",
+          "description": "Projection theory explains how points, edges, and surfaces map from 3D space to drawing planes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Projection planes"
+            },
+            {
+              "type": "concept",
+              "title": "Projector lines"
+            },
+            {
+              "type": "concept",
+              "title": "Visible and hidden geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "View selection",
+          "description": "Good drawings use enough views to define the part without cluttering the sheet.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum necessary views"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding redundant views"
+            },
+            {
+              "type": "concept",
+              "title": "Feature-focused view choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reading orthographic drawings",
+          "description": "Students practice mentally reconstructing 3D form from 2D views.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matching edges across views"
+            },
+            {
+              "type": "concept",
+              "title": "Recognizing holes, slots, and steps"
+            },
+            {
+              "type": "concept",
+              "title": "Common visualization errors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Isometric and Pictorial Drawings",
+      "description": "Pictorial drawings help communicate form quickly. They are less precise than orthographic drawings, but excellent for visualization and design communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Isometric projection",
+          "description": "Isometric views show three dimensions at once while preserving a consistent axis system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isometric axes"
+            },
+            {
+              "type": "concept",
+              "title": "Isometric circles and ellipses"
+            },
+            {
+              "type": "concept",
+              "title": "Non-isometric lines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oblique and perspective views",
+          "description": "Other pictorial methods help students understand when technical communication should prioritize clarity over measurement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cavalier and cabinet oblique"
+            },
+            {
+              "type": "concept",
+              "title": "One- and two-point perspective"
+            },
+            {
+              "type": "concept",
+              "title": "Exploded views"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Freehand technical sketching",
+          "description": "Sketching develops spatial reasoning before software becomes the main tool.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proportion control"
+            },
+            {
+              "type": "concept",
+              "title": "Construction lines"
+            },
+            {
+              "type": "concept",
+              "title": "Readable feature emphasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design communication uses",
+          "description": "Students learn when pictorial drawings support concept explanation, assembly understanding, or presentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concept sketches"
+            },
+            {
+              "type": "concept",
+              "title": "Assembly visualization"
+            },
+            {
+              "type": "concept",
+              "title": "Client and team communication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sectioning and Auxiliary Views",
+      "description": "Section and auxiliary views reveal geometry that ordinary views cannot show clearly, especially internal features and inclined surfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Full, half, and offset sections",
+          "description": "Section views cut through an object to show internal structure without excessive hidden lines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cutting-plane lines"
+            },
+            {
+              "type": "concept",
+              "title": "Hatching conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Section-view placement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Broken-out and revolved sections",
+          "description": "Partial section methods reveal local details while preserving the rest of the view.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local cutaways"
+            },
+            {
+              "type": "concept",
+              "title": "Ribs and webs in section"
+            },
+            {
+              "type": "concept",
+              "title": "Revolved profile sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Auxiliary views",
+          "description": "Auxiliary views show inclined surfaces in true size and shape.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary auxiliary views"
+            },
+            {
+              "type": "concept",
+              "title": "Projection from inclined planes"
+            },
+            {
+              "type": "concept",
+              "title": "True-length and true-shape interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Choosing advanced views",
+          "description": "Students learn to choose view types based on what the reader needs to understand.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal cavities"
+            },
+            {
+              "type": "concept",
+              "title": "Angled holes or faces"
+            },
+            {
+              "type": "concept",
+              "title": "Reducing hidden-line clutter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dimensioning and Tolerancing (GD&T)",
+      "description": "Dimensions and tolerances convert geometry into manufacturing and inspection requirements. This topic turns drawings from pictures into controlled engineering documents.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dimensioning principles",
+          "description": "Good dimensions define size and location clearly without duplication or contradictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Baseline and chain dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Feature size and location"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding overdimensioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tolerance types",
+          "description": "Tolerances communicate allowable variation, which is essential because no part is manufactured perfectly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limit dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Plus-minus tolerances"
+            },
+            {
+              "type": "concept",
+              "title": "General tolerance notes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GD&T foundations",
+          "description": "GD&T controls form, orientation, location, and runout using symbolic language.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feature control frames"
+            },
+            {
+              "type": "concept",
+              "title": "Datums"
+            },
+            {
+              "type": "concept",
+              "title": "Basic dimensions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inspection thinking",
+          "description": "Students learn that tolerances must be measurable, not merely written on a drawing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Datum reference frames"
+            },
+            {
+              "type": "concept",
+              "title": "Functional requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Gauge and inspection implications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fits and Surface Finishes",
+      "description": "Fits and finishes connect drawings to how parts assemble, move, seal, wear, and perform after manufacturing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Clearance, transition, and interference fits",
+          "description": "Fit selection determines whether parts slide, locate, or press together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hole-basis and shaft-basis systems"
+            },
+            {
+              "type": "concept",
+              "title": "Allowance"
+            },
+            {
+              "type": "concept",
+              "title": "Functional fit selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surface texture",
+          "description": "Surface finish affects friction, sealing, fatigue, coating, and appearance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roughness average"
+            },
+            {
+              "type": "concept",
+              "title": "Lay and waviness"
+            },
+            {
+              "type": "concept",
+              "title": "Surface-finish symbols"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manufacturing process implications",
+          "description": "Finish and fit requirements should match realistic manufacturing methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machining"
+            },
+            {
+              "type": "concept",
+              "title": "Casting and molding"
+            },
+            {
+              "type": "concept",
+              "title": "Additive manufacturing considerations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cost and performance tradeoffs",
+          "description": "Tighter tolerances and smoother finishes cost more, so students learn to specify only what function requires.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tolerance stack awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Critical versus noncritical surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding unnecessary precision"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "CAD Software Interface (SolidWorks/AutoCAD)",
+      "description": "CAD fluency begins with understanding the software workspace, command structure, file types, and modeling/drafting workflow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CAD workspace orientation",
+          "description": "Students learn how to move confidently through menus, toolbars, view controls, and feature/history panels.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Navigation and view control"
+            },
+            {
+              "type": "concept",
+              "title": "Command search and shortcuts"
+            },
+            {
+              "type": "concept",
+              "title": "Model tree or layer manager"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sketch and drawing setup",
+          "description": "Setup choices determine units, scale, constraints, and drawing readability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units and templates"
+            },
+            {
+              "type": "concept",
+              "title": "Grid, snaps, and construction geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Layers or sketch planes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constraints and relations",
+          "description": "Constraints make geometry intentional rather than accidental.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal, vertical, parallel, and perpendicular constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Coincident and concentric relations"
+            },
+            {
+              "type": "concept",
+              "title": "Fully defined sketches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "File types and interoperability",
+          "description": "Engineering teams exchange models and drawings across software, so students need basic file literacy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DWG/DXF"
+            },
+            {
+              "type": "concept",
+              "title": "SLDPRT/SLDASM/SLDDRW"
+            },
+            {
+              "type": "concept",
+              "title": "STEP, IGES, and PDF exports"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "2D Drafting",
+      "description": "2D drafting remains essential for layouts, manufacturing drawings, construction drawings, and quick technical communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic drawing commands",
+          "description": "Students learn to create accurate geometry through commands rather than approximate visual placement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lines, polylines, arcs, and circles"
+            },
+            {
+              "type": "concept",
+              "title": "Trim, extend, fillet, and offset"
+            },
+            {
+              "type": "concept",
+              "title": "Object snaps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Layers and annotation",
+          "description": "Layers and annotation keep drawings readable and controllable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Layer naming and line weights"
+            },
+            {
+              "type": "concept",
+              "title": "Text and leaders"
+            },
+            {
+              "type": "concept",
+              "title": "Hatches and symbols"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensioning in CAD",
+          "description": "Digital dimensioning connects drawing geometry to standards and sheet readability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dimension styles"
+            },
+            {
+              "type": "concept",
+              "title": "Associative dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and paper-space issues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Layouts and plotting",
+          "description": "Students learn how drawings move from model space to a printable, reviewable sheet.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model space and paper space"
+            },
+            {
+              "type": "concept",
+              "title": "Viewports"
+            },
+            {
+              "type": "concept",
+              "title": "Plot styles and PDF output"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "3D Solid Modeling",
+      "description": "Solid modeling lets students create parametric 3D parts that can generate drawings, assemblies, simulations, and manufacturing outputs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sketch-based features",
+          "description": "Most solid models begin with constrained sketches that become 3D features.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extrude and revolve"
+            },
+            {
+              "type": "concept",
+              "title": "Sweep and loft"
+            },
+            {
+              "type": "concept",
+              "title": "Cut features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feature editing and design intent",
+          "description": "A good model can change predictably because its features are organized around design intent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feature order"
+            },
+            {
+              "type": "concept",
+              "title": "Parent-child relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Suppressing and editing features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reference geometry",
+          "description": "Reference geometry supports complex features and controlled part construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planes"
+            },
+            {
+              "type": "concept",
+              "title": "Axes"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model quality",
+          "description": "Students learn habits that keep models stable, readable, and reusable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fully defined sketches"
+            },
+            {
+              "type": "concept",
+              "title": "Named features"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding fragile references"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Assembly Drawings and Bill of Materials",
+      "description": "Assemblies show how parts fit and function together. BOMs connect models and drawings to purchasing, manufacturing, and documentation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Assembly constraints and mates",
+          "description": "Constraints define how components relate, move, or lock together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coincident, concentric, and distance mates"
+            },
+            {
+              "type": "concept",
+              "title": "Degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Interference checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exploded views",
+          "description": "Exploded views communicate assembly sequence and part relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Explode steps"
+            },
+            {
+              "type": "concept",
+              "title": "Trail lines"
+            },
+            {
+              "type": "concept",
+              "title": "Assembly instruction context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Assembly drawings",
+          "description": "Assembly drawings present component relationships, fasteners, references, and critical dimensions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Balloon callouts"
+            },
+            {
+              "type": "concept",
+              "title": "Sectioned assemblies"
+            },
+            {
+              "type": "concept",
+              "title": "Detail views"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bill of materials",
+          "description": "A BOM translates the assembly into a structured list of parts and quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Item numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Part descriptions and materials"
+            },
+            {
+              "type": "concept",
+              "title": "Purchased versus manufactured parts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Parametric, BIM, and Digital Workflow Basics",
+      "description": "Modern CAD work increasingly includes parametric constraints, cloud collaboration, and BIM-style model information. This extension keeps the course current without replacing engineering graphics fundamentals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Parametric modeling concepts",
+          "description": "Students learn how dimensions, constraints, and variables can drive design changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design tables and variables"
+            },
+            {
+              "type": "concept",
+              "title": "Equations"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "BIM concepts",
+          "description": "BIM introduces object-based modeling where geometry carries metadata and documentation relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Families and components"
+            },
+            {
+              "type": "concept",
+              "title": "Views and schedules"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination model logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Digital workflow",
+          "description": "Students learn how models, drawings, exports, and reviews connect in a real project workflow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Version control habits"
+            },
+            {
+              "type": "concept",
+              "title": "Model-to-drawing updates"
+            },
+            {
+              "type": "concept",
+              "title": "PDF, STEP, and drawing package delivery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intro to digital fabrication",
+          "description": "Fabrication awareness helps students model geometry that can actually be cut, printed, machined, or assembled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "3D printing constraints"
+            },
+            {
+              "type": "concept",
+              "title": "CNC/laser file preparation"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerances for fabricated prototypes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Review, File Management, and Fabrication Readiness",
+      "description": "The final topic focuses on professional habits: checking drawings, organizing files, preparing deliverables, and communicating design decisions clearly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Drawing review workflow",
+          "description": "Review skills help students catch missing views, ambiguous dimensions, and inconsistent standards before release.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Checklist-based review"
+            },
+            {
+              "type": "concept",
+              "title": "Redlines and markups"
+            },
+            {
+              "type": "concept",
+              "title": "Revision clouds and issue tracking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "File organization",
+          "description": "Clean file structures prevent lost work and broken references in CAD projects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Naming conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Folder structure"
+            },
+            {
+              "type": "concept",
+              "title": "Referenced files and backups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fabrication readiness",
+          "description": "Students learn to ask whether a model and drawing package are ready for manufacturing, prototyping, or construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Material callouts"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance and finish checks"
+            },
+            {
+              "type": "concept",
+              "title": "Export validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Technical communication package",
+          "description": "A complete package combines drawings, models, BOMs, notes, and review history into a coherent deliverable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drawing set organization"
+            },
+            {
+              "type": "concept",
+              "title": "Model and drawing consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Submission and presentation expectations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

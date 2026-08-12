@@ -1,0 +1,968 @@
+{
+  "slug": "gis-and-remote-sensing",
+  "title": "GIS and Remote Sensing",
+  "description": "Teaches students to acquire, manage, analyze, validate, and communicate spatial information\u2014combining GIScience foundations, coordinate systems, geodatabases, cartography, spatial analysis, GPS field data, satellite and drone remote sensing, image classification, cloud geospatial computing, web GIS, uncertainty, ethics, and environmental decision support.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Geospatial Thinking, GIScience Foundations, and Environmental Applications",
+      "description": "Students learn how location, scale, spatial relationships, and environmental processes become analyzable geospatial questions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial questions",
+          "description": "The point is to translate environmental problems into questions about location, pattern, process, and scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Where, why there, and why it matters"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial dependence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GIScience concepts",
+          "description": "Students learn the ideas behind GIS tools so they can reason beyond button-clicking.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tobler's first law"
+            },
+            {
+              "type": "concept",
+              "title": "Modifiable areal unit problem"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial representation choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental applications",
+          "description": "Examples show how GIS supports land, water, climate, hazard, conservation, and justice decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Watershed mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Habitat and land-cover analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure and vulnerability mapping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coordinate Systems, Datums, Projections, and Geodesy",
+      "description": "This module builds the positional reference systems needed for accurate mapping and analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coordinate reference systems",
+          "description": "Correct coordinates are the foundation of every trustworthy map and spatial analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latitude/longitude"
+            },
+            {
+              "type": "concept",
+              "title": "Projected coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate transformations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Datums and geodesy",
+          "description": "Students learn why the Earth model matters for accurate positioning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ellipsoids and geoids"
+            },
+            {
+              "type": "concept",
+              "title": "Horizontal and vertical datums"
+            },
+            {
+              "type": "concept",
+              "title": "Datum shifts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Projection choice",
+          "description": "Projection decisions preserve some properties while distorting others.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area, shape, distance, and direction"
+            },
+            {
+              "type": "concept",
+              "title": "UTM and state plane systems"
+            },
+            {
+              "type": "concept",
+              "title": "Projection documentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spatial Data Models, Geodatabases, Metadata, and Data Management",
+      "description": "Students learn how vector, raster, tabular, and temporal data are structured, documented, and governed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vector and raster models",
+          "description": "Different data models represent different kinds of spatial reality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Points, lines, and polygons"
+            },
+            {
+              "type": "concept",
+              "title": "Raster grids"
+            },
+            {
+              "type": "concept",
+              "title": "Topology and neighborhoods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Geodatabases and formats",
+          "description": "Students learn to store, query, and manage data in professional workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GeoPackage, shapefile, and file geodatabase"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial joins and attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Versioning and backups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metadata and data governance",
+          "description": "Good metadata makes data reusable, auditable, and ethically traceable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source and lineage"
+            },
+            {
+              "type": "concept",
+              "title": "Licensing and permissions"
+            },
+            {
+              "type": "concept",
+              "title": "Data quality flags"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cartographic Design, Thematic Mapping, and Geospatial Communication",
+      "description": "This topic develops map design as a disciplined form of visual reasoning and public communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Map design principles",
+          "description": "A map should guide attention and reduce cognitive friction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Visual hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Color and symbolization"
+            },
+            {
+              "type": "concept",
+              "title": "Typography and layout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thematic mapping",
+          "description": "Students learn to choose classification and symbol methods that fit the data and message.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Choropleth maps"
+            },
+            {
+              "type": "concept",
+              "title": "Graduated and proportional symbols"
+            },
+            {
+              "type": "concept",
+              "title": "Dot density and heat maps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communication and storytelling",
+          "description": "Maps become useful when they support a clear claim for a defined audience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Legends and annotations"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty communication"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible map design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Core GIS Operations, Geoprocessing, Overlay, and Terrain Analysis",
+      "description": "Students practice the GIS operations used to transform spatial data into environmental insight.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Geoprocessing operations",
+          "description": "Students learn the basic spatial transformations behind most GIS workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Buffer, clip, dissolve, and merge"
+            },
+            {
+              "type": "concept",
+              "title": "Intersect and union"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Overlay and suitability analysis",
+          "description": "Overlay methods combine evidence layers to support decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weighted overlay"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Terrain and hydrologic analysis",
+          "description": "Elevation data reveal slope, aspect, drainage, and landform processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DEM processing"
+            },
+            {
+              "type": "concept",
+              "title": "Watersheds and flow direction"
+            },
+            {
+              "type": "concept",
+              "title": "Viewshed and terrain metrics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spatial Statistics, Geostatistics, and Uncertainty",
+      "description": "This module teaches students to quantify spatial pattern, autocorrelation, interpolation, and error.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial pattern analysis",
+          "description": "Spatial statistics help distinguish pattern from randomness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nearest neighbor"
+            },
+            {
+              "type": "concept",
+              "title": "Moran's I"
+            },
+            {
+              "type": "concept",
+              "title": "Hot spot analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpolation and geostatistics",
+          "description": "Students learn to estimate surfaces from sampled points while tracking uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IDW"
+            },
+            {
+              "type": "concept",
+              "title": "Kriging concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Variograms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty and error",
+          "description": "Every geospatial product carries positional, attribute, temporal, and model uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy and precision"
+            },
+            {
+              "type": "concept",
+              "title": "Propagation of error"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty visualization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "GPS, Field Data Collection, Mobile GIS, and Ground Truth",
+      "description": "Students connect office analysis to field measurement through positioning, sampling, and validation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "GNSS fundamentals",
+          "description": "Students learn how satellite positioning works and why accuracy varies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPS, GLONASS, Galileo, and BeiDou"
+            },
+            {
+              "type": "concept",
+              "title": "Dilution of precision"
+            },
+            {
+              "type": "concept",
+              "title": "Differential correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field sampling design",
+          "description": "Field data collection must match the analysis question and validation needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling frames"
+            },
+            {
+              "type": "concept",
+              "title": "Stratified sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Ground control points"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mobile GIS workflows",
+          "description": "Modern GIS includes mobile collection, quality checks, and sync to central databases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forms and domains"
+            },
+            {
+              "type": "concept",
+              "title": "Offline maps"
+            },
+            {
+              "type": "concept",
+              "title": "Photo and sensor attachments"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Remote Sensing Physics, Platforms, Sensors, and Data Products",
+      "description": "This topic explains how electromagnetic energy, sensors, satellites, drones, and products generate environmental imagery.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electromagnetic foundations",
+          "description": "Remote sensing measures energy interactions with surfaces and atmosphere.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reflectance, emission, and backscatter"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral bands"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric windows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Platforms and sensors",
+          "description": "Sensor choice controls what can be observed and at what scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Landsat and Sentinel"
+            },
+            {
+              "type": "concept",
+              "title": "MODIS and VIIRS"
+            },
+            {
+              "type": "concept",
+              "title": "Drones, LiDAR, and radar"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data products",
+          "description": "Students learn what imagery levels and products mean before analysis begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spatial, spectral, radiometric, and temporal resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Level-1 and surface reflectance"
+            },
+            {
+              "type": "concept",
+              "title": "Quality bands and masks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Image Preprocessing, Spectral Indices, and Raster Analysis",
+      "description": "Students learn to prepare imagery and extract meaningful spectral, spatial, and temporal information.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Preprocessing",
+          "description": "Preprocessing removes artifacts so image values represent the environment more faithfully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Georeferencing and orthorectification"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric correction"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud and shadow masking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectral indices",
+          "description": "Indices convert bands into interpretable indicators of vegetation, water, burn severity, and built surfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NDVI and EVI"
+            },
+            {
+              "type": "concept",
+              "title": "NDWI and MNDWI"
+            },
+            {
+              "type": "concept",
+              "title": "NBR and urban indices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Raster analysis",
+          "description": "Raster operations support environmental modeling at pixel and landscape scales.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Map algebra"
+            },
+            {
+              "type": "concept",
+              "title": "Zonal statistics"
+            },
+            {
+              "type": "concept",
+              "title": "Neighborhood filters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Image Classification, Machine Learning, and Accuracy Assessment",
+      "description": "This module develops supervised and unsupervised mapping, model evaluation, and defensible classification products.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classification approaches",
+          "description": "Students learn to turn imagery into thematic land-cover or condition maps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unsupervised classification"
+            },
+            {
+              "type": "concept",
+              "title": "Supervised classification"
+            },
+            {
+              "type": "concept",
+              "title": "Object-based image analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Machine learning",
+          "description": "Modern classification uses models that require careful training and validation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random forests"
+            },
+            {
+              "type": "concept",
+              "title": "Support vector machines"
+            },
+            {
+              "type": "concept",
+              "title": "Deep learning preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accuracy assessment",
+          "description": "Classification maps are incomplete without defensible accuracy reporting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confusion matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Producer and user accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling design for validation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Change Detection, Time Series, and Environmental Monitoring",
+      "description": "Students learn to detect land, water, vegetation, disturbance, and climate-related change through time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Change detection methods",
+          "description": "Students learn to measure difference while separating real change from noise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Image differencing"
+            },
+            {
+              "type": "concept",
+              "title": "Post-classification comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Change vectors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time series analysis",
+          "description": "Dense image archives allow monitoring of seasonality, trends, and disturbance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phenology"
+            },
+            {
+              "type": "concept",
+              "title": "Trend analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Breakpoints and anomalies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Monitoring applications",
+          "description": "Remote sensing supports repeated environmental assessment at scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deforestation and fire"
+            },
+            {
+              "type": "concept",
+              "title": "Urban growth"
+            },
+            {
+              "type": "concept",
+              "title": "Water, drought, and flood mapping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Geospatial Computing, Automation, and Reproducible Workflows",
+      "description": "This topic brings GIS into modern scripted, cloud-based, versioned, and scalable analysis environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cloud platforms",
+          "description": "Cloud geospatial tools allow students to analyze large archives without local data bottlenecks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Google Earth Engine"
+            },
+            {
+              "type": "concept",
+              "title": "Microsoft Planetary Computer preview"
+            },
+            {
+              "type": "concept",
+              "title": "STAC catalogs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Automation and scripting",
+          "description": "Scripts make workflows repeatable, scalable, and auditable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Python geospatial stack"
+            },
+            {
+              "type": "concept",
+              "title": "R spatial tools"
+            },
+            {
+              "type": "concept",
+              "title": "ModelBuilder or processing workflows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducibility",
+          "description": "Professional geospatial work should be documented enough to rerun and review.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Version control"
+            },
+            {
+              "type": "concept",
+              "title": "Notebooks and scripts"
+            },
+            {
+              "type": "concept",
+              "title": "Environment and dependency tracking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Web GIS, Dashboards, Story Maps, and Decision Support",
+      "description": "Students learn to publish maps and spatial analytics for stakeholders, agencies, and public audiences.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Web mapping",
+          "description": "Web GIS turns analysis into interactive tools for broader audiences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Web map layers"
+            },
+            {
+              "type": "concept",
+              "title": "Tiles and services"
+            },
+            {
+              "type": "concept",
+              "title": "ArcGIS Online and open web maps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dashboards and indicators",
+          "description": "Dashboards support monitoring, operations, and public reporting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Key performance indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Filters and linked views"
+            },
+            {
+              "type": "concept",
+              "title": "Data refresh and governance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Storytelling and decision support",
+          "description": "Spatial communication should connect evidence to decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Story maps"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder-focused outputs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ethics, Privacy, Bias, Accessibility, and Responsible Spatial Data Use",
+      "description": "This module treats spatial data as powerful and potentially harmful, requiring careful ethical practice.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial privacy",
+          "description": "Location data can reveal sensitive information and harm communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geomasking"
+            },
+            {
+              "type": "concept",
+              "title": "Aggregation"
+            },
+            {
+              "type": "concept",
+              "title": "Consent and surveillance risks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bias and justice",
+          "description": "Spatial datasets can encode historical inequities and uneven data quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental justice mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Algorithmic accountability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accessibility and responsible communication",
+          "description": "Maps should be usable, truthful, and honest about limitations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Color accessibility"
+            },
+            {
+              "type": "concept",
+              "title": "Plain-language legends"
+            },
+            {
+              "type": "concept",
+              "title": "Misleading classification and scale choices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Mapping Project",
+      "description": "The course culminates in a complete geospatial project from question and data acquisition through analysis, validation, communication, and reproducible delivery.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project design",
+          "description": "Students define a meaningful geospatial question and select data that can answer it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Research question"
+            },
+            {
+              "type": "concept",
+              "title": "Study area and stakeholders"
+            },
+            {
+              "type": "concept",
+              "title": "Data inventory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analysis and validation",
+          "description": "The project combines GIS and remote sensing methods with accuracy and uncertainty checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Workflow diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Ground truth or reference data"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity and accuracy assessment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deliverables",
+          "description": "A world-class project produces reusable analysis and clear communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Technical report"
+            },
+            {
+              "type": "concept",
+              "title": "Maps or dashboard"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible code and metadata"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1224 @@
+{
+  "slug": "introductory-physics-ii-eandm",
+  "title": "Introductory Physics II (E&M)",
+  "description": "This comprehensive 16-topic syllabus covers field visualization, boundary conditions, microscopic conduction, circuit measurement, magnetic materials, energy and momentum in fields, optics, modeling, and an integrated laboratory capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Electric Charge, Matter, and Coulomb's Law",
+      "description": "Build the physical picture of charge, conductors, insulators, conservation, quantization, and inverse-square electric forces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Charge and matter",
+          "description": "Students begin by identifying charge as a conserved property of matter that produces electrical interaction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative charge"
+            },
+            {
+              "type": "concept",
+              "title": "Charge quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Charge conservation"
+            },
+            {
+              "type": "concept",
+              "title": "Conductors, insulators, and polarization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coulomb force",
+          "description": "Coulomb's law gives the first quantitative model for electric interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverse-square force"
+            },
+            {
+              "type": "concept",
+              "title": "Permittivity of free space"
+            },
+            {
+              "type": "concept",
+              "title": "Vector form of Coulomb's law"
+            },
+            {
+              "type": "concept",
+              "title": "Principle of superposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Units and scales",
+          "description": "E&M intuition depends on recognizing the size and units of charge, force, and fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coulomb and elementary charge"
+            },
+            {
+              "type": "concept",
+              "title": "Newton per coulomb preview"
+            },
+            {
+              "type": "concept",
+              "title": "Micro, nano, and pico prefixes"
+            },
+            {
+              "type": "concept",
+              "title": "Order-of-magnitude estimation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electric Fields, Superposition, and Field Visualization",
+      "description": "Represent electric interactions with vector fields and use superposition to reason about many-charge systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electric field definition",
+          "description": "The electric field turns force at a distance into a local field concept.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Test charge"
+            },
+            {
+              "type": "concept",
+              "title": "E = F/q"
+            },
+            {
+              "type": "concept",
+              "title": "Field of a point charge"
+            },
+            {
+              "type": "concept",
+              "title": "Field units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fields from charge distributions",
+          "description": "Students move from point charges to continuous distributions using calculus.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line charge"
+            },
+            {
+              "type": "concept",
+              "title": "Surface charge"
+            },
+            {
+              "type": "concept",
+              "title": "Volume charge"
+            },
+            {
+              "type": "concept",
+              "title": "Integration over charge elements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field visualization",
+          "description": "Visual representations help students reason about invisible vector fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Field lines"
+            },
+            {
+              "type": "concept",
+              "title": "Field-line density"
+            },
+            {
+              "type": "concept",
+              "title": "Vector plots"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry and qualitative field sketches"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gauss's Law, Flux, and Symmetry",
+      "description": "Use electric flux and symmetry to calculate fields and understand Maxwell's first electrostatic equation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electric flux",
+          "description": "Flux measures how much field passes through a surface and prepares students for Maxwell's equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Surface integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Closed surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Sign of flux"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gauss's law applications",
+          "description": "Gauss's law becomes powerful when symmetry makes the field constant over a surface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spherical symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Planar symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Conductors in electrostatic equilibrium"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Limits of Gauss's law as a calculation tool",
+          "description": "Students learn that Gauss's law is always true, but not always easy to use for solving fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symmetry requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing Gaussian surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Enclosed charge"
+            },
+            {
+              "type": "concept",
+              "title": "Qualitative versus quantitative use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electric Potential, Potential Energy, and Boundary Conditions",
+      "description": "Connect electric fields to energy, voltage, equipotentials, and the mathematical structure of electrostatic problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Potential energy and electric potential",
+          "description": "Potential turns field problems into energy and voltage problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Work by electric forces"
+            },
+            {
+              "type": "concept",
+              "title": "Reference potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field-potential relationship",
+          "description": "The gradient relationship links scalar potential to vector field.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "E = -grad V intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Equipotential surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Potential from point charges"
+            },
+            {
+              "type": "concept",
+              "title": "Line integrals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary conditions and conductors",
+          "description": "Boundary ideas prepare students for real devices and upper-level E&M.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conductors as equipotentials"
+            },
+            {
+              "type": "concept",
+              "title": "Surface charge distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Field perpendicular to conductor surface"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace and Poisson equation preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capacitance, Dielectrics, and Energy Storage",
+      "description": "Analyze capacitors, dielectric materials, polarization, and energy stored in electric fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capacitance fundamentals",
+          "description": "Capacitance measures how effectively a geometry stores charge per volt.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "C = Q/V"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel-plate capacitors"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel capacitors"
+            },
+            {
+              "type": "concept",
+              "title": "Geometry dependence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dielectrics and polarization",
+          "description": "Dielectrics show how matter changes electric fields and energy storage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dielectric constant"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Bound charge"
+            },
+            {
+              "type": "concept",
+              "title": "Dielectric breakdown"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy in electric fields",
+          "description": "Energy storage becomes a field property, not just a circuit property.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacitor energy"
+            },
+            {
+              "type": "concept",
+              "title": "Energy density"
+            },
+            {
+              "type": "concept",
+              "title": "Force between capacitor plates"
+            },
+            {
+              "type": "concept",
+              "title": "Applications in sensors and electronics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Current, Resistance, and Microscopic Conduction",
+      "description": "Connect macroscopic circuit quantities to charge motion, conductivity, drift, power, and material behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Current and current density",
+          "description": "Current describes charge flow and connects microscopic motion to macroscopic circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conventional current"
+            },
+            {
+              "type": "concept",
+              "title": "Current density"
+            },
+            {
+              "type": "concept",
+              "title": "Drift velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity of charge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resistance and Ohm's law",
+          "description": "Ohm's law is a material and device model, not a universal law of nature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resistivity and conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Linear and nonlinear devices"
+            },
+            {
+              "type": "concept",
+              "title": "Power dissipation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microscopic models",
+          "description": "Microscopic conduction models explain why materials resist current.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Charge carriers"
+            },
+            {
+              "type": "concept",
+              "title": "Collisions and relaxation time"
+            },
+            {
+              "type": "concept",
+              "title": "Electron mobility"
+            },
+            {
+              "type": "concept",
+              "title": "Semiconductors and electrolytes preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DC Circuits, Kirchhoff's Laws, and Measurement",
+      "description": "Solve resistive and RC circuits while developing laboratory fluency with meters, sensors, uncertainty, and circuit models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Circuit elements and idealizations",
+          "description": "Students learn when ideal batteries, resistors, wires, and meters are useful approximations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emf and terminal voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Internal resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal wires"
+            },
+            {
+              "type": "concept",
+              "title": "Ammeter and voltmeter models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kirchhoff analysis",
+          "description": "Kirchhoff's laws are conservation principles applied to circuit networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Junction rule"
+            },
+            {
+              "type": "concept",
+              "title": "Loop rule"
+            },
+            {
+              "type": "concept",
+              "title": "Series and parallel reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh and nodal thinking preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laboratory measurement",
+          "description": "Measurement turns circuit diagrams into physical evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multimeter use"
+            },
+            {
+              "type": "concept",
+              "title": "Oscilloscope basics"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and error propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effects and instrument limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Magnetic Forces, Fields, and Charged-Particle Motion",
+      "description": "Study magnetic forces on charges and currents, magnetic field geometry, and motion in combined electric and magnetic fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnetic force on charges",
+          "description": "The Lorentz force explains why magnetic fields bend moving charges without doing work on them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Q v cross B"
+            },
+            {
+              "type": "concept",
+              "title": "Right-hand rule"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclotron motion"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity selectors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic force on currents",
+          "description": "Currents in wires experience forces that underlie motors and instruments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force on a current-carrying wire"
+            },
+            {
+              "type": "concept",
+              "title": "Torque on a current loop"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic dipole moment"
+            },
+            {
+              "type": "concept",
+              "title": "Motor principle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Motion in combined fields",
+          "description": "Combined electric and magnetic fields support important experimental and technological applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass spectrometers"
+            },
+            {
+              "type": "concept",
+              "title": "Hall effect"
+            },
+            {
+              "type": "concept",
+              "title": "Plasma confinement preview"
+            },
+            {
+              "type": "concept",
+              "title": "Charged-particle beam steering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sources of Magnetic Fields and Ampere's Law",
+      "description": "Calculate magnetic fields from currents using Biot-Savart, Ampere's law, and symmetry arguments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biot-Savart law",
+          "description": "Biot-Savart gives a direct method for calculating magnetic fields from current elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Field from a long straight wire"
+            },
+            {
+              "type": "concept",
+              "title": "Field at center of a current loop"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition of current elements"
+            },
+            {
+              "type": "concept",
+              "title": "Direction from cross products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ampere's law",
+          "description": "Ampere's law is the magnetic analog of a symmetry-powered field law.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Enclosed current"
+            },
+            {
+              "type": "concept",
+              "title": "Solenoids"
+            },
+            {
+              "type": "concept",
+              "title": "Toroids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetostatic field structure",
+          "description": "Students learn how magnetic fields differ structurally from electrostatic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "No magnetic monopoles"
+            },
+            {
+              "type": "concept",
+              "title": "Closed field lines"
+            },
+            {
+              "type": "concept",
+              "title": "Curl of B intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic vector potential preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Magnetic Materials, Magnetization, and Field Energy",
+      "description": "Introduce magnetic response in matter, magnetic dipoles, permeability, hysteresis, and stored magnetic energy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magnetization in matter",
+          "description": "Magnetic materials reveal how microscopic dipoles alter macroscopic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnetic dipoles"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetization"
+            },
+            {
+              "type": "concept",
+              "title": "Bound currents"
+            },
+            {
+              "type": "concept",
+              "title": "Permeability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Material classes",
+          "description": "Students distinguish weak and strong magnetic responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diamagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Paramagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Ferromagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Hysteresis and domains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic energy",
+          "description": "Magnetic field energy connects inductors, materials, and electromechanical forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy density"
+            },
+            {
+              "type": "concept",
+              "title": "Inductor energy"
+            },
+            {
+              "type": "concept",
+              "title": "Forces in magnetic systems"
+            },
+            {
+              "type": "concept",
+              "title": "Applications in motors and transformers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electromagnetic Induction and Faraday's Law",
+      "description": "Use changing magnetic flux to understand induced emf, Lenz's law, generators, transformers, and nonconservative electric fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Faraday's law",
+          "description": "Changing magnetic flux produces emf and connects electricity with magnetism dynamically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnetic flux"
+            },
+            {
+              "type": "concept",
+              "title": "Induced emf"
+            },
+            {
+              "type": "concept",
+              "title": "Lenz's law"
+            },
+            {
+              "type": "concept",
+              "title": "Motional emf"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonconservative electric fields",
+          "description": "Induction shows that electric fields are not always gradients of scalar potentials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Circulating electric fields"
+            },
+            {
+              "type": "concept",
+              "title": "Emf around loops"
+            },
+            {
+              "type": "concept",
+              "title": "Flux rule limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Maxwell-Faraday equation intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications of induction",
+          "description": "Induction explains devices central to power and measurement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generators"
+            },
+            {
+              "type": "concept",
+              "title": "Transformers"
+            },
+            {
+              "type": "concept",
+              "title": "Eddy currents"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive sensors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inductance, RL/RLC Transients, and AC Circuits",
+      "description": "Analyze inductors, transient circuit behavior, phasors, impedance, resonance, filters, and power in AC circuits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inductance",
+          "description": "Inductance describes how circuits resist changes in current by storing magnetic energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self-inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Mutual inductance"
+            },
+            {
+              "type": "concept",
+              "title": "Back emf"
+            },
+            {
+              "type": "concept",
+              "title": "Energy in inductors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient circuits",
+          "description": "Time-dependent circuits bridge E&M with differential equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RC charging and discharging"
+            },
+            {
+              "type": "concept",
+              "title": "RL time constants"
+            },
+            {
+              "type": "concept",
+              "title": "RLC oscillations"
+            },
+            {
+              "type": "concept",
+              "title": "Damping regimes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "AC analysis",
+          "description": "Sinusoidal circuits introduce frequency-dependent response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phasors"
+            },
+            {
+              "type": "concept",
+              "title": "Impedance"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Average power and power factor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Maxwell's Equations and Electromagnetic Waves",
+      "description": "Synthesize E&M through Maxwell's equations, displacement current, wave propagation, polarization, and the electromagnetic spectrum.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Maxwell equation synthesis",
+          "description": "Maxwell's equations unify electrostatics, magnetostatics, induction, and displacement current.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gauss's law for E"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss's law for B"
+            },
+            {
+              "type": "concept",
+              "title": "Faraday's law"
+            },
+            {
+              "type": "concept",
+              "title": "Ampere-Maxwell law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Displacement current",
+          "description": "Displacement current fixes Ampere's law and predicts electromagnetic waves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Charging capacitor paradox"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon0 dPhiE/dt term"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry between changing E and B"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electromagnetic waves",
+          "description": "Waves emerge naturally from coupled changing electric and magnetic fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wave speed c"
+            },
+            {
+              "type": "concept",
+              "title": "Plane waves"
+            },
+            {
+              "type": "concept",
+              "title": "Polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Electromagnetic spectrum"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy, Momentum, and Radiation in Electromagnetic Fields",
+      "description": "Interpret field energy density, Poynting vector, radiation pressure, antennas, and conservation laws for fields.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field energy and power flow",
+          "description": "Fields carry energy through space, not merely forces between objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electric and magnetic energy density"
+            },
+            {
+              "type": "concept",
+              "title": "Poynting vector"
+            },
+            {
+              "type": "concept",
+              "title": "Power flow in circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Energy conservation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Momentum and pressure",
+          "description": "Electromagnetic waves also carry momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radiation pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum density"
+            },
+            {
+              "type": "concept",
+              "title": "Solar sails"
+            },
+            {
+              "type": "concept",
+              "title": "Force from light"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiation and antennas preview",
+          "description": "Accelerating charges produce radiation, linking circuits to waves and communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oscillating dipole intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Near and far fields"
+            },
+            {
+              "type": "concept",
+              "title": "Antenna basics"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation pattern preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optics, Applications, and Modern Electromagnetic Systems",
+      "description": "Connect E&M to optics, transmission, sensors, communication, biomedical, materials, and everyday technologies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Wave optics connections",
+          "description": "E&M provides the foundation for light as an electromagnetic wave.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reflection and refraction"
+            },
+            {
+              "type": "concept",
+              "title": "Interference"
+            },
+            {
+              "type": "concept",
+              "title": "Diffraction"
+            },
+            {
+              "type": "concept",
+              "title": "Polarizers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transmission and communication",
+          "description": "Signals move through circuits, cables, air, and optical media using E&M principles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transmission lines preview"
+            },
+            {
+              "type": "concept",
+              "title": "Coaxial cables"
+            },
+            {
+              "type": "concept",
+              "title": "Waveguides"
+            },
+            {
+              "type": "concept",
+              "title": "Wireless communication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications across science and engineering",
+          "description": "Students connect E&M to practical and research systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MRI and medical instrumentation"
+            },
+            {
+              "type": "concept",
+              "title": "Capacitive and inductive sensors"
+            },
+            {
+              "type": "concept",
+              "title": "Motors and generators"
+            },
+            {
+              "type": "concept",
+              "title": "Materials and nanotechnology"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated E&M Laboratory, Modeling, and Capstone Synthesis",
+      "description": "Use experiments, simulations, uncertainty analysis, and modeling to integrate field, circuit, wave, and measurement concepts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental design and uncertainty",
+          "description": "World-class E&M learning requires students to compare models with measured evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty budgets"
+            },
+            {
+              "type": "concept",
+              "title": "Systematic versus random error"
+            },
+            {
+              "type": "concept",
+              "title": "Linear fitting and residuals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and computational modeling",
+          "description": "Simulations help students visualize fields, circuits, and waves beyond hand-solvable cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PhET conceptual models"
+            },
+            {
+              "type": "concept",
+              "title": "Field-line simulation"
+            },
+            {
+              "type": "concept",
+              "title": "SPICE-style circuit simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-difference field preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone synthesis",
+          "description": "A capstone ties together fields, circuits, waves, and measurement in one defensible investigation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design-build-test circuit or field experiment"
+            },
+            {
+              "type": "concept",
+              "title": "Model prediction versus data"
+            },
+            {
+              "type": "concept",
+              "title": "Technical report"
+            },
+            {
+              "type": "concept",
+              "title": "Oral demonstration and reflection"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

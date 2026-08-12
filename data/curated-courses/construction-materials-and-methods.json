@@ -1,0 +1,1004 @@
+{
+  "slug": "construction-materials-and-methods",
+  "title": "Construction Materials and Methods",
+  "description": "Construction Materials and Methods covers concrete, steel, wood, masonry, asphalt, and specialty materials alongside site methods, assemblies, scheduling, estimating, safety, and quality documentation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Concrete Materials and Mix Design",
+      "description": "Concrete is one of the most common civil construction materials. This section connects ingredients, proportioning, placement, curing, and performance so students can reason from mix design to field behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cement, aggregates, water, and admixtures",
+          "description": "Students learn what each ingredient contributes and why small changes in materials can strongly affect strength, workability, and durability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Portland cement and supplementary cementitious materials"
+            },
+            {
+              "type": "concept",
+              "title": "Fine and coarse aggregates"
+            },
+            {
+              "type": "concept",
+              "title": "Water-cement ratio and chemical admixtures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fresh concrete properties",
+          "description": "Fresh properties determine whether concrete can be placed, consolidated, and finished before it hardens.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slump and workability"
+            },
+            {
+              "type": "concept",
+              "title": "Segregation and bleeding"
+            },
+            {
+              "type": "concept",
+              "title": "Air entrainment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strength and durability",
+          "description": "Concrete design is not only about compressive strength; durability controls long-term service life.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compressive strength development"
+            },
+            {
+              "type": "concept",
+              "title": "Curing and hydration"
+            },
+            {
+              "type": "concept",
+              "title": "Freeze-thaw, sulfate, chloride, and alkali-silica concerns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mix design and field quality",
+          "description": "Mix design links performance targets to proportions, while field testing checks whether the delivered material matches the intent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ACI-style proportioning concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Trial batches"
+            },
+            {
+              "type": "concept",
+              "title": "Cylinders, slump tests, and acceptance checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Steel and Metals",
+      "description": "Steel and other metals provide high strength, ductility, and prefabrication potential. Students learn how metal properties shape structural behavior, fabrication, corrosion protection, and construction sequencing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanical properties of metals",
+          "description": "Material properties explain why steel behaves differently from brittle or granular materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress-strain behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Yield strength and ductility"
+            },
+            {
+              "type": "concept",
+              "title": "Toughness and fatigue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structural steel products",
+          "description": "Standard shapes and products make steel construction modular and efficient.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wide-flange shapes"
+            },
+            {
+              "type": "concept",
+              "title": "Plates, channels, and angles"
+            },
+            {
+              "type": "concept",
+              "title": "Cold-formed steel"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connections and fabrication",
+          "description": "Connections determine how loads move through a steel frame and how it is assembled in the field.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bolted connections"
+            },
+            {
+              "type": "concept",
+              "title": "Welded connections"
+            },
+            {
+              "type": "concept",
+              "title": "Shop drawings and fabrication tolerances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Corrosion and fire protection",
+          "description": "Steel must be protected from environmental and fire exposure to maintain performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coatings and galvanizing"
+            },
+            {
+              "type": "concept",
+              "title": "Weathering steel"
+            },
+            {
+              "type": "concept",
+              "title": "Spray-applied fireproofing and intumescent coatings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wood and Timber",
+      "description": "Wood construction combines biological material behavior with efficient field methods. This section covers dimensional lumber, engineered wood, mass timber, moisture, and connection logic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Wood as an anisotropic material",
+          "description": "Wood strength and movement depend on grain direction and moisture, so students need material-specific intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grain direction"
+            },
+            {
+              "type": "concept",
+              "title": "Moisture content and shrinkage"
+            },
+            {
+              "type": "concept",
+              "title": "Strength variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensional lumber and light framing",
+          "description": "Light framing is a dominant construction method for residential and small commercial work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Studs, joists, rafters, and sheathing"
+            },
+            {
+              "type": "concept",
+              "title": "Platform framing"
+            },
+            {
+              "type": "concept",
+              "title": "Load paths and bracing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineered wood and mass timber",
+          "description": "Engineered products expand what wood can do structurally and architecturally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glulam"
+            },
+            {
+              "type": "concept",
+              "title": "LVL and I-joists"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-laminated timber"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wood durability and connections",
+          "description": "Durability and connection detailing control whether timber construction performs over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decay and insects"
+            },
+            {
+              "type": "concept",
+              "title": "Fasteners and connectors"
+            },
+            {
+              "type": "concept",
+              "title": "Fire behavior and protection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Masonry",
+      "description": "Masonry combines units, mortar, grout, and reinforcement into durable wall systems. Students learn both material behavior and field assembly logic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Masonry units and mortar",
+          "description": "Units and mortar define the basic physical and visual character of masonry construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concrete masonry units"
+            },
+            {
+              "type": "concept",
+              "title": "Brick and stone"
+            },
+            {
+              "type": "concept",
+              "title": "Mortar types and joints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reinforced masonry",
+          "description": "Reinforcement and grout turn masonry from a primarily compressive material into a more versatile structural system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertical and horizontal reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Grout placement"
+            },
+            {
+              "type": "concept",
+              "title": "Bond beams and lintels"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wall performance",
+          "description": "Masonry walls must handle load, moisture, thermal movement, and detailing requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drainage cavities"
+            },
+            {
+              "type": "concept",
+              "title": "Flashing and weeps"
+            },
+            {
+              "type": "concept",
+              "title": "Control joints and movement joints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Construction practice",
+          "description": "Field workmanship strongly affects masonry strength, alignment, and durability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coursing and bond patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerances"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection and testing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Asphalt and Pavement Materials",
+      "description": "Asphalt and pavement materials connect material selection to transportation infrastructure performance, construction operations, and maintenance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Asphalt binder and aggregates",
+          "description": "The binder-aggregate combination controls pavement stiffness, durability, and temperature sensitivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binder grades"
+            },
+            {
+              "type": "concept",
+              "title": "Aggregate gradation"
+            },
+            {
+              "type": "concept",
+              "title": "Recycled asphalt pavement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Asphalt mix design",
+          "description": "Mix design balances stability, durability, voids, and workability for expected traffic and climate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Superpave concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Air voids and VMA"
+            },
+            {
+              "type": "concept",
+              "title": "Marshall and gyratory compaction context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pavement construction",
+          "description": "Construction quality depends on temperature, compaction, lift thickness, and field logistics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plant production"
+            },
+            {
+              "type": "concept",
+              "title": "Hauling and placement"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling and compaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pavement performance",
+          "description": "Students learn how materials and methods show up later as distress or serviceability problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rutting"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue cracking"
+            },
+            {
+              "type": "concept",
+              "title": "Moisture damage and maintenance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Polymers, Composites, Glass, and Specialty Materials",
+      "description": "Modern construction uses many engineered materials beyond concrete, steel, wood, masonry, and asphalt. This section builds selection judgment for specialty materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polymers and sealants",
+          "description": "Polymers appear in membranes, coatings, sealants, pipes, insulation, and adhesives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermoplastics and thermosets"
+            },
+            {
+              "type": "concept",
+              "title": "Sealant movement capacity"
+            },
+            {
+              "type": "concept",
+              "title": "UV and chemical exposure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fiber-reinforced composites",
+          "description": "Composites combine fibers and matrices to achieve high strength-to-weight performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FRP reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Pultruded shapes"
+            },
+            {
+              "type": "concept",
+              "title": "Retrofit and repair applications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Glass and glazing",
+          "description": "Glass is both a material and a building-envelope system component.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Float, tempered, and laminated glass"
+            },
+            {
+              "type": "concept",
+              "title": "Insulating glass units"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal and impact performance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Material selection criteria",
+          "description": "Specialty materials must be evaluated by performance, constructability, cost, availability, and long-term risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Life-cycle cost"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance and replacement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Construction Methods, Equipment, and Site Operations",
+      "description": "Materials become infrastructure through construction operations. This section introduces how work is planned, sequenced, equipped, and executed on site.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Construction methods overview",
+          "description": "Students learn the major field operations that translate drawings and specifications into built work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Earthwork"
+            },
+            {
+              "type": "concept",
+              "title": "Formwork and shoring"
+            },
+            {
+              "type": "concept",
+              "title": "Erection, placement, and finishing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equipment selection",
+          "description": "Equipment affects productivity, safety, cost, and feasibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Excavators and loaders"
+            },
+            {
+              "type": "concept",
+              "title": "Cranes and hoists"
+            },
+            {
+              "type": "concept",
+              "title": "Concrete pumps and paving equipment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Site logistics",
+          "description": "A site must be organized so people, materials, equipment, and inspections can move safely and efficiently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Access and staging"
+            },
+            {
+              "type": "concept",
+              "title": "Material storage"
+            },
+            {
+              "type": "concept",
+              "title": "Temporary utilities and traffic control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constructability",
+          "description": "Constructability thinking asks whether a design can be built reliably with available labor, sequence, tolerances, and equipment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Means and methods"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance stacking"
+            },
+            {
+              "type": "concept",
+              "title": "Field constraints and RFIs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Building Assemblies, Envelope, and Detailing",
+      "description": "Individual materials must work together as assemblies. This added topic draws from architecture and M.Arch sources to strengthen the course's treatment of envelopes, interfaces, and detailing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Assembly logic from foundation to roof",
+          "description": "Assemblies organize materials into systems that carry load, resist weather, manage heat, and coordinate trades.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Foundations and slabs"
+            },
+            {
+              "type": "concept",
+              "title": "Floors and wall systems"
+            },
+            {
+              "type": "concept",
+              "title": "Roofs and openings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moisture, air, vapor, and thermal control",
+          "description": "Envelope performance depends on controlling water, air leakage, vapor movement, and heat transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water-resistive barriers"
+            },
+            {
+              "type": "concept",
+              "title": "Air barriers"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor control and insulation continuity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Windows, curtain walls, and interfaces",
+          "description": "Interfaces are common failure points, so students learn how transitions are detailed and sequenced.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flashing"
+            },
+            {
+              "type": "concept",
+              "title": "Sealants and gaskets"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal bridging and movement joints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Detailing and tolerances",
+          "description": "Details communicate how materials meet, move, drain, and remain buildable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wall sections"
+            },
+            {
+              "type": "concept",
+              "title": "Expansion and control joints"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination with structure and services"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Construction Scheduling",
+      "description": "Scheduling converts project scope into time logic. Students learn how construction tasks are sequenced, coordinated, and controlled.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Work breakdown structures",
+          "description": "A WBS decomposes a project into manageable scopes that can be estimated, scheduled, and assigned.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activities and deliverables"
+            },
+            {
+              "type": "concept",
+              "title": "Trade packages"
+            },
+            {
+              "type": "concept",
+              "title": "Scope boundaries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Network scheduling",
+          "description": "Network logic shows dependencies between activities and identifies what controls project duration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precedence relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Critical path method"
+            },
+            {
+              "type": "concept",
+              "title": "Float"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resource planning",
+          "description": "Schedules only work when labor, equipment, materials, and site access are realistically available.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crew productivity"
+            },
+            {
+              "type": "concept",
+              "title": "Resource leveling"
+            },
+            {
+              "type": "concept",
+              "title": "Procurement lead times"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Schedule control",
+          "description": "Control methods help project teams track progress and respond when field conditions change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Look-ahead schedules"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline updates"
+            },
+            {
+              "type": "concept",
+              "title": "Delay analysis basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cost Estimating",
+      "description": "Cost estimating links drawings, specifications, quantities, labor, equipment, materials, risk, and market conditions into a financial view of construction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quantity takeoff",
+          "description": "Takeoff turns drawings and models into measurable quantities for estimating and procurement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of measure"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement rules"
+            },
+            {
+              "type": "concept",
+              "title": "Waste and allowances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Labor, material, and equipment costs",
+          "description": "Cost structure helps students understand where money goes and what assumptions drive estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit costs"
+            },
+            {
+              "type": "concept",
+              "title": "Crew rates"
+            },
+            {
+              "type": "concept",
+              "title": "Equipment ownership and operating costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Indirect costs and markups",
+          "description": "Project cost includes more than direct materials and labor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "General conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Overhead and profit"
+            },
+            {
+              "type": "concept",
+              "title": "Contingency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Estimate communication",
+          "description": "Good estimates are transparent about scope, assumptions, exclusions, and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basis of estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Alternates"
+            },
+            {
+              "type": "concept",
+              "title": "Cost escalation and risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Safety on Construction Sites",
+      "description": "Construction safety is a technical and ethical obligation. Students learn common hazards, regulatory logic, and planning practices that prevent injuries.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Safety regulations and responsibilities",
+          "description": "Students need to understand the legal and professional framework for site safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "OSHA construction standards"
+            },
+            {
+              "type": "concept",
+              "title": "Employer and worker responsibilities"
+            },
+            {
+              "type": "concept",
+              "title": "Training and documentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common construction hazards",
+          "description": "Recognizing high-risk activities is the first step toward prevention.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Falls"
+            },
+            {
+              "type": "concept",
+              "title": "Struck-by and caught-between hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Electrical and excavation hazards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety planning and site logistics",
+          "description": "Safety must be designed into sequence, access, equipment movement, and temporary works.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Job hazard analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Traffic and crane plans"
+            },
+            {
+              "type": "concept",
+              "title": "Temporary protection and housekeeping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety culture and reporting",
+          "description": "A safe site depends on communication, reporting, and continuous correction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Toolbox talks"
+            },
+            {
+              "type": "concept",
+              "title": "Near-miss reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Stop-work authority"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quality, Specifications, Sustainability, and Documentation",
+      "description": "This added capstone topic ties materials and methods to specifications, inspection, sustainable selection, and the documents that govern construction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specifications and standards",
+          "description": "Specifications define required materials, workmanship, testing, and acceptance criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSI divisions"
+            },
+            {
+              "type": "concept",
+              "title": "ASTM and ACI references"
+            },
+            {
+              "type": "concept",
+              "title": "Submittals and shop drawings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality management and inspection",
+          "description": "Quality processes verify that constructed work matches design intent and performance requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inspection and testing plans"
+            },
+            {
+              "type": "concept",
+              "title": "Nonconformance reports"
+            },
+            {
+              "type": "concept",
+              "title": "Punch lists and closeout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainability and life-cycle thinking",
+          "description": "Material choices affect embodied carbon, durability, waste, health, and maintenance over a project's life.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Embodied carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Recycled and regional materials"
+            },
+            {
+              "type": "concept",
+              "title": "Durability and life-cycle cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Digital construction documentation",
+          "description": "Digital tools help coordinate materials, assemblies, schedules, cost, and changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "BIM coordination"
+            },
+            {
+              "type": "concept",
+              "title": "RFIs and change orders"
+            },
+            {
+              "type": "concept",
+              "title": "As-builts and facility handover"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

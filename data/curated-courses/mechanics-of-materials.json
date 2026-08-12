@@ -1,0 +1,568 @@
+{
+  "slug": "mechanics-of-materials",
+  "title": "Mechanics of Materials",
+  "description": "A core solid mechanics course on stress, strain, deformation, torsion, bending, shear, transformations, deflection, and stability of structural and machine elements.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Review of Statics, Equilibrium, and Internal Resultants",
+      "description": "Reinforces the free-body-diagram thinking needed before stress and deformation can be analyzed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free body diagrams, supports, reactions, and cut sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal force, shear force, bending moment, and torque"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign conventions, units, and engineering assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stress, Strain, and Material Behavior",
+      "description": "Introduces how load intensity and deformation are measured inside solids.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal stress, shear stress, bearing stress"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal strain, shear strain, Poisson's ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress-strain curves, proportional limit, yield, ultimate strength, ductility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Axial Loading and Deformation",
+      "description": "Shows how bars, rods, cables, and truss members deform under direct tension or compression.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial stress and deformation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statically indeterminate axial members"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermal strain, compatibility, and stress concentration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Torsion of Circular Shafts",
+      "description": "Develops stress and angle of twist for power-transmitting shafts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Torsion formula, polar moment of inertia, shear stress distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angle of twist, power transmission, stepped shafts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thin-walled tubes and design constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shear Force and Bending Moment in Beams",
+      "description": "Builds the internal-force diagrams used for beam stress and deflection analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distributed loads, point loads, couples, and reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear and moment diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relationships among load, shear, and moment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flexural Stress in Beams",
+      "description": "Connects bending moments to normal stresses in beam cross sections.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flexure formula and neutral axis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area moments of inertia and section modulus"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Composite beams and transformed sections"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transverse Shear Stress and Built-Up Members",
+      "description": "Explains shear flow and web/flange stress in beams and assembled members.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear formula, shear stress distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear flow in thin-walled and built-up sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fasteners, welds, glue lines, and design checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Combined Loading and Pressure Vessels",
+      "description": "Integrates axial, torsional, bending, shear, and pressure stresses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Superposition of normal and shear stresses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thin-walled pressure vessels and hoop stress"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Eccentric loading and combined machine/structural elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stress Transformation and Mohr's Circle",
+      "description": "Teaches how stress depends on orientation and how to find principal values.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plane stress transformation equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Principal stresses and maximum shear stress"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mohr's circle construction and interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Strain Transformation and Strain Measurement",
+      "description": "Links deformation measurements to stress analysis and material response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plane strain transformation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strain rosettes and measured strain components"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hooke's law for plane stress and plane strain"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Beam Deflection by Integration and Superposition",
+      "description": "Develops deflection and slope calculations for serviceability and stiffness design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elastic curve equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double integration, moment-area ideas, and superposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard deflection cases and boundary conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Methods and Castigliano's Theorem",
+      "description": "Provides efficient tools for deflections in more complex structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strain energy in axial, torsion, and bending"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Castigliano's theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impact loading and energy-based reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Column Buckling and Stability",
+      "description": "Explains why compression members can fail by instability before material yield.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler buckling and effective length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "End conditions, slenderness ratio, and critical load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inelastic buckling and design factors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Failure Theories, Safety Factors, and Design Integration",
+      "description": "Turns analysis results into engineering design decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maximum normal stress, Tresca, von Mises, and brittle failure ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factor of safety, allowable stress, and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design review for shafts, beams, columns, joints, and pressure vessels"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

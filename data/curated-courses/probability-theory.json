@@ -1,0 +1,568 @@
+{
+  "slug": "probability-theory",
+  "title": "Probability Theory",
+  "description": "A rigorous probability course covering probability spaces, combinatorics, conditional probability, random variables, distributions, expectation, joint laws, transformations, convergence, limit theorems, and stochastic processes.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Probability Spaces, Events, and Axioms",
+      "description": "Builds probability from sample spaces, sigma-algebras, and rules for assigning probability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample spaces, events, complements, unions, intersections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kolmogorov axioms and consequences"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite, countable, and continuous probability spaces"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Counting, Combinatorics, and Discrete Models",
+      "description": "Provides counting tools for finite probability problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permutations, combinations, partitions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inclusion-exclusion and pigeonhole ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Occupancy, matching, hypergeometric, and birthday problems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditional Probability, Independence, and Bayes' Theorem",
+      "description": "Explains how information changes probability assessments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional probability and multiplication rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence of events and collections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bayes theorem, base rates, diagnostic reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables and Distribution Functions",
+      "description": "Introduces measurable numerical outcomes and their distributions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random variables, CDFs, PMFs, PDFs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete, continuous, and mixed distributions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantiles, medians, and support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete Distribution Families",
+      "description": "Studies core models for counts, trials, waiting times, and rare events.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli, binomial, geometric, negative binomial"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poisson and Poisson approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multinomial and hypergeometric distributions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuous Distribution Families",
+      "description": "Studies models for measurements, lifetimes, errors, and positive quantities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform, exponential, gamma, beta, normal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chi-square, t, F, lognormal, and Weibull"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard rates and memoryless property"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Expectation, Moments, and Generating Functions",
+      "description": "Develops summary measures and algebraic tools for distributions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expectation, variance, covariance, correlation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moments, moment generating functions, probability generating functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jensen, Markov, Chebyshev, and related inequalities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint Distributions and Dependence",
+      "description": "Shows how random variables interact.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint, marginal, and conditional distributions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariance matrices and correlation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence, exchangeability, and dependence examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transformations and Sums of Random Variables",
+      "description": "Teaches how to derive the distribution of functions of random variables.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Change of variables and Jacobians"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convolution and sums"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Order statistics, maxima, minima, and transformations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditional Expectation and Prediction",
+      "description": "Introduces one of the central ideas in modern probability and statistics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional expectation as weighted average"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditioning on events, variables, and sigma-algebras"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prediction, regression intuition, and tower property"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modes of Convergence and Limit Concepts",
+      "description": "Clarifies what it means for random quantities to approach a limit.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Almost sure, in probability, in distribution, Lp convergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relationships among convergence modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slutsky theorem and continuous mapping ideas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laws of Large Numbers and Central Limit Theorem",
+      "description": "Explains why averages stabilize and why normal approximations appear.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weak and strong laws of large numbers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Central limit theorem and normal approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Delta method and simulation evidence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Markov Chains and Introductory Stochastic Processes",
+      "description": "Introduces probability models that evolve over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transition matrices and state diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classification, stationary distributions, absorption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poisson processes, renewal ideas, and random walks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Martingales, Applications, and Simulation",
+      "description": "Adds advanced probability intuition and computational experimentation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic clarifies the vocabulary, models, assumptions, and mental frame needed to understand the topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Martingale concept, filtrations, stopping intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods, Tools, and Workflow",
+          "description": "This subtopic turns the ideas into usable procedures, calculations, diagrams, analyses, or managerial steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monte Carlo simulation and random number generation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Pitfalls",
+          "description": "This subtopic connects the material to real use cases and highlights mistakes students should learn to avoid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Applications in finance, reliability, algorithms, and statistics"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

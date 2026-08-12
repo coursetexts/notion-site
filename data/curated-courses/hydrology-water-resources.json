@@ -1,0 +1,1072 @@
+{
+  "slug": "hydrology-water-resources",
+  "title": "Hydrology / Water Resources",
+  "description": "Provides a comprehensive foundation in watershed science, flood and drought risk, stormwater design, groundwater, hydraulic routing, data systems, and climate resilience.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Global and Watershed Water Budgets",
+      "description": "Use conservation of mass to understand how water moves through Earth systems and individual watersheds.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water-cycle stores and fluxes",
+          "description": "Water budgets begin by naming where water is stored and how it moves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atmosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Surface water"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater"
+            },
+            {
+              "type": "concept",
+              "title": "Cryosphere and soil storage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Watershed mass balance",
+          "description": "Mass balance gives hydrology its central accounting framework.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Change in storage"
+            },
+            {
+              "type": "concept",
+              "title": "Residence time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scale and closure",
+          "description": "Water budgets change with spatial and temporal scale, data quality, and boundary choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Global scale"
+            },
+            {
+              "type": "concept",
+              "title": "Watershed scale"
+            },
+            {
+              "type": "concept",
+              "title": "Event scale"
+            },
+            {
+              "type": "concept",
+              "title": "Annual and seasonal budgets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Precipitation and Evapotranspiration",
+      "description": "Measure and estimate the atmospheric inputs and losses that drive hydrologic systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Precipitation processes",
+          "description": "Precipitation is the main input to most hydrologic analyses and designs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rainfall formation"
+            },
+            {
+              "type": "concept",
+              "title": "Snowfall"
+            },
+            {
+              "type": "concept",
+              "title": "Orographic effects"
+            },
+            {
+              "type": "concept",
+              "title": "Storm structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and estimation",
+          "description": "Hydrologists must know how precipitation data are measured, interpolated, and biased.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rain gauges"
+            },
+            {
+              "type": "concept",
+              "title": "Radar precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Satellite estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Areal averaging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evapotranspiration",
+          "description": "Evapotranspiration links water, energy, vegetation, and climate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Potential ET"
+            },
+            {
+              "type": "concept",
+              "title": "Actual ET"
+            },
+            {
+              "type": "concept",
+              "title": "Penman-Monteith concept"
+            },
+            {
+              "type": "concept",
+              "title": "Crop and vegetation coefficients"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Infiltration and Soil Moisture",
+      "description": "Explain how water enters, moves through, and is stored in soils before becoming runoff or recharge.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil-water storage",
+          "description": "Soils control whether precipitation becomes infiltration, runoff, evaporation, or recharge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Porosity"
+            },
+            {
+              "type": "concept",
+              "title": "Field capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Wilting point"
+            },
+            {
+              "type": "concept",
+              "title": "Soil texture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Infiltration mechanisms",
+          "description": "Infiltration theory explains why runoff begins under different storm and soil conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infiltration capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Hortonian runoff"
+            },
+            {
+              "type": "concept",
+              "title": "Saturation-excess runoff"
+            },
+            {
+              "type": "concept",
+              "title": "Green-Ampt concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vadose-zone movement",
+          "description": "Unsaturated flow connects surface processes to groundwater recharge and plant water use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capillary forces"
+            },
+            {
+              "type": "concept",
+              "title": "Percolation"
+            },
+            {
+              "type": "concept",
+              "title": "Preferential flow"
+            },
+            {
+              "type": "concept",
+              "title": "Soil moisture monitoring"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Groundwater Flow and Well Hydraulics",
+      "description": "Analyze aquifers, hydraulic gradients, recharge, pumping, and groundwater-surface water connections.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Aquifer properties",
+          "description": "Aquifer behavior depends on geology, storage, and hydraulic conductivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confined aquifers"
+            },
+            {
+              "type": "concept",
+              "title": "Unconfined aquifers"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Specific yield and storage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Groundwater flow",
+          "description": "Groundwater flow analysis explains recharge, discharge, baseflow, and contaminant movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Darcy's law"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Recharge zones"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater-surface water exchange"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Well hydraulics",
+          "description": "Well analysis supports water supply, pumping tests, and aquifer management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drawdown"
+            },
+            {
+              "type": "concept",
+              "title": "Cone of depression"
+            },
+            {
+              "type": "concept",
+              "title": "Pumping tests"
+            },
+            {
+              "type": "concept",
+              "title": "Well interference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Runoff, Streamflow, Hydrographs, and Routing",
+      "description": "Translate rainfall and watershed conditions into stream response, hydrographs, and downstream flow timing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Runoff generation",
+          "description": "Runoff generation turns storm inputs and watershed conditions into stream response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impervious surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Antecedent moisture"
+            },
+            {
+              "type": "concept",
+              "title": "Catchment slope"
+            },
+            {
+              "type": "concept",
+              "title": "Land cover effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydrograph analysis",
+          "description": "Hydrographs reveal timing, magnitude, and watershed response to precipitation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rising limb"
+            },
+            {
+              "type": "concept",
+              "title": "Peak discharge"
+            },
+            {
+              "type": "concept",
+              "title": "Recession limb"
+            },
+            {
+              "type": "concept",
+              "title": "Baseflow separation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow routing",
+          "description": "Routing predicts how hydrographs change as water moves downstream.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit hydrograph"
+            },
+            {
+              "type": "concept",
+              "title": "Muskingum routing"
+            },
+            {
+              "type": "concept",
+              "title": "Reservoir routing"
+            },
+            {
+              "type": "concept",
+              "title": "Travel time"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Floods, Droughts, Extremes, Frequency Analysis, and Risk",
+      "description": "Quantify hydrologic extremes and communicate uncertainty for design, planning, and hazard reduction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flood analysis",
+          "description": "Flood analysis estimates rare high-flow events for safety and design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design storms"
+            },
+            {
+              "type": "concept",
+              "title": "Peak flow"
+            },
+            {
+              "type": "concept",
+              "title": "Floodplain mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Flood damage potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drought analysis",
+          "description": "Drought analysis tracks water shortages across climate, soil, stream, and supply systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Meteorological drought"
+            },
+            {
+              "type": "concept",
+              "title": "Agricultural drought"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrologic drought"
+            },
+            {
+              "type": "concept",
+              "title": "Drought indices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frequency and risk",
+          "description": "Frequency analysis converts hydrologic records into risk-informed design estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Return period"
+            },
+            {
+              "type": "concept",
+              "title": "Exceedance probability"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water Quality Indicators and Watershed Health",
+      "description": "Connect flow, land use, chemistry, sediment, temperature, and ecology to watershed condition.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core indicators",
+          "description": "Water quality indicators translate chemistry and physical conditions into watershed health signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dissolved oxygen"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature"
+            },
+            {
+              "type": "concept",
+              "title": "pH"
+            },
+            {
+              "type": "concept",
+              "title": "Turbidity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrients, sediment, and pollutants",
+          "description": "Pollutant transport depends on flow paths, land use, and watershed processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nitrogen and phosphorus"
+            },
+            {
+              "type": "concept",
+              "title": "Suspended sediment"
+            },
+            {
+              "type": "concept",
+              "title": "Pathogens"
+            },
+            {
+              "type": "concept",
+              "title": "Metals and organic contaminants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ecological interpretation",
+          "description": "Water quality matters because it supports ecosystems, drinking water, recreation, and public health.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aquatic habitat"
+            },
+            {
+              "type": "concept",
+              "title": "Biological indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Total maximum daily loads"
+            },
+            {
+              "type": "concept",
+              "title": "Source tracking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Watershed Analysis and Management",
+      "description": "Use watershed boundaries, land cover, soils, channels, and governance to diagnose and manage water systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Watershed characterization",
+          "description": "Characterization builds the physical and spatial foundation for management decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Delineation"
+            },
+            {
+              "type": "concept",
+              "title": "Drainage networks"
+            },
+            {
+              "type": "concept",
+              "title": "Soils and geology"
+            },
+            {
+              "type": "concept",
+              "title": "Land cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Land-use impacts",
+          "description": "Land use changes hydrologic response and water quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Urbanization"
+            },
+            {
+              "type": "concept",
+              "title": "Agriculture"
+            },
+            {
+              "type": "concept",
+              "title": "Forestry"
+            },
+            {
+              "type": "concept",
+              "title": "Wetland loss"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Management strategies",
+          "description": "Watershed management integrates technical actions with policy and stakeholder coordination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Best management practices"
+            },
+            {
+              "type": "concept",
+              "title": "Riparian buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Restoration priorities"
+            },
+            {
+              "type": "concept",
+              "title": "Watershed plans"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stormwater, Drainage, and Green Infrastructure",
+      "description": "Design and evaluate runoff controls that reduce flooding, pollution, and urban hydrologic disruption.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Urban hydrology",
+          "description": "Urbanization changes runoff volume, peak flow, timing, and pollutant delivery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impervious cover"
+            },
+            {
+              "type": "concept",
+              "title": "Storm drains"
+            },
+            {
+              "type": "concept",
+              "title": "Combined sewers"
+            },
+            {
+              "type": "concept",
+              "title": "Urban flooding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drainage design",
+          "description": "Drainage design protects people and infrastructure while managing acceptable risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inlet capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Culverts"
+            },
+            {
+              "type": "concept",
+              "title": "Detention basins"
+            },
+            {
+              "type": "concept",
+              "title": "Design storms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Green infrastructure",
+          "description": "Green infrastructure restores infiltration, storage, evapotranspiration, and water-quality treatment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bioretention"
+            },
+            {
+              "type": "concept",
+              "title": "Green roofs"
+            },
+            {
+              "type": "concept",
+              "title": "Permeable pavement"
+            },
+            {
+              "type": "concept",
+              "title": "Constructed wetlands"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Open-Channel Flow and Hydraulic Routing",
+      "description": "Understand how water moves through rivers, canals, culverts, and floodplains.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Channel-flow basics",
+          "description": "Open-channel hydraulics explains flow where the water surface is exposed to the atmosphere.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Manning equation"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic radius"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform flow"
+            },
+            {
+              "type": "concept",
+              "title": "Critical flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rivers and floodplains",
+          "description": "Rivers and floodplains require hydraulic thinking for flood risk and habitat management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stage-discharge rating"
+            },
+            {
+              "type": "concept",
+              "title": "Overbank flow"
+            },
+            {
+              "type": "concept",
+              "title": "Floodplain storage"
+            },
+            {
+              "type": "concept",
+              "title": "Channel roughness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydraulic modeling context",
+          "description": "Hydraulic models support design, flood mapping, and scenario comparison.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HEC-RAS concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Cross sections"
+            },
+            {
+              "type": "concept",
+              "title": "Model calibration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reservoirs, Water Supply, and Allocation",
+      "description": "Study storage, yield, operating rules, water demand, and allocation tradeoffs under scarcity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Storage and yield",
+          "description": "Reservoir and supply analysis asks how much reliable water a system can provide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Storage curves"
+            },
+            {
+              "type": "concept",
+              "title": "Firm yield"
+            },
+            {
+              "type": "concept",
+              "title": "Safe yield"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operations",
+          "description": "Operating rules balance flood control, supply, ecology, power, and recreation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rule curves"
+            },
+            {
+              "type": "concept",
+              "title": "Flood pool"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation pool"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental flows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Allocation under scarcity",
+          "description": "Allocation decisions reveal the social, legal, and economic stakes of hydrology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand forecasting"
+            },
+            {
+              "type": "concept",
+              "title": "Prior appropriation overview"
+            },
+            {
+              "type": "concept",
+              "title": "Riparian rights overview"
+            },
+            {
+              "type": "concept",
+              "title": "Drought restrictions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water Law, Governance, and Environmental Justice",
+      "description": "Connect hydrologic science to rights, regulation, institutions, equity, and stakeholder decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water governance institutions",
+          "description": "Institutions determine who can use water, how conflicts are resolved, and how systems are financed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local utilities"
+            },
+            {
+              "type": "concept",
+              "title": "Water districts"
+            },
+            {
+              "type": "concept",
+              "title": "State agencies"
+            },
+            {
+              "type": "concept",
+              "title": "Interstate and basin compacts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulatory context",
+          "description": "Water-resource decisions are shaped by water quality, habitat, floodplain, and infrastructure rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clean Water Act context"
+            },
+            {
+              "type": "concept",
+              "title": "Drinking water context"
+            },
+            {
+              "type": "concept",
+              "title": "Wetlands permitting"
+            },
+            {
+              "type": "concept",
+              "title": "Floodplain ordinances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Justice and community impacts",
+          "description": "Water decisions can distribute risk, cost, and benefits unevenly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flood exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Water affordability"
+            },
+            {
+              "type": "concept",
+              "title": "Tribal water rights"
+            },
+            {
+              "type": "concept",
+              "title": "Community participation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hydrologic Modeling, GIS, and Data Systems",
+      "description": "Build practical skill with hydrologic models, spatial analysis, monitoring data, and reproducible workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Monitoring data",
+          "description": "Data literacy lets students work with real hydrologic observations rather than only textbook examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stream gauges"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater wells"
+            },
+            {
+              "type": "concept",
+              "title": "Weather stations"
+            },
+            {
+              "type": "concept",
+              "title": "Water-quality sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Models and tools",
+          "description": "Models organize assumptions and test watershed, flood, and management scenarios.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HEC-HMS"
+            },
+            {
+              "type": "concept",
+              "title": "SWMM"
+            },
+            {
+              "type": "concept",
+              "title": "HEC-RAS overview"
+            },
+            {
+              "type": "concept",
+              "title": "HydroShare"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GIS and reproducibility",
+          "description": "Spatial and reproducible workflows make hydrologic analysis transparent and scalable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Watershed delineation"
+            },
+            {
+              "type": "concept",
+              "title": "Digital elevation models"
+            },
+            {
+              "type": "concept",
+              "title": "Land-cover data"
+            },
+            {
+              "type": "concept",
+              "title": "Versioned workflows"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate-Informed Water Resources Planning and Resilience",
+      "description": "Evaluate how nonstationarity, climate change, and resilience thinking reshape water resources decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydrologic nonstationarity",
+          "description": "Climate change challenges the assumption that the past is a stable guide to future water risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Changing precipitation extremes"
+            },
+            {
+              "type": "concept",
+              "title": "Snowpack shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Sea-level influence"
+            },
+            {
+              "type": "concept",
+              "title": "Changing drought patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resilience planning",
+          "description": "Resilience planning prepares systems to absorb, recover from, and adapt to shocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Robust decision-making"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario planning"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy and flexibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nature-based and integrated solutions",
+          "description": "Comprehensive planning blends infrastructure, ecosystems, governance, and equity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Floodplain reconnection"
+            },
+            {
+              "type": "concept",
+              "title": "Aquifer recharge"
+            },
+            {
+              "type": "concept",
+              "title": "Green infrastructure networks"
+            },
+            {
+              "type": "concept",
+              "title": "Integrated water resources management"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

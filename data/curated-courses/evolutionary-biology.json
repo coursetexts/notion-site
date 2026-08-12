@@ -1,0 +1,1296 @@
+{
+  "slug": "evolutionary-biology",
+  "title": "Evolutionary Biology",
+  "description": "Evolutionary biology explains how genetic variation, selection, drift, history, and ecology shape biological diversity. The syllabus combines population genetics, adaptation, speciation, phylogenetics, macroevolution, molecular evolution, and applied evolutionary thinking.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Evolutionary Thinking and Evidence",
+      "description": "This section develops evolutionary thinking and evidence through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make evolutionary thinking and evidence precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Common descent"
+            },
+            {
+              "type": "concept",
+              "title": "Variation"
+            },
+            {
+              "type": "concept",
+              "title": "Inheritance"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptation"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with evolutionary thinking and evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply common descent in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare variation with inheritance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how common descent affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hardy-Weinberg Equilibrium",
+      "description": "This section develops hardy-weinberg equilibrium through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make hardy-weinberg equilibrium precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allele frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Genotype frequency"
+            },
+            {
+              "type": "concept",
+              "title": "p squared"
+            },
+            {
+              "type": "concept",
+              "title": "2pq"
+            },
+            {
+              "type": "concept",
+              "title": "q squared"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with hardy-weinberg equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply allele frequency in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare genotype frequency with p squared"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how allele frequency affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mutation, Gene Flow, and Genetic Variation",
+      "description": "This section develops mutation, gene flow, and genetic variation through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make mutation, gene flow, and genetic variation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutation rate"
+            },
+            {
+              "type": "concept",
+              "title": "Gene flow"
+            },
+            {
+              "type": "concept",
+              "title": "Standing variation"
+            },
+            {
+              "type": "concept",
+              "title": "Migration"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with mutation, gene flow, and genetic variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply mutation rate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare gene flow with standing variation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how mutation rate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Genetic Drift and Effective Population Size",
+      "description": "This section develops genetic drift and effective population size through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make genetic drift and effective population size precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential growth"
+            },
+            {
+              "type": "concept",
+              "title": "Logistic growth"
+            },
+            {
+              "type": "concept",
+              "title": "Carrying capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Density dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Effective population size"
+            },
+            {
+              "type": "concept",
+              "title": "Bottleneck"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with genetic drift and effective population size.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply exponential growth in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare logistic growth with carrying capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of allele"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how exponential growth affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Natural Selection and Adaptation",
+      "description": "This section develops natural selection and adaptation through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make natural selection and adaptation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fitness"
+            },
+            {
+              "type": "concept",
+              "title": "Selection coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Directional selection"
+            },
+            {
+              "type": "concept",
+              "title": "Stabilizing selection"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with natural selection and adaptation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply fitness in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection coefficient with directional selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how fitness affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fitness Landscapes and Tradeoffs",
+      "description": "This section develops fitness landscapes and tradeoffs through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make fitness landscapes and tradeoffs precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adaptive peak"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Epistasis"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with fitness landscapes and tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply adaptive peak in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tradeoff with constraint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how adaptive peak affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sexual Selection and Social Evolution",
+      "description": "This section develops sexual selection and social evolution through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make sexual selection and social evolution precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emotion regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Peer relations"
+            },
+            {
+              "type": "concept",
+              "title": "Temperament"
+            },
+            {
+              "type": "concept",
+              "title": "Attachment style"
+            },
+            {
+              "type": "concept",
+              "title": "Empathy"
+            },
+            {
+              "type": "concept",
+              "title": "Sexual selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with sexual selection and social evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply emotion regulation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare peer relations with temperament"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of kin selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how emotion regulation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Speciation and Reproductive Isolation",
+      "description": "This section develops speciation and reproductive isolation through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make speciation and reproductive isolation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reproductive isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Allopatric speciation"
+            },
+            {
+              "type": "concept",
+              "title": "Sympatric speciation"
+            },
+            {
+              "type": "concept",
+              "title": "Hybrid zone"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with speciation and reproductive isolation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply reproductive isolation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare allopatric speciation with sympatric speciation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how reproductive isolation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phylogenetics and Comparative Methods",
+      "description": "This section develops phylogenetics and comparative methods through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make phylogenetics and comparative methods precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clade"
+            },
+            {
+              "type": "concept",
+              "title": "Homology"
+            },
+            {
+              "type": "concept",
+              "title": "Parsimony"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum likelihood"
+            },
+            {
+              "type": "concept",
+              "title": "Outgroup"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with phylogenetics and comparative methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply clade in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare homology with parsimony"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how clade affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Molecular Evolution and Genome Evolution",
+      "description": "This section develops molecular evolution and genome evolution through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make molecular evolution and genome evolution precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Substitution rate"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular clock"
+            },
+            {
+              "type": "concept",
+              "title": "Neutral theory"
+            },
+            {
+              "type": "concept",
+              "title": "Genome duplication"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with molecular evolution and genome evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply substitution rate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare molecular clock with neutral theory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how substitution rate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coevolution and Host-Pathogen Dynamics",
+      "description": "This section develops coevolution and host-pathogen dynamics through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make coevolution and host-pathogen dynamics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arms race"
+            },
+            {
+              "type": "concept",
+              "title": "Red Queen"
+            },
+            {
+              "type": "concept",
+              "title": "Host-pathogen"
+            },
+            {
+              "type": "concept",
+              "title": "Mutualism"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with coevolution and host-pathogen dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply arms race in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Red Queen with host-pathogen"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how arms race affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Evolutionary Developmental Biology",
+      "description": "This section develops evolutionary developmental biology through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make evolutionary developmental biology precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "evo-devo"
+            },
+            {
+              "type": "concept",
+              "title": "Hox gene"
+            },
+            {
+              "type": "concept",
+              "title": "Heterochrony"
+            },
+            {
+              "type": "concept",
+              "title": "Modularity"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with evolutionary developmental biology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply evo-devo in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Hox gene with heterochrony"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how evo-devo affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Macroevolution, Fossils, and Extinction",
+      "description": "This section develops macroevolution, fossils, and extinction through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make macroevolution, fossils, and extinction precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adaptive radiation"
+            },
+            {
+              "type": "concept",
+              "title": "Mass extinction"
+            },
+            {
+              "type": "concept",
+              "title": "Fossil record"
+            },
+            {
+              "type": "concept",
+              "title": "Punctuated equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Allele"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with macroevolution, fossils, and extinction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply adaptive radiation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare mass extinction with fossil record"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of selection"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how adaptive radiation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Evolutionary Medicine, Conservation, and Applied Evolution",
+      "description": "This section develops evolutionary medicine, conservation, and applied evolution through the concrete vocabulary, procedures, examples, and checks students need in Evolutionary Biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make evolutionary medicine, conservation, and applied evolution precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biodiversity hotspot"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Edge effect"
+            },
+            {
+              "type": "concept",
+              "title": "Population viability"
+            },
+            {
+              "type": "concept",
+              "title": "Antibiotic resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Virulence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with evolutionary medicine, conservation, and applied evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Apply Hardy-Weinberg logic"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret phylogenies"
+            },
+            {
+              "type": "concept",
+              "title": "Model allele frequency change"
+            },
+            {
+              "type": "concept",
+              "title": "Apply biodiversity hotspot in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare fragmentation with edge effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection vs drift"
+            },
+            {
+              "type": "concept",
+              "title": "Population structure"
+            },
+            {
+              "type": "concept",
+              "title": "Homology vs analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of allele"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how biodiversity hotspot affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

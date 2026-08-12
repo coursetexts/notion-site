@@ -1,0 +1,838 @@
+{
+  "slug": "introduction-to-proofs-foundations",
+  "title": "Introduction to Proofs / Foundations",
+  "description": "Help students move from computational mathematics to proof-based reasoning by developing precise language, core proof methods, and mathematical communication habits.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Logic and propositions",
+      "description": "This section gives students the grammar of mathematical truth. The point is to make claims precise enough that they can be proved, disproved, negated, or transformed without ambiguity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Propositions and connectives",
+          "description": "Students learn how simple statements combine into compound statements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conjunction, disjunction, negation, implication, and biconditional"
+            },
+            {
+              "type": "concept",
+              "title": "Truth tables"
+            },
+            {
+              "type": "concept",
+              "title": "Necessary and sufficient conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implication and equivalence",
+          "description": "Students learn the logical forms behind most theorem statements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Converse, inverse, and contrapositive"
+            },
+            {
+              "type": "concept",
+              "title": "Logical equivalence"
+            },
+            {
+              "type": "concept",
+              "title": "Tautologies and contradictions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantifiers",
+          "description": "Students learn how universal and existential claims work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "For all and there exists"
+            },
+            {
+              "type": "concept",
+              "title": "Order of quantifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Negating quantified statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Translating language",
+          "description": "Students practice moving between words and symbols.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definitions as logical templates"
+            },
+            {
+              "type": "concept",
+              "title": "If-and-only-if statements"
+            },
+            {
+              "type": "concept",
+              "title": "Common ambiguity traps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sets and set operations",
+      "description": "Sets are the basic objects through which modern mathematics organizes collections. Students learn how to reason cleanly about membership, containment, operations, and set identities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic set language",
+          "description": "Students learn the vocabulary for describing collections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elements and membership"
+            },
+            {
+              "type": "concept",
+              "title": "Subsets and proper subsets"
+            },
+            {
+              "type": "concept",
+              "title": "Empty set and universal set"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Set operations",
+          "description": "Students learn how sets combine and compare.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Union, intersection, difference, and complement"
+            },
+            {
+              "type": "concept",
+              "title": "Power sets"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proving set identities",
+          "description": "Students practice proof methods in a concrete setting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Element-chasing proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Double containment"
+            },
+            {
+              "type": "concept",
+              "title": "Venn diagrams as intuition, not proof"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Indexed families",
+          "description": "Students prepare for analysis and algebra notation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unions and intersections over an index set"
+            },
+            {
+              "type": "concept",
+              "title": "Finite versus infinite families"
+            },
+            {
+              "type": "concept",
+              "title": "De Morgan laws for families"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions and relations",
+      "description": "Functions and relations structure much of algebra, analysis, topology, and discrete math. Students learn to state and prove properties of mappings and relation-based structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Function basics",
+          "description": "Students learn the language of mappings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain, codomain, image, and preimage"
+            },
+            {
+              "type": "concept",
+              "title": "Equality of functions"
+            },
+            {
+              "type": "concept",
+              "title": "Composition and identity functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Injective, surjective, bijective",
+          "description": "Students learn the major function properties used throughout advanced math.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-to-one proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Onto proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Inverses and bijections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relations",
+          "description": "Students learn how pairs of objects encode structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary relations"
+            },
+            {
+              "type": "concept",
+              "title": "Reflexive, symmetric, transitive, antisymmetric"
+            },
+            {
+              "type": "concept",
+              "title": "Relation composition and inverse relations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orders and examples",
+          "description": "Students see relation types beyond equivalence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial orders"
+            },
+            {
+              "type": "concept",
+              "title": "Total orders"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility and subset inclusion examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Direct proof",
+      "description": "Direct proof is the first workhorse proof method. Students learn to start from assumptions, unfold definitions, make justified deductions, and arrive at the desired conclusion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Proof anatomy",
+          "description": "Students learn the shape of a readable proof.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypotheses and conclusion"
+            },
+            {
+              "type": "concept",
+              "title": "Definitions and known results"
+            },
+            {
+              "type": "concept",
+              "title": "Clear logical sequence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Universal conditional proofs",
+          "description": "Students learn the standard approach for statements like if P then Q.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Choose an arbitrary object"
+            },
+            {
+              "type": "concept",
+              "title": "Assume the hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Derive the conclusion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Definition-based proof",
+          "description": "Students learn why definitions do the heavy lifting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Even/odd integers"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Set inclusion and function properties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Writing style",
+          "description": "Students learn to communicate rather than merely calculate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complete sentences"
+            },
+            {
+              "type": "concept",
+              "title": "Justification of each step"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding circular reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Proof by contradiction",
+      "description": "Contradiction teaches students to prove a claim by showing its denial cannot consistently hold. It is especially useful when direct construction is hard or the negation has a sharp form.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Contradiction structure",
+          "description": "Students learn the formal skeleton of the method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assume the negation"
+            },
+            {
+              "type": "concept",
+              "title": "Derive an impossibility"
+            },
+            {
+              "type": "concept",
+              "title": "Conclude the original statement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common contradiction targets",
+          "description": "Students learn what counts as impossible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contradicting a hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Contradicting a known theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Obtaining P and not P"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Irrationality and infinitude examples",
+          "description": "Students see classic uses of the method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Irrationality of square root examples"
+            },
+            {
+              "type": "concept",
+              "title": "Infinitely many primes"
+            },
+            {
+              "type": "concept",
+              "title": "Nonexistence claims"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method judgment",
+          "description": "Students learn when contradiction is elegant and when direct proof is clearer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contrapositive versus contradiction"
+            },
+            {
+              "type": "concept",
+              "title": "Existence versus nonexistence"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding hidden assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Proof by induction",
+      "description": "Induction is the core method for proving statements indexed by natural numbers. Students learn how finite verification can establish infinitely many cases through a reliable recursive structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic induction",
+          "description": "Students learn the standard base-step plus inductive-step format.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base case"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive conclusion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strong induction",
+          "description": "Students learn when several previous cases are needed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strong inductive hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Recurrence and divisibility examples"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence with ordinary induction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structural and recursive thinking",
+          "description": "Students connect induction to objects built in stages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequences and recurrence definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Trees and recursively defined sets"
+            },
+            {
+              "type": "concept",
+              "title": "Algorithm correctness examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common mistakes",
+          "description": "Students learn how induction proofs fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Missing base cases"
+            },
+            {
+              "type": "concept",
+              "title": "Assuming the desired result"
+            },
+            {
+              "type": "concept",
+              "title": "Induction variable ambiguity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Counterexamples",
+      "description": "Counterexamples are how mathematicians test and disprove overbroad claims. Students learn to search deliberately for examples that reveal the exact boundary of a statement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Disproving universal statements",
+          "description": "Students learn the logic of one example defeating a for-all claim.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Universal versus existential negation"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal counterexamples"
+            },
+            {
+              "type": "concept",
+              "title": "Checking all hypotheses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constructing examples",
+          "description": "Students develop a toolbox of familiar mathematical objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Small finite sets"
+            },
+            {
+              "type": "concept",
+              "title": "Simple functions"
+            },
+            {
+              "type": "concept",
+              "title": "Integers, rationals, reals, and matrices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Refining conjectures",
+          "description": "Students use failed claims productively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adding hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Weakening conclusions"
+            },
+            {
+              "type": "concept",
+              "title": "Finding sharp conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Counterexamples in proof writing",
+          "description": "Students learn how to present disproofs clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State the claim being disproved"
+            },
+            {
+              "type": "concept",
+              "title": "Give the object"
+            },
+            {
+              "type": "concept",
+              "title": "Verify hypotheses and show conclusion fails"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equivalence relations and partitions",
+      "description": "Equivalence relations formalize the idea of grouping objects that are the same for a chosen purpose. Students learn why this language underlies modular arithmetic, quotient structures, and classification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equivalence relation properties",
+          "description": "Students learn the three required properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reflexive"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetric"
+            },
+            {
+              "type": "concept",
+              "title": "Transitive"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equivalence classes",
+          "description": "Students learn how one object represents a whole class.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Class of an element"
+            },
+            {
+              "type": "concept",
+              "title": "Representatives"
+            },
+            {
+              "type": "concept",
+              "title": "Disjoint or identical classes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Partitions",
+          "description": "Students connect relations to decompositions of sets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blocks of a partition"
+            },
+            {
+              "type": "concept",
+              "title": "Relation induced by a partition"
+            },
+            {
+              "type": "concept",
+              "title": "Partition induced by a relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students see why equivalence matters beyond the course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Congruence modulo n"
+            },
+            {
+              "type": "concept",
+              "title": "Rational numbers as equivalence classes"
+            },
+            {
+              "type": "concept",
+              "title": "Quotient objects in algebra"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Infinite sets and cardinality",
+      "description": "This section introduces rigorous reasoning about infinite size. Students learn that not all infinities behave alike and that bijections are the right tool for comparing set sizes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Finite versus infinite sets",
+          "description": "Students learn how cardinality generalizes counting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bijection as same size"
+            },
+            {
+              "type": "concept",
+              "title": "Proper subsets of infinite sets"
+            },
+            {
+              "type": "concept",
+              "title": "Countably infinite examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Countability",
+          "description": "Students learn how to list infinite sets systematically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural numbers, integers, and rationals"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian products of countable sets"
+            },
+            {
+              "type": "concept",
+              "title": "Countable unions as an advanced preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncountability",
+          "description": "Students learn the core diagonal argument.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real numbers are uncountable"
+            },
+            {
+              "type": "concept",
+              "title": "Power sets have larger cardinality"
+            },
+            {
+              "type": "concept",
+              "title": "Why decimal arguments need care"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proof consequences",
+          "description": "Students connect cardinality to later mathematics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Existence without construction"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing function spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Foundations of analysis and topology"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Foundations for advanced math",
+      "description": "The final section ties proof tools to the courses that follow. Students learn how definitions, theorem structure, examples, and clear writing transfer into analysis, algebra, topology, number theory, and beyond.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reading advanced mathematics",
+          "description": "Students learn how to approach dense definitions and theorem statements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parsing hypotheses and conclusions"
+            },
+            {
+              "type": "concept",
+              "title": "Building examples before proving"
+            },
+            {
+              "type": "concept",
+              "title": "Tracking notation across a text"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Writing mature proofs",
+          "description": "Students refine proof communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lemma use"
+            },
+            {
+              "type": "concept",
+              "title": "Case structure"
+            },
+            {
+              "type": "concept",
+              "title": "Revision for clarity and rigor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Preparing for major proof-based fields",
+          "description": "Students see how the course topics reappear later.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analysis: limits, sequences, completeness"
+            },
+            {
+              "type": "concept",
+              "title": "Algebra: homomorphisms, quotient structures, groups"
+            },
+            {
+              "type": "concept",
+              "title": "Topology: open sets, continuity, compactness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mathematical habits",
+          "description": "Students build the practices that make proofs sustainable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conjecture, test, prove, revise"
+            },
+            {
+              "type": "concept",
+              "title": "Definitions before intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Collaboration, exposition, and ethical use of sources"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

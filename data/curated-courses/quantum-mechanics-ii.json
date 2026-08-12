@@ -1,0 +1,1296 @@
+{
+  "slug": "quantum-mechanics-ii",
+  "title": "Quantum Mechanics II",
+  "description": "An advanced quantum mechanics course covering symmetry and formalism review, time-independent and degenerate perturbation theory, variational and WKB methods, time-dependent perturbation theory, Fermi's golden rule, radiation-matter interaction, identical particles, angular momentum addition, many-electron atoms, scattering, and the Dirac equation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Review of Quantum Formalism and Symmetry",
+      "description": "Builds conceptual fluency and applied skill with review of quantum formalism and symmetry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes review of quantum formalism and symmetry precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift"
+            },
+            {
+              "type": "concept",
+              "title": "Cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Exchange symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with review of quantum formalism and symmetry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perturbation Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection rule with transition amplitude"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where review of quantum formalism and symmetry succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Dirac spinor"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perturbation Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time-Independent Perturbation Theory",
+      "description": "Builds conceptual fluency and applied skill with time-independent perturbation theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes time-independent perturbation theory precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unperturbed Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Energy correction"
+            },
+            {
+              "type": "concept",
+              "title": "State correction"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with time-independent perturbation theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply unperturbed Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare energy correction with state correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where time-independent perturbation theory succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how unperturbed Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Degenerate Perturbation Theory",
+      "description": "Builds conceptual fluency and applied skill with degenerate perturbation theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes degenerate perturbation theory precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unperturbed Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Energy correction"
+            },
+            {
+              "type": "concept",
+              "title": "State correction"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with degenerate perturbation theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply unperturbed Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare energy correction with state correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where degenerate perturbation theory succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how unperturbed Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Variational Method",
+      "description": "Builds conceptual fluency and applied skill with variational method.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes variational method precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trial wavefunction"
+            },
+            {
+              "type": "concept",
+              "title": "Variational bound"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Ground-state estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with variational method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply trial wavefunction in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare variational bound with parameter minimization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where variational method succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how trial wavefunction changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "WKB Approximation",
+      "description": "Builds conceptual fluency and applied skill with wkb approximation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes wkb approximation precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turning point"
+            },
+            {
+              "type": "concept",
+              "title": "Semiclassical phase"
+            },
+            {
+              "type": "concept",
+              "title": "Connection formula"
+            },
+            {
+              "type": "concept",
+              "title": "Tunneling exponent"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with wkb approximation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply turning point in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare semiclassical phase with connection formula"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where wkb approximation succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how turning point changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time-Dependent Perturbation Theory",
+      "description": "Builds conceptual fluency and applied skill with time-dependent perturbation theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes time-dependent perturbation theory precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unperturbed Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Energy correction"
+            },
+            {
+              "type": "concept",
+              "title": "State correction"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with time-dependent perturbation theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply unperturbed Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare energy correction with state correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where time-dependent perturbation theory succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how unperturbed Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fermi's Golden Rule",
+      "description": "Builds conceptual fluency and applied skill with fermi's golden rule.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes fermi's golden rule precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift"
+            },
+            {
+              "type": "concept",
+              "title": "Cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Exchange symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with fermi's golden rule.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perturbation Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection rule with transition amplitude"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where fermi's golden rule succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Dirac spinor"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perturbation Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interaction of Radiation with Matter",
+      "description": "Builds conceptual fluency and applied skill with interaction of radiation with matter.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes interaction of radiation with matter precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift"
+            },
+            {
+              "type": "concept",
+              "title": "Cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Exchange symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with interaction of radiation with matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perturbation Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection rule with transition amplitude"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where interaction of radiation with matter succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Dirac spinor"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perturbation Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Identical Particles and Exchange Symmetry",
+      "description": "Builds conceptual fluency and applied skill with identical particles and exchange symmetry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes identical particles and exchange symmetry precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift"
+            },
+            {
+              "type": "concept",
+              "title": "Cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Exchange symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with identical particles and exchange symmetry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perturbation Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection rule with transition amplitude"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where identical particles and exchange symmetry succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Dirac spinor"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perturbation Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Addition of Angular Momentum",
+      "description": "Builds conceptual fluency and applied skill with addition of angular momentum.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes addition of angular momentum precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "J squared"
+            },
+            {
+              "type": "concept",
+              "title": "J_z"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical harmonics"
+            },
+            {
+              "type": "concept",
+              "title": "Ladder operators"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic quantum number"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with addition of angular momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply J squared in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare J_z with spherical harmonics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where addition of angular momentum succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how J squared changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Helium and Many-Electron Atoms",
+      "description": "Builds conceptual fluency and applied skill with helium and many-electron atoms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes helium and many-electron atoms precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift"
+            },
+            {
+              "type": "concept",
+              "title": "Cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Exchange symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with helium and many-electron atoms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply perturbation Hamiltonian in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection rule with transition amplitude"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where helium and many-electron atoms succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Dirac spinor"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how perturbation Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Scattering Theory",
+      "description": "Builds conceptual fluency and applied skill with scattering theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes scattering theory precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scattering amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Differential cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Partial wave"
+            },
+            {
+              "type": "concept",
+              "title": "Phase shift"
+            },
+            {
+              "type": "concept",
+              "title": "Born approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with scattering theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scattering amplitude in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare differential cross section with partial wave"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where scattering theory succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scattering amplitude changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Partial Waves and Born Approximation",
+      "description": "Builds conceptual fluency and applied skill with partial waves and born approximation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes partial waves and born approximation precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "De Broglie wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Double slit"
+            },
+            {
+              "type": "concept",
+              "title": "Wave packet"
+            },
+            {
+              "type": "concept",
+              "title": "Probability amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Born rule"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with partial waves and born approximation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply de Broglie wavelength in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare double slit with wave packet"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where partial waves and born approximation succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how de Broglie wavelength changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Relativistic Quantum Mechanics and the Dirac Equation",
+      "description": "Builds conceptual fluency and applied skill with relativistic quantum mechanics and the dirac equation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes relativistic quantum mechanics and the dirac equation precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dirac matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Spinor solution"
+            },
+            {
+              "type": "concept",
+              "title": "Relativistic energy"
+            },
+            {
+              "type": "concept",
+              "title": "Antiparticle"
+            },
+            {
+              "type": "concept",
+              "title": "Spin-orbit coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Perturbation Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with relativistic quantum mechanics and the dirac equation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute first-order energy shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Set up a variational trial function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermi's golden rule"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Dirac matrices in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare spinor solution with relativistic energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where relativistic quantum mechanics and the dirac equation succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity of approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Small parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of transition amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Dirac matrices changes the interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

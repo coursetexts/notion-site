@@ -1,0 +1,1296 @@
+{
+  "slug": "it-project-management",
+  "title": "IT Project Management",
+  "description": "IT Project Management prepares students to plan and deliver technology work amid uncertainty, stakeholder pressure, technical risk, and changing requirements, balancing predictive and Agile approaches with practical governance and team communication.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "IT Project Management Foundations",
+      "description": "This section develops it project management foundations through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make it project management foundations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with it project management foundations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Project Selection and Business Value",
+      "description": "This section develops project selection and business value through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make project selection and business value precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business case"
+            },
+            {
+              "type": "concept",
+              "title": "ROI"
+            },
+            {
+              "type": "concept",
+              "title": "NPV"
+            },
+            {
+              "type": "concept",
+              "title": "Strategic alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Portfolio priority"
+            },
+            {
+              "type": "concept",
+              "title": "Scope"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with project selection and business value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply business case in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare ROI with NPV"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of budget"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how business case affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "PMBOK Knowledge Areas",
+      "description": "This section develops pmbok knowledge areas through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make pmbok knowledge areas precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Cost"
+            },
+            {
+              "type": "concept",
+              "title": "Quality"
+            },
+            {
+              "type": "concept",
+              "title": "Risk"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with pmbok knowledge areas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of budget"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Agile, Scrum, and Kanban",
+      "description": "This section develops agile, scrum, and kanban through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make agile, scrum, and kanban precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scrum"
+            },
+            {
+              "type": "concept",
+              "title": "Kanban"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            },
+            {
+              "type": "concept",
+              "title": "Product backlog"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Scope"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with agile, scrum, and kanban.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Scrum in a Worked Example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Kanban with Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of budget"
+            },
+            {
+              "type": "concept",
+              "title": "Explain How Scrum Affects Interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Project Scope and Requirements",
+      "description": "This section develops project scope and requirements through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make project scope and requirements precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional requirement"
+            },
+            {
+              "type": "concept",
+              "title": "Nonfunctional requirement"
+            },
+            {
+              "type": "concept",
+              "title": "User story"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with project scope and requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply functional requirement in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare nonfunctional requirement with user story"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of budget"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how functional requirement affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work Breakdown Structures and Estimation",
+      "description": "This section develops work breakdown structures and estimation through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make work breakdown structures and estimation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with work breakdown structures and estimation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Scheduling and Critical Path",
+      "description": "This section develops scheduling and critical path through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make scheduling and critical path precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with scheduling and critical path.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Budgeting and Cost Control",
+      "description": "This section develops budgeting and cost control through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make budgeting and cost control precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with budgeting and cost control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Risk Management",
+      "description": "This section develops risk management through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make risk management precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Risk owner"
+            },
+            {
+              "type": "concept",
+              "title": "Probability-impact matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Mitigation plan"
+            },
+            {
+              "type": "concept",
+              "title": "Contingency reserve"
+            },
+            {
+              "type": "concept",
+              "title": "Risk trigger"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with risk management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply risk register in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare risk owner with probability-impact matrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of budget"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how risk register affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quality Management and Testing Alignment",
+      "description": "This section develops quality management and testing alignment through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make quality management and testing alignment precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with quality management and testing alignment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stakeholder and Communications Management",
+      "description": "This section develops stakeholder and communications management through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make stakeholder and communications management precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with stakeholder and communications management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Procurement and Vendor Management",
+      "description": "This section develops procurement and vendor management through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make procurement and vendor management precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RFP"
+            },
+            {
+              "type": "concept",
+              "title": "Vendor"
+            },
+            {
+              "type": "concept",
+              "title": "SLA"
+            },
+            {
+              "type": "concept",
+              "title": "Contract type"
+            },
+            {
+              "type": "concept",
+              "title": "Make-or-buy"
+            },
+            {
+              "type": "concept",
+              "title": "Scope"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with procurement and vendor management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply RFP in a Worked Example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Vendor with SLA"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of budget"
+            },
+            {
+              "type": "concept",
+              "title": "Explain How RFP Affects Interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DevOps, Change Control, and Release Coordination",
+      "description": "This section develops devops, change control, and release coordination through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make devops, change control, and release coordination precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with devops, change control, and release coordination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Project Closure, Retrospectives, and Lessons Learned",
+      "description": "This section develops project closure, retrospectives, and lessons learned through the concrete vocabulary, procedures, examples, and checks students need in IT Project Management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make project closure, retrospectives, and lessons learned precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Budget"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder"
+            },
+            {
+              "type": "concept",
+              "title": "Sprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with project closure, retrospectives, and lessons learned.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write a project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Build a work breakdown structure"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Apply scope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare schedule with budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scope creep"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule optimism"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of milestone"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how scope affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

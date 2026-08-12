@@ -1,0 +1,1036 @@
+{
+  "slug": "introduction-to-environmental-science",
+  "title": "Introduction to Environmental Science",
+  "description": "Builds a systems-level understanding of environmental science while developing the data literacy, ethical reasoning, and policy awareness needed to analyze real environmental problems and possible solutions.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Environmental Science as an Interdisciplinary Field",
+      "description": "This opening topic defines environmental science as a bridge among natural systems, human systems, data, ethics, and decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Environmental literacy",
+          "description": "Students learn the basic vocabulary and habits needed to interpret environmental problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Systems thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence-based claims"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interdisciplinary problem framing",
+          "description": "Environmental questions cross science, economics, policy, culture, and justice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural science"
+            },
+            {
+              "type": "concept",
+              "title": "Social science"
+            },
+            {
+              "type": "concept",
+              "title": "Values and tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data and scientific reasoning",
+          "description": "Students practice reading environmental evidence rather than treating claims as slogans.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Graphs and indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Risk and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation versus causation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Earth Systems and Planetary Boundaries",
+      "description": "Environmental science starts with Earth as an interacting system of air, water, land, life, and human activity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Earth system spheres",
+          "description": "Students learn how the atmosphere, hydrosphere, geosphere, biosphere, and anthroposphere interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atmosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Geosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Biosphere"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feedbacks and thresholds",
+          "description": "Feedbacks explain why environmental change can accelerate, stabilize, or cross tipping points.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Thresholds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planetary boundaries",
+          "description": "This gives a global frame for evaluating human pressure on Earth systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Climate"
+            },
+            {
+              "type": "concept",
+              "title": "Biosphere integrity"
+            },
+            {
+              "type": "concept",
+              "title": "Land-system change"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Flow and Biogeochemical Cycles",
+      "description": "Matter cycles and energy flows are the backbone of ecosystems and environmental change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy flow",
+          "description": "Students learn how energy enters, moves through, and leaves ecological systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary production"
+            },
+            {
+              "type": "concept",
+              "title": "Trophic levels"
+            },
+            {
+              "type": "concept",
+              "title": "Energy loss"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major cycles",
+          "description": "Biogeochemical cycles connect organisms, soils, oceans, air, and rocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogen cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorus cycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human alteration of cycles",
+          "description": "Students connect agriculture, fossil fuels, and land use to disrupted cycles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fertilizer runoff"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Eutrophication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population Growth, Consumption, and Resource Use",
+      "description": "Environmental impact depends on population, consumption, technology, and institutions, not population alone.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Population dynamics",
+          "description": "Students learn the demographic patterns behind growth and stabilization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Birth and death rates"
+            },
+            {
+              "type": "concept",
+              "title": "Demographic transition"
+            },
+            {
+              "type": "concept",
+              "title": "Age structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Consumption and ecological footprints",
+          "description": "Resource use varies widely across places and societies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IPAT Identity"
+            },
+            {
+              "type": "concept",
+              "title": "Material throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Ecological footprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resource limits and substitution",
+          "description": "Students examine scarcity, efficiency, and tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Renewable versus nonrenewable resources"
+            },
+            {
+              "type": "concept",
+              "title": "Rebound effects"
+            },
+            {
+              "type": "concept",
+              "title": "Critical minerals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biodiversity and Ecosystem Services",
+      "description": "Biodiversity supports ecosystem function, resilience, culture, food, medicine, and economies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biodiversity patterns",
+          "description": "Students learn biodiversity at genetic, species, and ecosystem levels.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Species richness"
+            },
+            {
+              "type": "concept",
+              "title": "Endemism"
+            },
+            {
+              "type": "concept",
+              "title": "Biodiversity hotspots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ecosystem services",
+          "description": "Students connect ecological processes to human well-being.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Provisioning services"
+            },
+            {
+              "type": "concept",
+              "title": "Regulating services"
+            },
+            {
+              "type": "concept",
+              "title": "Cultural services"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biodiversity threats",
+          "description": "Students identify major drivers of biodiversity loss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Habitat loss"
+            },
+            {
+              "type": "concept",
+              "title": "Invasive species"
+            },
+            {
+              "type": "concept",
+              "title": "Overexploitation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water, Air, and Soil Systems",
+      "description": "Water, air, and soil are the life-support media where many environmental problems become visible and measurable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water systems",
+          "description": "Students learn how water moves through watersheds, aquifers, and human infrastructure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater and aquifers"
+            },
+            {
+              "type": "concept",
+              "title": "Water quality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Air systems",
+          "description": "Atmospheric processes control weather, climate, pollution transport, and human exposure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atmospheric layers"
+            },
+            {
+              "type": "concept",
+              "title": "Air pollution"
+            },
+            {
+              "type": "concept",
+              "title": "Inversions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil systems",
+          "description": "Soils connect geology, ecology, agriculture, water, and carbon storage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil horizons"
+            },
+            {
+              "type": "concept",
+              "title": "Erosion"
+            },
+            {
+              "type": "concept",
+              "title": "Soil organic matter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate Change Science",
+      "description": "Climate change is a central case for understanding evidence, mechanisms, impacts, mitigation, and adaptation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Climate system basics",
+          "description": "Students learn how greenhouse gases, radiation, and feedbacks shape climate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Greenhouse effect"
+            },
+            {
+              "type": "concept",
+              "title": "Radiative forcing"
+            },
+            {
+              "type": "concept",
+              "title": "Climate feedbacks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evidence and impacts",
+          "description": "Students connect observed data to physical and ecological consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature records"
+            },
+            {
+              "type": "concept",
+              "title": "Sea level rise"
+            },
+            {
+              "type": "concept",
+              "title": "Extreme events"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitigation and adaptation",
+          "description": "Students distinguish reducing causes from managing unavoidable impacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emissions reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience planning"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon removal overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Systems and Decarbonization",
+      "description": "Energy choices shape climate, air quality, land use, water use, economics, and justice.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy sources",
+          "description": "Students compare fossil, nuclear, and renewable energy systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coal, oil, and gas"
+            },
+            {
+              "type": "concept",
+              "title": "Solar and wind"
+            },
+            {
+              "type": "concept",
+              "title": "Nuclear and hydropower"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy transitions",
+          "description": "Transitions involve technology, infrastructure, policy, and behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grid integration"
+            },
+            {
+              "type": "concept",
+              "title": "Storage"
+            },
+            {
+              "type": "concept",
+              "title": "Electrification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy justice",
+          "description": "Students examine who bears harms and who receives benefits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy burden"
+            },
+            {
+              "type": "concept",
+              "title": "Siting conflicts"
+            },
+            {
+              "type": "concept",
+              "title": "Just transition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pollution Sources, Pathways, and Fate",
+      "description": "Pollution becomes an environmental problem through sources, transport pathways, exposure, persistence, and transformation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pollution types",
+          "description": "Students learn major pollutants and their environmental behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Air pollutants"
+            },
+            {
+              "type": "concept",
+              "title": "Water contaminants"
+            },
+            {
+              "type": "concept",
+              "title": "Solid and hazardous waste"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport and fate",
+          "description": "Pathways explain where pollutants go and who is exposed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Runoff and leaching"
+            },
+            {
+              "type": "concept",
+              "title": "Bioaccumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Monitoring and prevention",
+          "description": "Students connect pollution science to control strategies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Treatment technologies"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring networks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Health, Risk, and Toxicology",
+      "description": "Environmental health links exposures in air, water, food, soil, and workplaces to human and ecosystem outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Exposure and dose",
+          "description": "Students learn that risk depends on contact, concentration, duration, and vulnerability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routes of exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Dose-response"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitive populations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk assessment",
+          "description": "Risk frameworks help compare hazards and make decisions under uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard identification"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Risk characterization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precaution and communication",
+          "description": "Students practice explaining risk responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precautionary principle"
+            },
+            {
+              "type": "concept",
+              "title": "Risk perception"
+            },
+            {
+              "type": "concept",
+              "title": "Community communication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Food, Agriculture, and Land Use",
+      "description": "Food systems connect soil, water, biodiversity, climate, labor, technology, and culture.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Agricultural systems",
+          "description": "Students compare industrial, agroecological, and smallholder systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crop yields"
+            },
+            {
+              "type": "concept",
+              "title": "Fertilizers and pesticides"
+            },
+            {
+              "type": "concept",
+              "title": "Irrigation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Land-use change",
+          "description": "Land conversion drives habitat loss, emissions, and hydrologic change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deforestation"
+            },
+            {
+              "type": "concept",
+              "title": "Urbanization"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainable food systems",
+          "description": "Students evaluate pathways for feeding people while reducing harm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil health"
+            },
+            {
+              "type": "concept",
+              "title": "Food waste"
+            },
+            {
+              "type": "concept",
+              "title": "Regenerative practices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Oceans, Coasts, and Freshwater Resources",
+      "description": "Aquatic systems concentrate many environmental challenges: water supply, fisheries, pollution, climate impacts, and coastal risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Freshwater resources",
+          "description": "Students learn water scarcity, allocation, and watershed management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Streamflow"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater depletion"
+            },
+            {
+              "type": "concept",
+              "title": "Floods and droughts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ocean systems",
+          "description": "Oceans regulate climate and support major food webs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ocean circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Acidification"
+            },
+            {
+              "type": "concept",
+              "title": "Marine productivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coastal change",
+          "description": "Coasts reveal interactions among sea level, storms, ecosystems, and infrastructure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wetlands"
+            },
+            {
+              "type": "concept",
+              "title": "Storm surge"
+            },
+            {
+              "type": "concept",
+              "title": "Managed retreat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sustainability, Environmental Justice, and Ethics",
+      "description": "Environmental decisions involve fairness, power, responsibility, and different visions of a good future.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sustainability frameworks",
+          "description": "Students learn common ways to evaluate long-term human-environment well-being.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Triple bottom line"
+            },
+            {
+              "type": "concept",
+              "title": "UN Sustainable Development Goals"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental justice",
+          "description": "Students examine unequal exposure, participation, and benefits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Procedural justice"
+            },
+            {
+              "type": "concept",
+              "title": "Distributive justice"
+            },
+            {
+              "type": "concept",
+              "title": "Cumulative burdens"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental ethics",
+          "description": "Ethical frameworks clarify how people value species, ecosystems, and future generations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anthropocentric ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Ecocentric ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Intergenerational responsibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Policy, Governance, and Economics",
+      "description": "Science matters most when it can inform institutions, incentives, rules, and collective action.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Policy tools",
+          "description": "Students learn the tools governments and communities use to reduce environmental harm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standards"
+            },
+            {
+              "type": "concept",
+              "title": "Permits"
+            },
+            {
+              "type": "concept",
+              "title": "Taxes and cap-and-trade"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Governance scales",
+          "description": "Environmental governance happens locally, nationally, and globally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Municipal action"
+            },
+            {
+              "type": "concept",
+              "title": "Federal agencies"
+            },
+            {
+              "type": "concept",
+              "title": "International agreements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental economics",
+          "description": "Economic concepts help explain market failures and policy design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Externalities"
+            },
+            {
+              "type": "concept",
+              "title": "Cost-benefit analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Valuation limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental Data, GIS, and Remote Sensing",
+      "description": "An introductory course should introduce students to how environmental patterns are measured, mapped, and monitored.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Environmental indicators",
+          "description": "Students learn to interpret the numbers used in public environmental debates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Water quality indices"
+            },
+            {
+              "type": "concept",
+              "title": "Biodiversity indicators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GIS and Mapping",
+          "description": "Maps reveal spatial patterns in hazards, resources, exposure, and land change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Layers and overlays"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and projection"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial inequality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Remote sensing",
+          "description": "Satellite data help monitor forests, fires, water, cities, and climate impacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spectral signatures"
+            },
+            {
+              "type": "concept",
+              "title": "Change detection"
+            },
+            {
+              "type": "concept",
+              "title": "Data resolution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field, Lab, and Case-Study Methods",
+      "description": "Students need practice turning environmental questions into evidence, analysis, and decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling design",
+          "description": "Good environmental data starts with clear questions and defensible sampling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Site selection"
+            },
+            {
+              "type": "concept",
+              "title": "Replication"
+            },
+            {
+              "type": "concept",
+              "title": "Bias and representativeness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality assurance and uncertainty",
+          "description": "Students learn that methods and uncertainty shape conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "QA/QC"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Case-study synthesis",
+          "description": "Complex problems require integrating science, stakeholders, and tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem framing"
+            },
+            {
+              "type": "concept",
+              "title": "Alternatives analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation memos"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

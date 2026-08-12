@@ -1,0 +1,1072 @@
+{
+  "slug": "mechanical-vibrations",
+  "title": "Mechanical Vibrations",
+  "description": "This syllabus treats vibrations as the bridge among dynamics, system modeling, measurement, and design. Students move from 1-DOF response to modal analysis, continuous systems, random vibration, experimental testing, and engineering control applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Vibration Modeling, Linearization, and Equation Formulation",
+      "description": "Model mechanical systems as lumped-parameter oscillators using force, energy, and equivalent-parameter ideas.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanical Oscillator Idealizations",
+          "description": "Students learn how real machines and structures become solvable vibration models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass, stiffness, damping, inertia, compliance, and constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Lumped-parameter model, distributed-parameter model, rigid body, and flexible body"
+            },
+            {
+              "type": "concept",
+              "title": "Translational vibration, torsional vibration, bending vibration, and axial vibration"
+            },
+            {
+              "type": "concept",
+              "title": "Degree of freedom, generalized coordinate, equilibrium position, and small motion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equation-of-Motion Methods",
+          "description": "This subtopic gives students several reliable ways to derive vibration equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free-body diagram, Newton's second law, moment equation, and D'Alembert principle"
+            },
+            {
+              "type": "concept",
+              "title": "Energy method, kinetic energy, potential energy, and generalized force"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrange equation, virtual work, and generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent stiffness, equivalent mass, and equivalent damping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearization and Model Assumptions",
+          "description": "The point is to know what the model keeps, what it drops, and when that is acceptable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static equilibrium, perturbation coordinate, small-angle approximation, and Taylor linearization"
+            },
+            {
+              "type": "concept",
+              "title": "Linear spring, viscous damper, Coulomb friction, and structural damping idealizations"
+            },
+            {
+              "type": "concept",
+              "title": "Initial condition, boundary condition, forcing function, and parameter uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Model validation, natural frequency check, and dimensional consistency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Free Vibration of Undamped Single-Degree-of-Freedom Systems",
+      "description": "Analyze natural frequency and free response of ideal 1-DOF spring-mass and torsional systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Natural Frequency and Simple Harmonic Motion",
+          "description": "Students learn the baseline oscillation behavior before damping or forcing complicates it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spring-mass system, torsional oscillator, pendulum approximation, and equivalent oscillator"
+            },
+            {
+              "type": "concept",
+              "title": "Natural circular frequency, natural frequency in Hz, period, and phase angle"
+            },
+            {
+              "type": "concept",
+              "title": "Amplitude, displacement, velocity, acceleration, and initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Energy exchange between kinetic and potential energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytical Solution and Response Interpretation",
+          "description": "This subtopic connects the differential equation to physical motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second-order homogeneous differential equation"
+            },
+            {
+              "type": "concept",
+              "title": "Characteristic equation, sine/cosine form, and amplitude-phase form"
+            },
+            {
+              "type": "concept",
+              "title": "Initial displacement, initial velocity, and response envelope"
+            },
+            {
+              "type": "concept",
+              "title": "Phase plane, state variables, and response plots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equivalent Systems and Design Sensitivity",
+          "description": "The goal is to see how mass and stiffness changes alter vibration behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equivalent spring in series, equivalent spring in parallel, and torsional stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Effective mass, mass moment of inertia, and radius of gyration"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency tuning, stiffness change, mass change, and sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Static deflection method and frequency estimation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Damped Single-Degree-of-Freedom Vibration",
+      "description": "Study viscous, Coulomb, and structural damping and how damping changes transient response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Viscous Damping Model",
+          "description": "Students learn the most common mathematical damping model and its response classes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Damping coefficient, critical damping coefficient, damping ratio, and damped natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Underdamped response, critically damped response, and overdamped response"
+            },
+            {
+              "type": "concept",
+              "title": "Logarithmic decrement, decay envelope, and settling time"
+            },
+            {
+              "type": "concept",
+              "title": "Quality factor, bandwidth connection, and energy dissipation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Other Damping Mechanisms",
+          "description": "Real structures dissipate energy in more than one way, so students need the model vocabulary.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coulomb friction, dry friction, structural damping, hysteretic damping, and material damping"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent viscous damping and energy-equivalent damping"
+            },
+            {
+              "type": "concept",
+              "title": "Air damping, fluid damping, joint damping, and frictional interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Damping identification from free decay"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transient Response and Design Implications",
+          "description": "The point is to connect damping to shock response, settling, and vibration control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overshoot, peak time, time constant, and decay rate"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse-like initial condition and ringdown"
+            },
+            {
+              "type": "concept",
+              "title": "Damping trade-offs in instruments, vehicles, machines, and structures"
+            },
+            {
+              "type": "concept",
+              "title": "Underdamped oscillation avoidance and rapid settling design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Forced Harmonic Vibration, Resonance, and Frequency Response",
+      "description": "Analyze steady-state response to sinusoidal forcing and interpret resonance, phase, and transmissibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Steady-State Harmonic Response",
+          "description": "Students learn how systems respond to sinusoidal forces at different frequencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Harmonic force, excitation frequency, frequency ratio, and steady-state amplitude"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic magnification factor, phase angle, and complex response"
+            },
+            {
+              "type": "concept",
+              "title": "Particular solution, transient solution, and total response"
+            },
+            {
+              "type": "concept",
+              "title": "Force excitation, displacement response, velocity response, and acceleration response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resonance and Frequency Response Functions",
+          "description": "This subtopic makes resonance quantitative and visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resonance frequency, peak response, half-power bandwidth, and damping effect"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response function, receptance, mobility, and accelerance"
+            },
+            {
+              "type": "concept",
+              "title": "Bode magnitude plot, Bode phase plot, and Nyquist plot"
+            },
+            {
+              "type": "concept",
+              "title": "Anti-resonance, phase crossover, and response peak interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rotating and Reciprocating Excitation Preview",
+          "description": "The goal is to connect harmonic response to common machine vibration sources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rotating unbalance, eccentric mass, centrifugal force, and whirl speed"
+            },
+            {
+              "type": "concept",
+              "title": "Reciprocating engine forces and harmonic components"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronous excitation, forcing order, and order tracking preview"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance avoidance and speed-range restrictions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "General Forcing, Impulse Response, and Time-Domain Methods",
+      "description": "Extend vibration response to impulse, step, arbitrary, and periodic forcing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Impulse, Step, and Arbitrary Forcing",
+          "description": "Students learn how vibration systems respond when forcing is not a single sine wave.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit impulse, impulse response, step response, ramp input, and pulse excitation"
+            },
+            {
+              "type": "concept",
+              "title": "Duhamel integral, convolution, and superposition"
+            },
+            {
+              "type": "concept",
+              "title": "Shock response, transient load, and impact force"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions plus external forcing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Periodic and Fourier-Based Forcing",
+          "description": "This subtopic connects repeated non-sinusoidal loads to harmonic components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fourier series, harmonic component, fundamental frequency, and spectrum"
+            },
+            {
+              "type": "concept",
+              "title": "Square wave, sawtooth, pulse train, and rotating machinery harmonics"
+            },
+            {
+              "type": "concept",
+              "title": "Response to each harmonic and modal superposition of harmonic responses"
+            },
+            {
+              "type": "concept",
+              "title": "Beat phenomenon and close-frequency forcing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical Time Integration",
+          "description": "The point is to solve vibration problems that do not have convenient closed forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State-space form, first-order system, and numerical integration"
+            },
+            {
+              "type": "concept",
+              "title": "Euler method, Runge-Kutta method, central difference method, and Newmark-beta method"
+            },
+            {
+              "type": "concept",
+              "title": "Time step, stability, accuracy, and numerical damping"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB/Python simulation and validation against analytical cases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Base Excitation, Rotating Unbalance, and Vibration Isolation",
+      "description": "Analyze vibrations caused by moving supports, rotating machinery, and transmitted forces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Base Excitation",
+          "description": "Students learn how moving supports drive vibration even without a direct applied force.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base displacement, relative displacement, absolute displacement, and support motion"
+            },
+            {
+              "type": "concept",
+              "title": "Road input, floor vibration, seismic motion, and shaker table input"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement transmissibility and acceleration transmissibility"
+            },
+            {
+              "type": "concept",
+              "title": "Low-frequency following and high-frequency isolation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vibration Isolation",
+          "description": "This subtopic shows how mounts and isolators reduce transmitted motion or force.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force transmissibility, isolation frequency, static deflection, and mount stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Isolation region, amplification region, and transmissibility ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Elastomer mount, spring isolator, dashpot, and tuned support"
+            },
+            {
+              "type": "concept",
+              "title": "Machine foundation, sensitive instrument isolation, and vehicle suspension"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rotating Unbalance and Machine Vibration",
+          "description": "The goal is to diagnose one of the most common machinery vibration problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unbalance force, eccentricity, rotor speed, and synchronous response"
+            },
+            {
+              "type": "concept",
+              "title": "Critical speed, rotor whirl, and balancing plane"
+            },
+            {
+              "type": "concept",
+              "title": "Single-plane balancing and two-plane balancing as practical ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Fan, pump, motor, turbine, and shaft examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Two-Degree-of-Freedom Systems and Coupled Oscillations",
+      "description": "Study coupled coordinates, normal modes, mode shapes, and beating in 2-DOF systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coupled Equations and Normal Modes",
+          "description": "Students learn how multiple coordinates interact through mass and stiffness coupling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two masses, coupled springs, generalized coordinates, and coupled equations"
+            },
+            {
+              "type": "concept",
+              "title": "Mass matrix, stiffness matrix, and determinant condition"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequencies, mode shapes, and modal vectors"
+            },
+            {
+              "type": "concept",
+              "title": "In-phase mode, out-of-phase mode, and physical interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modal Coordinates and Beating",
+          "description": "This subtopic shows how coupled motion can be understood as a sum of simpler motions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate transformation, normal coordinate, modal coordinate, and decoupling"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonality in a simple 2-DOF setting"
+            },
+            {
+              "type": "concept",
+              "title": "Beat frequency, energy exchange, and close natural frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Initial condition projection onto modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dynamic Vibration Absorbers",
+          "description": "The point is to use a second degree of freedom to control vibration deliberately.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tuned mass damper, absorber mass, absorber stiffness, and tuning frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Primary system, absorber system, and anti-resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Den Hartog tuning idea and damping in absorbers"
+            },
+            {
+              "type": "concept",
+              "title": "Building damper, machinery absorber, and vehicle application examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multi-Degree-of-Freedom Systems and Matrix Methods",
+      "description": "Generalize vibration analysis to finite systems using mass, damping, and stiffness matrices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Matrix Formulation",
+          "description": "Students learn to express finite vibration systems compactly and computationally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass matrix, damping matrix, stiffness matrix, force vector, and displacement vector"
+            },
+            {
+              "type": "concept",
+              "title": "Lumped mass, consistent mass, influence coefficient, and stiffness assembly"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetric matrix, positive definiteness, and boundary constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Finite element vibration model preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Eigenvalue Problem",
+          "description": "This subtopic is the mathematical core of MDOF free vibration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generalized eigenvalue problem, characteristic equation, eigenvalue, and eigenvector"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency, mode shape, repeated root, and rigid-body mode"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-normalized mode, stiffness-normalized mode, and modal matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical eigensolver and interpretation of computed modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forced Response of MDOF Systems",
+          "description": "The point is to predict response when many coordinates move together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Harmonic force vector, frequency response matrix, and dynamic stiffness matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Damping matrix, proportional damping, Rayleigh damping, and non-proportional damping"
+            },
+            {
+              "type": "concept",
+              "title": "Direct integration, modal superposition, and steady-state response"
+            },
+            {
+              "type": "concept",
+              "title": "Participation of modes and truncation error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modal Analysis, Orthogonality, and Modal Superposition",
+      "description": "Use modal coordinates and orthogonality to decouple linear vibration systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Orthogonality and Normalization",
+          "description": "Students learn why modes can decouple linear systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass orthogonality, stiffness orthogonality, and modal normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Modal mass, modal stiffness, modal damping, and modal force"
+            },
+            {
+              "type": "concept",
+              "title": "Mode shape scaling and sign convention"
+            },
+            {
+              "type": "concept",
+              "title": "Complete modal basis and modal truncation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modal Superposition",
+          "description": "This subtopic turns complex MDOF response into sums of modal responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Modal coordinate, modal participation factor, and generalized force"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response, harmonic response, and transient response by modes"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant mode, residual flexibility, and missing mass"
+            },
+            {
+              "type": "concept",
+              "title": "Initial condition expansion and forced response expansion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental and Operational Modal Analysis Preview",
+          "description": "The goal is to connect theoretical modes to measured structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Experimental modal analysis, operational modal analysis, and operating deflection shape"
+            },
+            {
+              "type": "concept",
+              "title": "FRF curve fitting, mode identification, and modal assurance criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Impact hammer test, shaker test, and sensor placement"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation between test and finite element model"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuous Systems and Approximate Methods",
+      "description": "Analyze strings, rods, shafts, beams, and plates as distributed-parameter vibration systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Distributed-Parameter Vibration Models",
+          "description": "Students learn that many real structures have infinitely many modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "String vibration, longitudinal rod vibration, torsional shaft vibration, and beam vibration"
+            },
+            {
+              "type": "concept",
+              "title": "Partial differential equation, boundary condition, and initial condition"
+            },
+            {
+              "type": "concept",
+              "title": "Wave speed, natural frequency sequence, and mode function"
+            },
+            {
+              "type": "concept",
+              "title": "Node, antinode, standing wave, and orthogonal functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Beam and Shaft Vibration",
+          "description": "This subtopic covers the most common mechanical/structural continuous systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler-Bernoulli beam, bending stiffness EI, mass per length, and boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Simply supported, clamped, free, and cantilever boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Torsional vibration of shafts and polar inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Critical speed of shafts and rotating machinery connection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Approximate Methods",
+          "description": "The point is to estimate natural frequencies and modes when exact solutions are hard.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rayleigh quotient, assumed modes, Galerkin method, and Ritz method"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent SDOF approximation and effective modal mass"
+            },
+            {
+              "type": "concept",
+              "title": "Finite element modal analysis preview"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence, trial function, and boundary-condition compatibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Vibration and Spectral Description",
+      "description": "Introduce stochastic excitation, power spectral density, RMS response, and vibration environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Random Process Basics",
+          "description": "Students learn how to describe vibration when excitation is uncertain or broadband.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random process, stationary process, ergodic assumption, mean, variance, and RMS"
+            },
+            {
+              "type": "concept",
+              "title": "Autocorrelation, cross-correlation, probability density, and ensemble average"
+            },
+            {
+              "type": "concept",
+              "title": "White noise, colored noise, narrowband process, and broadband process"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian process and non-Gaussian vibration environments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power Spectral Density",
+          "description": "This subtopic gives the main frequency-domain tool for random vibration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power spectral density, one-sided PSD, two-sided PSD, and units"
+            },
+            {
+              "type": "concept",
+              "title": "Mean square response as area under PSD"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency resolution, bandwidth, and windowing effect"
+            },
+            {
+              "type": "concept",
+              "title": "Input PSD, output PSD, and transfer function magnitude squared"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering Random Vibration Applications",
+          "description": "The goal is to interpret real vibration environments and design tests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Road roughness, wind loading, seismic excitation, acoustic excitation, and launch vibration"
+            },
+            {
+              "type": "concept",
+              "title": "RMS acceleration, crest factor, fatigue damage spectrum, and response spectrum preview"
+            },
+            {
+              "type": "concept",
+              "title": "Random vibration test specification and shaker testing"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability, fatigue, and comfort metrics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vibration Measurement, Signal Processing, and Experimental Modal Testing",
+      "description": "Measure vibration with sensors, data acquisition, FFTs, and experimental modal analysis methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sensors and Data Acquisition",
+          "description": "Students learn how vibration data are actually measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accelerometer, velocity sensor, displacement probe, strain gauge, and tachometer"
+            },
+            {
+              "type": "concept",
+              "title": "Piezoelectric accelerometer, MEMS accelerometer, sensitivity, and calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling rate, aliasing, anti-alias filter, and quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Mounting method, sensor mass loading, and cable effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal Processing for Vibration",
+          "description": "This subtopic turns raw time signals into interpretable vibration features.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time waveform, FFT, spectrum, spectrogram, and order spectrum"
+            },
+            {
+              "type": "concept",
+              "title": "Window function, leakage, averaging, and frequency resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering, RMS, peak, peak-to-peak, and envelope detection"
+            },
+            {
+              "type": "concept",
+              "title": "Coherence, cross spectrum, and transfer function estimate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental Modal Testing",
+          "description": "The point is to identify dynamic properties from measured input-output data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impact hammer, electrodynamic shaker, roving hammer, roving accelerometer, and reference sensor"
+            },
+            {
+              "type": "concept",
+              "title": "FRF measurement, accelerance, mobility, receptance, and curve fitting"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency, damping ratio, mode shape, and modal assurance criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Test planning, boundary condition simulation, and validation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonlinear Vibration, Stability, and Special Phenomena",
+      "description": "Survey nonlinear stiffness, damping, self-excitation, parametric excitation, and stability concepts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sources of Nonlinearity",
+          "description": "Students learn why real systems may not obey linear superposition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric nonlinearity, material nonlinearity, contact nonlinearity, and clearance"
+            },
+            {
+              "type": "concept",
+              "title": "Hardening spring, softening spring, cubic stiffness, and nonlinear damping"
+            },
+            {
+              "type": "concept",
+              "title": "Backlash, friction, impact, and stop constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Amplitude-dependent frequency and response distortion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonlinear Response Phenomena",
+          "description": "This subtopic names the behaviors students may see in real vibration data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jump phenomenon, hysteresis, subharmonic response, superharmonic response, and internal resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Limit cycle, self-excited vibration, and van der Pol oscillator"
+            },
+            {
+              "type": "concept",
+              "title": "Parametric excitation, Mathieu equation, and instability tongue"
+            },
+            {
+              "type": "concept",
+              "title": "Chaos, bifurcation, and strange attractor as advanced concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability and Approximate Nonlinear Methods",
+          "description": "The goal is to give students entry points without turning the course into nonlinear dynamics only.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium stability, perturbation, phase portrait, and basin of attraction"
+            },
+            {
+              "type": "concept",
+              "title": "Linearization about equilibrium and local stability"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic balance, describing function, and perturbation method preview"
+            },
+            {
+              "type": "concept",
+              "title": "Practical screening for nonlinear effects in tests and simulations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Applications, Vibration Control, and Design Project",
+      "description": "Apply vibration analysis to machines, vehicles, structures, rotating equipment, acoustics, and product design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Application Domains",
+          "description": "Students connect vibration theory to design and diagnosis contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rotating machinery, vehicle suspension, building vibration, aerospace structures, and precision equipment"
+            },
+            {
+              "type": "concept",
+              "title": "Gear vibration, bearing fault, shaft misalignment, blade vibration, and panel vibration"
+            },
+            {
+              "type": "concept",
+              "title": "Human exposure, comfort, noise, fatigue, and durability"
+            },
+            {
+              "type": "concept",
+              "title": "Acoustics, structure-borne sound, and noise-control connection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vibration Control Strategies",
+          "description": "This subtopic compares ways to reduce vibration at the source, path, or receiver.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resonance avoidance, stiffness tuning, mass tuning, damping addition, and isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Tuned mass damper, constrained-layer damping, dynamic absorber, and active control"
+            },
+            {
+              "type": "concept",
+              "title": "Balancing, alignment, maintenance, and condition monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Design trade-offs: weight, cost, temperature, durability, space, and performance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design or Diagnosis Project",
+          "description": "The final project asks students to synthesize modeling, measurement, and design judgement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement, system model, assumptions, and parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Analytical prediction, simulation, measurement plan, and validation"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response, modal result, isolation design, or fault diagnosis"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation, uncertainty, limitations, and engineering communication"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

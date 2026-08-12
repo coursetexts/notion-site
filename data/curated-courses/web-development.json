@@ -1,0 +1,1072 @@
+{
+  "slug": "web-development",
+  "title": "Web Development",
+  "description": "Prepares students to build modern, secure, accessible, and deployable web applications\u2014covering semantic HTML, CSS, JavaScript, responsive design, browser APIs, React, server-side programming, REST APIs, databases, authentication, testing, performance, security, deployment, and a portfolio-ready capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Web Platform Foundations, HTTP, Browsers, and Developer Workflow",
+      "description": "This section gives students the map of the web stack. They learn how code moves from editor to browser to server and back.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "How the web works",
+          "description": "Students learn the request/response model behind every web application.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clients and servers"
+            },
+            {
+              "type": "concept",
+              "title": "URLs and DNS Basics"
+            },
+            {
+              "type": "concept",
+              "title": "HTTP Methods and Status Codes"
+            },
+            {
+              "type": "concept",
+              "title": "Cookies, sessions, and headers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Developer workflow",
+          "description": "Students build habits for professional development.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Code editors and extensions"
+            },
+            {
+              "type": "concept",
+              "title": "Git and GitHub Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Package managers"
+            },
+            {
+              "type": "concept",
+              "title": "Local development servers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Browser developer tools",
+          "description": "Students learn to inspect and debug web applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elements and CSS Inspection"
+            },
+            {
+              "type": "concept",
+              "title": "Console debugging"
+            },
+            {
+              "type": "concept",
+              "title": "Network panel"
+            },
+            {
+              "type": "concept",
+              "title": "Application storage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Semantic HTML5, Document Structure, Forms, and Content Strategy",
+      "description": "This section teaches students to build pages with meaning, not just visual boxes. Semantic HTML supports accessibility, SEO, maintainability, and robust interfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Document structure",
+          "description": "Students learn how to organize content correctly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Head and metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Landmark elements"
+            },
+            {
+              "type": "concept",
+              "title": "Headings and sections"
+            },
+            {
+              "type": "concept",
+              "title": "Links, images, tables, and media"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forms and validation",
+          "description": "This subtopic covers the main way users send data to web apps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inputs and labels"
+            },
+            {
+              "type": "concept",
+              "title": "Client-side validation"
+            },
+            {
+              "type": "concept",
+              "title": "Error messages"
+            },
+            {
+              "type": "concept",
+              "title": "Usable form flows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Content strategy",
+          "description": "Students learn that web interfaces are also communication systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plain language"
+            },
+            {
+              "type": "concept",
+              "title": "Information hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Microcopy"
+            },
+            {
+              "type": "concept",
+              "title": "SEO Basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "CSS, Layout, Responsive Design, and Visual Systems",
+      "description": "This section develops visual implementation skill. Students learn to make interfaces that adapt across screen sizes without becoming fragile.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CSS Fundamentals",
+          "description": "Students learn how styles are applied and maintained.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cascade and specificity"
+            },
+            {
+              "type": "concept",
+              "title": "Selectors"
+            },
+            {
+              "type": "concept",
+              "title": "Box model"
+            },
+            {
+              "type": "concept",
+              "title": "Custom properties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modern layout",
+          "description": "This subtopic covers the core layout tools of the web.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flexbox"
+            },
+            {
+              "type": "concept",
+              "title": "CSS Grid"
+            },
+            {
+              "type": "concept",
+              "title": "Positioning"
+            },
+            {
+              "type": "concept",
+              "title": "Spacing and alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Responsive design systems",
+          "description": "Students learn to create consistent responsive interfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Media queries"
+            },
+            {
+              "type": "concept",
+              "title": "Fluid images"
+            },
+            {
+              "type": "concept",
+              "title": "Reusable components"
+            },
+            {
+              "type": "concept",
+              "title": "Color, typography, and spacing tokens"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "JavaScript Fundamentals, Type Safety Concepts, and Browser APIs",
+      "description": "This section gives students the programming foundation for web behavior. The emphasis is readable, reliable code.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Language fundamentals",
+          "description": "Students learn the core JavaScript model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variables and scope"
+            },
+            {
+              "type": "concept",
+              "title": "Functions"
+            },
+            {
+              "type": "concept",
+              "title": "Objects and arrays"
+            },
+            {
+              "type": "concept",
+              "title": "Modules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control and async flow",
+          "description": "This subtopic prepares students for real web data workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditionals and loops"
+            },
+            {
+              "type": "concept",
+              "title": "Promises"
+            },
+            {
+              "type": "concept",
+              "title": "Async/Await"
+            },
+            {
+              "type": "concept",
+              "title": "Fetch API"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Type and code quality concepts",
+          "description": "Students learn to avoid common JavaScript failure modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coercion"
+            },
+            {
+              "type": "concept",
+              "title": "Errors and exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "Linting"
+            },
+            {
+              "type": "concept",
+              "title": "TypeScript Awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DOM Manipulation, Events, State, and Client-Side Interactivity",
+      "description": "This section connects code to the page users see. Students learn to update interfaces in response to state and events.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DOM Selection and Updates",
+          "description": "Students learn to read and change page structure safely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selectors"
+            },
+            {
+              "type": "concept",
+              "title": "Creating elements"
+            },
+            {
+              "type": "concept",
+              "title": "Classes and attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Rendering lists"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Events",
+          "description": "This subtopic teaches interaction handling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Click and input events"
+            },
+            {
+              "type": "concept",
+              "title": "Event bubbling"
+            },
+            {
+              "type": "concept",
+              "title": "Form submission"
+            },
+            {
+              "type": "concept",
+              "title": "Keyboard interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Client-side state",
+          "description": "Students learn why interface state must be managed deliberately.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State variables"
+            },
+            {
+              "type": "concept",
+              "title": "Derived UI"
+            },
+            {
+              "type": "concept",
+              "title": "Local storage"
+            },
+            {
+              "type": "concept",
+              "title": "State synchronization pitfalls"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Accessibility, Usability, UX Patterns, and Inclusive Front-End Design",
+      "description": "This section makes quality human-centered. Students learn to build web products that are usable by more people in more situations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Accessibility foundations",
+          "description": "Students learn inclusive web requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semantic HTML"
+            },
+            {
+              "type": "concept",
+              "title": "Keyboard navigation"
+            },
+            {
+              "type": "concept",
+              "title": "Alt text"
+            },
+            {
+              "type": "concept",
+              "title": "ARIA Basics and Cautions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Usability patterns",
+          "description": "This subtopic focuses on common interaction design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Navigation"
+            },
+            {
+              "type": "concept",
+              "title": "Forms"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback and loading states"
+            },
+            {
+              "type": "concept",
+              "title": "Error prevention and recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inclusive testing",
+          "description": "Students learn to test beyond their own device and habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Screen reader checks"
+            },
+            {
+              "type": "concept",
+              "title": "Color contrast"
+            },
+            {
+              "type": "concept",
+              "title": "Responsive checks"
+            },
+            {
+              "type": "concept",
+              "title": "Usability test notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "React and Component-Based Front-End Architecture",
+      "description": "This section introduces modern frontend architecture. Students learn to build applications from reusable components and predictable data flow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Components and props",
+          "description": "Students learn how React decomposes UI.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Component boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Props"
+            },
+            {
+              "type": "concept",
+              "title": "Composition"
+            },
+            {
+              "type": "concept",
+              "title": "Reusable UI"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State and effects",
+          "description": "This subtopic covers dynamic application behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "useState"
+            },
+            {
+              "type": "concept",
+              "title": "useEffect"
+            },
+            {
+              "type": "concept",
+              "title": "Controlled forms"
+            },
+            {
+              "type": "concept",
+              "title": "Fetching data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Application structure",
+          "description": "Students learn maintainable app organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routing"
+            },
+            {
+              "type": "concept",
+              "title": "Shared layouts"
+            },
+            {
+              "type": "concept",
+              "title": "Folder structure"
+            },
+            {
+              "type": "concept",
+              "title": "Testing components"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Server-Side Programming with Node.js and Web Frameworks",
+      "description": "This section moves from browser code to backend behavior. Students learn how servers route requests, enforce rules, and coordinate services.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Server fundamentals",
+          "description": "Students learn backend application structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Node Runtime"
+            },
+            {
+              "type": "concept",
+              "title": "Express-Style Routing"
+            },
+            {
+              "type": "concept",
+              "title": "Middleware"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Business logic",
+          "description": "This subtopic separates rules from presentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Services and controllers"
+            },
+            {
+              "type": "concept",
+              "title": "Validation"
+            },
+            {
+              "type": "concept",
+              "title": "Error handling"
+            },
+            {
+              "type": "concept",
+              "title": "Logging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Server-rendered and API-driven apps",
+          "description": "Students compare backend delivery models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Templates"
+            },
+            {
+              "type": "concept",
+              "title": "Static assets"
+            },
+            {
+              "type": "concept",
+              "title": "JSON Services"
+            },
+            {
+              "type": "concept",
+              "title": "Full-stack integration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "REST APIs, JSON, Authentication, Authorization, and API Design",
+      "description": "This section teaches how web systems communicate. Students learn to design APIs that are clear, secure, and easy to consume.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "RESTful Design",
+          "description": "Students learn resource-oriented API structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resources and routes"
+            },
+            {
+              "type": "concept",
+              "title": "HTTP Methods"
+            },
+            {
+              "type": "concept",
+              "title": "Status codes"
+            },
+            {
+              "type": "concept",
+              "title": "Pagination and filtering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Authentication and authorization",
+          "description": "This subtopic covers identity and access basics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sessions"
+            },
+            {
+              "type": "concept",
+              "title": "Tokens"
+            },
+            {
+              "type": "concept",
+              "title": "Password handling concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Roles and permissions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "API documentation and testing",
+          "description": "Students learn to make APIs usable and verifiable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "OpenAPI Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Postman or HTTP Clients"
+            },
+            {
+              "type": "concept",
+              "title": "Contract examples"
+            },
+            {
+              "type": "concept",
+              "title": "Error response design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Web Databases, Data Modeling, ORM Concepts, and Persistence",
+      "description": "This section connects web applications to durable data. Students learn to model, query, and protect application information.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Data modeling",
+          "description": "Students learn to design application data structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entities and relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Keys"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization basics"
+            },
+            {
+              "type": "concept",
+              "title": "Document versus relational thinking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Database integration",
+          "description": "This subtopic covers persistence from the application layer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CRUD Operations"
+            },
+            {
+              "type": "concept",
+              "title": "Queries"
+            },
+            {
+              "type": "concept",
+              "title": "ORM Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Migrations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data integrity and privacy",
+          "description": "Students learn responsible storage practices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validation"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitive data handling"
+            },
+            {
+              "type": "concept",
+              "title": "Backups and retention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Web Security, Privacy, Secure Coding, and Threat Modeling",
+      "description": "This section treats security as a normal part of development. Students learn the common ways web applications fail and how to reduce risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Common vulnerabilities",
+          "description": "Students learn the main web attack patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "XSS"
+            },
+            {
+              "type": "concept",
+              "title": "SQL Injection"
+            },
+            {
+              "type": "concept",
+              "title": "CSRF"
+            },
+            {
+              "type": "concept",
+              "title": "Broken access control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Secure development habits",
+          "description": "This subtopic focuses on practical prevention.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Output encoding"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets management"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency updates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Privacy and threat modeling",
+          "description": "Students learn to reason about harm and misuse.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Attack surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Abuse cases"
+            },
+            {
+              "type": "concept",
+              "title": "Security review checklists"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Testing, Debugging, Performance, and Quality Engineering",
+      "description": "This section helps students move from working once to working reliably. Quality is treated as a development practice, not an afterthought.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Testing strategy",
+          "description": "Students learn levels of web testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit tests"
+            },
+            {
+              "type": "concept",
+              "title": "Integration tests"
+            },
+            {
+              "type": "concept",
+              "title": "End-to-end tests"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging practice",
+          "description": "This subtopic builds systematic troubleshooting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reproducing bugs"
+            },
+            {
+              "type": "concept",
+              "title": "Reading stack traces"
+            },
+            {
+              "type": "concept",
+              "title": "Network debugging"
+            },
+            {
+              "type": "concept",
+              "title": "Logging and breakpoints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance",
+          "description": "Students learn to keep experiences fast and efficient.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Core Web Vitals"
+            },
+            {
+              "type": "concept",
+              "title": "Image optimization"
+            },
+            {
+              "type": "concept",
+              "title": "Bundle size"
+            },
+            {
+              "type": "concept",
+              "title": "Caching"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Deployment, CI/CD, Cloud Hosting, Observability, and Operations",
+      "description": "This section teaches students how web applications become real services. Students learn release discipline and operational responsibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deployment models",
+          "description": "Students compare common hosting options.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static hosting"
+            },
+            {
+              "type": "concept",
+              "title": "Platform-as-a-service"
+            },
+            {
+              "type": "concept",
+              "title": "Containers awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Database hosting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CI/CD and Environments",
+          "description": "This subtopic covers repeatable delivery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build scripts"
+            },
+            {
+              "type": "concept",
+              "title": "Environment variables"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets"
+            },
+            {
+              "type": "concept",
+              "title": "Staging and production"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operations",
+          "description": "Students learn how deployed apps are monitored and supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logs"
+            },
+            {
+              "type": "concept",
+              "title": "Metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Error tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Rollback and incident notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Full-Stack Capstone, Documentation, Portfolio, and Professional Practice",
+      "description": "This final section synthesizes the course into a portfolio-grade artifact. Students demonstrate that they can build, explain, secure, deploy, and maintain a web application.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capstone planning",
+          "description": "Students define a realistic project scope.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "User stories"
+            },
+            {
+              "type": "concept",
+              "title": "Data model"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional documentation",
+          "description": "This subtopic makes the project understandable to others.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "README"
+            },
+            {
+              "type": "concept",
+              "title": "API Documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Deployment instructions"
+            },
+            {
+              "type": "concept",
+              "title": "Security and accessibility notes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Portfolio presentation",
+          "description": "Students learn to communicate technical work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Live demo"
+            },
+            {
+              "type": "concept",
+              "title": "Code walkthrough"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff explanation"
+            },
+            {
+              "type": "concept",
+              "title": "Lessons learned"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

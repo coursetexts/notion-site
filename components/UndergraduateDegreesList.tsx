@@ -287,7 +287,7 @@ function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
             rel='noreferrer'
             className={styles.resourceLink}
           >
-            See full course outline ⇗
+            See full course outline on Google Docs ⇗
           </a>
         </li>
         <li
@@ -298,7 +298,7 @@ function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
             href={getCuratedCoursePath(course.name)}
             className={styles.resourceLink}
           >
-            See curated course videos
+            See full curated course ⇗
           </a>
         </li>
       </ul>

@@ -1,0 +1,968 @@
+{
+  "slug": "physics-i",
+  "title": "Physics I",
+  "description": "Physics I introduces mechanics as the disciplined modeling of motion, forces, energy, momentum, rotation, gravitation, oscillations, waves, fluids, and measurement. The course emphasizes conceptual understanding, calculus-based problem solving, laboratory reasoning, uncertainty analysis, computational modeling, and transfer to engineering, life science, and physical science contexts.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Physical Modeling, Measurement, Units, and Uncertainty",
+      "description": "Students begin by learning how physics turns messy reality into measured quantities, models, estimates, and testable claims.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Models and approximations",
+          "description": "The point is to learn that physics is built from idealized models chosen for a purpose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Particle models"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid bodies and continua"
+            },
+            {
+              "type": "concept",
+              "title": "Order-of-magnitude estimates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Units and dimensional reasoning",
+          "description": "Students use units as a guardrail for equations and a tool for discovering scaling laws.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SI units"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Unit conversions and significant figures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and uncertainty",
+          "description": "Real data have uncertainty, so students must report results with defensible precision.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random and systematic error"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical fits and residuals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vectors, Coordinate Systems, and Mathematical Tools for Mechanics",
+      "description": "This topic builds the mathematical language needed to describe motion, force, and change in one, two, and three dimensions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vector representation",
+          "description": "Mechanics becomes clearer when displacement, velocity, force, and momentum are treated as vectors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Components and unit vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Magnitude and direction"
+            },
+            {
+              "type": "concept",
+              "title": "Vector addition and subtraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Products and projections",
+          "description": "Dot and cross products encode work, torque, angular momentum, and geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dot product"
+            },
+            {
+              "type": "concept",
+              "title": "Cross product"
+            },
+            {
+              "type": "concept",
+              "title": "Projection and perpendicular components"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calculus for motion",
+          "description": "Derivatives and integrals connect position, velocity, acceleration, work, and accumulated change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rates of change"
+            },
+            {
+              "type": "concept",
+              "title": "Area under curves"
+            },
+            {
+              "type": "concept",
+              "title": "Differential equations preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Kinematics in One and Two Dimensions",
+      "description": "Students learn to describe motion before explaining its causes, using position, velocity, acceleration, and graphical reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-dimensional motion",
+          "description": "Students learn to connect equations, graphs, and physical motion along a line.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position-time graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-acceleration equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Two-dimensional motion",
+          "description": "Independent component analysis makes curved motion manageable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Projectile motion"
+            },
+            {
+              "type": "concept",
+              "title": "Relative velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Trajectory and range"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonuniform motion",
+          "description": "Real motion often changes with time, so students practice calculus-based descriptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instantaneous quantities"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical integration"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical stepping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Newton's Laws, Free-Body Diagrams, and Force Models",
+      "description": "This module connects motion to interactions through disciplined free-body diagrams and Newtonian dynamics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Newton's laws",
+          "description": "Newton's laws define how interactions change motion and how objects push on each other.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Net force and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Action-reaction pairs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Free-body diagrams",
+          "description": "A clear diagram is the main technology for solving force problems correctly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Contact and long-range forces"
+            },
+            {
+              "type": "concept",
+              "title": "Component equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common force models",
+          "description": "Students learn the standard force laws used across mechanics problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weight and normal force"
+            },
+            {
+              "type": "concept",
+              "title": "Tension and springs"
+            },
+            {
+              "type": "concept",
+              "title": "Static and kinetic friction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applications of Newtonian Dynamics",
+      "description": "Students apply force laws to realistic systems including friction, drag, circular motion, constraints, and coupled bodies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Constrained systems",
+          "description": "Pulleys, inclines, and connected bodies teach students to translate geometry into equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inclined planes"
+            },
+            {
+              "type": "concept",
+              "title": "Atwood machines"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-body systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Circular motion",
+          "description": "Curved motion requires centripetal acceleration even when speed is constant.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform circular motion"
+            },
+            {
+              "type": "concept",
+              "title": "Banked curves"
+            },
+            {
+              "type": "concept",
+              "title": "Vertical circles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Non-ideal forces",
+          "description": "Drag and resistance introduce realistic motion and simple differential equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear and quadratic drag"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical solutions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work, Energy, Power, and Conservative Forces",
+      "description": "This topic introduces energy as a powerful alternative to force-by-force analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Work and kinetic energy",
+          "description": "Work-energy methods often solve motion problems more simply than forces alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Work by constant and variable forces"
+            },
+            {
+              "type": "concept",
+              "title": "Work-energy theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Potential energy",
+          "description": "Conservative forces allow motion to be analyzed through stored energy landscapes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gravitational potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Elastic potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation of mechanical energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy diagrams and dissipation",
+          "description": "Students learn to reason qualitatively and quantitatively about allowed motion and losses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turning points"
+            },
+            {
+              "type": "concept",
+              "title": "Stable and unstable equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal losses and efficiency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Momentum, Impulse, Collisions, and Systems of Particles",
+      "description": "Students learn conservation of momentum and center-of-mass methods for interactions and multi-body systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Momentum and impulse",
+          "description": "Momentum tracks motion through interactions over time, especially when forces are large and brief.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse-momentum theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Force-time graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Average and instantaneous force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collisions",
+          "description": "Collision analysis combines momentum conservation with energy bookkeeping.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elastic collisions"
+            },
+            {
+              "type": "concept",
+              "title": "Inelastic collisions"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient of restitution preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Center of mass",
+          "description": "Multi-particle systems can often be simplified by tracking the motion of their center of mass.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Center-of-mass position"
+            },
+            {
+              "type": "concept",
+              "title": "External versus internal forces"
+            },
+            {
+              "type": "concept",
+              "title": "Explosions and recoil"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rotational Kinematics, Torque, and Rigid-Body Dynamics",
+      "description": "This module extends mechanics from particles to rotating bodies and distributed mass.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rotational variables",
+          "description": "Angular position, velocity, and acceleration mirror linear kinematics but require careful units and geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radians"
+            },
+            {
+              "type": "concept",
+              "title": "Angular acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Tangential and radial acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Torque and rotational inertia",
+          "description": "Rotation depends on where forces act and how mass is distributed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lever arms"
+            },
+            {
+              "type": "concept",
+              "title": "Moment of inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel-axis theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rotational energy and dynamics",
+          "description": "Students connect torque, angular acceleration, and rotational kinetic energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rotational form of Newton's second law"
+            },
+            {
+              "type": "concept",
+              "title": "Work by torque"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid-body energy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Angular Momentum, Rolling Motion, and Gyroscopic Effects",
+      "description": "Students learn why angular momentum is conserved, how rolling links translation and rotation, and why rotating systems behave unexpectedly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Angular momentum conservation",
+          "description": "Angular momentum explains rotation in isolated systems from skaters to planets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Particle angular momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid-body angular momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Internal torques and conservation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rolling motion",
+          "description": "Rolling combines translation and rotation through a no-slip constraint.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rolling without slipping"
+            },
+            {
+              "type": "concept",
+              "title": "Energy of rolling bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Inclines and rotational inertia"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gyroscopes and precession",
+          "description": "Rotating objects respond to torque in ways that reveal vector angular momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precession"
+            },
+            {
+              "type": "concept",
+              "title": "Stability"
+            },
+            {
+              "type": "concept",
+              "title": "Qualitative gyroscope behavior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Static Equilibrium, Elasticity, and Introductory Engineering Mechanics",
+      "description": "This topic develops balance laws for structures, beams, materials, and biological or engineered load-bearing systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equilibrium conditions",
+          "description": "Statics applies force and torque balance to objects that are not accelerating.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Net force equals zero"
+            },
+            {
+              "type": "concept",
+              "title": "Net torque equals zero"
+            },
+            {
+              "type": "concept",
+              "title": "Choice of pivot"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structures and load paths",
+          "description": "Students learn how forces flow through real supports, beams, and frames.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trusses and supports"
+            },
+            {
+              "type": "concept",
+              "title": "Center of gravity"
+            },
+            {
+              "type": "concept",
+              "title": "Distributed loads preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Elasticity",
+          "description": "Materials deform under load, making mechanics relevant to engineering, biology, and design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress and strain"
+            },
+            {
+              "type": "concept",
+              "title": "Young's modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Hooke's law limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gravitation, Orbits, and Central-Force Motion",
+      "description": "Students connect Newton's universal law to planetary motion, satellites, escape speed, and inverse-square forces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Newtonian gravitation",
+          "description": "Universal gravitation connects falling objects, planetary motion, and satellite systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverse-square law"
+            },
+            {
+              "type": "concept",
+              "title": "Gravitational field"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition of gravitational forces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Orbital motion",
+          "description": "Students see circular and elliptical orbits as consequences of central forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Circular orbit speed"
+            },
+            {
+              "type": "concept",
+              "title": "Kepler's laws"
+            },
+            {
+              "type": "concept",
+              "title": "Escape speed"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy and angular momentum in gravity",
+          "description": "Conservation laws give a deep view of bounded and unbounded motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effective potential preview"
+            },
+            {
+              "type": "concept",
+              "title": "Bound versus escape trajectories"
+            },
+            {
+              "type": "concept",
+              "title": "Two-body approximation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Oscillations, Resonance, and Introductory Waves",
+      "description": "This module develops periodic motion and wave behavior as a bridge from mechanics to sound, fields, and modern physics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simple harmonic motion",
+          "description": "Small oscillations appear throughout physics because many stable systems are approximately quadratic near equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass-spring systems"
+            },
+            {
+              "type": "concept",
+              "title": "Pendulums"
+            },
+            {
+              "type": "concept",
+              "title": "Phase and amplitude"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Damping and driving",
+          "description": "Real oscillators lose energy and can resonate when driven at the right frequency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Damped motion"
+            },
+            {
+              "type": "concept",
+              "title": "Driven oscillators"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance and quality factor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Waves and sound",
+          "description": "Waves extend oscillation ideas through space and prepare students for later E&M and optics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wave speed"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            },
+            {
+              "type": "concept",
+              "title": "Standing waves and sound"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluids, Pressure, Buoyancy, and Flow",
+      "description": "Students study continuum behavior in liquids and gases, including hydrostatics and ideal-flow principles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pressure and hydrostatics",
+          "description": "Fluids at rest transmit force through pressure that varies with depth.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure definition"
+            },
+            {
+              "type": "concept",
+              "title": "Pascal's principle"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrostatic pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buoyancy",
+          "description": "Archimedes' principle explains floating, sinking, and apparent weight.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Displaced fluid"
+            },
+            {
+              "type": "concept",
+              "title": "Density"
+            },
+            {
+              "type": "concept",
+              "title": "Stability of floating bodies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow models",
+          "description": "Introductory flow ideas connect conservation principles to fluids in motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Bernoulli equation"
+            },
+            {
+              "type": "concept",
+              "title": "Viscosity and real-flow limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermal Physics and Energy Transfer Preview",
+      "description": "This topic introduces temperature, kinetic theory, heat, and the thermodynamic ideas often paired with Physics I.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Temperature and kinetic theory",
+          "description": "Thermal physics links microscopic motion to macroscopic temperature and pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature scales"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal gas model"
+            },
+            {
+              "type": "concept",
+              "title": "Root-mean-square speed preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat and work",
+          "description": "Students distinguish energy transfer by thermal interaction from mechanical work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Latent heat"
+            },
+            {
+              "type": "concept",
+              "title": "First law preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport and applications",
+          "description": "Thermal processes show how energy moves through matter and systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conduction"
+            },
+            {
+              "type": "concept",
+              "title": "Convection"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laboratory Modeling, Computation, and Mechanics Project",
+      "description": "The course culminates in careful experimentation, uncertainty analysis, computational modeling, and a polished mechanics investigation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental design",
+          "description": "Students learn to ask a measurable question and design a test that can actually answer it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypothesis and model"
+            },
+            {
+              "type": "concept",
+              "title": "Controls and calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Repeatability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational mechanics",
+          "description": "Numerical models let students study motion when analytic solutions are hard or impossible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler method"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sweeps"
+            },
+            {
+              "type": "concept",
+              "title": "Model validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scientific communication",
+          "description": "A Physics I project requires clear reasoning, honest uncertainty, and polished presentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Figures and captions"
+            },
+            {
+              "type": "concept",
+              "title": "Claim-evidence-reasoning"
+            },
+            {
+              "type": "concept",
+              "title": "Lab report or oral defense"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

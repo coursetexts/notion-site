@@ -1,0 +1,1224 @@
+{
+  "slug": "organic-chemistry-i-and-ii",
+  "title": "Organic Chemistry I & II",
+  "description": "A rigorous two-semester, Year 2 sequence that develops organic structure, stereochemistry, mechanism, spectroscopy, and synthesis for chemical engineers. The course develops functional-group mastery while adding explicit reaction-energy reasoning, organometallic carbon\u2013carbon bond formation, enolate chemistry, integrated retrosynthesis, modern analytical interpretation, polymer chemistry, green chemistry, and process-safety/scale-up judgment.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Molecular Structure, Bonding, and Acid\u2013Base Reasoning",
+      "description": "Establishes the electronic language used to predict structure, stability, physical properties, and reactivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Representing organic molecules",
+          "description": "Fluent representations let students move from connectivity to geometry and reactivity without losing chemical information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lewis, condensed, line-angle, and three-dimensional structures"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge, octets, lone pairs, and common valence patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Functional-group recognition and IUPAC nomenclature"
+            },
+            {
+              "type": "concept",
+              "title": "Constitutional isomers and degrees of unsaturation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bonding and electronic structure",
+          "description": "Orbital models explain geometry, bond strength, polarity, and the availability of electrons for reaction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hybridization and molecular geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Sigma and pi bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Bond polarity, dipoles, and intermolecular forces"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular-orbital and hyperconjugation concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resonance and acid\u2013base reasoning",
+          "description": "Resonance and pKa comparisons provide a general method for ranking stability and predicting equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Valid resonance contributors and resonance hybrids"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive, resonance, orbital, and solvation effects"
+            },
+            {
+              "type": "concept",
+              "title": "Br\u00f8nsted\u2013Lowry and Lewis acids/bases"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate-acid pKa and equilibrium direction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conformations and Stereochemistry",
+      "description": "Builds three-dimensional reasoning for molecular shape, chirality, selectivity, and structure\u2013property relationships.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conformational analysis",
+          "description": "Conformations reveal how rotation and ring shape alter energy, accessibility, and product formation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newman projections and torsional strain"
+            },
+            {
+              "type": "concept",
+              "title": "Anti, gauche, eclipsed, and steric interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Cycloalkane strain and cyclohexane chairs"
+            },
+            {
+              "type": "concept",
+              "title": "Axial/equatorial placement and ring flips"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Configuration and chirality",
+          "description": "Configuration identifies stable three-dimensional arrangements that can produce distinct physical and biological behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stereocenters and chirality tests"
+            },
+            {
+              "type": "concept",
+              "title": "R/S and E/Z assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Enantiomers, diastereomers, meso compounds, and racemates"
+            },
+            {
+              "type": "concept",
+              "title": "Optical activity and enantiomeric excess"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stereochemistry in reactions",
+          "description": "Students learn to translate a mechanism into stereospecific or stereoselective outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Syn and anti addition"
+            },
+            {
+              "type": "concept",
+              "title": "Inversion, retention, and racemization"
+            },
+            {
+              "type": "concept",
+              "title": "Prochirality and facial selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Conformational control and stereoelectronic effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reaction Mechanisms, Energy, and Selectivity",
+      "description": "Replaces reaction memorization with electron-flow, kinetic, thermodynamic, and selectivity models that transfer to unfamiliar chemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electron-flow language",
+          "description": "Curved-arrow mechanisms make bond breaking and bond formation explicit and testable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleophiles, electrophiles, acids, and bases"
+            },
+            {
+              "type": "concept",
+              "title": "Curved arrows for two-electron and radical processes"
+            },
+            {
+              "type": "concept",
+              "title": "Bond heterolysis and homolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediates, transition states, and catalytic cycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamics and kinetics",
+          "description": "Energy diagrams distinguish whether a reaction is favorable from whether it is fast.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free energy, enthalpy, entropy, and equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy and rate laws"
+            },
+            {
+              "type": "concept",
+              "title": "Hammond postulate and transition-state intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetic versus thermodynamic control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selectivity and mechanism evaluation",
+          "description": "A mechanistic hypothesis should explain observed rate, regioselectivity, stereochemistry, and competing products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemoselectivity, regioselectivity, and stereoselectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Carbocation, radical, carbanion, and concerted pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Isotope, trapping, and stereochemical evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanism comparison and falsifiable predictions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkanes, Cycloalkanes, and Radical Chemistry",
+      "description": "Introduces hydrocarbon structure and conformational strain while developing the logic of radical chain processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydrocarbon structure and properties",
+          "description": "Alkanes provide a clean setting for connecting structure, intermolecular forces, and bulk behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nomenclature and constitutional isomerism"
+            },
+            {
+              "type": "concept",
+              "title": "Boiling point, melting point, solubility, and branching"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion and oxidation state"
+            },
+            {
+              "type": "concept",
+              "title": "Petroleum fractions and feedstock context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cycloalkanes and strain",
+          "description": "Ring systems show how angle, torsional, and steric strain shape stability and reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ring strain and heats of combustion"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclopropane through larger rings"
+            },
+            {
+              "type": "concept",
+              "title": "Fused, bridged, and spiro systems awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Conformation\u2013property relationships"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radical reactions",
+          "description": "Chain mechanisms introduce reactive intermediates important in halogenation, polymerization, oxidation, and process safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initiation, propagation, and termination"
+            },
+            {
+              "type": "concept",
+              "title": "Radical stability and selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Allylic and benzylic radical reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Inhibitors, oxygen sensitivity, and runaway awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkenes and Alkynes: Structure, Synthesis, and Reactions",
+      "description": "Uses \u03c0 bonds to connect mechanism, regiochemistry, stereochemistry, oxidation state, and polymer-forming reactivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "\u03c0-Bond structure and preparation",
+          "description": "Understanding \u03c0 bonding explains restricted rotation, geometric isomerism, and electrophilic reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alkene and alkyne nomenclature"
+            },
+            {
+              "type": "concept",
+              "title": "E/Z geometry and substitution patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Elimination routes to unsaturation"
+            },
+            {
+              "type": "concept",
+              "title": "Alkyne formation and acetylide ions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Addition mechanisms",
+          "description": "A compact set of mechanistic patterns predicts connectivity and stereochemistry across many additions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrohalogenation and carbocation rearrangements"
+            },
+            {
+              "type": "concept",
+              "title": "Halogenation and halohydrin formation"
+            },
+            {
+              "type": "concept",
+              "title": "Hydration and hydroboration\u2013oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Catalytic hydrogenation and selective alkyne reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oxidation, cleavage, and polymerization",
+          "description": "Oxidative transformations diagnose or modify \u03c0 bonds, while polymerization connects monomers to materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epoxidation and dihydroxylation"
+            },
+            {
+              "type": "concept",
+              "title": "Ozonolysis and oxidative cleavage"
+            },
+            {
+              "type": "concept",
+              "title": "Radical and cationic chain-growth concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Regioselectivity, tacticity, and materials implications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nucleophilic Substitution and Elimination",
+      "description": "Develops SN1, SN2, E1, and E2 as competing pathways governed by structure, solvent, nucleophile/base, temperature, and stereoelectronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "SN2 and SN1 pathways",
+          "description": "Substitution mechanisms connect molecular structure and medium to rate and stereochemical outcome.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bimolecular kinetics and backside attack"
+            },
+            {
+              "type": "concept",
+              "title": "Unimolecular ionization and carbocations"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving-group ability and nucleophile strength"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent effects and rearrangements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "E2 and E1 pathways",
+          "description": "Elimination pathways explain alkene formation and the control of position and geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base strength and bimolecular elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Anti-periplanar geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Zaitsev and Hofmann products"
+            },
+            {
+              "type": "concept",
+              "title": "Unimolecular elimination and rearrangement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Competition and synthesis",
+          "description": "Students must choose among four pathways rather than apply each in isolation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Substrate class and steric effects"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile versus base behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and solvent"
+            },
+            {
+              "type": "concept",
+              "title": "Product prediction and reagent selection maps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alcohols, Ethers, Epoxides, and Organosulfur Compounds",
+      "description": "Explores oxygen- and sulfur-containing compounds as solvents, intermediates, protecting groups, and industrial feedstocks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Alcohol preparation and reactivity",
+          "description": "Alcohols are central intermediates whose oxidation state and leaving-group behavior can be deliberately controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preparation by addition and carbonyl reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Acidity, hydrogen bonding, and physical properties"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation to carbonyl compounds"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion to halides, sulfonates, alkenes, and ethers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethers and epoxides",
+          "description": "Ethers model relatively inert solvents, whereas strained epoxides enable selective ring-opening synthesis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Williamson ether synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Ether cleavage and peroxide awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Epoxidation routes"
+            },
+            {
+              "type": "concept",
+              "title": "Acidic versus basic epoxide opening"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sulfur analogues",
+          "description": "Sulfur compounds broaden nucleophilicity and oxidation-state reasoning and appear in fuels, biology, and process streams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thiols, sulfides, disulfides, and sulfoxides"
+            },
+            {
+              "type": "concept",
+              "title": "Sulfur nucleophilicity and oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Thiol\u2013disulfide redox chemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Odor, toxicity, corrosion, and handling context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conjugation, Aromaticity, and Aromatic Reactions",
+      "description": "Explains delocalization and aromatic stabilization, then applies them to substitution, directing effects, and functionalization strategy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conjugated systems",
+          "description": "Delocalized \u03c0 systems explain unusual stability, color, and regioselectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allylic resonance and reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugated dienes and molecular orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "1,2- versus 1,4-addition"
+            },
+            {
+              "type": "concept",
+              "title": "Diels\u2013Alder reaction and orbital-symmetry awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aromaticity",
+          "description": "Aromaticity is an electronic criterion, not merely the presence of a ring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclic conjugation and H\u00fcckel's rule"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic, antiaromatic, and nonaromatic systems"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ions and heterocycles"
+            },
+            {
+              "type": "concept",
+              "title": "Stabilization and spectroscopic consequences"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aromatic substitution",
+          "description": "Electrophilic and selected nucleophilic substitutions enable predictable ring functionalization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrophilic aromatic substitution mechanism"
+            },
+            {
+              "type": "concept",
+              "title": "Activating/deactivating groups and directing effects"
+            },
+            {
+              "type": "concept",
+              "title": "Benzylic oxidation and substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophilic aromatic substitution and aryne awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spectroscopy and Integrated Structure Elucidation",
+      "description": "Combines IR, mass spectrometry, and one- and two-dimensional NMR evidence to determine structures and assess samples.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Formula, IR, and mass spectrometry",
+          "description": "These methods rapidly constrain composition, functional groups, and plausible fragments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecular formula and index of hydrogen deficiency"
+            },
+            {
+              "type": "concept",
+              "title": "IR stretching regions and diagnostic bands"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular ion, isotope patterns, and accurate-mass awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation logic and complementary evidence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "NMR spectroscopy",
+          "description": "NMR provides connectivity and environment information central to structure determination and reaction monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "1H and 13C chemical shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Integration, multiplicity, and coupling constants"
+            },
+            {
+              "type": "concept",
+              "title": "Signal equivalence, symmetry, and exchange"
+            },
+            {
+              "type": "concept",
+              "title": "DEPT and introductory COSY/HSQC/HMBC concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated problem solving and analytical judgment",
+          "description": "A defensible structure must satisfy all data and acknowledge ambiguity or impurities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evidence tables and candidate elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Stereochemical and conformational clues"
+            },
+            {
+              "type": "concept",
+              "title": "Mixtures, purity, solvent peaks, and common artifacts"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatography and UV\u2013visible spectroscopy awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Organometallic Reagents and Carbon\u2013Carbon Bond Formation",
+      "description": "Introduces powerful nucleophilic carbon reagents and selected catalytic couplings that expand synthetic design space.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polarized carbon\u2013metal bonds",
+          "description": "Organometallic reagents reverse normal carbon polarity and create strong carbon nucleophiles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grignard and organolithium preparation concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Basicity, moisture sensitivity, and compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Addition to aldehydes, ketones, esters, and carbon dioxide"
+            },
+            {
+              "type": "concept",
+              "title": "Workup logic and product prediction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cuprates and related reagents",
+          "description": "Softer organometallics expand substitution and conjugate-addition selectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gilman reagent concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Substitution on suitable electrophiles"
+            },
+            {
+              "type": "concept",
+              "title": "1,4- versus 1,2-addition"
+            },
+            {
+              "type": "concept",
+              "title": "Chemoselectivity and functional-group limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Catalytic coupling awareness",
+          "description": "Selected cross-couplings illustrate how catalysis constructs C\u2013C bonds at industrially useful selectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidative addition, transmetalation, and reductive elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Suzuki, Heck, and Sonogashira reaction recognition"
+            },
+            {
+              "type": "concept",
+              "title": "Ligand, catalyst, and substrate roles"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst recovery, metals, cost, and waste considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aldehydes and Ketones: Nucleophilic Addition",
+      "description": "Treats the carbonyl as a polarized functional group whose additions control synthesis, equilibrium, and stereochemical outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Carbonyl structure and reactivity",
+          "description": "Polarization makes the carbonyl carbon electrophilic and the oxygen basic, providing a unified reaction model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resonance and orbital picture"
+            },
+            {
+              "type": "concept",
+              "title": "Relative electrophilicity and steric effects"
+            },
+            {
+              "type": "concept",
+              "title": "Hydration equilibria"
+            },
+            {
+              "type": "concept",
+              "title": "Acid and base catalysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Addition reactions",
+          "description": "Nucleophile identity determines whether addition is reversible, followed by substitution, or paired with reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydride and organometallic addition"
+            },
+            {
+              "type": "concept",
+              "title": "Cyanohydrin formation"
+            },
+            {
+              "type": "concept",
+              "title": "Acetal and ketal formation"
+            },
+            {
+              "type": "concept",
+              "title": "Imine, oxime, hydrazone, and enamine formation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oxidation, reduction, and selectivity",
+          "description": "Carbonyl interconversions are central to synthesis and require deliberate chemoselective choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aldehyde oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonyl reduction to alcohols"
+            },
+            {
+              "type": "concept",
+              "title": "Deoxygenation and olefination awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Protecting groups and stereoselective models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enols, Enolates, and \u03b1-Carbon Chemistry",
+      "description": "Develops carbon nucleophiles adjacent to carbonyls for alkylation, condensation, conjugate addition, and strategic bond construction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Enolization and enolate formation",
+          "description": "Acidity next to a carbonyl creates nucleophilic carbon centers with controllable position and geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Keto\u2013enol tautomerism"
+            },
+            {
+              "type": "concept",
+              "title": "\u03b1-Hydrogen acidity"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance and ambident reactivity"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetic versus thermodynamic enolates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "\u03b1-Functionalization",
+          "description": "Enolates enable direct installation of carbon and heteroatom substituents next to carbonyls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alkylation and substrate limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Halogenation"
+            },
+            {
+              "type": "concept",
+              "title": "Enamine alkylation awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Regio- and stereoselectivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Condensation and conjugate addition",
+          "description": "These reactions create efficient C\u2013C bonds and recognizable retrosynthetic disconnections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aldol addition and condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Claisen and Dieckmann concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Michael addition"
+            },
+            {
+              "type": "concept",
+              "title": "Robinson annulation awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carboxylic Acids and Their Derivatives",
+      "description": "Unifies acyl substitution, derivative interconversion, hydrolysis, reduction, and process-relevant reactivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Acids: structure and preparation",
+          "description": "Carboxylic acids combine resonance-stabilized acidity with distinctive physical and spectroscopic properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acidity and substituent effects"
+            },
+            {
+              "type": "concept",
+              "title": "Preparation by oxidation, carboxylation, and nitrile hydrolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Dimerization and boiling behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Spectroscopic identification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nucleophilic acyl substitution",
+          "description": "A common addition\u2013elimination mechanism unifies derivative reactivity and interconversion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acid chlorides, anhydrides, esters, amides, and nitriles"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving groups and reactivity hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrolysis, esterification, and amidation"
+            },
+            {
+              "type": "concept",
+              "title": "Transesterification and saponification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reduction, condensation, and process context",
+          "description": "Acyl compounds are major industrial intermediates whose conversion and separation depend on equilibrium and selectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selective reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Decarboxylation concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Polyester and polyamide formation"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium conversion, water removal, corrosion, and waste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Amines, Nitrogen Compounds, and Heterocycles",
+      "description": "Connects basicity, nucleophilicity, synthesis, and heterocyclic structure to pharmaceuticals, dyes, catalysts, and materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Amine structure and basicity",
+          "description": "Lone-pair availability explains amine geometry, protonation, solubility, and nucleophilicity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classification and nomenclature"
+            },
+            {
+              "type": "concept",
+              "title": "Basicity trends and conjugate-acid pKa"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance, induction, and hybridization effects"
+            },
+            {
+              "type": "concept",
+              "title": "Salt formation and acid\u2013base extraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synthesis and reactions",
+          "description": "Multiple routes to C\u2013N bonds must be compared for selectivity, overreaction, and functional-group compatibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alkylation and reductive amination"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction of nitro, nitrile, amide, and imine groups"
+            },
+            {
+              "type": "concept",
+              "title": "Acylation and sulfonamide formation"
+            },
+            {
+              "type": "concept",
+              "title": "Diazonium chemistry and aromatic substitution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heterocycles and applications",
+          "description": "Nitrogen and oxygen heterocycles dominate pharmaceuticals, catalysts, dyes, and functional materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pyridine-, pyrrole-, furan-, and thiophene-type aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Basicity and electrophilic/nucleophilic substitution patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Selected saturated heterocycles"
+            },
+            {
+              "type": "concept",
+              "title": "Property, toxicity, and persistence considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Synthesis and Retrosynthetic Analysis",
+      "description": "Integrates functional-group chemistry into multistep planning using selectivity, protecting groups, convergence, yield, safety, and evidence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Retrosynthetic thinking",
+          "description": "Working backward from a target turns a reaction list into a strategy for bond construction and functional-group placement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synthons and synthetic equivalents"
+            },
+            {
+              "type": "concept",
+              "title": "Functional-group interconversion"
+            },
+            {
+              "type": "concept",
+              "title": "C\u2013C bond disconnections"
+            },
+            {
+              "type": "concept",
+              "title": "Convergent versus linear routes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selectivity and sequence design",
+          "description": "A viable route must manage incompatible groups, oxidation states, stereochemistry, and order of operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemoselectivity and protecting groups"
+            },
+            {
+              "type": "concept",
+              "title": "Regio- and stereochemical control"
+            },
+            {
+              "type": "concept",
+              "title": "Reagent compatibility and orthogonality"
+            },
+            {
+              "type": "concept",
+              "title": "Yield multiplication and step economy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Route evaluation and proof",
+          "description": "Chemical engineering demands routes that are not only plausible but also measurable, safe, scalable, and sustainable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atom economy, mass intensity, and solvent burden"
+            },
+            {
+              "type": "concept",
+              "title": "Hazard and thermal-risk screening"
+            },
+            {
+              "type": "concept",
+              "title": "Purification and isolation logic"
+            },
+            {
+              "type": "concept",
+              "title": "Spectroscopic proof and decision-ready route comparison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biomolecules, Polymers, Green Chemistry, and Process Perspective",
+      "description": "Connects organic chemistry to biological molecules, polymer production, separations, hazard, sustainability, and scale-up decisions in chemical engineering.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biomolecular organic chemistry",
+          "description": "Biomolecules integrate stereochemistry, acid\u2013base behavior, carbonyl chemistry, and noncovalent interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates and glycosidic bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Amino acids, peptides, and proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Lipids and membranes"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleotides and nucleic acids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polymer chemistry",
+          "description": "Polymer behavior emerges from monomer chemistry, mechanism, molecular weight, architecture, and processing history.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chain-growth and step-growth mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Degree of polymerization and molecular-weight distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Tacticity, branching, crosslinking, and copolymers"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal/mechanical properties, degradation, and recycling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Green chemistry, safety, and scale-up",
+          "description": "Engineers must connect molecular transformations to material use, heat release, transport, separation, exposure, and end-of-life impact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Twelve principles, atom economy, E-factor, and process mass intensity"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent/reagent selection and inherently safer design"
+            },
+            {
+              "type": "concept",
+              "title": "SDS interpretation, incompatibilities, waste segregation, and exposure control"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing, heat transfer, gas evolution, runaway risk, and scale-dependent behavior"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "slug": "compilers",
+  "title": "Compilers",
+  "description": "This syllabus is designed for a senior undergraduate compilers course built around implementation. It keeps the compiler pipeline central while adding enough type-system, diagnostic, testing, DSL, and infrastructure context to make the final compiler project realistic.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Compiler Architecture and Toolchain Overview",
+      "description": "Frames the compiler as a staged system that turns source programs into executable behavior through front-end, middle-end, and back-end components.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Compilation pipeline",
+          "description": "Students see the whole pipeline before diving into individual passes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Front end"
+            },
+            {
+              "type": "concept",
+              "title": "Middle end"
+            },
+            {
+              "type": "concept",
+              "title": "Back end"
+            },
+            {
+              "type": "concept",
+              "title": "Driver and build tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpreters versus compilers",
+          "description": "Comparing execution models clarifies what compilers do and why implementation choices matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tree-walk interpreters"
+            },
+            {
+              "type": "concept",
+              "title": "Bytecode interpreters"
+            },
+            {
+              "type": "concept",
+              "title": "Ahead-of-time compilation"
+            },
+            {
+              "type": "concept",
+              "title": "Just-in-time compilation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Course compiler project",
+          "description": "The project gives each topic a concrete purpose and makes interface design between phases visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source language"
+            },
+            {
+              "type": "concept",
+              "title": "Pass interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Testing milestones"
+            },
+            {
+              "type": "concept",
+              "title": "Error reporting expectations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lexical Analysis and Scanning",
+      "description": "Turns raw characters into tokens, giving later compiler phases a structured stream to analyze.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tokens and lexemes",
+          "description": "Students learn how keywords, identifiers, literals, operators, and punctuation are recognized.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Token classes"
+            },
+            {
+              "type": "concept",
+              "title": "Lexemes"
+            },
+            {
+              "type": "concept",
+              "title": "Whitespace and comments"
+            },
+            {
+              "type": "concept",
+              "title": "Reserved words"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regular expressions and automata",
+          "description": "Lexical patterns are grounded in finite automata and regular languages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular expressions"
+            },
+            {
+              "type": "concept",
+              "title": "NFA/DFA concept"
+            },
+            {
+              "type": "concept",
+              "title": "Longest match"
+            },
+            {
+              "type": "concept",
+              "title": "Lexer generators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scanner implementation",
+          "description": "Students build or configure scanners and handle source positions for useful diagnostics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hand-written scanners"
+            },
+            {
+              "type": "concept",
+              "title": "Generated lexers"
+            },
+            {
+              "type": "concept",
+              "title": "Line/column tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Invalid token handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Syntax Analysis and Parsing",
+      "description": "Checks whether token streams match the grammar of a language and produces parse structures for later analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Context-free grammars",
+          "description": "Grammars define legal program structure and expose ambiguity, precedence, and associativity issues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Terminals and nonterminals"
+            },
+            {
+              "type": "concept",
+              "title": "Productions"
+            },
+            {
+              "type": "concept",
+              "title": "Ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Precedence declarations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Top-down parsing",
+          "description": "Top-down methods build structure from the start symbol toward the input.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recursive descent"
+            },
+            {
+              "type": "concept",
+              "title": "LL parsing"
+            },
+            {
+              "type": "concept",
+              "title": "FIRST/FOLLOW idea"
+            },
+            {
+              "type": "concept",
+              "title": "Predictive parsing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bottom-up parsing",
+          "description": "Bottom-up methods reduce input fragments into grammar symbols and are common in parser generators.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LR parsing concept"
+            },
+            {
+              "type": "concept",
+              "title": "Shift/reduce"
+            },
+            {
+              "type": "concept",
+              "title": "Reduce/reduce"
+            },
+            {
+              "type": "concept",
+              "title": "Parser tables"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Abstract Syntax Trees and Syntax-Directed Translation",
+      "description": "Transforms parse results into cleaner program trees that are easier to type-check, optimize, and translate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "AST design",
+          "description": "Students learn to separate grammatical details from meaningful program structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expression nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Statement nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Declarations"
+            },
+            {
+              "type": "concept",
+              "title": "Source spans"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tree construction",
+          "description": "Parser actions or later transformations build ASTs from grammar productions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Semantic actions"
+            },
+            {
+              "type": "concept",
+              "title": "Visitor pattern"
+            },
+            {
+              "type": "concept",
+              "title": "Tree builders"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Syntax-directed translation",
+          "description": "Students attach meaning-preserving computations to syntax for early analysis and lowering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Inherited/synthesized values"
+            },
+            {
+              "type": "concept",
+              "title": "Desugaring"
+            },
+            {
+              "type": "concept",
+              "title": "Constant syntax forms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Semantic Analysis and Type Checking",
+      "description": "Verifies that parsed programs obey language rules beyond grammar, including names, scopes, and types.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Name binding and scope",
+          "description": "Students learn how identifiers connect to declarations and why scope rules shape compiler data structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symbol tables"
+            },
+            {
+              "type": "concept",
+              "title": "Lexical scope"
+            },
+            {
+              "type": "concept",
+              "title": "Nested environments"
+            },
+            {
+              "type": "concept",
+              "title": "Redeclaration checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Type checking",
+          "description": "Type checking catches inconsistent operations and prepares later phases with stronger program facts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static typing"
+            },
+            {
+              "type": "concept",
+              "title": "Type rules"
+            },
+            {
+              "type": "concept",
+              "title": "Subtyping concept"
+            },
+            {
+              "type": "concept",
+              "title": "Type errors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Type inference and semantics context",
+          "description": "Graduate and PL context add awareness of how types can be inferred and grounded in formal semantics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unification concept"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint generation"
+            },
+            {
+              "type": "concept",
+              "title": "Lambda calculus link"
+            },
+            {
+              "type": "concept",
+              "title": "Operational semantics idea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Intermediate Representations",
+      "description": "Introduces compiler-internal program forms that make analysis, optimization, and code generation tractable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "IR purpose and design",
+          "description": "Students learn why compilers translate source trees into simpler representations before targeting machines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tree IR"
+            },
+            {
+              "type": "concept",
+              "title": "Three-address code"
+            },
+            {
+              "type": "concept",
+              "title": "Control-flow graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Low-level IR"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control flow and data flow",
+          "description": "IR exposes execution paths and variable definitions needed for optimization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basic blocks"
+            },
+            {
+              "type": "concept",
+              "title": "CFG edges"
+            },
+            {
+              "type": "concept",
+              "title": "Definitions and uses"
+            },
+            {
+              "type": "concept",
+              "title": "Dominators concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "SSA form",
+          "description": "Static single assignment is introduced as a modern IR form that simplifies many optimizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phi nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Single assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Use-def chains"
+            },
+            {
+              "type": "concept",
+              "title": "SSA construction idea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Code Optimization: Local and Global",
+      "description": "Shows how compilers improve code while preserving meaning, balancing speed, size, compile time, and predictability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Local optimizations",
+          "description": "Local passes improve code within basic blocks and are a gentle entry to optimization correctness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant folding"
+            },
+            {
+              "type": "concept",
+              "title": "Algebraic simplification"
+            },
+            {
+              "type": "concept",
+              "title": "Common subexpression elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Peephole optimization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Global data-flow analysis",
+          "description": "Global optimization requires facts that flow across control paths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Liveness"
+            },
+            {
+              "type": "concept",
+              "title": "Reaching definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Available expressions"
+            },
+            {
+              "type": "concept",
+              "title": "Worklist algorithms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization tradeoffs",
+          "description": "Students learn that optimization is constrained by correctness, target architecture, and cost models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alias analysis concept"
+            },
+            {
+              "type": "concept",
+              "title": "Loop optimization"
+            },
+            {
+              "type": "concept",
+              "title": "Code size"
+            },
+            {
+              "type": "concept",
+              "title": "Compile-time cost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Code Generation and Instruction Selection",
+      "description": "Maps intermediate programs onto target machine instructions while respecting calling conventions and machine constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Target machine model",
+          "description": "Students learn what the compiler must know about registers, memory, instructions, and ABI rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instruction set"
+            },
+            {
+              "type": "concept",
+              "title": "Registers"
+            },
+            {
+              "type": "concept",
+              "title": "Stack frame"
+            },
+            {
+              "type": "concept",
+              "title": "Calling convention"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instruction selection",
+          "description": "IR operations are matched to target instructions using patterns or lowering rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tree tiling concept"
+            },
+            {
+              "type": "concept",
+              "title": "Pattern matching"
+            },
+            {
+              "type": "concept",
+              "title": "Addressing modes"
+            },
+            {
+              "type": "concept",
+              "title": "Lowering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Function calls and stack layout",
+          "description": "Code generation must preserve call/return behavior and runtime layout.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prologue/epilogue"
+            },
+            {
+              "type": "concept",
+              "title": "Activation records"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter passing"
+            },
+            {
+              "type": "concept",
+              "title": "Return values"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Register Allocation",
+      "description": "Allocates program values to limited hardware registers and decides when spilling to memory is necessary.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Liveness and interference",
+          "description": "Students learn which values are live at the same time and therefore cannot share registers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Live ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Interference graph"
+            },
+            {
+              "type": "concept",
+              "title": "Use-def information"
+            },
+            {
+              "type": "concept",
+              "title": "Calling convention constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Allocation algorithms",
+          "description": "Register allocation is studied as an optimization problem with practical heuristics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Graph coloring"
+            },
+            {
+              "type": "concept",
+              "title": "Linear scan"
+            },
+            {
+              "type": "concept",
+              "title": "Coalescing"
+            },
+            {
+              "type": "concept",
+              "title": "Spilling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spill code and performance",
+          "description": "Spilling connects allocation choices to memory traffic and generated-code quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load/store insertion"
+            },
+            {
+              "type": "concept",
+              "title": "Spill slots"
+            },
+            {
+              "type": "concept",
+              "title": "Rematerialization concept"
+            },
+            {
+              "type": "concept",
+              "title": "Register pressure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Runtime Systems and Garbage Collection",
+      "description": "Explains the runtime machinery that supports execution, memory, calls, objects, exceptions, and automatic storage management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Runtime layout",
+          "description": "Students learn how programs use stack, heap, globals, and metadata at execution time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Heap"
+            },
+            {
+              "type": "concept",
+              "title": "Globals"
+            },
+            {
+              "type": "concept",
+              "title": "Object layout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory management",
+          "description": "Manual and automatic memory management are compared through compiler and runtime responsibilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Deallocation"
+            },
+            {
+              "type": "concept",
+              "title": "Reference lifetimes"
+            },
+            {
+              "type": "concept",
+              "title": "Escape analysis concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Garbage collection",
+          "description": "Garbage collection introduces reachability, tracing, and performance tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roots"
+            },
+            {
+              "type": "concept",
+              "title": "Mark-sweep"
+            },
+            {
+              "type": "concept",
+              "title": "Copying collection"
+            },
+            {
+              "type": "concept",
+              "title": "Generational collection concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Just-in-Time Compilation",
+      "description": "Introduces compilers that optimize while programs run, using runtime feedback to improve hot code.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "JIT architecture",
+          "description": "Students learn how bytecode, interpreters, profiling, and code caches fit together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bytecode"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreter loop"
+            },
+            {
+              "type": "concept",
+              "title": "Hot paths"
+            },
+            {
+              "type": "concept",
+              "title": "Code cache"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Runtime profiling",
+          "description": "Dynamic information can guide optimization decisions unavailable to static compilers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inline caches"
+            },
+            {
+              "type": "concept",
+              "title": "Type feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Hot counters"
+            },
+            {
+              "type": "concept",
+              "title": "Speculation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deoptimization and safety",
+          "description": "JITs need ways to recover when speculative assumptions stop being true.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Guard checks"
+            },
+            {
+              "type": "concept",
+              "title": "Deoptimization"
+            },
+            {
+              "type": "concept",
+              "title": "Tiered compilation"
+            },
+            {
+              "type": "concept",
+              "title": "Security considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diagnostics, Error Recovery, and Compiler Testing",
+      "description": "Makes the compiler usable and maintainable by focusing on error messages, recovery, automated tests, and debugging tools.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Error reporting",
+          "description": "Good diagnostics identify what went wrong, where it happened, and how a programmer might fix it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source spans"
+            },
+            {
+              "type": "concept",
+              "title": "Expected tokens"
+            },
+            {
+              "type": "concept",
+              "title": "Type error messages"
+            },
+            {
+              "type": "concept",
+              "title": "Notes and hints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error recovery",
+          "description": "Recovery lets compilers continue after an error to find more problems in one run.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Panic mode"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronization tokens"
+            },
+            {
+              "type": "concept",
+              "title": "Parser recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Semantic recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compiler testing",
+          "description": "Students learn to validate each phase and protect against regressions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit tests"
+            },
+            {
+              "type": "concept",
+              "title": "Golden tests"
+            },
+            {
+              "type": "concept",
+              "title": "Differential testing concept"
+            },
+            {
+              "type": "concept",
+              "title": "Fuzzing concept"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DSLs, LLVM, and Modern Compiler Infrastructure",
+      "description": "Connects course concepts to modern compiler ecosystems, reusable infrastructure, and domain-specific language design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Domain-specific languages",
+          "description": "DSLs show how compiler ideas support focused languages for graphics, data, hardware, configuration, and scientific computing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal DSLs"
+            },
+            {
+              "type": "concept",
+              "title": "External DSLs"
+            },
+            {
+              "type": "concept",
+              "title": "Syntax design"
+            },
+            {
+              "type": "concept",
+              "title": "Semantic restrictions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "LLVM and reusable infrastructure",
+          "description": "Modern compilers often reuse IRs, optimizers, and back ends rather than building every component from scratch.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LLVM IR"
+            },
+            {
+              "type": "concept",
+              "title": "Pass pipelines"
+            },
+            {
+              "type": "concept",
+              "title": "Front ends"
+            },
+            {
+              "type": "concept",
+              "title": "Back ends"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Language implementation tradeoffs",
+          "description": "Students close by comparing maintainability, performance, portability, safety, and developer experience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implementation language"
+            },
+            {
+              "type": "concept",
+              "title": "Runtime choices"
+            },
+            {
+              "type": "concept",
+              "title": "Optimization goals"
+            },
+            {
+              "type": "concept",
+              "title": "Tooling ecosystem"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

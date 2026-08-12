@@ -1,0 +1,1100 @@
+{
+  "slug": "general-biology-i-and-ii",
+  "title": "General Biology I & II",
+  "description": "Builds an integrated year-long foundation in cellular, molecular, genetic, evolutionary, organismal, ecological, and field-based biology, with enough data literacy and scientific reasoning to prepare students for environmental science and later biology coursework.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Biology as Evidence-Based Science",
+      "description": "This opening topic teaches biology as a way of asking questions, designing tests, interpreting evidence, and reasoning across scales.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scientific inquiry",
+          "description": "Students learn how biological knowledge is built from testable explanations and carefully designed observations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypotheses and predictions"
+            },
+            {
+              "type": "concept",
+              "title": "Controls and variables"
+            },
+            {
+              "type": "concept",
+              "title": "Replication and peer review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological data literacy",
+          "description": "Students practice reading graphs, interpreting variation, and making claims from data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data visualization"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation versus causation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Levels of biological organization",
+          "description": "A scale map helps students connect molecules, cells, organisms, populations, communities, and ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecules to cells"
+            },
+            {
+              "type": "concept",
+              "title": "Organisms to populations"
+            },
+            {
+              "type": "concept",
+              "title": "Ecosystems and biosphere"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemistry of Life and Biological Molecules",
+      "description": "Living systems are chemical systems. This topic explains how water, carbon, weak interactions, and macromolecules make life possible.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water, pH, and weak interactions",
+          "description": "Students learn why water chemistry shapes structure, reactions, and transport in organisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarity and hydrogen bonding"
+            },
+            {
+              "type": "concept",
+              "title": "pH and Buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrophobic interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon chemistry",
+          "description": "Carbon's bonding patterns explain the diversity of biological molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional groups"
+            },
+            {
+              "type": "concept",
+              "title": "Isomers"
+            },
+            {
+              "type": "concept",
+              "title": "Monomers and polymers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Macromolecules",
+          "description": "Students connect molecular structure to biological function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates"
+            },
+            {
+              "type": "concept",
+              "title": "Lipids"
+            },
+            {
+              "type": "concept",
+              "title": "Proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleic acids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Structure and Function",
+      "description": "Cells are the basic units of life, and their internal organization explains how living systems maintain order and perform work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell theory and microscopy",
+          "description": "Students learn why cells are central to biology and how cell structures are observed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell theory"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Light and electron microscopy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell types and organelles",
+          "description": "Comparing prokaryotes and eukaryotes clarifies shared features and specialized compartments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bacteria and archaea"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleus and endomembrane system"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondria and chloroplasts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cytoskeleton and cellular organization",
+          "description": "The cytoskeleton gives cells shape, movement, transport, and mechanical organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microtubules"
+            },
+            {
+              "type": "concept",
+              "title": "Microfilaments"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate filaments"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Membranes, Transport, and Cell Communication",
+      "description": "Membranes regulate exchange and communication, letting cells maintain homeostasis and coordinate responses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane structure",
+          "description": "Students learn how phospholipids and proteins create selective, dynamic boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fluid mosaic model"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Cholesterol and fluidity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport mechanisms",
+          "description": "Transport explains how substances cross membranes with or against gradients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion and osmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Active transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell signaling",
+          "description": "Students see how cells detect signals and convert them into molecular and behavioral responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receptors and ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Second messengers"
+            },
+            {
+              "type": "concept",
+              "title": "Signal transduction cascades"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy, Enzymes, and Metabolism",
+      "description": "This topic explains how cells transform matter and energy through controlled chemical pathways.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bioenergetics",
+          "description": "Students learn how free energy, ATP, and redox chemistry drive cellular work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ATP Coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Redox carriers"
+            },
+            {
+              "type": "concept",
+              "title": "Endergonic and exergonic reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enzymes",
+          "description": "Enzymes make biological reactions fast and regulated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Active sites"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            },
+            {
+              "type": "concept",
+              "title": "Allosteric and competitive regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metabolic networks",
+          "description": "Students learn pathways as integrated systems rather than isolated reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Catabolism and anabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback inhibition"
+            },
+            {
+              "type": "concept",
+              "title": "Pathway regulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cellular Respiration and Photosynthesis",
+      "description": "Respiration and photosynthesis are the core energy transformations that link cells to ecosystems and global cycles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cellular respiration",
+          "description": "Students learn how cells harvest energy from organic molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glycolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Citric acid cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidative phosphorylation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Photosynthesis",
+          "description": "Students learn how light energy becomes chemical energy and fixed carbon.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Light reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Calvin cycle"
+            },
+            {
+              "type": "concept",
+              "title": "C3, C4, and CAM Strategies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy flow in ecosystems",
+          "description": "This connects cellular energetics to food webs and productivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary productivity"
+            },
+            {
+              "type": "concept",
+              "title": "Trophic transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon cycling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Cycle, Mitosis, and Meiosis",
+      "description": "Cell division explains growth, repair, reproduction, and the movement of genetic information across generations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell cycle regulation",
+          "description": "Students learn how cells coordinate growth, DNA replication, and division.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "G1, S, G2, and M Phases"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclins and CDKs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitosis",
+          "description": "Mitosis explains how genetically identical daughter cells form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chromosome condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Spindle fibers"
+            },
+            {
+              "type": "concept",
+              "title": "Cytokinesis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Meiosis",
+          "description": "Meiosis explains gamete formation and genetic variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homologous chromosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Crossing over"
+            },
+            {
+              "type": "concept",
+              "title": "Independent assortment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DNA, Gene Expression, and Molecular Genetics",
+      "description": "This topic connects DNA structure to replication, gene expression, mutation, and biotechnology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DNA replication and genome organization",
+          "description": "Students learn how genetic information is copied and packaged.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double helix and base pairing"
+            },
+            {
+              "type": "concept",
+              "title": "DNA Polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "Chromosomes and chromatin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transcription and translation",
+          "description": "Students learn how genetic information becomes RNA and protein.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RNA Polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "RNA Processing"
+            },
+            {
+              "type": "concept",
+              "title": "Ribosomes and genetic code"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mutation and biotechnology",
+          "description": "Students connect genetic variation to modern tools and ethical questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutations and DNA repair"
+            },
+            {
+              "type": "concept",
+              "title": "PCR and Sequencing"
+            },
+            {
+              "type": "concept",
+              "title": "CRISPR Overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Genetics and Inheritance",
+      "description": "Genetics gives students a quantitative language for predicting inheritance and connecting genes to traits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mendelian inheritance",
+          "description": "Students learn segregation, independent assortment, and probability-based genetic prediction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monohybrid and dihybrid crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Punnett Squares"
+            },
+            {
+              "type": "concept",
+              "title": "Test crosses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chromosomal inheritance",
+          "description": "Chromosomes explain linkage, sex-linked traits, and recombination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linkage and mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Nondisjunction"
+            },
+            {
+              "type": "concept",
+              "title": "Sex chromosomes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Population and quantitative genetics preview",
+          "description": "This bridges genetics to evolution and complex traits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allele frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Hardy-Weinberg Equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Polygenic traits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Evolutionary Mechanisms",
+      "description": "Evolution is the unifying framework of biology, explaining both unity and diversity across life.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sources of variation",
+          "description": "Students learn how heritable variation enters populations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutation"
+            },
+            {
+              "type": "concept",
+              "title": "Recombination"
+            },
+            {
+              "type": "concept",
+              "title": "Gene flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanisms of evolution",
+          "description": "Students learn the processes that change allele frequencies over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural selection"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic drift"
+            },
+            {
+              "type": "concept",
+              "title": "Sexual selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evidence for evolution",
+          "description": "Students connect evolutionary theory to data from fossils, molecules, anatomy, and biogeography.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fossil record"
+            },
+            {
+              "type": "concept",
+              "title": "Homology"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular evidence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Speciation, Phylogeny, and the History of Life",
+      "description": "This topic helps students reason about biological diversity through common ancestry and branching evolutionary history.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Speciation",
+          "description": "Students learn how populations become reproductively isolated and form new species.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allopatric speciation"
+            },
+            {
+              "type": "concept",
+              "title": "Sympatric speciation"
+            },
+            {
+              "type": "concept",
+              "title": "Reproductive barriers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phylogenetic thinking",
+          "description": "Tree thinking helps students interpret relationships among organisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clades and common ancestors"
+            },
+            {
+              "type": "concept",
+              "title": "Shared derived traits"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular phylogenies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Origins and major transitions",
+          "description": "Students connect Earth's history to the evolution of life.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Origins of life hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Endosymbiosis"
+            },
+            {
+              "type": "concept",
+              "title": "Major radiations and extinctions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biodiversity: Prokaryotes, Protists, Fungi, Plants, and Animals",
+      "description": "A combined biology sequence should introduce the major branches of life and the traits that make them ecologically and evolutionarily important.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microbial diversity",
+          "description": "Students learn that bacteria, archaea, protists, and fungi are central to ecosystems and evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prokaryotic metabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Protist diversity"
+            },
+            {
+              "type": "concept",
+              "title": "Fungal nutrition and symbioses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plant diversity",
+          "description": "Students learn how plants diversified onto land and transformed ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nonvascular and vascular plants"
+            },
+            {
+              "type": "concept",
+              "title": "Seeds and flowers"
+            },
+            {
+              "type": "concept",
+              "title": "Plant life cycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Animal diversity",
+          "description": "Students learn major animal body plans and evolutionary innovations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Body symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Tissues and organ systems"
+            },
+            {
+              "type": "concept",
+              "title": "Vertebrate and invertebrate lineages"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plant Structure and Physiology",
+      "description": "Plant physiology connects anatomy, transport, photosynthesis, reproduction, and environmental response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Plant tissues and organs",
+          "description": "Students learn how roots, stems, leaves, and vascular tissues support plant function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Xylem and phloem"
+            },
+            {
+              "type": "concept",
+              "title": "Root systems"
+            },
+            {
+              "type": "concept",
+              "title": "Leaf anatomy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plant transport and regulation",
+          "description": "Students learn how water, sugar, and signals move through plants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transpiration"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure-flow hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Plant hormones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plant reproduction and responses",
+          "description": "This links life cycles to environmental cues and adaptation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alternation of generations"
+            },
+            {
+              "type": "concept",
+              "title": "Pollination and seeds"
+            },
+            {
+              "type": "concept",
+              "title": "Phototropism and photoperiodism"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Animal Physiology Overview",
+      "description": "Animal physiology shows how body systems maintain homeostasis, exchange materials, and respond to environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Homeostasis",
+          "description": "Students learn how animals regulate internal conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Thermoregulation"
+            },
+            {
+              "type": "concept",
+              "title": "Osmoregulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exchange and transport systems",
+          "description": "Students compare how animals move gases, nutrients, wastes, and signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Respiration"
+            },
+            {
+              "type": "concept",
+              "title": "Circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Digestion and excretion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control and coordination",
+          "description": "Nervous and endocrine systems show how animals sense and respond.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neurons and signaling"
+            },
+            {
+              "type": "concept",
+              "title": "Hormones"
+            },
+            {
+              "type": "concept",
+              "title": "Immune defense overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population and Community Ecology",
+      "description": "Ecology begins with organisms interacting with each other and their environments across space and time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Population ecology",
+          "description": "Students learn how population size changes and what limits growth.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential and logistic growth"
+            },
+            {
+              "type": "concept",
+              "title": "Carrying capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Life tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Species interactions",
+          "description": "Interactions explain community structure and evolutionary pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Competition"
+            },
+            {
+              "type": "concept",
+              "title": "Predation and herbivory"
+            },
+            {
+              "type": "concept",
+              "title": "Mutualism and parasitism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Community structure",
+          "description": "Students learn how diversity, disturbance, and succession shape communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Keystone species"
+            },
+            {
+              "type": "concept",
+              "title": "Succession"
+            },
+            {
+              "type": "concept",
+              "title": "Species richness and evenness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ecosystem Processes and Conservation Biology",
+      "description": "This topic links energy flow, nutrient cycling, biodiversity, and human impacts into environmental decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ecosystem ecology",
+          "description": "Students learn how energy and matter move through ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Food webs"
+            },
+            {
+              "type": "concept",
+              "title": "Primary production"
+            },
+            {
+              "type": "concept",
+              "title": "Biogeochemical cycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biodiversity and conservation",
+          "description": "Students learn why biodiversity matters and how it is threatened.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extinction drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Habitat fragmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Invasive species"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Climate and human impacts",
+          "description": "Students connect biological systems to environmental change and stewardship.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Climate adaptation"
+            },
+            {
+              "type": "concept",
+              "title": "Restoration ecology"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biological Field, Lab, and Data Methods",
+      "description": "A combined sequence should end with students able to collect, interpret, and communicate biological evidence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lab and field methods",
+          "description": "Students learn basic techniques used to study cells, genes, organisms, and ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling design"
+            },
+            {
+              "type": "concept",
+              "title": "Field notebooks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data quality and analysis",
+          "description": "Students learn that biological conclusions depend on careful measurement and uncertainty handling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "QA/QC"
+            },
+            {
+              "type": "concept",
+              "title": "Basic statistics"
+            },
+            {
+              "type": "concept",
+              "title": "Error and bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Research communication",
+          "description": "Students practice turning observations and data into clear scientific arguments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Figure captions"
+            },
+            {
+              "type": "concept",
+              "title": "Lab reports"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical data use"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

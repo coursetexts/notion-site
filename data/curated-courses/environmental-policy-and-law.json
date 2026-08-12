@@ -1,0 +1,1087 @@
+{
+  "slug": "environmental-policy-and-law",
+  "title": "Environmental Policy and Law",
+  "description": "Teaches how societies translate environmental science, values, economics, and legal authority into enforceable decisions\u2014preparing students to read statutes and agency materials, analyze policy tradeoffs, recognize justice concerns, and write concise professional recommendations.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Environmental governance institutions",
+      "description": "Map the institutions that create, implement, contest, and enforce environmental decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Federalism and jurisdiction",
+          "description": "Students learn why environmental authority is split across levels of government.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Federal statutes"
+            },
+            {
+              "type": "concept",
+              "title": "State implementation"
+            },
+            {
+              "type": "concept",
+              "title": "Local land-use authority"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Administrative agencies",
+          "description": "Agencies translate broad statutes into rules, permits, enforcement, and guidance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EPA authority"
+            },
+            {
+              "type": "concept",
+              "title": "State agencies"
+            },
+            {
+              "type": "concept",
+              "title": "Administrative discretion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Courts and legislatures",
+          "description": "Law and policy evolve through statutes, litigation, and judicial interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statutory interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Standing and review"
+            },
+            {
+              "type": "concept",
+              "title": "Legislative oversight"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Public and private actors",
+          "description": "Environmental governance includes NGOs, industry, communities, and scientific experts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Advocacy groups"
+            },
+            {
+              "type": "concept",
+              "title": "Regulated entities"
+            },
+            {
+              "type": "concept",
+              "title": "Expert advisory bodies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Administrative law, rulemaking, and public participation",
+      "description": "Explain how environmental rules are made, challenged, and shaped by public input.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rulemaking process",
+          "description": "The point is to understand how policy becomes enforceable regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Notice of proposed rulemaking"
+            },
+            {
+              "type": "concept",
+              "title": "Comments"
+            },
+            {
+              "type": "concept",
+              "title": "Final rules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Administrative record",
+          "description": "Environmental decisions must be supported by evidence and reasoned explanation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Technical support documents"
+            },
+            {
+              "type": "concept",
+              "title": "Response to comments"
+            },
+            {
+              "type": "concept",
+              "title": "Arbitrary-and-capricious review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Public participation",
+          "description": "Participation can improve legitimacy, evidence, and equity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hearings"
+            },
+            {
+              "type": "concept",
+              "title": "Comment writing"
+            },
+            {
+              "type": "concept",
+              "title": "Community consultation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Judicial review",
+          "description": "Courts review agency authority, procedure, and reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chevron/Loper Bright context"
+            },
+            {
+              "type": "concept",
+              "title": "Major questions doctrine overview"
+            },
+            {
+              "type": "concept",
+              "title": "Remedies and remand"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Risk, regulation, and cost-benefit analysis",
+      "description": "Give students tools for evaluating environmental risks and policy tradeoffs without reducing decisions to one number.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Risk assessment",
+          "description": "Students learn how hazards become quantified policy concerns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard identification"
+            },
+            {
+              "type": "concept",
+              "title": "Dose-response"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure assessment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk management",
+          "description": "Risk decisions combine science, law, values, and feasibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precautionary principle"
+            },
+            {
+              "type": "concept",
+              "title": "Technology standards"
+            },
+            {
+              "type": "concept",
+              "title": "Health-based standards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cost-benefit analysis",
+          "description": "Benefit-cost analysis structures tradeoffs but has limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discounting"
+            },
+            {
+              "type": "concept",
+              "title": "Valuation of health/ecosystems"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distributional analysis",
+          "description": "Who bears costs and benefits matters for legitimate policy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equity weights"
+            },
+            {
+              "type": "concept",
+              "title": "Cumulative impacts"
+            },
+            {
+              "type": "concept",
+              "title": "Procedural fairness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Clean air and climate policy",
+      "description": "Study air pollution regulation and the policy architecture for reducing greenhouse gas emissions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Clean Air Act structure",
+          "description": "Students learn the major regulatory tools for conventional air pollution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NAAQS"
+            },
+            {
+              "type": "concept",
+              "title": "State implementation plans"
+            },
+            {
+              "type": "concept",
+              "title": "New Source Review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mobile and stationary sources",
+          "description": "Different sources are controlled through different legal mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vehicle standards"
+            },
+            {
+              "type": "concept",
+              "title": "Power plants"
+            },
+            {
+              "type": "concept",
+              "title": "Industrial sources"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Greenhouse gas regulation",
+          "description": "Climate policy uses existing statutes and new policy tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Massachusetts v. EPA context"
+            },
+            {
+              "type": "concept",
+              "title": "Endangerment finding"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon standards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Market and technology instruments",
+          "description": "Climate policy mixes regulation, markets, and innovation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon pricing"
+            },
+            {
+              "type": "concept",
+              "title": "Clean energy standards"
+            },
+            {
+              "type": "concept",
+              "title": "Methane regulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water law and watershed governance",
+      "description": "Connect water quality, water allocation, wetlands, and watershed management to law and institutions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Clean Water Act basics",
+          "description": "The CWA structures water pollution control around standards and permits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NPDES permits"
+            },
+            {
+              "type": "concept",
+              "title": "Water quality standards"
+            },
+            {
+              "type": "concept",
+              "title": "TMDLs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wetlands and jurisdiction",
+          "description": "Wetland law shows how science, property, and jurisdiction collide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Waters of the United States"
+            },
+            {
+              "type": "concept",
+              "title": "Section 404 permits"
+            },
+            {
+              "type": "concept",
+              "title": "Mitigation banking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drinking water and groundwater",
+          "description": "Public health and hydrology require linked governance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Safe Drinking Water Act"
+            },
+            {
+              "type": "concept",
+              "title": "Aquifer protection"
+            },
+            {
+              "type": "concept",
+              "title": "Contaminants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Watershed governance",
+          "description": "Watersheds often require cooperation beyond legal boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder processes"
+            },
+            {
+              "type": "concept",
+              "title": "Nonpoint source pollution"
+            },
+            {
+              "type": "concept",
+              "title": "Integrated water management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Waste and hazardous-substance regulation",
+      "description": "Understand how law governs waste generation, storage, cleanup, liability, and toxic exposure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Waste classification",
+          "description": "Regulatory obligations depend on how waste is classified and handled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solid waste"
+            },
+            {
+              "type": "concept",
+              "title": "Hazardous waste"
+            },
+            {
+              "type": "concept",
+              "title": "Universal waste"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RCRA cradle-to-grave system",
+          "description": "RCRA governs active waste management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generators"
+            },
+            {
+              "type": "concept",
+              "title": "Transporters"
+            },
+            {
+              "type": "concept",
+              "title": "Treatment/storage/disposal facilities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CERCLA cleanup and liability",
+          "description": "Superfund addresses contaminated sites and assigns cleanup responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strict liability"
+            },
+            {
+              "type": "concept",
+              "title": "Potentially responsible parties"
+            },
+            {
+              "type": "concept",
+              "title": "Remedial investigation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Toxics and emerging contaminants",
+          "description": "Modern policy must address persistent and uncertain chemical risks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TSCA"
+            },
+            {
+              "type": "concept",
+              "title": "PFAS"
+            },
+            {
+              "type": "concept",
+              "title": "Brownfields redevelopment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Endangered species and habitat protection",
+      "description": "Explore biodiversity protection through species listing, habitat rules, recovery planning, and land-use conflict.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ESA listing and recovery",
+          "description": "Species protection begins with listing and recovery planning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threatened vs endangered"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery plans"
+            },
+            {
+              "type": "concept",
+              "title": "Best available science"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Critical habitat",
+          "description": "Habitat protection links ecology to land-use decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Habitat designation"
+            },
+            {
+              "type": "concept",
+              "title": "Adverse modification"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Section 7 and Section 9",
+          "description": "The ESA uses consultation and take prohibitions to change behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Federal consultation"
+            },
+            {
+              "type": "concept",
+              "title": "Take prohibition"
+            },
+            {
+              "type": "concept",
+              "title": "Incidental take permits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conservation conflicts",
+          "description": "Species protection often involves tradeoffs across land, water, and communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Private lands"
+            },
+            {
+              "type": "concept",
+              "title": "Working landscapes"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental impact review",
+      "description": "Teach NEPA and related review as tools for disclosure, alternatives analysis, and public participation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "NEPA purpose",
+          "description": "NEPA is a process statute that forces informed decision-making.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Major federal actions"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Finding of no significant impact"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental impact statements",
+          "description": "EIS documents structure evidence, alternatives, and effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Purpose and need"
+            },
+            {
+              "type": "concept",
+              "title": "Alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Affected environment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cumulative and indirect impacts",
+          "description": "Impact review must consider more than immediate project footprints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cumulative effects"
+            },
+            {
+              "type": "concept",
+              "title": "Connected actions"
+            },
+            {
+              "type": "concept",
+              "title": "Reasonably foreseeable impacts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitigation and litigation",
+          "description": "Review outcomes depend on mitigation commitments and procedural rigor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mitigation hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Record of decision"
+            },
+            {
+              "type": "concept",
+              "title": "Judicial challenges"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Environmental justice",
+      "description": "Center the distribution of environmental benefits, burdens, voice, and power in policy and law.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Origins and principles",
+          "description": "Students learn environmental justice as history, movement, and policy lens.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distributional justice"
+            },
+            {
+              "type": "concept",
+              "title": "Procedural justice"
+            },
+            {
+              "type": "concept",
+              "title": "Recognition justice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cumulative impacts",
+          "description": "Communities often face overlapping exposures and vulnerabilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Air toxics"
+            },
+            {
+              "type": "concept",
+              "title": "Industrial siting"
+            },
+            {
+              "type": "concept",
+              "title": "Health disparities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Legal and policy tools",
+          "description": "Environmental justice uses civil rights, permitting, mapping, and agency mandates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Title VI"
+            },
+            {
+              "type": "concept",
+              "title": "EJScreen"
+            },
+            {
+              "type": "concept",
+              "title": "State EJ laws"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Community-led governance",
+          "description": "Affected communities should shape problems, evidence, and remedies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Community science"
+            },
+            {
+              "type": "concept",
+              "title": "Consultation"
+            },
+            {
+              "type": "concept",
+              "title": "Benefit agreements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "International environmental agreements",
+      "description": "Place environmental governance in transboundary and global context.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Treaty architecture",
+          "description": "International law manages shared resources and cross-border harms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Framework conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Protocols"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Climate governance",
+          "description": "Climate policy depends on national pledges and global coordination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UNFCCC"
+            },
+            {
+              "type": "concept",
+              "title": "Paris Agreement"
+            },
+            {
+              "type": "concept",
+              "title": "NDCs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biodiversity and pollution treaties",
+          "description": "Global agreements address conservation, chemicals, and oceans.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convention on Biological Diversity"
+            },
+            {
+              "type": "concept",
+              "title": "CITES"
+            },
+            {
+              "type": "concept",
+              "title": "Montreal Protocol"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation politics",
+          "description": "International agreements depend on domestic capacity, finance, and equity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Common but differentiated responsibilities"
+            },
+            {
+              "type": "concept",
+              "title": "Climate finance"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Market-based instruments and environmental economics",
+      "description": "Add the policy-design toolkit behind incentives, pricing, trading, and valuation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Externalities and public goods",
+          "description": "Environmental problems often arise when markets omit social costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative externalities"
+            },
+            {
+              "type": "concept",
+              "title": "Common-pool resources"
+            },
+            {
+              "type": "concept",
+              "title": "Public goods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pricing pollution",
+          "description": "Pricing can align private incentives with public goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pigouvian taxes"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon pricing"
+            },
+            {
+              "type": "concept",
+              "title": "Fee-and-dividend concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trading and flexible compliance",
+          "description": "Market systems can reduce costs if designed well.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cap-and-trade"
+            },
+            {
+              "type": "concept",
+              "title": "Offsets"
+            },
+            {
+              "type": "concept",
+              "title": "Additionality and leakage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Valuation and limits",
+          "description": "Economic valuation informs policy but cannot answer every ethical question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ecosystem services"
+            },
+            {
+              "type": "concept",
+              "title": "Value of statistical life"
+            },
+            {
+              "type": "concept",
+              "title": "Nonmarket values"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enforcement, compliance, and permitting practice",
+      "description": "Make the course practical by showing how environmental obligations are monitored, violated, negotiated, and enforced.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Permit systems",
+          "description": "Permits translate legal standards into facility-specific obligations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permit conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Renewal and modification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compliance monitoring",
+          "description": "Regulators need data to know whether law is working.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inspections"
+            },
+            {
+              "type": "concept",
+              "title": "Self-reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enforcement tools",
+          "description": "Enforcement creates accountability and deterrence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Administrative penalties"
+            },
+            {
+              "type": "concept",
+              "title": "Civil enforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Criminal liability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Citizen suits and settlements",
+          "description": "Private enforcement and negotiated remedies are part of the system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standing"
+            },
+            {
+              "type": "concept",
+              "title": "Consent decrees"
+            },
+            {
+              "type": "concept",
+              "title": "Supplemental environmental projects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Policy memo or regulatory case analysis",
+      "description": "Synthesize law, science, economics, equity, and implementation into professional written analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem definition",
+          "description": "Good analysis starts by defining the decision and legal context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Client/audience"
+            },
+            {
+              "type": "concept",
+              "title": "Decision point"
+            },
+            {
+              "type": "concept",
+              "title": "Legal authority"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evidence and stakeholders",
+          "description": "Policy writing must integrate technical facts and affected interests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scientific evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Equity impacts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternatives and recommendation",
+          "description": "Students learn to compare options and defend a choice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation risks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional communication",
+          "description": "Clear writing is part of environmental practice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory case brief"
+            },
+            {
+              "type": "concept",
+              "title": "Citation discipline"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

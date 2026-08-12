@@ -1,0 +1,1388 @@
+{
+  "slug": "database-systems",
+  "title": "Database Systems",
+  "description": "A computer science database systems course covering relational theory, SQL, storage, indexing, query processing, query optimization, transactions, concurrency control, recovery, distributed databases, NoSQL, warehousing, and security.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Database System Architecture and Workloads",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for database system architecture and workloads.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            },
+            {
+              "type": "concept",
+              "title": "Storage engine"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Query plan"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            },
+            {
+              "type": "concept",
+              "title": "Concurrency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relational algebra in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare storage engine with index"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of distributed database"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relational algebra affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Relational Model and Relational Algebra",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for relational model and relational algebra.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relation"
+            },
+            {
+              "type": "concept",
+              "title": "Tuple"
+            },
+            {
+              "type": "concept",
+              "title": "Attribute"
+            },
+            {
+              "type": "concept",
+              "title": "Primary key"
+            },
+            {
+              "type": "concept",
+              "title": "Foreign key"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tuple with attribute"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "SQL Querying and Relational Design",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for sql querying and relational design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SELECT"
+            },
+            {
+              "type": "concept",
+              "title": "JOIN"
+            },
+            {
+              "type": "concept",
+              "title": "GROUP BY"
+            },
+            {
+              "type": "concept",
+              "title": "Subquery"
+            },
+            {
+              "type": "concept",
+              "title": "Window function"
+            },
+            {
+              "type": "concept",
+              "title": "Relation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply SELECT in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare JOIN with GROUP BY"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of primary key"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how SELECT affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Entity-Relationship Modeling and Schema Design",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for entity-relationship modeling and schema design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entity"
+            },
+            {
+              "type": "concept",
+              "title": "Relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Cardinality"
+            },
+            {
+              "type": "concept",
+              "title": "Participation"
+            },
+            {
+              "type": "concept",
+              "title": "ER diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply entity in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare relationship with cardinality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how entity affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Normalization, Dependencies, and Design Tradeoffs",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for normalization, dependencies, and design tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "1NF"
+            },
+            {
+              "type": "concept",
+              "title": "2NF"
+            },
+            {
+              "type": "concept",
+              "title": "3NF"
+            },
+            {
+              "type": "concept",
+              "title": "BCNF"
+            },
+            {
+              "type": "concept",
+              "title": "Functional dependency"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply 1NF in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare 2NF with 3NF"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how 1NF affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Storage Models, Pages, Records, and Buffer Management",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for storage models, pages, records, and buffer management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            },
+            {
+              "type": "concept",
+              "title": "Storage engine"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Query plan"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            },
+            {
+              "type": "concept",
+              "title": "Concurrency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relational algebra in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare storage engine with index"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of distributed database"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relational algebra affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Indexing: B-Trees, Hash Indexes, and Access Paths",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for indexing: b-trees, hash indexes, and access paths.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Root"
+            },
+            {
+              "type": "concept",
+              "title": "Leaf"
+            },
+            {
+              "type": "concept",
+              "title": "Height"
+            },
+            {
+              "type": "concept",
+              "title": "Traversal"
+            },
+            {
+              "type": "concept",
+              "title": "Binary search tree"
+            },
+            {
+              "type": "concept",
+              "title": "Hash function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply root in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare leaf with height"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of open addressing"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how root affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Query Processing Operators",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for query processing operators.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection"
+            },
+            {
+              "type": "concept",
+              "title": "Projection"
+            },
+            {
+              "type": "concept",
+              "title": "Join algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Optimizer"
+            },
+            {
+              "type": "concept",
+              "title": "Cost estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply selection in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare projection with join algorithm"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how selection affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Query Optimization and Cost Models",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for query optimization and cost models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection"
+            },
+            {
+              "type": "concept",
+              "title": "Projection"
+            },
+            {
+              "type": "concept",
+              "title": "Join algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Optimizer"
+            },
+            {
+              "type": "concept",
+              "title": "Cost estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply selection in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare projection with join algorithm"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how selection affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transactions and ACID Semantics",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for transactions and acid semantics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ACID"
+            },
+            {
+              "type": "concept",
+              "title": "Commit"
+            },
+            {
+              "type": "concept",
+              "title": "Rollback"
+            },
+            {
+              "type": "concept",
+              "title": "Isolation level"
+            },
+            {
+              "type": "concept",
+              "title": "Serializability"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ACID in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare commit with rollback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ACID affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Concurrency Control and Isolation",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for concurrency control and isolation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lock"
+            },
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Two-phase locking"
+            },
+            {
+              "type": "concept",
+              "title": "MVCC"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply lock in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare deadlock with two-phase locking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how lock affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Recovery, Logging, and Checkpointing",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for recovery, logging, and checkpointing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Write-ahead log"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Redo"
+            },
+            {
+              "type": "concept",
+              "title": "Undo"
+            },
+            {
+              "type": "concept",
+              "title": "Crash recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply write-ahead log in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare checkpoint with redo"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how write-ahead log affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Distributed Databases, Replication, and Consistency",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for distributed databases, replication, and consistency.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Replication"
+            },
+            {
+              "type": "concept",
+              "title": "Sharding"
+            },
+            {
+              "type": "concept",
+              "title": "CAP theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Partition tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply replication in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare sharding with CAP theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how replication affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "NoSQL, Warehousing, Big Data, Security, and Governance",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for nosql, warehousing, big data, security, and governance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Document store"
+            },
+            {
+              "type": "concept",
+              "title": "Key-value store"
+            },
+            {
+              "type": "concept",
+              "title": "Column family"
+            },
+            {
+              "type": "concept",
+              "title": "Graph database"
+            },
+            {
+              "type": "concept",
+              "title": "Eventual consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply document store in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare key-value store with column family"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of index"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how document store affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Database Systems Implementation Project",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for database systems implementation project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relational algebra"
+            },
+            {
+              "type": "concept",
+              "title": "Storage engine"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Query plan"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction"
+            },
+            {
+              "type": "concept",
+              "title": "Concurrency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimize queries"
+            },
+            {
+              "type": "concept",
+              "title": "Reason about storage"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze concurrency"
+            },
+            {
+              "type": "concept",
+              "title": "Apply relational algebra in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare storage engine with index"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock"
+            },
+            {
+              "type": "concept",
+              "title": "Phantom read"
+            },
+            {
+              "type": "concept",
+              "title": "Lost update"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of distributed database"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how relational algebra affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

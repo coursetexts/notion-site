@@ -1,0 +1,976 @@
+{
+  "slug": "earth-systems-physical-geology",
+  "title": "Earth Systems / Physical Geology",
+  "description": "Builds a rigorous Earth-systems understanding of physical geology\u2014Earth materials, tectonics, surface processes, water, hazards, geologic time, field interpretation, and human-Earth interactions\u2014using real observations, maps, and data.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Earth as an Integrated System",
+      "description": "This opening unit frames geology as a systems science linking the solid Earth, water, atmosphere, climate, life, and human activity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Earth system spheres",
+          "description": "Students learn the parts of the Earth system and how matter and energy move among them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "geosphere"
+            },
+            {
+              "type": "concept",
+              "title": "hydrosphere"
+            },
+            {
+              "type": "concept",
+              "title": "atmosphere"
+            },
+            {
+              "type": "concept",
+              "title": "biosphere and anthroposphere"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feedbacks and cycles",
+          "description": "Systems thinking helps students explain why local geologic processes can have global consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "positive and negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "carbon cycle"
+            },
+            {
+              "type": "concept",
+              "title": "rock cycle and water cycle coupling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scientific evidence and uncertainty",
+          "description": "Students learn how Earth scientists infer processes from incomplete records and noisy data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "observations and models"
+            },
+            {
+              "type": "concept",
+              "title": "rates and timescales"
+            },
+            {
+              "type": "concept",
+              "title": "uncertainty and multiple working hypotheses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Minerals and Rock Classification",
+      "description": "Earth materials are the evidence base for geology. This unit teaches students to identify minerals and rocks and infer how they formed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mineral properties",
+          "description": "Students learn diagnostic properties that reveal composition and crystal structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "hardness, cleavage, fracture"
+            },
+            {
+              "type": "concept",
+              "title": "luster and streak"
+            },
+            {
+              "type": "concept",
+              "title": "silicate structures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Igneous rocks",
+          "description": "Igneous textures and compositions record cooling history and magma chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "intrusive versus extrusive"
+            },
+            {
+              "type": "concept",
+              "title": "felsic to mafic composition"
+            },
+            {
+              "type": "concept",
+              "title": "crystal size and texture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sedimentary and metamorphic rocks",
+          "description": "These rocks preserve surface processes, environments, burial, deformation, and heating.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "clastic, chemical, and biochemical rocks"
+            },
+            {
+              "type": "concept",
+              "title": "foliation"
+            },
+            {
+              "type": "concept",
+              "title": "metamorphic grade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plate Tectonics and Earth Interior",
+      "description": "Plate tectonics is the unifying theory of physical geology, explaining earthquakes, volcanoes, mountains, oceans, and long-term Earth evolution.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Earth's internal structure",
+          "description": "Students learn how the planet's layered structure drives surface behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "crust, mantle, core"
+            },
+            {
+              "type": "concept",
+              "title": "lithosphere and asthenosphere"
+            },
+            {
+              "type": "concept",
+              "title": "heat flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plate boundaries",
+          "description": "Boundary types organize many geologic hazards and landforms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "divergent boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "convergent boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "transform faults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Driving mechanisms and evidence",
+          "description": "Students connect the theory to observations rather than memorizing boundary names.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "seafloor spreading"
+            },
+            {
+              "type": "concept",
+              "title": "paleomagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "slab pull and ridge push"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geologic Time and Earth History",
+      "description": "Geology requires thinking across immense timescales. This unit teaches how Earth scientists date events and reconstruct past environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Relative dating",
+          "description": "Students learn how sequences of events can be inferred without exact ages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "superposition"
+            },
+            {
+              "type": "concept",
+              "title": "cross-cutting relationships"
+            },
+            {
+              "type": "concept",
+              "title": "unconformities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiometric dating",
+          "description": "Absolute dating turns isotope systems into numerical ages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "half-life"
+            },
+            {
+              "type": "concept",
+              "title": "parent and daughter isotopes"
+            },
+            {
+              "type": "concept",
+              "title": "closure temperature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Earth history and stratigraphy",
+          "description": "Rocks become historical records of environments, life, climate, and tectonics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "geologic time scale"
+            },
+            {
+              "type": "concept",
+              "title": "fossils and correlation"
+            },
+            {
+              "type": "concept",
+              "title": "mass extinctions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Weathering, Soils, and Critical Zone Processes",
+      "description": "The critical zone is where rock, water, air, organisms, and human activity interact to produce soil and regulate resources.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Physical and chemical weathering",
+          "description": "Students learn how rocks break down mechanically and chemically at Earth's surface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "frost wedging"
+            },
+            {
+              "type": "concept",
+              "title": "hydrolysis and oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "dissolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil formation",
+          "description": "Soils record climate, organisms, parent material, topography, and time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "soil horizons"
+            },
+            {
+              "type": "concept",
+              "title": "texture and structure"
+            },
+            {
+              "type": "concept",
+              "title": "organic matter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Critical zone services",
+          "description": "Students connect weathering and soils to water quality, agriculture, carbon storage, and hazards.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "nutrient cycling"
+            },
+            {
+              "type": "concept",
+              "title": "erosion vulnerability"
+            },
+            {
+              "type": "concept",
+              "title": "soil carbon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Surface Processes and Landforms",
+      "description": "Landscapes evolve through water, ice, wind, gravity, tectonics, and climate. This unit teaches students to read landforms as process records.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fluvial systems",
+          "description": "Rivers shape landscapes and transfer water, sediment, and pollutants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "stream channels"
+            },
+            {
+              "type": "concept",
+              "title": "floodplains"
+            },
+            {
+              "type": "concept",
+              "title": "sediment load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Glacial and arid landscapes",
+          "description": "Contrasting process environments show how climate controls landform development.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "glacial erosion and deposition"
+            },
+            {
+              "type": "concept",
+              "title": "desert landforms"
+            },
+            {
+              "type": "concept",
+              "title": "wind transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass wasting and hillslopes",
+          "description": "Slope processes link weathering, gravity, water, and hazards.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "creep, slides, and flows"
+            },
+            {
+              "type": "concept",
+              "title": "slope stability"
+            },
+            {
+              "type": "concept",
+              "title": "landslide triggers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Groundwater, Aquifers, and Watersheds",
+      "description": "Groundwater and surface water connect geology to ecosystems, drinking water, contamination, drought, and land-use decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Groundwater flow",
+          "description": "Students learn how water moves through porous and fractured Earth materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "porosity and permeability"
+            },
+            {
+              "type": "concept",
+              "title": "hydraulic gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Darcy's law concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aquifers and wells",
+          "description": "Aquifer behavior explains water supply, depletion, and contamination risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "confined and unconfined aquifers"
+            },
+            {
+              "type": "concept",
+              "title": "recharge and discharge"
+            },
+            {
+              "type": "concept",
+              "title": "cones of depression"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Watershed water budgets",
+          "description": "Students connect precipitation, runoff, evapotranspiration, and storage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "hydrographs"
+            },
+            {
+              "type": "concept",
+              "title": "floods and droughts"
+            },
+            {
+              "type": "concept",
+              "title": "watershed management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Volcanoes, Magma, and Igneous Systems",
+      "description": "Volcanism reveals Earth's internal heat and creates hazards, resources, landforms, and atmospheric impacts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Magma generation and composition",
+          "description": "Students learn why magma forms and how composition controls eruption behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "decompression melting"
+            },
+            {
+              "type": "concept",
+              "title": "flux melting"
+            },
+            {
+              "type": "concept",
+              "title": "viscosity and gas content"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Volcanic landforms and deposits",
+          "description": "Volcanic deposits preserve eruption style and hazard history.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "shield and stratovolcanoes"
+            },
+            {
+              "type": "concept",
+              "title": "lava flows"
+            },
+            {
+              "type": "concept",
+              "title": "pyroclastic deposits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Volcanic hazards and monitoring",
+          "description": "Students connect geologic evidence to risk reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ash fall"
+            },
+            {
+              "type": "concept",
+              "title": "lahars"
+            },
+            {
+              "type": "concept",
+              "title": "gas emissions"
+            },
+            {
+              "type": "concept",
+              "title": "deformation and seismic monitoring"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Earthquakes, Faults, and Seismology",
+      "description": "Earthquakes provide evidence for plate motion and Earth's interior while posing major societal hazards.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fault mechanics",
+          "description": "Students learn how stress builds, rocks fail, and seismic energy is released.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "stress and strain"
+            },
+            {
+              "type": "concept",
+              "title": "fault types"
+            },
+            {
+              "type": "concept",
+              "title": "elastic rebound"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Seismic waves and Earth structure",
+          "description": "Seismic waves reveal both earthquake location and internal Earth layers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P and S waves"
+            },
+            {
+              "type": "concept",
+              "title": "surface waves"
+            },
+            {
+              "type": "concept",
+              "title": "travel-time curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Earthquake hazard and risk",
+          "description": "Students distinguish physical hazard from social vulnerability and preparedness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "magnitude and intensity"
+            },
+            {
+              "type": "concept",
+              "title": "liquefaction"
+            },
+            {
+              "type": "concept",
+              "title": "building codes and early warning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coastal, Marine, and Sedimentary Systems",
+      "description": "Coasts and marine basins are dynamic interfaces among land, ocean, atmosphere, sediment, ecosystems, and people.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coastal processes",
+          "description": "Students learn how waves, tides, storms, and sea-level change shape coastlines.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "longshore transport"
+            },
+            {
+              "type": "concept",
+              "title": "barrier islands"
+            },
+            {
+              "type": "concept",
+              "title": "erosion and nourishment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Marine sedimentation",
+          "description": "Marine sediments record climate, tectonics, biology, and ocean circulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "continental shelves"
+            },
+            {
+              "type": "concept",
+              "title": "deep-sea sediments"
+            },
+            {
+              "type": "concept",
+              "title": "carbonate and siliciclastic systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sea-level and coastal risk",
+          "description": "Students connect physical geology to climate adaptation and land-use decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "relative sea-level rise"
+            },
+            {
+              "type": "concept",
+              "title": "storm surge"
+            },
+            {
+              "type": "concept",
+              "title": "coastal vulnerability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate, Biogeochemical Cycles, and Earth Records",
+      "description": "A world-class Earth systems course should connect rocks, sediments, ice, and oceans to climate history and future change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Carbon and nutrient cycles",
+          "description": "Students learn how geologic and biological processes regulate atmospheric composition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "long-term carbon cycle"
+            },
+            {
+              "type": "concept",
+              "title": "silicate weathering thermostat"
+            },
+            {
+              "type": "concept",
+              "title": "nitrogen and phosphorus links"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Paleoclimate archives",
+          "description": "Earth materials preserve past climate signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ice cores"
+            },
+            {
+              "type": "concept",
+              "title": "tree rings and sediments"
+            },
+            {
+              "type": "concept",
+              "title": "isotopes and proxies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Earth-system change",
+          "description": "Students connect geologic timescales with modern climate and environmental change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "greenhouse gases"
+            },
+            {
+              "type": "concept",
+              "title": "feedbacks"
+            },
+            {
+              "type": "concept",
+              "title": "tipping-point intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geologic Hazards and Risk",
+      "description": "This unit integrates earthquakes, volcanoes, landslides, floods, erosion, subsidence, and coastal hazards into risk analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hazard identification",
+          "description": "Students learn to recognize where hazardous processes are likely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "hazard maps"
+            },
+            {
+              "type": "concept",
+              "title": "return intervals"
+            },
+            {
+              "type": "concept",
+              "title": "process indicators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exposure and vulnerability",
+          "description": "Risk depends on people, infrastructure, and preparedness, not only physical processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "land-use patterns"
+            },
+            {
+              "type": "concept",
+              "title": "social vulnerability"
+            },
+            {
+              "type": "concept",
+              "title": "critical infrastructure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitigation and resilience",
+          "description": "Students learn how science informs planning and emergency management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "zoning and building standards"
+            },
+            {
+              "type": "concept",
+              "title": "nature-based solutions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field Mapping and Geologic Interpretation",
+      "description": "Field and map skills make geology concrete: students learn to observe, sketch, measure, map, and infer geologic histories.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field observation",
+          "description": "Students practice making careful observations before jumping to interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "outcrop description"
+            },
+            {
+              "type": "concept",
+              "title": "field notes"
+            },
+            {
+              "type": "concept",
+              "title": "sample documentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maps, cross sections, and stratigraphic columns",
+          "description": "Spatial representations help students reconstruct subsurface structure and time relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "topographic maps"
+            },
+            {
+              "type": "concept",
+              "title": "strike and dip"
+            },
+            {
+              "type": "concept",
+              "title": "geologic cross sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpretive reasoning",
+          "description": "Students learn to build a coherent geologic story from incomplete evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "multiple working hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "sequence of events"
+            },
+            {
+              "type": "concept",
+              "title": "uncertainty in interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geospatial Data, Remote Sensing, and Earth Observation",
+      "description": "Modern geology increasingly uses GIS, remote sensing, and open data to map landforms, hazards, resources, and environmental change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial data foundations",
+          "description": "Students learn how location, scale, and projection affect Earth science analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "coordinate systems"
+            },
+            {
+              "type": "concept",
+              "title": "map scale"
+            },
+            {
+              "type": "concept",
+              "title": "raster and vector data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Remote sensing",
+          "description": "Satellite and aerial data expand field observation across large areas and time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "spectral bands"
+            },
+            {
+              "type": "concept",
+              "title": "land cover"
+            },
+            {
+              "type": "concept",
+              "title": "change detection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data workflows",
+          "description": "Students practice reproducible, ethical use of Earth data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "metadata"
+            },
+            {
+              "type": "concept",
+              "title": "uncertainty and resolution"
+            },
+            {
+              "type": "concept",
+              "title": "USGS and NASA data portals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Human-Earth Interactions and Environmental Applications",
+      "description": "The final unit connects physical geology to resources, contamination, land-use planning, environmental justice, and sustainability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Earth resources",
+          "description": "Students learn how geologic processes concentrate useful materials and shape extraction impacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "minerals and aggregates"
+            },
+            {
+              "type": "concept",
+              "title": "fossil fuels"
+            },
+            {
+              "type": "concept",
+              "title": "geothermal resources"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pollution and environmental geology",
+          "description": "Geology controls contaminant movement through soils, water, and sediments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sorption and transport"
+            },
+            {
+              "type": "concept",
+              "title": "acid mine drainage"
+            },
+            {
+              "type": "concept",
+              "title": "groundwater contamination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision-making and stewardship",
+          "description": "Students connect geoscience evidence to public decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "environmental impact assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Indigenous and local knowledge"
+            },
+            {
+              "type": "concept",
+              "title": "sustainable land and water use"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

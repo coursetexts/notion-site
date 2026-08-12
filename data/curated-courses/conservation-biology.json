@@ -1,0 +1,1652 @@
+{
+  "slug": "conservation-biology",
+  "title": "Conservation Biology",
+  "description": "Frames conservation biology as an interdisciplinary, mission-driven response to biodiversity loss\u2014covering extinction risk, population and genetic analysis, landscape connectivity, restoration, human dimensions, policy, monitoring, and adaptive decision-making.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Conservation Biology as a Crisis and Mission-Driven Science",
+      "description": "Frame conservation biology as an interdisciplinary response to biodiversity loss, extinction risk, ecosystem degradation, and human-environment conflict.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Origins and scope of conservation biology",
+          "description": "Students learn why conservation biology emerged as an applied, value-aware science focused on preventing biodiversity loss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "crisis discipline"
+            },
+            {
+              "type": "concept",
+              "title": "biodiversity crisis"
+            },
+            {
+              "type": "concept",
+              "title": "sixth mass extinction"
+            },
+            {
+              "type": "concept",
+              "title": "applied ecology"
+            },
+            {
+              "type": "concept",
+              "title": "conservation triage"
+            },
+            {
+              "type": "concept",
+              "title": "interdisciplinary science"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics and values in conservation",
+          "description": "This subtopic clarifies that conservation decisions involve values as well as evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "intrinsic value"
+            },
+            {
+              "type": "concept",
+              "title": "instrumental value"
+            },
+            {
+              "type": "concept",
+              "title": "relational value"
+            },
+            {
+              "type": "concept",
+              "title": "biocentrism"
+            },
+            {
+              "type": "concept",
+              "title": "ecocentrism"
+            },
+            {
+              "type": "concept",
+              "title": "anthropocentrism"
+            },
+            {
+              "type": "concept",
+              "title": "intergenerational equity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scale and systems thinking",
+          "description": "Students learn to connect local management actions to regional and global ecological systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "genes to ecosystems"
+            },
+            {
+              "type": "concept",
+              "title": "spatial scale"
+            },
+            {
+              "type": "concept",
+              "title": "temporal scale"
+            },
+            {
+              "type": "concept",
+              "title": "social-ecological systems"
+            },
+            {
+              "type": "concept",
+              "title": "feedbacks"
+            },
+            {
+              "type": "concept",
+              "title": "tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biodiversity Patterns, Measurement, and Values",
+      "description": "Measure biodiversity across genes, species, communities, ecosystems, and landscapes while evaluating ecological, cultural, ethical, and economic values.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Levels of biodiversity",
+          "description": "Students distinguish the biological levels that conservation aims to protect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "genetic diversity"
+            },
+            {
+              "type": "concept",
+              "title": "species diversity"
+            },
+            {
+              "type": "concept",
+              "title": "phylogenetic diversity"
+            },
+            {
+              "type": "concept",
+              "title": "functional diversity"
+            },
+            {
+              "type": "concept",
+              "title": "ecosystem diversity"
+            },
+            {
+              "type": "concept",
+              "title": "landscape diversity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biodiversity metrics",
+          "description": "This subtopic gives students tools to compare sites, communities, and conservation outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "species richness"
+            },
+            {
+              "type": "concept",
+              "title": "evenness"
+            },
+            {
+              "type": "concept",
+              "title": "Shannon index"
+            },
+            {
+              "type": "concept",
+              "title": "Simpson index"
+            },
+            {
+              "type": "concept",
+              "title": "beta diversity"
+            },
+            {
+              "type": "concept",
+              "title": "endemism"
+            },
+            {
+              "type": "concept",
+              "title": "species-area relationship"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ecosystem services and cultural values",
+          "description": "Students learn why biodiversity matters to livelihoods, culture, health, and ecological stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "provisioning services"
+            },
+            {
+              "type": "concept",
+              "title": "regulating services"
+            },
+            {
+              "type": "concept",
+              "title": "cultural services"
+            },
+            {
+              "type": "concept",
+              "title": "supporting services"
+            },
+            {
+              "type": "concept",
+              "title": "natural capital"
+            },
+            {
+              "type": "concept",
+              "title": "traditional ecological knowledge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Extinction, Rarity, and Threat Assessment",
+      "description": "Analyze why species become rare or extinct and how conservation status is assessed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Extinction processes",
+          "description": "Students learn the mechanisms that push populations and species toward extinction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "background extinction"
+            },
+            {
+              "type": "concept",
+              "title": "mass extinction"
+            },
+            {
+              "type": "concept",
+              "title": "extinction debt"
+            },
+            {
+              "type": "concept",
+              "title": "Allee effect"
+            },
+            {
+              "type": "concept",
+              "title": "demographic stochasticity"
+            },
+            {
+              "type": "concept",
+              "title": "environmental stochasticity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rarity and vulnerability",
+          "description": "This subtopic helps students identify why some species are inherently or contextually at high risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "restricted range"
+            },
+            {
+              "type": "concept",
+              "title": "small population size"
+            },
+            {
+              "type": "concept",
+              "title": "specialized habitat"
+            },
+            {
+              "type": "concept",
+              "title": "low reproductive rate"
+            },
+            {
+              "type": "concept",
+              "title": "trophic level"
+            },
+            {
+              "type": "concept",
+              "title": "island endemism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Threat status systems",
+          "description": "Students learn how conservation status is classified and communicated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IUCN Red List"
+            },
+            {
+              "type": "concept",
+              "title": "threat categories"
+            },
+            {
+              "type": "concept",
+              "title": "extent of occurrence"
+            },
+            {
+              "type": "concept",
+              "title": "area of occupancy"
+            },
+            {
+              "type": "concept",
+              "title": "population trend"
+            },
+            {
+              "type": "concept",
+              "title": "criteria A-E"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population Ecology, Demography, and Population Viability Analysis",
+      "description": "Use demographic models and risk analysis to predict persistence and guide management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Population growth models",
+          "description": "Students use models to predict how populations change through time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "exponential growth"
+            },
+            {
+              "type": "concept",
+              "title": "logistic growth"
+            },
+            {
+              "type": "concept",
+              "title": "carrying capacity"
+            },
+            {
+              "type": "concept",
+              "title": "density dependence"
+            },
+            {
+              "type": "concept",
+              "title": "r-selected and K-selected traits"
+            },
+            {
+              "type": "concept",
+              "title": "metapopulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Life tables and demography",
+          "description": "This subtopic shows how survival and reproduction shape population trajectories.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "age structure"
+            },
+            {
+              "type": "concept",
+              "title": "survivorship"
+            },
+            {
+              "type": "concept",
+              "title": "fecundity"
+            },
+            {
+              "type": "concept",
+              "title": "net reproductive rate"
+            },
+            {
+              "type": "concept",
+              "title": "generation time"
+            },
+            {
+              "type": "concept",
+              "title": "Leslie matrix"
+            },
+            {
+              "type": "concept",
+              "title": "elasticity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Population viability analysis",
+          "description": "Students learn how managers estimate extinction risk and compare interventions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PVA"
+            },
+            {
+              "type": "concept",
+              "title": "minimum viable population"
+            },
+            {
+              "type": "concept",
+              "title": "quasi-extinction threshold"
+            },
+            {
+              "type": "concept",
+              "title": "sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "stochastic simulation"
+            },
+            {
+              "type": "concept",
+              "title": "management scenario"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conservation Genetics and Evolutionary Potential",
+      "description": "Understand how genetic diversity, inbreeding, gene flow, and adaptation shape conservation decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Genetic diversity and small populations",
+          "description": "Students connect population size to genetic health and adaptive capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "heterozygosity"
+            },
+            {
+              "type": "concept",
+              "title": "allelic richness"
+            },
+            {
+              "type": "concept",
+              "title": "effective population size"
+            },
+            {
+              "type": "concept",
+              "title": "genetic drift"
+            },
+            {
+              "type": "concept",
+              "title": "bottleneck"
+            },
+            {
+              "type": "concept",
+              "title": "founder effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inbreeding and gene flow",
+          "description": "This subtopic explains genetic risks and rescue strategies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "inbreeding depression"
+            },
+            {
+              "type": "concept",
+              "title": "outbreeding depression"
+            },
+            {
+              "type": "concept",
+              "title": "gene flow"
+            },
+            {
+              "type": "concept",
+              "title": "genetic rescue"
+            },
+            {
+              "type": "concept",
+              "title": "population structure"
+            },
+            {
+              "type": "concept",
+              "title": "F-statistics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evolutionary conservation",
+          "description": "Students learn to conserve adaptive potential, not just current population numbers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "local adaptation"
+            },
+            {
+              "type": "concept",
+              "title": "adaptive variation"
+            },
+            {
+              "type": "concept",
+              "title": "evolutionarily significant unit"
+            },
+            {
+              "type": "concept",
+              "title": "management unit"
+            },
+            {
+              "type": "concept",
+              "title": "assisted gene flow"
+            },
+            {
+              "type": "concept",
+              "title": "genomics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Species Interactions, Communities, and Ecosystem Function",
+      "description": "Connect species conservation to food webs, mutualisms, keystone species, and ecosystem processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Food webs and keystone roles",
+          "description": "Students learn that protecting one species can affect whole communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "keystone species"
+            },
+            {
+              "type": "concept",
+              "title": "trophic cascade"
+            },
+            {
+              "type": "concept",
+              "title": "apex predator"
+            },
+            {
+              "type": "concept",
+              "title": "foundation species"
+            },
+            {
+              "type": "concept",
+              "title": "ecosystem engineer"
+            },
+            {
+              "type": "concept",
+              "title": "indicator species"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mutualisms and dependencies",
+          "description": "This subtopic highlights interactions that can make conservation failures contagious.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pollination"
+            },
+            {
+              "type": "concept",
+              "title": "seed dispersal"
+            },
+            {
+              "type": "concept",
+              "title": "mycorrhizae"
+            },
+            {
+              "type": "concept",
+              "title": "host specificity"
+            },
+            {
+              "type": "concept",
+              "title": "coextinction"
+            },
+            {
+              "type": "concept",
+              "title": "obligate mutualism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ecosystem function and resilience",
+          "description": "Students connect biodiversity to stability and ecosystem processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "productivity"
+            },
+            {
+              "type": "concept",
+              "title": "nutrient cycling"
+            },
+            {
+              "type": "concept",
+              "title": "functional redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "resilience"
+            },
+            {
+              "type": "concept",
+              "title": "resistance"
+            },
+            {
+              "type": "concept",
+              "title": "regime shift"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Habitat Loss, Fragmentation, and Landscape Connectivity",
+      "description": "Evaluate spatial threats and design corridors, reserves, and connected landscapes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Habitat conversion and degradation",
+          "description": "Students identify how land-use change reduces habitat quantity and quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "deforestation"
+            },
+            {
+              "type": "concept",
+              "title": "wetland loss"
+            },
+            {
+              "type": "concept",
+              "title": "urbanization"
+            },
+            {
+              "type": "concept",
+              "title": "agricultural intensification"
+            },
+            {
+              "type": "concept",
+              "title": "habitat degradation"
+            },
+            {
+              "type": "concept",
+              "title": "edge effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fragmentation effects",
+          "description": "This subtopic shows how breaking habitat apart changes population and community dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "patch size"
+            },
+            {
+              "type": "concept",
+              "title": "isolation"
+            },
+            {
+              "type": "concept",
+              "title": "matrix quality"
+            },
+            {
+              "type": "concept",
+              "title": "edge-to-area ratio"
+            },
+            {
+              "type": "concept",
+              "title": "source-sink dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "island biogeography"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connectivity and corridors",
+          "description": "Students learn spatial designs that maintain movement, gene flow, and climate tracking.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "wildlife corridor"
+            },
+            {
+              "type": "concept",
+              "title": "stepping stones"
+            },
+            {
+              "type": "concept",
+              "title": "permeability"
+            },
+            {
+              "type": "concept",
+              "title": "least-cost path"
+            },
+            {
+              "type": "concept",
+              "title": "circuit theory"
+            },
+            {
+              "type": "concept",
+              "title": "connectivity modeling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Invasive Species, Disease, Overexploitation, and Pollution",
+      "description": "Examine major direct drivers of biodiversity loss beyond habitat conversion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Invasive species ecology",
+          "description": "Students examine how nonnative species establish, spread, and transform ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "introduction pathway"
+            },
+            {
+              "type": "concept",
+              "title": "propagule pressure"
+            },
+            {
+              "type": "concept",
+              "title": "enemy release"
+            },
+            {
+              "type": "concept",
+              "title": "biotic resistance"
+            },
+            {
+              "type": "concept",
+              "title": "rapid evolution"
+            },
+            {
+              "type": "concept",
+              "title": "eradication feasibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Disease and exploitation",
+          "description": "This subtopic covers direct biological pressures on wildlife and ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "emerging infectious disease"
+            },
+            {
+              "type": "concept",
+              "title": "spillover"
+            },
+            {
+              "type": "concept",
+              "title": "chytrid fungus"
+            },
+            {
+              "type": "concept",
+              "title": "white-nose syndrome"
+            },
+            {
+              "type": "concept",
+              "title": "overharvesting"
+            },
+            {
+              "type": "concept",
+              "title": "bycatch"
+            },
+            {
+              "type": "concept",
+              "title": "wildlife trade"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pollution and cumulative stressors",
+          "description": "Students learn how contaminants interact with other conservation threats.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "eutrophication"
+            },
+            {
+              "type": "concept",
+              "title": "pesticides"
+            },
+            {
+              "type": "concept",
+              "title": "heavy metals"
+            },
+            {
+              "type": "concept",
+              "title": "plastic pollution"
+            },
+            {
+              "type": "concept",
+              "title": "bioaccumulation"
+            },
+            {
+              "type": "concept",
+              "title": "biomagnification"
+            },
+            {
+              "type": "concept",
+              "title": "multiple stressors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate Change, Range Shifts, and Adaptation Planning",
+      "description": "Design conservation responses to changing climate, disturbance regimes, and ecological uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ecological impacts of climate change",
+          "description": "Students connect climate variables to species and ecosystem responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "warming"
+            },
+            {
+              "type": "concept",
+              "title": "precipitation change"
+            },
+            {
+              "type": "concept",
+              "title": "phenological mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "range shift"
+            },
+            {
+              "type": "concept",
+              "title": "coral bleaching"
+            },
+            {
+              "type": "concept",
+              "title": "ocean acidification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vulnerability and refugia",
+          "description": "This subtopic helps students identify species and places most likely to persist or decline.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "exposure"
+            },
+            {
+              "type": "concept",
+              "title": "sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "adaptive capacity"
+            },
+            {
+              "type": "concept",
+              "title": "microrefugia"
+            },
+            {
+              "type": "concept",
+              "title": "climate refugia"
+            },
+            {
+              "type": "concept",
+              "title": "velocity of climate change"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptation strategies",
+          "description": "Students compare intervention options under uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "assisted migration"
+            },
+            {
+              "type": "concept",
+              "title": "climate-smart conservation"
+            },
+            {
+              "type": "concept",
+              "title": "dynamic reserves"
+            },
+            {
+              "type": "concept",
+              "title": "scenario planning"
+            },
+            {
+              "type": "concept",
+              "title": "resilience strategy"
+            },
+            {
+              "type": "concept",
+              "title": "managed retreat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Protected Areas, Reserve Design, and Spatial Conservation Planning",
+      "description": "Use systematic planning principles to prioritize places, networks, and management actions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Protected-area goals and categories",
+          "description": "Students learn what protected areas can and cannot accomplish.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IUCN protected area categories"
+            },
+            {
+              "type": "concept",
+              "title": "national parks"
+            },
+            {
+              "type": "concept",
+              "title": "wildlife refuges"
+            },
+            {
+              "type": "concept",
+              "title": "marine protected areas"
+            },
+            {
+              "type": "concept",
+              "title": "OECMs"
+            },
+            {
+              "type": "concept",
+              "title": "paper parks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reserve design principles",
+          "description": "This subtopic develops the spatial logic behind conservation networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "representation"
+            },
+            {
+              "type": "concept",
+              "title": "replication"
+            },
+            {
+              "type": "concept",
+              "title": "adequacy"
+            },
+            {
+              "type": "concept",
+              "title": "connectivity"
+            },
+            {
+              "type": "concept",
+              "title": "complementarity"
+            },
+            {
+              "type": "concept",
+              "title": "SLOSS debate"
+            },
+            {
+              "type": "concept",
+              "title": "buffer zones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systematic conservation planning",
+          "description": "Students learn prioritization methods for limited budgets and competing goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "biodiversity target"
+            },
+            {
+              "type": "concept",
+              "title": "irreplaceability"
+            },
+            {
+              "type": "concept",
+              "title": "vulnerability"
+            },
+            {
+              "type": "concept",
+              "title": "Marxan concept"
+            },
+            {
+              "type": "concept",
+              "title": "cost layer"
+            },
+            {
+              "type": "concept",
+              "title": "gap analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Restoration Ecology and Rewilding",
+      "description": "Restore degraded systems using succession, reference models, resilience, and adaptive monitoring.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Restoration foundations",
+          "description": "Students learn how degraded ecosystems recover and how restoration goals are set.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "reference ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "succession"
+            },
+            {
+              "type": "concept",
+              "title": "disturbance regime"
+            },
+            {
+              "type": "concept",
+              "title": "degradation threshold"
+            },
+            {
+              "type": "concept",
+              "title": "novel ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "restoration trajectory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Restoration practice",
+          "description": "This subtopic covers interventions used to rebuild ecological structure and function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "invasive removal"
+            },
+            {
+              "type": "concept",
+              "title": "native planting"
+            },
+            {
+              "type": "concept",
+              "title": "hydrologic restoration"
+            },
+            {
+              "type": "concept",
+              "title": "soil restoration"
+            },
+            {
+              "type": "concept",
+              "title": "prescribed fire"
+            },
+            {
+              "type": "concept",
+              "title": "assisted natural regeneration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rewilding and trophic restoration",
+          "description": "Students evaluate bold restoration strategies and their risks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "rewilding"
+            },
+            {
+              "type": "concept",
+              "title": "trophic reintroduction"
+            },
+            {
+              "type": "concept",
+              "title": "ecological replacement"
+            },
+            {
+              "type": "concept",
+              "title": "megafauna"
+            },
+            {
+              "type": "concept",
+              "title": "predator restoration"
+            },
+            {
+              "type": "concept",
+              "title": "human-wildlife conflict"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Human Dimensions, Environmental Justice, and Community-Based Conservation",
+      "description": "Study conservation as a social process involving livelihoods, governance, equity, conflict, and Indigenous/community leadership.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "People and conservation outcomes",
+          "description": "Students learn why conservation success depends on human behavior, institutions, and livelihoods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "stakeholders"
+            },
+            {
+              "type": "concept",
+              "title": "livelihoods"
+            },
+            {
+              "type": "concept",
+              "title": "ecosystem dependence"
+            },
+            {
+              "type": "concept",
+              "title": "incentives"
+            },
+            {
+              "type": "concept",
+              "title": "social license"
+            },
+            {
+              "type": "concept",
+              "title": "conflict resolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Justice and rights",
+          "description": "This subtopic centers equity, power, and historical context in conservation decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "environmental justice"
+            },
+            {
+              "type": "concept",
+              "title": "procedural justice"
+            },
+            {
+              "type": "concept",
+              "title": "distributive justice"
+            },
+            {
+              "type": "concept",
+              "title": "recognitional justice"
+            },
+            {
+              "type": "concept",
+              "title": "land tenure"
+            },
+            {
+              "type": "concept",
+              "title": "Indigenous rights"
+            },
+            {
+              "type": "concept",
+              "title": "free prior informed consent"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Community-based conservation",
+          "description": "Students compare participatory conservation models and governance approaches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "co-management"
+            },
+            {
+              "type": "concept",
+              "title": "community conserved area"
+            },
+            {
+              "type": "concept",
+              "title": "participatory mapping"
+            },
+            {
+              "type": "concept",
+              "title": "citizen science"
+            },
+            {
+              "type": "concept",
+              "title": "benefit sharing"
+            },
+            {
+              "type": "concept",
+              "title": "local ecological knowledge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conservation Policy, Law, and Institutions",
+      "description": "Understand how laws, treaties, agencies, NGOs, markets, and governance tools shape conservation outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Legal frameworks",
+          "description": "Students learn the institutions that translate science into enforceable conservation action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Endangered Species Act"
+            },
+            {
+              "type": "concept",
+              "title": "CITES"
+            },
+            {
+              "type": "concept",
+              "title": "Convention on Biological Diversity"
+            },
+            {
+              "type": "concept",
+              "title": "NEPA"
+            },
+            {
+              "type": "concept",
+              "title": "Habitat Conservation Plan"
+            },
+            {
+              "type": "concept",
+              "title": "recovery plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Governance and organizations",
+          "description": "This subtopic maps the roles of agencies, NGOs, international bodies, and local governments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IUCN"
+            },
+            {
+              "type": "concept",
+              "title": "UNEP"
+            },
+            {
+              "type": "concept",
+              "title": "USFWS"
+            },
+            {
+              "type": "concept",
+              "title": "state wildlife agency"
+            },
+            {
+              "type": "concept",
+              "title": "NGO"
+            },
+            {
+              "type": "concept",
+              "title": "land trust"
+            },
+            {
+              "type": "concept",
+              "title": "public-private partnership"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Economic and policy tools",
+          "description": "Students learn incentives and instruments used to influence conservation behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "payment for ecosystem services"
+            },
+            {
+              "type": "concept",
+              "title": "conservation easement"
+            },
+            {
+              "type": "concept",
+              "title": "biodiversity offset"
+            },
+            {
+              "type": "concept",
+              "title": "debt-for-nature swap"
+            },
+            {
+              "type": "concept",
+              "title": "ecotourism"
+            },
+            {
+              "type": "concept",
+              "title": "natural capital accounting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Monitoring, Field Methods, GIS, Remote Sensing, and Data Science",
+      "description": "Collect and analyze biodiversity evidence using field surveys, spatial tools, citizen science, and open data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field survey methods",
+          "description": "Students learn how biodiversity evidence is collected in the field.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "transect"
+            },
+            {
+              "type": "concept",
+              "title": "quadrat"
+            },
+            {
+              "type": "concept",
+              "title": "point count"
+            },
+            {
+              "type": "concept",
+              "title": "camera trap"
+            },
+            {
+              "type": "concept",
+              "title": "mark-recapture"
+            },
+            {
+              "type": "concept",
+              "title": "eDNA"
+            },
+            {
+              "type": "concept",
+              "title": "occupancy survey"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spatial and remote-sensing tools",
+          "description": "This subtopic introduces landscape-scale monitoring and mapping.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GIS"
+            },
+            {
+              "type": "concept",
+              "title": "land-cover classification"
+            },
+            {
+              "type": "concept",
+              "title": "NDVI"
+            },
+            {
+              "type": "concept",
+              "title": "remote sensing"
+            },
+            {
+              "type": "concept",
+              "title": "habitat suitability model"
+            },
+            {
+              "type": "concept",
+              "title": "species distribution model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Open data and citizen science",
+          "description": "Students learn to use and evaluate large biodiversity datasets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GBIF"
+            },
+            {
+              "type": "concept",
+              "title": "iNaturalist"
+            },
+            {
+              "type": "concept",
+              "title": "eBird"
+            },
+            {
+              "type": "concept",
+              "title": "NEON"
+            },
+            {
+              "type": "concept",
+              "title": "data quality"
+            },
+            {
+              "type": "concept",
+              "title": "sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "metadata"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Adaptive Management, Decision Analysis, and Conservation Effectiveness",
+      "description": "Make conservation decisions under uncertainty and evaluate whether interventions work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Adaptive management cycle",
+          "description": "Students learn conservation as iterative learning under uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "plan-do-monitor-learn"
+            },
+            {
+              "type": "concept",
+              "title": "hypothesis-driven management"
+            },
+            {
+              "type": "concept",
+              "title": "adaptive experiment"
+            },
+            {
+              "type": "concept",
+              "title": "feedback loop"
+            },
+            {
+              "type": "concept",
+              "title": "trigger point"
+            },
+            {
+              "type": "concept",
+              "title": "management objective"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision analysis",
+          "description": "This subtopic gives tools for transparent choices under constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "objectives"
+            },
+            {
+              "type": "concept",
+              "title": "alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "consequences"
+            },
+            {
+              "type": "concept",
+              "title": "tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "risk tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "decision tree"
+            },
+            {
+              "type": "concept",
+              "title": "multi-criteria analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effectiveness evaluation",
+          "description": "Students learn to test whether conservation actions actually work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "counterfactual"
+            },
+            {
+              "type": "concept",
+              "title": "before-after-control-impact"
+            },
+            {
+              "type": "concept",
+              "title": "impact evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "monitoring indicator"
+            },
+            {
+              "type": "concept",
+              "title": "cost effectiveness"
+            },
+            {
+              "type": "concept",
+              "title": "evidence synthesis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conservation Planning Studio and Capstone",
+      "description": "Synthesize science, stakeholders, spatial data, policy, and implementation into a practical conservation plan.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem definition and focal targets",
+          "description": "Students begin a conservation plan by defining scope, targets, and threats.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "planning area"
+            },
+            {
+              "type": "concept",
+              "title": "focal species"
+            },
+            {
+              "type": "concept",
+              "title": "conservation target"
+            },
+            {
+              "type": "concept",
+              "title": "threat model"
+            },
+            {
+              "type": "concept",
+              "title": "situation analysis"
+            },
+            {
+              "type": "concept",
+              "title": "SMART objective"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Management strategy design",
+          "description": "This subtopic turns science into a feasible set of actions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "theory of change"
+            },
+            {
+              "type": "concept",
+              "title": "stakeholder analysis"
+            },
+            {
+              "type": "concept",
+              "title": "spatial prioritization"
+            },
+            {
+              "type": "concept",
+              "title": "budget constraint"
+            },
+            {
+              "type": "concept",
+              "title": "implementation timeline"
+            },
+            {
+              "type": "concept",
+              "title": "risk register"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional communication",
+          "description": "Students practice communicating conservation evidence to decision-makers and communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "technical report"
+            },
+            {
+              "type": "concept",
+              "title": "policy brief"
+            },
+            {
+              "type": "concept",
+              "title": "map portfolio"
+            },
+            {
+              "type": "concept",
+              "title": "public presentation"
+            },
+            {
+              "type": "concept",
+              "title": "executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "monitoring plan"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

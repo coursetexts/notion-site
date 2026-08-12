@@ -1,0 +1,1072 @@
+{
+  "slug": "fluid-mechanics-transport-phenomena-i",
+  "title": "Fluid Mechanics / Transport Phenomena I",
+  "description": "This syllabus treats fluid mechanics as Chemical Engineering's first transport phenomena course: students move from properties and balances to viscous flow, pipe networks, boundary layers, measurement, scale-up, and analogies that prepare them for heat and mass transfer.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Transport Phenomena Framework, Continuum Assumptions, and Fluid Properties",
+      "description": "Frame fluid mechanics as momentum transport and define the physical properties that control flow behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Momentum Transport as a Unified Framework",
+          "description": "This subtopic positions fluid mechanics as the first piece of a broader transport sequence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Momentum flux, momentum diffusivity, molecular transport, and convective transport"
+            },
+            {
+              "type": "concept",
+              "title": "Macroscopic balance, microscopic balance, and constitutive relation"
+            },
+            {
+              "type": "concept",
+              "title": "Analogies among momentum, heat, and mass transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Process examples: pipes, reactors, packed beds, filters, heat exchangers, and columns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuum Assumption and Flow Descriptions",
+          "description": "Students learn when it is reasonable to treat a fluid as a continuous field.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuum hypothesis, mean free path, Knudsen number, and representative volume element"
+            },
+            {
+              "type": "concept",
+              "title": "Eulerian description, Lagrangian description, streamline, pathline, and streakline"
+            },
+            {
+              "type": "concept",
+              "title": "Steady versus unsteady flow, uniform versus nonuniform flow"
+            },
+            {
+              "type": "concept",
+              "title": "Compressible versus incompressible flow and low-Mach-number assumption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fluid Properties and Material Behavior",
+          "description": "The point is to connect measurable properties to flow resistance, interface behavior, and pressure response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Density, specific weight, specific gravity, and compressibility"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic viscosity, kinematic viscosity, Newtonian fluid, and apparent viscosity"
+            },
+            {
+              "type": "concept",
+              "title": "Surface tension, capillary pressure, wetting, and contact angle"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor pressure, cavitation risk, and temperature dependence of properties"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluid Statics, Pressure Variation, and Forces on Surfaces",
+      "description": "Analyze fluids at rest, hydrostatic pressure fields, buoyancy, and pressure forces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pressure Fields in Static Fluids",
+          "description": "Students learn how pressure changes with depth and body forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure, gauge pressure, absolute pressure, and atmospheric pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrostatic equation, pressure gradient, and constant-density fluid"
+            },
+            {
+              "type": "concept",
+              "title": "Barometer, manometer, inclined manometer, and differential manometer"
+            },
+            {
+              "type": "concept",
+              "title": "Rotating fluids and accelerated rigid-body fluid motion as optional extensions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forces on Submerged Surfaces",
+          "description": "This subtopic turns pressure fields into resultant forces and locations of action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resultant hydrostatic force, center of pressure, centroid, and pressure prism"
+            },
+            {
+              "type": "concept",
+              "title": "Plane surface, curved surface, horizontal component, and vertical component"
+            },
+            {
+              "type": "concept",
+              "title": "Gates, tanks, sight glasses, vessel walls, and dam-like surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Moment balance and line of action"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buoyancy and Stability",
+          "description": "The goal is to analyze floating and submerged bodies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Archimedes' principle, buoyant force, displaced volume, and apparent weight"
+            },
+            {
+              "type": "concept",
+              "title": "Center of buoyancy, center of gravity, metacenter, and metacentric height"
+            },
+            {
+              "type": "concept",
+              "title": "Floating stability, neutral buoyancy, and submerged body equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrometers, separators, and settling objects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integral Conservation of Mass and Control-Volume Analysis",
+      "description": "Use control-volume thinking to model accumulation, inflow, outflow, and continuity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Control Volumes and Continuity",
+          "description": "Students learn to choose a boundary and account for mass crossing it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System, control volume, control surface, and outward normal"
+            },
+            {
+              "type": "concept",
+              "title": "Mass flow rate, volumetric flow rate, average velocity, and density variation"
+            },
+            {
+              "type": "concept",
+              "title": "Steady continuity equation and incompressible continuity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple inlet/outlet mixing, split streams, and recycle streams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unsteady Mass Balances",
+          "description": "This section connects fluid mechanics to filling, draining, and process transients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accumulation, inflow, outflow, generation term absence for total mass"
+            },
+            {
+              "type": "concept",
+              "title": "Tank draining, filling tank, variable liquid level, and residence time"
+            },
+            {
+              "type": "concept",
+              "title": "Quasi-steady assumption and lumped control volume"
+            },
+            {
+              "type": "concept",
+              "title": "Compressible storage in gas tanks and line packing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Velocity Profiles and Average Quantities",
+          "description": "The point is to connect local velocity fields to engineering flow rates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point velocity, area-average velocity, mass-average velocity, and bulk velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity profile, flow area, wetted perimeter, and hydraulic diameter"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar parabolic profile and turbulent flatter profile"
+            },
+            {
+              "type": "concept",
+              "title": "Correction factors for momentum and kinetic energy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integral Momentum Balances and Mechanical Energy",
+      "description": "Apply momentum balances and mechanical energy balances to flow systems and equipment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linear Momentum Balance",
+          "description": "Students use Newton's second law for flowing fluids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Momentum flux, pressure force, body force, wall shear force, and support force"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-flow momentum balance and unsteady momentum accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum correction factor beta"
+            },
+            {
+              "type": "concept",
+              "title": "Bends, nozzles, jets, reducers, and vanes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanical Energy Balance",
+          "description": "This subtopic introduces the engineering energy equation for flow systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure head, velocity head, elevation head, pump head, turbine head, and head loss"
+            },
+            {
+              "type": "concept",
+              "title": "Shaft work, flow work, mechanical energy, and irreversible loss"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetic energy correction factor alpha"
+            },
+            {
+              "type": "concept",
+              "title": "Extended Bernoulli equation and process piping examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forces and Equipment Loads",
+          "description": "The goal is to compute loads that matter for design and support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reaction force, anchor force, thrust, impulse, and jet impact"
+            },
+            {
+              "type": "concept",
+              "title": "Force on pipe elbow, nozzle thrust, and tank discharge force"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum balance with pressure and gravity terms"
+            },
+            {
+              "type": "concept",
+              "title": "Free-body diagram and sign convention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bernoulli Equation, Energy Corrections, and Engineering Limits",
+      "description": "Use Bernoulli's equation appropriately while recognizing losses, pumps, turbines, and velocity profiles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bernoulli Equation Derivation and Assumptions",
+          "description": "Students learn what Bernoulli's equation says and when it applies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inviscid flow, steady flow, incompressible flow, streamline, and no shaft work"
+            },
+            {
+              "type": "concept",
+              "title": "Static pressure, dynamic pressure, stagnation pressure, and elevation term"
+            },
+            {
+              "type": "concept",
+              "title": "Total head, piezometric head, and hydraulic grade line"
+            },
+            {
+              "type": "concept",
+              "title": "Torricelli law, siphon, jet speed, and free-surface tank"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Losses and Energy Additions",
+          "description": "Real systems require corrections for pumps, turbines, and frictional loss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Major loss, minor loss, loss coefficient K, and head-loss term"
+            },
+            {
+              "type": "concept",
+              "title": "Pump head, turbine head, efficiency, and shaft power"
+            },
+            {
+              "type": "concept",
+              "title": "Energy grade line and hydraulic grade line"
+            },
+            {
+              "type": "concept",
+              "title": "Entrance loss, exit loss, valve loss, fitting loss, and contraction/expansion loss"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Misuses and Validity Checks",
+          "description": "The point is to avoid applying Bernoulli where viscous or rotational effects dominate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Streamline restriction, separated flow, turbulence, and viscous dissipation"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility effects and Mach-number caution"
+            },
+            {
+              "type": "concept",
+              "title": "Nonuniform velocity profile and correction factors"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure taps, datum choice, and unit consistency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Differential Momentum Transport and Navier-Stokes Equations",
+      "description": "Derive and interpret local momentum balances for Newtonian fluids.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Differential Balances and Field Variables",
+          "description": "This subtopic moves from whole equipment balances to local equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Velocity field, pressure field, density field, and stress field"
+            },
+            {
+              "type": "concept",
+              "title": "Material derivative, local acceleration, convective acceleration, and substantial derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity equation in differential form"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian, cylindrical, and spherical coordinate awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stress Tensor and Newtonian Constitutive Law",
+          "description": "Students learn how forces inside a fluid are represented mathematically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal stress, shear stress, stress tensor, and pressure as isotropic normal stress"
+            },
+            {
+              "type": "concept",
+              "title": "Rate-of-strain tensor, velocity gradient, and deformation rate"
+            },
+            {
+              "type": "concept",
+              "title": "Newton's law of viscosity and Newtonian constitutive relation"
+            },
+            {
+              "type": "concept",
+              "title": "Viscous stress, bulk viscosity, and Stokes hypothesis as an optional extension"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Navier-Stokes Equations and Simplifications",
+          "description": "The goal is to recognize which terms remain for common ChE flows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Navier-Stokes equation, body force, pressure gradient, viscous diffusion, and inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Creeping flow, inviscid flow, fully developed flow, and unidirectional flow"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary condition: no slip, no penetration, symmetry, and free surface"
+            },
+            {
+              "type": "concept",
+              "title": "Scale analysis and order-of-magnitude simplification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Viscous Flow, Shear Stress, and Non-Newtonian Rheology",
+      "description": "Connect viscosity, shear stress, velocity gradients, and rheological models to transport behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Shear Stress and Viscosity",
+          "description": "Students connect velocity gradients to momentum diffusion and flow resistance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shear rate, shear stress, viscosity, and momentum diffusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Newtonian fluid, viscosity-temperature dependence, and viscosity-pressure dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Viscometer, capillary rheometer, and rotational rheometer"
+            },
+            {
+              "type": "concept",
+              "title": "Wall shear stress and shear-stress distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Non-Newtonian Models",
+          "description": "Many process fluids are not Newtonian, so students need the common model vocabulary.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power-law fluid, consistency index, flow behavior index, and apparent viscosity"
+            },
+            {
+              "type": "concept",
+              "title": "Bingham plastic, yield stress, Herschel-Bulkley model, and plug flow"
+            },
+            {
+              "type": "concept",
+              "title": "Shear-thinning, shear-thickening, thixotropy, and viscoelasticity"
+            },
+            {
+              "type": "concept",
+              "title": "Polymer solutions, slurries, paints, food products, and biological fluids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Viscous Flow Regimes",
+          "description": "The point is to classify when viscosity dominates and how shear propagates momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds number, creeping flow, laminar flow, transitional flow, and turbulent flow"
+            },
+            {
+              "type": "concept",
+              "title": "Stokes flow, lubrication approximation, and thin-film flow"
+            },
+            {
+              "type": "concept",
+              "title": "Entrance region, fully developed region, and wall effects"
+            },
+            {
+              "type": "concept",
+              "title": "No-slip condition and wall-driven momentum transport"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laminar Internal Flow and Exact Solutions",
+      "description": "Study fully developed laminar flows in simple geometries and their pressure-drop relationships.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Circular Pipe Flow",
+          "description": "This subtopic develops the canonical pressure-driven laminar flow solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hagen-Poiseuille equation, parabolic velocity profile, and volumetric flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Wall shear stress, pressure gradient, and maximum/average velocity relation"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar friction factor 64/Re"
+            },
+            {
+              "type": "concept",
+              "title": "Entrance length and fully developed laminar assumption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planar and Annular Flows",
+          "description": "Students learn how geometry changes exact solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plane Poiseuille flow, Couette flow, combined Couette-Poiseuille flow"
+            },
+            {
+              "type": "concept",
+              "title": "Flow between parallel plates and moving wall problems"
+            },
+            {
+              "type": "concept",
+              "title": "Annular flow, falling film, and slit flow"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions, symmetry condition, and integration constants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process Applications of Laminar Flow",
+          "description": "The goal is to connect exact solutions to real process calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capillary flow, microfluidic channel, coating flow, and film flow"
+            },
+            {
+              "type": "concept",
+              "title": "Residence time, shear exposure, and pressure-drop sizing"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar mixing limitations and diffusion-dominated transport"
+            },
+            {
+              "type": "concept",
+              "title": "Scale-up cautions for viscosity-dominated systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Turbulence, Friction Factors, and Pipe-Flow Pressure Drop",
+      "description": "Model turbulent internal flow using empirical friction factors and engineering correlations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Turbulent Flow Concepts",
+          "description": "Students learn why turbulent flow requires empirical and statistical descriptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Velocity fluctuation, time-average velocity, Reynolds decomposition, and eddy"
+            },
+            {
+              "type": "concept",
+              "title": "Turbulent mixing, eddy viscosity, and Reynolds stress"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar sublayer, buffer layer, logarithmic region, and turbulent core"
+            },
+            {
+              "type": "concept",
+              "title": "Smooth pipe, rough pipe, and relative roughness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Friction Factor Methods",
+          "description": "This subtopic builds the main pipe-flow calculation toolkit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Darcy friction factor, Fanning friction factor, and conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Moody chart, Colebrook equation, Swamee-Jain equation, and explicit approximations"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds number, relative roughness, and hydraulic diameter"
+            },
+            {
+              "type": "concept",
+              "title": "Major head loss and Darcy-Weisbach equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Minor Losses and Noncircular Ducts",
+          "description": "The point is to include real fittings and geometry in pressure-drop estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minor-loss coefficient, entrance, exit, bend, elbow, tee, valve, and sudden expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent length method and K-value method"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic diameter, wetted perimeter, and noncircular duct correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility and high-velocity gas-flow caution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pumps, Compressors, Piping Networks, and Equipment Selection",
+      "description": "Analyze fluid-moving equipment, system curves, cavitation, and network behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pump Curves and System Curves",
+          "description": "Students learn how fluid-moving equipment finds an operating point.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Centrifugal pump, positive displacement pump, pump curve, and system curve"
+            },
+            {
+              "type": "concept",
+              "title": "Operating point, shutoff head, runout, and best efficiency point"
+            },
+            {
+              "type": "concept",
+              "title": "Pump efficiency, brake horsepower, and affinity laws"
+            },
+            {
+              "type": "concept",
+              "title": "Series pumps, parallel pumps, and variable-speed operation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cavitation and NPSH",
+          "description": "The goal is to prevent vapor formation and equipment damage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vapor pressure, cavitation, flashing, and suction pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Net positive suction head available and required"
+            },
+            {
+              "type": "concept",
+              "title": "Suction line loss, elevation head, and temperature effects"
+            },
+            {
+              "type": "concept",
+              "title": "Cavitation noise, impeller damage, and design margin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Piping Networks and Compressors",
+          "description": "Students practice coupled equipment and network calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series pipe, parallel pipe, branch network, and equivalent resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Hardy Cross method preview and iterative balancing"
+            },
+            {
+              "type": "concept",
+              "title": "Compressors, blowers, fans, pressure ratio, and gas density changes"
+            },
+            {
+              "type": "concept",
+              "title": "Valve sizing, control valve pressure drop, and process safety considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flow Measurement and Experimental Fluid Mechanics",
+      "description": "Use pressure, velocity, and flow-rate measurement methods while accounting for calibration and uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pressure and Velocity Measurements",
+          "description": "Students learn what instruments actually measure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static pressure tap, stagnation pressure, differential pressure, and manometer"
+            },
+            {
+              "type": "concept",
+              "title": "Pitot tube, Pitot-static tube, hot-wire anemometer, and laser Doppler velocimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure transducer, calibration curve, zero drift, and response time"
+            },
+            {
+              "type": "concept",
+              "title": "Probe placement, disturbance, and alignment error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow-Rate Meters",
+          "description": "This subtopic covers the common industrial flowmeter families.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Venturi meter, orifice plate, flow nozzle, and discharge coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Rotameter, turbine meter, Coriolis meter, magnetic flowmeter, and ultrasonic flowmeter"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds-number limits, permanent pressure loss, and meter rangeability"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration, installation length, and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental Uncertainty and Data Reduction",
+          "description": "The point is to convert raw measurements into defensible flow results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Measurement uncertainty, propagation of error, repeatability, and bias"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional consistency, unit conversion, and data reconciliation"
+            },
+            {
+              "type": "concept",
+              "title": "Curve fitting, empirical correlation, and residual analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Lab safety, pressure containment, and uncertainty reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dimensional Analysis, Similitude, and Transport Correlations",
+      "description": "Use nondimensional groups to scale experiments, organize correlations, and interpret transport regimes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Buckingham Pi and Dimensionless Groups",
+          "description": "Students learn to reduce variable lists and identify governing ratios.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base dimensions, repeating variables, dimension matrix, and dimensionless product"
+            },
+            {
+              "type": "concept",
+              "title": "Buckingham Pi theorem and rank of dimensional matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds number, Euler number, Froude number, Weber number, Mach number, and Strouhal number"
+            },
+            {
+              "type": "concept",
+              "title": "Nusselt, Prandtl, Schmidt, Sherwood, and Stanton numbers as transport previews"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Similarity and Scale Models",
+          "description": "This subtopic explains how small models inform full-scale process systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric similarity, kinematic similarity, and dynamic similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Model-prototype relation and scaling law"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds similarity, Froude similarity, and competing similarity constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Wind tunnel, water tunnel, stirred tank scale-up, and packed-bed scale-up"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Empirical Correlations",
+          "description": "The goal is to use correlations responsibly within their valid range.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Correlation form, regression constant, exponent, and validity range"
+            },
+            {
+              "type": "concept",
+              "title": "Friction-factor correlation, drag correlation, and pressure-drop correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Log-log plot, dimensional homogeneity, and uncertainty in correlations"
+            },
+            {
+              "type": "concept",
+              "title": "Extrapolation risk and physical sanity checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boundary Layers, External Flow, Drag, and Flow Around Objects",
+      "description": "Analyze viscous layers, separation, drag, lift, and flow over immersed bodies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boundary-Layer Concepts",
+          "description": "Students learn why viscous effects concentrate near surfaces at high Reynolds number.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary-layer thickness, displacement thickness, momentum thickness, and wall shear"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar boundary layer, turbulent boundary layer, and transition"
+            },
+            {
+              "type": "concept",
+              "title": "Blasius solution, flat-plate skin friction, and local/average coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure gradient, adverse pressure gradient, and separation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drag and Lift on Bodies",
+          "description": "This subtopic connects flow patterns to forces on immersed objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drag coefficient, lift coefficient, form drag, skin-friction drag, and pressure drag"
+            },
+            {
+              "type": "concept",
+              "title": "Flow around sphere, cylinder, flat plate, and airfoil as examples"
+            },
+            {
+              "type": "concept",
+              "title": "Wake, vortex shedding, Strouhal number, and separation point"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal velocity, settling velocity, and drag-regime correlations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Particles, Packed Beds, and Process Relevance",
+          "description": "Chemical engineering uses external-flow ideas in particulate and porous systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stokes law, creeping-flow drag, and correction factor"
+            },
+            {
+              "type": "concept",
+              "title": "Particle Reynolds number, sphericity, and hindered settling"
+            },
+            {
+              "type": "concept",
+              "title": "Packed bed, void fraction, Ergun equation, and pressure drop"
+            },
+            {
+              "type": "concept",
+              "title": "Fluidization, minimum fluidization velocity, and entrainment preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Momentum Transport Analogies and Preparation for Heat/Mass Transfer",
+      "description": "Connect momentum transport to heat and mass transfer through flux laws, diffusivity, and dimensionless analogies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flux Laws and Diffusivity Analogy",
+          "description": "Students learn the common mathematical structure behind transport modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton's law of viscosity, Fourier's law, and Fick's law"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum diffusivity, thermal diffusivity, and mass diffusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Flux, gradient, driving force, and transport coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular transport versus turbulent transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensionless Transport Analogies",
+          "description": "This subtopic previews later heat and mass transfer courses using familiar momentum concepts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds analogy, Prandtl analogy, Taylor analogy, and Chilton-Colburn analogy"
+            },
+            {
+              "type": "concept",
+              "title": "Friction factor, Stanton number, Prandtl number, and Schmidt number"
+            },
+            {
+              "type": "concept",
+              "title": "j-factor, heat-transfer coefficient, and mass-transfer coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations of analogies and role of turbulence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated Transport Problem Solving",
+          "description": "The final section helps students transfer momentum-balance habits into the rest of ChE transport.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shell balance, control-volume balance, and differential balance as reusable templates"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary condition, constitutive equation, and driving force identification"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling analysis and dimensionless formulation"
+            },
+            {
+              "type": "concept",
+              "title": "Preparation for conduction, convection, diffusion, mass transfer, and separations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

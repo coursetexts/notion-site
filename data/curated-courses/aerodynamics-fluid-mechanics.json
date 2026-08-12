@@ -1,0 +1,1444 @@
+{
+  "slug": "aerodynamics-fluid-mechanics",
+  "title": "Aerodynamics / Fluid Mechanics",
+  "description": "This syllabus is designed for a junior-level aerospace engineering course that bridges core fluid mechanics with aircraft aerodynamics and high-speed flow.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Fluid Properties, Continuum Assumption, and Flow Description",
+      "description": "This section develops fluid properties, continuum assumption, and flow description through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fluid Properties",
+          "description": "Students need property vocabulary to model forces, motion, and energy transfer in fluids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Density"
+            },
+            {
+              "type": "concept",
+              "title": "Specific weight"
+            },
+            {
+              "type": "concept",
+              "title": "Specific gravity"
+            },
+            {
+              "type": "concept",
+              "title": "Viscosity"
+            },
+            {
+              "type": "concept",
+              "title": "Kinematic viscosity"
+            },
+            {
+              "type": "concept",
+              "title": "Surface tension"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuum and Flow Fields",
+          "description": "This subtopic explains when fluid properties can be treated as smooth fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuum assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Mean free path"
+            },
+            {
+              "type": "concept",
+              "title": "Knudsen number"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity field"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure field"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature field"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow Kinematics",
+          "description": "Kinematics describes motion before applying force laws.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Streamline"
+            },
+            {
+              "type": "concept",
+              "title": "Pathline"
+            },
+            {
+              "type": "concept",
+              "title": "Streakline"
+            },
+            {
+              "type": "concept",
+              "title": "Material derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Steady flow"
+            },
+            {
+              "type": "concept",
+              "title": "Unsteady flow"
+            },
+            {
+              "type": "concept",
+              "title": "Control volume"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluid Statics, Pressure, Buoyancy, and Manometry",
+      "description": "This section develops fluid statics, pressure, buoyancy, and manometry through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pressure Variation",
+          "description": "Hydrostatic pressure is the baseline for pressure forces and instrumentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Gauge pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrostatic equation"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure head"
+            },
+            {
+              "type": "concept",
+              "title": "Barometer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydrostatic Forces",
+          "description": "Students learn how distributed pressure produces resultant forces and moments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resultant force"
+            },
+            {
+              "type": "concept",
+              "title": "Center of pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Plane surface"
+            },
+            {
+              "type": "concept",
+              "title": "Curved surface"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure prism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buoyancy and Measurement",
+          "description": "Buoyancy and manometry connect statics to floating bodies and measurement systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Archimedes' principle"
+            },
+            {
+              "type": "concept",
+              "title": "Buoyant force"
+            },
+            {
+              "type": "concept",
+              "title": "Metacenter"
+            },
+            {
+              "type": "concept",
+              "title": "Manometer"
+            },
+            {
+              "type": "concept",
+              "title": "Inclined manometer"
+            },
+            {
+              "type": "concept",
+              "title": "Stability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control Volumes and Conservation of Mass, Momentum, and Energy",
+      "description": "This section develops control volumes and conservation of mass, momentum, and energy through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mass Conservation",
+          "description": "Continuity links flow rate, velocity, area, and density.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control volume"
+            },
+            {
+              "type": "concept",
+              "title": "Mass flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Volume flow rate"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Steady incompressible flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Momentum Equation",
+          "description": "Momentum balances predict forces from jets, bends, nozzles, and aerodynamic flows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear momentum equation"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum flux"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure force"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction force"
+            },
+            {
+              "type": "concept",
+              "title": "Control surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy Equation",
+          "description": "Energy balances connect pressure, velocity, elevation, pumps, turbines, and losses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mechanical energy equation"
+            },
+            {
+              "type": "concept",
+              "title": "Shaft work"
+            },
+            {
+              "type": "concept",
+              "title": "Head loss"
+            },
+            {
+              "type": "concept",
+              "title": "Pump head"
+            },
+            {
+              "type": "concept",
+              "title": "Turbine head"
+            },
+            {
+              "type": "concept",
+              "title": "Stagnation pressure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bernoulli Equation and Inviscid Flow Applications",
+      "description": "This section develops bernoulli equation and inviscid flow applications through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bernoulli Assumptions",
+          "description": "Students learn to use Bernoulli only when its assumptions are defensible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Steady flow"
+            },
+            {
+              "type": "concept",
+              "title": "Inviscid flow"
+            },
+            {
+              "type": "concept",
+              "title": "Incompressible flow"
+            },
+            {
+              "type": "concept",
+              "title": "Along a streamline"
+            },
+            {
+              "type": "concept",
+              "title": "No shaft work"
+            },
+            {
+              "type": "concept",
+              "title": "No losses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure-Velocity Relations",
+          "description": "Bernoulli explains how pressure and velocity trade off in idealized flows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Stagnation pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Total pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity head"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aerospace Applications",
+          "description": "These applications connect Bernoulli to measurement and aerodynamic intuition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pitot tube"
+            },
+            {
+              "type": "concept",
+              "title": "Pitot-static system"
+            },
+            {
+              "type": "concept",
+              "title": "Venturi"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Lift pressure distribution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dimensional Analysis, Similitude, and Wind-Tunnel Scaling",
+      "description": "This section develops dimensional analysis, similitude, and wind-tunnel scaling through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dimensional Homogeneity",
+          "description": "Dimensional analysis checks equations and builds nondimensional groups.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base dimension"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensionless group"
+            },
+            {
+              "type": "concept",
+              "title": "Buckingham Pi theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Repeating variables"
+            },
+            {
+              "type": "concept",
+              "title": "Homogeneity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Key Nondimensional Numbers",
+          "description": "These groups organize aerodynamic regimes and model testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reynolds number"
+            },
+            {
+              "type": "concept",
+              "title": "Mach number"
+            },
+            {
+              "type": "concept",
+              "title": "Froude number"
+            },
+            {
+              "type": "concept",
+              "title": "Euler number"
+            },
+            {
+              "type": "concept",
+              "title": "Strouhal number"
+            },
+            {
+              "type": "concept",
+              "title": "Lift coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Drag coefficient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Similarity and Scaling",
+          "description": "Students learn when small models represent full-scale aircraft.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Kinematic similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Wind tunnel"
+            },
+            {
+              "type": "concept",
+              "title": "Scale effect"
+            },
+            {
+              "type": "concept",
+              "title": "Prototype"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Potential Flow and Elementary Flow Solutions",
+      "description": "This section develops potential flow and elementary flow solutions through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Potential Flow Assumptions",
+          "description": "Potential flow gives analytic insight when viscosity and rotation are neglected.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Irrotational flow"
+            },
+            {
+              "type": "concept",
+              "title": "Inviscid flow"
+            },
+            {
+              "type": "concept",
+              "title": "Incompressible flow"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity potential"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stream Function and Superposition",
+          "description": "Superposition builds complex flows from simple elementary solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stream function"
+            },
+            {
+              "type": "concept",
+              "title": "Source"
+            },
+            {
+              "type": "concept",
+              "title": "Sink"
+            },
+            {
+              "type": "concept",
+              "title": "Vortex"
+            },
+            {
+              "type": "concept",
+              "title": "Doublet"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform flow"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cylinder and Lift Models",
+          "description": "Potential flow around bodies helps motivate circulation and ideal lift.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow around cylinder"
+            },
+            {
+              "type": "concept",
+              "title": "Stagnation point"
+            },
+            {
+              "type": "concept",
+              "title": "Circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Kutta-Joukowski theorem"
+            },
+            {
+              "type": "concept",
+              "title": "d'Alembert paradox"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Airfoil Geometry, Lift, Circulation, and Thin Airfoil Theory",
+      "description": "This section develops airfoil geometry, lift, circulation, and thin airfoil theory through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Airfoil Geometry",
+          "description": "Geometry controls pressure distribution, lift, stall behavior, and moment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chord"
+            },
+            {
+              "type": "concept",
+              "title": "Camber"
+            },
+            {
+              "type": "concept",
+              "title": "Thickness"
+            },
+            {
+              "type": "concept",
+              "title": "Leading edge"
+            },
+            {
+              "type": "concept",
+              "title": "Trailing edge"
+            },
+            {
+              "type": "concept",
+              "title": "Angle of attack"
+            },
+            {
+              "type": "concept",
+              "title": "Mean camber line"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lift and Circulation",
+          "description": "Circulation connects inviscid theory to aerodynamic lift.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Kutta condition"
+            },
+            {
+              "type": "concept",
+              "title": "Lift coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Center of pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Aerodynamic center"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thin Airfoil Theory",
+          "description": "Thin airfoil theory provides useful estimates and conceptual structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zero-lift angle"
+            },
+            {
+              "type": "concept",
+              "title": "Lift-curve slope"
+            },
+            {
+              "type": "concept",
+              "title": "Pitching moment"
+            },
+            {
+              "type": "concept",
+              "title": "Fourier coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Small-angle approximation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Wing Theory, Induced Drag, and Lifting-Line Concepts",
+      "description": "This section develops finite wing theory, induced drag, and lifting-line concepts through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Finite Wing Effects",
+          "description": "Finite wings shed vortices and produce downwash, changing lift and drag.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wingtip vortex"
+            },
+            {
+              "type": "concept",
+              "title": "Downwash"
+            },
+            {
+              "type": "concept",
+              "title": "Induced angle of attack"
+            },
+            {
+              "type": "concept",
+              "title": "Effective angle of attack"
+            },
+            {
+              "type": "concept",
+              "title": "Trailing vortex"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lifting-Line Theory",
+          "description": "Lifting-line ideas connect spanwise circulation to lift distribution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prandtl lifting-line theory"
+            },
+            {
+              "type": "concept",
+              "title": "Elliptic lift distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Aspect ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Span efficiency factor"
+            },
+            {
+              "type": "concept",
+              "title": "Oswald efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Induced Drag",
+          "description": "Students learn why lift production creates drag on finite wings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Induced drag coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Drag polar"
+            },
+            {
+              "type": "concept",
+              "title": "Finite wing correction"
+            },
+            {
+              "type": "concept",
+              "title": "High aspect ratio wing"
+            },
+            {
+              "type": "concept",
+              "title": "Vortex drag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Viscous Flow, Boundary Layers, and Skin Friction",
+      "description": "This section develops viscous flow, boundary layers, and skin friction through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "No-Slip and Viscosity",
+          "description": "Viscosity creates wall shear and separates real flows from ideal inviscid models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "No-slip condition"
+            },
+            {
+              "type": "concept",
+              "title": "Wall shear stress"
+            },
+            {
+              "type": "concept",
+              "title": "Newtonian fluid"
+            },
+            {
+              "type": "concept",
+              "title": "Viscous diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Shear rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary-Layer Growth",
+          "description": "Boundary layers concentrate viscous effects near surfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Displacement thickness"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum thickness"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Turbulent boundary layer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Skin-Friction Drag",
+          "description": "Students estimate drag contributions from wall shear and surface effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Skin-friction coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Flat-plate boundary layer"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds number effect"
+            },
+            {
+              "type": "concept",
+              "title": "Roughness"
+            },
+            {
+              "type": "concept",
+              "title": "Form drag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laminar-Turbulent Transition, Separation, and Flow Control",
+      "description": "This section develops laminar-turbulent transition, separation, and flow control through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transition",
+          "description": "Transition determines drag, mixing, and boundary-layer robustness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Laminar flow"
+            },
+            {
+              "type": "concept",
+              "title": "Turbulent flow"
+            },
+            {
+              "type": "concept",
+              "title": "Critical Reynolds number"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance growth"
+            },
+            {
+              "type": "concept",
+              "title": "Transition location"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Separation and Stall",
+          "description": "Adverse pressure gradients can detach flow and cause major lift loss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adverse pressure gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Flow separation"
+            },
+            {
+              "type": "concept",
+              "title": "Separation point"
+            },
+            {
+              "type": "concept",
+              "title": "Stall"
+            },
+            {
+              "type": "concept",
+              "title": "Wake"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure drag"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow Control",
+          "description": "Flow-control methods delay separation or modify boundary-layer behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary-layer trip"
+            },
+            {
+              "type": "concept",
+              "title": "Vortex generator"
+            },
+            {
+              "type": "concept",
+              "title": "Suction"
+            },
+            {
+              "type": "concept",
+              "title": "Blowing"
+            },
+            {
+              "type": "concept",
+              "title": "Flap"
+            },
+            {
+              "type": "concept",
+              "title": "Slat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Internal Flow, Pipe Losses, and Duct Aerodynamics",
+      "description": "This section develops internal flow, pipe losses, and duct aerodynamics through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pipe and Duct Flow",
+          "description": "Internal flow connects aerospace ducts and test facilities to core fluid mechanics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fully developed flow"
+            },
+            {
+              "type": "concept",
+              "title": "Entrance length"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic diameter"
+            },
+            {
+              "type": "concept",
+              "title": "Laminar pipe flow"
+            },
+            {
+              "type": "concept",
+              "title": "Turbulent pipe flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Losses and Friction",
+          "description": "Loss modeling predicts pressure drops in ducts, pipes, nozzles, and diffusers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Darcy friction factor"
+            },
+            {
+              "type": "concept",
+              "title": "Moody chart"
+            },
+            {
+              "type": "concept",
+              "title": "Major loss"
+            },
+            {
+              "type": "concept",
+              "title": "Minor loss"
+            },
+            {
+              "type": "concept",
+              "title": "Loss coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Roughness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nozzles and Diffusers",
+          "description": "Nozzles and diffusers convert pressure and velocity in propulsion and test systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nozzle"
+            },
+            {
+              "type": "concept",
+              "title": "Diffuser"
+            },
+            {
+              "type": "concept",
+              "title": "Area change"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Separation in diffuser"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Compressible Flow Fundamentals and Isentropic Relations",
+      "description": "This section develops compressible flow fundamentals and isentropic relations through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Compressibility and Mach Number",
+          "description": "Compressibility becomes essential as flow speeds approach sonic conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mach number"
+            },
+            {
+              "type": "concept",
+              "title": "Speed of sound"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility"
+            },
+            {
+              "type": "concept",
+              "title": "Subsonic"
+            },
+            {
+              "type": "concept",
+              "title": "Transonic"
+            },
+            {
+              "type": "concept",
+              "title": "Supersonic"
+            },
+            {
+              "type": "concept",
+              "title": "Hypersonic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stagnation Properties",
+          "description": "Stagnation quantities organize energy and measurement in compressible flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stagnation temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Stagnation pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Total enthalpy"
+            },
+            {
+              "type": "concept",
+              "title": "Static temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Static pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Isentropic Flow",
+          "description": "Isentropic relations model ideal compressible acceleration and pressure changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isentropic relation"
+            },
+            {
+              "type": "concept",
+              "title": "Area-Mach relation"
+            },
+            {
+              "type": "concept",
+              "title": "Choked flow"
+            },
+            {
+              "type": "concept",
+              "title": "Critical pressure ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Mass flow parameter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Normal Shocks, Oblique Shocks, Expansion Waves, and High-Speed Aerodynamics",
+      "description": "This section develops normal shocks, oblique shocks, expansion waves, and high-speed aerodynamics through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Normal Shocks",
+          "description": "Normal shocks model abrupt compression and losses in supersonic flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal shock"
+            },
+            {
+              "type": "concept",
+              "title": "Shock strength"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy increase"
+            },
+            {
+              "type": "concept",
+              "title": "Total pressure loss"
+            },
+            {
+              "type": "concept",
+              "title": "Downstream Mach number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oblique Shocks and Expansions",
+          "description": "Turning supersonic flow creates shocks or expansion fans depending on geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oblique shock"
+            },
+            {
+              "type": "concept",
+              "title": "Theta-beta-M relation"
+            },
+            {
+              "type": "concept",
+              "title": "Shock angle"
+            },
+            {
+              "type": "concept",
+              "title": "Prandtl-Meyer expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Mach wave"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "High-Speed Effects",
+          "description": "High-speed aerodynamics adds wave drag, heating, and regime-specific design constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wave drag"
+            },
+            {
+              "type": "concept",
+              "title": "Transonic drag rise"
+            },
+            {
+              "type": "concept",
+              "title": "Critical Mach number"
+            },
+            {
+              "type": "concept",
+              "title": "Aerodynamic heating"
+            },
+            {
+              "type": "concept",
+              "title": "Blunt body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computational and Experimental Aerodynamics",
+      "description": "This section develops computational and experimental aerodynamics through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CFD workflow",
+          "description": "Students learn the basic workflow and limitations of computational aerodynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometry cleanup"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "Solver"
+            },
+            {
+              "type": "concept",
+              "title": "Residual"
+            },
+            {
+              "type": "concept",
+              "title": "Grid convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Turbulence Modeling",
+          "description": "Turbulence models approximate unresolved physics and require careful interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RANS"
+            },
+            {
+              "type": "concept",
+              "title": "LES"
+            },
+            {
+              "type": "concept",
+              "title": "DNS"
+            },
+            {
+              "type": "concept",
+              "title": "k-epsilon model"
+            },
+            {
+              "type": "concept",
+              "title": "k-omega SST"
+            },
+            {
+              "type": "concept",
+              "title": "Wall function"
+            },
+            {
+              "type": "concept",
+              "title": "y-plus"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wind-Tunnel Measurement",
+          "description": "Experiments provide data for validation, coefficients, and flow visualization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force balance"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure tap"
+            },
+            {
+              "type": "concept",
+              "title": "Hot-wire anemometry"
+            },
+            {
+              "type": "concept",
+              "title": "PIV"
+            },
+            {
+              "type": "concept",
+              "title": "Smoke visualization"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Aircraft Aerodynamics and Performance Project",
+      "description": "This section develops integrated aircraft aerodynamics and performance project through concrete aerodynamics and fluid-mechanics vocabulary, models, calculations, assumptions, and design checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Airfoil and Wing Analysis",
+          "description": "The capstone ties together airfoil, wing, and flow-regime analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Airfoil polar"
+            },
+            {
+              "type": "concept",
+              "title": "Lift curve"
+            },
+            {
+              "type": "concept",
+              "title": "Drag polar"
+            },
+            {
+              "type": "concept",
+              "title": "Stall angle"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-wing correction"
+            },
+            {
+              "type": "concept",
+              "title": "Reynolds number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance Connection",
+          "description": "Aerodynamic coefficients become inputs to aircraft performance estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lift-to-drag ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Thrust required"
+            },
+            {
+              "type": "concept",
+              "title": "Power required"
+            },
+            {
+              "type": "concept",
+              "title": "Range"
+            },
+            {
+              "type": "concept",
+              "title": "Endurance"
+            },
+            {
+              "type": "concept",
+              "title": "Climb performance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering Communication",
+          "description": "Students communicate assumptions, calculations, plots, and design implications clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumption table"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient plot"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty statement"
+            },
+            {
+              "type": "concept",
+              "title": "Design recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Technical memo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

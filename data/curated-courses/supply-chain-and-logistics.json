@@ -1,0 +1,776 @@
+{
+  "slug": "supply-chain-and-logistics",
+  "title": "Supply Chain and Logistics",
+  "description": "Supply Chain and Logistics develops the analytical and managerial skills needed to design, operate, and improve supply networks. Students study network design, forecasting, sourcing, inventory, warehousing, transportation, logistics optimization, coordination, global trade, risk, sustainability, and analytics-driven digital operations.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Supply Chain Strategy, Flows, and Performance",
+      "description": "Students begin by understanding supply chains as coordinated flows of materials, information, money, and decisions across firms and facilities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Supply chain structure",
+          "description": "The point is to see the supply chain as an end-to-end system rather than a set of isolated functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Suppliers, plants, warehouses, retailers, and customers"
+            },
+            {
+              "type": "concept",
+              "title": "Upstream and downstream flows"
+            },
+            {
+              "type": "concept",
+              "title": "Push, pull, and hybrid systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance metrics",
+          "description": "Students learn the measures used to judge whether a supply chain is working.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cost, service, speed, quality, and flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Cash-to-Cash Cycle Time"
+            },
+            {
+              "type": "concept",
+              "title": "Perfect Order and On-Time-In-Full Metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strategic fit",
+          "description": "This subtopic links supply chain design to product, market, and competitive strategy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Responsive Versus Efficient Chains"
+            },
+            {
+              "type": "concept",
+              "title": "Product variety and demand uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Service promises and operating capabilities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supply Chain Network Design",
+      "description": "This module covers where facilities should be located, how flows should be assigned, and how network decisions shape cost, service, and resilience.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Facility location",
+          "description": "Facility decisions shape long-term cost, service, and risk exposure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plants, DCs, Cross-Docks, and Fulfillment Nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Greenfield Versus Existing-Network Changes"
+            },
+            {
+              "type": "concept",
+              "title": "Market and supplier proximity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Network flows",
+          "description": "Students learn how materials move through a network under cost and capacity constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source-to-plant flows"
+            },
+            {
+              "type": "concept",
+              "title": "Plant-to-warehouse flows"
+            },
+            {
+              "type": "concept",
+              "title": "Customer allocation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design tradeoffs",
+          "description": "Network design balances cost, service, resilience, and flexibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Centralization Versus Decentralization"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity and inventory placement"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario and sensitivity analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Demand Planning and Forecasting",
+      "description": "Students learn how demand signals become forecasts, and how forecast quality affects inventory, capacity, and transportation choices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Forecasting fundamentals",
+          "description": "Forecasts convert demand history and market knowledge into planning inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time series patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Moving averages and exponential smoothing"
+            },
+            {
+              "type": "concept",
+              "title": "Forecast horizon and granularity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forecast accuracy",
+          "description": "Students learn to measure error and diagnose whether a forecast is useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MAD, MAPE, Bias, and Tracking Signals"
+            },
+            {
+              "type": "concept",
+              "title": "Outliers and promotions"
+            },
+            {
+              "type": "concept",
+              "title": "Forecast value added"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planning connection",
+          "description": "Forecasts matter because they drive downstream decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S&OP Inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Safety stock implications"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity and transportation planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Procurement, Sourcing, and Supplier Relationships",
+      "description": "This topic focuses on how firms select suppliers, structure contracts, manage supplier performance, and protect continuity of supply.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sourcing strategy",
+          "description": "Students learn how make/buy and supplier selection choices affect risk and economics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spend categories"
+            },
+            {
+              "type": "concept",
+              "title": "Single, dual, and multi-sourcing"
+            },
+            {
+              "type": "concept",
+              "title": "Total cost of ownership"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Supplier management",
+          "description": "Good sourcing includes ongoing performance and relationship management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supplier scorecards"
+            },
+            {
+              "type": "concept",
+              "title": "Quality, delivery, cost, and innovation metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Supplier development"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contracts and negotiation",
+          "description": "Contract structure shapes incentives and risk allocation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Price, volume, and service terms"
+            },
+            {
+              "type": "concept",
+              "title": "Incoterms and Payment Terms"
+            },
+            {
+              "type": "concept",
+              "title": "Risk-sharing and flexibility clauses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inventory Management in Supply Chains",
+      "description": "Students learn how inventory buffers uncertainty while tying up capital, space, and operating attention.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inventory roles",
+          "description": "Inventory supports service but creates cost and complexity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cycle stock"
+            },
+            {
+              "type": "concept",
+              "title": "Safety stock"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline and seasonal stock"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inventory policies",
+          "description": "Students learn practical reorder and replenishment systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EOQ and Reorder Points"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic review"
+            },
+            {
+              "type": "concept",
+              "title": "ABC Classification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk pooling and service levels",
+          "description": "This subtopic explains how aggregation and uncertainty affect inventory placement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand variability"
+            },
+            {
+              "type": "concept",
+              "title": "Lead time variability"
+            },
+            {
+              "type": "concept",
+              "title": "Fill rate and cycle service level"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Warehousing, Fulfillment, and Distribution",
+      "description": "This module turns logistics strategy into facility-level decisions about storage, picking, handling, packaging, and order fulfillment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Warehouse operations",
+          "description": "Students learn what happens inside logistics facilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receiving, putaway, picking, packing, shipping"
+            },
+            {
+              "type": "concept",
+              "title": "Slotting and layout"
+            },
+            {
+              "type": "concept",
+              "title": "Labor and material handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fulfillment models",
+          "description": "Different customer promises require different distribution structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Store replenishment"
+            },
+            {
+              "type": "concept",
+              "title": "E-commerce fulfillment"
+            },
+            {
+              "type": "concept",
+              "title": "Omnichannel and returns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Warehouse technology",
+          "description": "Systems and automation shape speed, accuracy, and scalability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "WMS"
+            },
+            {
+              "type": "concept",
+              "title": "Barcode/RFID Scanning"
+            },
+            {
+              "type": "concept",
+              "title": "Automation, robotics, and sortation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transportation Management and Freight Systems",
+      "description": "Students study modes, carriers, routes, rates, and service tradeoffs across domestic and global freight networks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transportation modes",
+          "description": "Students compare modes by cost, speed, reliability, and shipment characteristics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Truckload and LTL"
+            },
+            {
+              "type": "concept",
+              "title": "Rail, ocean, air, and intermodal"
+            },
+            {
+              "type": "concept",
+              "title": "Parcel and last-mile delivery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carrier and route decisions",
+          "description": "Transportation management turns network needs into executable moves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carrier selection"
+            },
+            {
+              "type": "concept",
+              "title": "Routing and consolidation"
+            },
+            {
+              "type": "concept",
+              "title": "Tendering and appointment scheduling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Freight economics",
+          "description": "Students learn how transportation costs and service levels are built.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rates and accessorials"
+            },
+            {
+              "type": "concept",
+              "title": "Cube and weight constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Backhauls and empty miles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Logistics Optimization and Operations Research Models",
+      "description": "This topic develops quantitative tools for routing, facility location, assignment, network flow, and cost-service tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Facility and allocation models",
+          "description": "Optimization helps choose locations and assign demand objectively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "p-Median and Covering Ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed-integer location models"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity-constrained allocation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Routing models",
+          "description": "Routing tools reduce transportation cost while meeting service constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shortest path"
+            },
+            {
+              "type": "concept",
+              "title": "Vehicle Routing Problem"
+            },
+            {
+              "type": "concept",
+              "title": "Time windows and capacity constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Network flow and tradeoffs",
+          "description": "Students learn to formulate flows through supply networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum-cost flow"
+            },
+            {
+              "type": "concept",
+              "title": "Transshipment"
+            },
+            {
+              "type": "concept",
+              "title": "Cost-Service Pareto Tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supply Chain Coordination and Collaboration",
+      "description": "Students learn why local decisions can harm system performance and how incentives, information sharing, and contracts improve coordination.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coordination problems",
+          "description": "Local optimization can create system-wide inefficiency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bullwhip effect"
+            },
+            {
+              "type": "concept",
+              "title": "Double marginalization"
+            },
+            {
+              "type": "concept",
+              "title": "Functional silos"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Information sharing",
+          "description": "Shared data improves planning and reduces uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point-of-sale data"
+            },
+            {
+              "type": "concept",
+              "title": "Collaborative planning"
+            },
+            {
+              "type": "concept",
+              "title": "Vendor-Managed Inventory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Incentives and contracts",
+          "description": "Students learn tools that align decisions across firms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Buyback and revenue-sharing contracts"
+            },
+            {
+              "type": "concept",
+              "title": "Service-level agreements"
+            },
+            {
+              "type": "concept",
+              "title": "Gainsharing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Global Supply Chains, Trade, and Compliance",
+      "description": "This module covers cross-border supply chains, trade rules, customs, geopolitical exposure, and global logistics performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Global network drivers",
+          "description": "Students learn why supply chains cross borders and what that adds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Labor, market access, and scale"
+            },
+            {
+              "type": "concept",
+              "title": "Nearshoring and offshoring"
+            },
+            {
+              "type": "concept",
+              "title": "Country and port selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trade compliance",
+          "description": "Cross-border movement requires rules, documents, and classifications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tariffs and duties"
+            },
+            {
+              "type": "concept",
+              "title": "Customs documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Incoterms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Global logistics performance",
+          "description": "Students learn to compare lanes and countries using service and risk data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lead time and variability"
+            },
+            {
+              "type": "concept",
+              "title": "Port and customs delays"
+            },
+            {
+              "type": "concept",
+              "title": "World Bank LPI-Style Benchmarks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supply Chain Risk, Resilience, and Sustainability",
+      "description": "Students examine disruptions, risk mapping, resilience strategies, sustainability, circularity, and traceability as design requirements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Risk mapping",
+          "description": "Students learn to identify disruption exposure before failure occurs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supplier, logistics, demand, and geopolitical risks"
+            },
+            {
+              "type": "concept",
+              "title": "Probability-impact matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Critical nodes and single points of failure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resilience strategies",
+          "description": "Resilience requires deliberate buffers, options, and response plans.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dual sourcing"
+            },
+            {
+              "type": "concept",
+              "title": "Flexible capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Postponement and inventory positioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainable and circular supply chains",
+          "description": "Students connect supply chain design to environmental and social outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon and waste metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Reverse logistics"
+            },
+            {
+              "type": "concept",
+              "title": "Traceability and circularity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supply Chain Analytics, Digital Platforms, and Control Towers",
+      "description": "The course closes with data-driven visibility, ERP/TMS/WMS systems, dashboards, digital twins, and analytics for decision support.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Data and systems",
+          "description": "Students learn the systems that create visibility across planning and execution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ERP, WMS, TMS, and APS Systems"
+            },
+            {
+              "type": "concept",
+              "title": "Master data quality"
+            },
+            {
+              "type": "concept",
+              "title": "Integration and data governance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytics methods",
+          "description": "Analytics turns operational data into better decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Descriptive dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Predictive demand and risk models"
+            },
+            {
+              "type": "concept",
+              "title": "Prescriptive optimization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control towers and digital operations",
+          "description": "The course ends with modern visibility and decision-support approaches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exception management"
+            },
+            {
+              "type": "concept",
+              "title": "Digital twins"
+            },
+            {
+              "type": "concept",
+              "title": "IoT, Telemetry, and Real-Time Alerts"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

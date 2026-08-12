@@ -1,0 +1,1394 @@
+{
+  "slug": "biochemistry",
+  "title": "Biochemistry",
+  "description": "This 14-topic sequence starts with molecular structure and enzyme logic, then moves through metabolism, regulation, molecular biology, methods, and applied biomedical/nutrition contexts.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Water, pH, Buffers, and Biochemical Thermodynamics",
+      "description": "This opening unit gives students the chemical environment of life. It explains why water, weak acids, noncovalent interactions, and energy changes determine what biomolecules can do.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water and noncovalent interactions",
+          "description": "Students learn why water shapes biomolecular structure and reactivity. The gist is that hydrogen bonding, polarity, and hydrophobic effects organize biological systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrogen bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Ionic interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Van der Waals forces"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrophobic effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "pH and buffers",
+          "description": "Students learn how cells control proton concentration. This matters because charge, structure, and enzyme activity depend on pH.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acids and bases"
+            },
+            {
+              "type": "concept",
+              "title": "pKa"
+            },
+            {
+              "type": "concept",
+              "title": "Henderson-Hasselbalch equation"
+            },
+            {
+              "type": "concept",
+              "title": "Physiological buffers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamics in biology",
+          "description": "Students learn how free energy predicts whether biochemical processes are favorable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gibbs free energy"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium constants"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled reactions"
+            },
+            {
+              "type": "concept",
+              "title": "ATP hydrolysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Redox logic",
+          "description": "Students learn how electron transfer powers metabolism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidation and reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Electron carriers"
+            },
+            {
+              "type": "concept",
+              "title": "NADH and FADH2"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction potential intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Amino Acids, Peptides, and Protein Structure",
+      "description": "This unit introduces proteins as polymers with chemically diverse building blocks. Students learn how sequence and folding create molecular function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Amino acid chemistry",
+          "description": "Students learn the structures and properties that determine protein behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Side-chain classes"
+            },
+            {
+              "type": "concept",
+              "title": "Charge states"
+            },
+            {
+              "type": "concept",
+              "title": "Essential amino acids"
+            },
+            {
+              "type": "concept",
+              "title": "Isoelectric point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Peptides and primary structure",
+          "description": "Students learn how amino acids are linked and read as sequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peptide bonds"
+            },
+            {
+              "type": "concept",
+              "title": "N-terminus and C-terminus"
+            },
+            {
+              "type": "concept",
+              "title": "Sequence notation"
+            },
+            {
+              "type": "concept",
+              "title": "Proteolysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Higher-order structure",
+          "description": "Students learn how local and global folding create stable shapes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alpha helices"
+            },
+            {
+              "type": "concept",
+              "title": "Beta sheets"
+            },
+            {
+              "type": "concept",
+              "title": "Tertiary structure"
+            },
+            {
+              "type": "concept",
+              "title": "Quaternary structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protein folding and stability",
+          "description": "Students learn why proteins fold and what can disrupt them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chaperones"
+            },
+            {
+              "type": "concept",
+              "title": "Denaturation"
+            },
+            {
+              "type": "concept",
+              "title": "Disulfide bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Folding diseases overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Protein Function, Hemoglobin, and Structure-Function Relationships",
+      "description": "This unit connects protein shape to biological work. Students learn how binding, conformational change, and cooperativity turn structure into function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ligand binding",
+          "description": "Students learn how proteins recognize and bind molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binding sites"
+            },
+            {
+              "type": "concept",
+              "title": "Affinity"
+            },
+            {
+              "type": "concept",
+              "title": "Kd"
+            },
+            {
+              "type": "concept",
+              "title": "Saturation curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hemoglobin and myoglobin",
+          "description": "Students study classic oxygen-binding proteins to see structure-function logic in action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heme group"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen binding"
+            },
+            {
+              "type": "concept",
+              "title": "Cooperativity"
+            },
+            {
+              "type": "concept",
+              "title": "Bohr effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Allostery",
+          "description": "Students learn how one site on a protein can regulate another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allosteric sites"
+            },
+            {
+              "type": "concept",
+              "title": "Conformational change"
+            },
+            {
+              "type": "concept",
+              "title": "Concerted and sequential models"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protein dysfunction",
+          "description": "Students connect molecular changes to physiology and disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutations"
+            },
+            {
+              "type": "concept",
+              "title": "Sickle cell hemoglobin"
+            },
+            {
+              "type": "concept",
+              "title": "Misfolding"
+            },
+            {
+              "type": "concept",
+              "title": "Loss and gain of function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enzyme Kinetics, Mechanisms, and Regulation",
+      "description": "Enzymes are biological catalysts. This unit teaches students how enzymes accelerate reactions, how rates are measured, and how activity is controlled.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Catalytic strategies",
+          "description": "Students learn how enzymes lower activation energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transition-state stabilization"
+            },
+            {
+              "type": "concept",
+              "title": "Acid-base catalysis"
+            },
+            {
+              "type": "concept",
+              "title": "Covalent catalysis"
+            },
+            {
+              "type": "concept",
+              "title": "Metal ion catalysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Michaelis-Menten kinetics",
+          "description": "Students learn the basic model for enzyme rate behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vmax"
+            },
+            {
+              "type": "concept",
+              "title": "Km"
+            },
+            {
+              "type": "concept",
+              "title": "Initial velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Lineweaver-Burk interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inhibition",
+          "description": "Students learn how inhibitors change enzyme behavior and why this matters for drugs and regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Competitive inhibition"
+            },
+            {
+              "type": "concept",
+              "title": "Noncompetitive inhibition"
+            },
+            {
+              "type": "concept",
+              "title": "Uncompetitive inhibition"
+            },
+            {
+              "type": "concept",
+              "title": "Irreversible inhibition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulation of enzyme activity",
+          "description": "Students learn how cells tune pathway flux.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allosteric regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Covalent modification"
+            },
+            {
+              "type": "concept",
+              "title": "Zymogens"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback inhibition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carbohydrates, Glycobiology, and Glycolysis/Gluconeogenesis",
+      "description": "This unit moves from carbohydrate structure to central glucose metabolism. Students learn how sugars serve as fuels, structural molecules, and information-bearing cell-surface components.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Carbohydrate structure",
+          "description": "Students learn the chemical forms and linkages of sugars.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monosaccharides"
+            },
+            {
+              "type": "concept",
+              "title": "Disaccharides"
+            },
+            {
+              "type": "concept",
+              "title": "Polysaccharides"
+            },
+            {
+              "type": "concept",
+              "title": "Glycosidic bonds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Glycobiology",
+          "description": "Students learn that carbohydrates are also signals and structural decorations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glycoproteins"
+            },
+            {
+              "type": "concept",
+              "title": "Glycolipids"
+            },
+            {
+              "type": "concept",
+              "title": "Cell recognition"
+            },
+            {
+              "type": "concept",
+              "title": "Extracellular matrix carbohydrates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Glycolysis",
+          "description": "Students learn how glucose is converted to pyruvate while capturing ATP and reducing power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy investment phase"
+            },
+            {
+              "type": "concept",
+              "title": "Payoff phase"
+            },
+            {
+              "type": "concept",
+              "title": "NADH production"
+            },
+            {
+              "type": "concept",
+              "title": "Key regulated steps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gluconeogenesis and glycogen",
+          "description": "Students learn how organisms maintain glucose availability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bypass reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Glycogen synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Glycogen breakdown"
+            },
+            {
+              "type": "concept",
+              "title": "Glucose homeostasis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Citric Acid Cycle, Electron Transport, and Oxidative Phosphorylation",
+      "description": "This unit explains how cells extract large amounts of energy from fuel. Students learn how carbon oxidation, electron transport, and proton gradients are coupled to ATP synthesis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pyruvate oxidation and TCA cycle",
+          "description": "Students learn how acetyl-CoA enters a cyclic pathway that harvests reducing equivalents.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pyruvate dehydrogenase"
+            },
+            {
+              "type": "concept",
+              "title": "Citrate synthase"
+            },
+            {
+              "type": "concept",
+              "title": "NADH and FADH2"
+            },
+            {
+              "type": "concept",
+              "title": "Anaplerotic reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electron transport chain",
+          "description": "Students learn how electrons move through membrane complexes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complexes I-IV"
+            },
+            {
+              "type": "concept",
+              "title": "Ubiquinone"
+            },
+            {
+              "type": "concept",
+              "title": "Cytochrome c"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen as terminal electron acceptor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemiosmosis",
+          "description": "Students learn how electron transfer creates a proton gradient.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proton motive force"
+            },
+            {
+              "type": "concept",
+              "title": "Inner mitochondrial membrane"
+            },
+            {
+              "type": "concept",
+              "title": "ATP synthase"
+            },
+            {
+              "type": "concept",
+              "title": "Coupling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulation and inhibitors",
+          "description": "Students learn how energy production responds to cellular demand and toxins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ADP control"
+            },
+            {
+              "type": "concept",
+              "title": "Uncouplers"
+            },
+            {
+              "type": "concept",
+              "title": "Cyanide and ETC inhibitors"
+            },
+            {
+              "type": "concept",
+              "title": "Reactive oxygen species"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lipids, Membranes, and Membrane Transport",
+      "description": "This unit covers hydrophobic biomolecules and the membranes they form. Students learn how membrane structure enables compartmentalization, signaling, and transport.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lipid classes",
+          "description": "Students learn the main biological lipid families and what their structures imply.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fatty acids"
+            },
+            {
+              "type": "concept",
+              "title": "Triacylglycerols"
+            },
+            {
+              "type": "concept",
+              "title": "Phospholipids"
+            },
+            {
+              "type": "concept",
+              "title": "Sterols"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane structure",
+          "description": "Students learn why membranes are dynamic selective barriers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lipid bilayer"
+            },
+            {
+              "type": "concept",
+              "title": "Fluid mosaic model"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Fluidity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane transport",
+          "description": "Students learn how molecules cross membranes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Primary active transport"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary active transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane potential and gradients",
+          "description": "Students learn how gradients store usable energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ion gradients"
+            },
+            {
+              "type": "concept",
+              "title": "Electrochemical potential"
+            },
+            {
+              "type": "concept",
+              "title": "Na+/K+ ATPase"
+            },
+            {
+              "type": "concept",
+              "title": "Proton gradients"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lipid Metabolism and Membrane Signaling",
+      "description": "This unit explains lipid synthesis and breakdown as energy storage and signaling. Students learn why lipid metabolism is central to fasting, feeding, hormones, and disease.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fatty acid oxidation",
+          "description": "Students learn how fatty acids are mobilized and broken down for energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Beta-oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Carnitine shuttle"
+            },
+            {
+              "type": "concept",
+              "title": "Acetyl-CoA production"
+            },
+            {
+              "type": "concept",
+              "title": "Ketone body context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fatty acid synthesis",
+          "description": "Students learn how excess energy can be stored as lipid.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acetyl-CoA carboxylase"
+            },
+            {
+              "type": "concept",
+              "title": "Fatty acid synthase"
+            },
+            {
+              "type": "concept",
+              "title": "NADPH"
+            },
+            {
+              "type": "concept",
+              "title": "Regulation by nutritional state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cholesterol and lipoproteins",
+          "description": "Students learn the biochemical basis of sterol metabolism and transport.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cholesterol synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Bile acids"
+            },
+            {
+              "type": "concept",
+              "title": "LDL and HDL"
+            },
+            {
+              "type": "concept",
+              "title": "Statin mechanism overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lipid signaling",
+          "description": "Students learn how lipids act as signals, not just fuel.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phosphoinositides"
+            },
+            {
+              "type": "concept",
+              "title": "Eicosanoids"
+            },
+            {
+              "type": "concept",
+              "title": "Steroid hormones"
+            },
+            {
+              "type": "concept",
+              "title": "Second messengers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Amino Acid, Nitrogen, and Urea Cycle Metabolism",
+      "description": "This unit explains how organisms handle amino groups and carbon skeletons. Students learn why nitrogen metabolism requires careful detoxification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Amino acid catabolism",
+          "description": "Students learn how amino acids are broken down and routed into central metabolism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transamination"
+            },
+            {
+              "type": "concept",
+              "title": "Deamination"
+            },
+            {
+              "type": "concept",
+              "title": "Glucogenic amino acids"
+            },
+            {
+              "type": "concept",
+              "title": "Ketogenic amino acids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nitrogen disposal",
+          "description": "Students learn why ammonia is toxic and how the body converts it into safer forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ammonia"
+            },
+            {
+              "type": "concept",
+              "title": "Glutamate and glutamine"
+            },
+            {
+              "type": "concept",
+              "title": "Urea cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Liver role"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Amino acid biosynthesis",
+          "description": "Students learn the broad logic of making nonessential amino acids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon skeleton sources"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogen donors"
+            },
+            {
+              "type": "concept",
+              "title": "Essential versus nonessential amino acids"
+            },
+            {
+              "type": "concept",
+              "title": "One-carbon metabolism overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clinical and nutrition links",
+          "description": "Students connect nitrogen metabolism to diet and disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protein quality"
+            },
+            {
+              "type": "concept",
+              "title": "Inborn errors"
+            },
+            {
+              "type": "concept",
+              "title": "Hyperammonemia"
+            },
+            {
+              "type": "concept",
+              "title": "Amino acid supplementation context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nucleotides, Nucleic Acids, and Nucleotide Metabolism",
+      "description": "This unit connects biochemical building blocks to genetic information and energy transfer. Students learn how nucleotides are made, used, salvaged, and degraded.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nucleotide structure",
+          "description": "Students learn the chemical parts of nucleotides and nucleic acids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bases"
+            },
+            {
+              "type": "concept",
+              "title": "Sugars"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphate groups"
+            },
+            {
+              "type": "concept",
+              "title": "Purines and pyrimidines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DNA and RNA chemistry",
+          "description": "Students learn how nucleic acid structure supports information storage and expression.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phosphodiester bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Base pairing"
+            },
+            {
+              "type": "concept",
+              "title": "Double helix"
+            },
+            {
+              "type": "concept",
+              "title": "RNA structural diversity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nucleotide biosynthesis and salvage",
+          "description": "Students learn how cells balance costly de novo synthesis with recycling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Purine synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Pyrimidine synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Salvage pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Folate-linked one-carbon metabolism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nucleotide degradation and disease",
+          "description": "Students learn how breakdown pathways can produce clinically important metabolites.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uric acid"
+            },
+            {
+              "type": "concept",
+              "title": "Gout"
+            },
+            {
+              "type": "concept",
+              "title": "Lesch-Nyhan overview"
+            },
+            {
+              "type": "concept",
+              "title": "Drug targets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metabolic Integration and Hormonal Regulation",
+      "description": "This unit asks how pathways work together across tissues and nutritional states. Students learn metabolism as an integrated system rather than isolated charts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fed and fasting states",
+          "description": "Students learn how metabolism changes after meals and during fasting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Insulin state"
+            },
+            {
+              "type": "concept",
+              "title": "Glucagon state"
+            },
+            {
+              "type": "concept",
+              "title": "Glycogen use"
+            },
+            {
+              "type": "concept",
+              "title": "Lipolysis and ketogenesis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hormonal regulation",
+          "description": "Students learn how endocrine signals coordinate pathway flux.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Insulin"
+            },
+            {
+              "type": "concept",
+              "title": "Glucagon"
+            },
+            {
+              "type": "concept",
+              "title": "Epinephrine"
+            },
+            {
+              "type": "concept",
+              "title": "Cortisol overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue specialization",
+          "description": "Students learn why liver, muscle, adipose tissue, brain, and red blood cells use fuels differently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Liver metabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Muscle metabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Adipose metabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Brain fuel use"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metabolic disease",
+          "description": "Students connect regulation to pathology and nutrition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diabetes"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic syndrome"
+            },
+            {
+              "type": "concept",
+              "title": "Starvation"
+            },
+            {
+              "type": "concept",
+              "title": "Inborn errors of metabolism"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Molecular Biology Connections: DNA, RNA, Proteins, and Gene Regulation",
+      "description": "Biochemistry overlaps with molecular biology because molecules carry and execute genetic instructions. Students learn how nucleic acids and proteins connect metabolism to gene expression.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DNA replication and repair",
+          "description": "Students learn the biochemical logic of copying and maintaining DNA.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNA polymerases"
+            },
+            {
+              "type": "concept",
+              "title": "Primers"
+            },
+            {
+              "type": "concept",
+              "title": "Mismatch repair"
+            },
+            {
+              "type": "concept",
+              "title": "DNA damage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transcription and RNA processing",
+          "description": "Students learn how RNA is produced and matured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RNA polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "Promoters"
+            },
+            {
+              "type": "concept",
+              "title": "Splicing"
+            },
+            {
+              "type": "concept",
+              "title": "mRNA stability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Translation",
+          "description": "Students learn how genetic information becomes protein sequence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ribosomes"
+            },
+            {
+              "type": "concept",
+              "title": "tRNA"
+            },
+            {
+              "type": "concept",
+              "title": "Codons"
+            },
+            {
+              "type": "concept",
+              "title": "Initiation, elongation, termination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gene regulation",
+          "description": "Students learn how cells control protein production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transcription factors"
+            },
+            {
+              "type": "concept",
+              "title": "Operons overview"
+            },
+            {
+              "type": "concept",
+              "title": "Epigenetic regulation overview"
+            },
+            {
+              "type": "concept",
+              "title": "Signal-responsive expression"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biochemical Methods, Databases, and Pathway Analysis",
+      "description": "This unit teaches students how biochemical knowledge is generated and used. It connects wet-lab techniques, structural data, sequence databases, and pathway maps.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Protein purification and analysis",
+          "description": "Students learn how proteins are separated and characterized.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chromatography"
+            },
+            {
+              "type": "concept",
+              "title": "Electrophoresis"
+            },
+            {
+              "type": "concept",
+              "title": "Western blot overview"
+            },
+            {
+              "type": "concept",
+              "title": "Mass spectrometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enzyme and metabolite assays",
+          "description": "Students learn how pathway activity can be measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spectrophotometry"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled assays"
+            },
+            {
+              "type": "concept",
+              "title": "Standard curves"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolomics overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structural and sequence databases",
+          "description": "Students learn to use public resources as scientific tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PDB"
+            },
+            {
+              "type": "concept",
+              "title": "UniProt"
+            },
+            {
+              "type": "concept",
+              "title": "BLAST overview"
+            },
+            {
+              "type": "concept",
+              "title": "Sequence-function annotation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pathway analysis",
+          "description": "Students learn how to read and interpret metabolic maps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "KEGG"
+            },
+            {
+              "type": "concept",
+              "title": "BRENDA"
+            },
+            {
+              "type": "concept",
+              "title": "Pathway regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Flux and network thinking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Clinical, Nutrition, and Disease Applications of Biochemistry",
+      "description": "The final unit applies biochemical principles to health, nutrition, pharmacology, and disease. Students learn why molecular mechanisms matter outside the classroom.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nutrition and metabolism",
+          "description": "Students connect nutrients to biochemical pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Macronutrient metabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Vitamins as cofactors"
+            },
+            {
+              "type": "concept",
+              "title": "Mineral roles"
+            },
+            {
+              "type": "concept",
+              "title": "Energy balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clinical biochemistry",
+          "description": "Students learn how biochemical measurements support diagnosis and monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blood glucose"
+            },
+            {
+              "type": "concept",
+              "title": "Liver enzymes"
+            },
+            {
+              "type": "concept",
+              "title": "Lipid panels"
+            },
+            {
+              "type": "concept",
+              "title": "Kidney function markers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drug and toxicology connections",
+          "description": "Students learn why enzymes and pathways matter for drug action and toxicity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drug metabolism overview"
+            },
+            {
+              "type": "concept",
+              "title": "CYP450 context"
+            },
+            {
+              "type": "concept",
+              "title": "Enzyme inhibitors"
+            },
+            {
+              "type": "concept",
+              "title": "Toxic metabolites"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inherited and acquired disorders",
+          "description": "Students integrate pathway logic with disease examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phenylketonuria"
+            },
+            {
+              "type": "concept",
+              "title": "Glycogen storage diseases"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondrial disorders"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic syndrome"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

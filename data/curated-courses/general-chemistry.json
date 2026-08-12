@@ -1,0 +1,1223 @@
+{
+  "slug": "general-chemistry",
+  "title": "General Chemistry",
+  "description": "General Chemistry develops molecular-level explanations and quantitative models for matter, energy, reactions, and materials. Students connect observations to atomic and molecular representations, solve multistep problems with units and assumptions, conduct safe and reproducible laboratory work, evaluate uncertainty, and apply chemical reasoning to engineered, physiological, and environmental systems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Chemical Foundations, Measurement, and the Laboratory",
+      "description": "Chemistry begins with disciplined observation and quantitative evidence. This unit establishes the language, measurement habits, safety culture, and data judgment used throughout the course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Matter and chemical reasoning",
+          "description": "Classify what is being studied and connect macroscopic observations to particles and symbols.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elements, compounds, and mixtures"
+            },
+            {
+              "type": "concept",
+              "title": "Physical versus chemical properties and changes"
+            },
+            {
+              "type": "concept",
+              "title": "Macroscopic, particulate, and symbolic representations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Units and dimensional analysis",
+          "description": "Use units as an error-checking tool and a bridge between measured quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SI base and derived units"
+            },
+            {
+              "type": "concept",
+              "title": "Metric prefixes"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion factors"
+            },
+            {
+              "type": "concept",
+              "title": "Density and multistep calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and uncertainty",
+          "description": "Report data honestly and decide whether differences are meaningful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy versus precision"
+            },
+            {
+              "type": "concept",
+              "title": "Significant figures"
+            },
+            {
+              "type": "concept",
+              "title": "Random and systematic error"
+            },
+            {
+              "type": "concept",
+              "title": "Percent error and uncertainty propagation awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laboratory safety and integrity",
+          "description": "Plan and conduct work that protects people, data, and the environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SDS and GHS pictograms"
+            },
+            {
+              "type": "concept",
+              "title": "PPE and chemical hygiene"
+            },
+            {
+              "type": "concept",
+              "title": "Waste segregation and spill response"
+            },
+            {
+              "type": "concept",
+              "title": "Lab notebooks, reproducibility, and research integrity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Atoms, Isotopes, and the Quantum Model",
+      "description": "Atomic structure explains periodic behavior, bonding, spectroscopy, and material properties. The goal is a predictive model rather than memorization of isolated facts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atomic composition and isotopes",
+          "description": "Relate protons, neutrons, and electrons to identity, charge, and mass.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atomic and mass numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Ions and isotopic notation"
+            },
+            {
+              "type": "concept",
+              "title": "Average atomic mass"
+            },
+            {
+              "type": "concept",
+              "title": "Mass spectrometry interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electromagnetic radiation and quantization",
+          "description": "Connect light\u2013matter interactions to discrete atomic energies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wavelength, frequency, and energy"
+            },
+            {
+              "type": "concept",
+              "title": "Photons and line spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Photoelectric-effect evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Emission and absorption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantum-mechanical model",
+          "description": "Use orbitals and quantum numbers to describe probable electron location and energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wave\u2013particle duality"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum numbers and orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "Pauli exclusion and Hund\u2019s rule"
+            },
+            {
+              "type": "concept",
+              "title": "Electron configurations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Periodic trends",
+          "description": "Predict properties from effective nuclear charge and electron shielding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atomic and ionic radii"
+            },
+            {
+              "type": "concept",
+              "title": "Ionization energy"
+            },
+            {
+              "type": "concept",
+              "title": "Electron affinity"
+            },
+            {
+              "type": "concept",
+              "title": "Metallic character"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Bonding and Molecular Structure",
+      "description": "Bonding models translate electron behavior into molecular shape, polarity, strength, and reactivity\u2014the core structure\u2013property relationship of chemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ionic and covalent bonding",
+          "description": "Compare electron transfer and sharing while recognizing the continuum between them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lattice-energy trends"
+            },
+            {
+              "type": "concept",
+              "title": "Bond polarity and electronegativity"
+            },
+            {
+              "type": "concept",
+              "title": "Bond length and bond energy"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lewis structures and resonance",
+          "description": "Build useful electron-counting models for molecules and polyatomic ions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octet rule and exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance contributors"
+            },
+            {
+              "type": "concept",
+              "title": "Formal-charge evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular geometry and polarity",
+          "description": "Predict three-dimensional shape and net molecular dipoles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "VSEPR electron domains"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Bond angles and lone-pair effects"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular polarity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Valence-bond and molecular-orbital ideas",
+          "description": "Explain orbital overlap, hybridization, delocalization, and magnetic behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sigma and pi bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Hybridization"
+            },
+            {
+              "type": "concept",
+              "title": "Bond order"
+            },
+            {
+              "type": "concept",
+              "title": "Paramagnetism and MO diagrams for simple species"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Quantities, Reactions, and Stoichiometry",
+      "description": "Stoichiometry turns chemical equations into quantitative models of production, consumption, yield, emissions, dosage, and material balance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "The mole and composition",
+          "description": "Move between particles, amount, mass, and chemical formula.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Avogadro constant"
+            },
+            {
+              "type": "concept",
+              "title": "Molar mass"
+            },
+            {
+              "type": "concept",
+              "title": "Percent composition"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical and molecular formulas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical equations",
+          "description": "Represent conservation of atoms and charge in symbolic form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Balancing equations"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular, complete ionic, and net ionic equations"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction classification"
+            },
+            {
+              "type": "concept",
+              "title": "Spectator ions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reaction stoichiometry",
+          "description": "Use coefficients as mole ratios to predict material requirements and outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass\u2013mole\u2013particle conversions"
+            },
+            {
+              "type": "concept",
+              "title": "Limiting reactant"
+            },
+            {
+              "type": "concept",
+              "title": "Theoretical and percent yield"
+            },
+            {
+              "type": "concept",
+              "title": "Purity and excess reactant"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering and physiological balances",
+          "description": "Apply stoichiometry to authentic systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Combustion and emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Solution preparation and dosage"
+            },
+            {
+              "type": "concept",
+              "title": "Material and elemental balances"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen demand and metabolic-reaction examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gases, Liquids, Solids, and Intermolecular Forces",
+      "description": "States of matter connect molecular motion and intermolecular attractions to pressure, phase, transport, and bulk material behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gas behavior",
+          "description": "Model gases and know when ideal assumptions fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pressure measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Boyle, Charles, and Avogadro relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal gas law"
+            },
+            {
+              "type": "concept",
+              "title": "Gas mixtures and partial pressures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kinetic molecular theory",
+          "description": "Explain gas laws through particle motion and energy distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature and molecular speed"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion and effusion"
+            },
+            {
+              "type": "concept",
+              "title": "Root-mean-square speed"
+            },
+            {
+              "type": "concept",
+              "title": "Real-gas deviations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intermolecular forces",
+          "description": "Predict boiling point, viscosity, solubility, and surface behavior from molecular attractions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dispersion forces"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole\u2013dipole forces"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrogen bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Ion\u2013dipole interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solids and phase behavior",
+          "description": "Relate structure to phase transitions and material properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heating curves and phase diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Crystalline versus amorphous solids"
+            },
+            {
+              "type": "concept",
+              "title": "Unit-cell and lattice awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Metallic, ionic, molecular, and network solids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Solutions and Aqueous Chemistry",
+      "description": "Most biological, environmental, and many engineered reactions occur in solution. Students learn to describe concentration, predict dissolution, and perform reliable solution calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solution formation",
+          "description": "Explain why substances dissolve and how temperature or pressure changes solubility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solute\u2013solvent interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy and entropy of mixing"
+            },
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Henry\u2019s law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concentration measures",
+          "description": "Prepare, dilute, and interpret solutions quantitatively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molarity and molality"
+            },
+            {
+              "type": "concept",
+              "title": "Mass and volume percentages"
+            },
+            {
+              "type": "concept",
+              "title": "Parts per million/billion"
+            },
+            {
+              "type": "concept",
+              "title": "Dilution calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrolytes and precipitation",
+          "description": "Predict ions in solution and formation of insoluble products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strong, weak, and nonelectrolytes"
+            },
+            {
+              "type": "concept",
+              "title": "Solubility rules"
+            },
+            {
+              "type": "concept",
+              "title": "Net ionic equations"
+            },
+            {
+              "type": "concept",
+              "title": "Selective precipitation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Colligative properties",
+          "description": "Connect particle concentration to boiling, freezing, vapor pressure, and osmosis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Raoult\u2019s-law awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Boiling-point elevation"
+            },
+            {
+              "type": "concept",
+              "title": "Freezing-point depression"
+            },
+            {
+              "type": "concept",
+              "title": "Osmotic pressure and physiological relevance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Thermochemistry and Chemical Thermodynamics",
+      "description": "Energy accounting explains heat, work, feasibility, efficiency, and the energetic limits of reactions and processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy, heat, and work",
+          "description": "Apply the first law with a consistent system\u2013surroundings convention.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State functions"
+            },
+            {
+              "type": "concept",
+              "title": "Internal energy"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure\u2013volume work"
+            },
+            {
+              "type": "concept",
+              "title": "Sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enthalpy and calorimetry",
+          "description": "Measure or calculate heat flow at constant pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat capacity and specific heat"
+            },
+            {
+              "type": "concept",
+              "title": "Coffee-cup and bomb calorimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Phase-change enthalpies"
+            },
+            {
+              "type": "concept",
+              "title": "Experimental energy balances"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hess\u2019s law and formation data",
+          "description": "Build reaction enthalpies from pathways and tabulated quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermochemical equations"
+            },
+            {
+              "type": "concept",
+              "title": "Standard enthalpies of formation"
+            },
+            {
+              "type": "concept",
+              "title": "Bond-enthalpy estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion energetics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Entropy and Gibbs energy",
+          "description": "Predict spontaneous direction and equilibrium dependence on temperature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microstates and entropy"
+            },
+            {
+              "type": "concept",
+              "title": "Second and third laws"
+            },
+            {
+              "type": "concept",
+              "title": "\u0394G=\u0394H\u2212T\u0394S"
+            },
+            {
+              "type": "concept",
+              "title": "Standard and nonstandard free energy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Kinetics and Reaction Mechanisms",
+      "description": "Kinetics asks how fast change occurs and why. It supports reactor design, degradation, combustion, corrosion, pharmacology, and physiological rate processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reaction rates and rate laws",
+          "description": "Extract empirical relationships between concentration and rate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Average and instantaneous rate"
+            },
+            {
+              "type": "concept",
+              "title": "Method of initial rates"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction order"
+            },
+            {
+              "type": "concept",
+              "title": "Integrated rate laws and half-life"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temperature and activation energy",
+          "description": "Quantify why reactions accelerate with temperature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Collision model"
+            },
+            {
+              "type": "concept",
+              "title": "Arrhenius equation"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            },
+            {
+              "type": "concept",
+              "title": "Arrhenius plots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reaction mechanisms",
+          "description": "Connect elementary steps to an observed rate law.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecularity"
+            },
+            {
+              "type": "concept",
+              "title": "Rate-determining steps"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediates"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanism validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Catalysis",
+          "description": "Explain how catalysts alter pathways without changing equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homogeneous and heterogeneous catalysis"
+            },
+            {
+              "type": "concept",
+              "title": "Enzymes"
+            },
+            {
+              "type": "concept",
+              "title": "Surface adsorption awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst selectivity and sustainability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Equilibrium",
+      "description": "Equilibrium provides a quantitative language for reversible reactions and coupled processes. It is essential for solutions, physiology, environmental systems, and materials processing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dynamic equilibrium and K",
+          "description": "Interpret equilibrium as equal opposing rates, not stopped chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium expressions"
+            },
+            {
+              "type": "concept",
+              "title": "Kc and Kp"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction quotient Q"
+            },
+            {
+              "type": "concept",
+              "title": "Magnitude and direction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equilibrium calculations",
+          "description": "Determine composition from initial conditions and a valid approximation or numerical solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ICE tables"
+            },
+            {
+              "type": "concept",
+              "title": "Small-x approximations and checks"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled-equilibrium awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Le Ch\u00e2telier and thermodynamic control",
+          "description": "Predict and quantify system response to perturbation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concentration and pressure changes"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature effects"
+            },
+            {
+              "type": "concept",
+              "title": "Catalysts and equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Process-yield tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solubility equilibria",
+          "description": "Analyze precipitation, dissolution, and ion effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ksp"
+            },
+            {
+              "type": "concept",
+              "title": "Common-ion effect"
+            },
+            {
+              "type": "concept",
+              "title": "Selective precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Complex-ion awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Acids, Bases, Buffers, and Biological pH",
+      "description": "Acid\u2013base chemistry links proton transfer to water quality, concrete and soil chemistry, physiology, drug behavior, and biomaterials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Acid\u2013base models",
+          "description": "Use Arrhenius, Br\u00f8nsted\u2013Lowry, and Lewis descriptions appropriately.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conjugate pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Amphiprotic species"
+            },
+            {
+              "type": "concept",
+              "title": "Water autoionization"
+            },
+            {
+              "type": "concept",
+              "title": "Acid/base strength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "pH calculations",
+          "description": "Calculate acidity for strong and weak systems with explicit assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pH and pOH"
+            },
+            {
+              "type": "concept",
+              "title": "Ka and Kb"
+            },
+            {
+              "type": "concept",
+              "title": "Percent ionization"
+            },
+            {
+              "type": "concept",
+              "title": "Polyprotic-acid awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buffers",
+          "description": "Explain and design resistance to pH change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Common-ion principle"
+            },
+            {
+              "type": "concept",
+              "title": "Henderson\u2013Hasselbalch equation"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer capacity and range"
+            },
+            {
+              "type": "concept",
+              "title": "Blood and physiological buffers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Titrations",
+          "description": "Connect stoichiometry and equilibrium across an analytical curve.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strong/strong and weak/strong titrations"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence versus endpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Indicator selection"
+            },
+            {
+              "type": "concept",
+              "title": "Titration-curve interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Redox Chemistry and Electrochemistry",
+      "description": "Electron transfer powers batteries, sensors, corrosion, metabolism, and industrial processes. Electrochemistry turns chemical driving force into measurable voltage and useful work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Oxidation\u2013reduction bookkeeping",
+          "description": "Identify electron transfer and balance reactions systematically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidation numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidizing and reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Half-reaction method"
+            },
+            {
+              "type": "concept",
+              "title": "Acidic and basic media"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Galvanic cells",
+          "description": "Translate spontaneous redox chemistry into electrical work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anode, cathode, and salt bridge"
+            },
+            {
+              "type": "concept",
+              "title": "Cell notation"
+            },
+            {
+              "type": "concept",
+              "title": "Standard reduction potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Standard cell potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamics and concentration",
+          "description": "Relate voltage to Gibbs energy, equilibrium, and composition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "\u0394G=\u2212nFE"
+            },
+            {
+              "type": "concept",
+              "title": "E\u00b0 and K"
+            },
+            {
+              "type": "concept",
+              "title": "Nernst equation"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration cells"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrolysis and corrosion",
+          "description": "Analyze driven reactions and material degradation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Faraday\u2019s law"
+            },
+            {
+              "type": "concept",
+              "title": "Electroplating"
+            },
+            {
+              "type": "concept",
+              "title": "Corrosion cells"
+            },
+            {
+              "type": "concept",
+              "title": "Passivation and protection strategies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Materials, Descriptive Chemistry, and Sustainable Applications",
+      "description": "This capstone topic connects chemical principles to materials selection, infrastructure, aerospace environments, manufacturing, health, and sustainable design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Metals, ceramics, polymers, and composites",
+          "description": "Connect bonding and structure to mechanical, thermal, electrical, and chemical properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metallic bonding and alloys"
+            },
+            {
+              "type": "concept",
+              "title": "Ceramic/network bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Polymer structure and cross-linking"
+            },
+            {
+              "type": "concept",
+              "title": "Composite interfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemistry of engineering materials",
+          "description": "Explain common degradation and performance processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cement hydration and concrete chemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation and high-temperature materials"
+            },
+            {
+              "type": "concept",
+              "title": "Corrosion and protective coatings"
+            },
+            {
+              "type": "concept",
+              "title": "Surface chemistry and adhesion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical and physiological chemistry",
+          "description": "Apply equilibrium, transport, redox, and materials concepts to living systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrolytes and osmotic balance"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen binding and transport context"
+            },
+            {
+              "type": "concept",
+              "title": "Biomaterial compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Exercise metabolism and acid\u2013base balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental and green chemistry",
+          "description": "Evaluate chemical choices across safety, resource, and life-cycle dimensions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water hardness and treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Air pollutants and combustion"
+            },
+            {
+              "type": "concept",
+              "title": "Green-chemistry principles"
+            },
+            {
+              "type": "concept",
+              "title": "Atom economy, energy intensity, and waste prevention"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated degree studios",
+          "description": "Model, measure, and communicate a chemistry problem relevant to the seven programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aerospace fuels or high-temperature oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Civil water/concrete/corrosion case"
+            },
+            {
+              "type": "concept",
+              "title": "Industrial process yield and waste"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical material selection"
+            },
+            {
+              "type": "concept",
+              "title": "Biomedical buffer or biomaterial case"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty, ethics, and life-cycle tradeoffs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

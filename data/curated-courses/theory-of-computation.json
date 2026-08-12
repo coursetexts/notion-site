@@ -1,0 +1,1064 @@
+{
+  "slug": "theory-of-computation",
+  "title": "Theory of Computation",
+  "description": "Build a rigorous understanding of formal languages, automata, computability, reductions, and complexity classes, while developing the proof habits needed to reason about the limits of computation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Mathematical Logic and Proof for Computation",
+      "description": "Theory of computation is proof-driven. This opening unit makes students fluent in the symbolic language, proof patterns, and formal precision needed for the rest of the course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Propositional and predicate logic",
+          "description": "Students learn how formal statements are built, interpreted, negated, and used as the raw material of specifications and machine models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Truth tables and logical equivalence"
+            },
+            {
+              "type": "concept",
+              "title": "Quantifiers and domains"
+            },
+            {
+              "type": "concept",
+              "title": "Formalizing English statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proof techniques",
+          "description": "The goal is to make claims about infinite sets of strings, machines, and languages feel manageable through reusable proof patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct proof"
+            },
+            {
+              "type": "concept",
+              "title": "Contradiction and contrapositive"
+            },
+            {
+              "type": "concept",
+              "title": "Structural induction"
+            },
+            {
+              "type": "concept",
+              "title": "Invariants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sets, relations, and functions",
+          "description": "These structures give precise vocabulary for languages, transitions, encodings, reductions, and simulations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian products"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence relations"
+            },
+            {
+              "type": "concept",
+              "title": "Partial and total functions"
+            },
+            {
+              "type": "concept",
+              "title": "Countability preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alphabets, Strings, Languages, and Formal Models",
+      "description": "Before studying machines, students need a shared model of what machines read, produce, and recognize. This unit turns computation into a mathematical object.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Strings and languages",
+          "description": "Students learn to treat collections of strings as decision problems, which is the central abstraction of the course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alphabets and empty string"
+            },
+            {
+              "type": "concept",
+              "title": "Concatenation, powers, and Kleene star"
+            },
+            {
+              "type": "concept",
+              "title": "Language operations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision problems and recognizers",
+          "description": "This frames computation as yes/no classification, making later comparisons between automata, Turing machines, and complexity classes clean.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recognition versus decision"
+            },
+            {
+              "type": "concept",
+              "title": "Encodings of inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Membership questions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling assumptions",
+          "description": "Students see why simple abstract machines can reveal general truths about all computing devices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite descriptions"
+            },
+            {
+              "type": "concept",
+              "title": "Determinism and nondeterminism"
+            },
+            {
+              "type": "concept",
+              "title": "Abstraction versus implementation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Automata",
+      "description": "Finite automata are the first machine model: limited memory, precise behavior, and enough power to model lexical patterns, protocols, and simple controllers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deterministic finite automata",
+          "description": "DFAs show how computation can be represented as state evolution over an input string.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "States, alphabet, transition function"
+            },
+            {
+              "type": "concept",
+              "title": "Start and accepting states"
+            },
+            {
+              "type": "concept",
+              "title": "Extended transition function"
+            },
+            {
+              "type": "concept",
+              "title": "Design from language descriptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nondeterministic finite automata",
+          "description": "NFAs introduce branching as a modeling convenience and prepare students for later nondeterministic complexity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epsilon moves"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance by some path"
+            },
+            {
+              "type": "concept",
+              "title": "Subset construction"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence to DFAs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Automata design and invariants",
+          "description": "Students learn to prove that a machine recognizes exactly the intended language, not merely to draw state diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State meanings"
+            },
+            {
+              "type": "concept",
+              "title": "Partitioning cases"
+            },
+            {
+              "type": "concept",
+              "title": "Edge completeness"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal examples and counterexamples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Regular Languages and Expressions",
+      "description": "This unit connects machine recognition to algebraic descriptions of patterns, making regularity both operational and syntactic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Regular expressions",
+          "description": "Regular expressions provide a compact language-building notation and connect theory to practical pattern matching.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Union, concatenation, star"
+            },
+            {
+              "type": "concept",
+              "title": "Operator precedence"
+            },
+            {
+              "type": "concept",
+              "title": "Regex-to-NFA construction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Closure properties",
+          "description": "Closure gives a toolkit for building new regular languages from known ones while preserving recognizability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Union, intersection, complement"
+            },
+            {
+              "type": "concept",
+              "title": "Difference and reversal"
+            },
+            {
+              "type": "concept",
+              "title": "Homomorphisms and inverse homomorphisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equivalence of representations",
+          "description": "Students learn that DFAs, NFAs, and regular expressions describe exactly the same class of languages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kleene theorem"
+            },
+            {
+              "type": "concept",
+              "title": "State elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion workflows"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonregularity and Lower Bounds for Finite Memory",
+      "description": "Not every pattern can be recognized with finite memory. This unit teaches students how to prove impossibility, a central habit of theoretical CS.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pumping lemma for regular languages",
+          "description": "The pumping lemma gives a reusable contradiction method for showing that finite automata cannot remember enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Choosing adversarial strings"
+            },
+            {
+              "type": "concept",
+              "title": "Quantifier order"
+            },
+            {
+              "type": "concept",
+              "title": "Decomposition arguments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Myhill-Nerode theorem",
+          "description": "Myhill-Nerode reveals regularity through distinguishable prefixes and gives a sharper view of minimal memory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Right congruence"
+            },
+            {
+              "type": "concept",
+              "title": "Distinguishing extensions"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal DFA states"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finite-memory lower bounds",
+          "description": "Students learn to translate intuitive memory limitations into formal state-count arguments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crossing sequences preview"
+            },
+            {
+              "type": "concept",
+              "title": "Fooling sets"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol/state examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Context-Free Grammars and Languages",
+      "description": "Context-free grammars model recursive structure, such as nested parentheses and programming-language syntax, which finite automata cannot handle.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Grammar definitions and derivations",
+          "description": "Students learn how recursive production rules generate languages and parse structural patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variables, terminals, productions"
+            },
+            {
+              "type": "concept",
+              "title": "Leftmost and rightmost derivations"
+            },
+            {
+              "type": "concept",
+              "title": "Parse trees"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Grammar design",
+          "description": "The point is to move from informal recursive descriptions to exact grammars that generate all and only desired strings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Balanced structures"
+            },
+            {
+              "type": "concept",
+              "title": "Operator precedence examples"
+            },
+            {
+              "type": "concept",
+              "title": "Ambiguous grammars"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Normal forms",
+          "description": "Normal forms standardize grammars so they can be analyzed and converted algorithmically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chomsky normal form"
+            },
+            {
+              "type": "concept",
+              "title": "Greibach normal form overview"
+            },
+            {
+              "type": "concept",
+              "title": "Removing useless productions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pushdown Automata and Parsing Connections",
+      "description": "Pushdown automata add a stack to finite control. This gives the first concrete model of unbounded but disciplined memory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PDA mechanics",
+          "description": "Students see how stacks make nested and recursive language recognition possible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack alphabet"
+            },
+            {
+              "type": "concept",
+              "title": "Push, pop, and epsilon transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance by final state or empty stack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equivalence with CFGs",
+          "description": "The equivalence between PDAs and CFGs ties generative syntax to operational recognition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CFG-to-PDA construction"
+            },
+            {
+              "type": "concept",
+              "title": "PDA-to-CFG idea"
+            },
+            {
+              "type": "concept",
+              "title": "Nondeterminism in parsing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Parsing and syntax applications",
+          "description": "This bridges theory to compilers and programming languages without turning the course into implementation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Top-down versus bottom-up intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Deterministic CFLs"
+            },
+            {
+              "type": "concept",
+              "title": "Syntax trees"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Non-Context-Free Languages",
+      "description": "This unit extends impossibility proof skills to recursive structures and shows the limits of a single stack.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pumping lemma for CFLs",
+          "description": "Students learn how to prove that some languages require more coordination than context-free grammars provide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Long-string decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Case analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Copy language examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ogden's lemma and stronger tools",
+          "description": "World-class coverage should expose students to sharper methods even if not every proof is assigned in depth.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Marked positions"
+            },
+            {
+              "type": "concept",
+              "title": "When pumping is too weak"
+            },
+            {
+              "type": "concept",
+              "title": "Proof strategy selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Closure and decision properties",
+          "description": "Students learn which operations and questions remain tractable for context-free languages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closure under union and concatenation"
+            },
+            {
+              "type": "concept",
+              "title": "Non-closure under intersection and complement"
+            },
+            {
+              "type": "concept",
+              "title": "Emptiness, membership, and equivalence limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Turing Machines and Equivalent Models",
+      "description": "Turing machines are the course's general model of computation. They let students reason about what is computable independent of any particular hardware or language.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Turing machine definitions",
+          "description": "Students learn the formal parts of a machine powerful enough to capture general algorithms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tape, head, states, transition function"
+            },
+            {
+              "type": "concept",
+              "title": "Accept, reject, and loop"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration traces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variants and robustness",
+          "description": "Different machine variants all compute the same class of functions, which supports the Church-Turing thesis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multitape machines"
+            },
+            {
+              "type": "concept",
+              "title": "Nondeterministic TMs"
+            },
+            {
+              "type": "concept",
+              "title": "Enumerators"
+            },
+            {
+              "type": "concept",
+              "title": "RAM and lambda-calculus connections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Encoding machines and inputs",
+          "description": "Self-reference and undecidability require treating machines themselves as data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary/string encodings"
+            },
+            {
+              "type": "concept",
+              "title": "Universal machines"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation overhead"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Decidability, Recognizability, and the Halting Problem",
+      "description": "This unit establishes the boundary between problems solvable by algorithms and problems that no algorithm can decide.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Decidable and recognizable languages",
+          "description": "Students distinguish guaranteed termination from partial recognition, a subtle but essential theoretical divide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deciders versus recognizers"
+            },
+            {
+              "type": "concept",
+              "title": "Co-recognizability"
+            },
+            {
+              "type": "concept",
+              "title": "Enumerability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "The halting problem",
+          "description": "The halting problem is the canonical impossibility result and the gateway to diagonalization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self-reference"
+            },
+            {
+              "type": "concept",
+              "title": "Diagonal argument"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance problem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classic undecidable problems",
+          "description": "Students learn to recognize undecidability patterns across machine behavior and formal systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emptiness and equivalence for TMs"
+            },
+            {
+              "type": "concept",
+              "title": "Post correspondence problem overview"
+            },
+            {
+              "type": "concept",
+              "title": "Rice's theorem"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reducibility and Undecidability Proofs",
+      "description": "Reductions are the language of comparison: they show that solving one problem would solve another known-hard problem.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mapping reductions",
+          "description": "Students learn a disciplined proof template for transferring undecidability from one language to another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Computable transformations"
+            },
+            {
+              "type": "concept",
+              "title": "If-and-only-if correctness"
+            },
+            {
+              "type": "concept",
+              "title": "Source problem choice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Turing reductions",
+          "description": "Oracle-style reductions broaden the idea of solving one problem using another as a subroutine.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oracle machines"
+            },
+            {
+              "type": "concept",
+              "title": "Many-one versus Turing reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Relative computability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proof design patterns",
+          "description": "The point is to make reductions feel like engineering a logical trap: any solver for the target would break a known impossibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machine construction"
+            },
+            {
+              "type": "concept",
+              "title": "Input embedding"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding circular reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time Complexity and Efficient Computation",
+      "description": "After computability asks what can be solved at all, complexity asks what can be solved with feasible resources.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Asymptotic time on machine models",
+          "description": "Students learn to measure algorithms in a model-independent way while respecting simulation costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Big-O, little-o, omega"
+            },
+            {
+              "type": "concept",
+              "title": "Single-tape versus multitape overhead"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial robustness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Class P",
+          "description": "P formalizes efficient deterministic computation and becomes the baseline for tractability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polynomial-time deciders"
+            },
+            {
+              "type": "concept",
+              "title": "Encoding sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Examples from graph and arithmetic problems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time hierarchy",
+          "description": "Hierarchy theorems show that more time really can buy more computational power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constructible functions"
+            },
+            {
+              "type": "concept",
+              "title": "Diagonalization with time bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Separation intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nondeterminism, NP, and NP-Completeness",
+      "description": "NP-completeness is the course's major bridge to algorithms, optimization, cryptography, and practical intractability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Class NP",
+          "description": "Students learn NP as efficiently verifiable search, not just as nondeterministic guessing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Certificates and verifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Nondeterministic polynomial time"
+            },
+            {
+              "type": "concept",
+              "title": "Search versus decision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polynomial-time reductions",
+          "description": "These reductions compare the difficulty of efficient computation while preserving yes/no answers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Karp reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction transitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Encoding size control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical complete problems",
+          "description": "Students learn how SAT anchors NP-completeness and how reductions propagate hardness across domains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cook-Levin theorem idea"
+            },
+            {
+              "type": "concept",
+              "title": "3SAT"
+            },
+            {
+              "type": "concept",
+              "title": "CLIQUE, VERTEX COVER, Hamiltonian cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Subset sum"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Space Complexity and Hierarchy Theorems",
+      "description": "Space complexity reveals that memory can be a more subtle resource than time and introduces classes central to modern theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Space-bounded computation",
+          "description": "Students model machines with restricted work tape and see how memory limits shape solvability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SPACE and NSPACE"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Savitch theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "PSPACE and complete problems",
+          "description": "PSPACE captures problems solvable with polynomial memory, often involving games, logic, and quantified formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TQBF/QBF"
+            },
+            {
+              "type": "concept",
+              "title": "PSPACE-completeness"
+            },
+            {
+              "type": "concept",
+              "title": "P, NP, PSPACE relationships"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hierarchy results",
+          "description": "Hierarchy theorems give formal evidence that resource classes do not collapse trivially.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Space hierarchy theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Proper containment ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Complete problems as landmarks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Randomized, Counting, and Advanced Complexity",
+      "description": "A world-class theory course should show how randomness, counting, interaction, and approximation reshape the landscape beyond P and NP.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Randomized computation",
+          "description": "Students learn how algorithms can use random choices and how complexity classes track allowable error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RP, coRP, BPP"
+            },
+            {
+              "type": "concept",
+              "title": "One-sided versus two-sided error"
+            },
+            {
+              "type": "concept",
+              "title": "Amplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Counting complexity",
+          "description": "Counting versions of decision problems expose a different kind of hardness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "#P"
+            },
+            {
+              "type": "concept",
+              "title": "Parsimonious reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Approximate counting overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interactive and probabilistically checkable proofs",
+          "description": "This gives students a window into modern complexity without requiring a full second course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IP and AM intuition"
+            },
+            {
+              "type": "concept",
+              "title": "PCP theorem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Hardness of approximation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Theory in Modern CS: Algorithms, Languages, Cryptography, and Verification",
+      "description": "The final unit connects formal theory to the broader CS curriculum so students see computation theory as a living toolkit, not a sealed-off subject.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Algorithmic hardness and approximation",
+          "description": "Students learn how theory explains why some optimization problems resist exact efficient algorithms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Approximation ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Gap reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Parameterized complexity preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Programming languages and semantics",
+          "description": "Automata, grammars, lambda calculus, and decidability all reappear in language design and formal semantics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Syntax and parsing"
+            },
+            {
+              "type": "concept",
+              "title": "Type checking as decision problem"
+            },
+            {
+              "type": "concept",
+              "title": "Operational semantics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cryptography and verification",
+          "description": "Complexity assumptions and formal models support secure protocols and software correctness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-way functions concept"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-knowledge glimpse"
+            },
+            {
+              "type": "concept",
+              "title": "Model checking"
+            },
+            {
+              "type": "concept",
+              "title": "Proof assistants"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

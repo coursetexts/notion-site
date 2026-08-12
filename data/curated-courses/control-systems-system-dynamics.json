@@ -1,0 +1,1084 @@
+{
+  "slug": "control-systems-system-dynamics",
+  "title": "Control Systems / System Dynamics",
+  "description": "Control Systems / System Dynamics teaches students to model dynamic systems, analyze time and frequency response, evaluate stability, and design feedback controllers. The course emphasizes mechanical and interdisciplinary systems while also covering classical controls, state-space methods, simulation tools, digital implementation, and validation of real controlled systems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Dynamic System Modeling Across Physical Domains",
+      "description": "This opening topic teaches students to translate real mechanical, electrical, thermal, and fluid systems into mathematical models. The point is to see control design as a response to system behavior, not as a formula applied after the fact.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Modeling assumptions",
+          "description": "Students learn to define boundaries, inputs, outputs, states, and simplifications before writing equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Input and output variables"
+            },
+            {
+              "type": "concept",
+              "title": "Lumped-parameter assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Operating point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanical systems",
+          "description": "Students model translational and rotational dynamics using force and torque balances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass-spring-damper systems"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational inertia"
+            },
+            {
+              "type": "concept",
+              "title": "Friction and damping"
+            },
+            {
+              "type": "concept",
+              "title": "Gear trains"
+            },
+            {
+              "type": "concept",
+              "title": "Free-body diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrical and cross-domain analogies",
+          "description": "Students use circuit models and energy analogies to connect electrical and mechanical dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RLC circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Impedance analogies"
+            },
+            {
+              "type": "concept",
+              "title": "Effort-flow variables"
+            },
+            {
+              "type": "concept",
+              "title": "Energy storage elements"
+            },
+            {
+              "type": "concept",
+              "title": "Dissipative elements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace Transforms and Solution of Dynamic Responses",
+      "description": "Laplace methods turn differential equations into algebraic relationships that are easier to analyze and design around. Students learn the transform tools needed for transfer functions, block diagrams, and feedback analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transform fundamentals",
+          "description": "Students connect time-domain equations to s-domain expressions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definition of the transform"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative property"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Final value and initial value theorems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inverse transforms",
+          "description": "Students practice recovering time responses from algebraic forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial fractions"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated poles"
+            },
+            {
+              "type": "concept",
+              "title": "Complex poles"
+            },
+            {
+              "type": "concept",
+              "title": "Tables"
+            },
+            {
+              "type": "concept",
+              "title": "Residues as modal contributions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Input-response analysis",
+          "description": "Students learn how common forcing functions reveal system behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse input"
+            },
+            {
+              "type": "concept",
+              "title": "Step input"
+            },
+            {
+              "type": "concept",
+              "title": "Ramp input"
+            },
+            {
+              "type": "concept",
+              "title": "Sinusoidal input"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance inputs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transfer Functions, Poles, Zeros, and System Representation",
+      "description": "Transfer functions summarize how linear time-invariant systems map inputs to outputs. Students learn to interpret poles and zeros as fingerprints of dynamics, stability, and response shape.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transfer-function derivation",
+          "description": "Students derive input-output models from differential equations and physical models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zero initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Input-output ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Plant model"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor model"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Poles and zeros",
+          "description": "Students learn how pole-zero locations shape transient and frequency behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real poles"
+            },
+            {
+              "type": "concept",
+              "title": "Complex poles"
+            },
+            {
+              "type": "concept",
+              "title": "Zeros"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant poles"
+            },
+            {
+              "type": "concept",
+              "title": "Pole-zero cancellation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model order and approximation",
+          "description": "Students practice simplifying models while preserving important behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Time-delay approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Model validity range"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Block Diagrams, Signal Flow, and Feedback Architecture",
+      "description": "Control systems are built from interconnected components. This topic teaches students to represent those connections clearly and reduce them into forms that expose command tracking, disturbance rejection, and measurement feedback.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Block diagram construction",
+          "description": "Students map plants, controllers, sensors, actuators, disturbances, and reference signals into diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reference input"
+            },
+            {
+              "type": "concept",
+              "title": "Error signal"
+            },
+            {
+              "type": "concept",
+              "title": "Controller block"
+            },
+            {
+              "type": "concept",
+              "title": "Plant block"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor block"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance path"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagram reduction",
+          "description": "Students learn algebraic rules that simplify interconnections without losing meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series blocks"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel blocks"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback loops"
+            },
+            {
+              "type": "concept",
+              "title": "Summing junction movement"
+            },
+            {
+              "type": "concept",
+              "title": "Pickoff point movement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal-flow graphs",
+          "description": "Students use graph methods to analyze more complex interconnections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes and branches"
+            },
+            {
+              "type": "concept",
+              "title": "Forward paths"
+            },
+            {
+              "type": "concept",
+              "title": "Loops"
+            },
+            {
+              "type": "concept",
+              "title": "Non-touching loops"
+            },
+            {
+              "type": "concept",
+              "title": "Mason's gain formula"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time-Domain Response of First- and Second-Order Systems",
+      "description": "Time response connects system models to the behavior students can see in experiments and simulations. The goal is to understand speed, damping, overshoot, and steady-state error in physically meaningful terms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "First-order response",
+          "description": "Students learn the simplest dynamic response pattern and its engineering interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time constant"
+            },
+            {
+              "type": "concept",
+              "title": "Rise time"
+            },
+            {
+              "type": "concept",
+              "title": "Settling behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-state gain"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal and RC examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Second-order response",
+          "description": "Students connect natural frequency and damping ratio to oscillatory behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Percent overshoot"
+            },
+            {
+              "type": "concept",
+              "title": "Peak time"
+            },
+            {
+              "type": "concept",
+              "title": "Settling time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Steady-state error",
+          "description": "Students learn how system type and input form determine tracking accuracy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position error"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity error"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration error"
+            },
+            {
+              "type": "concept",
+              "title": "System type"
+            },
+            {
+              "type": "concept",
+              "title": "Error constants"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response, Bode Plots, and Nyquist Thinking",
+      "description": "Frequency response shows how systems react to sinusoidal inputs across a range of speeds. This topic gives students practical tools for bandwidth, resonance, filtering, and robustness analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bode plot construction",
+          "description": "Students learn to sketch and interpret magnitude and phase curves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnitude in decibels"
+            },
+            {
+              "type": "concept",
+              "title": "Phase angle"
+            },
+            {
+              "type": "concept",
+              "title": "Break frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Asymptotic sketches"
+            },
+            {
+              "type": "concept",
+              "title": "Resonant peaks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance from frequency response",
+          "description": "Students connect frequency-domain features to time-domain and physical behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Noise attenuation"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance rejection"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor filtering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nyquist interpretation",
+          "description": "Students learn the conceptual basis of closed-loop stability from open-loop frequency response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nyquist contour"
+            },
+            {
+              "type": "concept",
+              "title": "Critical point"
+            },
+            {
+              "type": "concept",
+              "title": "Encirclements"
+            },
+            {
+              "type": "concept",
+              "title": "Open-loop vs. closed-loop stability"
+            },
+            {
+              "type": "concept",
+              "title": "Relative stability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stability Criteria and Robustness Margins",
+      "description": "A controller is useful only if it keeps the system stable under realistic conditions. Students learn algebraic and graphical tools for judging stability and how much uncertainty a design can tolerate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Routh-Hurwitz criterion",
+          "description": "Students use polynomial coefficients to determine closed-loop stability without solving for all roots.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic equation"
+            },
+            {
+              "type": "concept",
+              "title": "Routh array"
+            },
+            {
+              "type": "concept",
+              "title": "Sign changes"
+            },
+            {
+              "type": "concept",
+              "title": "Special cases"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter ranges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gain and phase margins",
+          "description": "Students learn practical measures of distance from instability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain crossover"
+            },
+            {
+              "type": "concept",
+              "title": "Phase crossover"
+            },
+            {
+              "type": "concept",
+              "title": "Gain margin"
+            },
+            {
+              "type": "concept",
+              "title": "Phase margin"
+            },
+            {
+              "type": "concept",
+              "title": "Delay margin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Robustness concepts",
+          "description": "Students connect margins to modeling error, operating variation, and real hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plant uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Unmodeled dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor noise"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Safety margin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Root Locus Analysis and Compensator Design",
+      "description": "Root locus gives students a visual way to see how feedback gain and compensator structure move closed-loop poles. It is a bridge from analysis to design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Root locus construction",
+          "description": "Students learn the rules for sketching closed-loop pole movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Branches"
+            },
+            {
+              "type": "concept",
+              "title": "Real-axis segments"
+            },
+            {
+              "type": "concept",
+              "title": "Asymptotes"
+            },
+            {
+              "type": "concept",
+              "title": "Centroid"
+            },
+            {
+              "type": "concept",
+              "title": "Breakaway points"
+            },
+            {
+              "type": "concept",
+              "title": "Angle condition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance-based pole placement",
+          "description": "Students connect desired transient response to target pole regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Damping ratio lines"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency circles"
+            },
+            {
+              "type": "concept",
+              "title": "Settling-time targets"
+            },
+            {
+              "type": "concept",
+              "title": "Overshoot limits"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant-pole design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lead and lag compensation",
+          "description": "Students learn how compensators reshape dynamics and steady-state error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lead compensator"
+            },
+            {
+              "type": "concept",
+              "title": "Lag compensator"
+            },
+            {
+              "type": "concept",
+              "title": "Phase boost"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-state improvement"
+            },
+            {
+              "type": "concept",
+              "title": "Root-locus redesign"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "PID Control and Loop Shaping",
+      "description": "PID control remains the workhorse of industrial and mechanical control. Students learn what each action does, how to tune loops, and where PID reaches its limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PID actions",
+          "description": "Students interpret proportional, integral, and derivative terms in time and frequency domains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proportional gain"
+            },
+            {
+              "type": "concept",
+              "title": "Integral action"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative action"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Controller form"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tuning methods",
+          "description": "Students compare heuristic, model-based, and simulation-based tuning approaches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Manual tuning"
+            },
+            {
+              "type": "concept",
+              "title": "Ziegler-Nichols"
+            },
+            {
+              "type": "concept",
+              "title": "Cohen-Coon awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Loop-shaping intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation tuning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation limits",
+          "description": "Students learn practical issues that can make a theoretically good PID loop behave badly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integrator windup"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Noise amplification"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling effects"
+            },
+            {
+              "type": "concept",
+              "title": "Setpoint weighting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "State-Space Modeling, Controllability, and Observability",
+      "description": "State-space methods support multi-input, multi-output systems and modern control design. This topic helps students move beyond transfer functions while keeping a clear physical interpretation of states.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "State-space formulation",
+          "description": "Students write first-order vector models from physical equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State variables"
+            },
+            {
+              "type": "concept",
+              "title": "A, B, C, D matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Inputs and outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical forms"
+            },
+            {
+              "type": "concept",
+              "title": "Linearization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Controllability and observability",
+          "description": "Students learn whether inputs can move the system and sensors can reveal its state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controllability matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Observability matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Rank tests"
+            },
+            {
+              "type": "concept",
+              "title": "Physical interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Poorly placed actuators or sensors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State feedback and observers",
+          "description": "Students get an introduction to modern design and estimation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pole placement"
+            },
+            {
+              "type": "concept",
+              "title": "Full-state feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Luenberger observers"
+            },
+            {
+              "type": "concept",
+              "title": "Kalman filter overview"
+            },
+            {
+              "type": "concept",
+              "title": "Separation principle awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digital Control, Simulation, and Embedded Implementation",
+      "description": "Most modern controllers run in software. Students learn how sampling, computation, sensors, actuators, and validation affect a controller that looked clean on paper.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampled-data concepts",
+          "description": "Students understand the effects of discretizing continuous systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling period"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-order hold"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Discrete transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "z-transform awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation workflow",
+          "description": "Students use computational tools to test models and designs before hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MATLAB and Simulink"
+            },
+            {
+              "type": "concept",
+              "title": "Python control library"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sweeps"
+            },
+            {
+              "type": "concept",
+              "title": "Step and frequency simulations"
+            },
+            {
+              "type": "concept",
+              "title": "Model validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Embedded constraints",
+          "description": "Students learn practical implementation concerns for real controllers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator limits"
+            },
+            {
+              "type": "concept",
+              "title": "Computation delay"
+            },
+            {
+              "type": "concept",
+              "title": "Quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Real-time scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Fail-safe behavior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control Applications, Testing, and Validation",
+      "description": "The course closes by connecting analysis to engineered systems such as robots, vehicles, process equipment, power converters, and mechatronic devices. Students learn how controls work is tested, communicated, and trusted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Application domains",
+          "description": "Students compare how control priorities change across fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mechatronics"
+            },
+            {
+              "type": "concept",
+              "title": "Robotics"
+            },
+            {
+              "type": "concept",
+              "title": "Vehicle control"
+            },
+            {
+              "type": "concept",
+              "title": "Process control"
+            },
+            {
+              "type": "concept",
+              "title": "Power electronics"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration isolation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing and tuning",
+          "description": "Students learn how to move from simulation to experimental evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-loop tests"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-loop tests"
+            },
+            {
+              "type": "concept",
+              "title": "Step response validation"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency-response testing"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware-in-the-loop awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation and safety",
+          "description": "Students learn to communicate assumptions, risks, and validation evidence professionally.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Test plans"
+            },
+            {
+              "type": "concept",
+              "title": "Tuning records"
+            },
+            {
+              "type": "concept",
+              "title": "Fault detection"
+            },
+            {
+              "type": "concept",
+              "title": "Safety interlocks"
+            },
+            {
+              "type": "concept",
+              "title": "Design review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

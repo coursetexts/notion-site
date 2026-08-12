@@ -1,0 +1,1072 @@
+{
+  "slug": "environmental-impact-assessment",
+  "title": "Environmental Impact Assessment",
+  "description": "Teaches how to prepare, review, and strengthen environmental impact assessments\u2014covering legal context, screening, scoping, alternatives, baselines, impact prediction, significance, cumulative effects, mitigation, public participation, monitoring, document structure, equity, and climate and strategic assessment.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Purpose and Legal Context of Assessment",
+      "description": "Understand why EIA exists, how it fits into decision-making, and what legal duties shape review.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "EIA goals",
+          "description": "EIA is meant to inform decisions before irreversible commitments are made.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Disclosure"
+            },
+            {
+              "type": "concept",
+              "title": "Prevention"
+            },
+            {
+              "type": "concept",
+              "title": "Informed decision-making"
+            },
+            {
+              "type": "concept",
+              "title": "Accountability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Legal frameworks",
+          "description": "Legal context determines what must be assessed, who participates, and how decisions are defended.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NEPA"
+            },
+            {
+              "type": "concept",
+              "title": "State EIR systems"
+            },
+            {
+              "type": "concept",
+              "title": "International EIA systems"
+            },
+            {
+              "type": "concept",
+              "title": "Agency responsibilities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision points",
+          "description": "Assessment matters because it is tied to approvals, permits, funding, and project design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Project authorization"
+            },
+            {
+              "type": "concept",
+              "title": "Permitting"
+            },
+            {
+              "type": "concept",
+              "title": "Record of decision"
+            },
+            {
+              "type": "concept",
+              "title": "Judicial review risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Screening and Assessment Pathways",
+      "description": "Determine when a project needs review, what level of review is appropriate, and which process applies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Screening logic",
+          "description": "Screening decides whether a proposed action requires full review or a lighter process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Categorical exclusions"
+            },
+            {
+              "type": "concept",
+              "title": "Initial studies"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental assessments"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental impact statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Project description",
+          "description": "A clear project description prevents vague analysis and hidden scope changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Purpose and need"
+            },
+            {
+              "type": "concept",
+              "title": "Project location"
+            },
+            {
+              "type": "concept",
+              "title": "Construction and operation"
+            },
+            {
+              "type": "concept",
+              "title": "Connected actions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process planning",
+          "description": "Pathway planning keeps the review legally compliant and practically manageable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lead agency"
+            },
+            {
+              "type": "concept",
+              "title": "Cooperating agencies"
+            },
+            {
+              "type": "concept",
+              "title": "Schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Required permits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Scoping and Alternatives Analysis",
+      "description": "Define the assessment boundaries and compare feasible ways to meet project goals with lower harm.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scoping",
+          "description": "Scoping identifies the issues, geographies, people, and resources the assessment must examine.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Valued environmental components"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Temporal boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Key stakeholder concerns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternatives",
+          "description": "Alternatives analysis is the heart of EIA because it tests whether harm can be avoided or reduced.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "No-action alternative"
+            },
+            {
+              "type": "concept",
+              "title": "Site alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Design alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Technology alternatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feasibility and tradeoffs",
+          "description": "Alternatives must be realistic enough to inform decisions and broad enough to challenge assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Technical feasibility"
+            },
+            {
+              "type": "concept",
+              "title": "Economic feasibility"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Decision criteria"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Baseline Environmental Conditions",
+      "description": "Build a defensible picture of existing environmental, social, cultural, and health conditions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Physical environment",
+          "description": "Physical baselines establish the environmental setting against which change is measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Air quality"
+            },
+            {
+              "type": "concept",
+              "title": "Water resources"
+            },
+            {
+              "type": "concept",
+              "title": "Soils and geology"
+            },
+            {
+              "type": "concept",
+              "title": "Noise and vibration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological environment",
+          "description": "Biological baselines identify species, habitats, and ecological processes at risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Habitats"
+            },
+            {
+              "type": "concept",
+              "title": "Protected species"
+            },
+            {
+              "type": "concept",
+              "title": "Biodiversity"
+            },
+            {
+              "type": "concept",
+              "title": "Ecosystem services"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human and cultural environment",
+          "description": "Human baselines connect environmental change to communities, health, livelihoods, and heritage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Land use"
+            },
+            {
+              "type": "concept",
+              "title": "Public health"
+            },
+            {
+              "type": "concept",
+              "title": "Cultural resources"
+            },
+            {
+              "type": "concept",
+              "title": "Socioeconomic conditions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Impact Prediction Methods",
+      "description": "Use qualitative, quantitative, spatial, and model-based methods to forecast project effects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Impact identification",
+          "description": "Identification methods help analysts avoid missing important direct and indirect effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Checklists"
+            },
+            {
+              "type": "concept",
+              "title": "Matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Networks"
+            },
+            {
+              "type": "concept",
+              "title": "Conceptual models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytical tools",
+          "description": "Technical tools turn baseline data and project assumptions into predicted effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GIS analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Dispersion models"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrologic models"
+            },
+            {
+              "type": "concept",
+              "title": "Habitat models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Qualitative and expert methods",
+          "description": "Some impacts require structured judgment when data are incomplete or values are contested.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expert elicitation"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Case comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Professional judgment documentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Significance, Risk, and Uncertainty",
+      "description": "Judge which predicted effects matter, how confident the analysis is, and where precaution is needed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Significance criteria",
+          "description": "Significance turns predicted change into a decision-relevant finding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnitude"
+            },
+            {
+              "type": "concept",
+              "title": "Duration"
+            },
+            {
+              "type": "concept",
+              "title": "Reversibility"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory thresholds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk assessment",
+          "description": "Risk thinking connects likelihood, consequence, exposure, and vulnerability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazard identification"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Probability"
+            },
+            {
+              "type": "concept",
+              "title": "Consequence severity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty management",
+          "description": "Transparent uncertainty prevents false precision and supports precautionary decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data gaps"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence ratings"
+            },
+            {
+              "type": "concept",
+              "title": "Precautionary approach"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cumulative Impacts",
+      "description": "Assess how project effects interact with past, present, and reasonably foreseeable actions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cumulative-impact framing",
+          "description": "Cumulative assessment asks how the project adds to existing and foreseeable pressures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Past actions"
+            },
+            {
+              "type": "concept",
+              "title": "Present actions"
+            },
+            {
+              "type": "concept",
+              "title": "Reasonably foreseeable actions"
+            },
+            {
+              "type": "concept",
+              "title": "Affected resource capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spatial and temporal accumulation",
+          "description": "Cumulative harm often emerges across larger areas or longer time horizons than project boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Watersheds"
+            },
+            {
+              "type": "concept",
+              "title": "Airsheds"
+            },
+            {
+              "type": "concept",
+              "title": "Migration corridors"
+            },
+            {
+              "type": "concept",
+              "title": "Long-term exposure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cumulative significance",
+          "description": "Cumulative findings help decision-makers see whether small project effects become important in context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incremental contribution"
+            },
+            {
+              "type": "concept",
+              "title": "Thresholds"
+            },
+            {
+              "type": "concept",
+              "title": "Trend analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Mitigation coordination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mitigation Hierarchy",
+      "description": "Design measures that avoid, minimize, restore, offset, and manage adverse impacts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Avoidance",
+          "description": "Avoidance is the strongest mitigation because it prevents harm before it occurs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Site redesign"
+            },
+            {
+              "type": "concept",
+              "title": "No-go areas"
+            },
+            {
+              "type": "concept",
+              "title": "Timing restrictions"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Minimization and restoration",
+          "description": "Minimization and restoration reduce damage when impacts cannot be fully avoided.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Best management practices"
+            },
+            {
+              "type": "concept",
+              "title": "Pollution controls"
+            },
+            {
+              "type": "concept",
+              "title": "Habitat restoration"
+            },
+            {
+              "type": "concept",
+              "title": "Construction management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Offsets and residual impacts",
+          "description": "Offsets address remaining harm but require careful design and monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compensatory mitigation"
+            },
+            {
+              "type": "concept",
+              "title": "Biodiversity offsets"
+            },
+            {
+              "type": "concept",
+              "title": "Performance standards"
+            },
+            {
+              "type": "concept",
+              "title": "Residual impact disclosure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Public Participation",
+      "description": "Plan meaningful engagement that improves evidence, legitimacy, and accountability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Engagement design",
+          "description": "Good participation is planned early and matched to affected communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Engagement objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible materials"
+            },
+            {
+              "type": "concept",
+              "title": "Meeting formats"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Public comment and response",
+          "description": "Comment processes improve the record when agencies respond substantively and transparently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Notice requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Comment analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Response to comments"
+            },
+            {
+              "type": "concept",
+              "title": "Administrative record"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conflict and trust",
+          "description": "Participation is also a governance practice that can reduce conflict or expose unresolved concerns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Procedural fairness"
+            },
+            {
+              "type": "concept",
+              "title": "Risk communication"
+            },
+            {
+              "type": "concept",
+              "title": "Local knowledge"
+            },
+            {
+              "type": "concept",
+              "title": "Dispute resolution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Monitoring and Adaptive Management",
+      "description": "Track actual effects, test whether mitigation works, and adjust management over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Monitoring design",
+          "description": "Monitoring converts predictions and mitigation promises into measurable commitments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling plans"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Trigger thresholds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compliance and effectiveness",
+          "description": "Monitoring should ask both whether actions happened and whether they worked.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compliance monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Effectiveness monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Audits"
+            },
+            {
+              "type": "concept",
+              "title": "Corrective actions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptive management",
+          "description": "Adaptive management creates a structured way to respond when outcomes differ from predictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Management triggers"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback loops"
+            },
+            {
+              "type": "concept",
+              "title": "Contingency plans"
+            },
+            {
+              "type": "concept",
+              "title": "Reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "EIS/EIR Document Structure",
+      "description": "Create review documents that are complete, transparent, navigable, and decision-useful.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core document sections",
+          "description": "A strong EIS or EIR lets reviewers trace the logic from project need to impact findings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "Project description"
+            },
+            {
+              "type": "concept",
+              "title": "Alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Impact analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Technical appendices",
+          "description": "Appendices carry the detailed evidence that supports concise main-document conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Methods"
+            },
+            {
+              "type": "concept",
+              "title": "Model outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Survey reports"
+            },
+            {
+              "type": "concept",
+              "title": "Specialist studies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clarity and defensibility",
+          "description": "Readable structure is a technical requirement because decision-makers and the public must understand the analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plain-language findings"
+            },
+            {
+              "type": "concept",
+              "title": "Traceable assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Consistent terminology"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-references"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Assessment Critique or Mock Review",
+      "description": "Practice professional review by identifying strengths, gaps, unsupported claims, and needed revisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Review criteria",
+          "description": "Professional review checks whether the assessment is complete, evidence-based, and decision-useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adequacy"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Transparency"
+            },
+            {
+              "type": "concept",
+              "title": "Legal sufficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finding weaknesses",
+          "description": "Critique trains students to spot unsupported conclusions before they become project risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Missing alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Weak baselines"
+            },
+            {
+              "type": "concept",
+              "title": "Unclear significance"
+            },
+            {
+              "type": "concept",
+              "title": "Insufficient mitigation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Revision recommendations",
+          "description": "A useful review explains how to improve the document, not just what is wrong.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Request for information"
+            },
+            {
+              "type": "concept",
+              "title": "Revised analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Additional mitigation"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring commitments"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Indigenous and Tribal Engagement, Equity, and Community Accountability",
+      "description": "Center rights, justice, cultural resources, and community accountability in assessment practice.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Indigenous and Tribal engagement",
+          "description": "Engagement must respect sovereignty, treaty rights, cultural resources, and consultation duties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Government-to-government consultation"
+            },
+            {
+              "type": "concept",
+              "title": "Traditional ecological knowledge"
+            },
+            {
+              "type": "concept",
+              "title": "Sacred sites"
+            },
+            {
+              "type": "concept",
+              "title": "Treaty rights"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental justice",
+          "description": "EJ analysis asks who bears harms, who receives benefits, and whether the process is fair.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Disproportionate impacts"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerable populations"
+            },
+            {
+              "type": "concept",
+              "title": "Cumulative burden"
+            },
+            {
+              "type": "concept",
+              "title": "Benefit distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Community accountability",
+          "description": "Accountability turns engagement into durable commitments and ongoing relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Community benefit measures"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Grievance mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Long-term stewardship"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate, Life-Cycle, and Strategic Environmental Assessment",
+      "description": "Extend project-level EIA into climate risk, life-cycle thinking, and policy or plan-level assessment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Climate assessment",
+          "description": "Modern EIA must evaluate both project emissions and climate risks to the project and community.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Greenhouse gas emissions"
+            },
+            {
+              "type": "concept",
+              "title": "Climate resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptation measures"
+            },
+            {
+              "type": "concept",
+              "title": "Low-carbon alternatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Life-cycle thinking",
+          "description": "Life-cycle assessment prevents shifting impacts from one project stage or location to another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Goal and scope"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory"
+            },
+            {
+              "type": "concept",
+              "title": "Impact categories"
+            },
+            {
+              "type": "concept",
+              "title": "Embodied carbon"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strategic environmental assessment",
+          "description": "SEA expands assessment from individual projects to plans, programs, and policies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Policy alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Regional scenarios"
+            },
+            {
+              "type": "concept",
+              "title": "Tiering"
+            },
+            {
+              "type": "concept",
+              "title": "Programmatic mitigation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

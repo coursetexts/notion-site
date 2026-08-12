@@ -1,0 +1,1296 @@
+{
+  "slug": "number-theory",
+  "title": "Number Theory",
+  "description": "Number Theory studies the structure and patterns of integers. The syllabus moves from divisibility and congruences to reciprocity, Diophantine problems, arithmetic functions, continued fractions, cryptographic applications, and a preview of algebraic methods.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Divisibility and Prime Numbers",
+      "description": "This section develops divisibility and prime numbers through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make divisibility and prime numbers precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divides"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            },
+            {
+              "type": "concept",
+              "title": "Composite"
+            },
+            {
+              "type": "concept",
+              "title": "Gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Euclid's lemma"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with divisibility and prime numbers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply divides in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare prime with composite"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how divides affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Euclidean Algorithm",
+      "description": "This section develops euclidean algorithm through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make euclidean algorithm precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Division algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Bezout identity"
+            },
+            {
+              "type": "concept",
+              "title": "Extended Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with euclidean algorithm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply gcd in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare division algorithm with Bezout identity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of prime"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how gcd affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Unique Factorization",
+      "description": "This section develops unique factorization through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make unique factorization precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unique factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Prime factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Irreducible"
+            },
+            {
+              "type": "concept",
+              "title": "Unit"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with unique factorization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply unique factorization in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare prime factorization with irreducible"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how unique factorization affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modular Arithmetic",
+      "description": "This section develops modular arithmetic through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make modular arithmetic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Congruence"
+            },
+            {
+              "type": "concept",
+              "title": "Residue class"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Modular inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with modular arithmetic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply congruence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare residue class with modulus"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how congruence affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Congruences and Chinese Remainder Theorem",
+      "description": "This section develops linear congruences and chinese remainder theorem through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make linear congruences and chinese remainder theorem precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System of congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Pairwise coprime"
+            },
+            {
+              "type": "concept",
+              "title": "CRT solution"
+            },
+            {
+              "type": "concept",
+              "title": "Modular inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with linear congruences and chinese remainder theorem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply system of congruences in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare pairwise coprime with CRT solution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how system of congruences affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fermat's Little Theorem",
+      "description": "This section develops fermat's little theorem through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make fermat's little theorem precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermat's little theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Prime modulus"
+            },
+            {
+              "type": "concept",
+              "title": "A^(p-1)"
+            },
+            {
+              "type": "concept",
+              "title": "Pseudoprime"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with fermat's little theorem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Fermat's little theorem in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare prime modulus with a^(p-1)"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Fermat's little theorem affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Euler's Theorem and Arithmetic Functions",
+      "description": "This section develops euler's theorem and arithmetic functions through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make euler's theorem and arithmetic functions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain"
+            },
+            {
+              "type": "concept",
+              "title": "Range"
+            },
+            {
+              "type": "concept",
+              "title": "Level curve"
+            },
+            {
+              "type": "concept",
+              "title": "Partial derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Implicit function"
+            },
+            {
+              "type": "concept",
+              "title": "Euler phi"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with euler's theorem and arithmetic functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply domain in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare range with level curve"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of multiplicative function"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how domain affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Primitive Roots and Orders",
+      "description": "This section develops primitive roots and orders through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make primitive roots and orders precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Order"
+            },
+            {
+              "type": "concept",
+              "title": "Primitive root"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclic group"
+            },
+            {
+              "type": "concept",
+              "title": "Discrete logarithm"
+            },
+            {
+              "type": "concept",
+              "title": "Bisection"
+            },
+            {
+              "type": "concept",
+              "title": "Newton method"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with primitive roots and orders.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply order in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare primitive root with cyclic group"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convergence order"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how order affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quadratic Residues",
+      "description": "This section develops quadratic residues through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make quadratic residues precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Legendre symbol"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic residue"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic nonresidue"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss lemma"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with quadratic residues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Legendre symbol in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare quadratic residue with quadratic nonresidue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Legendre symbol affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quadratic Reciprocity",
+      "description": "This section develops quadratic reciprocity through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make quadratic reciprocity precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Legendre symbol"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic residue"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic nonresidue"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss lemma"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with quadratic reciprocity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Legendre symbol in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare quadratic residue with quadratic nonresidue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Legendre symbol affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diophantine Equations",
+      "description": "This section develops diophantine equations through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make diophantine equations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear Diophantine equation"
+            },
+            {
+              "type": "concept",
+              "title": "Pythagorean triple"
+            },
+            {
+              "type": "concept",
+              "title": "Integer solution"
+            },
+            {
+              "type": "concept",
+              "title": "Descent"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with diophantine equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply linear Diophantine equation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Pythagorean triple with integer solution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how linear Diophantine equation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continued Fractions",
+      "description": "This section develops continued fractions through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make continued fractions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continued fraction"
+            },
+            {
+              "type": "concept",
+              "title": "Convergent"
+            },
+            {
+              "type": "concept",
+              "title": "Best approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with continued fractions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply continued fraction in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergent with best approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how continued fraction affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cryptography Applications",
+      "description": "This section develops cryptography applications through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make cryptography applications precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RSA"
+            },
+            {
+              "type": "concept",
+              "title": "Public key"
+            },
+            {
+              "type": "concept",
+              "title": "Private key"
+            },
+            {
+              "type": "concept",
+              "title": "Modular exponentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Totient"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with cryptography applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply RSA in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare public key with private key"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how RSA affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Algebraic Number Theory Preview",
+      "description": "This section develops algebraic number theory preview through the concrete vocabulary, procedures, examples, and checks students need in Number Theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make algebraic number theory preview precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Prime"
+            },
+            {
+              "type": "concept",
+              "title": "Gcd"
+            },
+            {
+              "type": "concept",
+              "title": "Congruence"
+            },
+            {
+              "type": "concept",
+              "title": "Residue class"
+            },
+            {
+              "type": "concept",
+              "title": "Euler phi"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with algebraic number theory preview.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run Euclidean algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Solve congruences"
+            },
+            {
+              "type": "concept",
+              "title": "Prove divisibility statements"
+            },
+            {
+              "type": "concept",
+              "title": "Apply divisibility in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare prime with gcd"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coprimality condition"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Existence of inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Diophantine equation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how divisibility affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

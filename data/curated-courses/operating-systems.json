@@ -1,0 +1,1084 @@
+{
+  "slug": "operating-systems",
+  "title": "Operating Systems",
+  "description": "A systems course on OS structure, system calls, processes, threads, scheduling, synchronization, deadlocks, memory, file systems, I/O, security, virtualization, and performance.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "OS Purpose, Structure, and System Calls",
+      "description": "Explains what an operating system does and how user programs request kernel services.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kernel"
+            },
+            {
+              "type": "concept",
+              "title": "User mode"
+            },
+            {
+              "type": "concept",
+              "title": "Privilege"
+            },
+            {
+              "type": "concept",
+              "title": "Traps"
+            },
+            {
+              "type": "concept",
+              "title": "Interrupts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System calls"
+            },
+            {
+              "type": "concept",
+              "title": "APIs"
+            },
+            {
+              "type": "concept",
+              "title": "Shells"
+            },
+            {
+              "type": "concept",
+              "title": "Command-line tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monolithic"
+            },
+            {
+              "type": "concept",
+              "title": "Microkernel"
+            },
+            {
+              "type": "concept",
+              "title": "Layered"
+            },
+            {
+              "type": "concept",
+              "title": "Modular designs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Processes, Threads, and Execution Context",
+      "description": "Builds the mental model of concurrent execution units.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process control blocks"
+            },
+            {
+              "type": "concept",
+              "title": "Address spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Context switches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threads"
+            },
+            {
+              "type": "concept",
+              "title": "Kernel threads"
+            },
+            {
+              "type": "concept",
+              "title": "User threads"
+            },
+            {
+              "type": "concept",
+              "title": "Thread libraries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fork"
+            },
+            {
+              "type": "concept",
+              "title": "Exec"
+            },
+            {
+              "type": "concept",
+              "title": "Wait"
+            },
+            {
+              "type": "concept",
+              "title": "Signals"
+            },
+            {
+              "type": "concept",
+              "title": "Process lifecycle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "CPU Scheduling and Resource Allocation",
+      "description": "Shows how the OS decides what runs next and how fairness competes with performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FCFS"
+            },
+            {
+              "type": "concept",
+              "title": "SJF"
+            },
+            {
+              "type": "concept",
+              "title": "Priority"
+            },
+            {
+              "type": "concept",
+              "title": "Round robin"
+            },
+            {
+              "type": "concept",
+              "title": "Multilevel feedback queues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Turnaround"
+            },
+            {
+              "type": "concept",
+              "title": "Response time"
+            },
+            {
+              "type": "concept",
+              "title": "Waiting time"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiprocessor scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Affinity"
+            },
+            {
+              "type": "concept",
+              "title": "Real-time constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Synchronization: Locks, Semaphores, Monitors, and Condition Variables",
+      "description": "Teaches correct coordination among concurrent threads.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Critical sections"
+            },
+            {
+              "type": "concept",
+              "title": "Mutual exclusion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spinlocks"
+            },
+            {
+              "type": "concept",
+              "title": "Mutexes"
+            },
+            {
+              "type": "concept",
+              "title": "Semaphores"
+            },
+            {
+              "type": "concept",
+              "title": "Monitors"
+            },
+            {
+              "type": "concept",
+              "title": "Condition variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Producer-consumer"
+            },
+            {
+              "type": "concept",
+              "title": "Readers-writers"
+            },
+            {
+              "type": "concept",
+              "title": "Bounded-buffer problems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Deadlocks and Liveness",
+      "description": "Covers system states where progress stops and how to prevent or recover from them.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock conditions and resource-allocation graphs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prevention"
+            },
+            {
+              "type": "concept",
+              "title": "Avoidance"
+            },
+            {
+              "type": "concept",
+              "title": "Detection"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Starvation"
+            },
+            {
+              "type": "concept",
+              "title": "Livelock"
+            },
+            {
+              "type": "concept",
+              "title": "Priority inversion"
+            },
+            {
+              "type": "concept",
+              "title": "Fairness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory Management and Address Translation",
+      "description": "Explains how memory is allocated and protected.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Physical versus virtual addresses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Paging"
+            },
+            {
+              "type": "concept",
+              "title": "Page tables"
+            },
+            {
+              "type": "concept",
+              "title": "TLBs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Protection"
+            },
+            {
+              "type": "concept",
+              "title": "Sharing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Virtual Memory, Paging, and Replacement",
+      "description": "Shows how systems run programs larger than physical memory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand paging"
+            },
+            {
+              "type": "concept",
+              "title": "Page faults"
+            },
+            {
+              "type": "concept",
+              "title": "Working sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FIFO"
+            },
+            {
+              "type": "concept",
+              "title": "LRU"
+            },
+            {
+              "type": "concept",
+              "title": "Clock"
+            },
+            {
+              "type": "concept",
+              "title": "Approximation policies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thrashing"
+            },
+            {
+              "type": "concept",
+              "title": "Memory-mapped files"
+            },
+            {
+              "type": "concept",
+              "title": "Copy-on-write"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "File Systems and Persistent Storage",
+      "description": "Covers how data becomes durable, named, and organized.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Files"
+            },
+            {
+              "type": "concept",
+              "title": "Directories"
+            },
+            {
+              "type": "concept",
+              "title": "Inodes"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Permissions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allocation strategies"
+            },
+            {
+              "type": "concept",
+              "title": "Journaling"
+            },
+            {
+              "type": "concept",
+              "title": "Logging"
+            },
+            {
+              "type": "concept",
+              "title": "Crash consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Buffer cache"
+            },
+            {
+              "type": "concept",
+              "title": "Fsck"
+            },
+            {
+              "type": "concept",
+              "title": "Modern file system examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "I/O Systems, Devices, and Drivers",
+      "description": "Connects hardware devices to OS abstractions and performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interrupts"
+            },
+            {
+              "type": "concept",
+              "title": "Polling"
+            },
+            {
+              "type": "concept",
+              "title": "DMA"
+            },
+            {
+              "type": "concept",
+              "title": "Device drivers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Block devices"
+            },
+            {
+              "type": "concept",
+              "title": "Character devices"
+            },
+            {
+              "type": "concept",
+              "title": "Terminals"
+            },
+            {
+              "type": "concept",
+              "title": "Network devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "I/O scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Buffering"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Storage Systems and Disks",
+      "description": "Deepens persistent storage with device behavior and storage hierarchy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HDDs"
+            },
+            {
+              "type": "concept",
+              "title": "SSDs"
+            },
+            {
+              "type": "concept",
+              "title": "Flash translation layers"
+            },
+            {
+              "type": "concept",
+              "title": "RAID"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Seek time"
+            },
+            {
+              "type": "concept",
+              "title": "Wear leveling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Storage virtualization and reliability tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interprocess Communication and Networking Interfaces",
+      "description": "Explains how processes cooperate and communicate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pipes"
+            },
+            {
+              "type": "concept",
+              "title": "Signals"
+            },
+            {
+              "type": "concept",
+              "title": "Shared memory"
+            },
+            {
+              "type": "concept",
+              "title": "Message queues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sockets"
+            },
+            {
+              "type": "concept",
+              "title": "RPC"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus network communication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Serialization"
+            },
+            {
+              "type": "concept",
+              "title": "Buffering"
+            },
+            {
+              "type": "concept",
+              "title": "Failure handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Virtualization, Containers, and Isolation",
+      "description": "Shows how OS concepts support cloud, deployment, and sandboxing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Virtual machines"
+            },
+            {
+              "type": "concept",
+              "title": "Hypervisors"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware support"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Namespaces"
+            },
+            {
+              "type": "concept",
+              "title": "Cgroups"
+            },
+            {
+              "type": "concept",
+              "title": "Containers"
+            },
+            {
+              "type": "concept",
+              "title": "Images"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Resource limits"
+            },
+            {
+              "type": "concept",
+              "title": "Orchestration basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Protection, Security, and Access Control",
+      "description": "Covers how operating systems defend resources and enforce policy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Users"
+            },
+            {
+              "type": "concept",
+              "title": "Groups"
+            },
+            {
+              "type": "concept",
+              "title": "Permissions"
+            },
+            {
+              "type": "concept",
+              "title": "Capabilities"
+            },
+            {
+              "type": "concept",
+              "title": "ACLs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Authentication"
+            },
+            {
+              "type": "concept",
+              "title": "Privilege escalation"
+            },
+            {
+              "type": "concept",
+              "title": "Sandboxing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kernel attack surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Hardening"
+            },
+            {
+              "type": "concept",
+              "title": "Audit logs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Distributed OS Concepts and Systems Performance",
+      "description": "Introduces scalability, remote resources, and measurement-driven systems work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distributed file systems"
+            },
+            {
+              "type": "concept",
+              "title": "Remote procedure calls"
+            },
+            {
+              "type": "concept",
+              "title": "Consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latency"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Benchmarking"
+            },
+            {
+              "type": "concept",
+              "title": "Profiling"
+            },
+            {
+              "type": "concept",
+              "title": "Tracing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Observability"
+            },
+            {
+              "type": "concept",
+              "title": "Logs"
+            },
+            {
+              "type": "concept",
+              "title": "Metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Performance debugging"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "OS Implementation Case Studies and Projects",
+      "description": "Integrates concepts through real systems and small kernel or systems-programming tasks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "Why it matters: This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Xv6"
+            },
+            {
+              "type": "concept",
+              "title": "Linux"
+            },
+            {
+              "type": "concept",
+              "title": "Unix"
+            },
+            {
+              "type": "concept",
+              "title": "Windows"
+            },
+            {
+              "type": "concept",
+              "title": "Embedded/real-time examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "Why it matters: This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System-call labs"
+            },
+            {
+              "type": "concept",
+              "title": "Shell projects"
+            },
+            {
+              "type": "concept",
+              "title": "Thread libraries"
+            },
+            {
+              "type": "concept",
+              "title": "File systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "Why it matters: This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Testing"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Code review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

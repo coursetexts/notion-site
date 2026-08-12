@@ -1,0 +1,998 @@
+{
+  "slug": "vlsi-digital-system-design",
+  "title": "VLSI / Digital System Design",
+  "description": "VLSI / Digital System Design covers CMOS fabrication and MOS theory through logic gates, combinational and sequential design, layout, timing/power analysis, memory, verification, and an integrated VLSI design project.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "CMOS Technology and Fabrication",
+      "description": "This section gives students the physical manufacturing context behind the digital abstractions they use in HDL and logic design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CMOS Process Flow",
+          "description": "Students learn the main fabrication steps that create transistors and wires.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wells and substrates"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation and deposition"
+            },
+            {
+              "type": "concept",
+              "title": "Lithography"
+            },
+            {
+              "type": "concept",
+              "title": "Etching and implantation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process Layers",
+          "description": "VLSI layout depends on knowing what each layer represents physically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Active/diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Polysilicon"
+            },
+            {
+              "type": "concept",
+              "title": "Contacts and vias"
+            },
+            {
+              "type": "concept",
+              "title": "Metal layers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design Kits",
+          "description": "PDKs translate a foundry process into rules and models designers can use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SPICE Models"
+            },
+            {
+              "type": "concept",
+              "title": "Technology files"
+            },
+            {
+              "type": "concept",
+              "title": "Standard-cell libraries"
+            },
+            {
+              "type": "concept",
+              "title": "Design rule decks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manufacturing Constraints",
+          "description": "Fabrication variation affects reliability, yield, and design margins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Process corners"
+            },
+            {
+              "type": "concept",
+              "title": "Yield"
+            },
+            {
+              "type": "concept",
+              "title": "Lithography limits"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "MOS Transistor Theory",
+      "description": "MOS transistor theory explains why digital gates switch, how fast they switch, and how much energy they consume.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Device Operation",
+          "description": "Students learn how gate voltage controls channel formation and current.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threshold voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Cutoff/linear/saturation regions"
+            },
+            {
+              "type": "concept",
+              "title": "Body effect"
+            },
+            {
+              "type": "concept",
+              "title": "Short-channel effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Switch Models",
+          "description": "Digital design often uses simplified transistor models for fast reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "On resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Load capacitance"
+            },
+            {
+              "type": "concept",
+              "title": "RC Delay"
+            },
+            {
+              "type": "concept",
+              "title": "Switch-level abstraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacitance and Charge",
+          "description": "Most CMOS delay and dynamic power come from charging and discharging capacitances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gate capacitance"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion capacitance"
+            },
+            {
+              "type": "concept",
+              "title": "Miller effect"
+            },
+            {
+              "type": "concept",
+              "title": "Charge sharing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sizing Tradeoffs",
+          "description": "Transistor width changes drive strength, area, input load, and leakage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PMOS/NMOS Ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Fanout"
+            },
+            {
+              "type": "concept",
+              "title": "Logical effort"
+            },
+            {
+              "type": "concept",
+              "title": "Leakage versus speed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "CMOS Logic Gates",
+      "description": "This section turns transistor devices into reliable Boolean gates with full-swing outputs and predictable electrical behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CMOS Inverter",
+          "description": "The inverter is the reference circuit for voltage transfer, delay, and noise margin.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "VTC"
+            },
+            {
+              "type": "concept",
+              "title": "Switching threshold"
+            },
+            {
+              "type": "concept",
+              "title": "Noise margins"
+            },
+            {
+              "type": "concept",
+              "title": "Rise and fall delay"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Static CMOS Gates",
+          "description": "Students build complementary pull-up and pull-down networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NAND Gates"
+            },
+            {
+              "type": "concept",
+              "title": "NOR Gates"
+            },
+            {
+              "type": "concept",
+              "title": "Compound gates"
+            },
+            {
+              "type": "concept",
+              "title": "Series/parallel networks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternative Logic Styles",
+          "description": "Some designs use specialized styles for speed, density, or power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transmission gates"
+            },
+            {
+              "type": "concept",
+              "title": "Pass-transistor logic"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic logic"
+            },
+            {
+              "type": "concept",
+              "title": "Domino logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrical Correctness",
+          "description": "Logic must be evaluated as circuits, not only Boolean expressions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Full swing"
+            },
+            {
+              "type": "concept",
+              "title": "Ratioed logic risks"
+            },
+            {
+              "type": "concept",
+              "title": "Contention"
+            },
+            {
+              "type": "concept",
+              "title": "Charge leakage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Combinational Circuit Design",
+      "description": "Combinational design connects Boolean logic, HDL, synthesis, and circuit-level optimization into usable digital blocks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boolean Optimization",
+          "description": "Students reduce logic while preserving function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "K-Maps"
+            },
+            {
+              "type": "concept",
+              "title": "Boolean algebra"
+            },
+            {
+              "type": "concept",
+              "title": "Two-level minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-level logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "HDL Modeling",
+          "description": "RTL descriptions should synthesize into intended hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Verilog/SystemVerilog Combinational Blocks"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Case statements"
+            },
+            {
+              "type": "concept",
+              "title": "Avoid unintended latches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Datapath Blocks",
+          "description": "Common arithmetic and routing structures dominate digital systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adders"
+            },
+            {
+              "type": "concept",
+              "title": "Multipliers"
+            },
+            {
+              "type": "concept",
+              "title": "Comparators"
+            },
+            {
+              "type": "concept",
+              "title": "Multiplexers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synthesis Awareness",
+          "description": "Students learn how RTL becomes gates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard-cell mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Area-speed tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Optimization reports"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sequential Circuit Design",
+      "description": "Sequential design introduces memory, state, and timing discipline so circuits behave predictably across clock cycles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Storage Elements",
+          "description": "Students compare latches and flip-flops as state elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Level-sensitive latches"
+            },
+            {
+              "type": "concept",
+              "title": "Edge-triggered flip-flops"
+            },
+            {
+              "type": "concept",
+              "title": "Enable/reset behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Scan flip-flops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Timing Constraints",
+          "description": "Correct sequential design depends on meeting setup and hold requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Hold time"
+            },
+            {
+              "type": "concept",
+              "title": "Clock-to-Q Delay"
+            },
+            {
+              "type": "concept",
+              "title": "Metastability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finite State Machines",
+          "description": "FSMs structure control logic for digital systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moore Machines"
+            },
+            {
+              "type": "concept",
+              "title": "Mealy Machines"
+            },
+            {
+              "type": "concept",
+              "title": "State encoding"
+            },
+            {
+              "type": "concept",
+              "title": "Safe-state design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clock-Domain Issues",
+          "description": "Modern systems often cross timing domains and must manage synchronization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clock domain crossing"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronizers"
+            },
+            {
+              "type": "concept",
+              "title": "FIFOs"
+            },
+            {
+              "type": "concept",
+              "title": "Reset synchronization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Layout and Design Rules",
+      "description": "Layout turns circuit intent into geometry that can be manufactured and checked against process constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Physical Layout Basics",
+          "description": "Students learn how transistors and wires are placed on silicon.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stick diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Euler paths"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion sharing"
+            },
+            {
+              "type": "concept",
+              "title": "Well taps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design-Rule Checking",
+          "description": "DRC catches geometry that violates process manufacturing limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spacing rules"
+            },
+            {
+              "type": "concept",
+              "title": "Width rules"
+            },
+            {
+              "type": "concept",
+              "title": "Enclosure rules"
+            },
+            {
+              "type": "concept",
+              "title": "Antenna rules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Layout Versus Schematic",
+          "description": "LVS ensures that the layout implements the intended circuit netlist.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Net extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Device recognition"
+            },
+            {
+              "type": "concept",
+              "title": "Pin matching"
+            },
+            {
+              "type": "concept",
+              "title": "Debugging mismatches"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Parasitics and Routing",
+          "description": "Physical wires introduce delay, capacitance, and coupling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wire RC"
+            },
+            {
+              "type": "concept",
+              "title": "Parasitic extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Crosstalk"
+            },
+            {
+              "type": "concept",
+              "title": "Routing congestion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Timing and Power Analysis",
+      "description": "Timing and power analysis are the central closure tasks that determine whether a design works at the required frequency and energy budget.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Static Timing Analysis",
+          "description": "STA checks timing paths without exhaustive simulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Launch and capture clocks"
+            },
+            {
+              "type": "concept",
+              "title": "Setup checks"
+            },
+            {
+              "type": "concept",
+              "title": "Hold checks"
+            },
+            {
+              "type": "concept",
+              "title": "Slack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clocking",
+          "description": "Clock design shapes timing margins, power, and reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clock trees"
+            },
+            {
+              "type": "concept",
+              "title": "Skew"
+            },
+            {
+              "type": "concept",
+              "title": "Jitter"
+            },
+            {
+              "type": "concept",
+              "title": "Clock gating"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power Components",
+          "description": "Students separate where energy is spent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic power"
+            },
+            {
+              "type": "concept",
+              "title": "Short-circuit power"
+            },
+            {
+              "type": "concept",
+              "title": "Leakage power"
+            },
+            {
+              "type": "concept",
+              "title": "Switching activity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization",
+          "description": "Designers iterate architecture, RTL, gates, and physical design to close constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical path reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer insertion"
+            },
+            {
+              "type": "concept",
+              "title": "Gate sizing"
+            },
+            {
+              "type": "concept",
+              "title": "Voltage/frequency tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory Design",
+      "description": "Memory design shows how dense arrays, bit cells, and peripheral circuits differ from ordinary logic design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "SRAM Cells",
+          "description": "Students learn the structure and operation of static memory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "6T Cell"
+            },
+            {
+              "type": "concept",
+              "title": "Read stability"
+            },
+            {
+              "type": "concept",
+              "title": "Write margin"
+            },
+            {
+              "type": "concept",
+              "title": "Cell ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory Periphery",
+          "description": "Arrays need address, sensing, and write support circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decoders"
+            },
+            {
+              "type": "concept",
+              "title": "Wordlines"
+            },
+            {
+              "type": "concept",
+              "title": "Bitlines"
+            },
+            {
+              "type": "concept",
+              "title": "Sense amplifiers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Timing and Reliability",
+          "description": "Memory access has distinct constraints and failure modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Read access time"
+            },
+            {
+              "type": "concept",
+              "title": "Write time"
+            },
+            {
+              "type": "concept",
+              "title": "Noise margin"
+            },
+            {
+              "type": "concept",
+              "title": "Variation sensitivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System Memory Structures",
+          "description": "Students connect circuit memory to digital systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Register files"
+            },
+            {
+              "type": "concept",
+              "title": "Caches"
+            },
+            {
+              "type": "concept",
+              "title": "ROMs"
+            },
+            {
+              "type": "concept",
+              "title": "DRAM Overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Verification",
+      "description": "Verification gives confidence that the design behaves correctly before committing to hardware or silicon.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simulation Testbenches",
+          "description": "Students learn to stimulate and observe RTL behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Directed tests"
+            },
+            {
+              "type": "concept",
+              "title": "Random tests"
+            },
+            {
+              "type": "concept",
+              "title": "Self-checking testbenches"
+            },
+            {
+              "type": "concept",
+              "title": "Waveform debugging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Assertions and Coverage",
+          "description": "Verification must measure what has actually been checked.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SystemVerilog Assertions"
+            },
+            {
+              "type": "concept",
+              "title": "Functional coverage"
+            },
+            {
+              "type": "concept",
+              "title": "Code coverage"
+            },
+            {
+              "type": "concept",
+              "title": "Corner cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equivalence and Signoff",
+          "description": "Different representations must match across the flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RTL-to-Gate Equivalence"
+            },
+            {
+              "type": "concept",
+              "title": "Timing simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Formal checks"
+            },
+            {
+              "type": "concept",
+              "title": "Netlist validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design for Testability",
+          "description": "DFT makes manufactured chips testable after fabrication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scan chains"
+            },
+            {
+              "type": "concept",
+              "title": "Built-In Self-Test"
+            },
+            {
+              "type": "concept",
+              "title": "Fault models"
+            },
+            {
+              "type": "concept",
+              "title": "ATPG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "VLSI Design Project",
+      "description": "The project ties the course together by forcing students to move a real digital block through design, verification, implementation, and reporting.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project Specification",
+          "description": "A good VLSI project begins with clear requirements and measurable success criteria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Target frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Area and power goals"
+            },
+            {
+              "type": "concept",
+              "title": "Interfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation Flow",
+          "description": "Students practice the stages of a modern digital design flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RTL Design"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Place-and-Route"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physical Signoff",
+          "description": "The project should expose students to realistic implementation checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DRC"
+            },
+            {
+              "type": "concept",
+              "title": "LVS"
+            },
+            {
+              "type": "concept",
+              "title": "STA"
+            },
+            {
+              "type": "concept",
+              "title": "Power estimation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation and Review",
+          "description": "Engineering communication matters because hardware mistakes are expensive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design reports"
+            },
+            {
+              "type": "concept",
+              "title": "Schematics/Layout Screenshots"
+            },
+            {
+              "type": "concept",
+              "title": "Timing reports"
+            },
+            {
+              "type": "concept",
+              "title": "Final demonstration"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

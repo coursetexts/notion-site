@@ -1,0 +1,1416 @@
+{
+  "slug": "cybersecurity-fundamentals",
+  "title": "Cybersecurity Fundamentals",
+  "description": "Cybersecurity Fundamentals covers security principles, threats, architecture, cryptography, networks, identity, endpoints, web and cloud security, vulnerability management, security operations, incident response, risk, privacy, awareness, and an integrated defensive capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Security Mindset, CIA Triad, and Defense-in-Depth",
+      "description": "Build the core security vocabulary and judgment students need to evaluate confidentiality, integrity, availability, layered controls, and tradeoffs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Security Mindset, CIA Triad, and Defense-in-Depth",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confidentiality"
+            },
+            {
+              "type": "concept",
+              "title": "Integrity"
+            },
+            {
+              "type": "concept",
+              "title": "Availability"
+            },
+            {
+              "type": "concept",
+              "title": "Defense-in-depth"
+            },
+            {
+              "type": "concept",
+              "title": "Risk tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Security Mindset, CIA Triad, and Defense-in-Depth",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Asset inventory"
+            },
+            {
+              "type": "concept",
+              "title": "Security objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Threat scenarios"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline controls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Security Mindset, CIA Triad, and Defense-in-Depth",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Trustworthy systems"
+            },
+            {
+              "type": "concept",
+              "title": "Least privilege culture"
+            },
+            {
+              "type": "concept",
+              "title": "Shared responsibility"
+            },
+            {
+              "type": "concept",
+              "title": "Security-by-design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Threats, Vulnerabilities, Attacks, and Adversary Behavior",
+      "description": "Analyze how attackers think, where systems become exposed, and how vulnerabilities become real operational risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Threats, Vulnerabilities, Attacks, and Adversary Behavior",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threat actors"
+            },
+            {
+              "type": "concept",
+              "title": "Attack surface"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Exploits"
+            },
+            {
+              "type": "concept",
+              "title": "Kill chain"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Threats, Vulnerabilities, Attacks, and Adversary Behavior",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MITRE ATT&CK"
+            },
+            {
+              "type": "concept",
+              "title": "Threat modeling"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerability scanning"
+            },
+            {
+              "type": "concept",
+              "title": "Attack trees"
+            },
+            {
+              "type": "concept",
+              "title": "Threat intelligence briefs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Threats, Vulnerabilities, Attacks, and Adversary Behavior",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prioritized defenses"
+            },
+            {
+              "type": "concept",
+              "title": "Attacker empathy"
+            },
+            {
+              "type": "concept",
+              "title": "Realistic scenarios"
+            },
+            {
+              "type": "concept",
+              "title": "Incident anticipation"
+            },
+            {
+              "type": "concept",
+              "title": "Risk communication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Security Architecture, Secure Design, and Risk-Based Controls",
+      "description": "Connect security principles to architecture choices that reduce blast radius and make systems easier to protect and operate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Security Architecture, Secure Design, and Risk-Based Controls",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Secure design"
+            },
+            {
+              "type": "concept",
+              "title": "Trust boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Zero trust"
+            },
+            {
+              "type": "concept",
+              "title": "Secure defaults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Security Architecture, Secure Design, and Risk-Based Controls",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Architecture diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Data flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "STRIDE"
+            },
+            {
+              "type": "concept",
+              "title": "Control selection"
+            },
+            {
+              "type": "concept",
+              "title": "Design review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Security Architecture, Secure Design, and Risk-Based Controls",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reduced blast radius"
+            },
+            {
+              "type": "concept",
+              "title": "Secure systems delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Design documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Resilient architecture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cryptography Basics and Key Management",
+      "description": "Explain the cryptographic building blocks behind secure storage, secure communication, identity, integrity, and trust.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Cryptography Basics and Key Management",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symmetric encryption"
+            },
+            {
+              "type": "concept",
+              "title": "Asymmetric encryption"
+            },
+            {
+              "type": "concept",
+              "title": "Hashing"
+            },
+            {
+              "type": "concept",
+              "title": "Digital signatures"
+            },
+            {
+              "type": "concept",
+              "title": "Certificates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Cryptography Basics and Key Management",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TLS Inspection"
+            },
+            {
+              "type": "concept",
+              "title": "Key lifecycle"
+            },
+            {
+              "type": "concept",
+              "title": "Password hashing"
+            },
+            {
+              "type": "concept",
+              "title": "Certificate checks"
+            },
+            {
+              "type": "concept",
+              "title": "Crypto policy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Cryptography Basics and Key Management",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data protection"
+            },
+            {
+              "type": "concept",
+              "title": "Secure channels"
+            },
+            {
+              "type": "concept",
+              "title": "Identity assurance"
+            },
+            {
+              "type": "concept",
+              "title": "Integrity checks"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Network Security and Secure Communications",
+      "description": "Apply networking knowledge to protect traffic, segment systems, monitor connections, and secure remote access.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Network Security and Secure Communications",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Firewalls"
+            },
+            {
+              "type": "concept",
+              "title": "IDS/IPS"
+            },
+            {
+              "type": "concept",
+              "title": "VPNs"
+            },
+            {
+              "type": "concept",
+              "title": "Wireless security"
+            },
+            {
+              "type": "concept",
+              "title": "Secure protocols"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Network Security and Secure Communications",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Packet analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Firewall rules"
+            },
+            {
+              "type": "concept",
+              "title": "Network segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "VPN Configuration"
+            },
+            {
+              "type": "concept",
+              "title": "DNS/TLS Checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Network Security and Secure Communications",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perimeter defense"
+            },
+            {
+              "type": "concept",
+              "title": "Secure remote access"
+            },
+            {
+              "type": "concept",
+              "title": "Lateral movement reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Network monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Service protection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Identity, Authentication, Authorization, and Access Control",
+      "description": "Study how organizations prove identity, grant access, govern privileges, and reduce misuse of accounts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Identity, Authentication, Authorization, and Access Control",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Authentication"
+            },
+            {
+              "type": "concept",
+              "title": "Authorization"
+            },
+            {
+              "type": "concept",
+              "title": "Account lifecycle"
+            },
+            {
+              "type": "concept",
+              "title": "MFA"
+            },
+            {
+              "type": "concept",
+              "title": "RBAC"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Identity, Authentication, Authorization, and Access Control",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IAM policies"
+            },
+            {
+              "type": "concept",
+              "title": "Access reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Password managers"
+            },
+            {
+              "type": "concept",
+              "title": "SSO"
+            },
+            {
+              "type": "concept",
+              "title": "Privilege audits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Identity, Authentication, Authorization, and Access Control",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Least privilege"
+            },
+            {
+              "type": "concept",
+              "title": "Insider risk reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Audit readiness"
+            },
+            {
+              "type": "concept",
+              "title": "User accountability"
+            },
+            {
+              "type": "concept",
+              "title": "Access governance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Endpoint, Operating System, and Malware Fundamentals",
+      "description": "Understand how operating systems and endpoints are attacked, hardened, monitored, and recovered after malware activity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Endpoint, Operating System, and Malware Fundamentals",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Malware types"
+            },
+            {
+              "type": "concept",
+              "title": "Persistence"
+            },
+            {
+              "type": "concept",
+              "title": "Privilege escalation"
+            },
+            {
+              "type": "concept",
+              "title": "Endpoint hardening"
+            },
+            {
+              "type": "concept",
+              "title": "OS security"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Endpoint, Operating System, and Malware Fundamentals",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EDR concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Sandbox analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline hardening"
+            },
+            {
+              "type": "concept",
+              "title": "Process inspection"
+            },
+            {
+              "type": "concept",
+              "title": "File hash checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Endpoint, Operating System, and Malware Fundamentals",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Endpoint resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Malware containment"
+            },
+            {
+              "type": "concept",
+              "title": "Secure configuration"
+            },
+            {
+              "type": "concept",
+              "title": "User protection"
+            },
+            {
+              "type": "concept",
+              "title": "Operational recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Web Application Security and Secure APIs",
+      "description": "Introduce common web and API risks so students can work productively with developers, testers, and application owners.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Web Application Security and Secure APIs",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "OWASP Top Ten"
+            },
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Session management"
+            },
+            {
+              "type": "concept",
+              "title": "API security"
+            },
+            {
+              "type": "concept",
+              "title": "Secure coding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Web Application Security and Secure APIs",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Burp Suite labs"
+            },
+            {
+              "type": "concept",
+              "title": "Secure headers"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency checks"
+            },
+            {
+              "type": "concept",
+              "title": "Authentication testing"
+            },
+            {
+              "type": "concept",
+              "title": "Threat modeling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Web Application Security and Secure APIs",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Safer web apps"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced data exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Secure APIs"
+            },
+            {
+              "type": "concept",
+              "title": "Developer collaboration"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerability prevention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud, Container, and Virtualization Security",
+      "description": "Translate security fundamentals into software-defined infrastructure where identity, configuration, logging, and shared responsibility matter.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Cloud, Container, and Virtualization Security",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shared responsibility"
+            },
+            {
+              "type": "concept",
+              "title": "IAM in Cloud"
+            },
+            {
+              "type": "concept",
+              "title": "Security groups"
+            },
+            {
+              "type": "concept",
+              "title": "Containers"
+            },
+            {
+              "type": "concept",
+              "title": "Kubernetes Basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Cloud, Container, and Virtualization Security",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cloud policy review"
+            },
+            {
+              "type": "concept",
+              "title": "Image scanning"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets management"
+            },
+            {
+              "type": "concept",
+              "title": "Network rules"
+            },
+            {
+              "type": "concept",
+              "title": "Logging configuration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Cloud, Container, and Virtualization Security",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Secure deployments"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud governance"
+            },
+            {
+              "type": "concept",
+              "title": "Workload isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Cost-aware controls"
+            },
+            {
+              "type": "concept",
+              "title": "Scalable resilience"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vulnerability Management, Patch Management, and Hardening",
+      "description": "Turn vulnerability information into a repeatable program for reducing exposure without disrupting operations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Vulnerability Management, Patch Management, and Hardening",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Asset exposure"
+            },
+            {
+              "type": "concept",
+              "title": "CVEs"
+            },
+            {
+              "type": "concept",
+              "title": "Severity"
+            },
+            {
+              "type": "concept",
+              "title": "Exploitability"
+            },
+            {
+              "type": "concept",
+              "title": "Hardening"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Vulnerability Management, Patch Management, and Hardening",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vulnerability scans"
+            },
+            {
+              "type": "concept",
+              "title": "Patch plans"
+            },
+            {
+              "type": "concept",
+              "title": "CIS Benchmarks"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration checks"
+            },
+            {
+              "type": "concept",
+              "title": "Exception tracking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Vulnerability Management, Patch Management, and Hardening",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Technical debt management"
+            },
+            {
+              "type": "concept",
+              "title": "Audit evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Operational prioritization"
+            },
+            {
+              "type": "concept",
+              "title": "Measurable remediation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Security Operations, Logging, Monitoring, and Threat Detection",
+      "description": "Develop operational visibility by collecting useful logs, building detections, triaging alerts, and escalating credible threats.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Security Operations, Logging, Monitoring, and Threat Detection",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Events"
+            },
+            {
+              "type": "concept",
+              "title": "Logs"
+            },
+            {
+              "type": "concept",
+              "title": "Detections"
+            },
+            {
+              "type": "concept",
+              "title": "Alerts"
+            },
+            {
+              "type": "concept",
+              "title": "SIEM"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Security Operations, Logging, Monitoring, and Threat Detection",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Log sources"
+            },
+            {
+              "type": "concept",
+              "title": "Detection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Triage queues"
+            },
+            {
+              "type": "concept",
+              "title": "Alert tuning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Security Operations, Logging, Monitoring, and Threat Detection",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Early detection"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced dwell time"
+            },
+            {
+              "type": "concept",
+              "title": "Analyst workflow"
+            },
+            {
+              "type": "concept",
+              "title": "Operational visibility"
+            },
+            {
+              "type": "concept",
+              "title": "Escalation discipline"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Incident Response, Digital Forensics, and Recovery",
+      "description": "Prepare students to respond to incidents with disciplined containment, evidence handling, communication, and recovery.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Incident Response, Digital Forensics, and Recovery",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incident lifecycle"
+            },
+            {
+              "type": "concept",
+              "title": "Containment"
+            },
+            {
+              "type": "concept",
+              "title": "Eradication"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Incident Response, Digital Forensics, and Recovery",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IR Playbooks"
+            },
+            {
+              "type": "concept",
+              "title": "Timeline analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Disk/memory basics"
+            },
+            {
+              "type": "concept",
+              "title": "Chain of custody"
+            },
+            {
+              "type": "concept",
+              "title": "Lessons learned"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Incident Response, Digital Forensics, and Recovery",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Damage control"
+            },
+            {
+              "type": "concept",
+              "title": "Business recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Legal defensibility"
+            },
+            {
+              "type": "concept",
+              "title": "Communication clarity"
+            },
+            {
+              "type": "concept",
+              "title": "Process improvement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Risk Management, Governance, Compliance, and Policy",
+      "description": "Show how cybersecurity decisions become accountable through risk management, control frameworks, policies, and reporting.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Risk Management, Governance, Compliance, and Policy",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk appetite"
+            },
+            {
+              "type": "concept",
+              "title": "Controls"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance"
+            },
+            {
+              "type": "concept",
+              "title": "Policies"
+            },
+            {
+              "type": "concept",
+              "title": "Audits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Risk Management, Governance, Compliance, and Policy",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk registers"
+            },
+            {
+              "type": "concept",
+              "title": "NIST CSF"
+            },
+            {
+              "type": "concept",
+              "title": "Control matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Policy templates"
+            },
+            {
+              "type": "concept",
+              "title": "Audit checklists"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Risk Management, Governance, Compliance, and Policy",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Governance alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory readiness"
+            },
+            {
+              "type": "concept",
+              "title": "Executive reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Accountability"
+            },
+            {
+              "type": "concept",
+              "title": "Control improvement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Privacy, Ethics, Law, and Professional Responsibility",
+      "description": "Ground technical security work in lawful, ethical, privacy-respecting practice and professional codes of conduct.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Privacy, Ethics, Law, and Professional Responsibility",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Privacy principles"
+            },
+            {
+              "type": "concept",
+              "title": "Consent"
+            },
+            {
+              "type": "concept",
+              "title": "Surveillance"
+            },
+            {
+              "type": "concept",
+              "title": "Cybercrime"
+            },
+            {
+              "type": "concept",
+              "title": "Professional codes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Privacy, Ethics, Law, and Professional Responsibility",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Privacy impact assessments"
+            },
+            {
+              "type": "concept",
+              "title": "ACM Code"
+            },
+            {
+              "type": "concept",
+              "title": "IEEE Code"
+            },
+            {
+              "type": "concept",
+              "title": "NIST Privacy Framework"
+            },
+            {
+              "type": "concept",
+              "title": "Ethics cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Privacy, Ethics, Law, and Professional Responsibility",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "User trust"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Lawful operations"
+            },
+            {
+              "type": "concept",
+              "title": "Professional judgment"
+            },
+            {
+              "type": "concept",
+              "title": "Social impact"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Security Awareness, Human Factors, and Organizational Resilience",
+      "description": "Treat people, communication, and culture as central parts of defense rather than afterthoughts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Security Awareness, Human Factors, and Organizational Resilience",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phishing"
+            },
+            {
+              "type": "concept",
+              "title": "Social engineering"
+            },
+            {
+              "type": "concept",
+              "title": "Behavior change"
+            },
+            {
+              "type": "concept",
+              "title": "Security culture"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Security Awareness, Human Factors, and Organizational Resilience",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Awareness campaigns"
+            },
+            {
+              "type": "concept",
+              "title": "Phishing simulations"
+            },
+            {
+              "type": "concept",
+              "title": "Tabletop exercises"
+            },
+            {
+              "type": "concept",
+              "title": "Training metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Communication plans"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Security Awareness, Human Factors, and Organizational Resilience",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fewer user-driven incidents"
+            },
+            {
+              "type": "concept",
+              "title": "Reporting culture"
+            },
+            {
+              "type": "concept",
+              "title": "Resilient teams"
+            },
+            {
+              "type": "concept",
+              "title": "Executive support"
+            },
+            {
+              "type": "concept",
+              "title": "Organizational learning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Cybersecurity Defense Capstone",
+      "description": "Synthesize the course by assessing an organization, prioritizing risk, designing defenses, and presenting a realistic security improvement plan.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Integrated Cybersecurity Defense Capstone",
+          "description": "This subtopic gives students the vocabulary and mental model needed to reason about security decisions before choosing tools or controls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business scenario"
+            },
+            {
+              "type": "concept",
+              "title": "Assets"
+            },
+            {
+              "type": "concept",
+              "title": "Threats"
+            },
+            {
+              "type": "concept",
+              "title": "Controls"
+            },
+            {
+              "type": "concept",
+              "title": "Success criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Integrated Cybersecurity Defense Capstone",
+          "description": "This subtopic turns the concept into professional practice through frameworks, configurations, labs, analysis, documentation, and operational workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Defense architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Incident playbook"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring plan"
+            },
+            {
+              "type": "concept",
+              "title": "Final presentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Security Use of Integrated Cybersecurity Defense Capstone",
+          "description": "This subtopic emphasizes how the topic protects systems, people, data, operations, trust, and organizational resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Portfolio artifact"
+            },
+            {
+              "type": "concept",
+              "title": "Defensible recommendations"
+            },
+            {
+              "type": "concept",
+              "title": "Layered defense"
+            },
+            {
+              "type": "concept",
+              "title": "Peer critique"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation roadmap"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

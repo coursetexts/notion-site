@@ -1,0 +1,1087 @@
+{
+  "slug": "climatology-atmospheric-science",
+  "title": "Climatology / Atmospheric Science",
+  "description": "Bridges physical atmospheric science and applied climate literacy\u2014teaching the mechanisms of weather and climate, how climate evidence is measured and modeled, and how uncertainty becomes risk information for ecosystems, infrastructure, health, and communities.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Atmospheric structure and composition",
+      "description": "Build the physical picture of the atmosphere as a layered, chemically active system that supports weather and climate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vertical structure",
+          "description": "Students learn why temperature, pressure, and density vary with height and why layers matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Troposphere and stratosphere"
+            },
+            {
+              "type": "concept",
+              "title": "Lapse rates"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure and density profiles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Atmospheric composition",
+          "description": "Composition controls radiation, chemistry, clouds, and climate forcing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Major gases"
+            },
+            {
+              "type": "concept",
+              "title": "Variable gases"
+            },
+            {
+              "type": "concept",
+              "title": "Aerosols and particulates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Water vapor and ozone",
+          "description": "These trace components have outsized climate and weather roles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Humidity measures"
+            },
+            {
+              "type": "concept",
+              "title": "Ozone layer"
+            },
+            {
+              "type": "concept",
+              "title": "Greenhouse behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Observation basics",
+          "description": "Atmospheric science starts with measured vertical and horizontal structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radiosondes"
+            },
+            {
+              "type": "concept",
+              "title": "Surface stations"
+            },
+            {
+              "type": "concept",
+              "title": "Satellite retrievals"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Radiation balance",
+      "description": "Explain how energy from the Sun and Earth drives atmospheric temperature, circulation, and climate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solar and terrestrial radiation",
+          "description": "Students distinguish incoming shortwave from outgoing longwave energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solar constant"
+            },
+            {
+              "type": "concept",
+              "title": "Blackbody radiation"
+            },
+            {
+              "type": "concept",
+              "title": "Wavelength bands"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Albedo and absorption",
+          "description": "Surface and atmospheric reflectivity shape planetary temperature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cloud albedo"
+            },
+            {
+              "type": "concept",
+              "title": "Ice-albedo feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Aerosol scattering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Greenhouse effect",
+          "description": "The greenhouse effect is a physical energy-balance process, not just a policy phrase.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infrared absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Emission height"
+            },
+            {
+              "type": "concept",
+              "title": "Water vapor and CO2"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy budgets",
+          "description": "Energy accounting links local weather to global climate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Top-of-atmosphere balance"
+            },
+            {
+              "type": "concept",
+              "title": "Surface fluxes"
+            },
+            {
+              "type": "concept",
+              "title": "Radiative forcing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Temperature, pressure, and winds",
+      "description": "Connect atmospheric forces to wind, circulation, and daily-to-global weather patterns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pressure-gradient force",
+          "description": "Air moves because pressure varies across space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isobars"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure gradients"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence and divergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coriolis effect",
+          "description": "Earth's rotation shapes winds and storms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Northern/southern hemisphere deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Geostrophic balance"
+            },
+            {
+              "type": "concept",
+              "title": "Rossby-wave intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary layer winds",
+          "description": "Near-surface winds are shaped by friction, turbulence, and terrain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Friction"
+            },
+            {
+              "type": "concept",
+              "title": "Turbulence"
+            },
+            {
+              "type": "concept",
+              "title": "Diurnal mixing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Global circulation",
+          "description": "Large-scale circulation redistributes heat and moisture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hadley cells"
+            },
+            {
+              "type": "concept",
+              "title": "Jet streams"
+            },
+            {
+              "type": "concept",
+              "title": "Monsoons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Clouds and precipitation",
+      "description": "Show how water changes phase, forms clouds, and produces precipitation across weather and climate systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Moisture variables",
+          "description": "Students learn the quantities used to describe atmospheric water.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relative humidity"
+            },
+            {
+              "type": "concept",
+              "title": "Dew point"
+            },
+            {
+              "type": "concept",
+              "title": "Specific humidity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cloud formation",
+          "description": "Clouds form when air cools to saturation and condensation begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adiabatic cooling"
+            },
+            {
+              "type": "concept",
+              "title": "Condensation nuclei"
+            },
+            {
+              "type": "concept",
+              "title": "Lifting mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cloud types and microphysics",
+          "description": "Cloud properties affect weather and radiation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stratus/cumulus/cirrus"
+            },
+            {
+              "type": "concept",
+              "title": "Droplet growth"
+            },
+            {
+              "type": "concept",
+              "title": "Ice processes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precipitation processes",
+          "description": "Rain and snow connect atmospheric motion to hydrology and hazards.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Collision-coalescence"
+            },
+            {
+              "type": "concept",
+              "title": "Bergeron process"
+            },
+            {
+              "type": "concept",
+              "title": "Orographic precipitation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Weather systems",
+      "description": "Develop the synoptic-scale understanding needed to interpret fronts, storms, cyclones, and severe weather.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Air masses and fronts",
+          "description": "Boundaries between air masses organize weather.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cold fronts"
+            },
+            {
+              "type": "concept",
+              "title": "Warm fronts"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary fronts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Midlatitude cyclones",
+          "description": "These systems dominate much extratropical weather.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Occluded fronts"
+            },
+            {
+              "type": "concept",
+              "title": "Upper-level support"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tropical cyclones and severe storms",
+          "description": "Students connect thermodynamics, instability, and hazards.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hurricanes"
+            },
+            {
+              "type": "concept",
+              "title": "Thunderstorms"
+            },
+            {
+              "type": "concept",
+              "title": "Tornado environments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Weather analysis",
+          "description": "Forecasting requires reading observations and model guidance together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface maps"
+            },
+            {
+              "type": "concept",
+              "title": "Radar and satellite"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical weather prediction basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate variability",
+      "description": "Teach climate as a dynamic system with internal variability across seasons, years, decades, and regions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Seasonal and interannual variability",
+          "description": "Climate varies naturally around longer-term trends.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Seasonality"
+            },
+            {
+              "type": "concept",
+              "title": "ENSO"
+            },
+            {
+              "type": "concept",
+              "title": "Drought/flood variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Teleconnections",
+          "description": "Large-scale patterns link distant regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jet-stream shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Pacific and Atlantic patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Monsoon variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Paleoclimate evidence",
+          "description": "Past climates reveal system sensitivity and natural drivers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ice cores"
+            },
+            {
+              "type": "concept",
+              "title": "Tree rings"
+            },
+            {
+              "type": "concept",
+              "title": "Sediment records"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variability versus change",
+          "description": "Students learn to separate short-term fluctuation from long-term trend.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal and noise"
+            },
+            {
+              "type": "concept",
+              "title": "Trend detection"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline periods"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Greenhouse gases and forcing",
+      "description": "Explain how human and natural drivers alter Earth's energy balance and climate trajectory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Greenhouse gases",
+          "description": "Different gases vary in abundance, lifetime, and radiative effect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CO2"
+            },
+            {
+              "type": "concept",
+              "title": "Methane"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrous oxide and halocarbons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiative forcing",
+          "description": "Forcing quantifies how drivers perturb the energy balance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative forcing"
+            },
+            {
+              "type": "concept",
+              "title": "Aerosols"
+            },
+            {
+              "type": "concept",
+              "title": "Land-use forcing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feedbacks",
+          "description": "Feedbacks amplify or dampen climate response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water vapor"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud feedbacks"
+            },
+            {
+              "type": "concept",
+              "title": "Ice-albedo feedback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon cycle",
+          "description": "Carbon moves through atmosphere, ocean, land, and human systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sources and sinks"
+            },
+            {
+              "type": "concept",
+              "title": "Ocean uptake"
+            },
+            {
+              "type": "concept",
+              "title": "Fossil carbon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ocean, cryosphere, and land-surface coupling",
+      "description": "Add the Earth-system layer by linking the atmosphere to oceans, ice, soils, vegetation, and land use.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ocean-atmosphere coupling",
+          "description": "The ocean stores and redistributes heat and carbon.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixed layer"
+            },
+            {
+              "type": "concept",
+              "title": "Thermohaline circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Air-sea fluxes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cryosphere feedbacks",
+          "description": "Ice and snow strongly affect albedo, sea level, and climate memory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sea ice"
+            },
+            {
+              "type": "concept",
+              "title": "Glaciers and ice sheets"
+            },
+            {
+              "type": "concept",
+              "title": "Snow cover"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Land-atmosphere interactions",
+          "description": "Land surfaces influence heat, moisture, and carbon exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil moisture"
+            },
+            {
+              "type": "concept",
+              "title": "Evapotranspiration"
+            },
+            {
+              "type": "concept",
+              "title": "Urban heat islands"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Earth-system coupling",
+          "description": "Students see climate as a connected system rather than an atmosphere-only topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biosphere feedbacks"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon-climate coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Tipping-point overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate models",
+      "description": "Explain how models represent physical processes, why they are useful, and where uncertainty enters.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Model hierarchy",
+          "description": "Different model types answer different questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conceptual models"
+            },
+            {
+              "type": "concept",
+              "title": "Energy-balance models"
+            },
+            {
+              "type": "concept",
+              "title": "GCMs and Earth-system models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Parameterization",
+          "description": "Not every process can be resolved directly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clouds"
+            },
+            {
+              "type": "concept",
+              "title": "Convection"
+            },
+            {
+              "type": "concept",
+              "title": "Subgrid processes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation and ensembles",
+          "description": "Model credibility comes from testing and comparison.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hindcasts"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-model ensembles"
+            },
+            {
+              "type": "concept",
+              "title": "Bias and skill"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scenario use",
+          "description": "Models connect emissions pathways to possible futures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SSPs"
+            },
+            {
+              "type": "concept",
+              "title": "Representative forcing pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Regional downscaling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Remote sensing, reanalysis, and climate datasets",
+      "description": "Give students modern data skills for observing climate from satellites, stations, and gridded products.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Satellite remote sensing",
+          "description": "Satellites provide global views of atmosphere, ocean, land, and ice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radiometers"
+            },
+            {
+              "type": "concept",
+              "title": "Retrievals"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Station and gridded datasets",
+          "description": "Surface records remain essential for climate monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weather stations"
+            },
+            {
+              "type": "concept",
+              "title": "Homogenization"
+            },
+            {
+              "type": "concept",
+              "title": "Gridded products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reanalysis",
+          "description": "Reanalysis blends observations and models to reconstruct atmospheric states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data assimilation"
+            },
+            {
+              "type": "concept",
+              "title": "ERA5/NCEP concept"
+            },
+            {
+              "type": "concept",
+              "title": "Use and limitations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducible workflows",
+          "description": "Climate analysis must be transparent and auditable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NetCDF basics"
+            },
+            {
+              "type": "concept",
+              "title": "Python/R notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata and provenance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Impacts and adaptation",
+      "description": "Connect physical climate science to ecosystems, water, health, infrastructure, agriculture, and communities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Impact pathways",
+          "description": "Students trace how physical changes become real-world consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat stress"
+            },
+            {
+              "type": "concept",
+              "title": "Flood and drought"
+            },
+            {
+              "type": "concept",
+              "title": "Sea-level rise"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vulnerability and exposure",
+          "description": "Risk depends on who and what is in harm's way.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Social vulnerability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptation strategies",
+          "description": "Adaptation reduces harm under present and future climate conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Early warning"
+            },
+            {
+              "type": "concept",
+              "title": "Green infrastructure"
+            },
+            {
+              "type": "concept",
+              "title": "Managed retreat overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equity and justice",
+          "description": "Climate impacts and adaptation burdens are unevenly distributed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Environmental justice"
+            },
+            {
+              "type": "concept",
+              "title": "Indigenous and local knowledge"
+            },
+            {
+              "type": "concept",
+              "title": "Just adaptation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Analysis of climate datasets",
+      "description": "Make students capable of reading, visualizing, and critiquing climate evidence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Climate time series",
+          "description": "Students learn how climate evidence is displayed and interpreted.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anomalies"
+            },
+            {
+              "type": "concept",
+              "title": "Moving averages"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trend and variability analysis",
+          "description": "Trend detection must account for variability and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear trends"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Autocorrelation caution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spatial analysis",
+          "description": "Maps reveal regional patterns and unequal impacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gridded data"
+            },
+            {
+              "type": "concept",
+              "title": "Map projections"
+            },
+            {
+              "type": "concept",
+              "title": "Hotspots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Extreme-event metrics",
+          "description": "Extremes often matter more than averages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat waves"
+            },
+            {
+              "type": "concept",
+              "title": "Heavy precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Drought indices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Attribution, climate scenarios, uncertainty, and risk communication",
+      "description": "Synthesize the course by explaining causes, futures, uncertainty, and decisions clearly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Detection and attribution",
+          "description": "Students learn how scientists connect observed change to causes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fingerprinting"
+            },
+            {
+              "type": "concept",
+              "title": "Natural versus anthropogenic drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Event attribution overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scenario interpretation",
+          "description": "Scenarios are decision tools, not predictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emissions pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Socioeconomic assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario comparison"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty reasoning",
+          "description": "Uncertainty can guide action when communicated honestly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Internal variability"
+            },
+            {
+              "type": "concept",
+              "title": "Deep uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk communication",
+          "description": "Climate science must be translated without oversimplifying.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Audience and framing"
+            },
+            {
+              "type": "concept",
+              "title": "IPCC confidence language"
+            },
+            {
+              "type": "concept",
+              "title": "Visual communication"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

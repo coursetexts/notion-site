@@ -1,0 +1,1002 @@
+{
+  "slug": "computer-systems-systems-programming",
+  "title": "Computer Systems / Systems Programming",
+  "description": "This course bridges data structures/programming and operating systems. It focuses on C, pointers, memory, compilation/linking/loading, Unix processes, threads, system calls, file I/O, sockets, debugging, and profiling, with concrete Unix/Linux practices, tool workflows, failure modes, and essential OS concepts.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "C Programming",
+      "description": "C is the course's main vehicle because it exposes memory, layout, compilation, and OS interfaces that higher-level languages often hide.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "C language model",
+          "description": "Students learn how C represents computation close to hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primitive types"
+            },
+            {
+              "type": "concept",
+              "title": "Operators"
+            },
+            {
+              "type": "concept",
+              "title": "Control flow"
+            },
+            {
+              "type": "concept",
+              "title": "Integer behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Arrays, structs, and strings",
+          "description": "Data layout becomes visible through contiguous memory and manual string handling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arrays"
+            },
+            {
+              "type": "concept",
+              "title": "Struct layout"
+            },
+            {
+              "type": "concept",
+              "title": "Char buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Null terminators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functions and headers",
+          "description": "Students learn to organize multi-file C programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function prototypes"
+            },
+            {
+              "type": "concept",
+              "title": "Header guards"
+            },
+            {
+              "type": "concept",
+              "title": "Separate compilation"
+            },
+            {
+              "type": "concept",
+              "title": "Static functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Build discipline",
+          "description": "Systems work depends on repeatable compilation and warnings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gcc/clang flags"
+            },
+            {
+              "type": "concept",
+              "title": "Makefiles"
+            },
+            {
+              "type": "concept",
+              "title": "Warnings as errors"
+            },
+            {
+              "type": "concept",
+              "title": "Incremental builds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pointers and Dynamic Memory",
+      "description": "Pointers and dynamic allocation are the heart of systems programming: powerful, precise, and unforgiving.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pointer basics",
+          "description": "Students learn addresses, indirection, and pointer arithmetic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Address-of operator"
+            },
+            {
+              "type": "concept",
+              "title": "Dereference"
+            },
+            {
+              "type": "concept",
+              "title": "Pointer types"
+            },
+            {
+              "type": "concept",
+              "title": "Array-pointer relationship"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory regions",
+          "description": "Different storage regions have different lifetimes and risks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Heap"
+            },
+            {
+              "type": "concept",
+              "title": "Globals"
+            },
+            {
+              "type": "concept",
+              "title": "Read-only data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dynamic allocation",
+          "description": "Manual allocation teaches ownership and lifetime management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Malloc"
+            },
+            {
+              "type": "concept",
+              "title": "Calloc"
+            },
+            {
+              "type": "concept",
+              "title": "Realloc"
+            },
+            {
+              "type": "concept",
+              "title": "Free"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory bugs",
+          "description": "Students learn to recognize failures that C will not prevent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Use-after-free"
+            },
+            {
+              "type": "concept",
+              "title": "Double free"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer overflow"
+            },
+            {
+              "type": "concept",
+              "title": "Memory leak"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Program Structure (Compilation, Linking, Loading)",
+      "description": "This topic demystifies what happens between source code and a running process.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Compilation pipeline",
+          "description": "Students trace the stages from text to machine code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preprocessing"
+            },
+            {
+              "type": "concept",
+              "title": "Compilation"
+            },
+            {
+              "type": "concept",
+              "title": "Assembly"
+            },
+            {
+              "type": "concept",
+              "title": "Object files"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linking",
+          "description": "Linking explains how separately compiled pieces become one executable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symbols"
+            },
+            {
+              "type": "concept",
+              "title": "Relocation"
+            },
+            {
+              "type": "concept",
+              "title": "Static libraries"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic libraries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loading and execution",
+          "description": "The loader prepares code and data for a process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ELF/Mach-O ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Program segments"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic loader"
+            },
+            {
+              "type": "concept",
+              "title": "Entry point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Build and dependency issues",
+          "description": "Many systems bugs are build or link bugs in disguise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Undefined symbols"
+            },
+            {
+              "type": "concept",
+              "title": "Duplicate definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Include paths"
+            },
+            {
+              "type": "concept",
+              "title": "ABI compatibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Processes, Threads, and Forks",
+      "description": "Processes and threads let programs run independently or concurrently, and they form the practical base of Unix systems programming.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Process model",
+          "description": "Students learn what a running program owns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Address space"
+            },
+            {
+              "type": "concept",
+              "title": "File descriptors"
+            },
+            {
+              "type": "concept",
+              "title": "Environment"
+            },
+            {
+              "type": "concept",
+              "title": "Process IDs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fork and exec",
+          "description": "Unix process creation separates cloning from program replacement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fork semantics"
+            },
+            {
+              "type": "concept",
+              "title": "Exec family"
+            },
+            {
+              "type": "concept",
+              "title": "Wait/waitpid"
+            },
+            {
+              "type": "concept",
+              "title": "Zombies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Threads",
+          "description": "Threads share process resources while executing independently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pthreads"
+            },
+            {
+              "type": "concept",
+              "title": "Shared address space"
+            },
+            {
+              "type": "concept",
+              "title": "Thread lifecycle"
+            },
+            {
+              "type": "concept",
+              "title": "Join/detach"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process control patterns",
+          "description": "Students build shell-like and server-like control flows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pipelines"
+            },
+            {
+              "type": "concept",
+              "title": "Background jobs"
+            },
+            {
+              "type": "concept",
+              "title": "Worker threads"
+            },
+            {
+              "type": "concept",
+              "title": "Process pools"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Concurrency Primitives",
+      "description": "Concurrency primitives help programs coordinate shared state without corrupting data or hanging forever.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Race conditions",
+          "description": "Students learn why interleavings can break seemingly correct code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical sections"
+            },
+            {
+              "type": "concept",
+              "title": "Data races"
+            },
+            {
+              "type": "concept",
+              "title": "Atomicity"
+            },
+            {
+              "type": "concept",
+              "title": "Happens-before intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Locks and mutexes",
+          "description": "Locks protect shared state but introduce design responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pthread mutexes"
+            },
+            {
+              "type": "concept",
+              "title": "Lock granularity"
+            },
+            {
+              "type": "concept",
+              "title": "Lock ordering"
+            },
+            {
+              "type": "concept",
+              "title": "Contention"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Condition variables and semaphores",
+          "description": "Coordination often requires waiting for state changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Condition variables"
+            },
+            {
+              "type": "concept",
+              "title": "Producer-consumer"
+            },
+            {
+              "type": "concept",
+              "title": "Semaphores"
+            },
+            {
+              "type": "concept",
+              "title": "Spurious wakeups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deadlocks and liveness",
+          "description": "Correct concurrent programs must make progress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deadlock conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Avoidance strategies"
+            },
+            {
+              "type": "concept",
+              "title": "Starvation"
+            },
+            {
+              "type": "concept",
+              "title": "Timeouts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "System Calls and the OS Interface",
+      "description": "System calls are the controlled boundary where user programs ask the kernel for privileged services.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Syscall model",
+          "description": "Students understand why some operations require kernel mediation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "User mode versus kernel mode"
+            },
+            {
+              "type": "concept",
+              "title": "Traps"
+            },
+            {
+              "type": "concept",
+              "title": "Syscall numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Library wrappers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Errors and errno",
+          "description": "Systems code must handle failure as the normal case.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Return values"
+            },
+            {
+              "type": "concept",
+              "title": "Errno"
+            },
+            {
+              "type": "concept",
+              "title": "Perror/strerror"
+            },
+            {
+              "type": "concept",
+              "title": "Retryable errors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signals",
+          "description": "Signals are asynchronous notifications that complicate control flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal handlers"
+            },
+            {
+              "type": "concept",
+              "title": "SIGINT/SIGTERM"
+            },
+            {
+              "type": "concept",
+              "title": "SIGCHLD"
+            },
+            {
+              "type": "concept",
+              "title": "Async-signal safety"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Permissions and environment",
+          "description": "Programs run with identity, permissions, and configuration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UID/GID"
+            },
+            {
+              "type": "concept",
+              "title": "Environment variables"
+            },
+            {
+              "type": "concept",
+              "title": "Umask"
+            },
+            {
+              "type": "concept",
+              "title": "Process limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "File Systems and I/O",
+      "description": "File and I/O programming teaches the central Unix idea that many resources can be treated through descriptor-like interfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "File descriptors",
+          "description": "Descriptors are the low-level handles for files, pipes, sockets, and terminals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open"
+            },
+            {
+              "type": "concept",
+              "title": "Close"
+            },
+            {
+              "type": "concept",
+              "title": "Read"
+            },
+            {
+              "type": "concept",
+              "title": "Write"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Buffered I/O",
+          "description": "Students compare system-call I/O with standard library buffering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stdio"
+            },
+            {
+              "type": "concept",
+              "title": "FILE pointers"
+            },
+            {
+              "type": "concept",
+              "title": "Buffer flushing"
+            },
+            {
+              "type": "concept",
+              "title": "Binary versus text"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Directories and metadata",
+          "description": "Programs often need to inspect filesystem structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stat"
+            },
+            {
+              "type": "concept",
+              "title": "Permissions"
+            },
+            {
+              "type": "concept",
+              "title": "Directories"
+            },
+            {
+              "type": "concept",
+              "title": "Links"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pipes and redirection",
+          "description": "I/O composition is a core Unix systems pattern.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dup2"
+            },
+            {
+              "type": "concept",
+              "title": "Pipe"
+            },
+            {
+              "type": "concept",
+              "title": "Stdin/stdout/stderr"
+            },
+            {
+              "type": "concept",
+              "title": "Shell redirection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Networking with Sockets",
+      "description": "Socket programming extends systems programming across machines and introduces protocol-aware I/O.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Socket API basics",
+          "description": "Students learn the calls that create network endpoints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Socket"
+            },
+            {
+              "type": "concept",
+              "title": "Bind"
+            },
+            {
+              "type": "concept",
+              "title": "Listen"
+            },
+            {
+              "type": "concept",
+              "title": "Accept"
+            },
+            {
+              "type": "concept",
+              "title": "Connect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "TCP and UDP",
+          "description": "Different transport protocols provide different guarantees.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Streams"
+            },
+            {
+              "type": "concept",
+              "title": "Datagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Ports"
+            },
+            {
+              "type": "concept",
+              "title": "Connection lifecycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Client-server design",
+          "description": "Students build simple network services.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Request-response"
+            },
+            {
+              "type": "concept",
+              "title": "Concurrent servers"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol framing"
+            },
+            {
+              "type": "concept",
+              "title": "Timeouts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical network concerns",
+          "description": "Network code must handle partial data and platform details.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Byte order"
+            },
+            {
+              "type": "concept",
+              "title": "Partial reads/writes"
+            },
+            {
+              "type": "concept",
+              "title": "Select/poll"
+            },
+            {
+              "type": "concept",
+              "title": "Error handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Debugging Tools (gdb, Valgrind)",
+      "description": "Systems programming demands disciplined debugging because bugs often appear as crashes, corruption, nondeterminism, or silent wrong behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gdb workflow",
+          "description": "Students learn to inspect live program state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breakpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Backtraces"
+            },
+            {
+              "type": "concept",
+              "title": "Watchpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Stepping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory checking",
+          "description": "Memory tools reveal bugs that ordinary execution may hide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Valgrind"
+            },
+            {
+              "type": "concept",
+              "title": "AddressSanitizer"
+            },
+            {
+              "type": "concept",
+              "title": "LeakSanitizer"
+            },
+            {
+              "type": "concept",
+              "title": "Undefined behavior sanitizer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tracing and logging",
+          "description": "Observing interactions with the OS can explain unexpected behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strace/dtruss"
+            },
+            {
+              "type": "concept",
+              "title": "Ltrace"
+            },
+            {
+              "type": "concept",
+              "title": "Structured logging"
+            },
+            {
+              "type": "concept",
+              "title": "Core dumps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging method",
+          "description": "The goal is reproducible diagnosis, not random edits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimal test cases"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis testing"
+            },
+            {
+              "type": "concept",
+              "title": "Binary search debugging"
+            },
+            {
+              "type": "concept",
+              "title": "Regression tests"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Performance Profiling and Optimization",
+      "description": "Performance work teaches students to measure real bottlenecks and connect program behavior to memory hierarchy and OS costs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement discipline",
+          "description": "Students learn to benchmark without fooling themselves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wall-clock time"
+            },
+            {
+              "type": "concept",
+              "title": "CPU time"
+            },
+            {
+              "type": "concept",
+              "title": "Warm-up effects"
+            },
+            {
+              "type": "concept",
+              "title": "Input selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Profiling tools",
+          "description": "Profilers identify where time and resources go.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perf"
+            },
+            {
+              "type": "concept",
+              "title": "Gprof"
+            },
+            {
+              "type": "concept",
+              "title": "Callgrind"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling versus instrumentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory hierarchy",
+          "description": "Locality often dominates systems performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Caches"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial locality"
+            },
+            {
+              "type": "concept",
+              "title": "Temporal locality"
+            },
+            {
+              "type": "concept",
+              "title": "Cache misses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization tradeoffs",
+          "description": "Students learn to improve bottlenecks while preserving correctness and maintainability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Algorithmic changes"
+            },
+            {
+              "type": "concept",
+              "title": "Data layout"
+            },
+            {
+              "type": "concept",
+              "title": "I/O batching"
+            },
+            {
+              "type": "concept",
+              "title": "Parallelism overhead"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

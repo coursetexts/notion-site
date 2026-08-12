@@ -1,0 +1,1296 @@
+{
+  "slug": "organic-chemistry-ii",
+  "title": "Organic Chemistry II",
+  "description": "A second-semester organic chemistry course covering aromaticity and electrophilic aromatic substitution, carbonyl chemistry, carboxylic acids and derivatives, amines, enolate and condensation reactions, multistep synthesis, mass spectrometry and integrated spectroscopy, and organic chemistry of biomolecules.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Aromaticity and Aromatic Compounds",
+      "description": "This section develops aromaticity and aromatic compounds through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make aromaticity and aromatic compounds precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Huckel rule"
+            },
+            {
+              "type": "concept",
+              "title": "4n+2 pi electrons"
+            },
+            {
+              "type": "concept",
+              "title": "Antiaromatic"
+            },
+            {
+              "type": "concept",
+              "title": "Nonaromatic"
+            },
+            {
+              "type": "concept",
+              "title": "Benzene"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with aromaticity and aromatic compounds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Huckel rule in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare 4n+2 pi electrons with antiaromatic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Huckel rule affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electrophilic Aromatic Substitution",
+      "description": "This section develops electrophilic aromatic substitution through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make electrophilic aromatic substitution precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SN1"
+            },
+            {
+              "type": "concept",
+              "title": "SN2"
+            },
+            {
+              "type": "concept",
+              "title": "Backside attack"
+            },
+            {
+              "type": "concept",
+              "title": "Solvolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile strength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with electrophilic aromatic substitution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply SN1 in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare SN2 with backside attack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of antiaromatic"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how SN1 affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aldehydes and Ketones",
+      "description": "This section develops aldehydes and ketones through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make aldehydes and ketones precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleophilic addition"
+            },
+            {
+              "type": "concept",
+              "title": "Hemiacetal"
+            },
+            {
+              "type": "concept",
+              "title": "Acetal"
+            },
+            {
+              "type": "concept",
+              "title": "Imine"
+            },
+            {
+              "type": "concept",
+              "title": "Cyanohydrin"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with aldehydes and ketones.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply nucleophilic addition in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare hemiacetal with acetal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how nucleophilic addition affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nucleophilic Addition to Carbonyls",
+      "description": "This section develops nucleophilic addition to carbonyls through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make nucleophilic addition to carbonyls precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbonyl polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Tetrahedral intermediate"
+            },
+            {
+              "type": "concept",
+              "title": "Hydride reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Organometallic addition"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonyl carbon"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with nucleophilic addition to carbonyls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply carbonyl polarization in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tetrahedral intermediate with hydride reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how carbonyl polarization affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carboxylic Acids and Acidity",
+      "description": "This section develops carboxylic acids and acidity through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make carboxylic acids and acidity precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PKa"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate base"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive effect"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance stabilization"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent effect"
+            },
+            {
+              "type": "concept",
+              "title": "Acid chloride"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with carboxylic acids and acidity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply pKa in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare conjugate base with inductive effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of amide"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how pKa affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carboxylic Acid Derivatives",
+      "description": "This section develops carboxylic acid derivatives through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make carboxylic acid derivatives precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PKa"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate base"
+            },
+            {
+              "type": "concept",
+              "title": "Inductive effect"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance stabilization"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent effect"
+            },
+            {
+              "type": "concept",
+              "title": "Acid chloride"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with carboxylic acid derivatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply pKa in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare conjugate base with inductive effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of amide"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how pKa affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Esters, Amides, and Acyl Substitution",
+      "description": "This section develops esters, amides, and acyl substitution through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make esters, amides, and acyl substitution precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SN1"
+            },
+            {
+              "type": "concept",
+              "title": "SN2"
+            },
+            {
+              "type": "concept",
+              "title": "Backside attack"
+            },
+            {
+              "type": "concept",
+              "title": "Solvolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving group"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile strength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with esters, amides, and acyl substitution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply SN1 in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare SN2 with backside attack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how SN1 affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Amines and Nitrogen Compounds",
+      "description": "This section develops amines and nitrogen compounds through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make amines and nitrogen compounds precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basicity"
+            },
+            {
+              "type": "concept",
+              "title": "Alkylation"
+            },
+            {
+              "type": "concept",
+              "title": "Amide formation"
+            },
+            {
+              "type": "concept",
+              "title": "Aniline"
+            },
+            {
+              "type": "concept",
+              "title": "Diazonium salt"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with amines and nitrogen compounds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply basicity in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alkylation with amide formation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how basicity affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enols, Enolates, and Alpha-Carbon Chemistry",
+      "description": "This section develops enols, enolates, and alpha-carbon chemistry through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make enols, enolates, and alpha-carbon chemistry precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Keto-enol tautomerism"
+            },
+            {
+              "type": "concept",
+              "title": "Enolate"
+            },
+            {
+              "type": "concept",
+              "title": "Aldol reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Claisen condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with enols, enolates, and alpha-carbon chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply keto-enol tautomerism in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare enolate with aldol reaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how keto-enol tautomerism affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aldol and Claisen-Type Reactions",
+      "description": "This section develops aldol and claisen-type reactions through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make aldol and claisen-type reactions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonyl carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Enolate"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Amine"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with aldol and claisen-type reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply aromatic ring in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carbonyl carbon with acyl substitution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of retrosynthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how aromatic ring affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multistep Synthesis Planning",
+      "description": "This section develops multistep synthesis planning through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make multistep synthesis planning precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Retrosynthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Synthon"
+            },
+            {
+              "type": "concept",
+              "title": "Protecting group"
+            },
+            {
+              "type": "concept",
+              "title": "Functional group interconversion"
+            },
+            {
+              "type": "concept",
+              "title": "Chemoselectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with multistep synthesis planning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply retrosynthesis in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare synthon with protecting group"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how retrosynthesis affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mass Spectrometry",
+      "description": "This section develops mass spectrometry through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make mass spectrometry precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecular ion"
+            },
+            {
+              "type": "concept",
+              "title": "Base peak"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Isotope pattern"
+            },
+            {
+              "type": "concept",
+              "title": "M/z"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with mass spectrometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply molecular ion in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare base peak with fragmentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how molecular ion affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Spectroscopy",
+      "description": "This section develops integrated spectroscopy through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make integrated spectroscopy precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonyl carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Enolate"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Amine"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with integrated spectroscopy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply aromatic ring in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carbonyl carbon with acyl substitution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of retrosynthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how aromatic ring affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biomolecules and Organic Chemistry in Biology",
+      "description": "This section develops biomolecules and organic chemistry in biology through the concrete vocabulary, procedures, examples, and checks students need in Organic Chemistry II.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make biomolecules and organic chemistry in biology precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aromatic ring"
+            },
+            {
+              "type": "concept",
+              "title": "Carbonyl carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Acyl substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Enolate"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha carbon"
+            },
+            {
+              "type": "concept",
+              "title": "Amine"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with biomolecules and organic chemistry in biology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plan multistep syntheses"
+            },
+            {
+              "type": "concept",
+              "title": "Predict carbonyl mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Choose oxidizing/reducing agents"
+            },
+            {
+              "type": "concept",
+              "title": "Apply aromatic ring in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carbonyl carbon with acyl substitution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss of aromaticity"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong enolate site"
+            },
+            {
+              "type": "concept",
+              "title": "Overreaction"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of retrosynthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how aromatic ring affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

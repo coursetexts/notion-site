@@ -1,0 +1,1239 @@
+{
+  "slug": "circuits-electrical-engineering-fundamentals",
+  "title": "Circuits / Electrical Engineering Fundamentals",
+  "description": "A rigorous first course in electrical circuits for general engineering students\u2014modeling, analyzing, simulating, building, and testing DC and AC circuits using conservation laws, systematic network methods, transient and frequency-domain techniques, and practical instrumentation, with emphasis on assumptions, units, limiting cases, power balance, uncertainty, and validation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Electrical Quantities, Circuit Models, and Laboratory Practice",
+      "description": "This opening unit establishes the language, sign conventions, measurement habits, and safety discipline used throughout circuit analysis. It connects idealized schematics to real instruments and physical components.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Charge, current, voltage, power, and energy",
+          "description": "These quantities describe what moves, what drives it, and how electrical systems exchange or store energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "charge and conservation of charge"
+            },
+            {
+              "type": "concept",
+              "title": "current as rate of charge flow"
+            },
+            {
+              "type": "concept",
+              "title": "voltage as energy per unit charge"
+            },
+            {
+              "type": "concept",
+              "title": "passive sign convention"
+            },
+            {
+              "type": "concept",
+              "title": "power absorption versus delivery"
+            },
+            {
+              "type": "concept",
+              "title": "energy from the time integral of power"
+            },
+            {
+              "type": "concept",
+              "title": "units, prefixes, dimensional checks, and engineering notation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Circuit abstraction and ideal elements",
+          "description": "Ideal models strip a physical device down to the behavior needed for useful prediction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "nodes, branches, loops, and reference ground"
+            },
+            {
+              "type": "concept",
+              "title": "lumped-circuit assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "independent voltage and current sources"
+            },
+            {
+              "type": "concept",
+              "title": "resistors, capacitors, and inductors"
+            },
+            {
+              "type": "concept",
+              "title": "open and short circuits"
+            },
+            {
+              "type": "concept",
+              "title": "series and parallel connections"
+            },
+            {
+              "type": "concept",
+              "title": "linearity, time invariance, and bilateral behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement, simulation, and safety",
+          "description": "Good engineers test models responsibly and understand how instruments alter the circuit being measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "breadboard topology and wiring discipline"
+            },
+            {
+              "type": "concept",
+              "title": "DMM voltage, current, resistance, and continuity modes"
+            },
+            {
+              "type": "concept",
+              "title": "oscilloscope probes, grounding, coupling, and bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "function generators and bench power supplies"
+            },
+            {
+              "type": "concept",
+              "title": "loading, input impedance, and measurement uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "SPICE operating-point, transient, and AC analyses"
+            },
+            {
+              "type": "concept",
+              "title": "safe de-energizing, current limits, component ratings, and capacitor discharge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Resistive Circuits and Fundamental Laws",
+      "description": "This unit turns physical conservation principles into equations for DC networks and builds fluency with the most common circuit structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ohm\u2019s law and resistance",
+          "description": "Ohm\u2019s law provides the constitutive relationship for an ideal resistor and links material behavior to circuit calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "v\u2013i characteristic and conductance"
+            },
+            {
+              "type": "concept",
+              "title": "resistivity and geometric dependence"
+            },
+            {
+              "type": "concept",
+              "title": "temperature effects and tolerances"
+            },
+            {
+              "type": "concept",
+              "title": "power ratings and maximum safe operation"
+            },
+            {
+              "type": "concept",
+              "title": "series/parallel reduction"
+            },
+            {
+              "type": "concept",
+              "title": "voltage and current division"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kirchhoff\u2019s laws",
+          "description": "Kirchhoff\u2019s current and voltage laws encode conservation of charge and energy in lumped circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "KCL at a node and supernode"
+            },
+            {
+              "type": "concept",
+              "title": "KVL around a loop and supermesh"
+            },
+            {
+              "type": "concept",
+              "title": "consistent reference directions"
+            },
+            {
+              "type": "concept",
+              "title": "redundant versus independent equations"
+            },
+            {
+              "type": "concept",
+              "title": "sanity checks from conservation of power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical resistor networks",
+          "description": "Real design uses resistor combinations to bias, sense, divide, and limit electrical quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "loaded voltage dividers"
+            },
+            {
+              "type": "concept",
+              "title": "current limiting and pull-up/pull-down resistors"
+            },
+            {
+              "type": "concept",
+              "title": "Wheatstone bridge and sensor interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "source and load resistance"
+            },
+            {
+              "type": "concept",
+              "title": "tolerance propagation and worst-case reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Systematic Network Analysis",
+      "description": "Systematic methods make large circuits manageable and provide algorithms that generalize naturally to computer-based analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nodal analysis",
+          "description": "Nodal analysis solves for node voltages using KCL and is often the most efficient general-purpose method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "choice of reference node"
+            },
+            {
+              "type": "concept",
+              "title": "node-voltage equations"
+            },
+            {
+              "type": "concept",
+              "title": "supernodes with voltage sources"
+            },
+            {
+              "type": "concept",
+              "title": "matrix form Gv=i"
+            },
+            {
+              "type": "concept",
+              "title": "dependent-source constraints"
+            },
+            {
+              "type": "concept",
+              "title": "verification by substitution and power balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mesh analysis",
+          "description": "Mesh analysis solves planar circuits through loop currents and KVL.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "mesh-current assignment"
+            },
+            {
+              "type": "concept",
+              "title": "shared-element terms"
+            },
+            {
+              "type": "concept",
+              "title": "supermeshes with current sources"
+            },
+            {
+              "type": "concept",
+              "title": "dependent sources in mesh equations"
+            },
+            {
+              "type": "concept",
+              "title": "matrix form and comparison with nodal analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linear algebra and conditioning",
+          "description": "Matrix thinking exposes circuit structure and helps diagnose nearly singular or poorly scaled models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "coefficient-matrix construction"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian elimination and numerical solution"
+            },
+            {
+              "type": "concept",
+              "title": "existence and uniqueness"
+            },
+            {
+              "type": "concept",
+              "title": "scaling and conditioning intuition"
+            },
+            {
+              "type": "concept",
+              "title": "sparse-network perspective"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Circuit Theorems and Equivalent Networks",
+      "description": "Circuit theorems compress complicated linear networks into simpler forms, reveal sensitivity, and speed repeated load calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linearity and superposition",
+          "description": "Superposition separates the effects of independent sources in a linear circuit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "source suppression rules"
+            },
+            {
+              "type": "concept",
+              "title": "response decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "dependent sources remain active"
+            },
+            {
+              "type": "concept",
+              "title": "limits: power does not superpose"
+            },
+            {
+              "type": "concept",
+              "title": "homogeneity and additivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Source transformations and equivalents",
+          "description": "Equivalent sources preserve terminal behavior while simplifying the internal network.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "practical voltage and current sources"
+            },
+            {
+              "type": "concept",
+              "title": "Thevenin voltage and resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Norton current and resistance"
+            },
+            {
+              "type": "concept",
+              "title": "test-source method with dependent sources"
+            },
+            {
+              "type": "concept",
+              "title": "open-circuit and short-circuit methods"
+            },
+            {
+              "type": "concept",
+              "title": "equivalent-circuit validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maximum power transfer and sensitivity",
+          "description": "This topic connects network equivalents to design tradeoffs involving efficiency and delivered power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "resistive load matching"
+            },
+            {
+              "type": "concept",
+              "title": "maximum-power condition"
+            },
+            {
+              "type": "concept",
+              "title": "efficiency at matched load"
+            },
+            {
+              "type": "concept",
+              "title": "AC conjugate matching preview"
+            },
+            {
+              "type": "concept",
+              "title": "sensitivity to component variation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Additional network theorems",
+          "description": "These results provide alternate reasoning tools and deepen intuition about linear reciprocal networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "source substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Millman\u2019s theorem"
+            },
+            {
+              "type": "concept",
+              "title": "reciprocity"
+            },
+            {
+              "type": "concept",
+              "title": "Tellegen\u2019s theorem and power consistency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operational Amplifiers and Analog Building Blocks",
+      "description": "Ideal op-amps provide an accessible bridge from passive networks to active analog computation, sensing, and filtering.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ideal op-amp model",
+          "description": "The ideal model converts negative feedback into simple constraints while clarifying the assumptions behind them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "infinite open-loop gain"
+            },
+            {
+              "type": "concept",
+              "title": "infinite input resistance and zero output resistance"
+            },
+            {
+              "type": "concept",
+              "title": "virtual short versus virtual ground"
+            },
+            {
+              "type": "concept",
+              "title": "negative-feedback operating condition"
+            },
+            {
+              "type": "concept",
+              "title": "output saturation and supply rails"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical feedback circuits",
+          "description": "Standard topologies implement gain, summation, subtraction, integration, and buffering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "inverting and non-inverting amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "voltage follower"
+            },
+            {
+              "type": "concept",
+              "title": "summing and difference amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "transimpedance amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "integrator and differentiator"
+            },
+            {
+              "type": "concept",
+              "title": "loading and input/output resistance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonideal behavior and design checks",
+          "description": "Real op-amps depart from the ideal model in ways that can dominate performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "finite gain and gain-bandwidth product"
+            },
+            {
+              "type": "concept",
+              "title": "slew rate"
+            },
+            {
+              "type": "concept",
+              "title": "input bias and offset"
+            },
+            {
+              "type": "concept",
+              "title": "common-mode and output swing limits"
+            },
+            {
+              "type": "concept",
+              "title": "noise and stability awareness"
+            },
+            {
+              "type": "concept",
+              "title": "single-supply biasing and decoupling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capacitors, Inductors, and First-Order Transients",
+      "description": "Energy-storage elements make circuit behavior depend on history. First-order circuits introduce time constants, continuity rules, and natural versus forced response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capacitor and inductor laws",
+          "description": "The constitutive equations explain energy storage and determine which state variables cannot change instantaneously.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "i=C dv/dt and v=L di/dt"
+            },
+            {
+              "type": "concept",
+              "title": "integral forms"
+            },
+            {
+              "type": "concept",
+              "title": "stored energy"
+            },
+            {
+              "type": "concept",
+              "title": "continuity of capacitor voltage"
+            },
+            {
+              "type": "concept",
+              "title": "continuity of inductor current"
+            },
+            {
+              "type": "concept",
+              "title": "DC steady-state models"
+            },
+            {
+              "type": "concept",
+              "title": "series/parallel equivalent capacitance and inductance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "First-order response",
+          "description": "A single independent storage element produces an exponential transition toward a new equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "initial and final conditions"
+            },
+            {
+              "type": "concept",
+              "title": "time constant"
+            },
+            {
+              "type": "concept",
+              "title": "natural, forced, zero-input, and zero-state response"
+            },
+            {
+              "type": "concept",
+              "title": "complete-response form"
+            },
+            {
+              "type": "concept",
+              "title": "source-free RC and RL circuits"
+            },
+            {
+              "type": "concept",
+              "title": "step response"
+            },
+            {
+              "type": "concept",
+              "title": "switching at nonzero time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "First-order design applications",
+          "description": "Time constants support timing, smoothing, pulse shaping, and basic sensor conditioning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "charging and discharging"
+            },
+            {
+              "type": "concept",
+              "title": "rise and settling time"
+            },
+            {
+              "type": "concept",
+              "title": "RC debounce and delay"
+            },
+            {
+              "type": "concept",
+              "title": "RL current buildup"
+            },
+            {
+              "type": "concept",
+              "title": "simple low-pass/high-pass transient behavior"
+            },
+            {
+              "type": "concept",
+              "title": "energy and power during switching"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Second-Order Circuits, Resonance, and Natural Response",
+      "description": "Two independent energy-storage states create oscillation and damping, central ideas shared with mechanical dynamics and control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "RLC differential equations",
+          "description": "KCL or KVL produces a second-order model whose coefficients determine the circuit\u2019s behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "series and parallel RLC forms"
+            },
+            {
+              "type": "concept",
+              "title": "state variables and initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "characteristic equation"
+            },
+            {
+              "type": "concept",
+              "title": "natural frequency and damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "roots and response form"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Damping regimes",
+          "description": "The location of characteristic roots distinguishes nonoscillatory, critical, and decaying oscillatory motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "overdamped response"
+            },
+            {
+              "type": "concept",
+              "title": "critical damping"
+            },
+            {
+              "type": "concept",
+              "title": "underdamped response"
+            },
+            {
+              "type": "concept",
+              "title": "damped frequency"
+            },
+            {
+              "type": "concept",
+              "title": "envelope and settling"
+            },
+            {
+              "type": "concept",
+              "title": "critical-resistance calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Driven response and resonance",
+          "description": "Sinusoidal forcing can concentrate energy near a preferred frequency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "complete response"
+            },
+            {
+              "type": "concept",
+              "title": "resonant frequency"
+            },
+            {
+              "type": "concept",
+              "title": "quality factor and bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "series versus parallel resonance"
+            },
+            {
+              "type": "concept",
+              "title": "energy exchange between L and C"
+            },
+            {
+              "type": "concept",
+              "title": "component losses and practical resonance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sinusoidal Steady State and Phasor Analysis",
+      "description": "Phasors convert sinusoidal differential equations into algebra, making AC networks almost as straightforward as resistive circuits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sinusoids and complex numbers",
+          "description": "Magnitude, phase, frequency, and complex representation provide the mathematical vocabulary of AC analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "angular frequency, period, and phase"
+            },
+            {
+              "type": "concept",
+              "title": "RMS and peak values"
+            },
+            {
+              "type": "concept",
+              "title": "Euler\u2019s identity"
+            },
+            {
+              "type": "concept",
+              "title": "rectangular and polar forms"
+            },
+            {
+              "type": "concept",
+              "title": "complex arithmetic"
+            },
+            {
+              "type": "concept",
+              "title": "time-domain versus phasor-domain quantities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Impedance and admittance",
+          "description": "Impedance generalizes resistance to capacitors and inductors at a specified frequency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "R, L, and C impedances"
+            },
+            {
+              "type": "concept",
+              "title": "admittance"
+            },
+            {
+              "type": "concept",
+              "title": "series/parallel combinations"
+            },
+            {
+              "type": "concept",
+              "title": "frequency-dependent voltage and current division"
+            },
+            {
+              "type": "concept",
+              "title": "phasor nodal and mesh analysis"
+            },
+            {
+              "type": "concept",
+              "title": "AC Thevenin and Norton equivalents"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transformers and coupled inductors",
+          "description": "Magnetic coupling enables voltage/current scaling and impedance transformation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "mutual inductance"
+            },
+            {
+              "type": "concept",
+              "title": "dot convention"
+            },
+            {
+              "type": "concept",
+              "title": "coupling coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "ideal transformer relations"
+            },
+            {
+              "type": "concept",
+              "title": "reflected impedance"
+            },
+            {
+              "type": "concept",
+              "title": "isolation and loading"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "AC Power and Polyphase Fundamentals",
+      "description": "AC power analysis distinguishes useful energy transfer from reversible energy exchange and introduces the language used in electrical energy systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Instantaneous and average power",
+          "description": "Multiplying voltage and current sinusoids reveals average power plus oscillatory exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "instantaneous-power waveform"
+            },
+            {
+              "type": "concept",
+              "title": "average or real power"
+            },
+            {
+              "type": "concept",
+              "title": "reactive power"
+            },
+            {
+              "type": "concept",
+              "title": "apparent power"
+            },
+            {
+              "type": "concept",
+              "title": "complex power S=P+jQ"
+            },
+            {
+              "type": "concept",
+              "title": "power triangle and units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power factor and correction",
+          "description": "Power factor indicates how effectively current contributes to useful average power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "leading and lagging power factor"
+            },
+            {
+              "type": "concept",
+              "title": "load type from Q sign"
+            },
+            {
+              "type": "concept",
+              "title": "capacitor/inductor correction"
+            },
+            {
+              "type": "concept",
+              "title": "current and loss reduction"
+            },
+            {
+              "type": "concept",
+              "title": "source and component ratings"
+            },
+            {
+              "type": "concept",
+              "title": "conservation of complex power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Balanced three-phase systems",
+          "description": "A brief polyphase introduction connects fundamentals to motors, grids, and industrial power.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "phase sequence"
+            },
+            {
+              "type": "concept",
+              "title": "wye and delta connections"
+            },
+            {
+              "type": "concept",
+              "title": "line versus phase quantities"
+            },
+            {
+              "type": "concept",
+              "title": "balanced-load power"
+            },
+            {
+              "type": "concept",
+              "title": "why three-phase delivery is efficient"
+            },
+            {
+              "type": "concept",
+              "title": "safe measurement awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response, Transfer Functions, and Filters",
+      "description": "Frequency response shows how a circuit treats signals across frequency and connects circuit analysis to signals, communications, and control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Network functions",
+          "description": "A transfer function captures the input\u2013output behavior of a linear circuit under zero initial conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "voltage and current gain"
+            },
+            {
+              "type": "concept",
+              "title": "driving-point impedance"
+            },
+            {
+              "type": "concept",
+              "title": "poles and zeros"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace variable s"
+            },
+            {
+              "type": "concept",
+              "title": "initial-condition assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "relation between H(s) and H(j\u03c9)"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bode plots",
+          "description": "Logarithmic magnitude and phase plots reveal bandwidth, roll-off, resonance, and stability-related behavior at a glance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "decibels"
+            },
+            {
+              "type": "concept",
+              "title": "corner or break frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "first-order asymptotes"
+            },
+            {
+              "type": "concept",
+              "title": "pole and zero contributions"
+            },
+            {
+              "type": "concept",
+              "title": "phase approximation"
+            },
+            {
+              "type": "concept",
+              "title": "gain-bandwidth interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Passive and active filters",
+          "description": "Filters intentionally pass some frequency bands and attenuate others.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "low-pass, high-pass, band-pass, and band-stop"
+            },
+            {
+              "type": "concept",
+              "title": "RC and RL first-order filters"
+            },
+            {
+              "type": "concept",
+              "title": "RLC second-order filters"
+            },
+            {
+              "type": "concept",
+              "title": "quality factor and selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "active filter topologies"
+            },
+            {
+              "type": "concept",
+              "title": "loading and cascading"
+            },
+            {
+              "type": "concept",
+              "title": "specification-driven design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Semiconductor and Interface Fundamentals",
+      "description": "A general-engineering circuits course benefits from a compact introduction to nonlinear devices so students can understand rectification, switching, sensing, and power interfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Diodes",
+          "description": "The diode is the simplest nonlinear circuit element and a foundation for power conversion and protection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ideal, constant-drop, and piecewise-linear models"
+            },
+            {
+              "type": "concept",
+              "title": "load-line reasoning"
+            },
+            {
+              "type": "concept",
+              "title": "rectifiers"
+            },
+            {
+              "type": "concept",
+              "title": "clippers and clampers"
+            },
+            {
+              "type": "concept",
+              "title": "Zener regulation"
+            },
+            {
+              "type": "concept",
+              "title": "LED current limiting"
+            },
+            {
+              "type": "concept",
+              "title": "reverse bias and ratings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transistors as switches and amplifiers",
+          "description": "A conceptual treatment of BJTs and MOSFETs connects circuit laws to digital control and power actuation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "terminals and operating regions"
+            },
+            {
+              "type": "concept",
+              "title": "MOSFET threshold versus full enhancement"
+            },
+            {
+              "type": "concept",
+              "title": "BJT base drive and saturation"
+            },
+            {
+              "type": "concept",
+              "title": "low-side switching"
+            },
+            {
+              "type": "concept",
+              "title": "flyback protection for inductive loads"
+            },
+            {
+              "type": "concept",
+              "title": "small-signal gain concept"
+            },
+            {
+              "type": "concept",
+              "title": "power dissipation and safe operating area"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensors and mixed-signal interfaces",
+          "description": "Real systems translate physical variables into voltages and currents that must be conditioned and digitized.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "resistive and bridge sensors"
+            },
+            {
+              "type": "concept",
+              "title": "voltage/current-output sensors"
+            },
+            {
+              "type": "concept",
+              "title": "biasing and level shifting"
+            },
+            {
+              "type": "concept",
+              "title": "ADC range, resolution, and sampling overview"
+            },
+            {
+              "type": "concept",
+              "title": "filtering and anti-aliasing awareness"
+            },
+            {
+              "type": "concept",
+              "title": "grounding, shielding, and decoupling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Analysis, Design, and Verification",
+      "description": "The capstone unit turns methods into engineering practice: define requirements, model, simulate, build, measure, explain discrepancies, and communicate a defensible design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "A disciplined problem-solving workflow",
+          "description": "A repeatable workflow reduces algebraic errors and makes assumptions and evidence visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "define ports, references, and knowns"
+            },
+            {
+              "type": "concept",
+              "title": "choose a method before calculating"
+            },
+            {
+              "type": "concept",
+              "title": "estimate orders of magnitude"
+            },
+            {
+              "type": "concept",
+              "title": "solve symbolically when useful"
+            },
+            {
+              "type": "concept",
+              "title": "check units, signs, limiting cases, and power balance"
+            },
+            {
+              "type": "concept",
+              "title": "document assumptions and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and model validation",
+          "description": "Simulation is most valuable when paired with predictions and measurements rather than treated as an answer generator.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "schematic capture and model selection"
+            },
+            {
+              "type": "concept",
+              "title": "DC operating point"
+            },
+            {
+              "type": "concept",
+              "title": "parameter sweep"
+            },
+            {
+              "type": "concept",
+              "title": "transient and AC sweep"
+            },
+            {
+              "type": "concept",
+              "title": "tolerance or Monte Carlo concept"
+            },
+            {
+              "type": "concept",
+              "title": "convergence and timestep awareness"
+            },
+            {
+              "type": "concept",
+              "title": "comparison among hand analysis, simulation, and bench data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design project",
+          "description": "A compact design project integrates analysis, construction, testing, and technical communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "requirements and measurable acceptance criteria"
+            },
+            {
+              "type": "concept",
+              "title": "component selection and ratings"
+            },
+            {
+              "type": "concept",
+              "title": "filter, sensor-interface, or power-delivery design"
+            },
+            {
+              "type": "concept",
+              "title": "prototype and safe test plan"
+            },
+            {
+              "type": "concept",
+              "title": "error budget and discrepancy analysis"
+            },
+            {
+              "type": "concept",
+              "title": "design iteration"
+            },
+            {
+              "type": "concept",
+              "title": "schematic, calculations, plots, bill of materials, and concise report"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

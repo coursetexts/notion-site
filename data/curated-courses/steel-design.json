@@ -1,0 +1,768 @@
+{
+  "slug": "steel-design",
+  "title": "Steel Design",
+  "description": "Steel Design covers AISC LRFD/ASD member and connection design for tension, compression, beams, beam-columns, composite members, and plate girders within the AISC Specification framework.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Properties of Structural Steel",
+      "description": "Learn how steel behavior, shapes, material grades, and failure modes shape structural design decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Material behavior",
+          "description": "Steel design begins with understanding ductility, yielding, strain hardening, and fracture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress-strain response"
+            },
+            {
+              "type": "concept",
+              "title": "Yield stress and tensile strength"
+            },
+            {
+              "type": "concept",
+              "title": "Ductility and toughness"
+            },
+            {
+              "type": "concept",
+              "title": "Residual stresses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structural shapes and grades",
+          "description": "Students need to recognize the standard products and grade choices used in building frames.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "W-shapes and S-shapes"
+            },
+            {
+              "type": "concept",
+              "title": "HSS and pipes"
+            },
+            {
+              "type": "concept",
+              "title": "Channels and angles"
+            },
+            {
+              "type": "concept",
+              "title": "ASTM steel grades"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Limit states overview",
+          "description": "A steel member is acceptable only when all relevant strength and serviceability limits are checked.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Yielding"
+            },
+            {
+              "type": "concept",
+              "title": "Buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture"
+            },
+            {
+              "type": "concept",
+              "title": "Deflection and vibration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "LRFD vs. ASD Design Philosophies",
+      "description": "Understand the two major AISC design formats and how safety factors, load factors, and resistance factors are applied.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design philosophy",
+          "description": "LRFD and ASD are two routes to a consistent safety margin under uncertain loads and strengths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nominal strength"
+            },
+            {
+              "type": "concept",
+              "title": "Required strength"
+            },
+            {
+              "type": "concept",
+              "title": "Resistance factors"
+            },
+            {
+              "type": "concept",
+              "title": "Safety factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loads and combinations",
+          "description": "Steel design connects member resistance to the load combinations required by building codes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dead and live loads"
+            },
+            {
+              "type": "concept",
+              "title": "Wind and seismic context"
+            },
+            {
+              "type": "concept",
+              "title": "Load combinations"
+            },
+            {
+              "type": "concept",
+              "title": "ASCE 7 relationship"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Choosing and documenting a method",
+          "description": "A design calculation must state its method and apply it consistently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LRFD notation"
+            },
+            {
+              "type": "concept",
+              "title": "ASD notation"
+            },
+            {
+              "type": "concept",
+              "title": "AISC manual tables"
+            },
+            {
+              "type": "concept",
+              "title": "Calculation organization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tension Members",
+      "description": "Design members that carry axial tensile force while accounting for yielding, fracture, holes, and connection effects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tension limit states",
+          "description": "Tension members can fail by gross-section yielding or net-section fracture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gross area"
+            },
+            {
+              "type": "concept",
+              "title": "Net area"
+            },
+            {
+              "type": "concept",
+              "title": "Effective net area"
+            },
+            {
+              "type": "concept",
+              "title": "Shear lag"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connection effects",
+          "description": "Holes, stagger, and connection geometry reduce member capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bolt holes"
+            },
+            {
+              "type": "concept",
+              "title": "Staggered holes"
+            },
+            {
+              "type": "concept",
+              "title": "Block shear"
+            },
+            {
+              "type": "concept",
+              "title": "Connection eccentricity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Member selection",
+          "description": "Design is a practical process of choosing a shape that is strong, buildable, and efficient.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rods and bars"
+            },
+            {
+              "type": "concept",
+              "title": "Angles"
+            },
+            {
+              "type": "concept",
+              "title": "Channels"
+            },
+            {
+              "type": "concept",
+              "title": "HSS tension members"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Compression Members and Columns",
+      "description": "Design axially loaded members where buckling, slenderness, and effective length control strength.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Column buckling",
+          "description": "Compression strength depends heavily on slenderness and instability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Inelastic buckling"
+            },
+            {
+              "type": "concept",
+              "title": "Slenderness ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Critical stress"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effective length",
+          "description": "End restraint and frame behavior affect column capacity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effective length factor"
+            },
+            {
+              "type": "concept",
+              "title": "Braced frames"
+            },
+            {
+              "type": "concept",
+              "title": "Unbraced frames"
+            },
+            {
+              "type": "concept",
+              "title": "Alignment charts and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Local buckling and shape selection",
+          "description": "Compression design also checks whether individual plate elements are compact enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Width-thickness ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Slender elements"
+            },
+            {
+              "type": "concept",
+              "title": "HSS columns"
+            },
+            {
+              "type": "concept",
+              "title": "Built-up compression members"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Beams",
+      "description": "Design flexural members for bending, shear, deflection, and lateral-torsional buckling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flexural strength",
+          "description": "Beam design checks whether a section can resist bending demand with adequate reserve.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plastic moment"
+            },
+            {
+              "type": "concept",
+              "title": "Elastic section modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Compact sections"
+            },
+            {
+              "type": "concept",
+              "title": "Moment gradient effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Shear and serviceability",
+          "description": "Strength alone is not enough; beams must also perform acceptably under use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Web shear"
+            },
+            {
+              "type": "concept",
+              "title": "Deflection limits"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Camber context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lateral-torsional buckling",
+          "description": "Unbraced compression flanges can destabilize beams before full bending strength develops.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unbraced length"
+            },
+            {
+              "type": "concept",
+              "title": "Bracing points"
+            },
+            {
+              "type": "concept",
+              "title": "LTB limit states"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous versus discrete bracing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Beam-Columns",
+      "description": "Analyze and design members carrying combined axial load and bending moment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Combined loading behavior",
+          "description": "Beam-columns are common in frames because members often carry axial force and moment together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial compression plus bending"
+            },
+            {
+              "type": "concept",
+              "title": "Moment amplification"
+            },
+            {
+              "type": "concept",
+              "title": "First-order effects"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interaction equations",
+          "description": "AISC interaction checks combine axial and flexural demands into one design decision.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P-M interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Strong-axis bending"
+            },
+            {
+              "type": "concept",
+              "title": "Weak-axis bending"
+            },
+            {
+              "type": "concept",
+              "title": "Biaxial bending"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frame context",
+          "description": "Beam-column design connects member checks to system stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment frames"
+            },
+            {
+              "type": "concept",
+              "title": "Braced frames"
+            },
+            {
+              "type": "concept",
+              "title": "Story drift"
+            },
+            {
+              "type": "concept",
+              "title": "P-delta effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Connections (Bolted, Welded)",
+      "description": "Design the load path between members using bolts, welds, plates, and connection limit states.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bolted connections",
+          "description": "Bolted joints transfer loads through bearing, shear, tension, and slip mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bearing-type bolts"
+            },
+            {
+              "type": "concept",
+              "title": "Slip-critical bolts"
+            },
+            {
+              "type": "concept",
+              "title": "Bolt shear and tension"
+            },
+            {
+              "type": "concept",
+              "title": "Edge distance and spacing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Welded connections",
+          "description": "Welds provide compact load transfer but require attention to detailing and limit states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fillet welds"
+            },
+            {
+              "type": "concept",
+              "title": "Groove welds"
+            },
+            {
+              "type": "concept",
+              "title": "Weld strength"
+            },
+            {
+              "type": "concept",
+              "title": "Weld symbols and detailing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connection limit states and load paths",
+          "description": "Connections should make the intended force path explicit and avoid hidden weak links.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Block shear"
+            },
+            {
+              "type": "concept",
+              "title": "Plate yielding"
+            },
+            {
+              "type": "concept",
+              "title": "Plate rupture"
+            },
+            {
+              "type": "concept",
+              "title": "Eccentric connections"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Composite Members",
+      "description": "Understand how steel and concrete act together in beams, slabs, and columns to improve strength and stiffness.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Composite beam action",
+          "description": "Steel beams and concrete slabs can act together through shear connectors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effective slab width"
+            },
+            {
+              "type": "concept",
+              "title": "Shear studs"
+            },
+            {
+              "type": "concept",
+              "title": "Positive moment regions"
+            },
+            {
+              "type": "concept",
+              "title": "Transformed section idea"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composite strength and serviceability",
+          "description": "Composite design balances strength, stiffness, constructability, and staged loading.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plastic stress distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Deflection"
+            },
+            {
+              "type": "concept",
+              "title": "Shoring versus unshored construction"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composite columns and systems",
+          "description": "Composite concepts extend to columns and floor systems in modern buildings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concrete-filled tubes"
+            },
+            {
+              "type": "concept",
+              "title": "Encased shapes"
+            },
+            {
+              "type": "concept",
+              "title": "Fire resistance context"
+            },
+            {
+              "type": "concept",
+              "title": "Floor diaphragm role"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plate Girders",
+      "description": "Design deep built-up flexural members where web buckling, stiffeners, and flange proportioning become central.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Built-up girder behavior",
+          "description": "Plate girders are used when rolled shapes are not deep or strong enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Web plates"
+            },
+            {
+              "type": "concept",
+              "title": "Flange plates"
+            },
+            {
+              "type": "concept",
+              "title": "Welded built-up sections"
+            },
+            {
+              "type": "concept",
+              "title": "Proportioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Web buckling and stiffeners",
+          "description": "Deep webs require special checks for shear buckling and concentrated loads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transverse stiffeners"
+            },
+            {
+              "type": "concept",
+              "title": "Bearing stiffeners"
+            },
+            {
+              "type": "concept",
+              "title": "Tension field action"
+            },
+            {
+              "type": "concept",
+              "title": "Web crippling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fatigue and fracture awareness",
+          "description": "Large welded members can be governed by detail category, stress range, and crack risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fatigue categories"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture-critical members"
+            },
+            {
+              "type": "concept",
+              "title": "Weld details"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "AISC Specification",
+      "description": "Use AISC provisions, manuals, tables, and design examples as the governing framework for steel design work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Navigating AISC provisions",
+          "description": "Students learn to find the governing chapter, equation, and table instead of treating design as memorized formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AISC 360"
+            },
+            {
+              "type": "concept",
+              "title": "AISC Steel Construction Manual"
+            },
+            {
+              "type": "concept",
+              "title": "Specification chapters"
+            },
+            {
+              "type": "concept",
+              "title": "Design examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Specification-based workflow",
+          "description": "A complete design connects loads, analysis, member selection, checks, and drawings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load path"
+            },
+            {
+              "type": "concept",
+              "title": "Required strength"
+            },
+            {
+              "type": "concept",
+              "title": "Available strength"
+            },
+            {
+              "type": "concept",
+              "title": "Design documentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional design judgment",
+          "description": "Codes define minimum requirements, while engineers still choose efficient, constructible, durable solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constructability"
+            },
+            {
+              "type": "concept",
+              "title": "Fire and corrosion context"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination with drawings"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical responsibility"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

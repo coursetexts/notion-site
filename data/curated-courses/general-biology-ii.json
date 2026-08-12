@@ -1,0 +1,1087 @@
+{
+  "slug": "general-biology-ii",
+  "title": "General Biology II",
+  "description": "General Biology II is the organismal, evolutionary, and ecological half of the introductory biology sequence. A version should teach students to see biology across scales: from alleles and lineages to organisms, communities, ecosystems, biodiversity data, and conservation decisions.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Evolution and natural selection",
+      "description": "Introduce evolution as the central organizing framework for biological diversity, adaptation, and change over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Evolutionary evidence",
+          "description": "Students learn why evolution is an evidence-based framework rather than a memorized claim.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fossil record"
+            },
+            {
+              "type": "concept",
+              "title": "Comparative anatomy"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular homology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Natural selection",
+          "description": "The point is to connect differential survival and reproduction to changing trait frequencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fitness"
+            },
+            {
+              "type": "concept",
+              "title": "Selection pressures"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptation and constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Other evolutionary forces",
+          "description": "Evolution includes chance, migration, and mutation as well as selection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Genetic drift"
+            },
+            {
+              "type": "concept",
+              "title": "Gene flow"
+            },
+            {
+              "type": "concept",
+              "title": "Mutation as variation source"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evolution in action",
+          "description": "Students see evolution in real time through medicine, agriculture, and conservation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Antibiotic resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Pesticide resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Rapid environmental change"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population genetics and microevolution",
+      "description": "Add the quantitative layer that explains how allele frequencies change within populations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Allele and genotype frequencies",
+          "description": "Frequency thinking turns evolution into something measurable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alleles"
+            },
+            {
+              "type": "concept",
+              "title": "Genotypes"
+            },
+            {
+              "type": "concept",
+              "title": "Calculating frequencies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hardy-Weinberg model",
+          "description": "The model is a null expectation for detecting evolutionary change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Expected genotype frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Testing deviations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selection and drift in populations",
+          "description": "Different mechanisms leave different signatures in genetic data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Directional selection"
+            },
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "Founder effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Population structure",
+          "description": "Real populations are spatially and genetically structured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Migration"
+            },
+            {
+              "type": "concept",
+              "title": "Inbreeding"
+            },
+            {
+              "type": "concept",
+              "title": "Local adaptation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Speciation and macroevolution",
+      "description": "Explain how new species arise and how large-scale evolutionary patterns accumulate across deep time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Species concepts",
+          "description": "Students learn why defining a species depends on the biological question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biological species concept"
+            },
+            {
+              "type": "concept",
+              "title": "Morphological species concept"
+            },
+            {
+              "type": "concept",
+              "title": "Phylogenetic species concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproductive isolation",
+          "description": "Speciation requires barriers that reduce gene flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prezygotic barriers"
+            },
+            {
+              "type": "concept",
+              "title": "Postzygotic barriers"
+            },
+            {
+              "type": "concept",
+              "title": "Hybrid zones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Speciation modes",
+          "description": "Geography and ecology shape how lineages split.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allopatric speciation"
+            },
+            {
+              "type": "concept",
+              "title": "Sympatric speciation"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive radiation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Macroevolutionary patterns",
+          "description": "Large-scale history includes innovation, extinction, and uneven diversification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass extinctions"
+            },
+            {
+              "type": "concept",
+              "title": "Key innovations"
+            },
+            {
+              "type": "concept",
+              "title": "Tempo and mode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phylogeny and tree thinking",
+      "description": "Teach students to read evolutionary trees as hypotheses about relationships, traits, and shared ancestry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tree anatomy",
+          "description": "Trees are diagrams of relationship, not ladders of progress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Branches"
+            },
+            {
+              "type": "concept",
+              "title": "Sister taxa"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homology and characters",
+          "description": "Shared traits can reveal ancestry when interpreted carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homologous traits"
+            },
+            {
+              "type": "concept",
+              "title": "Analogous traits"
+            },
+            {
+              "type": "concept",
+              "title": "Derived characters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Building trees",
+          "description": "Phylogenies are evidence-based hypotheses built from morphological and molecular data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parsimony intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular sequences"
+            },
+            {
+              "type": "concept",
+              "title": "Outgroups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Using trees",
+          "description": "Trees support inference about trait evolution, disease, and biodiversity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ancestral states"
+            },
+            {
+              "type": "concept",
+              "title": "Comparative methods"
+            },
+            {
+              "type": "concept",
+              "title": "Phylogenies in public health"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Origins of life and early evolution",
+      "description": "Frame the transition from chemistry to cells and the deep history that shaped life on Earth.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Prebiotic chemistry",
+          "description": "Students examine plausible pathways from simple molecules to biological building blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Abiotic synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrothermal vents"
+            },
+            {
+              "type": "concept",
+              "title": "Meteorite organics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protocells and information",
+          "description": "Life requires compartmentalization, information, and energy flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lipid vesicles"
+            },
+            {
+              "type": "concept",
+              "title": "RNA world hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Replication challenges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Early cellular evolution",
+          "description": "The earliest cells transformed Earth's chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anaerobic metabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Photosynthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Great Oxidation Event"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Endosymbiosis",
+          "description": "Eukaryotic complexity emerged through symbiosis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mitochondria"
+            },
+            {
+              "type": "concept",
+              "title": "Chloroplasts"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence for endosymbiosis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Prokaryotes: bacteria and archaea",
+      "description": "Reveal the diversity, ecology, and global importance of microbial life.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Prokaryotic cell organization",
+          "description": "Students learn what makes prokaryotes structurally simple but functionally powerful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell walls"
+            },
+            {
+              "type": "concept",
+              "title": "Membranes"
+            },
+            {
+              "type": "concept",
+              "title": "Plasmids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metabolic diversity",
+          "description": "Prokaryotes run many of Earth's major chemical cycles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Photoautotrophy"
+            },
+            {
+              "type": "concept",
+              "title": "Chemolithotrophy"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogen cycling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Horizontal gene transfer",
+          "description": "Microbial evolution often moves genes across lineages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Transduction"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microbiomes and impact",
+          "description": "Microbes shape health, ecosystems, and biotechnology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Human microbiome"
+            },
+            {
+              "type": "concept",
+              "title": "Pathogens"
+            },
+            {
+              "type": "concept",
+              "title": "Bioremediation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Protists and eukaryotic diversity",
+      "description": "Use protists to show that eukaryotic life is far broader than plants, animals, and fungi.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Eukaryotic origins",
+          "description": "Protists illuminate the rise of complex cells.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleus and organelles"
+            },
+            {
+              "type": "concept",
+              "title": "Endosymbiotic events"
+            },
+            {
+              "type": "concept",
+              "title": "Cytoskeleton"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major protist groups",
+          "description": "Students sample diversity without drowning in taxonomy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Algae"
+            },
+            {
+              "type": "concept",
+              "title": "Amoebozoans"
+            },
+            {
+              "type": "concept",
+              "title": "Excavates and SAR examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protist life cycles",
+          "description": "Life cycles show how reproduction and survival strategies vary.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Asexual cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Sexual cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Alternation patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ecological and medical roles",
+          "description": "Protists matter in food webs, climate, and disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phytoplankton"
+            },
+            {
+              "type": "concept",
+              "title": "Malaria parasite"
+            },
+            {
+              "type": "concept",
+              "title": "Harmful algal blooms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fungi",
+      "description": "Explain fungi as decomposers, symbionts, pathogens, and essential partners in ecosystems and biotechnology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fungal body plans",
+          "description": "Fungi solve nutrition and growth differently from plants or animals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hyphae"
+            },
+            {
+              "type": "concept",
+              "title": "Mycelium"
+            },
+            {
+              "type": "concept",
+              "title": "Chitin cell walls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproduction and diversity",
+          "description": "Fungal life cycles mix spores, mating types, and varied reproductive structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Asexual spores"
+            },
+            {
+              "type": "concept",
+              "title": "Sexual reproduction"
+            },
+            {
+              "type": "concept",
+              "title": "Major fungal lineages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Symbioses",
+          "description": "Fungi often shape ecosystems through partnerships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mycorrhizae"
+            },
+            {
+              "type": "concept",
+              "title": "Lichens"
+            },
+            {
+              "type": "concept",
+              "title": "Endophytes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human relevance",
+          "description": "Fungi affect food, medicine, agriculture, and health.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fermentation"
+            },
+            {
+              "type": "concept",
+              "title": "Antibiotics"
+            },
+            {
+              "type": "concept",
+              "title": "Fungal pathogens"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plant diversity and plant physiology",
+      "description": "Connect plant evolution to how plants capture resources, reproduce, regulate water, and support terrestrial ecosystems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Plant evolutionary transitions",
+          "description": "Students learn how plants adapted to life on land.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bryophytes"
+            },
+            {
+              "type": "concept",
+              "title": "Vascular plants"
+            },
+            {
+              "type": "concept",
+              "title": "Seeds and pollen"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproduction and life cycles",
+          "description": "Plant diversity is easier to understand through life-cycle innovations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alternation of generations"
+            },
+            {
+              "type": "concept",
+              "title": "Gymnosperms"
+            },
+            {
+              "type": "concept",
+              "title": "Angiosperms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plant form and transport",
+          "description": "Structure supports resource capture and movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roots, stems, leaves"
+            },
+            {
+              "type": "concept",
+              "title": "Xylem and phloem"
+            },
+            {
+              "type": "concept",
+              "title": "Water potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plant physiology and responses",
+          "description": "Plants actively regulate growth, defense, and environmental response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Photosynthesis review"
+            },
+            {
+              "type": "concept",
+              "title": "Hormones"
+            },
+            {
+              "type": "concept",
+              "title": "Tropisms and stress"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Animal diversity and physiology",
+      "description": "Survey animal body plans and physiological systems as evolutionary solutions to movement, feeding, reproduction, and homeostasis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Animal body plans",
+          "description": "Body-plan features organize animal diversity and function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Tissues"
+            },
+            {
+              "type": "concept",
+              "title": "Body cavities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major animal lineages",
+          "description": "Students learn diversity through evolutionary innovations rather than lists alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Invertebrate groups"
+            },
+            {
+              "type": "concept",
+              "title": "Chordates"
+            },
+            {
+              "type": "concept",
+              "title": "Vertebrate transitions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physiological systems",
+          "description": "Animals maintain internal conditions while exchanging matter and energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Respiration"
+            },
+            {
+              "type": "concept",
+              "title": "Osmoregulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproduction and behavior",
+          "description": "Animal life histories reflect evolutionary tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sexual reproduction"
+            },
+            {
+              "type": "concept",
+              "title": "Development"
+            },
+            {
+              "type": "concept",
+              "title": "Behavioral ecology basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population and community ecology",
+      "description": "Show how organisms interact within populations and communities, producing patterns in abundance, distribution, and coexistence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Population growth",
+          "description": "Models help students reason about abundance and limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential growth"
+            },
+            {
+              "type": "concept",
+              "title": "Logistic growth"
+            },
+            {
+              "type": "concept",
+              "title": "Carrying capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Life history",
+          "description": "Organisms allocate energy among growth, survival, and reproduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Survivorship curves"
+            },
+            {
+              "type": "concept",
+              "title": "r/K-style intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Species interactions",
+          "description": "Interactions shape community structure and evolutionary pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Competition"
+            },
+            {
+              "type": "concept",
+              "title": "Predation"
+            },
+            {
+              "type": "concept",
+              "title": "Mutualism and parasitism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Community dynamics",
+          "description": "Communities change through disturbance, succession, and trophic structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Food webs"
+            },
+            {
+              "type": "concept",
+              "title": "Keystone species"
+            },
+            {
+              "type": "concept",
+              "title": "Succession"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ecosystem ecology, biodiversity, and global change",
+      "description": "Integrate energy flow, nutrient cycling, biodiversity patterns, and human-driven environmental change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy flow",
+          "description": "Students trace how energy moves through ecosystems and constrains food webs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary productivity"
+            },
+            {
+              "type": "concept",
+              "title": "Trophic efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Energy pyramids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrient cycling",
+          "description": "Matter cycles through biological, geological, and atmospheric pools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogen cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorus cycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biodiversity patterns",
+          "description": "Biodiversity is measurable and varies across space and time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Species richness"
+            },
+            {
+              "type": "concept",
+              "title": "Endemism"
+            },
+            {
+              "type": "concept",
+              "title": "Latitudinal gradients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Global change biology",
+          "description": "Modern biology must address climate, land use, invasives, and extinction risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Climate impacts"
+            },
+            {
+              "type": "concept",
+              "title": "Habitat fragmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Invasive species"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field methods, biological data, and conservation practice",
+      "description": "Give students tools for observation, data interpretation, and conservation decision-making.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field sampling",
+          "description": "Students learn how biological claims depend on sampling design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transects and quadrats"
+            },
+            {
+              "type": "concept",
+              "title": "Mark-recapture intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Bias and replication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological databases",
+          "description": "Modern biology uses shared datasets for biodiversity and sequence evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GBIF and iNaturalist"
+            },
+            {
+              "type": "concept",
+              "title": "NCBI"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata quality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data visualization and interpretation",
+          "description": "Students practice turning observations into defensible biological explanations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Phylogenetic trees"
+            },
+            {
+              "type": "concept",
+              "title": "Basic uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conservation practice",
+          "description": "Biology connects evidence to decisions about species and ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protected areas"
+            },
+            {
+              "type": "concept",
+              "title": "Restoration ecology"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental justice"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

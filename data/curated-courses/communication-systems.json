@@ -1,0 +1,1388 @@
+{
+  "slug": "communication-systems",
+  "title": "Communication Systems",
+  "description": "An analog and digital communications course covering signals, spectra, noise, modulation, sampling, PCM, digital modulation, detection, information theory, coding, multiplexing, and wireless systems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Signals, Spectra, and Communication System Blocks",
+      "description": "This section develops signals, spectra, and communication system blocks through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make signals, spectra, and communication system blocks precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time-domain signal"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency spectrum"
+            },
+            {
+              "type": "concept",
+              "title": "Fourier transform"
+            },
+            {
+              "type": "concept",
+              "title": "Power spectral density"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "Signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with signals, spectra, and communication system blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply time-domain signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare frequency spectrum with Fourier transform"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how time-domain signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Processes, Noise, and SNR",
+      "description": "This section develops random processes, noise, and snr through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make random processes, noise, and snr precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with random processes, noise, and snr.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Amplitude Modulation and Demodulation",
+      "description": "This section develops amplitude modulation and demodulation through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make amplitude modulation and demodulation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Amplitude modulation"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Sideband"
+            },
+            {
+              "type": "concept",
+              "title": "Envelope detector"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation index"
+            },
+            {
+              "type": "concept",
+              "title": "Signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with amplitude modulation and demodulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply amplitude modulation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with sideband"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how amplitude modulation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Angle Modulation: FM and PM",
+      "description": "This section develops angle modulation: fm and pm through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make angle modulation: fm and pm precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Frequency modulation"
+            },
+            {
+              "type": "concept",
+              "title": "Phase modulation"
+            },
+            {
+              "type": "concept",
+              "title": "Deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Carson bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "PLL"
+            },
+            {
+              "type": "concept",
+              "title": "Signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with angle modulation: fm and pm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply frequency modulation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare phase modulation with deviation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how frequency modulation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling, Quantization, and Pulse Modulation",
+      "description": "This section develops sampling, quantization, and pulse modulation through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make sampling, quantization, and pulse modulation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nyquist rate"
+            },
+            {
+              "type": "concept",
+              "title": "Quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "PCM"
+            },
+            {
+              "type": "concept",
+              "title": "Sample-and-hold"
+            },
+            {
+              "type": "concept",
+              "title": "Signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with sampling, quantization, and pulse modulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Nyquist rate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare quantization with aliasing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Nyquist rate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pulse Code Modulation and Source Representation",
+      "description": "This section develops pulse code modulation and source representation through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make pulse code modulation and source representation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with pulse code modulation and source representation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Baseband Transmission and Pulse Shaping",
+      "description": "This section develops baseband transmission and pulse shaping through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make baseband transmission and pulse shaping precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with baseband transmission and pulse shaping.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digital Modulation: ASK, FSK, PSK, QAM",
+      "description": "This section develops digital modulation: ask, fsk, psk, qam through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make digital modulation: ask, fsk, psk, qam precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ASK"
+            },
+            {
+              "type": "concept",
+              "title": "FSK"
+            },
+            {
+              "type": "concept",
+              "title": "PSK"
+            },
+            {
+              "type": "concept",
+              "title": "QAM"
+            },
+            {
+              "type": "concept",
+              "title": "Constellation"
+            },
+            {
+              "type": "concept",
+              "title": "Symbol rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with digital modulation: ask, fsk, psk, qam.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ASK in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare FSK with PSK"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ASK affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Matched Filtering, Detection, and Error Probability",
+      "description": "This section develops matched filtering, detection, and error probability through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make matched filtering, detection, and error probability precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matched filter"
+            },
+            {
+              "type": "concept",
+              "title": "Decision threshold"
+            },
+            {
+              "type": "concept",
+              "title": "BER"
+            },
+            {
+              "type": "concept",
+              "title": "AWGN"
+            },
+            {
+              "type": "concept",
+              "title": "Eye diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with matched filtering, detection, and error probability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply matched filter in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare decision threshold with BER"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Laplacian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how matched filter affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Information Theory, Entropy, and Mutual Information",
+      "description": "This section develops information theory, entropy, and mutual information through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make information theory, entropy, and mutual information precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entropy"
+            },
+            {
+              "type": "concept",
+              "title": "Mutual information"
+            },
+            {
+              "type": "concept",
+              "title": "Channel capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Shannon limit"
+            },
+            {
+              "type": "concept",
+              "title": "Source coding"
+            },
+            {
+              "type": "concept",
+              "title": "Signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with information theory, entropy, and mutual information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply entropy in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare mutual information with channel capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how entropy affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Channel Capacity and Coding Limits",
+      "description": "This section develops channel capacity and coding limits through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make channel capacity and coding limits precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with channel capacity and coding limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Error Detection and Error-Control Coding",
+      "description": "This section develops error detection and error-control coding through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make error detection and error-control coding precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bounding box"
+            },
+            {
+              "type": "concept",
+              "title": "Object detector"
+            },
+            {
+              "type": "concept",
+              "title": "Precision"
+            },
+            {
+              "type": "concept",
+              "title": "Recall"
+            },
+            {
+              "type": "concept",
+              "title": "mAP"
+            },
+            {
+              "type": "concept",
+              "title": "Parity bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with error detection and error-control coding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply bounding box in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare object detector with precision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of FEC"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how bounding box affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multiplexing, Multiple Access, and OFDM",
+      "description": "This section develops multiplexing, multiple access, and ofdm through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make multiplexing, multiple access, and ofdm precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with multiplexing, multiple access, and ofdm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wireless Channels, Fading, and Link Budgets",
+      "description": "This section develops wireless channels, fading, and link budgets through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make wireless channels, fading, and link budgets precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with wireless channels, fading, and link budgets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Software-Defined Radio Simulation Project",
+      "description": "This section develops software-defined radio simulation project through the concrete vocabulary, procedures, examples, and checks students need in Communication Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make software-defined radio simulation project precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signal"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Modulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with software-defined radio simulation project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyze spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Compute SNR"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulation schemes"
+            },
+            {
+              "type": "concept",
+              "title": "Apply signal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare carrier with bandwidth"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth limit"
+            },
+            {
+              "type": "concept",
+              "title": "Noise assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how signal affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

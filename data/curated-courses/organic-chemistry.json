@@ -1,0 +1,944 @@
+{
+  "slug": "organic-chemistry",
+  "title": "Organic Chemistry",
+  "description": "A mechanism-centered course on organic structure, bonding, stereochemistry, acids and bases, substitution, elimination, addition, aromaticity, carbonyl chemistry, biomolecules, spectroscopy, synthesis, and lab reasoning.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Structure, Bonding, and Molecular Representation",
+      "description": "Builds the structural language used for every reaction and mechanism.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lewis structures"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Orbitals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hybridization"
+            },
+            {
+              "type": "concept",
+              "title": "Sigma and Pi Bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line-angle structures"
+            },
+            {
+              "type": "concept",
+              "title": "Constitutional isomers"
+            },
+            {
+              "type": "concept",
+              "title": "Functional groups"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Acids, Bases, pKa, and Reaction Thermodynamics",
+      "description": "Connects reactivity to proton transfer, equilibrium, and energy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bronsted and Lewis Acids/Bases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pKa"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium direction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enthalpy"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs Free Energy"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction coordinate diagrams"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stereochemistry and Conformational Analysis",
+      "description": "Explains three-dimensional structure and why shape affects properties and reactions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chirality"
+            },
+            {
+              "type": "concept",
+              "title": "Enantiomers"
+            },
+            {
+              "type": "concept",
+              "title": "Diastereomers"
+            },
+            {
+              "type": "concept",
+              "title": "Meso compounds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "R/S, E/Z, Optical Activity, and Stereochemical Drawings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclohexane conformations"
+            },
+            {
+              "type": "concept",
+              "title": "Strain"
+            },
+            {
+              "type": "concept",
+              "title": "Newman projections"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reaction Mechanisms and Reactive Intermediates",
+      "description": "Develops curved-arrow reasoning and mechanistic prediction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleophiles"
+            },
+            {
+              "type": "concept",
+              "title": "Electrophiles"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbocations"
+            },
+            {
+              "type": "concept",
+              "title": "Carbanions"
+            },
+            {
+              "type": "concept",
+              "title": "Radicals"
+            },
+            {
+              "type": "concept",
+              "title": "Carbenes"
+            },
+            {
+              "type": "concept",
+              "title": "Transition states"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kinetics"
+            },
+            {
+              "type": "concept",
+              "title": "Thermodynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanism evidence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nucleophilic Substitution Reactions",
+      "description": "Covers how nucleophiles replace leaving groups and how structure controls pathway.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SN1 and SN2 Mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Substrate"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleophile"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent"
+            },
+            {
+              "type": "concept",
+              "title": "Leaving group effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stereochemical outcomes and competing reactions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Elimination Reactions",
+      "description": "Explains how pi bonds form through base-promoted loss of atoms or groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "E1, E2, and E1cB Mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zaitsev and Hofmann Products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regioselectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Stereoselectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Substitution competition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alkenes, Alkynes, and Addition Reactions",
+      "description": "Studies pi-bond reactivity and functional-group installation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrogenation"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrohalogenation"
+            },
+            {
+              "type": "concept",
+              "title": "Hydration"
+            },
+            {
+              "type": "concept",
+              "title": "Halogenation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Markovnikov and Anti-Markovnikov Selectivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alkyne acidity"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Addition chemistry"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Alcohols, Ethers, Epoxides, and Organohalides",
+      "description": "Covers common functional groups used in synthesis and biological molecules.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preparation and reactions of alcohols"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ether synthesis and cleavage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epoxide opening"
+            },
+            {
+              "type": "concept",
+              "title": "Organohalide reactivity"
+            },
+            {
+              "type": "concept",
+              "title": "Protecting ideas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aromaticity and Electrophilic Aromatic Substitution",
+      "description": "Explains why aromatic rings are unusually stable and how they react.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Huckel Rule"
+            },
+            {
+              "type": "concept",
+              "title": "Aromatic"
+            },
+            {
+              "type": "concept",
+              "title": "Antiaromatic"
+            },
+            {
+              "type": "concept",
+              "title": "Nonaromatic systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nitration"
+            },
+            {
+              "type": "concept",
+              "title": "Sulfonation"
+            },
+            {
+              "type": "concept",
+              "title": "Halogenation"
+            },
+            {
+              "type": "concept",
+              "title": "Friedel-Crafts Reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Directing effects"
+            },
+            {
+              "type": "concept",
+              "title": "Activation"
+            },
+            {
+              "type": "concept",
+              "title": "Deactivation"
+            },
+            {
+              "type": "concept",
+              "title": "Polysubstitution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carbonyl Chemistry I: Aldehydes and Ketones",
+      "description": "Introduces nucleophilic addition to polar carbonyl groups.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbonyl structure and electrophilicity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydration"
+            },
+            {
+              "type": "concept",
+              "title": "Acetal formation"
+            },
+            {
+              "type": "concept",
+              "title": "Imines"
+            },
+            {
+              "type": "concept",
+              "title": "Enamines"
+            },
+            {
+              "type": "concept",
+              "title": "Cyanohydrins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grignard and Organolithium Additions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Carbonyl Chemistry II: Carboxylic Acid Derivatives and Enolates",
+      "description": "Covers acyl substitution and alpha-carbon chemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carboxylic acids"
+            },
+            {
+              "type": "concept",
+              "title": "Acid chlorides"
+            },
+            {
+              "type": "concept",
+              "title": "Anhydrides"
+            },
+            {
+              "type": "concept",
+              "title": "Esters"
+            },
+            {
+              "type": "concept",
+              "title": "Amides"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleophilic acyl substitution and reactivity order"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enols"
+            },
+            {
+              "type": "concept",
+              "title": "Enolates"
+            },
+            {
+              "type": "concept",
+              "title": "Aldol reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Claisen Condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Michael Addition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Amines, Biomolecules, and Polymers",
+      "description": "Connects organic chemistry to biological and material systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Amines"
+            },
+            {
+              "type": "concept",
+              "title": "Amides"
+            },
+            {
+              "type": "concept",
+              "title": "Amino acids"
+            },
+            {
+              "type": "concept",
+              "title": "Peptides"
+            },
+            {
+              "type": "concept",
+              "title": "Proteins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates"
+            },
+            {
+              "type": "concept",
+              "title": "Lipids"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleic acids"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic relevance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Addition polymers"
+            },
+            {
+              "type": "concept",
+              "title": "Condensation polymers"
+            },
+            {
+              "type": "concept",
+              "title": "Biomedical materials"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spectroscopy and Structure Determination",
+      "description": "Teaches how experimental evidence supports molecular structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IR Functional Group Identification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "1H and 13C NMR Chemical Shift, Splitting, Integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass spectrometry"
+            },
+            {
+              "type": "concept",
+              "title": "UV-Vis"
+            },
+            {
+              "type": "concept",
+              "title": "Combined spectral reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Organic Synthesis and Retrosynthetic Strategy",
+      "description": "Builds the ability to plan multi-step reactions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional group interconversions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon-carbon bond formation and protecting groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Retrosynthetic disconnections"
+            },
+            {
+              "type": "concept",
+              "title": "Chemoselectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Regioselectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Stereoselectivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Organic Laboratory, Green Chemistry, and Applied Contexts",
+      "description": "Links classroom mechanisms to safe experiments, purification, environmental fate, and biological relevance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Distillation"
+            },
+            {
+              "type": "concept",
+              "title": "Recrystallization"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatography"
+            },
+            {
+              "type": "concept",
+              "title": "TLC"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lab safety"
+            },
+            {
+              "type": "concept",
+              "title": "Notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Yield"
+            },
+            {
+              "type": "concept",
+              "title": "Purity"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral reports"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Green chemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Organic pollutants"
+            },
+            {
+              "type": "concept",
+              "title": "Natural organic matter"
+            },
+            {
+              "type": "concept",
+              "title": "Drug/nutrition examples"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

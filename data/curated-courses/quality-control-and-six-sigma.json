@@ -1,0 +1,1014 @@
+{
+  "slug": "quality-control-and-six-sigma",
+  "title": "Quality Control and Six Sigma",
+  "description": "A practical, statistics-based quality engineering course covering SPC, control charts, process capability, acceptance sampling, design of experiments, Six Sigma DMAIC, lean, and total quality management.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Quality Philosophy and History",
+      "description": "This opening section gives students the mental model behind quality work: quality is a management and engineering system, not a final inspection step.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Major Quality Thinkers",
+          "description": "Students learn the ideas that shaped modern quality practice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deming's System of Profound Knowledge"
+            },
+            {
+              "type": "concept",
+              "title": "Juran's Quality Trilogy"
+            },
+            {
+              "type": "concept",
+              "title": "Crosby's Zero Defects Philosophy"
+            },
+            {
+              "type": "concept",
+              "title": "Shewhart's Statistical View of Variation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Customer-Defined Quality",
+          "description": "Quality begins with translating customer needs into measurable requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Voice of the Customer"
+            },
+            {
+              "type": "concept",
+              "title": "Critical-to-Quality Characteristics"
+            },
+            {
+              "type": "concept",
+              "title": "Kano Model Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Requirements and specifications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cost of Quality",
+          "description": "The point is to see poor quality as an economic system cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prevention costs"
+            },
+            {
+              "type": "concept",
+              "title": "Appraisal costs"
+            },
+            {
+              "type": "concept",
+              "title": "Internal failure costs"
+            },
+            {
+              "type": "concept",
+              "title": "External failure costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality Culture",
+          "description": "Students connect technical tools to habits of leadership and frontline problem solving.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous improvement mindset"
+            },
+            {
+              "type": "concept",
+              "title": "Standardization"
+            },
+            {
+              "type": "concept",
+              "title": "Worker involvement"
+            },
+            {
+              "type": "concept",
+              "title": "Management commitment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Process Control",
+      "description": "SPC teaches students to read process behavior over time and avoid overreacting to routine noise or ignoring real signals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Variation Concepts",
+          "description": "Students learn why every process varies and why the type of variation matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Common-cause variation"
+            },
+            {
+              "type": "concept",
+              "title": "Special-cause variation"
+            },
+            {
+              "type": "concept",
+              "title": "Stable processes"
+            },
+            {
+              "type": "concept",
+              "title": "Process voice versus customer voice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control Limits",
+          "description": "Control limits describe process behavior, not customer tolerance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Three-Sigma Limits"
+            },
+            {
+              "type": "concept",
+              "title": "Center lines"
+            },
+            {
+              "type": "concept",
+              "title": "Estimated standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "False alarm tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rational Subgrouping",
+          "description": "Good subgroup design makes charts sensitive to meaningful process shifts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Within-subgroup variation"
+            },
+            {
+              "type": "concept",
+              "title": "Between-subgroup variation"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Process stratification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal Rules",
+          "description": "Students learn practical evidence rules for process investigation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Points beyond limits"
+            },
+            {
+              "type": "concept",
+              "title": "Runs and trends"
+            },
+            {
+              "type": "concept",
+              "title": "Cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Western Electric and Nelson Rules"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control Charts for Variables",
+      "description": "Variable charts help students monitor continuous measurements where preserving measurement detail gives stronger diagnostic power.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Subgroup Charts",
+          "description": "These charts track average performance and short-term variation together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "x-bar and R Charts"
+            },
+            {
+              "type": "concept",
+              "title": "x-bar and S Charts"
+            },
+            {
+              "type": "concept",
+              "title": "Subgroup size effects"
+            },
+            {
+              "type": "concept",
+              "title": "Range versus standard deviation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Individual Charts",
+          "description": "Students use these when data arrive one observation at a time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "I Charts"
+            },
+            {
+              "type": "concept",
+              "title": "Moving range charts"
+            },
+            {
+              "type": "concept",
+              "title": "Autocorrelation cautions"
+            },
+            {
+              "type": "concept",
+              "title": "Low-volume processes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chart Interpretation",
+          "description": "The value is not the chart itself, but the action it guides.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Center shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Spread changes"
+            },
+            {
+              "type": "concept",
+              "title": "Mixture patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Process drift"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation Choices",
+          "description": "Students learn the practical decisions that make charting useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Measurement precision"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling plan"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction plan"
+            },
+            {
+              "type": "concept",
+              "title": "Operator-friendly displays"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Control Charts for Attributes",
+      "description": "Attribute charts are used when quality is recorded as defect counts or pass/fail outcomes rather than continuous measurements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Proportion and Count Charts",
+          "description": "Students choose charts based on whether sample size and defect opportunities change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "p Charts"
+            },
+            {
+              "type": "concept",
+              "title": "np Charts"
+            },
+            {
+              "type": "concept",
+              "title": "c Charts"
+            },
+            {
+              "type": "concept",
+              "title": "u Charts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Defect Definitions",
+          "description": "Clear definitions prevent inconsistent counting and misleading signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Defective units"
+            },
+            {
+              "type": "concept",
+              "title": "Defects per unit"
+            },
+            {
+              "type": "concept",
+              "title": "Opportunity definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection standards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sampling and Sensitivity",
+          "description": "Attribute data often need larger samples to detect small shifts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample size effects"
+            },
+            {
+              "type": "concept",
+              "title": "Rare event monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Overdispersion"
+            },
+            {
+              "type": "concept",
+              "title": "Aggregation risks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students see how attribute charts fit service, manufacturing, and administrative processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scrap tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Claims errors"
+            },
+            {
+              "type": "concept",
+              "title": "Late deliveries"
+            },
+            {
+              "type": "concept",
+              "title": "Customer complaints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Capability Analysis",
+      "description": "Capability analysis connects statistical stability to customer requirements: can this process reliably meet specification?",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capability Indices",
+          "description": "Students learn what common indices measure and what they can hide.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cp"
+            },
+            {
+              "type": "concept",
+              "title": "Cpk"
+            },
+            {
+              "type": "concept",
+              "title": "Pp"
+            },
+            {
+              "type": "concept",
+              "title": "Ppk"
+            },
+            {
+              "type": "concept",
+              "title": "Sigma Level"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability First",
+          "description": "Capability is meaningful only when the process is reasonably stable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control before capability"
+            },
+            {
+              "type": "concept",
+              "title": "Short-term versus long-term variation"
+            },
+            {
+              "type": "concept",
+              "title": "Special-cause cleanup"
+            },
+            {
+              "type": "concept",
+              "title": "Data window selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distribution Assumptions",
+          "description": "Students learn to check whether normal-based calculations are appropriate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Histograms"
+            },
+            {
+              "type": "concept",
+              "title": "Normal probability plots"
+            },
+            {
+              "type": "concept",
+              "title": "Transformations"
+            },
+            {
+              "type": "concept",
+              "title": "Non-normal capability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Business Interpretation",
+          "description": "Capability results should guide decisions, not decorate reports.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tolerance redesign"
+            },
+            {
+              "type": "concept",
+              "title": "Process centering"
+            },
+            {
+              "type": "concept",
+              "title": "Variation reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Supplier qualification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Acceptance Sampling",
+      "description": "Acceptance sampling teaches students how inspection plans manage risk when 100 percent inspection is too expensive or destructive.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling Plan Logic",
+          "description": "Students learn how lot size, sample size, and acceptance numbers work together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single sampling plans"
+            },
+            {
+              "type": "concept",
+              "title": "Double sampling plans"
+            },
+            {
+              "type": "concept",
+              "title": "Rectifying inspection"
+            },
+            {
+              "type": "concept",
+              "title": "Skip-lot ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk Concepts",
+          "description": "Sampling decisions balance producer and consumer risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AQL"
+            },
+            {
+              "type": "concept",
+              "title": "LTPD"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha risk"
+            },
+            {
+              "type": "concept",
+              "title": "Beta risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operating Characteristic Curves",
+          "description": "OC curves show the probability of accepting lots at different quality levels.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Curve interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Discrimination"
+            },
+            {
+              "type": "concept",
+              "title": "Average outgoing quality"
+            },
+            {
+              "type": "concept",
+              "title": "Average total inspection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Use Cases and Limits",
+          "description": "Students learn when sampling helps and when process improvement is better.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incoming inspection"
+            },
+            {
+              "type": "concept",
+              "title": "Supplier lots"
+            },
+            {
+              "type": "concept",
+              "title": "Destructive testing"
+            },
+            {
+              "type": "concept",
+              "title": "Inspection does not create quality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design of Experiments",
+      "description": "DOE gives students a disciplined way to learn cause-and-effect from data while changing multiple factors efficiently.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental Factors",
+          "description": "Students learn to define controllable inputs and measured responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factors and levels"
+            },
+            {
+              "type": "concept",
+              "title": "Responses"
+            },
+            {
+              "type": "concept",
+              "title": "Noise variables"
+            },
+            {
+              "type": "concept",
+              "title": "Experimental units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Factorial Designs",
+          "description": "Factorial thinking reveals interactions that one-factor-at-a-time testing misses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Full factorial designs"
+            },
+            {
+              "type": "concept",
+              "title": "Fractional factorial designs"
+            },
+            {
+              "type": "concept",
+              "title": "Main effects"
+            },
+            {
+              "type": "concept",
+              "title": "Interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analysis Methods",
+          "description": "Students connect experiment structure to statistical evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ANOVA"
+            },
+            {
+              "type": "concept",
+              "title": "Regression models"
+            },
+            {
+              "type": "concept",
+              "title": "Effect plots"
+            },
+            {
+              "type": "concept",
+              "title": "Residual checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Robust Improvement",
+          "description": "DOE supports design choices that perform well despite noise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blocking"
+            },
+            {
+              "type": "concept",
+              "title": "Randomization"
+            },
+            {
+              "type": "concept",
+              "title": "Replication"
+            },
+            {
+              "type": "concept",
+              "title": "Response surface basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Six Sigma DMAIC Methodology",
+      "description": "DMAIC gives improvement work a disciplined project structure from problem definition through sustained control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Define Phase",
+          "description": "Students scope problems clearly before collecting data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Project charter"
+            },
+            {
+              "type": "concept",
+              "title": "Business case"
+            },
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "SIPOC"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measure Phase",
+          "description": "Students establish reliable baseline data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data collection plans"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement system analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Process maps"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline capability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analyze Phase",
+          "description": "Students identify verified causes rather than favorite theories.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Root-cause analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Pareto analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis testing"
+            },
+            {
+              "type": "concept",
+              "title": "Cause-and-effect diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Improve and Control Phases",
+          "description": "Students learn to pilot solutions and lock in gains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solution selection"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot tests"
+            },
+            {
+              "type": "concept",
+              "title": "Control plans"
+            },
+            {
+              "type": "concept",
+              "title": "Handoff and sustainment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lean Principles",
+      "description": "Lean helps students see quality through flow, waste removal, respect for people, and repeated problem solving at the worksite.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Waste Identification",
+          "description": "Students learn to spot work that consumes resources without adding value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Defects"
+            },
+            {
+              "type": "concept",
+              "title": "Waiting"
+            },
+            {
+              "type": "concept",
+              "title": "Transportation"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory"
+            },
+            {
+              "type": "concept",
+              "title": "Motion"
+            },
+            {
+              "type": "concept",
+              "title": "Overprocessing"
+            },
+            {
+              "type": "concept",
+              "title": "Overproduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flow Tools",
+          "description": "Lean tools make process problems visible and actionable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Value stream mapping"
+            },
+            {
+              "type": "concept",
+              "title": "5S"
+            },
+            {
+              "type": "concept",
+              "title": "Standard work"
+            },
+            {
+              "type": "concept",
+              "title": "Kanban"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error Prevention",
+          "description": "Quality improves when processes make mistakes harder to create and easier to detect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poka-yoke"
+            },
+            {
+              "type": "concept",
+              "title": "Visual controls"
+            },
+            {
+              "type": "concept",
+              "title": "Checklists"
+            },
+            {
+              "type": "concept",
+              "title": "First-pass yield"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kaizen and Daily Management",
+          "description": "Students connect improvement events to everyday operating discipline.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "A3 Problem Solving"
+            },
+            {
+              "type": "concept",
+              "title": "Gemba walks"
+            },
+            {
+              "type": "concept",
+              "title": "PDCA"
+            },
+            {
+              "type": "concept",
+              "title": "Leader standard work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Total Quality Management",
+      "description": "TQM closes the course by connecting quality tools to leadership, suppliers, standards, audits, and organization-wide improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quality Systems",
+          "description": "Students learn how organizations formalize quality responsibilities and procedures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ISO 9001 Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Document control"
+            },
+            {
+              "type": "concept",
+              "title": "Quality manuals"
+            },
+            {
+              "type": "concept",
+              "title": "Process ownership"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Supplier Quality",
+          "description": "Quality extends across the supply chain, not just inside one facility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supplier qualification"
+            },
+            {
+              "type": "concept",
+              "title": "Incoming quality"
+            },
+            {
+              "type": "concept",
+              "title": "Supplier scorecards"
+            },
+            {
+              "type": "concept",
+              "title": "Corrective action requests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Audits and Corrective Action",
+          "description": "Students learn how organizations find gaps and prevent recurrence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal audits"
+            },
+            {
+              "type": "concept",
+              "title": "Nonconformances"
+            },
+            {
+              "type": "concept",
+              "title": "Root-cause verification"
+            },
+            {
+              "type": "concept",
+              "title": "CAPA Systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strategic Quality Management",
+          "description": "Quality becomes a competitive capability when metrics, leadership, and improvement are aligned.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Benchmarking"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Customer satisfaction"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous improvement governance"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

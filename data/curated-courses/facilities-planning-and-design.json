@@ -1,0 +1,1120 @@
+{
+  "slug": "facilities-planning-and-design",
+  "title": "Facilities Planning and Design",
+  "description": "Facilities Planning and Design teaches students how to plan, evaluate, and implement facility layouts for manufacturing, warehousing, distribution, office, and service environments. Students study product-process inputs, flow and space relationships, layout types, computerized layout methods, material handling, warehouse design, location analysis, safety, ergonomics, sustainability, cost evaluation, simulation, and implementation planning.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Facilities Planning Process and Strategic Context",
+      "description": "This opening topic frames facilities planning as a strategic design process that connects products, processes, people, equipment, buildings, and supply chains. Students learn that layout choices shape cost, flow, safety, flexibility, and long-term competitiveness.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Planning triggers",
+          "description": "Students learn why organizations redesign or relocate facilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capacity growth"
+            },
+            {
+              "type": "concept",
+              "title": "New product introductions"
+            },
+            {
+              "type": "concept",
+              "title": "Automation changes"
+            },
+            {
+              "type": "concept",
+              "title": "Safety issues"
+            },
+            {
+              "type": "concept",
+              "title": "Cost reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Service-level improvement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planning phases",
+          "description": "Students learn the staged process from problem definition to implementation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preplanning"
+            },
+            {
+              "type": "concept",
+              "title": "Data collection"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative generation"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Detailed design"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stakeholder requirements",
+          "description": "Students identify whose needs must be represented in a facility plan.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Operations"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance"
+            },
+            {
+              "type": "concept",
+              "title": "Safety"
+            },
+            {
+              "type": "concept",
+              "title": "Finance"
+            },
+            {
+              "type": "concept",
+              "title": "Employees"
+            },
+            {
+              "type": "concept",
+              "title": "Customers"
+            },
+            {
+              "type": "concept",
+              "title": "Suppliers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Product, Process, and Schedule Design Inputs",
+      "description": "Facility layouts must fit what is made or served, how it flows, and when demand occurs. This topic teaches students to translate product mix, process routings, and production schedules into facility requirements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Product and service mix",
+          "description": "Students analyze demand, variety, and volume as layout drivers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Product families"
+            },
+            {
+              "type": "concept",
+              "title": "Volume-variety profile"
+            },
+            {
+              "type": "concept",
+              "title": "Demand patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Service mix"
+            },
+            {
+              "type": "concept",
+              "title": "Seasonality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process routing",
+          "description": "Students map how work moves through operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Operation sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Routing sheets"
+            },
+            {
+              "type": "concept",
+              "title": "Bill of Materials"
+            },
+            {
+              "type": "concept",
+              "title": "Process charts"
+            },
+            {
+              "type": "concept",
+              "title": "Setup requirements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scheduling and capacity inputs",
+          "description": "Students connect shift patterns and utilization targets to space and equipment needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Takt Time"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle time"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "Shift schedules"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flow, Space, and Activity Relationship Analysis",
+      "description": "A good facility plan starts with understanding movement and proximity needs. Students learn how material, people, information, and service flows become quantitative and qualitative layout evidence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Flow analysis",
+          "description": "Students quantify movement between departments, work cells, or zones.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "From-To Charts"
+            },
+            {
+              "type": "concept",
+              "title": "Flow intensity"
+            },
+            {
+              "type": "concept",
+              "title": "Load-Distance Logic"
+            },
+            {
+              "type": "concept",
+              "title": "Spaghetti diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Value-stream maps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Space analysis",
+          "description": "Students estimate the space required for operations and support functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equipment footprint"
+            },
+            {
+              "type": "concept",
+              "title": "Aisles"
+            },
+            {
+              "type": "concept",
+              "title": "Storage buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance access"
+            },
+            {
+              "type": "concept",
+              "title": "Employee spaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Activity relationships",
+          "description": "Students capture qualitative closeness requirements that pure flow data misses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "REL Charts"
+            },
+            {
+              "type": "concept",
+              "title": "Closeness ratings"
+            },
+            {
+              "type": "concept",
+              "title": "Reason codes"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency needs"
+            },
+            {
+              "type": "concept",
+              "title": "Separation needs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Layout Types and Systematic Layout Planning",
+      "description": "This topic gives students the core layout families and the systematic logic used to build alternatives. The goal is to match layout form to process behavior rather than choosing a fashionable design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Layout types",
+          "description": "Students compare standard layout patterns and when each fits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Product layout"
+            },
+            {
+              "type": "concept",
+              "title": "Process layout"
+            },
+            {
+              "type": "concept",
+              "title": "Cellular layout"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-position layout"
+            },
+            {
+              "type": "concept",
+              "title": "Hybrid layout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systematic Layout Planning",
+          "description": "Students learn the classic SLP sequence from relationships to block layouts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relationship diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Space relationship diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Block layout"
+            },
+            {
+              "type": "concept",
+              "title": "Modifying considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Practical limitations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternative generation",
+          "description": "Students develop multiple feasible layouts before evaluation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bubble diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Block plans"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Expansion options"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computerized Layout Methods and Optimization",
+      "description": "Facility design often requires evaluating many combinations of departments, flows, and constraints. This section introduces algorithmic and software-supported approaches while keeping engineering judgment central.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Layout objective functions",
+          "description": "Students learn how layout quality can be measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load-Distance Score"
+            },
+            {
+              "type": "concept",
+              "title": "Material handling cost"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency score"
+            },
+            {
+              "type": "concept",
+              "title": "Travel time"
+            },
+            {
+              "type": "concept",
+              "title": "Space utilization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computerized layout algorithms",
+          "description": "Students learn the purpose and limitations of common methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CRAFT Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "ALDEP Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "CORELAP Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Pairwise exchange"
+            },
+            {
+              "type": "concept",
+              "title": "Heuristics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision support tools",
+          "description": "Students connect layout data to spreadsheets, CAD, simulation, and optimization tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spreadsheet models"
+            },
+            {
+              "type": "concept",
+              "title": "CAD Block Plans"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario comparison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Material Handling Systems and Internal Logistics",
+      "description": "Material handling is the circulatory system of a facility. Students learn to design movement systems that support flow without creating excess travel, congestion, damage, or safety risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Handling principles",
+          "description": "Students learn foundational principles for reducing non-value-added movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit load"
+            },
+            {
+              "type": "concept",
+              "title": "Standardization"
+            },
+            {
+              "type": "concept",
+              "title": "Flow simplification"
+            },
+            {
+              "type": "concept",
+              "title": "Gravity use"
+            },
+            {
+              "type": "concept",
+              "title": "Minimizing handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Handling equipment",
+          "description": "Students compare equipment choices for different loads and operating patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forklifts"
+            },
+            {
+              "type": "concept",
+              "title": "Conveyors"
+            },
+            {
+              "type": "concept",
+              "title": "AGVs and AMRs"
+            },
+            {
+              "type": "concept",
+              "title": "Cranes"
+            },
+            {
+              "type": "concept",
+              "title": "Pallet systems"
+            },
+            {
+              "type": "concept",
+              "title": "Tuggers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Internal logistics design",
+          "description": "Students plan aisles, routes, docks, staging, and replenishment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aisle width"
+            },
+            {
+              "type": "concept",
+              "title": "Traffic direction"
+            },
+            {
+              "type": "concept",
+              "title": "Dock flow"
+            },
+            {
+              "type": "concept",
+              "title": "Line-side delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Milk runs"
+            },
+            {
+              "type": "concept",
+              "title": "Congestion control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Warehouse and Distribution Facility Design",
+      "description": "Warehouses and distribution centers have distinctive layout requirements around receiving, storage, picking, packing, and shipping. Students learn how warehouse design supports service, accuracy, labor productivity, and inventory control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Warehouse functional areas",
+          "description": "Students learn the basic zones and how they interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receiving"
+            },
+            {
+              "type": "concept",
+              "title": "Putaway"
+            },
+            {
+              "type": "concept",
+              "title": "Reserve storage"
+            },
+            {
+              "type": "concept",
+              "title": "Forward pick"
+            },
+            {
+              "type": "concept",
+              "title": "Packing"
+            },
+            {
+              "type": "concept",
+              "title": "Shipping"
+            },
+            {
+              "type": "concept",
+              "title": "Returns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Storage and picking strategy",
+          "description": "Students connect SKU behavior to storage and retrieval methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ABC Classification"
+            },
+            {
+              "type": "concept",
+              "title": "Slotting"
+            },
+            {
+              "type": "concept",
+              "title": "Pick paths"
+            },
+            {
+              "type": "concept",
+              "title": "Batch picking"
+            },
+            {
+              "type": "concept",
+              "title": "Zone picking"
+            },
+            {
+              "type": "concept",
+              "title": "Automation options"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Warehouse performance",
+          "description": "Students measure how well the design supports operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Order cycle time"
+            },
+            {
+              "type": "concept",
+              "title": "Dock-to-stock time"
+            },
+            {
+              "type": "concept",
+              "title": "Space utilization"
+            },
+            {
+              "type": "concept",
+              "title": "Picking accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Labor productivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Facility Location, Network, and Site Selection Analysis",
+      "description": "Facility planning includes deciding where a facility belongs, not only how the inside is arranged. Students learn location models and site-selection factors that connect facilities to markets, suppliers, labor, logistics, and risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Location drivers",
+          "description": "Students identify quantitative and qualitative factors in site decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transportation cost"
+            },
+            {
+              "type": "concept",
+              "title": "Labor availability"
+            },
+            {
+              "type": "concept",
+              "title": "Utilities"
+            },
+            {
+              "type": "concept",
+              "title": "Taxes and incentives"
+            },
+            {
+              "type": "concept",
+              "title": "Customer proximity"
+            },
+            {
+              "type": "concept",
+              "title": "Risk exposure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Location models",
+          "description": "Students apply simple analytical tools for location decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factor rating"
+            },
+            {
+              "type": "concept",
+              "title": "Center of gravity"
+            },
+            {
+              "type": "concept",
+              "title": "Load-Distance Location"
+            },
+            {
+              "type": "concept",
+              "title": "Break-even analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Network tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Site feasibility",
+          "description": "Students assess whether a specific site can support the intended facility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parcel geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Access roads"
+            },
+            {
+              "type": "concept",
+              "title": "Utilities"
+            },
+            {
+              "type": "concept",
+              "title": "Zoning"
+            },
+            {
+              "type": "concept",
+              "title": "Expansion space"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plant, Office, and Service Layout Design",
+      "description": "Facilities planning applies beyond factories. Students learn how layout principles adapt to offices, labs, hospitals, schools, service centers, and mixed-use work environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Plant layout",
+          "description": "Students apply layout concepts to manufacturing and production support areas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Production cells"
+            },
+            {
+              "type": "concept",
+              "title": "Tool rooms"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance areas"
+            },
+            {
+              "type": "concept",
+              "title": "Quality labs"
+            },
+            {
+              "type": "concept",
+              "title": "Receiving and shipping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Office and knowledge-work layout",
+          "description": "Students evaluate workspace needs for communication, privacy, collaboration, and workflow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open offices"
+            },
+            {
+              "type": "concept",
+              "title": "Private offices"
+            },
+            {
+              "type": "concept",
+              "title": "Team zones"
+            },
+            {
+              "type": "concept",
+              "title": "Meeting rooms"
+            },
+            {
+              "type": "concept",
+              "title": "Hybrid work support"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service facility layout",
+          "description": "Students adapt flow, waiting, and customer experience concepts to service settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Customer journey"
+            },
+            {
+              "type": "concept",
+              "title": "Queue areas"
+            },
+            {
+              "type": "concept",
+              "title": "Frontstage/Backstage"
+            },
+            {
+              "type": "concept",
+              "title": "Wayfinding"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Safety, Ergonomics, Sustainability, and Compliance",
+      "description": "A facility design is incomplete if it ignores safety, human factors, environmental performance, and regulatory constraints. This topic teaches students to include these requirements early rather than patching them in later.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Safety and risk controls",
+          "description": "Students identify hazards created or reduced by layout choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pedestrian-vehicle separation"
+            },
+            {
+              "type": "concept",
+              "title": "Emergency egress"
+            },
+            {
+              "type": "concept",
+              "title": "Fire protection"
+            },
+            {
+              "type": "concept",
+              "title": "Machine guarding"
+            },
+            {
+              "type": "concept",
+              "title": "Hazardous materials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ergonomics and human factors",
+          "description": "Students design spaces that support safe and productive work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reach zones"
+            },
+            {
+              "type": "concept",
+              "title": "Lift limits"
+            },
+            {
+              "type": "concept",
+              "title": "Workstation height"
+            },
+            {
+              "type": "concept",
+              "title": "Lighting"
+            },
+            {
+              "type": "concept",
+              "title": "Noise"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainability and compliance",
+          "description": "Students connect facility choices to environmental and code expectations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy use"
+            },
+            {
+              "type": "concept",
+              "title": "Waste flow"
+            },
+            {
+              "type": "concept",
+              "title": "Stormwater"
+            },
+            {
+              "type": "concept",
+              "title": "Building codes"
+            },
+            {
+              "type": "concept",
+              "title": "ADA Accessibility"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Simulation, Cost Evaluation, and Alternative Selection",
+      "description": "Facility alternatives should be evaluated with evidence, not just preference. Students learn to compare layouts using cost, flow, service, safety, flexibility, and simulation-based performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cost modeling",
+          "description": "Students estimate the financial consequences of layout choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Capital cost"
+            },
+            {
+              "type": "concept",
+              "title": "Material handling cost"
+            },
+            {
+              "type": "concept",
+              "title": "Labor cost"
+            },
+            {
+              "type": "concept",
+              "title": "Relocation cost"
+            },
+            {
+              "type": "concept",
+              "title": "Operating cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and scenario testing",
+          "description": "Students use simple discrete-event or spreadsheet simulations to test facility behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arrival patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Queueing"
+            },
+            {
+              "type": "concept",
+              "title": "Resource utilization"
+            },
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "What-if scenarios"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multi-criteria selection",
+          "description": "Students evaluate alternatives across competing goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weighted scoring"
+            },
+            {
+              "type": "concept",
+              "title": "Risk analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder review"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation feasibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Facilities Planning Project and Implementation",
+      "description": "The course culminates in a facilities planning project where students integrate data, layout logic, material handling, location, safety, cost, and implementation planning into a defensible design proposal.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project definition",
+          "description": "Students define the scope, assumptions, objectives, and deliverables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Planning horizon"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Data requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Success measures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design package",
+          "description": "Students assemble a complete facility plan with evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Space requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Block layout"
+            },
+            {
+              "type": "concept",
+              "title": "Handling plan"
+            },
+            {
+              "type": "concept",
+              "title": "Cost comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Risk review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation planning",
+          "description": "Students plan how a facility design becomes reality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phasing"
+            },
+            {
+              "type": "concept",
+              "title": "Move planning"
+            },
+            {
+              "type": "concept",
+              "title": "Downtime control"
+            },
+            {
+              "type": "concept",
+              "title": "Change management"
+            },
+            {
+              "type": "concept",
+              "title": "Post-implementation audit"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

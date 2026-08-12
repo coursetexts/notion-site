@@ -1,0 +1,1072 @@
+{
+  "slug": "it-ethics-and-professionalism",
+  "title": "IT Ethics and Professionalism",
+  "description": "Prepares students to make responsible professional decisions in complex technical environments\u2014covering ethical theories, professional codes, privacy and data ethics, cybersecurity responsibility, intellectual property, workplace conduct, accessibility, AI accountability, governance, and social responsibility, with case analysis and application to internships and capstones.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Ethical Reasoning for Technology Professionals",
+      "description": "This section gives students a structured way to think through moral problems in technical work. The goal is not abstract philosophy alone, but practical judgment under uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Major ethical theories",
+          "description": "Students learn frameworks that help justify decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Consequentialism"
+            },
+            {
+              "type": "concept",
+              "title": "Deontology"
+            },
+            {
+              "type": "concept",
+              "title": "Virtue ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Care ethics and justice-based reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethical decision process",
+          "description": "This subtopic turns theory into a repeatable professional workflow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facts and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholders and harms"
+            },
+            {
+              "type": "concept",
+              "title": "Options and tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation and accountability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moral imagination and blind spots",
+          "description": "Students learn to notice harms that are easy to miss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second-order effects"
+            },
+            {
+              "type": "concept",
+              "title": "Power asymmetries"
+            },
+            {
+              "type": "concept",
+              "title": "Conflicts of interest"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization of deviance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computer Ethics, Professional Identity, and Public Trust",
+      "description": "This section examines why IT work has special responsibilities. Students learn how technical decisions can scale rapidly and affect people who never consented to the system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Computing as a profession",
+          "description": "Students understand professional duties beyond getting systems to work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Competence"
+            },
+            {
+              "type": "concept",
+              "title": "Duty of care"
+            },
+            {
+              "type": "concept",
+              "title": "Public interest"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of expertise"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distinctive computing issues",
+          "description": "This subtopic explains why digital systems create new ethical tensions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale and automation"
+            },
+            {
+              "type": "concept",
+              "title": "Opacity"
+            },
+            {
+              "type": "concept",
+              "title": "Persistence of data"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency and infrastructure risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trust and legitimacy",
+          "description": "Students learn how organizations earn or lose public trust.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transparency"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Accountability"
+            },
+            {
+              "type": "concept",
+              "title": "User and community expectations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Privacy, Data Ethics, Surveillance, and Privacy Engineering",
+      "description": "This section focuses on responsible data practice. Students learn that privacy is not just a legal checkbox; it is a design, governance, and trust problem.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Privacy principles",
+          "description": "Students learn core concepts used in policy and engineering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Notice and consent"
+            },
+            {
+              "type": "concept",
+              "title": "Purpose limitation"
+            },
+            {
+              "type": "concept",
+              "title": "Data minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Retention and deletion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data ethics",
+          "description": "This subtopic looks at responsible use after data is collected.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Secondary use"
+            },
+            {
+              "type": "concept",
+              "title": "Data sharing"
+            },
+            {
+              "type": "concept",
+              "title": "Re-identification risk"
+            },
+            {
+              "type": "concept",
+              "title": "Power and consent in data collection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Privacy engineering",
+          "description": "Students learn design methods that reduce privacy risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data-flow mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy impact assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Access control and logging"
+            },
+            {
+              "type": "concept",
+              "title": "Anonymization, pseudonymization, and their limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cybersecurity Ethics, Cybercrime, Disclosure, and Digital Harm",
+      "description": "This section connects security skills to responsibility. Students learn the line between defense, research, negligence, and harm.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cybercrime and legal boundaries",
+          "description": "Students learn how unauthorized access and misuse create legal and ethical risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unauthorized access"
+            },
+            {
+              "type": "concept",
+              "title": "Malware and fraud"
+            },
+            {
+              "type": "concept",
+              "title": "Computer misuse laws"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence handling basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Responsible security practice",
+          "description": "This subtopic covers ethical behavior in testing and operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permission and scope"
+            },
+            {
+              "type": "concept",
+              "title": "Rules of engagement"
+            },
+            {
+              "type": "concept",
+              "title": "Least harm"
+            },
+            {
+              "type": "concept",
+              "title": "Data handling during testing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vulnerability disclosure",
+          "description": "Students learn how to report risk responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinated disclosure"
+            },
+            {
+              "type": "concept",
+              "title": "Vendor communication"
+            },
+            {
+              "type": "concept",
+              "title": "Patch timelines"
+            },
+            {
+              "type": "concept",
+              "title": "Public interest and emergency exceptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Intellectual Property, Open Source, Licensing, and Creative Work",
+      "description": "This section teaches students to respect and manage rights in software, data, media, and documentation. The point is to enable reuse without exploitation or legal exposure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Intellectual property basics",
+          "description": "Students learn the main legal categories that affect IT projects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Copyright"
+            },
+            {
+              "type": "concept",
+              "title": "Patents"
+            },
+            {
+              "type": "concept",
+              "title": "Trademarks"
+            },
+            {
+              "type": "concept",
+              "title": "Trade secrets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Software and open-source licensing",
+          "description": "This subtopic covers practical reuse obligations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Permissive licenses"
+            },
+            {
+              "type": "concept",
+              "title": "Copyleft licenses"
+            },
+            {
+              "type": "concept",
+              "title": "License compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Attribution and notices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Academic and workplace integrity",
+          "description": "Students learn responsible creation and citation habits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plagiarism"
+            },
+            {
+              "type": "concept",
+              "title": "Code Reuse and Generative AI Assistance"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation of sources"
+            },
+            {
+              "type": "concept",
+              "title": "Ownership in employment and contracts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Professional Codes: ACM, IEEE, and Standards-Based Responsibility",
+      "description": "This section helps students use professional codes as decision aids. Codes do not remove ambiguity, but they give shared language for responsibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ACM Code of Ethics",
+          "description": "Students learn the central values of computing professionalism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Avoid harm"
+            },
+            {
+              "type": "concept",
+              "title": "Respect privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Be honest and trustworthy"
+            },
+            {
+              "type": "concept",
+              "title": "Contribute to society and human well-being"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "IEEE Code of Ethics",
+          "description": "This subtopic connects IT practice to engineering responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Public safety and welfare"
+            },
+            {
+              "type": "concept",
+              "title": "Conflicts of interest"
+            },
+            {
+              "type": "concept",
+              "title": "Technical competence"
+            },
+            {
+              "type": "concept",
+              "title": "Fair treatment and non-discrimination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Using codes in practice",
+          "description": "Students learn how codes support workplace decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mapping code provisions to cases"
+            },
+            {
+              "type": "concept",
+              "title": "Resolving conflicts between principles"
+            },
+            {
+              "type": "concept",
+              "title": "Documenting professional judgment"
+            },
+            {
+              "type": "concept",
+              "title": "Escalation and consultation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Workplace Ethics, Teams, Power, Whistleblowing, and Professional Conduct",
+      "description": "This section prepares students for ethical problems that happen inside organizations. Students learn to handle pressure, ambiguity, team conflict, and unequal power.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Professional conduct",
+          "description": "Students learn expectations for day-to-day work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Honesty in status reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Respectful collaboration"
+            },
+            {
+              "type": "concept",
+              "title": "Competence and continuous learning"
+            },
+            {
+              "type": "concept",
+              "title": "Meeting commitments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power and organizational pressure",
+          "description": "This subtopic examines situations where incentives conflict with ethics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unrealistic deadlines"
+            },
+            {
+              "type": "concept",
+              "title": "Management pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Retaliation risk"
+            },
+            {
+              "type": "concept",
+              "title": "Conflicts of interest"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Escalation and whistleblowing",
+          "description": "Students learn responsible ways to raise concerns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Legal and ethical protections"
+            },
+            {
+              "type": "concept",
+              "title": "When external disclosure may be justified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equity, Accessibility, Inclusive Design, and Social Responsibility",
+      "description": "This section broadens the ethical lens from individual users to communities. Students learn that technology design can reproduce exclusion or actively reduce it.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equity and disparate impact",
+          "description": "Students learn how systems can harm groups unevenly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias in requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Unequal access"
+            },
+            {
+              "type": "concept",
+              "title": "Digital divide"
+            },
+            {
+              "type": "concept",
+              "title": "Disparate outcomes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accessibility",
+          "description": "This subtopic treats accessibility as a professional design obligation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "WCAG Principles"
+            },
+            {
+              "type": "concept",
+              "title": "Assistive technologies"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible forms and navigation"
+            },
+            {
+              "type": "concept",
+              "title": "Testing with users and tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inclusive and participatory design",
+          "description": "Students learn to involve affected communities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder engagement"
+            },
+            {
+              "type": "concept",
+              "title": "Design justice principles"
+            },
+            {
+              "type": "concept",
+              "title": "Community review"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback and repair mechanisms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Algorithmic Accountability, AI Ethics, Bias, and Automated Decision Systems",
+      "description": "This section addresses modern automated systems. Students learn to evaluate AI and analytics systems not only by accuracy, but by fairness, explainability, accountability, and deployment risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bias and fairness",
+          "description": "Students learn how automated systems can encode inequity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biased data"
+            },
+            {
+              "type": "concept",
+              "title": "Proxy variables"
+            },
+            {
+              "type": "concept",
+              "title": "Fairness metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Explainability and accountability",
+          "description": "This subtopic focuses on responsible use of model outputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model interpretability"
+            },
+            {
+              "type": "concept",
+              "title": "Human oversight"
+            },
+            {
+              "type": "concept",
+              "title": "Appeal processes"
+            },
+            {
+              "type": "concept",
+              "title": "Audit trails"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "AI Governance",
+          "description": "Students learn operational controls for AI systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Model cards and documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and drift"
+            },
+            {
+              "type": "concept",
+              "title": "NIST AI RMF Concepts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Platform Responsibility, Social Media, Persuasive Design, and Human Attention",
+      "description": "This section studies systems that influence behavior at scale. Students learn how recommendation engines, notifications, feeds, and platform policies affect individuals and society.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Persuasive and attention-aware design",
+          "description": "Students learn how design can support or manipulate users.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dark patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Nudging"
+            },
+            {
+              "type": "concept",
+              "title": "Addictive loops"
+            },
+            {
+              "type": "concept",
+              "title": "User autonomy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Content and platform governance",
+          "description": "This subtopic examines platform choices around speech and safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moderation"
+            },
+            {
+              "type": "concept",
+              "title": "Misinformation"
+            },
+            {
+              "type": "concept",
+              "title": "Harassment and abuse"
+            },
+            {
+              "type": "concept",
+              "title": "Transparency reports"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Civic and mental health impacts",
+          "description": "Students consider broader consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarization"
+            },
+            {
+              "type": "concept",
+              "title": "Youth and wellbeing"
+            },
+            {
+              "type": "concept",
+              "title": "Attention economy"
+            },
+            {
+              "type": "concept",
+              "title": "Design for humane technology"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Globalization, Labor, Supply Chains, Sustainability, and Cross-Cultural Ethics",
+      "description": "This section places IT in a global context. Students learn that technology depends on labor, infrastructure, materials, policies, and cultures beyond the immediate development team.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Global data and jurisdiction",
+          "description": "Students learn how borders complicate IT ethics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data localization"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-border transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Conflicting laws"
+            },
+            {
+              "type": "concept",
+              "title": "Cultural expectations of privacy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Labor and supply chains",
+          "description": "This subtopic examines hidden work behind technology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Content moderation labor"
+            },
+            {
+              "type": "concept",
+              "title": "Gig work platforms"
+            },
+            {
+              "type": "concept",
+              "title": "Outsourcing and working conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware supply chains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainability",
+          "description": "Students learn environmental responsibilities in IT.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "E-waste"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud energy use"
+            },
+            {
+              "type": "concept",
+              "title": "Device lifecycles"
+            },
+            {
+              "type": "concept",
+              "title": "Repairability and responsible procurement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "IT Governance, Risk, Compliance, Auditing, and Responsible Operations",
+      "description": "This section turns ethical commitments into organizational systems. Students learn how policy, controls, audits, and governance make responsibility durable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Governance and accountability",
+          "description": "Students learn how organizations assign and monitor responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Policies and procedures"
+            },
+            {
+              "type": "concept",
+              "title": "Roles and ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Risk registers"
+            },
+            {
+              "type": "concept",
+              "title": "Decision logs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compliance and regulation",
+          "description": "This subtopic introduces common compliance contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Privacy regulations"
+            },
+            {
+              "type": "concept",
+              "title": "Security standards"
+            },
+            {
+              "type": "concept",
+              "title": "Records retention"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility compliance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Auditing and operations",
+          "description": "Students learn how ethical commitments are checked over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Access reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Logging and monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Incident postmortems"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous improvement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Case Analysis, Stakeholder Communication, and Ethical Decision Documentation",
+      "description": "This section develops the communication skill behind ethical practice. Students learn to write and present decisions clearly enough for teams, managers, users, and auditors.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Case analysis methods",
+          "description": "Students learn how to analyze messy real situations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facts and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Harms and benefits"
+            },
+            {
+              "type": "concept",
+              "title": "Alternatives and tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional communication",
+          "description": "This subtopic focuses on audience-aware ethical argument.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summaries"
+            },
+            {
+              "type": "concept",
+              "title": "Risk language"
+            },
+            {
+              "type": "concept",
+              "title": "Plain-language explanations"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendations and caveats"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation",
+          "description": "Students learn to leave an accountable trail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision records"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy/security review notes"
+            },
+            {
+              "type": "concept",
+              "title": "Meeting notes and approvals"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence and citations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capstone Ethics Review for IT Projects and Professional Development",
+      "description": "This final section integrates the course with internships, senior projects, and professional identity. Students practice reviewing their own work as future IT professionals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project ethics review",
+          "description": "Students apply the course to a real or proposed IT project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Project purpose and stakeholders"
+            },
+            {
+              "type": "concept",
+              "title": "Data and privacy review"
+            },
+            {
+              "type": "concept",
+              "title": "Security and misuse analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility and equity review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional portfolio",
+          "description": "This subtopic helps students translate ethics into career readiness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Personal code of conduct"
+            },
+            {
+              "type": "concept",
+              "title": "Resume and interview ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Certifications and professional learning"
+            },
+            {
+              "type": "concept",
+              "title": "Handling uncertainty at work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Final presentation",
+          "description": "Students learn to defend ethical recommendations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk narrative"
+            },
+            {
+              "type": "concept",
+              "title": "Mitigation plan"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff explanation"
+            },
+            {
+              "type": "concept",
+              "title": "Reflection and lessons learned"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

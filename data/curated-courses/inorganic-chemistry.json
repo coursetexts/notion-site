@@ -1,0 +1,1087 @@
+{
+  "slug": "inorganic-chemistry",
+  "title": "Inorganic Chemistry",
+  "description": "An undergraduate Chemistry core course, strengthened with graduate inorganic, organometallic, spectroscopy, bioinorganic, and materials chemistry context.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Atomic structure and periodic trends",
+      "description": "Use electron configuration, effective nuclear charge, and periodicity to explain inorganic structure and reactivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electronic structure",
+          "description": "The point is to connect quantum numbers and orbital filling to chemical behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantum numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Aufbau and exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "Valence configurations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Periodic trends",
+          "description": "Trends let students predict bonding, acidity, redox behavior, and structure before memorizing facts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effective nuclear charge"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic and ionic radius"
+            },
+            {
+              "type": "concept",
+              "title": "Ionization energy and electron affinity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oxidation states and redox",
+          "description": "Inorganic chemistry often turns on accessible oxidation states and electron-transfer logic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Formal oxidation state assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Latimer/Frost diagram preview"
+            },
+            {
+              "type": "concept",
+              "title": "Disproportionation intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Descriptive periodicity",
+          "description": "Students learn representative chemistry across the table as patterns, not isolated facts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S-block trends"
+            },
+            {
+              "type": "concept",
+              "title": "P-block trends"
+            },
+            {
+              "type": "concept",
+              "title": "Transition-metal trends"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Symmetry and group theory",
+      "description": "Give students the language for molecular shape, orbital interactions, spectroscopy, and selection rules.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Symmetry elements and operations",
+          "description": "Students learn to identify the operations that leave a molecule unchanged.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rotation axes"
+            },
+            {
+              "type": "concept",
+              "title": "Mirror planes"
+            },
+            {
+              "type": "concept",
+              "title": "Inversion centers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Point-group assignment",
+          "description": "Point groups compress molecular geometry into a useful label.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision trees"
+            },
+            {
+              "type": "concept",
+              "title": "Common molecular point groups"
+            },
+            {
+              "type": "concept",
+              "title": "High-symmetry examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Character tables",
+          "description": "Character tables are working tools for orbitals, vibrations, and spectroscopy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Irreducible representations"
+            },
+            {
+              "type": "concept",
+              "title": "Basis functions"
+            },
+            {
+              "type": "concept",
+              "title": "Direct products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical applications",
+          "description": "Symmetry becomes powerful when used to predict orbital mixing and spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SALCs"
+            },
+            {
+              "type": "concept",
+              "title": "IR/Raman activity"
+            },
+            {
+              "type": "concept",
+              "title": "Orbital overlap rules"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bonding theories and molecular orbital methods",
+      "description": "Build from Lewis/VSEPR intuition to valence bond, molecular orbital, and ligand-group orbital descriptions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical bonding models",
+          "description": "These models give fast structure predictions but need clear limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lewis structures"
+            },
+            {
+              "type": "concept",
+              "title": "Formal charge"
+            },
+            {
+              "type": "concept",
+              "title": "VSEPR geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Valence bond and hybridization",
+          "description": "Hybridization remains useful for local geometry and qualitative bonding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hybrid orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "Sigma and pi bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Hypervalency caveats"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular orbital theory",
+          "description": "MO theory explains delocalization, magnetism, bond order, and spectroscopy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LCAO"
+            },
+            {
+              "type": "concept",
+              "title": "Bonding/antibonding orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "HOMO-LUMO reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Symmetry-adapted orbital construction",
+          "description": "Students learn how group theory makes complex bonding diagrams manageable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SALCs"
+            },
+            {
+              "type": "concept",
+              "title": "Orbital matching"
+            },
+            {
+              "type": "concept",
+              "title": "Walsh-style reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Crystal field theory",
+      "description": "Explain transition-metal d-orbital splitting and use it to predict color, magnetism, and spin states.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "d-orbital splitting",
+          "description": "Geometry changes the energy pattern of d orbitals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Octahedral splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Tetrahedral splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Square planar splitting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Crystal field stabilization",
+          "description": "CFSE helps explain geometry, spin state, and relative stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron filling"
+            },
+            {
+              "type": "concept",
+              "title": "Pairing energy"
+            },
+            {
+              "type": "concept",
+              "title": "High-spin and low-spin cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectrochemical series",
+          "description": "Ligand identity tunes splitting and observable properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weak-field ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Strong-field ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Color and absorption"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Jahn-Teller distortion",
+          "description": "Electronic degeneracy can drive structural distortion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "D9 and high-spin d4 cases"
+            },
+            {
+              "type": "concept",
+              "title": "Elongation/compression"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral consequences"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ligand field theory",
+      "description": "Move beyond electrostatic splitting to covalency, orbital mixing, and quantitative interpretation of spectra.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Covalent metal-ligand bonding",
+          "description": "Ligand field theory explains where pure crystal field theory falls short.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sigma donation"
+            },
+            {
+              "type": "concept",
+              "title": "Pi donation"
+            },
+            {
+              "type": "concept",
+              "title": "Pi backbonding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ligand orbital effects",
+          "description": "Ligands control orbital energies through donor and acceptor interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CO and phosphines"
+            },
+            {
+              "type": "concept",
+              "title": "Halides and oxo ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Nephelauxetic effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electronic spectra",
+          "description": "Students connect orbital splitting to real absorption spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "D-d transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Charge-transfer bands"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tanabe-Sugano interpretation",
+          "description": "Term diagrams help interpret spin-allowed and spin-forbidden transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free-ion terms"
+            },
+            {
+              "type": "concept",
+              "title": "Racah parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Spin crossover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transition metal complexes",
+      "description": "Study the structures, properties, and reactivity patterns that make transition metals central to inorganic chemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coordination environments",
+          "description": "Complexes are organized by metal, ligand set, geometry, and electron count.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordination number"
+            },
+            {
+              "type": "concept",
+              "title": "Chelation"
+            },
+            {
+              "type": "concept",
+              "title": "Common geometries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Isomerism",
+          "description": "Different arrangements can produce distinct properties and reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric isomers"
+            },
+            {
+              "type": "concept",
+              "title": "Optical isomers"
+            },
+            {
+              "type": "concept",
+              "title": "Linkage isomers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetism and electron counts",
+          "description": "Magnetic measurements reveal spin state and electronic structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Paramagnetism"
+            },
+            {
+              "type": "concept",
+              "title": "Spin-only moments"
+            },
+            {
+              "type": "concept",
+              "title": "Diamagnetic complexes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Redox and stability",
+          "description": "Metal complexes often cycle between oxidation states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stability constants"
+            },
+            {
+              "type": "concept",
+              "title": "Chelate effect"
+            },
+            {
+              "type": "concept",
+              "title": "Pourbaix intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coordination chemistry",
+      "description": "Develop ligand design, complex formation, substitution, and thermodynamic reasoning in metal-ligand systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ligand classification",
+          "description": "A good ligand vocabulary makes complex structures and reactivity readable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Denticity"
+            },
+            {
+              "type": "concept",
+              "title": "Ambidentate ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Macrocycles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "HSAB and selectivity",
+          "description": "Hard-soft matching predicts many coordination preferences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hard acids/bases"
+            },
+            {
+              "type": "concept",
+              "title": "Soft acids/bases"
+            },
+            {
+              "type": "concept",
+              "title": "Borderline cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamics of binding",
+          "description": "Formation constants quantify complex stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stepwise constants"
+            },
+            {
+              "type": "concept",
+              "title": "Chelate effect"
+            },
+            {
+              "type": "concept",
+              "title": "Macrocyclic effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Substitution chemistry",
+          "description": "Ligand exchange mechanisms explain rates and selectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Associative pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Dissociative pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Lability and inertness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inorganic reaction mechanisms",
+      "description": "Make inorganic chemistry mechanistic, not merely descriptive, by tracing how bonds form, break, and rearrange.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ligand substitution mechanisms",
+          "description": "Students learn how coordination environments change over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Associative substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Dissociative substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Interchange mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electron-transfer mechanisms",
+          "description": "Redox chemistry can occur through inner-sphere or outer-sphere pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Marcus-theory intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Bridging ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Self-exchange reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kinetic methods",
+          "description": "Mechanistic claims require rate laws and experimental evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rate law interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Activation parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Stopped-flow overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Catalytic cycles",
+          "description": "Mechanisms become powerful when assembled into cycles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resting states"
+            },
+            {
+              "type": "concept",
+              "title": "Turnover-limiting step"
+            },
+            {
+              "type": "concept",
+              "title": "Product inhibition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Organometallic chemistry",
+      "description": "Connect metal-carbon bonding to synthesis, catalysis, and modern industrial chemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electron counting",
+          "description": "Electron counts organize stability and reactivity across organometallic complexes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neutral and ionic methods"
+            },
+            {
+              "type": "concept",
+              "title": "18-electron rule"
+            },
+            {
+              "type": "concept",
+              "title": "Exceptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Key ligand classes",
+          "description": "Ligands set sterics, electronics, and catalytic behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbonyls"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphines"
+            },
+            {
+              "type": "concept",
+              "title": "Alkenes and carbenes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Elementary steps",
+          "description": "Catalytic cycles are built from recurring organometallic transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidative addition"
+            },
+            {
+              "type": "concept",
+              "title": "Reductive elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Migratory insertion and beta-hydride elimination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Catalysis applications",
+          "description": "Students see why organometallic chemistry matters outside the textbook.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrogenation"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Polymerization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Main group chemistry",
+      "description": "Build a modern, pattern-based view of s- and p-block chemistry, structure, bonding, and reactivity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "s-block and p-block trends",
+          "description": "Periodic patterns explain structure, acidity/basicity, and reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Group 1 and 2 chemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Group 13-18 trends"
+            },
+            {
+              "type": "concept",
+              "title": "Inert-pair effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electron-deficient bonding",
+          "description": "Some main-group compounds require multicenter bonding models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boranes"
+            },
+            {
+              "type": "concept",
+              "title": "3-center-2-electron bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Cluster bonding intro"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hypervalent and heavy-element bonding",
+          "description": "Students learn modern interpretations beyond expanded-octet shorthand.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "3-center-4-electron bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Hypervalent iodine"
+            },
+            {
+              "type": "concept",
+              "title": "Main-group multiple bonds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Main-group materials and sustainability",
+          "description": "Main-group elements matter in batteries, photovoltaics, and green chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Silicon and phosphors"
+            },
+            {
+              "type": "concept",
+              "title": "Halogen chemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Earth-abundant element design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bonding in solids and materials chemistry",
+      "description": "Extend inorganic bonding into crystals, extended lattices, defects, and functional materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ionic and network solids",
+          "description": "Students learn why extended structures require different models than molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lattice energy"
+            },
+            {
+              "type": "concept",
+              "title": "Born-Haber cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Network covalency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solid-state structures",
+          "description": "Crystal structure predicts density, coordination, and properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Close packing"
+            },
+            {
+              "type": "concept",
+              "title": "Perovskites"
+            },
+            {
+              "type": "concept",
+              "title": "Spinels and zeolites"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Defects and nonstoichiometry",
+          "description": "Imperfections often control conductivity, color, and reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vacancies"
+            },
+            {
+              "type": "concept",
+              "title": "Interstitials"
+            },
+            {
+              "type": "concept",
+              "title": "Dopants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Materials synthesis and data",
+          "description": "Modern inorganic chemistry uses databases and characterization to design materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solid-state reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Sol-gel routes"
+            },
+            {
+              "type": "concept",
+              "title": "Materials Project/NIST data"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spectroscopy and structural characterization",
+      "description": "Teach students how inorganic claims are supported by data from spectra, magnetism, diffraction, and electrochemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electronic and vibrational spectroscopy",
+          "description": "Spectra connect bonding models to observable transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UV-vis bands"
+            },
+            {
+              "type": "concept",
+              "title": "IR/Raman selection"
+            },
+            {
+              "type": "concept",
+              "title": "Charge-transfer signatures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Magnetic and EPR methods",
+          "description": "Unpaired electrons make transition-metal complexes experimentally distinctive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Magnetic susceptibility"
+            },
+            {
+              "type": "concept",
+              "title": "EPR g-values"
+            },
+            {
+              "type": "concept",
+              "title": "Spin state evidence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "X-ray crystallography",
+          "description": "Structure determination anchors coordination and materials chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit cells"
+            },
+            {
+              "type": "concept",
+              "title": "Refinement quality"
+            },
+            {
+              "type": "concept",
+              "title": "Cambridge Structural Database use"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrochemical characterization",
+          "description": "Redox potentials reveal thermodynamics and mechanism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclic voltammetry"
+            },
+            {
+              "type": "concept",
+              "title": "Peak separation"
+            },
+            {
+              "type": "concept",
+              "title": "Reversibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bioinorganic chemistry",
+      "description": "Show how metals enable biological structure, electron transfer, catalysis, sensing, and medicine.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Metal ions in biology",
+          "description": "Biological function depends on selective binding and controlled reactivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Essential trace metals"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination environments"
+            },
+            {
+              "type": "concept",
+              "title": "Metal homeostasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oxygen transport and activation",
+          "description": "Metal centers manage oxygen binding and difficult redox chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hemoglobin/myoglobin"
+            },
+            {
+              "type": "concept",
+              "title": "Hemocyanin"
+            },
+            {
+              "type": "concept",
+              "title": "Cytochrome P450"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electron transfer and metalloenzymes",
+          "description": "Nature uses metals for fast, tunable redox and catalysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Iron-sulfur clusters"
+            },
+            {
+              "type": "concept",
+              "title": "Blue copper proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogenase overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Medicinal and toxic inorganic chemistry",
+          "description": "Inorganic chemistry informs drugs, imaging, and environmental health.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cisplatin"
+            },
+            {
+              "type": "concept",
+              "title": "MRI contrast agents"
+            },
+            {
+              "type": "concept",
+              "title": "Heavy-metal toxicity"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

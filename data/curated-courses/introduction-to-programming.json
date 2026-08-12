@@ -1,0 +1,1414 @@
+{
+  "slug": "introduction-to-programming",
+  "title": "Introduction to Programming",
+  "description": "Students learn to design, implement, test, debug, and communicate programs that solve real problems. The course emphasizes computational thinking, readable modular code, data modeling, trustworthy input/output, algorithmic reasoning, collaboration, and responsible practice. Laboratories and projects develop fluency through frequent feedback, culminating in a complete application or hardware-adjacent simulation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Computational Thinking and the Programming Environment",
+      "description": "Programming is disciplined problem solving expressed in a language a computer can execute. Students begin by learning how to frame problems, trace processes, use tools, and learn from feedback.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem decomposition",
+          "description": "Turn an ambiguous task into smaller, testable pieces with clear inputs and outputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Examples and edge cases"
+            },
+            {
+              "type": "concept",
+              "title": "Top-down decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Incremental development"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Algorithms and representation",
+          "description": "Describe a finite process before committing to syntax.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plain-language algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Pseudocode"
+            },
+            {
+              "type": "concept",
+              "title": "Flowcharts and state tables"
+            },
+            {
+              "type": "concept",
+              "title": "Dry runs and trace tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Development environment",
+          "description": "Use an editor, interpreter/compiler, terminal, and documentation effectively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source files and execution"
+            },
+            {
+              "type": "concept",
+              "title": "REPL and scripts"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal navigation"
+            },
+            {
+              "type": "concept",
+              "title": "IDE features without overreliance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Errors as information",
+          "description": "Distinguish syntax, runtime, and logic errors and respond systematically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reading diagnostics"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal reproduction"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis-driven fixes"
+            },
+            {
+              "type": "concept",
+              "title": "Asking precise technical questions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Values, Variables, Types, and Expressions",
+      "description": "Programs transform data. Types, variables, expressions, and representation rules determine what values mean and which operations are valid.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Values and types",
+          "description": "Recognize common data categories and the operations each supports.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integers and floating point"
+            },
+            {
+              "type": "concept",
+              "title": "Boolean values"
+            },
+            {
+              "type": "concept",
+              "title": "Characters and strings"
+            },
+            {
+              "type": "concept",
+              "title": "Null/None awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variables and assignment",
+          "description": "Model changing program state with meaningful names and controlled updates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binding and assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Naming conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Constants"
+            },
+            {
+              "type": "concept",
+              "title": "State tracing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operators and expressions",
+          "description": "Build calculations while respecting precedence and type behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arithmetic and comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Boolean operators"
+            },
+            {
+              "type": "concept",
+              "title": "Operator precedence"
+            },
+            {
+              "type": "concept",
+              "title": "Type conversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Machine representation",
+          "description": "Develop early intuition for finite storage and surprising numerical behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary and hexadecimal awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Integer range"
+            },
+            {
+              "type": "concept",
+              "title": "Floating-point approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Overflow and precision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Input and output",
+          "description": "Create small interactive programs that validate and present data clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Console input/output"
+            },
+            {
+              "type": "concept",
+              "title": "Parsing"
+            },
+            {
+              "type": "concept",
+              "title": "Formatting"
+            },
+            {
+              "type": "concept",
+              "title": "Validation and user messages"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conditionals, Boolean Logic, and Program State",
+      "description": "Control flow lets a program choose behavior based on data and state. Good branching is correct, readable, and complete across normal and exceptional cases.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boolean reasoning",
+          "description": "Translate requirements into conditions that can be evaluated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Truth tables"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison chains"
+            },
+            {
+              "type": "concept",
+              "title": "De Morgan\u2019s laws"
+            },
+            {
+              "type": "concept",
+              "title": "Short-circuit evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditional statements",
+          "description": "Select among alternatives and account for mutually exclusive or overlapping cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "If, elif/else"
+            },
+            {
+              "type": "concept",
+              "title": "Nested conditionals"
+            },
+            {
+              "type": "concept",
+              "title": "Guard clauses"
+            },
+            {
+              "type": "concept",
+              "title": "Decision tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State and invariants",
+          "description": "Track facts that should remain true as execution progresses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State variables"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditions and postconditions"
+            },
+            {
+              "type": "concept",
+              "title": "Assertions"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding contradictory states"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Defensive decisions",
+          "description": "Handle malformed or unexpected input safely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Range and type checks"
+            },
+            {
+              "type": "concept",
+              "title": "Default behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Fail-fast versus recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Security mindset"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Iteration and Repetitive Computation",
+      "description": "Loops express repeated work over time or collections. Students learn to design termination, maintain invariants, and avoid off-by-one and infinite-loop defects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "While loops",
+          "description": "Use condition-controlled repetition when the number of steps is not known in advance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initialization"
+            },
+            {
+              "type": "concept",
+              "title": "Loop condition"
+            },
+            {
+              "type": "concept",
+              "title": "State update"
+            },
+            {
+              "type": "concept",
+              "title": "Termination arguments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "For loops and iteration",
+          "description": "Traverse ranges and collections directly and readably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Range patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Element versus index iteration"
+            },
+            {
+              "type": "concept",
+              "title": "Enumeration"
+            },
+            {
+              "type": "concept",
+              "title": "Nested loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loop patterns",
+          "description": "Recognize reusable structures instead of reinventing control flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Counting and accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Search and early exit"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering and transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Sentinel loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Correctness and efficiency",
+          "description": "Trace loop behavior and estimate how work grows with input size.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop invariants"
+            },
+            {
+              "type": "concept",
+              "title": "Off-by-one errors"
+            },
+            {
+              "type": "concept",
+              "title": "Operation counting"
+            },
+            {
+              "type": "concept",
+              "title": "Linear and quadratic growth intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions, Scope, and Modular Design",
+      "description": "Functions name reusable ideas, isolate responsibility, and make programs testable. This is the foundation of abstraction and maintainable software.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Defining and calling functions",
+          "description": "Specify behavior through names, parameters, results, and documentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function signatures"
+            },
+            {
+              "type": "concept",
+              "title": "Parameters and arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Return values"
+            },
+            {
+              "type": "concept",
+              "title": "Docstrings and examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scope and lifetime",
+          "description": "Understand where names exist and minimize hidden dependencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local and global scope"
+            },
+            {
+              "type": "concept",
+              "title": "Shadowing"
+            },
+            {
+              "type": "concept",
+              "title": "Pure versus stateful functions"
+            },
+            {
+              "type": "concept",
+              "title": "Side effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decomposition and contracts",
+          "description": "Design small functions with one coherent responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preconditions and postconditions"
+            },
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Composition"
+            },
+            {
+              "type": "concept",
+              "title": "Cohesion and coupling intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Parameter passing",
+          "description": "Predict how mutable and immutable arguments behave.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Value and reference models"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Default arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Copying versus sharing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modules and libraries",
+          "description": "Organize code across files and reuse trusted functionality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Imports"
+            },
+            {
+              "type": "concept",
+              "title": "Standard library"
+            },
+            {
+              "type": "concept",
+              "title": "Creating modules"
+            },
+            {
+              "type": "concept",
+              "title": "API documentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Strings, Collections, and Data Modeling",
+      "description": "Collections let programs represent sequences, sets, mappings, records, and structured data. Choosing the right representation simplifies algorithms and prevents bugs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Strings",
+          "description": "Process text as an immutable sequence with encoding awareness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Indexing and slicing"
+            },
+            {
+              "type": "concept",
+              "title": "Search and replacement"
+            },
+            {
+              "type": "concept",
+              "title": "Splitting and joining"
+            },
+            {
+              "type": "concept",
+              "title": "Unicode awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lists and arrays",
+          "description": "Store ordered collections and perform common traversals and updates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Construction and indexing"
+            },
+            {
+              "type": "concept",
+              "title": "Mutation"
+            },
+            {
+              "type": "concept",
+              "title": "Slicing"
+            },
+            {
+              "type": "concept",
+              "title": "Nested collections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dictionaries/maps and sets",
+          "description": "Use key-based lookup and uniqueness to model relationships efficiently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Key\u2013value pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Membership"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency tables"
+            },
+            {
+              "type": "concept",
+              "title": "Set operations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Comprehensions and transformations",
+          "description": "Express simple collection pipelines concisely without sacrificing clarity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Map/filter patterns"
+            },
+            {
+              "type": "concept",
+              "title": "List/set/dict comprehensions"
+            },
+            {
+              "type": "concept",
+              "title": "When explicit loops are clearer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data modeling",
+          "description": "Choose representations that preserve meaning and valid states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tuples/records"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel arrays as a smell"
+            },
+            {
+              "type": "concept",
+              "title": "Nested structures"
+            },
+            {
+              "type": "concept",
+              "title": "Serialization-ready data"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Files, Data Formats, and External Interfaces",
+      "description": "Programs become useful when they persist information and exchange data. Students learn reliable file handling, structured formats, and cautious interaction with external inputs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Text and binary files",
+          "description": "Read and write resources safely and predictably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Paths"
+            },
+            {
+              "type": "concept",
+              "title": "Open/read/write/append modes"
+            },
+            {
+              "type": "concept",
+              "title": "Context managers"
+            },
+            {
+              "type": "concept",
+              "title": "Encoding and newline issues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structured data",
+          "description": "Parse and produce formats used by real systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSV"
+            },
+            {
+              "type": "concept",
+              "title": "JSON"
+            },
+            {
+              "type": "concept",
+              "title": "Schema and field validation"
+            },
+            {
+              "type": "concept",
+              "title": "Serialization and deserialization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exceptions and resource safety",
+          "description": "Recover from expected failures without hiding defects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Try/except/finally"
+            },
+            {
+              "type": "concept",
+              "title": "Specific exception types"
+            },
+            {
+              "type": "concept",
+              "title": "Cleanup"
+            },
+            {
+              "type": "concept",
+              "title": "Error propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "APIs and libraries",
+          "description": "Use a documented interface while respecting failure, limits, and trust boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requests and responses conceptually"
+            },
+            {
+              "type": "concept",
+              "title": "Status and error handling"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets and credentials awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data ethics",
+          "description": "Handle user and operational data responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Consent and retention"
+            },
+            {
+              "type": "concept",
+              "title": "Input provenance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Objects, Classes, and Abstraction",
+      "description": "Object-oriented programming packages state with behavior. Used judiciously, it helps model entities, enforce invariants, and organize larger programs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Objects and identity",
+          "description": "Distinguish a value, an object, a reference, and its mutable state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Identity versus equality"
+            },
+            {
+              "type": "concept",
+              "title": "Attributes and methods"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Object lifecycle awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Defining classes",
+          "description": "Create a type with meaningful construction and behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constructors"
+            },
+            {
+              "type": "concept",
+              "title": "Instance attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Instance methods"
+            },
+            {
+              "type": "concept",
+              "title": "String representation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Encapsulation and invariants",
+          "description": "Protect valid state behind a clear interface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Public interface"
+            },
+            {
+              "type": "concept",
+              "title": "Validation"
+            },
+            {
+              "type": "concept",
+              "title": "Properties/getters awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Information hiding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composition and inheritance",
+          "description": "Prefer assembling behavior from parts; use inheritance only for genuine substitutability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Has-a versus is-a"
+            },
+            {
+              "type": "concept",
+              "title": "Composition"
+            },
+            {
+              "type": "concept",
+              "title": "Inheritance basics"
+            },
+            {
+              "type": "concept",
+              "title": "Polymorphism awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Choosing a paradigm",
+          "description": "Recognize when functions and plain data are simpler than classes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Procedural design"
+            },
+            {
+              "type": "concept",
+              "title": "Functional style awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Object-oriented tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Recursion and Problem Structure",
+      "description": "Recursion solves a problem by reducing it to smaller instances of the same form. It deepens reasoning about call stacks, induction, trees, and divide-and-conquer algorithms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Recursive anatomy",
+          "description": "Design a base case and a step that makes measurable progress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base cases"
+            },
+            {
+              "type": "concept",
+              "title": "Recursive cases"
+            },
+            {
+              "type": "concept",
+              "title": "Progress measure"
+            },
+            {
+              "type": "concept",
+              "title": "Return-value tracing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Call stack",
+          "description": "Explain how pending function calls store state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack frames"
+            },
+            {
+              "type": "concept",
+              "title": "Unwinding"
+            },
+            {
+              "type": "concept",
+              "title": "Recursion depth"
+            },
+            {
+              "type": "concept",
+              "title": "Stack overflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recursive data and algorithms",
+          "description": "Apply recursion where problem structure naturally branches or nests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factorial and sequences"
+            },
+            {
+              "type": "concept",
+              "title": "Binary search"
+            },
+            {
+              "type": "concept",
+              "title": "Tree traversal awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Divide and conquer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Iteration versus recursion",
+          "description": "Compare clarity, efficiency, and language/runtime constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equivalent iterative forms"
+            },
+            {
+              "type": "concept",
+              "title": "Time and space costs"
+            },
+            {
+              "type": "concept",
+              "title": "Memoization awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Testing, Debugging, and Software Quality",
+      "description": "Working once is not the same as being correct. Testing, debugging, documentation, and code review make behavior visible and changes safer.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Systematic debugging",
+          "description": "Move from symptom to cause using evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reproduce and isolate"
+            },
+            {
+              "type": "concept",
+              "title": "Logging and print debugging"
+            },
+            {
+              "type": "concept",
+              "title": "Debugger breakpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Binary-search debugging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Test design",
+          "description": "Choose cases that exercise specifications, boundaries, and failure modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit tests"
+            },
+            {
+              "type": "concept",
+              "title": "Normal, boundary, and invalid cases"
+            },
+            {
+              "type": "concept",
+              "title": "Test oracles"
+            },
+            {
+              "type": "concept",
+              "title": "Parameterized tests awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Assertions and exceptions",
+          "description": "Use assertions for developer assumptions and exceptions for runtime failures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assertions"
+            },
+            {
+              "type": "concept",
+              "title": "Exception messages"
+            },
+            {
+              "type": "concept",
+              "title": "Raising versus handling"
+            },
+            {
+              "type": "concept",
+              "title": "Never swallowing errors silently"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Readable code",
+          "description": "Write for future readers, including oneself.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Naming"
+            },
+            {
+              "type": "concept",
+              "title": "Formatting and linting"
+            },
+            {
+              "type": "concept",
+              "title": "Comments that explain why"
+            },
+            {
+              "type": "concept",
+              "title": "Refactoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Code review",
+          "description": "Give and receive concrete feedback about correctness, clarity, security, and tests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Small changes"
+            },
+            {
+              "type": "concept",
+              "title": "Review checklists"
+            },
+            {
+              "type": "concept",
+              "title": "Constructive feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Revision discipline"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Algorithms, Data Structures, and Complexity Intuition",
+      "description": "Introductory programmers should recognize common algorithmic patterns and understand that representation choices affect performance, correctness, and scalability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Searching",
+          "description": "Compare linear search with binary search and state their preconditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear search"
+            },
+            {
+              "type": "concept",
+              "title": "Binary search"
+            },
+            {
+              "type": "concept",
+              "title": "Sorted-data requirement"
+            },
+            {
+              "type": "concept",
+              "title": "Best/worst-case intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sorting",
+          "description": "Understand what sorting accomplishes and how simple algorithms behave.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection and insertion sort"
+            },
+            {
+              "type": "concept",
+              "title": "Built-in sort"
+            },
+            {
+              "type": "concept",
+              "title": "Stability awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison versus key functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complexity",
+          "description": "Describe growth using informal and introductory asymptotic language.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant, logarithmic, linear, and quadratic growth"
+            },
+            {
+              "type": "concept",
+              "title": "Time versus space"
+            },
+            {
+              "type": "concept",
+              "title": "Input-size definition"
+            },
+            {
+              "type": "concept",
+              "title": "Benchmarking pitfalls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Abstract data structures",
+          "description": "Connect behavioral interfaces to possible implementations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack and queue"
+            },
+            {
+              "type": "concept",
+              "title": "Set and map"
+            },
+            {
+              "type": "concept",
+              "title": "List/array"
+            },
+            {
+              "type": "concept",
+              "title": "Tree and graph awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Algorithmic responsibility",
+          "description": "Recognize that algorithm choices can encode assumptions and affect people.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data bias"
+            },
+            {
+              "type": "concept",
+              "title": "Ranking and recommendation awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Transparency"
+            },
+            {
+              "type": "concept",
+              "title": "Performance and environmental cost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Workflow, Systems Awareness, and Capstone Projects",
+      "description": "A world-class first course culminates in building, collaborating, and shipping a small but complete program. Students integrate specification, design, implementation, testing, documentation, and reflection.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Version control with Git",
+          "description": "Track change safely and communicate intent through history.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Repository, working tree, and staging"
+            },
+            {
+              "type": "concept",
+              "title": "Commit messages"
+            },
+            {
+              "type": "concept",
+              "title": "Branch and merge awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Resolving simple conflicts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Command line and automation",
+          "description": "Use repeatable commands to run, test, and package work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shell basics"
+            },
+            {
+              "type": "concept",
+              "title": "Arguments and exit status"
+            },
+            {
+              "type": "concept",
+              "title": "Environment and paths"
+            },
+            {
+              "type": "concept",
+              "title": "Simple scripts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems and hardware awareness",
+          "description": "Connect source code to memory, execution, and input/output without prematurely becoming a systems course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compile versus interpret"
+            },
+            {
+              "type": "concept",
+              "title": "Stack and heap awareness"
+            },
+            {
+              "type": "concept",
+              "title": "References/pointers conceptually"
+            },
+            {
+              "type": "concept",
+              "title": "Bits, bytes, and device I/O"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Secure and responsible programming",
+          "description": "Anticipate misuse, protect data, and avoid common unsafe patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Untrusted input"
+            },
+            {
+              "type": "concept",
+              "title": "Least privilege awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency and secret hygiene"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility and inclusive design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computer science capstone",
+          "description": "Build a user-facing or data-focused application with a tested core.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirements and milestones"
+            },
+            {
+              "type": "concept",
+              "title": "Modular architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Data persistence or API use"
+            },
+            {
+              "type": "concept",
+              "title": "Tests, documentation, and demo"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computer engineering capstone",
+          "description": "Build a simulation or hardware-adjacent program with clear interfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensor/device data simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Bitwise operations awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Timing and resource constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Fault handling and validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reflection and portfolio",
+          "description": "Explain technical decisions, limitations, learning, and next steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "README"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Known limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Retrospective and attribution"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

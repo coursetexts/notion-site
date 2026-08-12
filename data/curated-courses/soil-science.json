@@ -1,0 +1,968 @@
+{
+  "slug": "soil-science",
+  "title": "Soil Science",
+  "description": "Studies soil as a living, reactive, spatially variable natural body that supports ecosystems, agriculture, water quality, climate regulation, and infrastructure\u2014integrating formation, morphology, physics, chemistry, biology, fertility, mapping, degradation, contamination, geotechnical behavior, conservation, restoration, and field/lab practice.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Soil as an Earth System: Functions, Scales, and Human Dependence",
+      "description": "Students learn why soils are living, reactive, spatially variable systems central to food, water, climate, biodiversity, and infrastructure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil functions",
+          "description": "The point is to understand soil as infrastructure for ecosystems and society.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plant growth medium"
+            },
+            {
+              "type": "concept",
+              "title": "Water filter and reservoir"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon store and habitat"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil system boundaries",
+          "description": "Students learn to analyze soil across pedons, hillslopes, watersheds, farms, and cities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pedon and profile"
+            },
+            {
+              "type": "concept",
+              "title": "Catena and landscape"
+            },
+            {
+              "type": "concept",
+              "title": "Watershed and regional scales"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human dependence",
+          "description": "Soils support food, climate regulation, biodiversity, and built environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Food security"
+            },
+            {
+              "type": "concept",
+              "title": "Climate mitigation"
+            },
+            {
+              "type": "concept",
+              "title": "Infrastructure and land-use planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Formation, Weathering, Parent Materials, and Landscape Position",
+      "description": "This module explains how climate, organisms, relief, parent material, and time create soil profiles and variability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil-forming factors",
+          "description": "Formation factors explain why soils vary across landscapes and climates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Climate"
+            },
+            {
+              "type": "concept",
+              "title": "Organisms"
+            },
+            {
+              "type": "concept",
+              "title": "Relief, parent material, and time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Weathering processes",
+          "description": "Minerals and rocks become soil through physical, chemical, and biological alteration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Physical disintegration"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrolysis and oxidation"
+            },
+            {
+              "type": "concept",
+              "title": "Biological weathering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Landscape controls",
+          "description": "Position on the landscape shapes drainage, erosion, deposition, and horizon development.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Summit, backslope, footslope, toeslope"
+            },
+            {
+              "type": "concept",
+              "title": "Drainage class"
+            },
+            {
+              "type": "concept",
+              "title": "Alluvial, colluvial, and residual soils"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Morphology, Horizons, Classification, and Field Description",
+      "description": "Students learn to describe soil profiles, classify soils, and connect morphology to process and land use.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil horizons",
+          "description": "Horizons record soil-forming processes and guide interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "O, A, E, B, C, and R horizons"
+            },
+            {
+              "type": "concept",
+              "title": "Master and subordinate designations"
+            },
+            {
+              "type": "concept",
+              "title": "Profile development"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field description",
+          "description": "Students learn to observe soil systematically in pits, cores, and auger samples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Color and Munsell notation"
+            },
+            {
+              "type": "concept",
+              "title": "Structure and consistence"
+            },
+            {
+              "type": "concept",
+              "title": "Roots, pores, mottles, and redox features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classification systems",
+          "description": "Classification organizes soil knowledge for mapping and management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil Taxonomy overview"
+            },
+            {
+              "type": "concept",
+              "title": "WRB concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Diagnostic horizons and features"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Texture, Structure, Porosity, Density, and Physical Properties",
+      "description": "This topic develops the physical framework controlling water, air, roots, traffic, and engineering behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Texture",
+          "description": "Texture controls water retention, nutrient holding, workability, and habitat.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sand, silt, and clay"
+            },
+            {
+              "type": "concept",
+              "title": "Textural triangle"
+            },
+            {
+              "type": "concept",
+              "title": "Particle-size analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structure and aggregation",
+          "description": "Soil structure determines how pores connect and how roots and water move.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Granular, blocky, platy, and prismatic structure"
+            },
+            {
+              "type": "concept",
+              "title": "Aggregate stability"
+            },
+            {
+              "type": "concept",
+              "title": "Tillage and biological effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Porosity and density",
+          "description": "Bulk density and pore space reveal compaction and physical quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bulk and particle density"
+            },
+            {
+              "type": "concept",
+              "title": "Macropores and micropores"
+            },
+            {
+              "type": "concept",
+              "title": "Compaction indicators"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Water, Infiltration, Aeration, and Unsaturated Flow",
+      "description": "Students study how water and gases move through soils and control plant, microbial, and watershed function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil water retention",
+          "description": "Water availability depends on pore size and matric forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Field capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Permanent wilting point"
+            },
+            {
+              "type": "concept",
+              "title": "Plant-available water"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Infiltration and drainage",
+          "description": "Students learn how rainfall enters, moves through, or runs off soils.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infiltration rate"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Preferential flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Aeration and gas exchange",
+          "description": "Air-filled pores control root respiration and microbial metabolism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxygen diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Waterlogging"
+            },
+            {
+              "type": "concept",
+              "title": "Greenhouse gas production preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Chemistry, pH, Cation Exchange, Salinity, and Redox",
+      "description": "This module explains the chemical reactions that control fertility, metal mobility, acidity, salinity, and contaminant behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "pH and acidity",
+          "description": "Soil pH controls nutrient availability, metal solubility, and microbial activity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Active and reserve acidity"
+            },
+            {
+              "type": "concept",
+              "title": "Liming"
+            },
+            {
+              "type": "concept",
+              "title": "Aluminum toxicity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exchange and sorption",
+          "description": "Charged surfaces hold nutrients and contaminants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cation exchange capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Base saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Clay minerals and organic matter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Salinity and redox",
+          "description": "Salt and electron-transfer conditions strongly affect plant growth and chemical mobility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrical conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Sodicity"
+            },
+            {
+              "type": "concept",
+              "title": "Redoximorphic features"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Organic Matter, Carbon Cycling, and Climate Feedbacks",
+      "description": "Students learn how organic matter drives soil structure, fertility, water retention, biodiversity, and carbon storage.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Organic matter pools",
+          "description": "Organic matter exists in forms with different turnover and function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Litter and particulate organic matter"
+            },
+            {
+              "type": "concept",
+              "title": "Mineral-associated organic matter"
+            },
+            {
+              "type": "concept",
+              "title": "Humus concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon cycling",
+          "description": "Students connect decomposition, stabilization, and emissions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Respiration"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon sequestration"
+            },
+            {
+              "type": "concept",
+              "title": "Methane and nitrous oxide links"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil health effects",
+          "description": "Organic matter improves structure, water, nutrient supply, and resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aggregate stability"
+            },
+            {
+              "type": "concept",
+              "title": "Water holding capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Nutrient buffering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Biology, Microbiomes, Food Webs, and Ecosystem Function",
+      "description": "This topic covers soil organisms as engines of decomposition, aggregation, nutrient cycling, and resilience.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil organisms",
+          "description": "Students learn the roles of microbes, fauna, and roots in soil function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bacteria and fungi"
+            },
+            {
+              "type": "concept",
+              "title": "Protozoa, nematodes, and arthropods"
+            },
+            {
+              "type": "concept",
+              "title": "Earthworms and ecosystem engineers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microbial processes",
+          "description": "Microbes drive decomposition and nutrient transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mineralization"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrification and denitrification"
+            },
+            {
+              "type": "concept",
+              "title": "Mycorrhizal associations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil food webs",
+          "description": "Food-web structure links biodiversity to function and resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trophic interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Disease suppression"
+            },
+            {
+              "type": "concept",
+              "title": "Biological indicators"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plant Nutrition, Soil Fertility, and Nutrient Cycling",
+      "description": "Students connect nutrient supply, uptake, amendments, and losses to crop, ecosystem, and water-quality outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Essential nutrients",
+          "description": "Fertility starts with knowing what plants need and how they acquire it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Macronutrients"
+            },
+            {
+              "type": "concept",
+              "title": "Micronutrients"
+            },
+            {
+              "type": "concept",
+              "title": "Deficiency and toxicity symptoms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrient cycling",
+          "description": "Nutrients move through organic, mineral, plant, and loss pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nitrogen cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorus fixation"
+            },
+            {
+              "type": "concept",
+              "title": "Potassium and sulfur cycling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fertility management",
+          "description": "Students learn to interpret tests and choose amendments responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil testing"
+            },
+            {
+              "type": "concept",
+              "title": "Fertilizer recommendations"
+            },
+            {
+              "type": "concept",
+              "title": "Manure, compost, and cover crops"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Survey, Digital Soil Mapping, GIS, and Remote Sensing",
+      "description": "This module teaches students to interpret soil maps, spatial data, and landscape patterns for field and planning decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil survey interpretation",
+          "description": "Soil maps convert field observations into usable land information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Map units"
+            },
+            {
+              "type": "concept",
+              "title": "Capability and limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Web Soil Survey"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Digital soil mapping",
+          "description": "Modern mapping combines field data, terrain, imagery, and models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariates"
+            },
+            {
+              "type": "concept",
+              "title": "Predictive mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty maps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Remote sensing and GIS",
+          "description": "Spatial tools help assess soil moisture, erosion, salinity, and land degradation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DEM terrain metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Vegetation and bare-soil indices"
+            },
+            {
+              "type": "concept",
+              "title": "Landscape stratification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Degradation, Erosion, Compaction, Salinization, and Desertification",
+      "description": "Students learn the major pathways by which soil function is lost and how to diagnose risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Erosion",
+          "description": "Soil erosion removes productive surface soil and delivers sediment downstream.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sheet, rill, and gully erosion"
+            },
+            {
+              "type": "concept",
+              "title": "Wind erosion"
+            },
+            {
+              "type": "concept",
+              "title": "Sediment delivery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physical degradation",
+          "description": "Compaction and structure loss reduce infiltration, rooting, and biological function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Traffic and tillage impacts"
+            },
+            {
+              "type": "concept",
+              "title": "Surface crusting"
+            },
+            {
+              "type": "concept",
+              "title": "Subsoil compaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical and landscape degradation",
+          "description": "Salinity, acidification, and desertification threaten long-term productivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Salinization"
+            },
+            {
+              "type": "concept",
+              "title": "Acid sulfate and acidified soils"
+            },
+            {
+              "type": "concept",
+              "title": "Dryland degradation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Contaminated Soils, Soil-Sediment Chemistry, and Remediation",
+      "description": "This topic integrates environmental chemistry with soil processes to evaluate pollutants, exposure, and cleanup strategies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Contaminant behavior",
+          "description": "Soil chemistry controls pollutant mobility, persistence, and exposure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metals and metalloids"
+            },
+            {
+              "type": "concept",
+              "title": "Organic contaminants"
+            },
+            {
+              "type": "concept",
+              "title": "PFAS and emerging contaminants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk and sampling",
+          "description": "Students learn to connect concentration, exposure pathway, and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Soil and sediment sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Background levels"
+            },
+            {
+              "type": "concept",
+              "title": "Bioavailability and exposure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Remediation",
+          "description": "Cleanup strategies depend on contaminant, soil, hydrology, and land use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Immobilization and amendments"
+            },
+            {
+              "type": "concept",
+              "title": "Bioremediation and phytoremediation"
+            },
+            {
+              "type": "concept",
+              "title": "Excavation, capping, and monitored natural attenuation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Mechanics, Geotechnical Behavior, and Land-Use Constraints",
+      "description": "Students gain a practical bridge to soil strength, seepage, settlement, slopes, and site investigation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Index and engineering properties",
+          "description": "Civil and environmental decisions require soil behavior under load and water flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atterberg limits"
+            },
+            {
+              "type": "concept",
+              "title": "Compaction"
+            },
+            {
+              "type": "concept",
+              "title": "Permeability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stress, strength, and settlement",
+          "description": "Students learn why soil can compress, fail, or stabilize structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effective stress"
+            },
+            {
+              "type": "concept",
+              "title": "Consolidation"
+            },
+            {
+              "type": "concept",
+              "title": "Shear strength"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Site investigation and hazards",
+          "description": "Soil science supports safe siting and hazard reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Borings and sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Slope stability"
+            },
+            {
+              "type": "concept",
+              "title": "Foundations and earthworks overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Management, Conservation, Restoration, and Regenerative Systems",
+      "description": "This module connects soil science to applied land stewardship, agriculture, restoration, and sustainability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conservation practices",
+          "description": "Management can reduce erosion, improve water, and protect productivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Contour farming and terraces"
+            },
+            {
+              "type": "concept",
+              "title": "Mulch and residue cover"
+            },
+            {
+              "type": "concept",
+              "title": "Riparian buffers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil health systems",
+          "description": "Regenerative practices aim to rebuild biological, physical, and chemical function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reduced tillage"
+            },
+            {
+              "type": "concept",
+              "title": "Cover crops"
+            },
+            {
+              "type": "concept",
+              "title": "Diverse rotations and grazing management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Restoration and land rehabilitation",
+          "description": "Damaged soils can be rebuilt, but recovery depends on constraints and goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mine land reclamation"
+            },
+            {
+              "type": "concept",
+              "title": "Urban soil restoration"
+            },
+            {
+              "type": "concept",
+              "title": "Wetland and prairie soil recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Field, Lab, and Restoration Project",
+      "description": "The course culminates in a field-to-lab project that classifies, analyzes, maps, and recommends management for a real soil system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field investigation",
+          "description": "Students practice professional field observation and sampling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Site description"
+            },
+            {
+              "type": "concept",
+              "title": "Profile description"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laboratory and data analysis",
+          "description": "The project connects measurements to interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Texture, pH, EC, organic matter, and nutrients"
+            },
+            {
+              "type": "concept",
+              "title": "Bulk density and infiltration"
+            },
+            {
+              "type": "concept",
+              "title": "Map and table outputs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Management recommendation",
+          "description": "The final deliverable turns soil evidence into a defensible action plan.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limitations and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Restoration or management options"
+            },
+            {
+              "type": "concept",
+              "title": "Technical report and presentation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

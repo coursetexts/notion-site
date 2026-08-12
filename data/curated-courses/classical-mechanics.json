@@ -1,0 +1,1388 @@
+{
+  "slug": "classical-mechanics",
+  "title": "Classical Mechanics",
+  "description": "An analytical mechanics course covering Newtonian review, variational calculus, constraints, Lagrangian mechanics, central forces, rigid bodies, rotating frames, oscillations, Hamiltonian mechanics, canonical transformations, Hamilton-Jacobi theory, nonlinear dynamics, and computation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Newtonian Mechanics Review and Conservation Laws",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes newtonian mechanics review and conservation laws concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton's laws"
+            },
+            {
+              "type": "concept",
+              "title": "Inertial frame"
+            },
+            {
+              "type": "concept",
+              "title": "Force"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Work-energy theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Angular momentum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with newtonian mechanics review and conservation laws.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Newton's laws to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare inertial frame with force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Newton's laws changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Calculus of Variations",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes calculus of variations concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional"
+            },
+            {
+              "type": "concept",
+              "title": "Euler-Lagrange equation"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary action"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary condition"
+            },
+            {
+              "type": "concept",
+              "title": "First variation"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with calculus of variations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply functional to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Euler-Lagrange equation with stationary action"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how functional changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Constraints and Generalized Coordinates",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes constraints and generalized coordinates concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Holonomic constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Nonholonomic constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint force"
+            },
+            {
+              "type": "concept",
+              "title": "Degree of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with constraints and generalized coordinates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply holonomic constraint to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare nonholonomic constraint with generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how holonomic constraint changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lagrangian Formulation and Hamilton's Principle",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes lagrangian formulation and hamilton's principle concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Hamilton's principle"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized force"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclic coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with lagrangian formulation and hamilton's principle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Lagrangian to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Hamilton's principle with generalized force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Lagrangian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Central Force Motion and Orbits",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes central force motion and orbits concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Central force"
+            },
+            {
+              "type": "concept",
+              "title": "Effective potential"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced mass"
+            },
+            {
+              "type": "concept",
+              "title": "Orbit equation"
+            },
+            {
+              "type": "concept",
+              "title": "Kepler problem"
+            },
+            {
+              "type": "concept",
+              "title": "Scattering angle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with central force motion and orbits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply central force to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare effective potential with reduced mass"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how central force changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Two-Body Problem",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes the two-body problem concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with the two-body problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply generalized coordinate to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Lagrangian with Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conservation law"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how generalized coordinate changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Small Oscillations and Normal Modes",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes small oscillations and normal modes concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium point"
+            },
+            {
+              "type": "concept",
+              "title": "Normal mode"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfrequency"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled oscillator"
+            },
+            {
+              "type": "concept",
+              "title": "Linearization"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with small oscillations and normal modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply equilibrium point to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare normal mode with eigenfrequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how equilibrium point changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rigid Body Kinematics and Dynamics",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes rigid body kinematics and dynamics concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment of inertia tensor"
+            },
+            {
+              "type": "concept",
+              "title": "Euler angles"
+            },
+            {
+              "type": "concept",
+              "title": "Principal axes"
+            },
+            {
+              "type": "concept",
+              "title": "Torque"
+            },
+            {
+              "type": "concept",
+              "title": "Precession"
+            },
+            {
+              "type": "concept",
+              "title": "Nutation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with rigid body kinematics and dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply moment of inertia tensor to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Euler angles with principal axes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how moment of inertia tensor changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Non-Inertial and Rotating Frames",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes non-inertial and rotating frames concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with non-inertial and rotating frames.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply generalized coordinate to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Lagrangian with Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conservation law"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how generalized coordinate changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hamiltonian Mechanics",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes hamiltonian mechanics concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson bracket"
+            },
+            {
+              "type": "concept",
+              "title": "Hamilton's equations"
+            },
+            {
+              "type": "concept",
+              "title": "Phase space"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with hamiltonian mechanics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Hamiltonian to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare canonical coordinate with Poisson bracket"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Hamiltonian changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Canonical Transformations and Poisson Brackets",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes canonical transformations and poisson brackets concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Canonical transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Generating function"
+            },
+            {
+              "type": "concept",
+              "title": "Symplectic form"
+            },
+            {
+              "type": "concept",
+              "title": "Liouville theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Action-angle variable"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with canonical transformations and poisson brackets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply canonical transformation to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare generating function with symplectic form"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how canonical transformation changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hamilton-Jacobi Theory and Action-Angle Variables",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes hamilton-jacobi theory and action-angle variables concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with hamilton-jacobi theory and action-angle variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply generalized coordinate to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Lagrangian with Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conservation law"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how generalized coordinate changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuous Systems and Field-Like Mechanics",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes continuous systems and field-like mechanics concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with continuous systems and field-like mechanics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply generalized coordinate to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Lagrangian with Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conservation law"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how generalized coordinate changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonlinear Dynamics and Chaos",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes nonlinear dynamics and chaos concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phase portrait"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed point"
+            },
+            {
+              "type": "concept",
+              "title": "Separatrix"
+            },
+            {
+              "type": "concept",
+              "title": "Poincare section"
+            },
+            {
+              "type": "concept",
+              "title": "Lyapunov exponent"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with nonlinear dynamics and chaos.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply phase portrait to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare fixed point with separatrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how phase portrait changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computational Mechanics Project",
+      "description": "Specific Terms and Concepts",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the precise vocabulary that makes computational mechanics project concrete instead of merely thematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Generalized coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrangian"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation law"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the recurring moves students should be able to perform when working with computational mechanics project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derive equations of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conservation laws"
+            },
+            {
+              "type": "concept",
+              "title": "Apply generalized coordinate to a realistic case"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Lagrangian with Hamiltonian"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid common errors, and verify that an answer or recommendation is well supported.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign errors in potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Missing constraint forces"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conservation law"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how generalized coordinate changes the interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

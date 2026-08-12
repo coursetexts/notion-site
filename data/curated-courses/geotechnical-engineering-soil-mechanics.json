@@ -1,0 +1,1100 @@
+{
+  "slug": "geotechnical-engineering-soil-mechanics",
+  "title": "Geotechnical Engineering / Soil Mechanics",
+  "description": "Geotechnical Engineering / Soil Mechanics teaches students how soils behave as engineering materials and how that behavior affects foundations, slopes, earth-retaining systems, seepage, settlement, and site investigation. The course connects laboratory testing, field exploration, analysis methods, and design judgment for civil infrastructure.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Soil Formation, Composition, and Geologic Context",
+      "description": "This opening topic frames soil as an engineering material created by geologic processes. Students learn why origin, mineralogy, particle size, and depositional environment strongly influence behavior in foundations, slopes, and earthworks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil origin and formation",
+          "description": "Students learn how weathering, transport, and deposition create different soil profiles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residual soils"
+            },
+            {
+              "type": "concept",
+              "title": "Transported soils"
+            },
+            {
+              "type": "concept",
+              "title": "Alluvial deposits"
+            },
+            {
+              "type": "concept",
+              "title": "Glacial deposits"
+            },
+            {
+              "type": "concept",
+              "title": "Colluvium"
+            },
+            {
+              "type": "concept",
+              "title": "Marine clays"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil phases and composition",
+          "description": "Students learn the three-phase model that underlies nearly every soil mechanics calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solids"
+            },
+            {
+              "type": "concept",
+              "title": "Water"
+            },
+            {
+              "type": "concept",
+              "title": "Air"
+            },
+            {
+              "type": "concept",
+              "title": "Void ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Porosity"
+            },
+            {
+              "type": "concept",
+              "title": "Degree of saturation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Geologic site context",
+          "description": "Students connect subsurface interpretation to engineering risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stratigraphy"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater"
+            },
+            {
+              "type": "concept",
+              "title": "Bedrock depth"
+            },
+            {
+              "type": "concept",
+              "title": "Faults and hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Local geology"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Index Properties and Soil Classification",
+      "description": "Classification gives engineers a shared language for describing soils and making first-order behavior estimates. Students learn laboratory indices and classification systems used in civil engineering practice.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Index properties",
+          "description": "Students calculate basic soil descriptors from lab data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water content"
+            },
+            {
+              "type": "concept",
+              "title": "Unit weight"
+            },
+            {
+              "type": "concept",
+              "title": "Specific gravity"
+            },
+            {
+              "type": "concept",
+              "title": "Void ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Porosity"
+            },
+            {
+              "type": "concept",
+              "title": "Relative density"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Particle size and plasticity",
+          "description": "Students interpret gradation and consistency for coarse- and fine-grained soils.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sieve analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrometer analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Atterberg limits"
+            },
+            {
+              "type": "concept",
+              "title": "Plasticity index"
+            },
+            {
+              "type": "concept",
+              "title": "Activity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classification systems",
+          "description": "Students classify soils for engineering communication and preliminary design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "USCS"
+            },
+            {
+              "type": "concept",
+              "title": "AASHTO"
+            },
+            {
+              "type": "concept",
+              "title": "Group symbols"
+            },
+            {
+              "type": "concept",
+              "title": "Gradation descriptors"
+            },
+            {
+              "type": "concept",
+              "title": "Plasticity chart"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil Compaction and Earthwork Control",
+      "description": "Compaction is how engineers improve soil for fills, embankments, pavements, and building pads. Students learn how density, moisture, equipment, and specifications interact in construction quality control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Compaction behavior",
+          "description": "Students understand why soil has an optimum moisture content and maximum dry density.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dry unit weight"
+            },
+            {
+              "type": "concept",
+              "title": "Moisture-density curve"
+            },
+            {
+              "type": "concept",
+              "title": "Optimum moisture content"
+            },
+            {
+              "type": "concept",
+              "title": "Compaction energy"
+            },
+            {
+              "type": "concept",
+              "title": "Soil type effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laboratory and field tests",
+          "description": "Students connect standard tests to construction acceptance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard Proctor"
+            },
+            {
+              "type": "concept",
+              "title": "Modified Proctor"
+            },
+            {
+              "type": "concept",
+              "title": "Sand cone"
+            },
+            {
+              "type": "concept",
+              "title": "Nuclear density gauge"
+            },
+            {
+              "type": "concept",
+              "title": "Proof rolling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Earthwork specifications",
+          "description": "Students learn how compaction requirements are written and verified.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relative compaction"
+            },
+            {
+              "type": "concept",
+              "title": "Lift thickness"
+            },
+            {
+              "type": "concept",
+              "title": "Moisture tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Field control"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance criteria"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Permeability, Seepage, and Groundwater Flow",
+      "description": "Water movement through soil affects stability, settlement, excavation safety, and environmental performance. This topic teaches students to model seepage and recognize the risks created by hydraulic gradients.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydraulic conductivity",
+          "description": "Students learn what permeability means and how it is measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Darcy's law"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-head test"
+            },
+            {
+              "type": "concept",
+              "title": "Falling-head test"
+            },
+            {
+              "type": "concept",
+              "title": "Anisotropy"
+            },
+            {
+              "type": "concept",
+              "title": "Soil fabric effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Seepage analysis",
+          "description": "Students analyze groundwater flow through soil masses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow nets"
+            },
+            {
+              "type": "concept",
+              "title": "Equipotential lines"
+            },
+            {
+              "type": "concept",
+              "title": "Flow channels"
+            },
+            {
+              "type": "concept",
+              "title": "Seepage quantity"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic gradient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Seepage hazards and control",
+          "description": "Students connect groundwater flow to failure mechanisms and mitigation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Piping"
+            },
+            {
+              "type": "concept",
+              "title": "Boiling"
+            },
+            {
+              "type": "concept",
+              "title": "Uplift"
+            },
+            {
+              "type": "concept",
+              "title": "Dewatering"
+            },
+            {
+              "type": "concept",
+              "title": "Cutoff walls"
+            },
+            {
+              "type": "concept",
+              "title": "Filters and drains"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Effective Stress and Stress Distribution in Soils",
+      "description": "Effective stress is the central concept in soil mechanics: soil skeleton behavior depends on stress carried by particles, not simply total overburden. Students also learn how external loads spread through soil.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Effective stress principle",
+          "description": "Students distinguish total stress, pore water pressure, and effective stress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total stress"
+            },
+            {
+              "type": "concept",
+              "title": "Pore pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Effective stress"
+            },
+            {
+              "type": "concept",
+              "title": "Capillarity"
+            },
+            {
+              "type": "concept",
+              "title": "Submerged unit weight"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stress history",
+          "description": "Students learn why previous loading affects present soil behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normally consolidated soil"
+            },
+            {
+              "type": "concept",
+              "title": "Overconsolidated soil"
+            },
+            {
+              "type": "concept",
+              "title": "Preconsolidation pressure"
+            },
+            {
+              "type": "concept",
+              "title": "OCR"
+            },
+            {
+              "type": "concept",
+              "title": "Stress path awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stress increase from loads",
+          "description": "Students estimate vertical stress changes beneath foundations and fills.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boussinesq theory"
+            },
+            {
+              "type": "concept",
+              "title": "2:1 method"
+            },
+            {
+              "type": "concept",
+              "title": "Influence factors"
+            },
+            {
+              "type": "concept",
+              "title": "Strip loads"
+            },
+            {
+              "type": "concept",
+              "title": "Embankment loads"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Consolidation and Settlement",
+      "description": "Settlement controls serviceability for many civil structures. Students learn how water leaves compressible soils over time and how to estimate both magnitude and rate of settlement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Compressibility behavior",
+          "description": "Students interpret soil compression from laboratory and field data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "e-log p curve"
+            },
+            {
+              "type": "concept",
+              "title": "Compression index"
+            },
+            {
+              "type": "concept",
+              "title": "Recompression index"
+            },
+            {
+              "type": "concept",
+              "title": "Preconsolidation pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary compression"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "One-dimensional consolidation",
+          "description": "Students learn Terzaghi consolidation theory and its design use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drainage path"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient of consolidation"
+            },
+            {
+              "type": "concept",
+              "title": "Degree of consolidation"
+            },
+            {
+              "type": "concept",
+              "title": "Time factor"
+            },
+            {
+              "type": "concept",
+              "title": "Settlement rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Settlement estimation",
+          "description": "Students combine stress increase and compressibility to forecast performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Immediate settlement"
+            },
+            {
+              "type": "concept",
+              "title": "Primary consolidation"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary settlement"
+            },
+            {
+              "type": "concept",
+              "title": "Layered soils"
+            },
+            {
+              "type": "concept",
+              "title": "Serviceability limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shear Strength of Soils",
+      "description": "Shear strength determines whether slopes, foundations, retaining walls, and excavations remain stable. Students learn strength parameters, drainage conditions, and laboratory tests used in design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mohr-Coulomb strength",
+          "description": "Students learn the main strength model used in introductory geotechnical design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cohesion"
+            },
+            {
+              "type": "concept",
+              "title": "Friction angle"
+            },
+            {
+              "type": "concept",
+              "title": "Normal stress"
+            },
+            {
+              "type": "concept",
+              "title": "Mohr circle"
+            },
+            {
+              "type": "concept",
+              "title": "Failure envelope"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drained and undrained behavior",
+          "description": "Students distinguish short-term and long-term strength conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drained strength"
+            },
+            {
+              "type": "concept",
+              "title": "Undrained shear strength"
+            },
+            {
+              "type": "concept",
+              "title": "Pore pressure generation"
+            },
+            {
+              "type": "concept",
+              "title": "Total stress analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Effective stress analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strength testing",
+          "description": "Students interpret common lab and field strength tests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct shear"
+            },
+            {
+              "type": "concept",
+              "title": "Triaxial compression"
+            },
+            {
+              "type": "concept",
+              "title": "Unconfined compression"
+            },
+            {
+              "type": "concept",
+              "title": "Vane shear"
+            },
+            {
+              "type": "concept",
+              "title": "SPT/CPT correlations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Slope Stability and Geohazards",
+      "description": "Slopes fail when driving forces exceed available shear resistance. This topic teaches students to evaluate natural and engineered slopes and recognize landslide and rainfall-related risks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Slope failure mechanisms",
+          "description": "Students identify common modes of slope instability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planar failure"
+            },
+            {
+              "type": "concept",
+              "title": "Circular failure"
+            },
+            {
+              "type": "concept",
+              "title": "Translational slides"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational slides"
+            },
+            {
+              "type": "concept",
+              "title": "Debris flows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Limit equilibrium methods",
+          "description": "Students learn introductory factor-of-safety calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Method of slices"
+            },
+            {
+              "type": "concept",
+              "title": "Ordinary method"
+            },
+            {
+              "type": "concept",
+              "title": "Bishop awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Driving moment"
+            },
+            {
+              "type": "concept",
+              "title": "Resisting moment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitigation and monitoring",
+          "description": "Students connect analysis to stabilization choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drainage"
+            },
+            {
+              "type": "concept",
+              "title": "Flattening"
+            },
+            {
+              "type": "concept",
+              "title": "Retaining systems"
+            },
+            {
+              "type": "concept",
+              "title": "Reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Instrumentation"
+            },
+            {
+              "type": "concept",
+              "title": "Landslide mapping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lateral Earth Pressure and Earth-Retaining Structures",
+      "description": "Retaining walls and buried structures must resist soil pressure safely. Students learn active, passive, and at-rest conditions and how retaining-system choices affect pressure and movement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Earth pressure states",
+          "description": "Students learn how wall movement changes soil pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "At-rest pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Active pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Passive pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Earth pressure coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Surcharge effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classical earth pressure theories",
+          "description": "Students apply introductory Rankine and Coulomb concepts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rankine theory"
+            },
+            {
+              "type": "concept",
+              "title": "Coulomb theory"
+            },
+            {
+              "type": "concept",
+              "title": "Wall friction"
+            },
+            {
+              "type": "concept",
+              "title": "Backfill slope"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Retaining structure design checks",
+          "description": "Students evaluate common retaining systems for stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gravity walls"
+            },
+            {
+              "type": "concept",
+              "title": "Cantilever walls"
+            },
+            {
+              "type": "concept",
+              "title": "Sheet piles"
+            },
+            {
+              "type": "concept",
+              "title": "Sliding"
+            },
+            {
+              "type": "concept",
+              "title": "Overturning"
+            },
+            {
+              "type": "concept",
+              "title": "Bearing pressure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Foundation Analysis: Bearing Capacity and Settlement",
+      "description": "Foundation design connects soil behavior to structural support. Students learn how shallow and deep foundations transfer loads and how geotechnical engineers check strength and serviceability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Shallow foundations",
+          "description": "Students evaluate footings and mats for bearing and settlement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strip footings"
+            },
+            {
+              "type": "concept",
+              "title": "Spread footings"
+            },
+            {
+              "type": "concept",
+              "title": "Mat foundations"
+            },
+            {
+              "type": "concept",
+              "title": "Ultimate bearing capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Allowable bearing pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deep foundations",
+          "description": "Students learn when piles and drilled shafts are used and how capacity is estimated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Driven piles"
+            },
+            {
+              "type": "concept",
+              "title": "Drilled shafts"
+            },
+            {
+              "type": "concept",
+              "title": "End bearing"
+            },
+            {
+              "type": "concept",
+              "title": "Skin friction"
+            },
+            {
+              "type": "concept",
+              "title": "Group effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design criteria",
+          "description": "Students compare strength, settlement, constructability, and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factor of safety"
+            },
+            {
+              "type": "concept",
+              "title": "Serviceability"
+            },
+            {
+              "type": "concept",
+              "title": "Load combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Site variability"
+            },
+            {
+              "type": "concept",
+              "title": "Construction tolerances"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Site Investigation, Field Testing, and Geotechnical Reporting",
+      "description": "Good geotechnical design depends on understanding the subsurface before construction. Students learn how site investigations are planned, executed, interpreted, and communicated.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Investigation planning",
+          "description": "Students define exploration scope based on project risk and site uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Desk study"
+            },
+            {
+              "type": "concept",
+              "title": "Boring layout"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling plan"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Utility constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field and laboratory data",
+          "description": "Students learn the common tools used to characterize sites.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SPT"
+            },
+            {
+              "type": "concept",
+              "title": "CPT"
+            },
+            {
+              "type": "concept",
+              "title": "Shelby tubes"
+            },
+            {
+              "type": "concept",
+              "title": "Test pits"
+            },
+            {
+              "type": "concept",
+              "title": "Lab index tests"
+            },
+            {
+              "type": "concept",
+              "title": "Strength tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Geotechnical report writing",
+          "description": "Students learn how recommendations are documented for design and construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subsurface profile"
+            },
+            {
+              "type": "concept",
+              "title": "Design parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Foundation recommendations"
+            },
+            {
+              "type": "concept",
+              "title": "Earthwork guidance"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ground Improvement, Excavations, and Geotechnical Design Project",
+      "description": "The course culminates by connecting soil mechanics to practical construction decisions. Students evaluate weak or variable ground, excavation support, dewatering, and a complete geotechnical design case.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ground improvement methods",
+          "description": "Students learn ways to modify soil behavior before or during construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compaction"
+            },
+            {
+              "type": "concept",
+              "title": "Preloading"
+            },
+            {
+              "type": "concept",
+              "title": "Wick drains"
+            },
+            {
+              "type": "concept",
+              "title": "Stone columns"
+            },
+            {
+              "type": "concept",
+              "title": "Soil mixing"
+            },
+            {
+              "type": "concept",
+              "title": "Grouting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Excavation and dewatering",
+          "description": "Students evaluate temporary works that control ground movement and water.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Braced excavations"
+            },
+            {
+              "type": "concept",
+              "title": "Sheet piles"
+            },
+            {
+              "type": "concept",
+              "title": "Dewatering wells"
+            },
+            {
+              "type": "concept",
+              "title": "Basal heave"
+            },
+            {
+              "type": "concept",
+              "title": "Ground movements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design project integration",
+          "description": "Students assemble a defensible geotechnical design recommendation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Site model"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter selection"
+            },
+            {
+              "type": "concept",
+              "title": "Foundation option"
+            },
+            {
+              "type": "concept",
+              "title": "Settlement check"
+            },
+            {
+              "type": "concept",
+              "title": "Stability check"
+            },
+            {
+              "type": "concept",
+              "title": "Risk register"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

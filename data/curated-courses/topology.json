@@ -1,0 +1,1344 @@
+{
+  "slug": "topology",
+  "title": "Topology",
+  "description": "This syllabus is suitable for an advanced undergraduate topology course or a first graduate point-set topology course, depending on proof maturity and pacing.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Topological Spaces and Open Sets",
+      "description": "This section develops topological spaces and open sets through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Topology Axioms",
+          "description": "The point of this subtopic is to see topology as a structure defined by allowable open sets rather than by distance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Set X"
+            },
+            {
+              "type": "concept",
+              "title": "Topology tau"
+            },
+            {
+              "type": "concept",
+              "title": "Empty set"
+            },
+            {
+              "type": "concept",
+              "title": "Whole space"
+            },
+            {
+              "type": "concept",
+              "title": "Arbitrary union"
+            },
+            {
+              "type": "concept",
+              "title": "Finite intersection"
+            },
+            {
+              "type": "concept",
+              "title": "Open set axiom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical Examples",
+          "description": "Examples build intuition for how different topologies encode different strengths of nearness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete topology"
+            },
+            {
+              "type": "concept",
+              "title": "Indiscrete topology"
+            },
+            {
+              "type": "concept",
+              "title": "Cofinite topology"
+            },
+            {
+              "type": "concept",
+              "title": "Cocountable topology"
+            },
+            {
+              "type": "concept",
+              "title": "Standard topology on R"
+            },
+            {
+              "type": "concept",
+              "title": "Lower-limit topology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Comparing Topologies",
+          "description": "Students learn to compare structures by asking which topology has more open sets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finer topology"
+            },
+            {
+              "type": "concept",
+              "title": "Coarser topology"
+            },
+            {
+              "type": "concept",
+              "title": "Comparable topologies"
+            },
+            {
+              "type": "concept",
+              "title": "Strict refinement"
+            },
+            {
+              "type": "concept",
+              "title": "Same underlying set"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bases, Subbases, and Generated Topologies",
+      "description": "This section develops bases, subbases, and generated topologies through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basis Criteria",
+          "description": "Bases make topologies usable by reducing open-set arguments to smaller building blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basis element"
+            },
+            {
+              "type": "concept",
+              "title": "Basis cover condition"
+            },
+            {
+              "type": "concept",
+              "title": "Basis intersection condition"
+            },
+            {
+              "type": "concept",
+              "title": "Generated topology"
+            },
+            {
+              "type": "concept",
+              "title": "Open set as union of basis elements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Subbases",
+          "description": "Subbases let students generate topologies from even smaller collections, especially in product constructions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subbasis"
+            },
+            {
+              "type": "concept",
+              "title": "Finite intersection"
+            },
+            {
+              "type": "concept",
+              "title": "Subbasis-generated topology"
+            },
+            {
+              "type": "concept",
+              "title": "Initial topology"
+            },
+            {
+              "type": "concept",
+              "title": "Subbasic open set"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Standard Bases",
+          "description": "Students connect abstract definitions to familiar intervals and metric balls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open interval"
+            },
+            {
+              "type": "concept",
+              "title": "Open ball"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon ball"
+            },
+            {
+              "type": "concept",
+              "title": "Basis for R"
+            },
+            {
+              "type": "concept",
+              "title": "Basis for metric topology"
+            },
+            {
+              "type": "concept",
+              "title": "Order topology"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Closed Sets, Closure, Interior, Boundary, and Limit Points",
+      "description": "This section develops closed sets, closure, interior, boundary, and limit points through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Closed Sets and Complements",
+          "description": "Closed sets give a dual language for proving containment, limits, and compactness results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closed set"
+            },
+            {
+              "type": "concept",
+              "title": "Complement"
+            },
+            {
+              "type": "concept",
+              "title": "Finite union of closed sets"
+            },
+            {
+              "type": "concept",
+              "title": "Arbitrary intersection of closed sets"
+            },
+            {
+              "type": "concept",
+              "title": "Clopen set"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Closure and Interior",
+          "description": "These operations formalize which points are forced by a set and which points safely lie inside it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closure"
+            },
+            {
+              "type": "concept",
+              "title": "Interior"
+            },
+            {
+              "type": "concept",
+              "title": "Exterior"
+            },
+            {
+              "type": "concept",
+              "title": "Dense subset"
+            },
+            {
+              "type": "concept",
+              "title": "Nowhere dense set"
+            },
+            {
+              "type": "concept",
+              "title": "Closure operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary and Limit Points",
+          "description": "Boundary and accumulation concepts help students reason about edge behavior in abstract spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Limit point"
+            },
+            {
+              "type": "concept",
+              "title": "Isolated point"
+            },
+            {
+              "type": "concept",
+              "title": "Derived set"
+            },
+            {
+              "type": "concept",
+              "title": "Adherent point"
+            },
+            {
+              "type": "concept",
+              "title": "Accumulation point"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuity, Homeomorphisms, and Topological Invariants",
+      "description": "This section develops continuity, homeomorphisms, and topological invariants through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Open-Set Continuity",
+          "description": "Continuity becomes a topological concept independent of formulas or epsilon-delta language.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Preimage of open set"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous map"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-set criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Composition"
+            },
+            {
+              "type": "concept",
+              "title": "Restriction map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeomorphisms",
+          "description": "Homeomorphisms identify spaces that have the same topological structure even if they look geometrically different.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bijection"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Topological equivalence"
+            },
+            {
+              "type": "concept",
+              "title": "Open map"
+            },
+            {
+              "type": "concept",
+              "title": "Closed map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Invariants",
+          "description": "Invariants help prove that spaces are not homeomorphic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Connectedness"
+            },
+            {
+              "type": "concept",
+              "title": "Compactness"
+            },
+            {
+              "type": "concept",
+              "title": "Hausdorff property"
+            },
+            {
+              "type": "concept",
+              "title": "Number of components"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental group"
+            },
+            {
+              "type": "concept",
+              "title": "Cut point"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Subspace Topology and Relative Properties",
+      "description": "This section develops subspace topology and relative properties through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Subspace Opens and Closeds",
+          "description": "Subspaces show how topology behaves when attention is restricted to a subset.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subspace topology"
+            },
+            {
+              "type": "concept",
+              "title": "Relative open set"
+            },
+            {
+              "type": "concept",
+              "title": "Relative closed set"
+            },
+            {
+              "type": "concept",
+              "title": "Intersection with ambient open set"
+            },
+            {
+              "type": "concept",
+              "title": "Inclusion map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relative Closure and Interior",
+          "description": "Students learn that closure, interior, and boundary depend on the ambient space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Closure in subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Interior in subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary in subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Dense in subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Ambient topology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inherited Properties",
+          "description": "This subtopic clarifies which properties pass to subspaces and which require conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hereditary property"
+            },
+            {
+              "type": "concept",
+              "title": "Closed subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Open subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Compact subspace"
+            },
+            {
+              "type": "concept",
+              "title": "Connected subspace"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Product Topology and Product Spaces",
+      "description": "This section develops product topology and product spaces through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Product Basis",
+          "description": "Products generalize coordinate spaces and explain why projections matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian product"
+            },
+            {
+              "type": "concept",
+              "title": "Projection map"
+            },
+            {
+              "type": "concept",
+              "title": "Product basis"
+            },
+            {
+              "type": "concept",
+              "title": "Box"
+            },
+            {
+              "type": "concept",
+              "title": "Cylinder set"
+            },
+            {
+              "type": "concept",
+              "title": "Finite support"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finite and Infinite Products",
+          "description": "Students learn why product topology differs from box topology in infinite products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite product"
+            },
+            {
+              "type": "concept",
+              "title": "Infinite product"
+            },
+            {
+              "type": "concept",
+              "title": "Box topology"
+            },
+            {
+              "type": "concept",
+              "title": "Product topology"
+            },
+            {
+              "type": "concept",
+              "title": "Tychonoff intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Product Properties",
+          "description": "Product examples help test preservation of connectedness, compactness, and separation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous projection"
+            },
+            {
+              "type": "concept",
+              "title": "Product of connected spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Product of compact spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Product Hausdorff"
+            },
+            {
+              "type": "concept",
+              "title": "Diagonal map"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quotient Topology and Identification Spaces",
+      "description": "This section develops quotient topology and identification spaces through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quotient Maps",
+          "description": "Quotient topology is the main tool for formalizing gluing and collapsing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equivalence relation"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalence class"
+            },
+            {
+              "type": "concept",
+              "title": "Quotient map"
+            },
+            {
+              "type": "concept",
+              "title": "Saturated set"
+            },
+            {
+              "type": "concept",
+              "title": "Final topology"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gluing Examples",
+          "description": "Concrete models help students see abstract quotient definitions as familiar spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interval endpoints identified"
+            },
+            {
+              "type": "concept",
+              "title": "Circle"
+            },
+            {
+              "type": "concept",
+              "title": "Cone"
+            },
+            {
+              "type": "concept",
+              "title": "Suspension"
+            },
+            {
+              "type": "concept",
+              "title": "Torus"
+            },
+            {
+              "type": "concept",
+              "title": "Mobius band"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quotient Pitfalls",
+          "description": "Quotients are subtle, so students learn to check maps and open sets carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Not every surjection is quotient"
+            },
+            {
+              "type": "concept",
+              "title": "Identification map"
+            },
+            {
+              "type": "concept",
+              "title": "Open quotient map"
+            },
+            {
+              "type": "concept",
+              "title": "Closed quotient map"
+            },
+            {
+              "type": "concept",
+              "title": "Well-defined map"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Connectedness and Components",
+      "description": "This section develops connectedness and components through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Separations",
+          "description": "Connectedness means a space cannot be split into two nonempty separated open pieces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Separation"
+            },
+            {
+              "type": "concept",
+              "title": "Connected space"
+            },
+            {
+              "type": "concept",
+              "title": "Disconnected space"
+            },
+            {
+              "type": "concept",
+              "title": "Clopen subset"
+            },
+            {
+              "type": "concept",
+              "title": "Separated sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connected Subsets of R",
+          "description": "Intervals provide the core model for connectedness in familiar spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interval"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate value theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Order topology"
+            },
+            {
+              "type": "concept",
+              "title": "Connected subset"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous image"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Components",
+          "description": "Components decompose a space into maximal connected pieces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Connected component"
+            },
+            {
+              "type": "concept",
+              "title": "Maximal connected subset"
+            },
+            {
+              "type": "concept",
+              "title": "Quasicomponent"
+            },
+            {
+              "type": "concept",
+              "title": "Totally disconnected"
+            },
+            {
+              "type": "concept",
+              "title": "Component partition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Path Connectedness and Local Connectedness",
+      "description": "This section develops path connectedness and local connectedness through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Paths and Path Components",
+          "description": "Path connectedness asks whether points can be joined by continuous paths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Path"
+            },
+            {
+              "type": "concept",
+              "title": "Path connected"
+            },
+            {
+              "type": "concept",
+              "title": "Path component"
+            },
+            {
+              "type": "concept",
+              "title": "Constant path"
+            },
+            {
+              "type": "concept",
+              "title": "Concatenation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connected Versus Path Connected",
+          "description": "Classic examples show that connectedness and path connectedness are not the same.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Topologist's sine curve"
+            },
+            {
+              "type": "concept",
+              "title": "Comb space"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous image of interval"
+            },
+            {
+              "type": "concept",
+              "title": "Arc connectedness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Local Connectedness",
+          "description": "Local properties help determine when components and path components behave well.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Locally connected"
+            },
+            {
+              "type": "concept",
+              "title": "Locally path connected"
+            },
+            {
+              "type": "concept",
+              "title": "Neighborhood basis"
+            },
+            {
+              "type": "concept",
+              "title": "Open component"
+            },
+            {
+              "type": "concept",
+              "title": "Semilocally simply connected"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Compactness and Covering Arguments",
+      "description": "This section develops compactness and covering arguments through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Open Covers",
+          "description": "Compactness generalizes finite behavior through open covers and finite subcovers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open cover"
+            },
+            {
+              "type": "concept",
+              "title": "Finite subcover"
+            },
+            {
+              "type": "concept",
+              "title": "Compact space"
+            },
+            {
+              "type": "concept",
+              "title": "Cover refinement"
+            },
+            {
+              "type": "concept",
+              "title": "Lebesgue number intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compactness Theorems",
+          "description": "Students learn the major consequences of compactness for continuous functions and closed subsets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous image of compact"
+            },
+            {
+              "type": "concept",
+              "title": "Closed subset of compact"
+            },
+            {
+              "type": "concept",
+              "title": "Compact subset of Hausdorff"
+            },
+            {
+              "type": "concept",
+              "title": "Extreme value theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metric and Euclidean Compactness",
+          "description": "This subtopic connects abstract compactness to familiar boundedness and sequence behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heine-Borel theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Sequential compactness"
+            },
+            {
+              "type": "concept",
+              "title": "Limit point compactness"
+            },
+            {
+              "type": "concept",
+              "title": "Total boundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Complete metric space"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Local Compactness, One-Point Compactification, and Proper Maps",
+      "description": "This section develops local compactness, one-point compactification, and proper maps through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Local Compactness",
+          "description": "Local compactness captures spaces that look compact in small neighborhoods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Locally compact"
+            },
+            {
+              "type": "concept",
+              "title": "Compact neighborhood"
+            },
+            {
+              "type": "concept",
+              "title": "Precompact set"
+            },
+            {
+              "type": "concept",
+              "title": "Regular locally compact space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "One-Point Compactification",
+          "description": "This construction adds a point at infinity to compactify many noncompact spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alexandroff compactification"
+            },
+            {
+              "type": "concept",
+              "title": "Point at infinity"
+            },
+            {
+              "type": "concept",
+              "title": "Neighborhood of infinity"
+            },
+            {
+              "type": "concept",
+              "title": "Noncompact locally compact Hausdorff space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Proper Maps",
+          "description": "Properness is a compactness-preserving condition important across topology and geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proper map"
+            },
+            {
+              "type": "concept",
+              "title": "Preimage of compact"
+            },
+            {
+              "type": "concept",
+              "title": "Closed map condition"
+            },
+            {
+              "type": "concept",
+              "title": "Compact fiber"
+            },
+            {
+              "type": "concept",
+              "title": "Locally compact Hausdorff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Countability Axioms and Separability",
+      "description": "This section develops countability axioms and separability through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "First and Second Countability",
+          "description": "Countability axioms control how much local or global topological data is needed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First countable"
+            },
+            {
+              "type": "concept",
+              "title": "Second countable"
+            },
+            {
+              "type": "concept",
+              "title": "Countable local basis"
+            },
+            {
+              "type": "concept",
+              "title": "Countable basis"
+            },
+            {
+              "type": "concept",
+              "title": "Sequence characterization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Separability and Lindelof Property",
+          "description": "These properties compare countable dense sets and countable subcovers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Separable space"
+            },
+            {
+              "type": "concept",
+              "title": "Countable dense subset"
+            },
+            {
+              "type": "concept",
+              "title": "Lindelof space"
+            },
+            {
+              "type": "concept",
+              "title": "Second countable implies Lindelof"
+            },
+            {
+              "type": "concept",
+              "title": "Second countable implies separable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convergence Pitfalls",
+          "description": "Students learn why sequences alone may not capture closure in arbitrary spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Net"
+            },
+            {
+              "type": "concept",
+              "title": "Filter intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Non-first-countable space"
+            },
+            {
+              "type": "concept",
+              "title": "Closure not sequential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Separation Axioms and Normality",
+      "description": "This section develops separation axioms and normality through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "T0, T1, and Hausdorff",
+          "description": "Separation axioms classify how well points can be distinguished by open sets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "T0"
+            },
+            {
+              "type": "concept",
+              "title": "T1"
+            },
+            {
+              "type": "concept",
+              "title": "Hausdorff"
+            },
+            {
+              "type": "concept",
+              "title": "Kolmogorov space"
+            },
+            {
+              "type": "concept",
+              "title": "Unique limits"
+            },
+            {
+              "type": "concept",
+              "title": "Diagonal closed"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regular and Normal Spaces",
+          "description": "Stronger separation conditions let students separate points from closed sets and closed sets from each other.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular space"
+            },
+            {
+              "type": "concept",
+              "title": "Normal space"
+            },
+            {
+              "type": "concept",
+              "title": "Closed neighborhoods"
+            },
+            {
+              "type": "concept",
+              "title": "Disjoint open neighborhoods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Urysohn and Tietze Intuition",
+          "description": "These theorems show why normality matters for continuous functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Urysohn lemma"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous real-valued function"
+            },
+            {
+              "type": "concept",
+              "title": "Tietze extension theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Partition of unity intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metric Spaces, Metrization Intuition, and Counterexamples",
+      "description": "This section develops metric spaces, metrization intuition, and counterexamples through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Metric Topology",
+          "description": "Metric spaces anchor topology in distance while revealing which properties are genuinely topological.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metric"
+            },
+            {
+              "type": "concept",
+              "title": "Open ball"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon neighborhood"
+            },
+            {
+              "type": "concept",
+              "title": "Metric topology"
+            },
+            {
+              "type": "concept",
+              "title": "Isometry"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metrizability Intuition",
+          "description": "Students learn why some topological spaces come from metrics and others do not.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metrizable space"
+            },
+            {
+              "type": "concept",
+              "title": "Regular second countable space"
+            },
+            {
+              "type": "concept",
+              "title": "Urysohn metrization theorem intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Non-metrizable example"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Counterexample Practice",
+          "description": "Counterexamples train students to check hypotheses rather than memorize theorem conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sorgenfrey line"
+            },
+            {
+              "type": "concept",
+              "title": "Long line"
+            },
+            {
+              "type": "concept",
+              "title": "Particular point topology"
+            },
+            {
+              "type": "concept",
+              "title": "Cofinite topology"
+            },
+            {
+              "type": "concept",
+              "title": "Counterexample table"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fundamental Group and Algebraic Topology Bridge",
+      "description": "This section develops fundamental group and algebraic topology bridge through definitions, examples, proof techniques, and counterexamples that students need in Topology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Loops and Homotopy",
+          "description": "The fundamental group begins by studying loops up to continuous deformation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop"
+            },
+            {
+              "type": "concept",
+              "title": "Basepoint"
+            },
+            {
+              "type": "concept",
+              "title": "Homotopy rel endpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Path homotopy"
+            },
+            {
+              "type": "concept",
+              "title": "Constant loop"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Group Structure",
+          "description": "Students see how path concatenation turns topological information into algebra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concatenation"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse path"
+            },
+            {
+              "type": "concept",
+              "title": "Identity element"
+            },
+            {
+              "type": "concept",
+              "title": "Associativity up to homotopy"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental group"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computing Simple Examples",
+          "description": "Basic computations show how algebra detects holes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental group of circle"
+            },
+            {
+              "type": "concept",
+              "title": "Deformation retract"
+            },
+            {
+              "type": "concept",
+              "title": "Wedge of circles"
+            },
+            {
+              "type": "concept",
+              "title": "Covering space intuition"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

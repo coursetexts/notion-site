@@ -1,0 +1,976 @@
+{
+  "slug": "programming-ii-object-oriented-programming",
+  "title": "Programming II / Object-Oriented Programming",
+  "description": "An intermediate object-oriented programming course covering encapsulation, inheritance, polymorphism, abstract classes, interfaces, generics, collections, exception handling, file I/O and streams, GUI basics, design patterns, SOLID principles, unit testing, secure coding, and a portfolio-ready OOP capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Object-Oriented Programming Mindset, Tools, Review, and Design Vocabulary",
+      "description": "Transition from beginner scripts to object-oriented programs designed around responsibilities, behavior, and maintainability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "From scripts to systems",
+          "description": "Students learn why larger programs need organization around concepts and responsibilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Procedural versus object-oriented design"
+            },
+            {
+              "type": "concept",
+              "title": "Objects as models of state and behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Maintainability, readability, and change"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tooling and workflow",
+          "description": "The point is to work like a developing professional.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IDE Setup and Project Structure"
+            },
+            {
+              "type": "concept",
+              "title": "Build/run/debug cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Version control and commits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design vocabulary",
+          "description": "Learners get the language used throughout the course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Class, object, instance, method, field"
+            },
+            {
+              "type": "concept",
+              "title": "Responsibility, collaboration, coupling, cohesion"
+            },
+            {
+              "type": "concept",
+              "title": "Public interface and implementation detail"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Classes, Objects, Fields, Methods, Constructors, and Object State",
+      "description": "Build the core mechanics of defining objects, creating instances, and managing state safely.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Class anatomy",
+          "description": "Students define reusable blueprints for objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fields and methods"
+            },
+            {
+              "type": "concept",
+              "title": "Constructors"
+            },
+            {
+              "type": "concept",
+              "title": "Static versus instance members"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Object state",
+          "description": "The gist is to understand how objects remember information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Object identity"
+            },
+            {
+              "type": "concept",
+              "title": "Mutable and immutable state"
+            },
+            {
+              "type": "concept",
+              "title": "Object lifecycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method behavior",
+          "description": "Learners express actions through well-designed methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parameters and return values"
+            },
+            {
+              "type": "concept",
+              "title": "Side effects"
+            },
+            {
+              "type": "concept",
+              "title": "Method overloading"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Encapsulation, Information Hiding, Access Control, and Invariants",
+      "description": "Use boundaries and validation to protect object state and make code easier to reason about.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Encapsulation",
+          "description": "Students learn to protect data behind a controlled interface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Private fields"
+            },
+            {
+              "type": "concept",
+              "title": "Getters and setters"
+            },
+            {
+              "type": "concept",
+              "title": "Public methods as contracts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Invariants",
+          "description": "The point is to keep objects valid over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validation in constructors and methods"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditions and postconditions"
+            },
+            {
+              "type": "concept",
+              "title": "Illegal states and guard clauses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Information hiding",
+          "description": "Learners reduce coupling by hiding implementation details.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Access modifiers"
+            },
+            {
+              "type": "concept",
+              "title": "API versus Implementation"
+            },
+            {
+              "type": "concept",
+              "title": "Changing internals safely"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Object Collaboration, Composition, Aggregation, and UML Class Modeling",
+      "description": "Design programs as collaborating objects rather than isolated functions or oversized classes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Object collaboration",
+          "description": "Students design programs as groups of cooperating objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Message passing"
+            },
+            {
+              "type": "concept",
+              "title": "Responsibility assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Delegation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composition and aggregation",
+          "description": "The gist is to model whole-part relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "has-a Relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Ownership and lifecycle"
+            },
+            {
+              "type": "concept",
+              "title": "Composition over inheritance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "UML Class Diagrams",
+          "description": "Learners sketch designs before coding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classes and attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Associations and multiplicity"
+            },
+            {
+              "type": "concept",
+              "title": "Dependencies and navigability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inheritance, Polymorphism, Dynamic Dispatch, and Substitution",
+      "description": "Understand inheritance and runtime polymorphism while learning when inheritance is useful and when it is risky.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inheritance mechanics",
+          "description": "Students reuse and specialize behavior through class hierarchies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Superclass and subclass"
+            },
+            {
+              "type": "concept",
+              "title": "Overriding methods"
+            },
+            {
+              "type": "concept",
+              "title": "protected and Inherited Members"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polymorphism",
+          "description": "The point is to write code that works with many related types.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dynamic dispatch"
+            },
+            {
+              "type": "concept",
+              "title": "Upcasting"
+            },
+            {
+              "type": "concept",
+              "title": "Runtime method selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Substitution and design risk",
+          "description": "Learners use inheritance carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "is-a Relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Liskov Substitution Intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Fragile base class and over-inheritance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Abstract Classes, Interfaces, Contracts, and Dependency Inversion",
+      "description": "Use abstractions to define capabilities, reduce coupling, and support flexible program design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Abstract classes",
+          "description": "Students define partial implementations for related classes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Abstract methods"
+            },
+            {
+              "type": "concept",
+              "title": "Shared state and behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Template-style designs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interfaces",
+          "description": "The gist is to define capabilities independent of implementation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interface contracts"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple implementations"
+            },
+            {
+              "type": "concept",
+              "title": "Programming to interfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dependency inversion",
+          "description": "Learners reduce coupling through abstraction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constructor injection basics"
+            },
+            {
+              "type": "concept",
+              "title": "Mocks and testability"
+            },
+            {
+              "type": "concept",
+              "title": "Flexible replacement of components"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Generics, Type Safety, Collections, Iteration, and Common Data Structures",
+      "description": "Write reusable type-safe code and choose collections that fit common programming problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Generics",
+          "description": "Students write reusable code without losing type safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Type parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Generic classes and methods"
+            },
+            {
+              "type": "concept",
+              "title": "Bounds and wildcard intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collections framework",
+          "description": "The point is to choose the right collection for the task.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lists, sets, maps, queues, and stacks"
+            },
+            {
+              "type": "concept",
+              "title": "Ordering and uniqueness"
+            },
+            {
+              "type": "concept",
+              "title": "Iteration and enhanced loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data-structure tradeoffs",
+          "description": "Learners connect collections to performance and behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lookup, insertion, deletion"
+            },
+            {
+              "type": "concept",
+              "title": "Hashing and equality"
+            },
+            {
+              "type": "concept",
+              "title": "Big-O Intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Exception Handling, Validation, Resource Management, and Robust Programs",
+      "description": "Handle abnormal conditions deliberately while preserving readable control flow and reliable resource cleanup.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Exception handling",
+          "description": "Students handle errors without hiding real failures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "try/catch/finally"
+            },
+            {
+              "type": "concept",
+              "title": "Checked and unchecked exceptions"
+            },
+            {
+              "type": "concept",
+              "title": "Throwing and propagating exceptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation",
+          "description": "The gist is to reject bad data early and clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Domain validation"
+            },
+            {
+              "type": "concept",
+              "title": "Helpful error messages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resource management",
+          "description": "Learners protect files, streams, and external resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "try-with-resources"
+            },
+            {
+              "type": "concept",
+              "title": "Closing streams"
+            },
+            {
+              "type": "concept",
+              "title": "Failure-safe cleanup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "File I/O, Streams, Serialization, and Data Exchange Formats",
+      "description": "Persist and exchange data using files, streams, structured formats, and safe parsing habits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "File I/O",
+          "description": "Students persist program data and read external inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Text files"
+            },
+            {
+              "type": "concept",
+              "title": "Buffered readers/writers"
+            },
+            {
+              "type": "concept",
+              "title": "Paths and file-system errors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Streams",
+          "description": "The point is to process sequences of data efficiently and expressively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input and output streams"
+            },
+            {
+              "type": "concept",
+              "title": "Functional-style stream operations"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering, mapping, and reducing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data formats",
+          "description": "Learners exchange data with other systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSV"
+            },
+            {
+              "type": "concept",
+              "title": "JSON/XML Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Serialization and deserialization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "GUI Programming, Events, MVC Thinking, and User Interaction Basics",
+      "description": "Introduce event-driven programs and simple user interfaces while separating model, view, and control logic.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Event-driven programming",
+          "description": "Students understand how GUI programs respond to user actions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Events and listeners"
+            },
+            {
+              "type": "concept",
+              "title": "Callbacks"
+            },
+            {
+              "type": "concept",
+              "title": "Application loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GUI components",
+          "description": "The gist is to build simple interactive applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Windows, controls, forms, and layouts"
+            },
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback and usability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "MVC Thinking",
+          "description": "Learners separate concerns in user-facing programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Model"
+            },
+            {
+              "type": "concept",
+              "title": "View"
+            },
+            {
+              "type": "concept",
+              "title": "Controller/Presenter"
+            },
+            {
+              "type": "concept",
+              "title": "Keeping UI separate from logic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design Patterns, SOLID Principles, Refactoring, and Code Smells",
+      "description": "Recognize reusable design ideas and improve code structure without changing behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design patterns",
+          "description": "Students recognize reusable solutions to common design problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strategy"
+            },
+            {
+              "type": "concept",
+              "title": "Factory"
+            },
+            {
+              "type": "concept",
+              "title": "Observer"
+            },
+            {
+              "type": "concept",
+              "title": "Singleton cautions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "SOLID Principles",
+          "description": "The point is to build designs that can change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single responsibility"
+            },
+            {
+              "type": "concept",
+              "title": "Open/Closed"
+            },
+            {
+              "type": "concept",
+              "title": "Interface segregation and dependency inversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Refactoring and smells",
+          "description": "Learners improve design safely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Duplicate code"
+            },
+            {
+              "type": "concept",
+              "title": "Long methods and large classes"
+            },
+            {
+              "type": "concept",
+              "title": "Extract method/class and rename refactorings"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Unit Testing, Test-Driven Thinking, Debugging, and Quality Automation",
+      "description": "Build confidence in code through systematic tests, debugging, and lightweight automation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Unit testing",
+          "description": "Students verify classes and methods independently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "JUnit Tests"
+            },
+            {
+              "type": "concept",
+              "title": "Arrange-Act-Assert"
+            },
+            {
+              "type": "concept",
+              "title": "Positive, negative, and boundary tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Test-driven thinking",
+          "description": "The gist is to design behavior before implementation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Writing small tests"
+            },
+            {
+              "type": "concept",
+              "title": "Red-Green-Refactor"
+            },
+            {
+              "type": "concept",
+              "title": "Testing contracts and edge cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging and automation",
+          "description": "Learners use tools to improve reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breakpoints and watches"
+            },
+            {
+              "type": "concept",
+              "title": "Stack traces"
+            },
+            {
+              "type": "concept",
+              "title": "Build/test automation basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Collections-Driven Applications, Persistence, APIs, and Database/Web Preparation",
+      "description": "Connect OOP to practical IT applications that manage data, call services, and prepare for database/web courses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Collections-driven design",
+          "description": "Students build realistic apps around lists, maps, and domain objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Catalogs, inventories, gradebooks, tickets, and accounts"
+            },
+            {
+              "type": "concept",
+              "title": "Sorting, searching, and filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Object identity and equality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Persistence and databases",
+          "description": "The point is to prepare for data-backed systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Files to databases progression"
+            },
+            {
+              "type": "concept",
+              "title": "DAO/Repository Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Intro to SQL-Backed Design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "APIs and Web Preparation",
+          "description": "Learners see how OOP supports later web/API courses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Service objects"
+            },
+            {
+              "type": "concept",
+              "title": "Request/response concepts"
+            },
+            {
+              "type": "concept",
+              "title": "DTOs and Serialization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Secure, Maintainable, Documented, and Collaborative OOP Practice",
+      "description": "Develop professional habits around secure coding, documentation, version control, reviews, and teamwork.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Secure coding",
+          "description": "Students learn that software quality includes safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input validation"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets and configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Least privilege and safe error handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation",
+          "description": "The gist is to make code usable by future readers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Javadocs/Docstrings"
+            },
+            {
+              "type": "concept",
+              "title": "README Files"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture and design notes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collaboration",
+          "description": "Learners work cleanly with others.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Git Branches and Pull Requests"
+            },
+            {
+              "type": "concept",
+              "title": "Code review etiquette"
+            },
+            {
+              "type": "concept",
+              "title": "Issue tracking and task breakdown"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Programming II Capstone: Object-Oriented Application Design, Build, Test, and Demo",
+      "description": "Synthesize OOP, collections, persistence, testing, patterns, documentation, and presentation in a complete application.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project design",
+          "description": "Students scope a complete OOP application.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Domain model"
+            },
+            {
+              "type": "concept",
+              "title": "UML Class Diagram and Feature Plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Implementation",
+          "description": "The point is to integrate course skills into working software.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classes, collections, exceptions, and files"
+            },
+            {
+              "type": "concept",
+              "title": "Interfaces or inheritance"
+            },
+            {
+              "type": "concept",
+              "title": "GUI or Command-Line Interaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality and presentation",
+          "description": "Learners finish with a portfolio-worthy artifact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit tests and bug fixes"
+            },
+            {
+              "type": "concept",
+              "title": "README and User Documentation"
+            },
+            {
+              "type": "concept",
+              "title": "Demo, reflection, and future improvements"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1394 @@
+{
+  "slug": "biostatistics",
+  "title": "Biostatistics",
+  "description": "This 14-topic sequence begins with data literacy and study design, then builds through inference, common tests, regression, survival analysis, and reproducible health-science reporting.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Biostatistical Thinking, Data Types, and Research Questions",
+      "description": "This opening unit frames biostatistics as the discipline of learning from biological and health data under uncertainty. Students learn to connect research questions to variables, designs, and analyses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Statistical reasoning in health and biology",
+          "description": "Students learn why uncertainty is unavoidable in biological systems and health studies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variation among organisms and patients"
+            },
+            {
+              "type": "concept",
+              "title": "Samples versus populations"
+            },
+            {
+              "type": "concept",
+              "title": "Signal and noise"
+            },
+            {
+              "type": "concept",
+              "title": "Statistical versus scientific questions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Types of variables",
+          "description": "Students learn how variable type determines summaries, graphs, and statistical tests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Categorical variables"
+            },
+            {
+              "type": "concept",
+              "title": "Ordinal variables"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous variables"
+            },
+            {
+              "type": "concept",
+              "title": "Counts and rates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Research questions and hypotheses",
+          "description": "Students learn to turn broad scientific curiosity into analyzable questions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null and alternative hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Outcome variables"
+            },
+            {
+              "type": "concept",
+              "title": "Predictor variables"
+            },
+            {
+              "type": "concept",
+              "title": "Primary versus secondary questions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data sources",
+          "description": "Students learn how different data sources shape what can be inferred.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clinical records"
+            },
+            {
+              "type": "concept",
+              "title": "Surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Experiments"
+            },
+            {
+              "type": "concept",
+              "title": "Public health surveillance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Study Design, Sampling, Controls, Randomization, and Bias",
+      "description": "Study design determines the strength of conclusions before any calculation happens. Students learn how design choices protect against bias and support valid inference.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Observational and experimental designs",
+          "description": "Students learn the major design families and what each can support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cross-sectional studies"
+            },
+            {
+              "type": "concept",
+              "title": "Case-control studies"
+            },
+            {
+              "type": "concept",
+              "title": "Cohort studies"
+            },
+            {
+              "type": "concept",
+              "title": "Randomized trials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sampling and representativeness",
+          "description": "Students learn how samples are selected and why representativeness matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple random sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Stratified sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Convenience samples"
+            },
+            {
+              "type": "concept",
+              "title": "Selection bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Controls, replication, and randomization",
+          "description": "Students learn how experiments separate treatment effects from noise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control groups"
+            },
+            {
+              "type": "concept",
+              "title": "Replication"
+            },
+            {
+              "type": "concept",
+              "title": "Random assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Blocking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bias and validity",
+          "description": "Students learn common threats to trustworthy results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confounding"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement bias"
+            },
+            {
+              "type": "concept",
+              "title": "Information bias"
+            },
+            {
+              "type": "concept",
+              "title": "Internal and external validity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Descriptive Statistics and Data Visualization",
+      "description": "This unit teaches students to summarize and inspect data before formal modeling. Good description often reveals structure, errors, and questions worth testing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measures of center and spread",
+          "description": "Students learn how to describe typical values and variability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean"
+            },
+            {
+              "type": "concept",
+              "title": "Median"
+            },
+            {
+              "type": "concept",
+              "title": "Standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Interquartile range"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distribution shape",
+          "description": "Students learn to see skewness, outliers, and clustering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Histograms"
+            },
+            {
+              "type": "concept",
+              "title": "Density plots"
+            },
+            {
+              "type": "concept",
+              "title": "Boxplots"
+            },
+            {
+              "type": "concept",
+              "title": "Outlier review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Visualization for relationships",
+          "description": "Students learn graphics for comparing groups and variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scatterplots"
+            },
+            {
+              "type": "concept",
+              "title": "Bar charts"
+            },
+            {
+              "type": "concept",
+              "title": "Line charts"
+            },
+            {
+              "type": "concept",
+              "title": "Faceting and stratification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data summaries by group",
+          "description": "Students learn to compare patterns across treatment, exposure, or outcome groups.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grouped means"
+            },
+            {
+              "type": "concept",
+              "title": "Rates and proportions"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals in plots"
+            },
+            {
+              "type": "concept",
+              "title": "Small-multiple displays"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Probability, Probability Distributions, and Diagnostic Reasoning",
+      "description": "Probability gives the language for uncertainty. Students learn distributions and diagnostic concepts that appear throughout health and biological research.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability rules",
+          "description": "Students learn how to reason about events and conditional information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Addition rule"
+            },
+            {
+              "type": "concept",
+              "title": "Multiplication rule"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional probability"
+            },
+            {
+              "type": "concept",
+              "title": "Independence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common distributions",
+          "description": "Students learn distributions used to model biological and health data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson distribution"
+            },
+            {
+              "type": "concept",
+              "title": "T distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagnostic testing",
+          "description": "Students learn probability in the context of screening and diagnosis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Specificity"
+            },
+            {
+              "type": "concept",
+              "title": "Positive predictive value"
+            },
+            {
+              "type": "concept",
+              "title": "Negative predictive value"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bayes intuition",
+          "description": "Students learn why pretest probability changes interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base rates"
+            },
+            {
+              "type": "concept",
+              "title": "Likelihood intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Posterior probability"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling Distributions, Estimation, Confidence Intervals, and Uncertainty",
+      "description": "This unit bridges samples to populations. Students learn how estimates vary and how confidence intervals express uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling distributions",
+          "description": "Students learn why repeated samples produce different estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample statistic"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Point estimation",
+          "description": "Students learn how sample data estimate population parameters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample mean"
+            },
+            {
+              "type": "concept",
+              "title": "Sample proportion"
+            },
+            {
+              "type": "concept",
+              "title": "Bias and precision"
+            },
+            {
+              "type": "concept",
+              "title": "Estimator properties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Confidence intervals",
+          "description": "Students learn how intervals communicate plausible parameter values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confidence level"
+            },
+            {
+              "type": "concept",
+              "title": "Margin of error"
+            },
+            {
+              "type": "concept",
+              "title": "One-sample intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Two-sample intervals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpreting uncertainty",
+          "description": "Students learn what confidence intervals do and do not mean.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Frequentist interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Precision versus significance"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical importance"
+            },
+            {
+              "type": "concept",
+              "title": "Common misinterpretations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Testing, P-Values, Effect Sizes, Power, and Sample Size",
+      "description": "This unit teaches the logic and limits of statistical testing. Students learn to pair significance with magnitude, design power, and practical interpretation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hypothesis testing framework",
+          "description": "Students learn the standard steps of a statistical test.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Test statistic"
+            },
+            {
+              "type": "concept",
+              "title": "p-value"
+            },
+            {
+              "type": "concept",
+              "title": "Decision rules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Errors and power",
+          "description": "Students learn the consequences of false positives and false negatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Type I error"
+            },
+            {
+              "type": "concept",
+              "title": "Type II error"
+            },
+            {
+              "type": "concept",
+              "title": "Power"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha level"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effect size",
+          "description": "Students learn to distinguish meaningful effects from merely detectable effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean difference"
+            },
+            {
+              "type": "concept",
+              "title": "Standardized effect size"
+            },
+            {
+              "type": "concept",
+              "title": "Risk difference"
+            },
+            {
+              "type": "concept",
+              "title": "Odds ratio context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sample size planning",
+          "description": "Students learn how design assumptions affect needed sample size.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum detectable effect"
+            },
+            {
+              "type": "concept",
+              "title": "Variance assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Allocation ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Attrition allowance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Comparing Two Groups: Z-Tests, T-Tests, Paired Designs, and Nonparametric Alternatives",
+      "description": "This unit covers common comparisons between two groups or two time points. Students learn to choose tests based on outcome type, independence, and distribution assumptions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-sample and two-sample tests",
+          "description": "Students learn basic mean comparisons.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-sample z and t tests"
+            },
+            {
+              "type": "concept",
+              "title": "Independent two-sample t test"
+            },
+            {
+              "type": "concept",
+              "title": "Welch t test"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Paired designs",
+          "description": "Students learn why before-after or matched data need paired analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Paired t test"
+            },
+            {
+              "type": "concept",
+              "title": "Matched subjects"
+            },
+            {
+              "type": "concept",
+              "title": "Within-person change"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency in data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonparametric alternatives",
+          "description": "Students learn options when assumptions are weak or data are ordinal.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wilcoxon signed-rank test"
+            },
+            {
+              "type": "concept",
+              "title": "Mann-Whitney U test"
+            },
+            {
+              "type": "concept",
+              "title": "Ranks"
+            },
+            {
+              "type": "concept",
+              "title": "Robustness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Health-science interpretation",
+          "description": "Students learn how to report group comparisons responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean difference"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical relevance"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical presentation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Comparing Multiple Groups: ANOVA, Multiple Comparisons, and Experimental Design",
+      "description": "This unit extends group comparisons to more complex designs. Students learn how ANOVA partitions variation and why multiple comparisons require care.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-way ANOVA",
+          "description": "Students learn how to compare means across three or more groups.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Between-group variation"
+            },
+            {
+              "type": "concept",
+              "title": "Within-group variation"
+            },
+            {
+              "type": "concept",
+              "title": "F statistic"
+            },
+            {
+              "type": "concept",
+              "title": "Omnibus test"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Post-hoc and multiple comparisons",
+          "description": "Students learn why repeated testing inflates false positives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Familywise error"
+            },
+            {
+              "type": "concept",
+              "title": "Bonferroni"
+            },
+            {
+              "type": "concept",
+              "title": "Tukey HSD"
+            },
+            {
+              "type": "concept",
+              "title": "False discovery rate overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Factorial designs",
+          "description": "Students learn how experiments can test more than one factor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Main effects"
+            },
+            {
+              "type": "concept",
+              "title": "Interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Two-way ANOVA"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced designs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental design principles",
+          "description": "Students connect ANOVA to design choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blocking"
+            },
+            {
+              "type": "concept",
+              "title": "Randomization"
+            },
+            {
+              "type": "concept",
+              "title": "Replication"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated measures overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Categorical Data Analysis: Proportions, Chi-Square Tests, Risk, and Odds",
+      "description": "Many biological and health outcomes are categories: diseased/not diseased, exposed/not exposed, improved/not improved. Students learn tools for counts, proportions, and association.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Proportions and contingency tables",
+          "description": "Students learn how categorical data are organized.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-way tables"
+            },
+            {
+              "type": "concept",
+              "title": "Two-way tables"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal totals"
+            },
+            {
+              "type": "concept",
+              "title": "Expected counts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chi-square and exact tests",
+          "description": "Students learn tests for association and goodness of fit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chi-square test of independence"
+            },
+            {
+              "type": "concept",
+              "title": "Goodness-of-fit test"
+            },
+            {
+              "type": "concept",
+              "title": "Fisher exact test"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk measures",
+          "description": "Students learn effect measures used in epidemiology and clinical studies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk difference"
+            },
+            {
+              "type": "concept",
+              "title": "Relative risk"
+            },
+            {
+              "type": "concept",
+              "title": "Odds ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Number needed to treat overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Screening and public health examples",
+          "description": "Students practice interpreting categorical evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Disease prevalence"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure-outcome tables"
+            },
+            {
+              "type": "concept",
+              "title": "Vaccine effectiveness intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Adverse event comparisons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Correlation, Simple Linear Regression, and Model Interpretation",
+      "description": "This unit introduces relationships between continuous variables. Students learn how to describe association and fit a simple predictive or explanatory model.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Correlation",
+          "description": "Students learn a standardized measure of linear association.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pearson correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Spearman correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Direction and strength"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation versus causation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simple linear regression",
+          "description": "Students learn to model a continuous outcome with one predictor.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slope"
+            },
+            {
+              "type": "concept",
+              "title": "Intercept"
+            },
+            {
+              "type": "concept",
+              "title": "Residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Least squares"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model fit and assumptions",
+          "description": "Students learn how to check whether a regression model is reasonable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Constant variance"
+            },
+            {
+              "type": "concept",
+              "title": "Normal residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Influential points"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpretation",
+          "description": "Students learn to explain regression in scientific language.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units of slope"
+            },
+            {
+              "type": "concept",
+              "title": "Predicted values"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval for slope"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations of extrapolation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multiple Regression, Confounding, Interactions, and Model Diagnostics",
+      "description": "This unit teaches adjustment and multivariable thinking. Students learn how models account for additional predictors and how wrong models can mislead.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Multiple linear regression",
+          "description": "Students learn to model outcomes with several predictors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adjusted coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous predictors"
+            },
+            {
+              "type": "concept",
+              "title": "Categorical predictors"
+            },
+            {
+              "type": "concept",
+              "title": "Dummy variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Confounding and adjustment",
+          "description": "Students learn why crude associations can be misleading.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confounder criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Adjusted estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Directed-acyclic-graph intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Overadjustment risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interactions",
+          "description": "Students learn when effects differ across groups or conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effect modification"
+            },
+            {
+              "type": "concept",
+              "title": "Interaction terms"
+            },
+            {
+              "type": "concept",
+              "title": "Stratified interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Public health examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagnostics and model selection",
+          "description": "Students learn to evaluate and refine models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residual plots"
+            },
+            {
+              "type": "concept",
+              "title": "Collinearity"
+            },
+            {
+              "type": "concept",
+              "title": "Influence diagnostics"
+            },
+            {
+              "type": "concept",
+              "title": "AIC and practical model selection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Logistic, Poisson, Survival, and Other Generalized Models",
+      "description": "Health and biological outcomes often are binary, counts, or time-to-event rather than continuous. Students learn model families that match these outcome types.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Logistic regression",
+          "description": "Students learn to model binary outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Log odds"
+            },
+            {
+              "type": "concept",
+              "title": "Odds ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Predicted probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Poisson and count models",
+          "description": "Students learn models for rates and counts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poisson regression"
+            },
+            {
+              "type": "concept",
+              "title": "Rate ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Offsets"
+            },
+            {
+              "type": "concept",
+              "title": "Overdispersion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Survival analysis",
+          "description": "Students learn methods for time-to-event outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Censoring"
+            },
+            {
+              "type": "concept",
+              "title": "Kaplan-Meier curves"
+            },
+            {
+              "type": "concept",
+              "title": "Log-rank test"
+            },
+            {
+              "type": "concept",
+              "title": "Cox proportional hazards model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Generalized model framework",
+          "description": "Students learn the common structure behind GLMs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Link functions"
+            },
+            {
+              "type": "concept",
+              "title": "Mean-variance relationship"
+            },
+            {
+              "type": "concept",
+              "title": "Model family"
+            },
+            {
+              "type": "concept",
+              "title": "Interpretation by outcome type"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Software, Reproducible Workflows, Missing Data, and Data Quality",
+      "description": "This unit makes biostatistics operational. Students learn how to conduct analyses transparently and detect data problems before they undermine results.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Statistical software workflow",
+          "description": "Students learn basic analysis workflows in R, SAS, SPSS, or similar tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Importing data"
+            },
+            {
+              "type": "concept",
+              "title": "Cleaning data"
+            },
+            {
+              "type": "concept",
+              "title": "Running analyses"
+            },
+            {
+              "type": "concept",
+              "title": "Exporting results"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducibility",
+          "description": "Students learn practices that make analyses auditable and reusable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scripted analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Version control"
+            },
+            {
+              "type": "concept",
+              "title": "Literate reports"
+            },
+            {
+              "type": "concept",
+              "title": "Documented assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Missing data",
+          "description": "Students learn why missingness matters and how to describe it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MCAR, MAR, MNAR intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Complete-case analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Imputation overview"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data quality",
+          "description": "Students learn to identify errors before modeling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Range checks"
+            },
+            {
+              "type": "concept",
+              "title": "Duplicate records"
+            },
+            {
+              "type": "concept",
+              "title": "Outlier review"
+            },
+            {
+              "type": "concept",
+              "title": "Codebooks and metadata"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interpreting, Reporting, and Communicating Biostatistical Results",
+      "description": "The final unit turns analysis into scientific communication. Students learn how to present methods, results, uncertainty, and limitations to clinical, biological, or public-health audiences.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Statistical reporting",
+          "description": "Students learn what belongs in a clear methods and results section.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Test or model name"
+            },
+            {
+              "type": "concept",
+              "title": "Effect estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "p-value and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tables and figures",
+          "description": "Students learn to communicate results visually and compactly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Table 1 summaries"
+            },
+            {
+              "type": "concept",
+              "title": "Regression tables"
+            },
+            {
+              "type": "concept",
+              "title": "Forest plots"
+            },
+            {
+              "type": "concept",
+              "title": "Survival curves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reporting standards",
+          "description": "Students learn why guidelines improve transparency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CONSORT"
+            },
+            {
+              "type": "concept",
+              "title": "STROBE"
+            },
+            {
+              "type": "concept",
+              "title": "PRISMA overview"
+            },
+            {
+              "type": "concept",
+              "title": "EQUATOR Network"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Audience-centered interpretation",
+          "description": "Students learn to translate statistics into decisions and evidence statements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clinical audience"
+            },
+            {
+              "type": "concept",
+              "title": "Public health audience"
+            },
+            {
+              "type": "concept",
+              "title": "Biology research audience"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations and uncertainty"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

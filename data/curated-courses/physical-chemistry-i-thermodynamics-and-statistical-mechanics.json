@@ -1,0 +1,1032 @@
+{
+  "slug": "physical-chemistry-i-thermodynamics-and-statistical-mechanics",
+  "title": "Physical Chemistry I (Thermodynamics & Statistical Mechanics)",
+  "description": "Develop a molecularly grounded command of chemical thermodynamics and statistical mechanics, so students can predict phase behavior, solution behavior, chemical equilibrium, electrochemical work, and thermodynamic properties from both data and molecular models.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Thermodynamic Systems, States, and Equations of State",
+      "description": "This opening unit defines the language of macroscopic thermodynamics: systems, surroundings, state variables, paths, and equations of state.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Systems and state variables",
+          "description": "Students learn what is being modeled before calculating energy, entropy, or equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open, closed, and isolated systems"
+            },
+            {
+              "type": "concept",
+              "title": "Intensive and extensive variables"
+            },
+            {
+              "type": "concept",
+              "title": "State functions versus path functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equations of state",
+          "description": "Equations of state connect measurable variables and reveal when ideal models break down.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal gas law"
+            },
+            {
+              "type": "concept",
+              "title": "Compressibility factor"
+            },
+            {
+              "type": "concept",
+              "title": "Van der Waals and virial equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamic processes",
+          "description": "Process language helps students interpret experiments and reversible/irreversible limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isothermal, adiabatic, isobaric, isochoric paths"
+            },
+            {
+              "type": "concept",
+              "title": "Quasi-static processes"
+            },
+            {
+              "type": "concept",
+              "title": "Work diagrams"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First Law of Thermodynamics",
+      "description": "The first law is conservation of energy written for chemical systems, connecting heat, work, internal energy, and measurable changes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Internal energy and energy accounting",
+          "description": "Students learn to track energy without confusing heat and work with stored energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Exact and inexact differentials"
+            },
+            {
+              "type": "concept",
+              "title": "State changes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pressure-volume work",
+          "description": "PV work is the simplest route from mechanical models to thermodynamic processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reversible expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Free expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Work from path integrals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heat capacities",
+          "description": "Heat capacities translate temperature changes into energy changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant-volume heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-pressure heat capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature dependence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enthalpy and Thermochemistry",
+      "description": "Enthalpy makes chemistry's heat effects practical because many reactions occur at constant pressure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reaction enthalpy",
+          "description": "Students learn how heat of reaction is defined, measured, and related to molecular change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard enthalpies"
+            },
+            {
+              "type": "concept",
+              "title": "Calorimetry"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature corrections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hess's law",
+          "description": "Thermochemical cycles show that state functions allow indirect calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Formation reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Combustion data"
+            },
+            {
+              "type": "concept",
+              "title": "Bond enthalpy estimates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase-change energetics",
+          "description": "Phase transitions provide concrete examples of latent heat and molecular interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enthalpy of vaporization"
+            },
+            {
+              "type": "concept",
+              "title": "Enthalpy of fusion"
+            },
+            {
+              "type": "concept",
+              "title": "Clausius-Clapeyron preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Second Law, Entropy, and Irreversibility",
+      "description": "The second law explains directionality: why some processes happen spontaneously and why energy quality matters.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Entropy change",
+          "description": "Students learn entropy as a state function tied to heat flow and multiplicity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reversible heat definition"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy of ideal gases"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing entropy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Irreversible processes",
+          "description": "Irreversibility links real processes to entropy production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spontaneous expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Heat flow down gradients"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy generation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Second-law statements",
+          "description": "Different statements of the second law reveal the same physical constraint.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kelvin-Planck statement"
+            },
+            {
+              "type": "concept",
+              "title": "Clausius statement"
+            },
+            {
+              "type": "concept",
+              "title": "Heat engines and refrigerators"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Free Energy, Spontaneity, and Thermodynamic Potentials",
+      "description": "Free energies translate the first and second laws into criteria for chemical change under common laboratory constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Helmholtz and Gibbs free energies",
+          "description": "Students learn which potential is minimized under which conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant T,V systems"
+            },
+            {
+              "type": "concept",
+              "title": "Constant T,P systems"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum non-expansion work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Legendre transforms",
+          "description": "Legendre transforms explain why different potentials use different natural variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "U, H, A, G relationships"
+            },
+            {
+              "type": "concept",
+              "title": "Natural variables"
+            },
+            {
+              "type": "concept",
+              "title": "Maxwell relations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spontaneity and equilibrium criteria",
+          "description": "Free energy gives a quantitative criterion for whether a process can proceed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "delta G and direction"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical driving force"
+            },
+            {
+              "type": "concept",
+              "title": "Metastability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Potential and Partial Molar Quantities",
+      "description": "Chemical potential is the central quantity linking thermodynamics to mixtures, phase equilibrium, reactions, and transport.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Chemical potential",
+          "description": "Students learn chemical potential as escaping tendency and molar free energy in context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definition from Gibbs energy"
+            },
+            {
+              "type": "concept",
+              "title": "Dependence on T, P, and composition"
+            },
+            {
+              "type": "concept",
+              "title": "Equality at equilibrium"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Partial molar properties",
+          "description": "Mixtures require composition-sensitive quantities rather than simple pure-component molar values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial molar volume"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs-Duhem equation"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement and tangent methods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fugacity and activity",
+          "description": "Real systems need corrected measures of effective pressure and concentration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fugacity coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Activity coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Standard states"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phase Equilibria and Phase Diagrams",
+      "description": "Phase equilibrium connects chemical potential to real materials: boiling, freezing, polymorphs, mixtures, and critical behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-component phase diagrams",
+          "description": "Students learn how pressure and temperature determine stable phases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Triple point"
+            },
+            {
+              "type": "concept",
+              "title": "Critical point"
+            },
+            {
+              "type": "concept",
+              "title": "Phase boundaries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clapeyron and Clausius-Clapeyron equations",
+          "description": "These equations quantify phase-boundary slopes and vapor-pressure behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latent heat"
+            },
+            {
+              "type": "concept",
+              "title": "Vapor pressure curves"
+            },
+            {
+              "type": "concept",
+              "title": "Solid-liquid equilibria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multicomponent phase behavior",
+          "description": "Mixtures introduce composition as a variable and explain distillation and miscibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Raoult's law"
+            },
+            {
+              "type": "concept",
+              "title": "Henry's law"
+            },
+            {
+              "type": "concept",
+              "title": "Azeotropes and eutectics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Solutions, Mixing, and Nonideal Behavior",
+      "description": "Solutions are where molecular interactions become thermodynamic quantities, from colligative effects to activity models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ideal and real solutions",
+          "description": "Students learn when simple mixing laws work and what deviations mean molecularly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ideal solution criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Excess functions"
+            },
+            {
+              "type": "concept",
+              "title": "Regular solution idea"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Colligative properties",
+          "description": "Colligative effects show how chemical potential changes with solute concentration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Freezing-point depression"
+            },
+            {
+              "type": "concept",
+              "title": "Boiling-point elevation"
+            },
+            {
+              "type": "concept",
+              "title": "Osmotic pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrolyte solutions",
+          "description": "Charged solutions require special treatment because long-range interactions matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean ionic activity"
+            },
+            {
+              "type": "concept",
+              "title": "Debye-Huckel limiting law"
+            },
+            {
+              "type": "concept",
+              "title": "Ionic strength"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Equilibrium",
+      "description": "Chemical equilibrium turns free energy minimization into reaction composition, equilibrium constants, and measurable chemical predictions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equilibrium constants",
+          "description": "Students connect thermodynamic activities to the familiar K expression.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reaction Gibbs energy"
+            },
+            {
+              "type": "concept",
+              "title": "Standard states"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction quotient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temperature and pressure dependence",
+          "description": "Equilibria shift with external conditions in quantitatively predictable ways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Van 't Hoff equation"
+            },
+            {
+              "type": "concept",
+              "title": "Le Chatelier principle"
+            },
+            {
+              "type": "concept",
+              "title": "Gas-phase pressure effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coupled equilibria",
+          "description": "Real chemistry often involves linked acid-base, solubility, redox, or binding equilibria.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simultaneous equilibria"
+            },
+            {
+              "type": "concept",
+              "title": "Speciation diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Biochemical standard states"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electrochemical Thermodynamics",
+      "description": "Electrochemistry is free energy made electrical, and it gives a powerful laboratory route to thermodynamic data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell potentials and Gibbs energy",
+          "description": "Students learn how voltage measures chemical driving force.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "delta G = -nFE"
+            },
+            {
+              "type": "concept",
+              "title": "Standard potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Cell conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nernst equation",
+          "description": "The Nernst equation connects composition and electrical potential.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concentration cells"
+            },
+            {
+              "type": "concept",
+              "title": "pH dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Ion-selective electrodes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Batteries and corrosion",
+          "description": "Applications make thermodynamics concrete in materials, energy storage, and analytical chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Galvanic cells"
+            },
+            {
+              "type": "concept",
+              "title": "Electrolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Corrosion thermodynamics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Mechanics Foundations",
+      "description": "Statistical mechanics explains thermodynamic laws from molecular states, probabilities, and energy levels.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microstates and macrostates",
+          "description": "Students learn how many microscopic arrangements correspond to one macroscopic state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiplicity"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration counting"
+            },
+            {
+              "type": "concept",
+              "title": "Boltzmann entropy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ensembles",
+          "description": "Ensembles formalize which variables are fixed and how probability is assigned.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microcanonical ensemble"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical ensemble"
+            },
+            {
+              "type": "concept",
+              "title": "Grand canonical preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ergodicity and averages",
+          "description": "Students connect molecular averages to experimentally measured thermodynamic quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time versus ensemble averages"
+            },
+            {
+              "type": "concept",
+              "title": "Fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Thermodynamic limit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boltzmann Distribution and Molecular Populations",
+      "description": "The Boltzmann distribution is the bridge from energy levels to populations, spectroscopy, heat capacities, and reaction probabilities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Canonical probability",
+          "description": "Students learn why lower-energy states are more populated but higher-energy states matter at finite temperature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boltzmann factor"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature dependence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Population ratios",
+          "description": "Population ratios give direct insight into spectroscopy and molecular excitation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-level systems"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational populations"
+            },
+            {
+              "type": "concept",
+              "title": "Vibrational populations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equipartition and limits",
+          "description": "Students learn when classical energy sharing works and where quantum effects appear.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Translational degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational/vibrational modes"
+            },
+            {
+              "type": "concept",
+              "title": "Frozen-out modes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Partition Functions and Molecular Thermodynamics",
+      "description": "Partition functions are compact engines for computing thermodynamic properties from molecular energy levels.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Molecular partition functions",
+          "description": "Students learn to build translational, rotational, vibrational, and electronic contributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Separability"
+            },
+            {
+              "type": "concept",
+              "title": "Single-particle partition functions"
+            },
+            {
+              "type": "concept",
+              "title": "Degeneracy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermodynamic properties from q and Q",
+          "description": "This unit shows how energy, entropy, pressure, and free energy emerge from partition functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal energy"
+            },
+            {
+              "type": "concept",
+              "title": "Helmholtz energy"
+            },
+            {
+              "type": "concept",
+              "title": "Entropy formulas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical equilibrium from partition functions",
+          "description": "Partition functions give equilibrium constants a molecular basis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecular interpretation of K"
+            },
+            {
+              "type": "concept",
+              "title": "Standard-state factors"
+            },
+            {
+              "type": "concept",
+              "title": "Isotope effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Kinetic Theory, Transport, and Molecular Motion",
+      "description": "Kinetic theory connects molecular speeds and collisions to pressure, temperature, viscosity, diffusion, and reaction environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Maxwell-Boltzmann speeds",
+          "description": "Students learn the distribution of molecular speeds and its temperature dependence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Most probable, mean, and rms speeds"
+            },
+            {
+              "type": "concept",
+              "title": "Effusion"
+            },
+            {
+              "type": "concept",
+              "title": "Collision frequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport properties",
+          "description": "Transport links microscopic motion to macroscopic fluxes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "Viscosity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collision models",
+          "description": "Collision concepts prepare students for kinetics and reaction-rate theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean free path"
+            },
+            {
+              "type": "concept",
+              "title": "Collision cross section"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fluctuations, Phase Transitions, and Critical Phenomena",
+      "description": "A world-class course should show where thermodynamics meets collective behavior: fluctuations, cooperative transitions, and limits of mean behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermodynamic fluctuations",
+          "description": "Students learn that fluctuations shrink in large systems but matter in small and critical systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Particle-number fluctuations"
+            },
+            {
+              "type": "concept",
+              "title": "Response functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase transitions",
+          "description": "Phase transitions reveal nonanalytic behavior and collective molecular organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Order parameters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Critical phenomena preview",
+          "description": "Students see why behavior near critical points is universal and subtle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical exponents"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation length"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data, Computation, and Experimental Thermodynamics",
+      "description": "The final unit helps students use thermodynamics like practicing chemists: with real data, uncertainty, models, and computational checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermochemical data",
+          "description": "Students learn to find, interpret, and use authoritative property data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NIST data"
+            },
+            {
+              "type": "concept",
+              "title": "Standard enthalpies and entropies"
+            },
+            {
+              "type": "concept",
+              "title": "Heat capacity correlations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational thermodynamics",
+          "description": "Simple computation makes nonlinear equilibria and phase behavior tractable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Root finding"
+            },
+            {
+              "type": "concept",
+              "title": "Gibbs energy minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model validation and uncertainty",
+          "description": "Students learn to question results and communicate confidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit checks"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

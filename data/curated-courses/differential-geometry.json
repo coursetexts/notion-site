@@ -1,0 +1,1296 @@
+{
+  "slug": "differential-geometry",
+  "title": "Differential Geometry",
+  "description": "Differential geometry connects calculus, topology, and linear algebra to study curved spaces. The syllabus begins with curves and surfaces, then moves toward manifolds, tensors, metrics, connections, curvature, and global theorems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Curves in Euclidean Space",
+      "description": "This section develops curves in euclidean space through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make curves in euclidean space precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular curve"
+            },
+            {
+              "type": "concept",
+              "title": "Arc length"
+            },
+            {
+              "type": "concept",
+              "title": "Curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Torsion"
+            },
+            {
+              "type": "concept",
+              "title": "Unit tangent"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with curves in euclidean space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply regular curve in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare arc length with curvature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how regular curve affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frenet-Serret Frames and Curvature",
+      "description": "This section develops frenet-serret frames and curvature through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make frenet-serret frames and curvature precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TNB frame"
+            },
+            {
+              "type": "concept",
+              "title": "Curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Torsion"
+            },
+            {
+              "type": "concept",
+              "title": "Frenet-Serret equations"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with frenet-serret frames and curvature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply TNB frame in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare curvature with torsion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how TNB frame affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Surfaces in Three-Dimensional Space",
+      "description": "This section develops surfaces in three-dimensional space through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make surfaces in three-dimensional space precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parametrization"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent plane"
+            },
+            {
+              "type": "concept",
+              "title": "Normal vector"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate patch"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with surfaces in three-dimensional space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply parametrization in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare tangent plane with normal vector"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how parametrization affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First and Second Fundamental Forms",
+      "description": "This section develops first and second fundamental forms through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make first and second fundamental forms precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First fundamental form"
+            },
+            {
+              "type": "concept",
+              "title": "Second fundamental form"
+            },
+            {
+              "type": "concept",
+              "title": "Shape operator"
+            },
+            {
+              "type": "concept",
+              "title": "Principal curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with first and second fundamental forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply first fundamental form in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare second fundamental form with shape operator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how first fundamental form affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gaussian Curvature and Mean Curvature",
+      "description": "This section develops gaussian curvature and mean curvature through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make gaussian curvature and mean curvature precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gaussian curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Mean curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Theorema Egregium"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal surface"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with gaussian curvature and mean curvature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Gaussian curvature in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare mean curvature with Theorema Egregium"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Gaussian curvature affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geodesics and Variational Ideas",
+      "description": "This section develops geodesics and variational ideas through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make geodesics and variational ideas precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geodesic equation"
+            },
+            {
+              "type": "concept",
+              "title": "Christoffel symbol"
+            },
+            {
+              "type": "concept",
+              "title": "Length minimizing"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential map"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with geodesics and variational ideas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply geodesic equation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Christoffel symbol with length minimizing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how geodesic equation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gauss-Bonnet Theorem",
+      "description": "This section develops gauss-bonnet theorem through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make gauss-bonnet theorem precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler characteristic"
+            },
+            {
+              "type": "concept",
+              "title": "Geodesic curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Total curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Topology"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with gauss-bonnet theorem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Euler characteristic in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare geodesic curvature with total curvature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Euler characteristic affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Smooth Manifolds and Coordinate Charts",
+      "description": "This section develops smooth manifolds and coordinate charts through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make smooth manifolds and coordinate charts precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chart"
+            },
+            {
+              "type": "concept",
+              "title": "Atlas"
+            },
+            {
+              "type": "concept",
+              "title": "Smooth map"
+            },
+            {
+              "type": "concept",
+              "title": "Transition function"
+            },
+            {
+              "type": "concept",
+              "title": "Dimension"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with smooth manifolds and coordinate charts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply chart in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare atlas with smooth map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how chart affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tangent Spaces, Vector Fields, and Bundles",
+      "description": "This section develops tangent spaces, vector fields, and bundles through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make tangent spaces, vector fields, and bundles precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangent vector"
+            },
+            {
+              "type": "concept",
+              "title": "Cotangent vector"
+            },
+            {
+              "type": "concept",
+              "title": "Vector field"
+            },
+            {
+              "type": "concept",
+              "title": "Bundle"
+            },
+            {
+              "type": "concept",
+              "title": "Quadrat"
+            },
+            {
+              "type": "concept",
+              "title": "Transect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with tangent spaces, vector fields, and bundles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply tangent vector in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare cotangent vector with vector field"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of citizen science"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how tangent vector affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Differential Forms and Exterior Derivatives",
+      "description": "This section develops differential forms and exterior derivatives through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make differential forms and exterior derivatives precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Differential form"
+            },
+            {
+              "type": "concept",
+              "title": "Exterior derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Wedge product"
+            },
+            {
+              "type": "concept",
+              "title": "Stokes theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with differential forms and exterior derivatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply differential form in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare exterior derivative with wedge product"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how differential form affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Riemannian Metrics",
+      "description": "This section develops riemannian metrics through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make riemannian metrics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Riemannian metric"
+            },
+            {
+              "type": "concept",
+              "title": "Inner product"
+            },
+            {
+              "type": "concept",
+              "title": "Length"
+            },
+            {
+              "type": "concept",
+              "title": "Volume form"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with riemannian metrics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Riemannian metric in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare inner product with length"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Riemannian metric affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Connections and Covariant Derivatives",
+      "description": "This section develops connections and covariant derivatives through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make connections and covariant derivatives precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariant derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel transport"
+            },
+            {
+              "type": "concept",
+              "title": "Levi-Civita connection"
+            },
+            {
+              "type": "concept",
+              "title": "Torsion-free"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with connections and covariant derivatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply covariant derivative in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare parallel transport with Levi-Civita connection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how covariant derivative affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Curvature Tensors and Sectional Curvature",
+      "description": "This section develops curvature tensors and sectional curvature through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make curvature tensors and sectional curvature precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Riemann tensor"
+            },
+            {
+              "type": "concept",
+              "title": "Ricci curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Sectional curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Scalar curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with curvature tensors and sectional curvature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Riemann tensor in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Ricci curvature with sectional curvature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Riemann tensor affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Submanifolds and Applications",
+      "description": "This section develops submanifolds and applications through the concrete vocabulary, procedures, examples, and checks students need in Differential Geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make submanifolds and applications precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chart"
+            },
+            {
+              "type": "concept",
+              "title": "Atlas"
+            },
+            {
+              "type": "concept",
+              "title": "Smooth map"
+            },
+            {
+              "type": "concept",
+              "title": "Transition function"
+            },
+            {
+              "type": "concept",
+              "title": "Dimension"
+            },
+            {
+              "type": "concept",
+              "title": "Curve"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with submanifolds and applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Work in coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Use differential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Apply chart in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare atlas with smooth map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of manifold"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how chart affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

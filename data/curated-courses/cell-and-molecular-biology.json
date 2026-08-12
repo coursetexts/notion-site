@@ -1,0 +1,996 @@
+{
+  "slug": "cell-and-molecular-biology",
+  "title": "Cell and Molecular Biology",
+  "description": "A cell and molecular biology course covering membranes and transport, signaling, cytoskeleton and motility, cell cycle and division, apoptosis, trafficking, mitochondria, cancer cell biology, gene expression, experimental methods, and genomics with CRISPR and systems approaches.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Membrane Structure and Function",
+      "description": "Understand how lipid bilayers and membrane proteins create selective, dynamic boundaries for living cells.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lipid bilayers",
+          "description": "Lipid bilayers are the physical basis of cellular compartments and selective barriers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phospholipids"
+            },
+            {
+              "type": "concept",
+              "title": "Cholesterol"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane fluidity"
+            },
+            {
+              "type": "concept",
+              "title": "Leaflet asymmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane proteins",
+          "description": "Membrane proteins give membranes their functional identity by moving materials, receiving signals, and anchoring structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integral and peripheral proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Channels and transporters"
+            },
+            {
+              "type": "concept",
+              "title": "Receptors"
+            },
+            {
+              "type": "concept",
+              "title": "Glycoproteins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane dynamics",
+          "description": "Membranes are active, changing surfaces rather than static walls.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fluid mosaic model"
+            },
+            {
+              "type": "concept",
+              "title": "Lateral diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Lipid rafts"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane curvature"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Membrane Transport",
+      "description": "Explain how cells move ions, water, nutrients, and macromolecules across membranes while maintaining homeostasis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Passive transport",
+          "description": "Passive transport shows how concentration and electrical gradients can power movement without direct ATP use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Osmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Electrochemical gradients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport proteins",
+          "description": "Transport proteins explain how cells move specific solutes with speed, selectivity, and regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ion channels"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier proteins"
+            },
+            {
+              "type": "concept",
+              "title": "ATP-driven pumps"
+            },
+            {
+              "type": "concept",
+              "title": "Aquaporins"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vesicular transport across the plasma membrane",
+          "description": "Bulk movement lets cells internalize and release larger materials that cannot pass through protein pores.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phagocytosis"
+            },
+            {
+              "type": "concept",
+              "title": "Pinocytosis"
+            },
+            {
+              "type": "concept",
+              "title": "Receptor-mediated endocytosis"
+            },
+            {
+              "type": "concept",
+              "title": "Exocytosis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Signaling Pathways",
+      "description": "Trace how extracellular and intracellular signals are detected, amplified, integrated, and converted into cellular responses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Signal reception",
+          "description": "Reception is where cells detect environmental and neighboring-cell information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ligands"
+            },
+            {
+              "type": "concept",
+              "title": "G protein-coupled receptors"
+            },
+            {
+              "type": "concept",
+              "title": "Receptor tyrosine kinases"
+            },
+            {
+              "type": "concept",
+              "title": "Intracellular receptors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal transduction",
+          "description": "Transduction converts receptor activation into intracellular cascades that can be amplified and controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second messengers"
+            },
+            {
+              "type": "concept",
+              "title": "Protein kinases"
+            },
+            {
+              "type": "concept",
+              "title": "Protein phosphatases"
+            },
+            {
+              "type": "concept",
+              "title": "Cascade amplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cellular responses and pathway logic",
+          "description": "Responses show how signaling changes cell behavior and why feedback matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transcriptional responses"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic responses"
+            },
+            {
+              "type": "concept",
+              "title": "Cytoskeletal responses"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback and crosstalk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cytoskeleton and Cell Motility",
+      "description": "Study the structural systems that organize cell shape, intracellular transport, division, and movement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Microtubules",
+          "description": "Microtubules organize long-range transport, cell polarity, cilia, flagella, and chromosome segregation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tubulin"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic instability"
+            },
+            {
+              "type": "concept",
+              "title": "Kinesin and dynein"
+            },
+            {
+              "type": "concept",
+              "title": "Mitotic spindle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Actin and myosin systems",
+          "description": "Actin networks drive shape change, contraction, crawling, and many local cell movements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Actin polymerization"
+            },
+            {
+              "type": "concept",
+              "title": "Myosin motors"
+            },
+            {
+              "type": "concept",
+              "title": "Cell cortex"
+            },
+            {
+              "type": "concept",
+              "title": "Lamellipodia and filopodia"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intermediate filaments, adhesion, and mechanics",
+          "description": "Mechanical stability depends on cytoskeletal links to membranes, neighboring cells, and extracellular matrix.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Intermediate filaments"
+            },
+            {
+              "type": "concept",
+              "title": "Focal adhesions"
+            },
+            {
+              "type": "concept",
+              "title": "Cell-cell junctions"
+            },
+            {
+              "type": "concept",
+              "title": "Cell migration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Cycle and Checkpoints",
+      "description": "Learn how cells coordinate growth, DNA replication, division, and quality control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell-cycle phases",
+          "description": "The phases provide a timing map for growth, DNA replication, mitosis, and division.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "G1 phase"
+            },
+            {
+              "type": "concept",
+              "title": "S phase"
+            },
+            {
+              "type": "concept",
+              "title": "G2 phase"
+            },
+            {
+              "type": "concept",
+              "title": "M phase"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Core regulators",
+          "description": "Cyclins and kinases explain how cells move forward only when the right conditions are met.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclins"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclin-dependent kinases"
+            },
+            {
+              "type": "concept",
+              "title": "Rb and E2F"
+            },
+            {
+              "type": "concept",
+              "title": "APC/C"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Checkpoint control",
+          "description": "Checkpoints protect genome integrity and reveal why control failure is dangerous.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Restriction point"
+            },
+            {
+              "type": "concept",
+              "title": "DNA damage checkpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Spindle assembly checkpoint"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpoint failure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mitosis and Meiosis",
+      "description": "Compare the mechanisms of somatic cell division and gamete formation, including chromosome behavior and genetic variation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mitosis",
+          "description": "Mitosis preserves chromosome number while producing genetically equivalent daughter cells.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prophase through telophase"
+            },
+            {
+              "type": "concept",
+              "title": "Spindle attachment"
+            },
+            {
+              "type": "concept",
+              "title": "Chromosome segregation"
+            },
+            {
+              "type": "concept",
+              "title": "Cytokinesis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Meiosis",
+          "description": "Meiosis produces haploid gametes and introduces variation through pairing and recombination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homolog pairing"
+            },
+            {
+              "type": "concept",
+              "title": "Crossing over"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction division"
+            },
+            {
+              "type": "concept",
+              "title": "Gamete formation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Errors and genetic consequences",
+          "description": "Division errors connect cell biology to infertility, developmental disorders, and cancer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nondisjunction"
+            },
+            {
+              "type": "concept",
+              "title": "Aneuploidy"
+            },
+            {
+              "type": "concept",
+              "title": "Chromosome rearrangements"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic diversity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Apoptosis and Programmed Cell Death",
+      "description": "Understand regulated cell death as a normal biological process and a central feature of development, immunity, and disease.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Apoptotic pathways",
+          "description": "Apoptosis is an orderly dismantling program that removes cells without provoking uncontrolled damage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Intrinsic pathway"
+            },
+            {
+              "type": "concept",
+              "title": "Extrinsic pathway"
+            },
+            {
+              "type": "concept",
+              "title": "Caspases"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondrial cytochrome c"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternative cell death programs",
+          "description": "Cells can die through multiple regulated and unregulated routes with distinct biological meanings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Necrosis"
+            },
+            {
+              "type": "concept",
+              "title": "Autophagy-associated cell death"
+            },
+            {
+              "type": "concept",
+              "title": "Ferroptosis"
+            },
+            {
+              "type": "concept",
+              "title": "Pyroptosis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological roles and disease",
+          "description": "Cell death becomes meaningful when tied to development, tissue maintenance, immunity, and pathology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Embryonic development"
+            },
+            {
+              "type": "concept",
+              "title": "Immune cell selection"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue turnover"
+            },
+            {
+              "type": "concept",
+              "title": "Cancer and neurodegeneration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Endomembrane System and Protein Trafficking",
+      "description": "Follow proteins and lipids through synthesis, processing, sorting, transport, secretion, and degradation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Endoplasmic reticulum and Golgi apparatus",
+          "description": "The ER and Golgi form the central production and processing route for secreted and membrane proteins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protein synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Protein folding"
+            },
+            {
+              "type": "concept",
+              "title": "Glycosylation"
+            },
+            {
+              "type": "concept",
+              "title": "Sorting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vesicle targeting and fusion",
+          "description": "Vesicle machinery gives intracellular transport its direction, specificity, and timing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "COPII vesicles"
+            },
+            {
+              "type": "concept",
+              "title": "COPI vesicles"
+            },
+            {
+              "type": "concept",
+              "title": "Clathrin-coated vesicles"
+            },
+            {
+              "type": "concept",
+              "title": "Rab GTPases and SNAREs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality control and degradation",
+          "description": "Cells monitor protein quality and recycle components to prevent stress and maintain function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unfolded protein response"
+            },
+            {
+              "type": "concept",
+              "title": "ER-associated degradation"
+            },
+            {
+              "type": "concept",
+              "title": "Lysosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Autophagy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mitochondria and Energy",
+      "description": "Connect mitochondrial structure to cellular respiration, metabolism, signaling, and cell fate.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mitochondrial architecture",
+          "description": "Mitochondrial structure explains how the organelle separates reactions and builds energy gradients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outer membrane"
+            },
+            {
+              "type": "concept",
+              "title": "Inner membrane"
+            },
+            {
+              "type": "concept",
+              "title": "Cristae"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondrial DNA"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cellular respiration",
+          "description": "Respiration converts food energy into ATP through coupled redox and proton-gradient processes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TCA cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Electron transport chain"
+            },
+            {
+              "type": "concept",
+              "title": "Proton motive force"
+            },
+            {
+              "type": "concept",
+              "title": "ATP synthase"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitochondrial dynamics and signaling",
+          "description": "Mitochondria are also signaling hubs that influence stress responses and cell fate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fission and fusion"
+            },
+            {
+              "type": "concept",
+              "title": "Reactive oxygen species"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Apoptosis links"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cancer Cell Biology",
+      "description": "Use cell and molecular mechanisms to explain how cancer cells grow, survive, invade, and evolve therapeutic resistance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hallmarks of cancer",
+          "description": "Cancer becomes intelligible when seen as altered versions of normal cell behaviors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sustained proliferation"
+            },
+            {
+              "type": "concept",
+              "title": "Resistance to cell death"
+            },
+            {
+              "type": "concept",
+              "title": "Angiogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Invasion and metastasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oncogenes and tumor suppressors",
+          "description": "Cancer genetics links molecular lesions to cell-cycle control, signaling, and genome stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ras signaling"
+            },
+            {
+              "type": "concept",
+              "title": "p53"
+            },
+            {
+              "type": "concept",
+              "title": "Rb pathway"
+            },
+            {
+              "type": "concept",
+              "title": "Genomic instability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tumor microenvironment and therapy",
+          "description": "Tumors behave as evolving tissues shaped by immune, stromal, metabolic, and treatment pressures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epithelial-mesenchymal transition"
+            },
+            {
+              "type": "concept",
+              "title": "Immune evasion"
+            },
+            {
+              "type": "concept",
+              "title": "Targeted therapy"
+            },
+            {
+              "type": "concept",
+              "title": "Drug resistance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gene Expression and Genome Regulation",
+      "description": "Extend the course from cell structure into the molecular logic of DNA, RNA, protein synthesis, and regulatory control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Central dogma mechanisms",
+          "description": "The central dogma connects genetic information to the proteins and RNAs that build cell behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNA replication"
+            },
+            {
+              "type": "concept",
+              "title": "Transcription"
+            },
+            {
+              "type": "concept",
+              "title": "RNA processing"
+            },
+            {
+              "type": "concept",
+              "title": "Translation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulatory DNA and chromatin",
+          "description": "Regulation explains why cells with the same genome can adopt different identities and states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Promoters"
+            },
+            {
+              "type": "concept",
+              "title": "Enhancers"
+            },
+            {
+              "type": "concept",
+              "title": "Transcription factors"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatin and epigenetics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RNA-level and post-transcriptional control",
+          "description": "RNA regulation adds speed, specificity, and flexibility to gene expression.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alternative splicing"
+            },
+            {
+              "type": "concept",
+              "title": "mRNA stability"
+            },
+            {
+              "type": "concept",
+              "title": "Non-coding RNAs"
+            },
+            {
+              "type": "concept",
+              "title": "Translational control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Experimental Methods, Microscopy, and Quantitative Cell Biology",
+      "description": "Build the experimental toolkit needed to observe, perturb, measure, and reason about cells rigorously.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell imaging",
+          "description": "Imaging teaches students to see cells as spatial, dynamic systems and to interpret visual evidence critically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Light microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Confocal microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Electron microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Live-cell fluorescence imaging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular and cellular assays",
+          "description": "Core assays let students test hypotheses about proteins, genes, pathways, and cell states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PCR and cloning"
+            },
+            {
+              "type": "concept",
+              "title": "Western blotting"
+            },
+            {
+              "type": "concept",
+              "title": "Flow cytometry"
+            },
+            {
+              "type": "concept",
+              "title": "Immunofluorescence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantitative experimental design",
+          "description": "World-class biology depends on measurement quality, controls, reproducibility, and statistical reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative controls"
+            },
+            {
+              "type": "concept",
+              "title": "Replicates"
+            },
+            {
+              "type": "concept",
+              "title": "Image analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Genomics, CRISPR, and Systems Cell Biology",
+      "description": "Connect modern genome-scale tools, genome editing, and network thinking to cell and molecular biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Genome-scale measurement",
+          "description": "Genome-scale methods reveal how thousands of genes and regulatory elements act together in cells.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNA sequencing"
+            },
+            {
+              "type": "concept",
+              "title": "RNA-seq"
+            },
+            {
+              "type": "concept",
+              "title": "Single-cell analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Genome browsers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Genome editing",
+          "description": "CRISPR turns molecular biology into an experimental engineering tool for testing gene function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CRISPR-Cas systems"
+            },
+            {
+              "type": "concept",
+              "title": "Guide RNAs"
+            },
+            {
+              "type": "concept",
+              "title": "Delivery methods"
+            },
+            {
+              "type": "concept",
+              "title": "Off-target effects and ethics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems cell biology",
+          "description": "Systems thinking helps students connect molecules, pathways, phenotypes, and datasets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gene regulatory networks"
+            },
+            {
+              "type": "concept",
+              "title": "Pathway modeling"
+            },
+            {
+              "type": "concept",
+              "title": "Omics integration"
+            },
+            {
+              "type": "concept",
+              "title": "Biological databases"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

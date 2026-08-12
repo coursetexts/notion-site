@@ -1,0 +1,1296 @@
+{
+  "slug": "data-structures",
+  "title": "Data Structures",
+  "description": "A core programming course on arrays, linked lists, stacks, queues, trees, heaps, hash tables, graphs, sorting, algorithm analysis, recursion, iterators, and implementation tradeoffs.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Abstract Data Types and Complexity",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for abstract data types and complexity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array"
+            },
+            {
+              "type": "concept",
+              "title": "Linked list"
+            },
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Queue"
+            },
+            {
+              "type": "concept",
+              "title": "Tree"
+            },
+            {
+              "type": "concept",
+              "title": "Hash table"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply array in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare linked list with stack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Big-O"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how array affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Arrays, Dynamic Arrays, and Amortized Analysis",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for arrays, dynamic arrays, and amortized analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array"
+            },
+            {
+              "type": "concept",
+              "title": "Index"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic array"
+            },
+            {
+              "type": "concept",
+              "title": "Amortized analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Linked list"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply array in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare index with capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how array affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linked Lists and Memory Models",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for linked lists and memory models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Node"
+            },
+            {
+              "type": "concept",
+              "title": "Pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Head"
+            },
+            {
+              "type": "concept",
+              "title": "Tail"
+            },
+            {
+              "type": "concept",
+              "title": "Singly linked"
+            },
+            {
+              "type": "concept",
+              "title": "Doubly linked"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply node in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare pointer with head"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how node affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stacks, Queues, and Deques",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for stacks, queues, and deques.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Push"
+            },
+            {
+              "type": "concept",
+              "title": "Pop"
+            },
+            {
+              "type": "concept",
+              "title": "LIFO"
+            },
+            {
+              "type": "concept",
+              "title": "Queue"
+            },
+            {
+              "type": "concept",
+              "title": "FIFO"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply stack in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare push with pop"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of linked list"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how stack affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Recursion and Recursive Data Structures",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for recursion and recursive data structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array"
+            },
+            {
+              "type": "concept",
+              "title": "Linked list"
+            },
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Queue"
+            },
+            {
+              "type": "concept",
+              "title": "Tree"
+            },
+            {
+              "type": "concept",
+              "title": "Hash table"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply array in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare linked list with stack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Big-O"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how array affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Trees and Binary Search Trees",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for trees and binary search trees.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Root"
+            },
+            {
+              "type": "concept",
+              "title": "Leaf"
+            },
+            {
+              "type": "concept",
+              "title": "Height"
+            },
+            {
+              "type": "concept",
+              "title": "Traversal"
+            },
+            {
+              "type": "concept",
+              "title": "Binary search tree"
+            },
+            {
+              "type": "concept",
+              "title": "Array"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply root in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare leaf with height"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how root affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Balanced Trees: AVL and Red-Black Trees",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for balanced trees: avl and red-black trees.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AVL tree"
+            },
+            {
+              "type": "concept",
+              "title": "Red-black tree"
+            },
+            {
+              "type": "concept",
+              "title": "Rotation"
+            },
+            {
+              "type": "concept",
+              "title": "Balance factor"
+            },
+            {
+              "type": "concept",
+              "title": "Root"
+            },
+            {
+              "type": "concept",
+              "title": "Leaf"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply AVL tree in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare red-black tree with rotation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of binary search tree"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how AVL tree affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Heaps and Priority Queues",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for heaps and priority queues.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heap"
+            },
+            {
+              "type": "concept",
+              "title": "Priority queue"
+            },
+            {
+              "type": "concept",
+              "title": "Heapify"
+            },
+            {
+              "type": "concept",
+              "title": "Min-heap"
+            },
+            {
+              "type": "concept",
+              "title": "Max-heap"
+            },
+            {
+              "type": "concept",
+              "title": "Array"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply heap in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare priority queue with heapify"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how heap affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hash Tables and Hash Functions",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for hash tables and hash functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hash function"
+            },
+            {
+              "type": "concept",
+              "title": "Collision"
+            },
+            {
+              "type": "concept",
+              "title": "Chaining"
+            },
+            {
+              "type": "concept",
+              "title": "Open addressing"
+            },
+            {
+              "type": "concept",
+              "title": "Load factor"
+            },
+            {
+              "type": "concept",
+              "title": "Array"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply hash function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare collision with chaining"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how hash function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Graphs and Graph Representations",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for graphs and graph representations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertex"
+            },
+            {
+              "type": "concept",
+              "title": "Edge"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency list"
+            },
+            {
+              "type": "concept",
+              "title": "BFS"
+            },
+            {
+              "type": "concept",
+              "title": "DFS"
+            },
+            {
+              "type": "concept",
+              "title": "Array"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply vertex in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare edge with adjacency list"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how vertex affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Graph Traversal and Core Graph Algorithms",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for graph traversal and core graph algorithms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertex"
+            },
+            {
+              "type": "concept",
+              "title": "Edge"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency list"
+            },
+            {
+              "type": "concept",
+              "title": "BFS"
+            },
+            {
+              "type": "concept",
+              "title": "DFS"
+            },
+            {
+              "type": "concept",
+              "title": "Array"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply vertex in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare edge with adjacency list"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how vertex affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sorting Algorithms and Comparison Bounds",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for sorting algorithms and comparison bounds.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Merge sort"
+            },
+            {
+              "type": "concept",
+              "title": "Quick sort"
+            },
+            {
+              "type": "concept",
+              "title": "Heap sort"
+            },
+            {
+              "type": "concept",
+              "title": "Stable sort"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison sort"
+            },
+            {
+              "type": "concept",
+              "title": "Array"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply merge sort in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare quick sort with heap sort"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of stack"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how merge sort affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Iterators, Generics, Testing, and API Design",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for iterators, generics, testing, and api design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array"
+            },
+            {
+              "type": "concept",
+              "title": "Linked list"
+            },
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Queue"
+            },
+            {
+              "type": "concept",
+              "title": "Tree"
+            },
+            {
+              "type": "concept",
+              "title": "Hash table"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply array in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare linked list with stack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Big-O"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how array affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Data Structures Project",
+      "description": "This topic develops the core concepts, vocabulary, and applied reasoning needed for integrated data structures project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make this topic precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Array"
+            },
+            {
+              "type": "concept",
+              "title": "Linked list"
+            },
+            {
+              "type": "concept",
+              "title": "Stack"
+            },
+            {
+              "type": "concept",
+              "title": "Queue"
+            },
+            {
+              "type": "concept",
+              "title": "Tree"
+            },
+            {
+              "type": "concept",
+              "title": "Hash table"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with this topic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trace operations"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Implement ADTs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply array in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare linked list with stack"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Off-by-one error"
+            },
+            {
+              "type": "concept",
+              "title": "Null pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Collision handling"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of Big-O"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how array affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

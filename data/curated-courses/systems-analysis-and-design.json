@@ -1,0 +1,1072 @@
+{
+  "slug": "systems-analysis-and-design",
+  "title": "Systems Analysis and Design",
+  "description": "Prepares students to analyze, design, and document effective IT systems\u2014framing problems, eliciting and validating requirements, modeling processes and data, designing architecture and interfaces, prototyping UX, planning testing and implementation, and producing professional design artifacts for secure, accessible, maintainable systems.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Systems Thinking, Business Context, and the Analyst Role",
+      "description": "This section establishes systems analysis as socio-technical work. Students learn to see technology as part of workflows, organizations, data, people, rules, and constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Systems and boundaries",
+          "description": "Students learn to define what is inside and outside a proposed system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundary"
+            },
+            {
+              "type": "concept",
+              "title": "Actors and external systems"
+            },
+            {
+              "type": "concept",
+              "title": "Inputs, outputs, and feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions and constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Business and user value",
+          "description": "This subtopic connects design choices to meaningful outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pain points"
+            },
+            {
+              "type": "concept",
+              "title": "Goals and success metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Value proposition"
+            },
+            {
+              "type": "concept",
+              "title": "Operational and strategic alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analyst responsibilities",
+          "description": "Students understand the professional role of the analyst.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facilitation"
+            },
+            {
+              "type": "concept",
+              "title": "Translation between business and technical teams"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence-based recommendations"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical and inclusive practice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "SDLC Methodologies, Agile Analysis, and Product Discovery",
+      "description": "This section introduces delivery lifecycles. Students learn that methods shape analysis timing, artifacts, feedback loops, and risk management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "SDLC Models",
+          "description": "Students compare common development lifecycles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Waterfall"
+            },
+            {
+              "type": "concept",
+              "title": "Iterative and incremental"
+            },
+            {
+              "type": "concept",
+              "title": "Spiral and risk-driven models"
+            },
+            {
+              "type": "concept",
+              "title": "DevOps and Continuous Delivery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Agile analysis",
+          "description": "This subtopic shows how analysis works in adaptive delivery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scrum and Kanban Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Backlog refinement"
+            },
+            {
+              "type": "concept",
+              "title": "Definition of ready and done"
+            },
+            {
+              "type": "concept",
+              "title": "Incremental discovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Product discovery",
+          "description": "Students learn to test problem and solution assumptions early.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Discovery interviews"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum viable product concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Experiment and learning loops"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stakeholder Analysis, Elicitation, and Requirements Discovery",
+      "description": "This section teaches students how to uncover needs, not simply collect requests. Good requirements come from listening, observation, and critical inquiry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stakeholder analysis",
+          "description": "Students identify who affects or is affected by the system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary and secondary stakeholders"
+            },
+            {
+              "type": "concept",
+              "title": "Power-interest mapping"
+            },
+            {
+              "type": "concept",
+              "title": "User groups and personas"
+            },
+            {
+              "type": "concept",
+              "title": "Sponsor and regulator roles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Elicitation techniques",
+          "description": "This subtopic gives students practical discovery methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interviews"
+            },
+            {
+              "type": "concept",
+              "title": "Surveys"
+            },
+            {
+              "type": "concept",
+              "title": "Workshops"
+            },
+            {
+              "type": "concept",
+              "title": "Observation and document analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Discovery synthesis",
+          "description": "Students learn to turn raw findings into actionable insight.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Affinity mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Problem statements"
+            },
+            {
+              "type": "concept",
+              "title": "Pain-point themes"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption and risk logs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Requirements Analysis, Validation, Prioritization, and Traceability",
+      "description": "This section turns discovery into disciplined requirements. Students learn to write requirements that can be understood, tested, prioritized, and maintained.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Requirement quality",
+          "description": "Students learn what makes requirements usable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clear and unambiguous wording"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Testability"
+            },
+            {
+              "type": "concept",
+              "title": "Feasibility and necessity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prioritization and negotiation",
+          "description": "This subtopic handles competing needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MoSCoW"
+            },
+            {
+              "type": "concept",
+              "title": "Value versus effort"
+            },
+            {
+              "type": "concept",
+              "title": "Risk-based priority"
+            },
+            {
+              "type": "concept",
+              "title": "Conflict resolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Traceability and validation",
+          "description": "Students learn to keep requirements connected to evidence and tests.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Requirement IDs"
+            },
+            {
+              "type": "concept",
+              "title": "Source traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Review and signoff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Use Cases, User Stories, Acceptance Criteria, and Backlog Design",
+      "description": "This section teaches behavior-focused requirements. Students learn to describe what users are trying to accomplish and what the system must do to support them.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Use cases",
+          "description": "Students model goal-oriented interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Actors"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditions and triggers"
+            },
+            {
+              "type": "concept",
+              "title": "Main success scenario"
+            },
+            {
+              "type": "concept",
+              "title": "Extensions and exceptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "User stories",
+          "description": "This subtopic supports agile delivery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Role-goal-benefit format"
+            },
+            {
+              "type": "concept",
+              "title": "INVEST Criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Story splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Backlog hierarchy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Acceptance criteria",
+          "description": "Students learn to make requirements verifiable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Given-When-Then Format"
+            },
+            {
+              "type": "concept",
+              "title": "Business rules"
+            },
+            {
+              "type": "concept",
+              "title": "Edge cases"
+            },
+            {
+              "type": "concept",
+              "title": "Definition of done"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Process Modeling, Workflow Analysis, and Business Rules",
+      "description": "This section reveals how work actually happens. Students learn to map current and future processes to identify waste, automation opportunities, and design constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Process models",
+          "description": "Students learn visual ways to represent workflow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "BPMN Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Activity diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Swimlanes"
+            },
+            {
+              "type": "concept",
+              "title": "Events, decisions, and handoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Workflow analysis",
+          "description": "This subtopic diagnoses process issues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "Rework loops"
+            },
+            {
+              "type": "concept",
+              "title": "Manual steps"
+            },
+            {
+              "type": "concept",
+              "title": "Exception paths"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Business rules",
+          "description": "Students learn to capture policy and decision logic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision tables"
+            },
+            {
+              "type": "concept",
+              "title": "Validation rules"
+            },
+            {
+              "type": "concept",
+              "title": "Eligibility and authorization rules"
+            },
+            {
+              "type": "concept",
+              "title": "Rule ownership and change control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Modeling, Information Architecture, and Data Governance",
+      "description": "This section treats data as a core system asset. Students learn to model information structure, quality, flow, ownership, and responsible use.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual and logical data modeling",
+          "description": "Students learn how information entities relate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Entities and attributes"
+            },
+            {
+              "type": "concept",
+              "title": "Relationships and cardinality"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization basics"
+            },
+            {
+              "type": "concept",
+              "title": "ER Diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data flows and lifecycle",
+          "description": "This subtopic tracks how data moves and changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data-flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Create/Read/Update/Delete Matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Retention and deletion"
+            },
+            {
+              "type": "concept",
+              "title": "Master and reference data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data governance",
+          "description": "Students learn accountability for data quality and responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data owners and stewards"
+            },
+            {
+              "type": "concept",
+              "title": "Quality rules"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy classification"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata and lineage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Object, Domain, and UML Modeling for System Behavior",
+      "description": "This section gives students modeling tools for software-intensive systems. UML and domain models help teams reason about structure and behavior before implementation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Domain modeling",
+          "description": "Students learn to represent important concepts in the problem space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain classes"
+            },
+            {
+              "type": "concept",
+              "title": "Associations"
+            },
+            {
+              "type": "concept",
+              "title": "Attributes and operations"
+            },
+            {
+              "type": "concept",
+              "title": "Ubiquitous language"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interaction modeling",
+          "description": "This subtopic shows how objects and services collaborate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Communication diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Messages and lifelines"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary, control, and entity objects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "State and behavior modeling",
+          "description": "Students learn to model lifecycle-dependent behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Events and transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Guards and actions"
+            },
+            {
+              "type": "concept",
+              "title": "Activity versus state models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "System Architecture, Interface Design, APIs, and Integration",
+      "description": "This section bridges analysis and technical design. Students learn to make design choices that support scalability, maintainability, security, and integration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Architecture views",
+          "description": "Students learn to describe a system from multiple perspectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logical view"
+            },
+            {
+              "type": "concept",
+              "title": "Process view"
+            },
+            {
+              "type": "concept",
+              "title": "Deployment view"
+            },
+            {
+              "type": "concept",
+              "title": "Data and integration view"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interface and API design",
+          "description": "This subtopic covers boundaries between components and systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "REST and Event Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Contracts and schemas"
+            },
+            {
+              "type": "concept",
+              "title": "Error handling"
+            },
+            {
+              "type": "concept",
+              "title": "Versioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integration design",
+          "description": "Students learn to plan connections with existing systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Legacy systems"
+            },
+            {
+              "type": "concept",
+              "title": "Authentication and authorization"
+            },
+            {
+              "type": "concept",
+              "title": "Batch versus real-time integration"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency and failure analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "UX, Prototyping, Human-Centered Design, and Accessibility",
+      "description": "This section helps students test ideas before expensive implementation. Prototypes make requirements visible and invite better feedback.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Human-centered design",
+          "description": "Students learn to design around real user needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Personas"
+            },
+            {
+              "type": "concept",
+              "title": "User journeys"
+            },
+            {
+              "type": "concept",
+              "title": "Empathy maps"
+            },
+            {
+              "type": "concept",
+              "title": "Service blueprints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prototyping",
+          "description": "This subtopic covers different levels of design fidelity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sketches and wireframes"
+            },
+            {
+              "type": "concept",
+              "title": "Clickable prototypes"
+            },
+            {
+              "type": "concept",
+              "title": "Data-entry and workflow prototypes"
+            },
+            {
+              "type": "concept",
+              "title": "Prototype evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accessibility and usability",
+          "description": "Students learn to design for broader participation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "WCAG Principles"
+            },
+            {
+              "type": "concept",
+              "title": "Keyboard navigation"
+            },
+            {
+              "type": "concept",
+              "title": "Readable forms and errors"
+            },
+            {
+              "type": "concept",
+              "title": "Usability testing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Security, Privacy, Risk, Compliance, and Ethical Design",
+      "description": "This section embeds responsible design into the system lifecycle. Students learn to treat risk, privacy, and ethics as design requirements rather than late-stage checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Security by design",
+          "description": "Students learn to include security requirements early.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threat modeling"
+            },
+            {
+              "type": "concept",
+              "title": "Authentication and authorization"
+            },
+            {
+              "type": "concept",
+              "title": "Least privilege"
+            },
+            {
+              "type": "concept",
+              "title": "Logging and monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Privacy by design",
+          "description": "This subtopic focuses on responsible data handling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Consent and notice"
+            },
+            {
+              "type": "concept",
+              "title": "Access controls"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy impact assessment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk and compliance",
+          "description": "Students learn to connect systems to organizational obligations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk register"
+            },
+            {
+              "type": "concept",
+              "title": "Controls and mitigations"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical impact review"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Testing Strategy, Quality Attributes, and Verification Planning",
+      "description": "This section ensures designs can be verified. Students learn that testing starts with analysis and requirements, not after coding ends.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Testing levels and types",
+          "description": "Students learn a complete verification vocabulary.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit, integration, system, and acceptance testing"
+            },
+            {
+              "type": "concept",
+              "title": "Regression testing"
+            },
+            {
+              "type": "concept",
+              "title": "Usability testing"
+            },
+            {
+              "type": "concept",
+              "title": "Security testing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality attributes",
+          "description": "This subtopic covers nonfunctional requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Performance"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Maintainability"
+            },
+            {
+              "type": "concept",
+              "title": "Scalability and availability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Test planning",
+          "description": "Students learn to connect requirements to evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Traceability matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Test cases"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance tests"
+            },
+            {
+              "type": "concept",
+              "title": "Defect reporting and triage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Implementation, Change Management, Deployment, and DevOps Handoff",
+      "description": "This section prepares students to move from design into adoption. A good design includes migration, deployment, training, support, and operational ownership.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Implementation planning",
+          "description": "Students learn to prepare a realistic rollout.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Build versus buy"
+            },
+            {
+              "type": "concept",
+              "title": "Phased deployment"
+            },
+            {
+              "type": "concept",
+              "title": "Data migration"
+            },
+            {
+              "type": "concept",
+              "title": "Cutover planning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Change management",
+          "description": "This subtopic addresses adoption and organizational impact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Training"
+            },
+            {
+              "type": "concept",
+              "title": "Communication plans"
+            },
+            {
+              "type": "concept",
+              "title": "Resistance and support"
+            },
+            {
+              "type": "concept",
+              "title": "Operational readiness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DevOps and support handoff",
+          "description": "Students learn to design for operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CI/CD Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Environment planning"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and incident response"
+            },
+            {
+              "type": "concept",
+              "title": "Runbooks and support models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Documentation, Communication, and Capstone Analysis Package",
+      "description": "This final section turns analysis into professional artifacts. Students learn to communicate clearly enough that teams can build, test, operate, and maintain the system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Analysis documentation",
+          "description": "Students produce the artifacts expected in professional IT work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vision and scope"
+            },
+            {
+              "type": "concept",
+              "title": "Requirements specification"
+            },
+            {
+              "type": "concept",
+              "title": "Modeling portfolio"
+            },
+            {
+              "type": "concept",
+              "title": "Decision records"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design documentation",
+          "description": "This subtopic documents how the solution will work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Architecture overview"
+            },
+            {
+              "type": "concept",
+              "title": "Interface specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Data model"
+            },
+            {
+              "type": "concept",
+              "title": "Testing and implementation plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone handoff",
+          "description": "Students learn to present and defend their system design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder presentation"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation roadmap"
+            },
+            {
+              "type": "concept",
+              "title": "Lessons learned"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1296 @@
+{
+  "slug": "probability-and-statistics-for-engineers",
+  "title": "Probability and Statistics for Engineers",
+  "description": "Probability and Statistics for Engineers develops probability, distributions, sampling, estimation, hypothesis testing, regression, reliability, and statistical quality control for engineering data.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Probability Axioms and Combinatorics",
+      "description": "This section develops probability axioms and combinatorics through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make probability axioms and combinatorics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space"
+            },
+            {
+              "type": "concept",
+              "title": "Event"
+            },
+            {
+              "type": "concept",
+              "title": "Axiom"
+            },
+            {
+              "type": "concept",
+              "title": "Complement"
+            },
+            {
+              "type": "concept",
+              "title": "Union"
+            },
+            {
+              "type": "concept",
+              "title": "Intersection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with probability axioms and combinatorics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample space in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare event with axiom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample space affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables and Distributions",
+      "description": "This section develops random variables and distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make random variables and distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PMF"
+            },
+            {
+              "type": "concept",
+              "title": "PDF"
+            },
+            {
+              "type": "concept",
+              "title": "CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with random variables and distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply PMF in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare PDF with CDF"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how PMF affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Common Discrete Distributions",
+      "description": "This section develops common discrete distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make common discrete distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson"
+            },
+            {
+              "type": "concept",
+              "title": "Negative binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with common discrete distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Bernoulli in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare binomial with geometric"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Bernoulli affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Common Continuous Distributions",
+      "description": "This section develops common continuous distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make common continuous distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform"
+            },
+            {
+              "type": "concept",
+              "title": "Gamma"
+            },
+            {
+              "type": "concept",
+              "title": "Weibull"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with common continuous distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply normal in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare exponential with uniform"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how normal affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint and Marginal Distributions",
+      "description": "This section develops joint and marginal distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make joint and marginal distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint PMF"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with joint and marginal distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply joint PMF in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare marginal distribution with conditional distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how joint PMF affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling Distributions",
+      "description": "This section develops sampling distributions through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make sampling distributions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample mean"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with sampling distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sample mean in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare standard error with sampling distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sample mean affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Point Estimation",
+      "description": "This section develops point estimation through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make point estimation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Margin of error"
+            },
+            {
+              "type": "concept",
+              "title": "Unbiased estimator"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with point estimation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply point estimate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare confidence interval with margin of error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of sampling distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how point estimate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Confidence Intervals",
+      "description": "This section develops confidence intervals through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make confidence intervals precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "P-value"
+            },
+            {
+              "type": "concept",
+              "title": "Regression coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with confidence intervals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply random variable in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare sampling distribution with confidence interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of control chart"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how random variable affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Testing",
+      "description": "This section develops hypothesis testing through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make hypothesis testing precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative hypothesis"
+            },
+            {
+              "type": "concept",
+              "title": "Test statistic"
+            },
+            {
+              "type": "concept",
+              "title": "P-value"
+            },
+            {
+              "type": "concept",
+              "title": "Type I error"
+            },
+            {
+              "type": "concept",
+              "title": "Type II error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with hypothesis testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply null hypothesis in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare alternative hypothesis with test statistic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how null hypothesis affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Correlation and Regression Analysis",
+      "description": "This section develops correlation and regression analysis through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make correlation and regression analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Least squares"
+            },
+            {
+              "type": "concept",
+              "title": "Slope"
+            },
+            {
+              "type": "concept",
+              "title": "Intercept"
+            },
+            {
+              "type": "concept",
+              "title": "Residual"
+            },
+            {
+              "type": "concept",
+              "title": "R squared"
+            },
+            {
+              "type": "concept",
+              "title": "Prediction interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with correlation and regression analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply least squares in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare slope with intercept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how least squares affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Modeling and Prediction",
+      "description": "This section develops engineering modeling and prediction through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make engineering modeling and prediction precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "P-value"
+            },
+            {
+              "type": "concept",
+              "title": "Regression coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with engineering modeling and prediction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply random variable in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare sampling distribution with confidence interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of control chart"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how random variable affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reliability Analysis",
+      "description": "This section develops reliability analysis through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make reliability analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Failure rate"
+            },
+            {
+              "type": "concept",
+              "title": "MTBF"
+            },
+            {
+              "type": "concept",
+              "title": "Survival function"
+            },
+            {
+              "type": "concept",
+              "title": "Hazard rate"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability function"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with reliability analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply failure rate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare MTBF with survival function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how failure rate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Quality Control",
+      "description": "This section develops statistical quality control through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make statistical quality control precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control limit"
+            },
+            {
+              "type": "concept",
+              "title": "X-bar chart"
+            },
+            {
+              "type": "concept",
+              "title": "R chart"
+            },
+            {
+              "type": "concept",
+              "title": "Process capability"
+            },
+            {
+              "type": "concept",
+              "title": "Special cause"
+            },
+            {
+              "type": "concept",
+              "title": "Random variable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with statistical quality control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply control limit in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare X-bar chart with R chart"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how control limit affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Data Project",
+      "description": "This section develops engineering data project through the concrete vocabulary, procedures, examples, and checks students need in Probability and Statistics for Engineers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make engineering data project precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random variable"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "P-value"
+            },
+            {
+              "type": "concept",
+              "title": "Regression coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with engineering data project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fit distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Perform hypothesis tests"
+            },
+            {
+              "type": "concept",
+              "title": "Apply random variable in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare sampling distribution with confidence interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Normality assumption"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of control chart"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how random variable affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

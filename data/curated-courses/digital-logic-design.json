@@ -1,0 +1,1296 @@
+{
+  "slug": "digital-logic-design",
+  "title": "Digital Logic Design",
+  "description": "Digital logic design is the bridge from binary abstraction to working hardware. The syllabus builds from number systems and Boolean algebra through combinational logic, sequential circuits, finite-state machines, HDL implementation, and testing.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Number Systems and Binary Codes",
+      "description": "This section develops number systems and binary codes through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make number systems and binary codes precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary"
+            },
+            {
+              "type": "concept",
+              "title": "Hexadecimal"
+            },
+            {
+              "type": "concept",
+              "title": "Two's complement"
+            },
+            {
+              "type": "concept",
+              "title": "BCD"
+            },
+            {
+              "type": "concept",
+              "title": "Gray code"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with number systems and binary codes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply binary in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare hexadecimal with two's complement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how binary affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boolean Algebra and Logic Identities",
+      "description": "This section develops boolean algebra and logic identities through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make boolean algebra and logic identities precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boolean algebra"
+            },
+            {
+              "type": "concept",
+              "title": "De Morgan's law"
+            },
+            {
+              "type": "concept",
+              "title": "Minterm"
+            },
+            {
+              "type": "concept",
+              "title": "Maxterm"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical form"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with boolean algebra and logic identities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Boolean algebra in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare De Morgan's law with minterm"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Boolean algebra affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Logic Gates and Combinational Circuits",
+      "description": "This section develops logic gates and combinational circuits through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make logic gates and combinational circuits precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AND"
+            },
+            {
+              "type": "concept",
+              "title": "OR"
+            },
+            {
+              "type": "concept",
+              "title": "NOT"
+            },
+            {
+              "type": "concept",
+              "title": "NAND"
+            },
+            {
+              "type": "concept",
+              "title": "NOR"
+            },
+            {
+              "type": "concept",
+              "title": "XOR"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with logic gates and combinational circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply AND in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare OR with NOT"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how AND affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Karnaugh Maps and Logic Minimization",
+      "description": "This section develops karnaugh maps and logic minimization through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make karnaugh maps and logic minimization precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "K-map"
+            },
+            {
+              "type": "concept",
+              "title": "Don't-care condition"
+            },
+            {
+              "type": "concept",
+              "title": "Prime implicant"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal SOP"
+            },
+            {
+              "type": "concept",
+              "title": "Minimal POS"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with karnaugh maps and logic minimization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply K-map in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare don't-care condition with prime implicant"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how K-map affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multiplexers, Decoders, Encoders, and Demultiplexers",
+      "description": "This section develops multiplexers, decoders, encoders, and demultiplexers through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make multiplexers, decoders, encoders, and demultiplexers precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MUX"
+            },
+            {
+              "type": "concept",
+              "title": "Decoder"
+            },
+            {
+              "type": "concept",
+              "title": "Encoder"
+            },
+            {
+              "type": "concept",
+              "title": "Demultiplexer"
+            },
+            {
+              "type": "concept",
+              "title": "Enable signal"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with multiplexers, decoders, encoders, and demultiplexers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply MUX in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare decoder with encoder"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how MUX affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Arithmetic Circuits and ALU Building Blocks",
+      "description": "This section develops arithmetic circuits and alu building blocks through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make arithmetic circuits and alu building blocks precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Half adder"
+            },
+            {
+              "type": "concept",
+              "title": "Full adder"
+            },
+            {
+              "type": "concept",
+              "title": "Ripple-carry adder"
+            },
+            {
+              "type": "concept",
+              "title": "Subtractor"
+            },
+            {
+              "type": "concept",
+              "title": "ALU"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with arithmetic circuits and alu building blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply half adder in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare full adder with ripple-carry adder"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how half adder affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Latches, Flip-Flops, and Timing Basics",
+      "description": "This section develops latches, flip-flops, and timing basics through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make latches, flip-flops, and timing basics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SR latch"
+            },
+            {
+              "type": "concept",
+              "title": "D flip-flop"
+            },
+            {
+              "type": "concept",
+              "title": "JK flip-flop"
+            },
+            {
+              "type": "concept",
+              "title": "Clock edge"
+            },
+            {
+              "type": "concept",
+              "title": "Metastability"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with latches, flip-flops, and timing basics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply SR latch in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare D flip-flop with JK flip-flop"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how SR latch affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sequential Circuit Analysis",
+      "description": "This section develops sequential circuit analysis through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make sequential circuit analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State table"
+            },
+            {
+              "type": "concept",
+              "title": "State diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Next-state logic"
+            },
+            {
+              "type": "concept",
+              "title": "Output logic"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            },
+            {
+              "type": "concept",
+              "title": "Gate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with sequential circuit analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply state table in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare state diagram with next-state logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how state table affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Counters, Registers, and Memory Elements",
+      "description": "This section develops counters, registers, and memory elements through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make counters, registers, and memory elements precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Register"
+            },
+            {
+              "type": "concept",
+              "title": "Shift register"
+            },
+            {
+              "type": "concept",
+              "title": "Counter"
+            },
+            {
+              "type": "concept",
+              "title": "Memory element"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronous counter"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with counters, registers, and memory elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply register in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare shift register with counter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how register affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite State Machine Design",
+      "description": "This section develops finite state machine design through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make finite state machine design precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moore machine"
+            },
+            {
+              "type": "concept",
+              "title": "Mealy machine"
+            },
+            {
+              "type": "concept",
+              "title": "State minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Encoding"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            },
+            {
+              "type": "concept",
+              "title": "Gate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with finite state machine design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Moore machine in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Mealy machine with state minimization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Moore machine affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hardware Description Languages: Verilog and VHDL",
+      "description": "This section develops hardware description languages: verilog and vhdl through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make hardware description languages: verilog and vhdl precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phoneme"
+            },
+            {
+              "type": "concept",
+              "title": "Morpheme"
+            },
+            {
+              "type": "concept",
+              "title": "Syntax"
+            },
+            {
+              "type": "concept",
+              "title": "Pragmatics"
+            },
+            {
+              "type": "concept",
+              "title": "Language explosion"
+            },
+            {
+              "type": "concept",
+              "title": "Verilog"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with hardware description languages: verilog and vhdl.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply phoneme in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare morpheme with syntax"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of testbench"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how phoneme affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "FPGA and Programmable Logic Workflows",
+      "description": "This section develops fpga and programmable logic workflows through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make fpga and programmable logic workflows precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FPGA"
+            },
+            {
+              "type": "concept",
+              "title": "LUT"
+            },
+            {
+              "type": "concept",
+              "title": "Clock constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Pin assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Bitstream"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with fpga and programmable logic workflows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply FPGA in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare LUT with clock constraint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how FPGA affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Testing, Simulation, and Timing Verification",
+      "description": "This section develops testing, simulation, and timing verification through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make testing, simulation, and timing verification precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Timing analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Hazard"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Hold time"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with testing, simulation, and timing verification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply simulation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare timing analysis with hazard"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how simulation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computer Architecture Connections",
+      "description": "This section develops computer architecture connections through the concrete vocabulary, procedures, examples, and checks students need in Digital Logic Design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make computer architecture connections precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariant derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel transport"
+            },
+            {
+              "type": "concept",
+              "title": "Levi-Civita connection"
+            },
+            {
+              "type": "concept",
+              "title": "Torsion-free"
+            },
+            {
+              "type": "concept",
+              "title": "Bit"
+            },
+            {
+              "type": "concept",
+              "title": "Gate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with computer architecture connections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simplify logic"
+            },
+            {
+              "type": "concept",
+              "title": "Draw circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Design FSMs"
+            },
+            {
+              "type": "concept",
+              "title": "Apply covariant derivative in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare parallel transport with Levi-Civita connection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Race condition"
+            },
+            {
+              "type": "concept",
+              "title": "Glitch"
+            },
+            {
+              "type": "concept",
+              "title": "Setup time"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truth table"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how covariant derivative affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

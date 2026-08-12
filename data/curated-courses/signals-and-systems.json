@@ -1,0 +1,1296 @@
+{
+  "slug": "signals-and-systems",
+  "title": "Signals and Systems",
+  "description": "Signals and Systems gives students the mathematical language for analyzing time-varying information and linear systems. It supports communications, controls, signal processing, circuits, and computer engineering applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Continuous-Time Signals",
+      "description": "This section develops continuous-time signals through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes continuous-time signals precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit step"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic signal"
+            },
+            {
+              "type": "concept",
+              "title": "Energy signal"
+            },
+            {
+              "type": "concept",
+              "title": "Power signal"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with continuous-time signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply unit step in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare unit impulse with periodic signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where continuous-time signals succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how unit step changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete-Time Signals",
+      "description": "This section develops discrete-time signals through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes discrete-time signals precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Unit sample"
+            },
+            {
+              "type": "concept",
+              "title": "Difference equation"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling period"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with discrete-time signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sequence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare unit sample with difference equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where discrete-time signals succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sequence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "System Properties",
+      "description": "This section develops system properties through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes system properties precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfunction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with system properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply impulse response in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare step response with convolution integral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where system properties succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of zero"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how impulse response changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Time-Invariant Systems",
+      "description": "This section develops linear time-invariant systems through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes linear time-invariant systems precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfunction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with linear time-invariant systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply impulse response in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare step response with convolution integral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where linear time-invariant systems succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of zero"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how impulse response changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convolution",
+      "description": "This section develops convolution through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes convolution precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flip and shift"
+            },
+            {
+              "type": "concept",
+              "title": "Overlap integral"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution sum"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with convolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply flip and shift in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare overlap integral with convolution sum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where convolution succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how flip and shift changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Differential and Difference Equation Models",
+      "description": "This section develops differential and difference equation models through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes differential and difference equation models precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfunction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with differential and difference equation models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply impulse response in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare step response with convolution integral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where differential and difference equation models succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of zero"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how impulse response changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fourier Series",
+      "description": "This section develops fourier series through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes fourier series precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Ratio test"
+            },
+            {
+              "type": "concept",
+              "title": "Root test"
+            },
+            {
+              "type": "concept",
+              "title": "Power series"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with fourier series.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply absolute convergence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare conditional convergence with ratio test"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where fourier series succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of duality"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how absolute convergence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuous-Time Fourier Transform",
+      "description": "This section develops continuous-time fourier transform through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes continuous-time fourier transform precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit step"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic signal"
+            },
+            {
+              "type": "concept",
+              "title": "Energy signal"
+            },
+            {
+              "type": "concept",
+              "title": "Power signal"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with continuous-time fourier transform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply unit step in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare unit impulse with periodic signal"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where continuous-time fourier transform succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of duality"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how unit step changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete-Time Fourier Transform",
+      "description": "This section develops discrete-time fourier transform through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes discrete-time fourier transform precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Unit sample"
+            },
+            {
+              "type": "concept",
+              "title": "Difference equation"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling period"
+            },
+            {
+              "type": "concept",
+              "title": "Aliasing"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with discrete-time fourier transform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply sequence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare unit sample with difference equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where discrete-time fourier transform succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of duality"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how sequence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling Theorem",
+      "description": "This section develops sampling theorem through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes sampling theorem precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Probability sample"
+            },
+            {
+              "type": "concept",
+              "title": "Stratified sample"
+            },
+            {
+              "type": "concept",
+              "title": "Cluster sample"
+            },
+            {
+              "type": "concept",
+              "title": "Purposive sample"
+            },
+            {
+              "type": "concept",
+              "title": "Snowball sample"
+            },
+            {
+              "type": "concept",
+              "title": "Sample size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with sampling theorem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply probability sample in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare stratified sample with cluster sample"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where sampling theorem succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how probability sample changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace Transform",
+      "description": "This section develops laplace transform through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes laplace transform precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Region of convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Pole-zero plot"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse Laplace"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with laplace transform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply region of convergence in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare pole-zero plot with transfer function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where laplace transform succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how region of convergence changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Z-Transform",
+      "description": "This section develops z-transform through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes z-transform precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ROC"
+            },
+            {
+              "type": "concept",
+              "title": "Unit circle"
+            },
+            {
+              "type": "concept",
+              "title": "Causal sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Stable sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Difference equation"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with z-transform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply ROC in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare unit circle with causal sequence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where z-transform succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how ROC changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Filtering and Frequency Response",
+      "description": "This section develops filtering and frequency response through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes filtering and frequency response precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfunction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with filtering and frequency response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply impulse response in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare step response with convolution integral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where filtering and frequency response succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of zero"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how impulse response changes the interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applications in Communications, Control, and DSP",
+      "description": "This section develops applications in communications, control, and dsp through the concrete vocabulary, procedures, examples, and checks students need in Signals and Systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary that makes applications in communications, control, and dsp precise rather than just intuitive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse response"
+            },
+            {
+              "type": "concept",
+              "title": "Step response"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution integral"
+            },
+            {
+              "type": "concept",
+              "title": "Unit impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfunction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete moves students should be able to perform when working with applications in communications, control, and dsp.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Classify system properties"
+            },
+            {
+              "type": "concept",
+              "title": "Derive transfer function"
+            },
+            {
+              "type": "concept",
+              "title": "Apply impulse response in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare step response with convolution integral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize where applications in communications, control, and dsp succeeds, where it can mislead, and what to check before trusting a result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Time invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Causality"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of zero"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how impulse response changes the interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

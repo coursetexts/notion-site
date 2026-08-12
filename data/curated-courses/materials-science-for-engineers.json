@@ -1,0 +1,1004 @@
+{
+  "slug": "materials-science-for-engineers",
+  "title": "Materials Science for Engineers",
+  "description": "Materials Science for Engineers connects atomic structure, microstructure, and processing to mechanical and functional properties. Students learn bonding, crystals, defects, diffusion, stress-strain behavior, phase diagrams and heat treatment, failure modes, major material families, materials selection, and manufacturing with sustainability.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Atomic Structure and Bonding",
+      "description": "Materials behavior begins at the atomic scale. This topic explains how electrons, bonds, and atomic arrangements shape stiffness, melting temperature, conductivity, and chemical stability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atomic structure",
+          "description": "Students learn how atomic number, electron configuration, and valence influence material behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Protons, neutrons, and electrons"
+            },
+            {
+              "type": "concept",
+              "title": "Electron shells and valence"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic trends"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Primary bonding",
+          "description": "Primary bonds explain why materials differ so strongly in stiffness, melting point, and electrical behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ionic bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Covalent bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Metallic bonding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Secondary bonding",
+          "description": "Secondary bonds help explain polymers, molecular solids, and many surface or interface phenomena.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Van der Waals forces"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrogen bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bonding-property links",
+          "description": "Students connect atomic-scale bonding to engineering-scale material properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elastic modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Electrical and thermal conductivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Crystal Structures",
+      "description": "Crystal structure describes how atoms are arranged in solids. It controls density, slip, anisotropy, diffusion paths, and many mechanical and physical properties.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Unit cells and lattices",
+          "description": "Students learn the repeating geometric building blocks of crystalline materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lattice parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Unit cell definition"
+            },
+            {
+              "type": "concept",
+              "title": "Crystal systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common metallic structures",
+          "description": "FCC, BCC, and HCP structures explain many differences in ductility, strength, and deformation behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Face-centered cubic"
+            },
+            {
+              "type": "concept",
+              "title": "Body-centered cubic"
+            },
+            {
+              "type": "concept",
+              "title": "Hexagonal close-packed"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Crystallographic directions and planes",
+          "description": "Directions and planes provide the language for slip, diffraction, and anisotropy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Miller indices"
+            },
+            {
+              "type": "concept",
+              "title": "Planar density"
+            },
+            {
+              "type": "concept",
+              "title": "Linear density"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Noncrystalline and semicrystalline structures",
+          "description": "Not all materials are perfectly crystalline, so students learn amorphous and mixed structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glasses"
+            },
+            {
+              "type": "concept",
+              "title": "Polymers"
+            },
+            {
+              "type": "concept",
+              "title": "Grain structure and texture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Imperfections and Defects",
+      "description": "Real materials are not perfect crystals. Defects often determine strength, ductility, conductivity, diffusion, and failure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Point defects",
+          "description": "Point defects change local chemistry and enable diffusion and property control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vacancies"
+            },
+            {
+              "type": "concept",
+              "title": "Interstitials"
+            },
+            {
+              "type": "concept",
+              "title": "Substitutional atoms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Line defects",
+          "description": "Dislocations explain plastic deformation and strengthening in crystalline solids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Edge dislocations"
+            },
+            {
+              "type": "concept",
+              "title": "Screw dislocations"
+            },
+            {
+              "type": "concept",
+              "title": "Dislocation motion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planar defects",
+          "description": "Interfaces and boundaries strongly affect mechanical and thermal behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grain boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Twin boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Stacking faults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Defects and properties",
+          "description": "Students learn that defects can be harmful, useful, or deliberately engineered.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solid-solution strengthening"
+            },
+            {
+              "type": "concept",
+              "title": "Grain-boundary strengthening"
+            },
+            {
+              "type": "concept",
+              "title": "Defect effects on conductivity and corrosion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diffusion in Solids",
+      "description": "Diffusion is atomic movement through solids. It controls heat treatment, carburizing, sintering, creep, oxidation, and many manufacturing processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Diffusion mechanisms",
+          "description": "Students learn how atoms move through crystals and why defects matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vacancy diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Interstitial diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Substitutional diffusion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fick's laws",
+          "description": "Fick's laws turn diffusion into a quantitative engineering model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fick's first law"
+            },
+            {
+              "type": "concept",
+              "title": "Fick's second law"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration gradients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temperature dependence",
+          "description": "Diffusion is strongly temperature-dependent, which explains why heat treatment and processing schedules matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            },
+            {
+              "type": "concept",
+              "title": "Arrhenius behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Diffusion coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering applications",
+          "description": "Students connect diffusion to practical materials processing and degradation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Case hardening"
+            },
+            {
+              "type": "concept",
+              "title": "Doping and surface treatments"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation and creep context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mechanical Properties (Stress-Strain)",
+      "description": "Mechanical properties describe how materials respond to load. This topic teaches students to read stress-strain curves and use mechanical data in design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Elastic behavior",
+          "description": "Elastic behavior captures reversible deformation and stiffness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Young's modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson's ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Shear modulus"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Plastic deformation",
+          "description": "Plasticity describes permanent deformation and is central to forming, yielding, and ductility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Yield strength"
+            },
+            {
+              "type": "concept",
+              "title": "Strain hardening"
+            },
+            {
+              "type": "concept",
+              "title": "Ductility measures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strength and toughness",
+          "description": "Strength and toughness describe different aspects of load capacity and damage tolerance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ultimate tensile strength"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture toughness"
+            },
+            {
+              "type": "concept",
+              "title": "Impact toughness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing and data interpretation",
+          "description": "Students learn where property values come from and how to interpret them critically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tensile testing"
+            },
+            {
+              "type": "concept",
+              "title": "Hardness testing"
+            },
+            {
+              "type": "concept",
+              "title": "Scatter, standards, and units"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phase Diagrams",
+      "description": "Phase diagrams map stable phases as composition and temperature change. They are essential for understanding alloys, heat treatment, solidification, and microstructure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase rule and equilibrium",
+          "description": "Students learn the logic behind phase stability and how many variables can be controlled independently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phases and components"
+            },
+            {
+              "type": "concept",
+              "title": "Degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Binary phase diagrams",
+          "description": "Binary diagrams are the workhorse for alloy interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isomorphous systems"
+            },
+            {
+              "type": "concept",
+              "title": "Eutectic reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Eutectoid and peritectic reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lever rule",
+          "description": "The lever rule lets students estimate phase fractions from a diagram.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tie lines"
+            },
+            {
+              "type": "concept",
+              "title": "Composition of phases"
+            },
+            {
+              "type": "concept",
+              "title": "Phase-fraction calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Iron-carbon diagram",
+          "description": "The iron-carbon system is a major engineering example because it underlies steel heat treatment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ferrite, austenite, cementite"
+            },
+            {
+              "type": "concept",
+              "title": "Pearlite"
+            },
+            {
+              "type": "concept",
+              "title": "Eutectoid composition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Phase Transformations and Heat Treatment",
+      "description": "Phase transformations let engineers change microstructure and properties through controlled processing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nucleation and growth",
+          "description": "Students learn the mechanism by which new phases form and grow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homogeneous and heterogeneous nucleation"
+            },
+            {
+              "type": "concept",
+              "title": "Growth kinetics"
+            },
+            {
+              "type": "concept",
+              "title": "Driving force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time-temperature-transformation behavior",
+          "description": "Transformation diagrams connect temperature histories to microstructures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TTT diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous-cooling diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Transformation products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Steel heat treatment",
+          "description": "Heat treatment of steel demonstrates how processing creates useful property combinations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Annealing"
+            },
+            {
+              "type": "concept",
+              "title": "Quenching"
+            },
+            {
+              "type": "concept",
+              "title": "Tempering"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precipitation and age hardening",
+          "description": "Some alloys strengthen through controlled precipitation rather than simple phase conversion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solution treatment"
+            },
+            {
+              "type": "concept",
+              "title": "Aging"
+            },
+            {
+              "type": "concept",
+              "title": "Overaging"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Failure (Fracture, Fatigue, Creep)",
+      "description": "Materials fail in different ways depending on stress, defects, temperature, time, and environment. This topic teaches students to recognize and prevent common failure modes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fracture",
+          "description": "Fracture mechanics links cracks, stress, and material toughness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ductile fracture"
+            },
+            {
+              "type": "concept",
+              "title": "Brittle fracture"
+            },
+            {
+              "type": "concept",
+              "title": "Stress intensity and toughness context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fatigue",
+          "description": "Fatigue explains failure under repeated loading below static strength.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "S-N curves"
+            },
+            {
+              "type": "concept",
+              "title": "Crack initiation and growth"
+            },
+            {
+              "type": "concept",
+              "title": "Mean stress and surface effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Creep",
+          "description": "Creep is time-dependent deformation at elevated temperature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary, secondary, and tertiary creep"
+            },
+            {
+              "type": "concept",
+              "title": "Creep rupture"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and stress effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Failure analysis",
+          "description": "Students learn to infer causes from evidence rather than treating failure as a single event.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fractography"
+            },
+            {
+              "type": "concept",
+              "title": "Root-cause analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Design, processing, and service factors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Metals and Alloys",
+      "description": "Metals and alloys are central engineering materials because they combine strength, ductility, conductivity, processability, and recyclability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ferrous alloys",
+          "description": "Steels and cast irons show how composition and heat treatment tailor properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plain carbon steels"
+            },
+            {
+              "type": "concept",
+              "title": "Alloy steels"
+            },
+            {
+              "type": "concept",
+              "title": "Cast irons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonferrous alloys",
+          "description": "Nonferrous metals serve needs where weight, corrosion, conductivity, or temperature resistance dominate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aluminum alloys"
+            },
+            {
+              "type": "concept",
+              "title": "Copper alloys"
+            },
+            {
+              "type": "concept",
+              "title": "Titanium and nickel alloys"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Strengthening mechanisms",
+          "description": "Students learn how alloy design and processing increase strength.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solid-solution strengthening"
+            },
+            {
+              "type": "concept",
+              "title": "Work hardening"
+            },
+            {
+              "type": "concept",
+              "title": "Precipitation strengthening"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Corrosion and protection",
+          "description": "Metals interact with their environment, so corrosion prevention is part of material selection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrochemical corrosion"
+            },
+            {
+              "type": "concept",
+              "title": "Galvanic corrosion"
+            },
+            {
+              "type": "concept",
+              "title": "Coatings and passivation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Polymers, Ceramics, and Composites",
+      "description": "These major material families broaden design options beyond metals. Students learn how structure and processing create very different property profiles.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Polymers",
+          "description": "Polymers offer low density, processability, and tunable mechanical/thermal behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermoplastics and thermosets"
+            },
+            {
+              "type": "concept",
+              "title": "Glass transition temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Viscoelasticity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ceramics",
+          "description": "Ceramics offer hardness, heat resistance, and chemical stability but are often brittle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ionic/covalent structures"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Refractories and advanced ceramics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Composites",
+          "description": "Composites combine phases to achieve properties not available from one material alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix and reinforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Laminates and sandwich structures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Family-level tradeoffs",
+          "description": "Students learn to compare material families by function, manufacturing, environment, and cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ashby chart thinking"
+            },
+            {
+              "type": "concept",
+              "title": "Process compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Service environment constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Materials Selection and Design",
+      "description": "This added synthesis topic turns materials science into engineering choice: selecting materials that satisfy function, constraints, cost, reliability, and manufacturability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Selection criteria",
+          "description": "Students learn to translate design needs into material property requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functional requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Screening and ranking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Materials property charts",
+          "description": "Property charts help compare many materials visually and quantitatively.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stiffness-density charts"
+            },
+            {
+              "type": "concept",
+              "title": "Strength-density charts"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal and electrical property charts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design indices",
+          "description": "Design indices connect performance objectives to material properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lightweight stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Lightweight strength"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal performance indices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data and databases",
+          "description": "Students learn to use material data sources responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Materials Project"
+            },
+            {
+              "type": "concept",
+              "title": "MatWeb/NIST/ASM context"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty, test conditions, and datasheet limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Processing, Manufacturing, and Sustainability",
+      "description": "This added topic connects structure and properties to how materials are made, shaped, inspected, and used responsibly over a product life cycle.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Processing-structure-property relationships",
+          "description": "Students learn that manufacturing processes change microstructure, and microstructure changes properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Casting and solidification"
+            },
+            {
+              "type": "concept",
+              "title": "Forming and work hardening"
+            },
+            {
+              "type": "concept",
+              "title": "Heat treatment and joining effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manufacturing process constraints",
+          "description": "Material choice must fit realistic process capability, tolerances, and cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machining"
+            },
+            {
+              "type": "concept",
+              "title": "Casting and molding"
+            },
+            {
+              "type": "concept",
+              "title": "Additive manufacturing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality and characterization",
+          "description": "Testing and inspection verify that material and processing choices achieved the intended properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metallography"
+            },
+            {
+              "type": "concept",
+              "title": "Hardness and tensile tests"
+            },
+            {
+              "type": "concept",
+              "title": "Nondestructive evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainable materials thinking",
+          "description": "Students consider environmental and life-cycle impacts alongside performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Embodied energy"
+            },
+            {
+              "type": "concept",
+              "title": "Recycling and circularity"
+            },
+            {
+              "type": "concept",
+              "title": "Material substitution and end-of-life planning"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

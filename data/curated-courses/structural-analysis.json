@@ -1,0 +1,1076 @@
+{
+  "slug": "structural-analysis",
+  "title": "Structural Analysis",
+  "description": "Structural Analysis covers load paths, determinate and indeterminate beams/frames/trusses, energy methods, influence lines, force and displacement methods, and matrix/stiffness modeling with software checks.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Structural Analysis Context, Modeling Assumptions, and Load Paths",
+      "description": "Introduce structural analysis as the process of idealizing real structures, tracing loads, and predicting forces and deformations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Purpose of structural analysis",
+          "description": "Students learn that analysis estimates how structures carry load before design checks are made.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Service loads and factored loads"
+            },
+            {
+              "type": "concept",
+              "title": "Internal forces and reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Deflections and rotations"
+            },
+            {
+              "type": "concept",
+              "title": "Safety, serviceability, and constructability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model idealization",
+          "description": "Real structures must be simplified into analytical models with clear assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Line elements and nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Pin, roller, and fixed supports"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid versus flexible joints"
+            },
+            {
+              "type": "concept",
+              "title": "Plane frame and space frame assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Load paths",
+          "description": "Load paths show how gravity and lateral forces move through members to the foundation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tributary areas"
+            },
+            {
+              "type": "concept",
+              "title": "Load transfer from slabs to beams to columns"
+            },
+            {
+              "type": "concept",
+              "title": "Diaphragm action preview"
+            },
+            {
+              "type": "concept",
+              "title": "Primary versus secondary members"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equilibrium, Supports, Releases, and Determinacy",
+      "description": "Review equilibrium, support reactions, stability, static determinacy, and the role of structural idealization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equilibrium equations",
+          "description": "Equilibrium is the foundation for every statically determinate analysis method.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum of forces in x and y"
+            },
+            {
+              "type": "concept",
+              "title": "Sum of moments"
+            },
+            {
+              "type": "concept",
+              "title": "Free-body diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Support and connection behavior",
+          "description": "Supports and releases determine which reactions and internal forces a model can develop.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roller, pin, fixed, link, and spring supports"
+            },
+            {
+              "type": "concept",
+              "title": "Internal hinges"
+            },
+            {
+              "type": "concept",
+              "title": "Moment releases"
+            },
+            {
+              "type": "concept",
+              "title": "Support settlement awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability and determinacy",
+          "description": "Students distinguish solvable, unstable, and redundant structural models before calculating forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "External determinacy"
+            },
+            {
+              "type": "concept",
+              "title": "Internal determinacy"
+            },
+            {
+              "type": "concept",
+              "title": "Degree of indeterminacy"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric instability and mechanisms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statically Determinate Beams, Frames, and Arches",
+      "description": "Analyze reactions, internal forces, and load paths in determinate line structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Beam and frame reactions",
+          "description": "Students solve reactions for common determinate structural forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simply supported beams"
+            },
+            {
+              "type": "concept",
+              "title": "Cantilevers"
+            },
+            {
+              "type": "concept",
+              "title": "Overhangs"
+            },
+            {
+              "type": "concept",
+              "title": "Compound beams"
+            },
+            {
+              "type": "concept",
+              "title": "Pin-connected frames"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Internal force functions",
+          "description": "Internal force functions describe how axial force, shear, and moment vary along members.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Section cuts"
+            },
+            {
+              "type": "concept",
+              "title": "Axial force"
+            },
+            {
+              "type": "concept",
+              "title": "Shear force"
+            },
+            {
+              "type": "concept",
+              "title": "Bending moment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Three-hinged arches and frames",
+          "description": "Hinges can make curved or frame structures statically determinate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Three-hinged arch reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Horizontal thrust"
+            },
+            {
+              "type": "concept",
+              "title": "Hinge moment condition"
+            },
+            {
+              "type": "concept",
+              "title": "Funicular shape intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Trusses and Axial-Force Systems",
+      "description": "Use joint, section, and matrix ideas to analyze pin-jointed structures and axial force flow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Truss assumptions",
+          "description": "Truss analysis depends on idealizations that make members carry axial force only.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pin joints"
+            },
+            {
+              "type": "concept",
+              "title": "Two-force members"
+            },
+            {
+              "type": "concept",
+              "title": "Loads applied at joints"
+            },
+            {
+              "type": "concept",
+              "title": "Tension and compression sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method of joints and sections",
+          "description": "These hand methods teach local and global equilibrium strategies for axial-force systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-force members"
+            },
+            {
+              "type": "concept",
+              "title": "Section cuts"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing efficient sections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability and determinacy of trusses",
+          "description": "Students learn when a truss form is stable and whether equilibrium alone is enough.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "m + r = 2j rule"
+            },
+            {
+              "type": "concept",
+              "title": "Simple trusses"
+            },
+            {
+              "type": "concept",
+              "title": "Compound trusses"
+            },
+            {
+              "type": "concept",
+              "title": "Unstable truss mechanisms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shear and Bending Moment Diagrams",
+      "description": "Construct and interpret internal shear and moment diagrams for beams and frames.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Load-shear-moment relationships",
+          "description": "These relationships let students build diagrams systematically from distributed loads and point loads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "dV/dx = -w"
+            },
+            {
+              "type": "concept",
+              "title": "dM/dx = V"
+            },
+            {
+              "type": "concept",
+              "title": "Point load jumps"
+            },
+            {
+              "type": "concept",
+              "title": "Couple moment jumps"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagram construction",
+          "description": "Students practice drawing diagrams that reveal critical internal-force regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise functions"
+            },
+            {
+              "type": "concept",
+              "title": "Area methods"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum moment where shear is zero"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frame internal force diagrams",
+          "description": "Frames require careful member-by-member diagrams and consistent local axes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial force diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Shear diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Moment diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Joint equilibrium checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Deflections of Beams, Frames, and Trusses",
+      "description": "Compute structural displacements and rotations using geometric, integration, and virtual-work methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Beam deflection by integration",
+          "description": "Differential equations of the elastic curve connect bending moment to slope and deflection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EI curvature relation"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Slope and deflection functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moment-area and conjugate beam methods",
+          "description": "Graphical and transformed-beam methods provide efficient deflection calculations for common beam cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First moment-area theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Second moment-area theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugate beam supports"
+            },
+            {
+              "type": "concept",
+              "title": "M/EI diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Truss deflections",
+          "description": "Truss displacement methods show how axial member deformation contributes to joint movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Virtual work for trusses"
+            },
+            {
+              "type": "concept",
+              "title": "Member force products"
+            },
+            {
+              "type": "concept",
+              "title": "AE axial stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and fabrication effects preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Energy Methods and Virtual Work",
+      "description": "Use strain energy and virtual work as general tools for deflection and flexibility calculations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Strain energy",
+          "description": "Energy methods generalize deflection calculations across beams, frames, and trusses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial strain energy"
+            },
+            {
+              "type": "concept",
+              "title": "Bending strain energy"
+            },
+            {
+              "type": "concept",
+              "title": "Shear strain energy awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Castigliano's theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Principle of virtual work",
+          "description": "Virtual work uses an auxiliary loading state to compute a specific displacement or rotation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Real system and virtual system"
+            },
+            {
+              "type": "concept",
+              "title": "Unit load method"
+            },
+            {
+              "type": "concept",
+              "title": "Member force multiplication"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications and checks",
+          "description": "Energy methods are powerful but require careful sign, units, and modeling checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deflection at a point"
+            },
+            {
+              "type": "concept",
+              "title": "Rotation at a point"
+            },
+            {
+              "type": "concept",
+              "title": "Support settlement"
+            },
+            {
+              "type": "concept",
+              "title": "Reciprocal theorem intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Influence Lines and Moving Loads",
+      "description": "Analyze how reactions, shears, moments, and member forces vary as loads move across a structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Influence-line concept",
+          "description": "Influence lines show how a response quantity changes as a unit load moves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reaction influence lines"
+            },
+            {
+              "type": "concept",
+              "title": "Shear influence lines"
+            },
+            {
+              "type": "concept",
+              "title": "Moment influence lines"
+            },
+            {
+              "type": "concept",
+              "title": "Member-force influence lines"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Muller-Breslau principle",
+          "description": "This principle gives a qualitative and efficient way to sketch influence-line shapes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Release corresponding restraint"
+            },
+            {
+              "type": "concept",
+              "title": "Compatible displaced shape"
+            },
+            {
+              "type": "concept",
+              "title": "Positive response direction"
+            },
+            {
+              "type": "concept",
+              "title": "Qualitative influence line"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moving-load applications",
+          "description": "Students learn how to place moving loads to maximize structural response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Truck and lane loads"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute maximum moment"
+            },
+            {
+              "type": "concept",
+              "title": "Envelopes"
+            },
+            {
+              "type": "concept",
+              "title": "Bridge analysis context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statically Indeterminate Structures and Compatibility",
+      "description": "Understand redundancy, compatibility, and why indeterminate structures require deformation relationships.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Redundancy and compatibility",
+          "description": "Indeterminate structures require both equilibrium and deformation compatibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Redundant reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility equations"
+            },
+            {
+              "type": "concept",
+              "title": "Member continuity"
+            },
+            {
+              "type": "concept",
+              "title": "Support constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Advantages and challenges",
+          "description": "Indeterminacy can improve stiffness and redundancy but complicates analysis and construction effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Load redistribution"
+            },
+            {
+              "type": "concept",
+              "title": "Reserve capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Settlement sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and fabrication strains"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Degree of indeterminacy",
+          "description": "Students quantify how many extra equations are needed beyond equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "External indeterminacy"
+            },
+            {
+              "type": "concept",
+              "title": "Internal indeterminacy"
+            },
+            {
+              "type": "concept",
+              "title": "Kinematic indeterminacy"
+            },
+            {
+              "type": "concept",
+              "title": "Structural idealization effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Force Method and Consistent Deformations",
+      "description": "Solve indeterminate structures by treating redundants as unknowns and enforcing displacement compatibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Choosing redundants",
+          "description": "The force method starts by selecting redundant reactions or member forces to remove.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary structure"
+            },
+            {
+              "type": "concept",
+              "title": "Released structure"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility condition"
+            },
+            {
+              "type": "concept",
+              "title": "Redundant force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flexibility coefficients",
+          "description": "Flexibility coefficients relate redundant forces to displacements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit-load displacement"
+            },
+            {
+              "type": "concept",
+              "title": "Delta coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Maxwell-Betti reciprocity"
+            },
+            {
+              "type": "concept",
+              "title": "Flexibility matrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students apply consistent deformations to common indeterminate beams, frames, and trusses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Propped cantilever"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-fixed beam"
+            },
+            {
+              "type": "concept",
+              "title": "Two-span beam"
+            },
+            {
+              "type": "concept",
+              "title": "Redundant truss member"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Displacement Methods: Slope-Deflection and Moment Distribution",
+      "description": "Analyze beams and frames by using joint rotations, translations, member stiffness, and iterative moment balancing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Slope-deflection equations",
+          "description": "Slope-deflection expresses member end moments in terms of joint rotations and translations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fixed-end moments"
+            },
+            {
+              "type": "concept",
+              "title": "Member stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Joint rotation"
+            },
+            {
+              "type": "concept",
+              "title": "Sidesway and chord rotation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moment distribution",
+          "description": "Moment distribution provides an iterative hand method for continuous beams and frames.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distribution factors"
+            },
+            {
+              "type": "concept",
+              "title": "Carry-over factors"
+            },
+            {
+              "type": "concept",
+              "title": "Joint balancing"
+            },
+            {
+              "type": "concept",
+              "title": "Sway correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Displacement method logic",
+          "description": "These methods prepare students for the matrix stiffness method by emphasizing unknown joint displacements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kinematic indeterminacy"
+            },
+            {
+              "type": "concept",
+              "title": "Joint equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Member end actions"
+            },
+            {
+              "type": "concept",
+              "title": "Support restraint effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Matrix Structural Analysis and Direct Stiffness Method",
+      "description": "Formulate structural analysis using element stiffness matrices, coordinate transformations, assembly, and boundary conditions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Element stiffness matrices",
+          "description": "Element stiffness matrices encode how member end forces relate to member end displacements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Truss element stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Beam element stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Frame element stiffness"
+            },
+            {
+              "type": "concept",
+              "title": "Local degrees of freedom"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coordinate transformation and assembly",
+          "description": "Structural systems are built by transforming and assembling element contributions into a global model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local-to-global transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Connectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Global stiffness matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Load vector assembly"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Boundary conditions and solution",
+          "description": "Students learn how restraints, prescribed displacements, and loads produce solvable matrix equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partitioned matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Known and unknown degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Member-force recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Computer Structural Analysis, Model Checking, and Introductory Nonlinear Effects",
+      "description": "Use software-aware workflows while checking models for reasonableness, assumptions, and early nonlinear behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Software modeling workflow",
+          "description": "Software can solve large systems quickly, but students must understand the model they create.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes and elements"
+            },
+            {
+              "type": "concept",
+              "title": "Releases and constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Load cases and combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Mesh and model organization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model checking",
+          "description": "Students learn to catch modeling errors before trusting software output.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium checks"
+            },
+            {
+              "type": "concept",
+              "title": "Deflected shape review"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction reasonableness"
+            },
+            {
+              "type": "concept",
+              "title": "Hand-calculation benchmarks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonlinear analysis preview",
+          "description": "Introductory nonlinear concepts show where linear structural analysis begins to break down.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric nonlinearity"
+            },
+            {
+              "type": "concept",
+              "title": "Material nonlinearity"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order P-Delta effects"
+            },
+            {
+              "type": "concept",
+              "title": "Plastic hinge preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Structural Analysis Project and Design Context",
+      "description": "Apply analysis methods to a realistic structure and connect results to design decisions, codes, and professional communication.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project model development",
+          "description": "A project asks students to translate a realistic structure into a defensible analytical model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Structural plan interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Member idealization"
+            },
+            {
+              "type": "concept",
+              "title": "Load assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Support and connection assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analysis synthesis",
+          "description": "Students combine multiple methods to understand a structure from reactions through displacements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Determinate checks"
+            },
+            {
+              "type": "concept",
+              "title": "Indeterminate analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix model comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Influence-line or moving-load component"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design and communication context",
+          "description": "Analysis results become useful when tied to design decisions and communicated clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical members and load paths"
+            },
+            {
+              "type": "concept",
+              "title": "Serviceability limits"
+            },
+            {
+              "type": "concept",
+              "title": "Code and load-combination awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Calculation package and technical memo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

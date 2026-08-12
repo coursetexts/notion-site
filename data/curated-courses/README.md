@@ -69,7 +69,7 @@ video syllabus (`/curated-course/{slug}`).
 2. Fill `slug` / `title` / `description` / `resources` / `topics`
 3. Ensure a matching row exists in `curated_courses` (catalog seed or insert)
 4. Load into Supabase:
-   - **SQL Editor:** run / adapt `supabase/migrations/new/seed_fluid_mechanics_curated_course.sql` (self-contained schema + data), or
+   - **SQL Editor:** run / adapt `supabase/seeds/curated-courses/seed_fluid_mechanics_curated_course.sql` (self-contained schema + data), or
    - **Script:** `yarn seed:curated-courses -- --slug=your-slug` (needs service role)
 
 ## Fluid Mechanics

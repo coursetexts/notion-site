@@ -1,0 +1,968 @@
+{
+  "slug": "mathematical-methods-for-physics",
+  "title": "Mathematical Methods for Physics",
+  "description": "Equip physics students with the analytical and computational methods needed for upper-division mechanics, electromagnetism, quantum mechanics, statistical physics, and research-level problem solving.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Complex Numbers and Analytic Functions",
+      "description": "Complex analysis turns oscillation, waves, potentials, and contour integrals into a powerful geometric language for physics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Complex algebra and geometry",
+          "description": "Students learn to move fluently between algebraic, polar, exponential, and geometric views of complex quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler form and phasors"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cuts and multivalued functions"
+            },
+            {
+              "type": "concept",
+              "title": "Complex plane geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytic functions",
+          "description": "Analyticity packages differentiability, geometry, and physical constraints into one idea that appears in potentials and wave problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cauchy-Riemann equations"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic functions"
+            },
+            {
+              "type": "concept",
+              "title": "Conformal mapping intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contour integration",
+          "description": "Contour methods make many real integrals and response calculations tractable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cauchy's theorem and formula"
+            },
+            {
+              "type": "concept",
+              "title": "Residue theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Principal values and Jordan's lemma"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Algebra, Operators, and Hilbert Space Methods",
+      "description": "Physics uses linear spaces to describe modes, states, observables, and coupled systems. This unit strengthens the linear algebra beneath mechanics and quantum theory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vector spaces and inner products",
+          "description": "Students learn the geometry of state spaces, function spaces, and orthogonality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basis and dimension"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonal projection"
+            },
+            {
+              "type": "concept",
+              "title": "Gram-Schmidt process"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Eigenvalue problems",
+          "description": "Eigenvectors and eigenvalues reveal normal modes, stationary states, and stable directions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix diagonalization"
+            },
+            {
+              "type": "concept",
+              "title": "Hermitian and unitary operators"
+            },
+            {
+              "type": "concept",
+              "title": "Degeneracy and eigenspaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Function spaces",
+          "description": "Continuous systems require extending finite-dimensional intuition to functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthogonal functions"
+            },
+            {
+              "type": "concept",
+              "title": "Completeness"
+            },
+            {
+              "type": "concept",
+              "title": "Dirac notation preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vector Calculus and Curvilinear Coordinates",
+      "description": "Vector calculus is the working language of fields, fluxes, conservation laws, fluids, and electromagnetism.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Differential operators",
+          "description": "Gradient, divergence, curl, and Laplacian encode local change and conservation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Physical meaning of grad/div/curl"
+            },
+            {
+              "type": "concept",
+              "title": "Vector identities"
+            },
+            {
+              "type": "concept",
+              "title": "Laplacian in common coordinates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integral theorems",
+          "description": "Integral theorems connect local differential laws to global physical balances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Green's theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Stokes' theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Divergence theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coordinate systems",
+          "description": "Choosing coordinates that match symmetry turns impossible-looking problems into solvable ones.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cylindrical coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Scale factors and Jacobians"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tensors and Index Notation",
+      "description": "Tensors give a compact, coordinate-aware language for rotations, stress, inertia, relativity, and anisotropic materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Index notation",
+          "description": "Index notation reduces complicated vector and tensor identities to disciplined symbol manipulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Einstein summation"
+            },
+            {
+              "type": "concept",
+              "title": "Kronecker delta"
+            },
+            {
+              "type": "concept",
+              "title": "Levi-Civita symbol"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tensor transformations",
+          "description": "Students learn what it means for a physical quantity to be independent of coordinate description.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covariant and contravariant components"
+            },
+            {
+              "type": "concept",
+              "title": "Rank and order"
+            },
+            {
+              "type": "concept",
+              "title": "Basis changes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physical tensors",
+          "description": "The abstract notation becomes concrete through familiar physical objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inertia tensor"
+            },
+            {
+              "type": "concept",
+              "title": "Stress and strain tensors"
+            },
+            {
+              "type": "concept",
+              "title": "Electromagnetic field tensor preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ordinary Differential Equations and Dynamical Systems",
+      "description": "ODEs model oscillations, circuits, decay, orbits, and stability. This unit makes differential equations feel like physical mechanisms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linear ODE methods",
+          "description": "Students learn the standard solution tools that recur throughout physics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First- and second-order equations"
+            },
+            {
+              "type": "concept",
+              "title": "Forced and damped oscillators"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace transforms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Systems and phase space",
+          "description": "System form reveals coupled dynamics and stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix exponentials"
+            },
+            {
+              "type": "concept",
+              "title": "Normal modes"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed points and linearization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonlinear dynamics preview",
+          "description": "Many real systems are nonlinear; students need qualitative tools even when closed forms fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bifurcations"
+            },
+            {
+              "type": "concept",
+              "title": "Phase portraits"
+            },
+            {
+              "type": "concept",
+              "title": "Chaos indicators"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fourier Series and Orthogonal Expansions",
+      "description": "Fourier methods decompose physical systems into modes, making waves, heat flow, and boundary-value problems analyzable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fourier series",
+          "description": "Periodic functions become sums of sines and cosines, which often match physical normal modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficients and orthogonality"
+            },
+            {
+              "type": "concept",
+              "title": "Even/odd extensions"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence and Gibbs phenomenon"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sturm-Liouville theory",
+          "description": "This frames many physics eigenfunction expansions as one general theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self-adjoint operators"
+            },
+            {
+              "type": "concept",
+              "title": "Weight functions"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonal eigenfunctions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications to boundary problems",
+          "description": "Students learn how boundary conditions choose the allowed modes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vibrating strings"
+            },
+            {
+              "type": "concept",
+              "title": "Heat equation on intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Rectangular membrane examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Fourier and Laplace Transforms",
+      "description": "Transforms convert differential equations and convolutions into algebraic problems, especially for waves, signals, response, and initial-value systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fourier transform",
+          "description": "Students learn frequency-domain thinking for localized and nonperiodic phenomena.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transform pairs"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Parseval/Plancherel ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Laplace transform",
+          "description": "Laplace methods handle initial conditions, forcing, and transients cleanly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Step and impulse functions"
+            },
+            {
+              "type": "concept",
+              "title": "Transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse transforms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectral interpretation",
+          "description": "Transforms reveal which scales or frequencies dominate a physical process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Filters and response"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty principle intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Special Functions and Orthogonal Polynomials",
+      "description": "Special functions are the natural solutions of physics in symmetric geometries and separated differential equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical special functions",
+          "description": "Students learn the recurring functions that appear in quantum, E&M, heat, and wave problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bessel functions"
+            },
+            {
+              "type": "concept",
+              "title": "Legendre polynomials"
+            },
+            {
+              "type": "concept",
+              "title": "Hermite and Laguerre functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Generating functions and recurrences",
+          "description": "These tools make special functions calculable and structurally understandable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recurrence relations"
+            },
+            {
+              "type": "concept",
+              "title": "Rodrigues formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonality relations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Asymptotic behavior",
+          "description": "Physical interpretation often depends on limits, not exact formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Small-argument behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Large-argument approximations"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization and zeros"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Partial Differential Equations",
+      "description": "PDEs describe fields evolving in space and time. This unit organizes the main equation types and solution strategies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Canonical PDEs",
+          "description": "Students learn the signatures of diffusion, wave propagation, and equilibrium fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat equation"
+            },
+            {
+              "type": "concept",
+              "title": "Wave equation"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace and Poisson equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Separation of variables",
+          "description": "Separation converts many PDEs into eigenvalue problems and mode expansions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary and initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Product solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classification and characteristics",
+          "description": "Classification helps students choose appropriate methods and understand physical behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elliptic, parabolic, hyperbolic"
+            },
+            {
+              "type": "concept",
+              "title": "Characteristics"
+            },
+            {
+              "type": "concept",
+              "title": "Well-posedness intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Green's Functions and Distributions",
+      "description": "Green's functions turn point-source responses into full solutions and are one of the most powerful methods in theoretical physics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Delta functions and distributions",
+          "description": "Students learn a precise language for point sources, impulses, and idealized densities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dirac delta properties"
+            },
+            {
+              "type": "concept",
+              "title": "Heaviside step function"
+            },
+            {
+              "type": "concept",
+              "title": "Distributional derivatives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Green's function construction",
+          "description": "The central idea is to solve a problem once for a point source, then assemble general solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Jump conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Method of images"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physical applications",
+          "description": "Students connect Green's functions to electrostatics, waves, quantum propagators, and response theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poisson equation"
+            },
+            {
+              "type": "concept",
+              "title": "Retarded Green's functions"
+            },
+            {
+              "type": "concept",
+              "title": "Linear response"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Calculus of Variations and Variational Principles",
+      "description": "Variational thinking unifies mechanics, optics, fields, and approximation methods through the idea of stationary action or energy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Euler-Lagrange equations",
+          "description": "Students learn how differential equations emerge from optimizing functionals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functionals"
+            },
+            {
+              "type": "concept",
+              "title": "First variation"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary terms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constrained variational problems",
+          "description": "Constraints and multipliers model real physical restrictions and conservation laws.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lagrange multipliers"
+            },
+            {
+              "type": "concept",
+              "title": "Holonomic constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Isoperimetric examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physics principles",
+          "description": "This unit connects mathematical variation to the structure of mechanics and fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Least action"
+            },
+            {
+              "type": "concept",
+              "title": "Hamilton's principle"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh-Ritz method"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Probability, Statistics, and Random Processes in Physics",
+      "description": "Probability links microscopic uncertainty to macroscopic laws and supports data analysis, statistical mechanics, and noise modeling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability distributions",
+          "description": "Students learn the distributions that recur in measurement, thermal systems, and stochastic models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gaussian, Poisson, exponential"
+            },
+            {
+              "type": "concept",
+              "title": "Moments and cumulants"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Random variables and correlations",
+          "description": "Correlation functions reveal structure in fluctuating systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expectation and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance"
+            },
+            {
+              "type": "concept",
+              "title": "Autocorrelation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stochastic processes preview",
+          "description": "Noise-driven dynamics appear in diffusion, Brownian motion, and experimental signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random walks"
+            },
+            {
+              "type": "concept",
+              "title": "Langevin equation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo sampling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Approximation, Perturbation, and Asymptotic Methods",
+      "description": "Exact solutions are rare. Approximation methods teach students to extract reliable physics from small parameters and limiting regimes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Perturbation theory",
+          "description": "Students learn systematic correction methods for problems close to solvable ones.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular perturbation"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate cases"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum perturbation preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Asymptotic expansions",
+          "description": "Asymptotics prioritize useful approximations over convergent exactness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dominant balance"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace's method"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary phase and steepest descent"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dimensional analysis and scaling",
+          "description": "Scaling exposes the governing parameters before calculation begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nondimensionalization"
+            },
+            {
+              "type": "concept",
+              "title": "Similarity variables"
+            },
+            {
+              "type": "concept",
+              "title": "Order-of-magnitude estimates"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical and Computational Methods for Physics",
+      "description": "World-class mathematical methods should include computation, because many realistic physical systems require numerical exploration.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Numerical linear algebra",
+          "description": "Students learn computational versions of eigenvalue and linear-system problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix factorizations"
+            },
+            {
+              "type": "concept",
+              "title": "Iterative solvers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Numerical ODE/PDE methods",
+          "description": "This gives practical ways to solve models that lack closed forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Euler and Runge-Kutta methods"
+            },
+            {
+              "type": "concept",
+              "title": "Finite difference methods"
+            },
+            {
+              "type": "concept",
+              "title": "Stability and convergence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational validation",
+          "description": "Students learn to treat numerical output as evidence that must be checked.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Grid refinement"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation checks"
+            },
+            {
+              "type": "concept",
+              "title": "Benchmark problems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Synthesis Applications Across Physics",
+      "description": "The final unit makes the methods cohere by revisiting major physics domains and choosing the right mathematical tool for each problem.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical mechanics",
+          "description": "Students connect linear algebra, ODEs, variational methods, and perturbation theory to motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal modes"
+            },
+            {
+              "type": "concept",
+              "title": "Central forces"
+            },
+            {
+              "type": "concept",
+              "title": "Hamiltonian systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantum mechanics",
+          "description": "Students see operators, Hilbert spaces, special functions, and perturbation methods as the grammar of quantum theory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Schrodinger eigenvalue problems"
+            },
+            {
+              "type": "concept",
+              "title": "Angular momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic oscillator"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electromagnetism and statistical physics",
+          "description": "Fields and ensembles show how vector calculus, PDEs, Green's functions, probability, and transforms work together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maxwell equations"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson problems"
+            },
+            {
+              "type": "concept",
+              "title": "Partition functions and fluctuations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

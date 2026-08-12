@@ -1,0 +1,996 @@
+{
+  "slug": "physical-chemistry-ii-quantum-mechanics-and-spectroscopy",
+  "title": "Physical Chemistry II (Quantum Mechanics & Spectroscopy)",
+  "description": "This syllabus bridges quantum formalism to spectroscopy and modern computation, covering core chemistry topics alongside quantum postulates, operators, and approximation methods.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Wave-Particle Duality",
+      "description": "Understand why classical mechanics fails at molecular scales and how quantum ideas enter chemistry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental evidence",
+          "description": "Quantum chemistry begins with observations classical physics could not explain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blackbody radiation"
+            },
+            {
+              "type": "concept",
+              "title": "Photoelectric effect"
+            },
+            {
+              "type": "concept",
+              "title": "Atomic line spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Electron diffraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matter waves",
+          "description": "The de Broglie relation links momentum to wavelength and motivates wave mechanics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "De Broglie wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Diffraction"
+            },
+            {
+              "type": "concept",
+              "title": "Interference"
+            },
+            {
+              "type": "concept",
+              "title": "Macroscopic limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical consequences",
+          "description": "Wave behavior explains why atoms and molecules have discrete allowed states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quantized energy"
+            },
+            {
+              "type": "concept",
+              "title": "Stability of atoms"
+            },
+            {
+              "type": "concept",
+              "title": "Spectral fingerprints"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular length scales"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quantum Postulates, Operators, and Measurement",
+      "description": "Build the formal language of states, observables, operators, expectation values, and measurement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "State vectors and wavefunctions",
+          "description": "A quantum state encodes all available information about a system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wavefunctions"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Probability density"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operators and observables",
+          "description": "Measurable quantities are represented by operators acting on states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hermitian operators"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalues"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenfunctions"
+            },
+            {
+              "type": "concept",
+              "title": "Commutators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and expectation",
+          "description": "Measurement links mathematical states to experimental outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expectation values"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty principle"
+            },
+            {
+              "type": "concept",
+              "title": "Compatible observables"
+            },
+            {
+              "type": "concept",
+              "title": "Born rule"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Schrodinger Equation",
+      "description": "Use the central equation of nonrelativistic quantum mechanics to model chemical systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Time-independent equation",
+          "description": "Stationary states give allowed energies and wavefunctions for chemical models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hamiltonian"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Energy eigenvalues"
+            },
+            {
+              "type": "concept",
+              "title": "Stationary states"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time dependence",
+          "description": "Time evolution explains phases, dynamics, and transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Time-dependent Schrodinger equation"
+            },
+            {
+              "type": "concept",
+              "title": "Phase factors"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition evolution"
+            },
+            {
+              "type": "concept",
+              "title": "Transition intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling workflow",
+          "description": "Students learn to translate a physical system into a solvable or approximate Hamiltonian.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Choose coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Define potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Apply boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Interpret solutions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Particle in a Box",
+      "description": "Study quantization, boundary conditions, and simple models of electrons in confined molecular systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "One-dimensional box",
+          "description": "The box model shows how confinement creates quantized energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infinite well"
+            },
+            {
+              "type": "concept",
+              "title": "Nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum number n"
+            },
+            {
+              "type": "concept",
+              "title": "Energy spacing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular applications",
+          "description": "Simple box models give first estimates for conjugated molecules and nanostructures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conjugated pi systems"
+            },
+            {
+              "type": "concept",
+              "title": "Absorption wavelength estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Effective box length"
+            },
+            {
+              "type": "concept",
+              "title": "Model limitations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Higher dimensions and degeneracy",
+          "description": "More dimensions introduce degeneracy and connect to molecular symmetry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "2D and 3D boxes"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate states"
+            },
+            {
+              "type": "concept",
+              "title": "Density of states"
+            },
+            {
+              "type": "concept",
+              "title": "Separable Hamiltonians"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Harmonic Oscillator",
+      "description": "Model molecular vibrations and connect quantum energy levels to vibrational spectroscopy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quantum oscillator solution",
+          "description": "The harmonic oscillator is the core model for molecular vibration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parabolic potential"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-point energy"
+            },
+            {
+              "type": "concept",
+              "title": "Hermite polynomial context"
+            },
+            {
+              "type": "concept",
+              "title": "Vibrational quantum number"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vibrational interpretation",
+          "description": "Vibrational energy levels connect directly to bond strength and reduced mass.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force constant"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced mass"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Anharmonicity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectroscopic connection",
+          "description": "IR and Raman spectra depend on how vibrations interact with light.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection rule"
+            },
+            {
+              "type": "concept",
+              "title": "Dipole moment change"
+            },
+            {
+              "type": "concept",
+              "title": "Normal modes"
+            },
+            {
+              "type": "concept",
+              "title": "Overtones"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hydrogen Atom",
+      "description": "Solve the central atomic model that introduces orbitals, quantum numbers, and angular momentum.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Central force problem",
+          "description": "Hydrogen introduces three-dimensional quantum mechanics in a Coulomb potential.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spherical coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Radial equation"
+            },
+            {
+              "type": "concept",
+              "title": "Angular equation"
+            },
+            {
+              "type": "concept",
+              "title": "Coulomb potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantum numbers and orbitals",
+          "description": "Quantum numbers organize atomic states and orbital shapes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "n"
+            },
+            {
+              "type": "concept",
+              "title": "l"
+            },
+            {
+              "type": "concept",
+              "title": "m_l"
+            },
+            {
+              "type": "concept",
+              "title": "Orbital nodes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Angular momentum",
+          "description": "Angular momentum is essential for atoms, rotation, and spectroscopy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angular momentum operators"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical harmonics"
+            },
+            {
+              "type": "concept",
+              "title": "Degeneracy"
+            },
+            {
+              "type": "concept",
+              "title": "Magnetic quantum number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multi-Electron Atoms",
+      "description": "Extend quantum ideas to electron-electron repulsion, shielding, spin, and periodic trends.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electron-electron interaction",
+          "description": "Many-electron atoms require approximations because electrons repel one another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coulomb repulsion"
+            },
+            {
+              "type": "concept",
+              "title": "Shielding"
+            },
+            {
+              "type": "concept",
+              "title": "Effective nuclear charge"
+            },
+            {
+              "type": "concept",
+              "title": "Independent-particle approximation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spin and Pauli principle",
+          "description": "Spin and antisymmetry explain electron configurations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron spin"
+            },
+            {
+              "type": "concept",
+              "title": "Pauli exclusion"
+            },
+            {
+              "type": "concept",
+              "title": "Slater determinants overview"
+            },
+            {
+              "type": "concept",
+              "title": "Aufbau principle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Atomic structure and trends",
+          "description": "Quantum structure explains periodic behavior and atomic spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Term symbols overview"
+            },
+            {
+              "type": "concept",
+              "title": "Hund's rules"
+            },
+            {
+              "type": "concept",
+              "title": "Spin-orbit coupling preview"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic trends"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Molecular Orbital Theory",
+      "description": "Explain chemical bonding, electronic structure, and molecular properties using orbital combinations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "LCAO approach",
+          "description": "Molecular orbitals describe electrons spread across atoms in molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atomic orbital combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Bonding orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "Antibonding orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "Overlap"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diatomic molecules",
+          "description": "Diatomics provide clear examples of bond order and magnetic properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sigma and pi orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "MO diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Bond order"
+            },
+            {
+              "type": "concept",
+              "title": "Paramagnetism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polyatomic and chemical applications",
+          "description": "MO theory connects quantum mechanics to reactivity, color, and spectroscopy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HOMO and LUMO"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugation"
+            },
+            {
+              "type": "concept",
+              "title": "Frontier orbitals"
+            },
+            {
+              "type": "concept",
+              "title": "Photoexcitation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Approximation and Computational Quantum Chemistry",
+      "description": "Use variational, perturbative, and computational ideas when exact solutions are unavailable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Variational method",
+          "description": "The variational principle gives controlled estimates when exact solutions are not possible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trial wavefunctions"
+            },
+            {
+              "type": "concept",
+              "title": "Upper-bound energy"
+            },
+            {
+              "type": "concept",
+              "title": "Linear variational method"
+            },
+            {
+              "type": "concept",
+              "title": "Basis sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Perturbation methods",
+          "description": "Perturbation theory estimates small corrections to solvable models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order correction"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order idea"
+            },
+            {
+              "type": "concept",
+              "title": "Degenerate perturbation"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational methods",
+          "description": "Modern quantum chemistry uses algorithms to predict molecular structure and spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hartree-Fock"
+            },
+            {
+              "type": "concept",
+              "title": "Density functional theory"
+            },
+            {
+              "type": "concept",
+              "title": "Basis set choice"
+            },
+            {
+              "type": "concept",
+              "title": "Geometry optimization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Light-Matter Interaction and Selection Rules",
+      "description": "Connect quantum transitions to what spectroscopy can and cannot observe.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transition moments",
+          "description": "Spectral intensity depends on whether light can couple two quantum states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transition dipole moment"
+            },
+            {
+              "type": "concept",
+              "title": "Oscillator strength"
+            },
+            {
+              "type": "concept",
+              "title": "Allowed transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Forbidden transitions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selection rules",
+          "description": "Selection rules explain which transitions appear in rotational, vibrational, and electronic spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rotational selection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Vibrational selection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Electronic selection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Spin selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Line shapes and intensities",
+          "description": "Real spectra contain information about populations, environments, and dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Boltzmann populations"
+            },
+            {
+              "type": "concept",
+              "title": "Line broadening"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rotational and Vibrational Spectroscopy",
+      "description": "Interpret molecular rotation and vibration spectra in terms of structure, masses, bonds, and force constants.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rotational spectroscopy",
+          "description": "Rotational spectra reveal moments of inertia and bond lengths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rigid rotor"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational constant"
+            },
+            {
+              "type": "concept",
+              "title": "Microwave spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Isotope effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vibrational spectroscopy",
+          "description": "Vibrational spectra reveal functional groups, force constants, and molecular structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IR absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Raman scattering"
+            },
+            {
+              "type": "concept",
+              "title": "Normal mode analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Group frequencies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rovibrational structure",
+          "description": "Rotation and vibration combine in gas-phase spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P and R branches"
+            },
+            {
+              "type": "concept",
+              "title": "Band contours"
+            },
+            {
+              "type": "concept",
+              "title": "Anharmonic corrections"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular constants"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electronic Spectroscopy",
+      "description": "Analyze electronic transitions, excited states, chromophores, and molecular absorption/emission behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Electronic transitions",
+          "description": "Electronic spectra probe excited states and molecular orbital energy gaps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UV-Vis absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Franck-Condon principle"
+            },
+            {
+              "type": "concept",
+              "title": "Vibronic structure"
+            },
+            {
+              "type": "concept",
+              "title": "Chromophores"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Excited-state behavior",
+          "description": "Molecules relax and emit light through competing pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fluorescence"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorescence"
+            },
+            {
+              "type": "concept",
+              "title": "Internal conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Intersystem crossing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Electronic spectroscopy links quantum structure to analytical and materials chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Beer-Lambert law"
+            },
+            {
+              "type": "concept",
+              "title": "Solvatochromism"
+            },
+            {
+              "type": "concept",
+              "title": "Photochemistry"
+            },
+            {
+              "type": "concept",
+              "title": "Conjugated systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "NMR Spectroscopy Theory",
+      "description": "Understand the quantum basis of nuclear magnetic resonance and its chemical interpretation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nuclear spin",
+          "description": "NMR begins with quantized nuclear angular momentum in a magnetic field.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spin quantum number"
+            },
+            {
+              "type": "concept",
+              "title": "Zeeman splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Larmor frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Population difference"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical environment",
+          "description": "Electronic shielding makes NMR a sensitive probe of molecular structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemical shift"
+            },
+            {
+              "type": "concept",
+              "title": "Shielding and deshielding"
+            },
+            {
+              "type": "concept",
+              "title": "Reference standards"
+            },
+            {
+              "type": "concept",
+              "title": "Anisotropy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coupling and relaxation",
+          "description": "Spin interactions and relaxation encode connectivity and dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "J-coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Multiplicity"
+            },
+            {
+              "type": "concept",
+              "title": "T1 and T2 relaxation"
+            },
+            {
+              "type": "concept",
+              "title": "2D NMR overview"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

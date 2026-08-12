@@ -1,0 +1,1296 @@
+{
+  "slug": "complex-analysis",
+  "title": "Complex Analysis",
+  "description": "A proof-based course on complex numbers, analytic functions, contour integration, Cauchy theory, power series, Laurent series, residues, conformal maps, harmonic functions, and applications.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Complex Numbers, Geometry, and the Extended Plane",
+      "description": "This section develops complex numbers, geometry, and the extended plane through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make complex numbers, geometry, and the extended plane precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complex plane"
+            },
+            {
+              "type": "concept",
+              "title": "Modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Argument"
+            },
+            {
+              "type": "concept",
+              "title": "Polar form"
+            },
+            {
+              "type": "concept",
+              "title": "Euler formula"
+            },
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with complex numbers, geometry, and the extended plane.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply complex plane in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare modulus with argument"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of contour"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how complex plane affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Limits, Continuity, and Complex Differentiability",
+      "description": "This section develops limits, continuity, and complex differentiability through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make limits, continuity, and complex differentiability precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with limits, continuity, and complex differentiability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Analytic Functions and Cauchy-Riemann Equations",
+      "description": "This section develops analytic functions and cauchy-riemann equations through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make analytic functions and cauchy-riemann equations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cauchy-Riemann equations"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic function"
+            },
+            {
+              "type": "concept",
+              "title": "Complex derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with analytic functions and cauchy-riemann equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Cauchy-Riemann equations in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with harmonic function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of contour"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Cauchy-Riemann equations affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Elementary Functions and Branches",
+      "description": "This section develops elementary functions and branches through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make elementary functions and branches precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with elementary functions and branches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Contour Integration and Parametrized Curves",
+      "description": "This section develops contour integration and parametrized curves through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make contour integration and parametrized curves precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Path integral"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy integral formula"
+            },
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with contour integration and parametrized curves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply path integral in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare contour with orientation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how path integral affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cauchy's Theorem and Cauchy Integral Formula",
+      "description": "This section develops cauchy's theorem and cauchy integral formula through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make cauchy's theorem and cauchy integral formula precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with cauchy's theorem and cauchy integral formula.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power Series and Analytic Continuation",
+      "description": "This section develops power series and analytic continuation through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make power series and analytic continuation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cauchy-Riemann equations"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Harmonic function"
+            },
+            {
+              "type": "concept",
+              "title": "Complex derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Power series"
+            },
+            {
+              "type": "concept",
+              "title": "Taylor series"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with power series and analytic continuation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Cauchy-Riemann equations in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with harmonic function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Cauchy-Riemann equations affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laurent Series and Isolated Singularities",
+      "description": "This section develops laurent series and isolated singularities through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make laurent series and isolated singularities precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power series"
+            },
+            {
+              "type": "concept",
+              "title": "Taylor series"
+            },
+            {
+              "type": "concept",
+              "title": "Laurent series"
+            },
+            {
+              "type": "concept",
+              "title": "Radius of convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with laurent series and isolated singularities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply power series in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Taylor series with Laurent series"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of contour"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how power series affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Residue Theorem and Real Integral Applications",
+      "description": "This section develops residue theorem and real integral applications through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make residue theorem and real integral applications precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Simple pole"
+            },
+            {
+              "type": "concept",
+              "title": "Residue theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Principal part"
+            },
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with residue theorem and real integral applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply residue in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare simple pole with residue theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of contour"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how residue affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Argument Principle and Rouche's Theorem",
+      "description": "This section develops argument principle and rouche's theorem through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make argument principle and rouche's theorem precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with argument principle and rouche's theorem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conformal Mapping and Mobius Transformations",
+      "description": "This section develops conformal mapping and mobius transformations through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make conformal mapping and mobius transformations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Mobius transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            },
+            {
+              "type": "concept",
+              "title": "Riemann sphere"
+            },
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with conformal mapping and mobius transformations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conformal map in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Mobius transformation with branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of contour"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how conformal map affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Harmonic Functions and the Maximum Principle",
+      "description": "This section develops harmonic functions and the maximum principle through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make harmonic functions and the maximum principle precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with harmonic functions and the maximum principle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Complex Analysis in Physics and Engineering",
+      "description": "This section develops complex analysis in physics and engineering through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make complex analysis in physics and engineering precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with complex analysis in physics and engineering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Proof and Problem Portfolio",
+      "description": "This section develops integrated proof and problem portfolio through the concrete vocabulary, procedures, examples, and checks students need in Complex Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make integrated proof and problem portfolio precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analytic function"
+            },
+            {
+              "type": "concept",
+              "title": "Holomorphic"
+            },
+            {
+              "type": "concept",
+              "title": "Contour"
+            },
+            {
+              "type": "concept",
+              "title": "Residue"
+            },
+            {
+              "type": "concept",
+              "title": "Singularity"
+            },
+            {
+              "type": "concept",
+              "title": "Branch cut"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with integrated proof and problem portfolio.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluate contour integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Compute residues"
+            },
+            {
+              "type": "concept",
+              "title": "Classify singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Apply analytic function in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare holomorphic with contour"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain not simply connected"
+            },
+            {
+              "type": "concept",
+              "title": "Wrong orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Branch ambiguity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conformal map"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how analytic function affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

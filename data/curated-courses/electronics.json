@@ -1,0 +1,1296 @@
+{
+  "slug": "electronics",
+  "title": "Electronics",
+  "description": "Electronics teaches how semiconductor devices become useful analog circuits. The syllabus links device physics to circuit models, biasing, small-signal analysis, amplifiers, op-amps, frequency response, feedback, power considerations, and lab practice.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Semiconductor Physics and Device Models",
+      "description": "This section develops semiconductor physics and device models through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make semiconductor physics and device models precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Doping"
+            },
+            {
+              "type": "concept",
+              "title": "p-n junction"
+            },
+            {
+              "type": "concept",
+              "title": "Depletion region"
+            },
+            {
+              "type": "concept",
+              "title": "Carrier"
+            },
+            {
+              "type": "concept",
+              "title": "Bandgap"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with semiconductor physics and device models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply doping in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare p-n junction with depletion region"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how doping affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Diodes and Rectifier Applications",
+      "description": "This section develops diodes and rectifier applications through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make diodes and rectifier applications precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rectifier"
+            },
+            {
+              "type": "concept",
+              "title": "Forward bias"
+            },
+            {
+              "type": "concept",
+              "title": "Reverse bias"
+            },
+            {
+              "type": "concept",
+              "title": "Zener diode"
+            },
+            {
+              "type": "concept",
+              "title": "Clipper"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with diodes and rectifier applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply rectifier in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare forward bias with reverse bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how rectifier affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "BJT Operation and Biasing",
+      "description": "This section develops bjt operation and biasing through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make bjt operation and biasing precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confounding"
+            },
+            {
+              "type": "concept",
+              "title": "Selection bias"
+            },
+            {
+              "type": "concept",
+              "title": "Information bias"
+            },
+            {
+              "type": "concept",
+              "title": "Effect modification"
+            },
+            {
+              "type": "concept",
+              "title": "Base"
+            },
+            {
+              "type": "concept",
+              "title": "Collector"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with bjt operation and biasing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply confounding in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare selection bias with information bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of small-signal gain"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how confounding affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "BJT Small-Signal Amplifiers",
+      "description": "This section develops bjt small-signal amplifiers through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make bjt small-signal amplifiers precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base"
+            },
+            {
+              "type": "concept",
+              "title": "Collector"
+            },
+            {
+              "type": "concept",
+              "title": "Emitter"
+            },
+            {
+              "type": "concept",
+              "title": "Bias point"
+            },
+            {
+              "type": "concept",
+              "title": "Small-signal gain"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with bjt small-signal amplifiers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply base in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare collector with emitter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how base affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "MOSFET Operation and Biasing",
+      "description": "This section develops mosfet operation and biasing through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make mosfet operation and biasing precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gate"
+            },
+            {
+              "type": "concept",
+              "title": "Source"
+            },
+            {
+              "type": "concept",
+              "title": "Drain"
+            },
+            {
+              "type": "concept",
+              "title": "Threshold voltage"
+            },
+            {
+              "type": "concept",
+              "title": "Transconductance"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with mosfet operation and biasing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply gate in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare source with drain"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of effect modification"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how gate affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "MOS Amplifiers and CMOS Basics",
+      "description": "This section develops mos amplifiers and cmos basics through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make mos amplifiers and cmos basics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diode"
+            },
+            {
+              "type": "concept",
+              "title": "BJT"
+            },
+            {
+              "type": "concept",
+              "title": "MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Bias point"
+            },
+            {
+              "type": "concept",
+              "title": "Small-signal model"
+            },
+            {
+              "type": "concept",
+              "title": "op-amp"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with mos amplifiers and cmos basics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply diode in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare BJT with MOSFET"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how diode affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multistage and Differential Amplifiers",
+      "description": "This section develops multistage and differential amplifiers through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make multistage and differential amplifiers precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coupling capacitor"
+            },
+            {
+              "type": "concept",
+              "title": "Differential pair"
+            },
+            {
+              "type": "concept",
+              "title": "Common-mode rejection"
+            },
+            {
+              "type": "concept",
+              "title": "Gain staging"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            },
+            {
+              "type": "concept",
+              "title": "BJT"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with multistage and differential amplifiers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply coupling capacitor in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare differential pair with common-mode rejection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how coupling capacitor affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operational Amplifier Circuits",
+      "description": "This section develops operational amplifier circuits through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make operational amplifier circuits precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inverting amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "Noninverting amplifier"
+            },
+            {
+              "type": "concept",
+              "title": "Virtual ground"
+            },
+            {
+              "type": "concept",
+              "title": "Slew rate"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            },
+            {
+              "type": "concept",
+              "title": "BJT"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with operational amplifier circuits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply inverting amplifier in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare noninverting amplifier with virtual ground"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how inverting amplifier affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response and Bode Plots",
+      "description": "This section develops frequency response and bode plots through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make frequency response and bode plots precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bode plot"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth"
+            },
+            {
+              "type": "concept",
+              "title": "Pole"
+            },
+            {
+              "type": "concept",
+              "title": "Corner frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Gain-bandwidth product"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with frequency response and bode plots.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Bode plot in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare bandwidth with pole"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Bode plot affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Feedback Amplifiers and Stability",
+      "description": "This section develops feedback amplifiers and stability through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make feedback amplifiers and stability precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Loop gain"
+            },
+            {
+              "type": "concept",
+              "title": "Stability"
+            },
+            {
+              "type": "concept",
+              "title": "Phase margin"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            },
+            {
+              "type": "concept",
+              "title": "BJT"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with feedback amplifiers and stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply negative feedback in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare loop gain with stability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how negative feedback affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Filters, Oscillators, and Signal Conditioning",
+      "description": "This section develops filters, oscillators, and signal conditioning through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make filters, oscillators, and signal conditioning precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low-pass"
+            },
+            {
+              "type": "concept",
+              "title": "High-pass"
+            },
+            {
+              "type": "concept",
+              "title": "Band-pass"
+            },
+            {
+              "type": "concept",
+              "title": "Oscillator"
+            },
+            {
+              "type": "concept",
+              "title": "Signal conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with filters, oscillators, and signal conditioning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply low-pass in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare high-pass with band-pass"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how low-pass affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power Electronics and Thermal Considerations",
+      "description": "This section develops power electronics and thermal considerations through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make power electronics and thermal considerations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Heat sink"
+            },
+            {
+              "type": "concept",
+              "title": "Power dissipation"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            },
+            {
+              "type": "concept",
+              "title": "BJT"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with power electronics and thermal considerations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply efficiency in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare thermal resistance with heat sink"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how efficiency affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Measurement, Prototyping, and Debugging",
+      "description": "This section develops measurement, prototyping, and debugging through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make measurement, prototyping, and debugging precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oscilloscope"
+            },
+            {
+              "type": "concept",
+              "title": "Function generator"
+            },
+            {
+              "type": "concept",
+              "title": "Multimeter"
+            },
+            {
+              "type": "concept",
+              "title": "Breadboard"
+            },
+            {
+              "type": "concept",
+              "title": "PCB"
+            },
+            {
+              "type": "concept",
+              "title": "Diode"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with measurement, prototyping, and debugging.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply oscilloscope in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare function generator with multimeter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how oscilloscope affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Analog Design Tradeoffs and Applications",
+      "description": "This section develops analog design tradeoffs and applications through the concrete vocabulary, procedures, examples, and checks students need in Electronics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make analog design tradeoffs and applications precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diode"
+            },
+            {
+              "type": "concept",
+              "title": "BJT"
+            },
+            {
+              "type": "concept",
+              "title": "MOSFET"
+            },
+            {
+              "type": "concept",
+              "title": "Bias point"
+            },
+            {
+              "type": "concept",
+              "title": "Small-signal model"
+            },
+            {
+              "type": "concept",
+              "title": "op-amp"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with analog design tradeoffs and applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias transistors"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze amplifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Draw small-signal circuits"
+            },
+            {
+              "type": "concept",
+              "title": "Apply diode in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare BJT with MOSFET"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading effect"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal runaway"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how diode affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

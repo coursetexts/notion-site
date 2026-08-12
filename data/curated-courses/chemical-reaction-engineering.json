@@ -1,0 +1,1072 @@
+{
+  "slug": "chemical-reaction-engineering",
+  "title": "Chemical Reaction Engineering",
+  "description": "Chemical Reaction Engineering teaches students to design, analyze, and evaluate reactors using mole balances, stoichiometry, rate laws, energy balances, transport effects, catalysis, residence-time distribution, and reactor-network models. The course connects chemical kinetics to industrial reactor choices, safe operation, process economics, and product selectivity.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Reaction Engineering Framework and Reactor Performance",
+      "description": "This opening topic gives students the organizing framework for the entire course: reactions are not only chemistry, but engineered transformations inside vessels with flow, heat transfer, mixing, safety, and economic constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Role of reaction engineering",
+          "description": "Students learn why reactor design sits between molecular kinetics and full process design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reaction pathway"
+            },
+            {
+              "type": "concept",
+              "title": "Reactor vessel"
+            },
+            {
+              "type": "concept",
+              "title": "Process flowsheet"
+            },
+            {
+              "type": "concept",
+              "title": "Product specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Safety and economics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conversion and yield metrics",
+          "description": "Students define the measures used to judge whether a reactor is doing useful work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Yield"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Space time"
+            },
+            {
+              "type": "concept",
+              "title": "Space velocity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reactor performance questions",
+          "description": "Students practice framing design problems before applying equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "How large should the reactor be?"
+            },
+            {
+              "type": "concept",
+              "title": "What temperature should it run at?"
+            },
+            {
+              "type": "concept",
+              "title": "Which reactor type is best?"
+            },
+            {
+              "type": "concept",
+              "title": "What limits rate or selectivity?"
+            },
+            {
+              "type": "concept",
+              "title": "What failure modes matter?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reaction Rates and Chemical Kinetics",
+      "description": "Kinetics is the empirical and mechanistic description of how fast reactions occur. Students learn to turn concentration, temperature, and catalyst data into rate expressions that can be used in reactor design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Definitions of reaction rate",
+          "description": "Students distinguish rates by species, reaction extent, catalyst mass, reactor volume, and surface area.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rate of formation"
+            },
+            {
+              "type": "concept",
+              "title": "Rate of disappearance"
+            },
+            {
+              "type": "concept",
+              "title": "Extent of reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Homogeneous rate"
+            },
+            {
+              "type": "concept",
+              "title": "Heterogeneous rate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rate-law forms",
+          "description": "Students learn common mathematical forms used to represent kinetic behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power-law kinetics"
+            },
+            {
+              "type": "concept",
+              "title": "Elementary reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Reversible reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Autocatalytic reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Michaelis-Menten analogs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temperature dependence",
+          "description": "Students connect thermal conditions to rate constants and activation barriers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arrhenius equation"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            },
+            {
+              "type": "concept",
+              "title": "Pre-exponential factor"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stoichiometry, Mole Balances, and Reactor Design Equations",
+      "description": "This topic turns chemistry into design math. Students learn the mole-balance structure behind batch, CSTR, PFR, and packed-bed models, then combine it with stoichiometry and rate laws.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stoichiometric tables",
+          "description": "Students systematically express species concentrations as functions of conversion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limiting reactant"
+            },
+            {
+              "type": "concept",
+              "title": "Inert species"
+            },
+            {
+              "type": "concept",
+              "title": "Gas expansion factor"
+            },
+            {
+              "type": "concept",
+              "title": "Liquid-phase approximations"
+            },
+            {
+              "type": "concept",
+              "title": "Reversible reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "General mole balance",
+          "description": "Students learn the common starting equation for every reactor model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Inflow"
+            },
+            {
+              "type": "concept",
+              "title": "Outflow"
+            },
+            {
+              "type": "concept",
+              "title": "Generation"
+            },
+            {
+              "type": "concept",
+              "title": "Steady vs. unsteady operation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design-equation setup",
+          "description": "Students practice choosing the correct independent variable and design basis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conversion basis"
+            },
+            {
+              "type": "concept",
+              "title": "Volume basis"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst-weight basis"
+            },
+            {
+              "type": "concept",
+              "title": "Residence-time basis"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-feed systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Batch and Semibatch Reactor Design",
+      "description": "Batch reactors are common in specialty chemicals, pharmaceuticals, polymers, and lab-scale kinetic studies. Students learn when time-based operation is useful and how feeding strategies influence conversion and heat release.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Batch reactor equations",
+          "description": "Students derive and solve time-to-conversion relationships for constant and variable volume systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant-volume batch"
+            },
+            {
+              "type": "concept",
+              "title": "Variable-volume batch"
+            },
+            {
+              "type": "concept",
+              "title": "Integrated rate laws"
+            },
+            {
+              "type": "concept",
+              "title": "Time to target conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Data collection for kinetics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Semibatch operation",
+          "description": "Students learn how controlled addition can manage selectivity, heat release, and gas evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fed-batch operation"
+            },
+            {
+              "type": "concept",
+              "title": "Limiting-reagent addition"
+            },
+            {
+              "type": "concept",
+              "title": "Gas-liquid reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-release management"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scale-up issues",
+          "description": "Students connect lab batch behavior to plant equipment constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mixing time"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-transfer area"
+            },
+            {
+              "type": "concept",
+              "title": "Charging sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling plans"
+            },
+            {
+              "type": "concept",
+              "title": "Batch-to-batch variability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Continuous Stirred-Tank Reactor Design",
+      "description": "CSTRs trade perfect mixing for simple operation and strong temperature control. Students learn how back-mixing shapes conversion, reactor size, stability, and performance in single and multiple reactors.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "CSTR mole balance",
+          "description": "Students apply the steady-state CSTR design equation and interpret its algebraic nature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exit concentration equals tank concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Space time"
+            },
+            {
+              "type": "concept",
+              "title": "Single-reaction sizing"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion limits"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CSTRs in series",
+          "description": "Students see how staging reduces back-mixing and improves conversion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equal-size tanks"
+            },
+            {
+              "type": "concept",
+              "title": "Unequal-size tanks"
+            },
+            {
+              "type": "concept",
+              "title": "Series performance"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison with PFR"
+            },
+            {
+              "type": "concept",
+              "title": "Design tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability and multiplicity",
+          "description": "Students learn why exothermic CSTRs can have multiple steady states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat generation"
+            },
+            {
+              "type": "concept",
+              "title": "Heat removal"
+            },
+            {
+              "type": "concept",
+              "title": "Ignition"
+            },
+            {
+              "type": "concept",
+              "title": "Extinction"
+            },
+            {
+              "type": "concept",
+              "title": "Runaway warning signs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Plug Flow and Packed-Bed Reactor Design",
+      "description": "Plug flow reactors model tubular systems where composition changes along the flow direction. Students learn how spatial profiles, catalyst weight, and pressure drop enter reactor design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PFR design equation",
+          "description": "Students model conversion as a function of reactor volume or length.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Differential mole balance"
+            },
+            {
+              "type": "concept",
+              "title": "Conversion profiles"
+            },
+            {
+              "type": "concept",
+              "title": "Volumetric flow variation"
+            },
+            {
+              "type": "concept",
+              "title": "Space velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Packed-bed reactors",
+          "description": "Students extend PFR ideas to catalytic beds where catalyst mass is the design basis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Catalyst weight"
+            },
+            {
+              "type": "concept",
+              "title": "Bed porosity"
+            },
+            {
+              "type": "concept",
+              "title": "Superficial velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure drop"
+            },
+            {
+              "type": "concept",
+              "title": "Ergun equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reactor comparison",
+          "description": "Students choose between batch, CSTR, PFR, and packed bed using reaction order, heat removal, and selectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Autocatalytic reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-transfer constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance and operability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reactors in Series, Recycle, and Reactor Networks",
+      "description": "Industrial reactor systems are rarely isolated single vessels. This topic teaches students to assemble reactor networks that improve conversion, selectivity, temperature control, or operability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Series and parallel reactors",
+          "description": "Students analyze networks of ideal reactors and compare their performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CSTR series"
+            },
+            {
+              "type": "concept",
+              "title": "PFR sections"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel trains"
+            },
+            {
+              "type": "concept",
+              "title": "Residence-time allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Bottleneck identification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recycle reactors",
+          "description": "Students learn how recycle changes concentration profiles and effective mixing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recycle ratio"
+            },
+            {
+              "type": "concept",
+              "title": "PFR with recycle"
+            },
+            {
+              "type": "concept",
+              "title": "CSTR-like limits"
+            },
+            {
+              "type": "concept",
+              "title": "Heat management"
+            },
+            {
+              "type": "concept",
+              "title": "Unreacted feed recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization of networks",
+          "description": "Students use rate-law behavior to place reactors and feeds intelligently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "High-concentration advantage"
+            },
+            {
+              "type": "concept",
+              "title": "Low-concentration advantage"
+            },
+            {
+              "type": "concept",
+              "title": "Staged feeds"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate removal"
+            },
+            {
+              "type": "concept",
+              "title": "Economic objective functions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Multiple Reactions, Selectivity, and Yield",
+      "description": "Many industrial systems contain desired, undesired, parallel, and consecutive reactions. Students learn to design reactors around selectivity rather than conversion alone.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reaction networks",
+          "description": "Students classify common patterns and predict how concentration affects products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parallel reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Series reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Series-parallel networks"
+            },
+            {
+              "type": "concept",
+              "title": "Reversible side reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction pathways"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Selectivity control",
+          "description": "Students connect reactor type and operating conditions to desired-product formation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instantaneous selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Overall selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration effects"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature effects"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst choice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Yield optimization",
+          "description": "Students learn design strategies for maximizing valuable products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Optimal residence time"
+            },
+            {
+              "type": "concept",
+              "title": "Quench strategies"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate product recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane removal concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Economic yield"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonisothermal Reactor Design and Energy Balances",
+      "description": "Most important reactions release or consume heat, so reactor design must include energy balances. Students learn how temperature affects rate, equilibrium, safety, and conversion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy balances",
+          "description": "Students write reactor energy balances for adiabatic and heat-exchange operation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat of reaction"
+            },
+            {
+              "type": "concept",
+              "title": "Sensible heat"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-transfer term"
+            },
+            {
+              "type": "concept",
+              "title": "Adiabatic temperature change"
+            },
+            {
+              "type": "concept",
+              "title": "Coolant duties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temperature-conversion coupling",
+          "description": "Students see why rate and equilibrium can pull design in different directions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exothermic reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Endothermic reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium limitation"
+            },
+            {
+              "type": "concept",
+              "title": "Hot spots"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature profiles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal safety",
+          "description": "Students learn the basics of preventing runaway and unsafe operating states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heat generation vs. removal"
+            },
+            {
+              "type": "concept",
+              "title": "Runaway criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Relief considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Emergency cooling"
+            },
+            {
+              "type": "concept",
+              "title": "Safe startup and shutdown"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Catalysis and Catalytic Reactor Design",
+      "description": "Catalysts can make reactions economically viable, but they add surface chemistry, transport, deactivation, and regeneration issues. This topic links catalytic mechanisms to reactor-scale design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Catalyst fundamentals",
+          "description": "Students learn what catalysts do and how activity, selectivity, and stability are evaluated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Active sites"
+            },
+            {
+              "type": "concept",
+              "title": "Turnover frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Support materials"
+            },
+            {
+              "type": "concept",
+              "title": "Promoters"
+            },
+            {
+              "type": "concept",
+              "title": "Poisoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Heterogeneous catalytic kinetics",
+          "description": "Students use adsorption and surface-reaction models to build rate expressions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Langmuir adsorption"
+            },
+            {
+              "type": "concept",
+              "title": "Langmuir-Hinshelwood forms"
+            },
+            {
+              "type": "concept",
+              "title": "Eley-Rideal concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Rate-determining step"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter estimation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Catalytic reactor operation",
+          "description": "Students evaluate packed beds and other catalytic configurations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fixed beds"
+            },
+            {
+              "type": "concept",
+              "title": "Fluidized beds"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst deactivation"
+            },
+            {
+              "type": "concept",
+              "title": "Regeneration"
+            },
+            {
+              "type": "concept",
+              "title": "Pressure drop and heat transfer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transport Limitations and Multiphase Reacting Systems",
+      "description": "A measured rate is not always the intrinsic chemical rate. Students learn to identify when diffusion, heat transfer, or phase contact limits reactor performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "External transport",
+          "description": "Students analyze mass and heat transfer between the bulk fluid and catalyst or phase interface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Film resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-transfer coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Heat-transfer coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Sherwood and Nusselt numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Mears criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Internal diffusion",
+          "description": "Students learn how pore diffusion changes apparent catalyst effectiveness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thiele modulus"
+            },
+            {
+              "type": "concept",
+              "title": "Effectiveness factor"
+            },
+            {
+              "type": "concept",
+              "title": "Pore diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Weisz-Prater criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Catalyst pellet size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiphase reactors",
+          "description": "Students examine common reactors involving gases, liquids, solids, and catalysts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gas-liquid reactors"
+            },
+            {
+              "type": "concept",
+              "title": "Slurry reactors"
+            },
+            {
+              "type": "concept",
+              "title": "Trickle beds"
+            },
+            {
+              "type": "concept",
+              "title": "Fluidized beds"
+            },
+            {
+              "type": "concept",
+              "title": "Bubble columns"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonideal Flow, Residence-Time Distribution, and Reactor Modeling",
+      "description": "Real reactors deviate from perfect mixing and plug flow. This final technical topic teaches students to diagnose nonideal flow and use models, data, and simulation to improve reactor predictions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Residence-time distribution",
+          "description": "Students learn how tracer experiments reveal flow patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pulse tracer"
+            },
+            {
+              "type": "concept",
+              "title": "Step tracer"
+            },
+            {
+              "type": "concept",
+              "title": "E curve"
+            },
+            {
+              "type": "concept",
+              "title": "F curve"
+            },
+            {
+              "type": "concept",
+              "title": "Mean residence time"
+            },
+            {
+              "type": "concept",
+              "title": "Variance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonideal reactor models",
+          "description": "Students use simple models to approximate real flow behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tanks-in-series model"
+            },
+            {
+              "type": "concept",
+              "title": "Axial dispersion model"
+            },
+            {
+              "type": "concept",
+              "title": "Dead zones"
+            },
+            {
+              "type": "concept",
+              "title": "Bypass"
+            },
+            {
+              "type": "concept",
+              "title": "Channeling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational reactor modeling",
+          "description": "Students connect equations to numerical tools for design and sensitivity analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ODE models"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Cantera awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Process simulation links"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

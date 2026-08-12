@@ -1,0 +1,1004 @@
+{
+  "slug": "operations-research-i-optimization",
+  "title": "Operations Research I (Optimization)",
+  "description": "Operations Research I (Optimization) develops deterministic OR modeling and methods: linear and integer programming, duality and sensitivity, networks, branch-and-bound, nonlinear and dynamic programming basics, solvers, and applied modeling practice.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Linear Programming Formulation",
+      "description": "Linear programming is the modeling language of deterministic operations research. Students learn to translate decisions, limits, and goals into objective functions and constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Decision Variables",
+          "description": "Students learn to define the controllable choices in a problem clearly enough that a solver or analyst can act on them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuous variables"
+            },
+            {
+              "type": "concept",
+              "title": "Units and indexing"
+            },
+            {
+              "type": "concept",
+              "title": "Variable bounds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Objective Functions",
+          "description": "The objective expresses what the model is trying to maximize or minimize.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Profit and cost objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Weighted objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting objective coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constraints",
+          "description": "Constraints encode resource limits, requirements, balances, capacities, and policy rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resource constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Demand and service constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Equality versus inequality constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Assumptions",
+          "description": "Students learn that linear models are powerful but only credible when assumptions are visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Divisibility"
+            },
+            {
+              "type": "concept",
+              "title": "Certainty and proportionality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Simplex Method",
+      "description": "The simplex method is the classic algorithmic engine for linear programming. It teaches students what solvers are doing geometrically and algebraically.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Geometry of Linear Programs",
+          "description": "Students learn why optima occur at extreme points of feasible regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feasible region"
+            },
+            {
+              "type": "concept",
+              "title": "Corner points"
+            },
+            {
+              "type": "concept",
+              "title": "Objective contours"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Standard Form",
+          "description": "Standard form prepares models for algorithmic solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slack variables"
+            },
+            {
+              "type": "concept",
+              "title": "Surplus and artificial variables"
+            },
+            {
+              "type": "concept",
+              "title": "Canonical form"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simplex Tableau Mechanics",
+          "description": "Tableau calculations show how the algorithm moves from one basic feasible solution to a better one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basis and nonbasis"
+            },
+            {
+              "type": "concept",
+              "title": "Pivoting"
+            },
+            {
+              "type": "concept",
+              "title": "Entering and leaving variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Special Cases",
+          "description": "Students learn how to recognize model or solution conditions that affect interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Degeneracy"
+            },
+            {
+              "type": "concept",
+              "title": "Unboundedness"
+            },
+            {
+              "type": "concept",
+              "title": "Infeasibility and multiple optima"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Duality and Sensitivity Analysis",
+      "description": "Duality reveals the economic meaning of constraints, while sensitivity analysis explains how solutions change when data changes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Primal-Dual Relationships",
+          "description": "Students learn that every LP has a related dual problem with complementary economic meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primal and dual variables"
+            },
+            {
+              "type": "concept",
+              "title": "Weak and strong duality"
+            },
+            {
+              "type": "concept",
+              "title": "Dual feasibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Shadow Prices",
+          "description": "Shadow prices quantify the marginal value of constrained resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resource valuation"
+            },
+            {
+              "type": "concept",
+              "title": "Binding constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complementary Slackness",
+          "description": "Complementary slackness links primal and dual optimal solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slack-resource interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Optimality checks"
+            },
+            {
+              "type": "concept",
+              "title": "Economic meaning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensitivity Ranges",
+          "description": "Sensitivity analysis supports decisions when coefficients are estimates rather than fixed truths.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objective coefficient ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Right-hand-side ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Basis stability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transportation and Assignment Problems",
+      "description": "Transportation and assignment models are structured LPs that appear in logistics, staffing, routing, allocation, and matching problems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transportation Model Structure",
+          "description": "Students learn how supply, demand, and shipping costs create a network-like LP.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sources and destinations"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced and unbalanced problems"
+            },
+            {
+              "type": "concept",
+              "title": "Shipping cost matrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transportation Algorithms",
+          "description": "Specialized methods exploit model structure for efficient solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Northwest corner method"
+            },
+            {
+              "type": "concept",
+              "title": "Least-cost method"
+            },
+            {
+              "type": "concept",
+              "title": "Stepping-Stone or MODI Ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Assignment Model Structure",
+          "description": "Assignment problems allocate agents to tasks one-to-one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary assignment variables"
+            },
+            {
+              "type": "concept",
+              "title": "Cost/profit matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Balanced and unbalanced assignments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications and Variants",
+          "description": "Students learn how these models appear in practical operations settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facility-to-customer allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Crew and job assignment"
+            },
+            {
+              "type": "concept",
+              "title": "Transshipment extensions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Network Optimization",
+      "description": "Network optimization uses nodes and arcs to model flow, routes, capacity, and connectivity in systems like logistics, communications, and infrastructure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Network Modeling Basics",
+          "description": "Students learn to represent systems as graph structures with flows and costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes and arcs"
+            },
+            {
+              "type": "concept",
+              "title": "Flow conservation"
+            },
+            {
+              "type": "concept",
+              "title": "Capacities and costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Shortest Path Problems",
+          "description": "Shortest path models support routing, scheduling, and least-cost path decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dijkstra-Style Intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Arc costs"
+            },
+            {
+              "type": "concept",
+              "title": "Path reconstruction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Maximum Flow and Minimum Cut",
+          "description": "Max-flow models identify throughput limits in capacitated networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source and sink"
+            },
+            {
+              "type": "concept",
+              "title": "Residual capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Minimum-Cost Flow",
+          "description": "Minimum-cost flow unifies transportation, transshipment, and capacity-constrained routing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supply and demand nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Arc capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Cost minimization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integer Programming",
+      "description": "Integer programming handles yes/no, count, sequencing, and logical decisions that cannot be modeled honestly with continuous variables alone.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Integer and Binary Variables",
+          "description": "Students learn when integrality is necessary for real decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binary variables"
+            },
+            {
+              "type": "concept",
+              "title": "General integer variables"
+            },
+            {
+              "type": "concept",
+              "title": "Semi-continuous ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Logical Modeling",
+          "description": "Integer programming can encode if-then relationships and fixed-charge decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Big-M Constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Either-or constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed costs and setup decisions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling Common Applications",
+          "description": "Students connect IP to facility location, scheduling, capital budgeting, and blending decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Knapsack models"
+            },
+            {
+              "type": "concept",
+              "title": "Set covering"
+            },
+            {
+              "type": "concept",
+              "title": "Facility location"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "LP Relaxation",
+          "description": "Relaxations help students understand bounds, difficulty, and algorithm behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relaxed feasible region"
+            },
+            {
+              "type": "concept",
+              "title": "Integrality gap"
+            },
+            {
+              "type": "concept",
+              "title": "Bounding intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Branch-and-Bound Method",
+      "description": "Branch-and-bound is the core exact solution framework for integer programming. It shows how solvers search intelligently without enumerating every possibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Branching",
+          "description": "Branching splits a difficult integer problem into smaller subproblems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variable selection"
+            },
+            {
+              "type": "concept",
+              "title": "Branch constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Search tree"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bounding",
+          "description": "Bounds tell the algorithm which subproblems are promising and which can be ignored.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "LP Relaxation Bound"
+            },
+            {
+              "type": "concept",
+              "title": "Incumbent solution"
+            },
+            {
+              "type": "concept",
+              "title": "Pruning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fathoming Rules",
+          "description": "Students learn why a node can be safely discarded.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infeasibility"
+            },
+            {
+              "type": "concept",
+              "title": "Worse-than-incumbent bound"
+            },
+            {
+              "type": "concept",
+              "title": "Integer feasible solution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solver Behavior",
+          "description": "Branch-and-bound builds intuition for why some MIPs are easy and others are hard.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Node count"
+            },
+            {
+              "type": "concept",
+              "title": "Cuts and heuristics preview"
+            },
+            {
+              "type": "concept",
+              "title": "Model formulation quality"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonlinear Programming Basics",
+      "description": "Nonlinear programming introduces models where objectives or constraints are curved. Students learn basic ideas without losing the OR I focus on modeling and decision support.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sources of Nonlinearity",
+          "description": "Students learn why real systems often violate linear assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Economies of scale"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic costs"
+            },
+            {
+              "type": "concept",
+              "title": "Nonlinear physical relationships"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unconstrained Optimization",
+          "description": "Unconstrained problems introduce gradients and curvature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Second-order conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient descent intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constrained Nonlinear Problems",
+          "description": "Constraints introduce feasible-direction and multiplier ideas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lagrange multipliers"
+            },
+            {
+              "type": "concept",
+              "title": "Active constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Feasible region geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Local Versus Global Optima",
+          "description": "Students learn why nonlinear problems can be harder to interpret than LPs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convex Versus Nonconvex"
+            },
+            {
+              "type": "concept",
+              "title": "Local minima"
+            },
+            {
+              "type": "concept",
+              "title": "Initialization and solver sensitivity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dynamic Programming",
+      "description": "Dynamic programming solves multistage decisions by breaking them into states, decisions, transitions, and value functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Principle of Optimality",
+          "description": "Students learn why an optimal policy must contain optimal subdecisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stages"
+            },
+            {
+              "type": "concept",
+              "title": "States"
+            },
+            {
+              "type": "concept",
+              "title": "Recursive structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deterministic Dynamic Programming",
+          "description": "Deterministic models show the core recursion before uncertainty is added.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shortest-Path DP"
+            },
+            {
+              "type": "concept",
+              "title": "Resource allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory-style recursion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Value Functions",
+          "description": "Value functions summarize future consequences of current states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cost-to-go"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Backward recursion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Curse of Dimensionality",
+          "description": "Students learn why DP is powerful but can become computationally expensive.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State-space size"
+            },
+            {
+              "type": "concept",
+              "title": "Discretization"
+            },
+            {
+              "type": "concept",
+              "title": "Approximation preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optimization Software",
+      "description": "Optimization software turns models into usable decisions. Students learn solver workflows, model debugging, and responsible interpretation of computational results.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Solver Landscape",
+          "description": "Students learn the difference between modeling languages, solvers, and solver services.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gurobi/CPLEX-Style Solvers"
+            },
+            {
+              "type": "concept",
+              "title": "COIN-OR Tools"
+            },
+            {
+              "type": "concept",
+              "title": "NEOS Server"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling Workflow",
+          "description": "A repeatable workflow helps students build, solve, and audit optimization models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data preparation"
+            },
+            {
+              "type": "concept",
+              "title": "Variable and constraint indexing"
+            },
+            {
+              "type": "concept",
+              "title": "Result extraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debugging Models",
+          "description": "Optimization models fail in predictable ways, and students need a troubleshooting process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infeasible models"
+            },
+            {
+              "type": "concept",
+              "title": "Unbounded models"
+            },
+            {
+              "type": "concept",
+              "title": "Scaling and numerical issues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communicating Results",
+          "description": "Optimization output must be translated into decisions, assumptions, and limitations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objective value"
+            },
+            {
+              "type": "concept",
+              "title": "Decision tables"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity and scenario reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Convexity and Optimality Conditions",
+      "description": "This added synthesis topic gives students the conceptual bridge from LP/IP methods to modern convex and nonlinear optimization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Convex Sets and Functions",
+          "description": "Convexity explains when local optima are globally meaningful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Convex combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Epigraph intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Convex feasible regions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gradient and Newton Ideas",
+          "description": "Gradient-based methods show how nonlinear solvers use local derivative information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gradient direction"
+            },
+            {
+              "type": "concept",
+              "title": "Hessian curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Line search intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "KKT Conditions",
+          "description": "KKT conditions generalize optimality for constrained nonlinear problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationarity"
+            },
+            {
+              "type": "concept",
+              "title": "Primal and dual feasibility"
+            },
+            {
+              "type": "concept",
+              "title": "Complementary slackness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interior-Point Preview",
+          "description": "Interior-point methods connect modern LP and convex optimization algorithms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Barrier functions"
+            },
+            {
+              "type": "concept",
+              "title": "Central path intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Solver relevance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modeling Practice, Solver Workflow, and Applications",
+      "description": "This added capstone topic emphasizes the practical skill of building credible decision models and using optimization results in real operations settings.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Model-Building Discipline",
+          "description": "Students learn to move from a messy decision problem to a transparent mathematical model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem statement"
+            },
+            {
+              "type": "concept",
+              "title": "Data definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption log"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications Portfolio",
+          "description": "Students see recurring OR model patterns across industries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Production planning"
+            },
+            {
+              "type": "concept",
+              "title": "Workforce scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Supply chain and logistics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scenario and Sensitivity Workflow",
+          "description": "Good optimization practice tests whether recommendations survive plausible data changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scenario sets"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter sweeps"
+            },
+            {
+              "type": "concept",
+              "title": "Robustness and managerial interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics and Implementation",
+          "description": "Optimization affects people, resources, and organizations, so implementation must consider fairness, usability, and accountability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stakeholder impact"
+            },
+            {
+              "type": "concept",
+              "title": "Fairness constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Decision support versus decision automation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

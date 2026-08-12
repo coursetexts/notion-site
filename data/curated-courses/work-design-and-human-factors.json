@@ -1,0 +1,844 @@
+{
+  "slug": "work-design-and-human-factors",
+  "title": "Work Design and Human Factors",
+  "description": "Work Design and Human Factors covers methods engineering, work measurement, workplace and anthropometric design, biomechanics, cognitive ergonomics, safety, human-machine systems, productivity improvement, and inclusive evaluation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Methods Engineering and Work Study",
+      "description": "Learn how to observe, map, question, and improve work methods so jobs are safer, clearer, and more productive.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Work Observation",
+          "description": "Careful observation reveals how work actually happens before redesign begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct observation"
+            },
+            {
+              "type": "concept",
+              "title": "Process charts"
+            },
+            {
+              "type": "concept",
+              "title": "Flow diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Value-Added Versus Non-Value-Added Work"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method Analysis",
+          "description": "Method analysis questions each step to remove waste and reduce strain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Purpose, Place, Sequence, Person, and Means"
+            },
+            {
+              "type": "concept",
+              "title": "Eliminate-Combine-Rearrange-Simplify"
+            },
+            {
+              "type": "concept",
+              "title": "Motion economy"
+            },
+            {
+              "type": "concept",
+              "title": "Standard method development"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Job and Task Design",
+          "description": "Good work design balances productivity with human capability, dignity, and learning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Task allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Job enrichment"
+            },
+            {
+              "type": "concept",
+              "title": "Skill variety"
+            },
+            {
+              "type": "concept",
+              "title": "Worker involvement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time Study and Work Measurement",
+      "description": "Measure task times and set reasonable standards for planning, staffing, costing, and improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Stopwatch Time Study",
+          "description": "Time study turns observed cycles into planning standards when performed carefully and ethically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Element breakdown"
+            },
+            {
+              "type": "concept",
+              "title": "Observed time"
+            },
+            {
+              "type": "concept",
+              "title": "Performance rating"
+            },
+            {
+              "type": "concept",
+              "title": "Normal time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Allowances and Standards",
+          "description": "Standards should include realistic allowances for fatigue, delays, and personal needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Personal allowances"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue allowances"
+            },
+            {
+              "type": "concept",
+              "title": "Delay allowances"
+            },
+            {
+              "type": "concept",
+              "title": "Standard time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uses and Limitations",
+          "description": "Work measurement supports planning, but poor use can damage trust and distort behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Labor planning"
+            },
+            {
+              "type": "concept",
+              "title": "Cost estimating"
+            },
+            {
+              "type": "concept",
+              "title": "Incentive caution"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling error and fairness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Predetermined Motion Time Systems",
+      "description": "Use structured motion-time systems to estimate work content before or without direct timing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PMTS Purpose",
+          "description": "Predetermined systems estimate task time from basic motions instead of repeated stopwatch studies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Basic motions"
+            },
+            {
+              "type": "concept",
+              "title": "Standard data"
+            },
+            {
+              "type": "concept",
+              "title": "Synthetic timing"
+            },
+            {
+              "type": "concept",
+              "title": "Design-stage estimates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Systems",
+          "description": "Students should know the logic and use cases for major motion-time systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MTM"
+            },
+            {
+              "type": "concept",
+              "title": "MOST"
+            },
+            {
+              "type": "concept",
+              "title": "Work-Factor Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Application levels"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Motion Design Insight",
+          "description": "PMTS also teaches how small motions, reaches, grasps, and placements shape work content.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reach and move"
+            },
+            {
+              "type": "concept",
+              "title": "Grasp and release"
+            },
+            {
+              "type": "concept",
+              "title": "Alignment and positioning"
+            },
+            {
+              "type": "concept",
+              "title": "Two-hand coordination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Workplace Design",
+      "description": "Design workstations, tools, layout, and environment around human capabilities and task demands.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Workstation Layout",
+          "description": "A well-designed workstation places tools, materials, and information where people can use them comfortably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary and secondary reach zones"
+            },
+            {
+              "type": "concept",
+              "title": "Seated and standing work"
+            },
+            {
+              "type": "concept",
+              "title": "Tool placement"
+            },
+            {
+              "type": "concept",
+              "title": "Material presentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental Factors",
+          "description": "Lighting, noise, temperature, and vibration affect comfort, safety, and performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Illumination"
+            },
+            {
+              "type": "concept",
+              "title": "Noise exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal comfort"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration and fatigue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design for Maintainability and Flow",
+          "description": "Workplaces should support both individual tasks and the flow of work through the system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "5S"
+            },
+            {
+              "type": "concept",
+              "title": "Point-of-use storage"
+            },
+            {
+              "type": "concept",
+              "title": "Visual management"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance access"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Anthropometry",
+      "description": "Apply body-size data so workplaces, tools, and interfaces fit the intended population.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Body Dimensions",
+          "description": "Anthropometry gives designers evidence about human size and reach.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stature"
+            },
+            {
+              "type": "concept",
+              "title": "Reach envelopes"
+            },
+            {
+              "type": "concept",
+              "title": "Eye height"
+            },
+            {
+              "type": "concept",
+              "title": "Grip and hand dimensions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Percentile Design",
+          "description": "Different design problems require different percentile choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "5th Percentile Accommodation"
+            },
+            {
+              "type": "concept",
+              "title": "95th Percentile Clearance"
+            },
+            {
+              "type": "concept",
+              "title": "Adjustability"
+            },
+            {
+              "type": "concept",
+              "title": "Population selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fit and Variability",
+          "description": "Human variation means one-size designs often exclude or strain part of the workforce.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gender and age variation"
+            },
+            {
+              "type": "concept",
+              "title": "Posture effects"
+            },
+            {
+              "type": "concept",
+              "title": "Clothing and PPE"
+            },
+            {
+              "type": "concept",
+              "title": "International populations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biomechanics and Manual Handling",
+      "description": "Understand forces, postures, and manual materials handling risks that affect injury and fatigue.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Body Mechanics",
+          "description": "Biomechanics explains how posture, force, and repetition load the body.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint moments"
+            },
+            {
+              "type": "concept",
+              "title": "Spinal loading"
+            },
+            {
+              "type": "concept",
+              "title": "Static Versus Dynamic Work"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manual Materials Handling",
+          "description": "Manual handling analysis helps reduce lifting, pushing, pulling, and carrying risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NIOSH Lifting Equation"
+            },
+            {
+              "type": "concept",
+              "title": "Liberty Mutual Tables"
+            },
+            {
+              "type": "concept",
+              "title": "Load weight and frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Coupling and reach"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk Reduction",
+          "description": "Ergonomic redesign lowers exposure instead of simply asking workers to tolerate it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lift assists"
+            },
+            {
+              "type": "concept",
+              "title": "Work height adjustment"
+            },
+            {
+              "type": "concept",
+              "title": "Job rotation limits"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering controls"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cognitive Ergonomics",
+      "description": "Design work that supports attention, perception, memory, decision making, and error prevention.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Human Information Processing",
+          "description": "Cognitive ergonomics studies how people perceive information, decide, and act under workload.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Attention"
+            },
+            {
+              "type": "concept",
+              "title": "Working memory"
+            },
+            {
+              "type": "concept",
+              "title": "Mental models"
+            },
+            {
+              "type": "concept",
+              "title": "Decision making"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Displays and Controls",
+          "description": "Interfaces should make the right action visible and reduce interpretation burden.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Display legibility"
+            },
+            {
+              "type": "concept",
+              "title": "Control-response compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Coding and alarms"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error Prevention",
+          "description": "Many errors are system design signals, not simply individual failures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Slips and mistakes"
+            },
+            {
+              "type": "concept",
+              "title": "Workload and vigilance"
+            },
+            {
+              "type": "concept",
+              "title": "Checklists"
+            },
+            {
+              "type": "concept",
+              "title": "Forcing functions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Workplace Safety",
+      "description": "Identify hazards and design controls that reduce injury risk while supporting reliable performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hazard Identification",
+          "description": "Safety starts by finding where energy, exposure, or task demands can harm people.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Physical hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Ergonomic hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical and environmental hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Near-miss reporting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hierarchy of Controls",
+          "description": "Risk control is strongest when hazards are removed or engineered out.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering controls"
+            },
+            {
+              "type": "concept",
+              "title": "Administrative Controls and PPE"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety Systems",
+          "description": "Sustainable safety depends on reporting, learning, and design feedback loops.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incident investigation"
+            },
+            {
+              "type": "concept",
+              "title": "Leading indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Training"
+            },
+            {
+              "type": "concept",
+              "title": "Safety culture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Human-Machine Systems",
+      "description": "Analyze how people, machines, interfaces, automation, and feedback work together as one system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "System Allocation",
+          "description": "Human-machine design decides what people, machines, and automation should each do.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Function allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Automation levels"
+            },
+            {
+              "type": "concept",
+              "title": "Human oversight"
+            },
+            {
+              "type": "concept",
+              "title": "Skill retention"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interfaces and Feedback",
+          "description": "The system should communicate status, risk, and next actions clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Status displays"
+            },
+            {
+              "type": "concept",
+              "title": "Alarms"
+            },
+            {
+              "type": "concept",
+              "title": "Mode awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery from faults"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Usability and Reliability",
+          "description": "A system is reliable only when human interaction is considered part of the design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Use errors"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Operator workload"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance and troubleshooting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Productivity Improvement",
+      "description": "Connect work design to lean, standard work, quality, and continuous improvement outcomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Standard Work",
+          "description": "Standard work captures the best known safe method and makes improvement measurable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Takt time"
+            },
+            {
+              "type": "concept",
+              "title": "Work sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Standard WIP"
+            },
+            {
+              "type": "concept",
+              "title": "Visual standards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lean and Continuous Improvement",
+          "description": "Productivity gains should reduce waste while protecting safety and quality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kaizen"
+            },
+            {
+              "type": "concept",
+              "title": "5S"
+            },
+            {
+              "type": "concept",
+              "title": "Waste categories"
+            },
+            {
+              "type": "concept",
+              "title": "Line balancing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement and Implementation",
+          "description": "Improvements need evidence, worker input, and follow-through.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Before-and-after metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot testing"
+            },
+            {
+              "type": "concept",
+              "title": "Change management"
+            },
+            {
+              "type": "concept",
+              "title": "Sustainment audits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inclusive Design, Accessibility, and Human-Centered Evaluation",
+      "description": "Evaluate work systems so they serve diverse users and workers, including people with disabilities and varied capabilities.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inclusive Design Principles",
+          "description": "Inclusive design expands the range of people who can perform work effectively and safely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equitable use"
+            },
+            {
+              "type": "concept",
+              "title": "Flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Simple and intuitive use"
+            },
+            {
+              "type": "concept",
+              "title": "Tolerance for error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accessibility in Work Systems",
+          "description": "Accessibility applies to physical work, digital tools, instructions, and communication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ADA Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Assistive technology"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible controls"
+            },
+            {
+              "type": "concept",
+              "title": "Readable instructions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human-Centered Evaluation",
+          "description": "Evaluation checks whether real users can use the system under realistic conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Usability testing"
+            },
+            {
+              "type": "concept",
+              "title": "Participatory design"
+            },
+            {
+              "type": "concept",
+              "title": "Task walkthroughs"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback and iteration"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

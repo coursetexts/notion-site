@@ -1,0 +1,1044 @@
+{
+  "slug": "general-biology-i",
+  "title": "General Biology I",
+  "description": "Build a rigorous foundation in cellular, molecular, genetic, and energetic principles of life while teaching students to reason from biological evidence, data, and experiments.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Biology as a Scientific Discipline",
+      "description": "General Biology I should begin by teaching students how biologists ask questions, evaluate evidence, and build explanations from observations and experiments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scientific reasoning and experimental design",
+          "description": "Students learn biology as an evidence-generating practice, not a list of facts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypotheses and predictions"
+            },
+            {
+              "type": "concept",
+              "title": "Controls and variables"
+            },
+            {
+              "type": "concept",
+              "title": "Replication and sample size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data literacy in biology",
+          "description": "Students learn to read graphs, interpret variability, and connect quantitative evidence to biological claims.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scatterplots and bar graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Mean, variation, and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation versus causation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Levels of biological organization",
+          "description": "This gives a map from molecules to cells to organisms and populations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecules and macromolecules"
+            },
+            {
+              "type": "concept",
+              "title": "Cells and tissues"
+            },
+            {
+              "type": "concept",
+              "title": "Organisms, populations, and ecosystems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemistry of Life and Biological Molecules",
+      "description": "This unit establishes why carbon, water, weak interactions, and macromolecules make living systems possible.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water and chemical context",
+          "description": "Students learn why water, pH, polarity, and hydrogen bonding shape biological structure and function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarity and hydrogen bonds"
+            },
+            {
+              "type": "concept",
+              "title": "pH and buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrophilic and hydrophobic interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon and functional groups",
+          "description": "Carbon chemistry explains the diversity of biological molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hydrocarbons"
+            },
+            {
+              "type": "concept",
+              "title": "Functional groups"
+            },
+            {
+              "type": "concept",
+              "title": "Isomers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biological macromolecules",
+          "description": "Students connect structure to function in the four major classes of biomolecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates"
+            },
+            {
+              "type": "concept",
+              "title": "Lipids"
+            },
+            {
+              "type": "concept",
+              "title": "Proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleic acids"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Theory, Cell Structure, and Organelles",
+      "description": "Cells are the basic units of life. This unit teaches how cellular compartments divide labor and enable complex function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell theory and microscopy",
+          "description": "Students learn why cells are central to biology and how we know what cells contain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell theory"
+            },
+            {
+              "type": "concept",
+              "title": "Light and electron microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and resolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prokaryotic and eukaryotic cells",
+          "description": "Comparing cell types clarifies what all cells share and what eukaryotes add through compartmentalization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bacteria and archaea"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleus and endomembrane system"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondria and chloroplasts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Organelle function",
+          "description": "Students learn organelles as functional systems, not vocabulary items.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ribosomes"
+            },
+            {
+              "type": "concept",
+              "title": "ER and Golgi"
+            },
+            {
+              "type": "concept",
+              "title": "Lysosomes and peroxisomes"
+            },
+            {
+              "type": "concept",
+              "title": "Vacuoles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Membranes, Transport, and Cellular Homeostasis",
+      "description": "Membranes define cells, regulate exchange, and allow cells to maintain internal conditions distinct from their environment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane structure",
+          "description": "Students learn how phospholipid bilayers and proteins create selective, dynamic boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fluid mosaic model"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Cholesterol and membrane fluidity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Passive and active transport",
+          "description": "Transport mechanisms explain how substances cross membranes with or against gradients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion and osmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Pumps and cotransport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeostasis and gradients",
+          "description": "Students connect membrane transport to cell survival and energy use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrochemical gradients"
+            },
+            {
+              "type": "concept",
+              "title": "Water balance"
+            },
+            {
+              "type": "concept",
+              "title": "Tonicity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enzymes, Energy, and Metabolism",
+      "description": "Life depends on controlled chemical reactions. This unit links energy, enzymes, and pathway regulation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Energy and thermodynamics in cells",
+          "description": "Students learn why cells require energy flow and how free energy predicts reaction direction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ATP coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Endergonic and exergonic reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enzyme function",
+          "description": "Enzymes make biological rates possible and provide points of regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Active sites"
+            },
+            {
+              "type": "concept",
+              "title": "Specificity"
+            },
+            {
+              "type": "concept",
+              "title": "Competitive and allosteric regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metabolic pathways",
+          "description": "Students see pathways as organized networks rather than isolated reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Catabolism and anabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback inhibition"
+            },
+            {
+              "type": "concept",
+              "title": "Redox carriers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cellular Respiration",
+      "description": "Cellular respiration shows how cells harvest energy from food and store it in ATP using redox chemistry and membranes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Glycolysis and fermentation",
+          "description": "Students learn how cells begin extracting energy from glucose and regenerate electron carriers without oxygen.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Substrate-level phosphorylation"
+            },
+            {
+              "type": "concept",
+              "title": "NAD+/NADH"
+            },
+            {
+              "type": "concept",
+              "title": "Lactic acid and alcohol fermentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Citric acid cycle",
+          "description": "This pathway completes carbon oxidation and loads electron carriers for ATP production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acetyl-CoA"
+            },
+            {
+              "type": "concept",
+              "title": "CO2 release"
+            },
+            {
+              "type": "concept",
+              "title": "NADH and FADH2 production"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oxidative phosphorylation",
+          "description": "Students connect electron transport, proton gradients, and ATP synthase.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron transport chain"
+            },
+            {
+              "type": "concept",
+              "title": "Chemiosmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondrial structure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Photosynthesis",
+      "description": "Photosynthesis converts light energy into chemical energy and anchors most ecosystems' energy flow.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Light reactions",
+          "description": "Students learn how pigments, photosystems, and electron transport capture light energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chlorophyll and accessory pigments"
+            },
+            {
+              "type": "concept",
+              "title": "Photosystems II and I"
+            },
+            {
+              "type": "concept",
+              "title": "ATP and NADPH"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon fixation",
+          "description": "The Calvin cycle shows how atmospheric carbon enters biological molecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RuBisCO"
+            },
+            {
+              "type": "concept",
+              "title": "G3P production"
+            },
+            {
+              "type": "concept",
+              "title": "Regeneration of RuBP"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptations and global importance",
+          "description": "Students connect photosynthesis to climate, agriculture, and ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "C3, C4, and CAM plants"
+            },
+            {
+              "type": "concept",
+              "title": "Photorespiration"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon cycle context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Communication and Signaling",
+      "description": "Modern biology requires understanding how cells sense signals, process information, and coordinate behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Signal reception",
+          "description": "Students learn how cells detect external and internal cues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ligands and receptors"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane receptors"
+            },
+            {
+              "type": "concept",
+              "title": "Intracellular receptors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal transduction",
+          "description": "Students see signaling as cascades that amplify and regulate responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second messengers"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorylation cascades"
+            },
+            {
+              "type": "concept",
+              "title": "Signal amplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cellular responses",
+          "description": "Signaling connects molecular events to gene expression, metabolism, movement, and cell fate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transcriptional responses"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic responses"
+            },
+            {
+              "type": "concept",
+              "title": "Cell-cell communication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Cycle, Mitosis, and Meiosis",
+      "description": "Cell division explains growth, repair, reproduction, and inheritance. This unit clarifies how genomes are copied and distributed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell cycle control",
+          "description": "Students learn how cells coordinate growth, DNA replication, and division.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "G1, S, G2, M phases"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclins and CDKs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mitosis and cytokinesis",
+          "description": "Mitosis explains how genetically identical daughter cells form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chromosome condensation"
+            },
+            {
+              "type": "concept",
+              "title": "Spindle apparatus"
+            },
+            {
+              "type": "concept",
+              "title": "Cytokinesis in plants and animals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Meiosis and genetic variation",
+          "description": "Meiosis explains gamete formation and why sexual reproduction creates variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homologous chromosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Crossing over"
+            },
+            {
+              "type": "concept",
+              "title": "Independent assortment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DNA Structure, Replication, and Genome Organization",
+      "description": "DNA is both a chemical molecule and an information system. This unit shows how genomes store and preserve biological instructions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DNA structure",
+          "description": "Students learn how base pairing and antiparallel strands support information storage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleotides"
+            },
+            {
+              "type": "concept",
+              "title": "Double helix"
+            },
+            {
+              "type": "concept",
+              "title": "Complementarity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DNA replication",
+          "description": "Replication explains how genetic information is copied accurately before cell division.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Origins of replication"
+            },
+            {
+              "type": "concept",
+              "title": "Leading and lagging strands"
+            },
+            {
+              "type": "concept",
+              "title": "DNA polymerase and proofreading"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Genome organization",
+          "description": "Students see genomes as organized, regulated, and packaged systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chromosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatin"
+            },
+            {
+              "type": "concept",
+              "title": "Plasmids and organellar genomes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gene Expression: Transcription, Translation, and Regulation",
+      "description": "Gene expression connects DNA information to functional RNA and proteins, making genotype visible as phenotype.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transcription and RNA processing",
+          "description": "Students learn how genes are copied into RNA and processed in eukaryotes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Promoters"
+            },
+            {
+              "type": "concept",
+              "title": "RNA polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "Splicing, caps, and poly-A tails"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Translation and the genetic code",
+          "description": "Students learn how ribosomes convert nucleotide sequence into amino acid sequence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Codons and anticodons"
+            },
+            {
+              "type": "concept",
+              "title": "TRNA and ribosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Start and stop signals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gene regulation",
+          "description": "Regulation explains how cells with the same genome can behave differently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Operons"
+            },
+            {
+              "type": "concept",
+              "title": "Transcription factors"
+            },
+            {
+              "type": "concept",
+              "title": "Epigenetic regulation preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mendelian Genetics and Inheritance",
+      "description": "Mendelian genetics gives students a quantitative foundation for predicting inheritance and interpreting crosses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mendel's laws",
+          "description": "Students learn segregation and independent assortment as chromosome behaviors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alleles"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant and recessive traits"
+            },
+            {
+              "type": "concept",
+              "title": "Monohybrid and dihybrid crosses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Genetic analysis",
+          "description": "Students practice using probability and pedigrees to reason about inheritance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Punnett squares"
+            },
+            {
+              "type": "concept",
+              "title": "Test crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Pedigree interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Extensions to Mendelian patterns",
+          "description": "Real inheritance often modifies simple dominant-recessive expectations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incomplete dominance"
+            },
+            {
+              "type": "concept",
+              "title": "Codominance"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple alleles"
+            },
+            {
+              "type": "concept",
+              "title": "Polygenic traits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Molecular Genetics, Mutation, and Biotechnology",
+      "description": "This unit connects classical inheritance to DNA-level mechanisms and modern tools for reading and editing genomes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mutation and DNA repair",
+          "description": "Students learn how genetic variation arises and why cells need repair systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point mutations"
+            },
+            {
+              "type": "concept",
+              "title": "Insertions and deletions"
+            },
+            {
+              "type": "concept",
+              "title": "Repair pathways"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular genetics tools",
+          "description": "Students learn the basic logic behind technologies used in modern biology labs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PCR"
+            },
+            {
+              "type": "concept",
+              "title": "Gel electrophoresis"
+            },
+            {
+              "type": "concept",
+              "title": "DNA sequencing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biotechnology and ethics",
+          "description": "Students evaluate the promise and risks of genetic technologies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CRISPR overview"
+            },
+            {
+              "type": "concept",
+              "title": "GMOs"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic privacy and equity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Evolutionary Foundations for Molecular and Cellular Biology",
+      "description": "Even in Biology I, evolution should appear as the framework explaining unity, diversity, and adaptation across cellular systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Variation and natural selection",
+          "description": "Students learn how heritable variation and differential success change populations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mutation as source of variation"
+            },
+            {
+              "type": "concept",
+              "title": "Fitness"
+            },
+            {
+              "type": "concept",
+              "title": "Selection pressures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular evolution",
+          "description": "DNA and protein comparisons reveal common ancestry and functional constraint.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence similarity"
+            },
+            {
+              "type": "concept",
+              "title": "Conserved genes"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular clocks preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evolution of cellular systems",
+          "description": "Students connect organelles, metabolism, and genomes to evolutionary history.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Endosymbiosis"
+            },
+            {
+              "type": "concept",
+              "title": "Horizontal gene transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Gene duplication"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lab Methods, Bioinformatics, and Research Skills",
+      "description": "A world-class intro course should teach students how biological knowledge is produced, measured, and interpreted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core lab skills",
+          "description": "Students learn the practices behind cell and molecular biology evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Micropipetting"
+            },
+            {
+              "type": "concept",
+              "title": "Sterile technique"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrophotometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental analysis",
+          "description": "Students learn to connect protocols, data, and conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative controls"
+            },
+            {
+              "type": "concept",
+              "title": "Standard curves"
+            },
+            {
+              "type": "concept",
+              "title": "Sources of error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bioinformatics literacy",
+          "description": "Students get a first look at how modern biology uses databases and sequence analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NCBI resources"
+            },
+            {
+              "type": "concept",
+              "title": "BLAST concept"
+            },
+            {
+              "type": "concept",
+              "title": "Gene and protein records"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Systems Biology and Societal Connections",
+      "description": "The final unit helps students integrate molecules, cells, genes, organisms, and society into a coherent view of modern biology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Systems thinking",
+          "description": "Students learn that biological outcomes emerge from interacting networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feedback loops"
+            },
+            {
+              "type": "concept",
+              "title": "Gene regulatory networks"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic networks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human health connections",
+          "description": "Cell and molecular biology explain many biomedical problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cancer as cell-cycle disease"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic disease"
+            },
+            {
+              "type": "concept",
+              "title": "Infectious disease basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biology in society",
+          "description": "Students practice applying biology to decisions that involve ethics, evidence, and uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vaccines and public trust"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic testing"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental biotechnology"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

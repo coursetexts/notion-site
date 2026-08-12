@@ -1,0 +1,568 @@
+{
+  "slug": "mathematical-statistics",
+  "title": "Mathematical Statistics",
+  "description": "A proof-aware course in probability-based statistical inference, estimation, testing, asymptotics, Bayesian ideas, and model-based reasoning.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Probability Foundations for Statistics",
+      "description": "Builds the probability language needed for rigorous inference: events, conditioning, independence, expectation, variance, and transformations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sets, events, axioms, conditional probability, Bayes rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expectation, variance, covariance, correlation, moment generating functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Law of total expectation, law of total variance, independence checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables and Distribution Families",
+      "description": "Connects data-generating assumptions to the discrete and continuous distributions used in statistical models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli, binomial, geometric, Poisson, uniform, exponential, gamma, beta, normal, chi-square, t, F"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Location, scale, shape, skewness, tails, support, and parameters"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distribution functions, densities, quantiles, and transformations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint Distributions, Conditioning, and Transformations",
+      "description": "Shows how multiple random quantities interact and how new statistics are derived from old variables.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint, marginal, and conditional distributions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence, covariance matrices, conditional expectation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Change of variables, Jacobians, sums, ratios, and order-preserving transformations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling Distributions and Limit Theorems",
+      "description": "Explains why sample statistics have predictable behavior across repeated samples.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample mean, sample variance, sample proportions, pivots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Law of large numbers, central limit theorem, Slutsky theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal, t, chi-square, and F sampling distributions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Order Statistics and Exponential Families",
+      "description": "Adds tools for likelihood structure, sufficient statistics, and distributional summaries based on ranked data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum, maximum, medians, quantiles, and spacings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-parameter and multiparameter exponential families"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural parameters, sufficient statistics, conjugacy, and completeness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Point Estimation: Method of Moments and Maximum Likelihood",
+      "description": "Develops systematic ways to estimate unknown parameters from data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Method of moments, maximum likelihood, score equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias, variance, mean squared error, consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Invariance, numerical optimization, and boundary cases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sufficiency, Efficiency, and Information",
+      "description": "Focuses on what information a statistic preserves and how close estimators come to theoretical limits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Factorization theorem, minimal sufficiency, ancillary statistics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fisher information, Cramer-Rao lower bound, efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rao-Blackwellization, completeness, and UMVU estimators"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interval Estimation and Pivotal Reasoning",
+      "description": "Teaches how to express uncertainty with confidence intervals and related inferential intervals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confidence intervals for means, proportions, variances, and differences"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pivots, exact intervals, asymptotic intervals, bootstrap intervals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coverage, margin of error, sample size, and interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Testing and Error Control",
+      "description": "Builds the logic for deciding between competing claims while controlling error rates.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null and alternative hypotheses, Type I and Type II errors, power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Z, t, chi-square, F, and exact tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P-values, rejection regions, multiple testing, and practical significance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Likelihood Ratio, Score, Wald, and Large-Sample Tests",
+      "description": "Connects major testing approaches through likelihood theory and asymptotic approximations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Likelihood ratio tests and Wilks theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Score tests, Wald tests, and asymptotic normality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regularity conditions, nuisance parameters, and model comparison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bayesian Inference and Decision Theory",
+      "description": "Introduces inference as updating beliefs and choosing actions under uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Priors, likelihoods, posteriors, posterior predictive distributions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conjugate models, credible intervals, Bayes factors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loss functions, risk, admissibility, and decision rules"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonparametric and Resampling Methods",
+      "description": "Covers inference when strong distributional assumptions are risky or unnecessary.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rank tests, sign tests, permutation tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Empirical distribution functions and kernel density ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bootstrap standard errors, confidence intervals, and validation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Models and Statistical Modeling Foundations",
+      "description": "Applies inferential theory to regression models and model checking.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple and multiple linear regression"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Least squares, normal equations, residuals, leverage, and influence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ANOVA, prediction intervals, diagnostics, and assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Computing, Simulation, and Communication",
+      "description": "Integrates theory with reproducible computation and clear explanation of statistical conclusions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundation",
+          "description": "This subtopic explains the main ideas, vocabulary, and assumptions needed before solving problems or interpreting examples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monte Carlo simulation, random number generation, and numerical likelihood"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Problem-Solving Workflow",
+          "description": "This subtopic turns the concept into procedures: formulas, diagrams, mechanisms, algorithms, experiments, or analytical steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "R or Python implementation, reproducible scripts, and visualization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications, Interpretation, and Common Pitfalls",
+          "description": "This subtopic asks why the material matters in real settings and how to avoid common errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Communicating assumptions, uncertainty, limitations, and conclusions"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

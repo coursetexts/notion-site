@@ -79,10 +79,11 @@ yarn seed:community
 
 Needs `SUPABASE_SERVICE_ROLE_KEY` + `CURATED_COURSES_SEED_PROJECT_REF`.
 
-**SQL Editor (no service role):**
+**SQL Editor (no service role):** curated seeds live in [`../seeds/curated-courses/`](../seeds/curated-courses/):
 
 1. `seed_curated_course_video_courses.sql` — catalog rows in `curated_courses` (all degrees course names)  
-2. `seed_fluid_mechanics_curated_course.sql` — **self-contained** Fluid Mechanics load (schema repair + full tree / videos / resources)
+2. `seed_fluid_mechanics_curated_course.sql` — **self-contained** Fluid Mechanics load (schema repair + full tree / videos / resources)  
+3. `seed_deep_learning_curated_course.sql` / `seed_data_structures_curated_course.sql` / `seed_algorithms_curated_course.sql` — syllabus trees (data only)
 
 Canonical content: `data/curated-courses/` — see [docs/curated-courses.md](../../docs/curated-courses.md).
 

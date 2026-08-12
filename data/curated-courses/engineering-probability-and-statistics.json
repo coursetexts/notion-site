@@ -1,0 +1,1072 @@
+{
+  "slug": "engineering-probability-and-statistics",
+  "title": "Engineering Probability and Statistics",
+  "description": "Equips engineers with probability and statistics as tools for measurement, modeling, experimentation, reliability, process improvement, and evidence-based technical decisions.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Engineering Data, Uncertainty, and Statistical Thinking",
+      "description": "Introduce variation, uncertainty, data quality, and the role of probability/statistics in engineering decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Engineering Variation and Data Context",
+          "description": "Students learn that engineering data are produced by instruments, processes, people, and environments, not abstract spreadsheets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Population, sample, observational unit, variable, parameter, and statistic"
+            },
+            {
+              "type": "concept",
+              "title": "Common cause variation, special cause variation, measurement variation, and process variation"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering specification, tolerance, acceptance criterion, and safety margin"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-sectional data, time series data, experimental data, and field data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement, Error, and Data Quality",
+          "description": "The point is to judge whether data are usable before applying formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy, precision, bias, resolution, calibration, and traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Random error, systematic error, gross error, and drift"
+            },
+            {
+              "type": "concept",
+              "title": "Missing data, censored data, rounded data, duplicated records, and outliers"
+            },
+            {
+              "type": "concept",
+              "title": "Data provenance, units, metadata, and reproducible calculations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical Thinking for Decisions",
+          "description": "Students connect uncertainty to practical choices about risk, cost, performance, and evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Descriptive statistics, inferential statistics, predictive modeling, and decision analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Practical significance versus statistical significance"
+            },
+            {
+              "type": "concept",
+              "title": "Risk, uncertainty, variability, confidence, and tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Decision threshold, false alarm, missed detection, and engineering consequence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Probability Axioms, Counting, and Conditional Probability",
+      "description": "Build probability models from sample spaces, events, counting rules, conditional probability, and independence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability Axioms and Event Algebra",
+          "description": "This subtopic builds the formal rules for reasoning about uncertain events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample space, outcome, event, complement, union, intersection, and mutually exclusive events"
+            },
+            {
+              "type": "concept",
+              "title": "Kolmogorov axioms, probability measure, finite additivity, and normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Venn diagrams, event partitions, and total probability"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability event, failure event, demand event, and exceedance event"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Counting for Probability Models",
+          "description": "Counting rules let engineers assign probabilities when outcomes are equally likely or combinatorial.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiplication rule, addition rule, permutations, combinations, and multinomial coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling with replacement, sampling without replacement, and ordered versus unordered sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Pigeonhole principle and occupancy models"
+            },
+            {
+              "type": "concept",
+              "title": "Defect sampling, inspection lots, component selection, and redundancy combinations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditional Probability and Bayes' Rule",
+          "description": "The gist is to update probabilities when new evidence arrives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional probability, independence, conditional independence, and dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Law of total probability and partition of cases"
+            },
+            {
+              "type": "concept",
+              "title": "Bayes' theorem, prior probability, likelihood, posterior probability, and base rate"
+            },
+            {
+              "type": "concept",
+              "title": "Diagnostic testing, false positive, false negative, sensitivity, specificity, and predictive value"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables, Expectation, Variance, and Transformations",
+      "description": "Represent uncertain quantities as random variables and summarize them with moments and transformations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Random Variables and Distribution Functions",
+          "description": "Students learn how to turn uncertain engineering quantities into mathematical objects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete random variable, continuous random variable, support, and parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Probability mass function, probability density function, and cumulative distribution function"
+            },
+            {
+              "type": "concept",
+              "title": "Quantile, percentile, median, mode, and tail probability"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering examples: load, strength, demand, defect count, waiting time, and lifetime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moments and Summary Measures",
+          "description": "The point is to summarize center, spread, and dependence in interpretable units.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expected value, variance, standard deviation, coefficient of variation, and skewness"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance, correlation, and standardized variable"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity of expectation and variance rules"
+            },
+            {
+              "type": "concept",
+              "title": "Moment generating function and probability generating function as optional tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functions and Transformations of Random Variables",
+          "description": "Engineering models often transform uncertain inputs into uncertain outputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear transformation, monotone transformation, and nonlinear transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Change-of-variables method and Jacobian idea"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution of sums, products, minima, and maxima"
+            },
+            {
+              "type": "concept",
+              "title": "Propagation of mean and variance for simple formulas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Common Discrete Distributions for Engineering Systems",
+      "description": "Use discrete distributions to model counts, defects, arrivals, failures, and finite-population sampling.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bernoulli, Binomial, and Geometric Models",
+          "description": "These distributions model pass/fail outcomes, repeated trials, and waiting for first success.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli trial, success probability, and binary indicator"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial distribution, number of trials, and number of successes"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric distribution, memoryless property, and waiting time"
+            },
+            {
+              "type": "concept",
+              "title": "Quality inspection, acceptance sampling, on/off components, and repeated tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Negative Binomial, Hypergeometric, and Multinomial Models",
+          "description": "Students learn distributions for repeated successes, finite lots, and multiple categories.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative binomial distribution and waiting for r successes"
+            },
+            {
+              "type": "concept",
+              "title": "Hypergeometric distribution, finite population, and no replacement"
+            },
+            {
+              "type": "concept",
+              "title": "Multinomial distribution and category counts"
+            },
+            {
+              "type": "concept",
+              "title": "Lot sampling, batch defects, survey categories, and classification outcomes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Poisson Counts and Rare Events",
+          "description": "The Poisson model is a workhorse for counts over time, space, length, or area.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Poisson distribution, rate parameter, and exposure interval"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson approximation to binomial"
+            },
+            {
+              "type": "concept",
+              "title": "Independent increments and count process intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Defects per meter, failures per hour, arrivals per minute, and accidents per year"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Common Continuous Distributions and Lifetime Models",
+      "description": "Use continuous distributions for measurement variation, waiting times, strengths, lifetimes, and extremes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Normal and Related Models",
+          "description": "Students learn the central distribution for measurement variation and many aggregate effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal distribution, standard normal, z-score, and empirical rule"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit connection and measurement noise"
+            },
+            {
+              "type": "concept",
+              "title": "Lognormal distribution for positive skewed quantities"
+            },
+            {
+              "type": "concept",
+              "title": "t distribution, chi-square distribution, and F distribution for inference"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Waiting-Time and Reliability Distributions",
+          "description": "The goal is to model time-to-event and lifetime data in engineering systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential distribution, memoryless property, and constant hazard"
+            },
+            {
+              "type": "concept",
+              "title": "Gamma distribution and Erlang waiting time"
+            },
+            {
+              "type": "concept",
+              "title": "Weibull distribution, shape parameter, scale parameter, and hazard trend"
+            },
+            {
+              "type": "concept",
+              "title": "Mean time to failure, survival function, cumulative hazard, and reliability function"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bounded, Tail, and Extreme-Value Models",
+          "description": "Engineering decisions often depend on limits, extremes, and bounded physical quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform distribution and beta distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Minimum, maximum, order statistic, and extreme-value idea"
+            },
+            {
+              "type": "concept",
+              "title": "Gumbel distribution and block maxima context"
+            },
+            {
+              "type": "concept",
+              "title": "Wind loads, flood levels, material strength extremes, and tolerance bounds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint, Marginal, Conditional Distributions, and Dependence",
+      "description": "Analyze multiple uncertain variables through joint distributions, covariance, correlation, and dependence structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Joint Distributions and Marginals",
+          "description": "This subtopic teaches students to model multiple uncertain quantities at once.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint probability mass function, joint density, and joint CDF"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal distribution, conditional distribution, and conditional density"
+            },
+            {
+              "type": "concept",
+              "title": "Bivariate normal distribution and covariance matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Contingency table, two-way counts, and joint empirical distribution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dependence, Covariance, and Correlation",
+          "description": "Students learn to distinguish independence from correlation and to quantify dependence carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independence, conditional independence, covariance, correlation, and rank correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Positive dependence, negative dependence, and nonlinear association"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation is not causation and spurious correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Scatterplot, covariance matrix, and pairwise dependence diagnostics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditional Expectation and Prediction",
+          "description": "The point is to use known information to predict or reduce uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional expectation, conditional variance, and prediction function"
+            },
+            {
+              "type": "concept",
+              "title": "Law of total expectation and law of total variance"
+            },
+            {
+              "type": "concept",
+              "title": "Best linear predictor intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering examples with sensor readings, loads, weather, demand, and quality indicators"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling Distributions, Limit Theorems, and Simulation",
+      "description": "Connect sample statistics to population parameters using sampling distributions, LLN, CLT, and simulation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Samples and Sampling Variability",
+          "description": "Students learn why repeated samples produce different estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Random sample, independent and identically distributed assumption, and sampling frame"
+            },
+            {
+              "type": "concept",
+              "title": "Sample mean, sample variance, sample proportion, and sample quantile"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error and sampling distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Bias, variability, representativeness, and sample size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Law of Large Numbers and Central Limit Theorem",
+          "description": "These limit theorems explain why averages stabilize and why normal approximations appear.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Weak law of large numbers and convergence in probability"
+            },
+            {
+              "type": "concept",
+              "title": "Central limit theorem and normal approximation"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity correction and approximation conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering interpretation for repeated measurements, simulation outputs, and process averages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation for Sampling Distributions",
+          "description": "Simulation helps students see abstract sampling concepts before relying on formulas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pseudo-random number, random seed, replication, and Monte Carlo experiment"
+            },
+            {
+              "type": "concept",
+              "title": "Histogram of simulated statistics and empirical standard error"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation error, number of replications, and reproducibility"
+            },
+            {
+              "type": "concept",
+              "title": "Bootstrap preview and resampling intuition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Point Estimation and Confidence Intervals",
+      "description": "Estimate parameters and quantify uncertainty using unbiasedness, standard error, confidence intervals, and bootstrap ideas.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Point Estimators and Estimator Quality",
+          "description": "Students learn that an estimate is a rule with performance properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimator, estimate, bias, variance, mean squared error, and consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Method of moments and maximum likelihood estimation"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error and plug-in estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Estimator choice for mean, variance, proportion, rate, and reliability parameter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Confidence Intervals for Common Parameters",
+          "description": "The point is to report uncertainty around estimates, not just point values.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confidence level, margin of error, critical value, and degrees of freedom"
+            },
+            {
+              "type": "concept",
+              "title": "z interval, t interval, proportion interval, variance interval, and rate interval"
+            },
+            {
+              "type": "concept",
+              "title": "One-sample, paired, and two-sample intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering interpretation of confidence interval versus coverage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bootstrap and Practical Interval Issues",
+          "description": "Students learn flexible interval ideas and common mistakes in interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Percentile bootstrap, bootstrap standard error, and resampling with replacement"
+            },
+            {
+              "type": "concept",
+              "title": "Small sample, nonnormal data, skewness, and robustness"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval versus prediction interval versus tolerance interval"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption check, sample size planning, and reporting precision"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Testing, Statistical Power, and Engineering Decisions",
+      "description": "Test claims while interpreting Type I/II error, p-values, effect size, practical significance, and power.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hypothesis Test Logic",
+          "description": "This subtopic builds the decision framework used in engineering evidence claims.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null hypothesis, alternative hypothesis, test statistic, rejection region, and p-value"
+            },
+            {
+              "type": "concept",
+              "title": "One-sided test, two-sided test, significance level, and critical value"
+            },
+            {
+              "type": "concept",
+              "title": "Type I error, Type II error, and error consequence"
+            },
+            {
+              "type": "concept",
+              "title": "Practical significance, effect size, and engineering threshold"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Parametric and Nonparametric Tests",
+          "description": "Students learn a toolkit for comparing means, proportions, variances, and distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-sample t test, two-sample t test, paired t test, and z test"
+            },
+            {
+              "type": "concept",
+              "title": "Chi-square goodness-of-fit test and chi-square test of independence"
+            },
+            {
+              "type": "concept",
+              "title": "F test, ANOVA preview, and variance comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Wilcoxon, Mann-Whitney, sign test, and permutation test intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power and Sample Size",
+          "description": "The goal is to design tests that can detect meaningful engineering differences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power, minimum detectable effect, sample size, and variability"
+            },
+            {
+              "type": "concept",
+              "title": "Operating characteristic curve and acceptance sampling link"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple testing, false discovery, and familywise error"
+            },
+            {
+              "type": "concept",
+              "title": "Decision risk, cost of sampling, and cost of wrong conclusion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Correlation, Regression, Prediction, and Model Diagnostics",
+      "description": "Model relationships among engineering variables using simple/multiple regression, prediction intervals, and diagnostics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Simple Linear Regression",
+          "description": "Students learn to model a response as a function of one predictor and quantify uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Response variable, predictor variable, slope, intercept, and residual"
+            },
+            {
+              "type": "concept",
+              "title": "Least squares, fitted value, residual sum of squares, and R-squared"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error of slope, confidence interval, and hypothesis test for slope"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration curve, material property relationship, and process trend example"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiple Regression and Prediction",
+          "description": "Engineering systems often require several predictors and careful prediction intervals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiple linear regression, adjusted R-squared, interaction term, and polynomial term"
+            },
+            {
+              "type": "concept",
+              "title": "Prediction interval, confidence interval for mean response, and extrapolation risk"
+            },
+            {
+              "type": "concept",
+              "title": "Categorical predictor, indicator variable, and model hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Collinearity, variance inflation, and feature scaling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagnostics and Model Adequacy",
+          "description": "The point is to detect when a regression model is misleading.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residual plot, normal probability plot, leverage, and influence"
+            },
+            {
+              "type": "concept",
+              "title": "Outlier, high-leverage point, Cook's distance, and studentized residual"
+            },
+            {
+              "type": "concept",
+              "title": "Heteroscedasticity, nonlinearity, autocorrelation, and omitted variable"
+            },
+            {
+              "type": "concept",
+              "title": "Transformation, weighted least squares, and validation split"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design of Experiments and Response Surface Methods",
+      "description": "Plan efficient experiments using randomization, replication, blocking, factorial designs, ANOVA, and response surfaces.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experiment Planning Principles",
+          "description": "Students learn to generate strong evidence efficiently instead of collecting convenient data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Experimental unit, factor, level, response, treatment, and nuisance variable"
+            },
+            {
+              "type": "concept",
+              "title": "Randomization, replication, blocking, and control"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding, aliasing, lurking variable, and bias"
+            },
+            {
+              "type": "concept",
+              "title": "Completely randomized design, randomized block design, and paired design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Factorial Designs and ANOVA",
+          "description": "This subtopic teaches students to estimate main effects and interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Full factorial design, fractional factorial design, main effect, and interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Two-level design, design matrix, contrast, and effect estimate"
+            },
+            {
+              "type": "concept",
+              "title": "ANOVA table, sum of squares, mean square, F statistic, and p-value"
+            },
+            {
+              "type": "concept",
+              "title": "Residual analysis, multiple comparisons, and practical interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Response Surfaces and Optimization",
+          "description": "The goal is to use statistics to improve engineering performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Response surface method, first-order model, second-order model, and curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Central composite design, Box-Behnken design, and contour plot"
+            },
+            {
+              "type": "concept",
+              "title": "Steepest ascent, desirability function, and robust parameter design"
+            },
+            {
+              "type": "concept",
+              "title": "Process optimization, sensitivity, and confirmation run"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Quality Control, Capability, and Process Monitoring",
+      "description": "Use statistical methods to monitor, improve, and control engineering processes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Control Charts for Variables and Attributes",
+          "description": "Students learn to separate routine variation from signals that require action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shewhart chart, center line, control limit, and rational subgroup"
+            },
+            {
+              "type": "concept",
+              "title": "x-bar chart, R chart, s chart, individuals chart, and moving range chart"
+            },
+            {
+              "type": "concept",
+              "title": "p chart, np chart, c chart, and u chart"
+            },
+            {
+              "type": "concept",
+              "title": "Western Electric rules, run rule, false alarm, and special cause"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process Capability and Specifications",
+          "description": "The point is to compare process variation with engineering tolerances.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specification limit, control limit, tolerance, and target value"
+            },
+            {
+              "type": "concept",
+              "title": "Cp, Cpk, Pp, Ppk, and sigma level"
+            },
+            {
+              "type": "concept",
+              "title": "Capability for normal and nonnormal data"
+            },
+            {
+              "type": "concept",
+              "title": "Defects per million opportunities and yield"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quality Improvement and Acceptance Sampling",
+          "description": "Students connect statistics to manufacturing and operational decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acceptance sampling, producer's risk, consumer's risk, AQL, and LTPD"
+            },
+            {
+              "type": "concept",
+              "title": "Operating characteristic curve and average outgoing quality"
+            },
+            {
+              "type": "concept",
+              "title": "Pareto chart, cause-and-effect diagram, and process improvement cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement system analysis, repeatability, reproducibility, and gauge R&R"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reliability, Failure Probability, Risk, and Availability",
+      "description": "Model failure behavior, reliability, hazard, maintainability, redundancy, and risk metrics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reliability and Lifetime Functions",
+          "description": "This subtopic introduces the probability language of dependable systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reliability function, survival function, CDF, PDF, and failure probability"
+            },
+            {
+              "type": "concept",
+              "title": "Hazard function, bathtub curve, mean time to failure, and mean residual life"
+            },
+            {
+              "type": "concept",
+              "title": "Censored data, right censoring, and life-test dataset"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential, Weibull, lognormal, and gamma lifetime models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System Reliability and Redundancy",
+          "description": "Students learn how component reliability combines into system reliability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Series system, parallel system, k-out-of-n system, and standby redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Reliability block diagram and fault tree"
+            },
+            {
+              "type": "concept",
+              "title": "Common-cause failure, independence assumption, and load sharing"
+            },
+            {
+              "type": "concept",
+              "title": "Availability, maintainability, repair rate, and mean time to repair"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk Metrics and Engineering Safety",
+          "description": "The goal is to connect probability estimates to risk-informed decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Failure probability, reliability index, consequence, expected loss, and risk matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Factor of safety versus probability of failure"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity of risk to distribution choice and tail behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Civil, industrial, electrical, and mechanical engineering reliability examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Uncertainty Propagation, Monte Carlo, and Technical Communication",
+      "description": "Propagate uncertainty through engineering models and communicate probabilistic results for decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Uncertainty Propagation in Models and Measurements",
+          "description": "Students learn how uncertain inputs produce uncertain outputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Measurement uncertainty, model uncertainty, parameter uncertainty, and aleatory/epistemic uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "First-order Taylor approximation and delta method"
+            },
+            {
+              "type": "concept",
+              "title": "Root-sum-square propagation and sensitivity coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration uncertainty, instrument uncertainty, and uncertainty budget"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Monte Carlo Simulation and Variance Reduction",
+          "description": "Simulation supports complex engineering models when closed-form formulas are impractical.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monte Carlo simulation, input distribution, model response, and output distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Random seed, convergence, simulation standard error, and number of trials"
+            },
+            {
+              "type": "concept",
+              "title": "Latin hypercube sampling, antithetic variates, and control variates"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario analysis, sensitivity analysis, tornado chart, and percentile estimate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communicating Uncertainty for Decisions",
+          "description": "The final skill is to present uncertainty clearly enough to support action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive summary, assumptions, uncertainty interval, and decision recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization: histogram, boxplot, density plot, prediction band, and error bar"
+            },
+            {
+              "type": "concept",
+              "title": "Risk statement, caveat, limitation, and sensitivity result"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible report, documented code, and traceable calculation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

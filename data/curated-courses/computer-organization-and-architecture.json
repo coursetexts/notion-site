@@ -1,0 +1,838 @@
+{
+  "slug": "computer-organization-and-architecture",
+  "title": "Computer Organization and Architecture",
+  "description": "Explain how software becomes machine behavior, from bits and assembly through datapaths, pipelines, memory systems, I/O, and multicore execution.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Number Representation and Binary Arithmetic",
+      "description": "This section establishes how information becomes bits. Students learn why representation choices affect correctness, range, precision, hardware cost, and software bugs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Integer encodings",
+          "description": "Students compare unsigned, sign-magnitude, one's complement, and two's complement representations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Range and overflow"
+            },
+            {
+              "type": "concept",
+              "title": "Sign extension"
+            },
+            {
+              "type": "concept",
+              "title": "Bitwise operations and masks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Binary arithmetic",
+          "description": "Students learn the circuits and rules behind addition, subtraction, shifts, and multiplication.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adders and carry propagation"
+            },
+            {
+              "type": "concept",
+              "title": "Subtraction as addition of complements"
+            },
+            {
+              "type": "concept",
+              "title": "Logical Versus Arithmetic Shifts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Floating-point representation",
+          "description": "Students learn why real-number arithmetic is approximate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IEEE 754 Fields"
+            },
+            {
+              "type": "concept",
+              "title": "Rounding, underflow, and overflow"
+            },
+            {
+              "type": "concept",
+              "title": "NaN, Infinity, and Precision Loss"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data representation in systems",
+          "description": "Students connect bit encodings to real programs and files.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characters and Unicode basics"
+            },
+            {
+              "type": "concept",
+              "title": "Endianness"
+            },
+            {
+              "type": "concept",
+              "title": "Alignment and padding"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instruction Set Architecture",
+      "description": "The ISA is the machine-level interface visible to compilers, operating systems, and assembly programmers. Students learn how instruction choices shape hardware simplicity and software expressiveness.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ISA Roles and Design Styles",
+          "description": "Students learn what belongs in an ISA and how design philosophies differ.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RISC Versus CISC Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Load-store architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Architectural state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Registers and operands",
+          "description": "Students understand where instructions find and place data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "General-purpose registers"
+            },
+            {
+              "type": "concept",
+              "title": "Immediate values"
+            },
+            {
+              "type": "concept",
+              "title": "Condition Codes Versus Explicit Comparisons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instruction formats",
+          "description": "Students see how binary encodings represent operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Opcode fields"
+            },
+            {
+              "type": "concept",
+              "title": "Register fields"
+            },
+            {
+              "type": "concept",
+              "title": "Immediate and branch offset fields"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Addressing and control flow",
+          "description": "Students learn how programs access memory and change execution order.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base-plus-offset addressing"
+            },
+            {
+              "type": "concept",
+              "title": "Branches and jumps"
+            },
+            {
+              "type": "concept",
+              "title": "Procedure calls and returns"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Assembly Language Programming",
+      "description": "Assembly makes hardware behavior tangible. Students learn to reason about calling conventions, memory layout, control flow, and the real cost of high-level constructs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Assembly syntax and tools",
+          "description": "Students learn how source assembly becomes executable machine code.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assembler, linker, and loader roles"
+            },
+            {
+              "type": "concept",
+              "title": "Labels and directives"
+            },
+            {
+              "type": "concept",
+              "title": "Object files and symbols"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control flow in assembly",
+          "description": "Students translate decisions and loops into branches.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional branches"
+            },
+            {
+              "type": "concept",
+              "title": "Loops and comparisons"
+            },
+            {
+              "type": "concept",
+              "title": "Jump tables and switch-like behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures and stack frames",
+          "description": "Students learn how functions preserve state and exchange data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calling conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Stack pointer and frame pointer"
+            },
+            {
+              "type": "concept",
+              "title": "Caller-saved and callee-saved registers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Memory access and debugging",
+          "description": "Students practice inspecting low-level program behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loads and stores"
+            },
+            {
+              "type": "concept",
+              "title": "Arrays, structs, and pointers"
+            },
+            {
+              "type": "concept",
+              "title": "Disassembly and debugger workflows"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Datapath and Control Design",
+      "description": "This section shows how instructions are physically executed. Students build a mental model of processor blocks and the control signals that coordinate them.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Datapath components",
+          "description": "Students identify the hardware blocks used by typical instructions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Program counter"
+            },
+            {
+              "type": "concept",
+              "title": "Register file"
+            },
+            {
+              "type": "concept",
+              "title": "ALU, Multiplexers, Sign Extender, and Memories"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instruction execution flow",
+          "description": "Students trace an instruction through fetch, decode, execute, memory, and write-back.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instruction fetch"
+            },
+            {
+              "type": "concept",
+              "title": "Operand read"
+            },
+            {
+              "type": "concept",
+              "title": "Result write-back"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control signal generation",
+          "description": "Students learn how instruction bits drive hardware behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hardwired control"
+            },
+            {
+              "type": "concept",
+              "title": "Control tables"
+            },
+            {
+              "type": "concept",
+              "title": "ALU Control Decoding"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Datapath design tradeoffs",
+          "description": "Students evaluate complexity, latency, and extensibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical paths"
+            },
+            {
+              "type": "concept",
+              "title": "Hardware reuse"
+            },
+            {
+              "type": "concept",
+              "title": "Adding new instructions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Single-Cycle and Multicycle Processors",
+      "description": "These processor models reveal different ways to schedule instruction work. Students learn why simple designs are easy to understand but not always efficient.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Single-cycle implementation",
+          "description": "Students learn the simplest complete processor organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One instruction per long cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Critical path through slowest instruction"
+            },
+            {
+              "type": "concept",
+              "title": "Area and timing implications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multicycle implementation",
+          "description": "Students learn how hardware can be reused over shorter steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instruction stages over multiple cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate registers"
+            },
+            {
+              "type": "concept",
+              "title": "Variable instruction latency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control for multicycle designs",
+          "description": "Students connect sequencing to finite-state control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Control states"
+            },
+            {
+              "type": "concept",
+              "title": "State transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Micro-operation sequencing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance comparison",
+          "description": "Students quantify tradeoffs between clock period and cycles per instruction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CPI"
+            },
+            {
+              "type": "concept",
+              "title": "Clock frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Execution time equation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pipelining",
+      "description": "Pipelining increases throughput by overlapping instructions. Students learn the performance upside and the hazards that make real pipelines interesting.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pipeline organization",
+          "description": "Students map instruction execution into stages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IF, ID, EX, MEM, WB Stages"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline registers"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput Versus Latency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data hazards",
+          "description": "Students learn why dependent instructions can need help.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Read-after-write hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Forwarding and bypassing"
+            },
+            {
+              "type": "concept",
+              "title": "Stalls and load-use hazards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control hazards",
+          "description": "Students learn how branches disrupt instruction flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Branch resolution timing"
+            },
+            {
+              "type": "concept",
+              "title": "Prediction basics"
+            },
+            {
+              "type": "concept",
+              "title": "Flushes and delay penalties"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Structural hazards and performance",
+          "description": "Students quantify pipeline limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resource conflicts"
+            },
+            {
+              "type": "concept",
+              "title": "CPI with stalls"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline depth tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory Hierarchy and Caching",
+      "description": "Memory systems make fast processors useful. Students learn how locality and cache design bridge the gap between CPU speed and main-memory latency.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Locality principles",
+          "description": "Students learn why caches work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temporal locality"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial locality"
+            },
+            {
+              "type": "concept",
+              "title": "Working sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cache organization",
+          "description": "Students compare common cache structures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct-mapped caches"
+            },
+            {
+              "type": "concept",
+              "title": "Set-associative caches"
+            },
+            {
+              "type": "concept",
+              "title": "Tags, indexes, offsets, and valid bits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cache policies",
+          "description": "Students understand design choices that affect hit rate and correctness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Replacement policies"
+            },
+            {
+              "type": "concept",
+              "title": "Write-Through Versus Write-Back"
+            },
+            {
+              "type": "concept",
+              "title": "Write-Allocate Versus No-Write-Allocate"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance and measurement",
+          "description": "Students quantify memory hierarchy behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hit rate and miss penalty"
+            },
+            {
+              "type": "concept",
+              "title": "Average Memory Access Time"
+            },
+            {
+              "type": "concept",
+              "title": "Cache-aware programming"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Virtual Memory",
+      "description": "Virtual memory lets each program see a protected address space while hardware and the OS map it to physical memory. Students learn translation, protection, and the cost of memory abstraction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Address translation",
+          "description": "Students learn how virtual addresses become physical addresses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pages and page frames"
+            },
+            {
+              "type": "concept",
+              "title": "Page tables"
+            },
+            {
+              "type": "concept",
+              "title": "Offset preservation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "TLBs",
+          "description": "Students understand why translation needs a cache.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "TLB Hit and Miss Behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Associativity"
+            },
+            {
+              "type": "concept",
+              "title": "Context switches and address-space identifiers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protection and sharing",
+          "description": "Students learn how virtual memory supports operating-system isolation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Read/Write/Execute Permissions"
+            },
+            {
+              "type": "concept",
+              "title": "User and kernel spaces"
+            },
+            {
+              "type": "concept",
+              "title": "Shared pages"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Paging performance",
+          "description": "Students connect VM to real execution costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Page faults"
+            },
+            {
+              "type": "concept",
+              "title": "Demand paging"
+            },
+            {
+              "type": "concept",
+              "title": "Working set and thrashing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "I/O Systems",
+      "description": "I/O connects processors to the outside world. Students learn how devices, buses, interrupts, and DMA move data without making the CPU do every transfer manually.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "I/O Addressing and Control",
+          "description": "Students learn how software communicates with device registers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Memory-Mapped I/O"
+            },
+            {
+              "type": "concept",
+              "title": "Port-Mapped I/O"
+            },
+            {
+              "type": "concept",
+              "title": "Status, control, and data registers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interrupts and exceptions",
+          "description": "Students understand asynchronous control transfer.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interrupt request and acknowledge"
+            },
+            {
+              "type": "concept",
+              "title": "Interrupt vector tables"
+            },
+            {
+              "type": "concept",
+              "title": "Priorities and masking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DMA and Buses",
+          "description": "Students learn how bulk data movement avoids CPU overhead.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct memory access"
+            },
+            {
+              "type": "concept",
+              "title": "Bus arbitration"
+            },
+            {
+              "type": "concept",
+              "title": "PCIe, USB, and Storage Interfaces as Examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reliability and performance",
+          "description": "Students reason about I/O bottlenecks and correctness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polling Versus Interrupts"
+            },
+            {
+              "type": "concept",
+              "title": "Buffering"
+            },
+            {
+              "type": "concept",
+              "title": "Latency, bandwidth, and error handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Parallel and Multicore Architectures",
+      "description": "Modern performance comes from parallelism as much as clock speed. Students learn the architectural support and programming challenges behind multicore systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Forms of parallelism",
+          "description": "Students distinguish where parallel speedup can come from.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instruction-level parallelism"
+            },
+            {
+              "type": "concept",
+              "title": "Data-Level Parallelism and SIMD"
+            },
+            {
+              "type": "concept",
+              "title": "Thread-level parallelism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multicore organization",
+          "description": "Students learn what is replicated and what is shared.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Private and shared caches"
+            },
+            {
+              "type": "concept",
+              "title": "Interconnects"
+            },
+            {
+              "type": "concept",
+              "title": "Memory controllers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coherence and consistency",
+          "description": "Students learn why shared memory needs rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cache coherence problem"
+            },
+            {
+              "type": "concept",
+              "title": "MESI-Style Intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Memory consistency models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance limits and tradeoffs",
+          "description": "Students evaluate scalability realistically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Amdahl's Law"
+            },
+            {
+              "type": "concept",
+              "title": "Synchronization overhead"
+            },
+            {
+              "type": "concept",
+              "title": "Power, thermal, and security side-channel considerations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

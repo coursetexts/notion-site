@@ -1,0 +1,1380 @@
+{
+  "slug": "general-biology",
+  "title": "General Biology",
+  "description": "General Biology examines life from biomolecules and cells through organisms, populations, and ecosystems. Students build mechanistic explanations, interpret biological data, perform safe and reproducible laboratory work, and apply evolutionary and systems thinking to biomedical engineering and nutrition. Emphasis falls on structure\u2013function relationships, information, energy, homeostasis, variation, and evidence.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Foundations of Life and Biological Inquiry",
+      "description": "Biology explains living systems across scales, from molecules to ecosystems. This opening unit establishes evolutionary reasoning, systems thinking, quantitative literacy, and the practices used to evaluate biological claims.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Characteristics and Organization of Life",
+          "description": "Identify what living systems do and how new properties emerge across levels of organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cells as the basic unit"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolism, regulation, reproduction, and evolution"
+            },
+            {
+              "type": "concept",
+              "title": "Molecule-to-biosphere hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Emergent properties and feedback"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evolution as A Unifying Framework",
+          "description": "Use descent with modification to connect biological form, function, diversity, and disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variation and heredity"
+            },
+            {
+              "type": "concept",
+              "title": "Natural selection"
+            },
+            {
+              "type": "concept",
+              "title": "Common ancestry"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptation versus acclimation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scientific Reasoning",
+          "description": "Turn observations into testable explanations and distinguish evidence from assertion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Questions, hypotheses, and predictions"
+            },
+            {
+              "type": "concept",
+              "title": "Controls and variables"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation versus causation"
+            },
+            {
+              "type": "concept",
+              "title": "Models, theories, and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantitative and Data Literacy",
+          "description": "Read biological evidence in tables, graphs, images, and basic statistical summaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rates, ratios, logarithms, and scale"
+            },
+            {
+              "type": "concept",
+              "title": "Mean, variation, and distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Graph selection and interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Effect size and statistical-significance awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemical Foundations and Biomolecules",
+      "description": "Molecular structure constrains biological function. Understanding water, carbon chemistry, and macromolecules prepares students to explain nutrition, membranes, metabolism, genetics, and biomaterials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water and Noncovalent Interactions",
+          "description": "Explain why water supports life and how weak interactions organize biomolecules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarity and hydrogen bonding"
+            },
+            {
+              "type": "concept",
+              "title": "Cohesion, heat capacity, and solvent behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Hydrophobic effect"
+            },
+            {
+              "type": "concept",
+              "title": "pH, Acids, Bases, and Buffers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Carbon Chemistry",
+          "description": "Recognize how carbon skeletons and functional groups create molecular diversity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Covalent bonding and isomers"
+            },
+            {
+              "type": "concept",
+              "title": "Functional groups"
+            },
+            {
+              "type": "concept",
+              "title": "Condensation and hydrolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Oxidation\u2013Reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Macromolecules",
+          "description": "Connect monomer structure and three-dimensional form to biological roles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates"
+            },
+            {
+              "type": "concept",
+              "title": "Lipids and membranes"
+            },
+            {
+              "type": "concept",
+              "title": "Proteins and folding"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleic acids"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrition and Biomaterials Lens",
+          "description": "Relate molecular composition to food, tissue, and engineered biological interfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Essential nutrients"
+            },
+            {
+              "type": "concept",
+              "title": "Protein denaturation"
+            },
+            {
+              "type": "concept",
+              "title": "Lipid saturation"
+            },
+            {
+              "type": "concept",
+              "title": "Biocompatibility and molecular recognition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Structure, Organization, and Imaging",
+      "description": "Cells compartmentalize chemistry, communicate, move, and reproduce. Their organization provides the foundation for physiology, disease, nutrition, and biomedical design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell Theory and Diversity",
+          "description": "Compare the shared architecture and distinctive organization of cells.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prokaryotic and eukaryotic cells"
+            },
+            {
+              "type": "concept",
+              "title": "Cell size and surface-area constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Plant, animal, and microbial cells"
+            },
+            {
+              "type": "concept",
+              "title": "Endosymbiotic theory"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Organelles and Trafficking",
+          "description": "Explain how compartments coordinate synthesis, energy conversion, recycling, and transport.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleus and ribosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Endomembrane system"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondria and chloroplasts"
+            },
+            {
+              "type": "concept",
+              "title": "Lysosomes, peroxisomes, and vesicles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cytoskeleton and Extracellular Environment",
+          "description": "Connect cellular structure to mechanics, movement, adhesion, and tissue organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microfilaments, intermediate filaments, and microtubules"
+            },
+            {
+              "type": "concept",
+              "title": "Motor proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Extracellular matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Cell junctions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microscopy and Image Interpretation",
+          "description": "Use images as quantitative data rather than decoration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Light and fluorescence microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Electron microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution and contrast"
+            },
+            {
+              "type": "concept",
+              "title": "Controls, scale bars, and image artifacts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Membranes, Transport, and Cell Signaling",
+      "description": "Membranes regulate exchange and information. This unit explains homeostasis, nutrient uptake, electrical gradients, drug action, and how engineered devices interact with cells.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane Structure and Fluidity",
+          "description": "Use the fluid-mosaic model to predict membrane behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phospholipid bilayer"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Cholesterol and fluidity"
+            },
+            {
+              "type": "concept",
+              "title": "Asymmetry and glycocalyx"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport Across Membranes",
+          "description": "Predict movement from gradients, permeability, and energy coupling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple and facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Osmosis and tonicity"
+            },
+            {
+              "type": "concept",
+              "title": "Active transport"
+            },
+            {
+              "type": "concept",
+              "title": "Endocytosis and exocytosis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Electrochemical Gradients",
+          "description": "Connect ion distributions to membrane potential and coupled transport.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concentration and electrical gradients"
+            },
+            {
+              "type": "concept",
+              "title": "Ion channels and pumps"
+            },
+            {
+              "type": "concept",
+              "title": "Resting potential awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary active transport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell Signaling",
+          "description": "Trace information from signal reception to response and regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receptors and ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Signal transduction cascades"
+            },
+            {
+              "type": "concept",
+              "title": "Second messengers"
+            },
+            {
+              "type": "concept",
+              "title": "Amplification, integration, and termination"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bioenergetics, Enzymes, and Metabolism",
+      "description": "Living systems transform matter and energy while maintaining order. Bioenergetics links cellular chemistry to food energy, exercise, disease, and engineered metabolic measurement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Thermodynamics of Living Systems",
+          "description": "Distinguish favorable reactions from fast reactions and explain energy coupling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free energy and equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Exergonic and endergonic processes"
+            },
+            {
+              "type": "concept",
+              "title": "ATP Coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Redox carriers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enzymes and Regulation",
+          "description": "Explain how catalysts create controlled pathways under physiological conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Activation energy"
+            },
+            {
+              "type": "concept",
+              "title": "Active sites and specificity"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature and pH effects"
+            },
+            {
+              "type": "concept",
+              "title": "Inhibition and allosteric regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cellular Respiration",
+          "description": "Track carbon, electrons, and ATP from fuel oxidation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glycolysis"
+            },
+            {
+              "type": "concept",
+              "title": "Pyruvate oxidation and citric-acid cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Electron transport and chemiosmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Fermentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Photosynthesis and Biosynthesis",
+          "description": "Explain how light energy and carbon fixation support food webs and biomass.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Light reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Calvin cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon fixation"
+            },
+            {
+              "type": "concept",
+              "title": "Anabolism and pathway integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrition and Exercise Metabolism",
+          "description": "Connect fed, fasting, and activity states to fuel selection and homeostasis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrate, lipid, and amino-acid catabolism"
+            },
+            {
+              "type": "concept",
+              "title": "Glycogen and fat storage"
+            },
+            {
+              "type": "concept",
+              "title": "Aerobic versus anaerobic demand"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic flexibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DNA, Gene Expression, and Biotechnology",
+      "description": "Information flows from DNA through regulated gene expression to cellular phenotype. This unit builds the molecular foundation for inheritance, nutrition genomics, diagnostics, and biomedical engineering.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DNA Structure and Replication",
+          "description": "Explain how genetic information is stored and copied with high fidelity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double helix and base pairing"
+            },
+            {
+              "type": "concept",
+              "title": "Semiconservative replication"
+            },
+            {
+              "type": "concept",
+              "title": "Leading and lagging strands"
+            },
+            {
+              "type": "concept",
+              "title": "Proofreading and repair"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transcription and RNA Processing",
+          "description": "Describe how cells produce and edit RNA messages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Promoters and RNA polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "mRNA Synthesis"
+            },
+            {
+              "type": "concept",
+              "title": "Capping, polyadenylation, and splicing"
+            },
+            {
+              "type": "concept",
+              "title": "Noncoding RNA awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Translation and Protein Fate",
+          "description": "Connect nucleotide sequence to protein synthesis, localization, and turnover.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Genetic code"
+            },
+            {
+              "type": "concept",
+              "title": "Ribosomes and tRNA"
+            },
+            {
+              "type": "concept",
+              "title": "Post-translational modification"
+            },
+            {
+              "type": "concept",
+              "title": "Protein targeting and degradation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gene Regulation",
+          "description": "Explain how cells with the same genome acquire different functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prokaryotic operons"
+            },
+            {
+              "type": "concept",
+              "title": "Transcription factors and enhancers"
+            },
+            {
+              "type": "concept",
+              "title": "Epigenetic regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Environment\u2013Gene Interactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biotechnology and Bioethics",
+          "description": "Evaluate tools that measure or alter biological information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PCR and Gel Electrophoresis"
+            },
+            {
+              "type": "concept",
+              "title": "DNA sequencing"
+            },
+            {
+              "type": "concept",
+              "title": "CRISPR Awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic testing, privacy, and equity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Division, Genetics, and Development",
+      "description": "Cell division connects growth, tissue renewal, reproduction, inheritance, and cancer. Genetics then explains how variation moves through families and populations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell Cycle and Mitosis",
+          "description": "Describe accurate genome distribution and its regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell-cycle phases"
+            },
+            {
+              "type": "concept",
+              "title": "Chromosome structure"
+            },
+            {
+              "type": "concept",
+              "title": "Mitotic stages"
+            },
+            {
+              "type": "concept",
+              "title": "Checkpoints, apoptosis, and cancer"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Meiosis and Sexual Life Cycles",
+          "description": "Explain how chromosome behavior generates haploid cells and variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homologs and sister chromatids"
+            },
+            {
+              "type": "concept",
+              "title": "Crossing over and independent assortment"
+            },
+            {
+              "type": "concept",
+              "title": "Fertilization"
+            },
+            {
+              "type": "concept",
+              "title": "Nondisjunction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mendelian Inheritance",
+          "description": "Predict inheritance while recognizing the assumptions behind simple models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Segregation and independent assortment"
+            },
+            {
+              "type": "concept",
+              "title": "Punnett and Probability Methods"
+            },
+            {
+              "type": "concept",
+              "title": "Testcrosses and pedigrees"
+            },
+            {
+              "type": "concept",
+              "title": "Sex-linked inheritance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complex Traits",
+          "description": "Extend genetics beyond single-gene dominant/recessive patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incomplete dominance and codominance"
+            },
+            {
+              "type": "concept",
+              "title": "Polygenic traits"
+            },
+            {
+              "type": "concept",
+              "title": "Pleiotropy and epistasis"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental influence and heritability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Development and Stem Cells",
+          "description": "Connect gene regulation, signaling, and mechanics to organismal form.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell differentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Morphogens and pattern formation"
+            },
+            {
+              "type": "concept",
+              "title": "Stem-cell potency"
+            },
+            {
+              "type": "concept",
+              "title": "Regeneration and tissue engineering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Evolution, Diversity, and Population Biology",
+      "description": "Evolution explains biological diversity and the changing distribution of traits. It also supports reasoning about pathogens, nutrition adaptations, drug resistance, and population health.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanisms of Evolution",
+          "description": "Predict changes in allele frequencies from major evolutionary forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural and sexual selection"
+            },
+            {
+              "type": "concept",
+              "title": "Mutation"
+            },
+            {
+              "type": "concept",
+              "title": "Gene flow"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic drift"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Population Genetics",
+          "description": "Use simple quantitative models to distinguish equilibrium from evolution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Allele and genotype frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Hardy\u2013Weinberg Model"
+            },
+            {
+              "type": "concept",
+              "title": "Selection coefficients awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Bottlenecks and founder effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Speciation and Phylogeny",
+          "description": "Reconstruct relationships and explain how lineages diverge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reproductive isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Species concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Phylogenetic trees"
+            },
+            {
+              "type": "concept",
+              "title": "Homology versus analogy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diversity of Life",
+          "description": "Survey major lineages through functional and evolutionary comparisons.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bacteria and archaea"
+            },
+            {
+              "type": "concept",
+              "title": "Protists and fungi"
+            },
+            {
+              "type": "concept",
+              "title": "Plants"
+            },
+            {
+              "type": "concept",
+              "title": "Animals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human Evolution and Variation",
+          "description": "Discuss human biological variation without typological misconceptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primate ancestry"
+            },
+            {
+              "type": "concept",
+              "title": "Recent human evolution"
+            },
+            {
+              "type": "concept",
+              "title": "Lactase persistence and diet"
+            },
+            {
+              "type": "concept",
+              "title": "Race as a poor biological proxy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tissues, Homeostasis, and Integrated Physiology",
+      "description": "Organisms maintain internal stability through coordinated tissues and organ systems. This unit links cellular mechanisms to nutrition, performance, disease, and medical technologies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Tissues and Organ Organization",
+          "description": "Relate cell specialization and extracellular structure to tissue function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epithelial tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Connective tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Muscle tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Nervous tissue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeostasis and Control",
+          "description": "Model regulated variables using sensors, integrators, and effectors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative and positive feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Set points and dynamic ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus systemic control"
+            },
+            {
+              "type": "concept",
+              "title": "Failure of regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Neural and Endocrine Communication",
+          "description": "Compare fast electrical signaling with hormone-mediated coordination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neurons and synapses"
+            },
+            {
+              "type": "concept",
+              "title": "Sensory integration awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Hormone classes and receptors"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothalamic\u2013Pituitary Coordination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cardiorespiratory and Renal Integration",
+          "description": "Explain transport, exchange, and fluid regulation across systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blood flow and gas exchange"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen transport"
+            },
+            {
+              "type": "concept",
+              "title": "Filtration and osmoregulation"
+            },
+            {
+              "type": "concept",
+              "title": "Acid\u2013base balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Movement and Exercise",
+          "description": "Connect muscle contraction, energy supply, and systemic response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sarcomeres and excitation\u2013contraction coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Motor units"
+            },
+            {
+              "type": "concept",
+              "title": "Acute exercise response"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptation and fatigue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digestion, Nutrition, Microbiome, and Immunity",
+      "description": "Nutrition depends on digestion, absorption, metabolism, microbial ecology, and immune tolerance. These connections are central to dietetics and increasingly important in biomedical innovation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Digestive Structure and Function",
+          "description": "Trace food processing from ingestion to absorption and elimination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motility and secretion"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical and chemical digestion"
+            },
+            {
+              "type": "concept",
+              "title": "Intestinal absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Liver, pancreas, and gallbladder"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Macronutrients and Micronutrients",
+          "description": "Connect nutrient chemistry to physiological roles and deficiency or toxicity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates, fats, and proteins"
+            },
+            {
+              "type": "concept",
+              "title": "Vitamins and minerals"
+            },
+            {
+              "type": "concept",
+              "title": "Water and electrolytes"
+            },
+            {
+              "type": "concept",
+              "title": "Bioavailability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy and Nutrient Regulation",
+          "description": "Explain how intake, storage, expenditure, and signaling interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy balance"
+            },
+            {
+              "type": "concept",
+              "title": "Insulin and glucagon"
+            },
+            {
+              "type": "concept",
+              "title": "Appetite signaling awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Nutrient sensing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microbiome",
+          "description": "Treat host-associated microbes as an ecological and metabolic system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Community composition"
+            },
+            {
+              "type": "concept",
+              "title": "Fermentation metabolites"
+            },
+            {
+              "type": "concept",
+              "title": "Diet\u2013Microbiome Interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Association versus causation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Innate and Adaptive Immunity",
+          "description": "Explain defense, memory, inflammation, and tolerance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Barriers and innate cells"
+            },
+            {
+              "type": "concept",
+              "title": "Antigens, B Cells, and T Cells"
+            },
+            {
+              "type": "concept",
+              "title": "Antibodies and vaccination"
+            },
+            {
+              "type": "concept",
+              "title": "Allergy, autoimmunity, and biomaterial response"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ecology, Environment, and One Health",
+      "description": "Health and technology exist inside ecological systems. This unit connects organisms to energy flow, nutrient cycles, environmental exposures, food systems, and planetary constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ecological Interactions",
+          "description": "Analyze how organisms interact with one another and their environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Niches and habitats"
+            },
+            {
+              "type": "concept",
+              "title": "Competition, predation, and mutualism"
+            },
+            {
+              "type": "concept",
+              "title": "Population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Community structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy Flow and Biogeochemical Cycles",
+          "description": "Track energy and matter through ecosystems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Primary production"
+            },
+            {
+              "type": "concept",
+              "title": "Food webs and trophic efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon, nitrogen, and phosphorus cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Decomposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biodiversity and Ecosystem Function",
+          "description": "Explain why diversity affects resilience, services, and discovery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Genetic, species, and ecosystem diversity"
+            },
+            {
+              "type": "concept",
+              "title": "Ecosystem services"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance and resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation priorities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "One Health and Sustainable Food Systems",
+          "description": "Integrate human, animal, and environmental health.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zoonotic disease"
+            },
+            {
+              "type": "concept",
+              "title": "Antimicrobial resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Food production and environmental impact"
+            },
+            {
+              "type": "concept",
+              "title": "Climate change, nutrition, and health"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Experimental Design, Quantitative Biology, and Applied Synthesis",
+      "description": "World-class biology education ends with the ability to generate, analyze, and communicate evidence. Students integrate molecular, cellular, organismal, and ecological reasoning in an authentic investigation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Experimental Design",
+          "description": "Create studies that isolate causal effects and minimize bias.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Independent and dependent variables"
+            },
+            {
+              "type": "concept",
+              "title": "Positive and negative controls"
+            },
+            {
+              "type": "concept",
+              "title": "Randomization, replication, and blinding"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding and sampling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Core Laboratory Methods",
+          "description": "Understand what common methods measure and what their limitations are.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Microscopy and staining"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrophotometry"
+            },
+            {
+              "type": "concept",
+              "title": "Pipetting, dilutions, and sterile technique"
+            },
+            {
+              "type": "concept",
+              "title": "PCR, Electrophoresis, and Immunoassay Awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data Analysis and Reproducibility",
+          "description": "Transform raw observations into defensible conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data cleaning and visualization"
+            },
+            {
+              "type": "concept",
+              "title": "Normalization and calibration curves"
+            },
+            {
+              "type": "concept",
+              "title": "Variation, confidence intervals, and test selection awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata, notebooks, and reproducible workflows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical Engineering Studio",
+          "description": "Use biology to define design requirements and evaluate a health technology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell\u2013Material Interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Biosensors or diagnostic assays"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue-engineering constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Safety, efficacy, and stakeholder needs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrition and Dietetics Studio",
+          "description": "Use biological evidence to evaluate a nutrition question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dietary assessment limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Biomarkers and physiology"
+            },
+            {
+              "type": "concept",
+              "title": "Study-design hierarchy"
+            },
+            {
+              "type": "concept",
+              "title": "Translation from evidence to recommendation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scientific Communication and Ethics",
+          "description": "Communicate uncertainty and weigh societal consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Figures and captions"
+            },
+            {
+              "type": "concept",
+              "title": "Structured scientific argument"
+            },
+            {
+              "type": "concept",
+              "title": "Human and animal research ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Conflicts of interest, accessibility, and equity"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

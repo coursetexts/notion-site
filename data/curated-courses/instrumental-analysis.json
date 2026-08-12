@@ -1,0 +1,968 @@
+{
+  "slug": "instrumental-analysis",
+  "title": "Instrumental Analysis",
+  "description": "Instrumental Analysis teaches students how modern chemical information is generated, calibrated, validated, interpreted, and reported. The course integrates spectroscopy, separations, mass spectrometry, electroanalysis, sensors, surface/materials characterization, chemometrics, quality systems, and authentic unknown-analysis workflows.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Measurement Science, Instrument Architecture, and Analytical Figures of Merit",
+      "description": "Students learn how instruments turn chemical information into calibrated signals and defensible measurements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Instrument blocks",
+          "description": "The point is to see every instrument as a chain that creates, selects, detects, and processes analytical information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sources and excitation"
+            },
+            {
+              "type": "concept",
+              "title": "Sample introduction and interfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Detectors, transducers, and readout"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Analytical figures of merit",
+          "description": "Students learn the vocabulary used to compare whether methods are fit for purpose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity and selectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Limit of detection and quantitation"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic range and robustness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Traceability and measurement purpose",
+          "description": "Good instrumental analysis begins by defining what decision the measurement must support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Analyte, matrix, and measurand"
+            },
+            {
+              "type": "concept",
+              "title": "Reference materials and standards"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory or research context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Signals, Noise, Calibration, Statistics, and Chemometrics",
+      "description": "This module builds the quantitative backbone for deciding whether an instrumental result is reliable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Signal and noise",
+          "description": "Students learn why real measurements fluctuate and how instrument design improves useful signal.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Shot, thermal, flicker, and chemical noise"
+            },
+            {
+              "type": "concept",
+              "title": "Signal averaging and filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Signal-to-noise ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calibration models",
+          "description": "Calibration turns instrument response into concentration or identity with known uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "External calibration"
+            },
+            {
+              "type": "concept",
+              "title": "Standard addition"
+            },
+            {
+              "type": "concept",
+              "title": "Internal standards and isotope dilution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemometrics and data analysis",
+          "description": "Modern instruments generate rich data that require statistical and computational interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regression and residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Principal component analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Classification and validation sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling, Sample Preparation, and Method Development",
+      "description": "Students connect the instrument response to the real sample through representative sampling and controlled preparation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Representative sampling",
+          "description": "The best instrument cannot rescue a biased or nonrepresentative sample.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling plans"
+            },
+            {
+              "type": "concept",
+              "title": "Heterogeneity and subsampling"
+            },
+            {
+              "type": "concept",
+              "title": "Preservation and chain of custody"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sample preparation",
+          "description": "Preparation removes interferences, enriches analytes, and makes samples compatible with instruments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Digestion and extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Derivatization"
+            },
+            {
+              "type": "concept",
+              "title": "Solid-phase extraction and cleanup"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method development",
+          "description": "Students learn to optimize conditions systematically rather than by trial and error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Experimental design"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix effects"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery and spike studies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Spectroscopy Fundamentals and Molecular Absorption",
+      "description": "This topic introduces light-matter interaction and the core logic behind molecular spectroscopic methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Light-matter interaction",
+          "description": "Spectroscopy connects molecular energy levels to absorbed, emitted, or scattered radiation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electromagnetic spectrum"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Transition probabilities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Beer-Lambert law",
+          "description": "Absorbance measurements become quantitative when the optical path and response are controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absorptivity"
+            },
+            {
+              "type": "concept",
+              "title": "Deviations from linearity"
+            },
+            {
+              "type": "concept",
+              "title": "Stray light and bandwidth effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectrometer design",
+          "description": "Students see how optical components shape resolution, throughput, and accuracy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sources and monochromators"
+            },
+            {
+              "type": "concept",
+              "title": "Gratings and filters"
+            },
+            {
+              "type": "concept",
+              "title": "Photodiodes, PMTs, and array detectors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "UV-Visible Spectroscopy, Fluorescence, and Luminescence",
+      "description": "Students study electronic spectroscopy for quantitative analysis, kinetics, sensing, and molecular characterization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "UV-Vis absorption",
+          "description": "UV-Vis methods are fast, accessible tools for concentration, kinetics, and electronic transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chromophores"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent and pH effects"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetic monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fluorescence spectroscopy",
+          "description": "Fluorescence offers high sensitivity when molecules emit light after excitation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Excitation and emission spectra"
+            },
+            {
+              "type": "concept",
+              "title": "Quantum yield"
+            },
+            {
+              "type": "concept",
+              "title": "Quenching and inner-filter effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Luminescent methods",
+          "description": "Emission methods support sensors, assays, and trace analysis when background is controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phosphorescence"
+            },
+            {
+              "type": "concept",
+              "title": "Chemiluminescence"
+            },
+            {
+              "type": "concept",
+              "title": "Time-resolved detection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Infrared and Raman Spectroscopy",
+      "description": "This module covers vibrational spectroscopy for molecular fingerprints, bonding, materials, and process monitoring.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "IR absorption",
+          "description": "IR spectra identify functional groups and molecular environments through vibrational transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FTIR instrumentation"
+            },
+            {
+              "type": "concept",
+              "title": "Functional-group regions"
+            },
+            {
+              "type": "concept",
+              "title": "ATR sampling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Raman scattering",
+          "description": "Raman complements IR by probing polarizability changes and working well with aqueous samples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stokes and anti-Stokes lines"
+            },
+            {
+              "type": "concept",
+              "title": "Laser excitation"
+            },
+            {
+              "type": "concept",
+              "title": "Fluorescence background"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vibrational interpretation",
+          "description": "Students learn to connect spectra to structure without overclaiming.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fingerprint region"
+            },
+            {
+              "type": "concept",
+              "title": "Group frequencies"
+            },
+            {
+              "type": "concept",
+              "title": "Libraries and mixture complications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Atomic Spectroscopy and Elemental Analysis",
+      "description": "Students learn atomic absorption, emission, fluorescence, ICP methods, and elemental quantitation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atomic absorption and fluorescence",
+          "description": "Atomic methods quantify elements by measuring atom-specific transitions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flame and graphite furnace AAS"
+            },
+            {
+              "type": "concept",
+              "title": "Hollow cathode lamps"
+            },
+            {
+              "type": "concept",
+              "title": "Background correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ICP emission and mass methods",
+          "description": "Plasma sources support sensitive multi-element analysis across broad concentration ranges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ICP-OES"
+            },
+            {
+              "type": "concept",
+              "title": "ICP-MS"
+            },
+            {
+              "type": "concept",
+              "title": "Interferences and collision cells"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Elemental method validation",
+          "description": "Elemental analysis requires matrix control, standards, blanks, and contamination discipline.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calibration blanks"
+            },
+            {
+              "type": "concept",
+              "title": "Certified reference materials"
+            },
+            {
+              "type": "concept",
+              "title": "Detection limits and carryover"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "NMR Spectroscopy and Structural Characterization",
+      "description": "This topic develops magnetic resonance as a tool for structure, dynamics, purity, and mixture analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "NMR fundamentals",
+          "description": "NMR observes nuclei in magnetic fields and reveals chemical environment and connectivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemical shift"
+            },
+            {
+              "type": "concept",
+              "title": "Spin-spin coupling"
+            },
+            {
+              "type": "concept",
+              "title": "Relaxation and integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "1D and 2D experiments",
+          "description": "Students learn how experiment choice reveals structure, purity, and molecular relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "1H and 13C NMR"
+            },
+            {
+              "type": "concept",
+              "title": "COSY, HSQC, and HMBC"
+            },
+            {
+              "type": "concept",
+              "title": "NOE and exchange basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantitative and applied NMR",
+          "description": "NMR can also quantify mixtures and monitor processes when acquisition is controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "QNMR"
+            },
+            {
+              "type": "concept",
+              "title": "Solvent suppression"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic NMR and kinetics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mass Spectrometry and Ion Analysis",
+      "description": "Students learn how molecules become ions, how ions are separated, and how mass spectra support identification and quantitation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ionization methods",
+          "description": "Ionization controls what species enter the analyzer and how much fragmentation occurs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EI and CI"
+            },
+            {
+              "type": "concept",
+              "title": "ESI and APCI"
+            },
+            {
+              "type": "concept",
+              "title": "MALDI"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass analyzers and detectors",
+          "description": "Instrument architecture determines resolution, mass accuracy, scan speed, and sensitivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quadrupole and ion trap"
+            },
+            {
+              "type": "concept",
+              "title": "TOF and Orbitrap"
+            },
+            {
+              "type": "concept",
+              "title": "Detector gain and dynamic range"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectral interpretation and quantitation",
+          "description": "Mass spectra support both molecular identification and trace quantitative work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exact mass and isotope patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation logic"
+            },
+            {
+              "type": "concept",
+              "title": "SIM, SRM, and calibration curves"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chromatographic Theory and Gas Chromatography",
+      "description": "This module builds separation theory and applies it to volatile analytes, detectors, and GC method design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Separation theory",
+          "description": "Chromatography separates analytes by differential partitioning and transport through a column.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Retention factor"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity and resolution"
+            },
+            {
+              "type": "concept",
+              "title": "Plate theory and Van Deemter equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gas chromatography",
+          "description": "GC is central for volatile and thermally stable compounds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Columns and stationary phases"
+            },
+            {
+              "type": "concept",
+              "title": "Temperature programming"
+            },
+            {
+              "type": "concept",
+              "title": "Split/splitless and headspace injection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GC detectors",
+          "description": "Detector choice determines sensitivity, selectivity, and data interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FID and TCD"
+            },
+            {
+              "type": "concept",
+              "title": "ECD and NPD"
+            },
+            {
+              "type": "concept",
+              "title": "GC-MS interface"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Liquid Chromatography, Capillary Electrophoresis, and Modern Separations",
+      "description": "Students learn high-performance liquid separations and electrophoretic methods for complex samples.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "HPLC and UHPLC",
+          "description": "Liquid chromatography handles thermally labile, polar, and high-mass analytes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reversed phase and normal phase"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient elution"
+            },
+            {
+              "type": "concept",
+              "title": "Column chemistry and pressure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "LC detectors",
+          "description": "Detection strategies match analyte chemistry and method goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "UV-DAD"
+            },
+            {
+              "type": "concept",
+              "title": "Fluorescence"
+            },
+            {
+              "type": "concept",
+              "title": "Refractive index, ELSD, and charged aerosol detection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capillary electrophoresis",
+          "description": "Electrophoretic separations use charge, size, and mobility for high-efficiency analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electroosmotic flow"
+            },
+            {
+              "type": "concept",
+              "title": "CZE and micellar electrokinetic chromatography"
+            },
+            {
+              "type": "concept",
+              "title": "Capillary zone method control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Electroanalytical Chemistry and Chemical Sensors",
+      "description": "This topic covers potentiometry, voltammetry, amperometry, impedance, and sensor design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Potentiometry",
+          "description": "Potentiometric methods measure potential under near-zero current to infer ion activity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nernst equation"
+            },
+            {
+              "type": "concept",
+              "title": "Ion-selective electrodes"
+            },
+            {
+              "type": "concept",
+              "title": "Reference electrodes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Voltammetry and amperometry",
+          "description": "Current-potential behavior reveals redox chemistry, concentration, and kinetics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cyclic voltammetry"
+            },
+            {
+              "type": "concept",
+              "title": "Pulse methods"
+            },
+            {
+              "type": "concept",
+              "title": "Mass transport and electrode kinetics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensors and biosensors",
+          "description": "Sensors integrate recognition, transduction, calibration, and real-world deployment constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enzyme and immunosensors"
+            },
+            {
+              "type": "concept",
+              "title": "Nanomaterial electrodes"
+            },
+            {
+              "type": "concept",
+              "title": "Selectivity, drift, and fouling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hyphenated Techniques and Integrated Analytical Workflows",
+      "description": "Students combine separation, spectroscopy, and mass spectrometry into powerful workflows such as GC-MS and LC-MS.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "GC-MS workflows",
+          "description": "GC-MS combines separation with molecular identification for volatile mixtures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Library matching"
+            },
+            {
+              "type": "concept",
+              "title": "Ion monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Deconvolution and retention indices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "LC-MS workflows",
+          "description": "LC-MS extends high-sensitivity analysis to complex biological, environmental, and materials samples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ESI source tuning"
+            },
+            {
+              "type": "concept",
+              "title": "MRM transitions"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix effects and ion suppression"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated method design",
+          "description": "Students learn to select, sequence, and validate techniques for a complete analytical question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthogonal confirmation"
+            },
+            {
+              "type": "concept",
+              "title": "Sample throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Automation and data systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Surface, Microscopy, Thermal, and Materials Characterization Methods",
+      "description": "This module expands instrumental analysis beyond solution chemistry into surfaces, particles, polymers, and materials.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Surface analysis",
+          "description": "Surface-sensitive methods reveal composition and chemistry in the top layers of materials.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "XPS"
+            },
+            {
+              "type": "concept",
+              "title": "Auger electron spectroscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Depth profiling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Microscopy and imaging",
+          "description": "Imaging instruments provide spatially resolved chemical and structural information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SEM and EDS"
+            },
+            {
+              "type": "concept",
+              "title": "AFM"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical imaging and mapping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Thermal and materials methods",
+          "description": "Thermal analysis connects heat flow, mass change, and transitions to material identity and stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DSC"
+            },
+            {
+              "type": "concept",
+              "title": "TGA"
+            },
+            {
+              "type": "concept",
+              "title": "Particle size and zeta potential preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quality Assurance, Validation, Ethics, and Unknown Analysis Project",
+      "description": "The course culminates in validated methods, traceable results, ethical reporting, and an integrated unknown-analysis project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Validation and quality systems",
+          "description": "World-class analytical work documents that a method is suitable for its intended use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy, precision, linearity, and range"
+            },
+            {
+              "type": "concept",
+              "title": "Robustness and ruggedness"
+            },
+            {
+              "type": "concept",
+              "title": "Control charts and system suitability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics and reporting",
+          "description": "Analytical data can drive high-stakes decisions, so uncertainty and limitations must be reported honestly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data integrity"
+            },
+            {
+              "type": "concept",
+              "title": "Outlier handling"
+            },
+            {
+              "type": "concept",
+              "title": "Audit trails and reproducibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unknown analysis project",
+          "description": "The capstone requires students to plan, execute, defend, and communicate an integrated instrumental analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Method selection rationale"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-technique confirmation"
+            },
+            {
+              "type": "concept",
+              "title": "Final report with uncertainty and validation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

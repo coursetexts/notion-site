@@ -1,0 +1,1296 @@
+{
+  "slug": "numerical-analysis",
+  "title": "Numerical Analysis",
+  "description": "Numerical Analysis studies algorithms for approximating mathematical problems on computers. The syllabus emphasizes error, stability, convergence, algorithmic tradeoffs, and implementation in scientific computing environments.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Floating Point Arithmetic and Error",
+      "description": "This section develops floating point arithmetic and error through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make floating point arithmetic and error precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machine epsilon"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Overflow"
+            },
+            {
+              "type": "concept",
+              "title": "Underflow"
+            },
+            {
+              "type": "concept",
+              "title": "Significant digits"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with floating point arithmetic and error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply machine epsilon in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare roundoff error with overflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how machine epsilon affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stability, Conditioning, and Convergence",
+      "description": "This section develops stability, conditioning, and convergence through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make stability, conditioning, and convergence precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Forward error"
+            },
+            {
+              "type": "concept",
+              "title": "Backward error"
+            },
+            {
+              "type": "concept",
+              "title": "Stable algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Ill-conditioned"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with stability, conditioning, and convergence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply conditioning in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare forward error with backward error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of truncation error"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how conditioning affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Root-Finding Methods",
+      "description": "This section develops root-finding methods through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make root-finding methods precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bisection"
+            },
+            {
+              "type": "concept",
+              "title": "Newton method"
+            },
+            {
+              "type": "concept",
+              "title": "Secant method"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed point iteration"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence order"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with root-finding methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply bisection in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Newton method with secant method"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how bisection affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interpolation",
+      "description": "This section develops interpolation through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make interpolation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lagrange polynomial"
+            },
+            {
+              "type": "concept",
+              "title": "Newton divided differences"
+            },
+            {
+              "type": "concept",
+              "title": "Spline"
+            },
+            {
+              "type": "concept",
+              "title": "Runge phenomenon"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with interpolation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Lagrange polynomial in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Newton divided differences with spline"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Lagrange polynomial affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Approximation and Least Squares",
+      "description": "This section develops approximation and least squares through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make approximation and least squares precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Least squares"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonal projection"
+            },
+            {
+              "type": "concept",
+              "title": "Normal equations"
+            },
+            {
+              "type": "concept",
+              "title": "Basis function"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with approximation and least squares.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply least squares in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare orthogonal projection with normal equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how least squares affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Differentiation",
+      "description": "This section develops numerical differentiation through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make numerical differentiation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite difference"
+            },
+            {
+              "type": "concept",
+              "title": "Forward difference"
+            },
+            {
+              "type": "concept",
+              "title": "Central difference"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Conditioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with numerical differentiation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply finite difference in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare forward difference with central difference"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how finite difference affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Integration",
+      "description": "This section develops numerical integration through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make numerical integration precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trapezoidal rule"
+            },
+            {
+              "type": "concept",
+              "title": "Simpson rule"
+            },
+            {
+              "type": "concept",
+              "title": "Gaussian quadrature"
+            },
+            {
+              "type": "concept",
+              "title": "Composite rule"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with numerical integration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply trapezoidal rule in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare Simpson rule with Gaussian quadrature"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how trapezoidal rule affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Direct Methods for Linear Systems",
+      "description": "This section develops direct methods for linear systems through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make direct methods for linear systems precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gaussian elimination"
+            },
+            {
+              "type": "concept",
+              "title": "LU factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Pivoting"
+            },
+            {
+              "type": "concept",
+              "title": "Condition number"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with direct methods for linear systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Gaussian elimination in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare LU factorization with pivoting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Gaussian elimination affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Iterative Methods for Linear Systems",
+      "description": "This section develops iterative methods for linear systems through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make iterative methods for linear systems precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gaussian elimination"
+            },
+            {
+              "type": "concept",
+              "title": "LU factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Pivoting"
+            },
+            {
+              "type": "concept",
+              "title": "Condition number"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobi"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss-Seidel"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with iterative methods for linear systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply Gaussian elimination in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare LU factorization with pivoting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of residual"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how Gaussian elimination affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Linear Algebra and Matrix Factorizations",
+      "description": "This section develops numerical linear algebra and matrix factorizations through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make numerical linear algebra and matrix factorizations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Vector"
+            },
+            {
+              "type": "concept",
+              "title": "Rank"
+            },
+            {
+              "type": "concept",
+              "title": "Inverse"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Positive definite"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with numerical linear algebra and matrix factorizations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply matrix in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare vector with rank"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of irreducible"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how matrix affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Eigenvalue Computation",
+      "description": "This section develops eigenvalue computation through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make eigenvalue computation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power method"
+            },
+            {
+              "type": "concept",
+              "title": "QR algorithm"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant eigenvalue"
+            },
+            {
+              "type": "concept",
+              "title": "Rayleigh quotient"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with eigenvalue computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply power method in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare QR algorithm with dominant eigenvalue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how power method affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Ordinary Differential Equations",
+      "description": "This section develops numerical ordinary differential equations through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make numerical ordinary differential equations precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State equation"
+            },
+            {
+              "type": "concept",
+              "title": "Initial condition"
+            },
+            {
+              "type": "concept",
+              "title": "Steady state"
+            },
+            {
+              "type": "concept",
+              "title": "Linearization"
+            },
+            {
+              "type": "concept",
+              "title": "Euler method"
+            },
+            {
+              "type": "concept",
+              "title": "Runge-Kutta"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with numerical ordinary differential equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply state equation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare initial condition with steady state"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how state equation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Scientific Computing Software in Python and MATLAB",
+      "description": "This section develops scientific computing software in python and matlab through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make scientific computing software in python and matlab precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NumPy"
+            },
+            {
+              "type": "concept",
+              "title": "SciPy"
+            },
+            {
+              "type": "concept",
+              "title": "MATLAB"
+            },
+            {
+              "type": "concept",
+              "title": "Unit test"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducibility"
+            },
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with scientific computing software in python and matlab.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply NumPy in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare SciPy with MATLAB"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how NumPy affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Verification, Reproducibility, and Numerical Experiment Design",
+      "description": "This section develops verification, reproducibility, and numerical experiment design through the concrete vocabulary, procedures, examples, and checks students need in Numerical Analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make verification, reproducibility, and numerical experiment design precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roundoff error"
+            },
+            {
+              "type": "concept",
+              "title": "Truncation error"
+            },
+            {
+              "type": "concept",
+              "title": "Conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Stability"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Iteration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with verification, reproducibility, and numerical experiment design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Implement algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Estimate error"
+            },
+            {
+              "type": "concept",
+              "title": "Compare convergence rates"
+            },
+            {
+              "type": "concept",
+              "title": "Apply roundoff error in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare truncation error with conditioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ill-conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Catastrophic cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of tolerance"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how roundoff error affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

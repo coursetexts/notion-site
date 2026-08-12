@@ -1,0 +1,1072 @@
+{
+  "slug": "hydrology-and-water-resources",
+  "title": "Hydrology and Water Resources",
+  "description": "Hydrology and Water Resources balances hydrologic science with civil engineering design: from water-cycle processes and watershed response through flood risk, drainage, groundwater, and resilient water planning.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Hydrologic Cycle, Watersheds, and Water Budgets",
+      "description": "Establish the movement and storage of water across atmosphere, land surface, soils, streams, aquifers, and engineered systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydrologic Cycle Components",
+          "description": "This subtopic gives students the physical map of where water goes and how it moves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Precipitation, interception, depression storage, infiltration, runoff, evapotranspiration, recharge, and streamflow"
+            },
+            {
+              "type": "concept",
+              "title": "Surface water, soil water, groundwater, atmospheric water, and snow/ice storage"
+            },
+            {
+              "type": "concept",
+              "title": "Residence time, flux, storage, and watershed outlet"
+            },
+            {
+              "type": "concept",
+              "title": "Blue water, green water, baseflow, and quickflow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Watershed Delineation and Basin Characteristics",
+          "description": "Students learn to define the spatial unit before doing any hydrologic calculation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drainage divide, contributing area, subbasin, pour point, and stream network"
+            },
+            {
+              "type": "concept",
+              "title": "Watershed slope, channel length, drainage density, basin shape, and time of concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Land cover, soil type, impervious area, and antecedent moisture"
+            },
+            {
+              "type": "concept",
+              "title": "DEM, contour map, flow direction, flow accumulation, and stream order"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Water Budget Calculations",
+          "description": "The point is to use conservation of mass to organize hydrologic inputs, outputs, and storage change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Water budget equation, control volume, storage change, and closure error"
+            },
+            {
+              "type": "concept",
+              "title": "Annual, seasonal, event, and long-term average budgets"
+            },
+            {
+              "type": "concept",
+              "title": "Reservoir, lake, urban watershed, agricultural basin, and aquifer budget"
+            },
+            {
+              "type": "concept",
+              "title": "Data uncertainty, ungauged terms, and residual interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Precipitation Measurement, Storm Analysis, and Design Rainfall",
+      "description": "Analyze rainfall data, storm structure, precipitation frequency, and design storms.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Precipitation Measurement",
+          "description": "Students learn how rainfall and snowfall data are measured and why data quality matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rain gauge, tipping bucket, weighing gauge, snow pillow, radar rainfall, and satellite precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Point rainfall, areal rainfall, Thiessen polygon, isohyetal method, and radar bias correction"
+            },
+            {
+              "type": "concept",
+              "title": "Missing data, double-mass curve, gauge undercatch, and quality control"
+            },
+            {
+              "type": "concept",
+              "title": "Storm depth, duration, intensity, and accumulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Storm Hyetographs and Design Storms",
+          "description": "This subtopic turns precipitation records into engineering inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hyetograph, cumulative rainfall curve, rainfall excess, and storm temporal pattern"
+            },
+            {
+              "type": "concept",
+              "title": "Intensity-duration-frequency curve, design storm, return period, and annual exceedance probability"
+            },
+            {
+              "type": "concept",
+              "title": "NOAA Atlas precipitation frequency estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Alternating block method, SCS Type II distribution, and local storm pattern"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Extreme Precipitation and Climate Context",
+          "description": "The goal is to interpret precipitation extremes with both historical statistics and changing conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationarity, nonstationarity, trend, climate normal, and climate projection"
+            },
+            {
+              "type": "concept",
+              "title": "Probable maximum precipitation as an optional advanced concept"
+            },
+            {
+              "type": "concept",
+              "title": "Atmospheric river, convective storm, tropical cyclone rainfall, and snowmelt-rain event"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty bounds and conservative design choices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Evaporation, Transpiration, and Soil-Water Processes",
+      "description": "Estimate water losses through evaporation, plant transpiration, and soil-moisture storage.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Evaporation Physics",
+          "description": "Students learn what controls water loss from open water, wet soil, and surfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vapor pressure, saturation vapor pressure, relative humidity, and vapor pressure deficit"
+            },
+            {
+              "type": "concept",
+              "title": "Net radiation, wind speed, air temperature, and surface resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Energy balance, aerodynamic method, pan evaporation, and pan coefficient"
+            },
+            {
+              "type": "concept",
+              "title": "Lake evaporation, reservoir evaporation, and evaporation suppression context"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transpiration and Evapotranspiration",
+          "description": "This subtopic connects plant water use to watershed and irrigation calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transpiration, evapotranspiration, potential ET, reference ET, and actual ET"
+            },
+            {
+              "type": "concept",
+              "title": "Penman-Monteith equation, crop coefficient, and growing season demand"
+            },
+            {
+              "type": "concept",
+              "title": "Root zone, stomatal resistance, soil moisture limitation, and vegetation type"
+            },
+            {
+              "type": "concept",
+              "title": "Irrigation demand, drought stress, and water supply planning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soil-Water Storage",
+          "description": "The point is to understand the near-surface reservoir that controls runoff, recharge, and plant use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Porosity, volumetric water content, field capacity, wilting point, and available water"
+            },
+            {
+              "type": "concept",
+              "title": "Soil texture, soil structure, capillary pressure, and matric potential"
+            },
+            {
+              "type": "concept",
+              "title": "Antecedent moisture condition and soil-water deficit"
+            },
+            {
+              "type": "concept",
+              "title": "Soil-water balance and root-zone accounting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Infiltration, Soil Moisture, and Unsaturated Flow",
+      "description": "Model how rainfall enters soil and becomes storage, interflow, recharge, or runoff.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Infiltration Concepts and Measurements",
+          "description": "Students learn how rainfall enters soil and when it becomes runoff.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infiltration capacity, infiltration rate, cumulative infiltration, and rainfall excess"
+            },
+            {
+              "type": "concept",
+              "title": "Horton infiltration model, Green-Ampt model, and Philip infiltration idea"
+            },
+            {
+              "type": "concept",
+              "title": "Infiltrometer, rainfall simulator, and field infiltration test"
+            },
+            {
+              "type": "concept",
+              "title": "Crusting, compaction, macropores, and preferential flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unsaturated Flow and Soil Hydraulics",
+          "description": "This subtopic introduces the physics of flow through partially saturated soils.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unsaturated hydraulic conductivity, soil-water characteristic curve, and capillary head"
+            },
+            {
+              "type": "concept",
+              "title": "Richards equation as an advanced reference point"
+            },
+            {
+              "type": "concept",
+              "title": "Percolation, interflow, recharge, and perched water"
+            },
+            {
+              "type": "concept",
+              "title": "Hysteresis, wetting front, and drainage path"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Abstractions in Engineering Models",
+          "description": "The goal is to convert complex soil processes into practical model inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial abstraction, continuing loss, depression storage, interception loss, and infiltration loss"
+            },
+            {
+              "type": "concept",
+              "title": "SCS/NRCS curve number, hydrologic soil group, and antecedent runoff condition"
+            },
+            {
+              "type": "concept",
+              "title": "Impervious area, directly connected impervious area, and effective imperviousness"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration of loss parameters and sensitivity to soil assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Runoff Generation, Streamflow, and Hydrograph Analysis",
+      "description": "Explain how watersheds transform rainfall into streamflow, baseflow, and flood peaks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Runoff Generation Mechanisms",
+          "description": "Students learn why different landscapes produce runoff in different ways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infiltration-excess runoff, saturation-excess runoff, subsurface stormflow, and return flow"
+            },
+            {
+              "type": "concept",
+              "title": "Hortonian runoff, variable source area, and contributing area expansion"
+            },
+            {
+              "type": "concept",
+              "title": "Urban runoff, rural runoff, snowmelt runoff, and frozen ground effects"
+            },
+            {
+              "type": "concept",
+              "title": "Land use, soil, slope, and drainage network controls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Streamflow Data and Hydrograph Components",
+          "description": "This subtopic teaches students to read and interpret discharge records.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stage, discharge, rating curve, gage height, and streamflow record"
+            },
+            {
+              "type": "concept",
+              "title": "Rising limb, peak discharge, recession limb, baseflow, and direct runoff"
+            },
+            {
+              "type": "concept",
+              "title": "Baseflow separation, event runoff volume, lag time, and time to peak"
+            },
+            {
+              "type": "concept",
+              "title": "Flow duration curve and seasonal streamflow regime"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydrologic Response Metrics",
+          "description": "The point is to quantify watershed behavior from observed or modeled hydrographs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Runoff coefficient, runoff ratio, peak flow, and runoff depth"
+            },
+            {
+              "type": "concept",
+              "title": "Time of concentration, basin lag, travel time, and storage effects"
+            },
+            {
+              "type": "concept",
+              "title": "Unit peak discharge and hydrograph shape"
+            },
+            {
+              "type": "concept",
+              "title": "Flashiness, attenuation, and watershed memory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Unit Hydrographs, Rainfall-Runoff Modeling, and Watershed Response",
+      "description": "Use unit hydrograph and rainfall-runoff methods to predict watershed discharge.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Unit Hydrograph Theory",
+          "description": "Students learn a classic linear method for converting rainfall excess into runoff hydrographs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit hydrograph, effective rainfall, direct runoff hydrograph, and duration"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity, superposition, proportionality, and time invariance assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "S-curve hydrograph and changing duration"
+            },
+            {
+              "type": "concept",
+              "title": "Deriving unit hydrographs from observed storms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synthetic and Empirical Methods",
+          "description": "This subtopic covers practical design methods for ungauged or data-limited watersheds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SCS/NRCS dimensionless unit hydrograph, Snyder unit hydrograph, and Clark unit hydrograph"
+            },
+            {
+              "type": "concept",
+              "title": "Rational method, runoff coefficient, rainfall intensity, and drainage area"
+            },
+            {
+              "type": "concept",
+              "title": "Curve number method, initial abstraction, and rainfall excess depth"
+            },
+            {
+              "type": "concept",
+              "title": "Regional regression equations and ungauged basin estimation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Calibration and Validation",
+          "description": "The goal is to evaluate whether a rainfall-runoff model is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calibration, validation, verification, and parameter sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Nash-Sutcliffe efficiency, percent bias, peak error, and volume error"
+            },
+            {
+              "type": "concept",
+              "title": "Event model versus continuous simulation"
+            },
+            {
+              "type": "concept",
+              "title": "Overfitting, equifinality, and uncertainty in model parameters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Flood Routing, Streamflow Routing, and Reservoir Operations",
+      "description": "Route flows through channels, reservoirs, and storage systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydrologic Routing",
+          "description": "Students learn how storage changes the timing and magnitude of flood waves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuity equation, storage equation, inflow hydrograph, and outflow hydrograph"
+            },
+            {
+              "type": "concept",
+              "title": "Level-pool reservoir routing, storage-indication method, and spillway rating"
+            },
+            {
+              "type": "concept",
+              "title": "Muskingum routing, K and X parameters, and channel storage"
+            },
+            {
+              "type": "concept",
+              "title": "Peak attenuation, lag, and travel time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydraulic Routing Concepts",
+          "description": "This subtopic gives context for more detailed unsteady-flow models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kinematic wave, diffusion wave, dynamic wave, and Saint-Venant equations"
+            },
+            {
+              "type": "concept",
+              "title": "Backwater effects, flood wave celerity, and channel roughness"
+            },
+            {
+              "type": "concept",
+              "title": "HEC-RAS context, boundary conditions, and cross-section data"
+            },
+            {
+              "type": "concept",
+              "title": "When hydrologic routing is insufficient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reservoir and Flood-Control Operations",
+          "description": "The point is to connect routing to management decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rule curve, flood pool, conservation pool, dead storage, and surcharge storage"
+            },
+            {
+              "type": "concept",
+              "title": "Outlet works, spillway, gate operation, and emergency release"
+            },
+            {
+              "type": "concept",
+              "title": "Detention basin, retention basin, and dry/wet pond"
+            },
+            {
+              "type": "concept",
+              "title": "Trade-offs among flood control, water supply, hydropower, and environmental flows"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Groundwater Hydrology, Aquifers, and Well Hydraulics",
+      "description": "Analyze groundwater storage, flow, recharge, pumping, and aquifer response.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Aquifer Properties and Darcy Flow",
+          "description": "Students learn the main properties that govern subsurface flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Aquifer, aquitard, confined aquifer, unconfined aquifer, and perched aquifer"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic head, hydraulic gradient, Darcy's law, and specific discharge"
+            },
+            {
+              "type": "concept",
+              "title": "Hydraulic conductivity, transmissivity, storativity, and specific yield"
+            },
+            {
+              "type": "concept",
+              "title": "Porosity, effective porosity, anisotropy, and heterogeneity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Groundwater Flow Systems",
+          "description": "This subtopic links groundwater to recharge, discharge, streams, and regional flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recharge area, discharge area, water table, potentiometric surface, and groundwater divide"
+            },
+            {
+              "type": "concept",
+              "title": "Flow net, equipotential line, flow line, and seepage face"
+            },
+            {
+              "type": "concept",
+              "title": "Baseflow, gaining stream, losing stream, and stream-aquifer interaction"
+            },
+            {
+              "type": "concept",
+              "title": "Groundwater age, residence time, and regional flow path"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Well Hydraulics and Pumping Tests",
+          "description": "The goal is to estimate aquifer behavior from wells and pumping data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drawdown, cone of depression, radius of influence, and well efficiency"
+            },
+            {
+              "type": "concept",
+              "title": "Theis solution, Cooper-Jacob approximation, and specific capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Pumping test, observation well, recovery test, and step-drawdown test"
+            },
+            {
+              "type": "concept",
+              "title": "Well interference, sustainable yield, and capture zone"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water Quality, Sediment, and Watershed Health",
+      "description": "Connect hydrologic processes to pollutants, sediment transport, temperature, nutrients, and ecosystem condition.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water Quality Indicators",
+          "description": "Students learn the basic measurements that describe water condition and suitability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Temperature, dissolved oxygen, pH, conductivity, turbidity, and total suspended solids"
+            },
+            {
+              "type": "concept",
+              "title": "Nutrients, nitrogen, phosphorus, biochemical oxygen demand, and pathogens"
+            },
+            {
+              "type": "concept",
+              "title": "Metals, organic contaminants, salinity, and emerging contaminants"
+            },
+            {
+              "type": "concept",
+              "title": "Grab sample, composite sample, sensor data, and detection limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pollutant Sources and Transport",
+          "description": "This subtopic connects land use and hydrology to water-quality outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point source, nonpoint source, stormwater runoff, and combined sewer overflow"
+            },
+            {
+              "type": "concept",
+              "title": "Advection, dispersion, dilution, settling, sorption, and decay"
+            },
+            {
+              "type": "concept",
+              "title": "Sediment yield, erosion, bank erosion, and bedload/suspended load"
+            },
+            {
+              "type": "concept",
+              "title": "TMDL, load duration curve, and pollutant load estimation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Watershed Health and Ecological Flow",
+          "description": "The point is to see water resources as ecological and human systems together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Riparian zone, wetland, habitat connectivity, and stream temperature"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental flow, low-flow statistic, and flow regime alteration"
+            },
+            {
+              "type": "concept",
+              "title": "Best management practice, buffer strip, detention, and nutrient management"
+            },
+            {
+              "type": "concept",
+              "title": "Urbanization, impervious cover, channel incision, and stream restoration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Open-Channel Flow, Stormwater, and Drainage Design",
+      "description": "Apply hydraulic principles to channels, culverts, storm sewers, detention, and urban drainage.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Open-Channel Flow Basics",
+          "description": "Students learn the hydraulic tools needed for natural channels and drainage infrastructure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-channel flow, free surface, wetted perimeter, hydraulic radius, and specific energy"
+            },
+            {
+              "type": "concept",
+              "title": "Manning equation, roughness coefficient, normal depth, and critical depth"
+            },
+            {
+              "type": "concept",
+              "title": "Subcritical flow, supercritical flow, Froude number, and hydraulic jump"
+            },
+            {
+              "type": "concept",
+              "title": "Channel lining, erosion protection, and conveyance capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stormwater Drainage Systems",
+          "description": "This subtopic covers engineered drainage in urban and transportation settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Storm sewer, inlet, catch basin, culvert, gutter flow, and spread"
+            },
+            {
+              "type": "concept",
+              "title": "Minor system, major system, design storm, and drainage area"
+            },
+            {
+              "type": "concept",
+              "title": "Culvert inlet control, outlet control, headwater, and tailwater"
+            },
+            {
+              "type": "concept",
+              "title": "Detention, retention, infiltration basin, and outlet structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Urban Hydrology and Low-Impact Development",
+          "description": "The goal is to manage runoff volume, peak flow, and water quality in built environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Imperviousness, connected impervious area, time of concentration, and flashy hydrograph"
+            },
+            {
+              "type": "concept",
+              "title": "Green infrastructure, bioretention, rain garden, bioswale, permeable pavement, and green roof"
+            },
+            {
+              "type": "concept",
+              "title": "Runoff reduction, peak shaving, water-quality volume, and first flush"
+            },
+            {
+              "type": "concept",
+              "title": "SWMM model concepts and stormwater performance metrics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hydrologic Frequency Analysis, Flood Risk, and Drought Analysis",
+      "description": "Quantify extremes, return periods, uncertainty, flood risk, and drought severity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Frequency Analysis and Design Events",
+          "description": "Students learn to estimate rare events from limited records while acknowledging uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Annual maximum series, partial duration series, return period, and exceedance probability"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical plotting position, frequency factor, and design quantile"
+            },
+            {
+              "type": "concept",
+              "title": "Log-Pearson Type III, Gumbel, generalized extreme value, and lognormal models"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval, record length, outlier, and skew coefficient"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flood Risk and Floodplain Management",
+          "description": "This subtopic connects hydrologic estimates to maps, policy, and infrastructure decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flood hazard, exposure, vulnerability, consequence, and risk"
+            },
+            {
+              "type": "concept",
+              "title": "Base flood, 1-percent annual chance flood, floodplain, floodway, and freeboard"
+            },
+            {
+              "type": "concept",
+              "title": "FEMA flood maps, flood insurance rate map, and risk communication"
+            },
+            {
+              "type": "concept",
+              "title": "Levee, detention, channel improvement, buyout, and nature-based mitigation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drought Analysis and Low-Flow Hydrology",
+          "description": "The point is to treat water scarcity as a hydrologic design and management problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Meteorological drought, agricultural drought, hydrologic drought, and socioeconomic drought"
+            },
+            {
+              "type": "concept",
+              "title": "Standardized precipitation index, Palmer drought index, and streamflow drought index"
+            },
+            {
+              "type": "concept",
+              "title": "Low-flow frequency, 7Q10, flow duration curve, and water supply reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Demand management, drought contingency plan, and reservoir storage trigger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hydrologic Data, GIS, Remote Sensing, and Modeling Tools",
+      "description": "Use observed data, spatial analysis, and models to analyze watersheds and water systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hydrologic Data Sources",
+          "description": "Students learn where reliable hydrologic data come from and what each dataset can support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "USGS streamgage, groundwater well, precipitation station, water-quality station, and metadata"
+            },
+            {
+              "type": "concept",
+              "title": "NOAA precipitation, radar rainfall, snow data, and drought monitor products"
+            },
+            {
+              "type": "concept",
+              "title": "EPA water quality data and watershed datasets"
+            },
+            {
+              "type": "concept",
+              "title": "Data cleaning, gap filling, datum, time step, and unit consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "GIS and Remote Sensing for Watersheds",
+          "description": "This subtopic covers spatial tools used in modern hydrology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DEM, land cover, soil map, watershed boundary, and stream network"
+            },
+            {
+              "type": "concept",
+              "title": "Flow direction, flow accumulation, slope, aspect, and drainage area"
+            },
+            {
+              "type": "concept",
+              "title": "Remote sensing precipitation, evapotranspiration, snow cover, and soil moisture"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial resolution, temporal resolution, projection, and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling Tools and Workflows",
+          "description": "The goal is to use models transparently, not as black boxes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HEC-HMS basin model, meteorologic model, control specifications, and loss/transform methods"
+            },
+            {
+              "type": "concept",
+              "title": "SWMM subcatchment, conduit, junction, storage unit, and outfall"
+            },
+            {
+              "type": "concept",
+              "title": "HEC-RAS context for hydraulic modeling and floodplain analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario setup, calibration, sensitivity analysis, documentation, and reproducible workflow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water Resources Planning, Allocation, and Management",
+      "description": "Evaluate water supply, demand, reservoirs, legal/institutional constraints, and competing uses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water Supply and Demand Planning",
+          "description": "Students learn to estimate whether water systems can meet competing demands.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Municipal demand, agricultural demand, industrial demand, ecological demand, and peak demand"
+            },
+            {
+              "type": "concept",
+              "title": "Supply source, reservoir storage, groundwater yield, reuse, and interbasin transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Demand forecast, conservation, leakage, and per-capita use"
+            },
+            {
+              "type": "concept",
+              "title": "Safe yield, firm yield, and reliability of supply"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Allocation, Law, and Institutions",
+          "description": "This subtopic introduces the governance layer that shapes engineering options.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Riparian rights, prior appropriation, water right, permit, and allocation rule"
+            },
+            {
+              "type": "concept",
+              "title": "Interstate compact, basin authority, irrigation district, and utility governance"
+            },
+            {
+              "type": "concept",
+              "title": "Environmental regulations, drinking water, wastewater, and water quality standards"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder, equity, tribal water rights, and public participation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiobjective Planning and Trade-Offs",
+          "description": "The point is to evaluate water projects as systems with competing objectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objective, constraint, alternative, performance metric, and trade-off curve"
+            },
+            {
+              "type": "concept",
+              "title": "Cost-benefit analysis, life-cycle cost, benefit-cost ratio, and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Flood control, water supply, hydropower, recreation, navigation, and ecosystem services"
+            },
+            {
+              "type": "concept",
+              "title": "Robust decision-making and adaptive management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Climate-Informed Design, Green Infrastructure, and Resilience",
+      "description": "Design hydrologic systems for changing climate, urbanization, flood/drought stress, and resilience.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Climate-Informed Hydrologic Design",
+          "description": "Students learn how changing climate challenges stationary design assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stationarity, nonstationarity, trend analysis, and climate-adjusted design storm"
+            },
+            {
+              "type": "concept",
+              "title": "Downscaling, climate model ensemble, scenario, and uncertainty range"
+            },
+            {
+              "type": "concept",
+              "title": "Sea-level rise, compound flooding, snowpack shift, and extreme precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive design, safety factor, and design-life risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Green Infrastructure and Nature-Based Solutions",
+          "description": "This subtopic connects hydrologic performance to ecological and urban design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bioretention, constructed wetland, green roof, permeable pavement, urban tree canopy, and floodplain reconnection"
+            },
+            {
+              "type": "concept",
+              "title": "Infiltration, evapotranspiration, detention, retention, and pollutant removal"
+            },
+            {
+              "type": "concept",
+              "title": "Co-benefits: heat reduction, habitat, recreation, and water quality"
+            },
+            {
+              "type": "concept",
+              "title": "Maintenance, clogging, soil media, and performance monitoring"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resilience and Adaptation Planning",
+          "description": "The goal is to design water systems that can absorb, recover, and adapt.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resilience, robustness, redundancy, flexibility, and adaptive capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Critical infrastructure, cascading failure, emergency operation, and recovery time"
+            },
+            {
+              "type": "concept",
+              "title": "Flood warning, drought trigger, managed retreat, and phased adaptation"
+            },
+            {
+              "type": "concept",
+              "title": "Equity, vulnerability mapping, community risk, and resilience metrics"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

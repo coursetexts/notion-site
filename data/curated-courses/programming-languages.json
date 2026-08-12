@@ -1,0 +1,776 @@
+{
+  "slug": "programming-languages",
+  "title": "Programming Languages",
+  "description": "Programming Languages studies how languages are designed, specified, implemented, and evaluated. Students compare syntax, semantics, type systems, lambda calculus, functional and logic programming, object-oriented and modular design, memory management, concurrency models, domain-specific languages, and compiler/runtime tradeoffs.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Syntax, Grammars, and Abstract Syntax",
+      "description": "Students begin by learning how programming languages define valid programs and how concrete text becomes structured program representation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lexical structure",
+          "description": "The point is to understand how raw characters are grouped into meaningful tokens.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tokens and lexemes"
+            },
+            {
+              "type": "concept",
+              "title": "Keywords and identifiers"
+            },
+            {
+              "type": "concept",
+              "title": "Whitespace, comments, and literals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Grammars and parsing",
+          "description": "Students learn how formal grammars describe valid program structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Context-free grammars"
+            },
+            {
+              "type": "concept",
+              "title": "Ambiguity and precedence"
+            },
+            {
+              "type": "concept",
+              "title": "Recursive descent and parser generators"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Abstract syntax",
+          "description": "Abstract syntax trees keep the essential structure while dropping surface notation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AST nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Concrete versus abstract syntax"
+            },
+            {
+              "type": "concept",
+              "title": "Binding structure preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Operational, Denotational, and Axiomatic Semantics",
+      "description": "This module explains how programming-language meaning can be specified precisely rather than by vague examples or implementation accidents.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Operational semantics",
+          "description": "Operational semantics explains program meaning by describing evaluation steps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Small-step semantics"
+            },
+            {
+              "type": "concept",
+              "title": "Big-step semantics"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluation contexts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Denotational semantics",
+          "description": "Denotational semantics maps programs to mathematical meanings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compositional meaning"
+            },
+            {
+              "type": "concept",
+              "title": "Domains and functions"
+            },
+            {
+              "type": "concept",
+              "title": "Meaning of expressions and commands"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Axiomatic semantics",
+          "description": "Axiomatic semantics supports reasoning about program correctness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hoare triples"
+            },
+            {
+              "type": "concept",
+              "title": "Preconditions and postconditions"
+            },
+            {
+              "type": "concept",
+              "title": "Loop invariants"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Interpreters and Language Implementation Foundations",
+      "description": "Students build executable models of language features so semantics becomes something they can run, test, and extend.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Interpreter structure",
+          "description": "Interpreters make language ideas concrete by executing an AST according to semantic rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parser to AST pipeline"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluator"
+            },
+            {
+              "type": "concept",
+              "title": "Runtime values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environments and scope",
+          "description": "Students learn how names are resolved and how scope affects program behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lexical scope"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic scope contrast"
+            },
+            {
+              "type": "concept",
+              "title": "Closures and environments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error handling",
+          "description": "Language implementations must report and manage invalid programs clearly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Syntax errors"
+            },
+            {
+              "type": "concept",
+              "title": "Runtime errors"
+            },
+            {
+              "type": "concept",
+              "title": "Static versus dynamic checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Type Systems, Type Checking, and Type Inference",
+      "description": "This topic examines how languages use types to prevent errors, guide abstraction, and support compiler and tooling guarantees.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Type safety",
+          "description": "Types help rule out classes of bad behavior before execution or at runtime boundaries.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Progress and preservation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Static versus dynamic typing"
+            },
+            {
+              "type": "concept",
+              "title": "Soundness and completeness tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Type checking",
+          "description": "Students learn how rules assign and validate types for expressions and programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Typing judgments"
+            },
+            {
+              "type": "concept",
+              "title": "Subtyping"
+            },
+            {
+              "type": "concept",
+              "title": "Parametric polymorphism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Type inference",
+          "description": "Inference reduces annotation burden while preserving static guarantees.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unification"
+            },
+            {
+              "type": "concept",
+              "title": "Hindley-Milner overview"
+            },
+            {
+              "type": "concept",
+              "title": "Local and global inference limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lambda Calculus and Foundations of Computation",
+      "description": "Students study the small formal core behind functional programming, substitution, binding, evaluation, and many PL theory ideas.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core syntax",
+          "description": "Lambda calculus strips computation down to variables, functions, and application.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Variables"
+            },
+            {
+              "type": "concept",
+              "title": "Abstraction"
+            },
+            {
+              "type": "concept",
+              "title": "Application"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Substitution and binding",
+          "description": "Correct handling of names is central to language semantics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Free and bound variables"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Capture-avoiding substitution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evaluation strategies",
+          "description": "Different evaluation choices produce different performance and termination behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Call by value"
+            },
+            {
+              "type": "concept",
+              "title": "Call by name"
+            },
+            {
+              "type": "concept",
+              "title": "Call by need/laziness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functional Programming and Algebraic Data",
+      "description": "This module develops functional language concepts such as immutable data, higher-order functions, recursion, pattern matching, and algebraic data types.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Functional abstraction",
+          "description": "Functional languages emphasize computation by composing expressions and functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-class functions"
+            },
+            {
+              "type": "concept",
+              "title": "Higher-order functions"
+            },
+            {
+              "type": "concept",
+              "title": "Closures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recursive data and pattern matching",
+          "description": "Algebraic data types make structured data and control flow explicit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lists and trees"
+            },
+            {
+              "type": "concept",
+              "title": "Variants and records"
+            },
+            {
+              "type": "concept",
+              "title": "Pattern matching"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Purity and effects",
+          "description": "Students learn how functional languages manage mutation, I/O, and state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Referential transparency"
+            },
+            {
+              "type": "concept",
+              "title": "Monads/effects overview"
+            },
+            {
+              "type": "concept",
+              "title": "Persistent data structures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Logic Programming and Declarative Paradigms",
+      "description": "Students learn how computation can be expressed as facts, rules, constraints, and search rather than step-by-step commands.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Logic-programming model",
+          "description": "Logic programming treats computation as proving goals from facts and rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facts and predicates"
+            },
+            {
+              "type": "concept",
+              "title": "Rules"
+            },
+            {
+              "type": "concept",
+              "title": "Queries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Search and unification",
+          "description": "The language runtime searches for assignments that satisfy relations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unification"
+            },
+            {
+              "type": "concept",
+              "title": "Backtracking"
+            },
+            {
+              "type": "concept",
+              "title": "Resolution"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constraints and applications",
+          "description": "Declarative ideas appear in solvers and domain-specific systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constraint logic programming"
+            },
+            {
+              "type": "concept",
+              "title": "Datalog"
+            },
+            {
+              "type": "concept",
+              "title": "Program analysis and databases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Object-Oriented and Modular Language Design",
+      "description": "This topic compares objects, classes, inheritance, interfaces, modules, traits, and encapsulation as tools for organizing programs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Object model",
+          "description": "Object-oriented languages organize behavior around encapsulated state and message dispatch.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objects and classes"
+            },
+            {
+              "type": "concept",
+              "title": "Methods and receivers"
+            },
+            {
+              "type": "concept",
+              "title": "Dynamic dispatch"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inheritance and composition",
+          "description": "Students compare reuse mechanisms and their design costs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inheritance"
+            },
+            {
+              "type": "concept",
+              "title": "Interfaces and protocols"
+            },
+            {
+              "type": "concept",
+              "title": "Composition over inheritance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modules and abstraction",
+          "description": "Modules manage boundaries in large programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Namespaces"
+            },
+            {
+              "type": "concept",
+              "title": "Information hiding"
+            },
+            {
+              "type": "concept",
+              "title": "Functors, traits, and packages"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Memory Management, Runtime Systems, and Garbage Collection",
+      "description": "Students study what language runtimes do beneath the surface: allocation, lifetime, stack/heap organization, and automatic memory management.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Runtime layout",
+          "description": "Language runtimes manage activation records, objects, and data representation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stack frames"
+            },
+            {
+              "type": "concept",
+              "title": "Heap allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Object layout and tagging"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manual and automatic memory",
+          "description": "Students compare explicit memory management with garbage-collected systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Malloc/free concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Ownership and borrowing"
+            },
+            {
+              "type": "concept",
+              "title": "Reference counting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Garbage collection",
+          "description": "Garbage collectors reclaim unreachable memory using different tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tracing collectors"
+            },
+            {
+              "type": "concept",
+              "title": "Generational collection"
+            },
+            {
+              "type": "concept",
+              "title": "Pause times and throughput"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Concurrency Models and Effectful Computation",
+      "description": "This module compares threads, actors, CSP, async/await, shared state, message passing, and effect management in language design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Shared-state concurrency",
+          "description": "Threads and locks are powerful but introduce races and coordination hazards.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Threads"
+            },
+            {
+              "type": "concept",
+              "title": "Locks and monitors"
+            },
+            {
+              "type": "concept",
+              "title": "Data races and deadlocks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Message passing",
+          "description": "Message-passing models reduce shared-state coupling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Actors"
+            },
+            {
+              "type": "concept",
+              "title": "CSP channels"
+            },
+            {
+              "type": "concept",
+              "title": "Mailboxes and supervision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Async and effects",
+          "description": "Modern languages expose asynchronous computation and effects through language constructs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Futures and promises"
+            },
+            {
+              "type": "concept",
+              "title": "Async/await"
+            },
+            {
+              "type": "concept",
+              "title": "Effect systems preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Domain-Specific Languages and Metaprogramming",
+      "description": "Students learn when and how languages are specialized for domains, and how programs can generate, transform, or reason about other programs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DSL motivation",
+          "description": "Domain-specific languages trade generality for expressive power in a specific problem area.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Internal DSLs"
+            },
+            {
+              "type": "concept",
+              "title": "External DSLs"
+            },
+            {
+              "type": "concept",
+              "title": "Language-oriented design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metaprogramming",
+          "description": "Programs can generate or transform code to reduce repetition or create abstractions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Macros"
+            },
+            {
+              "type": "concept",
+              "title": "Reflection"
+            },
+            {
+              "type": "concept",
+              "title": "Staging and code generation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DSL implementation",
+          "description": "Students learn practical choices for building a small language.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Interpreters"
+            },
+            {
+              "type": "concept",
+              "title": "Embedding in a host language"
+            },
+            {
+              "type": "concept",
+              "title": "Type checking and validation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Language Design Tradeoffs, Compilation, and Evaluation",
+      "description": "The course closes by connecting language features to compiler structure, optimization, usability, safety, performance, and design judgment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Compiler structure",
+          "description": "Compiler stages show how language design becomes executable machine behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lexing and parsing"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate representations"
+            },
+            {
+              "type": "concept",
+              "title": "Code generation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimization and performance",
+          "description": "Language features affect what compilers can optimize.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local and global optimization"
+            },
+            {
+              "type": "concept",
+              "title": "JIT compilation"
+            },
+            {
+              "type": "concept",
+              "title": "Runtime specialization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design evaluation",
+          "description": "Students learn to assess a language feature from multiple angles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Safety versus flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Expressiveness versus simplicity"
+            },
+            {
+              "type": "concept",
+              "title": "Performance, tooling, and ecosystem fit"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

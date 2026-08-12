@@ -1,0 +1,1072 @@
+{
+  "slug": "genetics",
+  "title": "Genetics",
+  "description": "A genetics course covering Mendelian and chromosomal inheritance, linkage and mapping, DNA replication and gene expression, prokaryotic and eukaryotic regulation, mutation and repair, population and quantitative genetics, genomics and CRISPR, human genetics, and bioinformatics.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Mendelian Inheritance",
+      "description": "Use segregation and independent assortment to predict inheritance patterns and interpret genetic crosses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classical crosses",
+          "description": "Classical crosses build the logic of genetic prediction from observable traits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Monohybrid crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Dihybrid crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Test crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Punnett squares"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Probability in inheritance",
+          "description": "Probability turns genetic crosses into quantitative predictions rather than memorized patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Product rule"
+            },
+            {
+              "type": "concept",
+              "title": "Sum rule"
+            },
+            {
+              "type": "concept",
+              "title": "Conditional probability"
+            },
+            {
+              "type": "concept",
+              "title": "Pedigree probability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Extensions to Mendel",
+          "description": "Many traits follow Mendel's logic while adding richer genotype-phenotype relationships.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Incomplete dominance"
+            },
+            {
+              "type": "concept",
+              "title": "Codominance"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple alleles"
+            },
+            {
+              "type": "concept",
+              "title": "Epistasis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chromosomal Basis of Inheritance",
+      "description": "Connect gene transmission to chromosome behavior, sex linkage, nondisjunction, and cytogenetic evidence.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Chromosome behavior",
+          "description": "Chromosomes provide the physical explanation for inheritance patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Homologous chromosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Meiosis I and II"
+            },
+            {
+              "type": "concept",
+              "title": "Segregation"
+            },
+            {
+              "type": "concept",
+              "title": "Independent assortment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sex-linked inheritance",
+          "description": "Sex chromosomes create distinctive inheritance patterns that are common in genetics problems and disease pedigrees.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "X-linked recessive traits"
+            },
+            {
+              "type": "concept",
+              "title": "X-linked dominant traits"
+            },
+            {
+              "type": "concept",
+              "title": "Y-linked inheritance"
+            },
+            {
+              "type": "concept",
+              "title": "Dosage compensation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chromosomal abnormalities",
+          "description": "Chromosome-level changes show how genome architecture affects phenotype.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nondisjunction"
+            },
+            {
+              "type": "concept",
+              "title": "Aneuploidy"
+            },
+            {
+              "type": "concept",
+              "title": "Translocations"
+            },
+            {
+              "type": "concept",
+              "title": "Deletions and duplications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linkage and Genetic Mapping",
+      "description": "Use recombination data to infer gene order, map distances, and chromosome organization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Recombination",
+          "description": "Recombination reveals when genes travel together and when crossing over separates them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Crossing over"
+            },
+            {
+              "type": "concept",
+              "title": "Recombinant offspring"
+            },
+            {
+              "type": "concept",
+              "title": "Parental types"
+            },
+            {
+              "type": "concept",
+              "title": "Recombination frequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Map construction",
+          "description": "Mapping converts inheritance data into gene order and distance estimates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-point crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Three-point crosses"
+            },
+            {
+              "type": "concept",
+              "title": "Centimorgans"
+            },
+            {
+              "type": "concept",
+              "title": "Interference"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modern mapping",
+          "description": "Modern genetics extends linkage ideas into marker-based and genome-wide analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Molecular markers"
+            },
+            {
+              "type": "concept",
+              "title": "QTL mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Association mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Linkage disequilibrium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DNA Structure and Replication",
+      "description": "Understand how DNA stores information and is copied accurately before cell division.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DNA architecture",
+          "description": "DNA structure explains both stable information storage and the possibility of accurate copying.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double helix"
+            },
+            {
+              "type": "concept",
+              "title": "Base pairing"
+            },
+            {
+              "type": "concept",
+              "title": "Antiparallel strands"
+            },
+            {
+              "type": "concept",
+              "title": "Major and minor grooves"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Replication machinery",
+          "description": "Replication proteins coordinate fast, accurate duplication of the genome.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Origins of replication"
+            },
+            {
+              "type": "concept",
+              "title": "DNA polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "Leading and lagging strands"
+            },
+            {
+              "type": "concept",
+              "title": "Okazaki fragments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Replication fidelity",
+          "description": "Fidelity mechanisms explain why mutations are rare but still biologically important.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proofreading"
+            },
+            {
+              "type": "concept",
+              "title": "Mismatch repair"
+            },
+            {
+              "type": "concept",
+              "title": "Telomeres"
+            },
+            {
+              "type": "concept",
+              "title": "Replication stress"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Transcription and RNA Processing",
+      "description": "Follow how genetic information is copied into RNA and processed into functional transcripts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transcription initiation",
+          "description": "Initiation determines which genes begin being expressed and under what conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Promoters"
+            },
+            {
+              "type": "concept",
+              "title": "RNA polymerase"
+            },
+            {
+              "type": "concept",
+              "title": "Transcription factors"
+            },
+            {
+              "type": "concept",
+              "title": "Initiation complex"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RNA processing",
+          "description": "Processing turns primary transcripts into mature RNA molecules with regulated meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "5 prime capping"
+            },
+            {
+              "type": "concept",
+              "title": "Splicing"
+            },
+            {
+              "type": "concept",
+              "title": "Polyadenylation"
+            },
+            {
+              "type": "concept",
+              "title": "RNA editing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "RNA types",
+          "description": "Different RNA classes expand the functional range of genetic information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "mRNA"
+            },
+            {
+              "type": "concept",
+              "title": "rRNA"
+            },
+            {
+              "type": "concept",
+              "title": "tRNA"
+            },
+            {
+              "type": "concept",
+              "title": "Regulatory noncoding RNAs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Translation and the Genetic Code",
+      "description": "Explain how cells decode mRNA into protein sequence and how the genetic code shapes mutation effects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Genetic code logic",
+          "description": "The genetic code maps nucleotide triplets to amino acids and frames mutation consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Codons"
+            },
+            {
+              "type": "concept",
+              "title": "Start and stop signals"
+            },
+            {
+              "type": "concept",
+              "title": "Degeneracy"
+            },
+            {
+              "type": "concept",
+              "title": "Reading frame"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Translation machinery",
+          "description": "Translation shows how ribosomes and tRNAs turn digital sequence into molecular function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ribosome"
+            },
+            {
+              "type": "concept",
+              "title": "tRNA charging"
+            },
+            {
+              "type": "concept",
+              "title": "Initiation"
+            },
+            {
+              "type": "concept",
+              "title": "Elongation and termination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protein-level consequences",
+          "description": "Protein outcomes connect sequence changes to traits, function, and disease.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synonymous variants"
+            },
+            {
+              "type": "concept",
+              "title": "Missense variants"
+            },
+            {
+              "type": "concept",
+              "title": "Nonsense variants"
+            },
+            {
+              "type": "concept",
+              "title": "Frameshifts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gene Regulation in Prokaryotes",
+      "description": "Analyze compact bacterial regulatory systems as models for inducible and repressible gene control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Operon logic",
+          "description": "Operons are compact models for how cells regulate groups of genes in response to environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lac operon"
+            },
+            {
+              "type": "concept",
+              "title": "Trp operon"
+            },
+            {
+              "type": "concept",
+              "title": "Inducible systems"
+            },
+            {
+              "type": "concept",
+              "title": "Repressible systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulatory proteins",
+          "description": "DNA-binding proteins show how genes can be turned up, down, on, or off.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Repressors"
+            },
+            {
+              "type": "concept",
+              "title": "Activators"
+            },
+            {
+              "type": "concept",
+              "title": "Operator sites"
+            },
+            {
+              "type": "concept",
+              "title": "Allosteric control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bacterial regulatory networks",
+          "description": "Bacteria integrate many signals despite having compact genomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sigma factors"
+            },
+            {
+              "type": "concept",
+              "title": "Attenuation"
+            },
+            {
+              "type": "concept",
+              "title": "Two-component systems"
+            },
+            {
+              "type": "concept",
+              "title": "Quorum sensing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gene Regulation in Eukaryotes",
+      "description": "Study how chromatin, enhancers, transcription factors, and RNA-level control create cell-specific expression.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Chromatin regulation",
+          "description": "Chromatin explains why access to DNA is itself a major layer of gene control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nucleosomes"
+            },
+            {
+              "type": "concept",
+              "title": "Histone modification"
+            },
+            {
+              "type": "concept",
+              "title": "DNA methylation"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatin remodeling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enhancers and transcription factors",
+          "description": "Combinatorial regulation lets eukaryotic cells create precise, cell-specific expression programs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enhancers"
+            },
+            {
+              "type": "concept",
+              "title": "Silencers"
+            },
+            {
+              "type": "concept",
+              "title": "Mediator complex"
+            },
+            {
+              "type": "concept",
+              "title": "Combinatorial control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Post-transcriptional regulation",
+          "description": "RNA-level control lets cells change gene output after transcription begins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alternative splicing"
+            },
+            {
+              "type": "concept",
+              "title": "miRNAs"
+            },
+            {
+              "type": "concept",
+              "title": "mRNA localization"
+            },
+            {
+              "type": "concept",
+              "title": "Translation control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mutations and DNA Repair",
+      "description": "Classify genetic variation and explain the repair systems that protect genome integrity.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mutation types",
+          "description": "Mutation classification helps predict molecular and phenotypic consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point mutations"
+            },
+            {
+              "type": "concept",
+              "title": "Insertions and deletions"
+            },
+            {
+              "type": "concept",
+              "title": "Copy-number variation"
+            },
+            {
+              "type": "concept",
+              "title": "Structural variants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mutation sources",
+          "description": "Mutations arise from both internal biochemical processes and environmental exposures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Replication errors"
+            },
+            {
+              "type": "concept",
+              "title": "Spontaneous damage"
+            },
+            {
+              "type": "concept",
+              "title": "UV radiation"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical mutagens"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Repair pathways",
+          "description": "Repair systems preserve genome integrity and explain disease risk when they fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mismatch repair"
+            },
+            {
+              "type": "concept",
+              "title": "Base excision repair"
+            },
+            {
+              "type": "concept",
+              "title": "Nucleotide excision repair"
+            },
+            {
+              "type": "concept",
+              "title": "Double-strand break repair"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population and Quantitative Genetics",
+      "description": "Use allele-frequency, selection, drift, and trait-variance models to connect genetics with evolution and complex traits.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Allele frequencies",
+          "description": "Population genetics describes how genetic variation changes across generations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hardy-Weinberg equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Allele frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Genotype frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Assortative mating"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evolutionary forces",
+          "description": "Evolutionary mechanisms explain why populations diverge and adapt.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural selection"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic drift"
+            },
+            {
+              "type": "concept",
+              "title": "Gene flow"
+            },
+            {
+              "type": "concept",
+              "title": "Mutation-selection balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complex traits",
+          "description": "Quantitative genetics provides tools for traits influenced by many genes and environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heritability"
+            },
+            {
+              "type": "concept",
+              "title": "Polygenic traits"
+            },
+            {
+              "type": "concept",
+              "title": "Variance components"
+            },
+            {
+              "type": "concept",
+              "title": "Response to selection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Genomics, CRISPR Gene Editing, Genetic Screening, and Bioethics",
+      "description": "Evaluate modern genetic technologies and their scientific, medical, and ethical implications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Genome-scale genetics",
+          "description": "Genomics expands the unit of analysis from single genes to whole genomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Genome organization"
+            },
+            {
+              "type": "concept",
+              "title": "Sequencing technologies"
+            },
+            {
+              "type": "concept",
+              "title": "Genome annotation"
+            },
+            {
+              "type": "concept",
+              "title": "Comparative genome views"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Genome editing and screening",
+          "description": "CRISPR and genetic screens allow causal tests of gene function at scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CRISPR-Cas systems"
+            },
+            {
+              "type": "concept",
+              "title": "Guide RNA design"
+            },
+            {
+              "type": "concept",
+              "title": "Knockout screens"
+            },
+            {
+              "type": "concept",
+              "title": "Off-target effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics and societal context",
+          "description": "Genetic power requires careful reasoning about consent, equity, privacy, and harm.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Genetic privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Embryo editing"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic discrimination"
+            },
+            {
+              "type": "concept",
+              "title": "Community engagement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Comparative and Functional Genomics",
+      "description": "Extend genetics from individual genes to genome structure, evolutionary comparison, and genome-wide function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Comparative genomics",
+          "description": "Comparisons across species reveal conserved function, evolutionary innovation, and genome history.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthologs and paralogs"
+            },
+            {
+              "type": "concept",
+              "title": "Synteny"
+            },
+            {
+              "type": "concept",
+              "title": "Conserved elements"
+            },
+            {
+              "type": "concept",
+              "title": "Genome duplication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functional genomics",
+          "description": "Functional genomics asks what genes and regulatory regions do in real biological systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RNA-seq"
+            },
+            {
+              "type": "concept",
+              "title": "ChIP-seq"
+            },
+            {
+              "type": "concept",
+              "title": "ATAC-seq"
+            },
+            {
+              "type": "concept",
+              "title": "Perturb-seq"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulatory genomics",
+          "description": "Regulatory genomics connects noncoding DNA to gene expression and phenotype.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enhancer mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Promoter architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Chromatin accessibility"
+            },
+            {
+              "type": "concept",
+              "title": "3D genome organization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Human Genetics, Disease, and Variant Interpretation",
+      "description": "Connect inheritance, molecular mechanisms, and genome data to human traits and disease risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Human inheritance patterns",
+          "description": "Human genetics applies inheritance logic to pedigrees, traits, and disease risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Autosomal dominant"
+            },
+            {
+              "type": "concept",
+              "title": "Autosomal recessive"
+            },
+            {
+              "type": "concept",
+              "title": "X-linked inheritance"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondrial inheritance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variant interpretation",
+          "description": "Variant interpretation turns sequence differences into evidence-weighted biological and clinical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pathogenicity evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Allele frequency databases"
+            },
+            {
+              "type": "concept",
+              "title": "Genotype-phenotype correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Variants of uncertain significance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Genomic medicine context",
+          "description": "Students should understand what genetics can and cannot responsibly say about health.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Penetrance"
+            },
+            {
+              "type": "concept",
+              "title": "Expressivity"
+            },
+            {
+              "type": "concept",
+              "title": "Polygenic risk"
+            },
+            {
+              "type": "concept",
+              "title": "Genetic counseling context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bioinformatics and Reproducible Genomic Analysis",
+      "description": "Build practical literacy with databases, genome browsers, sequence analysis, and transparent computational workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Genomic databases and browsers",
+          "description": "Databases and browsers let students interrogate real genes, variants, annotations, and regulatory data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NCBI Gene and Genome"
+            },
+            {
+              "type": "concept",
+              "title": "UCSC Genome Browser"
+            },
+            {
+              "type": "concept",
+              "title": "Ensembl"
+            },
+            {
+              "type": "concept",
+              "title": "Genome Reference Consortium"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sequence and variant workflows",
+          "description": "Basic workflows help students understand how raw sequence becomes biological inference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sequence alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Database searching"
+            },
+            {
+              "type": "concept",
+              "title": "Variant calling"
+            },
+            {
+              "type": "concept",
+              "title": "Quality control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducible analysis habits",
+          "description": "Reproducibility makes computational genetics transparent, inspectable, and scientifically trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Command-line basics"
+            },
+            {
+              "type": "concept",
+              "title": "Metadata"
+            },
+            {
+              "type": "concept",
+              "title": "Versioned workflows"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

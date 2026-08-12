@@ -1,0 +1,968 @@
+{
+  "slug": "physiology-anatomy-and-physiology",
+  "title": "Physiology / Anatomy and Physiology",
+  "description": "Physiology / Anatomy and Physiology studies the human body as an integrated structure-function system. Students move from anatomical language, cells, tissues, and homeostasis into organ systems, regulatory physiology, laboratory identification, physiological measurement, clinical mechanisms, and integrative case reasoning.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Anatomical Language, Body Organization, Tissues, and Homeostasis",
+      "description": "Students learn the structural map of the body and the regulatory logic that keeps internal conditions stable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Anatomical orientation",
+          "description": "The point is to describe structures precisely so communication is unambiguous.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Directional terms"
+            },
+            {
+              "type": "concept",
+              "title": "Body planes and sections"
+            },
+            {
+              "type": "concept",
+              "title": "Body cavities and regional anatomy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Levels of organization",
+          "description": "Students see how cells, tissues, organs, and systems build function at increasing scale.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cells and extracellular matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue types"
+            },
+            {
+              "type": "concept",
+              "title": "Organ systems and integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeostatic regulation",
+          "description": "Homeostasis explains how the body senses change and restores controlled variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negative feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Positive feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Set points and regulated ranges"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Physiology, Membranes, Transport, and Signaling",
+      "description": "This module builds the cellular mechanisms that explain organ-system function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Membrane structure and transport",
+          "description": "Cell membranes control exchange and create gradients that power physiology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion and osmosis"
+            },
+            {
+              "type": "concept",
+              "title": "Channels, carriers, and pumps"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane potential"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell signaling",
+          "description": "Cells coordinate function through chemical messengers and receptor pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receptors and second messengers"
+            },
+            {
+              "type": "concept",
+              "title": "Autocrine, paracrine, and endocrine signaling"
+            },
+            {
+              "type": "concept",
+              "title": "Signal amplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cellular energy and adaptation",
+          "description": "Physiological work depends on ATP production and adaptive cellular responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mitochondria and ATP"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Cell injury preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integumentary, Skeletal, and Joint Systems",
+      "description": "Students connect protective, structural, mineral-storage, and movement-support functions to anatomy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Integumentary system",
+          "description": "Skin protects the body while helping regulate temperature, sensation, and fluid balance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epidermis and dermis"
+            },
+            {
+              "type": "concept",
+              "title": "Barrier function"
+            },
+            {
+              "type": "concept",
+              "title": "Thermoregulation and wound repair"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Skeletal system",
+          "description": "Bones provide support, leverage, mineral storage, and blood-cell formation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bone structure"
+            },
+            {
+              "type": "concept",
+              "title": "Osteoblasts and osteoclasts"
+            },
+            {
+              "type": "concept",
+              "title": "Calcium and phosphate homeostasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Joints and movement support",
+          "description": "Joint structure determines motion, stability, and injury risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synovial joints"
+            },
+            {
+              "type": "concept",
+              "title": "Ligaments and cartilage"
+            },
+            {
+              "type": "concept",
+              "title": "Range of motion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Muscular System and Movement Physiology",
+      "description": "This topic explains how muscle structure, excitation, contraction, and metabolism produce movement and force.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Muscle anatomy",
+          "description": "Muscle organization links gross anatomy to microscopic force production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Muscle fibers and fascicles"
+            },
+            {
+              "type": "concept",
+              "title": "Sarcomeres"
+            },
+            {
+              "type": "concept",
+              "title": "Tendons and attachments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Excitation-contraction coupling",
+          "description": "Electrical signals become mechanical force through calcium-controlled cross-bridge cycling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neuromuscular junction"
+            },
+            {
+              "type": "concept",
+              "title": "Calcium release"
+            },
+            {
+              "type": "concept",
+              "title": "Sliding filament model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Muscle energetics and performance",
+          "description": "Muscle function changes with fuel, fatigue, training, and fiber type.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ATP-PCr, glycolytic, and oxidative pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Fiber types"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue and adaptation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nervous System, Neurophysiology, and Sensory Systems",
+      "description": "Students learn how electrical signaling, synapses, neural circuits, and sensory pathways coordinate the body.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Neurons and action potentials",
+          "description": "Electrical excitability is the language of rapid control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resting membrane potential"
+            },
+            {
+              "type": "concept",
+              "title": "Action potential phases"
+            },
+            {
+              "type": "concept",
+              "title": "Myelination and conduction velocity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synapses and neural circuits",
+          "description": "Neurons communicate through chemical and electrical synapses to form functional pathways.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neurotransmitters"
+            },
+            {
+              "type": "concept",
+              "title": "EPSPs and IPSPs"
+            },
+            {
+              "type": "concept",
+              "title": "Reflex arcs and integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensory and autonomic systems",
+          "description": "Sensory input and autonomic output connect the body to internal and external conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Somatosensation and special senses"
+            },
+            {
+              "type": "concept",
+              "title": "Sympathetic and parasympathetic control"
+            },
+            {
+              "type": "concept",
+              "title": "Pain and proprioception"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Endocrine System and Hormonal Regulation",
+      "description": "This module develops hormonal signaling as a slower but powerful system for coordinated regulation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hormone classes and receptors",
+          "description": "Hormone chemistry determines how signals travel and how cells respond.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Peptide, steroid, and amine hormones"
+            },
+            {
+              "type": "concept",
+              "title": "Receptor location"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback loops"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major endocrine axes",
+          "description": "Endocrine glands coordinate growth, metabolism, stress, reproduction, and calcium balance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypothalamic-pituitary axes"
+            },
+            {
+              "type": "concept",
+              "title": "Thyroid and adrenal regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Pancreatic and calcium-regulating hormones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Endocrine integration",
+          "description": "Hormones rarely act alone, so students learn coordinated regulation across systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glucose homeostasis"
+            },
+            {
+              "type": "concept",
+              "title": "Stress response"
+            },
+            {
+              "type": "concept",
+              "title": "Growth and reproductive cycles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cardiovascular System, Blood, and Hemodynamics",
+      "description": "Students study the heart, vessels, blood, pressure, flow, and transport functions that support every tissue.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Heart anatomy and electrophysiology",
+          "description": "Cardiac structure and conduction explain pumping rhythm and coordinated contraction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chambers and valves"
+            },
+            {
+              "type": "concept",
+              "title": "Conduction system"
+            },
+            {
+              "type": "concept",
+              "title": "ECG basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Blood and vessels",
+          "description": "Blood composition and vessel structure support transport, pressure, and exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plasma and formed elements"
+            },
+            {
+              "type": "concept",
+              "title": "Arteries, veins, and capillaries"
+            },
+            {
+              "type": "concept",
+              "title": "Hemostasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hemodynamics",
+          "description": "Students learn how pressure, resistance, flow, and cardiac output are regulated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cardiac cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Blood pressure"
+            },
+            {
+              "type": "concept",
+              "title": "Baroreflex and local control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lymphatic System, Immunity, and Host Defense",
+      "description": "This topic covers fluid return, immune surveillance, inflammation, and adaptive protection.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lymphatic anatomy",
+          "description": "The lymphatic system returns fluid and provides routes for immune surveillance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lymph vessels"
+            },
+            {
+              "type": "concept",
+              "title": "Lymph nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Spleen and thymus"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Innate immunity",
+          "description": "Innate defenses respond quickly to injury, infection, and foreign material.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Barriers"
+            },
+            {
+              "type": "concept",
+              "title": "Inflammation"
+            },
+            {
+              "type": "concept",
+              "title": "Phagocytes and complement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adaptive immunity",
+          "description": "Adaptive immunity provides specificity, memory, and targeted defense.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "T cells and B cells"
+            },
+            {
+              "type": "concept",
+              "title": "Antibodies"
+            },
+            {
+              "type": "concept",
+              "title": "Vaccination and immune memory"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Respiratory System and Gas Exchange",
+      "description": "Students learn how ventilation, diffusion, perfusion, and control of breathing sustain oxygen and carbon dioxide balance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Respiratory anatomy and ventilation",
+          "description": "Airway and lung structure determine how air reaches exchange surfaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conducting and respiratory zones"
+            },
+            {
+              "type": "concept",
+              "title": "Alveoli"
+            },
+            {
+              "type": "concept",
+              "title": "Diaphragm and mechanics of breathing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gas exchange and transport",
+          "description": "Oxygen and carbon dioxide movement depends on diffusion, perfusion, and blood chemistry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial pressures"
+            },
+            {
+              "type": "concept",
+              "title": "Hemoglobin binding"
+            },
+            {
+              "type": "concept",
+              "title": "Ventilation-perfusion matching"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control of breathing",
+          "description": "Respiratory control maintains blood gases and acid-base status.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemoreceptors"
+            },
+            {
+              "type": "concept",
+              "title": "Brainstem control"
+            },
+            {
+              "type": "concept",
+              "title": "Exercise and altitude responses"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Renal System, Fluid-Electrolyte Balance, and Acid-Base Physiology",
+      "description": "This module explains kidney function, body-fluid regulation, electrolyte control, and pH homeostasis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nephron structure and filtration",
+          "description": "Kidney function begins with selective filtration and nephron specialization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glomerular filtration"
+            },
+            {
+              "type": "concept",
+              "title": "Tubular anatomy"
+            },
+            {
+              "type": "concept",
+              "title": "Renal blood flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reabsorption and secretion",
+          "description": "The kidney fine-tunes body fluids by moving solutes and water along the nephron.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sodium and water handling"
+            },
+            {
+              "type": "concept",
+              "title": "Potassium and calcium regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Hormonal control by ADH and aldosterone"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Acid-base balance",
+          "description": "Renal and respiratory systems cooperate to regulate pH.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Bicarbonate handling"
+            },
+            {
+              "type": "concept",
+              "title": "Metabolic and respiratory disturbances"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digestive System, Metabolism, and Nutrition Physiology",
+      "description": "Students connect gastrointestinal anatomy with digestion, absorption, liver function, metabolism, and energy balance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Gastrointestinal anatomy and motility",
+          "description": "Structure and coordinated movement prepare food for digestion and absorption.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GI tract layers"
+            },
+            {
+              "type": "concept",
+              "title": "Peristalsis and segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Enteric nervous system"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Digestion and absorption",
+          "description": "Students learn how macromolecules become usable nutrients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enzymes and secretions"
+            },
+            {
+              "type": "concept",
+              "title": "Carbohydrate, protein, and lipid absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Microbiome preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Metabolism and liver function",
+          "description": "The GI system integrates with liver, pancreas, and metabolism to regulate energy balance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bile and detoxification"
+            },
+            {
+              "type": "concept",
+              "title": "Fed and fasting states"
+            },
+            {
+              "type": "concept",
+              "title": "Nutrient storage and mobilization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Reproductive System, Development, and Life-Span Physiology",
+      "description": "This topic covers reproductive anatomy, endocrine cycles, development, pregnancy physiology, and aging.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Reproductive anatomy and gametogenesis",
+          "description": "Structure supports gamete production, fertilization, and reproductive function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Male and female reproductive anatomy"
+            },
+            {
+              "type": "concept",
+              "title": "Spermatogenesis and oogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Fertilization basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hormonal cycles and pregnancy",
+          "description": "Reproductive physiology is coordinated through endocrine rhythms and developmental support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ovarian and uterine cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Pregnancy physiology"
+            },
+            {
+              "type": "concept",
+              "title": "Lactation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Life-span physiology",
+          "description": "Physiological function changes across development, adulthood, and aging.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Puberty"
+            },
+            {
+              "type": "concept",
+              "title": "Aging and functional reserve"
+            },
+            {
+              "type": "concept",
+              "title": "Menopause and andropause concepts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrative Physiology, Exercise, Stress, and Environmental Adaptation",
+      "description": "Students learn how multiple systems coordinate responses to exercise, stress, temperature, altitude, and changing environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Exercise integration",
+          "description": "Exercise reveals how cardiovascular, respiratory, muscular, neural, and endocrine systems work together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acute responses"
+            },
+            {
+              "type": "concept",
+              "title": "Training adaptations"
+            },
+            {
+              "type": "concept",
+              "title": "VO2 and performance measures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stress physiology",
+          "description": "Stress responses coordinate neural, endocrine, immune, and metabolic changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "HPA axis"
+            },
+            {
+              "type": "concept",
+              "title": "Sympathetic activation"
+            },
+            {
+              "type": "concept",
+              "title": "Allostasis and chronic stress"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Environmental physiology",
+          "description": "The body adapts to external challenges through integrated regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Thermoregulation"
+            },
+            {
+              "type": "concept",
+              "title": "Altitude and hypoxia"
+            },
+            {
+              "type": "concept",
+              "title": "Hydration and osmoregulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Pathophysiology Bridges and Clinical Case Reasoning",
+      "description": "This module uses disease mechanisms to test whether students truly understand normal physiology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Homeostasis failure",
+          "description": "Disease often begins when feedback systems can no longer maintain regulated variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compensation and decompensation"
+            },
+            {
+              "type": "concept",
+              "title": "Inflammation and injury"
+            },
+            {
+              "type": "concept",
+              "title": "Risk factors and vulnerability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System-specific cases",
+          "description": "Cases help students test anatomy and physiology knowledge in realistic contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heart failure and hypertension"
+            },
+            {
+              "type": "concept",
+              "title": "Asthma and COPD"
+            },
+            {
+              "type": "concept",
+              "title": "Diabetes and kidney disease"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clinical reasoning basics",
+          "description": "Students learn to explain symptoms and data from mechanisms rather than memorizing labels.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Signs versus symptoms"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanism maps"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence-based interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Anatomy and Physiology Laboratory, Data, and Integrative Project",
+      "description": "The course culminates in identification, physiological measurement, data analysis, and a polished integrative case or research project.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Anatomy identification",
+          "description": "Lab work turns names and diagrams into spatial understanding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Models and images"
+            },
+            {
+              "type": "concept",
+              "title": "Histology slides"
+            },
+            {
+              "type": "concept",
+              "title": "Regional and system identification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Physiology measurements",
+          "description": "Students learn to collect and interpret body-system data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blood pressure and pulse"
+            },
+            {
+              "type": "concept",
+              "title": "Spirometry"
+            },
+            {
+              "type": "concept",
+              "title": "Reflexes, EMG, or ECG basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrative project",
+          "description": "The capstone asks students to connect structure, function, data, and case reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Research question or case scenario"
+            },
+            {
+              "type": "concept",
+              "title": "Data and mechanism figure"
+            },
+            {
+              "type": "concept",
+              "title": "Final report or presentation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1004 @@
+{
+  "slug": "modern-physics",
+  "title": "Modern Physics",
+  "description": "Modern Physics is the transition course between the calculus-based introductory sequence and upper-division physics. Students learn where classical assumptions fail, the evidence and models behind relativity and quantum physics, and enough experimental and computational judgment to enter quantum mechanics, statistical mechanics, condensed matter, nuclear/particle physics, or advanced laboratory work.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Special Relativity and Spacetime",
+      "description": "Build the space-time framework that replaced absolute time and made high-speed physics internally consistent.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Einstein's postulates",
+          "description": "Why the speed of light and the equivalence of inertial frames force a new kinematics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inertial frames"
+            },
+            {
+              "type": "concept",
+              "title": "Light clocks"
+            },
+            {
+              "type": "concept",
+              "title": "Operational definitions of measurement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lorentz transformation",
+          "description": "How coordinates change between observers moving at constant relative velocity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gamma factor"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity addition"
+            },
+            {
+              "type": "concept",
+              "title": "Low-speed Newtonian limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spacetime interval",
+          "description": "The invariant quantity that lets different observers agree on causal structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Timelike, lightlike, and spacelike separations"
+            },
+            {
+              "type": "concept",
+              "title": "Minkowski diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Proper time"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relativity of simultaneity",
+          "description": "Why events that are simultaneous in one frame need not be simultaneous in another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clock synchronization"
+            },
+            {
+              "type": "concept",
+              "title": "Train/flash thought experiments"
+            },
+            {
+              "type": "concept",
+              "title": "Causal ordering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Relativistic Energy and Momentum",
+      "description": "Connect relativistic kinematics to conservation laws, mass-energy equivalence, and high-energy collisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Relativistic momentum",
+          "description": "Why momentum must be revised so conservation survives at high speeds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P = gamma mv"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse and force"
+            },
+            {
+              "type": "concept",
+              "title": "Classical limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Energy-momentum relation",
+          "description": "The compact invariant equation linking rest energy, kinetic energy, and momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "E squared relation"
+            },
+            {
+              "type": "concept",
+              "title": "Rest mass"
+            },
+            {
+              "type": "concept",
+              "title": "Massless particles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass-energy equivalence",
+          "description": "The idea that rest mass is a form of energy with measurable physical consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Binding energy"
+            },
+            {
+              "type": "concept",
+              "title": "Nuclear reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Energy release estimates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Collision analysis",
+          "description": "Use conservation laws in particle and nuclear contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Center-of-momentum frame"
+            },
+            {
+              "type": "concept",
+              "title": "Threshold energy"
+            },
+            {
+              "type": "concept",
+              "title": "Invariant mass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Blackbody Radiation and Photons",
+      "description": "Introduce quantization through the crisis that classical thermal radiation could not solve.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Blackbody idealization",
+          "description": "Model radiation from objects by studying a universal thermal spectrum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cavity radiation"
+            },
+            {
+              "type": "concept",
+              "title": "Emissivity"
+            },
+            {
+              "type": "concept",
+              "title": "Stefan-Boltzmann and Wien laws"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classical failure",
+          "description": "See why equipartition predicts the ultraviolet catastrophe.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rayleigh-Jeans law"
+            },
+            {
+              "type": "concept",
+              "title": "Mode counting"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of classical reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planck quantization",
+          "description": "Understand how energy packets resolve the spectrum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planck constant"
+            },
+            {
+              "type": "concept",
+              "title": "Oscillator energy levels"
+            },
+            {
+              "type": "concept",
+              "title": "Spectrum fitting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Photon model",
+          "description": "Treat light as quanta when energy exchange requires it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "E = hf"
+            },
+            {
+              "type": "concept",
+              "title": "Intensity versus photon number"
+            },
+            {
+              "type": "concept",
+              "title": "Radiation temperature"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Photoelectric and Compton Effects",
+      "description": "Use decisive experiments to understand when light behaves like particles and how photons exchange energy and momentum.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Photoelectric effect",
+          "description": "Explain electron emission by photon energy rather than wave intensity alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Work function"
+            },
+            {
+              "type": "concept",
+              "title": "Stopping potential"
+            },
+            {
+              "type": "concept",
+              "title": "Threshold frequency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Einstein's photon interpretation",
+          "description": "Connect experimental slopes and intercepts to h and material properties.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Energy balance"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Intensity dependence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compton scattering",
+          "description": "Show that photons carry momentum through wavelength-shift experiments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scattering geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Compton wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation derivation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental signatures",
+          "description": "Learn what counts as strong evidence in modern physics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data plots"
+            },
+            {
+              "type": "concept",
+              "title": "Systematic uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Detector response"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Matter Waves and Uncertainty",
+      "description": "Develop the wave nature of matter and the uncertainty principles that shape quantum reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "De Broglie hypothesis",
+          "description": "Assign wavelengths to particles and predict diffraction effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electron wavelength"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum relation"
+            },
+            {
+              "type": "concept",
+              "title": "Crystal diffraction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wave-particle duality",
+          "description": "Interpret why electrons, photons, and other quanta resist purely classical categories.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double-slit evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Interference visibility"
+            },
+            {
+              "type": "concept",
+              "title": "Which-path information"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wave packets",
+          "description": "Represent localized particles as superpositions of waves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Group velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Phase velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Packet spreading"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty principles",
+          "description": "Understand uncertainty as a structural limit from wave mechanics, not merely poor instruments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position-momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Energy-time"
+            },
+            {
+              "type": "concept",
+              "title": "Fourier viewpoint"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Schrodinger Equation Introduction",
+      "description": "Give students their first working equation for quantum dynamics and probability amplitudes.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Wavefunction meaning",
+          "description": "Treat the wavefunction as an amplitude whose squared magnitude predicts measurement probabilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Probability current"
+            },
+            {
+              "type": "concept",
+              "title": "Born rule"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time-independent equation",
+          "description": "Solve stationary-state problems where energy values are quantized.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hamiltonian operator"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalue problems"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Infinite and finite wells",
+          "description": "Use simple models to see discrete energy levels and tunneling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standing waves"
+            },
+            {
+              "type": "concept",
+              "title": "Penetration depth"
+            },
+            {
+              "type": "concept",
+              "title": "Energy quantization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Barriers and tunneling",
+          "description": "Understand how quantum systems can pass through classically forbidden regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transmission probability"
+            },
+            {
+              "type": "concept",
+              "title": "Scanning tunneling microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Nuclear decay link"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quantum Models, Operators, and Simple Systems",
+      "description": "Move beyond the first equation into the reusable mathematical language students need for later quantum mechanics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Operators and observables",
+          "description": "Connect measurable quantities to mathematical operations on states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hermitian operators"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenstates"
+            },
+            {
+              "type": "concept",
+              "title": "Expectation values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Commutators",
+          "description": "See how noncommuting observables encode uncertainty and measurement order.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Canonical commutator"
+            },
+            {
+              "type": "concept",
+              "title": "Simultaneous eigenstates"
+            },
+            {
+              "type": "concept",
+              "title": "Physical examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Harmonic oscillator",
+          "description": "Study the central model for vibrations, radiation, and quantum fields.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ladder operators conceptually"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-point energy"
+            },
+            {
+              "type": "concept",
+              "title": "Spectroscopy links"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spin and two-state systems",
+          "description": "Introduce intrinsic angular momentum and the simplest quantum state space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spin-1/2"
+            },
+            {
+              "type": "concept",
+              "title": "Stern-Gerlach experiment"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Atomic Structure and Spectra",
+      "description": "Explain why atoms have discrete spectra and how quantum mechanics organizes electronic structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bohr model and its limits",
+          "description": "Use a historically important model while seeing why full quantum mechanics is needed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radius and energy levels"
+            },
+            {
+              "type": "concept",
+              "title": "Rydberg formula"
+            },
+            {
+              "type": "concept",
+              "title": "Model assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hydrogen atom structure",
+          "description": "Connect quantum numbers to orbital shapes, energies, and degeneracies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "N, l, m quantum numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Radial and angular behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Energy degeneracy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spectral lines",
+          "description": "Read atomic spectra as transitions between quantized states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Emission and absorption"
+            },
+            {
+              "type": "concept",
+              "title": "Selection rules"
+            },
+            {
+              "type": "concept",
+              "title": "Line broadening"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Many-electron atoms",
+          "description": "Introduce screening, periodic trends, and spin-orbit effects.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pauli principle"
+            },
+            {
+              "type": "concept",
+              "title": "Electron configurations"
+            },
+            {
+              "type": "concept",
+              "title": "Fine structure"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Molecules, Solids, and Semiconductors",
+      "description": "Extend modern physics from atoms to the materials and devices that define contemporary technology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Molecular states",
+          "description": "Show how atomic orbitals combine into bonding, vibration, and rotation spectra.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bonding and antibonding"
+            },
+            {
+              "type": "concept",
+              "title": "Vibrational modes"
+            },
+            {
+              "type": "concept",
+              "title": "Rotational spectra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Band theory",
+          "description": "Explain how many atomic levels form bands and band gaps in solids.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Valence and conduction bands"
+            },
+            {
+              "type": "concept",
+              "title": "Density of states"
+            },
+            {
+              "type": "concept",
+              "title": "Fermi level"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Semiconductors",
+          "description": "Connect quantum energy bands to diodes, sensors, solar cells, and transistors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Intrinsic and extrinsic materials"
+            },
+            {
+              "type": "concept",
+              "title": "P-n junctions"
+            },
+            {
+              "type": "concept",
+              "title": "Optoelectronic devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantum materials outlook",
+          "description": "Give students a route into condensed matter and nanoscience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Phonons"
+            },
+            {
+              "type": "concept",
+              "title": "Superconductivity overview"
+            },
+            {
+              "type": "concept",
+              "title": "Low-dimensional systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nuclear Physics and Radioactivity",
+      "description": "Understand nuclear structure, instability, radiation, and the energy scales that govern nuclei.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nuclear size and binding",
+          "description": "Explain why nuclei hold together and why mass differences matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nuclear radius"
+            },
+            {
+              "type": "concept",
+              "title": "Binding energy curve"
+            },
+            {
+              "type": "concept",
+              "title": "Liquid-drop intuition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radioactive decay",
+          "description": "Model random decay with clear statistical and physical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Half-life"
+            },
+            {
+              "type": "concept",
+              "title": "Activity"
+            },
+            {
+              "type": "concept",
+              "title": "Alpha, beta, gamma decay"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nuclear reactions",
+          "description": "Apply conservation laws to fission, fusion, and scattering.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Q-value"
+            },
+            {
+              "type": "concept",
+              "title": "Reaction thresholds"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-section concept"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Radiation detection and safety",
+          "description": "Understand how radiation is measured and managed responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geiger counters"
+            },
+            {
+              "type": "concept",
+              "title": "Scintillation"
+            },
+            {
+              "type": "concept",
+              "title": "Dose and shielding"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Particle Physics Overview",
+      "description": "Introduce the Standard Model as the modern classification of matter and interactions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Particle families",
+          "description": "Organize matter into leptons, quarks, and composite particles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hadrons"
+            },
+            {
+              "type": "concept",
+              "title": "Baryons and mesons"
+            },
+            {
+              "type": "concept",
+              "title": "Generations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forces and mediators",
+          "description": "Connect interactions to exchange particles and conservation laws.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electromagnetic, weak, strong"
+            },
+            {
+              "type": "concept",
+              "title": "Gauge bosons"
+            },
+            {
+              "type": "concept",
+              "title": "Charge and flavor"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Accelerators and detectors",
+          "description": "See how particle physics evidence is produced.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Colliders"
+            },
+            {
+              "type": "concept",
+              "title": "Tracking detectors"
+            },
+            {
+              "type": "concept",
+              "title": "Calorimetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Beyond the introductory picture",
+          "description": "Frame what is known and what remains unsettled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neutrino masses"
+            },
+            {
+              "type": "concept",
+              "title": "Dark matter motivation"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry breaking overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Modern Physics Experiments and Analysis",
+      "description": "Turn theory into practice through data, uncertainty, instrumentation, and reproducible reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Classic experiment replication",
+          "description": "Use canonical experiments to connect concept, apparatus, and inference.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Photoelectric effect lab"
+            },
+            {
+              "type": "concept",
+              "title": "Electron diffraction"
+            },
+            {
+              "type": "concept",
+              "title": "Franck-Hertz or spectroscopy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty and fitting",
+          "description": "Quantify how much confidence a measurement deserves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Propagation of error"
+            },
+            {
+              "type": "concept",
+              "title": "Least-squares fitting"
+            },
+            {
+              "type": "concept",
+              "title": "Residual analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instrumentation",
+          "description": "Understand the measurement chain from physical signal to interpreted data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Detectors"
+            },
+            {
+              "type": "concept",
+              "title": "Signal conditioning"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducible analysis",
+          "description": "Make calculations auditable and communicable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Versioned notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Data provenance"
+            },
+            {
+              "type": "concept",
+              "title": "Figures and captions"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

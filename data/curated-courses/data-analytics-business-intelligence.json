@@ -1,0 +1,1416 @@
+{
+  "slug": "data-analytics-business-intelligence",
+  "title": "Data Analytics / Business Intelligence",
+  "description": "Data Analytics / Business Intelligence covers analytics strategy and data literacy through warehousing, ETL, SQL, OLAP, dashboards, statistics, predictive analytics, ML basics, big data, and governance, closing with self-service BI, performance management, and a portfolio-ready capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Analytics Strategy and Decision Intelligence",
+      "description": "Connect data analytics and BI to decisions, business processes, roles, metrics, and performance improvement.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Analytics Strategy and Decision Intelligence",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision types"
+            },
+            {
+              "type": "concept",
+              "title": "Analytics maturity"
+            },
+            {
+              "type": "concept",
+              "title": "Decision rights"
+            },
+            {
+              "type": "concept",
+              "title": "Business questions"
+            },
+            {
+              "type": "concept",
+              "title": "Value alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Analytics Strategy and Decision Intelligence",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision maps"
+            },
+            {
+              "type": "concept",
+              "title": "KPI Trees"
+            },
+            {
+              "type": "concept",
+              "title": "Analytics use-case canvas"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder interviews"
+            },
+            {
+              "type": "concept",
+              "title": "Benefits logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Analytics Strategy and Decision Intelligence",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Operational decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Data-driven culture"
+            },
+            {
+              "type": "concept",
+              "title": "Prioritization"
+            },
+            {
+              "type": "concept",
+              "title": "Measurable value"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Literacy and Statistical Thinking",
+      "description": "Build the habits needed to question data quality, variation, uncertainty, and evidence before making claims.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Data Literacy and Statistical Thinking",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data types"
+            },
+            {
+              "type": "concept",
+              "title": "Distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Data Literacy and Statistical Thinking",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Descriptive statistics"
+            },
+            {
+              "type": "concept",
+              "title": "Data profiling"
+            },
+            {
+              "type": "concept",
+              "title": "Exploratory analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Data Literacy and Statistical Thinking",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Better interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding false certainty"
+            },
+            {
+              "type": "concept",
+              "title": "Analytical communication"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder trust"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible decisions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Warehousing and Dimensional Modeling",
+      "description": "Design BI-ready data structures that support reliable reporting and analysis across business domains.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Data Warehousing and Dimensional Modeling",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Facts"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Grain"
+            },
+            {
+              "type": "concept",
+              "title": "Star schema"
+            },
+            {
+              "type": "concept",
+              "title": "Slowly changing dimensions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Data Warehousing and Dimensional Modeling",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kimball modeling"
+            },
+            {
+              "type": "concept",
+              "title": "Data marts"
+            },
+            {
+              "type": "concept",
+              "title": "Conformed dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Schema design"
+            },
+            {
+              "type": "concept",
+              "title": "Business process matrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Data Warehousing and Dimensional Modeling",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Consistent reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Scalable BI"
+            },
+            {
+              "type": "concept",
+              "title": "Metric definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Enterprise data reuse"
+            },
+            {
+              "type": "concept",
+              "title": "Historical analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "ETL and ELT Pipelines",
+      "description": "Move and transform data from source systems into analytics-ready structures with quality controls.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of ETL and ELT Pipelines",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source systems"
+            },
+            {
+              "type": "concept",
+              "title": "Extraction"
+            },
+            {
+              "type": "concept",
+              "title": "Transformation"
+            },
+            {
+              "type": "concept",
+              "title": "Loading"
+            },
+            {
+              "type": "concept",
+              "title": "Orchestration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for ETL and ELT Pipelines",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ETL Mapping"
+            },
+            {
+              "type": "concept",
+              "title": "ELT Patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Pipeline scheduling"
+            },
+            {
+              "type": "concept",
+              "title": "Validation checks"
+            },
+            {
+              "type": "concept",
+              "title": "Error handling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of ETL and ELT Pipelines",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trusted dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Repeatable refreshes"
+            },
+            {
+              "type": "concept",
+              "title": "Auditability"
+            },
+            {
+              "type": "concept",
+              "title": "Automation"
+            },
+            {
+              "type": "concept",
+              "title": "Operational reliability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "SQL for Analytics",
+      "description": "Use SQL to retrieve, join, aggregate, transform, and analyze business data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of SQL for Analytics",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relational tables"
+            },
+            {
+              "type": "concept",
+              "title": "Joins"
+            },
+            {
+              "type": "concept",
+              "title": "Aggregation"
+            },
+            {
+              "type": "concept",
+              "title": "Filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Window logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for SQL for Analytics",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CTEs"
+            },
+            {
+              "type": "concept",
+              "title": "Window functions"
+            },
+            {
+              "type": "concept",
+              "title": "Subqueries"
+            },
+            {
+              "type": "concept",
+              "title": "Date logic"
+            },
+            {
+              "type": "concept",
+              "title": "Analytical SQL patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of SQL for Analytics",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ad hoc analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboard datasets"
+            },
+            {
+              "type": "concept",
+              "title": "Cohort analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Operational reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Self-service support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "OLAP, Semantic Layers, and Reporting",
+      "description": "Create governed analytical layers that let users slice, drill, compare, and report consistently.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of OLAP, Semantic Layers, and Reporting",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cubes"
+            },
+            {
+              "type": "concept",
+              "title": "Measures"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Hierarchies"
+            },
+            {
+              "type": "concept",
+              "title": "Semantic models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for OLAP, Semantic Layers, and Reporting",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "OLAP Operations"
+            },
+            {
+              "type": "concept",
+              "title": "Power BI Models"
+            },
+            {
+              "type": "concept",
+              "title": "Tableau data sources"
+            },
+            {
+              "type": "concept",
+              "title": "Metric catalogs"
+            },
+            {
+              "type": "concept",
+              "title": "Report publishing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of OLAP, Semantic Layers, and Reporting",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single source of truth"
+            },
+            {
+              "type": "concept",
+              "title": "Consistent KPIs"
+            },
+            {
+              "type": "concept",
+              "title": "Governed self-service"
+            },
+            {
+              "type": "concept",
+              "title": "Faster reporting"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced spreadsheet chaos"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dashboard Design with Power BI and Tableau",
+      "description": "Build dashboards that are useful, readable, accessible, and aligned to real decision workflows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Dashboard Design with Power BI and Tableau",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Visual perception"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboard layout"
+            },
+            {
+              "type": "concept",
+              "title": "Interactivity"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility"
+            },
+            {
+              "type": "concept",
+              "title": "Cognitive load"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Dashboard Design with Power BI and Tableau",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power BI visuals"
+            },
+            {
+              "type": "concept",
+              "title": "Tableau dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Filters"
+            },
+            {
+              "type": "concept",
+              "title": "Drill-through"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboard QA"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Dashboard Design with Power BI and Tableau",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Executive dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Operational monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Manager self-service"
+            },
+            {
+              "type": "concept",
+              "title": "Performance reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Decision support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Storytelling and Analytics Communication",
+      "description": "Turn analysis into a clear narrative that helps audiences understand evidence, tradeoffs, and recommended action.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Storytelling and Analytics Communication",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Audience analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Narrative arc"
+            },
+            {
+              "type": "concept",
+              "title": "Context"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Annotation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Storytelling and Analytics Communication",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Storyboards"
+            },
+            {
+              "type": "concept",
+              "title": "Slide narratives"
+            },
+            {
+              "type": "concept",
+              "title": "Visualization critique"
+            },
+            {
+              "type": "concept",
+              "title": "Executive summaries"
+            },
+            {
+              "type": "concept",
+              "title": "Data storytelling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Storytelling and Analytics Communication",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Persuasion with evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Decision meetings"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Action orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Portfolio artifacts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Statistical Methods for Business Analytics",
+      "description": "Apply core statistics to understand relationships, compare groups, estimate uncertainty, and interpret patterns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Statistical Methods for Business Analytics",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Probability"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Regression"
+            },
+            {
+              "type": "concept",
+              "title": "Classification metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Experimental logic"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Statistical Methods for Business Analytics",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "T-tests"
+            },
+            {
+              "type": "concept",
+              "title": "Chi-square tests"
+            },
+            {
+              "type": "concept",
+              "title": "Regression models"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Residual checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Statistical Methods for Business Analytics",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Market analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Operations improvement"
+            },
+            {
+              "type": "concept",
+              "title": "Quality monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Customer insights"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence-based recommendations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Predictive Analytics",
+      "description": "Use historical data to forecast outcomes and prioritize future business action.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Predictive Analytics",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prediction tasks"
+            },
+            {
+              "type": "concept",
+              "title": "Training data"
+            },
+            {
+              "type": "concept",
+              "title": "Features"
+            },
+            {
+              "type": "concept",
+              "title": "Validation"
+            },
+            {
+              "type": "concept",
+              "title": "Model metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Predictive Analytics",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regression"
+            },
+            {
+              "type": "concept",
+              "title": "Classification"
+            },
+            {
+              "type": "concept",
+              "title": "Time-series forecasting"
+            },
+            {
+              "type": "concept",
+              "title": "Decision trees"
+            },
+            {
+              "type": "concept",
+              "title": "Model evaluation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Predictive Analytics",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand forecasting"
+            },
+            {
+              "type": "concept",
+              "title": "Churn risk"
+            },
+            {
+              "type": "concept",
+              "title": "Lead scoring"
+            },
+            {
+              "type": "concept",
+              "title": "Fraud flags"
+            },
+            {
+              "type": "concept",
+              "title": "Resource planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Machine Learning Basics for BI",
+      "description": "Understand ML concepts enough to collaborate with data scientists and use automated analytics responsibly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Machine Learning Basics for BI",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Supervised learning"
+            },
+            {
+              "type": "concept",
+              "title": "Unsupervised learning"
+            },
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "Interpretability"
+            },
+            {
+              "type": "concept",
+              "title": "Model bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Machine Learning Basics for BI",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AutoML"
+            },
+            {
+              "type": "concept",
+              "title": "Clustering"
+            },
+            {
+              "type": "concept",
+              "title": "Feature engineering"
+            },
+            {
+              "type": "concept",
+              "title": "Model comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Explainability tools"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Machine Learning Basics for BI",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Augmented BI"
+            },
+            {
+              "type": "concept",
+              "title": "Anomaly detection"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Big Data Tools and Modern Lakehouse Platforms",
+      "description": "Recognize when data volume, velocity, or variety requires distributed or cloud-native analytics architecture.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Big Data Tools and Modern Lakehouse Platforms",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Big data characteristics"
+            },
+            {
+              "type": "concept",
+              "title": "Batch vs streaming"
+            },
+            {
+              "type": "concept",
+              "title": "Data lake"
+            },
+            {
+              "type": "concept",
+              "title": "Lakehouse"
+            },
+            {
+              "type": "concept",
+              "title": "Distributed compute"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Big Data Tools and Modern Lakehouse Platforms",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hadoop concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Spark"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud storage"
+            },
+            {
+              "type": "concept",
+              "title": "Notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Data catalogs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Big Data Tools and Modern Lakehouse Platforms",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Large-scale analytics"
+            },
+            {
+              "type": "concept",
+              "title": "Log analysis"
+            },
+            {
+              "type": "concept",
+              "title": "IoT Data"
+            },
+            {
+              "type": "concept",
+              "title": "Scalable pipelines"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud cost awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Governance, Privacy, and Ethics",
+      "description": "Ensure analytics work is trusted, lawful, secure, fair, and respectful of people represented in the data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Data Governance, Privacy, and Ethics",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Stewardship"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Bias"
+            },
+            {
+              "type": "concept",
+              "title": "Lineage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Data Governance, Privacy, and Ethics",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data catalogs"
+            },
+            {
+              "type": "concept",
+              "title": "Access controls"
+            },
+            {
+              "type": "concept",
+              "title": "Retention rules"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy checks"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical review"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Data Governance, Privacy, and Ethics",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trustworthy BI"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance"
+            },
+            {
+              "type": "concept",
+              "title": "Risk reduction"
+            },
+            {
+              "type": "concept",
+              "title": "User confidence"
+            },
+            {
+              "type": "concept",
+              "title": "Responsible reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Business Performance Management and KPI Design",
+      "description": "Create metrics that accurately reflect strategy, operations, customers, and financial performance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Business Performance Management and KPI Design",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "KPIs"
+            },
+            {
+              "type": "concept",
+              "title": "Leading indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Lagging indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Targets"
+            },
+            {
+              "type": "concept",
+              "title": "Metric definitions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Business Performance Management and KPI Design",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Balanced scorecards"
+            },
+            {
+              "type": "concept",
+              "title": "Metric trees"
+            },
+            {
+              "type": "concept",
+              "title": "Variance analysis"
+            },
+            {
+              "type": "concept",
+              "title": "OKRs"
+            },
+            {
+              "type": "concept",
+              "title": "Performance dashboards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Business Performance Management and KPI Design",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Management routines"
+            },
+            {
+              "type": "concept",
+              "title": "Accountability"
+            },
+            {
+              "type": "concept",
+              "title": "Strategy execution"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous improvement"
+            },
+            {
+              "type": "concept",
+              "title": "Executive reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Advanced Analytics Operations and Self-Service BI",
+      "description": "Support a sustainable analytics environment where business users can safely explore data without breaking governance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Advanced Analytics Operations and Self-Service BI",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Self-service BI"
+            },
+            {
+              "type": "concept",
+              "title": "Data products"
+            },
+            {
+              "type": "concept",
+              "title": "Analytics operations"
+            },
+            {
+              "type": "concept",
+              "title": "Enablement"
+            },
+            {
+              "type": "concept",
+              "title": "Governance balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Advanced Analytics Operations and Self-Service BI",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Certified datasets"
+            },
+            {
+              "type": "concept",
+              "title": "Training programs"
+            },
+            {
+              "type": "concept",
+              "title": "Support workflows"
+            },
+            {
+              "type": "concept",
+              "title": "Usage monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "Community of practice"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Advanced Analytics Operations and Self-Service BI",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scaled adoption"
+            },
+            {
+              "type": "concept",
+              "title": "Reduced bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "Analyst productivity"
+            },
+            {
+              "type": "concept",
+              "title": "Data culture"
+            },
+            {
+              "type": "concept",
+              "title": "Quality control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated BI and Analytics Capstone",
+      "description": "Synthesize data modeling, ETL, SQL, dashboards, analysis, governance, and storytelling into a complete BI solution.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Conceptual Foundations of Integrated BI and Analytics Capstone",
+          "description": "This subtopic gives students the core language and mental models needed to reason about the topic before choosing tools or methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business problem"
+            },
+            {
+              "type": "concept",
+              "title": "Data sources"
+            },
+            {
+              "type": "concept",
+              "title": "BI Architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Success metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder needs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Methods and Tools for Integrated BI and Analytics Capstone",
+          "description": "This subtopic turns the idea into repeatable professional practice through models, workflows, artifacts, and technical tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Warehouse design"
+            },
+            {
+              "type": "concept",
+              "title": "ETL Plan"
+            },
+            {
+              "type": "concept",
+              "title": "SQL Dataset"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboard build"
+            },
+            {
+              "type": "concept",
+              "title": "Final presentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applied Business Use of Integrated BI and Analytics Capstone",
+          "description": "This subtopic emphasizes how the topic changes decisions, systems, risks, adoption, and measurable organizational outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Portfolio project"
+            },
+            {
+              "type": "concept",
+              "title": "Decision recommendation"
+            },
+            {
+              "type": "concept",
+              "title": "Governance rationale"
+            },
+            {
+              "type": "concept",
+              "title": "Usability testing"
+            },
+            {
+              "type": "concept",
+              "title": "Executive-ready demo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

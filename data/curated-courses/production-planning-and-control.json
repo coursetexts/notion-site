@@ -1,0 +1,768 @@
+{
+  "slug": "production-planning-and-control",
+  "title": "Production Planning and Control",
+  "description": "Production Planning and Control covers the planning hierarchy from forecasting through aggregate planning, MPS, MRP, capacity, inventory, lean/JIT, shop-floor control, TOC, and ERP.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Forecasting",
+      "description": "Estimate future demand so production plans begin with a credible view of need and uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Forecasting Purpose",
+          "description": "Forecasting gives planners a working estimate of demand while making uncertainty explicit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Forecast horizon"
+            },
+            {
+              "type": "concept",
+              "title": "Forecast granularity"
+            },
+            {
+              "type": "concept",
+              "title": "Independent Versus Dependent Demand"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantitative Methods",
+          "description": "Quantitative methods turn historical data into repeatable planning inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moving averages"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential smoothing"
+            },
+            {
+              "type": "concept",
+              "title": "Trend models"
+            },
+            {
+              "type": "concept",
+              "title": "Seasonal indexes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forecast Accuracy and Judgment",
+          "description": "A forecast is useful only when its error and assumptions are understood.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MAD, MAPE, and Bias"
+            },
+            {
+              "type": "concept",
+              "title": "Tracking signals"
+            },
+            {
+              "type": "concept",
+              "title": "Outliers and promotions"
+            },
+            {
+              "type": "concept",
+              "title": "Collaborative demand review"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Aggregate Planning",
+      "description": "Balance demand, capacity, workforce, inventory, and cost over a medium-term planning horizon.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Planning Hierarchy",
+          "description": "Aggregate planning sits between strategy and detailed scheduling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sales and operations planning"
+            },
+            {
+              "type": "concept",
+              "title": "Product families"
+            },
+            {
+              "type": "concept",
+              "title": "Planning horizon"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling plans"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacity and Demand Strategies",
+          "description": "Managers choose how much to chase demand, level production, or use buffers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Level strategy"
+            },
+            {
+              "type": "concept",
+              "title": "Chase strategy"
+            },
+            {
+              "type": "concept",
+              "title": "Hybrid strategy"
+            },
+            {
+              "type": "concept",
+              "title": "Backorders and subcontracting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cost Tradeoffs",
+          "description": "Aggregate plans make cost consequences visible before committing resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular time"
+            },
+            {
+              "type": "concept",
+              "title": "Overtime"
+            },
+            {
+              "type": "concept",
+              "title": "Hiring and layoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory holding and shortage costs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Master Production Scheduling",
+      "description": "Translate aggregate plans into specific end-item production quantities and timing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "MPS Role",
+          "description": "The master schedule turns high-level plans into specific end-item commitments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "End-item schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Time buckets"
+            },
+            {
+              "type": "concept",
+              "title": "Planning time fence"
+            },
+            {
+              "type": "concept",
+              "title": "Available-to-Promise"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Schedule Construction",
+          "description": "Students learn how demand, inventory, and lot sizing shape MPS quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forecast consumption"
+            },
+            {
+              "type": "concept",
+              "title": "Customer orders"
+            },
+            {
+              "type": "concept",
+              "title": "Projected available balance"
+            },
+            {
+              "type": "concept",
+              "title": "Lot-for-Lot and Fixed Lots"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Schedule Stability",
+          "description": "A useful MPS balances responsiveness with operational stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nervousness"
+            },
+            {
+              "type": "concept",
+              "title": "Frozen zone"
+            },
+            {
+              "type": "concept",
+              "title": "Slushy zone"
+            },
+            {
+              "type": "concept",
+              "title": "Change control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Material Requirements Planning (MRP)",
+      "description": "Convert the master schedule and bills of materials into time-phased component and purchasing requirements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "MRP Inputs",
+          "description": "MRP depends on clean product, inventory, and schedule data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Master production schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Bill of materials"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory records"
+            },
+            {
+              "type": "concept",
+              "title": "Lead times"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "MRP Logic",
+          "description": "MRP calculates what is needed, when it is needed, and when orders should be released.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gross requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Scheduled receipts"
+            },
+            {
+              "type": "concept",
+              "title": "Net requirements"
+            },
+            {
+              "type": "concept",
+              "title": "Planned order releases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "MRP Outputs and Issues",
+          "description": "Outputs drive purchasing and shop orders, but data quality and assumptions matter.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Purchase requisitions"
+            },
+            {
+              "type": "concept",
+              "title": "Work orders"
+            },
+            {
+              "type": "concept",
+              "title": "Exception messages"
+            },
+            {
+              "type": "concept",
+              "title": "Lot sizing and safety stock"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capacity Planning",
+      "description": "Check whether labor, machines, suppliers, and work centers can support the production plan.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capacity Concepts",
+          "description": "Capacity planning checks whether the plan is physically achievable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Effective capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Utilization"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rough-Cut and Detailed Capacity",
+          "description": "Different planning levels need different levels of capacity detail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rough-cut capacity planning"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity requirements planning"
+            },
+            {
+              "type": "concept",
+              "title": "Work-center loads"
+            },
+            {
+              "type": "concept",
+              "title": "Load profiles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Managing Capacity Constraints",
+          "description": "When capacity is short, planners choose operational responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overtime"
+            },
+            {
+              "type": "concept",
+              "title": "Alternate routings"
+            },
+            {
+              "type": "concept",
+              "title": "Subcontracting"
+            },
+            {
+              "type": "concept",
+              "title": "Bottleneck prioritization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Inventory Management",
+      "description": "Control raw materials, work-in-process, and finished goods while balancing service, cost, and risk.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Inventory Roles and Costs",
+          "description": "Inventory buffers uncertainty but ties up money and hides problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Raw materials"
+            },
+            {
+              "type": "concept",
+              "title": "Work-in-process"
+            },
+            {
+              "type": "concept",
+              "title": "Finished goods"
+            },
+            {
+              "type": "concept",
+              "title": "Holding, Ordering, and Shortage Costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control Policies",
+          "description": "Inventory policies define when to order and how much to order.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EOQ"
+            },
+            {
+              "type": "concept",
+              "title": "Reorder point"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic review"
+            },
+            {
+              "type": "concept",
+              "title": "Safety stock"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service and Uncertainty",
+          "description": "Inventory decisions should connect service targets with variability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Demand variability"
+            },
+            {
+              "type": "concept",
+              "title": "Lead-time variability"
+            },
+            {
+              "type": "concept",
+              "title": "Cycle service level"
+            },
+            {
+              "type": "concept",
+              "title": "ABC Classification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Just-in-Time and Lean Production",
+      "description": "Improve flow, reduce waste, and use pull systems to align production with actual demand.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lean Principles",
+          "description": "Lean focuses on flow, value, and waste reduction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Value and waste"
+            },
+            {
+              "type": "concept",
+              "title": "Flow"
+            },
+            {
+              "type": "concept",
+              "title": "Pull"
+            },
+            {
+              "type": "concept",
+              "title": "Respect for people"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "JIT Systems",
+          "description": "JIT aligns replenishment and production with actual consumption.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kanban"
+            },
+            {
+              "type": "concept",
+              "title": "Small lot sizes"
+            },
+            {
+              "type": "concept",
+              "title": "Setup reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Supplier synchronization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous Improvement",
+          "description": "Lean production depends on ongoing problem solving, not one-time tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kaizen"
+            },
+            {
+              "type": "concept",
+              "title": "Standard work"
+            },
+            {
+              "type": "concept",
+              "title": "5S"
+            },
+            {
+              "type": "concept",
+              "title": "Value stream mapping"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Shop Floor Control and Scheduling",
+      "description": "Sequence, dispatch, monitor, and adjust work as production moves through the factory.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scheduling Objectives",
+          "description": "Scheduling turns plans into executable sequences on real resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Due-date performance"
+            },
+            {
+              "type": "concept",
+              "title": "Flow time"
+            },
+            {
+              "type": "concept",
+              "title": "WIP Control"
+            },
+            {
+              "type": "concept",
+              "title": "Machine utilization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sequencing Rules",
+          "description": "Dispatching rules provide practical ways to prioritize work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First come first served"
+            },
+            {
+              "type": "concept",
+              "title": "Shortest processing time"
+            },
+            {
+              "type": "concept",
+              "title": "Earliest due date"
+            },
+            {
+              "type": "concept",
+              "title": "Critical ratio"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control and Feedback",
+          "description": "Shop-floor control closes the loop between planned and actual production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dispatch lists"
+            },
+            {
+              "type": "concept",
+              "title": "Work order tracking"
+            },
+            {
+              "type": "concept",
+              "title": "Expediting"
+            },
+            {
+              "type": "concept",
+              "title": "Production status reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Theory of Constraints",
+      "description": "Identify bottlenecks and manage flow around the system constraint to improve throughput.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Constraint Identification",
+          "description": "TOC starts by finding the resource limiting system throughput.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bottlenecks"
+            },
+            {
+              "type": "concept",
+              "title": "Throughput"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory"
+            },
+            {
+              "type": "concept",
+              "title": "Operating expense"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Drum-Buffer-Rope",
+          "description": "Drum-buffer-rope synchronizes flow around the constraint.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Drum schedule"
+            },
+            {
+              "type": "concept",
+              "title": "Buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Rope release"
+            },
+            {
+              "type": "concept",
+              "title": "Protective capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous Improvement Cycle",
+          "description": "TOC provides a focused improvement sequence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exploit the constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Subordinate other resources"
+            },
+            {
+              "type": "concept",
+              "title": "Elevate capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Avoid inertia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enterprise Resource Planning (ERP)",
+      "description": "Understand how integrated information systems support planning, execution, inventory, and control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ERP Role",
+          "description": "ERP integrates planning and execution data across functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integrated database"
+            },
+            {
+              "type": "concept",
+              "title": "Planning modules"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory records"
+            },
+            {
+              "type": "concept",
+              "title": "Purchasing and production orders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data Discipline",
+          "description": "ERP performance depends on accurate master data and process ownership.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Item master"
+            },
+            {
+              "type": "concept",
+              "title": "BOM Accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "Routings"
+            },
+            {
+              "type": "concept",
+              "title": "Lead Times and Inventory Accuracy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ERP and Decision Making",
+          "description": "ERP systems support visibility, coordination, and control, but planners still need judgment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MRP Runs"
+            },
+            {
+              "type": "concept",
+              "title": "Exception management"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboards and KPIs"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation risks"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

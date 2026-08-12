@@ -1,0 +1,768 @@
+{
+  "slug": "introduction-to-biomedical-engineering",
+  "title": "Introduction to Biomedical Engineering",
+  "description": "Introduction to Biomedical Engineering surveys clinical needs, design process, ethics, biomaterials and biomechanics, signals and imaging, tissue engineering, regulation, documentation, and a cornerstone health-technology project.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Scope of Biomedical Engineering and Health Technology",
+      "description": "Map the field of biomedical engineering and the kinds of health problems engineers help solve.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "BME as an Interdisciplinary Field",
+          "description": "The goal is to see BME as a bridge between engineering, biology, medicine, and patient care.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Engineering analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Biological systems"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical translation"
+            },
+            {
+              "type": "concept",
+              "title": "Health technology ecosystems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major BME Domains",
+          "description": "A map of the field helps students understand where later courses fit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biomechanics"
+            },
+            {
+              "type": "concept",
+              "title": "Biomaterials"
+            },
+            {
+              "type": "concept",
+              "title": "Biomedical instrumentation"
+            },
+            {
+              "type": "concept",
+              "title": "Imaging, signals, tissue engineering, and biotransport"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Healthcare Problems and Impact",
+          "description": "Biomedical engineering is motivated by needs that affect patients, clinicians, and health systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diagnosis"
+            },
+            {
+              "type": "concept",
+              "title": "Treatment and rehabilitation"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and prevention"
+            },
+            {
+              "type": "concept",
+              "title": "Accessibility and global health"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Engineering Design Process for Medical Problems",
+      "description": "Use an engineering design process to translate health needs into safe, useful device or system concepts.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Problem Definition",
+          "description": "Good medical design starts with a carefully framed problem, not a favorite technology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Need statement"
+            },
+            {
+              "type": "concept",
+              "title": "User population"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical workflow"
+            },
+            {
+              "type": "concept",
+              "title": "Problem scope and constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concept Generation and Selection",
+          "description": "Students learn to create multiple options and choose among them using evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Brainstorming"
+            },
+            {
+              "type": "concept",
+              "title": "Decision matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Design criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs among safety, cost, usability, and performance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Prototyping and Testing",
+          "description": "Prototypes make assumptions visible and allow early learning before expensive development.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low-fidelity prototypes"
+            },
+            {
+              "type": "concept",
+              "title": "Bench testing"
+            },
+            {
+              "type": "concept",
+              "title": "Usability testing"
+            },
+            {
+              "type": "concept",
+              "title": "Iteration and design refinement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Clinical Needs Finding and Stakeholder Analysis",
+      "description": "Learn how engineers identify real clinical problems and understand the people affected by them.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Needs Finding Methods",
+          "description": "Needs finding teaches students to observe care environments and listen before proposing solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Observation"
+            },
+            {
+              "type": "concept",
+              "title": "Interviews"
+            },
+            {
+              "type": "concept",
+              "title": "Journey mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Pain points and unmet needs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stakeholder Mapping",
+          "description": "Medical technologies affect many people beyond the direct patient-user pair.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Patients"
+            },
+            {
+              "type": "concept",
+              "title": "Clinicians and caregivers"
+            },
+            {
+              "type": "concept",
+              "title": "Hospitals and payers"
+            },
+            {
+              "type": "concept",
+              "title": "Regulators and manufacturers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Translating Needs into Requirements",
+          "description": "Requirements convert qualitative needs into measurable engineering targets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "User needs"
+            },
+            {
+              "type": "concept",
+              "title": "Design inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Performance specifications"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and acceptance criteria"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ethics, Safety, and Human-Subject Considerations",
+      "description": "Introduce the ethical and safety responsibilities involved in health technology development.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biomedical Ethics",
+          "description": "Ethical reasoning helps students balance benefit, risk, autonomy, and justice.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Beneficence and nonmaleficence"
+            },
+            {
+              "type": "concept",
+              "title": "Autonomy and informed consent"
+            },
+            {
+              "type": "concept",
+              "title": "Justice and access"
+            },
+            {
+              "type": "concept",
+              "title": "Conflicts of interest"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human Subjects and Privacy",
+          "description": "Health technology development must protect people and sensitive information.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IRB Overview"
+            },
+            {
+              "type": "concept",
+              "title": "Human-subject research"
+            },
+            {
+              "type": "concept",
+              "title": "HIPAA and Privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Data security basics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Safety and Risk Thinking",
+          "description": "Safety is designed in from the beginning, not inspected in at the end.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hazards"
+            },
+            {
+              "type": "concept",
+              "title": "Risk severity and probability"
+            },
+            {
+              "type": "concept",
+              "title": "Failure modes"
+            },
+            {
+              "type": "concept",
+              "title": "Mitigation and residual risk"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biomaterials, Biomechanics, and Device Examples",
+      "description": "Survey materials, mechanics, implants, prosthetics, and devices that interact with the body.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Biomaterials Basics",
+          "description": "Biomaterials show how material properties and biological response interact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Metals, ceramics, polymers, and composites"
+            },
+            {
+              "type": "concept",
+              "title": "Biocompatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Surface properties"
+            },
+            {
+              "type": "concept",
+              "title": "Degradation and wear"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomechanics Basics",
+          "description": "Biomechanics applies mechanics to tissues, organs, movement, and implants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stress and strain"
+            },
+            {
+              "type": "concept",
+              "title": "Tissue mechanics"
+            },
+            {
+              "type": "concept",
+              "title": "Musculoskeletal forces"
+            },
+            {
+              "type": "concept",
+              "title": "Cardiovascular mechanics preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Medical Device Examples",
+          "description": "Examples make abstract domains concrete and clinically meaningful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Orthopedic implants"
+            },
+            {
+              "type": "concept",
+              "title": "Stents and catheters"
+            },
+            {
+              "type": "concept",
+              "title": "Prosthetics and orthotics"
+            },
+            {
+              "type": "concept",
+              "title": "Drug delivery and wound-care devices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biomedical Signals, Imaging, and Instrumentation Overview",
+      "description": "Introduce how physiological signals and images are measured, processed, and used clinically.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Physiological Signals",
+          "description": "Signals are measurable traces of biological function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ECG"
+            },
+            {
+              "type": "concept",
+              "title": "EEG"
+            },
+            {
+              "type": "concept",
+              "title": "EMG"
+            },
+            {
+              "type": "concept",
+              "title": "Blood pressure and pulse oximetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensors and Instrumentation",
+          "description": "Instrumentation converts biological events into reliable electrical or digital measurements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrodes"
+            },
+            {
+              "type": "concept",
+              "title": "Transducers"
+            },
+            {
+              "type": "concept",
+              "title": "Amplification and filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration and noise"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomedical Imaging",
+          "description": "Imaging technologies reveal anatomy and function without direct visualization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "X-Ray and CT"
+            },
+            {
+              "type": "concept",
+              "title": "MRI"
+            },
+            {
+              "type": "concept",
+              "title": "Ultrasound"
+            },
+            {
+              "type": "concept",
+              "title": "Optical and nuclear imaging overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cellular, Tissue, and Molecular Engineering Overview",
+      "description": "Survey how engineering tools are used at molecular, cellular, and tissue scales.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cellular Engineering",
+          "description": "Cellular engineering uses cells as targets, tools, and building blocks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell culture"
+            },
+            {
+              "type": "concept",
+              "title": "Cell signaling"
+            },
+            {
+              "type": "concept",
+              "title": "Gene editing overview"
+            },
+            {
+              "type": "concept",
+              "title": "Cell therapies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue Engineering",
+          "description": "Tissue engineering combines cells, scaffolds, and signals to repair or replace tissue.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scaffold materials"
+            },
+            {
+              "type": "concept",
+              "title": "Growth factors"
+            },
+            {
+              "type": "concept",
+              "title": "Bioreactors"
+            },
+            {
+              "type": "concept",
+              "title": "Regenerative medicine examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Molecular and Diagnostic Engineering",
+          "description": "Molecular tools support sensing, diagnostics, and therapy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biosensors"
+            },
+            {
+              "type": "concept",
+              "title": "Molecular biomarkers"
+            },
+            {
+              "type": "concept",
+              "title": "Drug delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Point-of-care diagnostics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Regulatory Pathways and Risk Classification",
+      "description": "Explain how medical technologies are classified, tested, documented, and regulated.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Medical Device Classification",
+          "description": "Classification determines how much evidence and oversight a device requires.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Class I, II, and III Devices"
+            },
+            {
+              "type": "concept",
+              "title": "Intended use"
+            },
+            {
+              "type": "concept",
+              "title": "Predicate devices"
+            },
+            {
+              "type": "concept",
+              "title": "Software as a Medical Device Preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulatory Pathways",
+          "description": "Students get a first look at how devices move from concept to patient use.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FDA Overview"
+            },
+            {
+              "type": "concept",
+              "title": "510(k)"
+            },
+            {
+              "type": "concept",
+              "title": "De Novo"
+            },
+            {
+              "type": "concept",
+              "title": "Premarket approval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Verification, Validation, and Quality",
+          "description": "Regulatory work depends on documented evidence that the right product was built and works safely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design controls"
+            },
+            {
+              "type": "concept",
+              "title": "Verification Versus Validation"
+            },
+            {
+              "type": "concept",
+              "title": "Quality systems"
+            },
+            {
+              "type": "concept",
+              "title": "Traceability and design history files"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Team Communication and Technical Documentation",
+      "description": "Practice clear engineering communication for teams, clinical stakeholders, and design records.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Technical Writing",
+          "description": "Biomedical engineers must communicate clearly across technical and clinical audiences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Memos"
+            },
+            {
+              "type": "concept",
+              "title": "Design reports"
+            },
+            {
+              "type": "concept",
+              "title": "Executive summaries"
+            },
+            {
+              "type": "concept",
+              "title": "Figures and tables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Team Collaboration",
+          "description": "BME projects are team-based and require structured coordination.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roles and responsibilities"
+            },
+            {
+              "type": "concept",
+              "title": "Meeting notes"
+            },
+            {
+              "type": "concept",
+              "title": "Decision records"
+            },
+            {
+              "type": "concept",
+              "title": "Conflict and feedback practices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design Documentation",
+          "description": "Documentation preserves rationale and supports safety, testing, and regulatory review.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design notebooks"
+            },
+            {
+              "type": "concept",
+              "title": "Requirements traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Risk files"
+            },
+            {
+              "type": "concept",
+              "title": "Test protocols and results"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cornerstone Prototype or Concept Design Project",
+      "description": "Synthesize the course through a small health-technology concept, prototype, or design proposal.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Project Framing",
+          "description": "The project begins by turning a health problem into a focused engineering challenge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clinical need"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder map"
+            },
+            {
+              "type": "concept",
+              "title": "Design constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Success metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Concept and Prototype Development",
+          "description": "Students practice making a plausible solution, not just describing one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Concept sketches"
+            },
+            {
+              "type": "concept",
+              "title": "Materials and components"
+            },
+            {
+              "type": "concept",
+              "title": "Prototype plan"
+            },
+            {
+              "type": "concept",
+              "title": "Preliminary testing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Presentation and Reflection",
+          "description": "The final deliverable builds communication habits and shows what was learned.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Design review"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Next steps and ethical considerations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

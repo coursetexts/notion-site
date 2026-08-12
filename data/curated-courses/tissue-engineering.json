@@ -1,0 +1,776 @@
+{
+  "slug": "tissue-engineering",
+  "title": "Tissue Engineering",
+  "description": "Tissue Engineering introduces students to the engineering of living constructs for repair, regeneration, disease modeling, and translational biomedical applications. The course integrates cell sources, extracellular matrix, scaffold materials, cell-material interactions, biochemical signals, bioreactors, transport limits, tissue characterization, tissue-specific applications, and regulatory translation.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Tissue Engineering and Regenerative Medicine Foundations",
+      "description": "Students begin with the field's core design logic: combine cells, materials, biochemical signals, and physical cues to repair, replace, or regenerate tissue function.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field overview",
+          "description": "The point is to understand tissue engineering as an integration of biology, materials science, and engineering design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cells, scaffolds, signals, and bioreactors"
+            },
+            {
+              "type": "concept",
+              "title": "Repair versus replacement versus regeneration"
+            },
+            {
+              "type": "concept",
+              "title": "In vitro models and therapeutic constructs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Design constraints",
+          "description": "Students learn why engineered tissues must satisfy biological, mechanical, transport, and manufacturing constraints at once.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Target tissue function"
+            },
+            {
+              "type": "concept",
+              "title": "Scale and geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Clinical need and use environment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Historical and translational context",
+          "description": "This subtopic frames how the field developed and why translation remains challenging.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Skin substitutes and cartilage repair"
+            },
+            {
+              "type": "concept",
+              "title": "Regenerative medicine milestones"
+            },
+            {
+              "type": "concept",
+              "title": "Common barriers to clinical adoption"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell Sources and Stem-Cell Biology",
+      "description": "This module examines where therapeutic or experimental cells come from and how their phenotype, potency, and culture conditions shape tissue-engineered constructs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell source selection",
+          "description": "Students learn to choose cells based on availability, function, expansion capacity, and immune compatibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Autologous, allogeneic, and xenogeneic cells"
+            },
+            {
+              "type": "concept",
+              "title": "Primary cells and cell lines"
+            },
+            {
+              "type": "concept",
+              "title": "Donor variability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stem-cell potency and differentiation",
+          "description": "Stem cells are useful because they can self-renew and produce specialized cells under the right cues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adult stem cells"
+            },
+            {
+              "type": "concept",
+              "title": "Embryonic stem cells"
+            },
+            {
+              "type": "concept",
+              "title": "Induced pluripotent stem cells"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell culture fundamentals",
+          "description": "Reliable tissue engineering depends on controlled, sterile, reproducible cell culture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sterile technique"
+            },
+            {
+              "type": "concept",
+              "title": "Media, serum, and supplements"
+            },
+            {
+              "type": "concept",
+              "title": "Passage number, viability, and phenotype"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Extracellular Matrix Structure and Function",
+      "description": "Students learn how native ECM provides biochemical, mechanical, and architectural cues that guide tissue development and repair.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "ECM composition",
+          "description": "The ECM is not just filler; it is a dynamic biochemical and mechanical environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Collagens, Elastin, Laminin, Fibronectin"
+            },
+            {
+              "type": "concept",
+              "title": "Proteoglycans and glycosaminoglycans"
+            },
+            {
+              "type": "concept",
+              "title": "Basement membrane versus interstitial matrix"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ECM signaling",
+          "description": "Students learn how cells read matrix cues and convert them into behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell adhesion ligands"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix-bound growth factors"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanotransduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "ECM remodeling",
+          "description": "Tissues mature and heal through synthesis, degradation, and reorganization of matrix.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matrix metalloproteinases"
+            },
+            {
+              "type": "concept",
+              "title": "Crosslinking"
+            },
+            {
+              "type": "concept",
+              "title": "Fibrosis and scar formation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Scaffold Materials and Fabrication",
+      "description": "This topic focuses on designing material environments that support cell attachment, organization, growth, degradation, and tissue formation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Material classes",
+          "description": "Scaffolds are chosen for mechanics, degradation, chemistry, manufacturability, and biocompatibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Natural polymers"
+            },
+            {
+              "type": "concept",
+              "title": "Synthetic polymers"
+            },
+            {
+              "type": "concept",
+              "title": "Ceramics, composites, and hydrogels"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fabrication methods",
+          "description": "Students learn how scaffold architecture is created and controlled.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Solvent casting and particulate leaching"
+            },
+            {
+              "type": "concept",
+              "title": "Electrospinning"
+            },
+            {
+              "type": "concept",
+              "title": "3D Bioprinting and Additive Manufacturing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scaffold design properties",
+          "description": "The design must support cells while evolving as tissue forms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Porosity and pore interconnectivity"
+            },
+            {
+              "type": "concept",
+              "title": "Degradation rate"
+            },
+            {
+              "type": "concept",
+              "title": "Stiffness, swelling, and permeability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cell-Material Interactions and Host Response",
+      "description": "Students study how cells, proteins, immune cells, and tissues respond when engineered materials are introduced.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Protein adsorption and adhesion",
+          "description": "The first biological layer on a material often determines how cells respond.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface energy and wettability"
+            },
+            {
+              "type": "concept",
+              "title": "Adsorbed protein identity"
+            },
+            {
+              "type": "concept",
+              "title": "Integrin-mediated adhesion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cell behavior on materials",
+          "description": "Students learn how surfaces and mechanics guide cell fate and tissue formation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Attachment and spreading"
+            },
+            {
+              "type": "concept",
+              "title": "Migration and proliferation"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiation and matrix deposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Host response",
+          "description": "Implanted constructs must manage inflammation, fibrosis, infection, and integration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Acute and chronic inflammation"
+            },
+            {
+              "type": "concept",
+              "title": "Foreign body response"
+            },
+            {
+              "type": "concept",
+              "title": "Immune modulation and wound healing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Growth Factors, Morphogens, and Biochemical Signaling",
+      "description": "This module covers how soluble and immobilized signals regulate proliferation, migration, differentiation, and spatial organization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Signal types",
+          "description": "Biochemical signals instruct cells to divide, migrate, differentiate, or organize.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Growth factors"
+            },
+            {
+              "type": "concept",
+              "title": "Cytokines and chemokines"
+            },
+            {
+              "type": "concept",
+              "title": "Morphogens and developmental cues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Delivery strategies",
+          "description": "Students learn how signal presentation affects timing, location, and dose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bolus delivery"
+            },
+            {
+              "type": "concept",
+              "title": "Controlled release"
+            },
+            {
+              "type": "concept",
+              "title": "Immobilized and gradient signals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal design challenges",
+          "description": "Effective signaling must balance potency, stability, cost, and safety.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dose-response behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Synergy and antagonism"
+            },
+            {
+              "type": "concept",
+              "title": "Off-target effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bioreactors and Mechanical Stimulation",
+      "description": "Students learn how controlled culture systems provide transport, perfusion, strain, compression, shear, or electrical cues for tissue maturation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bioreactor roles",
+          "description": "Bioreactors provide controlled environments that static culture cannot.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Perfusion"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing and oxygenation"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring pH, Oxygen, and Nutrients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanical cues",
+          "description": "Many tissues require physical stimulation to mature properly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tension and compression"
+            },
+            {
+              "type": "concept",
+              "title": "Fluid shear"
+            },
+            {
+              "type": "concept",
+              "title": "Electrical and cyclic stimulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scale-up and control",
+          "description": "Students connect bench culture to repeatable production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sterility and closed systems"
+            },
+            {
+              "type": "concept",
+              "title": "Sensors and feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Batch variability and process control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vascularization and Mass-Transport Limits",
+      "description": "This topic addresses one of tissue engineering's central bottlenecks: keeping cells alive and functional in thick or metabolically active constructs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transport limits",
+          "description": "Cells need oxygen and nutrients, and diffusion alone often fails in thick constructs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion distance"
+            },
+            {
+              "type": "concept",
+              "title": "Oxygen consumption"
+            },
+            {
+              "type": "concept",
+              "title": "Nutrient and waste gradients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vascularization strategies",
+          "description": "Students learn approaches for forming or supporting blood-supply networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angiogenic factors"
+            },
+            {
+              "type": "concept",
+              "title": "Prevascularized constructs"
+            },
+            {
+              "type": "concept",
+              "title": "Microfluidic channels and sacrificial templates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling and design",
+          "description": "Transport calculations help estimate whether a construct can survive and mature.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fick's Law Estimates"
+            },
+            {
+              "type": "concept",
+              "title": "Perfusion flow rates"
+            },
+            {
+              "type": "concept",
+              "title": "Cell density and geometry tradeoffs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tissue Characterization, Imaging, and Functional Testing",
+      "description": "Students learn how engineered tissues are evaluated using structural, biochemical, mechanical, and biological assays.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Structural characterization",
+          "description": "Students learn how to observe scaffold and tissue organization.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Histology and staining"
+            },
+            {
+              "type": "concept",
+              "title": "Confocal and fluorescence microscopy"
+            },
+            {
+              "type": "concept",
+              "title": "Micro-CT and Electron Microscopy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biochemical and cellular assays",
+          "description": "Assays determine whether cells are alive, differentiated, and producing matrix.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Viability and proliferation"
+            },
+            {
+              "type": "concept",
+              "title": "Gene and protein expression"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix content assays"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanical and functional testing",
+          "description": "Engineered tissues must be judged by performance, not appearance alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tensile, compressive, and shear tests"
+            },
+            {
+              "type": "concept",
+              "title": "Barrier and permeability tests"
+            },
+            {
+              "type": "concept",
+              "title": "Electrophysiology, contractility, or tissue-specific function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tissue-Specific Engineering Applications",
+      "description": "This module compares strategies for bone, cartilage, skin, vascular, cardiac, neural, and organoid systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Musculoskeletal tissues",
+          "description": "Bone and cartilage examples show how mechanics, mineralization, and matrix organization drive design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bone scaffolds and osteogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Cartilage repair and chondrogenesis"
+            },
+            {
+              "type": "concept",
+              "title": "Tendon and ligament alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Soft and vascular tissues",
+          "description": "Students compare designs where elasticity, perfusion, and barrier function are central.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Skin and wound healing"
+            },
+            {
+              "type": "concept",
+              "title": "Blood vessels and endothelialization"
+            },
+            {
+              "type": "concept",
+              "title": "Cardiac patches and contractile tissues"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Advanced biological models",
+          "description": "Organoids and organ-on-chip systems show how tissue engineering supports research and drug testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neural tissue models"
+            },
+            {
+              "type": "concept",
+              "title": "Liver and kidney constructs"
+            },
+            {
+              "type": "concept",
+              "title": "Microphysiological systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Translation, Immunogenicity, Regulation, and Ethics",
+      "description": "Students connect laboratory design to clinical translation, immune compatibility, manufacturing, quality systems, regulatory pathways, and ethical concerns.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Immunogenicity and safety",
+          "description": "Clinical constructs must avoid harmful immune, infection, tumor, or degradation responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Immune rejection"
+            },
+            {
+              "type": "concept",
+              "title": "Sterility and contamination"
+            },
+            {
+              "type": "concept",
+              "title": "Tumorigenicity and ectopic tissue formation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Manufacturing and regulation",
+          "description": "Students learn why reproducible manufacturing and quality systems are central to translation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GMP Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Quality control and release criteria"
+            },
+            {
+              "type": "concept",
+              "title": "FDA Pathways and Evidence Expectations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethical and societal issues",
+          "description": "Tissue engineering raises questions about cell sourcing, consent, access, and responsible innovation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stem-cell ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Donor consent and privacy"
+            },
+            {
+              "type": "concept",
+              "title": "Equity, cost, and clinical trial responsibility"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Design of a Tissue-Engineered Construct",
+      "description": "The course closes with an integrated design project where students justify cells, scaffolds, signals, culture conditions, testing plans, and translational constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Design requirements",
+          "description": "Students define what the construct must do before choosing technology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clinical indication"
+            },
+            {
+              "type": "concept",
+              "title": "Target tissue function"
+            },
+            {
+              "type": "concept",
+              "title": "Constraints and success metrics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated construct design",
+          "description": "The project requires choices that fit together biologically and practically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cell source"
+            },
+            {
+              "type": "concept",
+              "title": "Scaffold material and architecture"
+            },
+            {
+              "type": "concept",
+              "title": "Signals, bioreactor conditions, and culture timeline"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation and translation plan",
+          "description": "Students propose how to test whether the design works and what would be needed for translation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characterization assays"
+            },
+            {
+              "type": "concept",
+              "title": "Preclinical model considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Risk, regulation, and manufacturing plan"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

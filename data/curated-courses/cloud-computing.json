@@ -1,0 +1,1416 @@
+{
+  "slug": "cloud-computing",
+  "title": "Cloud Computing",
+  "description": "Cloud Computing covers strategy and architecture through compute, providers, identity, networking, storage, security, containers, Kubernetes, automation, DevOps, reliability, cost, data services, governance, and a deployment capstone.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Cloud Strategy, Service Models, and Shared Responsibility",
+      "description": "Frame cloud computing as a business and technical operating model built around IaaS, PaaS, SaaS, managed services, and shared responsibility.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cloud value proposition",
+          "description": "Students learn why organizations adopt cloud services and where cloud creates or fails to create value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Agility and speed to provision"
+            },
+            {
+              "type": "concept",
+              "title": "Capital expense versus operating expense"
+            },
+            {
+              "type": "concept",
+              "title": "Scalability and global reach"
+            },
+            {
+              "type": "concept",
+              "title": "Managed services and operational offload"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud risks, lock-in, and organizational readiness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service and deployment models",
+          "description": "The point is to distinguish what the provider manages from what the customer still owns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "IaaS, PaaS, SaaS, and Serverless"
+            },
+            {
+              "type": "concept",
+              "title": "Public, private, hybrid, and multi-cloud"
+            },
+            {
+              "type": "concept",
+              "title": "Managed versus self-managed services"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud regions, zones, and locality"
+            },
+            {
+              "type": "concept",
+              "title": "Shared responsibility model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cloud operating model",
+          "description": "Learners connect cloud technology to people, processes, governance, and delivery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cloud center of excellence"
+            },
+            {
+              "type": "concept",
+              "title": "Landing zones"
+            },
+            {
+              "type": "concept",
+              "title": "Policies and standards"
+            },
+            {
+              "type": "concept",
+              "title": "Skill development and certification paths"
+            },
+            {
+              "type": "concept",
+              "title": "Service ownership and support model"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Virtualization, Compute, Images, and Elastic Infrastructure",
+      "description": "Understand how virtual machines, images, autoscaling, and elastic compute turn hardware capacity into programmable infrastructure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Virtualization foundations",
+          "description": "Students learn how virtualization abstracts compute resources from physical hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypervisors"
+            },
+            {
+              "type": "concept",
+              "title": "Virtual machines"
+            },
+            {
+              "type": "concept",
+              "title": "Images and snapshots"
+            },
+            {
+              "type": "concept",
+              "title": "Resource allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Host and guest operating systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Elastic compute",
+          "description": "The gist is to provision and scale compute capacity based on workload needs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Instance families and sizing"
+            },
+            {
+              "type": "concept",
+              "title": "Autoscaling groups"
+            },
+            {
+              "type": "concept",
+              "title": "Launch templates"
+            },
+            {
+              "type": "concept",
+              "title": "Spot, reserved, and on-demand models"
+            },
+            {
+              "type": "concept",
+              "title": "Compute lifecycle management"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Operational compute practices",
+          "description": "Learners manage compute for reliability, patching, and repeatability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Golden images"
+            },
+            {
+              "type": "concept",
+              "title": "Bootstrapping and user data"
+            },
+            {
+              "type": "concept",
+              "title": "Patch management"
+            },
+            {
+              "type": "concept",
+              "title": "Configuration drift"
+            },
+            {
+              "type": "concept",
+              "title": "Instance health checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Major Cloud Platforms: AWS, Azure, Google Cloud, and Multi-Cloud Thinking",
+      "description": "Compare provider services, terminology, regions, pricing models, and architectural patterns across the major clouds.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Provider concepts",
+          "description": "Students compare core cloud primitives across major platforms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AWS Accounts, Azure Subscriptions, and GCP Projects"
+            },
+            {
+              "type": "concept",
+              "title": "Regions and availability zones"
+            },
+            {
+              "type": "concept",
+              "title": "Compute, storage, database, and network naming"
+            },
+            {
+              "type": "concept",
+              "title": "Marketplace and managed services"
+            },
+            {
+              "type": "concept",
+              "title": "Provider documentation and consoles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Service selection",
+          "description": "The point is to map workload needs to appropriate cloud services.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Virtual machines versus managed compute"
+            },
+            {
+              "type": "concept",
+              "title": "Object storage versus databases"
+            },
+            {
+              "type": "concept",
+              "title": "Managed Kubernetes versus Serverless"
+            },
+            {
+              "type": "concept",
+              "title": "Vendor-specific managed services"
+            },
+            {
+              "type": "concept",
+              "title": "Portability and interoperability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multi-cloud and hybrid realities",
+          "description": "Learners evaluate when multiple providers or hybrid infrastructure make sense.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regulatory and data residency drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Mergers and inherited platforms"
+            },
+            {
+              "type": "concept",
+              "title": "Latency and locality"
+            },
+            {
+              "type": "concept",
+              "title": "Operational complexity"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding accidental multi-cloud sprawl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Identity, Access Management, Governance, and Account Structure",
+      "description": "Use IAM, account/subscription design, policies, tagging, and governance guardrails to control cloud environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Identity and access",
+          "description": "Students learn to control who and what can access cloud resources.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Users, groups, roles, and service accounts"
+            },
+            {
+              "type": "concept",
+              "title": "Policies and permissions"
+            },
+            {
+              "type": "concept",
+              "title": "Least privilege"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-factor authentication"
+            },
+            {
+              "type": "concept",
+              "title": "Temporary credentials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Account and landing-zone design",
+          "description": "The gist is to organize cloud environments for security, billing, and operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accounts, subscriptions, folders, and projects"
+            },
+            {
+              "type": "concept",
+              "title": "Environment separation"
+            },
+            {
+              "type": "concept",
+              "title": "Network and security baselines"
+            },
+            {
+              "type": "concept",
+              "title": "Centralized logging"
+            },
+            {
+              "type": "concept",
+              "title": "Guardrails and policy enforcement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Governance practices",
+          "description": "Learners apply controls that keep cloud usage manageable over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tagging standards"
+            },
+            {
+              "type": "concept",
+              "title": "Naming conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Resource policies"
+            },
+            {
+              "type": "concept",
+              "title": "Access reviews"
+            },
+            {
+              "type": "concept",
+              "title": "Audit trails and compliance evidence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Networking, Connectivity, DNS, Load Balancing, and Edge Services",
+      "description": "Design secure, resilient cloud networks that connect users, applications, services, and hybrid environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Virtual networks",
+          "description": "Students learn how cloud networks are segmented and routed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "VPCs and VNets"
+            },
+            {
+              "type": "concept",
+              "title": "Subnets and CIDR Planning"
+            },
+            {
+              "type": "concept",
+              "title": "Route tables"
+            },
+            {
+              "type": "concept",
+              "title": "Security Groups and Network ACLs"
+            },
+            {
+              "type": "concept",
+              "title": "Private and public IP addressing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connectivity and traffic management",
+          "description": "The point is to connect users, services, and enterprise networks securely.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNS"
+            },
+            {
+              "type": "concept",
+              "title": "Load balancers"
+            },
+            {
+              "type": "concept",
+              "title": "VPN and Direct Connectivity"
+            },
+            {
+              "type": "concept",
+              "title": "NAT and Gateways"
+            },
+            {
+              "type": "concept",
+              "title": "Content delivery networks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Network security and troubleshooting",
+          "description": "Learners diagnose connectivity and reduce exposure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Firewall rules"
+            },
+            {
+              "type": "concept",
+              "title": "Zero trust concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Flow logs"
+            },
+            {
+              "type": "concept",
+              "title": "Packet captures and tests"
+            },
+            {
+              "type": "concept",
+              "title": "Common cloud network failure modes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Storage, Databases, Backup, and Data Lifecycle",
+      "description": "Select and operate object, block, file, relational, NoSQL, backup, and archival services for different workload needs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Storage services",
+          "description": "Students learn to choose storage based on access pattern, durability, and cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Object storage"
+            },
+            {
+              "type": "concept",
+              "title": "Block storage"
+            },
+            {
+              "type": "concept",
+              "title": "File storage"
+            },
+            {
+              "type": "concept",
+              "title": "Archive storage"
+            },
+            {
+              "type": "concept",
+              "title": "Storage classes and tiers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Managed databases",
+          "description": "The gist is to use managed data services without ignoring design and operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relational databases"
+            },
+            {
+              "type": "concept",
+              "title": "NoSQL databases"
+            },
+            {
+              "type": "concept",
+              "title": "Caching services"
+            },
+            {
+              "type": "concept",
+              "title": "Replication and read replicas"
+            },
+            {
+              "type": "concept",
+              "title": "Backups and point-in-time recovery"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data lifecycle",
+          "description": "Learners manage data from creation through retention and deletion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Versioning"
+            },
+            {
+              "type": "concept",
+              "title": "Lifecycle policies"
+            },
+            {
+              "type": "concept",
+              "title": "Encryption"
+            },
+            {
+              "type": "concept",
+              "title": "Data classification"
+            },
+            {
+              "type": "concept",
+              "title": "Retention and legal hold considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Security, Threats, Compliance, and Risk Management",
+      "description": "Apply security controls, monitoring, encryption, vulnerability management, compliance, and incident response to cloud systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cloud threat landscape",
+          "description": "Students learn common ways cloud environments fail or get compromised.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Misconfigured storage"
+            },
+            {
+              "type": "concept",
+              "title": "Over-Permissive IAM"
+            },
+            {
+              "type": "concept",
+              "title": "Leaked secrets"
+            },
+            {
+              "type": "concept",
+              "title": "Unpatched workloads"
+            },
+            {
+              "type": "concept",
+              "title": "Insecure network exposure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Security controls",
+          "description": "The point is to apply layered controls across identity, network, compute, data, and operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Encryption at rest and in transit"
+            },
+            {
+              "type": "concept",
+              "title": "Key management"
+            },
+            {
+              "type": "concept",
+              "title": "Security posture management"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerability scanning"
+            },
+            {
+              "type": "concept",
+              "title": "Endpoint and workload protection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Compliance and incident response",
+          "description": "Learners connect cloud operations to organizational risk management.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compliance frameworks"
+            },
+            {
+              "type": "concept",
+              "title": "Evidence collection"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud audit logs"
+            },
+            {
+              "type": "concept",
+              "title": "Incident response playbooks"
+            },
+            {
+              "type": "concept",
+              "title": "Business continuity requirements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Containers, Docker, Images, Registries, and Runtime Operations",
+      "description": "Package and run applications with containers, images, registries, configuration, networking, and operational controls.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Container concepts",
+          "description": "Students learn how containers package applications and dependencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Images and containers"
+            },
+            {
+              "type": "concept",
+              "title": "Dockerfiles"
+            },
+            {
+              "type": "concept",
+              "title": "Layers and caching"
+            },
+            {
+              "type": "concept",
+              "title": "Volumes"
+            },
+            {
+              "type": "concept",
+              "title": "Container networking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Build and registry workflow",
+          "description": "The gist is to move container artifacts through a controlled delivery process.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Image tagging"
+            },
+            {
+              "type": "concept",
+              "title": "Private registries"
+            },
+            {
+              "type": "concept",
+              "title": "Vulnerability scanning"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets and configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Promotion across environments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Container operations",
+          "description": "Learners run containers safely and troubleshoot common issues.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Runtime logs"
+            },
+            {
+              "type": "concept",
+              "title": "Resource limits"
+            },
+            {
+              "type": "concept",
+              "title": "Health checks"
+            },
+            {
+              "type": "concept",
+              "title": "Compose for local stacks"
+            },
+            {
+              "type": "concept",
+              "title": "Container security basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Kubernetes and Container Orchestration",
+      "description": "Deploy and operate containerized workloads with Kubernetes concepts, controllers, services, storage, security, and observability.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Kubernetes foundations",
+          "description": "Students learn the core objects that run containerized workloads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clusters and nodes"
+            },
+            {
+              "type": "concept",
+              "title": "Pods"
+            },
+            {
+              "type": "concept",
+              "title": "Deployments"
+            },
+            {
+              "type": "concept",
+              "title": "ReplicaSets"
+            },
+            {
+              "type": "concept",
+              "title": "Namespaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Services and configuration",
+          "description": "The point is to expose, configure, and update workloads reliably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Services and ingress"
+            },
+            {
+              "type": "concept",
+              "title": "ConfigMaps and Secrets"
+            },
+            {
+              "type": "concept",
+              "title": "Persistent volumes"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling updates"
+            },
+            {
+              "type": "concept",
+              "title": "Horizontal pod autoscaling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kubernetes operations",
+          "description": "Learners interpret cluster behavior and operate workloads responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "kubectl Basics"
+            },
+            {
+              "type": "concept",
+              "title": "Resource requests and limits"
+            },
+            {
+              "type": "concept",
+              "title": "Observability"
+            },
+            {
+              "type": "concept",
+              "title": "RBAC"
+            },
+            {
+              "type": "concept",
+              "title": "Managed Kubernetes services"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Infrastructure as Code, Configuration, and Automation",
+      "description": "Use declarative infrastructure, scripts, templates, and automation to create repeatable and reviewable cloud environments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Infrastructure as code",
+          "description": "Students learn to define infrastructure in reviewable, repeatable artifacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Declarative templates"
+            },
+            {
+              "type": "concept",
+              "title": "Terraform Concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Cloud-native templates"
+            },
+            {
+              "type": "concept",
+              "title": "State management"
+            },
+            {
+              "type": "concept",
+              "title": "Plan, apply, and destroy workflows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Configuration management",
+          "description": "The gist is to make environments consistent without manual console work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Environment variables"
+            },
+            {
+              "type": "concept",
+              "title": "Secrets"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter stores"
+            },
+            {
+              "type": "concept",
+              "title": "Bootstrapping"
+            },
+            {
+              "type": "concept",
+              "title": "Policy as code concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Automation practices",
+          "description": "Learners reduce errors by automating common cloud operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scripting with CLIs and SDKs"
+            },
+            {
+              "type": "concept",
+              "title": "Reusable modules"
+            },
+            {
+              "type": "concept",
+              "title": "Drift detection"
+            },
+            {
+              "type": "concept",
+              "title": "Automated teardown"
+            },
+            {
+              "type": "concept",
+              "title": "Documentation and runbooks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "DevOps, CI/CD, Release Management, and Cloud-Native Delivery",
+      "description": "Connect development, testing, deployment, and operations through CI/CD pipelines, environments, change control, and release strategy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "DevOps principles",
+          "description": "Students connect software delivery, operations, and feedback loops.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flow and feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Collaboration between dev and ops"
+            },
+            {
+              "type": "concept",
+              "title": "Small batch releases"
+            },
+            {
+              "type": "concept",
+              "title": "Automation culture"
+            },
+            {
+              "type": "concept",
+              "title": "Learning from incidents"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CI/CD Pipelines",
+          "description": "The point is to test and deploy cloud changes predictably.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Source control workflows"
+            },
+            {
+              "type": "concept",
+              "title": "Build pipelines"
+            },
+            {
+              "type": "concept",
+              "title": "Automated tests"
+            },
+            {
+              "type": "concept",
+              "title": "Artifact repositories"
+            },
+            {
+              "type": "concept",
+              "title": "Deployment stages and approvals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Release strategy",
+          "description": "Learners reduce release risk through thoughtful deployment patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Blue-green deployment"
+            },
+            {
+              "type": "concept",
+              "title": "Canary releases"
+            },
+            {
+              "type": "concept",
+              "title": "Feature flags"
+            },
+            {
+              "type": "concept",
+              "title": "Rollback plans"
+            },
+            {
+              "type": "concept",
+              "title": "Change records and release notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Observability, Reliability Engineering, Backup, and Disaster Recovery",
+      "description": "Design systems that can be monitored, recovered, scaled, and improved using logs, metrics, traces, SLOs, backups, and DR plans.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Observability foundations",
+          "description": "Students learn to see what cloud systems are doing in production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logs"
+            },
+            {
+              "type": "concept",
+              "title": "Metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Traces"
+            },
+            {
+              "type": "concept",
+              "title": "Dashboards"
+            },
+            {
+              "type": "concept",
+              "title": "Alerts and notification routing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reliability engineering",
+          "description": "The gist is to set reliability goals and design systems that meet them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SLIs, SLOs, and SLAs"
+            },
+            {
+              "type": "concept",
+              "title": "Error budgets"
+            },
+            {
+              "type": "concept",
+              "title": "Health checks"
+            },
+            {
+              "type": "concept",
+              "title": "Redundancy"
+            },
+            {
+              "type": "concept",
+              "title": "Chaos and failure testing concepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Backup and disaster recovery",
+          "description": "Learners plan for failure before it happens.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recovery point objective"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery time objective"
+            },
+            {
+              "type": "concept",
+              "title": "Backup testing"
+            },
+            {
+              "type": "concept",
+              "title": "Multi-zone and multi-region design"
+            },
+            {
+              "type": "concept",
+              "title": "Runbooks and tabletop exercises"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cost Management, FinOps, Capacity Planning, and Sustainability",
+      "description": "Manage cloud economics through forecasting, tagging, right-sizing, budgeting, chargeback, and sustainability-aware design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cloud cost fundamentals",
+          "description": "Students learn how cloud billing works and why small design choices can become large bills.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Compute, storage, network, and managed-service charges"
+            },
+            {
+              "type": "concept",
+              "title": "Pricing calculators"
+            },
+            {
+              "type": "concept",
+              "title": "Budgets and alerts"
+            },
+            {
+              "type": "concept",
+              "title": "Reserved and savings plans"
+            },
+            {
+              "type": "concept",
+              "title": "Data transfer costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "FinOps Practices",
+          "description": "The point is to create accountability for cloud spending.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tagging and allocation"
+            },
+            {
+              "type": "concept",
+              "title": "Showback and chargeback"
+            },
+            {
+              "type": "concept",
+              "title": "Rightsizing"
+            },
+            {
+              "type": "concept",
+              "title": "Waste detection"
+            },
+            {
+              "type": "concept",
+              "title": "Unit economics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capacity and sustainability",
+          "description": "Learners align performance, cost, and environmental responsibility.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forecasting demand"
+            },
+            {
+              "type": "concept",
+              "title": "Autoscaling policies"
+            },
+            {
+              "type": "concept",
+              "title": "Scheduling nonproduction workloads"
+            },
+            {
+              "type": "concept",
+              "title": "Efficient storage lifecycle"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon-aware and region-aware choices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Data, Analytics, Serverless, and Event-Driven Services",
+      "description": "Use managed analytics, serverless functions, queues, events, and data services to build scalable cloud solutions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Serverless compute",
+          "description": "Students learn where functions and managed execution models fit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functions as a service"
+            },
+            {
+              "type": "concept",
+              "title": "Triggers and events"
+            },
+            {
+              "type": "concept",
+              "title": "Cold starts"
+            },
+            {
+              "type": "concept",
+              "title": "Timeouts and limits"
+            },
+            {
+              "type": "concept",
+              "title": "Use cases and anti-patterns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Event-driven architecture",
+          "description": "The gist is to decouple systems using messaging and event services.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Queues"
+            },
+            {
+              "type": "concept",
+              "title": "Topics and pub-sub"
+            },
+            {
+              "type": "concept",
+              "title": "Event buses"
+            },
+            {
+              "type": "concept",
+              "title": "Dead-letter queues"
+            },
+            {
+              "type": "concept",
+              "title": "Idempotent processing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cloud data and analytics services",
+          "description": "Learners connect cloud infrastructure to decision support.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Data lakes"
+            },
+            {
+              "type": "concept",
+              "title": "Managed warehouses"
+            },
+            {
+              "type": "concept",
+              "title": "ETL and ELT Services"
+            },
+            {
+              "type": "concept",
+              "title": "Streaming analytics"
+            },
+            {
+              "type": "concept",
+              "title": "BI and Dashboard Integration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Architecture, Migration, Enterprise Integration, and Governance",
+      "description": "Design cloud architectures that align with enterprise goals, migration needs, integration requirements, compliance, and operating models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Architecture frameworks",
+          "description": "Students learn to use structured guidance rather than ad hoc cloud diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Well-architected pillars"
+            },
+            {
+              "type": "concept",
+              "title": "Reference architectures"
+            },
+            {
+              "type": "concept",
+              "title": "Landing zones"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture decision records"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Migration strategy",
+          "description": "The point is to plan cloud adoption based on application, data, and organizational readiness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "6 Rs of Migration"
+            },
+            {
+              "type": "concept",
+              "title": "Application assessment"
+            },
+            {
+              "type": "concept",
+              "title": "Dependency mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Hybrid integration"
+            },
+            {
+              "type": "concept",
+              "title": "Cutover and rollback planning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enterprise integration and governance",
+          "description": "Learners align cloud projects with the broader IT environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Identity integration"
+            },
+            {
+              "type": "concept",
+              "title": "Network integration"
+            },
+            {
+              "type": "concept",
+              "title": "Enterprise architecture alignment"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance and procurement"
+            },
+            {
+              "type": "concept",
+              "title": "Operating model and change management"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cloud Capstone: Secure, Observable, Cost-Aware Deployment Portfolio",
+      "description": "Synthesize architecture, deployment, security, automation, observability, backup, cost management, and documentation in a cloud capstone.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capstone scope",
+          "description": "Students define a realistic cloud solution with clear users, workload needs, and constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Use case and stakeholder brief"
+            },
+            {
+              "type": "concept",
+              "title": "Architecture diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Service selection rationale"
+            },
+            {
+              "type": "concept",
+              "title": "Security and compliance assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Success criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated implementation",
+          "description": "The point is to demonstrate cloud skills in a working, reviewable deployment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infrastructure as code"
+            },
+            {
+              "type": "concept",
+              "title": "Compute and storage deployment"
+            },
+            {
+              "type": "concept",
+              "title": "Network and IAM Configuration"
+            },
+            {
+              "type": "concept",
+              "title": "Container or serverless workload"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring and backup configuration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional portfolio",
+          "description": "Learners produce artifacts that can be shown to instructors, employers, or project stakeholders.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "README and Runbook"
+            },
+            {
+              "type": "concept",
+              "title": "Cost estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Security review"
+            },
+            {
+              "type": "concept",
+              "title": "Disaster recovery plan"
+            },
+            {
+              "type": "concept",
+              "title": "Demo and executive summary"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

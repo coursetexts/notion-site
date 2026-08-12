@@ -1,0 +1,1296 @@
+{
+  "slug": "ecology",
+  "title": "Ecology",
+  "description": "Ecology explains how organisms interact with each other and their physical environment across scales. The syllabus expands population, community, ecosystem, landscape, and applied ecology, with field methods and data interpretation woven throughout.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Ecological Scales and Experimental Design",
+      "description": "This section develops ecological scales and experimental design through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make ecological scales and experimental design precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Organism"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            },
+            {
+              "type": "concept",
+              "title": "Ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Landscape"
+            },
+            {
+              "type": "concept",
+              "title": "RCT"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with ecological scales and experimental design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply organism in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare population with community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of randomization"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how organism affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Population Growth and Regulation",
+      "description": "This section develops population growth and regulation through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make population growth and regulation precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential growth"
+            },
+            {
+              "type": "concept",
+              "title": "Logistic growth"
+            },
+            {
+              "type": "concept",
+              "title": "Carrying capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Density dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Solow model"
+            },
+            {
+              "type": "concept",
+              "title": "TFP"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with population growth and regulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply exponential growth in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare logistic growth with carrying capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how exponential growth affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Life-History Strategies",
+      "description": "This section develops life-history strategies through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make life-history strategies precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Survivorship curve"
+            },
+            {
+              "type": "concept",
+              "title": "Fecundity"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "r/K selection"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with life-history strategies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply survivorship curve in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare fecundity with tradeoff"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how survivorship curve affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Species Interactions",
+      "description": "This section develops species interactions through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make species interactions precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Competition"
+            },
+            {
+              "type": "concept",
+              "title": "Predation"
+            },
+            {
+              "type": "concept",
+              "title": "Mutualism"
+            },
+            {
+              "type": "concept",
+              "title": "Commensalism"
+            },
+            {
+              "type": "concept",
+              "title": "Parasitism"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with species interactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply competition in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare predation with mutualism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how competition affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Community Structure and Biodiversity",
+      "description": "This section develops community structure and biodiversity through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make community structure and biodiversity precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Species richness"
+            },
+            {
+              "type": "concept",
+              "title": "Evenness"
+            },
+            {
+              "type": "concept",
+              "title": "Keystone species"
+            },
+            {
+              "type": "concept",
+              "title": "Succession"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with community structure and biodiversity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply species richness in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare evenness with keystone species"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how species richness affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Food Webs and Trophic Dynamics",
+      "description": "This section develops food webs and trophic dynamics through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make food webs and trophic dynamics precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Trophic level"
+            },
+            {
+              "type": "concept",
+              "title": "Energy transfer"
+            },
+            {
+              "type": "concept",
+              "title": "Top-down control"
+            },
+            {
+              "type": "concept",
+              "title": "Bottom-up control"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with food webs and trophic dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply trophic level in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare energy transfer with top-down control"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how trophic level affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ecosystem Productivity and Energy Flow",
+      "description": "This section develops ecosystem productivity and energy flow through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make ecosystem productivity and energy flow precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPP"
+            },
+            {
+              "type": "concept",
+              "title": "NPP"
+            },
+            {
+              "type": "concept",
+              "title": "Biomass"
+            },
+            {
+              "type": "concept",
+              "title": "Respiration"
+            },
+            {
+              "type": "concept",
+              "title": "Energy flow"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with ecosystem productivity and energy flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply GPP in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare NPP with biomass"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how GPP affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biogeochemical and Nutrient Cycles",
+      "description": "This section develops biogeochemical and nutrient cycles through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make biogeochemical and nutrient cycles precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Nitrogen cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Phosphorus cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with biogeochemical and nutrient cycles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply carbon cycle in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare nitrogen cycle with phosphorus cycle"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how carbon cycle affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biomes, Climate, and Global Ecology",
+      "description": "This section develops biomes, climate, and global ecology through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make biomes, climate, and global ecology precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Adaptation"
+            },
+            {
+              "type": "concept",
+              "title": "Resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon externality"
+            },
+            {
+              "type": "concept",
+              "title": "Food security"
+            },
+            {
+              "type": "concept",
+              "title": "Sustainable development"
+            },
+            {
+              "type": "concept",
+              "title": "Climate diagram"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with biomes, climate, and global ecology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply adaptation in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare resilience with carbon externality"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of precipitation"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how adaptation affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Disturbance, Succession, and Resilience",
+      "description": "This section develops disturbance, succession, and resilience through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make disturbance, succession, and resilience precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Resilience"
+            },
+            {
+              "type": "concept",
+              "title": "Resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Primary succession"
+            },
+            {
+              "type": "concept",
+              "title": "Secondary succession"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with disturbance, succession, and resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply resilience in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare resistance with primary succession"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how resilience affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Conservation Biology and Biodiversity Loss",
+      "description": "This section develops conservation biology and biodiversity loss through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make conservation biology and biodiversity loss precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biodiversity hotspot"
+            },
+            {
+              "type": "concept",
+              "title": "Fragmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Edge effect"
+            },
+            {
+              "type": "concept",
+              "title": "Population viability"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with conservation biology and biodiversity loss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply biodiversity hotspot in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare fragmentation with edge effect"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how biodiversity hotspot affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Human Impacts and Restoration Ecology",
+      "description": "This section develops human impacts and restoration ecology through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make human impacts and restoration ecology precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Invasive species"
+            },
+            {
+              "type": "concept",
+              "title": "Reference ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Restoration target"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive management"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with human impacts and restoration ecology.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply invasive species in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare reference ecosystem with restoration target"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how invasive species affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field Sampling, Natural History, and Citizen Science",
+      "description": "This section develops field sampling, natural history, and citizen science through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make field sampling, natural history, and citizen science precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Quadrat"
+            },
+            {
+              "type": "concept",
+              "title": "Transect"
+            },
+            {
+              "type": "concept",
+              "title": "Mark-recapture"
+            },
+            {
+              "type": "concept",
+              "title": "Species-area curve"
+            },
+            {
+              "type": "concept",
+              "title": "Citizen science"
+            },
+            {
+              "type": "concept",
+              "title": "Population"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with field sampling, natural history, and citizen science.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply quadrat in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare transect with mark-recapture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how quadrat affects interpretation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Ecological Modeling and Data Analysis",
+      "description": "This section develops ecological modeling and data analysis through the concrete vocabulary, procedures, examples, and checks students need in Ecology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Specific Terms and Concepts",
+          "description": "Learn the named vocabulary and fine-grained concepts that make ecological modeling and data analysis precise.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Population"
+            },
+            {
+              "type": "concept",
+              "title": "Community"
+            },
+            {
+              "type": "concept",
+              "title": "Ecosystem"
+            },
+            {
+              "type": "concept",
+              "title": "Niche"
+            },
+            {
+              "type": "concept",
+              "title": "Biodiversity"
+            },
+            {
+              "type": "concept",
+              "title": "Trophic level"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Procedures, Calculations, or Analytic Moves",
+          "description": "Practice the concrete actions students should be able to perform with ecological modeling and data analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimate population growth"
+            },
+            {
+              "type": "concept",
+              "title": "Analyze species interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Read field data"
+            },
+            {
+              "type": "concept",
+              "title": "Apply population in a worked example"
+            },
+            {
+              "type": "concept",
+              "title": "Compare community with ecosystem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Common Cases, Pitfalls, and Checks",
+          "description": "Use these details to recognize typical cases, avoid errors, and check whether the result is trustworthy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scale mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Sampling bias"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding environmental gradient"
+            },
+            {
+              "type": "concept",
+              "title": "Watch for misuse of disturbance"
+            },
+            {
+              "type": "concept",
+              "title": "Explain how population affects interpretation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

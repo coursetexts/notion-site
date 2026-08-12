@@ -1,0 +1,1832 @@
+{
+  "slug": "environmental-sampling-and-analysis",
+  "title": "Environmental Sampling and Analysis",
+  "description": "Treats environmental data as evidence produced through sampling design, field protocols, laboratory methods, QA/QC, and defensible interpretation\u2014covering water, soil, sediment, air, and biological matrices from study design through regulatory reporting.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Environmental Sampling and Analysis as Measurement Practice",
+      "description": "Frame environmental data as evidence produced through sampling design, field protocols, laboratory methods, and defensible interpretation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "From question to defensible evidence",
+          "description": "Students learn that environmental analysis begins with a management or scientific question, then works backward to evidence requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "decision context"
+            },
+            {
+              "type": "concept",
+              "title": "target analyte"
+            },
+            {
+              "type": "concept",
+              "title": "environmental matrix"
+            },
+            {
+              "type": "concept",
+              "title": "data user"
+            },
+            {
+              "type": "concept",
+              "title": "regulatory criterion"
+            },
+            {
+              "type": "concept",
+              "title": "action level"
+            },
+            {
+              "type": "concept",
+              "title": "conceptual site model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matrices and analyte classes",
+          "description": "This subtopic builds the vocabulary for what is sampled and what is measured.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "surface water"
+            },
+            {
+              "type": "concept",
+              "title": "groundwater"
+            },
+            {
+              "type": "concept",
+              "title": "wastewater"
+            },
+            {
+              "type": "concept",
+              "title": "soil"
+            },
+            {
+              "type": "concept",
+              "title": "sediment"
+            },
+            {
+              "type": "concept",
+              "title": "air"
+            },
+            {
+              "type": "concept",
+              "title": "biota"
+            },
+            {
+              "type": "concept",
+              "title": "metals"
+            },
+            {
+              "type": "concept",
+              "title": "nutrients"
+            },
+            {
+              "type": "concept",
+              "title": "VOCs"
+            },
+            {
+              "type": "concept",
+              "title": "SVOCs"
+            },
+            {
+              "type": "concept",
+              "title": "PFAS"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field-to-lab workflow",
+          "description": "Students see sampling and analysis as one continuous quality-controlled chain.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sampling plan"
+            },
+            {
+              "type": "concept",
+              "title": "field log"
+            },
+            {
+              "type": "concept",
+              "title": "sample container"
+            },
+            {
+              "type": "concept",
+              "title": "preservation"
+            },
+            {
+              "type": "concept",
+              "title": "chain of custody"
+            },
+            {
+              "type": "concept",
+              "title": "laboratory receipt"
+            },
+            {
+              "type": "concept",
+              "title": "data package"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Study Design, Data Quality Objectives, and Site Selection",
+      "description": "Design sampling programs around clear decisions, target populations, spatial patterns, and data quality needs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Data quality objectives",
+          "description": "Students learn to specify the required quality of data before collecting samples.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DQO process"
+            },
+            {
+              "type": "concept",
+              "title": "measurement objective"
+            },
+            {
+              "type": "concept",
+              "title": "decision rule"
+            },
+            {
+              "type": "concept",
+              "title": "tolerable error"
+            },
+            {
+              "type": "concept",
+              "title": "precision requirement"
+            },
+            {
+              "type": "concept",
+              "title": "bias requirement"
+            },
+            {
+              "type": "concept",
+              "title": "completeness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spatial sampling design",
+          "description": "This subtopic addresses where samples should be collected to represent environmental conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "judgmental sampling"
+            },
+            {
+              "type": "concept",
+              "title": "random sampling"
+            },
+            {
+              "type": "concept",
+              "title": "stratified sampling"
+            },
+            {
+              "type": "concept",
+              "title": "systematic grid"
+            },
+            {
+              "type": "concept",
+              "title": "transect"
+            },
+            {
+              "type": "concept",
+              "title": "hot spot"
+            },
+            {
+              "type": "concept",
+              "title": "background location"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Temporal design",
+          "description": "Students plan when and how often to sample dynamic environmental systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "grab sample"
+            },
+            {
+              "type": "concept",
+              "title": "composite sample"
+            },
+            {
+              "type": "concept",
+              "title": "baseflow"
+            },
+            {
+              "type": "concept",
+              "title": "storm event"
+            },
+            {
+              "type": "concept",
+              "title": "seasonality"
+            },
+            {
+              "type": "concept",
+              "title": "diurnal variation"
+            },
+            {
+              "type": "concept",
+              "title": "sampling frequency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field Safety, Permits, Ethics, and Logistics",
+      "description": "Plan fieldwork that protects people, communities, sites, samples, and legal compliance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Field safety planning",
+          "description": "Students learn to anticipate field hazards and write practical safety procedures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "site hazard assessment"
+            },
+            {
+              "type": "concept",
+              "title": "PPE"
+            },
+            {
+              "type": "concept",
+              "title": "buddy system"
+            },
+            {
+              "type": "concept",
+              "title": "heat stress"
+            },
+            {
+              "type": "concept",
+              "title": "cold stress"
+            },
+            {
+              "type": "concept",
+              "title": "confined space"
+            },
+            {
+              "type": "concept",
+              "title": "traffic control"
+            },
+            {
+              "type": "concept",
+              "title": "wildlife hazards"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Permits and access",
+          "description": "This subtopic covers legal and practical permissions for environmental sampling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "property access"
+            },
+            {
+              "type": "concept",
+              "title": "right of entry"
+            },
+            {
+              "type": "concept",
+              "title": "collection permit"
+            },
+            {
+              "type": "concept",
+              "title": "discharge permit"
+            },
+            {
+              "type": "concept",
+              "title": "Tribal consultation"
+            },
+            {
+              "type": "concept",
+              "title": "protected species restrictions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics and community accountability",
+          "description": "Students learn that sampling can affect communities, sites, and public trust.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "environmental justice"
+            },
+            {
+              "type": "concept",
+              "title": "community notification"
+            },
+            {
+              "type": "concept",
+              "title": "data transparency"
+            },
+            {
+              "type": "concept",
+              "title": "cultural sites"
+            },
+            {
+              "type": "concept",
+              "title": "privacy of locations"
+            },
+            {
+              "type": "concept",
+              "title": "responsible reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sampling Statistics, Representativeness, and Uncertainty",
+      "description": "Use statistical thinking to manage heterogeneity, replication, detection limits, and uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Representativeness and heterogeneity",
+          "description": "Students learn why environmental samples often vary strongly across space and time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "target population"
+            },
+            {
+              "type": "concept",
+              "title": "sampling unit"
+            },
+            {
+              "type": "concept",
+              "title": "heterogeneity"
+            },
+            {
+              "type": "concept",
+              "title": "nugget effect"
+            },
+            {
+              "type": "concept",
+              "title": "compositing"
+            },
+            {
+              "type": "concept",
+              "title": "subsampling"
+            },
+            {
+              "type": "concept",
+              "title": "representative sample"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Replication and power",
+          "description": "This subtopic connects sample number to confidence in environmental conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "field replicate"
+            },
+            {
+              "type": "concept",
+              "title": "laboratory replicate"
+            },
+            {
+              "type": "concept",
+              "title": "sample size"
+            },
+            {
+              "type": "concept",
+              "title": "statistical power"
+            },
+            {
+              "type": "concept",
+              "title": "confidence interval"
+            },
+            {
+              "type": "concept",
+              "title": "minimum detectable difference"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Uncertainty sources",
+          "description": "Students separate sampling uncertainty, analytical uncertainty, and interpretation uncertainty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sampling error"
+            },
+            {
+              "type": "concept",
+              "title": "measurement error"
+            },
+            {
+              "type": "concept",
+              "title": "matrix effect"
+            },
+            {
+              "type": "concept",
+              "title": "censoring"
+            },
+            {
+              "type": "concept",
+              "title": "non-detect"
+            },
+            {
+              "type": "concept",
+              "title": "propagation of uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "uncertainty budget"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Water Sampling: Surface Water, Groundwater, and Wastewater",
+      "description": "Collect water samples using protocols matched to hydrology, analytes, and regulatory goals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Surface-water sampling",
+          "description": "Students learn protocols for rivers, lakes, wetlands, and stormwater.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "midstream grab"
+            },
+            {
+              "type": "concept",
+              "title": "depth-integrated sample"
+            },
+            {
+              "type": "concept",
+              "title": "cross-section composite"
+            },
+            {
+              "type": "concept",
+              "title": "stormwater first flush"
+            },
+            {
+              "type": "concept",
+              "title": "turbidity"
+            },
+            {
+              "type": "concept",
+              "title": "flow measurement"
+            },
+            {
+              "type": "concept",
+              "title": "field filtration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Groundwater sampling",
+          "description": "This subtopic covers well purging, stabilization, and aquifer-specific procedures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "monitoring well"
+            },
+            {
+              "type": "concept",
+              "title": "well development"
+            },
+            {
+              "type": "concept",
+              "title": "purge volume"
+            },
+            {
+              "type": "concept",
+              "title": "low-flow sampling"
+            },
+            {
+              "type": "concept",
+              "title": "drawdown"
+            },
+            {
+              "type": "concept",
+              "title": "screen interval"
+            },
+            {
+              "type": "concept",
+              "title": "stabilization criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Wastewater and process samples",
+          "description": "Students learn how sampling differs in engineered systems and regulated discharges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "influent"
+            },
+            {
+              "type": "concept",
+              "title": "effluent"
+            },
+            {
+              "type": "concept",
+              "title": "24-hour composite"
+            },
+            {
+              "type": "concept",
+              "title": "automatic sampler"
+            },
+            {
+              "type": "concept",
+              "title": "flow-proportional sampling"
+            },
+            {
+              "type": "concept",
+              "title": "BOD"
+            },
+            {
+              "type": "concept",
+              "title": "COD"
+            },
+            {
+              "type": "concept",
+              "title": "TSS"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Soil, Sediment, and Solid-Matrix Sampling",
+      "description": "Sample heterogeneous solids while controlling depth, grain size, contamination, and preservation effects.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Soil sampling strategies",
+          "description": "Students learn how depth, location, and compositing affect soil data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "soil core"
+            },
+            {
+              "type": "concept",
+              "title": "auger"
+            },
+            {
+              "type": "concept",
+              "title": "incremental sampling"
+            },
+            {
+              "type": "concept",
+              "title": "discrete sample"
+            },
+            {
+              "type": "concept",
+              "title": "composite sample"
+            },
+            {
+              "type": "concept",
+              "title": "depth interval"
+            },
+            {
+              "type": "concept",
+              "title": "surface soil"
+            },
+            {
+              "type": "concept",
+              "title": "subsurface soil"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sediment sampling",
+          "description": "This subtopic addresses aquatic solids and depositional environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "grab sampler"
+            },
+            {
+              "type": "concept",
+              "title": "core sampler"
+            },
+            {
+              "type": "concept",
+              "title": "surficial sediment"
+            },
+            {
+              "type": "concept",
+              "title": "porewater"
+            },
+            {
+              "type": "concept",
+              "title": "grain size"
+            },
+            {
+              "type": "concept",
+              "title": "depositional zone"
+            },
+            {
+              "type": "concept",
+              "title": "sediment oxygen demand"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solid sample preparation",
+          "description": "Students learn preparation steps that can change or preserve analytical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "homogenization"
+            },
+            {
+              "type": "concept",
+              "title": "sieving"
+            },
+            {
+              "type": "concept",
+              "title": "dry weight basis"
+            },
+            {
+              "type": "concept",
+              "title": "moisture content"
+            },
+            {
+              "type": "concept",
+              "title": "acid digestion"
+            },
+            {
+              "type": "concept",
+              "title": "solvent extraction"
+            },
+            {
+              "type": "concept",
+              "title": "holding time"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Air Monitoring and Atmospheric Sampling",
+      "description": "Measure gases, vapors, particulates, and exposure-relevant air pollutants with appropriate instruments and designs.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Air pollutant categories",
+          "description": "Students distinguish major air analytes and why each requires different sampling methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "particulate matter"
+            },
+            {
+              "type": "concept",
+              "title": "PM2.5"
+            },
+            {
+              "type": "concept",
+              "title": "PM10"
+            },
+            {
+              "type": "concept",
+              "title": "ozone"
+            },
+            {
+              "type": "concept",
+              "title": "NOx"
+            },
+            {
+              "type": "concept",
+              "title": "SO2"
+            },
+            {
+              "type": "concept",
+              "title": "CO"
+            },
+            {
+              "type": "concept",
+              "title": "VOCs"
+            },
+            {
+              "type": "concept",
+              "title": "greenhouse gases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Active and passive sampling",
+          "description": "This subtopic covers how air samples are captured over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pump sampling"
+            },
+            {
+              "type": "concept",
+              "title": "sorbent tube"
+            },
+            {
+              "type": "concept",
+              "title": "filter cassette"
+            },
+            {
+              "type": "concept",
+              "title": "canister sampling"
+            },
+            {
+              "type": "concept",
+              "title": "passive badge"
+            },
+            {
+              "type": "concept",
+              "title": "flow calibration"
+            },
+            {
+              "type": "concept",
+              "title": "breakthrough"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous monitoring",
+          "description": "Students learn how automated air monitoring creates high-frequency environmental data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "continuous emissions monitoring"
+            },
+            {
+              "type": "concept",
+              "title": "data logger"
+            },
+            {
+              "type": "concept",
+              "title": "sensor drift"
+            },
+            {
+              "type": "concept",
+              "title": "zero check"
+            },
+            {
+              "type": "concept",
+              "title": "span check"
+            },
+            {
+              "type": "concept",
+              "title": "meteorological data"
+            },
+            {
+              "type": "concept",
+              "title": "AQI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Biological Monitoring and Bioassessment",
+      "description": "Use organisms, tissues, communities, and biomarkers as evidence of environmental condition and exposure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Indicator organisms and communities",
+          "description": "Students use biological responses as integrative measures of environmental condition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "bioindicator"
+            },
+            {
+              "type": "concept",
+              "title": "macroinvertebrates"
+            },
+            {
+              "type": "concept",
+              "title": "periphyton"
+            },
+            {
+              "type": "concept",
+              "title": "fish assemblage"
+            },
+            {
+              "type": "concept",
+              "title": "index of biotic integrity"
+            },
+            {
+              "type": "concept",
+              "title": "species richness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue and biomarker sampling",
+          "description": "This subtopic links organisms to contaminant exposure and biological effect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "bioaccumulation"
+            },
+            {
+              "type": "concept",
+              "title": "biomagnification"
+            },
+            {
+              "type": "concept",
+              "title": "tissue residue"
+            },
+            {
+              "type": "concept",
+              "title": "biomarker"
+            },
+            {
+              "type": "concept",
+              "title": "sentinel species"
+            },
+            {
+              "type": "concept",
+              "title": "composite tissue sample"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "eDNA and modern biomonitoring",
+          "description": "Students learn emerging molecular approaches for detecting organisms and biodiversity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "environmental DNA"
+            },
+            {
+              "type": "concept",
+              "title": "metabarcoding"
+            },
+            {
+              "type": "concept",
+              "title": "qPCR"
+            },
+            {
+              "type": "concept",
+              "title": "false positive"
+            },
+            {
+              "type": "concept",
+              "title": "false negative"
+            },
+            {
+              "type": "concept",
+              "title": "reference database"
+            },
+            {
+              "type": "concept",
+              "title": "contamination control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sample Preservation, Handling, Transport, and Chain of Custody",
+      "description": "Protect sample integrity from collection through laboratory receipt and legal/regulatory documentation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Containers and preservation",
+          "description": "Students match containers and preservation to analytes and methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "glass bottle"
+            },
+            {
+              "type": "concept",
+              "title": "HDPE bottle"
+            },
+            {
+              "type": "concept",
+              "title": "amber container"
+            },
+            {
+              "type": "concept",
+              "title": "acid preservation"
+            },
+            {
+              "type": "concept",
+              "title": "cooling to 4 C"
+            },
+            {
+              "type": "concept",
+              "title": "dechlorination"
+            },
+            {
+              "type": "concept",
+              "title": "headspace-free vial"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transport and holding times",
+          "description": "This subtopic prevents degradation, volatilization, and invalid results.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "holding time"
+            },
+            {
+              "type": "concept",
+              "title": "sample cooler"
+            },
+            {
+              "type": "concept",
+              "title": "ice custody"
+            },
+            {
+              "type": "concept",
+              "title": "temperature blank"
+            },
+            {
+              "type": "concept",
+              "title": "trip blank"
+            },
+            {
+              "type": "concept",
+              "title": "shipping manifest"
+            },
+            {
+              "type": "concept",
+              "title": "laboratory login"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Documentation and legal defensibility",
+          "description": "Students learn documentation practices that make data auditable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "chain-of-custody form"
+            },
+            {
+              "type": "concept",
+              "title": "sample ID"
+            },
+            {
+              "type": "concept",
+              "title": "field logbook"
+            },
+            {
+              "type": "concept",
+              "title": "custody seal"
+            },
+            {
+              "type": "concept",
+              "title": "correction protocol"
+            },
+            {
+              "type": "concept",
+              "title": "photo documentation"
+            },
+            {
+              "type": "concept",
+              "title": "COC relinquished/received"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Field Measurements and Sensor-Based Monitoring",
+      "description": "Use in situ instruments, probes, loggers, and calibration checks to collect high-quality field data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Water-quality field probes",
+          "description": "Students collect immediate measurements that can change after sampling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "temperature"
+            },
+            {
+              "type": "concept",
+              "title": "pH"
+            },
+            {
+              "type": "concept",
+              "title": "conductivity"
+            },
+            {
+              "type": "concept",
+              "title": "dissolved oxygen"
+            },
+            {
+              "type": "concept",
+              "title": "ORP"
+            },
+            {
+              "type": "concept",
+              "title": "turbidity"
+            },
+            {
+              "type": "concept",
+              "title": "calibration slope"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Field meters and calibration checks",
+          "description": "This subtopic builds habits for trustworthy field instrumentation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "pre-calibration"
+            },
+            {
+              "type": "concept",
+              "title": "post-calibration"
+            },
+            {
+              "type": "concept",
+              "title": "calibration standard"
+            },
+            {
+              "type": "concept",
+              "title": "drift check"
+            },
+            {
+              "type": "concept",
+              "title": "field blank"
+            },
+            {
+              "type": "concept",
+              "title": "equipment blank"
+            },
+            {
+              "type": "concept",
+              "title": "maintenance log"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deployable sensors",
+          "description": "Students learn strengths and limitations of long-term automated monitoring.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "sonde"
+            },
+            {
+              "type": "concept",
+              "title": "pressure transducer"
+            },
+            {
+              "type": "concept",
+              "title": "telemetry"
+            },
+            {
+              "type": "concept",
+              "title": "biofouling"
+            },
+            {
+              "type": "concept",
+              "title": "sensor drift"
+            },
+            {
+              "type": "concept",
+              "title": "data gap"
+            },
+            {
+              "type": "concept",
+              "title": "quality flag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Wet Chemistry and Classical Environmental Analyses",
+      "description": "Apply titrimetric, gravimetric, colorimetric, and nutrient methods to common environmental measurements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic water-quality analyses",
+          "description": "Students learn common bench methods for routine environmental parameters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "alkalinity"
+            },
+            {
+              "type": "concept",
+              "title": "hardness"
+            },
+            {
+              "type": "concept",
+              "title": "chloride"
+            },
+            {
+              "type": "concept",
+              "title": "titration"
+            },
+            {
+              "type": "concept",
+              "title": "colorimetry"
+            },
+            {
+              "type": "concept",
+              "title": "spectrophotometer"
+            },
+            {
+              "type": "concept",
+              "title": "calibration curve"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nutrients and oxygen demand",
+          "description": "This subtopic focuses on eutrophication and organic pollution indicators.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "nitrate"
+            },
+            {
+              "type": "concept",
+              "title": "nitrite"
+            },
+            {
+              "type": "concept",
+              "title": "ammonia"
+            },
+            {
+              "type": "concept",
+              "title": "orthophosphate"
+            },
+            {
+              "type": "concept",
+              "title": "total nitrogen"
+            },
+            {
+              "type": "concept",
+              "title": "total phosphorus"
+            },
+            {
+              "type": "concept",
+              "title": "BOD5"
+            },
+            {
+              "type": "concept",
+              "title": "COD"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solids and gravimetric methods",
+          "description": "Students learn mass-based measurements that remain central in water and wastewater work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "total solids"
+            },
+            {
+              "type": "concept",
+              "title": "total suspended solids"
+            },
+            {
+              "type": "concept",
+              "title": "volatile suspended solids"
+            },
+            {
+              "type": "concept",
+              "title": "settleable solids"
+            },
+            {
+              "type": "concept",
+              "title": "filter tare"
+            },
+            {
+              "type": "concept",
+              "title": "drying oven"
+            },
+            {
+              "type": "concept",
+              "title": "muffle furnace"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Instrumental Analysis: Spectroscopy, Chromatography, and Mass Spectrometry",
+      "description": "Choose instrumental methods for metals, nutrients, organics, trace contaminants, and complex mixtures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Metals and elemental analysis",
+          "description": "Students choose methods for trace metals and elemental contaminants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "AAS"
+            },
+            {
+              "type": "concept",
+              "title": "ICP-OES"
+            },
+            {
+              "type": "concept",
+              "title": "ICP-MS"
+            },
+            {
+              "type": "concept",
+              "title": "acid digestion"
+            },
+            {
+              "type": "concept",
+              "title": "calibration blank"
+            },
+            {
+              "type": "concept",
+              "title": "interference correction"
+            },
+            {
+              "type": "concept",
+              "title": "standard reference material"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Organic contaminant analysis",
+          "description": "This subtopic covers separations and detectors for complex organic mixtures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GC"
+            },
+            {
+              "type": "concept",
+              "title": "HPLC"
+            },
+            {
+              "type": "concept",
+              "title": "GC-MS"
+            },
+            {
+              "type": "concept",
+              "title": "LC-MS/MS"
+            },
+            {
+              "type": "concept",
+              "title": "PAHs"
+            },
+            {
+              "type": "concept",
+              "title": "pesticides"
+            },
+            {
+              "type": "concept",
+              "title": "VOCs"
+            },
+            {
+              "type": "concept",
+              "title": "SVOCs"
+            },
+            {
+              "type": "concept",
+              "title": "surrogate standard"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Emerging contaminants",
+          "description": "Students learn why some analytes require specialized methods and interpretation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "PFAS"
+            },
+            {
+              "type": "concept",
+              "title": "pharmaceuticals"
+            },
+            {
+              "type": "concept",
+              "title": "microplastics"
+            },
+            {
+              "type": "concept",
+              "title": "endocrine disruptors"
+            },
+            {
+              "type": "concept",
+              "title": "method development"
+            },
+            {
+              "type": "concept",
+              "title": "matrix spike recovery"
+            },
+            {
+              "type": "concept",
+              "title": "isotope dilution"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "QA/QC, Calibration, Blanks, Duplicates, and Method Validation",
+      "description": "Build quality systems that detect contamination, bias, drift, precision problems, and method failure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quality control samples",
+          "description": "Students learn how QC samples diagnose contamination, precision, bias, and recovery.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "field blank"
+            },
+            {
+              "type": "concept",
+              "title": "trip blank"
+            },
+            {
+              "type": "concept",
+              "title": "equipment blank"
+            },
+            {
+              "type": "concept",
+              "title": "method blank"
+            },
+            {
+              "type": "concept",
+              "title": "field duplicate"
+            },
+            {
+              "type": "concept",
+              "title": "matrix spike"
+            },
+            {
+              "type": "concept",
+              "title": "laboratory control sample"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calibration and validation",
+          "description": "This subtopic covers how laboratories prove methods are working.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "initial calibration"
+            },
+            {
+              "type": "concept",
+              "title": "continuing calibration verification"
+            },
+            {
+              "type": "concept",
+              "title": "calibration range"
+            },
+            {
+              "type": "concept",
+              "title": "linearity"
+            },
+            {
+              "type": "concept",
+              "title": "method detection limit"
+            },
+            {
+              "type": "concept",
+              "title": "reporting limit"
+            },
+            {
+              "type": "concept",
+              "title": "control limit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data quality assessment",
+          "description": "Students learn to judge whether a dataset meets its project objectives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "precision"
+            },
+            {
+              "type": "concept",
+              "title": "accuracy"
+            },
+            {
+              "type": "concept",
+              "title": "representativeness"
+            },
+            {
+              "type": "concept",
+              "title": "comparability"
+            },
+            {
+              "type": "concept",
+              "title": "completeness"
+            },
+            {
+              "type": "concept",
+              "title": "sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "PARCCS"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Data Validation, Reporting Limits, and Environmental Data Interpretation",
+      "description": "Evaluate whether data are usable and interpret results against standards, background, and risk context.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Non-detects and censored data",
+          "description": "Students learn to interpret results below detection or reporting limits responsibly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "non-detect"
+            },
+            {
+              "type": "concept",
+              "title": "MDL"
+            },
+            {
+              "type": "concept",
+              "title": "RL"
+            },
+            {
+              "type": "concept",
+              "title": "J-qualified result"
+            },
+            {
+              "type": "concept",
+              "title": "U-qualified result"
+            },
+            {
+              "type": "concept",
+              "title": "half-detection substitution"
+            },
+            {
+              "type": "concept",
+              "title": "survival analysis preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation qualifiers",
+          "description": "This subtopic explains flags that communicate data usability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "data qualifier"
+            },
+            {
+              "type": "concept",
+              "title": "holding-time exceedance"
+            },
+            {
+              "type": "concept",
+              "title": "blank contamination"
+            },
+            {
+              "type": "concept",
+              "title": "surrogate recovery"
+            },
+            {
+              "type": "concept",
+              "title": "matrix interference"
+            },
+            {
+              "type": "concept",
+              "title": "estimated value"
+            },
+            {
+              "type": "concept",
+              "title": "rejected result"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Comparing data to criteria",
+          "description": "Students connect analytical results to standards, background, and risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "water-quality standard"
+            },
+            {
+              "type": "concept",
+              "title": "MCL"
+            },
+            {
+              "type": "concept",
+              "title": "screening level"
+            },
+            {
+              "type": "concept",
+              "title": "background concentration"
+            },
+            {
+              "type": "concept",
+              "title": "exceedance"
+            },
+            {
+              "type": "concept",
+              "title": "trend analysis"
+            },
+            {
+              "type": "concept",
+              "title": "risk-based threshold"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Geospatial, Time-Series, and Regulatory Reporting Workflows",
+      "description": "Integrate field/lab data with maps, metadata, databases, standards, and professional reporting requirements.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial data integration",
+          "description": "Students learn to map samples and interpret environmental patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "GPS coordinate"
+            },
+            {
+              "type": "concept",
+              "title": "coordinate reference system"
+            },
+            {
+              "type": "concept",
+              "title": "GIS layer"
+            },
+            {
+              "type": "concept",
+              "title": "sample location map"
+            },
+            {
+              "type": "concept",
+              "title": "kriging preview"
+            },
+            {
+              "type": "concept",
+              "title": "heat map"
+            },
+            {
+              "type": "concept",
+              "title": "metadata"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Time-series interpretation",
+          "description": "This subtopic covers monitoring datasets that change through time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "hydrograph"
+            },
+            {
+              "type": "concept",
+              "title": "seasonal trend"
+            },
+            {
+              "type": "concept",
+              "title": "storm response"
+            },
+            {
+              "type": "concept",
+              "title": "moving average"
+            },
+            {
+              "type": "concept",
+              "title": "outlier"
+            },
+            {
+              "type": "concept",
+              "title": "quality flag"
+            },
+            {
+              "type": "concept",
+              "title": "sensor drift correction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Professional reporting",
+          "description": "Students learn the structure and expectations of environmental data deliverables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "field report"
+            },
+            {
+              "type": "concept",
+              "title": "laboratory report"
+            },
+            {
+              "type": "concept",
+              "title": "EDD"
+            },
+            {
+              "type": "concept",
+              "title": "data validation memo"
+            },
+            {
+              "type": "concept",
+              "title": "QA/QC summary"
+            },
+            {
+              "type": "concept",
+              "title": "methods section"
+            },
+            {
+              "type": "concept",
+              "title": "regulatory appendix"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integrated Field-to-Lab Capstone Project",
+      "description": "Synthesize sampling design, field collection, lab analysis, QA/QC, interpretation, and communication in a complete dataset submission.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling and analysis plan",
+          "description": "Students synthesize course concepts into a professional plan.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SAP"
+            },
+            {
+              "type": "concept",
+              "title": "QAPP"
+            },
+            {
+              "type": "concept",
+              "title": "site map"
+            },
+            {
+              "type": "concept",
+              "title": "analyte list"
+            },
+            {
+              "type": "concept",
+              "title": "sample matrix"
+            },
+            {
+              "type": "concept",
+              "title": "sample count"
+            },
+            {
+              "type": "concept",
+              "title": "QC frequency"
+            },
+            {
+              "type": "concept",
+              "title": "health and safety plan"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dataset production",
+          "description": "This subtopic moves from plan to actual samples, results, and QC review.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "field mobilization"
+            },
+            {
+              "type": "concept",
+              "title": "sample custody"
+            },
+            {
+              "type": "concept",
+              "title": "laboratory coordination"
+            },
+            {
+              "type": "concept",
+              "title": "data package"
+            },
+            {
+              "type": "concept",
+              "title": "QC checklist"
+            },
+            {
+              "type": "concept",
+              "title": "validation summary"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Interpretation and communication",
+          "description": "Students turn environmental measurements into defensible conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "executive summary"
+            },
+            {
+              "type": "concept",
+              "title": "results table"
+            },
+            {
+              "type": "concept",
+              "title": "criteria comparison"
+            },
+            {
+              "type": "concept",
+              "title": "uncertainty statement"
+            },
+            {
+              "type": "concept",
+              "title": "recommendations"
+            },
+            {
+              "type": "concept",
+              "title": "oral briefing"
+            },
+            {
+              "type": "concept",
+              "title": "reproducible archive"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
