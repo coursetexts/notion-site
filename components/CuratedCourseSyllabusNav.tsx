@@ -1,19 +1,31 @@
 import * as React from 'react'
 
-import styles from './CuratedCourse.module.css'
+import { useAuthOptional } from '@/contexts/AuthContext'
+
 import {
+  isCuratedCoursePinId,
+  isCuratedCoursePinned,
+  setCuratedCoursePinned,
+  subscribeCuratedCoursePins
+} from '@/lib/curated-course-pins-db'
+import {
+  CURATED_COURSE_MENTAL_MAP_SECTION_ID,
   CURATED_COURSE_RESOURCES_SECTION_ID,
   CURATED_COURSE_RESOURCE_SECTIONS,
   CURATED_COURSE_SYLLABUS_SECTION_ID,
+  type CuratedCourseResourceSection,
+  isCuratedCourseMentalMapSelection,
   isCuratedCourseResourceSelection,
   isCuratedCourseSyllabusSelection,
-  resourcesForSection,
-  type CuratedCourseResourceSection
+  resourcesForSection
 } from '@/lib/curated-course-resources'
 import type {
   CuratedCourseData,
   CuratedCourseNode
 } from '@/lib/curated-course-types'
+
+import styles from './CuratedCourse.module.css'
+import { PinIcon } from './PinIcon'
 
 interface SyllabusNavProps {
   course: CuratedCourseData
@@ -30,15 +42,86 @@ export function CuratedCourseSyllabusNav({
   onSelect,
   onToggle
 }: SyllabusNavProps) {
+  const auth = useAuthOptional()
+  const signedIn = Boolean(auth?.user)
+  const canPin = Boolean(course.dbBacked && isCuratedCoursePinId(course.id))
+  const [pinned, setPinned] = React.useState(false)
+  const [pinBusy, setPinBusy] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!canPin || !signedIn) {
+      setPinned(false)
+      return
+    }
+    let alive = true
+    void isCuratedCoursePinned(course.id).then((value) => {
+      if (alive) setPinned(value)
+    })
+    const unsub = subscribeCuratedCoursePins(() => {
+      void isCuratedCoursePinned(course.id).then((value) => {
+        if (alive) setPinned(value)
+      })
+    })
+    return () => {
+      alive = false
+      unsub()
+    }
+  }, [canPin, signedIn, course.id])
+
+  async function handleTogglePin() {
+    if (!canPin) return
+    if (!signedIn) {
+      auth?.signInWithGoogle()
+      return
+    }
+    if (pinBusy) return
+    const next = !pinned
+    setPinBusy(true)
+    setPinned(next)
+    const result = await setCuratedCoursePinned(course.id, next)
+    if (result === null) setPinned(!next)
+    setPinBusy(false)
+  }
+
   const resourcesOpen = expanded.has(CURATED_COURSE_RESOURCES_SECTION_ID)
   const resourceSelected = isCuratedCourseResourceSelection(selectedId)
   const syllabusSelected = isCuratedCourseSyllabusSelection(selectedId)
+  const mentalMapSelected = isCuratedCourseMentalMapSelection(selectedId)
 
   return (
     <nav aria-label='Course syllabus' className={styles.nav}>
       <div>
         <p className={styles.navLabel}>Course</p>
-        <h2 className={styles.navCourseTitle}>{course.title}</h2>
+        <div className={styles.navCourseTitleRow}>
+          <h2 className={styles.navCourseTitle}>{course.title}</h2>
+          {canPin && (
+            <button
+              type='button'
+              className={`${styles.navPinBtn}${
+                pinned ? ` ${styles.navPinBtnPinned}` : ''
+              }`}
+              onClick={() => void handleTogglePin()}
+              disabled={pinBusy}
+              aria-pressed={pinned}
+              aria-label={
+                pinned
+                  ? `Unpin ${course.title}`
+                  : signedIn
+                  ? `Pin ${course.title}`
+                  : `Sign in to pin ${course.title}`
+              }
+              title={
+                pinned
+                  ? 'Unpin course'
+                  : signedIn
+                  ? 'Pin course'
+                  : 'Sign in to pin this course'
+              }
+            >
+              <PinIcon filled={pinned} size={16} />
+            </button>
+          )}
+        </div>
       </div>
 
       <div className={styles.navPanelSection}>
@@ -70,6 +153,31 @@ export function CuratedCourseSyllabusNav({
           </button>
         </div>
 
+        <div
+          className={`${styles.navRow}${
+            mentalMapSelected ? ` ${styles.navRowSelected}` : ''
+          }`}
+          style={{ paddingLeft: 4 }}
+        >
+          <span className={styles.leafDot} aria-hidden>
+            <span className={styles.dot} />
+          </span>
+          <button
+            type='button'
+            onClick={() => onSelect(CURATED_COURSE_MENTAL_MAP_SECTION_ID)}
+            aria-current={mentalMapSelected ? 'true' : undefined}
+            className={styles.navSelect}
+          >
+            <span
+              className={`${styles.navTitle} ${styles.navTitleTopic}${
+                mentalMapSelected ? ` ${styles.navTitleSelected}` : ''
+              }`}
+            >
+              Mental Map
+            </span>
+          </button>
+        </div>
+
         {course.topics.length > 0 ? (
           <ol className={styles.navList}>
             {course.topics.map((topic, i) => (
@@ -86,7 +194,9 @@ export function CuratedCourseSyllabusNav({
             ))}
           </ol>
         ) : (
-          <p className={styles.navSyllabusEmpty}>Syllabus topics coming soon.</p>
+          <p className={styles.navSyllabusEmpty}>
+            Syllabus topics coming soon.
+          </p>
         )}
       </div>
 
@@ -142,7 +252,9 @@ export function CuratedCourseSyllabusNav({
               <ResourceNavItem
                 key={section.id}
                 section={section}
-                count={resourcesForSection(course.resources, section.kind).length}
+                count={
+                  resourcesForSection(course.resources, section.kind).length
+                }
                 selectedId={selectedId}
                 onSelect={onSelect}
               />
@@ -236,7 +348,9 @@ function NavItem({
           <button
             type='button'
             onClick={() => onToggle(node.id)}
-            aria-label={isOpen ? `Collapse ${node.title}` : `Expand ${node.title}`}
+            aria-label={
+              isOpen ? `Collapse ${node.title}` : `Expand ${node.title}`
+            }
             aria-expanded={isOpen}
             className={styles.chevronBtn}
           >
@@ -268,9 +382,7 @@ function NavItem({
               .filter(Boolean)
               .join(' ')}
           >
-            {depth === 0 && (
-              <span className={styles.navIndex}>{index}.</span>
-            )}
+            {depth === 0 && <span className={styles.navIndex}>{index}.</span>}
             {node.title}
           </span>
           {videoCount > 0 && (

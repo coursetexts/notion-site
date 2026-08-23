@@ -6,6 +6,7 @@
 import fluidMechanicsJson from '@/data/curated-courses/fluid-mechanics.json'
 import type {
   CuratedCourseData,
+  CuratedCourseLink,
   CuratedCourseNode,
   CuratedCourseVideo
 } from './curated-course-types'
@@ -21,11 +22,18 @@ type JsonVideo = {
   thumbnailUrl?: string | null
 }
 
+type JsonLink = {
+  title: string
+  url?: string
+}
+
 type JsonNode = {
   type: 'topic' | 'subtopic' | 'concept'
   title: string
   description?: string
   videos?: JsonVideo[]
+  tests?: JsonLink[]
+  slides?: JsonLink[]
   children?: JsonNode[]
 }
 
@@ -44,6 +52,19 @@ function mapVideos(videos: JsonVideo[] | undefined): CuratedCourseVideo[] | unde
   }))
 }
 
+function mapLinks(
+  links: JsonLink[] | undefined,
+  kind: 'test' | 'slide'
+): CuratedCourseLink[] | undefined {
+  if (!links?.length) return undefined
+  return links.map((item, i) => ({
+    id: `local_${kind}_${i}_${item.title.slice(0, 24)}`,
+    position: i + 1,
+    title: item.title,
+    url: item.url || '#'
+  }))
+}
+
 function mapNode(node: JsonNode, path: string): CuratedCourseNode {
   return {
     id: `local_${path}`,
@@ -51,6 +72,8 @@ function mapNode(node: JsonNode, path: string): CuratedCourseNode {
     title: node.title,
     description: node.description,
     videos: mapVideos(node.videos),
+    tests: mapLinks(node.tests, 'test'),
+    slides: mapLinks(node.slides, 'slide'),
     children: node.children?.map((child, i) =>
       mapNode(child, `${path}_${i}`)
     )

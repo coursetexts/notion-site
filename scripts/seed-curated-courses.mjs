@@ -100,6 +100,27 @@ async function insertNode(courseId, node, parentId, sortOrder) {
     if (vErr) throw vErr
   }
 
+  const linkRows = [
+    ...(node.tests ?? []).map((item, i) => ({
+      node_id: row.id,
+      kind: 'test',
+      sort_order: i,
+      title: item.title,
+      url: item.url || '#'
+    })),
+    ...(node.slides ?? []).map((item, i) => ({
+      node_id: row.id,
+      kind: 'slide',
+      sort_order: i,
+      title: item.title,
+      url: item.url || '#'
+    }))
+  ]
+  if (linkRows.length) {
+    const { error: lErr } = await admin.from('curated_course_links').insert(linkRows)
+    if (lErr) throw lErr
+  }
+
   if (node.children?.length) {
     for (let i = 0; i < node.children.length; i++) {
       await insertNode(courseId, node.children[i], row.id, i)

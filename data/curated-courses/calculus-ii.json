@@ -1,0 +1,1105 @@
+{
+  "slug": "calculus-ii",
+  "title": "Calculus II",
+  "description": "Calculus II extends the first course from basic accumulation to a flexible theory and practice of integration, infinite processes, approximation, and dynamic models. Everyone studies the same mathematical core, while problem sets and labs rotate through life-science, engineering, computing, economic, chemical, and mathematical contexts. The course emphasizes exact, numerical, graphical, proof-aware, and model-based reasoning.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "OpenStax Calculus Volume 2",
+      "linkOrSite": "https://openstax.org/details/books/calculus-volume-2",
+      "description": "Best default open textbook for integration techniques, differential equations, sequences and series, parametric equations, and polar coordinates."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus: Early Transcendentals",
+      "linkOrSite": "Cengage",
+      "description": "James Stewart. Large problem bank and standard engineering/science sequence for integration and series."
+    },
+    {
+      "kind": "textbook",
+      "title": "Thomas' Calculus",
+      "linkOrSite": "Pearson",
+      "description": "Reliable reference with clear examples across techniques, applications, series, parametric curves, and polar coordinates."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus: Single Variable",
+      "linkOrSite": "Wiley",
+      "description": "Hughes-Hallett et al. Strong for conceptual questions, modeling, data, and multiple representations."
+    },
+    {
+      "kind": "textbook",
+      "title": "The Calculus Lifesaver",
+      "linkOrSite": "Princeton University Press",
+      "description": "Adrian Banner. Readable supplemental explanations and problem-solving guidance, especially useful for independent review."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus (Spivak)",
+      "linkOrSite": "Publish or Perish",
+      "description": "Michael Spivak. Optional proof-enrichment for mathematics majors and advanced students; use selectively for rigorous exercises."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OpenCourseWare 18.01SC Single Variable Calculus",
+      "linkOrSite": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+      "description": "Challenging lectures, notes, problem sets, solutions, and exams covering integration techniques, improper integrals, series, Taylor series, parametric equations, and polar coordinates."
+    },
+    {
+      "kind": "website",
+      "title": "MIT Calculus Open Textbook",
+      "linkOrSite": "https://ocw.mit.edu/courses/res-18-001-calculus-fall-2023/",
+      "description": "Current open reference and study guide with numerical integration, techniques, applications, polar coordinates, series, and vectors."
+    },
+    {
+      "kind": "website",
+      "title": "Paul's Online Math Notes - Calculus II",
+      "linkOrSite": "https://tutorial.math.lamar.edu/Classes/CalcII/CalcII.aspx",
+      "description": "Concise notes and many worked problems for techniques and convergence tests."
+    },
+    {
+      "kind": "website",
+      "title": "Khan Academy AP/College Calculus BC",
+      "linkOrSite": "https://www.khanacademy.org/math/ap-calculus-bc",
+      "description": "Guided practice for integration applications, differential equations, parametric/polar topics, and series."
+    },
+    {
+      "kind": "website",
+      "title": "Princeton MAT104 sample questions",
+      "linkOrSite": "https://web.math.princeton.edu/~nelson/104/samples.html",
+      "description": "Strong calculator-free practice emphasizing sophisticated pattern recognition and adaptive technique choice."
+    },
+    {
+      "kind": "website",
+      "title": "Desmos Graphing Calculator",
+      "linkOrSite": "https://www.desmos.com/calculator",
+      "description": "Visualize parametric/polar curves, partial sums, and model behavior."
+    },
+    {
+      "kind": "website",
+      "title": "GeoGebra Graphing Calculator",
+      "linkOrSite": "https://www.geogebra.org/graphing",
+      "description": "Interactive graphing for parametric/polar curves, partial sums, and model behavior."
+    },
+    {
+      "kind": "website",
+      "title": "Jupyter",
+      "linkOrSite": "https://jupyter.org/",
+      "description": "Implement quadrature, Euler's method, partial sums, Taylor approximations, and error comparisons with transparent, reproducible steps."
+    },
+    {
+      "kind": "youtube",
+      "title": "Professor Leonard",
+      "linkOrSite": "https://www.youtube.com/@ProfessorLeonard",
+      "description": "Long-form Calculus II lectures with detailed worked examples."
+    },
+    {
+      "kind": "youtube",
+      "title": "3Blue1Brown",
+      "linkOrSite": "https://www.youtube.com/@3blue1brown",
+      "description": "Essence of Calculus: visual intuition for integration, differential equations, and approximation; use alongside rigorous exercises."
+    },
+    {
+      "kind": "youtube",
+      "title": "MIT OpenCourseWare",
+      "linkOrSite": "https://www.youtube.com/@mitocw",
+      "description": "Lecture and problem-solving videos aligned with university calculus."
+    },
+    {
+      "kind": "youtube",
+      "title": "The Organic Chemistry Tutor",
+      "linkOrSite": "https://www.youtube.com/@TheOrganicChemistryTutor",
+      "description": "Focused walkthroughs for integration techniques and series practice."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Integral Foundations and Strategy",
+      "description": "Calculus II begins by consolidating the definite integral, the Fundamental Theorem of Calculus, and substitution. The deeper goal is to diagnose an integrand, choose a defensible method, and verify the result rather than memorize disconnected tricks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Fundamental Theorem and net change review",
+          "description": "The Fundamental Theorem remains the conceptual anchor: integrals accumulate and antiderivatives evaluate that accumulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accumulation functions and both parts of the Fundamental Theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Net change, signed accumulation, and total accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Average value and units of a definite integral"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiating integrals with variable limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Substitution and inverse chain-rule structure",
+          "description": "Substitution succeeds when the integrand contains a composite function together with the differential pattern of its inner function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Indefinite substitution and back-substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Definite substitution with transformed bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Algebraic, trigonometric, exponential, and logarithmic patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Checking an antiderivative by differentiation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integration strategy",
+          "description": "A good integrator first simplifies and classifies the expression, then selects the least complicated method that matches its structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Algebraic division, factoring, identities, and completing the square"
+            },
+            {
+              "type": "concept",
+              "title": "Recognizing substitution, parts, trigonometric, and rational-function structures"
+            },
+            {
+              "type": "concept",
+              "title": "Combining methods in a planned sequence"
+            },
+            {
+              "type": "concept",
+              "title": "Explaining why a chosen method fits and why alternatives do not"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integration by Parts and Reduction Ideas",
+      "description": "Integration by parts reverses the product rule. It is essential for products, logarithms, inverse trigonometric functions, and recurring integral families, and it introduces the idea of transforming a problem into a simpler one.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deriving and applying integration by parts",
+          "description": "The formula is most useful when one factor becomes simpler when differentiated and the other remains integrable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derivation from the product rule"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing u and dv using structural judgment rather than a rigid mnemonic"
+            },
+            {
+              "type": "concept",
+              "title": "Definite and indefinite integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated integration by parts and tabular organization"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Products and special functions",
+          "description": "Many common antiderivatives become accessible only after treating one factor as an implicit product with 1.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polynomial times exponential or trigonometric functions"
+            },
+            {
+              "type": "concept",
+              "title": "Logarithmic and inverse trigonometric integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential-trigonometric cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Verification and constants of integration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reduction and recursive relationships",
+          "description": "A reduction formula expresses a difficult integral in terms of a related, simpler case and reveals patterns useful in computation and analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deriving a simple reduction formula"
+            },
+            {
+              "type": "concept",
+              "title": "Base cases and recursive evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Recognizing when recursion terminates"
+            },
+            {
+              "type": "concept",
+              "title": "Optional computational implementation of a reduction rule"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Trigonometric Integrals and Trigonometric Substitution",
+      "description": "Trigonometric identities and substitutions turn powers and radical expressions into integrable forms. The point is not identity collection; it is matching algebraic geometry to a useful parameterization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Powers and products of sine and cosine",
+          "description": "Parity determines which identity or factorization exposes a substitution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Odd powers and saving one factor"
+            },
+            {
+              "type": "concept",
+              "title": "Even powers and half-angle identities"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed sine-cosine products"
+            },
+            {
+              "type": "concept",
+              "title": "Definite integrals and symmetry checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Powers of tangent and secant",
+          "description": "Tangent-secant integrals use derivative pairings and Pythagorean identities that differ from sine-cosine cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Even secant powers and reserving secant-squared"
+            },
+            {
+              "type": "concept",
+              "title": "Odd tangent powers and reserving secant-tangent"
+            },
+            {
+              "type": "concept",
+              "title": "Using tan^2(x)+1=sec^2(x)"
+            },
+            {
+              "type": "concept",
+              "title": "Other trigonometric products as enrichment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Trigonometric substitution for radicals",
+          "description": "A substitution based on a right-triangle identity removes square roots associated with circles and hyperbolas.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Patterns involving a^2-x^2, a^2+x^2, and x^2-a^2"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing sine, tangent, or secant substitutions"
+            },
+            {
+              "type": "concept",
+              "title": "Reference triangles and back-substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Domain, sign, and absolute-value considerations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rational Functions and Partial Fractions",
+      "description": "Partial fractions decomposes a complicated rational function into standard pieces. It is a systematic algebraic algorithm with applications in differential equations, systems, transforms, and economic dynamics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Preparation and decomposition",
+          "description": "The method applies to proper rational functions after division and factorization of the denominator.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polynomial long division for improper rational functions"
+            },
+            {
+              "type": "concept",
+              "title": "Factoring over the real numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Distinct and repeated linear factors"
+            },
+            {
+              "type": "concept",
+              "title": "Irreducible quadratic factors and repeated quadratics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Finding coefficients",
+          "description": "Coefficients can be found by equating polynomials, strategic substitution, or efficient cover-up in appropriate linear cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficient comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Strategic values and linear-factor cover-up"
+            },
+            {
+              "type": "concept",
+              "title": "Systems of equations for repeated or quadratic factors"
+            },
+            {
+              "type": "concept",
+              "title": "Recombining fractions to verify the decomposition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrating decomposed terms",
+          "description": "Each component maps to a small library of logarithmic, power, or arctangent antiderivatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logarithmic terms from linear denominators"
+            },
+            {
+              "type": "concept",
+              "title": "Powers from repeated linear factors"
+            },
+            {
+              "type": "concept",
+              "title": "Completing the square for quadratic terms"
+            },
+            {
+              "type": "concept",
+              "title": "Combining partial fractions with substitution or other methods"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Integration and Approximation Error",
+      "description": "Exact antiderivatives may be unavailable or unnecessary when data are sampled. Numerical integration converts finite function values into reliable approximations and makes error a first-class part of the answer.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quadrature rules",
+          "description": "Each rule replaces the function by a simpler local approximation and integrates that approximation exactly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Midpoint and trapezoidal rules"
+            },
+            {
+              "type": "concept",
+              "title": "Simpson's rule and its polynomial intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Composite rules on equal subintervals"
+            },
+            {
+              "type": "concept",
+              "title": "Using tabulated or experimental data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error bounds and refinement",
+          "description": "A numerical result must be paired with evidence about its accuracy and sensitivity to step size.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Qualitative error from monotonicity and concavity"
+            },
+            {
+              "type": "concept",
+              "title": "Standard derivative-based error bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Partition refinement and observed convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute, relative, and percentage error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Computational implementation",
+          "description": "A short spreadsheet or program makes the algorithm transparent and prepares students for later numerical methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constructing nodes, widths, weights, and sampled values"
+            },
+            {
+              "type": "concept",
+              "title": "Vectorized or table-based summation"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing methods on a function with a known integral"
+            },
+            {
+              "type": "concept",
+              "title": "Documenting inputs, assumptions, precision, and stopping decisions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Improper Integrals and Continuous Tails",
+      "description": "Improper integrals extend accumulation to infinite intervals and unbounded integrands. Their value is defined through limits, so convergence must be established before algebraic evaluation is trusted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Infinite intervals",
+          "description": "An integral over an unbounded interval is a limit of integrals over finite intervals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-sided and two-sided infinite intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Splitting at a finite point when both tails are infinite"
+            },
+            {
+              "type": "concept",
+              "title": "p-integrals as benchmark examples"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting finite total mass, probability, or exposure over an infinite horizon"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Unbounded integrands",
+          "description": "A vertical asymptote inside or at the endpoint requires a one-sided limiting definition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Endpoint singularities"
+            },
+            {
+              "type": "concept",
+              "title": "Interior singularities and mandatory interval splitting"
+            },
+            {
+              "type": "concept",
+              "title": "Convergent versus divergent behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding cancellation across an undefined point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Comparison and estimation",
+          "description": "Comparison tests transfer known convergence behavior from a benchmark integrand to a new one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct comparison for nonnegative functions"
+            },
+            {
+              "type": "concept",
+              "title": "Limit comparison intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Tail bounds and practical truncation error"
+            },
+            {
+              "type": "concept",
+              "title": "Connections to probability distributions and long-run models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applications of Integration",
+      "description": "Applications of integration teach the central modeling move of Calculus II: identify a thin contribution, express it as density or rate times a small width, and sum continuously over the correct bounds.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Area, volume, and geometry",
+          "description": "The geometry of a slice determines the integrand. A sketch, orientation, and units are essential parts of the solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area between curves with vertical or horizontal slices"
+            },
+            {
+              "type": "concept",
+              "title": "Volumes by cross-sections, disks, washers, and shells"
+            },
+            {
+              "type": "concept",
+              "title": "Arc length of a graph and parametric curve"
+            },
+            {
+              "type": "concept",
+              "title": "Surface area of revolution as enrichment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Work, force, and distributed quantities",
+          "description": "When force or density varies, a definite integral combines local contributions into a total.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Work by a variable force and springs"
+            },
+            {
+              "type": "concept",
+              "title": "Pumping fluids and hydrostatic force"
+            },
+            {
+              "type": "concept",
+              "title": "Mass from linear density and center-of-mass ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering units and physical reasonableness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cross-disciplinary accumulation",
+          "description": "The same integral structure appears in life science, chemistry, economics, and computing when a varying rate or density is accumulated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biological exposure, flow, and population totals"
+            },
+            {
+              "type": "concept",
+              "title": "Chemical concentration, yield, and transport totals"
+            },
+            {
+              "type": "concept",
+              "title": "Economic surplus, discounted flows, and accumulated marginal quantities"
+            },
+            {
+              "type": "concept",
+              "title": "Cumulative cost or resource use from sampled performance data"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First-Order Differential Equations and Dynamic Models",
+      "description": "Differential equations express systems through rates rather than explicit formulas. A focused introduction gives every degree a bridge from calculus techniques to growth, decay, equilibrium, and later modeling courses.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Separable equations and initial values",
+          "description": "Separation rewrites a rate law so each variable can be integrated on its own side, after which an initial condition selects one solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recognizing and separating dy/dx=g(x)h(y)"
+            },
+            {
+              "type": "concept",
+              "title": "Implicit and explicit solution forms"
+            },
+            {
+              "type": "concept",
+              "title": "Initial-value problems and parameter determination"
+            },
+            {
+              "type": "concept",
+              "title": "Checking a solution in the original equation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Growth, decay, and logistic models",
+          "description": "Model shape follows from how the rate depends on the current state and its distance from equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Exponential growth and decay"
+            },
+            {
+              "type": "concept",
+              "title": "Half-life, doubling time, and proportional-rate interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Logistic growth, carrying capacity, and inflection"
+            },
+            {
+              "type": "concept",
+              "title": "Model assumptions and parameter units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Qualitative and numerical behavior",
+          "description": "Exact formulas are only one way to understand a differential equation; slope fields and numerical steps reveal direction and stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direction fields and solution curves"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibria and qualitative stability"
+            },
+            {
+              "type": "concept",
+              "title": "Euler's method as a first numerical solver"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing exact, numerical, and graphical solutions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sequences and the Meaning of Infinite Processes",
+      "description": "Sequences formalize ordered approximation and long-run behavior. They provide the language needed to define an infinite series and to reason carefully about convergence rather than treating infinity as a number.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sequence definitions and representations",
+          "description": "A sequence can be explicit, recursive, graphical, or generated by an algorithm, and each representation reveals different structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Terms, indices, explicit formulas, and recurrence relations"
+            },
+            {
+              "type": "concept",
+              "title": "Graphs and tables of sequence values"
+            },
+            {
+              "type": "concept",
+              "title": "Monotone and bounded behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Arithmetic, geometric, factorial, and recursively defined examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Limits of sequences",
+          "description": "Convergence means terms can be made arbitrarily close to a finite value by going far enough in the sequence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limit laws for sequences"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant growth and algebraic simplification"
+            },
+            {
+              "type": "concept",
+              "title": "Squeeze arguments"
+            },
+            {
+              "type": "concept",
+              "title": "Monotone Convergence Theorem at an intuitive, hypothesis-aware level"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recursive approximation and iteration",
+          "description": "Many algorithms produce sequences whose convergence determines whether the computation succeeds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Newton iterations revisited"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-point iteration and graphical intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical stabilization and stopping rules"
+            },
+            {
+              "type": "concept",
+              "title": "Examples from population, finance, and computational methods"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Infinite Series and Convergence Tests",
+      "description": "An infinite series is the limit of its partial sums. Calculus II develops a toolkit for deciding whether that limit exists, estimating the remainder, and choosing a test based on structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Series foundations",
+          "description": "The sequence of partial sums\u2014not the individual terms\u2014determines whether an infinite sum converges.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial sums and the definition of convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric and telescoping series"
+            },
+            {
+              "type": "concept",
+              "title": "The nth-term divergence test"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity and basic algebra of convergent series"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Positive-term tests",
+          "description": "Positive series can often be compared with benchmark sums or integrals whose convergence is already understood.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integral Test and p-series"
+            },
+            {
+              "type": "concept",
+              "title": "Direct and limit comparison tests"
+            },
+            {
+              "type": "concept",
+              "title": "Ratio Test and Root Test"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing an efficient test from the form of the terms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Alternation, absolute convergence, and error",
+          "description": "Signs can create cancellation, but absolute convergence gives stronger stability under rearrangement and manipulation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Alternating Series Test"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute versus conditional convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Alternating-series remainder estimate"
+            },
+            {
+              "type": "concept",
+              "title": "Tail estimation and reporting the number of terms required"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power Series and Interval of Convergence",
+      "description": "A power series is an infinite polynomial centered at a point. Within its interval of convergence it can represent, differentiate, integrate, and approximate functions using familiar algebraic operations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Power-series structure",
+          "description": "The center and radius determine where a power series behaves like a function and where it fails to converge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "General form centered at a"
+            },
+            {
+              "type": "concept",
+              "title": "Radius and interval of convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Ratio or Root Test for the radius"
+            },
+            {
+              "type": "concept",
+              "title": "Separate endpoint testing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Building new series",
+          "description": "Known geometric-series identities generate many useful expansions through algebra, substitution, differentiation, and integration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Geometric-series template"
+            },
+            {
+              "type": "concept",
+              "title": "Substitution and rescaling"
+            },
+            {
+              "type": "concept",
+              "title": "Term-by-term differentiation and integration"
+            },
+            {
+              "type": "concept",
+              "title": "Products and simple combinations of series"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functions defined by series",
+          "description": "A power series is both a computational object and a function with a domain determined by convergence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluating and graphing partial-sum approximations"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiability and integrability inside the radius"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient matching in simple models"
+            },
+            {
+              "type": "concept",
+              "title": "Error observed through successive partial sums"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Taylor Series, Approximation, and Remainder",
+      "description": "Taylor polynomials encode a function's derivatives at one point into a polynomial approximation. The remainder term makes approximation quality analyzable rather than merely visual.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Taylor and Maclaurin polynomials",
+          "description": "Matching derivatives at the center creates the locally best polynomial of a chosen degree.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constructing coefficients from derivatives"
+            },
+            {
+              "type": "concept",
+              "title": "Maclaurin series for exp, sine, cosine, and geometric-derived functions"
+            },
+            {
+              "type": "concept",
+              "title": "Centering at a nonzero point"
+            },
+            {
+              "type": "concept",
+              "title": "Reading local behavior from coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Convergence to the function",
+          "description": "A Taylor series can converge as a series yet fail to equal the original function; the remainder resolves that distinction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Taylor's Theorem with remainder"
+            },
+            {
+              "type": "concept",
+              "title": "Lagrange remainder bound"
+            },
+            {
+              "type": "concept",
+              "title": "Intervals on which the remainder tends to zero"
+            },
+            {
+              "type": "concept",
+              "title": "Alternating-series error when applicable"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications of approximation",
+          "description": "Series make hard functions and integrals accessible to hand calculation and computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Approximating function values with controlled error"
+            },
+            {
+              "type": "concept",
+              "title": "Evaluating non-elementary definite integrals by series"
+            },
+            {
+              "type": "concept",
+              "title": "Approximating solutions of differential equations as enrichment"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing Taylor, numerical quadrature, and calculator values"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Parametric Curves, Polar Coordinates, and Vector Bridge",
+      "description": "Alternative coordinate descriptions let calculus analyze curves that are awkward or impossible to express as y=f(x). This closing unit also provides a deliberate bridge to multivariable calculus and vector-based applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Parametric curves",
+          "description": "A parameter records how both coordinates evolve, naturally representing motion, loops, and multi-valued curves.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Eliminating a parameter and choosing orientation"
+            },
+            {
+              "type": "concept",
+              "title": "First and second derivatives with respect to the parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Parametric arc length and speed"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to trajectories and mechanisms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polar coordinates and polar curves",
+          "description": "Polar coordinates describe a point by distance and angle, making rotational symmetry and many physical shapes natural.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Converting between Cartesian and polar forms"
+            },
+            {
+              "type": "concept",
+              "title": "Graphing lines, circles, spirals, roses, and limacons"
+            },
+            {
+              "type": "concept",
+              "title": "Slope, area, and arc length in polar form"
+            },
+            {
+              "type": "concept",
+              "title": "Finding intersections and avoiding duplicate tracing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vectors and multivariable readiness",
+          "description": "A concise vector preview links parametric motion to later work with space, fields, forces, gradients, and systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vectors, components, magnitude, direction, and unit vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Dot product and projection as readiness topics"
+            },
+            {
+              "type": "concept",
+              "title": "Vector-valued position, velocity, and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "What continues in multivariable calculus: partial derivatives, multiple integrals, and vector fields"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

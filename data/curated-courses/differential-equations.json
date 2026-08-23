@@ -1,0 +1,1047 @@
+{
+  "slug": "differential-equations",
+  "title": "Differential Equations",
+  "description": "Differential Equations develops the language of change over time and space. The unified course serves various degree pathways through a common mathematical spine: formulation, analytical solution, qualitative reasoning, numerical approximation, validation, and interpretation. Discipline-specific examples change, but expectations for reasoning and communication remain consistent.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Elementary Differential Equations and Boundary Value Problems",
+      "linkOrSite": "Wiley",
+      "description": "Boyce, DiPrima, and Meade. Balanced core text for analytical methods, modeling, systems, series, numerical methods, and boundary-value problems."
+    },
+    {
+      "kind": "textbook",
+      "title": "Differential Equations and Boundary Value Problems",
+      "linkOrSite": "Pearson",
+      "description": "Edwards, Penney, and Calvis. Accessible engineering-oriented development with broad application coverage."
+    },
+    {
+      "kind": "textbook",
+      "title": "Differential Equations",
+      "linkOrSite": "Cengage",
+      "description": "Blanchard, Devaney, and Hall. Strong qualitative, numerical, and dynamical-systems viewpoint."
+    },
+    {
+      "kind": "textbook",
+      "title": "Ordinary Differential Equations",
+      "linkOrSite": "Dover",
+      "description": "Tenenbaum and Pollard. Deep problem-solving reference and historical Dover resource."
+    },
+    {
+      "kind": "textbook",
+      "title": "Nonlinear Dynamics and Chaos",
+      "linkOrSite": "CRC Press",
+      "description": "Strogatz. Excellent enrichment for phase lines, nonlinear systems, bifurcations, oscillations, and chaos."
+    },
+    {
+      "kind": "textbook",
+      "title": "Mathematical Physiology",
+      "linkOrSite": "Springer",
+      "description": "Keener and Sneyd. Biomedical enrichment for compartment, transport, feedback, and physiological models."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OpenCourseWare 18.03SC Differential Equations",
+      "linkOrSite": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/",
+      "description": "Complete independent-study course with notes, videos, problems, solutions, and exams."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OpenCourseWare ES.1803 Differential Equations (Spring 2024)",
+      "linkOrSite": "https://ocw.mit.edu/courses/es-1803-differential-equations-spring-2024/",
+      "description": "Recent topic notes and syllabus extending through Fourier series, PDE separation, and qualitative systems."
+    },
+    {
+      "kind": "website",
+      "title": "Paul's Online Math Notes - Differential Equations",
+      "linkOrSite": "https://tutorial.math.lamar.edu/Classes/DE/DE.aspx",
+      "description": "Concise explanations and worked practice for standard ODE methods."
+    },
+    {
+      "kind": "website",
+      "title": "LibreTexts Differential Equations",
+      "linkOrSite": "https://math.libretexts.org/Bookshelves/Differential_Equations",
+      "description": "Open textbooks covering analytical, numerical, systems, and modeling topics."
+    },
+    {
+      "kind": "website",
+      "title": "Khan Academy Differential Equations",
+      "linkOrSite": "https://www.khanacademy.org/math/differential-equations",
+      "description": "Guided review and practice for foundational solution techniques and transforms."
+    },
+    {
+      "kind": "website",
+      "title": "UC Berkeley Math 54",
+      "linkOrSite": "https://math.berkeley.edu/courses/choosing/lowerdivlist/math54",
+      "description": "Useful benchmark for the linear-algebra, systems, eigenvalue, and Fourier connections."
+    },
+    {
+      "kind": "website",
+      "title": "Python: SciPy solve_ivp and solve_bvp",
+      "linkOrSite": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html",
+      "description": "Open numerical IVP/BVP solvers. Pair with NumPy, Matplotlib, and SymPy for verification. Also https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_bvp.html."
+    },
+    {
+      "kind": "website",
+      "title": "MATLAB ODE solvers",
+      "linkOrSite": "https://www.mathworks.com/help/matlab/ordinary-differential-equations.html",
+      "description": "Widely used engineering solver family with event handling and stiff-system options."
+    },
+    {
+      "kind": "website",
+      "title": "Julia DifferentialEquations.jl",
+      "linkOrSite": "https://docs.sciml.ai/DiffEqDocs/stable/",
+      "description": "High-performance ecosystem for ODE, SDE, DAE, and PDE-related scientific computing."
+    },
+    {
+      "kind": "website",
+      "title": "GeoGebra or Desmos",
+      "linkOrSite": "https://www.geogebra.org/",
+      "description": "Quick direction-field, slope, and solution-curve explorations for conceptual checks. Also https://www.desmos.com/."
+    },
+    {
+      "kind": "youtube",
+      "title": "Professor Leonard - Differential Equations",
+      "linkOrSite": "https://www.youtube.com/@ProfessorLeonard",
+      "description": "Long-form classroom lectures and worked examples."
+    },
+    {
+      "kind": "youtube",
+      "title": "3Blue1Brown - Differential Equations",
+      "linkOrSite": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftcH1",
+      "description": "Visual intuition for differential equations, exponentials, systems, and physical models."
+    },
+    {
+      "kind": "youtube",
+      "title": "MIT OpenCourseWare YouTube",
+      "linkOrSite": "https://www.youtube.com/@mitocw",
+      "description": "Lecture and problem-solving videos aligned with MIT differential equations materials."
+    },
+    {
+      "kind": "youtube",
+      "title": "Steve Brunton",
+      "linkOrSite": "https://www.youtube.com/@Eigensteve",
+      "description": "Applied dynamical systems, state-space modeling, control, and data-driven computation."
+    },
+    {
+      "kind": "youtube",
+      "title": "Dr. Trefor Bazett",
+      "linkOrSite": "https://www.youtube.com/@DrTreforBazett",
+      "description": "Clear short-form explanations of ODE methods and phase-plane ideas."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Differential-Equation Models, Direction Fields, and Well-Posed Problems",
+      "description": "Differential equations turn local laws of change into predictions about an evolving system. This opening unit teaches students to formulate models, read solution geometry, and ask whether an initial-value problem has a meaningful and unique solution before calculating.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Modeling and classification",
+          "description": "Classification reveals what kind of mathematical object is being studied and which tools might apply.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dependent and independent variables, parameters, state variables, and units"
+            },
+            {
+              "type": "concept",
+              "title": "Ordinary versus partial differential equations, order, linearity, autonomy"
+            },
+            {
+              "type": "concept",
+              "title": "Initial-value and boundary-value problems"
+            },
+            {
+              "type": "concept",
+              "title": "Translating conservation, balance, force, circuit, kinetic, and population laws into equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Direction fields and solution curves",
+          "description": "A direction field displays the slopes prescribed by a first-order equation and reveals behavior even when no closed form exists.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isoclines, nullclines, integral curves, and families of solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Reading monotonicity, equilibria, and long-run trends from a field"
+            },
+            {
+              "type": "concept",
+              "title": "Matching equations, direction fields, and candidate solution graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Technology-assisted plots with interpretation rather than visual guesswork"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Existence, uniqueness, and validation",
+          "description": "A solution method matters only when the mathematical problem is well posed and the result survives basic reality checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Local existence and uniqueness for y'=f(t,y) under standard continuity conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Intervals of existence, singularities, and nonunique behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Verification by substitution and initial or boundary data"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional consistency, limiting cases, signs, magnitudes, and model assumptions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "First-Order Differential Equations and Analytical Methods",
+      "description": "First-order equations describe one state variable whose rate depends on time, the state, or both. Students learn a decision process for recognizing structure and selecting a method instead of treating formulas as an unconnected catalog.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Separable equations",
+          "description": "Separation isolates the variables so that antidifferentiation converts a rate law into an implicit or explicit solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Separating variables and integrating both sides"
+            },
+            {
+              "type": "concept",
+              "title": "Applying initial conditions and determining solution intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Implicit solutions, equilibrium solutions, and lost solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Growth, decay, cooling, reaction-rate, and drag models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linear equations and integrating factors",
+          "description": "The integrating factor turns a first-order linear equation into a product derivative and exposes the roles of forcing and initial data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard form y'+p(t)y=g(t)"
+            },
+            {
+              "type": "concept",
+              "title": "Deriving and applying the integrating factor"
+            },
+            {
+              "type": "concept",
+              "title": "Homogeneous response, particular response, and superposition"
+            },
+            {
+              "type": "concept",
+              "title": "Mixing, circuits, pharmacokinetics, and input-output models"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Exact equations and useful substitutions",
+          "description": "Exactness recognizes a hidden potential function, while substitutions convert certain nonlinear equations into familiar types.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Differential forms M dx + N dy = 0 and the exactness test"
+            },
+            {
+              "type": "concept",
+              "title": "Recovering a potential function and applying initial data"
+            },
+            {
+              "type": "concept",
+              "title": "Bernoulli equations and homogeneous first-order substitutions"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing methods through structural cues and checking the result"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Autonomous Equations, Qualitative Analysis, and Nonlinear Models",
+      "description": "Autonomous equations show how a system changes as a function of its current state. Their phase-line geometry often tells more about equilibria, stability, thresholds, and long-run behavior than an explicit formula does.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase lines and stability",
+          "description": "A phase line compresses the dynamics of y'=f(y) into equilibria and arrows that describe how solutions move.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibria and sign charts for f(y)"
+            },
+            {
+              "type": "concept",
+              "title": "Stable, unstable, and semistable equilibria"
+            },
+            {
+              "type": "concept",
+              "title": "Basins of attraction and dependence on initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Bifurcation awareness when a parameter changes the equilibrium pattern"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Canonical nonlinear models",
+          "description": "Simple nonlinear laws capture saturation, competition, thresholds, and feedback that pure exponential models miss.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logistic growth and carrying capacity"
+            },
+            {
+              "type": "concept",
+              "title": "Harvesting, ignition, threshold, and limited-resource models"
+            },
+            {
+              "type": "concept",
+              "title": "Compartment, mixing, reaction, and elimination models"
+            },
+            {
+              "type": "concept",
+              "title": "Nondimensionalization and interpretation of parameter groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model calibration and critique",
+          "description": "A model is an argument about mechanisms, not merely an equation, so students must connect parameters to data and limitations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimating parameters from initial rates, equilibria, half-lives, or data"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing models using residuals and qualitative behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity to parameters and initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Communicating assumptions, validity ranges, and uncertainty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Solution of Initial-Value Problems",
+      "description": "Most realistic differential equations do not have elementary closed-form solutions. Numerical methods approximate trajectories while making step size, stability, error, and verification part of the mathematical reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Euler and improved Euler methods",
+          "description": "Euler's method advances along local tangent lines and makes the logic of time stepping transparent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forward Euler update and geometric interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Heun or midpoint methods as second-order improvements"
+            },
+            {
+              "type": "concept",
+              "title": "Step-size studies and global versus local truncation error"
+            },
+            {
+              "type": "concept",
+              "title": "Failure near steep gradients, singularities, or unstable dynamics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Runge-Kutta methods and solver practice",
+          "description": "Runge-Kutta methods combine several slope estimates to achieve strong accuracy without higher derivatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Classical fourth-order Runge-Kutta structure"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptive step size, error tolerances, and event detection"
+            },
+            {
+              "type": "concept",
+              "title": "Using Python, MATLAB, or Julia solvers responsibly"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible plots, labeled axes, units, and solver settings"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error, stability, and verification",
+          "description": "A computed curve is evidence only after its convergence and consistency have been checked.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Comparing against exact solutions or conserved quantities"
+            },
+            {
+              "type": "concept",
+              "title": "Refinement studies and empirical convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical stability versus stability of the continuous model"
+            },
+            {
+              "type": "concept",
+              "title": "Stiffness awareness and when explicit methods struggle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Higher-Order Linear Differential Equations",
+      "description": "Higher-order linear equations govern oscillations, beams, circuits, control elements, and many reduced physical models. Their solution structure separates the system's natural behavior from the effects of forcing.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linear theory and solution spaces",
+          "description": "The theory of linear equations explains why homogeneous solutions form a vector space and how initial data select one trajectory.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linear differential operators and homogeneous versus nonhomogeneous equations"
+            },
+            {
+              "type": "concept",
+              "title": "Existence and uniqueness for linear initial-value problems"
+            },
+            {
+              "type": "concept",
+              "title": "Linear independence, the Wronskian, and fundamental solution sets"
+            },
+            {
+              "type": "concept",
+              "title": "Superposition and the dimension of an nth-order solution space"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constant-coefficient homogeneous equations",
+          "description": "Characteristic roots turn differentiation into algebra and connect root structure to growth, decay, and oscillation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distinct real roots, repeated roots, and complex conjugate roots"
+            },
+            {
+              "type": "concept",
+              "title": "Euler's formula and real-valued oscillatory solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Initial-condition systems and interpretation of constants"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanical, electrical, and chemical examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reduction of order and variable coefficients",
+          "description": "When one solution is known or coefficients vary, reduction techniques extend the core linear framework.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reduction of order for a second independent solution"
+            },
+            {
+              "type": "concept",
+              "title": "Cauchy-Euler equations and power-law trial forms"
+            },
+            {
+              "type": "concept",
+              "title": "Abel's identity and qualitative information from the Wronskian"
+            },
+            {
+              "type": "concept",
+              "title": "Recognizing when numerical or series methods are more appropriate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Forced Systems, Oscillations, and Response Methods",
+      "description": "Forcing introduces energy or information into a linear system. This unit connects solution methods to transient and steady-state response, damping, resonance, frequency response, and physically meaningful design decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Undetermined coefficients",
+          "description": "For common forcing functions, a trial response can be selected from a family preserved by differentiation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polynomial, exponential, sinusoidal, and combined inputs"
+            },
+            {
+              "type": "concept",
+              "title": "Trial-form selection and the modification rule for resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Complementary and particular solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Applicability limits when coefficients are not constant or forcing is irregular"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Variation of parameters",
+          "description": "Variation of parameters constructs a particular solution from a fundamental homogeneous basis and works for much broader forcing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deriving the parameter equations under a simplifying constraint"
+            },
+            {
+              "type": "concept",
+              "title": "Wronskian formulas for second-order equations"
+            },
+            {
+              "type": "concept",
+              "title": "Definite-integral forms that incorporate initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison with Green-function and convolution ideas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oscillation, damping, and resonance",
+          "description": "Second-order response models show how system parameters control natural frequency, decay, amplitude, and phase.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Undamped, underdamped, critically damped, and overdamped motion"
+            },
+            {
+              "type": "concept",
+              "title": "Driven oscillations, beats, pure resonance, and practical resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Amplitude gain, phase lag, and frequency-response curves"
+            },
+            {
+              "type": "concept",
+              "title": "Mass-spring-damper, RLC circuit, structural, and physiological analogies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace Transforms, Impulses, and Transfer Functions",
+      "description": "The Laplace transform converts differential equations into algebraic equations while handling initial data and discontinuous inputs naturally. It also introduces the language of impulse response and transfer functions used across engineering and applied science.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Transform fundamentals",
+          "description": "The transform records a time-domain function as a complex-frequency representation whose algebra can simplify initial-value problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definition, convergence idea, linearity, and common transform pairs"
+            },
+            {
+              "type": "concept",
+              "title": "First and second shifting theorems"
+            },
+            {
+              "type": "concept",
+              "title": "Transforms of derivatives and incorporation of initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Partial fractions and inverse transforms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Steps, impulses, and convolution",
+          "description": "Generalized and piecewise inputs model switches, shocks, injections, collisions, and short-duration forcing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Heaviside step functions and piecewise input construction"
+            },
+            {
+              "type": "concept",
+              "title": "Dirac delta as an idealized impulse and jump conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Convolution and the response to a general input"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse response as a system fingerprint"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transfer functions and system response",
+          "description": "A transfer function links input to output and reveals stability and frequency behavior through its poles and zeros.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Zero-state and zero-input response"
+            },
+            {
+              "type": "concept",
+              "title": "Poles, zeros, stability, and damping interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Block-diagram and input-output viewpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Connections to circuits, control, signal processing, transport, and pharmacokinetics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Linear Systems of Differential Equations",
+      "description": "Coupled systems describe interacting states and provide the natural language for multicomponent engineering, chemical, biological, and physical models. Eigenvalues and eigenvectors translate matrix structure into modes of motion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "System formulation and matrix methods",
+          "description": "Writing x'=Ax+g(t) exposes coupling and permits a unified treatment of many higher-order and compartment models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Converting higher-order equations to first-order systems"
+            },
+            {
+              "type": "concept",
+              "title": "State vectors, system matrices, and equilibrium points"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental matrices and the matrix exponential"
+            },
+            {
+              "type": "concept",
+              "title": "Existence, uniqueness, and superposition for linear systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Eigenvalue solution methods",
+          "description": "Eigenpairs identify invariant modes whose growth, decay, and rotation build the general solution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distinct real eigenvalues and modal decomposition"
+            },
+            {
+              "type": "concept",
+              "title": "Complex eigenvalues and spiral or center behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated eigenvalues, generalized eigenvectors, and defective cases"
+            },
+            {
+              "type": "concept",
+              "title": "Forced systems and variation of constants"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Phase portraits and applications",
+          "description": "A phase portrait shows every trajectory at once, making stability and mode interaction visible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes, saddles, spirals, centers, and direction of time"
+            },
+            {
+              "type": "concept",
+              "title": "Trace-determinant plane for two-dimensional systems"
+            },
+            {
+              "type": "concept",
+              "title": "Coupled tanks, circuits, vibrations, kinetics, populations, and physiology"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting dominant modes, time scales, and transient behavior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonlinear Systems, Linearization, and Stability",
+      "description": "Nonlinear systems can have multiple equilibria, thresholds, cycles, and behaviors absent from linear models. Local linearization and phase-plane analysis provide a first rigorous toolkit for understanding them without requiring closed-form solutions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Phase-plane geometry",
+          "description": "Nullclines partition the plane and help organize the direction field around equilibria and invariant regions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nullclines, equilibria, direction fields, and representative trajectories"
+            },
+            {
+              "type": "concept",
+              "title": "Invariant sets, trapping regions, and qualitative sketches"
+            },
+            {
+              "type": "concept",
+              "title": "Conservative systems and energy-level curves"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical phase portraits checked against analytical structure"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearization and local classification",
+          "description": "The Jacobian matrix gives the best local linear approximation near an equilibrium and often predicts local behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Jacobian evaluation at an equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Hyperbolic equilibria and eigenvalue-based classification"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of linearization at centers or zero-real-part eigenvalues"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus global stability claims"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonlinear dynamics and bifurcation awareness",
+          "description": "A small parameter change can reorganize equilibria or generate sustained oscillations, so qualitative transitions matter in applications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Predator-prey, competition, epidemic, and autocatalytic examples"
+            },
+            {
+              "type": "concept",
+              "title": "Limit cycles and self-sustained oscillation concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Saddle-node, transcritical, and pitchfork bifurcation examples"
+            },
+            {
+              "type": "concept",
+              "title": "Chaos as enrichment: sensitivity without overclaiming unpredictability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Power-Series Solutions and Special-Function Connections",
+      "description": "Series methods construct local solutions near ordinary and singular points when elementary formulas fail. They also reveal why special functions appear throughout wave, diffusion, quantum, orbital, and cylindrical models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Power-series method at ordinary points",
+          "description": "Assuming an analytic series converts a differential equation into recurrence relations for its coefficients.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power series, radius of convergence, and termwise differentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Index shifting and coefficient matching"
+            },
+            {
+              "type": "concept",
+              "title": "Recurrence relations and independent series solutions"
+            },
+            {
+              "type": "concept",
+              "title": "Applying initial conditions and estimating truncation error"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regular singular points and Frobenius method",
+          "description": "Frobenius extends power series by allowing a leading fractional or nonzero exponent near certain singular points.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ordinary, regular singular, and irregular singular points"
+            },
+            {
+              "type": "concept",
+              "title": "Indicial equation and characteristic exponents"
+            },
+            {
+              "type": "concept",
+              "title": "Root-difference cases and the possibility of logarithmic terms"
+            },
+            {
+              "type": "concept",
+              "title": "Local validity and comparison with numerical solutions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Special functions in applications",
+          "description": "Recurring boundary geometries and coefficient patterns produce named functions that serve as reusable solution bases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bessel functions in cylindrical geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Legendre polynomials in spherical and potential problems"
+            },
+            {
+              "type": "concept",
+              "title": "Airy, Hermite, or Laguerre functions as enrichment examples"
+            },
+            {
+              "type": "concept",
+              "title": "Orthogonality, normalization, and computational evaluation awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boundary-Value Problems, Eigenvalues, and Fourier Series",
+      "description": "Boundary conditions constrain a solution at more than one location and often permit solutions only for special parameter values. This leads naturally to eigenvalue problems, orthogonal expansions, and Fourier representations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linear boundary-value problems",
+          "description": "Unlike an initial-value problem, a boundary-value problem may have no solution, one solution, or many solutions depending on the operator and data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dirichlet, Neumann, Robin, and mixed boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Shooting-method intuition and numerical boundary-value solvers"
+            },
+            {
+              "type": "concept",
+              "title": "Homogeneous versus nonhomogeneous boundary data"
+            },
+            {
+              "type": "concept",
+              "title": "Solvability, uniqueness, and physical interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sturm-Liouville eigenvalue problems",
+          "description": "Self-adjoint boundary-value problems produce real eigenvalues and orthogonal eigenfunctions that organize solution spaces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Operator form, weight functions, and admissible boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Eigenvalues, eigenfunctions, orthogonality, and normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Expansion coefficients through weighted inner products"
+            },
+            {
+              "type": "concept",
+              "title": "Connections to vibration modes, quantum states, and diffusion modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Fourier series and periodic response",
+          "description": "Fourier series decompose periodic data into sinusoidal modes that linear systems process independently.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sine-cosine and complex-exponential forms"
+            },
+            {
+              "type": "concept",
+              "title": "Even, odd, half-range, and piecewise expansions"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence, endpoint values, and Gibbs phenomenon awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Periodic forcing and modal response of linear equations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Introduction to Partial Differential Equations and Separation of Variables",
+      "description": "Partial differential equations describe fields that vary across both space and time. This final unit is a disciplined bridge: students classify foundational PDEs, interpret boundary and initial data, and use separation of variables without pretending to complete a full PDE course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PDE models and classification",
+          "description": "The heat, wave, and Laplace equations encode diffusion, propagation, and equilibrium and illustrate distinct mathematical behaviors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deriving conservation-based heat, diffusion, and wave models"
+            },
+            {
+              "type": "concept",
+              "title": "Elliptic, parabolic, and hyperbolic classification at an introductory level"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions and spatial boundary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Well-posedness, units, and physical meaning of coefficients"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Separation of variables",
+          "description": "A product assumption turns a linear PDE into linked ODE eigenvalue problems whose modes can be superposed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Product solutions and the separation constant"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary conditions selecting eigenvalues and eigenfunctions"
+            },
+            {
+              "type": "concept",
+              "title": "Fourier coefficients from initial data"
+            },
+            {
+              "type": "concept",
+              "title": "Heat and wave equations on a finite interval"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modal interpretation and computational verification",
+          "description": "Modal solutions explain how spatial patterns decay, oscillate, or persist and provide benchmarks for numerical simulations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transient versus steady-state components"
+            },
+            {
+              "type": "concept",
+              "title": "Mode shapes, decay rates, frequencies, and energy interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Laplace equation and steady potential as an enrichment example"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing truncated series with finite-difference or solver visualizations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

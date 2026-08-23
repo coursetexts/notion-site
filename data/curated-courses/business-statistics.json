@@ -1,0 +1,1479 @@
+{
+  "slug": "business-statistics",
+  "title": "Business Statistics",
+  "description": "Business Statistics develops the statistical reasoning needed to make defensible decisions from variable, incomplete, and imperfect data. Students learn probability, estimation, testing, experiments, regression, forecasting, quality, reliability, risk, simulation, and communication through real cases drawn from engineered systems, manufacturing, infrastructure, human performance, aerospace testing, and biomedical measurement. The mathematical treatment is algebra-based and calculus-aware. Computation is used to deepen reasoning rather than replace it.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Introductory Business Statistics",
+      "linkOrSite": "https://openstax.org/details/books/introductory-business-statistics",
+      "description": "OpenStax. Free business-context foundation for descriptive statistics, probability, inference, regression, and applications."
+    },
+    {
+      "kind": "textbook",
+      "title": "OpenIntro Statistics",
+      "linkOrSite": "https://www.openintro.org/book/os/",
+      "description": "Modern open text, datasets, simulation-based explanations, and applied exercises."
+    },
+    {
+      "kind": "textbook",
+      "title": "Applied Statistics and Probability for Engineers",
+      "linkOrSite": "Wiley",
+      "description": "Montgomery and Runger. Probability, inference, regression, DOE, quality, and engineering applications."
+    },
+    {
+      "kind": "textbook",
+      "title": "Probability and Statistics for Engineering and the Sciences",
+      "linkOrSite": "Cengage",
+      "description": "Devore. Rigorous distributions, estimation, tests, regression, and engineering examples."
+    },
+    {
+      "kind": "textbook",
+      "title": "Intuitive Biostatistics",
+      "linkOrSite": "Oxford University Press",
+      "description": "Harvey Motulsky. Interpretation-centered guide for biomedical, kinesiology, and health research."
+    },
+    {
+      "kind": "textbook",
+      "title": "Design and Analysis of Experiments",
+      "linkOrSite": "Wiley",
+      "description": "Douglas C. Montgomery. Forward reference for factorial design, response surfaces, and industrial experimentation."
+    },
+    {
+      "kind": "website",
+      "title": "NIST/SEMATECH e-Handbook of Statistical Methods",
+      "linkOrSite": "https://www.itl.nist.gov/div898/handbook/",
+      "description": "Engineering measurement, process modeling, DOE, SPC, reliability, and case studies."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 18.05 Introduction to Probability and Statistics",
+      "linkOrSite": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/",
+      "description": "Probability, Bayesian and frequentist inference, bootstrap, tests, regression, R, and active learning."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 18.443 Statistics for Applications",
+      "linkOrSite": "https://ocw.mit.edu/courses/18-443-statistics-for-applications-spring-2015/",
+      "description": "Inference, ANOVA, nonparametrics, regression, Bayesian statistics, decision theory, and R."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 15.060 Data, Models, and Decisions",
+      "linkOrSite": "https://ocw.mit.edu/courses/15-060-data-models-and-decisions-fall-2014/",
+      "description": "Cases, probability, simulation, regression, optimization awareness, and managerial recommendations."
+    },
+    {
+      "kind": "website",
+      "title": "Seeing Theory",
+      "linkOrSite": "https://seeing-theory.brown.edu/",
+      "description": "Interactive probability, distribution, inference, and regression intuition."
+    },
+    {
+      "kind": "website",
+      "title": "Khan Academy Statistics and Probability",
+      "linkOrSite": "https://www.khanacademy.org/math/statistics-probability",
+      "description": "Accessible lessons and practice for foundational probability and statistics."
+    },
+    {
+      "kind": "youtube",
+      "title": "StatQuest with Josh Starmer",
+      "linkOrSite": "https://www.youtube.com/@statquest",
+      "description": "Clear explanations of inference, regression, classification, validation, and statistical pitfalls."
+    },
+    {
+      "kind": "website",
+      "title": "R, Python, Jupyter, and Excel",
+      "linkOrSite": "https://www.r-project.org/",
+      "description": "Reproducible analysis, simulation, graphics, model validation, and transparent spreadsheet work. Also https://www.python.org/ and https://jupyter.org/."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Statistical Thinking, Questions, and Data Quality",
+      "description": "Statistics begins with a decision, not a formula. This unit teaches students to frame answerable questions, understand how data were generated, and recognize when evidence is too weak or biased for the intended decision.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Statistical problem solving",
+          "description": "Translate an engineering, performance, health, or operational concern into a disciplined investigative cycle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Problem-plan-data-analysis-conclusion cycle"
+            },
+            {
+              "type": "concept",
+              "title": "Population, sample, unit of analysis, and scope"
+            },
+            {
+              "type": "concept",
+              "title": "Response, predictor, factor, treatment, and covariate"
+            },
+            {
+              "type": "concept",
+              "title": "Estimand, decision threshold, and stakeholder consequence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data types and structures",
+          "description": "Identify the structure of a dataset because valid summaries and models depend on what each row, column, and time index represents.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Categorical, ordinal, count, and continuous variables"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-sectional, longitudinal, time-series, and spatial data"
+            },
+            {
+              "type": "concept",
+              "title": "Independent, paired, clustered, and repeated observations"
+            },
+            {
+              "type": "concept",
+              "title": "Wide versus tidy data and data dictionaries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data provenance and quality",
+          "description": "Audit the chain from measurement to analysis before treating a spreadsheet as evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Units, metadata, calibration, and source lineage"
+            },
+            {
+              "type": "concept",
+              "title": "Missingness, duplicates, impossible values, and range checks"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement error, rounding, censoring, and detection limits"
+            },
+            {
+              "type": "concept",
+              "title": "Selection, nonresponse, survivorship, and convenience bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical versus practical importance",
+          "description": "Keep statistical evidence connected to the size, cost, safety, or clinical relevance of an effect.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effect size and direction"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline risk and absolute versus relative change"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering tolerance or minimal important difference"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty, feasibility, and decision consequences"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Descriptive Statistics and Exploratory Visualization",
+      "description": "Exploration makes variation visible before formal modeling begins. Students learn to summarize distributions and relationships without hiding skew, subgroups, anomalies, or uncertainty.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Center, spread, and position",
+          "description": "Describe a distribution with summaries suited to its scale and shape.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean, median, mode, and weighted mean"
+            },
+            {
+              "type": "concept",
+              "title": "Range, variance, standard deviation, and coefficient of variation"
+            },
+            {
+              "type": "concept",
+              "title": "Quartiles, interquartile range, and percentiles"
+            },
+            {
+              "type": "concept",
+              "title": "Standardized values and robust summaries"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distribution displays",
+          "description": "Choose graphics that reveal shape, outliers, and sample size rather than merely decorate a report.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dotplots, histograms, density displays, and empirical CDFs"
+            },
+            {
+              "type": "concept",
+              "title": "Boxplots and violin-plot awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Bar charts for categorical data"
+            },
+            {
+              "type": "concept",
+              "title": "Bin width, axis integrity, and perceptual pitfalls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relationships and grouped comparisons",
+          "description": "Explore how outcomes vary with predictors, groups, and operating conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scatterplots and smoothers"
+            },
+            {
+              "type": "concept",
+              "title": "Side-by-side and faceted displays"
+            },
+            {
+              "type": "concept",
+              "title": "Mosaic plots and contingency tables"
+            },
+            {
+              "type": "concept",
+              "title": "Color, annotation, and uncertainty layers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Communicating exploratory findings",
+          "description": "Turn exploratory work into a concise statement of pattern, exception, and next question.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Context-rich titles and units"
+            },
+            {
+              "type": "concept",
+              "title": "Signal versus noise"
+            },
+            {
+              "type": "concept",
+              "title": "Outlier investigation rather than automatic deletion"
+            },
+            {
+              "type": "concept",
+              "title": "Accessible graphics and truthful scales"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Probability, Conditional Reasoning, and Bayesian Updating",
+      "description": "Probability provides a language for uncertain events and incomplete information. It supports risk assessment, diagnosis, reliability, quality, forecasting, and rational updating when new evidence arrives.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability foundations",
+          "description": "Build coherent event models and combine events without double counting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample spaces and events"
+            },
+            {
+              "type": "concept",
+              "title": "Complements, unions, intersections, and mutually exclusive events"
+            },
+            {
+              "type": "concept",
+              "title": "Addition and multiplication rules"
+            },
+            {
+              "type": "concept",
+              "title": "Permutations and combinations where useful"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditional probability and independence",
+          "description": "Reason about evidence, screening, failure modes, and subgroup risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional probability tables and trees"
+            },
+            {
+              "type": "concept",
+              "title": "Independence versus mutual exclusivity"
+            },
+            {
+              "type": "concept",
+              "title": "Law of total probability"
+            },
+            {
+              "type": "concept",
+              "title": "Base-rate effects and prosecutor's-fallacy awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bayes' theorem",
+          "description": "Update a prior probability using the diagnostic or predictive value of observed evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prior, likelihood, posterior, and evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity, specificity, predictive values, and prevalence"
+            },
+            {
+              "type": "concept",
+              "title": "Likelihood ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering fault diagnosis and biomedical testing examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Expected value and decision criteria",
+          "description": "Compare uncertain choices using consequences as well as probabilities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expected value, expected loss, and utility awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Decision trees and rollback"
+            },
+            {
+              "type": "concept",
+              "title": "Value of information"
+            },
+            {
+              "type": "concept",
+              "title": "Risk attitude, safety constraints, and tail consequences"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Random Variables and Probability Distributions",
+      "description": "Probability distributions convert uncertain quantities into models that can be calculated, simulated, checked, and used for design. Students learn both the usefulness and the limits of standard distribution families.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Random variables and moments",
+          "description": "Represent uncertain numerical outcomes and summarize their long-run behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Probability mass and density functions"
+            },
+            {
+              "type": "concept",
+              "title": "Cumulative distribution functions and quantiles"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Linear transformations and units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Discrete distributions",
+          "description": "Model binary outcomes, counts, defects, arrivals, and rare events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bernoulli and binomial models"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric and negative-binomial awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Poisson model and rate interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Hypergeometric sampling without replacement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuous distributions",
+          "description": "Model measurements, waiting times, lifetimes, and positive skew.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform, normal, and standard normal distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential and Weibull reliability context"
+            },
+            {
+              "type": "concept",
+              "title": "Lognormal and gamma awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Z-scores, percentiles, and tail probabilities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model selection and checking",
+          "description": "Treat a named distribution as a testable approximation rather than a fact.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Support, shape, parameter meaning, and generative mechanism"
+            },
+            {
+              "type": "concept",
+              "title": "Empirical frequencies and probability plots"
+            },
+            {
+              "type": "concept",
+              "title": "Memoryless and independence assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation-based sensitivity to model choice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joint Distributions, Covariance, Sampling, and the Central Limit Theorem",
+      "description": "This unit connects individual observations to sample statistics. It explains dependence, sampling variability, and why repeated samples, not a single convenient dataset, govern the reliability of conclusions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Joint behavior and dependence",
+          "description": "Describe how two uncertain quantities vary together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint, marginal, and conditional distributions"
+            },
+            {
+              "type": "concept",
+              "title": "Covariance and correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Independence and nonlinear dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Sums and linear combinations of random variables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sampling designs",
+          "description": "Choose a sampling method that supports the intended population claim.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple random, systematic, stratified, and cluster sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Multistage and probability-proportional sampling awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Paired, matched, and repeated-measures samples"
+            },
+            {
+              "type": "concept",
+              "title": "Coverage, nonresponse, attrition, and weighting awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sampling distributions and standard error",
+          "description": "Understand that an estimate changes from sample to sample.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling distribution of a mean and proportion"
+            },
+            {
+              "type": "concept",
+              "title": "Standard error versus standard deviation"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-population correction awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Design effects from clustering and dependence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Central limit theorem and simulation",
+          "description": "Use asymptotic reasoning responsibly and verify it when samples are small, skewed, or dependent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Law of large numbers versus central limit theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Role of sample size and population shape"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo demonstration of repeated sampling"
+            },
+            {
+              "type": "concept",
+              "title": "Limits under heavy tails, dependence, and selection bias"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Estimation, Confidence Intervals, and Resampling",
+      "description": "Estimation replaces false precision with a defensible range. Students learn to quantify uncertainty, plan precision, and use resampling when textbook formulas are fragile or unavailable.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Point estimation",
+          "description": "Select and evaluate estimators for means, proportions, differences, and model parameters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bias, variability, and mean squared error intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Consistency and efficiency awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Robust estimators"
+            },
+            {
+              "type": "concept",
+              "title": "Estimand-estimator alignment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Confidence intervals",
+          "description": "Construct and interpret intervals without claiming that confidence is the probability a fixed parameter lies inside one realized interval.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confidence level and margin of error"
+            },
+            {
+              "type": "concept",
+              "title": "Intervals for means, proportions, and differences"
+            },
+            {
+              "type": "concept",
+              "title": "Paired and independent-sample intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Assumptions and small-sample t methods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Precision and sample-size planning",
+          "description": "Balance desired precision, variability, cost, attrition, and feasibility before collecting data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Margin-of-error targets"
+            },
+            {
+              "type": "concept",
+              "title": "Pilot estimates and conservative planning values"
+            },
+            {
+              "type": "concept",
+              "title": "Design effects and expected missingness"
+            },
+            {
+              "type": "concept",
+              "title": "Precision versus power"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bootstrap and resampling",
+          "description": "Approximate sampling uncertainty by repeatedly resampling observed data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bootstrap distribution and percentile interval"
+            },
+            {
+              "type": "concept",
+              "title": "Paired and stratified resampling awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Randomization versus bootstrap purpose"
+            },
+            {
+              "type": "concept",
+              "title": "Failure modes with tiny or unrepresentative samples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Hypothesis Tests, Effect Sizes, Power, and Multiplicity",
+      "description": "Hypothesis testing is a structured way to measure incompatibility between data and a null model, not a truth machine. The unit emphasizes effect magnitude, uncertainty, assumptions, and the costs of wrong decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Testing framework",
+          "description": "Form hypotheses and interpret test evidence in the context of a real decision.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Null and alternative hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Test statistic, reference distribution, and p-value"
+            },
+            {
+              "type": "concept",
+              "title": "One- and two-sided alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Type I and Type II errors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Core tests",
+          "description": "Apply common tests to means, proportions, and paired changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-sample and two-sample t procedures"
+            },
+            {
+              "type": "concept",
+              "title": "Paired t procedure"
+            },
+            {
+              "type": "concept",
+              "title": "One- and two-proportion procedures"
+            },
+            {
+              "type": "concept",
+              "title": "Exact and large-sample choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Effect sizes and practical significance",
+          "description": "Report how large an effect is and whether that magnitude matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mean and proportion differences"
+            },
+            {
+              "type": "concept",
+              "title": "Standardized effect sizes"
+            },
+            {
+              "type": "concept",
+              "title": "Risk ratio, odds ratio, and number-needed-to-treat awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence intervals alongside p-values"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Power and multiplicity",
+          "description": "Design adequately informative studies and control overclaiming when many questions are tested.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power, sample size, variability, and effect size"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple comparisons and familywise error"
+            },
+            {
+              "type": "concept",
+              "title": "False-discovery-rate awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Preregistration, stopping rules, and selective reporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Experimental Design, A/B Tests, and Causal Reasoning",
+      "description": "Well-designed experiments create evidence about cause rather than mere association. Students learn to design efficient comparisons and recognize where causal claims fail in observational data.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Principles of designed experiments",
+          "description": "Use design to separate treatment effects from noise and nuisance variation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Randomization, replication, and control"
+            },
+            {
+              "type": "concept",
+              "title": "Blocking, matching, and covariate balance"
+            },
+            {
+              "type": "concept",
+              "title": "Blinding and placebo/sham controls where relevant"
+            },
+            {
+              "type": "concept",
+              "title": "Experimental unit and pseudoreplication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "A/B and randomized trials",
+          "description": "Plan and analyze two-condition interventions in digital, operational, engineering, and health settings.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Treatment assignment and allocation ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Primary outcome and success metric"
+            },
+            {
+              "type": "concept",
+              "title": "Compliance, attrition, contamination, and intention-to-treat awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Power, duration, peeking, and novelty effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Factorial and response-surface foundations",
+          "description": "Study several factors efficiently and detect when their effects depend on one another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Main effects and interactions"
+            },
+            {
+              "type": "concept",
+              "title": "Two-level factorial designs"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding and fractional-factorial awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Center points and response-surface awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Observational causal reasoning",
+          "description": "Avoid converting regression adjustment into an automatic causal claim.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Confounders, mediators, colliders, and selection"
+            },
+            {
+              "type": "concept",
+              "title": "Causal diagrams at an introductory level"
+            },
+            {
+              "type": "concept",
+              "title": "Natural experiments and quasi-experimental awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity, assumptions, and limits of transportability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "ANOVA, Categorical Data, and Nonparametric Methods",
+      "description": "Many real studies compare more than two groups, use categorical outcomes, or violate simple normal-model assumptions. This unit expands the toolkit while keeping the scientific question primary.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Analysis of variance",
+          "description": "Partition variation to compare several group means within one coherent model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Between- and within-group variation"
+            },
+            {
+              "type": "concept",
+              "title": "F statistic and omnibus test"
+            },
+            {
+              "type": "concept",
+              "title": "One-way ANOVA assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Planned contrasts and multiplicity-aware post-hoc comparisons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contingency-table methods",
+          "description": "Analyze association and fit for categorical outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Counts, proportions, and expected counts"
+            },
+            {
+              "type": "concept",
+              "title": "Chi-square test of independence"
+            },
+            {
+              "type": "concept",
+              "title": "Chi-square goodness of fit"
+            },
+            {
+              "type": "concept",
+              "title": "Fisher exact test awareness and standardized residuals"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nonparametric and robust methods",
+          "description": "Use rank-based or permutation approaches when scale, shape, or outliers undermine mean-based procedures.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sign and Wilcoxon signed-rank awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Mann-Whitney and Kruskal-Wallis awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Permutation tests"
+            },
+            {
+              "type": "concept",
+              "title": "Median, trimmed-mean, and robust-interval options"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Repeated and clustered comparisons",
+          "description": "Recognize dependence that ordinary group tests cannot ignore.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Repeated-measures ANOVA awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Within-subject correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Clustered standard-error awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed-effects model as a forward bridge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Correlation, Linear Regression, and Model Diagnostics",
+      "description": "Regression turns relationships into explicit quantitative models for explanation, calibration, and prediction. Students learn to interpret coefficients, examine residuals, and resist causal or extrapolative overreach.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Correlation and simple regression",
+          "description": "Quantify linear association and fit a line that minimizes squared residuals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pearson and Spearman correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Slope, intercept, fitted value, and residual"
+            },
+            {
+              "type": "concept",
+              "title": "Least-squares criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Correlation versus causation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiple regression",
+          "description": "Estimate adjusted relationships with several numerical and categorical predictors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial regression coefficients"
+            },
+            {
+              "type": "concept",
+              "title": "Indicator variables and reference groups"
+            },
+            {
+              "type": "concept",
+              "title": "Interactions and polynomial terms"
+            },
+            {
+              "type": "concept",
+              "title": "Confounding and omitted-variable bias"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Statistical inference for regression",
+          "description": "Quantify uncertainty in coefficients and predictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Standard errors and coefficient tests"
+            },
+            {
+              "type": "concept",
+              "title": "Confidence interval for mean response"
+            },
+            {
+              "type": "concept",
+              "title": "Prediction interval for a new observation"
+            },
+            {
+              "type": "concept",
+              "title": "Overall F test and nested-model awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagnostics and remedial action",
+          "description": "Check whether the fitted model is adequate for the purpose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity, independence, constant variance, and residual shape"
+            },
+            {
+              "type": "concept",
+              "title": "Leverage, influence, and unusual observations"
+            },
+            {
+              "type": "concept",
+              "title": "Multicollinearity and variance-inflation awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Transformations, weighted fitting, and robust alternatives"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Prediction, Classification, and Model Validation",
+      "description": "A model that explains past data may still fail on new cases. This unit introduces honest validation, baseline comparisons, classification, and the distinction between predictive usefulness and scientific explanation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Prediction workflow",
+          "description": "Separate model development from final evaluation and preserve a defensible analysis trail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Training, validation, and test roles"
+            },
+            {
+              "type": "concept",
+              "title": "Baseline and benchmark models"
+            },
+            {
+              "type": "concept",
+              "title": "Feature engineering without leakage"
+            },
+            {
+              "type": "concept",
+              "title": "Preprocessing pipelines and reproducibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation and generalization",
+          "description": "Estimate performance on unseen data and detect overfitting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Holdout validation and cross-validation"
+            },
+            {
+              "type": "concept",
+              "title": "Bias-variance tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "Optimism from repeated tuning"
+            },
+            {
+              "type": "concept",
+              "title": "External and temporal validation awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Classification foundations",
+          "description": "Model binary outcomes and evaluate probability-based decisions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Logistic-regression intuition and odds"
+            },
+            {
+              "type": "concept",
+              "title": "Decision thresholds"
+            },
+            {
+              "type": "concept",
+              "title": "Confusion matrix, sensitivity, specificity, and precision"
+            },
+            {
+              "type": "concept",
+              "title": "ROC and precision-recall awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance and calibration",
+          "description": "Choose metrics that reflect the cost and prevalence of errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "MAE, RMSE, and R-squared for numerical outcomes"
+            },
+            {
+              "type": "concept",
+              "title": "Accuracy limitations under imbalance"
+            },
+            {
+              "type": "concept",
+              "title": "Probability calibration and Brier-score awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Subgroup performance and distribution shift"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time Series, Forecasting, and Statistical Process Monitoring",
+      "description": "Time ordering creates dependence that ordinary cross-sectional methods miss. Students learn to forecast responsibly, evaluate forecasts against honest baselines, and distinguish common-cause variation from a process change.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Time-series structure",
+          "description": "Identify recurring patterns and dependence across time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Level, trend, seasonality, cycles, and irregular variation"
+            },
+            {
+              "type": "concept",
+              "title": "Lags and autocorrelation"
+            },
+            {
+              "type": "concept",
+              "title": "Stationarity awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Calendar effects and structural breaks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forecasting methods",
+          "description": "Build interpretable forecasts before reaching for complex algorithms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Naive and seasonal-naive benchmarks"
+            },
+            {
+              "type": "concept",
+              "title": "Moving averages and exponential smoothing"
+            },
+            {
+              "type": "concept",
+              "title": "Trend and seasonal regression"
+            },
+            {
+              "type": "concept",
+              "title": "Prediction intervals and scenario forecasts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forecast evaluation",
+          "description": "Assess predictions using future-like data rather than in-sample fit alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rolling-origin evaluation"
+            },
+            {
+              "type": "concept",
+              "title": "Forecast error and residual diagnostics"
+            },
+            {
+              "type": "concept",
+              "title": "MAE, RMSE, MAPE limitations, and scaled error awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Bias, calibration, and operational cost"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Process monitoring",
+          "description": "Use control charts to detect special-cause variation without treating every fluctuation as a crisis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Run charts and rational subgroups"
+            },
+            {
+              "type": "concept",
+              "title": "Center lines and control limits"
+            },
+            {
+              "type": "concept",
+              "title": "Common versus special causes"
+            },
+            {
+              "type": "concept",
+              "title": "Individuals, mean/range, proportion, and count-chart awareness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Quality, Reliability, Risk, Simulation, and Decision Analysis",
+      "description": "This integrative unit connects variation to dependable products, safe systems, and defensible choices. It is especially important for industrial, civil, aerospace, mechanical, and biomedical applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Process capability and measurement systems",
+          "description": "Separate process variation from measurement variation before judging conformance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specification limits versus control limits"
+            },
+            {
+              "type": "concept",
+              "title": "Cp and Cpk interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Gage repeatability and reproducibility awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Acceptance sampling and producer/consumer risk awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reliability and lifetime data",
+          "description": "Model failures over time and communicate what a reliability estimate does and does not guarantee.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Survival and hazard functions"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential and Weibull lifetimes"
+            },
+            {
+              "type": "concept",
+              "title": "Censoring and accelerated testing awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Series/parallel systems and reliability block diagrams"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk analysis",
+          "description": "Combine likelihood, consequence, and uncertainty without reducing safety to a single unqualified score.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk matrices and their limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Fault trees and event trees awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Rare events, tail risk, and fragility"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty bounds, sensitivity, and risk communication"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Monte Carlo and decision analysis",
+          "description": "Propagate uncertain inputs through a model and compare alternatives under transparent assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input distributions and dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Random-number simulation and convergence"
+            },
+            {
+              "type": "concept",
+              "title": "Output distributions, percentiles, and exceedance probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity analysis, expected utility awareness, and value of information"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Measurement, Reproducible Computing, Ethics, and Decision Communication",
+      "description": "The course culminates by linking trustworthy measurement, transparent computation, ethical judgment, and concise communication. Students must show how raw evidence becomes a recommendation that another analyst can reproduce and challenge.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Measurement and uncertainty",
+          "description": "Treat every measured value as an estimate produced by an instrument, protocol, operator, and environment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accuracy, precision, resolution, and traceability"
+            },
+            {
+              "type": "concept",
+              "title": "Random and systematic components"
+            },
+            {
+              "type": "concept",
+              "title": "Propagation of uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Agreement, repeatability, reliability, and validity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Reproducible computing",
+          "description": "Create an analysis that can be rerun from source data to final figure or table.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spreadsheet discipline or scripted R/Python workflow"
+            },
+            {
+              "type": "concept",
+              "title": "Separated inputs, transformations, models, and outputs"
+            },
+            {
+              "type": "concept",
+              "title": "Versioning, seeds, metadata, and session information"
+            },
+            {
+              "type": "concept",
+              "title": "Automated checks and audit trails"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Ethics, privacy, and responsible analysis",
+          "description": "Recognize how analytic choices can create harm even when calculations are technically correct.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Consent, confidentiality, data minimization, and governance"
+            },
+            {
+              "type": "concept",
+              "title": "P-hacking, HARKing, cherry-picking, and publication bias"
+            },
+            {
+              "type": "concept",
+              "title": "Fairness, subgroup harm, and proxy variables"
+            },
+            {
+              "type": "concept",
+              "title": "Dual use, safety, conflicts of interest, and uncertainty honesty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone decision communication",
+          "description": "Defend an evidence-based recommendation for one participating degree while preserving a common analytical standard.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Question, stakeholder, system boundary, and decision criterion"
+            },
+            {
+              "type": "concept",
+              "title": "Data provenance, analysis plan, diagnostics, and sensitivity checks"
+            },
+            {
+              "type": "concept",
+              "title": "Degree application: engineering systems, mechanical testing, civil risk, kinesiology performance, aerospace reliability, industrial quality, or biomedical measurement"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible notebook, one-page decision memo, technical appendix, and oral defense"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

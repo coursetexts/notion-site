@@ -1,5 +1,10 @@
 import * as React from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
+import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
+import Mathematics, {
+  defaultShouldRender
+} from '@tiptap/extension-mathematics'
 import Placeholder from '@tiptap/extension-placeholder'
 import StarterKit from '@tiptap/starter-kit'
 
@@ -11,6 +16,15 @@ import {
   NOTEBOOK_EMPTY_DOC,
   type NotebookDocJson
 } from '@/lib/notebook-editor-default'
+import {
+  handleEditorImageDrop,
+  handleEditorImagePaste,
+  insertBlockMathPrompt,
+  insertImageFile,
+  insertInlineMathPrompt,
+  setImageFromUrlOrFile,
+  setLinkFromUrlPrompt
+} from '@/lib/tiptap-editor-image'
 
 import styles from './CuratedCourse.module.css'
 
@@ -25,7 +39,7 @@ export interface CuratedCourseNotesProps {
 }
 
 /**
- * Minimizable rich-text notes for a syllabus topic (bold, lists, etc.).
+ * Minimizable rich-text notes for a syllabus topic (bold, lists, images, LaTeX, links).
  */
 export function CuratedCourseNotes({
   nodeId,
@@ -42,6 +56,7 @@ export function CuratedCourseNotes({
   const [saveState, setSaveState] = React.useState<
     'idle' | 'saving' | 'saved' | 'error'
   >('idle')
+  const imageInputRef = React.useRef<HTMLInputElement>(null)
 
   const saveTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const latestJson = React.useRef<NotebookDocJson>(
@@ -102,6 +117,27 @@ export function CuratedCourseNotes({
           heading: { levels: [2, 3] },
           codeBlock: false
         }),
+        Link.configure({
+          openOnClick: false,
+          autolink: true,
+          linkOnPaste: true,
+          HTMLAttributes: {
+            rel: 'noopener noreferrer nofollow',
+            target: '_blank'
+          }
+        }),
+        Image.configure({
+          inline: false,
+          allowBase64: true,
+          HTMLAttributes: {
+            class: 'notesImage'
+          }
+        }),
+        Mathematics.configure({
+          katexOptions: { throwOnError: false },
+          shouldRender: defaultShouldRender,
+          regex: /\$\$([\s\S]*?)\$\$|\$([^$\n]+)\$/g
+        }),
         Placeholder.configure({
           placeholder: 'Write notes for this topic…'
         })
@@ -112,7 +148,10 @@ export function CuratedCourseNotes({
           spellcheck: 'true',
           class: styles.notesProseMirror,
           'aria-label': 'Topic notes'
-        }
+        },
+        handlePaste: (view, event) => handleEditorImagePaste(view, event),
+        handleDrop: (view, event, _slice, moved) =>
+          handleEditorImageDrop(view, event, moved)
       },
       onUpdate: ({ editor: ed }) => {
         scheduleSave(ed.getJSON() as NotebookDocJson)
@@ -223,6 +262,20 @@ export function CuratedCourseNotes({
             <p className={styles.notesLoading}>Loading notes…</p>
           ) : (
             <>
+              <input
+                ref={imageInputRef}
+                type='file'
+                accept='image/*'
+                className={styles.notesFileInput}
+                aria-hidden
+                tabIndex={-1}
+                onChange={(event) => {
+                  const file = event.target.files?.[0]
+                  event.target.value = ''
+                  if (!file) return
+                  void insertImageFile(editor.view, file)
+                }}
+              />
               <div
                 className={styles.notesToolbar}
                 role='toolbar'
@@ -305,6 +358,41 @@ export function CuratedCourseNotes({
                   aria-pressed={editor.isActive('blockquote')}
                 >
                   Quote
+                </button>
+                <button
+                  type='button'
+                  className={`${styles.notesToolBtn}${
+                    editor.isActive('link') ? ` ${styles.notesToolBtnActive}` : ''
+                  }`}
+                  onClick={() => setLinkFromUrlPrompt(editor)}
+                  aria-pressed={editor.isActive('link')}
+                >
+                  Link
+                </button>
+                <button
+                  type='button'
+                  className={styles.notesToolBtn}
+                  onClick={() =>
+                    setImageFromUrlOrFile(editor, () =>
+                      imageInputRef.current?.click()
+                    )
+                  }
+                >
+                  Image
+                </button>
+                <button
+                  type='button'
+                  className={styles.notesToolBtn}
+                  onClick={() => insertInlineMathPrompt(editor)}
+                >
+                  LaTeX
+                </button>
+                <button
+                  type='button'
+                  className={styles.notesToolBtn}
+                  onClick={() => insertBlockMathPrompt(editor)}
+                >
+                  LaTeX block
                 </button>
               </div>
               <div className={styles.notesEditor}>

@@ -1,0 +1,1578 @@
+{
+  "slug": "corporate-finance",
+  "title": "Corporate Finance",
+  "description": "Corporate Finance develops the analytical and judgment skills needed to allocate capital, value investments and firms, design financing, manage liquidity and risk, evaluate transactions, and communicate decisions. Students build a common foundation in cash flow, present value, risk, cost of capital, capital budgeting, capital structure, payout, valuation, M&A, and international finance. They then apply those ideas through auditable models, cases, stress tests, and a board- or investment-committee-quality capstone.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Principles of Finance",
+      "linkOrSite": "https://openstax.org/details/books/principles-finance",
+      "description": "OpenStax. Free foundation for TVM, valuation, risk, capital budgeting, cost of capital, financing, and working capital."
+    },
+    {
+      "kind": "textbook",
+      "title": "Principles of Corporate Finance",
+      "linkOrSite": "McGraw Hill",
+      "description": "Brealey, Myers, Allen, and Edmans. Rigorous common reference for investment, financing, payout, risk, options, and international finance."
+    },
+    {
+      "kind": "textbook",
+      "title": "Corporate Finance",
+      "linkOrSite": "Pearson",
+      "description": "Berk and DeMarzo. Modern unified treatment with strong valuation logic, applications, and graduate-ready extensions."
+    },
+    {
+      "kind": "textbook",
+      "title": "Applied Corporate Finance",
+      "linkOrSite": "Wiley",
+      "description": "Aswath Damodaran. Real-company application of objective, investment, financing, payout, and valuation decisions."
+    },
+    {
+      "kind": "textbook",
+      "title": "Valuation: Measuring and Managing the Value of Companies",
+      "linkOrSite": "Wiley",
+      "description": "Koller, Goedhart, and Wessels. Enterprise DCF, value drivers, ROIC, growth, multiples, and managerial value creation."
+    },
+    {
+      "kind": "textbook",
+      "title": "Financial Modeling",
+      "linkOrSite": "MIT Press",
+      "description": "Simon Benninga. Spreadsheet-based finance models, valuation, simulation, options, and implementation practice."
+    },
+    {
+      "kind": "textbook",
+      "title": "Investment Banking: Valuation, LBOs, M&A, and IPOs",
+      "linkOrSite": "Wiley",
+      "description": "Rosenbaum and Pearl. Practitioner reference for comps, precedents, DCF, sources and uses, M&A, and LBO models."
+    },
+    {
+      "kind": "textbook",
+      "title": "The Theory of Corporate Finance",
+      "linkOrSite": "Princeton University Press",
+      "description": "Jean Tirole. MS Finance extension for contracting, governance, incentives, capital structure, and control."
+    },
+    {
+      "kind": "website",
+      "title": "MIT Sloan 15.401 Finance Theory I",
+      "linkOrSite": "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/",
+      "description": "Graduate lectures, notes, problems, and exams on valuation, risk, asset pricing, options, capital budgeting, and markets."
+    },
+    {
+      "kind": "website",
+      "title": "Wharton FNCE 6110 Corporate Finance",
+      "linkOrSite": "https://fnce.wharton.upenn.edu/programs/mba/course-descriptions/",
+      "description": "Benchmark description for rigorous DCF, uncertainty, asset pricing, options, market efficiency, and financial policy."
+    },
+    {
+      "kind": "website",
+      "title": "NYU Stern Damodaran Corporate Finance",
+      "linkOrSite": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/corpfin.html",
+      "description": "Full course, current lecture packets, spreadsheets, datasets, cases, problems, exams, and real-company projects."
+    },
+    {
+      "kind": "website",
+      "title": "SEC EDGAR",
+      "linkOrSite": "https://www.sec.gov/edgar/search/",
+      "description": "Company filings, notes, risk factors, segment data, debt terms, and transaction documents."
+    },
+    {
+      "kind": "website",
+      "title": "Federal Reserve Economic Data",
+      "linkOrSite": "https://fred.stlouisfed.org/",
+      "description": "Interest rates, inflation, spreads, macro assumptions, and time-series context."
+    },
+    {
+      "kind": "website",
+      "title": "CFA Institute Insights",
+      "linkOrSite": "https://www.cfainstitute.org/insights",
+      "description": "Professional research on valuation, corporate issuers, ethics, risk, sustainability, and markets."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Corporate Finance Purpose, Governance, and the Value-Creation System",
+      "description": "Corporate finance connects strategy to investment, financing, payout, and risk decisions. This opening unit gives every learner a common decision framework while making agency, governance, ethics, and stakeholder constraints visible from the start.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "The corporate finance decision map",
+          "description": "Organize finance work around the recurring choices that determine how a firm creates and preserves value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Investment and capital-allocation decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Financing and security-design decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Payout, reinvestment, and liquidity decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Risk management, governance, and strategic interaction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Objectives and value creation",
+          "description": "Distinguish market value from accounting performance and use a long-horizon objective that can guide tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Enterprise value, equity value, and invested capital"
+            },
+            {
+              "type": "concept",
+              "title": "Economic profit, ROIC, growth, and the cost of capital"
+            },
+            {
+              "type": "concept",
+              "title": "Shareholder value and legitimate stakeholder constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Short-term price pressure versus durable value creation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Agency, governance, and incentives",
+          "description": "Understand why managers, owners, lenders, employees, and other stakeholders may prefer different actions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Principal-agent conflicts and information asymmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Boards, voting, disclosure, compensation, and ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Debt-holder conflicts, covenants, and risk shifting"
+            },
+            {
+              "type": "concept",
+              "title": "Activism, takeovers, stewardship, and market discipline"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Decision quality and professional judgment",
+          "description": "Build a repeatable process that separates evidence, assumptions, analysis, and recommendation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision question, alternatives, and constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Incremental cash flow, opportunity cost, risk, and timing"
+            },
+            {
+              "type": "concept",
+              "title": "Base case, downside, sensitivity, and reversibility"
+            },
+            {
+              "type": "concept",
+              "title": "Ethics, conflicts of interest, uncertainty, and audit trail"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Financial Statements, Cash Flow, and Analytical Normalization",
+      "description": "Valuation starts with accounting information but cannot stop there. Students learn to translate statements and disclosures into operating performance, invested capital, financing claims, and decision-ready cash flows.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Statement architecture",
+          "description": "Read the income statement, balance sheet, cash flow statement, and notes as one connected economic system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Revenue, operating costs, taxes, and after-tax operating profit"
+            },
+            {
+              "type": "concept",
+              "title": "Operating assets, operating liabilities, debt, and equity"
+            },
+            {
+              "type": "concept",
+              "title": "Cash from operations, investing, and financing"
+            },
+            {
+              "type": "concept",
+              "title": "Footnotes, MD&A, segments, and non-GAAP measures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cash-flow construction",
+          "description": "Reconcile accrual earnings to cash available to capital providers and equity holders.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EBIT, NOPAT, depreciation, and noncash charges"
+            },
+            {
+              "type": "concept",
+              "title": "Capital expenditure and asset disposals"
+            },
+            {
+              "type": "concept",
+              "title": "Change in net working capital"
+            },
+            {
+              "type": "concept",
+              "title": "FCFF, FCFE, and cash-flow bridges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Normalization and accounting quality",
+          "description": "Adjust reported results before treating them as sustainable inputs to a finance decision.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nonrecurring items, restructuring, and impairments"
+            },
+            {
+              "type": "concept",
+              "title": "Leases, pensions, stock compensation, and deferred taxes"
+            },
+            {
+              "type": "concept",
+              "title": "Capitalized versus expensed investment and R&D awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Normalized margins, earnings, EBITDA, and free cash flow"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance and value-driver diagnostics",
+          "description": "Use ratios and economic measures to explain where value is being created or destroyed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "ROIC decomposition and growth reinvestment"
+            },
+            {
+              "type": "concept",
+              "title": "Profitability, turnover, and operating leverage"
+            },
+            {
+              "type": "concept",
+              "title": "Liquidity, leverage, coverage, and cash conversion"
+            },
+            {
+              "type": "concept",
+              "title": "Peer, trend, segment, and life-cycle comparison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time Value of Money and Security Valuation Foundations",
+      "description": "Present value is the mathematical language of finance. This unit develops the discounting logic used later for projects, bonds, stocks, companies, leases, and financing instruments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cash flows across time",
+          "description": "Translate cash flows to a common date so alternatives can be compared on consistent terms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Future value, present value, and discount factors"
+            },
+            {
+              "type": "concept",
+              "title": "Simple versus compound interest"
+            },
+            {
+              "type": "concept",
+              "title": "Annuities, growing annuities, and perpetuities"
+            },
+            {
+              "type": "concept",
+              "title": "Timelines, uneven cash flows, and deferred cash flows"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rates and compounding",
+          "description": "Use interest rates consistently across quoted conventions, periods, inflation regimes, and currencies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "APR, effective annual rate, and periodic rate"
+            },
+            {
+              "type": "concept",
+              "title": "Nominal versus real rates and the Fisher relation"
+            },
+            {
+              "type": "concept",
+              "title": "Term structure, spot rates, and forward-rate awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Currency, tax, and timing consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bond and fixed-income valuation",
+          "description": "Price promised cash flows and understand how yields, duration, credit, and embedded features affect financing value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coupon bonds, zero-coupon bonds, and yield to maturity"
+            },
+            {
+              "type": "concept",
+              "title": "Price-yield relation, duration, and convexity awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Default risk, credit spread, recovery, and ratings"
+            },
+            {
+              "type": "concept",
+              "title": "Callable, convertible, floating-rate, and covenant features"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equity valuation building blocks",
+          "description": "Connect ownership value to dividends, growth, required return, and future cash distributions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dividend-discount and Gordon-growth models"
+            },
+            {
+              "type": "concept",
+              "title": "Growth, payout, retention, and return on equity"
+            },
+            {
+              "type": "concept",
+              "title": "Market efficiency and information in prices"
+            },
+            {
+              "type": "concept",
+              "title": "Limits of simple security-valuation models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Risk, Return, Diversification, and Asset Pricing",
+      "description": "Corporate decisions require a price for risk, not merely a forecast of cash flow. Students learn which risks can be diversified, which are rewarded in markets, and how model uncertainty affects hurdle rates.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Return and risk measurement",
+          "description": "Describe investment outcomes using internally consistent measures of payoff, volatility, and downside.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Holding-period and multi-period returns"
+            },
+            {
+              "type": "concept",
+              "title": "Arithmetic versus geometric averages"
+            },
+            {
+              "type": "concept",
+              "title": "Variance, standard deviation, covariance, and correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Downside, tail, liquidity, and estimation risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Portfolio and diversification logic",
+          "description": "See why project or security risk depends on its contribution to a diversified portfolio.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Portfolio expected return and variance"
+            },
+            {
+              "type": "concept",
+              "title": "Systematic versus idiosyncratic risk"
+            },
+            {
+              "type": "concept",
+              "title": "Efficient-frontier and market-portfolio intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration, correlation shifts, and crisis behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "CAPM and multifactor awareness",
+          "description": "Estimate required returns while understanding the assumptions and limitations of equilibrium models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk-free rate, beta, and equity-risk premium"
+            },
+            {
+              "type": "concept",
+              "title": "Security market line and alpha"
+            },
+            {
+              "type": "concept",
+              "title": "Bottom-up beta, unlevering, and relevering"
+            },
+            {
+              "type": "concept",
+              "title": "Size, value, momentum, and other factor awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Risk-model judgment",
+          "description": "Treat the cost of equity as an estimate with uncertainty rather than a single unquestionable output.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Historical versus implied risk premiums"
+            },
+            {
+              "type": "concept",
+              "title": "Country risk and sovereign exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Private-firm and concentrated-owner adjustments"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity ranges and triangulation across methods"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cost of Capital, Hurdle Rates, and Discount-Rate Architecture",
+      "description": "A discount rate must match the risk, currency, duration, tax treatment, and claim of the cash flow being valued. This unit turns asset-pricing inputs and financing costs into defensible project and enterprise hurdle rates.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cost of equity",
+          "description": "Estimate the return required by equity investors for the specific operating risk under analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CAPM inputs and market conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Bottom-up beta from comparable firms"
+            },
+            {
+              "type": "concept",
+              "title": "Leverage adjustment and target capital structure"
+            },
+            {
+              "type": "concept",
+              "title": "Country, size, and project-risk judgment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cost of debt and preferred capital",
+          "description": "Measure financing cost using current market evidence and after-tax economics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Yield, spread, ratings, and synthetic-rating awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal versus historical borrowing cost"
+            },
+            {
+              "type": "concept",
+              "title": "Interest tax shield and limits to deductibility"
+            },
+            {
+              "type": "concept",
+              "title": "Preferred shares, hybrids, and lease-like commitments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "WACC construction",
+          "description": "Combine claim-specific required returns using weights and definitions consistent with enterprise cash flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Market-value weights and target weights"
+            },
+            {
+              "type": "concept",
+              "title": "After-tax WACC formula and component matching"
+            },
+            {
+              "type": "concept",
+              "title": "Operating versus financing claims"
+            },
+            {
+              "type": "concept",
+              "title": "Currency, inflation, and nominal-real consistency"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Beyond one company-wide WACC",
+          "description": "Adjust the framework when projects, divisions, countries, or financing side effects have different risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pure-play and divisional hurdle rates"
+            },
+            {
+              "type": "concept",
+              "title": "Adjusted present value and financing side effects"
+            },
+            {
+              "type": "concept",
+              "title": "Flow-to-equity and capital-cash-flow awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity, sanity checks, and common WACC errors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capital Budgeting and Incremental Project Cash Flows",
+      "description": "Capital budgeting converts strategy into a testable investment proposition. Students learn to estimate incremental cash flows, select decision rules, and avoid accounting or financing errors that distort project value.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Investment decision rules",
+          "description": "Use NPV as the primary value-creation test while understanding the information and failure modes of alternatives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "NPV, value additivity, and acceptance rule"
+            },
+            {
+              "type": "concept",
+              "title": "IRR, multiple IRRs, and scale/timing conflicts"
+            },
+            {
+              "type": "concept",
+              "title": "Payback, discounted payback, and liquidity use"
+            },
+            {
+              "type": "concept",
+              "title": "Profitability index and capital rationing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Incremental cash-flow estimation",
+          "description": "Include only cash flows caused by accepting the project.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sunk cost, opportunity cost, and side effects"
+            },
+            {
+              "type": "concept",
+              "title": "Erosion, cannibalization, and synergy"
+            },
+            {
+              "type": "concept",
+              "title": "Working-capital investment and recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Capital expenditure, salvage value, and shutdown costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Taxes, inflation, and depreciation",
+          "description": "Model project economics consistently after tax and in nominal or real terms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Taxable income and depreciation tax shields"
+            },
+            {
+              "type": "concept",
+              "title": "Tax loss carryforwards and timing awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Nominal versus real cash flows and rates"
+            },
+            {
+              "type": "concept",
+              "title": "Inflation pass-through, price, volume, and cost escalation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Project evaluation in context",
+          "description": "Connect stand-alone NPV to capacity, strategy, operational constraints, and portfolio priorities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Replacement, expansion, and compliance projects"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent annual cost and unequal lives"
+            },
+            {
+              "type": "concept",
+              "title": "Capital constraints and project interdependence"
+            },
+            {
+              "type": "concept",
+              "title": "Post-audit, learning, and accountability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Forecasting, Financial Modeling, and Valuation Architecture",
+      "description": "A world-class finance model is a transparent decision system, not a decorative spreadsheet. This unit develops driver-based forecasts, auditable schedules, valuation bridges, and controls that support review and reuse.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Model architecture and conventions",
+          "description": "Design a model that separates inputs, calculations, outputs, and checks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumptions, source log, scenario selector, and version date"
+            },
+            {
+              "type": "concept",
+              "title": "Time axis, units, currency, and sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Hardcodes in input areas rather than buried formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Clear labels, consistent formulas, and model map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Driver-based forecasting",
+          "description": "Translate commercial and operating assumptions into integrated financial statements and cash flow.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Volume, price, mix, margins, and operating leverage"
+            },
+            {
+              "type": "concept",
+              "title": "Working-capital and capital-expenditure drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Tax, depreciation, financing, and share-count schedules"
+            },
+            {
+              "type": "concept",
+              "title": "Historical calibration and management-case challenge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "DCF and valuation bridge",
+          "description": "Move from forecast cash flow to enterprise value and then reconcile to equity value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FCFF forecast and midyear/end-year timing"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal growth and exit-multiple methods"
+            },
+            {
+              "type": "concept",
+              "title": "Net debt, leases, pensions, minorities, and nonoperating assets"
+            },
+            {
+              "type": "concept",
+              "title": "Enterprise-to-equity bridge and per-share value"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model controls and review",
+          "description": "Prove that the model is internally consistent and identify decisions that depend on fragile assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Balance-sheet, cash-flow, and source-use checks"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal value share, implied multiples, and ROIC-growth checks"
+            },
+            {
+              "type": "concept",
+              "title": "Formula consistency, circularity awareness, and error flags"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario tables, sensitivity matrices, and independent review"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Uncertainty, Scenario Analysis, Simulation, and Real Options",
+      "description": "Point estimates conceal the range and shape of possible outcomes. Students learn to expose uncertainty, identify decision thresholds, and value managerial flexibility when future choices depend on what is learned.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sensitivity and break-even analysis",
+          "description": "Identify the assumptions that drive value and the conditions under which a recommendation changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-way and two-way sensitivity tables"
+            },
+            {
+              "type": "concept",
+              "title": "Break-even volume, price, margin, and cost of capital"
+            },
+            {
+              "type": "concept",
+              "title": "Operating and financial leverage"
+            },
+            {
+              "type": "concept",
+              "title": "Tornado charts and decision thresholds"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scenario analysis and stress testing",
+          "description": "Build coherent states of the world rather than changing one input at a time without narrative.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base, upside, downside, and severe-but-plausible cases"
+            },
+            {
+              "type": "concept",
+              "title": "Linked macro, industry, operating, and financing assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Liquidity, covenant, and refinancing stress"
+            },
+            {
+              "type": "concept",
+              "title": "Management actions and contingency triggers"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simulation and decision trees",
+          "description": "Represent interacting uncertainties and sequential decisions without mistaking numerical precision for knowledge.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Probability distributions and dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Monte Carlo output ranges and exceedance probabilities"
+            },
+            {
+              "type": "concept",
+              "title": "Decision nodes, chance nodes, and rollback"
+            },
+            {
+              "type": "concept",
+              "title": "Expected value, risk appetite, and tail consequences"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Real options",
+          "description": "Recognize that the ability to wait, stage, expand, contract, switch, or abandon can create value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Option to defer and information value"
+            },
+            {
+              "type": "concept",
+              "title": "Staged investment and growth options"
+            },
+            {
+              "type": "concept",
+              "title": "Abandonment, contraction, and switching options"
+            },
+            {
+              "type": "concept",
+              "title": "Option analogy limits and disciplined qualitative use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Capital Structure, Financing Strategy, and Security Design",
+      "description": "Financing choices affect taxes, distress exposure, incentives, flexibility, and control. Students use theory and market evidence to evaluate not only how much debt a firm can raise, but what financing design fits its assets and strategy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Capital structure theory",
+          "description": "Use benchmark theories to isolate the benefits and costs of leverage.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Modigliani-Miller propositions"
+            },
+            {
+              "type": "concept",
+              "title": "Interest tax shields and nondebt tax shields"
+            },
+            {
+              "type": "concept",
+              "title": "Expected distress and bankruptcy costs"
+            },
+            {
+              "type": "concept",
+              "title": "Trade-off, pecking-order, signaling, and market-timing theories"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Debt capacity and target leverage",
+          "description": "Estimate sustainable leverage using cash flow, coverage, ratings, and downside resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Net debt, gross debt, and adjusted leverage"
+            },
+            {
+              "type": "concept",
+              "title": "Interest, fixed-charge, and cash-flow coverage"
+            },
+            {
+              "type": "concept",
+              "title": "Ratings, synthetic ratings, and spread implications"
+            },
+            {
+              "type": "concept",
+              "title": "Cyclicality, asset tangibility, growth options, and flexibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Financing instruments and issuance",
+          "description": "Match claim design and maturity to funding needs, risk, control, and market conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bank debt, bonds, private credit, and project finance"
+            },
+            {
+              "type": "concept",
+              "title": "Common equity, rights, private placements, and convertibles"
+            },
+            {
+              "type": "concept",
+              "title": "Maturity, amortization, security, and call protection"
+            },
+            {
+              "type": "concept",
+              "title": "Issuance process, underwriting, dilution, and flotation costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Financing policy and market communication",
+          "description": "Translate theory into an executable funding plan and credible investor narrative.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Target versus opportunistic financing"
+            },
+            {
+              "type": "concept",
+              "title": "Liability management and refinancing calendar"
+            },
+            {
+              "type": "concept",
+              "title": "Credit-rating, liquidity, and covenant objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Capital-structure memo and board recommendation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Credit Analysis, Covenants, Distress, and Restructuring",
+      "description": "Debt is a contract as well as a source of capital. This unit develops lender-style analysis, covenant modeling, distress diagnosis, and restructuring choices that are often missing from introductory corporate finance.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Credit fundamentals",
+          "description": "Evaluate a borrower through cash generation, asset coverage, industry position, and downside protection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Business risk, financial risk, and management quality"
+            },
+            {
+              "type": "concept",
+              "title": "Leverage, coverage, free cash flow, and liquidity"
+            },
+            {
+              "type": "concept",
+              "title": "Secured versus unsecured claims and priority"
+            },
+            {
+              "type": "concept",
+              "title": "Recovery, loss given default, and structural subordination"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Covenants and documentation",
+          "description": "Understand how contractual terms allocate control and protect lenders before default.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maintenance versus incurrence covenants"
+            },
+            {
+              "type": "concept",
+              "title": "Leverage, coverage, restricted payments, and baskets"
+            },
+            {
+              "type": "concept",
+              "title": "Covenant headroom and cure mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Representations, events of default, and cross-default awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distress diagnosis",
+          "description": "Recognize early warning signals and quantify how value, liquidity, and stakeholder incentives change near default.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maturity wall, cash burn, and refinancing risk"
+            },
+            {
+              "type": "concept",
+              "title": "Going-concern versus liquidation value"
+            },
+            {
+              "type": "concept",
+              "title": "Debt overhang, risk shifting, and underinvestment"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder map and intercreditor conflict"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Restructuring alternatives",
+          "description": "Compare operational, financial, and legal responses to distress.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Asset sales, cost actions, and working-capital release"
+            },
+            {
+              "type": "concept",
+              "title": "Amend-and-extend, exchange, refinancing, and equitization"
+            },
+            {
+              "type": "concept",
+              "title": "Out-of-court versus court-supervised restructuring"
+            },
+            {
+              "type": "concept",
+              "title": "Priority, dilution, recovery, and post-reorganization viability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Payout Policy, Working Capital, Liquidity, and Treasury",
+      "description": "Returning capital and managing short-term resources are linked capital-allocation decisions. Students learn to balance dividends, repurchases, reinvestment, cash buffers, operating liquidity, and market access.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dividend policy",
+          "description": "Assess when recurring distributions are sustainable and informative.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Payout ratio, dividend yield, and free cash flow"
+            },
+            {
+              "type": "concept",
+              "title": "Dividend stability, smoothing, and signaling"
+            },
+            {
+              "type": "concept",
+              "title": "Tax clientele and investor preferences"
+            },
+            {
+              "type": "concept",
+              "title": "Life cycle, growth opportunities, and constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Share repurchases and other distributions",
+          "description": "Evaluate flexible payout mechanisms while separating economic effects from per-share optics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-market, tender, and negotiated repurchases"
+            },
+            {
+              "type": "concept",
+              "title": "EPS accretion versus value creation"
+            },
+            {
+              "type": "concept",
+              "title": "Timing, signaling, dilution offset, and leverage"
+            },
+            {
+              "type": "concept",
+              "title": "Special dividends, spin-offs, and capital reductions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Working-capital management",
+          "description": "Improve cash conversion without destroying supplier, customer, inventory, or operating resilience.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receivables, credit policy, and collections"
+            },
+            {
+              "type": "concept",
+              "title": "Inventory policy and service levels"
+            },
+            {
+              "type": "concept",
+              "title": "Payables, supplier terms, and dynamic discounting awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Cash conversion cycle and working-capital benchmarks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Liquidity and treasury policy",
+          "description": "Design cash, funding, and control systems that keep the firm solvent through normal and stressed conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cash forecasting and minimum liquidity"
+            },
+            {
+              "type": "concept",
+              "title": "Revolvers, commercial paper, and backup facilities"
+            },
+            {
+              "type": "concept",
+              "title": "Bank relationships, payments, fraud controls, and counterparty risk"
+            },
+            {
+              "type": "concept",
+              "title": "Liquidity stress, contingency funding, and treasury dashboards"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Enterprise Valuation, Relative Valuation, and Value Creation",
+      "description": "Valuation integrates the operating forecast, risk, financing claims, and strategic narrative. Students triangulate intrinsic and relative methods, explain the enterprise-equity bridge, and distinguish a model output from an investment or transaction conclusion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Enterprise DCF",
+          "description": "Value operating assets from forecast FCFF and a risk-consistent WACC.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Explicit forecast horizon and value-driver period"
+            },
+            {
+              "type": "concept",
+              "title": "Terminal growth, reinvestment, and steady-state ROIC"
+            },
+            {
+              "type": "concept",
+              "title": "Midyear convention and partial periods"
+            },
+            {
+              "type": "concept",
+              "title": "Enterprise value, operating assets, and scenario range"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equity and APV approaches",
+          "description": "Use alternative valuation frameworks when leverage, financing side effects, or claim definitions require them.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "FCFE and cost of equity"
+            },
+            {
+              "type": "concept",
+              "title": "Adjusted present value and tax shields"
+            },
+            {
+              "type": "concept",
+              "title": "Capital cash flow awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Consistency across cash flow, rate, and value bridge"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relative valuation",
+          "description": "Use market prices as evidence while controlling for differences in growth, risk, margins, and accounting.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "EV/EBITDA, EV/EBIT, EV/sales, and P/E"
+            },
+            {
+              "type": "concept",
+              "title": "Trading comparables and precedent transactions"
+            },
+            {
+              "type": "concept",
+              "title": "Peer selection, normalization, and calendarization"
+            },
+            {
+              "type": "concept",
+              "title": "Premium, discount, regression, and multiple pitfalls"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Value creation and communication",
+          "description": "Turn valuation into a decision range with explicit drivers, risks, and action implications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Football field, triangulation, and confidence range"
+            },
+            {
+              "type": "concept",
+              "title": "ROIC, growth, margin, and capital-intensity drivers"
+            },
+            {
+              "type": "concept",
+              "title": "Market-implied expectations and reverse DCF awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Valuation memo, limitations, and catalysts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mergers, Acquisitions, Corporate Control, and Private Capital",
+      "description": "Transactions combine valuation, strategy, financing, governance, and execution risk. Students learn to test a deal thesis, value synergies, model consideration and accretion, and judge whether an attractive asset is an attractive transaction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Strategic rationale and target assessment",
+          "description": "Translate a strategic story into testable sources of value and identifiable execution risks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal, vertical, capability, and geographic rationale"
+            },
+            {
+              "type": "concept",
+              "title": "Market power, cost, revenue, tax, and financing synergies"
+            },
+            {
+              "type": "concept",
+              "title": "Screening, fit, standalone plan, and alternatives"
+            },
+            {
+              "type": "concept",
+              "title": "Winner's curse, hubris, and agency motives"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Deal valuation and consideration",
+          "description": "Estimate standalone value, synergy value, control value, and the portion transferred to the seller.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DCF, trading comps, and precedent transactions"
+            },
+            {
+              "type": "concept",
+              "title": "Premium, exchange ratio, and purchase price"
+            },
+            {
+              "type": "concept",
+              "title": "Cash, stock, debt, earn-out, and contingent value rights awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Enterprise-equity bridge and sources and uses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transaction modeling and diligence",
+          "description": "Evaluate whether the deal creates value under realistic accounting, financing, and integration assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Purchase accounting and identifiable intangibles awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Pro forma ownership and accretion/dilution"
+            },
+            {
+              "type": "concept",
+              "title": "Financing plan, ratings, covenants, and liquidity"
+            },
+            {
+              "type": "concept",
+              "title": "Commercial, financial, tax, legal, and operational diligence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control, restructuring, and private capital",
+          "description": "Place M&A within the broader market for corporate control and ownership models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hostile bids, defenses, voting, and fiduciary process"
+            },
+            {
+              "type": "concept",
+              "title": "Divestitures, carve-outs, spin-offs, and split-offs"
+            },
+            {
+              "type": "concept",
+              "title": "LBO value drivers, leverage, and exit sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Integration milestones, post-deal review, and value capture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "International Finance, Hedging, and Enterprise Risk Management",
+      "description": "Global firms face currency, rate, commodity, country, liquidity, and counterparty risks that interact with operating decisions. Students learn to measure exposures, choose hedges, and distinguish risk reduction from speculative positioning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Foreign-exchange and international valuation",
+          "description": "Keep currency, inflation, growth, tax, and discount-rate assumptions internally consistent.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Spot, forward, and cross rates"
+            },
+            {
+              "type": "concept",
+              "title": "Transaction, translation, and economic exposure"
+            },
+            {
+              "type": "concept",
+              "title": "Purchasing-power and interest-rate parity awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Local-currency versus home-currency valuation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hedging instruments and policy",
+          "description": "Match exposures to derivatives and controls without assuming every risk should be eliminated.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Forwards, futures, swaps, and options"
+            },
+            {
+              "type": "concept",
+              "title": "Interest-rate, currency, and commodity hedges"
+            },
+            {
+              "type": "concept",
+              "title": "Natural hedges, netting, and operational flexibility"
+            },
+            {
+              "type": "concept",
+              "title": "Hedge ratio, basis risk, accounting awareness, and documentation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Enterprise risk management",
+          "description": "Create a portfolio view of risks, controls, ownership, appetite, and escalation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Risk taxonomy, register, and ownership"
+            },
+            {
+              "type": "concept",
+              "title": "Risk appetite, limits, and key risk indicators"
+            },
+            {
+              "type": "concept",
+              "title": "Scenario analysis, stress testing, and reverse stress"
+            },
+            {
+              "type": "concept",
+              "title": "Insurance, transfer, mitigation, acceptance, and governance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Country, political, and cross-border financing risk",
+          "description": "Incorporate sovereign, legal, transfer, tax, and institutional risks into capital allocation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Country-risk premium and sovereign ceiling awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Capital controls, convertibility, and repatriation"
+            },
+            {
+              "type": "concept",
+              "title": "Withholding tax, transfer pricing, and treaty awareness"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-border funding, project finance, and political-risk mitigation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sustainable Finance, Behavioral Decision Quality, and Integrated Capstone",
+      "description": "The course concludes by testing whether students can integrate value, risk, incentives, uncertainty, and implementation into a recommendation. Sustainability and behavioral finance are treated as decision-quality disciplines, not slogans or detached electives.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sustainability in capital allocation",
+          "description": "Translate material environmental and social factors into cash flow, risk, option value, and financing consequences.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Physical and transition climate risk"
+            },
+            {
+              "type": "concept",
+              "title": "Carbon price, regulation, technology, and demand scenarios"
+            },
+            {
+              "type": "concept",
+              "title": "Materiality, externalities, stranded assets, and adaptation"
+            },
+            {
+              "type": "concept",
+              "title": "Green financing, transition finance, and credibility risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Behavioral corporate finance",
+          "description": "Recognize predictable biases that can distort forecasts, investments, financing, and transactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Overconfidence, optimism, anchoring, and escalation"
+            },
+            {
+              "type": "concept",
+              "title": "Confirmation, availability, framing, and groupthink"
+            },
+            {
+              "type": "concept",
+              "title": "Inside versus outside view and reference classes"
+            },
+            {
+              "type": "concept",
+              "title": "Pre-mortems, red teams, decision logs, and challenge process"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated capital-allocation case",
+          "description": "Combine operations, valuation, financing, risk, governance, and implementation in one executive decision.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strategic alternatives and no-action baseline"
+            },
+            {
+              "type": "concept",
+              "title": "Driver-based forecast and valuation range"
+            },
+            {
+              "type": "concept",
+              "title": "Funding, liquidity, covenant, and downside plan"
+            },
+            {
+              "type": "concept",
+              "title": "Stakeholder effects, governance, and execution milestones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone communication and defense",
+          "description": "Present a recommendation that a board, investment committee, lender, or CFO team can challenge and act on.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One-page executive memo and model summary"
+            },
+            {
+              "type": "concept",
+              "title": "Assumption register, source log, checks, and change log"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity, scenario, risk, and trigger dashboard"
+            },
+            {
+              "type": "concept",
+              "title": "Oral defense, counterargument, limitations, and post-decision review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

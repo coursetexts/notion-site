@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
+import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import Mathematics, {
   defaultShouldRender
@@ -14,6 +15,15 @@ import Youtube from '@tiptap/extension-youtube'
 import 'katex/dist/katex.min.css'
 
 import { NotebookPdf, isAllowedPdfEmbedUrl } from '@/lib/tiptap-notebook-pdf'
+import {
+  handleEditorImageDrop,
+  handleEditorImagePaste,
+  insertBlockMathPrompt,
+  insertImageFile,
+  insertInlineMathPrompt,
+  setImageFromUrlOrFile,
+  setLinkFromUrlPrompt
+} from '@/lib/tiptap-editor-image'
 import { NOTEBOOK_EMPTY_DOC } from '@/lib/notebook-editor-default'
 import type { NotebookDocJson } from '@/lib/notebook-editor-default'
 
@@ -66,6 +76,7 @@ export function NotebookEditor({
   )
   const onSaveRef = useRef(onSave)
   onSaveRef.current = onSave
+  const imageInputRef = useRef<HTMLInputElement>(null)
 
   const flushSave = useCallback(async () => {
     if (saveTimer.current) {
@@ -121,6 +132,10 @@ export function NotebookEditor({
           target: '_blank'
         }
       }),
+      Image.configure({
+        inline: false,
+        allowBase64: true
+      }),
       Mathematics.configure({
         katexOptions: { throwOnError: false },
         shouldRender: defaultShouldRender,
@@ -158,6 +173,14 @@ export function NotebookEditor({
     editorProps: {
       attributes: {
         spellcheck: 'true'
+      },
+      handlePaste: (view, event) => {
+        if (!editableRef.current) return false
+        return handleEditorImagePaste(view, event)
+      },
+      handleDrop: (view, event, _slice, moved) => {
+        if (!editableRef.current) return false
+        return handleEditorImageDrop(view, event, moved)
       }
     },
     onUpdate: ({ editor }) => {
@@ -204,20 +227,12 @@ export function NotebookEditor({
 
   const setLink = () => {
     if (!editor) return
-    const prev = editor.getAttributes('link').href as string | undefined
-    const url = window.prompt('Link URL', prev ?? 'https://')
-    if (url === null) return
-    const trimmed = url.trim()
-    if (trimmed === '') {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run()
-      return
-    }
-    editor
-      .chain()
-      .focus()
-      .extendMarkRange('link')
-      .setLink({ href: trimmed })
-      .run()
+    setLinkFromUrlPrompt(editor)
+  }
+
+  const setImage = () => {
+    if (!editor) return
+    setImageFromUrlOrFile(editor, () => imageInputRef.current?.click())
   }
 
   const setYoutube = () => {
@@ -261,37 +276,12 @@ export function NotebookEditor({
 
   const insertInlineMath = () => {
     if (!editor) return
-    const raw = window.prompt(
-      'LaTeX for inline math (no outer $). Example: x^2 or \\alpha',
-      'x^2'
-    )
-    if (raw === null) return
-    let inner = raw.trim()
-    if (!inner) return
-    if (inner.startsWith('$') && inner.endsWith('$')) {
-      inner = inner.slice(1, -1).trim()
-    }
-    editor.chain().focus().insertContent(`$${inner}$`).run()
+    insertInlineMathPrompt(editor)
   }
 
   const insertBlockMath = () => {
     if (!editor) return
-    const raw = window.prompt(
-      'LaTeX for block math (own paragraph). Example: \\int_0^1 x\\,dx',
-      '\\sum_{i=1}^{n} i'
-    )
-    if (raw === null) return
-    let inner = raw.trim()
-    if (!inner) return
-    inner = inner.replace(/^\$\$/, '').replace(/\$\$$/, '').trim()
-    editor
-      .chain()
-      .focus()
-      .insertContent({
-        type: 'paragraph',
-        content: [{ type: 'text', text: `$$${inner}$$` }]
-      })
-      .run()
+    insertBlockMathPrompt(editor)
   }
 
   if (!editor) {
@@ -302,6 +292,20 @@ export function NotebookEditor({
     <div>
       {editable ? (
         <div className={styles.toolbar} role='toolbar' aria-label='Formatting'>
+        <input
+          ref={imageInputRef}
+          type='file'
+          accept='image/*'
+          className={styles.fileInput}
+          aria-hidden
+          tabIndex={-1}
+          onChange={(event) => {
+            const file = event.target.files?.[0]
+            event.target.value = ''
+            if (!file || !editor) return
+            void insertImageFile(editor.view, file)
+          }}
+        />
         <button
           type='button'
           className={
@@ -348,6 +352,9 @@ export function NotebookEditor({
         </button>
         <button type='button' className={styles.toolBtn} onClick={setLink}>
           Link
+        </button>
+        <button type='button' className={styles.toolBtn} onClick={setImage}>
+          Image
         </button>
         <button type='button' className={styles.toolBtn} onClick={setYoutube}>
           YouTube

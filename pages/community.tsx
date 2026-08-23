@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { createPortal } from 'react-dom'
 
@@ -19,6 +20,7 @@ import {
   type CommunitySearchHit,
   searchCommunity
 } from '@/lib/community-search-db'
+import { getCuratedCoursePath } from '@/lib/undergraduate-degrees'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './community.module.css'
@@ -50,6 +52,10 @@ interface CommunityResource {
   commentCount?: number
   /** Search results can also surface knowledge components. */
   kind?: 'resource' | 'knowledge_component'
+  conceptTree?: string | null
+  fromCuratedCourse?: boolean
+  curatedCourseSlug?: string | null
+  authorId?: string | null
 }
 
 function dbToFeedItem(r: CommunityPageResource): CommunityResource {
@@ -64,7 +70,11 @@ function dbToFeedItem(r: CommunityPageResource): CommunityResource {
     rankingScore: r.score,
     userVote: r.user_vote,
     dbBacked: true,
-    commentCount: r.comment_count
+    commentCount: r.comment_count,
+    conceptTree: r.concept_tree,
+    fromCuratedCourse: r.from_curated_course,
+    curatedCourseSlug: r.curated_course_slug,
+    authorId: r.author_id
   }
 }
 
@@ -97,6 +107,62 @@ function hostFromUrl(url: string): string {
   } catch {
     return url
   }
+}
+
+function courseNameFromConceptTree(tree?: string | null): string {
+  if (!tree) return ''
+  return tree.split(' --> ')[0]?.trim() || ''
+}
+
+function curatedCourseHref(
+  slug?: string | null,
+  courseName?: string
+): string | null {
+  const trimmed = slug?.trim()
+  if (trimmed) return `/curated-course/${trimmed}`
+  if (!courseName) return null
+  const path = getCuratedCoursePath(courseName)
+  return path.startsWith('/curated-course/') ? path : null
+}
+
+function CuratedConceptTreeLine({
+  fromCuratedCourse,
+  conceptTree,
+  curatedCourseSlug
+}: {
+  fromCuratedCourse?: boolean
+  conceptTree?: string | null
+  curatedCourseSlug?: string | null
+}) {
+  if (!fromCuratedCourse && !conceptTree) return null
+  const name = courseNameFromConceptTree(conceptTree) || 'course'
+  const href = fromCuratedCourse
+    ? curatedCourseHref(curatedCourseSlug, name)
+    : null
+
+  return (
+    <p className={styles.conceptTree}>
+      {fromCuratedCourse && (
+        <>
+          From curated course{' '}
+          {href ? (
+            <Link href={href} className={styles.curatedCourseLink}>
+              {name}
+            </Link>
+          ) : (
+            <span className={styles.curatedCourseName}>{name}</span>
+          )}
+          {conceptTree ? (
+            <span className={styles.conceptTreeSep} aria-hidden>
+              {' '}
+              ·{' '}
+            </span>
+          ) : null}
+        </>
+      )}
+      {conceptTree}
+    </p>
+  )
 }
 
 const SearchIcon: React.FC = () => (
@@ -164,6 +230,108 @@ const ExternalIcon: React.FC = () => (
 
 type ModalKind = 'resource' | 'knowledge' | null
 
+function TypeSelect({
+  value,
+  onChange
+}: {
+  value: ResourceType
+  onChange: (next: ResourceType) => void
+}) {
+  const [open, setOpen] = React.useState(false)
+  const rootRef = React.useRef<HTMLDivElement>(null)
+  const triggerRef = React.useRef<HTMLButtonElement>(null)
+
+  React.useEffect(() => {
+    if (!open) return
+    const onPointer = (e: MouseEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      e.stopPropagation()
+      e.preventDefault()
+      setOpen(false)
+      triggerRef.current?.focus()
+    }
+    document.addEventListener('mousedown', onPointer)
+    window.addEventListener('keydown', onKey, true)
+    return () => {
+      document.removeEventListener('mousedown', onPointer)
+      window.removeEventListener('keydown', onKey, true)
+    }
+  }, [open])
+
+  function selectType(next: ResourceType) {
+    onChange(next)
+    setOpen(false)
+    triggerRef.current?.focus()
+  }
+
+  return (
+    <div className={styles.select} ref={rootRef}>
+      <button
+        ref={triggerRef}
+        type='button'
+        className={`${styles.selectTrigger}${
+          open ? ` ${styles.selectTriggerOpen}` : ''
+        }`}
+        aria-haspopup='listbox'
+        aria-expanded={open}
+        aria-labelledby='share-resource-type-label'
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span>{TYPE_LABELS[value]}</span>
+        <svg
+          className={`${styles.selectChevron}${
+            open ? ` ${styles.selectChevronOpen}` : ''
+          }`}
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 12 12'
+          fill='none'
+          aria-hidden
+        >
+          <path
+            d='M2.5 4.5L6 8L9.5 4.5'
+            stroke='currentColor'
+            strokeWidth='1.3'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </button>
+      <div
+        className={`${styles.selectMenu}${
+          open ? ` ${styles.selectMenuOpen}` : ''
+        }`}
+        role='listbox'
+        aria-labelledby='share-resource-type-label'
+        aria-hidden={!open}
+      >
+        <div className={styles.selectMenuInner}>
+          {RESOURCE_TYPES.map((t) => {
+            const selected = t === value
+            return (
+              <button
+                key={t}
+                type='button'
+                role='option'
+                aria-selected={selected}
+                tabIndex={open ? 0 : -1}
+                className={`${styles.selectOption}${
+                  selected ? ` ${styles.selectOptionSelected}` : ''
+                }`}
+                onClick={() => selectType(t)}
+              >
+                {TYPE_LABELS[t]}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 interface ModalProps {
   title: string
   children: React.ReactNode
@@ -226,6 +394,7 @@ export default function CommunityPage() {
   // Submit-a-resource form state
   const [resTitle, setResTitle] = React.useState('')
   const [resDesc, setResDesc] = React.useState('')
+  const [resConceptTree, setResConceptTree] = React.useState('')
   const [resLink, setResLink] = React.useState('')
   const [resType, setResType] = React.useState<ResourceType>('textbook')
   const [resourceSubmitError, setResourceSubmitError] = React.useState<
@@ -313,7 +482,9 @@ export default function CommunityPage() {
     }
     if (needle) {
       list = list.filter((r) =>
-        `${r.title} ${r.description} ${r.type} ${r.author}`
+        `${r.title} ${r.description} ${r.conceptTree ?? ''} ${r.type} ${
+          r.author
+        }`
           .toLowerCase()
           .includes(needle)
       )
@@ -461,7 +632,8 @@ export default function CommunityPage() {
       title,
       description,
       url: link || 'https://coursetexts.org',
-      type: resType
+      type: resType,
+      conceptTree: resConceptTree
     })
     setResourceSubmitting(false)
 
@@ -473,6 +645,7 @@ export default function CommunityPage() {
     setResources((prev) => [dbToFeedItem(created), ...prev])
     setResTitle('')
     setResDesc('')
+    setResConceptTree('')
     setResLink('')
     setResType('textbook')
     closeModal()
@@ -518,7 +691,7 @@ export default function CommunityPage() {
           <div className={styles.container}>
             <header className={styles.header}>
               <div className={styles.titleRow}>
-                <h1 className={styles.title}>Community</h1>
+                <h1 className={styles.title}>Community Resources</h1>
                 <button
                   type='button'
                   className={styles.shareBtn}
@@ -710,7 +883,19 @@ export default function CommunityPage() {
                       )}
                       <span className={styles.rowMetaRight}>
                         {r.author && (
-                          <span className={styles.author}>by {r.author}</span>
+                          <span className={styles.author}>
+                            by{' '}
+                            {r.authorId ? (
+                              <Link
+                                href={`/profile/${r.authorId}`}
+                                className={styles.authorLink}
+                              >
+                                {r.author}
+                              </Link>
+                            ) : (
+                              r.author
+                            )}
+                          </span>
                         )}
                         <span data-testid='resource-vote'>
                           <VoteRow
@@ -747,7 +932,14 @@ export default function CommunityPage() {
                         </span>
                       )}
                     </h3>
-                    <p className={styles.rowDesc}>{r.description}</p>
+                    <CuratedConceptTreeLine
+                      fromCuratedCourse={r.fromCuratedCourse}
+                      conceptTree={r.conceptTree}
+                      curatedCourseSlug={r.curatedCourseSlug}
+                    />
+                    {r.description ? (
+                      <p className={styles.rowDesc}>{r.description}</p>
+                    ) : null}
 
                     {r.dbBacked && (
                       <div className={styles.rowActions}>
@@ -800,19 +992,20 @@ export default function CommunityPage() {
             />
           </label>
           <label className={styles.field}>
-            <span className={styles.label}>Type</span>
-            <select
+            <span className={styles.label}>Link (optional)</span>
+            <input
               className={styles.input}
-              value={resType}
-              onChange={(e) => setResType(e.target.value as ResourceType)}
-            >
-              {RESOURCE_TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {TYPE_LABELS[t]}
-                </option>
-              ))}
-            </select>
+              value={resLink}
+              onChange={(e) => setResLink(e.target.value)}
+              placeholder='https://…'
+            />
           </label>
+          <div className={styles.field}>
+            <span className={styles.label} id='share-resource-type-label'>
+              Type
+            </span>
+            <TypeSelect value={resType} onChange={setResType} />
+          </div>
           <label className={styles.field}>
             <span className={styles.label}>Description</span>
             <textarea
@@ -823,12 +1016,16 @@ export default function CommunityPage() {
             />
           </label>
           <label className={styles.field}>
-            <span className={styles.label}>Link (optional)</span>
+            <span className={styles.label}>
+              Concept tree{' '}
+              <span className={styles.labelOptional}>(optional)</span>
+            </span>
             <input
               className={styles.input}
-              value={resLink}
-              onChange={(e) => setResLink(e.target.value)}
-              placeholder='https://…'
+              value={resConceptTree}
+              onChange={(e) => setResConceptTree(e.target.value)}
+              placeholder='Linear Algebra --> Linear Systems and Elimination --> Echelon forms'
+              maxLength={1000}
             />
           </label>
           <div className={styles.modalActions}>

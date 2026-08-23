@@ -1,0 +1,161 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: color 220ms ease;
+}
+
+.trigger:hover,
+.trigger:focus-visible,
+.triggerOpen {
+  color: #0089c4;
+  background: transparent;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: -8px;
+  z-index: 4000;
+  width: min(300px, calc(100vw - 32px));
+  max-height: min(380px, 70vh);
+  overflow: auto;
+  padding: 14px 0 10px;
+  background: #fff;
+  border: 1px solid var(--outline, #e6e6e6);
+  box-shadow: 0 16px 40px rgba(37, 39, 43, 0.12);
+}
+
+.menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-left: 1px solid var(--outline, #e6e6e6);
+  border-top: 1px solid var(--outline, #e6e6e6);
+  transform: rotate(45deg);
+}
+
+.menuLabel {
+  margin: 0 16px 10px;
+  padding: 0 0 10px;
+  border-bottom: 1px dashed var(--outline, #e6e6e6);
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 2px 0;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 12px 0 16px;
+  background: transparent;
+  transition: background-color 160ms ease;
+}
+
+.row:hover,
+.row:focus-within {
+  background: #f5fbff;
+}
+
+.courseLink {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 8px 10px 0;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #25272b;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.courseLink:hover,
+.courseLink:focus-visible {
+  color: #0089c4;
+}
+
+.rowPin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.rowPin:hover,
+.rowPin:focus-visible {
+  color: #0089c4;
+}
+
+.rowPin:focus-visible,
+.courseLink:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: -2px;
+}
+
+.empty {
+  margin: 0;
+  padding: 4px 16px 8px;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .trigger {
+    width: 31px;
+    height: 31px;
+  }
+}

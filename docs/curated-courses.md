@@ -59,9 +59,13 @@ flowchart TB
 |-------|---------|
 | `curated_courses` | One row per slug |
 | `curated_course_nodes` | Syllabus tree |
-| `curated_course_videos` | Videos on a node |
+| `curated_course_videos` | Videos on a node (also published to community `resources`) |
+| `curated_course_links` | Tests and slides on a node (also published to community `resources`) |
 | `curated_course_resources` | Textbooks / websites / channels |
 | `curated_course_notes` | Per-user notes |
+| `curated_course_pins` | Per-user pinned courses (header dropdown) |
+
+Videos, tests, and slides added on a syllabus node also appear in the `/community` feed. They are auto-labeled with a plain-text **concept tree** such as `Linear Algebra --> Linear Systems and Elimination --> Gaussian elimination and row reduction --> Echelon and reduced echelon forms`.
 
 ## Left-nav page sections
 
@@ -121,11 +125,20 @@ All curated-course SQL seeds live in [`supabase/seeds/curated-courses/`](../supa
 | `seed_algorithms_curated_course.sql` | Algorithms syllabus tree |
 | `seed_database_systems_curated_course.sql` | Database Systems syllabus tree |
 | `seed_operating_systems_curated_course.sql` | Operating Systems syllabus tree |
-| `seed_computer_networks_curated_course.sql` | Computer Networks syllabus tree + video titles |
+| `seed_computer_networks_curated_course.sql` | Computer Networks syllabus tree + resources |
 | `seed_programming_languages_curated_course.sql` | Programming Languages syllabus tree |
 | `seed_computer_organization_architecture_curated_course.sql` | Computer Organization/Architecture syllabus tree |
 | `seed_computer_organization_and_architecture_curated_course.sql` | Computer Organization and Architecture syllabus tree |
 | `seed_linear_algebra_curated_course.sql` | Linear Algebra syllabus tree |
+| `seed_calculus_i_curated_course.sql` | Calculus I syllabus tree + resources |
+| `seed_calculus_ii_curated_course.sql` | Calculus II syllabus tree + resources |
+| `seed_calculus_iii_multivariable_curated_course.sql` | Calculus III (Multivariable) syllabus tree + resources |
+| `seed_differential_equations_curated_course.sql` | Differential Equations syllabus tree + resources |
+| `seed_financial_accounting_curated_course.sql` | Financial Accounting syllabus tree + resources |
+| `seed_business_statistics_curated_course.sql` | Business Statistics syllabus tree + resources |
+| `seed_corporate_finance_curated_course.sql` | Corporate Finance syllabus tree + resources |
+| `seed_microeconomics_curated_course.sql` | Microeconomics syllabus tree + resources |
+| `seed_anatomy_and_physiology_i_curated_course.sql` | Anatomy and Physiology I syllabus tree |
 | `seed_probability_and_statistics_curated_course.sql` | Probability and Statistics syllabus tree |
 | `seed_computer_systems_systems_programming_curated_course.sql` | Computer Systems / Systems Programming syllabus tree |
 | `seed_introduction_to_programming_curated_course.sql` | Introduction to Programming syllabus tree |
@@ -160,24 +173,28 @@ All curated-course SQL seeds live in [`supabase/seeds/curated-courses/`](../supa
 | `seed_physical_chemistry_ii_quantum_mechanics_and_spectroscopy_curated_course.sql` | Physical Chemistry II (Quantum Mechanics & Spectroscopy) syllabus tree |
 | `seed_inorganic_chemistry_curated_course.sql` | Inorganic Chemistry syllabus tree |
 | `seed_instrumental_analysis_curated_course.sql` | Instrumental Analysis syllabus tree |
-| `seed_biochemistry_curated_course.sql` | Biochemistry syllabus tree |
+| `seed_biochemistry_curated_course.sql` | Biochemistry syllabus tree + resources |
+| `seed_dynamics_curated_course.sql` | Dynamics syllabus tree + resources |
+| `seed_statics_curated_course.sql` | Statics syllabus tree + resources |
 | `seed_general_biology_i_curated_course.sql` | General Biology I syllabus tree |
 | `seed_general_biology_ii_curated_course.sql` | General Biology II syllabus tree |
 | `seed_general_biology_i_and_ii_curated_course.sql` | General Biology I & II syllabus tree |
 | `seed_general_biology_curated_course.sql` | General Biology syllabus tree |
 | `seed_introduction_to_biomedical_engineering_curated_course.sql` | Introduction to Biomedical Engineering syllabus tree |
 | `seed_physics_i_curated_course.sql` | Physics I syllabus tree |
+| `seed_physics_i_mechanics_curated_course.sql` | Physics I (Mechanics) syllabus tree + resources |
 | `seed_physics_ii_curated_course.sql` | Physics II syllabus tree |
+| `seed_physics_ii_eandm_curated_course.sql` | Physics II (E&M) syllabus tree + resources |
 | `seed_genetics_curated_course.sql` | Genetics syllabus tree |
 | `seed_cell_and_molecular_biology_curated_course.sql` | Cell and Molecular Biology syllabus tree |
 | `seed_ecology_curated_course.sql` | Ecology syllabus tree |
 | `seed_evolutionary_biology_curated_course.sql` | Evolutionary Biology syllabus tree |
 | `seed_microbiology_curated_course.sql` | Microbiology syllabus tree |
 | `seed_physiology_anatomy_and_physiology_curated_course.sql` | Physiology / Anatomy and Physiology syllabus tree |
-| `seed_biostatistics_curated_course.sql` | Biostatistics syllabus tree |
+| `seed_biostatistics_curated_course.sql` | Biostatistics syllabus tree + resources |
 | `seed_statistics_biostatistics_curated_course.sql` | Statistics / Biostatistics syllabus tree |
 | `seed_general_chemistry_curated_course.sql` | General Chemistry syllabus tree |
-| `seed_general_chemistry_i_and_ii_curated_course.sql` | General Chemistry I & II syllabus tree |
+| `seed_general_chemistry_i_and_ii_curated_course.sql` | General Chemistry I & II syllabus tree + resources |
 | `seed_programming_for_engineers_matlab_curated_course.sql` | Programming for Engineers (MATLAB) syllabus tree |
 | `seed_programming_for_engineers_matlab_python_curated_course.sql` | Programming for Engineers (MATLAB/Python) syllabus tree |
 | `seed_materials_science_curated_course.sql` | Materials Science syllabus tree |
@@ -189,6 +206,7 @@ All curated-course SQL seeds live in [`supabase/seeds/curated-courses/`](../supa
 | `seed_machine_design_curated_course.sql` | Machine Design syllabus tree |
 | `seed_manufacturing_processes_curated_course.sql` | Manufacturing Processes syllabus tree |
 | `seed_mechanical_vibrations_curated_course.sql` | Mechanical Vibrations syllabus tree |
+| `seed_control_systems_curated_course.sql` | Control Systems syllabus tree + resources |
 | `seed_control_systems_system_dynamics_curated_course.sql` | Control Systems / System Dynamics syllabus tree |
 | `seed_system_dynamics_and_controls_curated_course.sql` | System Dynamics and Controls syllabus tree |
 | `seed_probability_and_random_processes_curated_course.sql` | Probability and Random Processes syllabus tree |
@@ -249,6 +267,7 @@ All curated-course SQL seeds live in [`supabase/seeds/curated-courses/`](../supa
 | `seed_environmental_sampling_and_analysis_curated_course.sql` | Environmental Sampling and Analysis syllabus tree |
 | `seed_conservation_biology_curated_course.sql` | Conservation Biology syllabus tree |
 | `seed_environmental_impact_assessment_curated_course.sql` | Environmental Impact Assessment syllabus tree |
+| `seed_discrete_mathematics_curated_course.sql` | Discrete Mathematics syllabus tree + resources |
 | `seed_discrete_math_math_for_computing_curated_course.sql` | Discrete Math / Math for Computing syllabus tree |
 | `seed_chemical_engineering_thermodynamics_curated_course.sql` | Chemical Engineering Thermodynamics syllabus tree |
 | `seed_fluid_mechanics_transport_phenomena_i_curated_course.sql` | Fluid Mechanics / Transport Phenomena I syllabus tree |

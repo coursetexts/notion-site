@@ -1,0 +1,1117 @@
+{
+  "slug": "discrete-mathematics",
+  "title": "Discrete Mathematics",
+  "description": "Discrete Mathematics is one common foundation across Computer Science, Mathematics, and Computer Engineering. Students translate informal claims into precise logical, set-theoretic, relational, graph, and automata models, then prove, count, compute, and communicate those models. The course moves from mathematical language, logic, sets, functions, and proof through combinatorics, discrete probability, number theory, recurrences, graphs, Boolean algebra, automata, computability, and complexity. One rigorous core serves all three degrees. Computer Science emphasizes invariants, algorithm analysis, automata, and security, Mathematics emphasizes bijections, generating functions, and theorem-quality exposition, and Computer Engineering emphasizes Boolean minimization, state machines, coding, and network models.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Mathematics for Computer Science",
+      "linkOrSite": "https://courses.csail.mit.edu/6.042/spring18/mcs.pdf",
+      "description": "Lehman, Leighton, and Meyer. Rigorous proof, number theory, graphs, counting, probability, and recurrences."
+    },
+    {
+      "kind": "textbook",
+      "title": "Discrete Mathematics and Its Applications",
+      "linkOrSite": "McGraw Hill",
+      "description": "Kenneth Rosen. Comprehensive notation, examples, exercises, graphs, counting, and recurrences."
+    },
+    {
+      "kind": "textbook",
+      "title": "Discrete Mathematics with Applications",
+      "linkOrSite": "Cengage",
+      "description": "Susanna Epp. Student-friendly transition to logic, proof, relations, counting, and graphs."
+    },
+    {
+      "kind": "textbook",
+      "title": "Book of Proof",
+      "linkOrSite": "https://richardhammack.github.io/BookOfProof/",
+      "description": "Richard Hammack. Clear introduction to logic, sets, functions, relations, and proof writing."
+    },
+    {
+      "kind": "textbook",
+      "title": "Discrete Mathematics: An Open Introduction",
+      "linkOrSite": "https://discrete.openmathbooks.org/",
+      "description": "Oscar Levin. Accessible full-course reference with exercises and interactive editions."
+    },
+    {
+      "kind": "textbook",
+      "title": "Concrete Mathematics",
+      "linkOrSite": "Addison-Wesley",
+      "description": "Graham, Knuth, and Patashnik. Sums, recurrences, number theory, asymptotics, and algorithmic mathematics."
+    },
+    {
+      "kind": "textbook",
+      "title": "Introduction to the Theory of Computation",
+      "linkOrSite": "Cengage",
+      "description": "Michael Sipser. Automata, computability, reductions, and complexity for Units 14-16."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 6.1200 Mathematics for Computer Science",
+      "linkOrSite": "https://ocw.mit.edu/courses/6-1200j-mathematics-for-computer-science-spring-2024/",
+      "description": "Lectures, notes, warm-ups, and problem sets."
+    },
+    {
+      "kind": "website",
+      "title": "Stanford CS103 Mathematical Foundations of Computing",
+      "linkOrSite": "https://web.stanford.edu/class/cs103/",
+      "description": "Proof, logic, automata, computability, and complexity."
+    },
+    {
+      "kind": "website",
+      "title": "UC Berkeley CS70",
+      "linkOrSite": "https://www.eecs70.org/",
+      "description": "Logic, induction, graphs, number theory, computability, and discrete probability."
+    },
+    {
+      "kind": "website",
+      "title": "OpenDSA",
+      "linkOrSite": "https://opendsa-server.cs.vt.edu/",
+      "description": "Discrete structures, algorithms, trees, graphs, and practice."
+    },
+    {
+      "kind": "website",
+      "title": "SageMath Graph Theory",
+      "linkOrSite": "https://doc.sagemath.org/html/en/reference/graphs/index.html",
+      "description": "Graph construction, invariants, algorithms, and experimentation."
+    },
+    {
+      "kind": "website",
+      "title": "ProofWiki",
+      "linkOrSite": "https://proofwiki.org/",
+      "description": "Definitions and proof patterns for independent checking."
+    },
+    {
+      "kind": "website",
+      "title": "Graphviz",
+      "linkOrSite": "https://graphviz.org/documentation/",
+      "description": "Reproducible graph and state-machine diagrams."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Course Orientation, Mathematical Language, and Discrete Structures",
+      "description": "This opening unit establishes the objects, notation, and habits that make discrete mathematics a precise language for computing, mathematics, and digital engineering.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "What Discrete Mathematics Studies",
+          "description": "Students distinguish finite and countable structures from continuous models and see why discrete abstraction is central to algorithms and hardware.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Finite, countable, and combinatorial objects"
+            },
+            {
+              "type": "concept",
+              "title": "Examples from programs, networks, circuits, and proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Abstraction from a real system to a mathematical model"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Definitions, Statements, and Notation",
+          "description": "Precise definitions control what may be assumed and what must be proved. Notation makes those commitments compact and checkable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objects, variables, domains, and types"
+            },
+            {
+              "type": "concept",
+              "title": "Definitions, propositions, theorems, and counterexamples"
+            },
+            {
+              "type": "concept",
+              "title": "Set, sequence, summation, and logical notation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Problem-Solving and Computational Exploration",
+          "description": "Good discrete problem solving alternates examples, conjectures, proof, and computation without confusing experimental evidence with proof.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Small cases and pattern discovery"
+            },
+            {
+              "type": "concept",
+              "title": "Conjectures, counterexamples, and refinement"
+            },
+            {
+              "type": "concept",
+              "title": "Python or SageMath checks with reproducible reasoning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Propositional Logic and Logical Equivalence",
+      "description": "Propositional logic supplies a formal language for combining claims and deciding when an argument, specification, or circuit is valid.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Propositions and Connectives",
+          "description": "Students translate ordinary statements into formulas whose truth depends on well-defined logical operations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Negation, conjunction, disjunction, implication, and biconditional"
+            },
+            {
+              "type": "concept",
+              "title": "Operator precedence and parenthesization"
+            },
+            {
+              "type": "concept",
+              "title": "Necessary and sufficient conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Truth Tables and Equivalence",
+          "description": "Truth tables expose the behavior of compound statements and support systematic simplification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tautologies, contradictions, and contingencies"
+            },
+            {
+              "type": "concept",
+              "title": "Logical equivalence and implication laws"
+            },
+            {
+              "type": "concept",
+              "title": "Normal forms: CNF and DNF"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inference, Satisfiability, and Applications",
+          "description": "Rules of inference turn accepted premises into justified conclusions and connect logic to verification and SAT solving.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity, sound inference rules, and fallacies"
+            },
+            {
+              "type": "concept",
+              "title": "Satisfiability and model finding"
+            },
+            {
+              "type": "concept",
+              "title": "Specifications, assertions, and combinational logic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Predicate Logic, Quantifiers, and Formal Inference",
+      "description": "Predicate logic extends propositional reasoning to properties of objects, making it possible to express mathematical definitions and program specifications accurately.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Predicates, Domains, and Free Variables",
+          "description": "A predicate becomes meaningful only relative to its variables and domain, so students learn to make both explicit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Predicates and propositional functions"
+            },
+            {
+              "type": "concept",
+              "title": "Free and bound variables"
+            },
+            {
+              "type": "concept",
+              "title": "Domain dependence and typed statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Quantifiers and Negation",
+          "description": "Universal and existential quantifiers express scope. Careful negation prevents common errors in proofs and specifications.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Universal and existential quantification"
+            },
+            {
+              "type": "concept",
+              "title": "Nested quantifiers and order sensitivity"
+            },
+            {
+              "type": "concept",
+              "title": "Negating quantified statements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Formal Inference and Specification",
+          "description": "Quantified inference supports theorem proving, database queries, contracts, and requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Universal instantiation and generalization"
+            },
+            {
+              "type": "concept",
+              "title": "Existential instantiation and proof obligations"
+            },
+            {
+              "type": "concept",
+              "title": "Translating requirements into first-order statements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Sets, Functions, Relations, and Cardinality",
+      "description": "Sets, functions, relations, and cardinality describe collections and mappings, the structural vocabulary behind data types, databases, graphs, and modern mathematics.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sets and Set Operations",
+          "description": "Students use sets to represent collections and manipulate them with identities that parallel logic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Membership, subsets, power sets, and products"
+            },
+            {
+              "type": "concept",
+              "title": "Union, intersection, difference, and complement"
+            },
+            {
+              "type": "concept",
+              "title": "Set identities and Venn-diagram reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functions and Mappings",
+          "description": "Functions formalize deterministic input-output behavior and support counting, equivalence, and algorithm design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain, codomain, image, and preimage"
+            },
+            {
+              "type": "concept",
+              "title": "Injective, surjective, and bijective functions"
+            },
+            {
+              "type": "concept",
+              "title": "Composition, inverses, and pigeonhole reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relations and Cardinality",
+          "description": "Relations organize objects by similarity or order, while cardinality compares the sizes of finite and infinite sets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equivalence relations and partitions"
+            },
+            {
+              "type": "concept",
+              "title": "Partial orders, Hasse diagrams, and closures"
+            },
+            {
+              "type": "concept",
+              "title": "Finite, countably infinite, and uncountable sets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Proof Techniques and Mathematical Writing",
+      "description": "Proof is the course's central practice: it converts plausible patterns into conclusions that remain correct for every permitted case.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Direct Proof, Cases, and Existence",
+          "description": "Students learn constructive proof patterns that follow definitions and expose why a statement is true.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct implication proofs"
+            },
+            {
+              "type": "concept",
+              "title": "Exhaustive proof by cases"
+            },
+            {
+              "type": "concept",
+              "title": "Constructive and nonconstructive existence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contrapositive, Contradiction, and Counterexample",
+          "description": "Indirect methods simplify difficult implications, while one valid counterexample defeats a universal claim.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proof by contrapositive"
+            },
+            {
+              "type": "concept",
+              "title": "Proof by contradiction"
+            },
+            {
+              "type": "concept",
+              "title": "Disproving statements with counterexamples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mathematical Writing and Proof Review",
+          "description": "A proof must be logically complete and readable by another person, not merely convincing to its author.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Definitions cited at the point of use"
+            },
+            {
+              "type": "concept",
+              "title": "Clear variable scope and quantified claims"
+            },
+            {
+              "type": "concept",
+              "title": "Proof critique, revision, and LaTeX conventions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mathematical Induction, Recursion, and Invariants",
+      "description": "Induction and invariants reason about recursively generated objects and processes that evolve through repeated steps.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Ordinary and Strong Induction",
+          "description": "Induction proves an infinite family of statements by connecting each case to established earlier cases.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Base cases and inductive hypotheses"
+            },
+            {
+              "type": "concept",
+              "title": "Ordinary versus strong induction"
+            },
+            {
+              "type": "concept",
+              "title": "Well-ordering principle and minimal counterexamples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Recursive Definitions and Structural Induction",
+          "description": "Recursive definitions build large objects from smaller ones. Structural induction mirrors that construction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recursive sequences and functions"
+            },
+            {
+              "type": "concept",
+              "title": "Recursively defined strings, trees, and formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Structural induction over syntax and data structures"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Invariants and Algorithm Correctness",
+          "description": "An invariant identifies what remains true as a loop, protocol, or state machine changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Loop invariants and initialization-maintenance-termination"
+            },
+            {
+              "type": "concept",
+              "title": "State-machine invariants and safety properties"
+            },
+            {
+              "type": "concept",
+              "title": "Termination measures and total correctness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Counting Principles and Advanced Combinatorics",
+      "description": "Combinatorics develops principled ways to count possibilities without listing them, a key skill in probability, complexity, coding, and design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Basic Counting Principles",
+          "description": "Students decompose a counting problem into disjoint alternatives or sequential choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum and product rules"
+            },
+            {
+              "type": "concept",
+              "title": "Permutations, combinations, and multisets"
+            },
+            {
+              "type": "concept",
+              "title": "Binomial coefficients and the binomial theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bijections, Pigeonhole, and Inclusion-Exclusion",
+          "description": "Structural counting arguments reveal why two sets have the same size and correct for overlap.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bijections and double counting"
+            },
+            {
+              "type": "concept",
+              "title": "Pigeonhole principle and extremal consequences"
+            },
+            {
+              "type": "concept",
+              "title": "Inclusion-exclusion and derangements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Generating Functions and Combinatorial Identities",
+          "description": "Generating functions encode sequences algebraically and turn recurrence or selection problems into coefficient calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ordinary generating functions"
+            },
+            {
+              "type": "concept",
+              "title": "Coefficient extraction and convolution"
+            },
+            {
+              "type": "concept",
+              "title": "Combinatorial proofs of identities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Discrete Probability, Random Variables, and Stochastic Reasoning",
+      "description": "Discrete probability quantifies uncertainty over finite or countable outcomes and supports randomized algorithms, reliability, and data-driven systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Probability Spaces and Events",
+          "description": "Students model uncertainty with outcomes, events, and axioms rather than intuition alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample spaces and event algebra"
+            },
+            {
+              "type": "concept",
+              "title": "Uniform and weighted discrete models"
+            },
+            {
+              "type": "concept",
+              "title": "Union bounds and inclusion-exclusion for events"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conditional Probability and Independence",
+          "description": "Conditioning updates a model after new information. Independence states exactly when one event does not change another.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditional probability and multiplication rule"
+            },
+            {
+              "type": "concept",
+              "title": "Bayes' theorem and total probability"
+            },
+            {
+              "type": "concept",
+              "title": "Pairwise versus mutual independence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Random Variables, Expectation, and Concentration",
+          "description": "Random variables convert outcomes into quantities that can be summarized and bounded.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Distributions, expectation, and linearity of expectation"
+            },
+            {
+              "type": "concept",
+              "title": "Variance, covariance, and indicator variables"
+            },
+            {
+              "type": "concept",
+              "title": "Markov and Chebyshev bounds and Markov-chain preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Number Theory, Modular Arithmetic, and Cryptographic Foundations",
+      "description": "Elementary number theory turns arithmetic structure into algorithms for security, hashing, coding, and symbolic computation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Divisibility, Primes, and the Euclidean Algorithm",
+          "description": "Divisibility and greatest common divisors reveal the structure needed for modular computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Divisibility, primes, and unique factorization"
+            },
+            {
+              "type": "concept",
+              "title": "Euclidean and extended Euclidean algorithms"
+            },
+            {
+              "type": "concept",
+              "title": "Bezout identities and multiplicative inverses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Congruences and Modular Arithmetic",
+          "description": "Congruences make arithmetic wrap around a modulus while preserving rigorous algebraic rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Residue classes and modular operations"
+            },
+            {
+              "type": "concept",
+              "title": "Linear congruences and Chinese remainder theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Fermat and Euler theorems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cryptography, Hashing, and Coding Connections",
+          "description": "Applications show how number-theoretic assumptions protect information and detect errors.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "RSA workflow and public-key intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Hash functions and modular indexing"
+            },
+            {
+              "type": "concept",
+              "title": "Error-detecting and error-correcting code preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Recurrence Relations, Generating Functions, and Asymptotic Growth",
+      "description": "Recurrences describe self-referential processes. Generating functions and asymptotic notation reveal their long-run behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Building Recurrence Models",
+          "description": "Students translate recursive algorithms and discrete processes into initial conditions and recurrence equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First- and higher-order recurrences"
+            },
+            {
+              "type": "concept",
+              "title": "Divide-and-conquer recurrences"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions and model validation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Solving Recurrences",
+          "description": "Several complementary techniques turn recursive definitions into explicit or asymptotic solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Iteration and substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Characteristic-root method"
+            },
+            {
+              "type": "concept",
+              "title": "Generating-function solutions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Asymptotic Growth and Algorithm Analysis",
+          "description": "Growth rates compare resource use at scale while ignoring inessential constants.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Big-O, Big-Omega, and Big-Theta"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial, logarithmic, exponential, and factorial growth"
+            },
+            {
+              "type": "concept",
+              "title": "Master-theorem patterns and empirical sanity checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Graph Theory Foundations and Structural Properties",
+      "description": "Graph theory models pairwise relationships and provides a common language for networks, dependencies, circuits, and combinatorial structure.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Graph Models and Representations",
+          "description": "Students choose graph types and data representations that preserve the relationships relevant to a problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple graphs, multigraphs, directed and weighted graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Adjacency lists, matrices, and incidence structures"
+            },
+            {
+              "type": "concept",
+              "title": "Degree sequences, subgraphs, and isomorphism"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Paths, Cycles, and Connectivity",
+          "description": "Reachability and connectivity characterize how information, flow, or influence can move through a network.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Walks, trails, paths, and cycles"
+            },
+            {
+              "type": "concept",
+              "title": "Connected components and cut vertices"
+            },
+            {
+              "type": "concept",
+              "title": "Eulerian and Hamiltonian questions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planarity, Coloring, and Graph Invariants",
+          "description": "Structural invariants bound what a graph can represent and support scheduling, layout, and resource allocation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planar embeddings and Euler's formula"
+            },
+            {
+              "type": "concept",
+              "title": "Vertex and edge coloring"
+            },
+            {
+              "type": "concept",
+              "title": "Cliques, independent sets, and chromatic bounds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Trees, Matchings, Network Algorithms, and Discrete Optimization",
+      "description": "This unit turns graph structure into algorithms for hierarchy, routing, assignment, and optimization.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Trees and Spanning Trees",
+          "description": "Trees are minimally connected graphs and the natural structure for hierarchy, recursion, and network backbones.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rooted trees, traversals, and binary trees"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent characterizations of trees"
+            },
+            {
+              "type": "concept",
+              "title": "Spanning trees and minimum-spanning-tree algorithms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Traversal and Shortest-Path Algorithms",
+          "description": "Systematic traversal discovers structure, while shortest-path methods optimize movement through weighted networks.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Breadth-first and depth-first search"
+            },
+            {
+              "type": "concept",
+              "title": "Topological ordering of directed acyclic graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Dijkstra and shortest-path assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Matching, Stable Assignment, and Discrete Optimization",
+          "description": "Matching problems formalize compatible assignments and introduce proof-based algorithm design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Bipartite matching and augmenting paths"
+            },
+            {
+              "type": "concept",
+              "title": "Stable marriage and correctness"
+            },
+            {
+              "type": "concept",
+              "title": "Network-flow and discrete-optimization preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Boolean Algebra, Digital Logic, and Computation Structures",
+      "description": "Boolean algebra connects logical reasoning to the design, simplification, and verification of digital systems.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Boolean Operations and Laws",
+          "description": "Boolean algebra gives symbolic rules for manipulating two-valued functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Identity, complement, distributive, and De Morgan laws"
+            },
+            {
+              "type": "concept",
+              "title": "Duality and algebraic simplification"
+            },
+            {
+              "type": "concept",
+              "title": "Boolean functions and truth-table representations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Normal Forms and Combinational Circuits",
+          "description": "Canonical forms translate directly between specifications and gate-level implementations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum-of-products and product-of-sums"
+            },
+            {
+              "type": "concept",
+              "title": "Karnaugh-map and algebraic minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Logic gates, multiplexers, decoders, and adders"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sequential Logic and Computation Structures",
+          "description": "State and time turn combinational logic into machines that store information and execute protocols.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Latches, flip-flops, registers, and counters"
+            },
+            {
+              "type": "concept",
+              "title": "Finite-state-machine implementation"
+            },
+            {
+              "type": "concept",
+              "title": "Hazards, timing assumptions, and hardware verification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Finite Automata, Regular Languages, and Parsing Foundations",
+      "description": "Automata and formal languages make computation itself a mathematical object, linking software patterns to hardware state machines.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Deterministic and Nondeterministic Automata",
+          "description": "Finite automata recognize patterns using bounded memory. Nondeterminism offers an equivalent but often simpler description.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DFAs, transition functions, and accepted languages"
+            },
+            {
+              "type": "concept",
+              "title": "NFAs and subset construction"
+            },
+            {
+              "type": "concept",
+              "title": "Product constructions and closure operations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regular Expressions and Limits of Regularity",
+          "description": "Regular expressions and automata describe the same language class, while nonregularity results expose finite-memory limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Regular expressions and state elimination"
+            },
+            {
+              "type": "concept",
+              "title": "Closure properties of regular languages"
+            },
+            {
+              "type": "concept",
+              "title": "Pumping lemma and Myhill-Nerode preview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Context-Free Grammars and Parsing Foundations",
+          "description": "Grammars describe nested syntax that finite automata cannot capture, providing a bridge to compilers and protocol formats.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Productions, derivations, and parse trees"
+            },
+            {
+              "type": "concept",
+              "title": "Ambiguity and grammar design"
+            },
+            {
+              "type": "concept",
+              "title": "Pushdown-automaton and parsing overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Countability, Computability, and Decidability",
+      "description": "Countability and computability establish fundamental limits: some sets cannot be enumerated and some precisely stated problems cannot be solved by any algorithm.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Countability and Diagonalization",
+          "description": "Students compare infinite sizes and learn how diagonal arguments prove that no enumeration can be complete.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Countable unions and encodings"
+            },
+            {
+              "type": "concept",
+              "title": "Cantor diagonalization"
+            },
+            {
+              "type": "concept",
+              "title": "Uncountability of real numbers and function sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Turing Machines and Encodings",
+          "description": "A simple universal machine model clarifies what counts as an effective procedure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Machine configurations and computation histories"
+            },
+            {
+              "type": "concept",
+              "title": "Recognizable versus decidable languages"
+            },
+            {
+              "type": "concept",
+              "title": "Encoding programs, inputs, and mathematical objects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Undecidability and Reductions",
+          "description": "Reductions transfer impossibility from a known unsolvable problem to a new one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Halting problem and self-reference"
+            },
+            {
+              "type": "concept",
+              "title": "Mapping reductions"
+            },
+            {
+              "type": "concept",
+              "title": "Recognizability, co-recognizability, and limits of verification"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Algorithm Correctness, Complexity, Reductions, and Integrated Applications",
+      "description": "The closing unit integrates proof, structure, and computation to distinguish correct algorithms from efficient ones and to communicate what remains infeasible or unknown.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Correctness and Resource Models",
+          "description": "Students connect preconditions, invariants, postconditions, and termination to explicit measures of time and space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partial and total correctness"
+            },
+            {
+              "type": "concept",
+              "title": "Worst-case, average-case, and amortized perspectives"
+            },
+            {
+              "type": "concept",
+              "title": "Reasonable machine models and input size"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Complexity Classes and Reductions",
+          "description": "Complexity theory groups problems by required resources and uses reductions to compare their difficulty.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P, NP, verifiers, and certificates"
+            },
+            {
+              "type": "concept",
+              "title": "Polynomial-time reductions"
+            },
+            {
+              "type": "concept",
+              "title": "NP-completeness through representative problems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated Applications and Capstone",
+          "description": "A final investigation asks students to model, prove, implement, test, and explain one discrete system for their degree context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "CS: algorithm, language, or security model"
+            },
+            {
+              "type": "concept",
+              "title": "Mathematics: rigorous combinatorial or graph-theoretic investigation"
+            },
+            {
+              "type": "concept",
+              "title": "Computer Engineering: logic, state-machine, coding, or network design"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

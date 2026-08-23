@@ -142,11 +142,8 @@
   color: #000000;
   white-space: nowrap;
   cursor: pointer;
-  transition:
-    border-color 220ms ease,
-    color 220ms ease,
-    background-color 220ms ease,
-    opacity 220ms ease;
+  transition: border-color 220ms ease, color 220ms ease,
+    background-color 220ms ease, opacity 220ms ease;
 }
 
 .signUp:hover,
@@ -172,6 +169,13 @@
   display: contents;
 }
 
+.headerEnd {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .mobileMenuBtn {
   display: none;
   flex-shrink: 0;
@@ -186,9 +190,7 @@
   border-radius: 8px;
   background: #fafaf8;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .mobileMenuBtn:hover,
@@ -286,9 +288,7 @@
   border-radius: 8px;
   background: #f5f5f3;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .menuCloseBtn:hover,
@@ -389,9 +389,7 @@
   font-size: 0.9375rem;
   color: #000000;
   text-decoration: none;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .menuSignUp:hover,

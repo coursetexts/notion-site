@@ -1,0 +1,1287 @@
+{
+  "slug": "dynamics",
+  "title": "Dynamics",
+  "description": "Dynamics develops the ability to model and predict the motion of particles, systems of particles, and rigid bodies under applied forces and moments. Students move among kinematics, Newton-Euler equations, work-energy, impulse-momentum, and angular-momentum methods. They choose coordinates and system boundaries deliberately and verify results using dimensional, limiting-case, graphical, and computational checks. The shared core serves general, mechanical, civil, and aerospace engineering, with applications tailored by discipline rather than separate syllabi.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Engineering Mechanics: Dynamics (Hibbeler)",
+      "linkOrSite": "Pearson",
+      "description": "R. C. Hibbeler. Highly structured undergraduate treatment with abundant particle and rigid-body examples and graded problem sets."
+    },
+    {
+      "kind": "textbook",
+      "title": "Engineering Mechanics: Dynamics (Meriam, Kraige, and Bolton)",
+      "linkOrSite": "Wiley",
+      "description": "Rigorous vector mechanics, strong diagrams, and broad engineering applications. Used in current Georgia Tech syllabi."
+    },
+    {
+      "kind": "textbook",
+      "title": "Vector Mechanics for Engineers: Dynamics",
+      "linkOrSite": "McGraw Hill",
+      "description": "Beer, Johnston, Cornwell, and Self. Systematic vector approach with strong coverage of kinematics, kinetics, energy, momentum, and rigid bodies."
+    },
+    {
+      "kind": "textbook",
+      "title": "Introduction to Statics and Dynamics",
+      "linkOrSite": "https://ruina.tam.cornell.edu/Book/",
+      "description": "Ruina and Pratap. Free, conceptually careful mechanics reference with modeling insight and challenging problems."
+    },
+    {
+      "kind": "textbook",
+      "title": "Advanced Engineering Dynamics",
+      "linkOrSite": "Cambridge University Press",
+      "description": "Jerry Ginsberg. Instructor enrichment for spatial motion, analytical mechanics, and later dynamics courses."
+    },
+    {
+      "kind": "textbook",
+      "title": "Mechanical Vibrations / Engineering Vibration",
+      "linkOrSite": "Pearson",
+      "description": "Rao and Inman. Deeper SDOF, MDOF, modal, isolation, and vibration-design treatment beyond the final course unit."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OCW 2.003SC Engineering Dynamics",
+      "linkOrSite": "https://ocw.mit.edu/courses/2-003sc-engineering-dynamics-fall-2011/",
+      "description": "Lectures, demonstrations, problem sets, videos, and a benchmark sequence spanning rigid-body dynamics and vibration."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OCW 2.003J Dynamics and Control I",
+      "linkOrSite": "https://ocw.mit.edu/courses/2-003j-dynamics-and-control-i-spring-2007/",
+      "description": "Computational and analytical extension through Lagrange equations, stability, and multi-degree vibration."
+    },
+    {
+      "kind": "website",
+      "title": "Mechanics Map",
+      "linkOrSite": "https://mechanicsmap.psu.edu/",
+      "description": "Visual explanations and worked engineering mechanics examples."
+    },
+    {
+      "kind": "website",
+      "title": "Engineering LibreTexts - Dynamics",
+      "linkOrSite": "https://eng.libretexts.org/",
+      "description": "Accessible chapters and examples for review and alternative explanations."
+    },
+    {
+      "kind": "website",
+      "title": "MATLAB and Simulink",
+      "linkOrSite": "https://www.mathworks.com/academia/student_version.html",
+      "description": "Numerical ODE solutions, parameter sweeps, animation, signal analysis, and vibration response."
+    },
+    {
+      "kind": "website",
+      "title": "Python: NumPy, SciPy, SymPy, Matplotlib",
+      "linkOrSite": "https://scipy.org/",
+      "description": "Reproducible numerical integration, symbolic checks, plotting, and parameter studies without license cost."
+    },
+    {
+      "kind": "youtube",
+      "title": "Jeff Hanson",
+      "linkOrSite": "https://www.youtube.com/@1234jhanson",
+      "description": "Clear worked examples in statics, dynamics, mechanics of materials, and vibrations."
+    },
+    {
+      "kind": "website",
+      "title": "ASME Dynamic Systems and Control Division",
+      "linkOrSite": "https://www.asme.org/get-involved/technical-divisions/dynamic-systems-and-control-division",
+      "description": "Professional bridge to dynamics, controls, mechatronics, vibration, and system design."
+    },
+    {
+      "kind": "website",
+      "title": "NASA Technical Reports Server and ASCE Structural Engineering Institute",
+      "linkOrSite": "https://ntrs.nasa.gov/",
+      "description": "Instructor-selected applications in flight, rotating systems, structural dynamics, infrastructure, and hazard response. Also https://www.asce.org/communities/institutes-and-technical-groups/structural-engineering-institute."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Vector Mechanics Review and Modeling Workflow",
+      "description": "This opening unit prepares students to translate physical motion into solvable engineering models. It keeps the course grounded in diagrams, units, coordinates, and assumptions before equations appear.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vectors and components",
+          "description": "Students review how to represent motion, force, and moment quantities in component form. The point is to make geometry computationally reliable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Cartesian components"
+            },
+            {
+              "type": "concept",
+              "title": "Magnitude and direction"
+            },
+            {
+              "type": "concept",
+              "title": "Dot and cross products"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Free-body and kinetic diagrams",
+          "description": "Dynamics problems require both the forces on a body and the motion response. Students learn to pair free-body diagrams with acceleration or kinetic diagrams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isolating the body"
+            },
+            {
+              "type": "concept",
+              "title": "Forces and moments"
+            },
+            {
+              "type": "concept",
+              "title": "Mass times acceleration diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Sign conventions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling assumptions",
+          "description": "Students learn to simplify without hiding the physics. The gist is to state what is ignored and why the model remains useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Particle versus rigid body"
+            },
+            {
+              "type": "concept",
+              "title": "Neglecting friction or air resistance"
+            },
+            {
+              "type": "concept",
+              "title": "Ideal cables and pulleys"
+            },
+            {
+              "type": "concept",
+              "title": "Planar versus spatial motion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Problem-solving workflow",
+          "description": "Students learn a repeatable method for dynamics problems. This reduces algebra drift and helps catch impossible answers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Knowns and unknowns"
+            },
+            {
+              "type": "concept",
+              "title": "Coordinate choice"
+            },
+            {
+              "type": "concept",
+              "title": "Equation selection"
+            },
+            {
+              "type": "concept",
+              "title": "Units and reasonableness checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Particle Kinematics: Rectilinear and Curvilinear Motion",
+      "description": "This unit studies motion without yet asking what caused it. Students learn to describe position, velocity, and acceleration accurately in one, two, and three dimensions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rectilinear motion",
+          "description": "Students learn motion along a straight line. The gist is to connect displacement, velocity, and acceleration through calculus and graphs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position-time functions"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity as derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Acceleration as derivative"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-acceleration equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Curvilinear motion",
+          "description": "Students learn how motion along a curved path differs from straight-line motion. Acceleration can exist even at constant speed because direction changes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector position"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity tangent to path"
+            },
+            {
+              "type": "concept",
+              "title": "Normal acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Tangential acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Motion graphs",
+          "description": "Graphs reveal relationships that equations can hide. Students learn to interpret slopes and areas physically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "x-t, v-t, and a-t graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Area under velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Area under acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise motion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Projectile and path motion",
+          "description": "Students apply kinematics to common engineering examples. The point is to practice decomposition into independent directions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Projectile motion"
+            },
+            {
+              "type": "concept",
+              "title": "Trajectory equations"
+            },
+            {
+              "type": "concept",
+              "title": "Range and time of flight"
+            },
+            {
+              "type": "concept",
+              "title": "Path constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Coordinate Systems and Relative Motion of Particles",
+      "description": "This unit teaches students to choose coordinates that fit the motion. Good coordinate choices make hard problems much cleaner.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Normal-tangential coordinates",
+          "description": "Students learn to describe motion along a known path. This is especially useful for vehicles, cams, and curved guides.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangential acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Normal acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Radius of curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Speed along a path"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polar and cylindrical coordinates",
+          "description": "Students learn motion described by radial and angular variables. The gist is that unit vectors can change direction over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radial velocity and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Transverse velocity and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Angular velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical extension"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Relative motion",
+          "description": "Students learn to describe one particle's motion as observed from another. This supports pursuit, linkages, and moving-frame problems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relative position"
+            },
+            {
+              "type": "concept",
+              "title": "Relative velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Relative acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Dependent motion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constrained motion",
+          "description": "Students practice motion relationships created by cables, pulleys, sliders, and mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cable-length constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Pulley systems"
+            },
+            {
+              "type": "concept",
+              "title": "Linked coordinates"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiating constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Particle Kinetics Using Newton's Laws",
+      "description": "This unit introduces force as the cause of acceleration. Students learn to connect free-body diagrams directly to equations of motion.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Newton's second law",
+          "description": "Students use F = ma as the core force-acceleration relationship. The point is to write equations in directions aligned with the motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inertial frames"
+            },
+            {
+              "type": "concept",
+              "title": "Component equations"
+            },
+            {
+              "type": "concept",
+              "title": "Mass and weight"
+            },
+            {
+              "type": "concept",
+              "title": "Resultant force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rectangular and path-coordinate kinetics",
+          "description": "Students learn that the same law can be written in different coordinate systems. The best choice depends on the motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian equations"
+            },
+            {
+              "type": "concept",
+              "title": "Normal-tangential equations"
+            },
+            {
+              "type": "concept",
+              "title": "Polar equations"
+            },
+            {
+              "type": "concept",
+              "title": "Radial and transverse force balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Friction and contact forces",
+          "description": "Students include real interaction forces in motion problems. The gist is to distinguish normal reactions from resistance forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Static and kinetic friction"
+            },
+            {
+              "type": "concept",
+              "title": "Normal force"
+            },
+            {
+              "type": "concept",
+              "title": "Contact constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling resistance overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students apply Newton's laws to common systems. This builds fluency in setup, not just computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inclines"
+            },
+            {
+              "type": "concept",
+              "title": "Connected bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Vehicle cornering"
+            },
+            {
+              "type": "concept",
+              "title": "Springs and dampers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work-Energy Methods for Particles",
+      "description": "Work-energy methods offer an efficient alternative when displacement and speed matter more than time. Students learn to solve motion problems without always tracking acceleration histories.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Work of a force",
+          "description": "Students learn how forces transfer energy through displacement. The gist is that only the component along motion does work.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant force work"
+            },
+            {
+              "type": "concept",
+              "title": "Variable force work"
+            },
+            {
+              "type": "concept",
+              "title": "Work from force-position graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Work by weight and springs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Kinetic energy",
+          "description": "Students connect mass and speed to energy of motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Translational kinetic energy"
+            },
+            {
+              "type": "concept",
+              "title": "Change in kinetic energy"
+            },
+            {
+              "type": "concept",
+              "title": "Units of energy"
+            },
+            {
+              "type": "concept",
+              "title": "Speed from energy balance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Principle of work and energy",
+          "description": "Students learn a compact equation for relating initial and final states.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Initial and final kinetic energy"
+            },
+            {
+              "type": "concept",
+              "title": "Net work"
+            },
+            {
+              "type": "concept",
+              "title": "Path-dependent forces"
+            },
+            {
+              "type": "concept",
+              "title": "State comparison"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conservative forces and potential energy",
+          "description": "Students learn when energy can be stored and recovered. This sets up conservation methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gravitational potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Elastic potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation of mechanical energy"
+            },
+            {
+              "type": "concept",
+              "title": "Nonconservative work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Impulse, Momentum, and Impact for Particles",
+      "description": "Momentum methods are strongest when forces act over time, especially during collisions or short impulses. Students learn to analyze interactions where acceleration is hard to model directly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Linear impulse and momentum",
+          "description": "Students learn the time-integral form of Newton's second law. The point is to relate force duration to velocity change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Linear momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Impulse-momentum equation"
+            },
+            {
+              "type": "concept",
+              "title": "Average impulsive force"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conservation of momentum",
+          "description": "Students learn when total momentum remains constant for a system. This is essential for collisions and explosions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "System boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Internal versus external forces"
+            },
+            {
+              "type": "concept",
+              "title": "Momentum in components"
+            },
+            {
+              "type": "concept",
+              "title": "Explosions and recoil"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Impact",
+          "description": "Students model collisions using momentum and restitution. The gist is to handle short-duration contact without detailed deformation analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficient of restitution"
+            },
+            {
+              "type": "concept",
+              "title": "Direct central impact"
+            },
+            {
+              "type": "concept",
+              "title": "Oblique impact"
+            },
+            {
+              "type": "concept",
+              "title": "Energy loss in impact"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Angular momentum of a particle",
+          "description": "Students learn momentum about a point, which prepares them for rigid-body dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment of momentum"
+            },
+            {
+              "type": "concept",
+              "title": "Angular impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation about a fixed point"
+            },
+            {
+              "type": "concept",
+              "title": "Central-force motion overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Systems of Particles and Center-of-Mass Methods",
+      "description": "This unit moves from one particle to many. Students learn how aggregate motion can be simpler than tracking every internal interaction.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Center of mass",
+          "description": "Students learn the representative point for a mass distribution. The gist is that external forces drive center-of-mass motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discrete particles"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Centroid versus center of mass"
+            },
+            {
+              "type": "concept",
+              "title": "Composite systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System linear momentum",
+          "description": "Students extend momentum methods to multiple bodies. This supports vehicle, projectile, and collision systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Total momentum"
+            },
+            {
+              "type": "concept",
+              "title": "External impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Internal force cancellation"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System work-energy",
+          "description": "Students learn how energy methods apply to interacting particles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Kinetic energy of systems"
+            },
+            {
+              "type": "concept",
+              "title": "Internal work"
+            },
+            {
+              "type": "concept",
+              "title": "External work"
+            },
+            {
+              "type": "concept",
+              "title": "Energy transfer between bodies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students use system methods where individual-body equations are messy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Colliding bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Exploding systems"
+            },
+            {
+              "type": "concept",
+              "title": "Mass flow intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Linked particles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rigid Body Kinematics: Translation, Rotation, and General Plane Motion",
+      "description": "Rigid bodies have both motion of a reference point and rotation about that point. Students learn to describe motion of every point on a body consistently.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Translation and fixed-axis rotation",
+          "description": "Students learn the two simplest rigid-body motions. These create the foundation for wheels, gears, shafts, and mechanisms.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pure translation"
+            },
+            {
+              "type": "concept",
+              "title": "Angular position"
+            },
+            {
+              "type": "concept",
+              "title": "Angular velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Angular acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "General plane motion",
+          "description": "Students learn the combination of translation and rotation in a plane. The gist is that a body's points can have different velocities and accelerations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Relative velocity equation"
+            },
+            {
+              "type": "concept",
+              "title": "Relative acceleration equation"
+            },
+            {
+              "type": "concept",
+              "title": "Tangential and normal terms"
+            },
+            {
+              "type": "concept",
+              "title": "Choice of reference point"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Instantaneous center of zero velocity",
+          "description": "Students learn a graphical and conceptual shortcut for planar velocity analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Locating the instantaneous center"
+            },
+            {
+              "type": "concept",
+              "title": "Velocity ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling without slipping"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations for acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mechanism kinematics",
+          "description": "Students apply rigid-body kinematics to connected parts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sliders and links"
+            },
+            {
+              "type": "concept",
+              "title": "Cranks"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Gear contact"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rigid Body Kinetics: Force-Acceleration and Moment Equations",
+      "description": "This unit connects forces and moments to rigid-body acceleration. Students learn that rotation requires moment equations in addition to force equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mass moments of inertia",
+          "description": "Students learn the rotational measure of mass distribution. The gist is that the same mass can be easy or hard to spin depending on its distribution.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Radius of gyration"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel-axis theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Composite bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Common inertia formulas"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Planar equations of motion",
+          "description": "Students learn the core rigid-body kinetics equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum of forces equals mass times acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Sum of moments equals I alpha"
+            },
+            {
+              "type": "concept",
+              "title": "Center-of-mass equations"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-axis rotation equations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Rolling and contact",
+          "description": "Students analyze bodies that translate and rotate together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rolling without slipping"
+            },
+            {
+              "type": "concept",
+              "title": "Friction direction"
+            },
+            {
+              "type": "concept",
+              "title": "Contact constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Wheel and disk problems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dynamic equilibrium form",
+          "description": "Students learn an alternative bookkeeping method using inertia forces and inertia moments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "D'Alembert's principle"
+            },
+            {
+              "type": "concept",
+              "title": "Kinetic diagrams"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent inertia force"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent inertia couple"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Work-Energy and Impulse-Momentum Methods for Rigid Bodies",
+      "description": "This unit extends efficient energy and momentum tools to rotating bodies. Students learn when scalar energy equations or momentum balances are faster than force-acceleration equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Rigid-body kinetic energy",
+          "description": "Students learn to combine translational and rotational kinetic energy.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Center-of-mass translation"
+            },
+            {
+              "type": "concept",
+              "title": "Rotation about center of mass"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-axis rotation"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling kinetic energy"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Work-energy for rigid bodies",
+          "description": "Students solve rigid-body speed and displacement problems without tracking all accelerations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Work of forces"
+            },
+            {
+              "type": "concept",
+              "title": "Work of couples"
+            },
+            {
+              "type": "concept",
+              "title": "Potential energy"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation with rotation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Angular impulse-momentum",
+          "description": "Students learn how moments acting over time change angular momentum.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Angular momentum of rigid bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Angular impulse"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed-point moments"
+            },
+            {
+              "type": "concept",
+              "title": "Conservation of angular momentum"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Applications",
+          "description": "Students practice choosing between force-acceleration, energy, and momentum methods.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flywheels"
+            },
+            {
+              "type": "concept",
+              "title": "Rolling disks"
+            },
+            {
+              "type": "concept",
+              "title": "Pendulum-like bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Impact with rigid bodies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rotating Reference Frames and Three-Dimensional Dynamics",
+      "description": "This advanced core unit handles motion seen from moving or rotating frames and spatial motion. It is especially important for aerospace, mechanical systems, and rotating machinery.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Relative motion in rotating frames",
+          "description": "Students learn why extra acceleration terms appear in rotating coordinates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Transport theorem intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Relative velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Relative acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Frame angular velocity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Coriolis and centripetal effects",
+          "description": "Students learn to identify acceleration terms caused by rotation of the observer frame.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coriolis acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Centripetal acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Tangential frame acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Three-dimensional rigid-body kinematics",
+          "description": "Students learn how angular velocity and angular acceleration behave as vectors in space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector angular velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Euler angle intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial relative velocity"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial acceleration"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Three-dimensional kinetics",
+          "description": "Students get an introductory view of moments and inertia in 3D.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inertia tensor intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Euler's equations overview"
+            },
+            {
+              "type": "concept",
+              "title": "Gyroscopic effects"
+            },
+            {
+              "type": "concept",
+              "title": "Aerospace and rotor applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Mechanical Vibrations and Introductory System Dynamics",
+      "description": "The final unit introduces dynamic response over time. Students learn how mass, stiffness, damping, and forcing create oscillatory behavior in machines and structures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Single-degree-of-freedom models",
+          "description": "Students learn the simplest model for vibration analysis. The gist is to reduce a physical system to mass, spring, and damper elements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass-spring-damper model"
+            },
+            {
+              "type": "concept",
+              "title": "Equation of motion"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Initial conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Free vibration and damping",
+          "description": "Students learn how systems oscillate after an initial disturbance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Undamped response"
+            },
+            {
+              "type": "concept",
+              "title": "Viscous damping"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio"
+            },
+            {
+              "type": "concept",
+              "title": "Underdamped, critically damped, and overdamped cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Forced vibration",
+          "description": "Students learn how systems respond to external harmonic input. This explains resonance and many engineering design constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Harmonic forcing"
+            },
+            {
+              "type": "concept",
+              "title": "Steady-state response"
+            },
+            {
+              "type": "concept",
+              "title": "Resonance"
+            },
+            {
+              "type": "concept",
+              "title": "Frequency response"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Introductory modal and experimental ideas",
+          "description": "Students see the bridge to graduate Dynamics and Vibrations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Multiple-degree-of-freedom intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Mode shapes"
+            },
+            {
+              "type": "concept",
+              "title": "Vibration isolation"
+            },
+            {
+              "type": "concept",
+              "title": "Experimental modal testing overview"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

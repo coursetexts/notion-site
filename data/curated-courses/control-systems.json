@@ -1,0 +1,1211 @@
+{
+  "slug": "control-systems",
+  "title": "Control Systems",
+  "description": "Control Systems develops the analysis and design of feedback systems that remain stable, accurate, responsive, and robust in the presence of disturbances, noise, uncertainty, delays, and actuator limits. Students progress from multi-domain modeling and classical frequency-domain design to state-space control, estimation, digital implementation, robustness, optimization, nonlinear behavior, and experimental validation. One rigorous common core serves all three degrees. Electrical Engineering emphasizes circuits, motors, power, sensing, and embedded implementation, Mechanical Engineering emphasizes physical modeling, actuators, mechatronics, and experiments, and graduate students add proof, MIMO analysis, estimation, optimization, uncertainty, and research-quality design evidence.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Feedback Systems: An Introduction for Scientists and Engineers",
+      "linkOrSite": "https://fbswiki.org/wiki/index.php/FBS",
+      "description": "Astrom and Murray. Rigorous, readable bridge from modeling and classical feedback to state space, robustness, and design."
+    },
+    {
+      "kind": "textbook",
+      "title": "Feedback Control of Dynamic Systems",
+      "linkOrSite": "Pearson",
+      "description": "Franklin, Powell, and Emami-Naeini for classical design, state space, digital control, and engineering applications."
+    },
+    {
+      "kind": "textbook",
+      "title": "Control Systems Engineering",
+      "linkOrSite": "Wiley",
+      "description": "Nise offers accessible worked examples and strong support for undergraduate modeling and classical design."
+    },
+    {
+      "kind": "textbook",
+      "title": "Modern Control Engineering",
+      "linkOrSite": "Pearson",
+      "description": "Ogata provides broad classical and modern coverage with detailed analysis and design examples."
+    },
+    {
+      "kind": "textbook",
+      "title": "Linear Systems Theory",
+      "linkOrSite": "Princeton University Press",
+      "description": "Hespanha develops graduate-level state-space structure, stability, controllability, observability, and feedback."
+    },
+    {
+      "kind": "textbook",
+      "title": "Feedback Control Theory",
+      "linkOrSite": "Dover",
+      "description": "Doyle, Francis, and Tannenbaum emphasize sensitivity, robustness, uncertainty, and fundamental limitations."
+    },
+    {
+      "kind": "textbook",
+      "title": "Robust and Optimal Control",
+      "linkOrSite": "Prentice Hall",
+      "description": "Zhou, Doyle, and Glover support advanced robust/optimal-control extensions and MS projects."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 2.14 Analysis and Design of Feedback Control Systems",
+      "linkOrSite": "https://ocw.mit.edu/courses/2-14-analysis-and-design-of-feedback-control-systems-spring-2014/",
+      "description": "Laboratory-rich classical, state-space, multivariable, nonlinear, and digital control with an extended design case."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 16.30 Feedback Control Systems",
+      "linkOrSite": "https://ocw.mit.edu/courses/16-30-feedback-control-systems-fall-2010/",
+      "description": "State-space design, estimation, output feedback, nonlinear analysis, uncertainty, and robustness."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 6.241J Dynamic Systems and Control",
+      "linkOrSite": "https://ocw.mit.edu/courses/6-241j-dynamic-systems-and-control-spring-2011/",
+      "description": "Graduate MIMO linear systems, robust stability/performance, and optimal/robust design foundations."
+    },
+    {
+      "kind": "website",
+      "title": "Control Tutorials for MATLAB and Simulink",
+      "linkOrSite": "https://ctms.engin.umich.edu/CTMS/",
+      "description": "Practical plant examples for modeling, response, PID, root locus, frequency methods, and state space."
+    },
+    {
+      "kind": "website",
+      "title": "Python Control Systems Library",
+      "linkOrSite": "https://python-control.readthedocs.io/",
+      "description": "Open analysis and design environment for transfer functions, state space, frequency response, synthesis, and simulation."
+    },
+    {
+      "kind": "website",
+      "title": "MATLAB Control System Toolbox",
+      "linkOrSite": "https://www.mathworks.com/products/control.html",
+      "description": "Industry-standard modeling, analysis, tuning, estimation, and control-design workflows."
+    },
+    {
+      "kind": "website",
+      "title": "IEEE Control Systems Society",
+      "linkOrSite": "https://www.ieeecss.org/",
+      "description": "Research, standards, conferences, technical communities, and current directions in control."
+    },
+    {
+      "kind": "youtube",
+      "title": "Brian Douglas",
+      "linkOrSite": "https://www.youtube.com/@BrianBDouglas",
+      "description": "Exceptionally clear visual explanations of transfer functions, stability, root locus, Bode/Nyquist, PID, and state space."
+    },
+    {
+      "kind": "youtube",
+      "title": "Steve Brunton",
+      "linkOrSite": "https://www.youtube.com/@Eigensteve",
+      "description": "Dynamic systems, state-space control, estimation, system identification, nonlinear methods, and data-driven modeling."
+    },
+    {
+      "kind": "youtube",
+      "title": "MIT OpenCourseWare",
+      "linkOrSite": "https://www.youtube.com/@mitocw",
+      "description": "University lectures and demonstrations spanning mechanical, electrical, aerospace, and graduate control."
+    },
+    {
+      "kind": "youtube",
+      "title": "MATLAB",
+      "linkOrSite": "https://www.youtube.com/@MATLAB",
+      "description": "Practical Simulink, PID tuning, control design, system identification, and deployment workflows."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Course Orientation, Feedback Concepts, and Control Objectives",
+      "description": "This opening unit explains why feedback is powerful: it can make systems accurate, stable, robust, and responsive despite disturbances and uncertainty. Students learn the vocabulary used throughout the course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Open-Loop and Closed-Loop Control",
+          "description": "Students learn the difference between commanding a system blindly and using measured output to correct behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Open-loop control and feedforward ideas"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-loop feedback control"
+            },
+            {
+              "type": "concept",
+              "title": "Disturbance rejection and reference tracking"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control Objectives and Tradeoffs",
+          "description": "Control design is a negotiation among speed, stability, accuracy, robustness, effort, and noise sensitivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rise time, settling time, overshoot, steady-state error"
+            },
+            {
+              "type": "concept",
+              "title": "Stability margins and robustness"
+            },
+            {
+              "type": "concept",
+              "title": "Actuator limits, sensor noise, and design compromises"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Control System Examples",
+          "description": "Examples make abstract diagrams concrete by showing control in electrical, mechanical, thermal, process, aerospace, and robotic systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cruise control, motor speed, temperature, liquid level"
+            },
+            {
+              "type": "concept",
+              "title": "Aircraft autopilot and spacecraft attitude control"
+            },
+            {
+              "type": "concept",
+              "title": "Embedded and cyber-physical control loops"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Dynamic System Modeling Across Domains",
+      "description": "Controls begins with models. This unit teaches students to represent physical systems with equations that capture how inputs, states, and outputs evolve over time.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Mechanical, Electrical, Thermal, and Fluid Analogies",
+          "description": "Students learn common modeling patterns that transfer across engineering domains.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass-spring-damper systems"
+            },
+            {
+              "type": "concept",
+              "title": "RLC circuits and electromechanical motors"
+            },
+            {
+              "type": "concept",
+              "title": "Thermal capacitance/resistance and fluid tanks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Input, Output, State, and Disturbance Variables",
+          "description": "Clear variable definitions keep models connected to measurable and controllable quantities.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inputs, outputs, states, parameters, disturbances"
+            },
+            {
+              "type": "concept",
+              "title": "Sensor and actuator placement"
+            },
+            {
+              "type": "concept",
+              "title": "Units, sign conventions, and assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Model Validation and Limits",
+          "description": "A useful model is not necessarily complete. Students learn how to judge what is included and what is ignored.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Linearity, time invariance, lumped parameters"
+            },
+            {
+              "type": "concept",
+              "title": "Operating regions and approximation error"
+            },
+            {
+              "type": "concept",
+              "title": "Experimental data and parameter estimation overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Laplace Transforms, Transfer Functions, and Linearization",
+      "description": "This unit converts differential-equation models into algebraic input-output relationships. Transfer functions become the language for classical control analysis and design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Laplace Transform Review",
+          "description": "Students review the transform tools needed to solve linear dynamic systems and interpret poles and zeros.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Laplace transform properties"
+            },
+            {
+              "type": "concept",
+              "title": "Initial and final value theorems"
+            },
+            {
+              "type": "concept",
+              "title": "Partial fractions and inverse transforms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Transfer Functions",
+          "description": "Transfer functions summarize how a linear time-invariant system maps inputs to outputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Input-output ratio with zero initial conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Poles, zeros, gain, and system order"
+            },
+            {
+              "type": "concept",
+              "title": "Proper and strictly proper transfer functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearization Around Operating Points",
+          "description": "Many real systems are nonlinear, so students learn how local linear models support classical control.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Taylor-series linearization"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium or trim points"
+            },
+            {
+              "type": "concept",
+              "title": "Small-signal models and limits of validity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Block Diagrams, Signal Flow Graphs, and Feedback Architecture",
+      "description": "Control systems are often easier to reason about as interconnected blocks. This unit teaches how to reduce diagrams and identify the functional roles inside a loop.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Block Diagram Algebra",
+          "description": "Students learn to simplify series, parallel, and feedback interconnections into equivalent transfer functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cascade, parallel, and feedback reduction"
+            },
+            {
+              "type": "concept",
+              "title": "Summing junctions and takeoff points"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-loop transfer functions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Signal Flow Graphs",
+          "description": "Signal flow graphs provide a systematic alternative for complex interconnections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nodes, branches, loops, and paths"
+            },
+            {
+              "type": "concept",
+              "title": "Mason's gain formula overview"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison with block diagram reduction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Feedback Architecture",
+          "description": "Students learn how controllers, plants, sensors, actuators, references, and disturbances fit together.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plant, controller, sensor, actuator, and comparator"
+            },
+            {
+              "type": "concept",
+              "title": "Unity and non-unity feedback"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity and complementary sensitivity preview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Time-Domain Response and Performance Specifications",
+      "description": "This unit connects transfer functions to observable behavior over time. Students learn how system poles shape transients, steady-state response, and design specifications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "First- and Second-Order System Response",
+          "description": "Students learn canonical response shapes that appear repeatedly in engineering control systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Impulse, step, and ramp responses"
+            },
+            {
+              "type": "concept",
+              "title": "Time constant and natural frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Damping ratio and dominant poles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Performance Measures",
+          "description": "Design specifications turn a desired behavior into measurable targets.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rise time, peak time, percent overshoot"
+            },
+            {
+              "type": "concept",
+              "title": "Settling time and steady-state error"
+            },
+            {
+              "type": "concept",
+              "title": "Transient versus steady-state requirements"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Steady-State Error and System Type",
+          "description": "Students learn how loop structure determines tracking accuracy for common inputs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position, velocity, and acceleration error constants"
+            },
+            {
+              "type": "concept",
+              "title": "System type and integrators"
+            },
+            {
+              "type": "concept",
+              "title": "Tracking step, ramp, and parabolic references"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Stability Analysis and Routh-Hurwitz Criterion",
+      "description": "Stability is the first requirement of useful feedback. This unit teaches students how to determine whether closed-loop poles produce bounded, reliable behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Pole Locations and Stability",
+          "description": "Students connect pole position to whether a continuous-time system decays, oscillates, or grows.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Left-half plane, right-half plane, and imaginary-axis poles"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal and asymptotic stability"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant poles and transient behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Routh-Hurwitz Criterion",
+          "description": "Routh-Hurwitz tests stability without explicitly solving high-order characteristic equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Routh array construction"
+            },
+            {
+              "type": "concept",
+              "title": "Sign changes and right-half-plane poles"
+            },
+            {
+              "type": "concept",
+              "title": "Special cases: zero first-column entry and row of zeros"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability Under Parameter Variation",
+          "description": "Students learn how gain and parameter changes can move a system from stable to unstable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Characteristic equations with gain"
+            },
+            {
+              "type": "concept",
+              "title": "Stability ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Physical interpretation of instability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Root Locus Analysis and Design",
+      "description": "Root locus shows how closed-loop poles move as gain changes. This unit turns stability and transient-response ideas into a graphical design method.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Root Locus Construction Rules",
+          "description": "Students learn the rules that sketch possible closed-loop pole locations without brute-force computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Branches, real-axis segments, asymptotes"
+            },
+            {
+              "type": "concept",
+              "title": "Breakaway and break-in points"
+            },
+            {
+              "type": "concept",
+              "title": "Angle of departure and arrival"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Gain Selection from Root Locus",
+          "description": "Students use the locus to choose gains that meet damping, settling-time, and stability requirements.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Damping ratio lines"
+            },
+            {
+              "type": "concept",
+              "title": "Natural frequency and settling-time regions"
+            },
+            {
+              "type": "concept",
+              "title": "Gain calculation from magnitude condition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Root Locus Design Thinking",
+          "description": "Root locus becomes a design tool when students see how adding poles and zeros reshapes possible behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Effect of controller poles and zeros"
+            },
+            {
+              "type": "concept",
+              "title": "Lead and lag compensation preview"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs among speed, overshoot, and robustness"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frequency Response, Bode Plots, and Nyquist Methods",
+      "description": "Frequency-domain methods reveal robustness, bandwidth, resonance, and stability margins. This unit gives students the core tools used in practical control design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bode Plot Construction and Interpretation",
+          "description": "Students learn how magnitude and phase versus frequency show system behavior across time scales.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Low- and high-frequency asymptotes"
+            },
+            {
+              "type": "concept",
+              "title": "Pole and zero contributions"
+            },
+            {
+              "type": "concept",
+              "title": "Bandwidth, resonance, and rolloff"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stability Margins",
+          "description": "Gain and phase margins quantify how much uncertainty a feedback loop can tolerate before instability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gain crossover and phase crossover"
+            },
+            {
+              "type": "concept",
+              "title": "Gain margin and phase margin"
+            },
+            {
+              "type": "concept",
+              "title": "Delay, uncertainty, and practical robustness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Nyquist Criterion",
+          "description": "Nyquist analysis generalizes stability assessment using open-loop frequency response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Nyquist contour and encirclements"
+            },
+            {
+              "type": "concept",
+              "title": "Open-loop unstable poles"
+            },
+            {
+              "type": "concept",
+              "title": "Relationship to Bode and closed-loop stability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "PID Control and Controller Tuning",
+      "description": "PID control is the most common practical controller family. This unit teaches what proportional, integral, and derivative actions do and how to tune them responsibly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "PID Terms and Their Effects",
+          "description": "Students learn how each PID term changes speed, error, damping, and noise sensitivity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Proportional gain and response speed"
+            },
+            {
+              "type": "concept",
+              "title": "Integral action and zero steady-state error"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative action, damping, and noise amplification"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tuning Methods",
+          "description": "Tuning links desired behavior to controller parameters through rules, models, or iteration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Manual tuning and performance tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Ziegler-Nichols-style concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Model-based and software-assisted tuning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Practical PID Issues",
+          "description": "Real PID loops must handle saturation, windup, derivative filtering, and sample time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Integrator windup and anti-windup"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative filtering"
+            },
+            {
+              "type": "concept",
+              "title": "Setpoint weighting and bumpless transfer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Lead, Lag, and Loop-Shaping Compensation",
+      "description": "This unit teaches students how to shape loop behavior beyond PID. Lead, lag, and loop-shaping methods connect root locus and frequency response design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Lead Compensation",
+          "description": "Lead compensation adds phase and improves transient response and stability margins.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lead network pole-zero placement"
+            },
+            {
+              "type": "concept",
+              "title": "Phase boost and crossover frequency"
+            },
+            {
+              "type": "concept",
+              "title": "Root locus and Bode interpretations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lag Compensation",
+          "description": "Lag compensation improves steady-state accuracy while trying to preserve acceptable transient behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Lag pole-zero placement"
+            },
+            {
+              "type": "concept",
+              "title": "Low-frequency gain improvement"
+            },
+            {
+              "type": "concept",
+              "title": "Impact on bandwidth and response speed"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Loop-Shaping Workflow",
+          "description": "Students learn a practical frequency-domain workflow for meeting tracking, disturbance, and robustness goals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Specify bandwidth and margins"
+            },
+            {
+              "type": "concept",
+              "title": "Shape low-, mid-, and high-frequency behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Check sensitivity, noise, and actuator effort"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "State-Space Modeling, Controllability, and Observability",
+      "description": "State-space methods support multi-input, multi-output systems and modern control design. This unit introduces dynamic models in terms of states, inputs, outputs, and matrices.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "State-Space Representation",
+          "description": "Students learn to rewrite dynamic systems as first-order vector equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State, input, output, and feedthrough matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Realizations from physical models and transfer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation and response interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Controllability",
+          "description": "Controllability asks whether inputs can move the system state where it needs to go.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controllability matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Rank test and physical meaning"
+            },
+            {
+              "type": "concept",
+              "title": "Uncontrollable modes and design limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Observability",
+          "description": "Observability asks whether available measurements contain enough information to infer internal state.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Observability matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Rank test and sensor placement"
+            },
+            {
+              "type": "concept",
+              "title": "Unobservable modes and estimation limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "State Feedback, Observers, and Estimation Overview",
+      "description": "This unit shows how state-space models become controllers and estimators. Students learn the ideas behind pole placement, observers, and modern estimation without overloading the first course.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "State Feedback and Pole Placement",
+          "description": "Students learn how full-state feedback can assign closed-loop dynamics when a system is controllable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Feedback law structure"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-loop eigenvalues"
+            },
+            {
+              "type": "concept",
+              "title": "Reference tracking and precompensation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Observers",
+          "description": "Observers estimate states that cannot be measured directly, enabling state feedback in realistic systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Luenberger observer concept"
+            },
+            {
+              "type": "concept",
+              "title": "Observer poles and error dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Separation principle overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Estimation and Kalman Filter Preview",
+          "description": "Students get a conceptual bridge to stochastic estimation and sensor fusion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Measurement noise and process uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Prediction-correction idea"
+            },
+            {
+              "type": "concept",
+              "title": "Kalman filter applications in robotics, navigation, and embedded control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Digital Control and Sampled-Data Implementation",
+      "description": "Most modern controllers run in software. This unit introduces sampling, discrete-time models, and implementation effects that matter when theory becomes code.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sampling and Discretization",
+          "description": "Students learn how continuous signals and controllers become sampled data systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sampling period and Nyquist considerations"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-order hold"
+            },
+            {
+              "type": "concept",
+              "title": "Continuous-to-discrete model conversion"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Discrete-Time Transfer Functions and State Space",
+          "description": "Discrete models let students analyze digital controllers with z-domain tools.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "z-transform basics"
+            },
+            {
+              "type": "concept",
+              "title": "Difference equations"
+            },
+            {
+              "type": "concept",
+              "title": "Discrete poles and stability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Embedded Implementation Constraints",
+          "description": "Students learn why real-time code, computation delay, quantization, and saturation affect control performance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sample time selection"
+            },
+            {
+              "type": "concept",
+              "title": "ADC/DAC resolution and quantization"
+            },
+            {
+              "type": "concept",
+              "title": "Latency, scheduling, and actuator limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Robustness, Practical Implementation, and Integrated Applications",
+      "description": "The final unit pulls the course together around real design concerns: uncertainty, testing, validation, safety, and application-specific constraints.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Robustness and Uncertainty",
+          "description": "Students learn that models are imperfect and controllers must tolerate parameter variation, disturbances, and unmodeled dynamics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sensitivity functions and margins"
+            },
+            {
+              "type": "concept",
+              "title": "Parametric uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Unmodeled high-frequency dynamics"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Testing, Tuning, and Validation",
+          "description": "A controller is not finished until it is tested against requirements and operating conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simulation and hardware-in-the-loop concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Step tests, frequency tests, and data logging"
+            },
+            {
+              "type": "concept",
+              "title": "Requirement verification and failure modes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated Control Applications",
+          "description": "Capstone-style applications help students connect methods to engineering systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motor control, robotics, power electronics, process control"
+            },
+            {
+              "type": "concept",
+              "title": "Aircraft/autopilot or vehicle control examples"
+            },
+            {
+              "type": "concept",
+              "title": "Safety, fault detection, and fail-safe behavior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optimal Control, LQR, and Model Predictive Control",
+      "description": "This unit introduces optimization as a systematic way to balance tracking, regulation, actuator effort, and constraints. It gives graduate students a launch point for advanced optimal control while giving undergraduates the design intuition behind widely used modern methods.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Quadratic performance and LQR",
+          "description": "Students learn how a quadratic objective converts design priorities into an optimal state-feedback law for a linear model.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "State and input penalty matrices"
+            },
+            {
+              "type": "concept",
+              "title": "Finite- versus infinite-horizon objectives"
+            },
+            {
+              "type": "concept",
+              "title": "Riccati equation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Closed-loop eigenstructure and tuning tradeoffs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tracking, integral action, and reference management",
+          "description": "Optimal regulation must be extended carefully when the goal is to follow commands without offset.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reference prefilters"
+            },
+            {
+              "type": "concept",
+              "title": "Integral-state augmentation"
+            },
+            {
+              "type": "concept",
+              "title": "Servo design"
+            },
+            {
+              "type": "concept",
+              "title": "Offset-free tracking assumptions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Constraints and model predictive control",
+          "description": "Students learn why receding-horizon optimization is valuable when inputs, states, outputs, and rates have hard limits.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Prediction model and horizon"
+            },
+            {
+              "type": "concept",
+              "title": "Input/state/output constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic programming intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Recursive feasibility and terminal ingredients overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Optimal-design evaluation",
+          "description": "Students compare optimization-based controllers with classical and pole-placement designs using consistent evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tracking versus effort metrics"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity to model mismatch"
+            },
+            {
+              "type": "concept",
+              "title": "Computation time and solver failure"
+            },
+            {
+              "type": "concept",
+              "title": "Constraint activation and fallback behavior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nonlinear Control, System Identification, and Data-Driven Methods",
+      "description": "The final advanced unit shows where linear models come from, when they fail, and how data can improve them. The goal is disciplined awareness: students should know what these methods claim, what evidence they require, and when a specialized follow-on course is needed.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Nonlinear dynamics and phase-plane reasoning",
+          "description": "Students learn how equilibria, local linearization, trajectories, and invariant behavior reveal phenomena that a single transfer function cannot capture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibria and local models"
+            },
+            {
+              "type": "concept",
+              "title": "Phase portraits and nullclines"
+            },
+            {
+              "type": "concept",
+              "title": "Limit cycles and multiple equilibria"
+            },
+            {
+              "type": "concept",
+              "title": "Local versus global conclusions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lyapunov stability and nonlinear control overview",
+          "description": "Lyapunov functions provide an energy-like way to reason about stability without explicitly solving nonlinear differential equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive-definite functions"
+            },
+            {
+              "type": "concept",
+              "title": "Lyapunov decrease conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Region-of-attraction intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Feedback linearization and gain-scheduling overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "System identification and experiment design",
+          "description": "Students learn to estimate models from input-output data while separating excitation, fitting, and independent validation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Persistent excitation"
+            },
+            {
+              "type": "concept",
+              "title": "Step, impulse, chirp, and multisine experiments"
+            },
+            {
+              "type": "concept",
+              "title": "Parametric versus nonparametric models"
+            },
+            {
+              "type": "concept",
+              "title": "Training/validation splits and residual checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Data-driven and learning-enabled control",
+          "description": "Students examine how modern methods use data while preserving stability, safety, and physical judgment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Subspace and sparse-modeling overview"
+            },
+            {
+              "type": "concept",
+              "title": "Iterative learning and adaptive-control context"
+            },
+            {
+              "type": "concept",
+              "title": "Reinforcement-learning relationship to control"
+            },
+            {
+              "type": "concept",
+              "title": "Safe exploration, distribution shift, and verification"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 -- =============================================================================
 -- COMPLETE SCHEMA — paste once into Supabase SQL Editor for a fresh project.
--- Equivalent to running 001–015 in order. See README.md for Auth + env setup.
+-- Equivalent to running 001–019 in order. See README.md for Auth + env setup.
 -- Do NOT also run the old supabase/migrations/001–028 files on the same DB.
 -- Policies use DROP IF EXISTS so this is safe to re-run.
 -- =============================================================================
@@ -1018,11 +1018,22 @@ create table if not exists public.resources (
   type public.resource_type not null,
   status public.resource_status not null default 'approved',
   submitted_by uuid not null references auth.users(id) on delete cascade,
+  concept_tree text
+    check (
+      concept_tree is null or char_length(btrim(concept_tree)) between 1 and 1000
+    ),
+  from_curated_course boolean not null default false,
+  curated_course_slug text
+    check (
+      curated_course_slug is null
+      or char_length(btrim(curated_course_slug)) between 1 and 200
+    ),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   search_tsv tsvector generated always as (
     setweight(to_tsvector('english', coalesce(title, '')), 'A') ||
-    setweight(to_tsvector('english', coalesce(description, '')), 'B')
+    setweight(to_tsvector('english', coalesce(description, '')), 'B') ||
+    setweight(to_tsvector('english', coalesce(concept_tree, '')), 'C')
   ) stored
 );
 
@@ -1229,12 +1240,17 @@ create table if not exists public.curated_course_videos (
   url text not null,
   thumbnail_url text,
   annotation text,
+  resource_id uuid references public.resources(id) on delete set null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
 create index if not exists curated_course_videos_node_idx
   on public.curated_course_videos(node_id, sort_order);
+
+create index if not exists curated_course_videos_resource_idx
+  on public.curated_course_videos(resource_id)
+  where resource_id is not null;
 
 alter table public.curated_courses enable row level security;
 alter table public.curated_course_nodes enable row level security;
@@ -1422,4 +1438,162 @@ create policy "Authenticated users can delete curated course resources"
   using (auth.uid() is not null);
 
 -- <<< END 014_curated_course_resources.sql
+
+-- >>> BEGIN 017_curated_course_links.sql
+
+-- name: 017_curated_course_links
+-- =============================================================================
+-- Per-topic tests and slides: simple title + URL lists on syllabus nodes.
+-- =============================================================================
+
+do $$ begin
+  create type public.curated_course_link_kind as enum (
+    'test', 'slide'
+  );
+exception when duplicate_object then null;
+end $$;
+
+create table if not exists public.curated_course_links (
+  id uuid primary key default gen_random_uuid(),
+  node_id uuid not null
+    references public.curated_course_nodes(id) on delete cascade,
+  kind public.curated_course_link_kind not null,
+  sort_order integer not null default 0,
+  title text not null check (char_length(title) between 1 and 500),
+  url text not null check (char_length(url) between 1 and 2048),
+  resource_id uuid references public.resources(id) on delete set null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists curated_course_links_node_idx
+  on public.curated_course_links(node_id, kind, sort_order);
+
+create index if not exists curated_course_links_resource_idx
+  on public.curated_course_links(resource_id)
+  where resource_id is not null;
+
+alter table public.curated_course_links enable row level security;
+
+drop policy if exists "Curated course links are publicly readable"
+  on public.curated_course_links;
+create policy "Curated course links are publicly readable"
+  on public.curated_course_links for select using (true);
+
+drop policy if exists "Authenticated users can insert curated course links"
+  on public.curated_course_links;
+create policy "Authenticated users can insert curated course links"
+  on public.curated_course_links for insert
+  with check (auth.uid() is not null);
+
+drop policy if exists "Authenticated users can update curated course links"
+  on public.curated_course_links;
+create policy "Authenticated users can update curated course links"
+  on public.curated_course_links for update
+  using (auth.uid() is not null)
+  with check (auth.uid() is not null);
+
+drop policy if exists "Authenticated users can delete curated course links"
+  on public.curated_course_links;
+create policy "Authenticated users can delete curated course links"
+  on public.curated_course_links for delete
+  using (auth.uid() is not null);
+
+-- <<< END 017_curated_course_links.sql
+
+
+-- >>> BEGIN 018_resource_concept_tree.sql
+
+-- name: 018_resource_concept_tree
+-- =============================================================================
+-- Community resources: optional concept-tree label + curated-course origin.
+-- Curated-course videos/tests/slides also appear in /community as a subset.
+-- =============================================================================
+
+alter table public.resources
+  add column if not exists concept_tree text
+    check (
+      concept_tree is null or char_length(btrim(concept_tree)) between 1 and 1000
+    );
+
+alter table public.resources
+  add column if not exists from_curated_course boolean not null default false;
+
+alter table public.resources
+  add column if not exists curated_course_slug text
+    check (
+      curated_course_slug is null
+      or char_length(btrim(curated_course_slug)) between 1 and 200
+    );
+
+drop index if exists public.resources_search_tsv_idx;
+alter table public.resources drop column if exists search_tsv;
+alter table public.resources
+  add column search_tsv tsvector generated always as (
+    setweight(to_tsvector('english', coalesce(title, '')), 'A') ||
+    setweight(to_tsvector('english', coalesce(description, '')), 'B') ||
+    setweight(to_tsvector('english', coalesce(concept_tree, '')), 'C')
+  ) stored;
+create index if not exists resources_search_tsv_idx
+  on public.resources using gin (search_tsv);
+
+alter table public.curated_course_videos
+  add column if not exists resource_id uuid
+    references public.resources(id) on delete set null;
+
+alter table public.curated_course_links
+  add column if not exists resource_id uuid
+    references public.resources(id) on delete set null;
+
+create index if not exists curated_course_videos_resource_idx
+  on public.curated_course_videos(resource_id)
+  where resource_id is not null;
+
+create index if not exists curated_course_links_resource_idx
+  on public.curated_course_links(resource_id)
+  where resource_id is not null;
+
+-- <<< END 018_resource_concept_tree.sql
+
+
+-- >>> BEGIN 019_curated_course_pins.sql
+
+-- name: 019_curated_course_pins
+-- =============================================================================
+-- Per-user pinned curated courses (header dropdown + syllabus nav pin).
+-- =============================================================================
+
+create table if not exists public.curated_course_pins (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  course_id uuid not null
+    references public.curated_courses(id) on delete cascade,
+  created_at timestamptz not null default now(),
+  unique (user_id, course_id)
+);
+
+create index if not exists curated_course_pins_user_idx
+  on public.curated_course_pins(user_id, created_at desc);
+
+alter table public.curated_course_pins enable row level security;
+
+drop policy if exists "Users can read own curated course pins"
+  on public.curated_course_pins;
+create policy "Users can read own curated course pins"
+  on public.curated_course_pins for select
+  using (auth.uid() = user_id);
+
+drop policy if exists "Users can insert own curated course pins"
+  on public.curated_course_pins;
+create policy "Users can insert own curated course pins"
+  on public.curated_course_pins for insert
+  with check (auth.uid() = user_id);
+
+drop policy if exists "Users can delete own curated course pins"
+  on public.curated_course_pins;
+create policy "Users can delete own curated course pins"
+  on public.curated_course_pins for delete
+  using (auth.uid() = user_id);
+
+-- <<< END 019_curated_course_pins.sql
 

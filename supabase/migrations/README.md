@@ -66,8 +66,11 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `014_curated_course_resources.sql` | `curated_course_resources` |
 | `015_rename_course_video_to_curated.sql` | **existing DBs only:** `course_video_*` → `curated_*` |
 | `016_fix_curated_table_names.sql` | **existing DBs only:** fix `curated_courses_course` / FKs |
+| `017_curated_course_links.sql` | Per-topic tests and slides (`curated_course_links`) |
+| `018_resource_concept_tree.sql` | `resources.concept_tree` + curated-course origin; videos/links link to `resources` |
+| `019_curated_course_pins.sql` | Per-user pinned curated courses (`curated_course_pins`) |
 
-**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`). Skip `015`/`016` unless you already had old table names.
+**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`, `018`, and `019`). Skip `015`/`016` unless you already had old table names.
 
 ## 4. Optional seeds
 

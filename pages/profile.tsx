@@ -23,8 +23,6 @@ import {
   ProfilePersonalLinkAnchorRow,
   ProfilePersonalLinksPanel
 } from '@/components/ProfilePersonalLinksPanel'
-import { ProfileNotebooksPanel } from '@/components/ProfileNotebooksPanel'
-import { ProfileSavedNotebooksList } from '@/components/ProfileSavedNotebooksList'
 import { UserLink } from '@/components/UserLink'
 import { getCachedAuth, setCachedAuth } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
@@ -38,8 +36,6 @@ import {
   type Annotation as DbAnnotation,
   type Comment as DbComment,
   getMyAnnotations,
-  addBookmark,
-  getMyBookmarks,
   getMyComments
 } from '@/lib/course-activity-db'
 import {
@@ -51,12 +47,6 @@ import {
   getFollowingList,
   unfollowUser
 } from '@/lib/follows'
-import {
-  notebookAbsoluteUrl,
-  notebookUserLinkHref,
-  parseNotebookIdFromUserLinkUrl
-} from '@/lib/notebook-bookmark-link'
-import { type Notebook, createNotebook, getMyNotebooks } from '@/lib/notebooks-db'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
 import {
   type ProfilePersonalLink,
@@ -66,6 +56,16 @@ import {
   type ProfileFeedItem,
   getProfileFeed
 } from '@/lib/profile-feed-db'
+import {
+  SEEDED_LEARNING_PATHS,
+  readStoredLearningPaths,
+  writeStoredLearningPaths,
+  type StoredLearningPath
+} from '@/lib/learning-path-seed'
+import {
+  ensureUniqueSlug,
+  slugifyLearningPathName
+} from '@/lib/learning-path-slug'
 import {
   type ReplyNotification,
   getReplyNotifications,
@@ -104,6 +104,15 @@ function formatDate(iso: string): string {
   })
 }
 
+type LearningPathItem = StoredLearningPath
+
+const INITIAL_LEARNING_PATHS: LearningPathItem[] =
+  SEEDED_LEARNING_PATHS.map((path) => ({
+    id: `seed-${path.slug}`,
+    goal: path.goal,
+    slug: path.slug
+  }))
+
 export default function ProfilePage() {
   const router = useRouter()
   const auth = useAuthOptional()
@@ -122,12 +131,6 @@ export default function ProfilePage() {
   const [annotations, setAnnotations] = useState<
     { annotation: DbAnnotation; course: CourseType }[]
   >([])
-  const [bookmarks, setBookmarks] = useState<
-    {
-      bookmark: { id: string; course_id: string; created_at: string }
-      course: CourseType
-    }[]
-  >([])
   const [resourceBookmarks, setResourceBookmarks] = useState<
     CommunityResourceBookmarkWithCourse[]
   >([])
@@ -135,17 +138,16 @@ export default function ProfilePage() {
   const [activityLoading, setActivityLoading] = useState(true)
   const [feedItems, setFeedItems] = useState<ProfileFeedItem[]>([])
   const [mainTab, setMainTab] = useState<
-    'notebooks' | 'bookmarks' | 'activity'
+    'learning-path' | 'bookmarks' | 'activity'
   >('activity')
   const [activitySubTab, setActivitySubTab] = useState<'feed' | 'yours'>(
     'feed'
   )
-  const [notebooksSubTab, setNotebooksSubTab] = useState<'yours' | 'saved'>(
-    'yours'
+  const [learningPaths, setLearningPaths] = useState<LearningPathItem[]>(
+    INITIAL_LEARNING_PATHS
   )
-  const [notebookCreateModalOpen, setNotebookCreateModalOpen] = useState(false)
-  const [notebookCreating, setNotebookCreating] = useState(false)
-  const [notebookNewTitle, setNotebookNewTitle] = useState('')
+  const [showLearningPathModal, setShowLearningPathModal] = useState(false)
+  const [learningPathDraft, setLearningPathDraft] = useState('')
   type ProfileView = 'profile' | 'connections'
   type ConnectionsTab = 'followers' | 'following'
   const [view, setView] = useState<ProfileView>('profile')
@@ -160,10 +162,6 @@ export default function ProfilePage() {
   const { followerIds } = useFollowerIds()
   const [linkTags, setLinkTags] = useState<LinkTag[]>([])
   const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
-  /** From getMyLinks(null): notebook URL pins, independent of Saved links tag filter. */
-  const [notebookPinLinks, setNotebookPinLinks] = useState<UserLinkWithTag[]>(
-    []
-  )
   const [bookmarkTagFilter, setBookmarkTagFilter] = useState<BookmarkTagFilter>(
     EMPTY_BOOKMARK_TAG_FILTER
   )
@@ -196,8 +194,6 @@ export default function ProfilePage() {
   const [showNoteForLinkId, setShowNoteForLinkId] = useState<string | null>(
     null
   )
-  const [notebooks, setNotebooks] = useState<Notebook[]>([])
-  const [notebooksLoading, setNotebooksLoading] = useState(false)
   const [profileInterests, setProfileInterests] = useState<string[]>([])
   const [personalLinks, setPersonalLinks] = useState<ProfilePersonalLink[]>([])
   const [isEditingProfile, setIsEditingProfile] = useState(false)
@@ -222,7 +218,6 @@ export default function ProfilePage() {
     const [
       commentsRes,
       annotationsRes,
-      bookmarksRes,
       resourceBookmarksRes,
       notificationRes,
       feedRes,
@@ -233,7 +228,6 @@ export default function ProfilePage() {
     ] = await Promise.all([
       getMyComments(),
       getMyAnnotations(),
-      getMyBookmarks(),
       getMyCommunityResourceBookmarks(),
       getReplyNotifications(userId),
       getProfileFeed(userId),
@@ -244,7 +238,6 @@ export default function ProfilePage() {
     ])
     setComments(commentsRes)
     setAnnotations(annotationsRes)
-    setBookmarks(bookmarksRes)
     setResourceBookmarks(resourceBookmarksRes)
     setNotifications(notificationRes)
     setFeedItems(feedRes)
@@ -305,76 +298,9 @@ export default function ProfilePage() {
     setLinksLoading(true)
     const [tags, allLinks] = await Promise.all([getMyTags(), getMyLinks(null)])
     setLinkTags(tags)
-    setNotebookPinLinks(
-      allLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null)
-    )
     setUserLinks(allLinks)
     setLinksLoading(false)
   }, [])
-
-  const bookmarkedNotebookIds = useMemo(() => {
-    const s = new Set<string>()
-    for (const l of notebookPinLinks) {
-      const id = parseNotebookIdFromUserLinkUrl(l.url)
-      if (id) s.add(id)
-    }
-    return s
-  }, [notebookPinLinks])
-
-  const bookmarkedCourseIds = useMemo(
-    () => new Set(bookmarks.map(({ course }) => course.notion_page_id)),
-    [bookmarks]
-  )
-
-  /** Saved notebooks tab: notebook pins + course bookmarks, A–Z by title. */
-  const savedNotebooksAndCourseRows = useMemo(() => {
-    type Row =
-      | {
-          kind: 'notebook'
-          id: string
-          notebookId: string
-          title: string
-          href: string
-          createdAt: string
-        }
-      | {
-          kind: 'course'
-          id: string
-          courseId: string
-          title: string
-          href: string
-          createdAt: string
-        }
-    const rows: Row[] = []
-    for (const l of notebookPinLinks) {
-      const notebookId = parseNotebookIdFromUserLinkUrl(l.url)
-      if (!notebookId) continue
-      const title = l.title?.trim() || 'Notebook'
-      rows.push({
-        kind: 'notebook',
-        id: l.id,
-        notebookId,
-        title,
-        href: notebookUserLinkHref(l.url),
-        createdAt: l.created_at
-      })
-    }
-    for (const { bookmark, course } of bookmarks) {
-      const title = course.name
-      rows.push({
-        kind: 'course',
-        id: bookmark.id,
-        courseId: course.notion_page_id,
-        title,
-        href: course.url ?? `/${course.notion_page_id}`,
-        createdAt: bookmark.created_at
-      })
-    }
-    rows.sort((a, b) =>
-      a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
-    )
-    return rows
-  }, [notebookPinLinks, bookmarks])
 
   const savedBookmarkRows = useMemo(() => {
     type Row =
@@ -458,82 +384,15 @@ export default function ProfilePage() {
     return rows
   }, [comments, annotations])
 
-  const pinNotebookToBookmarkLinks = useCallback(
-    async (nb: { id: string; title: string }) => {
-      if (typeof window === 'undefined') return false
-      if (bookmarkedNotebookIds.has(nb.id)) return true
-      const url = notebookAbsoluteUrl(nb.id, window.location.origin)
-      const row = await addLink(url, {
-        title: nb.title,
-        note: 'Pinned from your notebooks'
-      })
-      if (row) await loadLinks()
-      return !!row
-    },
-    [bookmarkedNotebookIds, loadLinks]
-  )
-
-  const bookmarkCourseFromSaved = useCallback(
-    async (course: { id: string }) => {
-      if (bookmarkedCourseIds.has(course.id)) return true
-      const ok = await addBookmark(course.id)
-      if (ok && effectiveUser?.id) {
-        const bookmarksRes = await getMyBookmarks()
-        setBookmarks(bookmarksRes)
-      }
-      return ok
-    },
-    [bookmarkedCourseIds, effectiveUser?.id]
-  )
-
   const loadPersonalLinks = useCallback(async () => {
     const list = await listMyPersonalLinks()
     setPersonalLinks(list)
   }, [])
 
-  const loadNotebooks = useCallback(async () => {
-    setNotebooksLoading(true)
-    const list = await getMyNotebooks()
-    setNotebooks(list)
-    setNotebooksLoading(false)
-  }, [])
-
-  const openNotebookCreateModal = () => {
-    setNotebookNewTitle('')
-    setNotebookCreateModalOpen(true)
-  }
-
-  const closeNotebookCreateModal = () => {
-    if (notebookCreating) return
-    setNotebookCreateModalOpen(false)
-    setNotebookNewTitle('')
-  }
-
-  const handleCreateNotebook = async () => {
-    if (notebookCreating) return
-    const title = notebookNewTitle.trim() || 'Untitled notebook'
-    setNotebookCreating(true)
-    try {
-      const row = await createNotebook(title)
-      if (row) {
-        await loadNotebooks()
-        closeNotebookCreateModal()
-        await router.push(`/notebook/${row.id}`)
-      }
-    } finally {
-      setNotebookCreating(false)
-    }
-  }
-
   useEffect(() => {
     if (!effectiveUser) return
     loadLinks()
   }, [effectiveUser, loadLinks])
-
-  useEffect(() => {
-    if (!effectiveUser) return
-    void loadNotebooks()
-  }, [effectiveUser, loadNotebooks])
 
   useEffect(() => {
     if (!effectiveUser?.id) return
@@ -544,6 +403,16 @@ export default function ProfilePage() {
     if (!effectiveUser?.id) return
     void loadPersonalLinks()
   }, [effectiveUser?.id, loadPersonalLinks])
+
+  useEffect(() => {
+    const stored = readStoredLearningPaths()
+    if (!stored.length) return
+    setLearningPaths((prev) => {
+      const slugs = new Set(prev.map((item) => item.slug))
+      const extras = stored.filter((item) => !slugs.has(item.slug))
+      return extras.length ? [...extras, ...prev] : prev
+    })
+  }, [])
 
   useEffect(() => {
     if (isEditingProfile) setBioDraft(bioText)
@@ -644,6 +513,37 @@ export default function ProfilePage() {
     setLinkFormTagIds([])
     setLinkFormNote('')
     setLinkFormIsPrivate(false)
+  }
+
+  const openLearningPathModal = () => {
+    setLearningPathDraft('')
+    setShowLearningPathModal(true)
+  }
+
+  const closeLearningPathModal = () => {
+    setShowLearningPathModal(false)
+    setLearningPathDraft('')
+  }
+
+  const handleCreateLearningPath = (e: React.FormEvent) => {
+    e.preventDefault()
+    const goal = learningPathDraft.trim()
+    if (!goal) return
+    const slug = ensureUniqueSlug(
+      slugifyLearningPathName(goal),
+      learningPaths.map((item) => item.slug)
+    )
+    const item: LearningPathItem = {
+      id: `path-${Date.now()}`,
+      goal,
+      slug
+    }
+    setLearningPaths((prev) => [item, ...prev])
+    writeStoredLearningPaths([
+      ...readStoredLearningPaths().filter((row) => row.slug !== slug),
+      item
+    ])
+    closeLearningPathModal()
   }
 
   const handleAddLink = async (e: React.FormEvent) => {
@@ -1163,15 +1063,15 @@ export default function ProfilePage() {
                     <button
                       type='button'
                       role='tab'
-                      aria-selected={mainTab === 'notebooks'}
+                      aria-selected={mainTab === 'learning-path'}
                       className={
-                        mainTab === 'notebooks'
+                        mainTab === 'learning-path'
                           ? styles.primaryTabActive
                           : styles.primaryTab
                       }
-                      onClick={() => setMainTab('notebooks')}
+                      onClick={() => setMainTab('learning-path')}
                     >
-                      Notebooks
+                      Learning Path
                     </button>
                     <button
                       type='button'
@@ -2174,121 +2074,83 @@ export default function ProfilePage() {
                   </div>
                 )}
 
-                {mainTab === 'notebooks' && (
+                {mainTab === 'learning-path' && (
                   <div className={styles.tabPanel}>
                     <div className={styles.tabPanelHeaderRow}>
-                      <h2 className={styles.mainSerifTitle}>Notebooks</h2>
-                      {notebooksSubTab === 'yours' ? (
-                        <button
-                          type='button'
-                          className={styles.notebooksCreateBtn}
-                          onClick={openNotebookCreateModal}
-                          disabled={notebookCreating}
-                        >
-                          + Create New
-                        </button>
-                      ) : (
-                        <div />
-                      )}
-                    </div>
-                    <div className={styles.activitySubTabs} role='tablist'>
+                      <h2 className={styles.mainSerifTitle}>Learning Path</h2>
                       <button
                         type='button'
-                        role='tab'
-                        aria-selected={notebooksSubTab === 'yours'}
-                        className={
-                          notebooksSubTab === 'yours'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setNotebooksSubTab('yours')}
+                        className={styles.notebooksCreateBtn}
+                        onClick={openLearningPathModal}
                       >
-                        Your notebooks
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={notebooksSubTab === 'saved'}
-                        className={
-                          notebooksSubTab === 'saved'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setNotebooksSubTab('saved')}
-                      >
-                        Saved notebooks
+                        + New learning path
                       </button>
                     </div>
-
-                    {notebooksSubTab === 'yours' ? (
-                      <ProfileNotebooksPanel
-                        notebooks={notebooks}
-                        loading={notebooksLoading}
-                        onRefresh={loadNotebooks}
-                        showPublishedBadge
-                        subsectionTitle={null}
-                        canCreate={false}
-                        bookmarkedNotebookIds={bookmarkedNotebookIds}
-                        onBookmarkNotebook={pinNotebookToBookmarkLinks}
-                      />
-                    ) : (
-                      <ProfileSavedNotebooksList
-                        rows={savedNotebooksAndCourseRows}
-                        loading={linksLoading || activityLoading}
-                        emptyMessage='No saved notebooks or courses yet. Pin notebooks or save courses from their pages to list them here.'
-                        bookmarkedNotebookIds={bookmarkedNotebookIds}
-                        bookmarkedCourseIds={bookmarkedCourseIds}
-                        onBookmarkNotebook={pinNotebookToBookmarkLinks}
-                        onBookmarkCourse={(course) =>
-                          bookmarkCourseFromSaved({ id: course.id })
-                        }
-                      />
-                    )}
-
-                    {notebookCreateModalOpen && (
+                    <ul className={styles.learningPathList}>
+                      {learningPaths.map((item) => (
+                        <li key={item.id}>
+                          <Link href={`/learning-path/${item.slug}`}>
+                            <a className={styles.learningPathCard}>
+                              {item.goal}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    {showLearningPathModal && (
                       <div
                         className={styles.modalBackdrop}
                         role='presentation'
                         onMouseDown={(e) => {
-                          if (e.target === e.currentTarget) closeNotebookCreateModal()
+                          if (e.target === e.currentTarget) {
+                            closeLearningPathModal()
+                          }
                         }}
                       >
                         <div
                           className={styles.modalCard}
                           role='dialog'
                           aria-modal='true'
-                          aria-labelledby='notebook-name-modal-title'
+                          aria-labelledby='learning-path-modal-title'
                           onMouseDown={(e) => e.stopPropagation()}
                         >
                           <div className={styles.modalHeader}>
                             <h2
-                              id='notebook-name-modal-title'
+                              id='learning-path-modal-title'
                               className={styles.modalTitle}
                             >
-                              New notebook
+                              What do you want to learn?
                             </h2>
                             <button
                               type='button'
                               className={styles.modalClose}
-                              onClick={closeNotebookCreateModal}
+                              onClick={closeLearningPathModal}
                               aria-label='Close'
                             >
                               ×
                             </button>
                           </div>
-                          <div className={styles.modalForm}>
+                          <form
+                            className={styles.modalForm}
+                            onSubmit={handleCreateLearningPath}
+                          >
                             <label className={styles.modalLabel}>
-                              Name
-                              <input
-                                type='text'
-                                className={styles.modalInput}
-                                value={notebookNewTitle}
-                                onChange={(e) => setNotebookNewTitle(e.target.value)}
-                                placeholder='Untitled notebook'
+                              <span className={styles.modalLabelCaption}>
+                                Your goal
+                              </span>
+                              <textarea
+                                className={styles.modalTextarea}
+                                value={learningPathDraft}
+                                onChange={(e) =>
+                                  setLearningPathDraft(e.target.value)
+                                }
+                                placeholder='I want to…'
+                                rows={4}
                                 autoFocus
                                 onKeyDown={(e) => {
-                                  if (e.key === 'Enter') void handleCreateNotebook()
-                                  if (e.key === 'Escape') closeNotebookCreateModal()
+                                  if (e.key === 'Escape') {
+                                    closeLearningPathModal()
+                                  }
                                 }}
                               />
                             </label>
@@ -2296,21 +2158,19 @@ export default function ProfilePage() {
                               <button
                                 type='button'
                                 className={styles.modalCancelBtn}
-                                onClick={closeNotebookCreateModal}
-                                disabled={notebookCreating}
+                                onClick={closeLearningPathModal}
                               >
                                 Cancel
                               </button>
                               <button
-                                type='button'
+                                type='submit'
                                 className={styles.modalSubmitBtn}
-                                onClick={() => void handleCreateNotebook()}
-                                disabled={notebookCreating}
+                                disabled={!learningPathDraft.trim()}
                               >
-                                {notebookCreating ? 'Creating…' : 'Create'}
+                                Create
                               </button>
                             </div>
-                          </div>
+                          </form>
                         </div>
                       </div>
                     )}

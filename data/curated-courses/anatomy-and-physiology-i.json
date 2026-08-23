@@ -1,0 +1,1063 @@
+{
+  "slug": "anatomy-and-physiology-i",
+  "title": "Anatomy and Physiology I",
+  "description": "Anatomy and Physiology I is the first half of a two-semester human A&P sequence for health and movement disciplines. Students study how molecular, cellular, tissue, and organ-level structures support function and homeostasis, then apply that reasoning to the integumentary, skeletal, muscular, nervous, special-senses, and endocrine systems. Lecture, laboratory, imaging, surface anatomy, measurements, and cases are integrated so students can identify structures, explain mechanisms, interpret normal variation, and recognize introductory departures from normal without drifting into a full pathophysiology course.",
+  "resources": [],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Course Orientation, Anatomical Terminology, and Homeostasis",
+      "description": "This opening unit gives students the language and logic of A&P. It teaches how to describe the body precisely, connect structure to function, and explain why physiological systems are organized around stability and feedback.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Anatomical Position and Directional Terms",
+          "description": "Students learn a shared map of the body so descriptions are precise and unambiguous in lab, clinical notes, and exams.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Anatomical position, prone and supine"
+            },
+            {
+              "type": "concept",
+              "title": "Superior, inferior, anterior, posterior, medial, lateral, proximal, distal"
+            },
+            {
+              "type": "concept",
+              "title": "Superficial, deep, ipsilateral, contralateral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Body Planes, Sections, and Cavities",
+          "description": "Planes and cavities help students understand imaging, dissections, organs, and how structures are arranged in three-dimensional space.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sagittal, frontal, transverse, and oblique planes"
+            },
+            {
+              "type": "concept",
+              "title": "Dorsal and ventral body cavities"
+            },
+            {
+              "type": "concept",
+              "title": "Thoracic, abdominal, pelvic, and abdominopelvic regions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Levels of Structural Organization",
+          "description": "A&P makes more sense when students can move from atoms and cells to tissues, organs, systems, and the whole organism.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chemical, cellular, tissue, organ, system, organismal levels"
+            },
+            {
+              "type": "concept",
+              "title": "Structure-function relationships"
+            },
+            {
+              "type": "concept",
+              "title": "System integration across levels"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeostasis and Feedback Control",
+          "description": "Homeostasis explains why body systems constantly regulate variables such as temperature, calcium, glucose, and blood pressure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Controlled variables and set points"
+            },
+            {
+              "type": "concept",
+              "title": "Receptors, control centers, and effectors"
+            },
+            {
+              "type": "concept",
+              "title": "Negative feedback, positive feedback, and homeostatic imbalance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Chemistry for Anatomy and Physiology",
+      "description": "This unit reviews the chemistry needed to understand cells, tissues, muscle contraction, nerve impulses, and hormone action. The goal is not chemistry for its own sake, but chemistry as the operating system of the body.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Atoms, Ions, and Chemical Bonds",
+          "description": "Students learn why ions, charges, and bonds matter for membranes, enzymes, muscle contraction, and neural signaling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Atomic structure and isotopes"
+            },
+            {
+              "type": "concept",
+              "title": "Ionic, covalent, and hydrogen bonds"
+            },
+            {
+              "type": "concept",
+              "title": "Electrolytes and biologically important ions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Water, pH, and Buffers",
+          "description": "Water and pH shape nearly every physiological process, from protein structure to blood chemistry and cellular reactions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Polarity, cohesion, adhesion, and solvent properties"
+            },
+            {
+              "type": "concept",
+              "title": "Acids, bases, pH scale, and buffers"
+            },
+            {
+              "type": "concept",
+              "title": "Physiological consequences of pH shifts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Biomolecules",
+          "description": "Macromolecules are the materials and tools of cells: fuel, membranes, enzymes, receptors, and structural components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbohydrates and glycogen"
+            },
+            {
+              "type": "concept",
+              "title": "Lipids, phospholipids, steroids, and triglycerides"
+            },
+            {
+              "type": "concept",
+              "title": "Proteins, enzymes, nucleic acids, ATP"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Chemical Reactions and Energy",
+          "description": "Students see how the body builds, breaks down, and transfers energy in ways that support tissue function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Synthesis, decomposition, and exchange reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Activation energy and enzymes"
+            },
+            {
+              "type": "concept",
+              "title": "ATP as cellular energy currency"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cells, Membranes, and Cellular Metabolism",
+      "description": "Cells are the smallest living units students will use to explain tissues and organs. This unit builds fluency with organelles, membranes, transport, protein synthesis, cell division, and energy production.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cell Structure and Organelles",
+          "description": "Students learn what cell parts do and how specialized cells reflect the work they perform.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Plasma membrane, cytoplasm, nucleus"
+            },
+            {
+              "type": "concept",
+              "title": "Ribosomes, rough and smooth ER, Golgi apparatus"
+            },
+            {
+              "type": "concept",
+              "title": "Mitochondria, lysosomes, peroxisomes, cytoskeleton"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Membrane Transport",
+          "description": "Transport explains how cells maintain internal conditions, communicate, and respond to changing environments.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Diffusion, osmosis, facilitated diffusion"
+            },
+            {
+              "type": "concept",
+              "title": "Primary and secondary active transport"
+            },
+            {
+              "type": "concept",
+              "title": "Endocytosis, exocytosis, tonicity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protein Synthesis and Gene Expression",
+          "description": "This subtopic connects DNA instructions to the proteins that create cell structure, enzymes, receptors, and tissue function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "DNA, RNA, transcription, translation"
+            },
+            {
+              "type": "concept",
+              "title": "Codons, amino acids, and polypeptides"
+            },
+            {
+              "type": "concept",
+              "title": "Basic regulation and clinical relevance of protein errors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cellular Respiration and Cell Division",
+          "description": "Students learn how cells make ATP and renew tissues through controlled growth and division.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Glycolysis, Krebs cycle, electron transport overview"
+            },
+            {
+              "type": "concept",
+              "title": "Aerobic versus anaerobic ATP production"
+            },
+            {
+              "type": "concept",
+              "title": "Cell cycle, mitosis, and basic cancer vocabulary"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Tissues and Histology",
+      "description": "This unit teaches students to recognize the four basic tissue types and explain how microscopic organization supports organ function. It also builds lab skills for slide identification.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Epithelial Tissue",
+          "description": "Epithelia cover surfaces, line cavities, and form glands, so students learn how shape and layering predict function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simple, stratified, pseudostratified, and transitional epithelia"
+            },
+            {
+              "type": "concept",
+              "title": "Squamous, cuboidal, and columnar cells"
+            },
+            {
+              "type": "concept",
+              "title": "Absorption, secretion, filtration, protection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Connective Tissue",
+          "description": "Connective tissues support, bind, protect, store energy, and transport substances throughout the body.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cells, fibers, and ground substance"
+            },
+            {
+              "type": "concept",
+              "title": "Loose and dense connective tissue"
+            },
+            {
+              "type": "concept",
+              "title": "Cartilage, bone, blood, and adipose tissue"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Muscle and Nervous Tissue",
+          "description": "Students preview excitable tissues before studying the muscular and nervous systems in depth.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Skeletal, cardiac, and smooth muscle"
+            },
+            {
+              "type": "concept",
+              "title": "Neurons and neuroglia"
+            },
+            {
+              "type": "concept",
+              "title": "Excitability, conductivity, contractility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tissue Repair and Membranes",
+          "description": "Repair and membranes connect histology to inflammation, wounds, organ lining, and clinical observation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inflammation and regeneration versus fibrosis"
+            },
+            {
+              "type": "concept",
+              "title": "Mucous, serous, cutaneous, and synovial membranes"
+            },
+            {
+              "type": "concept",
+              "title": "Aging effects on tissue healing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Integumentary System",
+      "description": "The integumentary system is an accessible system for connecting anatomy, histology, physiology, protection, thermoregulation, sensation, and clinical assessment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Skin Layers and Accessory Structures",
+          "description": "Students learn the organization of epidermis, dermis, glands, hair, and nails as a structure-function system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Epidermal strata and keratinization"
+            },
+            {
+              "type": "concept",
+              "title": "Papillary and reticular dermis"
+            },
+            {
+              "type": "concept",
+              "title": "Hair follicles, nails, sebaceous glands, sweat glands"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Functions of Skin",
+          "description": "Skin is more than a covering: it participates in protection, temperature regulation, sensation, immunity, and vitamin D production.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Barrier and immune defense"
+            },
+            {
+              "type": "concept",
+              "title": "Thermoregulation through vessels and sweat"
+            },
+            {
+              "type": "concept",
+              "title": "Cutaneous sensation and vitamin D synthesis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pigmentation, Aging, and Repair",
+          "description": "These topics help students interpret visible skin changes and link them to physiology and tissue repair.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Melanin, carotene, hemoglobin, and skin color"
+            },
+            {
+              "type": "concept",
+              "title": "Wound healing phases"
+            },
+            {
+              "type": "concept",
+              "title": "Burns, pressure injuries, and aging changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Bone Tissue and Skeletal Physiology",
+      "description": "This unit explains bone as a living tissue, not just a rigid frame. Students learn how bone grows, remodels, stores minerals, and responds to mechanical and hormonal signals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Bone Cells and Matrix",
+          "description": "Students learn how osteoblasts, osteocytes, and osteoclasts build and remodel mineralized connective tissue.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Organic and inorganic matrix"
+            },
+            {
+              "type": "concept",
+              "title": "Compact and spongy bone"
+            },
+            {
+              "type": "concept",
+              "title": "Osteogenic cells, osteoblasts, osteocytes, osteoclasts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bone Formation and Growth",
+          "description": "Growth explains how the skeleton develops and why age, hormones, and nutrition affect bone structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Intramembranous and endochondral ossification"
+            },
+            {
+              "type": "concept",
+              "title": "Epiphyseal plates and longitudinal growth"
+            },
+            {
+              "type": "concept",
+              "title": "Appositional growth and remodeling"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Calcium Homeostasis and Bone Repair",
+          "description": "Students connect skeletal physiology to blood calcium, fracture healing, and common health concerns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parathyroid hormone, calcitonin, and vitamin D"
+            },
+            {
+              "type": "concept",
+              "title": "Bone remodeling and Wolff's law"
+            },
+            {
+              "type": "concept",
+              "title": "Fracture repair and osteoporosis basics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Axial and Appendicular Skeleton",
+      "description": "This unit focuses on identifying major bones and landmarks while linking skeletal structures to protection, posture, movement, and muscle attachment.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Axial Skeleton",
+          "description": "The axial skeleton protects the brain, spinal cord, and thoracic organs while establishing the body axis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Skull, cranial bones, facial bones, and sinuses"
+            },
+            {
+              "type": "concept",
+              "title": "Vertebral column and vertebral regions"
+            },
+            {
+              "type": "concept",
+              "title": "Ribs, sternum, thoracic cage"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Appendicular Skeleton",
+          "description": "The appendicular skeleton supports limb movement and provides major attachment sites for muscles.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pectoral girdle and upper limb bones"
+            },
+            {
+              "type": "concept",
+              "title": "Pelvic girdle and lower limb bones"
+            },
+            {
+              "type": "concept",
+              "title": "Hand, wrist, foot, and ankle bones"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Bone Landmarks and Lab Identification",
+          "description": "Landmarks matter because nerves, vessels, ligaments, and muscles relate to specific surfaces and projections.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Processes, tubercles, tuberosities, condyles, foramina"
+            },
+            {
+              "type": "concept",
+              "title": "Palpable landmarks and surface anatomy"
+            },
+            {
+              "type": "concept",
+              "title": "Left-right orientation and articulating surfaces"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Joints and Articulations",
+      "description": "Joints explain how the skeleton permits movement while preserving stability. This unit prepares students to describe mobility, injury risk, and movement vocabulary.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Joint Classification",
+          "description": "Students classify joints by structure and function to predict mobility and stability.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Fibrous, cartilaginous, and synovial joints"
+            },
+            {
+              "type": "concept",
+              "title": "Synarthrosis, amphiarthrosis, diarthrosis"
+            },
+            {
+              "type": "concept",
+              "title": "Examples across skull, spine, limbs, and pelvis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synovial Joint Anatomy",
+          "description": "Synovial joints dominate limb movement, so students learn the components that reduce friction and guide motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Articular cartilage, synovial cavity, synovial membrane"
+            },
+            {
+              "type": "concept",
+              "title": "Capsules, ligaments, bursae, tendon sheaths"
+            },
+            {
+              "type": "concept",
+              "title": "Menisci, labra, and joint reinforcement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Movement Terminology and Selected Joints",
+          "description": "Movement terms let students describe what muscles do and how joints function in daily activity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Flexion, extension, abduction, adduction, rotation"
+            },
+            {
+              "type": "concept",
+              "title": "Shoulder, elbow, hip, knee, ankle, and intervertebral joints"
+            },
+            {
+              "type": "concept",
+              "title": "Sprains, dislocations, arthritis, and joint health"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Skeletal Muscle Tissue and Muscle Physiology",
+      "description": "This unit explains how skeletal muscle contracts, uses energy, and produces force. It turns memorized muscle names into functional physiology.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Muscle Fiber Structure",
+          "description": "Students learn the microscopic organization that makes contraction possible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Endomysium, perimysium, epimysium"
+            },
+            {
+              "type": "concept",
+              "title": "Myofibrils, sarcomeres, actin, myosin"
+            },
+            {
+              "type": "concept",
+              "title": "Sarcoplasmic reticulum and T-tubules"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Neuromuscular Junction and Excitation-Contraction Coupling",
+          "description": "This subtopic shows how a nerve signal becomes muscle force.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Motor neurons and motor units"
+            },
+            {
+              "type": "concept",
+              "title": "Acetylcholine and motor end plate"
+            },
+            {
+              "type": "concept",
+              "title": "Calcium release, cross-bridge cycling, relaxation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Muscle Metabolism and Fatigue",
+          "description": "Students connect ATP demand, oxygen use, and fiber type to performance and fatigue.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Creatine phosphate, anaerobic glycolysis, aerobic respiration"
+            },
+            {
+              "type": "concept",
+              "title": "Slow oxidative, fast oxidative-glycolytic, fast glycolytic fibers"
+            },
+            {
+              "type": "concept",
+              "title": "Fatigue, oxygen debt, and conditioning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Whole-Muscle Mechanics",
+          "description": "Students learn how muscles vary force and produce graded movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Twitches, summation, tetanus"
+            },
+            {
+              "type": "concept",
+              "title": "Isotonic and isometric contractions"
+            },
+            {
+              "type": "concept",
+              "title": "Length-tension relationship and recruitment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Muscular System Anatomy and Movement",
+      "description": "This unit builds practical muscle identification and movement analysis. Students learn major muscles by region, action, innervation themes, and functional groupings.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Naming Muscles and Functional Roles",
+          "description": "Naming patterns help students decode unfamiliar muscle names and predict location or action.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direction, size, shape, location, attachments, and action"
+            },
+            {
+              "type": "concept",
+              "title": "Prime movers, antagonists, synergists, fixators"
+            },
+            {
+              "type": "concept",
+              "title": "Origins, insertions, and lever systems"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Axial and Upper Limb Muscles",
+          "description": "Students identify major muscles involved in facial expression, posture, breathing, shoulder motion, and arm movement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Head, neck, trunk, and respiratory muscles"
+            },
+            {
+              "type": "concept",
+              "title": "Pectoral girdle and shoulder muscles"
+            },
+            {
+              "type": "concept",
+              "title": "Arm, forearm, wrist, and hand muscle groups"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lower Limb Muscles and Movement Analysis",
+          "description": "Lower limb anatomy connects directly to gait, balance, exercise, and injury prevention.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hip, thigh, leg, and foot muscle groups"
+            },
+            {
+              "type": "concept",
+              "title": "Flexor/extensor and abductor/adductor compartments"
+            },
+            {
+              "type": "concept",
+              "title": "Basic gait, posture, and surface anatomy applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Nervous Tissue and Neural Signaling",
+      "description": "This unit introduces the language of neural communication. Students learn how neurons and glia support fast signaling, sensation, movement, reflexes, and autonomic control.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Neurons and Neuroglia",
+          "description": "Students learn the cells of nervous tissue and how structure supports communication and protection.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neuron parts and classifications"
+            },
+            {
+              "type": "concept",
+              "title": "CNS glia and PNS glia"
+            },
+            {
+              "type": "concept",
+              "title": "Myelination and regeneration limits"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resting Membrane Potential and Action Potentials",
+          "description": "Electrical signaling explains how nerves transmit information across distance.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Ion gradients and leak channels"
+            },
+            {
+              "type": "concept",
+              "title": "Depolarization, repolarization, hyperpolarization"
+            },
+            {
+              "type": "concept",
+              "title": "Threshold, refractory periods, propagation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Synapses and Neurotransmitters",
+          "description": "Synapses show how neurons communicate with other neurons, muscles, and glands.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Electrical and chemical synapses"
+            },
+            {
+              "type": "concept",
+              "title": "Excitatory and inhibitory postsynaptic potentials"
+            },
+            {
+              "type": "concept",
+              "title": "Acetylcholine, norepinephrine, dopamine, serotonin, GABA, glutamate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Central Nervous System and Spinal Cord",
+      "description": "The CNS unit links anatomy to integration: receiving information, interpreting it, coordinating movement, and maintaining consciousness and homeostasis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Brain Organization",
+          "description": "Students learn major brain regions and the basic functions associated with each.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cerebrum, diencephalon, brainstem, cerebellum"
+            },
+            {
+              "type": "concept",
+              "title": "Lobes, cortex, white matter, nuclei"
+            },
+            {
+              "type": "concept",
+              "title": "Functional areas and lateralization overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Spinal Cord Anatomy and Reflexes",
+          "description": "The spinal cord integrates sensory input and motor output, including fast protective reflexes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gray and white matter, horns, roots"
+            },
+            {
+              "type": "concept",
+              "title": "Ascending and descending tracts overview"
+            },
+            {
+              "type": "concept",
+              "title": "Reflex arcs and spinal reflex examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Protection and Circulation of the CNS",
+          "description": "Students learn how the nervous system is protected physically and chemically.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Meninges and cerebrospinal fluid"
+            },
+            {
+              "type": "concept",
+              "title": "Ventricles and CSF circulation"
+            },
+            {
+              "type": "concept",
+              "title": "Blood-brain barrier and clinical implications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Peripheral and Autonomic Nervous Systems",
+      "description": "This unit shows how the CNS communicates with the body. Students learn cranial nerves, spinal nerves, sensory pathways, somatic motor control, and autonomic regulation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Peripheral Nerve Organization",
+          "description": "Students learn how nerves are built and how sensory and motor information travels.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cranial nerves and spinal nerves"
+            },
+            {
+              "type": "concept",
+              "title": "Plexuses and peripheral nerve distribution"
+            },
+            {
+              "type": "concept",
+              "title": "Dermatomes and basic sensory mapping"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Somatic Sensory and Motor Pathways",
+          "description": "Somatic pathways connect sensation, voluntary movement, reflexes, and clinical testing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Receptors and sensory modalities"
+            },
+            {
+              "type": "concept",
+              "title": "Motor neurons and neuromuscular control"
+            },
+            {
+              "type": "concept",
+              "title": "Upper versus lower motor neuron themes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Autonomic Nervous System",
+          "description": "Autonomic control explains involuntary regulation of organs, glands, blood vessels, and homeostatic responses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sympathetic and parasympathetic divisions"
+            },
+            {
+              "type": "concept",
+              "title": "Preganglionic and postganglionic neurons"
+            },
+            {
+              "type": "concept",
+              "title": "Autonomic neurotransmitters and target organ effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Special Senses",
+      "description": "Special senses connect sensory anatomy to perception. This unit helps students understand how receptors and neural pathways turn stimuli into vision, hearing, balance, taste, and smell.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vision",
+          "description": "Students learn how eye anatomy focuses light and how the retina converts light into neural signals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Accessory structures, tunics, lens, humors"
+            },
+            {
+              "type": "concept",
+              "title": "Rods, cones, retina, optic nerve"
+            },
+            {
+              "type": "concept",
+              "title": "Refraction, accommodation, visual pathway overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Hearing and Equilibrium",
+          "description": "Ear anatomy links sound detection and balance to mechanical and neural events.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Outer, middle, and inner ear"
+            },
+            {
+              "type": "concept",
+              "title": "Cochlea, organ of Corti, auditory pathway"
+            },
+            {
+              "type": "concept",
+              "title": "Vestibule, semicircular canals, static and dynamic equilibrium"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Taste, Smell, and Sensory Integration",
+          "description": "Chemical senses reinforce how receptors detect molecules and contribute to nutrition, safety, and perception.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Taste buds, papillae, and taste pathways"
+            },
+            {
+              "type": "concept",
+              "title": "Olfactory epithelium and olfactory nerves"
+            },
+            {
+              "type": "concept",
+              "title": "Adaptation, integration, and clinical changes in sensation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Endocrine Foundations and A&P I Integration",
+      "description": "The final unit introduces endocrine communication and integrates first-semester systems. Students learn how hormones regulate growth, metabolism, stress, reproduction, and mineral balance while revisiting homeostasis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Hormone Classes and Signaling",
+          "description": "Students learn how hormones differ from neural signals and how chemical class affects receptor location and response.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Amino acid-derived, peptide, protein, and steroid hormones"
+            },
+            {
+              "type": "concept",
+              "title": "Membrane receptors and intracellular receptors"
+            },
+            {
+              "type": "concept",
+              "title": "Second messengers and gene regulation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Major Endocrine Glands",
+          "description": "Students identify major glands and connect them to key hormones and regulatory axes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hypothalamus and pituitary"
+            },
+            {
+              "type": "concept",
+              "title": "Thyroid, parathyroids, adrenal glands"
+            },
+            {
+              "type": "concept",
+              "title": "Pancreas, gonads, pineal gland, thymus overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Homeostatic Integration and Lab Synthesis",
+          "description": "This capstone pulls together first-semester systems through applied cases and lab identification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Calcium regulation, stress response, and metabolic regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Structure-function review across tissues, bones, muscles, nerves, senses, and endocrine organs"
+            },
+            {
+              "type": "concept",
+              "title": "Practical lab review using models, histology slides, diagrams, and surface anatomy"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

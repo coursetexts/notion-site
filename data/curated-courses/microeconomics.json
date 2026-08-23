@@ -1,0 +1,1578 @@
+{
+  "slug": "microeconomics",
+  "title": "Microeconomics",
+  "description": "Microeconomics develops the ability to explain and improve decisions made by consumers, workers, firms, managers, and policymakers. Students use models, graphs, algebra, evidence, experiments, and cases to analyze scarcity, exchange, demand, production, costs, pricing, competition, strategy, labor, information, market failure, regulation, and welfare. The course culminates in an evidence-based recommendation that integrates mechanism, incentives, distribution, uncertainty, and implementation.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Principles of Microeconomics 3e",
+      "linkOrSite": "https://openstax.org/details/books/principles-microeconomics-3e",
+      "description": "OpenStax. Free conventional sequence with explanations, graphs, examples, review questions, and exercises."
+    },
+    {
+      "kind": "textbook",
+      "title": "The Economy 2.0: Microeconomics",
+      "linkOrSite": "https://www.core-econ.org/ebooks/",
+      "description": "CORE Econ. Evidence-first treatment of institutions, power, firms, strategic interaction, inequality, and environmental limits."
+    },
+    {
+      "kind": "textbook",
+      "title": "Microeconomics",
+      "linkOrSite": "Pearson",
+      "description": "Pindyck and Rubinfeld. Applied consumer, producer, market-power, pricing, uncertainty, information, and policy analysis."
+    },
+    {
+      "kind": "textbook",
+      "title": "Intermediate Microeconomics: A Modern Approach",
+      "linkOrSite": "W. W. Norton",
+      "description": "Hal R. Varian. Deeper consumer and producer theory, uncertainty, intertemporal choice, welfare, and game theory."
+    },
+    {
+      "kind": "textbook",
+      "title": "Managerial Economics and Business Strategy",
+      "linkOrSite": "McGraw Hill",
+      "description": "Baye and Prince. Pricing, demand, production, game theory, information, organization, and managerial decisions."
+    },
+    {
+      "kind": "textbook",
+      "title": "The Economics of Strategy",
+      "linkOrSite": "Wiley",
+      "description": "Besanko, Dranove, Shanley, and Schaefer. Competitive advantage, boundaries, commitment, market structure, and organizational economics."
+    },
+    {
+      "kind": "textbook",
+      "title": "Thinking Strategically",
+      "linkOrSite": "W. W. Norton",
+      "description": "Dixit and Nalebuff. Readable applications of game theory, commitment, bargaining, entry, and competitive response."
+    },
+    {
+      "kind": "website",
+      "title": "MIT 14.01 Principles of Microeconomics",
+      "linkOrSite": "https://ocw.mit.edu/courses/14-01-principles-of-microeconomics-fall-2023/",
+      "description": "Lecture videos, summaries, problem sets, exams, and rigorous conceptual, graphical, and quantitative practice."
+    },
+    {
+      "kind": "website",
+      "title": "Wharton BEPP 2500 Managerial Economics",
+      "linkOrSite": "https://bepp.wharton.upenn.edu/programs/undergraduate/course-information/course-descriptions/",
+      "description": "Managerial prescription, business applications, strategic interaction, auctions, and asymmetric information."
+    },
+    {
+      "kind": "website",
+      "title": "Yale ECON 159 Game Theory",
+      "linkOrSite": "https://oyc.yale.edu/economics/econ-159",
+      "description": "Complete open course on dominance, Nash equilibrium, sequential games, reputation, bargaining, signaling, and auctions."
+    },
+    {
+      "kind": "website",
+      "title": "Marginal Revolution University - Microeconomics",
+      "linkOrSite": "https://mru.org/principles-economics-microeconomics",
+      "description": "Short concept videos, practice, and applied examples for reinforcement or flipped learning."
+    },
+    {
+      "kind": "website",
+      "title": "Federal Reserve Economic Data",
+      "linkOrSite": "https://fred.stlouisfed.org/",
+      "description": "Downloadable time series for prices, wages, employment, industries, credit, and market-context assignments."
+    },
+    {
+      "kind": "website",
+      "title": "U.S. Bureau of Labor Statistics",
+      "linkOrSite": "https://www.bls.gov/data/",
+      "description": "Official wage, employment, productivity, price, occupational, and industry data."
+    },
+    {
+      "kind": "website",
+      "title": "FTC and DOJ Antitrust Resources",
+      "linkOrSite": "https://www.ftc.gov/advice-guidance/competition-guidance",
+      "description": "Primary guidance, cases, merger analysis, competition policy, and remedy examples. Also https://www.justice.gov/atr."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Economic Reasoning, Scarcity, Choice, and Institutions",
+      "description": "Microeconomics begins with purposeful choice under constraints. This unit establishes the language of tradeoffs, incentives, marginal analysis, models, and institutions that students will use to interpret every later household, firm, and policy decision.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Scarcity and choice",
+          "description": "Explain why limited time, income, talent, and productive resources force individuals and organizations to choose.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Wants, resources, constraints, and feasible sets"
+            },
+            {
+              "type": "concept",
+              "title": "Tradeoffs in personal and organizational decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Positive versus normative questions"
+            },
+            {
+              "type": "concept",
+              "title": "Efficiency, equity, and other decision criteria"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Opportunity cost and marginal analysis",
+          "description": "Evaluate a decision by comparing the best forgone alternative and the incremental benefits and costs of one more unit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Explicit and implicit costs"
+            },
+            {
+              "type": "concept",
+              "title": "Sunk costs and avoidable costs"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal benefit, marginal cost, and stopping rules"
+            },
+            {
+              "type": "concept",
+              "title": "Incentives, unintended consequences, and second-order effects"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Models and economic reasoning",
+          "description": "Use simplified representations to isolate a mechanism without confusing the model with the full complexity of reality.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Assumptions, mechanisms, predictions, and evidence"
+            },
+            {
+              "type": "concept",
+              "title": "Endogenous and exogenous variables"
+            },
+            {
+              "type": "concept",
+              "title": "Equilibrium and comparative statics"
+            },
+            {
+              "type": "concept",
+              "title": "Model scope, limitations, and falsifiability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Institutions, property rights, and exchange",
+          "description": "Understand how rules, norms, contracts, and enforcement shape incentives and the gains available from exchange.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Property rights and transaction costs"
+            },
+            {
+              "type": "concept",
+              "title": "Voluntary exchange and gains from trade"
+            },
+            {
+              "type": "concept",
+              "title": "Formal rules, informal norms, and enforcement"
+            },
+            {
+              "type": "concept",
+              "title": "Power, bargaining position, and institutional context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Specialization, Comparative Advantage, and Economic Evidence",
+      "description": "Good microeconomic analysis combines a theory of choice with disciplined use of evidence. Students connect production possibilities and comparative advantage to data literacy, experiments, and causal reasoning.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Production possibilities",
+          "description": "Represent feasible combinations of outputs and use the frontier to explain scarcity, efficiency, and tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Points inside, on, and outside the frontier"
+            },
+            {
+              "type": "concept",
+              "title": "Productive efficiency and unemployment of resources"
+            },
+            {
+              "type": "concept",
+              "title": "Increasing opportunity cost"
+            },
+            {
+              "type": "concept",
+              "title": "Technology, resources, and shifts in capacity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Comparative advantage and specialization",
+          "description": "Show why specialization can create gains even when one party is more productive in every activity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute versus comparative advantage"
+            },
+            {
+              "type": "concept",
+              "title": "Opportunity-cost ratios"
+            },
+            {
+              "type": "concept",
+              "title": "Terms of trade and shared gains"
+            },
+            {
+              "type": "concept",
+              "title": "Specialization limits, adjustment costs, and resilience"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Describing economic evidence",
+          "description": "Read tables, graphs, distributions, indexes, and summary statistics without overstating what the data show.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Levels, rates, shares, percentage changes, and elasticities"
+            },
+            {
+              "type": "concept",
+              "title": "Nominal versus real measures"
+            },
+            {
+              "type": "concept",
+              "title": "Selection, measurement, and survivorship issues"
+            },
+            {
+              "type": "concept",
+              "title": "Visual scale, denominator, and aggregation choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Causality and economic experiments",
+          "description": "Distinguish association from causal effect and use counterfactual reasoning to evaluate claims.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Correlation, confounding, and reverse causality"
+            },
+            {
+              "type": "concept",
+              "title": "Treatment, control, randomization, and compliance"
+            },
+            {
+              "type": "concept",
+              "title": "Natural experiments and quasi-experimental intuition"
+            },
+            {
+              "type": "concept",
+              "title": "External validity, heterogeneity, and ethical constraints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Supply, Demand, and Market Equilibrium",
+      "description": "Supply and demand form the central coordination model of introductory microeconomics. Students learn to build the curves from behavior, locate equilibrium, and predict how a market responds to changing conditions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Demand",
+          "description": "Connect willingness to pay and consumer choice to the relationship between price and quantity demanded.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Individual and market demand"
+            },
+            {
+              "type": "concept",
+              "title": "Movement along versus shift of demand"
+            },
+            {
+              "type": "concept",
+              "title": "Income, tastes, expectations, population, and related goods"
+            },
+            {
+              "type": "concept",
+              "title": "Reservation prices and the extensive versus intensive margin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Supply",
+          "description": "Connect marginal cost and seller participation to the relationship between price and quantity supplied.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Individual and market supply"
+            },
+            {
+              "type": "concept",
+              "title": "Movement along versus shift of supply"
+            },
+            {
+              "type": "concept",
+              "title": "Input prices, technology, expectations, entry, and regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Reservation prices, shutdown, and capacity constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equilibrium and adjustment",
+          "description": "Explain how price coordinates plans and how shortages or surpluses create pressure for adjustment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Equilibrium price and quantity"
+            },
+            {
+              "type": "concept",
+              "title": "Shortage, surplus, rationing, and queues"
+            },
+            {
+              "type": "concept",
+              "title": "Price discovery and adjustment speed"
+            },
+            {
+              "type": "concept",
+              "title": "Stable versus unstable or constrained adjustment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Comparative statics",
+          "description": "Predict the direction and relative size of market changes while holding other factors constant.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Single-curve shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Simultaneous supply and demand shifts"
+            },
+            {
+              "type": "concept",
+              "title": "Short-run versus long-run response"
+            },
+            {
+              "type": "concept",
+              "title": "Comparative statics versus transition dynamics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Elasticity, Revenue, Incidence, and Market Intervention",
+      "description": "Elasticity turns the direction of a market response into a measure of magnitude. It is indispensable for pricing, forecasting, tax incidence, labor decisions, capacity planning, and policy evaluation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Price elasticity of demand",
+          "description": "Measure how strongly quantity demanded responds to price and interpret the result using economic context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Percentage-change and midpoint formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Elastic, inelastic, and unit-elastic demand"
+            },
+            {
+              "type": "concept",
+              "title": "Substitutes, budget share, necessity, and time horizon"
+            },
+            {
+              "type": "concept",
+              "title": "Point versus arc elasticity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Revenue and pricing",
+          "description": "Use elasticity to predict how price changes affect revenue while recognizing that revenue is not profit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Price effect versus quantity effect"
+            },
+            {
+              "type": "concept",
+              "title": "Total revenue test"
+            },
+            {
+              "type": "concept",
+              "title": "Markup intuition and marginal revenue"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity, variable cost, and contribution margin"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Other elasticities",
+          "description": "Use related responsiveness measures to forecast market interactions and business exposure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Income elasticity and normal or inferior goods"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-price elasticity, substitutes, and complements"
+            },
+            {
+              "type": "concept",
+              "title": "Price elasticity of supply"
+            },
+            {
+              "type": "concept",
+              "title": "Short-run versus long-run elasticity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Taxes, controls, and incidence",
+          "description": "Analyze who truly bears a tax or regulation and how intervention changes quantity, surplus, and allocation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statutory versus economic incidence"
+            },
+            {
+              "type": "concept",
+              "title": "Elasticity and burden sharing"
+            },
+            {
+              "type": "concept",
+              "title": "Price ceilings, shortages, quality, and nonprice rationing"
+            },
+            {
+              "type": "concept",
+              "title": "Price floors, surpluses, and minimum-wage framing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Consumer Preferences, Utility, Choice, and Demand",
+      "description": "Consumer theory explains how people translate preferences and purchasing power into choices. The framework supports demand analysis, segmentation, financial decisions, benefits design, and evaluation of consumer welfare.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Preferences and utility",
+          "description": "Represent rankings of alternatives while separating the usefulness of utility from claims about measurable happiness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Completeness, transitivity, and consistency"
+            },
+            {
+              "type": "concept",
+              "title": "More-is-better and local nonsatiation"
+            },
+            {
+              "type": "concept",
+              "title": "Indifference curves and marginal rate of substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Substitutes, complements, and satiation cases"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Budget constraints",
+          "description": "Describe the choice set created by income, prices, taxes, subsidies, borrowing limits, and nonprice constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Budget line, slope, and intercepts"
+            },
+            {
+              "type": "concept",
+              "title": "Income and price changes"
+            },
+            {
+              "type": "concept",
+              "title": "Quantity discounts, vouchers, and in-kind benefits"
+            },
+            {
+              "type": "concept",
+              "title": "Time, attention, credit, and institutional constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Utility maximization",
+          "description": "Locate the best affordable bundle and explain interior and corner solutions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangency and marginal conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Bang-per-buck rule"
+            },
+            {
+              "type": "concept",
+              "title": "Corner solutions and indivisible goods"
+            },
+            {
+              "type": "concept",
+              "title": "Revealed preference and consistency checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Demand and welfare",
+          "description": "Derive demand responses from constrained choice and measure the value consumers receive from market access.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Individual demand and market aggregation"
+            },
+            {
+              "type": "concept",
+              "title": "Income and substitution effects"
+            },
+            {
+              "type": "concept",
+              "title": "Normal, inferior, and Giffen-good logic"
+            },
+            {
+              "type": "concept",
+              "title": "Consumer surplus, compensating variation intuition, and willingness to pay"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Behavioral Economics, Risk, and Intertemporal Choice",
+      "description": "Standard choice models are useful benchmarks, but real decisions involve uncertainty, time, limited attention, social preferences, and predictable biases. Students learn when the benchmark works and how to improve decision environments when it does not.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Choice under uncertainty",
+          "description": "Compare risky alternatives using probabilities, payoffs, and attitudes toward risk.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Expected value and expected utility"
+            },
+            {
+              "type": "concept",
+              "title": "Risk aversion, neutrality, and seeking"
+            },
+            {
+              "type": "concept",
+              "title": "Certainty equivalents and risk premiums"
+            },
+            {
+              "type": "concept",
+              "title": "Diversification, insurance, and risk sharing"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Intertemporal choice",
+          "description": "Analyze tradeoffs between present and future consumption, effort, investment, and wellbeing.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Discounting and present value intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Saving, borrowing, and credit constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Human-capital investment and delayed payoff"
+            },
+            {
+              "type": "concept",
+              "title": "Present bias and commitment devices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Judgment and decision biases",
+          "description": "Recognize systematic deviations that affect pricing, saving, hiring, evaluation, and consumer behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reference dependence and loss aversion"
+            },
+            {
+              "type": "concept",
+              "title": "Anchoring, availability, and framing"
+            },
+            {
+              "type": "concept",
+              "title": "Overconfidence, projection bias, and limited attention"
+            },
+            {
+              "type": "concept",
+              "title": "Defaults, salience, mental accounting, and choice architecture"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Social preferences and fairness",
+          "description": "Extend self-interest models to reciprocity, identity, norms, and perceived fairness.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Altruism, reciprocity, and inequity aversion"
+            },
+            {
+              "type": "concept",
+              "title": "Trust, cooperation, and social norms"
+            },
+            {
+              "type": "concept",
+              "title": "Fairness in wages and pricing"
+            },
+            {
+              "type": "concept",
+              "title": "Ethical design, manipulation risk, and welfare ambiguity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Production, Productivity, and Cost",
+      "description": "Producer theory connects technology and input choices to cost, supply, scale, and operational performance. Students learn to distinguish accounting measures from the economic costs relevant to decisions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Technology and production",
+          "description": "Describe how labor, capital, materials, management, and technology become output.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Production functions and feasible input-output combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Short run versus long run"
+            },
+            {
+              "type": "concept",
+              "title": "Total, average, and marginal product"
+            },
+            {
+              "type": "concept",
+              "title": "Diminishing marginal returns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Input choice and productivity",
+          "description": "Choose input combinations and diagnose productivity without mistaking correlation for causation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Isoquant and marginal rate of technical substitution intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Isocost lines and cost minimization"
+            },
+            {
+              "type": "concept",
+              "title": "Labor-capital substitution and automation"
+            },
+            {
+              "type": "concept",
+              "title": "Total factor productivity and measurement challenges"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Economic cost",
+          "description": "Include opportunity costs and classify costs by how they change with the decision horizon and output.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Explicit, implicit, sunk, and opportunity costs"
+            },
+            {
+              "type": "concept",
+              "title": "Fixed, variable, avoidable, and incremental costs"
+            },
+            {
+              "type": "concept",
+              "title": "Total, average, and marginal cost"
+            },
+            {
+              "type": "concept",
+              "title": "Accounting profit versus economic profit"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scale, scope, and learning",
+          "description": "Evaluate how size, product breadth, utilization, and accumulated experience change unit economics.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Economies and diseconomies of scale"
+            },
+            {
+              "type": "concept",
+              "title": "Returns to scale versus diminishing returns"
+            },
+            {
+              "type": "concept",
+              "title": "Economies of scope and shared assets"
+            },
+            {
+              "type": "concept",
+              "title": "Learning curves, capacity, bottlenecks, and network production"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Competitive Markets, Entry, Exit, and Welfare",
+      "description": "Perfect competition is both a model of price-taking behavior and a benchmark for evaluating other market structures. Students link firm decisions to market supply, entry, exit, and total surplus.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Price-taking firm",
+          "description": "Explain why a competitive firm treats market price as given and chooses output where incremental benefit equals incremental cost.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Market price, firm demand, and marginal revenue"
+            },
+            {
+              "type": "concept",
+              "title": "Profit maximization using marginal revenue and marginal cost"
+            },
+            {
+              "type": "concept",
+              "title": "Shutdown rule and short-run supply"
+            },
+            {
+              "type": "concept",
+              "title": "Profit, loss, and break-even conditions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Market supply and equilibrium",
+          "description": "Aggregate firm behavior and connect cost conditions to short-run market outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal summation of firm supply"
+            },
+            {
+              "type": "concept",
+              "title": "Industry equilibrium and producer surplus"
+            },
+            {
+              "type": "concept",
+              "title": "Cost heterogeneity and rents"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity constraints and short-run shocks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Entry, exit, and long-run adjustment",
+          "description": "Show how economic profit attracts entry and losses induce exit, changing market supply over time.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Economic profit as an entry signal"
+            },
+            {
+              "type": "concept",
+              "title": "Long-run zero-profit condition"
+            },
+            {
+              "type": "concept",
+              "title": "Constant-, increasing-, and decreasing-cost industries"
+            },
+            {
+              "type": "concept",
+              "title": "Barriers to entry, mobility, and contestability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Welfare benchmark",
+          "description": "Measure gains from trade and identify the assumptions behind competitive efficiency.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Consumer surplus and producer surplus"
+            },
+            {
+              "type": "concept",
+              "title": "Total surplus and deadweight loss"
+            },
+            {
+              "type": "concept",
+              "title": "First welfare theorem intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Distribution, missing markets, power, and other benchmark limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Monopoly, Market Power, and Strategic Pricing",
+      "description": "Firms with market power choose price or quantity while anticipating customer response. This unit develops profit-maximizing pricing, welfare analysis, price discrimination, and revenue-management applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Sources and measurement of market power",
+          "description": "Identify why competition may be limited and evaluate market boundaries carefully.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Barriers from scale, control, regulation, switching, and data"
+            },
+            {
+              "type": "concept",
+              "title": "Market definition and substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Concentration ratios, HHI, markup, and Lerner-index intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Durability, contestability, and potential entry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Single-price monopoly",
+          "description": "Derive the monopolist's output and price choice and compare it with the competitive benchmark.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Market demand and marginal revenue"
+            },
+            {
+              "type": "concept",
+              "title": "MR equals MC decision rule"
+            },
+            {
+              "type": "concept",
+              "title": "Markup, elasticity, and pass-through"
+            },
+            {
+              "type": "concept",
+              "title": "Profit, consumer surplus, and deadweight loss"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Price discrimination",
+          "description": "Explain when charging different effective prices can raise profit, expand output, or redistribute surplus.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-, second-, and third-degree price discrimination"
+            },
+            {
+              "type": "concept",
+              "title": "Segmentation and prevention of resale"
+            },
+            {
+              "type": "concept",
+              "title": "Versioning, bundling, coupons, and nonlinear tariffs"
+            },
+            {
+              "type": "concept",
+              "title": "Equity, privacy, fairness, and legal considerations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Revenue management",
+          "description": "Apply demand, elasticity, capacity, and timing to perishable inventory and constrained service businesses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Booking classes and dynamic prices"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity protection and opportunity cost"
+            },
+            {
+              "type": "concept",
+              "title": "Overbooking, no-shows, and service recovery"
+            },
+            {
+              "type": "concept",
+              "title": "Hospitality, travel, entertainment, and subscription applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Oligopoly, Game Theory, and Strategic Interaction",
+      "description": "When a few firms or decision makers affect one another, the best action depends on anticipated responses. Game theory supplies a disciplined way to reason about competition, coordination, bargaining, and credible commitments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Elements of a game",
+          "description": "Represent a strategic situation through players, actions, information, timing, payoffs, and rules.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Players, strategies, actions, outcomes, and payoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Simultaneous versus sequential moves"
+            },
+            {
+              "type": "concept",
+              "title": "Complete versus incomplete information"
+            },
+            {
+              "type": "concept",
+              "title": "Normal-form and extensive-form representations"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dominance and Nash equilibrium",
+          "description": "Predict mutually consistent choices while recognizing that equilibrium need not be efficient or unique.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Dominant and dominated strategies"
+            },
+            {
+              "type": "concept",
+              "title": "Best responses and reaction functions"
+            },
+            {
+              "type": "concept",
+              "title": "Pure-strategy Nash equilibrium"
+            },
+            {
+              "type": "concept",
+              "title": "Coordination failure, multiple equilibria, and mixed-strategy awareness"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oligopoly models",
+          "description": "Compare how assumptions about strategic variables and timing change prices, quantities, profits, and welfare.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cournot quantity competition"
+            },
+            {
+              "type": "concept",
+              "title": "Bertrand price competition"
+            },
+            {
+              "type": "concept",
+              "title": "Stackelberg leadership"
+            },
+            {
+              "type": "concept",
+              "title": "Capacity, differentiation, and model selection"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Dynamic strategy and cooperation",
+          "description": "Assess commitment, credibility, reputation, bargaining, and the sustainability of cooperation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Backward induction and subgame perfection intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Credible threats and commitments"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated games, punishment, and tacit coordination"
+            },
+            {
+              "type": "concept",
+              "title": "Bargaining power, outside options, and negotiation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Product Differentiation, Auctions, Platforms, and Digital Markets",
+      "description": "Modern competition often turns on differentiated products, allocation mechanisms, data, and network effects rather than a single posted price. Students analyze these settings without abandoning the core logic of demand, cost, and strategy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Product differentiation",
+          "description": "Explain how location, quality, brand, service, and switching costs soften price competition.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Horizontal versus vertical differentiation"
+            },
+            {
+              "type": "concept",
+              "title": "Spatial competition and product positioning"
+            },
+            {
+              "type": "concept",
+              "title": "Advertising, search, reputation, and brand"
+            },
+            {
+              "type": "concept",
+              "title": "Variety, fixed costs, and monopolistic competition"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Auctions and procurement",
+          "description": "Understand how auction rules aggregate information and shape bidding incentives.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "English, Dutch, first-price, and second-price formats"
+            },
+            {
+              "type": "concept",
+              "title": "Private values versus common values"
+            },
+            {
+              "type": "concept",
+              "title": "Winner's curse and bid shading intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Reserve prices, procurement, and collusion risk"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Network effects and standards",
+          "description": "Analyze products whose value depends on adoption by other users or complementary products.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Direct and indirect network effects"
+            },
+            {
+              "type": "concept",
+              "title": "Critical mass, tipping, and path dependence"
+            },
+            {
+              "type": "concept",
+              "title": "Compatibility, standards, and multihoming"
+            },
+            {
+              "type": "concept",
+              "title": "Lock-in, switching costs, and interoperability"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Platforms and two-sided markets",
+          "description": "Set prices and participation rules when a platform must attract multiple interdependent user groups.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cross-group externalities"
+            },
+            {
+              "type": "concept",
+              "title": "Subsidy side and money side"
+            },
+            {
+              "type": "concept",
+              "title": "Platform governance, ranking, access, and take rates"
+            },
+            {
+              "type": "concept",
+              "title": "Data advantage, self-preferencing, and competition policy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Factor Markets, Labor Economics, and Human Capital",
+      "description": "Labor and other input markets determine wages, employment, rents, and the distribution of income. This unit applies marginal analysis to hiring, compensation, human-capital investment, mobility, bargaining, and discrimination.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Derived demand for inputs",
+          "description": "Connect demand for labor and capital to the value of the output those inputs help produce.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Marginal product and marginal revenue product"
+            },
+            {
+              "type": "concept",
+              "title": "Value of marginal product under competition"
+            },
+            {
+              "type": "concept",
+              "title": "Substitution and scale effects"
+            },
+            {
+              "type": "concept",
+              "title": "Input demand shifts from technology, prices, and product demand"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Labor supply and job choice",
+          "description": "Analyze how wages, benefits, schedules, risk, and nonmonetary conditions affect participation and hours.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Labor-leisure choice"
+            },
+            {
+              "type": "concept",
+              "title": "Income and substitution effects"
+            },
+            {
+              "type": "concept",
+              "title": "Participation, hours, and reservation wage"
+            },
+            {
+              "type": "concept",
+              "title": "Compensating differentials and job amenities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Human capital and compensation",
+          "description": "Evaluate education, training, experience, and incentive pay as investments and organizational choices.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Human-capital investment and returns"
+            },
+            {
+              "type": "concept",
+              "title": "General versus firm-specific skills"
+            },
+            {
+              "type": "concept",
+              "title": "Tournaments, bonuses, commissions, and team incentives"
+            },
+            {
+              "type": "concept",
+              "title": "Benefits, deferred compensation, retention, and sorting"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Labor-market institutions and inequality",
+          "description": "Examine how bargaining, monopsony, discrimination, mobility, and policy affect wages and employment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Minimum wages, unions, and collective bargaining"
+            },
+            {
+              "type": "concept",
+              "title": "Monopsony and employer market power"
+            },
+            {
+              "type": "concept",
+              "title": "Statistical and taste-based discrimination intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Occupational segregation, pay gaps, mobility, and measurement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Information Economics, Incentives, Contracts, and Organizations",
+      "description": "Transactions can fail when parties possess different information or take actions that others cannot observe. Students use screening, signaling, monitoring, and contract design to improve markets and organizations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Asymmetric information",
+          "description": "Identify who knows what, when they know it, and how hidden information changes trade.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Private information and information rents"
+            },
+            {
+              "type": "concept",
+              "title": "Quality uncertainty and market unraveling"
+            },
+            {
+              "type": "concept",
+              "title": "Lemons problem and missing markets"
+            },
+            {
+              "type": "concept",
+              "title": "Verification, disclosure, certification, and reputation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Adverse selection and screening",
+          "description": "Design choices that sort participants when hidden types affect expected cost or value.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Selection before contracting"
+            },
+            {
+              "type": "concept",
+              "title": "Self-selection and incentive compatibility"
+            },
+            {
+              "type": "concept",
+              "title": "Deductibles, menus, probation, and warranties"
+            },
+            {
+              "type": "concept",
+              "title": "Hiring, lending, insurance, and customer applications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Moral hazard and principal-agent problems",
+          "description": "Align incentives when effort, care, or risk-taking cannot be perfectly observed after an agreement.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Hidden action after contracting"
+            },
+            {
+              "type": "concept",
+              "title": "Monitoring, performance measures, and multitasking"
+            },
+            {
+              "type": "concept",
+              "title": "Risk-incentive tradeoff"
+            },
+            {
+              "type": "concept",
+              "title": "Sales, executive, lending, and team applications"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contracts and organizational boundaries",
+          "description": "Choose governance and contract terms that allocate rights, risks, control, and surplus.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complete versus incomplete contracts"
+            },
+            {
+              "type": "concept",
+              "title": "Hold-up, relationship-specific investment, and renegotiation"
+            },
+            {
+              "type": "concept",
+              "title": "Make-or-buy, outsourcing, franchising, and vertical integration"
+            },
+            {
+              "type": "concept",
+              "title": "Authority, delegation, culture, and relational contracts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Externalities, Public Goods, Common Resources, and Sustainability",
+      "description": "Private choices may impose costs or benefits not reflected in market prices, and some valuable goods are difficult to finance through ordinary exchange. Students diagnose the failure before selecting a remedy.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Externalities",
+          "description": "Compare private and social incentives when one party's action affects others outside a transaction.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative externalities"
+            },
+            {
+              "type": "concept",
+              "title": "Marginal private and social benefits or costs"
+            },
+            {
+              "type": "concept",
+              "title": "Overproduction, underproduction, and deadweight loss"
+            },
+            {
+              "type": "concept",
+              "title": "Measurement, boundary, and distribution questions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Policy and bargaining responses",
+          "description": "Match a remedy to the mechanism, information, enforcement capacity, and distributional context.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pigouvian taxes and subsidies"
+            },
+            {
+              "type": "concept",
+              "title": "Standards, mandates, bans, and liability"
+            },
+            {
+              "type": "concept",
+              "title": "Tradable permits and cap-and-trade"
+            },
+            {
+              "type": "concept",
+              "title": "Coasean bargaining, property rights, and transaction costs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Public goods and common resources",
+          "description": "Classify goods by rivalry and excludability and explain free riding or overuse.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Private, club, common-pool, and public goods"
+            },
+            {
+              "type": "concept",
+              "title": "Free-rider problem and voluntary contribution"
+            },
+            {
+              "type": "concept",
+              "title": "Tragedy of the commons and congestion"
+            },
+            {
+              "type": "concept",
+              "title": "Community governance, pricing, quotas, and public provision"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sustainability and climate economics",
+          "description": "Use microeconomic tools to analyze environmental risk, carbon, adaptation, innovation, and intergenerational tradeoffs.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Carbon externality and social cost"
+            },
+            {
+              "type": "concept",
+              "title": "Abatement cost and policy instrument choice"
+            },
+            {
+              "type": "concept",
+              "title": "Green innovation, learning, and spillovers"
+            },
+            {
+              "type": "concept",
+              "title": "Discounting, uncertainty, resilience, and just transition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Welfare, Equity, Regulation, Antitrust, and Market Design",
+      "description": "The capstone unit asks when markets work, when they fail, how gains and losses are distributed, and whether an intervention improves outcomes in practice. Students integrate theory, evidence, implementation, and uncertainty into an actionable recommendation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Welfare and distribution",
+          "description": "Evaluate total gains while making distributional choices and ethical assumptions explicit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Efficiency, equity, and Pareto criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Consumer and producer surplus"
+            },
+            {
+              "type": "concept",
+              "title": "Incidence across income, region, identity, and time"
+            },
+            {
+              "type": "concept",
+              "title": "Social welfare functions and limits of aggregation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Regulation and antitrust",
+          "description": "Assess market power, conduct, remedies, and regulatory tradeoffs using evidence rather than concentration alone.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Market definition, concentration, entry, and competitive effects"
+            },
+            {
+              "type": "concept",
+              "title": "Cartels, exclusion, tying, vertical restraints, and mergers"
+            },
+            {
+              "type": "concept",
+              "title": "Rate-of-return, price-cap, and quality regulation"
+            },
+            {
+              "type": "concept",
+              "title": "Innovation, dynamic competition, error costs, and remedy design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Market design",
+          "description": "Treat market rules as design variables that influence participation, information, matching, and outcomes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Matching markets and allocation without prices"
+            },
+            {
+              "type": "concept",
+              "title": "Auctions, procurement, and spectrum allocation"
+            },
+            {
+              "type": "concept",
+              "title": "School choice, kidney exchange, and labor matching examples"
+            },
+            {
+              "type": "concept",
+              "title": "Incentive compatibility, robustness, fairness, and gaming"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated microeconomic decision",
+          "description": "Build and defend a recommendation that combines a behavioral model, evidence, stakeholder effects, and implementation plan.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Decision question, alternatives, baseline, and mechanism"
+            },
+            {
+              "type": "concept",
+              "title": "Quantitative model, sensitivity, and counterfactual"
+            },
+            {
+              "type": "concept",
+              "title": "Winners, losers, unintended consequences, and ethics"
+            },
+            {
+              "type": "concept",
+              "title": "Recommendation, implementation, metrics, and post-decision review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

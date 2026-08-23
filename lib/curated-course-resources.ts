@@ -43,12 +43,30 @@ export const CURATED_COURSE_RESOURCES_SECTION_ID = 'resources'
 /** Selectable left-nav / main-panel section for the course syllabus overview. */
 export const CURATED_COURSE_SYLLABUS_SECTION_ID = 'syllabus:overview'
 
+/** Selectable left-nav / main-panel section for the course mental map. */
+export const CURATED_COURSE_MENTAL_MAP_SECTION_ID = 'mental-map'
+
 export function isCuratedCourseResourceSelection(id: string): boolean {
   return CURATED_COURSE_RESOURCE_SECTIONS.some((section) => section.id === id)
 }
 
 export function isCuratedCourseSyllabusSelection(id: string): boolean {
   return id === CURATED_COURSE_SYLLABUS_SECTION_ID
+}
+
+export function isCuratedCourseMentalMapSelection(id: string): boolean {
+  return id === CURATED_COURSE_MENTAL_MAP_SECTION_ID
+}
+
+export function getMentalMapNotesNodeId(slug: string): string {
+  return `${CURATED_COURSE_MENTAL_MAP_SECTION_ID}:${slug}`
+}
+
+export function isMentalMapVideoNodeId(id: string): boolean {
+  return (
+    id === CURATED_COURSE_MENTAL_MAP_SECTION_ID ||
+    id.startsWith(`${CURATED_COURSE_MENTAL_MAP_SECTION_ID}:`)
+  )
 }
 
 export function getCuratedCourseResourceSection(

@@ -11,11 +11,13 @@ Run these in the Supabase SQL Editor after schema migrations (`013` / `014`, or 
 | `seed_algorithms_curated_course.sql` | Algorithms syllabus tree |
 | `seed_database_systems_curated_course.sql` | Database Systems syllabus tree |
 | `seed_operating_systems_curated_course.sql` | Operating Systems syllabus tree |
-| `seed_computer_networks_curated_course.sql` | Computer Networks syllabus tree + video titles |
+| `seed_computer_networks_curated_course.sql` | Computer Networks syllabus tree + resources |
 | `seed_programming_languages_curated_course.sql` | Programming Languages syllabus tree |
 | `seed_computer_organization_architecture_curated_course.sql` | Computer Organization/Architecture syllabus tree |
 | `seed_computer_organization_and_architecture_curated_course.sql` | Computer Organization and Architecture syllabus tree |
 | `seed_linear_algebra_curated_course.sql` | Linear Algebra syllabus tree |
+| `seed_calculus_iii_multivariable_curated_course.sql` | Calculus III (Multivariable) syllabus tree + resources |
+| `seed_differential_equations_curated_course.sql` | Differential Equations syllabus tree + resources |
 | `seed_probability_and_statistics_curated_course.sql` | Probability and Statistics syllabus tree |
 | `seed_computer_systems_systems_programming_curated_course.sql` | Computer Systems / Systems Programming syllabus tree |
 | `seed_introduction_to_programming_curated_course.sql` | Introduction to Programming syllabus tree |
@@ -67,7 +69,7 @@ Run these in the Supabase SQL Editor after schema migrations (`013` / `014`, or 
 | `seed_biostatistics_curated_course.sql` | Biostatistics syllabus tree |
 | `seed_statistics_biostatistics_curated_course.sql` | Statistics / Biostatistics syllabus tree |
 | `seed_general_chemistry_curated_course.sql` | General Chemistry syllabus tree |
-| `seed_general_chemistry_i_and_ii_curated_course.sql` | General Chemistry I & II syllabus tree |
+| `seed_general_chemistry_i_and_ii_curated_course.sql` | General Chemistry I & II syllabus tree + resources |
 | `seed_programming_for_engineers_matlab_curated_course.sql` | Programming for Engineers (MATLAB) syllabus tree |
 | `seed_programming_for_engineers_matlab_python_curated_course.sql` | Programming for Engineers (MATLAB/Python) syllabus tree |
 | `seed_materials_science_curated_course.sql` | Materials Science syllabus tree |
@@ -79,6 +81,7 @@ Run these in the Supabase SQL Editor after schema migrations (`013` / `014`, or 
 | `seed_machine_design_curated_course.sql` | Machine Design syllabus tree |
 | `seed_manufacturing_processes_curated_course.sql` | Manufacturing Processes syllabus tree |
 | `seed_mechanical_vibrations_curated_course.sql` | Mechanical Vibrations syllabus tree |
+| `seed_control_systems_curated_course.sql` | Control Systems syllabus tree + resources |
 | `seed_control_systems_system_dynamics_curated_course.sql` | Control Systems / System Dynamics syllabus tree |
 | `seed_system_dynamics_and_controls_curated_course.sql` | System Dynamics and Controls syllabus tree |
 | `seed_probability_and_random_processes_curated_course.sql` | Probability and Random Processes syllabus tree |
@@ -139,6 +142,7 @@ Run these in the Supabase SQL Editor after schema migrations (`013` / `014`, or 
 | `seed_environmental_sampling_and_analysis_curated_course.sql` | Environmental Sampling and Analysis syllabus tree |
 | `seed_conservation_biology_curated_course.sql` | Conservation Biology syllabus tree |
 | `seed_environmental_impact_assessment_curated_course.sql` | Environmental Impact Assessment syllabus tree |
+| `seed_discrete_mathematics_curated_course.sql` | Discrete Mathematics syllabus tree + resources |
 | `seed_discrete_math_math_for_computing_curated_course.sql` | Discrete Math / Math for Computing syllabus tree |
 | `seed_chemical_engineering_thermodynamics_curated_course.sql` | Chemical Engineering Thermodynamics syllabus tree |
 | `seed_fluid_mechanics_transport_phenomena_i_curated_course.sql` | Fluid Mechanics / Transport Phenomena I syllabus tree |

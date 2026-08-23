@@ -1,0 +1,1007 @@
+{
+  "slug": "statics",
+  "title": "Statics",
+  "description": "This syllabus is designed for a one-semester Statics course after calculus and introductory physics. It emphasizes diagramming, vector reasoning, equilibrium equations, and practical engineering judgment before moving into structural idealizations and energy methods.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Engineering Mechanics: Statics (Hibbeler)",
+      "linkOrSite": "Pearson",
+      "description": "Standard statics text for force systems, equilibrium, trusses, frames, friction, and virtual work."
+    },
+    {
+      "kind": "textbook",
+      "title": "Vector Mechanics for Engineers: Statics",
+      "linkOrSite": "McGraw Hill",
+      "description": "Beer, Johnston, Mazurek, and Cornwell. Strong vector mechanics approach with many engineering examples."
+    },
+    {
+      "kind": "textbook",
+      "title": "Engineering Mechanics: Statics (Meriam and Kraige)",
+      "linkOrSite": "Wiley",
+      "description": "Classic rigorous treatment of statics and problem solving."
+    },
+    {
+      "kind": "textbook",
+      "title": "Statics and Mechanics of Materials",
+      "linkOrSite": "Pearson",
+      "description": "Integrated bridge from statics into stress, strain, beams, and mechanics of materials."
+    },
+    {
+      "kind": "textbook",
+      "title": "Engineering Statics: Open and Interactive",
+      "linkOrSite": "https://engineeringstatics.org",
+      "description": "Free interactive statics text with examples, diagrams, and practice problems."
+    },
+    {
+      "kind": "textbook",
+      "title": "Statics and Strength of Materials for Architecture and Building Construction",
+      "linkOrSite": "Pearson",
+      "description": "Onouye and Kane. Useful structural-design context for load paths and equilibrium."
+    },
+    {
+      "kind": "website",
+      "title": "Engineering LibreTexts: Statics",
+      "linkOrSite": "https://eng.libretexts.org/",
+      "description": "Open engineering mechanics material with worked explanations and conceptual support."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OCW Mechanics and Materials I",
+      "linkOrSite": "https://ocw.mit.edu/courses/2-001-mechanics-materials-i-fall-2006/",
+      "description": "University course material connecting equilibrium and mechanics foundations."
+    },
+    {
+      "kind": "website",
+      "title": "Mechanics Map",
+      "linkOrSite": "https://mechanicsmap.psu.edu/",
+      "description": "Visual open mechanics reference for statics, dynamics, and mechanics of materials."
+    },
+    {
+      "kind": "website",
+      "title": "eFunda Engineering Fundamentals",
+      "linkOrSite": "https://www.efunda.com/",
+      "description": "Formula and concept reference for mechanics review."
+    },
+    {
+      "kind": "website",
+      "title": "ASCE Structural Engineering Institute",
+      "linkOrSite": "https://www.asce.org/communities/institutes-and-technical-groups/structural-engineering-institute",
+      "description": "Professional structural context for equilibrium, load paths, and structural behavior."
+    },
+    {
+      "kind": "youtube",
+      "title": "Jeff Hanson",
+      "linkOrSite": "https://www.youtube.com/@1234jhanson",
+      "description": "Excellent statics walkthroughs with many solved problems."
+    },
+    {
+      "kind": "youtube",
+      "title": "StructureFree",
+      "linkOrSite": "https://www.youtube.com/@StructureFree",
+      "description": "Engineering mechanics lessons for FBDs, trusses, beams, stress, and strain."
+    },
+    {
+      "kind": "youtube",
+      "title": "The Efficient Engineer",
+      "linkOrSite": "https://www.youtube.com/@TheEfficientEngineer",
+      "description": "Clear visual explanations of mechanics, structural behavior, and engineering analysis."
+    },
+    {
+      "kind": "youtube",
+      "title": "CPPMechEngTutorials",
+      "linkOrSite": "https://www.youtube.com/@CPPMechEngTutorials",
+      "description": "Worked examples across statics, dynamics, thermodynamics, and engineering mechanics."
+    },
+    {
+      "kind": "youtube",
+      "title": "MIT OpenCourseWare",
+      "linkOrSite": "https://www.youtube.com/@mitocw",
+      "description": "University lecture support for mechanics and structures foundations."
+    },
+    {
+      "kind": "youtube",
+      "title": "Practical Engineering",
+      "linkOrSite": "https://www.youtube.com/@PracticalEngineeringChannel",
+      "description": "Applied structural and civil engineering context that makes load paths tangible."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Course Orientation, Units, Modeling Assumptions, and Problem-Solving Workflow",
+      "description": "This opening unit frames Statics as the art of replacing real objects with useful mechanical models. Students learn the habits that keep equilibrium problems organized, checkable, and physically meaningful.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "What Statics Studies",
+          "description": "Students learn what it means for particles and rigid bodies to be in equilibrium and why this course is foundational for engineering design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statics versus dynamics"
+            },
+            {
+              "type": "concept",
+              "title": "Rigid-body idealization"
+            },
+            {
+              "type": "concept",
+              "title": "Connections to mechanics of materials, structures, dynamics, and design"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Units, Dimensions, and Significant Figures",
+          "description": "Consistent units are part of engineering reasoning, not just formatting. They catch mistakes and preserve physical meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "SI and US customary systems"
+            },
+            {
+              "type": "concept",
+              "title": "Force, mass, length, time, and moment units"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional checks and reasonable-result checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modeling and Solution Workflow",
+          "description": "A repeatable workflow helps students move from a messy word problem to equations that match the physical system.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Read, sketch, define system, draw FBD, choose axes"
+            },
+            {
+              "type": "concept",
+              "title": "Write equilibrium equations before substituting numbers"
+            },
+            {
+              "type": "concept",
+              "title": "Check signs, units, constraints, and limiting cases"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Force Vectors and Coordinate Systems",
+      "description": "Statics begins with representing forces as vectors. This unit gives students the mathematical language for magnitude, direction, components, and resultants in two and three dimensions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Vector Representation of Forces",
+          "description": "Students learn to describe a force by magnitude, direction, line of action, and point of application.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scalars versus vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical and analytical representations"
+            },
+            {
+              "type": "concept",
+              "title": "Line of action and transmissibility for rigid bodies"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Components and Unit Vectors",
+          "description": "Component form turns geometry into algebra so multiple forces can be added and balanced.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Rectangular components in 2D and 3D"
+            },
+            {
+              "type": "concept",
+              "title": "Direction cosines"
+            },
+            {
+              "type": "concept",
+              "title": "Unit vector notation along lines and cables"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Resultants of Concurrent Forces",
+          "description": "Resultants simplify multiple forces into one equivalent vector for analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector addition and subtraction"
+            },
+            {
+              "type": "concept",
+              "title": "Parallelogram and polygon methods"
+            },
+            {
+              "type": "concept",
+              "title": "Component summation and angle recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Particles in Equilibrium",
+      "description": "Particle equilibrium strips mechanics down to its essentials: forces meeting at a point must balance. This unit builds confidence with force balances before students analyze full rigid bodies.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Particle Free-Body Diagrams",
+          "description": "Students practice isolating a point-like object and showing every external force acting on it.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cables, springs, weights, and contact forces"
+            },
+            {
+              "type": "concept",
+              "title": "Known and unknown force labels"
+            },
+            {
+              "type": "concept",
+              "title": "Tension direction and two-force members"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Two-Dimensional Particle Equilibrium",
+          "description": "This subtopic turns diagrams into force equations in x and y directions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum of forces in x and y"
+            },
+            {
+              "type": "concept",
+              "title": "Solving two-unknown systems"
+            },
+            {
+              "type": "concept",
+              "title": "Inclined planes and pulley-supported particles"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Three-Dimensional Particle Equilibrium",
+          "description": "3D particle problems prepare students for cables, spatial supports, and real engineering geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unit vectors along 3D cables"
+            },
+            {
+              "type": "concept",
+              "title": "Sum of forces in x, y, and z"
+            },
+            {
+              "type": "concept",
+              "title": "Solving multi-cable support systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Moments, Couples, and Moment Resultants",
+      "description": "Moments explain rotational tendency and are central to analyzing beams, supports, machines, and structures. This unit teaches students to compute and interpret moments in scalar and vector form.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Moment of a Force in 2D",
+          "description": "Students learn how a force creates rotation about a point and how distance from the line of action matters.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Moment arm and perpendicular distance"
+            },
+            {
+              "type": "concept",
+              "title": "Clockwise and counterclockwise sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Varignon's theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vector Moments in 3D",
+          "description": "Cross products make moments usable in spatial problems with arbitrary geometry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position vector and force vector"
+            },
+            {
+              "type": "concept",
+              "title": "Right-hand rule"
+            },
+            {
+              "type": "concept",
+              "title": "Moment about a point and moment about an axis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Couples and Moment Resultants",
+          "description": "Couples are pure rotational effects that can be moved on a rigid body without changing external equilibrium.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Couple moment definition"
+            },
+            {
+              "type": "concept",
+              "title": "Equivalent couples"
+            },
+            {
+              "type": "concept",
+              "title": "Combining force and couple systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rigid-Body Free-Body Diagrams",
+      "description": "Free-body diagrams are the core professional habit of Statics. This unit teaches students to isolate bodies, represent supports correctly, and convert physical constraints into forces and moments.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "External Forces and System Boundaries",
+          "description": "Students learn that the choice of system determines which forces are external and which interactions disappear.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Body isolation and boundary selection"
+            },
+            {
+              "type": "concept",
+              "title": "Applied loads, weights, contact forces, and reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Internal versus external forces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Support and Connection Models",
+          "description": "Students learn the standard idealizations used for pins, rollers, fixed supports, smooth contacts, links, and cables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Roller, pin, fixed, collar, ball-and-socket, and journal bearings"
+            },
+            {
+              "type": "concept",
+              "title": "Two-force and three-force members"
+            },
+            {
+              "type": "concept",
+              "title": "Distributed contacts and simplified reactions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Diagram Quality and Error Checking",
+          "description": "A good FBD is a reasoning tool. Students learn how to spot missing forces, double-counting, and impossible assumptions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate axes and sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Unknown labels before equations"
+            },
+            {
+              "type": "concept",
+              "title": "Action-reaction pairs and support count checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rigid-Body Equilibrium in Two Dimensions",
+      "description": "This unit applies force and moment balance to planar bodies. Students analyze beams, brackets, ladders, plates, and simple structures using three independent equilibrium equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Planar Equilibrium Equations",
+          "description": "Students learn how translational and rotational equilibrium constrain a body in 2D.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum of forces in x and y"
+            },
+            {
+              "type": "concept",
+              "title": "Sum of moments about a chosen point"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative moment equation sets"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Support Reactions for Planar Bodies",
+          "description": "Support reactions connect FBDs to actual load transfer through pins, rollers, fixed supports, and contacts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Simply supported, cantilevered, and overhanging bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Solving for reaction forces and moments"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing moment centers to reduce algebra"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Determinacy and Stability",
+          "description": "Students learn when equilibrium equations are enough and when a model is unstable or statically indeterminate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Unknown count versus equation count"
+            },
+            {
+              "type": "concept",
+              "title": "Improper constraints and mechanisms"
+            },
+            {
+              "type": "concept",
+              "title": "Physical interpretation of negative reactions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Rigid-Body Equilibrium in Three Dimensions",
+      "description": "Three-dimensional equilibrium prepares students for real supports, spatial frames, machine components, and aerospace structures where forces and moments act in all directions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Spatial Free-Body Diagrams",
+          "description": "Students learn to represent 3D supports and applied loads clearly enough to write six equilibrium equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "3D coordinate axes and position vectors"
+            },
+            {
+              "type": "concept",
+              "title": "Support reactions for ball-and-socket, bearings, collars, and fixed supports"
+            },
+            {
+              "type": "concept",
+              "title": "Vector labels for forces and moments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Six Equilibrium Equations",
+          "description": "A rigid body in 3D requires balancing forces and moments about three axes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Sum of forces in x, y, and z"
+            },
+            {
+              "type": "concept",
+              "title": "Sum of moments about x, y, and z"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix-style organization of unknowns"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "3D Engineering Applications",
+          "description": "Students practice spatial reasoning in settings that resemble brackets, shafts, cranes, and aircraft components.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cables and guyed structures"
+            },
+            {
+              "type": "concept",
+              "title": "Bearings and shaft reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Moment about a specified axis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Equivalent Force Systems and Distributed Loads",
+      "description": "Engineers often replace complicated load patterns with simpler equivalent forces and moments. This unit teaches how to preserve external effects while simplifying analysis.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Equivalent Force-Couple Systems",
+          "description": "Students learn to move forces to convenient points by adding the correct couple moment.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Force translation on rigid bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Resultant force and resultant moment"
+            },
+            {
+              "type": "concept",
+              "title": "Reduction of a general force system"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Distributed Loads on Beams and Surfaces",
+          "description": "Distributed loads model weight, pressure, wind, and contact loads more realistically than point forces.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Uniform, triangular, trapezoidal, and function-defined loads"
+            },
+            {
+              "type": "concept",
+              "title": "Area under load diagram as resultant magnitude"
+            },
+            {
+              "type": "concept",
+              "title": "Centroid of load area as resultant location"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Load Paths and Structural Interpretation",
+          "description": "Students connect mathematical resultants to how loads travel through members and supports.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Gravity, wind, and applied load paths"
+            },
+            {
+              "type": "concept",
+              "title": "Tributary area intuition"
+            },
+            {
+              "type": "concept",
+              "title": "When a simplification is reasonable or risky"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Trusses: Method of Joints and Method of Sections",
+      "description": "Trusses introduce structural systems made of connected two-force members. Students learn how equilibrium reveals member tension, compression, and zero-force behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Truss Assumptions and Classification",
+          "description": "Students learn the idealizations that make truss analysis possible and when those idealizations apply.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pin-connected straight members"
+            },
+            {
+              "type": "concept",
+              "title": "Loads applied at joints"
+            },
+            {
+              "type": "concept",
+              "title": "Simple, compound, and complex trusses"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method of Joints",
+          "description": "Joint equilibrium solves member forces by treating each joint as a particle.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Joint FBDs"
+            },
+            {
+              "type": "concept",
+              "title": "Tension/compression sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Zero-force members"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Method of Sections",
+          "description": "Sections let students solve selected member forces efficiently without analyzing every joint.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Strategic cutting through up to three unknown members"
+            },
+            {
+              "type": "concept",
+              "title": "Section FBDs and moment choices"
+            },
+            {
+              "type": "concept",
+              "title": "Comparison with method of joints"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Frames and Machines",
+      "description": "Frames and machines contain multi-force members, so they require careful body isolation and interaction forces. This unit deepens students' FBD discipline.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Multi-Force Member Analysis",
+          "description": "Students distinguish frames and machines from trusses and learn why members must often be isolated individually.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-force versus multi-force members"
+            },
+            {
+              "type": "concept",
+              "title": "Pin interactions between connected bodies"
+            },
+            {
+              "type": "concept",
+              "title": "Whole-system FBD followed by member FBDs"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Frames",
+          "description": "Frame analysis focuses on stationary load-supporting assemblies such as brackets and structural linkages.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Support reactions"
+            },
+            {
+              "type": "concept",
+              "title": "Member interaction forces"
+            },
+            {
+              "type": "concept",
+              "title": "Load transfer through connected members"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Machines",
+          "description": "Machine analysis focuses on assemblies designed to transmit or transform force.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mechanical advantage"
+            },
+            {
+              "type": "concept",
+              "title": "Grippers, presses, levers, and linkages"
+            },
+            {
+              "type": "concept",
+              "title": "Input-output force relationships"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Internal Forces, Shear, and Bending Moment Diagrams",
+      "description": "Internal force diagrams are the bridge from Statics to mechanics of materials. Students learn to reveal axial force, shear, and bending moment inside beams and members.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Internal Force Resultants",
+          "description": "Students learn what is exposed when a member is cut and why internal forces matter for design.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Axial force, shear force, bending moment, and torsion"
+            },
+            {
+              "type": "concept",
+              "title": "Section cuts and sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Internal versus external equilibrium"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Shear and Moment Diagrams",
+          "description": "Diagrams show how internal shear and bending moment vary along a beam.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Point loads, distributed loads, and applied couples"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise functions and diagram construction"
+            },
+            {
+              "type": "concept",
+              "title": "Relationships among load, shear, and moment"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Engineering Interpretation",
+          "description": "Students learn to connect diagram features to likely stress, deflection, and failure concerns in later courses.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Maximum shear and maximum moment locations"
+            },
+            {
+              "type": "concept",
+              "title": "Simply supported and cantilever beams"
+            },
+            {
+              "type": "concept",
+              "title": "Preparation for bending stress and beam design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Friction and Contact Mechanics",
+      "description": "Friction makes equilibrium problems more realistic and more conditional. Students learn how contact forces depend on normal force, impending motion, and surface behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Dry Friction Fundamentals",
+          "description": "Students learn how static and kinetic friction limit or resist motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coefficient of static and kinetic friction"
+            },
+            {
+              "type": "concept",
+              "title": "Impending motion"
+            },
+            {
+              "type": "concept",
+              "title": "Friction force direction and limiting friction"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Friction Applications",
+          "description": "Students apply friction models to wedges, ladders, belts, screws, and brakes.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Inclined planes and wedges"
+            },
+            {
+              "type": "concept",
+              "title": "Ladders and tipping/sliding checks"
+            },
+            {
+              "type": "concept",
+              "title": "Belt friction and screw friction overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Contact and Stability Checks",
+          "description": "Friction problems often require checking whether the assumed contact state is physically possible.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Normal force positivity"
+            },
+            {
+              "type": "concept",
+              "title": "Sliding versus tipping"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple-contact systems and assumption checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Centroids, Centers of Gravity, and Moments of Inertia",
+      "description": "This unit teaches geometric properties that reduce distributed quantities and prepare students for beam bending, torsion, and structural design.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Centroids and Centers of Gravity",
+          "description": "Students learn to locate representative points for areas, volumes, and weights.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Centroid of lines, areas, and composite shapes"
+            },
+            {
+              "type": "concept",
+              "title": "Center of gravity and center of mass"
+            },
+            {
+              "type": "concept",
+              "title": "Symmetry and tabular methods"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Area Moments of Inertia",
+          "description": "Area moments of inertia describe how area is distributed relative to an axis and become essential in bending analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Second moment of area"
+            },
+            {
+              "type": "concept",
+              "title": "Composite areas"
+            },
+            {
+              "type": "concept",
+              "title": "Parallel-axis theorem"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Mass Moments and Radius of Gyration",
+          "description": "Students preview properties that matter in dynamics and rotating bodies.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mass moment of inertia concepts"
+            },
+            {
+              "type": "concept",
+              "title": "Radius of gyration"
+            },
+            {
+              "type": "concept",
+              "title": "Polar moment and product of inertia overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Cables, Virtual Work, and Integrated Statics Applications",
+      "description": "The final unit consolidates statics reasoning through flexible members, energy-based equilibrium ideas, and cumulative engineering applications.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Cable Systems",
+          "description": "Students learn how flexible members carry tension and form shapes under concentrated or distributed loads.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cable assumptions and tension"
+            },
+            {
+              "type": "concept",
+              "title": "Cables with concentrated loads"
+            },
+            {
+              "type": "concept",
+              "title": "Parabolic cable under uniform load overview"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Virtual Work",
+          "description": "Virtual work offers an alternate equilibrium method that is powerful for machines, mechanisms, and systems with constraints.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Principle of virtual work"
+            },
+            {
+              "type": "concept",
+              "title": "Compatible virtual displacements"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to pulleys, linkages, and equilibrium positions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integrated Design-Style Problems",
+          "description": "Students bring the course together by modeling, solving, and checking realistic engineering systems.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Combined FBD, equilibrium, friction, and internal-force problems"
+            },
+            {
+              "type": "concept",
+              "title": "Load path explanation and result validation"
+            },
+            {
+              "type": "concept",
+              "title": "Communication of assumptions, diagrams, equations, and conclusions"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

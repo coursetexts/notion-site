@@ -11,6 +11,7 @@ import { getCachedAuth } from '@/lib/auth-cache'
 
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import styles from './HomeHeader.module.css'
+import { PinnedCoursesNav } from './PinnedCoursesNav'
 
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
@@ -366,26 +367,30 @@ export function HomeHeader({
                   </svg>
                 </button>
               </nav>
-
-              {!hideAccountActions && (
-                <Link href={accountHref} legacyBehavior>
-                  <a className={styles.signUp}>{accountLabel}</a>
-                </Link>
-              )}
             </div>
 
-            <button
-              ref={menuBtnRef}
-              type='button'
-              className={styles.mobileMenuBtn}
-              onClick={openMenu}
-              aria-expanded={menuOpen}
-              aria-controls='home-mobile-nav-dialog'
-              aria-label='Open menu'
-            >
-              <span className={styles.mobileMenuBar} aria-hidden />
-              <span className={styles.mobileMenuBar} aria-hidden />
-            </button>
+            <div className={styles.headerEnd}>
+              {isLoggedIn && <PinnedCoursesNav />}
+              {!hideAccountActions && (
+                <div className={styles.headerDesktopOnly}>
+                  <Link href={accountHref} legacyBehavior>
+                    <a className={styles.signUp}>{accountLabel}</a>
+                  </Link>
+                </div>
+              )}
+              <button
+                ref={menuBtnRef}
+                type='button'
+                className={styles.mobileMenuBtn}
+                onClick={openMenu}
+                aria-expanded={menuOpen}
+                aria-controls='home-mobile-nav-dialog'
+                aria-label='Open menu'
+              >
+                <span className={styles.mobileMenuBar} aria-hidden />
+                <span className={styles.mobileMenuBar} aria-hidden />
+              </button>
+            </div>
           </header>
 
           <div className={styles.divider} />

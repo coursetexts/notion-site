@@ -1,8 +1,105 @@
 {
   "slug": "biochemistry",
   "title": "Biochemistry",
-  "description": "This 14-topic sequence starts with molecular structure and enzyme logic, then moves through metabolism, regulation, molecular biology, methods, and applied biomedical/nutrition contexts.",
-  "resources": [],
+  "description": "Biochemistry explains life through molecular structure, chemical reactivity, energy transformation, information flow, and regulated networks. Students learn to reason from water and weak interactions to protein folding, enzyme mechanism, membranes, metabolism, signaling, and gene expression. They interpret quantitative biochemical evidence and apply these ideas to biological discovery, chemical mechanism, nutrition, and disease. All three degree groups complete the same conceptual and quantitative core, with discipline-specific cases and capstone choices rather than separate syllabi.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Lehninger Principles of Biochemistry",
+      "linkOrSite": "Macmillan",
+      "description": "Nelson and Cox. Comprehensive shared reference for structure, enzymology, metabolism, bioenergetics, regulation, and molecular biology."
+    },
+    {
+      "kind": "textbook",
+      "title": "Biochemistry (Berg, Tymoczko, Gatto, and Stryer)",
+      "linkOrSite": "Macmillan",
+      "description": "Strong conceptual narrative, molecular mechanism, protein function, and pathway logic. Used by MIT 7.05."
+    },
+    {
+      "kind": "textbook",
+      "title": "Biochemistry (Miesfeld and McEvoy)",
+      "linkOrSite": "W. W. Norton",
+      "description": "Readable mechanistic treatment and contemporary examples. An MIT-listed alternative."
+    },
+    {
+      "kind": "textbook",
+      "title": "Biochemistry (Voet and Voet)",
+      "linkOrSite": "Wiley",
+      "description": "Deeper chemistry, physical basis, enzymology, and metabolic detail for Chemistry students and instructor enrichment."
+    },
+    {
+      "kind": "textbook",
+      "title": "Biochemistry Free For All",
+      "linkOrSite": "https://open.oregonstate.education/biochemistryfreeforall/",
+      "description": "Oregon State University. Free course-length reference, figures, and review support."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OCW 7.05 General Biochemistry",
+      "linkOrSite": "https://ocw.mit.edu/courses/7-05-general-biochemistry-spring-2020/",
+      "description": "Undergraduate lectures, problem sets, exams, and a metabolism-centered second half."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OCW 5.07SC Biological Chemistry I",
+      "linkOrSite": "https://ocw.mit.edu/courses/5-07sc-biological-chemistry-i-fall-2013/",
+      "description": "Chemistry-forward explanations of recurring reaction types, bioenergetics, and pathway mechanisms."
+    },
+    {
+      "kind": "website",
+      "title": "ASBMB core concepts and exam goals",
+      "linkOrSite": "https://www.asbmb.org/education/exam/certification-exam-goals-and-objectives",
+      "description": "Outcome map for energy/metabolism, structure/function, information transfer, scientific skills, homeostasis, and evolution."
+    },
+    {
+      "kind": "website",
+      "title": "RCSB Protein Data Bank and PDB-101",
+      "linkOrSite": "https://www.rcsb.org/",
+      "description": "Macromolecular structures, molecular visualization, structure-function cases, and accessible teaching materials. Also https://pdb101.rcsb.org/."
+    },
+    {
+      "kind": "website",
+      "title": "UniProt",
+      "linkOrSite": "https://www.uniprot.org/",
+      "description": "Curated sequence, function, localization, variants, cofactors, and cross-references."
+    },
+    {
+      "kind": "website",
+      "title": "BRENDA",
+      "linkOrSite": "https://www.brenda-enzymes.org/",
+      "description": "Enzyme reactions, kinetic parameters, organisms, substrates, inhibitors, and literature links."
+    },
+    {
+      "kind": "website",
+      "title": "KEGG and Reactome",
+      "linkOrSite": "https://www.genome.jp/kegg/pathway.html",
+      "description": "Pathway context, molecular participants, disease links, and comparative network exploration. Also https://reactome.org/."
+    },
+    {
+      "kind": "website",
+      "title": "PubChem",
+      "linkOrSite": "https://pubchem.ncbi.nlm.nih.gov/",
+      "description": "Structures, properties, identifiers, bioassays, and safety/context for metabolites, cofactors, and inhibitors."
+    },
+    {
+      "kind": "website",
+      "title": "NCBI Bookshelf",
+      "linkOrSite": "https://www.ncbi.nlm.nih.gov/books/",
+      "description": "Free authoritative books and chapters for molecular biology, metabolism, nutrition, genetics, and disease."
+    },
+    {
+      "kind": "website",
+      "title": "iBiology and HHMI BioInteractive",
+      "linkOrSite": "https://www.ibiology.org/",
+      "description": "Research-facing lectures, animations, case materials, and connections between biochemical concepts and discovery. Also https://www.biointeractive.org/."
+    },
+    {
+      "kind": "website",
+      "title": "Python: Jupyter, NumPy, SciPy, pandas, Matplotlib",
+      "linkOrSite": "https://jupyter.org/",
+      "description": "Reproducible curve fitting, pathway accounting, data visualization, uncertainty analysis, and report-ready notebooks. Also https://scipy.org/."
+    }
+  ],
   "topics": [
     {
       "type": "topic",
@@ -494,6 +591,33 @@
             {
               "type": "concept",
               "title": "Glucose homeostasis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Pentose phosphate pathway and redox balance",
+          "description": "Students learn how glucose carbon supplies NADPH and ribose while supporting antioxidant defense and biosynthesis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oxidative and nonoxidative phases"
+            },
+            {
+              "type": "concept",
+              "title": "NADPH production"
+            },
+            {
+              "type": "concept",
+              "title": "Ribose-5-phosphate"
+            },
+            {
+              "type": "concept",
+              "title": "Glutathione reduction"
+            },
+            {
+              "type": "concept",
+              "title": "G6PD deficiency context"
             }
           ]
         }
@@ -1090,6 +1214,33 @@
               "title": "Inborn errors of metabolism"
             }
           ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Receptor and nutrient-sensing pathways",
+          "description": "Students connect extracellular signals and nutrient status to enzyme phosphorylation, gene expression, growth, and pathway flux.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "G protein-coupled receptors and cAMP"
+            },
+            {
+              "type": "concept",
+              "title": "Receptor tyrosine kinases"
+            },
+            {
+              "type": "concept",
+              "title": "PI3K-AKT signaling"
+            },
+            {
+              "type": "concept",
+              "title": "Calcium and phosphoinositides"
+            },
+            {
+              "type": "concept",
+              "title": "AMPK and mTOR"
+            }
+          ]
         }
       ]
     },
@@ -1288,6 +1439,33 @@
               "title": "Flux and network thinking"
             }
           ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Experimental design, quantitation, and reproducibility",
+          "description": "Students learn how controls, calibration, replication, uncertainty, and transparent workflows turn measurements into defensible biochemical evidence.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Positive and negative controls"
+            },
+            {
+              "type": "concept",
+              "title": "Standards and calibration curves"
+            },
+            {
+              "type": "concept",
+              "title": "Technical and biological replicates"
+            },
+            {
+              "type": "concept",
+              "title": "Uncertainty and residuals"
+            },
+            {
+              "type": "concept",
+              "title": "Data provenance and reproducible analysis"
+            }
+          ]
         }
       ]
     },
@@ -1385,6 +1563,33 @@
             {
               "type": "concept",
               "title": "Metabolic syndrome"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Oxidative stress and cancer metabolism",
+          "description": "Students examine how redox imbalance and metabolic rewiring alter cell survival, biosynthesis, and interpretation of disease biomarkers.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reactive oxygen species and antioxidant systems"
+            },
+            {
+              "type": "concept",
+              "title": "Glutathione and NADPH"
+            },
+            {
+              "type": "concept",
+              "title": "Warburg effect"
+            },
+            {
+              "type": "concept",
+              "title": "Anaplerosis and glutamine use"
+            },
+            {
+              "type": "concept",
+              "title": "Mechanistic limits of biomarkers"
             }
           ]
         }

@@ -1,0 +1,1029 @@
+{
+  "slug": "calculus-iii-multivariable",
+  "title": "Calculus III (Multivariable)",
+  "description": "Calculus III extends calculus to functions, curves, surfaces, and fields in two, three, and higher dimensions. This unified course gives all twelve programs the same rigorous mathematical core while rotating applications through mechanics, electromagnetism, transport, thermodynamics, optimization, probability, economics, and quantitative modeling. Students work geometrically, symbolically, numerically, and computationally, and they must communicate assumptions, orientation, units, and theorem hypotheses.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "OpenStax Calculus Volume 3",
+      "linkOrSite": "https://openstax.org/details/books/calculus-volume-3",
+      "description": "Best default open text for vectors, multivariable differentiation, multiple integrals, and vector calculus."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus: Early Transcendentals",
+      "linkOrSite": "Cengage",
+      "description": "James Stewart. Broad conventional coverage and a large exercise bank suitable for engineering and science fluency."
+    },
+    {
+      "kind": "textbook",
+      "title": "Thomas' Calculus",
+      "linkOrSite": "Pearson",
+      "description": "Clear multivariable reference with strong geometric examples and graded problem sets."
+    },
+    {
+      "kind": "textbook",
+      "title": "Vector Calculus",
+      "linkOrSite": "W. H. Freeman",
+      "description": "Marsden and Tromba. Conceptually rich and more geometric treatment of derivatives, integrals, fields, and the integral theorems."
+    },
+    {
+      "kind": "textbook",
+      "title": "Vector Calculus, Linear Algebra, and Differential Forms",
+      "linkOrSite": "Matrix Editions",
+      "description": "Hubbard and Hubbard. Advanced enrichment connecting derivative matrices, linear algebra, modern applications, and higher-dimensional reasoning."
+    },
+    {
+      "kind": "textbook",
+      "title": "Div, Grad, Curl, and All That",
+      "linkOrSite": "W. W. Norton",
+      "description": "Schey. Compact intuition builder for vector operators, flux, circulation, and physical interpretations."
+    },
+    {
+      "kind": "textbook",
+      "title": "Mathematics for Economists",
+      "linkOrSite": "W. W. Norton",
+      "description": "Simon and Blume. Economics supplement for multivariable optimization, comparative statics, and constrained models."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OpenCourseWare 18.02SC Multivariable Calculus",
+      "linkOrSite": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+      "description": "Self-contained lectures, notes, problems, solutions, and exams spanning vectors, partial derivatives, multiple integrals, and vector calculus."
+    },
+    {
+      "kind": "website",
+      "title": "MIT Multivariable Calculus Recitation Notes (Fall 2024)",
+      "linkOrSite": "https://ocw.mit.edu/courses/res-18-016-multivariable-calculus-recitation-notes-fall-2024/",
+      "description": "Problem-solving notes and exercises with solutions, including a brief linear-algebra foundation and the traditional 18.02 sequence."
+    },
+    {
+      "kind": "website",
+      "title": "Paul's Online Math Notes - Calculus III",
+      "linkOrSite": "https://tutorial.math.lamar.edu/Classes/CalcIII/CalcIII.aspx",
+      "description": "Concise explanations and many worked examples for curves, partial derivatives, multiple integrals, and vector calculus."
+    },
+    {
+      "kind": "website",
+      "title": "Khan Academy Multivariable Calculus",
+      "linkOrSite": "https://www.khanacademy.org/math/multivariable-calculus",
+      "description": "Guided videos and practice for core vector, derivative, integral, and theorem skills."
+    },
+    {
+      "kind": "website",
+      "title": "Active Calculus Multivariable",
+      "linkOrSite": "https://activecalculus.org/multi/",
+      "description": "Inquiry-oriented open materials emphasizing concepts, visualization, and active problem solving."
+    },
+    {
+      "kind": "website",
+      "title": "GeoGebra 3D Calculator",
+      "linkOrSite": "https://www.geogebra.org/3d",
+      "description": "Interactive visualization of surfaces, intersections, tangent planes, fields, and parameterized geometry."
+    },
+    {
+      "kind": "website",
+      "title": "CalcPlot3D",
+      "linkOrSite": "https://c3d.libretexts.org/CalcPlot3D/index.html",
+      "description": "Browser-based visualization designed specifically for multivariable calculus objects and concepts."
+    },
+    {
+      "kind": "website",
+      "title": "Python/Jupyter with NumPy, SymPy, and Matplotlib",
+      "linkOrSite": "https://jupyter.org/",
+      "description": "Use for surface and field plots, numerical derivatives and integrals, optimization checks, and reproducible capstone analysis."
+    },
+    {
+      "kind": "youtube",
+      "title": "Professor Leonard - Calculus 3",
+      "linkOrSite": "https://www.youtube.com/@ProfessorLeonard",
+      "description": "Long-form classroom lectures with detailed derivations and worked examples."
+    },
+    {
+      "kind": "youtube",
+      "title": "3Blue1Brown - Divergence and Curl",
+      "linkOrSite": "https://www.youtube.com/watch?v=rB83DpBJQsE",
+      "description": "Visual intuition for two central vector-field operators and their relationship to flow and Maxwell-style equations."
+    },
+    {
+      "kind": "youtube",
+      "title": "MIT OpenCourseWare",
+      "linkOrSite": "https://www.youtube.com/@mitocw",
+      "description": "University lecture and recitation videos aligned with challenging multivariable problem solving."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Vectors, Matrices, and Geometry in Space",
+      "description": "Multivariable calculus begins with a language for position, direction, geometry, and linear change. Vectors describe quantities with magnitude and direction, while elementary matrix notation prepares students to express systems, transformations, and derivatives compactly.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Coordinate systems and geometry in two and three dimensions",
+          "description": "A reliable spatial picture is essential for setting domains, interpreting level sets, and choosing coordinates that fit a problem's symmetry.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian coordinates, distance, midpoint, spheres, cylinders, and traces"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical and spherical coordinates as geometric descriptions"
+            },
+            {
+              "type": "concept",
+              "title": "Quadratic surfaces: ellipsoids, paraboloids, hyperboloids, and cones"
+            },
+            {
+              "type": "concept",
+              "title": "Sketching surfaces from equations, cross-sections, symmetry, and intercepts"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Vector algebra and geometric products",
+          "description": "Vector operations convert geometric questions about angles, projections, areas, orientation, force, and torque into calculations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Components, magnitude, unit vectors, addition, and scalar multiplication"
+            },
+            {
+              "type": "concept",
+              "title": "Dot product, angles, orthogonality, projection, and work"
+            },
+            {
+              "type": "concept",
+              "title": "Cross product, orientation, area, torque, and the scalar triple product"
+            },
+            {
+              "type": "concept",
+              "title": "Vector identities and proof-aware geometric reasoning"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lines, planes, matrices, and linear systems",
+          "description": "Parametric descriptions and small matrix systems connect spatial geometry to the derivative-matrix viewpoint used later in the course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector and parametric equations of lines"
+            },
+            {
+              "type": "concept",
+              "title": "Normal-vector equations of planes and distances to planes"
+            },
+            {
+              "type": "concept",
+              "title": "Intersections, parallelism, skew lines, and geometric constraints"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix notation, linear maps, determinants, and solving small systems"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vector-Valued Functions and Motion",
+      "description": "Vector-valued functions describe curves and trajectories in space. Their derivatives separate motion into velocity, acceleration, speed, direction, and curvature, creating a bridge from single-variable calculus to mechanics and field-based models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Curves and vector-valued functions",
+          "description": "A parameter lets all coordinates vary together, representing paths that may loop, intersect, or move through three dimensions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Parametric curves, orientation, domains, and traces"
+            },
+            {
+              "type": "concept",
+              "title": "Limits, continuity, derivatives, and integrals component by component"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent lines and smoothness of a parametrized curve"
+            },
+            {
+              "type": "concept",
+              "title": "Reparameterization and the role of the parameter"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Position, velocity, acceleration, and speed",
+          "description": "Derivatives of a position vector give a complete kinematic description and make units and reference frames explicit.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position, displacement, velocity, speed, and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Projectile and orbital-style motion under simplified force laws"
+            },
+            {
+              "type": "concept",
+              "title": "Recovering position from velocity or acceleration and initial data"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting vector components, signs, and units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Arc length, curvature, and moving frames",
+          "description": "Arc length measures distance along a curve, while curvature and moving unit vectors describe how sharply and in what direction a trajectory turns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Arc length and the arc-length parameter"
+            },
+            {
+              "type": "concept",
+              "title": "Unit tangent vector and curvature"
+            },
+            {
+              "type": "concept",
+              "title": "Principal normal and tangential-normal acceleration components"
+            },
+            {
+              "type": "concept",
+              "title": "Optional enrichment: binormal vector, torsion, and Frenet frame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Functions of Several Variables, Limits, and Continuity",
+      "description": "Functions of several variables model quantities influenced by multiple inputs. This unit develops their geometry and the path-independent limiting behavior required before derivatives and approximations can be trusted.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Domains, graphs, and level sets",
+          "description": "Different representations reveal different features: a graph shows height, a level set shows where output is constant, and a domain records which inputs are meaningful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functions from R^n to R and from R^n to R^m"
+            },
+            {
+              "type": "concept",
+              "title": "Domains, ranges, graphs, level curves, level surfaces, and contour maps"
+            },
+            {
+              "type": "concept",
+              "title": "Sections, traces, and data-based visualizations"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to temperature, concentration, cost, utility, and energy landscapes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multivariable limits",
+          "description": "A multivariable limit must be the same along every possible approach, so checking a few paths can disprove a limit but usually cannot prove one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Neighborhoods, distance, and approaching a point in multiple dimensions"
+            },
+            {
+              "type": "concept",
+              "title": "Limits by substitution and algebraic simplification"
+            },
+            {
+              "type": "concept",
+              "title": "Path tests for nonexistence"
+            },
+            {
+              "type": "concept",
+              "title": "Bounding, squeeze arguments, and polar-coordinate estimates for existence"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuity and local behavior",
+          "description": "Continuity ensures that nearby inputs produce nearby outputs and supports composition, extreme-value arguments, integration, and numerical modeling.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuity at a point and on a region"
+            },
+            {
+              "type": "concept",
+              "title": "Continuity of sums, products, quotients, and compositions"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary behavior and discontinuity classification"
+            },
+            {
+              "type": "concept",
+              "title": "Closed and bounded regions, intuitive compactness and existence of extrema"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Partial Derivatives, Differentiability, and the Chain Rule",
+      "description": "Partial derivatives measure one-input-at-a-time change, but differentiability is the stronger claim that one linear map approximates all small changes at once. This distinction is central to reliable modeling, optimization, and computation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Partial and higher-order derivatives",
+          "description": "Holding other inputs fixed isolates sensitivity to one variable and produces the building blocks for gradients, Hessians, and differential equations.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First partial derivatives from formulas, tables, and limits"
+            },
+            {
+              "type": "concept",
+              "title": "Units and ceteris-paribus interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Second and mixed partial derivatives"
+            },
+            {
+              "type": "concept",
+              "title": "Clairaut's theorem and the conditions for equality of mixed partials"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Differentiability, tangent planes, and total differentials",
+          "description": "Differentiability means the function has a best local linear approximation, not merely that its partial derivatives exist.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangent planes and linearization"
+            },
+            {
+              "type": "concept",
+              "title": "Total differentials and propagated measurement error"
+            },
+            {
+              "type": "concept",
+              "title": "Sufficient conditions for differentiability and counterexamples"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative matrices and the Jacobian as a linear map"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multivariable chain rules and implicit differentiation",
+          "description": "The chain rule tracks how change propagates through a dependency network and provides the derivative of a composition of multivariable maps.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Chain rule along a parametrized path"
+            },
+            {
+              "type": "concept",
+              "title": "Tree diagrams and dependency graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Matrix form of the chain rule for R^n to R^m maps"
+            },
+            {
+              "type": "concept",
+              "title": "Implicit differentiation and sensitivity in constrained relationships"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Gradient, Directional Derivatives, and Local Approximation",
+      "description": "The gradient packages all first-order information for a scalar field. It points in the direction of steepest increase, stands perpendicular to level sets, and drives approximation, optimization, flux, and field models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Directional derivatives and the gradient",
+          "description": "A directional derivative asks how a scalar field changes along a chosen unit direction. The gradient answers all such questions through one dot product.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Directional derivative from a path and from the gradient formula"
+            },
+            {
+              "type": "concept",
+              "title": "Unit-direction requirement and normalization"
+            },
+            {
+              "type": "concept",
+              "title": "Maximum rate of change and steepest ascent or descent"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient orthogonality to level curves and level surfaces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Tangent objects and normal vectors",
+          "description": "Gradients supply normal vectors to implicit curves and surfaces, making tangent lines and tangent planes systematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangent lines to level curves"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent planes and normal lines to level surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Angle of intersection and orthogonality"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to terrain, thermodynamics, fields, and implicit geometry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "First- and second-order Taylor approximation",
+          "description": "Taylor approximation extends tangent-plane reasoning by using gradient and curvature information to predict nearby values and assess local error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "First-order approximation and differentials"
+            },
+            {
+              "type": "concept",
+              "title": "Jacobian-based approximation for vector-valued maps"
+            },
+            {
+              "type": "concept",
+              "title": "Hessian matrix and quadratic terms"
+            },
+            {
+              "type": "concept",
+              "title": "Error, scaling, sensitivity, and the limits of local models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Unconstrained and Constrained Optimization",
+      "description": "Optimization identifies best feasible choices in design, economics, science, and operations. A world-class treatment combines geometric intuition, derivative tests, boundary analysis, and careful interpretation rather than relying on formulas alone.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Critical points and local classification",
+          "description": "At an interior differentiable optimum the gradient vanishes, but a critical point may be a maximum, minimum, saddle, or inconclusive case.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Critical points and stationary conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Hessian matrix and the two-variable second-derivative test"
+            },
+            {
+              "type": "concept",
+              "title": "Positive and negative definiteness as enrichment"
+            },
+            {
+              "type": "concept",
+              "title": "Saddle points, degeneracy, and inconclusive tests"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Global extrema and boundary analysis",
+          "description": "Global optimization requires a complete search over the interior and boundary of the feasible region, supported by an existence theorem when appropriate.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Extreme Value Theorem on closed, bounded regions"
+            },
+            {
+              "type": "concept",
+              "title": "Boundary parameterization and endpoint checks"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise or non-smooth feasible boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing all candidates and interpreting feasibility"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Lagrange multipliers and applications",
+          "description": "At a smooth constrained optimum, objective and constraint gradients align. The multiplier can also carry a useful marginal or sensitivity meaning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "One equality constraint and the gradient-parallel condition"
+            },
+            {
+              "type": "concept",
+              "title": "Solving the multiplier system and checking candidates"
+            },
+            {
+              "type": "concept",
+              "title": "Multiple constraints and constraint qualification as enrichment"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering design, economic allocation, chemistry, and least-squares examples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Double Integrals and Integration over Planar Regions",
+      "description": "Double integrals accumulate density, probability, cost, mass, or another local quantity across a two-dimensional region. The main intellectual work is describing the region and choosing an efficient order or coordinate system.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Riemann sums and iterated integrals",
+          "description": "A double integral is the limit of weighted sums over small area elements. Fubini's theorem converts many such limits into repeated one-variable integrals.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Double Riemann sums and signed volume"
+            },
+            {
+              "type": "concept",
+              "title": "Fubini's theorem and iterated integrals on rectangles"
+            },
+            {
+              "type": "concept",
+              "title": "Average value over a region"
+            },
+            {
+              "type": "concept",
+              "title": "Numerical approximation from grids or sampled data"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "General regions and changing order",
+          "description": "Type I and Type II descriptions expose different slicing choices. Reversing order can turn an impossible integral into a simple one.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vertically and horizontally simple regions"
+            },
+            {
+              "type": "concept",
+              "title": "Sketching bounds before integrating"
+            },
+            {
+              "type": "concept",
+              "title": "Changing the order of integration"
+            },
+            {
+              "type": "concept",
+              "title": "Splitting non-simple regions into valid pieces"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Polar coordinates and planar applications",
+          "description": "Polar coordinates match circular and radial symmetry, with the factor r accounting for how area scales away from the origin.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Cartesian-polar conversion and polar regions"
+            },
+            {
+              "type": "concept",
+              "title": "Area element dA = r dr dtheta"
+            },
+            {
+              "type": "concept",
+              "title": "Mass, moments, center of mass, and probability density"
+            },
+            {
+              "type": "concept",
+              "title": "Radially symmetric models and normalization checks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Triple Integrals, Coordinate Systems, and Change of Variables",
+      "description": "Triple integrals extend accumulation to volumes, while a general change of variables adapts the coordinate grid to the geometry. The Jacobian determinant measures the local scaling of area or volume under that transformation.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Triple integrals in rectangular coordinates",
+          "description": "A three-dimensional region can be sliced and projected in several ways. A clear sketch and consistent bounds are essential.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Iterated triple integrals and order of integration"
+            },
+            {
+              "type": "concept",
+              "title": "Describing solids by projections and bounding surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Volume, mass, average value, and center of mass"
+            },
+            {
+              "type": "concept",
+              "title": "Probability densities and normalization in three dimensions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cylindrical and spherical coordinates",
+          "description": "Coordinate systems based on rotational symmetry can simplify both the region and the integrand when their volume elements are derived and used correctly.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Coordinate conversion and geometric ranges"
+            },
+            {
+              "type": "concept",
+              "title": "Cylindrical volume element r dz dr dtheta"
+            },
+            {
+              "type": "concept",
+              "title": "Spherical volume element rho^2 sin(phi) d rho d phi dtheta"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to pipes, tanks, spheres, fields, and radial densities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "General transformations and Jacobians",
+          "description": "A change of variables replaces a difficult region with a simpler one while the absolute Jacobian determinant preserves the correct local measure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Mapping regions between coordinate planes"
+            },
+            {
+              "type": "concept",
+              "title": "Computing and interpreting a 2D or 3D Jacobian determinant"
+            },
+            {
+              "type": "concept",
+              "title": "One-to-one conditions, orientation, and absolute value"
+            },
+            {
+              "type": "concept",
+              "title": "Nonlinear transformations, scaling, and verification by alternate methods"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Vector Fields, Line Integrals, and Conservative Fields",
+      "description": "Vector fields assign a vector to each point, representing velocity, force, electrical influence, gradients, or transport. Line integrals measure accumulated work, circulation, or scalar density along a curve.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Visualizing and interpreting vector fields",
+          "description": "A field plot, streamlines, and local vectors reveal direction and magnitude before any integral is computed.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Vector fields in the plane and space"
+            },
+            {
+              "type": "concept",
+              "title": "Flow lines, sources, sinks, rotation, and qualitative behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Gradient fields and physical examples"
+            },
+            {
+              "type": "concept",
+              "title": "Domain restrictions and singularities"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scalar and vector line integrals",
+          "description": "The line element determines whether the integral accumulates scalar density along length or the tangential component of a vector field along motion.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Scalar line integrals with respect to arc length"
+            },
+            {
+              "type": "concept",
+              "title": "Work and circulation integrals F dot dr"
+            },
+            {
+              "type": "concept",
+              "title": "Parameterization, orientation, and reparameterization invariance"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise smooth curves and dimensional analysis"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Conservative fields and potential functions",
+          "description": "When a field is a gradient, work depends only on endpoints. This converts a path integral into a potential difference and exposes energy structure.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Potential functions and exact differentials"
+            },
+            {
+              "type": "concept",
+              "title": "Fundamental Theorem for Line Integrals"
+            },
+            {
+              "type": "concept",
+              "title": "Path independence and closed-loop tests"
+            },
+            {
+              "type": "concept",
+              "title": "Curl-free criteria, simply connected domains, and important caveats"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Green's Theorem in the Plane",
+      "description": "Green's theorem equates circulation or flux around a closed planar boundary with a double integral over the enclosed region. It is the first major example of a boundary-interior principle that unifies vector calculus.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Circulation form",
+          "description": "The circulation form converts a positively oriented boundary integral into the accumulated scalar curl over the region.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statement, hypotheses, and positive orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Piecewise smooth simple closed curves"
+            },
+            {
+              "type": "concept",
+              "title": "Computing circulation from a double integral"
+            },
+            {
+              "type": "concept",
+              "title": "Computing a difficult double integral from a boundary integral"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flux form and planar divergence",
+          "description": "The flux form relates outward flow across a boundary to net source strength within the region.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Planar divergence and outward normal orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Flux form of Green's theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Sources, sinks, and conservation interpretation"
+            },
+            {
+              "type": "concept",
+              "title": "Connections between circulation and flux forms"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Area and multiply connected regions",
+          "description": "Green's theorem can compute area and remains valid on regions with holes when every boundary component receives the correct induced orientation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area formulas derived from Green's theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Inner and outer boundary orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Removing singularities and decomposing regions"
+            },
+            {
+              "type": "concept",
+              "title": "Hypothesis checks and counterexamples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Parametric Surfaces and Surface Integrals",
+      "description": "Parametric surfaces generalize parametrized curves to two parameters. Their tangent vectors determine local area and orientation, enabling surface area, distributed mass, and flux calculations on curved geometry.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Parametrizing surfaces",
+          "description": "A good parameterization covers the intended surface once, makes the boundary visible, and matches the geometry of the problem.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Graphs, planes, cylinders, spheres, and surfaces of revolution"
+            },
+            {
+              "type": "concept",
+              "title": "Parameter domains and regularity"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent vectors and tangent planes"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation and consistent normal vectors"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Surface area and scalar surface integrals",
+          "description": "The magnitude of the cross product of tangent vectors converts parameter-space area into true surface area.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Surface element dS from a parameterization"
+            },
+            {
+              "type": "concept",
+              "title": "Surface area of graphs and parametrized surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Mass or charge distributed on a surface"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding double coverage and checking symmetry"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Flux integrals",
+          "description": "A flux integral measures the component of a vector field passing through an oriented surface and is fundamental to transport and conservation laws.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Oriented vector area element"
+            },
+            {
+              "type": "concept",
+              "title": "Flux through graphs and parametrized surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Open versus closed surfaces"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to fluid flow, heat, electromagnetism, and membranes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Divergence, Curl, Stokes' Theorem, and the Divergence Theorem",
+      "description": "The capstone of multivariable calculus connects local differential measurements to global boundary integrals. Curl measures local rotation, divergence measures net outflow, and the major integral theorems turn these local quantities into circulation and flux laws.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Divergence and curl",
+          "description": "These operators summarize complementary field behavior and support qualitative reasoning before computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Computing and interpreting divergence"
+            },
+            {
+              "type": "concept",
+              "title": "Computing and interpreting curl"
+            },
+            {
+              "type": "concept",
+              "title": "Identities such as div(curl F)=0 and curl(grad f)=0"
+            },
+            {
+              "type": "concept",
+              "title": "Smoothness, domains, singularities, and physical units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Stokes' theorem",
+          "description": "Stokes' theorem relates circulation around a boundary curve to the flux of curl through any compatible spanning surface.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statement, hypotheses, boundary orientation, and right-hand rule"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing a convenient spanning surface"
+            },
+            {
+              "type": "concept",
+              "title": "Reducing line integrals to surface integrals and conversely"
+            },
+            {
+              "type": "concept",
+              "title": "Green's theorem as a planar special case"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Divergence theorem and synthesis",
+          "description": "The divergence theorem relates outward flux through a closed surface to total divergence inside, providing a mathematical form of conservation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Statement, hypotheses, outward orientation, and piecewise smooth boundaries"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing between direct flux and volume integration"
+            },
+            {
+              "type": "concept",
+              "title": "Gauss-law, transport, continuity, and conservation applications"
+            },
+            {
+              "type": "concept",
+              "title": "Unifying the Fundamental Theorem of Calculus, Green, Stokes, and divergence theorems"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

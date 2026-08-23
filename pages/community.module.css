@@ -339,6 +339,32 @@
   color: #0089c4;
 }
 
+.conceptTree {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  color: #6b7280;
+  margin: 8px 0 0;
+  max-width: 720px;
+}
+
+.curatedCourseLink,
+.curatedCourseName {
+  font-weight: 500;
+  color: #0089c4;
+  text-decoration: none;
+}
+
+.curatedCourseLink:hover,
+.curatedCourseLink:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.conceptTreeSep {
+  color: #d7d8da;
+}
+
 .metaDot {
   color: var(--outline, #e6e6e6);
 }
@@ -372,6 +398,22 @@
   font-size: 12px;
   line-height: 20px;
   color: #6b7280;
+}
+
+.authorLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.authorLink:hover,
+.authorLink:focus-visible {
+  color: #0089c4;
+}
+
+.authorLink:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
 }
 
 .rowTitle {
@@ -504,6 +546,11 @@
   margin-bottom: 6px;
 }
 
+.labelOptional {
+  font-weight: 400;
+  color: #6b7280;
+}
+
 .input,
 .textarea {
   width: 100%;
@@ -527,6 +574,109 @@
 .textarea:focus-visible {
   outline: none;
   border-color: #0089c4;
+}
+
+.select {
+  position: relative;
+}
+
+.selectTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #d7d8da;
+  border-radius: 0;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 200ms ease;
+}
+
+.selectTriggerOpen,
+.selectTrigger:hover,
+.selectTrigger:focus-visible {
+  border-color: #0089c4;
+  outline: none;
+}
+
+.selectChevron {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  color: #6b7280;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), color 200ms ease;
+}
+
+.selectChevronOpen {
+  transform: rotate(180deg);
+  color: #0089c4;
+}
+
+.selectMenu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 4;
+  background: #fff;
+  border: 1px solid #d7d8da;
+  box-shadow: 0 12px 32px rgba(37, 39, 43, 0.1);
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: grid-template-rows 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 200ms ease;
+}
+
+.selectMenuOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  border-color: #0089c4;
+}
+
+.selectMenuInner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 4px 0;
+}
+
+.selectOption {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #25272b;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.selectOption:hover,
+.selectOption:focus-visible {
+  background: #f5fbff;
+  color: #0089c4;
+  outline: none;
+}
+
+.selectOptionSelected {
+  color: #0089c4;
 }
 
 .modalActions {
@@ -616,7 +766,11 @@
   .host,
   .btn,
   .btnPrimary,
-  .rowTitleLink::after {
+  .rowTitleLink::after,
+  .selectTrigger,
+  .selectChevron,
+  .selectMenu,
+  .selectOption {
     transition: none;
   }
 }

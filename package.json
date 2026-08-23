@@ -33,6 +33,7 @@
     "@keyvhq/redis": "^1.6.10",
     "@react-icons/all-files": "^4.1.0",
     "@supabase/supabase-js": "^2.98.0",
+    "@tiptap/extension-image": "^2.27.2",
     "@tiptap/extension-link": "^2.27.2",
     "@tiptap/extension-mathematics": "^2.27.2",
     "@tiptap/extension-placeholder": "^2.27.2",

@@ -13,8 +13,6 @@ import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
 import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
-import { ProfileNotebooksPanel } from '@/components/ProfileNotebooksPanel'
-import { ProfileSavedNotebooksList } from '@/components/ProfileSavedNotebooksList'
 import {
   type CommunityResourceBookmarkWithCourse,
   ensureCommunityResourceBookmark,
@@ -22,18 +20,12 @@ import {
   getMyCommunityResourceBookmarks
 } from '@/lib/community-wall-db'
 import { name as siteName } from '@/lib/config'
-import {
-  addBookmark,
-  getMyBookmarks,
-  type Course
-} from '@/lib/course-activity-db'
-import type { Annotation, Bookmark, Comment } from '@/lib/course-activity-db'
+import type { Annotation, Comment, Course } from '@/lib/course-activity-db'
 import {
   type ProfileListItem,
   type PublicProfile,
   followUser,
   getAnnotationsByUser,
-  getBookmarksByUser,
   getCommentsByUser,
   getFollowStatus,
   getFollowersCount,
@@ -43,20 +35,12 @@ import {
   getProfileByUserId,
   unfollowUser
 } from '@/lib/follows'
-import {
-  type Notebook,
-  getPublishedNotebooksByUserId
-} from '@/lib/notebooks-db'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
 import {
   type ProfilePersonalLink,
   listPersonalLinksByUserId
 } from '@/lib/profile-personal-links-db'
-import {
-  notebookAbsoluteUrl,
-  notebookUserLinkHref,
-  parseNotebookIdFromUserLinkUrl
-} from '@/lib/notebook-bookmark-link'
+import { parseNotebookIdFromUserLinkUrl } from '@/lib/notebook-bookmark-link'
 import {
   type LinkTag,
   type UserLinkWithTag,
@@ -76,7 +60,7 @@ import {
   type BookmarkTagFilter
 } from '@/lib/bookmark-tag-filter'
 
-/** Same bookmark glyph as ProfileNotebooksPanel / notebook rows */
+/** Bookmark glyph on public profile saved-link rows */
 function ProfileSaveBookmarkIcon({ filled }: { filled: boolean }) {
   if (filled) {
     return (
@@ -149,9 +133,6 @@ export default function PublicProfilePage() {
   const [followersCount, setFollowersCount] = useState(0)
   const [followingList, setFollowingList] = useState<ProfileListItem[]>([])
   const [followersList, setFollowersList] = useState<ProfileListItem[]>([])
-  const [bookmarks, setBookmarks] = useState<
-    { bookmark: Bookmark; course: Course }[]
-  >([])
   const [resourceBookmarks, setResourceBookmarks] = useState<
     CommunityResourceBookmarkWithCourse[]
   >([])
@@ -162,11 +143,6 @@ export default function PublicProfilePage() {
   )
   const [showNoteForLinkId, setShowNoteForLinkId] = useState<string | null>(
     null
-  )
-  const notebookPinLinks = useMemo(
-    () =>
-      userLinks.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null),
-    [userLinks]
   )
   const savedProfileLinks = useMemo(
     () =>
@@ -188,56 +164,6 @@ export default function PublicProfilePage() {
       linkMatchesBookmarkTagFilter(l, bookmarkTagFilter)
     )
   }, [savedProfileLinks, bookmarkTagFilter])
-
-  /** Saved notebooks tab: notebook pins + course bookmarks, A–Z by title. */
-  const savedNotebooksAndCourseRows = useMemo(() => {
-    type Row =
-      | {
-          kind: 'notebook'
-          id: string
-          notebookId: string
-          title: string
-          href: string
-          createdAt: string
-        }
-      | {
-          kind: 'course'
-          id: string
-          courseId: string
-          title: string
-          href: string
-          createdAt: string
-        }
-    const rows: Row[] = []
-    for (const l of notebookPinLinks) {
-      const notebookId = parseNotebookIdFromUserLinkUrl(l.url)
-      if (!notebookId) continue
-      const title = l.title?.trim() || 'Notebook'
-      rows.push({
-        kind: 'notebook',
-        id: l.id,
-        notebookId,
-        title,
-        href: notebookUserLinkHref(l.url),
-        createdAt: l.created_at
-      })
-    }
-    for (const { bookmark, course } of bookmarks) {
-      const title = course.name
-      rows.push({
-        kind: 'course',
-        id: bookmark.id,
-        courseId: course.notion_page_id,
-        title,
-        href: course.url ?? `/${course.notion_page_id}`,
-        createdAt: bookmark.created_at
-      })
-    }
-    rows.sort((a, b) =>
-      a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
-    )
-    return rows
-  }, [notebookPinLinks, bookmarks])
 
   const publicSavedBookmarkRows = useMemo(() => {
     type Row =
@@ -302,14 +228,10 @@ export default function PublicProfilePage() {
     return rows
   }, [comments, annotations])
 
-  const [publishedNotebooks, setPublishedNotebooks] = useState<Notebook[]>([])
   const [profileInterestTags, setProfileInterestTags] = useState<string[]>([])
   const [mainTab, setMainTab] = useState<
-    'notebooks' | 'bookmarks' | 'activity'
+    'learning-path' | 'bookmarks' | 'activity'
   >('activity')
-  const [notebooksSubTab, setNotebooksSubTab] = useState<'yours' | 'saved'>(
-    'yours'
-  )
   const [loading, setLoading] = useState(true)
   const [followLoading, setFollowLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
@@ -320,74 +242,6 @@ export default function PublicProfilePage() {
     useState<ConnectionsTab>('following')
   const [rowFollowBusyId, setRowFollowBusyId] = useState<string | null>(null)
   const { followingIds, refresh: refreshFollowingIds } = useFollowingIds()
-
-  /** Signed-in viewer’s notebook URL pins (for bookmark controls on others’ notebooks). */
-  const [myNotebookPinLinks, setMyNotebookPinLinks] = useState<
-    UserLinkWithTag[]
-  >([])
-  const [myCourseBookmarks, setMyCourseBookmarks] = useState<
-    { bookmark: Bookmark; course: Course }[]
-  >([])
-
-  const loadMyNotebookPins = useCallback(async () => {
-    if (!currentUserId) {
-      setMyNotebookPinLinks([])
-      setMyCourseBookmarks([])
-      return
-    }
-    const [all, courseBookmarks] = await Promise.all([
-      getMyLinks(null),
-      getMyBookmarks()
-    ])
-    setMyNotebookPinLinks(
-      all.filter((l) => parseNotebookIdFromUserLinkUrl(l.url) != null)
-    )
-    setMyCourseBookmarks(courseBookmarks)
-  }, [currentUserId])
-
-  useEffect(() => {
-    void loadMyNotebookPins()
-  }, [loadMyNotebookPins])
-
-  const viewerBookmarkedNotebookIds = useMemo(() => {
-    const s = new Set<string>()
-    for (const l of myNotebookPinLinks) {
-      const id = parseNotebookIdFromUserLinkUrl(l.url)
-      if (id) s.add(id)
-    }
-    return s
-  }, [myNotebookPinLinks])
-
-  const viewerBookmarkedCourseIds = useMemo(
-    () => new Set(myCourseBookmarks.map(({ course }) => course.notion_page_id)),
-    [myCourseBookmarks]
-  )
-
-  const pinNotebookToMyBookmarks = useCallback(
-    async (nb: { id: string; title: string }) => {
-      if (!currentUserId || typeof window === 'undefined') return false
-      if (viewerBookmarkedNotebookIds.has(nb.id)) return true
-      const url = notebookAbsoluteUrl(nb.id, window.location.origin)
-      const row = await addLink(url, {
-        title: nb.title,
-        note: 'Pinned from a profile'
-      })
-      if (row) await loadMyNotebookPins()
-      return !!row
-    },
-    [currentUserId, viewerBookmarkedNotebookIds, loadMyNotebookPins]
-  )
-
-  const bookmarkCourseToMyBookmarks = useCallback(
-    async (course: { id: string }) => {
-      if (!currentUserId) return false
-      if (viewerBookmarkedCourseIds.has(course.id)) return true
-      const ok = await addBookmark(course.id)
-      if (ok) await loadMyNotebookPins()
-      return ok
-    },
-    [currentUserId, viewerBookmarkedCourseIds, loadMyNotebookPins]
-  )
 
   const [viewerResourceBookmarkIds, setViewerResourceBookmarkIds] = useState<
     Set<string>
@@ -497,7 +351,6 @@ export default function PublicProfilePage() {
     async (uid: string) => {
       setLoading(true)
       setNotFound(false)
-      setPublishedNotebooks([])
       setProfileInterestTags([])
       setBookmarkTagFilter(EMPTY_BOOKMARK_TAG_FILTER)
       const [
@@ -507,14 +360,12 @@ export default function PublicProfilePage() {
         fersCount,
         fList,
         fersList,
-        b,
         resourceB,
         links,
         linkTags,
         personal,
         c,
         a,
-        pubNotebooks,
         interestTags
       ] = await Promise.all([
         getProfileByUserId(uid),
@@ -523,14 +374,12 @@ export default function PublicProfilePage() {
         getFollowersCount(uid),
         getFollowingList(uid),
         getFollowersList(uid),
-        getBookmarksByUser(uid),
         getCommunityResourceBookmarksByUser(uid),
         getLinksByUserId(uid),
         getLinkTagsByUserId(uid),
         listPersonalLinksByUserId(uid),
         getCommentsByUser(uid),
         getAnnotationsByUser(uid),
-        getPublishedNotebooksByUserId(uid),
         getProfileInterestsByUserId(uid)
       ])
       if (!p) {
@@ -547,14 +396,12 @@ export default function PublicProfilePage() {
       setFollowersCount(fersCount)
       setFollowingList(fList)
       setFollowersList(fersList)
-      setBookmarks(b)
       setResourceBookmarks(resourceB)
       setUserLinks(links)
       setProfileLinkTags(linkTags)
       setPersonalLinks(personal)
       setComments(c)
       setAnnotations(a)
-      setPublishedNotebooks(pubNotebooks)
       setProfileInterestTags(interestTags)
       setLoading(false)
     },
@@ -959,15 +806,15 @@ export default function PublicProfilePage() {
                   <button
                     type='button'
                     role='tab'
-                    aria-selected={mainTab === 'notebooks'}
+                    aria-selected={mainTab === 'learning-path'}
                     className={
-                      mainTab === 'notebooks'
+                      mainTab === 'learning-path'
                         ? styles.primaryTabActive
                         : styles.primaryTab
                     }
-                    onClick={() => setMainTab('notebooks')}
+                    onClick={() => setMainTab('learning-path')}
                   >
-                    Notebooks
+                    Learning Path
                   </button>
                   <button
                     type='button'
@@ -1530,75 +1377,9 @@ export default function PublicProfilePage() {
                   </div>
                 )}
 
-                {mainTab === 'notebooks' && (
+                {mainTab === 'learning-path' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>Notebooks</h2>
-                    <div className={styles.activitySubTabs} role='tablist'>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={notebooksSubTab === 'yours'}
-                        className={
-                          notebooksSubTab === 'yours'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setNotebooksSubTab('yours')}
-                      >
-                        Their notebooks
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={notebooksSubTab === 'saved'}
-                        className={
-                          notebooksSubTab === 'saved'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setNotebooksSubTab('saved')}
-                      >
-                        Saved notebooks
-                      </button>
-                    </div>
-
-                    {notebooksSubTab === 'yours' ? (
-                      <ProfileNotebooksPanel
-                        notebooks={publishedNotebooks}
-                        loading={loading}
-                        onRefresh={() => undefined}
-                        canCreate={false}
-                        subsectionTitle={null}
-                        emptyHint='No notebooks yet.'
-                        bookmarkedNotebookIds={
-                          currentUserId ? viewerBookmarkedNotebookIds : undefined
-                        }
-                        onBookmarkNotebook={
-                          currentUserId ? pinNotebookToMyBookmarks : undefined
-                        }
-                      />
-                    ) : (
-                      <ProfileSavedNotebooksList
-                        rows={savedNotebooksAndCourseRows}
-                        loading={loading}
-                        emptyMessage='No saved notebooks or courses on this profile yet.'
-                        bookmarkedNotebookIds={
-                          currentUserId ? viewerBookmarkedNotebookIds : undefined
-                        }
-                        bookmarkedCourseIds={
-                          currentUserId ? viewerBookmarkedCourseIds : undefined
-                        }
-                        onBookmarkNotebook={
-                          currentUserId ? pinNotebookToMyBookmarks : undefined
-                        }
-                        onBookmarkCourse={
-                          currentUserId
-                            ? (course) =>
-                                bookmarkCourseToMyBookmarks({ id: course.id })
-                            : undefined
-                        }
-                      />
-                    )}
+                    <h2 className={styles.mainSerifTitle}>Learning Path</h2>
                   </div>
                 )}
               </div>

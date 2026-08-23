@@ -283,6 +283,22 @@ export interface CommunityPageResource {
   user_vote: 1 | -1 | null
   comment_count: number
   created_at: string
+  concept_tree: string | null
+  from_curated_course: boolean
+  curated_course_slug: string | null
+  author_id: string
+}
+
+function trimConceptTree(value: string | null | undefined): string | null {
+  const trimmed = (value ?? '').trim()
+  if (!trimmed) return null
+  return trimmed.slice(0, 1000)
+}
+
+function trimCourseSlug(value: string | null | undefined): string | null {
+  const trimmed = (value ?? '').trim()
+  if (!trimmed) return null
+  return trimmed.slice(0, 200)
 }
 
 /** Resources on the /community page, newest first, with votes and counts. */
@@ -294,7 +310,9 @@ export async function getCommunityPageResources(): Promise<
 
   const { data, error } = await supabase
     .from('resources')
-    .select('id, title, url, type, description, submitted_by, created_at')
+    .select(
+      'id, title, url, type, description, submitted_by, created_at, concept_tree, from_curated_course, curated_course_slug'
+    )
     .order('created_at', { ascending: false })
   if (error) throw error
   if (!data?.length) return []
@@ -307,6 +325,9 @@ export async function getCommunityPageResources(): Promise<
     description: string | null
     submitted_by: string
     created_at: string
+    concept_tree: string | null
+    from_curated_course: boolean | null
+    curated_course_slug: string | null
   }>
   const resourceIds = rows.map((r) => r.id)
 
@@ -335,7 +356,11 @@ export async function getCommunityPageResources(): Promise<
     score: voteMap[r.id]?.score ?? 0,
     user_vote: voteMap[r.id]?.user_vote ?? null,
     comment_count: counts[r.id] ?? 0,
-    created_at: r.created_at
+    created_at: r.created_at,
+    concept_tree: r.concept_tree,
+    from_curated_course: Boolean(r.from_curated_course),
+    curated_course_slug: r.curated_course_slug,
+    author_id: r.submitted_by
   }))
 }
 
@@ -345,6 +370,9 @@ export async function addCommunityPageResource(input: {
   description: string
   url: string
   type: ResourceDbType
+  conceptTree?: string | null
+  fromCuratedCourse?: boolean
+  curatedCourseSlug?: string | null
 }): Promise<CommunityPageResource | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
@@ -353,16 +381,24 @@ export async function addCommunityPageResource(input: {
   } = await supabase.auth.getUser()
   if (!user) return null
 
+  const title = input.title.trim().slice(0, 300)
+  if (!title) return null
+
   const { data, error } = await supabase
     .from('resources')
     .insert({
-      title: input.title,
-      description: input.description,
+      title,
+      description: input.description.trim() || null,
       url: input.url,
       type: input.type,
-      submitted_by: user.id
+      submitted_by: user.id,
+      concept_tree: trimConceptTree(input.conceptTree),
+      from_curated_course: Boolean(input.fromCuratedCourse),
+      curated_course_slug: trimCourseSlug(input.curatedCourseSlug)
     })
-    .select('id, title, url, type, description, submitted_by, created_at')
+    .select(
+      'id, title, url, type, description, submitted_by, created_at, concept_tree, from_curated_course, curated_course_slug'
+    )
     .single()
   if (error || !data) return null
 
@@ -377,6 +413,10 @@ export async function addCommunityPageResource(input: {
     score: 0,
     user_vote: null,
     comment_count: 0,
-    created_at: data.created_at
+    created_at: data.created_at,
+    concept_tree: data.concept_tree,
+    from_curated_course: Boolean(data.from_curated_course),
+    curated_course_slug: data.curated_course_slug,
+    author_id: user.id
   }
 }

@@ -1,8 +1,129 @@
 {
   "slug": "biostatistics",
   "title": "Biostatistics",
-  "description": "This 14-topic sequence begins with data literacy and study design, then builds through inference, common tests, regression, survival analysis, and reproducible health-science reporting.",
-  "resources": [],
+  "description": "Biostatistics develops the ability to learn from biological, clinical, and population-health data under uncertainty. Students move from well-posed questions and defensible designs to data exploration, probability, estimation, testing, regression, generalized models, survival analysis, reproducible computing, and responsible communication. The unified course uses one conceptual and computational core for all three degrees. Cases, data sets, and capstone choices provide Biology, Health Professions, and Public Health lenses.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "The Analysis of Biological Data",
+      "linkOrSite": "Macmillan",
+      "description": "Whitlock and Schluter. Biology-centered conceptual foundation, examples, experimental reasoning, and interpretation."
+    },
+    {
+      "kind": "textbook",
+      "title": "Fundamentals of Biostatistics",
+      "linkOrSite": "Cengage",
+      "description": "Rosner. Comprehensive probability, inference, regression, survival, and clinical/health applications."
+    },
+    {
+      "kind": "textbook",
+      "title": "Biostatistics: The Bare Essentials",
+      "linkOrSite": "PMPH",
+      "description": "Norman and Streiner. Approachable explanations for Health Professions and Public Health learners."
+    },
+    {
+      "kind": "textbook",
+      "title": "Intuitive Biostatistics",
+      "linkOrSite": "Oxford University Press",
+      "description": "Motulsky. Clear guidance on uncertainty, test interpretation, effect size, multiple comparisons, and common errors."
+    },
+    {
+      "kind": "textbook",
+      "title": "Regression Methods in Biostatistics",
+      "linkOrSite": "Springer",
+      "description": "Vittinghoff et al. Bridge to linear, logistic, survival, repeated-measures, and applied health modeling."
+    },
+    {
+      "kind": "textbook",
+      "title": "OpenIntro Statistics",
+      "linkOrSite": "https://www.openintro.org/book/os/",
+      "description": "Free readings, exercises, data sets, labs, slides, and conceptual review."
+    },
+    {
+      "kind": "textbook",
+      "title": "OpenStax Introductory Statistics",
+      "linkOrSite": "https://openstax.org/details/books/introductory-statistics",
+      "description": "Free foundation for description, probability, confidence intervals, tests, ANOVA, and regression."
+    },
+    {
+      "kind": "website",
+      "title": "R for Data Science (2e)",
+      "linkOrSite": "https://r4ds.hadley.nz/",
+      "description": "Free modern reference for importing, transforming, visualizing, and communicating data with R."
+    },
+    {
+      "kind": "website",
+      "title": "R, RStudio, and Quarto",
+      "linkOrSite": "https://www.r-project.org/",
+      "description": "Open statistical computing and reproducible reports. SAS may be substituted where program infrastructure requires it. Also https://posit.co/ and https://quarto.org/."
+    },
+    {
+      "kind": "website",
+      "title": "UCLA OARC Statistical Consulting",
+      "linkOrSite": "https://stats.oarc.ucla.edu/",
+      "description": "Applied guides for selecting and running methods in R, SAS, SPSS, and Stata."
+    },
+    {
+      "kind": "website",
+      "title": "ASA GAISE College Report",
+      "linkOrSite": "https://www.amstat.org/education/guidelines-for-assessment-and-instruction-in-statistics-education-%28gaise%29-reports",
+      "description": "Course-design benchmark for statistical thinking, real data, technology, active learning, assessment, and ethics."
+    },
+    {
+      "kind": "website",
+      "title": "Johns Hopkins Statistical Methods in Public Health I",
+      "linkOrSite": "https://qa.publichealth.jhu.edu/course/42103",
+      "description": "Official applied course objectives joining questions, probability, inference, displays, software, and interpretation."
+    },
+    {
+      "kind": "website",
+      "title": "HHMI BioInteractive",
+      "linkOrSite": "https://www.biointeractive.org/classroom-resources",
+      "description": "Authentic biology data, experiments, and classroom investigations."
+    },
+    {
+      "kind": "website",
+      "title": "CDC Data and Epi Info",
+      "linkOrSite": "https://data.cdc.gov/",
+      "description": "Surveillance and population-health data plus an accessible epidemiologic analysis tool. Also https://www.cdc.gov/epiinfo/."
+    },
+    {
+      "kind": "website",
+      "title": "BMJ Statistics Notes",
+      "linkOrSite": "https://www.bmj.com/specialties/statistics-notes",
+      "description": "Short articles on interpreting common statistical methods in medical research."
+    },
+    {
+      "kind": "website",
+      "title": "EQUATOR Network",
+      "linkOrSite": "https://www.equator-network.org/",
+      "description": "CONSORT, STROBE, PRISMA, and other design-specific reporting standards."
+    },
+    {
+      "kind": "website",
+      "title": "NIH Rigor and Reproducibility",
+      "linkOrSite": "https://grants.nih.gov/policy-and-compliance/policy-topics/reproducibility",
+      "description": "Authoritative expectations for transparent, rigorous biological and health research."
+    },
+    {
+      "kind": "youtube",
+      "title": "StatQuest",
+      "linkOrSite": "https://www.youtube.com/@statquest",
+      "description": "Clear explanations of inference, regression, classification, validation, and statistical pitfalls."
+    },
+    {
+      "kind": "youtube",
+      "title": "MarinStatsLectures",
+      "linkOrSite": "https://www.youtube.com/@marinstatlectures",
+      "description": "Worked methods and R practice for applied statistics."
+    },
+    {
+      "kind": "youtube",
+      "title": "Johns Hopkins Bloomberg SPH",
+      "linkOrSite": "https://www.youtube.com/@JohnsHopkinsSPH",
+      "description": "Public-health context and alternative explanations for biostatistical methods."
+    }
+  ],
   "topics": [
     {
       "type": "topic",
@@ -98,6 +219,33 @@
             {
               "type": "concept",
               "title": "Public health surveillance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Estimands and operational definitions",
+          "description": "Students learn to state precisely what quantity the study aims to estimate and how abstract concepts become measurable variables.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Target population"
+            },
+            {
+              "type": "concept",
+              "title": "Unit of analysis"
+            },
+            {
+              "type": "concept",
+              "title": "Outcome definition"
+            },
+            {
+              "type": "concept",
+              "title": "Exposure or intervention contrast"
+            },
+            {
+              "type": "concept",
+              "title": "Time horizon and summary measure"
             }
           ]
         }
@@ -197,6 +345,33 @@
             {
               "type": "concept",
               "title": "Internal and external validity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Measurement quality, ethics, and data-generating processes",
+          "description": "Students learn that unreliable measurement, inappropriate collection, or unethical data practices cannot be repaired by sophisticated analysis.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Validity and reliability"
+            },
+            {
+              "type": "concept",
+              "title": "Misclassification and measurement error"
+            },
+            {
+              "type": "concept",
+              "title": "Informed consent and secondary data use"
+            },
+            {
+              "type": "concept",
+              "title": "Privacy and small-cell risk"
+            },
+            {
+              "type": "concept",
+              "title": "Data provenance"
             }
           ]
         }
@@ -519,7 +694,7 @@
             },
             {
               "type": "concept",
-              "title": "p-value"
+              "title": "P-value"
             },
             {
               "type": "concept",
@@ -593,6 +768,33 @@
             {
               "type": "concept",
               "title": "Attrition allowance"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Multiplicity and selective reporting",
+          "description": "Students examine how many outcomes, subgroups, or repeated tests can inflate false discoveries and distort a scientific story.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Familywise error"
+            },
+            {
+              "type": "concept",
+              "title": "False discovery rate"
+            },
+            {
+              "type": "concept",
+              "title": "Planned versus exploratory analyses"
+            },
+            {
+              "type": "concept",
+              "title": "P-hacking and outcome switching"
+            },
+            {
+              "type": "concept",
+              "title": "Transparent multiplicity reporting"
             }
           ]
         }
@@ -1090,6 +1292,33 @@
               "title": "AIC and practical model selection"
             }
           ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Validation and prediction versus explanation",
+          "description": "Students learn that a model that explains an association is not automatically a good predictor, and apparent fit can disappear in new data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Training and validation data"
+            },
+            {
+              "type": "concept",
+              "title": "Cross-validation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Calibration and discrimination"
+            },
+            {
+              "type": "concept",
+              "title": "Overfitting"
+            },
+            {
+              "type": "concept",
+              "title": "External validity"
+            }
+          ]
         }
       ]
     },
@@ -1187,6 +1416,33 @@
             {
               "type": "concept",
               "title": "Interpretation by outcome type"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Clustered and longitudinal data overview",
+          "description": "Students recognize when observations are correlated within people, clinics, communities, litters, sites, or repeated time points and why ordinary independence assumptions fail.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Clusters and intraclass correlation"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated measures"
+            },
+            {
+              "type": "concept",
+              "title": "Mixed-model intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Generalized estimating equation intuition"
+            },
+            {
+              "type": "concept",
+              "title": "Time-varying outcomes"
             }
           ]
         }
@@ -1288,6 +1544,33 @@
               "title": "Codebooks and metadata"
             }
           ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Sensitivity analysis, privacy, and responsible data stewardship",
+          "description": "Students learn to test whether conclusions depend on cleaning or missing-data choices while protecting the people and communities represented in the data.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Complete-case limitations"
+            },
+            {
+              "type": "concept",
+              "title": "Alternative coding and exclusion rules"
+            },
+            {
+              "type": "concept",
+              "title": "Missing-not-at-random caution"
+            },
+            {
+              "type": "concept",
+              "title": "De-identification and disclosure risk"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible decision log"
+            }
+          ]
         }
       ]
     },
@@ -1315,7 +1598,7 @@
             },
             {
               "type": "concept",
-              "title": "p-value and assumptions"
+              "title": "P-value and assumptions"
             }
           ]
         },
@@ -1385,6 +1668,33 @@
             {
               "type": "concept",
               "title": "Limitations and uncertainty"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Equity-aware interpretation and decision communication",
+          "description": "Students learn to report subgroup evidence without hiding denominators, overstating unstable estimates, or framing inequity as an inherent trait of a population.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Stratified estimates and uncertainty"
+            },
+            {
+              "type": "concept",
+              "title": "Interaction versus separate significance"
+            },
+            {
+              "type": "concept",
+              "title": "Small-sample caution"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute and relative effects"
+            },
+            {
+              "type": "concept",
+              "title": "Respectful audience-centered language"
             }
           ]
         }

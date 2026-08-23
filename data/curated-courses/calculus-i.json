@@ -1,0 +1,1099 @@
+{
+  "slug": "calculus-i",
+  "title": "Calculus I",
+  "description": "Calculus I develops a unified language for change, approximation, optimization, and accumulation. This syllabus is designed as a rigorous first-semester course that can serve biology, engineering, computer science, economics, chemistry, and mathematics pathways while using discipline-specific applications in problem sets and modeling labs. It emphasizes conceptual understanding, symbolic fluency, numerical reasoning, graphical interpretation, proof-aware theorem use, and clear quantitative communication.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "OpenStax Calculus Volume 1",
+      "linkOrSite": "https://openstax.org/details/books/calculus-volume-1",
+      "description": "Best default open textbook. It covers functions, limits, derivatives, and integration with examples and exercises."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus: Early Transcendentals",
+      "linkOrSite": "Cengage",
+      "description": "James Stewart. Large exercise bank and conventional sequence; useful for engineering-style fluency and homework selection."
+    },
+    {
+      "kind": "textbook",
+      "title": "Thomas' Calculus",
+      "linkOrSite": "Pearson",
+      "description": "Clear mainstream reference with strong worked examples and applications."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus: Single Variable",
+      "linkOrSite": "Wiley",
+      "description": "Hughes-Hallett et al. Especially strong for multiple representations, modeling, and conceptual questions."
+    },
+    {
+      "kind": "textbook",
+      "title": "Calculus (Spivak)",
+      "linkOrSite": "Publish or Perish",
+      "description": "Michael Spivak. Optional proof-enrichment text for mathematics majors and advanced students; not the sole text for this mixed audience."
+    },
+    {
+      "kind": "textbook",
+      "title": "Mathematics for Economists",
+      "linkOrSite": "W. W. Norton",
+      "description": "Simon and Blume. Optional economics bridge for marginal analysis, optimization, and later multivariable work."
+    },
+    {
+      "kind": "website",
+      "title": "MIT OpenCourseWare 18.01SC Single Variable Calculus",
+      "linkOrSite": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+      "description": "Self-contained lectures, notes, problem sets, solutions, and challenging exams; the strongest all-in-one open companion."
+    },
+    {
+      "kind": "website",
+      "title": "Paul's Online Math Notes - Calculus I",
+      "linkOrSite": "https://tutorial.math.lamar.edu/Classes/CalcI/CalcI.aspx",
+      "description": "Concise explanations and worked problems for quick review and practice."
+    },
+    {
+      "kind": "website",
+      "title": "Khan Academy Calculus 1",
+      "linkOrSite": "https://www.khanacademy.org/math/calculus-1",
+      "description": "Guided practice and mastery checks for core Calculus I / AP Calculus AB skills."
+    },
+    {
+      "kind": "website",
+      "title": "OpenStax student resources",
+      "linkOrSite": "https://openstax.org/details/books/calculus-volume-1",
+      "description": "Free online reading plus chapter exercises; suitable for an accessible common course baseline."
+    },
+    {
+      "kind": "website",
+      "title": "Desmos Graphing Calculator",
+      "linkOrSite": "https://www.desmos.com/calculator",
+      "description": "Fast graphing, tables, sliders, numerical roots, and visual checks."
+    },
+    {
+      "kind": "website",
+      "title": "GeoGebra Graphing Calculator",
+      "linkOrSite": "https://www.geogebra.org/graphing",
+      "description": "Interactive graphing and geometry for tangent, accumulation, and optimization explorations."
+    },
+    {
+      "kind": "website",
+      "title": "Jupyter",
+      "linkOrSite": "https://jupyter.org/",
+      "description": "Use a spreadsheet or Python/Jupyter for Riemann sums, Newton iterations, numerical integration, data visualization, and reproducible modeling. Require students to explain the mathematics behind any computation."
+    },
+    {
+      "kind": "youtube",
+      "title": "3Blue1Brown",
+      "linkOrSite": "https://www.youtube.com/@3blue1brown",
+      "description": "Essence of Calculus: short visual sequence for derivatives, integrals, the chain rule, and the Fundamental Theorem; use for intuition, not as a replacement for problem solving."
+    },
+    {
+      "kind": "youtube",
+      "title": "Professor Leonard",
+      "linkOrSite": "https://www.youtube.com/@ProfessorLeonard",
+      "description": "Long-form Calculus 1 classroom lectures with detailed examples and pacing suitable for independent review."
+    },
+    {
+      "kind": "youtube",
+      "title": "MIT OpenCourseWare",
+      "linkOrSite": "https://www.youtube.com/@mitocw",
+      "description": "University lectures and problem-solving clips aligned with 18.01SC."
+    },
+    {
+      "kind": "youtube",
+      "title": "The Organic Chemistry Tutor",
+      "linkOrSite": "https://www.youtube.com/@TheOrganicChemistryTutor",
+      "description": "Focused worked examples for common techniques and exam review."
+    }
+  ],
+  "topics": [
+    {
+      "type": "topic",
+      "title": "Functions, Models, and Multiple Representations",
+      "description": "Calculus begins with functions: rules that connect changing quantities. This unit aligns algebraic, graphical, numerical, and verbal representations so later derivatives and integrals have meaning rather than becoming isolated procedures.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Function language and families",
+          "description": "A strong function toolkit lets students recognize structure before calculating. The goal is to see how a formula's form controls its graph, domain, range, and behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Domain, range, notation, evaluation, and units"
+            },
+            {
+              "type": "concept",
+              "title": "Linear, polynomial, rational, power, radical, exponential, logarithmic, and trigonometric families"
+            },
+            {
+              "type": "concept",
+              "title": "Transformations, composition, inverse functions, and piecewise definitions"
+            },
+            {
+              "type": "concept",
+              "title": "Zeros, intercepts, symmetry, periodicity, and asymptotic behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Representations and modeling",
+          "description": "Real problems rarely arrive as clean formulas. Students learn to translate among data, graphs, equations, and descriptions while stating assumptions and checking units.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Building a function from a table, graph, verbal rule, or scientific law"
+            },
+            {
+              "type": "concept",
+              "title": "Independent and dependent variables; parameters versus variables"
+            },
+            {
+              "type": "concept",
+              "title": "Dimensional analysis and unit consistency"
+            },
+            {
+              "type": "concept",
+              "title": "Model validity, residual thinking, and limits of extrapolation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Readiness and mathematical communication",
+          "description": "Calculus is easier when algebra and trigonometry are automatic and reasoning is written clearly. This strand diagnoses gaps early and establishes habits used throughout the course.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Algebraic simplification, factoring, rationalization, and solving equations"
+            },
+            {
+              "type": "concept",
+              "title": "Radians, the unit circle, identities, and inverse trigonometric functions"
+            },
+            {
+              "type": "concept",
+              "title": "Exact values versus approximations and sensible rounding"
+            },
+            {
+              "type": "concept",
+              "title": "Explaining a conclusion with equations, words, graphs, and units"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Limits and Continuity",
+      "description": "Limits formalize what a function approaches near a point or far away. They provide the logical foundation for instantaneous rate of change, continuity, asymptotes, and the definite integral.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Estimating and computing limits",
+          "description": "Students first build intuition from graphs and tables, then develop reliable algebraic techniques. The emphasis is on the behavior near a point, not merely the value at the point.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Two-sided and one-sided limits from graphs, tables, and formulas"
+            },
+            {
+              "type": "concept",
+              "title": "Limit laws and direct substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Factoring, rationalizing, common denominators, and trigonometric limits"
+            },
+            {
+              "type": "concept",
+              "title": "The Squeeze Theorem and bounding arguments"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Infinite behavior and asymptotes",
+          "description": "Limits also describe unbounded growth and long-run behavior. This supports graph analysis and prepares students to reason about scale in scientific and economic models.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Infinite limits and vertical asymptotes"
+            },
+            {
+              "type": "concept",
+              "title": "Limits at infinity and horizontal or slant asymptotes"
+            },
+            {
+              "type": "concept",
+              "title": "Dominant-term reasoning for rational and other functions"
+            },
+            {
+              "type": "concept",
+              "title": "Distinguishing an infinite limit from a finite limit that fails to exist"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Continuity, theorems, and proof awareness",
+          "description": "Continuity captures when small input changes produce small output changes. Students learn the hypotheses and conclusions of key theorems and gain a first, accessible view of epsilon-delta reasoning.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Continuity at a point and on an interval"
+            },
+            {
+              "type": "concept",
+              "title": "Removable, jump, and infinite discontinuities"
+            },
+            {
+              "type": "concept",
+              "title": "Intermediate Value Theorem and existence of roots"
+            },
+            {
+              "type": "concept",
+              "title": "Epsilon-delta definition: interpreting and constructing simple estimates"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Derivative as a Limit and Local Linear Model",
+      "description": "The derivative measures instantaneous change and gives the best local linear approximation to a differentiable function. This unit connects the geometric tangent, the physical rate, and the analytic limit into one idea.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "From average to instantaneous change",
+          "description": "Secant slopes summarize average change over an interval; a limiting process turns them into tangent slopes and instantaneous rates.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Average rate of change and difference quotients"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent lines, instantaneous velocity, and local rate"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative at a point from the limit definition"
+            },
+            {
+              "type": "concept",
+              "title": "Units and interpretation of f'(a)"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "The derivative as a function",
+          "description": "Treating f' as a new function reveals how the original function changes everywhere, not just at a single point.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Estimating derivative values from data and graphs"
+            },
+            {
+              "type": "concept",
+              "title": "Graphing f' from the graph of f and reconstructing qualitative behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiability versus continuity; corners, cusps, vertical tangents, and discontinuities"
+            },
+            {
+              "type": "concept",
+              "title": "Higher derivatives and changing rates"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Linearization and differentials",
+          "description": "A differentiable function behaves nearly linearly at small scales. Linearization turns that insight into a practical approximation and error-estimation tool.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Tangent-line approximation L(x) = f(a) + f'(a)(x-a)"
+            },
+            {
+              "type": "concept",
+              "title": "Differentials and propagation of small measurement changes"
+            },
+            {
+              "type": "concept",
+              "title": "Relative and percentage error"
+            },
+            {
+              "type": "concept",
+              "title": "When a local approximation is trustworthy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Differentiation Rules and Transcendental Functions",
+      "description": "Once the derivative is understood as a limit, differentiation rules make it efficient to analyze realistic functions. The aim is fluent computation supported by structural reasoning and quick plausibility checks.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Core algebraic rules",
+          "description": "The basic rules convert products, quotients, powers, and sums into manageable derivatives while preserving the structure of the original function.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant, power, constant-multiple, sum, and difference rules"
+            },
+            {
+              "type": "concept",
+              "title": "Product and quotient rules"
+            },
+            {
+              "type": "concept",
+              "title": "Combining rules in multi-step expressions"
+            },
+            {
+              "type": "concept",
+              "title": "Checking results by units, signs, special values, or numerical slopes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "The chain rule",
+          "description": "Composite functions represent nested processes. The chain rule tracks how change propagates through each layer and is central to science, engineering, economics, and computation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Identifying inner and outer functions"
+            },
+            {
+              "type": "concept",
+              "title": "Chain rule for algebraic, trigonometric, exponential, and logarithmic compositions"
+            },
+            {
+              "type": "concept",
+              "title": "Repeated nesting and multiple rule combinations"
+            },
+            {
+              "type": "concept",
+              "title": "Sensitivity interpretation through rates multiplied along a dependency chain"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Standard transcendental derivatives",
+          "description": "Exponential, logarithmic, and trigonometric functions describe growth, decay, oscillation, rotation, and scaling. Their derivatives make these models analytically useful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Derivatives of e^x, a^x, ln(x), and log_a(x)"
+            },
+            {
+              "type": "concept",
+              "title": "Derivatives of sine, cosine, tangent, and reciprocal trigonometric functions"
+            },
+            {
+              "type": "concept",
+              "title": "Higher-order derivatives and cyclic patterns"
+            },
+            {
+              "type": "concept",
+              "title": "Applications to growth, decay, oscillation, and elasticity-like rates"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Implicit, Inverse, and Logarithmic Differentiation",
+      "description": "Many important relationships are not solved explicitly for one variable. These techniques extend differentiation to curves, inverse relationships, and complicated products or powers.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Implicit differentiation",
+          "description": "Implicit differentiation finds rates on a relation F(x,y)=0 without first isolating y, which is often impossible or undesirable.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Differentiating both sides while treating y as a function of x"
+            },
+            {
+              "type": "concept",
+              "title": "Solving for dy/dx and evaluating at a point"
+            },
+            {
+              "type": "concept",
+              "title": "Tangent and normal lines to implicit curves"
+            },
+            {
+              "type": "concept",
+              "title": "Second derivatives and geometric interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Inverse functions and inverse trigonometric derivatives",
+          "description": "The derivative of an inverse reverses the input-output relationship. This gives a general principle and the formulas for inverse trigonometric functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Conditions for local and global invertibility"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative of an inverse function"
+            },
+            {
+              "type": "concept",
+              "title": "Derivatives of arcsine, arccosine, arctangent, and related functions"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting reciprocal slopes and domain restrictions"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Logarithmic differentiation",
+          "description": "Taking logarithms can turn products into sums and variable powers into products, making otherwise difficult derivatives systematic.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Products and quotients with many factors"
+            },
+            {
+              "type": "concept",
+              "title": "Functions of the form u(x)^v(x)"
+            },
+            {
+              "type": "concept",
+              "title": "Absolute values in logarithmic identities where required"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing logarithmic differentiation with direct rules"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Theorems, Curve Analysis, and Indeterminate Forms",
+      "description": "Derivatives reveal global information about a function when combined with theorem hypotheses. This unit turns local slope data into a disciplined account of extrema, shape, approximation, and limiting behavior.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Extrema and the Mean Value Theorem",
+          "description": "Existence theorems say when extrema or intermediate slopes must occur. Students learn to check hypotheses before using conclusions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute and local extrema; critical numbers and endpoints"
+            },
+            {
+              "type": "concept",
+              "title": "Extreme Value Theorem and closed-interval method"
+            },
+            {
+              "type": "concept",
+              "title": "Rolle's Theorem and the Mean Value Theorem"
+            },
+            {
+              "type": "concept",
+              "title": "Consequences: monotonicity, constant functions, and derivative comparisons"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "First- and second-derivative analysis",
+          "description": "Sign charts for f' and f'' translate derivative information into a reliable sketch and a qualitative description of behavior.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Increasing and decreasing intervals"
+            },
+            {
+              "type": "concept",
+              "title": "First-derivative test for local extrema"
+            },
+            {
+              "type": "concept",
+              "title": "Concavity, inflection points, and the second-derivative test"
+            },
+            {
+              "type": "concept",
+              "title": "Complete curve analysis including domain, intercepts, symmetry, and asymptotes"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "L'Hopital's Rule and approximation behavior",
+          "description": "Indeterminate forms signal competition between quantities. L'Hopital's Rule is useful only after the form and its conditions have been verified.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recognizing 0/0 and infinity/infinity forms"
+            },
+            {
+              "type": "concept",
+              "title": "Applying L'Hopital's Rule and deciding when to repeat it"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing L'Hopital with algebraic, trigonometric, or dominant-term methods"
+            },
+            {
+              "type": "concept",
+              "title": "Avoiding misuse when the hypotheses fail"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Applied Rates, Motion, and Related-Rate Models",
+      "description": "Calculus becomes powerful when derivatives are attached to quantities with units. This unit develops a repeatable modeling workflow for motion and for systems in which several variables change together.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Motion and rate interpretation",
+          "description": "Position, velocity, and acceleration provide a concrete setting for first and second derivatives and for interpreting signs and accumulated change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position, displacement, distance, velocity, speed, and acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Units and sign conventions"
+            },
+            {
+              "type": "concept",
+              "title": "Reading motion from formulas, graphs, and data"
+            },
+            {
+              "type": "concept",
+              "title": "Connecting turning points and concavity to physical behavior"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Related-rates workflow",
+          "description": "Related-rates problems test modeling more than algebra. Students identify the governing relation, differentiate before substituting, and interpret the signed result.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Define variables as functions of time and draw a labeled diagram"
+            },
+            {
+              "type": "concept",
+              "title": "Write one relation connecting the changing quantities"
+            },
+            {
+              "type": "concept",
+              "title": "Differentiate implicitly with respect to time"
+            },
+            {
+              "type": "concept",
+              "title": "Substitute the instant-specific data, solve, and report units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Cross-disciplinary rate models",
+          "description": "A shared calculus structure appears across disciplines even when the vocabulary changes. Problems are selected so every degree sees both familiar and unfamiliar contexts.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Biology and chemistry: population change, reaction rates, and concentration"
+            },
+            {
+              "type": "concept",
+              "title": "Engineering: expanding geometry, fluid levels, heat, motion, and sensor error"
+            },
+            {
+              "type": "concept",
+              "title": "Economics: marginal quantities and rates of cost, revenue, and demand change"
+            },
+            {
+              "type": "concept",
+              "title": "Computer science: throughput, scaling trends, and continuous approximations to discrete change"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Optimization and Newton's Method",
+      "description": "Optimization turns a context into an objective function, a feasible domain, and a justified best choice. Newton's method complements exact analysis with an iterative approach to solving nonlinear equations.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Optimization modeling",
+          "description": "The central challenge is building the right function and domain. Calculus then identifies candidates, while context decides which candidates are meaningful.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Objective, decision variables, constraints, and feasible intervals"
+            },
+            {
+              "type": "concept",
+              "title": "Reducing a multi-quantity problem to one variable"
+            },
+            {
+              "type": "concept",
+              "title": "Critical points, endpoints, and global comparison"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting sensitivity, units, and practical constraints"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Discipline-specific optimization",
+          "description": "Different fields ask different questions, but the mathematical architecture is the same: define, differentiate, test, and interpret.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Engineering design: material, energy, geometry, and performance tradeoffs"
+            },
+            {
+              "type": "concept",
+              "title": "Economics: profit, revenue, cost, and elasticity-aware decisions"
+            },
+            {
+              "type": "concept",
+              "title": "Biology and chemistry: yield, dose, growth, and reaction conditions"
+            },
+            {
+              "type": "concept",
+              "title": "Computing: continuous relaxations of resource and performance choices"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Newton's method and numerical roots",
+          "description": "Newton's method uses tangent-line approximations to refine a root estimate. It is a first example of an algorithm whose success depends on both mathematics and initial conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Deriving x_(n+1) = x_n - f(x_n)/f'(x_n) from linearization"
+            },
+            {
+              "type": "concept",
+              "title": "Iteration tables and stopping criteria"
+            },
+            {
+              "type": "concept",
+              "title": "Convergence, failure, cycling, and poor initial guesses"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing Newton's method with graphing and bisection ideas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Antiderivatives and Introductory Differential Equations",
+      "description": "Antidifferentiation reverses differentiation, while differential equations express laws in terms of rates. This unit links families of functions, initial conditions, and simple dynamic models.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Antiderivatives and indefinite integrals",
+          "description": "Because differentiation loses constants, reversing it produces a family of functions. Students build a compact library of antiderivative patterns.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Power, exponential, logarithmic, and basic trigonometric antiderivatives"
+            },
+            {
+              "type": "concept",
+              "title": "Linearity and algebraic simplification before integration"
+            },
+            {
+              "type": "concept",
+              "title": "The constant of integration and families of curves"
+            },
+            {
+              "type": "concept",
+              "title": "Checking an antiderivative by differentiation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Initial-value problems",
+          "description": "An initial condition selects one member from an antiderivative family. This provides a direct bridge from rate laws to predictions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recovering position from velocity or acceleration"
+            },
+            {
+              "type": "concept",
+              "title": "Solving y' = f(x) with y(a) specified"
+            },
+            {
+              "type": "concept",
+              "title": "Interpreting constants from contextual data"
+            },
+            {
+              "type": "concept",
+              "title": "Verifying a proposed solution and its units"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Simple growth and change models",
+          "description": "Even before a full differential-equations course, students can analyze basic rate models and connect qualitative behavior to a derivative law.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Constant-rate and proportional-rate models"
+            },
+            {
+              "type": "concept",
+              "title": "Exponential growth and decay"
+            },
+            {
+              "type": "concept",
+              "title": "Direction-field interpretation at an introductory level"
+            },
+            {
+              "type": "concept",
+              "title": "Model assumptions, parameter meaning, and long-run behavior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Riemann Sums and the Definite Integral",
+      "description": "The definite integral measures net accumulation as a limit of many small contributions. Riemann sums make that construction explicit and connect data-based estimates to exact calculus.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Accumulation from finite sums",
+          "description": "Before taking a limit, students approximate accumulation with rectangles or data intervals and interpret each term as rate times input change.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Partitions, subinterval width, and sample points"
+            },
+            {
+              "type": "concept",
+              "title": "Left, right, midpoint, and general Riemann sums"
+            },
+            {
+              "type": "concept",
+              "title": "Sigma notation and dimensional meaning"
+            },
+            {
+              "type": "concept",
+              "title": "Overestimates, underestimates, and refinement"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "The definite integral as a limit",
+          "description": "Letting the mesh width shrink defines a number independent of a particular rectangle choice for integrable functions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Limit definition of the definite integral"
+            },
+            {
+              "type": "concept",
+              "title": "Signed area and orientation"
+            },
+            {
+              "type": "concept",
+              "title": "Basic properties: additivity, linearity, comparison, and bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Integrability and the role of continuity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Integral interpretation from graphs and data",
+          "description": "A definite integral is not automatically geometric area; its meaning depends on the integrand and units.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Net change from a rate graph"
+            },
+            {
+              "type": "concept",
+              "title": "Geometric evaluation using familiar shapes and symmetry"
+            },
+            {
+              "type": "concept",
+              "title": "Estimating from tabulated measurements"
+            },
+            {
+              "type": "concept",
+              "title": "Distinguishing net accumulation from total accumulation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "The Fundamental Theorem of Calculus and Net Change",
+      "description": "The Fundamental Theorem of Calculus unifies the course: differentiation and integration are inverse processes. It turns a limiting sum into a computable quantity and explains accumulation functions.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Accumulation functions and FTC Part I",
+          "description": "An integral with a variable endpoint defines a new function. Its derivative recovers the original integrand under appropriate conditions.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Functions defined by accumulated area or net change"
+            },
+            {
+              "type": "concept",
+              "title": "Derivative of an integral with a variable upper limit"
+            },
+            {
+              "type": "concept",
+              "title": "Chain rule with variable limits"
+            },
+            {
+              "type": "concept",
+              "title": "Graphical interpretation of an accumulation function and its derivative"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Evaluating definite integrals and FTC Part II",
+          "description": "An antiderivative collapses an infinite limiting process into endpoint subtraction, making exact accumulation practical.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Evaluation formula F(b) - F(a)"
+            },
+            {
+              "type": "concept",
+              "title": "Choosing and verifying an antiderivative"
+            },
+            {
+              "type": "concept",
+              "title": "Orientation, interval splitting, and signed results"
+            },
+            {
+              "type": "concept",
+              "title": "Units and contextual interpretation"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "The Net Change Theorem",
+          "description": "Integrating a rate over time gives the change in the original quantity. This principle applies far beyond geometric area.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Position change from velocity and total distance from speed"
+            },
+            {
+              "type": "concept",
+              "title": "Mass, charge, population, concentration, revenue, and cost accumulation"
+            },
+            {
+              "type": "concept",
+              "title": "Initial amount plus accumulated change"
+            },
+            {
+              "type": "concept",
+              "title": "Average value of a function on an interval"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Substitution and Applications of Integration",
+      "description": "Substitution extends the antiderivative toolkit by reversing the chain rule. Applications then use slicing and accumulation to compute areas, volumes, work, and other totals.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Substitution",
+          "description": "A well-chosen substitution exposes a hidden chain-rule structure and changes both the integrand and, for definite integrals, the bounds.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Recognizing the inner-function and derivative pattern"
+            },
+            {
+              "type": "concept",
+              "title": "Indefinite integrals and back-substitution"
+            },
+            {
+              "type": "concept",
+              "title": "Definite integrals with changed bounds"
+            },
+            {
+              "type": "concept",
+              "title": "Algebraic, exponential, logarithmic, and trigonometric examples"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Area and volume",
+          "description": "Integration adds infinitely many thin pieces. The hardest step is choosing a slice whose geometry matches the variable of integration.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Area between curves and intersection points"
+            },
+            {
+              "type": "concept",
+              "title": "Volumes by cross-sections and disks/washers"
+            },
+            {
+              "type": "concept",
+              "title": "Shell method as an extension when it simplifies geometry"
+            },
+            {
+              "type": "concept",
+              "title": "Sketching, bounds, units, and reasonableness checks"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Scientific and quantitative applications",
+          "description": "The integral translates a varying density, force, rate, or distribution into a total or average quantity.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Work from a variable force and basic spring models"
+            },
+            {
+              "type": "concept",
+              "title": "Mass from one-dimensional density"
+            },
+            {
+              "type": "concept",
+              "title": "Average value and mean behavior"
+            },
+            {
+              "type": "concept",
+              "title": "Probability density as enrichment for data-oriented degrees"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "topic",
+      "title": "Numerical Integration, Error, and Capstone Modeling",
+      "description": "Many integrals lack elementary antiderivatives or come only as data. Numerical methods, error awareness, and a final modeling task prepare students to use calculus responsibly in real work.",
+      "children": [
+        {
+          "type": "subtopic",
+          "title": "Numerical integration",
+          "description": "Numerical rules approximate an integral using function samples. Students compare methods and connect each formula to a geometric picture.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Left and right sums as baseline methods"
+            },
+            {
+              "type": "concept",
+              "title": "Midpoint and trapezoidal rules"
+            },
+            {
+              "type": "concept",
+              "title": "Simpson's rule as an enrichment topic"
+            },
+            {
+              "type": "concept",
+              "title": "Implementation with a spreadsheet, calculator, or short script"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Error and verification",
+          "description": "A numerical answer is incomplete without an estimate of reliability. Students learn to refine, compare, and communicate approximation error.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Absolute and relative error"
+            },
+            {
+              "type": "concept",
+              "title": "Refining the partition and checking stabilization"
+            },
+            {
+              "type": "concept",
+              "title": "Qualitative error from monotonicity and concavity"
+            },
+            {
+              "type": "concept",
+              "title": "Comparing numerical, graphical, and analytic results"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Capstone modeling and communication",
+          "description": "The course culminates in a small, discipline-relevant investigation that combines representation, derivative or integral analysis, computation, and explanation.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Pose a question and define variables, parameters, units, and assumptions"
+            },
+            {
+              "type": "concept",
+              "title": "Choose and justify a model using data or a governing relation"
+            },
+            {
+              "type": "concept",
+              "title": "Use derivatives and/or integrals to answer the question"
+            },
+            {
+              "type": "concept",
+              "title": "Validate the result, discuss limitations, and present a concise technical narrative"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

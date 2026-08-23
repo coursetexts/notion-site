@@ -1,79 +1,155 @@
 {
   "slug": "computer-networks",
   "title": "Computer Networks",
-  "description": "This 14-topic sequence follows the OSI/TCP-IP layering path, then adds practical systems, security, and modern infrastructure topics.",
-  "resources": [],
+  "description": "Computer Networks studies how independently administered, heterogeneous systems communicate reliably, efficiently, securely, and at global scale. Students move from signals, frames, addressing, forwarding, and routing to transport, congestion control, applications, wireless access, security, measurement, network programmability, and cloud/data-center design. A single conceptual and laboratory core serves all three degrees. Computer Engineering adds stronger link/forwarding and hardware-performance analysis, while MS Computer Science adds original-paper reading, algorithmic depth, experimental rigor, and a research-quality project extension.",
+  "resources": [
+    {
+      "kind": "textbook",
+      "title": "Computer Networking: A Top-Down Approach",
+      "linkOrSite": "Pearson",
+      "description": "Kurose and Ross. Leading text for application, transport, network, link, wireless, and security layers."
+    },
+    {
+      "kind": "textbook",
+      "title": "Computer Networks",
+      "linkOrSite": "Pearson",
+      "description": "Tanenbaum and Wetherall. Broad networking reference covering protocol layers, routing, transport, wireless, and applications."
+    },
+    {
+      "kind": "textbook",
+      "title": "Computer Networks: A Systems Approach",
+      "linkOrSite": "Morgan Kaufmann",
+      "description": "Peterson and Davie. Strong systems-oriented reference for implementation and design tradeoffs."
+    },
+    {
+      "kind": "textbook",
+      "title": "TCP/IP Illustrated, Volume 1",
+      "linkOrSite": "Addison-Wesley",
+      "description": "Stevens and Fall. Classic packet-level reference for TCP/IP behavior, diagnostics, and protocol details."
+    },
+    {
+      "kind": "textbook",
+      "title": "Data and Computer Communications",
+      "linkOrSite": "Pearson",
+      "description": "Stallings. Comprehensive communications text for transmission, LANs, routing, protocols, and security."
+    },
+    {
+      "kind": "textbook",
+      "title": "High Performance Browser Networking",
+      "linkOrSite": "https://hpbn.co/",
+      "description": "O'Reilly / Grigorik. Modern applied guide to HTTP, TLS, TCP, wireless, latency, and web performance."
+    },
+    {
+      "kind": "textbook",
+      "title": "Network Security Essentials",
+      "linkOrSite": "Pearson",
+      "description": "William Stallings. Useful supplement for TLS, IPsec, wireless security, firewalls, and intrusion detection."
+    },
+    {
+      "kind": "website",
+      "title": "Computer Networking: A Top-Down Approach",
+      "linkOrSite": "https://gaia.cs.umass.edu/kurose_ross/index.php",
+      "description": "Companion site with slides, labs, and supporting materials."
+    },
+    {
+      "kind": "website",
+      "title": "Stanford CS144",
+      "linkOrSite": "https://cs144.github.io/",
+      "description": "Systems-oriented networking course with TCP/IP and network programming projects."
+    },
+    {
+      "kind": "website",
+      "title": "Beej's Guide to Network Programming",
+      "linkOrSite": "https://beej.us/guide/bgnet/",
+      "description": "Practical sockets guide for TCP, UDP, clients, servers, and networking APIs."
+    },
+    {
+      "kind": "website",
+      "title": "IETF RFC Editor",
+      "linkOrSite": "https://www.rfc-editor.org/",
+      "description": "Authoritative protocol specifications and standards documents."
+    },
+    {
+      "kind": "website",
+      "title": "Wireshark Documentation",
+      "linkOrSite": "https://www.wireshark.org/docs/",
+      "description": "Packet-analysis documentation and learning reference for protocol inspection."
+    },
+    {
+      "kind": "website",
+      "title": "Cisco Networking Academy",
+      "linkOrSite": "https://www.netacad.com/",
+      "description": "Structured networking, routing, switching, security, and hands-on lab resources."
+    },
+    {
+      "kind": "website",
+      "title": "Mozilla MDN HTTP",
+      "linkOrSite": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+      "description": "Clear reference for HTTP, headers, caching, and web protocols."
+    },
+    {
+      "kind": "website",
+      "title": "Cloudflare Learning Center",
+      "linkOrSite": "https://www.cloudflare.com/learning/",
+      "description": "Readable explanations of DNS, TLS, routing, CDN, DDoS, and security concepts."
+    },
+    {
+      "kind": "website",
+      "title": "Zeek",
+      "linkOrSite": "https://zeek.org",
+      "description": "Network security monitoring framework for protocol analysis and defensive labs."
+    },
+    {
+      "kind": "youtube",
+      "title": "Computer Networking: A Top-Down Approach",
+      "linkOrSite": "https://www.youtube.com/@JimKurose",
+      "description": "Author lectures supporting core networking concepts and textbook topics."
+    },
+    {
+      "kind": "youtube",
+      "title": "Practical Networking",
+      "linkOrSite": "https://www.youtube.com/@PracticalNetworking",
+      "description": "Clear explanations for TCP/IP, subnetting, routing, switching, and protocols."
+    },
+    {
+      "kind": "youtube",
+      "title": "Ben Eater",
+      "linkOrSite": "https://www.youtube.com/@BenEater",
+      "description": "Excellent hands-on networking and low-level computing explanations."
+    },
+    {
+      "kind": "youtube",
+      "title": "David Bombal",
+      "linkOrSite": "https://www.youtube.com/@davidbombal",
+      "description": "Networking, Cisco, Packet Tracer, Wireshark, and cybersecurity tutorials."
+    }
+  ],
   "topics": [
     {
       "type": "topic",
       "title": "Network Architecture, Layering, and Internet Design Principles",
       "description": "This opening unit gives students the mental model for how networks are organized. It explains why layered design makes a global Internet possible while still allowing technologies to evolve independently.",
-      "videos": [
-        {
-          "title": "Network Stacks and the Internet",
-          "channel": "Computerphile",
-          "url": "#"
-        },
-        {
-          "title": "Network Layers Model (Networking Basics)",
-          "channel": "Computerphile",
-          "url": "#"
-        },
-        {
-          "title": "Overview of the Internet Protocol - IP Network Layer | Computer Networks Ep. 4.1 | Kurose & Ross",
-          "url": "#"
-        },
-        {
-          "title": "Protocol Layering - Intro to Computer Networks | Computer Networks Ep. 1.5 | Kurose & Ross",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Layering models",
           "description": "Students learn how OSI and TCP/IP models divide networking responsibilities. The gist is to know what each layer abstracts from the layers above and below.",
-          "videos": [
-            {
-              "title": "OSI Model: A Practical Perspective - Networking Fundamentals",
-              "channel": "Lesson 2a",
-              "url": "#"
-            },
-            {
-              "title": "TCP/IP Model: PDUs and Encapsulation & Decapsulation",
-              "url": "#"
-            },
-            {
-              "title": "Network Layers Model (Networking Basics)",
-              "channel": "Computerphile",
-              "url": "#"
-            },
-            {
-              "title": "Understanding the OSI Model",
-              "channel": "N10-008 CompTIA Network+ : 1.1",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "OSI seven-layer model",
-              "description": null
+              "title": "OSI seven-layer model"
             },
             {
               "type": "concept",
-              "title": "TCP/IP model",
-              "description": null
+              "title": "TCP/IP model"
             },
             {
               "type": "concept",
-              "title": "Encapsulation and decapsulation",
-              "description": null
+              "title": "Encapsulation and decapsulation"
             },
             {
               "type": "concept",
-              "title": "Protocol data units",
-              "description": null
+              "title": "Protocol data units"
             }
           ]
         },
@@ -81,46 +157,22 @@
           "type": "subtopic",
           "title": "Internet design principles",
           "description": "Students learn the architectural ideas that shaped the Internet. These principles explain why intelligence often lives at the edge rather than inside the network core.",
-          "videos": [
-            {
-              "title": "How Data moves through the Internet",
-              "channel": "Networking Fundamentals",
-              "url": "#"
-            },
-            {
-              "title": "Packet Traveling",
-              "channel": "How Packets Move Through a Network",
-              "url": "#"
-            },
-            {
-              "title": "Circuit Switching and Packet Switching - CompTIA Network+ N10-007 - 1.3",
-              "url": "#"
-            },
-            {
-              "title": "DO NOT design your network like this!! // FREE CCNA // EP 6",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "End-to-end principle",
-              "description": null
+              "title": "End-to-end principle"
             },
             {
               "type": "concept",
-              "title": "Packet switching",
-              "description": null
+              "title": "Packet switching"
             },
             {
               "type": "concept",
-              "title": "Best-effort delivery",
-              "description": null
+              "title": "Best-effort delivery"
             },
             {
               "type": "concept",
-              "title": "Scalability and decentralization",
-              "description": null
+              "title": "Scalability and decentralization"
             }
           ]
         },
@@ -128,46 +180,22 @@
           "type": "subtopic",
           "title": "Protocols, services, and interfaces",
           "description": "Students learn the difference between what a layer provides and how it provides it.",
-          "videos": [
-            {
-              "title": "Network Protocols - ARP, FTP, SMTP, HTTP, SSL, TLS, HTTPS, DNS, DHCP - Networking Fundamentals",
-              "channel": "L6",
-              "url": "#"
-            },
-            {
-              "title": "How Data moves through the Internet",
-              "channel": "Networking Fundamentals",
-              "url": "#"
-            },
-            {
-              "title": "Network Ports Explained",
-              "url": "#"
-            },
-            {
-              "title": "Control Plane vs Data Plane: The Network Layer Explained",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Service model",
-              "description": null
+              "title": "Service model"
             },
             {
               "type": "concept",
-              "title": "Protocol messages",
-              "description": null
+              "title": "Protocol messages"
             },
             {
               "type": "concept",
-              "title": "Headers and payloads",
-              "description": null
+              "title": "Headers and payloads"
             },
             {
               "type": "concept",
-              "title": "Control plane versus data plane",
-              "description": null
+              "title": "Control plane versus data plane"
             }
           ]
         },
@@ -175,46 +203,22 @@
           "type": "subtopic",
           "title": "Network types and topologies",
           "description": "Students learn common network scopes and shapes before studying specific technologies.",
-          "videos": [
-            {
-              "title": "Client Server and Peer-to-Peer Networking",
-              "channel": "CompTIA Network+ N10-005: 3.5",
-              "url": "#"
-            },
-            {
-              "title": "Client Server and Peer to Peer Networks",
-              "url": "#"
-            },
-            {
-              "title": "Different networks/Peer to Peer,Client Server Connection/LAN,WAN,MAN in brief/ Computer Network",
-              "url": "#"
-            },
-            {
-              "title": "An overview of MPLS Networks",
-              "channel": "CompTIA Network+ N10-005: 3.5",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "LANs and WANs",
-              "description": null
+              "title": "LANs and WANs"
             },
             {
               "type": "concept",
-              "title": "Access networks",
-              "description": null
+              "title": "Access networks"
             },
             {
               "type": "concept",
-              "title": "Core networks",
-              "description": null
+              "title": "Core networks"
             },
             {
               "type": "concept",
-              "title": "Client-server and peer-to-peer patterns",
-              "description": null
+              "title": "Client-server and peer-to-peer patterns"
             }
           ]
         }
@@ -224,73 +228,27 @@
       "type": "topic",
       "title": "Physical Layer, Data Transmission, and Performance Metrics",
       "description": "This unit covers how bits move across media and how engineers reason about capacity, delay, and reliability. It grounds abstract protocols in physical constraints.",
-      "videos": [
-        {
-          "title": "1.12 Bandwidth, Throughput, Latency (Delay), Packet Loss, Jitter || Network Performance",
-          "url": "#"
-        },
-        {
-          "title": "Bandwidth, Latency, Jitter, Packet Loss, and QoS Explained",
-          "channel": "Network+ N10-009",
-          "url": "#"
-        },
-        {
-          "title": "Beginners: Bandwidth, Throughput, Latency & Jitter in mobile networks",
-          "url": "#"
-        },
-        {
-          "title": "Lec04- Network Layer Performance( Part-2)",
-          "url": "#"
-        },
-        {
-          "title": "Throughput and Packet loss |Computer Networks",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Transmission media",
           "description": "Students learn the tradeoffs among wired, wireless, and optical media. The point is to see that medium choice affects bandwidth, distance, interference, and cost.",
-          "videos": [
-            {
-              "title": "Transmission Media optical fiber, coaxial cable, radio waves and micro waves in computer networks",
-              "url": "#"
-            },
-            {
-              "title": "Optical Fiber - CompTIA Network+ N10-009 - 1.5",
-              "url": "#"
-            },
-            {
-              "title": "Transmission Media, Speed, and Distance",
-              "channel": "CompTIA Network+ N10-005: 3.4",
-              "url": "#"
-            },
-            {
-              "title": "Understanding Transmission Media: Copper vs. Fiber Cables Explained in Networking | Part-3 | english",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Copper cable",
-              "description": null
+              "title": "Copper cable"
             },
             {
               "type": "concept",
-              "title": "Fiber optics",
-              "description": null
+              "title": "Fiber optics"
             },
             {
               "type": "concept",
-              "title": "Radio links",
-              "description": null
+              "title": "Radio links"
             },
             {
               "type": "concept",
-              "title": "Satellite links",
-              "description": null
+              "title": "Satellite links"
             }
           ]
         },
@@ -298,44 +256,22 @@
           "type": "subtopic",
           "title": "Signals and encoding",
           "description": "Students learn how digital data is represented for transmission.",
-          "videos": [
-            {
-              "title": "Clock synchronization and Manchester coding | Networking tutorial (3 of 13)",
-              "url": "#"
-            },
-            {
-              "title": "Troubleshooting Wireless Signals - CompTIA Network+ N10-006 - 4.3",
-              "url": "#"
-            },
-            {
-              "title": "Modulation Techniques - CompTIA Network+ N10-006 - 5.2",
-              "url": "#"
-            },
-            {
-              "title": "Line Coding Techniques | RZ, NRZ, Unipolar, Polar, Bipolar & Manchester | Digital Communication",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Bits and symbols",
-              "description": null
+              "title": "Bits and symbols"
             },
             {
               "type": "concept",
-              "title": "Line coding intuition",
-              "description": null
+              "title": "Line coding intuition"
             },
             {
               "type": "concept",
-              "title": "Modulation basics",
-              "description": null
+              "title": "Modulation basics"
             },
             {
               "type": "concept",
-              "title": "Noise and attenuation",
-              "description": null
+              "title": "Noise and attenuation"
             }
           ]
         },
@@ -343,50 +279,26 @@
           "type": "subtopic",
           "title": "Performance metrics",
           "description": "Students learn the numbers used to describe network quality.",
-          "videos": [
-            {
-              "title": "1.12 Bandwidth, Throughput, Latency (Delay), Packet Loss, Jitter || Network Performance",
-              "url": "#"
-            },
-            {
-              "title": "Network Performance Metrics Explained for Beginners | Bandwidth, Latency, Throughput",
-              "url": "#"
-            },
-            {
-              "title": "Network Performance: Bandwidth, Throughput, Latency (delay), Bandwidth-delay Product, Jitter",
-              "url": "#"
-            },
-            {
-              "title": "Performance Metrics",
-              "channel": "N10-008 CompTIA Network+ : 3.1",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Bandwidth",
-              "description": null
+              "title": "Bandwidth"
             },
             {
               "type": "concept",
-              "title": "Throughput",
-              "description": null
+              "title": "Throughput"
             },
             {
               "type": "concept",
-              "title": "Latency",
-              "description": null
+              "title": "Latency"
             },
             {
               "type": "concept",
-              "title": "Jitter",
-              "description": null
+              "title": "Jitter"
             },
             {
               "type": "concept",
-              "title": "Packet loss",
-              "description": null
+              "title": "Packet loss"
             }
           ]
         },
@@ -394,46 +306,22 @@
           "type": "subtopic",
           "title": "Delay and capacity calculations",
           "description": "Students learn to estimate where time is spent in a network path.",
-          "videos": [
-            {
-              "title": "Transmission Delay and Propagation Delay in Computer Network Explained",
-              "url": "#"
-            },
-            {
-              "title": "RTT and Bandwidth Delay Product Explained",
-              "channel": "Network Performance Fundamentals for Engineers",
-              "url": "#"
-            },
-            {
-              "title": "Network Delay",
-              "channel": "Transmission and Propagation Delay",
-              "url": "#"
-            },
-            {
-              "title": "Understanding Bandwidth and Bandwidth Delay Product || Lesson 23 |Computer Networks |Learning Monkey",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Transmission delay",
-              "description": null
+              "title": "Transmission delay"
             },
             {
               "type": "concept",
-              "title": "Propagation delay",
-              "description": null
+              "title": "Propagation delay"
             },
             {
               "type": "concept",
-              "title": "Queuing delay",
-              "description": null
+              "title": "Queuing delay"
             },
             {
               "type": "concept",
-              "title": "Bandwidth-delay product",
-              "description": null
+              "title": "Bandwidth-delay product"
             }
           ]
         }
@@ -443,69 +331,27 @@
       "type": "topic",
       "title": "Data Link Layer, Error Detection, MAC, Ethernet, and Switching",
       "description": "This unit explains local delivery across a single link or LAN. Students learn how frames, addresses, switching, and error checks make shared local networks work.",
-      "videos": [
-        {
-          "title": "\ud83c\udfac Let's do Packet Tracer labs together - VLANs, Switching, Troubleshooting",
-          "channel": "PTL1",
-          "url": "#"
-        },
-        {
-          "title": "Understanding Data Link Layer, Ethernet Switching, and Network Layer",
-          "url": "#"
-        },
-        {
-          "title": "Mastering the Link Layer | Error Detection, Ethernet, & LANs",
-          "url": "#"
-        },
-        {
-          "title": "What are VLANs? -- the simplest explanation",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Framing and link-layer services",
           "description": "Students learn how raw bits become frames with boundaries and metadata.",
-          "videos": [
-            {
-              "title": "Data Link",
-              "channel": "Layer 2 Explained (2026) \u2013 Frames, MAC Addresses & Switching",
-              "url": "#"
-            },
-            {
-              "title": "Lec-22: Data link layer in computer Networks and its Responsibilities",
-              "url": "#"
-            },
-            {
-              "title": "Framing Techniques at the Data Link Layer in Computer Network",
-              "url": "#"
-            },
-            {
-              "title": "Lec-32: Various Media Access Control Protocols in Data Link Layer | Computer Networks",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Frame structure",
-              "description": null
+              "title": "Frame structure"
             },
             {
               "type": "concept",
-              "title": "MAC addresses",
-              "description": null
+              "title": "MAC addresses"
             },
             {
               "type": "concept",
-              "title": "Link-layer reliability",
-              "description": null
+              "title": "Link-layer reliability"
             },
             {
               "type": "concept",
-              "title": "MTU",
-              "description": null
+              "title": "MTU"
             }
           ]
         },
@@ -513,44 +359,22 @@
           "type": "subtopic",
           "title": "Error detection",
           "description": "Students learn how networks detect corrupted frames.",
-          "videos": [
-            {
-              "title": "Error detection: Parity checking",
-              "url": "#"
-            },
-            {
-              "title": "Lec-30: Cyclic Redundancy Check(CRC)  for Error Detection and Correction  | Computer Networks",
-              "url": "#"
-            },
-            {
-              "title": "CN 10 : Error Detection & Correction Methods | Parity Bits | Checksum | Cyclic Redundancy Check",
-              "url": "#"
-            },
-            {
-              "title": "Lec-28: Introduction to Error detection and Correction | Computer Networks",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Parity",
-              "description": null
+              "title": "Parity"
             },
             {
               "type": "concept",
-              "title": "Checksums",
-              "description": null
+              "title": "Checksums"
             },
             {
               "type": "concept",
-              "title": "CRC",
-              "description": null
+              "title": "CRC"
             },
             {
               "type": "concept",
-              "title": "Detection versus correction",
-              "description": null
+              "title": "Detection versus correction"
             }
           ]
         },
@@ -558,44 +382,22 @@
           "type": "subtopic",
           "title": "Medium access control",
           "description": "Students learn how devices share a communication medium without chaos.",
-          "videos": [
-            {
-              "title": "Collision Domains Explained | Hubs vs Switches | CSMA/CD | Networking Basics",
-              "url": "#"
-            },
-            {
-              "title": "Collision Domains and Broadcast Domains | Half duplex and Full duplex | CSMA/CD Explained",
-              "url": "#"
-            },
-            {
-              "title": "CSMA/CD | Carrier Sense Multiple Access/ Collision Detection",
-              "url": "#"
-            },
-            {
-              "title": "Broadcast Domains and Collision Domains - CompTIA Network+ N10-007 - 1.3",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Collision domains",
-              "description": null
+              "title": "Collision domains"
             },
             {
               "type": "concept",
-              "title": "CSMA/CD",
-              "description": null
+              "title": "CSMA/CD"
             },
             {
               "type": "concept",
-              "title": "CSMA/CA",
-              "description": null
+              "title": "CSMA/CA"
             },
             {
               "type": "concept",
-              "title": "Random access versus scheduled access",
-              "description": null
+              "title": "Random access versus scheduled access"
             }
           ]
         },
@@ -603,47 +405,22 @@
           "type": "subtopic",
           "title": "Ethernet and switching",
           "description": "Students learn the dominant LAN technology and how switches forward frames.",
-          "videos": [
-            {
-              "title": "\ud83c\udfac Let's do Packet Tracer labs together - VLANs, Switching, Troubleshooting",
-              "channel": "PTL1",
-              "url": "#"
-            },
-            {
-              "title": "\ud83c\udfac Let's do Packet Tracer labs together",
-              "channel": "VLANs, DHCP, DHCP Relay, Trunking, SVIs, L3 Switch",
-              "url": "#"
-            },
-            {
-              "title": "Hub, Bridge, Switch, Router - Network Devices - Networking Fundamentals",
-              "channel": "Lesson 1b",
-              "url": "#"
-            },
-            {
-              "title": "Network Switching Overview - CompTIA Network+ N10-007 - 1.3",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Ethernet frames",
-              "description": null
+              "title": "Ethernet frames"
             },
             {
               "type": "concept",
-              "title": "Switch learning",
-              "description": null
+              "title": "Switch learning"
             },
             {
               "type": "concept",
-              "title": "Forwarding tables",
-              "description": null
+              "title": "Forwarding tables"
             },
             {
               "type": "concept",
-              "title": "VLAN basics",
-              "description": null
+              "title": "VLAN basics"
             }
           ]
         }
@@ -653,70 +430,27 @@
       "type": "topic",
       "title": "IP Addressing, Subnetting, and Network-Layer Design",
       "description": "This unit explains how networks identify hosts and organize address space. Subnetting becomes the practical skill that connects protocol theory to real network design.",
-      "videos": [
-        {
-          "title": "IPv4 and IPv6 Addressing - CompTIA Network+ N10-007 - 1.3",
-          "url": "#"
-        },
-        {
-          "title": "IP Address",
-          "channel": "IPv4 vs IPv6 Tutorial",
-          "url": "#"
-        },
-        {
-          "title": "IPv4 Addresses and Subnetting - CompTIA Network+ N10-006 - 1.8",
-          "url": "#"
-        },
-        {
-          "title": "IPv4 Addressing - CompTIA Network+ N10-009 - 1.7",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "IPv4 addressing",
           "description": "Students learn the structure and purpose of IP addresses.",
-          "videos": [
-            {
-              "title": "Network Devices - Hosts, IP Addresses, Networks - Networking Fundamentals",
-              "channel": "Lesson 1a",
-              "url": "#"
-            },
-            {
-              "title": "IPv4 Addresses and Subnetting - CompTIA Network+ N10-006 - 1.8",
-              "url": "#"
-            },
-            {
-              "title": "Calculating IPv4 Subnets and Hosts",
-              "channel": "N10-008 CompTIA Network+ : 1.4",
-              "url": "#"
-            },
-            {
-              "title": "Calculating IPv4 Subnets and Hosts - CompTIA Network+ N10-007 - 1.4",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Dotted decimal notation",
-              "description": null
+              "title": "Dotted decimal notation"
             },
             {
               "type": "concept",
-              "title": "Network and host portions",
-              "description": null
+              "title": "Network and host portions"
             },
             {
               "type": "concept",
-              "title": "Private address ranges",
-              "description": null
+              "title": "Private address ranges"
             },
             {
               "type": "concept",
-              "title": "Loopback and special addresses",
-              "description": null
+              "title": "Loopback and special addresses"
             }
           ]
         },
@@ -724,46 +458,22 @@
           "type": "subtopic",
           "title": "Subnetting",
           "description": "Students learn to divide address space into usable networks. The gist is to match address allocation to topology and growth needs.",
-          "videos": [
-            {
-              "title": "what is an IP Address? // You SUCK at Subnetting // EP 1",
-              "url": "#"
-            },
-            {
-              "title": "What is Subnetting? - Subnetting Mastery",
-              "channel": "Part 1 of 7",
-              "url": "#"
-            },
-            {
-              "title": "How to solve ANY Subnetting Problems in 60 seconds or less - Subnetting Mastery",
-              "channel": "Part 3 of 7",
-              "url": "#"
-            },
-            {
-              "title": "let\u2019s subnet your home network // You SUCK at subnetting // EP 6",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "CIDR notation",
-              "description": null
+              "title": "CIDR notation"
             },
             {
               "type": "concept",
-              "title": "Subnet masks",
-              "description": null
+              "title": "Subnet masks"
             },
             {
               "type": "concept",
-              "title": "Network and broadcast addresses",
-              "description": null
+              "title": "Network and broadcast addresses"
             },
             {
               "type": "concept",
-              "title": "Host counts",
-              "description": null
+              "title": "Host counts"
             }
           ]
         },
@@ -771,46 +481,22 @@
           "type": "subtopic",
           "title": "IPv6",
           "description": "Students learn why IPv6 exists and how it changes addressing.",
-          "videos": [
-            {
-              "title": "IP Address",
-              "channel": "IPv4 vs IPv6 Tutorial",
-              "url": "#"
-            },
-            {
-              "title": "IPv6 Addressing",
-              "channel": "N10-008 CompTIA Network+ : 1.4",
-              "url": "#"
-            },
-            {
-              "title": "IPv6 Addressing - CompTIA Network+ N10-009 - 1.8",
-              "url": "#"
-            },
-            {
-              "title": "IPv4 and IPv6 - CompTIA A+ 220-1101 - 2.5",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "128-bit addresses",
-              "description": null
+              "title": "128-bit addresses"
             },
             {
               "type": "concept",
-              "title": "Prefix notation",
-              "description": null
+              "title": "Prefix notation"
             },
             {
               "type": "concept",
-              "title": "Link-local addresses",
-              "description": null
+              "title": "Link-local addresses"
             },
             {
               "type": "concept",
-              "title": "Autoconfiguration",
-              "description": null
+              "title": "Autoconfiguration"
             }
           ]
         },
@@ -818,47 +504,22 @@
           "type": "subtopic",
           "title": "Network-layer design",
           "description": "Students learn how addressing decisions shape routing, security, and manageability.",
-          "videos": [
-            {
-              "title": "NAT Explained",
-              "channel": "Network Address Translation",
-              "url": "#"
-            },
-            {
-              "title": "Network Layer: Data Plane | Chapter 4",
-              "channel": "Computer Networking: A Top-Down Approach",
-              "url": "#"
-            },
-            {
-              "title": "IPv4 Addressing - CompTIA Network+ N10-009 - 1.7",
-              "url": "#"
-            },
-            {
-              "title": "Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5",
-              "channel": "Part 3",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Address summarization",
-              "description": null
+              "title": "Address summarization"
             },
             {
               "type": "concept",
-              "title": "Hierarchical design",
-              "description": null
+              "title": "Hierarchical design"
             },
             {
               "type": "concept",
-              "title": "NAT",
-              "description": null
+              "title": "NAT"
             },
             {
               "type": "concept",
-              "title": "Address planning",
-              "description": null
+              "title": "Address planning"
             }
           ]
         }
@@ -868,69 +529,27 @@
       "type": "topic",
       "title": "Routing Algorithms, Routing Protocols, and Interdomain Routing",
       "description": "Routing determines the path packets take through interconnected networks. Students learn both the algorithms and the operational protocols that keep the Internet connected.",
-      "videos": [
-        {
-          "title": "EGP / IGP :: Distance Vector / Link State :: Dynamic Routing Protocols :: OSPF EIGRP BGP RIP IS-IS",
-          "url": "#"
-        },
-        {
-          "title": "Link State, Distance Vector, and Hybrid Routing Protocols  - CompTIA Network+ N10-006 - 1.9",
-          "url": "#"
-        },
-        {
-          "title": "Link State, Distance Vector, and Hybrid Routing Protocols",
-          "channel": "CompTIA Network+ N10-005: 1.4",
-          "url": "#"
-        },
-        {
-          "title": "Routing Protocols Overview (Distance Vector and Link-State) CCNA Part1",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Forwarding versus routing",
           "description": "Students learn the difference between moving one packet and computing paths.",
-          "videos": [
-            {
-              "title": "09 Azure in detail : Routing Tables,Virtual Appliance,Longest Prefix Match Algorithm",
-              "url": "#"
-            },
-            {
-              "title": "Do IP Routing Tables Use Longest Prefix Matching?",
-              "url": "#"
-            },
-            {
-              "title": "Routing Tables | CCNA",
-              "channel": "Explained",
-              "url": "#"
-            },
-            {
-              "title": "Routing Tables - CompTIA Network+ N10-006 - 1.9",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Forwarding tables",
-              "description": null
+              "title": "Forwarding tables"
             },
             {
               "type": "concept",
-              "title": "Routing tables",
-              "description": null
+              "title": "Routing tables"
             },
             {
               "type": "concept",
-              "title": "Next hop",
-              "description": null
+              "title": "Next hop"
             },
             {
               "type": "concept",
-              "title": "Longest prefix match",
-              "description": null
+              "title": "Longest prefix match"
             }
           ]
         },
@@ -938,46 +557,22 @@
           "type": "subtopic",
           "title": "Routing algorithms",
           "description": "Students learn classic path-selection ideas.",
-          "videos": [
-            {
-              "title": "EGP / IGP :: Distance Vector / Link State :: Dynamic Routing Protocols :: OSPF EIGRP BGP RIP IS-IS",
-              "url": "#"
-            },
-            {
-              "title": "Link State, Distance Vector, and Hybrid Routing Protocols  - CompTIA Network+ N10-006 - 1.9",
-              "url": "#"
-            },
-            {
-              "title": "Link State, Distance Vector, and Hybrid Routing Protocols",
-              "channel": "CompTIA Network+ N10-005: 1.4",
-              "url": "#"
-            },
-            {
-              "title": "Distance Vector Routing | Bellman-Ford Algorithm in Computer Networks",
-              "channel": "Simplified",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Distance-vector routing",
-              "description": null
+              "title": "Distance-vector routing"
             },
             {
               "type": "concept",
-              "title": "Link-state routing",
-              "description": null
+              "title": "Link-state routing"
             },
             {
               "type": "concept",
-              "title": "Dijkstra's algorithm",
-              "description": null
+              "title": "Dijkstra's algorithm"
             },
             {
               "type": "concept",
-              "title": "Bellman-Ford intuition",
-              "description": null
+              "title": "Bellman-Ford intuition"
             }
           ]
         },
@@ -985,45 +580,22 @@
           "type": "subtopic",
           "title": "Interior routing protocols",
           "description": "Students learn how routing works inside an organization or autonomous system.",
-          "videos": [
-            {
-              "title": "EGP / IGP :: Distance Vector / Link State :: Dynamic Routing Protocols :: OSPF EIGRP BGP RIP IS-IS",
-              "url": "#"
-            },
-            {
-              "title": "Dynamic Routing Protocols - CompTIA Network+ N10-007 - 1.3",
-              "url": "#"
-            },
-            {
-              "title": "Link State, Distance Vector, and Hybrid Routing Protocols  - CompTIA Network+ N10-006 - 1.9",
-              "url": "#"
-            },
-            {
-              "title": "Link State, Distance Vector, and Hybrid Routing Protocols",
-              "channel": "CompTIA Network+ N10-005: 1.4",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "RIP overview",
-              "description": null
+              "title": "RIP overview"
             },
             {
               "type": "concept",
-              "title": "OSPF",
-              "description": null
+              "title": "OSPF"
             },
             {
               "type": "concept",
-              "title": "IS-IS overview",
-              "description": null
+              "title": "IS-IS overview"
             },
             {
               "type": "concept",
-              "title": "Metrics and convergence",
-              "description": null
+              "title": "Metrics and convergence"
             }
           ]
         },
@@ -1031,44 +603,22 @@
           "type": "subtopic",
           "title": "Interdomain routing",
           "description": "Students learn why Internet routing is shaped by policy as well as path length.",
-          "videos": [
-            {
-              "title": "BGP Overview",
-              "url": "#"
-            },
-            {
-              "title": "What is BGP (Border Gateway Protocol)? An Introduction",
-              "url": "#"
-            },
-            {
-              "title": "Internet Peering Between Autonomous Systems (ASNs) or BGP Peering",
-              "url": "#"
-            },
-            {
-              "title": "BGP Hijack Explained",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Autonomous systems",
-              "description": null
+              "title": "Autonomous systems"
             },
             {
               "type": "concept",
-              "title": "BGP",
-              "description": null
+              "title": "BGP"
             },
             {
               "type": "concept",
-              "title": "Peering and transit",
-              "description": null
+              "title": "Peering and transit"
             },
             {
               "type": "concept",
-              "title": "Route hijacking risks",
-              "description": null
+              "title": "Route hijacking risks"
             }
           ]
         }
@@ -1078,67 +628,27 @@
       "type": "topic",
       "title": "Transport Layer: UDP, TCP, Reliability, and Flow Control",
       "description": "This unit explains end-to-end communication between processes. Students learn how transport protocols provide reliability, ordering, ports, and flow management above IP.",
-      "videos": [
-        {
-          "title": "Network Ports Explained",
-          "url": "#"
-        },
-        {
-          "title": "Transport Layer Explained in Networking | TCP, UDP, Ports, Sockets, Reliability \u2013 Made Simple",
-          "url": "#"
-        },
-        {
-          "title": "Transport Layer: TCP UDP & Flow Control",
-          "url": "#"
-        },
-        {
-          "title": "Lec-69: TCP: Transmission control protocol | TCP Header | Transport layer | part -1",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Transport services",
           "description": "Students learn what applications need from transport and why UDP and TCP make different tradeoffs.",
-          "videos": [
-            {
-              "title": "Network Ports Explained",
-              "url": "#"
-            },
-            {
-              "title": "Transport Layer Services- Multiplexing and Demultiplexing, & Flow Control | Computer Networking",
-              "url": "#"
-            },
-            {
-              "title": "Multiplexing & Demultiplexing - Internet Transport Layer | Computer Networks Ep. 3.2 | Kurose & Ross",
-              "url": "#"
-            },
-            {
-              "title": "Transport Layer Explained in Networking | TCP, UDP, Ports, Sockets, Reliability \u2013 Made Simple",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Ports and sockets",
-              "description": null
+              "title": "Ports and sockets"
             },
             {
               "type": "concept",
-              "title": "Multiplexing and demultiplexing",
-              "description": null
+              "title": "Multiplexing and demultiplexing"
             },
             {
               "type": "concept",
-              "title": "Connectionless service",
-              "description": null
+              "title": "Connectionless service"
             },
             {
               "type": "concept",
-              "title": "Connection-oriented service",
-              "description": null
+              "title": "Connection-oriented service"
             }
           ]
         },
@@ -1146,46 +656,22 @@
           "type": "subtopic",
           "title": "UDP",
           "description": "Students learn why a simple transport protocol is useful when applications manage their own reliability or prioritize latency.",
-          "videos": [
-            {
-              "title": "Network Protocols - ARP, FTP, SMTP, HTTP, SSL, TLS, HTTPS, DNS, DHCP - Networking Fundamentals",
-              "channel": "L6",
-              "url": "#"
-            },
-            {
-              "title": "TCP vs UDP - Explaining Facts and Debunking Myths",
-              "channel": "TCP Masterclass",
-              "url": "#"
-            },
-            {
-              "title": "UDP doesn't suck! It's the BEST L4 protocol for THESE types of applications",
-              "url": "#"
-            },
-            {
-              "title": "UDP (User Datagram Protocol) Header | Example of UDP Checksum | Realtime application of UDP Protocol",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "UDP header",
-              "description": null
+              "title": "UDP header"
             },
             {
               "type": "concept",
-              "title": "Datagrams",
-              "description": null
+              "title": "Datagrams"
             },
             {
               "type": "concept",
-              "title": "Checksum",
-              "description": null
+              "title": "Checksum"
             },
             {
               "type": "concept",
-              "title": "DNS, streaming, and real-time examples",
-              "description": null
+              "title": "DNS, streaming, and real-time examples"
             }
           ]
         },
@@ -1193,48 +679,22 @@
           "type": "subtopic",
           "title": "TCP reliability",
           "description": "Students learn how TCP turns unreliable IP delivery into a reliable byte stream.",
-          "videos": [
-            {
-              "title": "CCNA",
-              "channel": "TCP Reliability- Sequence Numbers and Acknowledgments",
-              "url": "#"
-            },
-            {
-              "title": "TCP Reliability",
-              "channel": "Sequence Numbers and Acknowledgments[CCNA Experts Online]",
-              "url": "#"
-            },
-            {
-              "title": "0113 - TCP Fundamentals Part 3",
-              "channel": "Sliding Window Sequence Number Ack Number",
-              "url": "#"
-            },
-            {
-              "title": "TCP Fundamentals",
-              "channel": "Retransmissions, Window Size // TCP/IP Explained",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Sequence numbers",
-              "description": null
+              "title": "Sequence numbers"
             },
             {
               "type": "concept",
-              "title": "Acknowledgments",
-              "description": null
+              "title": "Acknowledgments"
             },
             {
               "type": "concept",
-              "title": "Retransmission",
-              "description": null
+              "title": "Retransmission"
             },
             {
               "type": "concept",
-              "title": "Sliding windows",
-              "description": null
+              "title": "Sliding windows"
             }
           ]
         },
@@ -1242,46 +702,22 @@
           "type": "subtopic",
           "title": "TCP connection and flow control",
           "description": "Students learn how TCP starts, ends, and prevents receiver overload.",
-          "videos": [
-            {
-              "title": "TCP",
-              "channel": "Three-way handshake in details",
-              "url": "#"
-            },
-            {
-              "title": "How TCP really works // Three-way handshake // TCP/IP Deep Dive",
-              "url": "#"
-            },
-            {
-              "title": "TCP Reliability, Flow Control, and Congestion Control",
-              "url": "#"
-            },
-            {
-              "title": "How TCP Works",
-              "channel": "The Receive Window",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Three-way handshake",
-              "description": null
+              "title": "Three-way handshake"
             },
             {
               "type": "concept",
-              "title": "Connection teardown",
-              "description": null
+              "title": "Connection teardown"
             },
             {
               "type": "concept",
-              "title": "Receive window",
-              "description": null
+              "title": "Receive window"
             },
             {
               "type": "concept",
-              "title": "Flow control versus congestion control",
-              "description": null
+              "title": "Flow control versus congestion control"
             }
           ]
         }
@@ -1291,68 +727,27 @@
       "type": "topic",
       "title": "Congestion Control, Quality of Service, and Network Performance",
       "description": "This unit studies what happens when networks get busy. Students learn how protocols and operators manage scarce capacity and performance expectations.",
-      "videos": [
-        {
-          "title": "TCP",
-          "channel": "12 simple ideas to explain the Transmission Control Protocol",
-          "url": "#"
-        },
-        {
-          "title": "Top 5 Wireshark tricks to troubleshoot SLOW networks",
-          "url": "#"
-        },
-        {
-          "title": "PAM 2021: Comparison of TCP Congestion Control Performance over a Satellite Network",
-          "url": "#"
-        },
-        {
-          "title": "TCP Congestion Control // Hands-On Deep Dive TCP Analysis with Wireshark",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Congestion control",
           "description": "Students learn how TCP adapts sending rate to network conditions.",
-          "videos": [
-            {
-              "title": "TCP Congestion Control (Slow Start, AIMD, Fast Retransmit / Recovery)",
-              "url": "#"
-            },
-            {
-              "title": "TCP Congestion Control: Slow Start and Congestion Avoidance",
-              "url": "#"
-            },
-            {
-              "title": "TCP Congestion Control Slow Start and AIMD 1",
-              "url": "#"
-            },
-            {
-              "title": "[420] TCP Congestion Control Slow Start, Avoidance (Computer Networks)",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Slow start",
-              "description": null
+              "title": "Slow start"
             },
             {
               "type": "concept",
-              "title": "Congestion avoidance",
-              "description": null
+              "title": "Congestion avoidance"
             },
             {
               "type": "concept",
-              "title": "Fast retransmit",
-              "description": null
+              "title": "Fast retransmit"
             },
             {
               "type": "concept",
-              "title": "AIMD intuition",
-              "description": null
+              "title": "AIMD intuition"
             }
           ]
         },
@@ -1360,46 +755,22 @@
           "type": "subtopic",
           "title": "Queueing and loss",
           "description": "Students learn how buffers help and hurt network performance.",
-          "videos": [
-            {
-              "title": "Home Internet Connections Are Unfair! (Bufferbloat)",
-              "url": "#"
-            },
-            {
-              "title": "Buffer Bloat Example - Georgia Tech",
-              "channel": "Network Congestion",
-              "url": "#"
-            },
-            {
-              "title": "How Does AQM Reduce Network Bufferbloat?",
-              "url": "#"
-            },
-            {
-              "title": "Bufferbloat #5",
-              "channel": "CoDel and Drop Head Queueing",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Queue buildup",
-              "description": null
+              "title": "Queue buildup"
             },
             {
               "type": "concept",
-              "title": "Bufferbloat",
-              "description": null
+              "title": "Bufferbloat"
             },
             {
               "type": "concept",
-              "title": "Packet drops",
-              "description": null
+              "title": "Packet drops"
             },
             {
               "type": "concept",
-              "title": "Active queue management",
-              "description": null
+              "title": "Active queue management"
             }
           ]
         },
@@ -1407,46 +778,22 @@
           "type": "subtopic",
           "title": "Quality of service",
           "description": "Students learn how networks prioritize or reserve resources for traffic with special needs.",
-          "videos": [
-            {
-              "title": "Quality of Service",
-              "channel": "CompTIA Network+ N10-005: 2.1",
-              "url": "#"
-            },
-            {
-              "title": "QoS and Traffic Shaping",
-              "channel": "CompTIA Network+ N10-005: 4.6",
-              "url": "#"
-            },
-            {
-              "title": "\u2705 Quality of Service (QoS) Explained for Beginners! Traffic Prioritization & Network Guarantees",
-              "url": "#"
-            },
-            {
-              "title": "Networking Functions - CompTIA Network+ N10-009 - 1.2",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Traffic classification",
-              "description": null
+              "title": "Traffic classification"
             },
             {
               "type": "concept",
-              "title": "DiffServ",
-              "description": null
+              "title": "DiffServ"
             },
             {
               "type": "concept",
-              "title": "Scheduling",
-              "description": null
+              "title": "Scheduling"
             },
             {
               "type": "concept",
-              "title": "Real-time application needs",
-              "description": null
+              "title": "Real-time application needs"
             }
           ]
         },
@@ -1454,46 +801,22 @@
           "type": "subtopic",
           "title": "Measurement and benchmarking",
           "description": "Students learn how to evaluate real network behavior.",
-          "videos": [
-            {
-              "title": "Traceroute (tracert) Explained",
-              "channel": "Network Troubleshooting",
-              "url": "#"
-            },
-            {
-              "title": "PING and TRACERT (traceroute) networking commands",
-              "url": "#"
-            },
-            {
-              "title": "Using Throughput Testers",
-              "channel": "CompTIA Network+ N10-005: 4.3",
-              "url": "#"
-            },
-            {
-              "title": "Packet Loss & Throughput Explained | Why Internet Drops & Slows Down | Computer Networks #09",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Throughput tests",
-              "description": null
+              "title": "Throughput tests"
             },
             {
               "type": "concept",
-              "title": "Latency measurement",
-              "description": null
+              "title": "Latency measurement"
             },
             {
               "type": "concept",
-              "title": "Packet loss measurement",
-              "description": null
+              "title": "Packet loss measurement"
             },
             {
               "type": "concept",
-              "title": "Traceroute and path analysis",
-              "description": null
+              "title": "Traceroute and path analysis"
             }
           ]
         }
@@ -1503,75 +826,31 @@
       "type": "topic",
       "title": "Application-Layer Protocols: HTTP, DNS, SMTP, and Web Networking",
       "description": "This unit connects network foundations to the applications students use every day. Students learn how application protocols structure requests, responses, names, and delivery.",
-      "videos": [
-        {
-          "title": "Network Protocols - ARP, FTP, SMTP, HTTP, SSL, TLS, HTTPS, DNS, DHCP - Networking Fundamentals",
-          "channel": "L6",
-          "url": "#"
-        },
-        {
-          "title": "Common Application Layer Protocols",
-          "channel": "CompTIA Network+ N10-004: 1.1",
-          "url": "#"
-        },
-        {
-          "title": "Lec-83: HTTP, FTP, SMTP, POP | All Application Layer Protocols | Computer Networks",
-          "url": "#"
-        },
-        {
-          "title": "SSL, TLS, HTTP, HTTPS Explained",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "HTTP and web protocols",
           "description": "Students learn how browsers and servers communicate.",
-          "videos": [
-            {
-              "title": "Horrible, Helpful, http3 Hack (Quic Protocol)",
-              "channel": "Computerphile",
-              "url": "#"
-            },
-            {
-              "title": "HTTP Explained from Scratch \u2014 Headers, Methods, CORS, Caching & More",
-              "url": "#"
-            },
-            {
-              "title": "HTTP Status Codes Explained In 5 Minutes",
-              "url": "#"
-            },
-            {
-              "title": "HTTP Methods | Request Methods and Status Codes",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "HTTP methods",
-              "description": null
+              "title": "HTTP methods"
             },
             {
               "type": "concept",
-              "title": "Status codes",
-              "description": null
+              "title": "Status codes"
             },
             {
               "type": "concept",
-              "title": "Headers",
-              "description": null
+              "title": "Headers"
             },
             {
               "type": "concept",
-              "title": "Caching",
-              "description": null
+              "title": "Caching"
             },
             {
               "type": "concept",
-              "title": "HTTP/2 and HTTP/3 overview",
-              "description": null
+              "title": "HTTP/2 and HTTP/3 overview"
             }
           ]
         },
@@ -1579,45 +858,22 @@
           "type": "subtopic",
           "title": "DNS",
           "description": "Students learn how names become addresses.",
-          "videos": [
-            {
-              "title": "DNS Records Explained",
-              "url": "#"
-            },
-            {
-              "title": "DNS Security Explained (DNSSEC, DoH, DoT, DoQ)",
-              "channel": "Interview with Ross Gibson",
-              "url": "#"
-            },
-            {
-              "title": "What is DNSSEC (Domain Name System Security Extensions)?",
-              "url": "#"
-            },
-            {
-              "title": "What are DNS Zones And Records?",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Recursive and authoritative resolvers",
-              "description": null
+              "title": "Recursive and authoritative resolvers"
             },
             {
               "type": "concept",
-              "title": "Resource records",
-              "description": null
+              "title": "Resource records"
             },
             {
               "type": "concept",
-              "title": "Caching and TTL",
-              "description": null
+              "title": "Caching and TTL"
             },
             {
               "type": "concept",
-              "title": "DNS security overview",
-              "description": null
+              "title": "DNS security overview"
             }
           ]
         },
@@ -1625,46 +881,22 @@
           "type": "subtopic",
           "title": "Email and messaging protocols",
           "description": "Students learn how message delivery is standardized.",
-          "videos": [
-            {
-              "title": "What are POP3, IMAP, and SMTP?",
-              "url": "#"
-            },
-            {
-              "title": "SMTP vs IMAP vs POP3 Explained",
-              "channel": "Tutorial by Mailtrap",
-              "url": "#"
-            },
-            {
-              "title": "How DKIM SPF & DMARC Work to Prevent Email Spoofing",
-              "url": "#"
-            },
-            {
-              "title": "Email Authentication Protocols",
-              "channel": "SPF, DKIM & DMARC Explained Simply",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "SMTP",
-              "description": null
+              "title": "SMTP"
             },
             {
               "type": "concept",
-              "title": "IMAP and POP overview",
-              "description": null
+              "title": "IMAP and POP overview"
             },
             {
               "type": "concept",
-              "title": "Mail relays",
-              "description": null
+              "title": "Mail relays"
             },
             {
               "type": "concept",
-              "title": "Spam and authentication context",
-              "description": null
+              "title": "Spam and authentication context"
             }
           ]
         },
@@ -1672,45 +904,49 @@
           "type": "subtopic",
           "title": "Content delivery and web performance",
           "description": "Students learn how modern web systems reduce latency and increase reliability.",
-          "videos": [
-            {
-              "title": "CDN - Content Delivery Network",
-              "channel": "Explained",
-              "url": "#"
-            },
-            {
-              "title": "What Is A CDN? How Does It Work?",
-              "url": "#"
-            },
-            {
-              "title": "What is a Content Delivery Network (CDN)?",
-              "url": "#"
-            },
-            {
-              "title": "The Ultimate Guide to Caching and CDNs",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "CDNs",
-              "description": null
+              "title": "CDNs"
             },
             {
               "type": "concept",
-              "title": "TLS handshakes",
-              "description": null
+              "title": "TLS handshakes"
             },
             {
               "type": "concept",
-              "title": "Compression",
-              "description": null
+              "title": "Compression"
             },
             {
               "type": "concept",
-              "title": "Persistent connections",
-              "description": null
+              "title": "Persistent connections"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Modern encrypted transports",
+          "description": "Students examine how transport and application protocols evolve together to reduce latency, encrypt metadata, and resist ossification.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "QUIC connection and stream model"
+            },
+            {
+              "type": "concept",
+              "title": "TLS 1.3 integration"
+            },
+            {
+              "type": "concept",
+              "title": "HTTP/3 mapping"
+            },
+            {
+              "type": "concept",
+              "title": "Encrypted DNS choices"
+            },
+            {
+              "type": "concept",
+              "title": "Protocol ossification and deployability"
             }
           ]
         }
@@ -1720,71 +956,27 @@
       "type": "topic",
       "title": "Socket Programming, Client-Server Design, and Protocol Implementation",
       "description": "This unit makes networking concrete through code. Students learn how applications use sockets to send and receive data across networks.",
-      "videos": [
-        {
-          "title": "How to Create a Simple Socket Server and Client in Python | Networking Basics",
-          "url": "#"
-        },
-        {
-          "title": "TCP SERVER CLIENT LINUX Network Programming in C Complete Code Function Explanation",
-          "url": "#"
-        },
-        {
-          "title": "TCP/IP Socket Programming Project",
-          "channel": "Understanding Client-Server Interaction",
-          "url": "#"
-        },
-        {
-          "title": "Java socket programming",
-          "channel": "Simple client server program",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Socket API basics",
           "description": "Students learn the programming interface between applications and the transport layer.",
-          "videos": [
-            {
-              "title": "Python Network Programming 3",
-              "channel": "Binding Socket and Connections ( Socket Programming )",
-              "url": "#"
-            },
-            {
-              "title": "Python Network Programming 4",
-              "channel": "Accepting Connections ( Socket Programming )",
-              "url": "#"
-            },
-            {
-              "title": "C++ Blocking Sockets Networking [Winsock] Tutorial 9: Accept & Connect",
-              "url": "#"
-            },
-            {
-              "title": "C++ Blocking Sockets Networking [Winsock] Tutorial 7: Binding a Socket",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Socket creation",
-              "description": null
+              "title": "Socket creation"
             },
             {
               "type": "concept",
-              "title": "Bind, listen, accept",
-              "description": null
+              "title": "Bind, listen, accept"
             },
             {
               "type": "concept",
-              "title": "Connect",
-              "description": null
+              "title": "Connect"
             },
             {
               "type": "concept",
-              "title": "Send and receive",
-              "description": null
+              "title": "Send and receive"
             }
           ]
         },
@@ -1792,44 +984,22 @@
           "type": "subtopic",
           "title": "Client-server design",
           "description": "Students learn how networked applications organize roles and state.",
-          "videos": [
-            {
-              "title": "The Client Server Model | Clients and Servers",
-              "url": "#"
-            },
-            {
-              "title": "Client Server Architecture | System Design Interview Basics",
-              "url": "#"
-            },
-            {
-              "title": "Stateful vs Stateless Architectures Explained",
-              "url": "#"
-            },
-            {
-              "title": "Web Application Architecture: Full Request-Response Lifecycle",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Clients and servers",
-              "description": null
+              "title": "Clients and servers"
             },
             {
               "type": "concept",
-              "title": "Concurrency",
-              "description": null
+              "title": "Concurrency"
             },
             {
               "type": "concept",
-              "title": "Request-response patterns",
-              "description": null
+              "title": "Request-response patterns"
             },
             {
               "type": "concept",
-              "title": "Stateful versus stateless design",
-              "description": null
+              "title": "Stateful versus stateless design"
             }
           ]
         },
@@ -1837,45 +1007,22 @@
           "type": "subtopic",
           "title": "Protocol parsing",
           "description": "Students learn to implement and debug message formats.",
-          "videos": [
-            {
-              "title": "TCP connection walkthrough | Networking tutorial (13 of 13)",
-              "url": "#"
-            },
-            {
-              "title": "Network Protocols Explained: Networking Basics",
-              "url": "#"
-            },
-            {
-              "title": "Computer Networking Overview - 6/11",
-              "channel": "Sockets, Connections, Protocols and Ports",
-              "url": "#"
-            },
-            {
-              "title": "Network Protocols & Communications (Part 1)",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Text protocols",
-              "description": null
+              "title": "Text protocols"
             },
             {
               "type": "concept",
-              "title": "Binary protocols",
-              "description": null
+              "title": "Binary protocols"
             },
             {
               "type": "concept",
-              "title": "Message boundaries",
-              "description": null
+              "title": "Message boundaries"
             },
             {
               "type": "concept",
-              "title": "Serialization",
-              "description": null
+              "title": "Serialization"
             }
           ]
         },
@@ -1883,46 +1030,22 @@
           "type": "subtopic",
           "title": "Testing network programs",
           "description": "Students learn practical ways to validate behavior.",
-          "videos": [
-            {
-              "title": "How to test connectivity with Netcat",
-              "url": "#"
-            },
-            {
-              "title": "How to Use nc Netcat",
-              "channel": "Network Debugging, Port Testing & Create Simple Chat Server in Linux!",
-              "url": "#"
-            },
-            {
-              "title": "Packet Capture Basics",
-              "channel": "Sockets",
-              "url": "#"
-            },
-            {
-              "title": "Wireshark Tutorial for Beginners | Network Scanning Made Easy",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Localhost tests",
-              "description": null
+              "title": "Localhost tests"
             },
             {
               "type": "concept",
-              "title": "Netcat and curl",
-              "description": null
+              "title": "Netcat and curl"
             },
             {
               "type": "concept",
-              "title": "Packet captures",
-              "description": null
+              "title": "Packet captures"
             },
             {
               "type": "concept",
-              "title": "Timeout and error handling",
-              "description": null
+              "title": "Timeout and error handling"
             }
           ]
         }
@@ -1932,69 +1055,27 @@
       "type": "topic",
       "title": "Wireless, Mobile, and Access Networks",
       "description": "This unit examines networks where the medium is shared, mobile, and variable. Students learn why wireless networking has different constraints from wired Ethernet.",
-      "videos": [
-        {
-          "title": "Wireless Access Point vs Wi-Fi Router",
-          "url": "#"
-        },
-        {
-          "title": "Wireless Networks | Random Access Protocols | CSMA/CA",
-          "url": "#"
-        },
-        {
-          "title": "Mobile and Wireless Access Networks | Mobile Access Networks | Wireless Access Networks",
-          "url": "#"
-        },
-        {
-          "title": "Understanding CSMA/CD and CSMA/CA",
-          "channel": "CompTIA Network+ N10-005: 3.7",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Wi-Fi fundamentals",
           "description": "Students learn the basic operation of 802.11 networks.",
-          "videos": [
-            {
-              "title": "Wireless Access Point vs Wi-Fi Router",
-              "url": "#"
-            },
-            {
-              "title": "Access Points - CompTIA Security+ SY0-501 - 2.1",
-              "url": "#"
-            },
-            {
-              "title": "Wireless Channels and Frequencies",
-              "channel": "CompTIA Network+ N10-005: 2.2",
-              "url": "#"
-            },
-            {
-              "title": "CSMA/CD and CSMA/CA Explained",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Channels",
-              "description": null
+              "title": "Channels"
             },
             {
               "type": "concept",
-              "title": "Access points",
-              "description": null
+              "title": "Access points"
             },
             {
               "type": "concept",
-              "title": "Association",
-              "description": null
+              "title": "Association"
             },
             {
               "type": "concept",
-              "title": "CSMA/CA",
-              "description": null
+              "title": "CSMA/CA"
             }
           ]
         },
@@ -2002,46 +1083,22 @@
           "type": "subtopic",
           "title": "Cellular and mobile networking",
           "description": "Students learn how mobility changes addressing, handoff, and performance.",
-          "videos": [
-            {
-              "title": "Mobile Device Networks - CompTIA A+ 220-1201 - 1.3",
-              "url": "#"
-            },
-            {
-              "title": "Wireless Networking - CompTIA Network+ N10-009 - 1.5",
-              "url": "#"
-            },
-            {
-              "title": "Mobile Networks",
-              "channel": "SY0-601 CompTIA Security+ : 3.5",
-              "url": "#"
-            },
-            {
-              "title": "Cellular, WiMAX, LTE, and HSPA+",
-              "channel": "CompTIA Network+ N10-005: 3.4",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Cellular architecture",
-              "description": null
+              "title": "Cellular architecture"
             },
             {
               "type": "concept",
-              "title": "Handoff",
-              "description": null
+              "title": "Handoff"
             },
             {
               "type": "concept",
-              "title": "Roaming",
-              "description": null
+              "title": "Roaming"
             },
             {
               "type": "concept",
-              "title": "5G overview",
-              "description": null
+              "title": "5G overview"
             }
           ]
         },
@@ -2049,46 +1106,22 @@
           "type": "subtopic",
           "title": "Wireless performance",
           "description": "Students learn why signal conditions and contention affect throughput.",
-          "videos": [
-            {
-              "title": "Troubleshooting Wireless Signals - CompTIA Network+ N10-006 - 4.3",
-              "url": "#"
-            },
-            {
-              "title": "Troubleshooting Wireless Signal Issues",
-              "channel": "CompTIA Network+ N10-005: 2.4",
-              "url": "#"
-            },
-            {
-              "title": "Wireless Bridge Mode",
-              "channel": "Networking",
-              "url": "#"
-            },
-            {
-              "title": "Wireless Issues - CompTIA Network+ N10-009 - 5.4",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Interference",
-              "description": null
+              "title": "Interference"
             },
             {
               "type": "concept",
-              "title": "Signal strength",
-              "description": null
+              "title": "Signal strength"
             },
             {
               "type": "concept",
-              "title": "Hidden terminal problem",
-              "description": null
+              "title": "Hidden terminal problem"
             },
             {
               "type": "concept",
-              "title": "Rate adaptation",
-              "description": null
+              "title": "Rate adaptation"
             }
           ]
         },
@@ -2096,47 +1129,22 @@
           "type": "subtopic",
           "title": "Wireless security",
           "description": "Students learn baseline protections and common risks.",
-          "videos": [
-            {
-              "title": "WiFi (Wireless) Password Security",
-              "channel": "WEP, WPA, WPA2, WPA3, WPS Explained",
-              "url": "#"
-            },
-            {
-              "title": "Rogue Access Points and Evil Twins",
-              "channel": "SY0-601 CompTIA Security+ : 1.4",
-              "url": "#"
-            },
-            {
-              "title": "Rogue Access Points - CompTIA Network+ N10-007 - 4.4",
-              "url": "#"
-            },
-            {
-              "title": "Rogue Access Points and Evil Twins",
-              "channel": "CompTIA Network+ N10-005: 5.4",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "WPA2/WPA3",
-              "description": null
+              "title": "WPA2/WPA3"
             },
             {
               "type": "concept",
-              "title": "Authentication",
-              "description": null
+              "title": "Authentication"
             },
             {
               "type": "concept",
-              "title": "Rogue access points",
-              "description": null
+              "title": "Rogue access points"
             },
             {
               "type": "concept",
-              "title": "Guest networks",
-              "description": null
+              "title": "Guest networks"
             }
           ]
         }
@@ -2146,71 +1154,27 @@
       "type": "topic",
       "title": "Network Security: TLS, Firewalls, VPNs, Segmentation, and Zero Trust",
       "description": "This unit introduces security as a design requirement, not an afterthought. Students learn how protocols and network architecture reduce risk.",
-      "videos": [
-        {
-          "title": "Network Segmentation",
-          "channel": "SY0-601 CompTIA Security+ : 3.3",
-          "url": "#"
-        },
-        {
-          "title": "Network Segmentation - CompTIA Security+ SY0-501 - 3.2",
-          "url": "#"
-        },
-        {
-          "title": "Zero Trust - CompTIA Security+ SY0-701 - 1.2",
-          "url": "#"
-        },
-        {
-          "title": "Networking for Hackers and Cybersecurity professionals (How long until you learn something new?)",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Secure channels",
           "description": "Students learn how cryptography protects traffic in transit.",
-          "videos": [
-            {
-              "title": "TLS Handshake",
-              "channel": "EVERYTHING that happens when you visit an HTTPS website",
-              "url": "#"
-            },
-            {
-              "title": "HTTPS Decryption with Wireshark // Website TLS Decryption",
-              "url": "#"
-            },
-            {
-              "title": "Public Key Infrastructure - What is a PKI? - Cryptography",
-              "channel": "Practical TLS",
-              "url": "#"
-            },
-            {
-              "title": "Key Players of SSL & TLS:  Client, Server, Certificate Authority (CA)",
-              "channel": "Practical TLS",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "TLS",
-              "description": null
+              "title": "TLS"
             },
             {
               "type": "concept",
-              "title": "Certificates",
-              "description": null
+              "title": "Certificates"
             },
             {
               "type": "concept",
-              "title": "PKI",
-              "description": null
+              "title": "PKI"
             },
             {
               "type": "concept",
-              "title": "HTTPS",
-              "description": null
+              "title": "HTTPS"
             }
           ]
         },
@@ -2218,46 +1182,22 @@
           "type": "subtopic",
           "title": "Perimeter and packet controls",
           "description": "Students learn how networks filter and control traffic.",
-          "videos": [
-            {
-              "title": "Stateful Inspection and Packet Filtering",
-              "channel": "CompTIA Network+ N10-005: 5.5",
-              "url": "#"
-            },
-            {
-              "title": "\"Understanding Packet Filtering, Stateful, and Next-Generation Firewalls | Cybersecurity Explained\"",
-              "url": "#"
-            },
-            {
-              "title": "Types of Firewalls:  Packet filtering routers, Stateful Inspection Firewalls",
-              "url": "#"
-            },
-            {
-              "title": "Firewalls",
-              "channel": "Stateful Packet Inspection Filtering",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Firewalls",
-              "description": null
+              "title": "Firewalls"
             },
             {
               "type": "concept",
-              "title": "ACLs",
-              "description": null
+              "title": "ACLs"
             },
             {
               "type": "concept",
-              "title": "Packet filtering",
-              "description": null
+              "title": "Packet filtering"
             },
             {
               "type": "concept",
-              "title": "Stateful inspection",
-              "description": null
+              "title": "Stateful inspection"
             }
           ]
         },
@@ -2265,44 +1205,22 @@
           "type": "subtopic",
           "title": "VPNs and tunneling",
           "description": "Students learn how private communication is carried over shared networks.",
-          "videos": [
-            {
-              "title": "VPNs Explained | Site-to-Site + Remote Access",
-              "url": "#"
-            },
-            {
-              "title": "IP Sec VPN Fundamentals",
-              "url": "#"
-            },
-            {
-              "title": "IPsec Explained",
-              "url": "#"
-            },
-            {
-              "title": "SSL VPN and VPN Technologies",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "IPsec",
-              "description": null
+              "title": "IPsec"
             },
             {
               "type": "concept",
-              "title": "SSL VPNs",
-              "description": null
+              "title": "SSL VPNs"
             },
             {
               "type": "concept",
-              "title": "Tunnels",
-              "description": null
+              "title": "Tunnels"
             },
             {
               "type": "concept",
-              "title": "Remote access",
-              "description": null
+              "title": "Remote access"
             }
           ]
         },
@@ -2310,45 +1228,22 @@
           "type": "subtopic",
           "title": "Segmentation and zero trust",
           "description": "Students learn modern access-control ideas for limiting blast radius.",
-          "videos": [
-            {
-              "title": "Zero Trust - CompTIA Network+ N10-009 - 1.8",
-              "url": "#"
-            },
-            {
-              "title": "Network Segmentation, Microsegmentation & Zero Trust: Securing Your Digital Space",
-              "url": "#"
-            },
-            {
-              "title": "Network Segmentation - CompTIA Network+ N10-007 - 1.3",
-              "url": "#"
-            },
-            {
-              "title": "Network Segmentation",
-              "channel": "SY0-601 CompTIA Security+ : 3.3",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Network segmentation",
-              "description": null
+              "title": "Network segmentation"
             },
             {
               "type": "concept",
-              "title": "Microsegmentation",
-              "description": null
+              "title": "Microsegmentation"
             },
             {
               "type": "concept",
-              "title": "Least privilege",
-              "description": null
+              "title": "Least privilege"
             },
             {
               "type": "concept",
-              "title": "Continuous verification",
-              "description": null
+              "title": "Continuous verification"
             }
           ]
         }
@@ -2358,67 +1253,27 @@
       "type": "topic",
       "title": "Packet Analysis, Troubleshooting, and Network Operations",
       "description": "This unit develops operational skill. Students learn to observe network behavior directly, diagnose failures, and manage networks as living systems.",
-      "videos": [
-        {
-          "title": "Wireshark: Packet Analysis and Ethical Hacking Course",
-          "url": "#"
-        },
-        {
-          "title": "Troubleshooting slow networks with Wireshark // wireshark filters // Wireshark performance",
-          "url": "#"
-        },
-        {
-          "title": "Is this an attack? Wireshark Packet analysis // SYN Attack",
-          "url": "#"
-        },
-        {
-          "title": "Top 5 Wireshark tricks to troubleshoot SLOW networks",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Packet capture",
           "description": "Students learn to inspect traffic and connect packets to protocol theory.",
-          "videos": [
-            {
-              "title": "Wireshark: Packet Analysis and Ethical Hacking Course",
-              "url": "#"
-            },
-            {
-              "title": "Wireshark Tutorial for Beginners: Packet Analysis, Capture Filters & More!",
-              "url": "#"
-            },
-            {
-              "title": "Wireshark Display Filters | Free Wireshark and Ethical Hacking Course: Video #4",
-              "url": "#"
-            },
-            {
-              "title": "Wireshark Deep Dive: Setting Up TCP Conversation Filters",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Wireshark",
-              "description": null
+              "title": "Wireshark"
             },
             {
               "type": "concept",
-              "title": "Capture filters",
-              "description": null
+              "title": "Capture filters"
             },
             {
               "type": "concept",
-              "title": "Display filters",
-              "description": null
+              "title": "Display filters"
             },
             {
               "type": "concept",
-              "title": "Protocol dissection",
-              "description": null
+              "title": "Protocol dissection"
             }
           ]
         },
@@ -2426,46 +1281,22 @@
           "type": "subtopic",
           "title": "Troubleshooting workflow",
           "description": "Students learn a systematic process for finding network problems.",
-          "videos": [
-            {
-              "title": "PING Command",
-              "channel": "Troubleshooting Networks",
-              "url": "#"
-            },
-            {
-              "title": "Traceroute (tracert) Explained",
-              "channel": "Network Troubleshooting",
-              "url": "#"
-            },
-            {
-              "title": "PING and TRACERT (traceroute) networking commands",
-              "url": "#"
-            },
-            {
-              "title": "Troubleshooting slow networks with Wireshark // wireshark filters // Wireshark performance",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Layer-by-layer diagnosis",
-              "description": null
+              "title": "Layer-by-layer diagnosis"
             },
             {
               "type": "concept",
-              "title": "Ping",
-              "description": null
+              "title": "Ping"
             },
             {
               "type": "concept",
-              "title": "Traceroute",
-              "description": null
+              "title": "Traceroute"
             },
             {
               "type": "concept",
-              "title": "DNS lookup tools",
-              "description": null
+              "title": "DNS lookup tools"
             }
           ]
         },
@@ -2473,45 +1304,22 @@
           "type": "subtopic",
           "title": "Monitoring and logging",
           "description": "Students learn how operators maintain visibility.",
-          "videos": [
-            {
-              "title": "Network Monitoring Tools - CompTIA Network+ N10-006 - 2.1",
-              "url": "#"
-            },
-            {
-              "title": "Logs and Monitoring",
-              "channel": "N10-008 CompTIA Network+ : 3.1",
-              "url": "#"
-            },
-            {
-              "title": "SNMP - CompTIA Network+ N10-009 - 3.2",
-              "url": "#"
-            },
-            {
-              "title": "Logs and Monitoring - CompTIA Network+ N10-009 - 3.2",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "SNMP overview",
-              "description": null
+              "title": "SNMP overview"
             },
             {
               "type": "concept",
-              "title": "Flow records",
-              "description": null
+              "title": "Flow records"
             },
             {
               "type": "concept",
-              "title": "Logs",
-              "description": null
+              "title": "Logs"
             },
             {
               "type": "concept",
-              "title": "Dashboards",
-              "description": null
+              "title": "Dashboards"
             }
           ]
         },
@@ -2519,45 +1327,22 @@
           "type": "subtopic",
           "title": "Incident and alert context",
           "description": "Students learn the bridge from troubleshooting to defense.",
-          "videos": [
-            {
-              "title": "Suricata Network IDS/IPS Installation, Setup, and How To Tune The Rules & Alerts",
-              "url": "#"
-            },
-            {
-              "title": "Cybersecurity Tool for Network Analysis",
-              "channel": "Zeek",
-              "url": "#"
-            },
-            {
-              "title": "How to Monitor Network Traffic (SOC Analyst Lab with TShark, Zeek & Suricata)",
-              "url": "#"
-            },
-            {
-              "title": "Suricata + Zeek: How it Works",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "IDS/IPS overview",
-              "description": null
+              "title": "IDS/IPS overview"
             },
             {
               "type": "concept",
-              "title": "Zeek and Suricata context",
-              "description": null
+              "title": "Zeek and Suricata context"
             },
             {
               "type": "concept",
-              "title": "Alert triage",
-              "description": null
+              "title": "Alert triage"
             },
             {
               "type": "concept",
-              "title": "False positives",
-              "description": null
+              "title": "False positives"
             }
           ]
         }
@@ -2567,70 +1352,27 @@
       "type": "topic",
       "title": "Software-Defined Networking, NFV, Data-Center, and Cloud Networking",
       "description": "This unit covers modern network infrastructure. Students learn how control, forwarding, virtualization, and cloud platforms change network design.",
-      "videos": [
-        {
-          "title": "Software Defined Networking - CompTIA A+ 220-1101 - 2.2",
-          "url": "#"
-        },
-        {
-          "title": "Software Defined Networking",
-          "channel": "Computerphile",
-          "url": "#"
-        },
-        {
-          "title": "The Modern Data Center: How Software-defined Networking Works",
-          "url": "#"
-        },
-        {
-          "title": "On Demand Webinar: IBM Software Defined Networking for Data Centers",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Software-defined networking",
           "description": "Students learn how SDN separates control logic from forwarding devices.",
-          "videos": [
-            {
-              "title": "Control and Data Planes - Georgia Tech",
-              "channel": "Software Defined Networking",
-              "url": "#"
-            },
-            {
-              "title": "Control and Data Planes - Georgia Tech",
-              "channel": "Software Defined Networking",
-              "url": "#"
-            },
-            {
-              "title": "Software Defined Networking (SDN) Explained: Principles, Controllers & OpenFlow",
-              "url": "#"
-            },
-            {
-              "title": "Software Defined Networking - CompTIA A+ 220-1101 - 2.2",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Control plane",
-              "description": null
+              "title": "Control plane"
             },
             {
               "type": "concept",
-              "title": "Data plane",
-              "description": null
+              "title": "Data plane"
             },
             {
               "type": "concept",
-              "title": "OpenFlow intuition",
-              "description": null
+              "title": "OpenFlow intuition"
             },
             {
               "type": "concept",
-              "title": "Centralized controllers",
-              "description": null
+              "title": "Centralized controllers"
             }
           ]
         },
@@ -2638,44 +1380,22 @@
           "type": "subtopic",
           "title": "Network function virtualization",
           "description": "Students learn how network services can run as software rather than dedicated appliances.",
-          "videos": [
-            {
-              "title": "What is Network Function Virtualization (NFV)?",
-              "url": "#"
-            },
-            {
-              "title": "What is NFV?",
-              "url": "#"
-            },
-            {
-              "title": "Introduction to NFV Network function Virtualization Basics",
-              "url": "#"
-            },
-            {
-              "title": "Network Function Virtualization (NFV) Explained for Beginners",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Virtual firewalls",
-              "description": null
+              "title": "Virtual firewalls"
             },
             {
               "type": "concept",
-              "title": "Load balancers",
-              "description": null
+              "title": "Load balancers"
             },
             {
               "type": "concept",
-              "title": "Service chaining",
-              "description": null
+              "title": "Service chaining"
             },
             {
               "type": "concept",
-              "title": "Operational tradeoffs",
-              "description": null
+              "title": "Operational tradeoffs"
             }
           ]
         },
@@ -2683,45 +1403,22 @@
           "type": "subtopic",
           "title": "Data-center networking",
           "description": "Students learn the design pressures of large-scale server networks.",
-          "videos": [
-            {
-              "title": "Data Center NETWORKS (what do they look like??)",
-              "url": "#"
-            },
-            {
-              "title": "Spine and Leaf network architecture explained",
-              "url": "#"
-            },
-            {
-              "title": "VxLAN | Part 3",
-              "channel": "Spine Leaf Topology",
-              "url": "#"
-            },
-            {
-              "title": "East-West & North-South Network Traffic | Network Architecture",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Leaf-spine topology",
-              "description": null
+              "title": "Leaf-spine topology"
             },
             {
               "type": "concept",
-              "title": "East-west traffic",
-              "description": null
+              "title": "East-west traffic"
             },
             {
               "type": "concept",
-              "title": "Load balancing",
-              "description": null
+              "title": "Load balancing"
             },
             {
               "type": "concept",
-              "title": "Multi-tenancy",
-              "description": null
+              "title": "Multi-tenancy"
             }
           ]
         },
@@ -2729,44 +1426,49 @@
           "type": "subtopic",
           "title": "Cloud networking",
           "description": "Students learn the basic networking abstractions used by cloud platforms.",
-          "videos": [
-            {
-              "title": "Virtual Private Cloud (VPC) Explained",
-              "url": "#"
-            },
-            {
-              "title": "Cloud Networking Explained: Virtual Networks & Cloud Environments for Beginners",
-              "url": "#"
-            },
-            {
-              "title": "AWS Networking Setup (VPC, Subnet, Security Groups) \ud83d\ude80APU Cloud Assignment \u2013 Hands-on Lab",
-              "url": "#"
-            },
-            {
-              "title": "AZ-900 Episode 10 | Networking Services | Virtual Network, VPN Gateway, CDN, Load Balancer, App GW",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Virtual networks",
-              "description": null
+              "title": "Virtual networks"
             },
             {
               "type": "concept",
-              "title": "Subnets and security groups",
-              "description": null
+              "title": "Subnets and security groups"
             },
             {
               "type": "concept",
-              "title": "Cloud load balancers",
-              "description": null
+              "title": "Cloud load balancers"
             },
             {
               "type": "concept",
-              "title": "Hybrid connectivity",
-              "description": null
+              "title": "Hybrid connectivity"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Programmable data planes",
+          "description": "Students learn how modern switches expose packet parsing and match-action behavior to software, enabling faster experimentation and specialized forwarding.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "P4 language overview"
+            },
+            {
+              "type": "concept",
+              "title": "Parsers and protocol headers"
+            },
+            {
+              "type": "concept",
+              "title": "Match-action tables"
+            },
+            {
+              "type": "concept",
+              "title": "Control-plane APIs and P4Runtime"
+            },
+            {
+              "type": "concept",
+              "title": "Telemetry and target constraints"
             }
           ]
         }
@@ -2776,70 +1478,27 @@
       "type": "topic",
       "title": "Emerging Networking Trends and Applied Network Design",
       "description": "The final unit synthesizes the course into design judgment. Students connect protocols, security, performance, and operations to realistic network architecture choices.",
-      "videos": [
-        {
-          "title": "Horrible, Helpful, http3 Hack (Quic Protocol)",
-          "channel": "Computerphile",
-          "url": "#"
-        },
-        {
-          "title": "Network Layers Model (Networking Basics)",
-          "channel": "Computerphile",
-          "url": "#"
-        },
-        {
-          "title": "\ud83d\ude80 The Future of Networking: Emerging Technologies & Trends Explained!",
-          "url": "#"
-        },
-        {
-          "title": "Network Stacks and the Internet",
-          "channel": "Computerphile",
-          "url": "#"
-        }
-      ],
       "children": [
         {
           "type": "subtopic",
           "title": "Network design process",
           "description": "Students learn to turn requirements into an architecture.",
-          "videos": [
-            {
-              "title": "Network Design Principles for Beginners: Scalable & Secure Networks",
-              "url": "#"
-            },
-            {
-              "title": "Network Capacity Planning: Forecasting & Optimizing Network Growth for Beginners",
-              "url": "#"
-            },
-            {
-              "title": "Network Redundancy - CompTIA Network+ N10-009 - 3.3",
-              "url": "#"
-            },
-            {
-              "title": "Cybersecurity Architecture: Networks",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Requirements gathering",
-              "description": null
+              "title": "Requirements gathering"
             },
             {
               "type": "concept",
-              "title": "Capacity planning",
-              "description": null
+              "title": "Capacity planning"
             },
             {
               "type": "concept",
-              "title": "Redundancy",
-              "description": null
+              "title": "Redundancy"
             },
             {
               "type": "concept",
-              "title": "Addressing and routing plan",
-              "description": null
+              "title": "Addressing and routing plan"
             }
           ]
         },
@@ -2847,45 +1506,22 @@
           "type": "subtopic",
           "title": "Modern protocol trends",
           "description": "Students learn how protocols continue to evolve.",
-          "videos": [
-            {
-              "title": "Horrible, Helpful, http3 Hack (Quic Protocol)",
-              "channel": "Computerphile",
-              "url": "#"
-            },
-            {
-              "title": "Everything You Need to Know About QUIC and HTTP3",
-              "url": "#"
-            },
-            {
-              "title": "HTTP/3 and QUIC: Who, what, where, when and, WHY?",
-              "url": "#"
-            },
-            {
-              "title": "Top 8 Most Popular Network Protocols Explained",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "QUIC",
-              "description": null
+              "title": "QUIC"
             },
             {
               "type": "concept",
-              "title": "HTTP/3",
-              "description": null
+              "title": "HTTP/3"
             },
             {
               "type": "concept",
-              "title": "IPv6 adoption",
-              "description": null
+              "title": "IPv6 adoption"
             },
             {
               "type": "concept",
-              "title": "Encrypted DNS",
-              "description": null
+              "title": "Encrypted DNS"
             }
           ]
         },
@@ -2893,44 +1529,22 @@
           "type": "subtopic",
           "title": "Edge and IoT networking",
           "description": "Students learn why constrained and distributed devices create new networking challenges.",
-          "videos": [
-            {
-              "title": "IoT Networking Explained: Protocols, Architectures & Future Trends",
-              "url": "#"
-            },
-            {
-              "title": "What is edge computing?",
-              "url": "#"
-            },
-            {
-              "title": "IoT Protocols: How To Pick A Network Protocol For Your IoT Project",
-              "url": "#"
-            },
-            {
-              "title": "How Does Edge Computing Affect My Network?",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "IoT protocols overview",
-              "description": null
+              "title": "IoT protocols overview"
             },
             {
               "type": "concept",
-              "title": "Edge computing",
-              "description": null
+              "title": "Edge computing"
             },
             {
               "type": "concept",
-              "title": "Low-power networks",
-              "description": null
+              "title": "Low-power networks"
             },
             {
               "type": "concept",
-              "title": "Device identity",
-              "description": null
+              "title": "Device identity"
             }
           ]
         },
@@ -2938,44 +1552,49 @@
           "type": "subtopic",
           "title": "Capstone-style design review",
           "description": "Students practice explaining and defending design choices.",
-          "videos": [
-            {
-              "title": "DO NOT design your network like this!! // FREE CCNA // EP 6",
-              "url": "#"
-            },
-            {
-              "title": "Build a network with me for free using Cisco Packet Tracer (FREE CCNA 200-301 Course 2025)",
-              "url": "#"
-            },
-            {
-              "title": "Networking for Hackers and Cybersecurity professionals (How long until you learn something new?)",
-              "url": "#"
-            },
-            {
-              "title": "Network Infrastructure Concepts - CompTIA Security+ SY0-701 - 3.1",
-              "url": "#"
-            }
-          ],
           "children": [
             {
               "type": "concept",
-              "title": "Topology diagram",
-              "description": null
+              "title": "Topology diagram"
             },
             {
               "type": "concept",
-              "title": "Security controls",
-              "description": null
+              "title": "Security controls"
             },
             {
               "type": "concept",
-              "title": "Performance assumptions",
-              "description": null
+              "title": "Performance assumptions"
             },
             {
               "type": "concept",
-              "title": "Failure scenarios",
-              "description": null
+              "title": "Failure scenarios"
+            }
+          ]
+        },
+        {
+          "type": "subtopic",
+          "title": "Networking research and reproducible experimentation",
+          "description": "Students learn how networking knowledge is created and challenged through standards, original papers, controlled experiments, and artifacts that others can inspect and rerun.",
+          "children": [
+            {
+              "type": "concept",
+              "title": "Reading RFCs and original research papers"
+            },
+            {
+              "type": "concept",
+              "title": "Hypotheses, baselines, and controlled variables"
+            },
+            {
+              "type": "concept",
+              "title": "Simulation, emulation, and testbed validity"
+            },
+            {
+              "type": "concept",
+              "title": "Reproducible code, configuration, seeds, and raw data"
+            },
+            {
+              "type": "concept",
+              "title": "Limitations, ethics, privacy, and responsible disclosure"
             }
           ]
         }
