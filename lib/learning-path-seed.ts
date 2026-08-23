@@ -32,6 +32,15 @@ export type LearningPathResource = {
   why: string
 }
 
+export type LearningPathUserResource = {
+  id: string
+  kind: LearningPathResourceKind
+  title: string
+  href?: string
+  passage: string
+  why: string
+}
+
 export type LearningPathNode = {
   id: string
   label: string
@@ -40,9 +49,17 @@ export type LearningPathNode = {
   status: LearningPathNodeStatus
   x: number
   y: number
+  /** Core-path order (1, 2, 3…) or sibling order among sub-paths (a, b…). */
+  sequence?: number
   description: string
   why: string
   resources: LearningPathResource[]
+}
+
+export type PathMark = {
+  mark: string
+  role: 'core' | 'branch'
+  parentId?: string
 }
 
 export type LearningPathEdge = {
@@ -113,6 +130,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'exploring',
+      sequence: 3,
       x: 28,
       y: 38,
       description:
@@ -143,6 +161,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'explored',
+      sequence: 1,
       x: 50,
       y: 38,
       description:
@@ -165,6 +184,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'next',
+      sequence: 2,
       x: 72,
       y: 38,
       description:
@@ -187,6 +207,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 18,
       y: 64,
       description:
@@ -209,6 +230,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 2,
       x: 40,
       y: 64,
       description:
@@ -231,6 +253,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 62,
       y: 64,
       description:
@@ -253,6 +276,7 @@ const TRANSFORMERS: LearningPathData = {
       kind: 'milestone',
       sub: 'You are here when',
       status: 'next',
+      sequence: 4,
       x: 82,
       y: 88,
       description:
@@ -322,6 +346,7 @@ const ROM_COM: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'exploring',
+      sequence: 1,
       x: 26,
       y: 38,
       description:
@@ -343,6 +368,7 @@ const ROM_COM: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'next',
+      sequence: 2,
       x: 50,
       y: 38,
       description:
@@ -364,6 +390,7 @@ const ROM_COM: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'next',
+      sequence: 3,
       x: 74,
       y: 38,
       description:
@@ -385,6 +412,7 @@ const ROM_COM: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 22,
       y: 64,
       description:
@@ -398,6 +426,7 @@ const ROM_COM: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 50,
       y: 64,
       description:
@@ -419,6 +448,7 @@ const ROM_COM: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 76,
       y: 64,
       description:
@@ -432,6 +462,7 @@ const ROM_COM: LearningPathData = {
       kind: 'milestone',
       sub: 'You are here when',
       status: 'next',
+      sequence: 4,
       x: 82,
       y: 88,
       description:
@@ -491,6 +522,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'concept',
       sub: 'Start here',
       status: 'explored',
+      sequence: 1,
       x: 24,
       y: 38,
       description:
@@ -512,6 +544,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'exploring',
+      sequence: 2,
       x: 50,
       y: 38,
       description:
@@ -533,6 +566,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'concept',
       sub: 'Need this',
       status: 'next',
+      sequence: 3,
       x: 76,
       y: 38,
       description:
@@ -546,6 +580,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 22,
       y: 64,
       description:
@@ -567,6 +602,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 50,
       y: 64,
       description:
@@ -580,6 +616,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'prerequisite',
       sub: 'As deep as you need',
       status: 'next',
+      sequence: 1,
       x: 76,
       y: 64,
       description:
@@ -593,6 +630,7 @@ const TREE_HOUSE: LearningPathData = {
       kind: 'milestone',
       sub: 'You are here when',
       status: 'next',
+      sequence: 4,
       x: 82,
       y: 88,
       description:
@@ -635,6 +673,72 @@ export const SEEDED_LEARNING_PATHS: LearningPathData[] = [
 
 export const SEEDED_LEARNING_PATHS_BY_SLUG: Record<string, LearningPathData> =
   Object.fromEntries(SEEDED_LEARNING_PATHS.map((path) => [path.slug, path]))
+
+const BRANCH_LETTERS = 'abcdefghijklmnopqrstuvwxyz'
+const BRANCH_ROMANS = [
+  'i',
+  'ii',
+  'iii',
+  'iv',
+  'v',
+  'vi',
+  'vii',
+  'viii',
+  'ix',
+  'x'
+]
+
+function bySequence(a: LearningPathNode, b: LearningPathNode) {
+  const ao = a.sequence ?? a.x
+  const bo = b.sequence ?? b.x
+  if (ao !== bo) return ao - bo
+  if (a.kind === 'milestone' && b.kind !== 'milestone') return 1
+  if (b.kind === 'milestone' && a.kind !== 'milestone') return -1
+  return a.x - b.x
+}
+
+export function sequenceMarks(
+  path: LearningPathData
+): Record<string, PathMark> {
+  const byId = Object.fromEntries(path.nodes.map((node) => [node.id, node]))
+  const marks: Record<string, PathMark> = {}
+  const core = path.nodes
+    .filter((node) => node.kind === 'concept' || node.kind === 'milestone')
+    .sort(bySequence)
+  core.forEach((node, index) => {
+    marks[node.id] = { mark: String(index + 1), role: 'core' }
+  })
+
+  function markChildren(
+    parentId: string,
+    childKind: LearningPathNodeKind,
+    labels: readonly string[]
+  ) {
+    const kids = path.edges
+      .filter((edge) => edge.from === parentId)
+      .map((edge) => byId[edge.to])
+      .filter(
+        (node): node is LearningPathNode =>
+          !!node && node.kind === childKind && !marks[node.id]
+      )
+      .sort(bySequence)
+    kids.forEach((node, index) => {
+      marks[node.id] = {
+        mark: labels[index] ?? String(index + 1),
+        role: 'branch',
+        parentId
+      }
+    })
+  }
+
+  for (const parent of core) {
+    markChildren(parent.id, 'prerequisite', BRANCH_LETTERS.split(''))
+  }
+  for (const parent of path.nodes.filter((node) => node.kind === 'prerequisite')) {
+    markChildren(parent.id, 'prerequisite', BRANCH_ROMANS)
+  }
+  return marks
+}
 
 export function emptyLearningPath(
   goal: string,

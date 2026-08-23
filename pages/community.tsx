@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { createPortal } from 'react-dom'
 
 import { CommunityComments } from '@/components/CommunityComments'
+import { CommunityLearning } from '@/components/CommunityLearning'
+import { CommunitySchema } from '@/components/CommunitySchema'
 import { VoteRow } from '@/components/CourseActivity'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
@@ -657,7 +659,7 @@ export default function CommunityPage() {
         <title>Community · Coursetexts</title>
         <meta
           name='description'
-          content='Resources and knowledge components shared by the Coursetexts community.'
+          content='Resources, learning paths, study circles, frontier questions, and popular degrees and courses from the Coursetexts community.'
         />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
@@ -691,7 +693,25 @@ export default function CommunityPage() {
           <div className={styles.container}>
             <header className={styles.header}>
               <div className={styles.titleRow}>
-                <h1 className={styles.title}>Community Resources</h1>
+                <h1 className={styles.title}>Community</h1>
+              </div>
+              <p className={styles.lede}>
+                People here are learning new topics, sitting with open
+                questions, and working toward particular goals. Most of that
+                work is finding a structure, and the content that made
+                something click. This community keeps those traces, so the
+                next person can inherit the learning others already did.
+              </p>
+              <CommunitySchema />
+            </header>
+
+            <CommunityLearning />
+
+            <div className={styles.sectionRule} role='separator' />
+
+            <header className={styles.resourcesHeader}>
+              <div className={styles.titleRow}>
+                <h2 className={styles.title}>Community Resources</h2>
                 <button
                   type='button'
                   className={styles.shareBtn}

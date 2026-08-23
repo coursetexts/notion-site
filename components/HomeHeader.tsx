@@ -13,17 +13,87 @@ import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
 
+const communityChildren = [
+  { label: 'Degrees', href: '/degrees' },
+  { label: 'Field Atlas', href: '/human-knowledge-atlas' },
+  { label: 'Learning Paths', href: '/learning-paths' }
+]
+
 const navItems = [
   { label: 'All Courses', href: '/all-courses' },
-  { label: 'Degrees', href: '/degrees' },
   { label: 'Manifesto', href: '/manifesto' },
-  { label: 'Community', href: '/community' },
+  {
+    label: 'Community',
+    href: '/community',
+    children: communityChildren
+  },
   {
     label: 'Donate',
     href: 'https://hcb.hackclub.com/donations/start/coursetexts',
     external: true
   }
 ]
+
+function CommunityFlyout({
+  href,
+  onNavigate
+}: {
+  href: string
+  onNavigate?: () => void
+}) {
+  const wrapRef = React.useRef<HTMLDivElement>(null)
+  const [open, setOpen] = React.useState(false)
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key !== 'Escape') return
+    setOpen(false)
+    wrapRef.current?.querySelector('a')?.focus()
+  }
+
+  function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      setOpen(false)
+    }
+  }
+
+  return (
+    <div
+      ref={wrapRef}
+      className={styles.communityFlyout}
+      data-open={open ? 'true' : 'false'}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+    >
+      <Link href={href} legacyBehavior>
+        <a
+          className={`${styles.middleItem} ${styles.interactiveLink}`}
+          aria-haspopup='true'
+          aria-expanded={open}
+        >
+          Community
+        </a>
+      </Link>
+      <div className={styles.communityPanel} role='menu' aria-label='Community'>
+        <div className={styles.communityPanelInner}>
+          {communityChildren.map((child) => (
+            <Link key={child.href} href={child.href} legacyBehavior>
+              <a
+                className={styles.communityLink}
+                role='menuitem'
+                onClick={onNavigate}
+              >
+                {child.label}
+              </a>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 type HomeHeaderProps = {
   className?: string
@@ -275,11 +345,29 @@ export function HomeHeader({
                       {item.label}
                     </a>
                   ) : (
-                    <Link key={item.label} href={item.href} legacyBehavior>
-                      <a className={styles.menuNavLink} onClick={closeMenu}>
-                        {item.label}
-                      </a>
-                    </Link>
+                    <React.Fragment key={item.label}>
+                      <div className={styles.menuNavGroup}>
+                        <Link href={item.href} legacyBehavior>
+                          <a className={styles.menuNavLink} onClick={closeMenu}>
+                            {item.label}
+                          </a>
+                        </Link>
+                        {item.children?.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            legacyBehavior
+                          >
+                            <a
+                              className={styles.menuNavChild}
+                              onClick={closeMenu}
+                            >
+                              {child.label}
+                            </a>
+                          </Link>
+                        ))}
+                      </div>
+                    </React.Fragment>
                   )
                 )}
               </nav>
@@ -328,6 +416,8 @@ export function HomeHeader({
                     >
                       {item.label}
                     </a>
+                  ) : item.children ? (
+                    <CommunityFlyout key={item.label} href={item.href} />
                   ) : (
                     <Link key={item.label} href={item.href} legacyBehavior>
                       <a

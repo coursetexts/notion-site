@@ -1217,3 +1217,37 @@ export function countAtlasThread(comments: AtlasThreadComment[]): number {
     0
   )
 }
+
+export function atlasQuestionDiscussionCount(question: AtlasQuestion): number {
+  return (
+    countAtlasThread(question.threads) +
+    question.readingList.reduce(
+      (sum, item) => sum + countAtlasThread(item.threads),
+      0
+    )
+  )
+}
+
+const FRONTIER_RANK: Record<AtlasQuestionStatus, number> = {
+  emerging: 3,
+  active: 2,
+  contested: 1,
+  settled: 0
+}
+
+export function trendingAtlasQuestions(limit = 4): AtlasQuestion[] {
+  return Object.values(ATLAS_QUESTIONS)
+    .filter((question) => question.status !== 'settled')
+    .sort((a, b) => {
+      const aHeat =
+        atlasQuestionDiscussionCount(a) + FRONTIER_RANK[a.status] * 2
+      const bHeat =
+        atlasQuestionDiscussionCount(b) + FRONTIER_RANK[b.status] * 2
+      if (bHeat !== aHeat) return bHeat - aHeat
+      if (b.researchers.length !== a.researchers.length) {
+        return b.researchers.length - a.researchers.length
+      }
+      return b.updated.localeCompare(a.updated)
+    })
+    .slice(0, limit)
+}

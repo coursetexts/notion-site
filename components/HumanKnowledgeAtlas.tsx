@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
 
 import styles from './HumanKnowledgeAtlas.module.css'
 import {
@@ -37,6 +38,7 @@ type AtlasSelection =
   | { kind: 'known'; id: string }
 
 export function HumanKnowledgeAtlas() {
+  const router = useRouter()
   const [questions, setQuestions] =
     React.useState<Record<string, AtlasQuestion>>(ATLAS_QUESTIONS)
   const [facts, setFacts] =
@@ -44,6 +46,15 @@ export function HumanKnowledgeAtlas() {
   const [tree, setTree] = React.useState<AtlasTreeNode[]>(ATLAS_TREE)
   const [selected, setSelected] = React.useState<AtlasSelection | null>(null)
   const [createOpen, setCreateOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!router.isReady) return
+    const raw = router.query.q
+    const id = Array.isArray(raw) ? raw[0] : raw
+    if (id && ATLAS_QUESTIONS[id]) {
+      setSelected({ kind: 'question', id })
+    }
+  }, [router.isReady, router.query.q])
 
   const targets = React.useMemo(
     () => collectAtlasSubmissionTargets(tree),

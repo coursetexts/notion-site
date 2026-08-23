@@ -5,14 +5,34 @@ import {
   type LearningPathData,
   type LearningPathNode,
   type LearningPathNodeStatus,
+  type LearningPathResourceKind,
+  type LearningPathUserResource,
   emptyLearningPath,
   readStoredLearningPaths,
-  resolveLearningPath
+  resolveLearningPath,
+  sequenceMarks
 } from '@/lib/learning-path-seed'
 
 import styles from './LearningPath.module.css'
 
 type DepthFilter = 'all' | 'core' | 'unfinished'
+
+const RESOURCE_KINDS: LearningPathResourceKind[] = [
+  'article',
+  'video',
+  'book',
+  'course',
+  'paper',
+  'exercise'
+]
+
+const EMPTY_RESOURCE_DRAFT = {
+  title: '',
+  href: '',
+  kind: 'article' as LearningPathResourceKind,
+  passage: '',
+  why: ''
+}
 
 function newId(prefix: string) {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
@@ -74,8 +94,32 @@ function PlusIcon() {
   )
 }
 
-function initialSelection(path: LearningPathData) {
+function ShareIcon() {
   return (
+    <svg width='13' height='13' viewBox='0 0 13 13' fill='none' aria-hidden>
+      <circle cx='10' cy='2.75' r='1.6' stroke='currentColor' strokeWidth='1.2' />
+      <circle cx='3' cy='6.5' r='1.6' stroke='currentColor' strokeWidth='1.2' />
+      <circle cx='10' cy='10.25' r='1.6' stroke='currentColor' strokeWidth='1.2' />
+      <path
+        d='M4.4 5.7L8.5 3.5M4.4 7.3L8.5 9.5'
+        stroke='currentColor'
+        strokeWidth='1.2'
+      />
+    </svg>
+  )
+}
+
+function initialSelection(path: LearningPathData) {
+  const marks = sequenceMarks(path)
+  const nextCore = path.nodes
+    .filter(
+      (node) => marks[node.id]?.role === 'core' && node.status !== 'explored'
+    )
+    .sort(
+      (a, b) => Number(marks[a.id].mark) - Number(marks[b.id].mark)
+    )[0]
+  return (
+    nextCore?.id ??
     path.nodes.find((node) => node.status === 'exploring')?.id ??
     path.nodes[0]?.id
   )
@@ -89,20 +133,37 @@ export function LearningPath({ slug }: { slug: string }) {
     initialSelection(resolveLearningPath(slug))
   )
   const [notes, setNotes] = React.useState<Record<string, string>>({})
+  const [userResources, setUserResources] = React.useState<
+    Record<string, LearningPathUserResource[]>
+  >({})
   const [depth, setDepth] = React.useState<DepthFilter>('all')
   const [addOpen, setAddOpen] = React.useState(false)
   const [addLabel, setAddLabel] = React.useState('')
   const [promptOpen, setPromptOpen] = React.useState(false)
   const [circleOpen, setCircleOpen] = React.useState(false)
+  const [addResourceOpen, setAddResourceOpen] = React.useState(false)
+  const [resourceDraft, setResourceDraft] = React.useState(EMPTY_RESOURCE_DRAFT)
+  const [shareCopied, setShareCopied] = React.useState(false)
+  const shareTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
 
   React.useEffect(() => {
     const next = resolveLearningPath(slug, readStoredLearningPaths())
     setPath(next)
     setSelectedId(initialSelection(next))
     setNotes({})
+    setUserResources({})
     setPromptOpen(false)
     setCircleOpen(false)
+    setAddResourceOpen(false)
+    setResourceDraft(EMPTY_RESOURCE_DRAFT)
+    setShareCopied(false)
   }, [slug])
+
+  React.useEffect(() => {
+    return () => {
+      if (shareTimer.current) clearTimeout(shareTimer.current)
+    }
+  }, [])
 
   const nodes = React.useMemo(
     () => visibleNodes(path, depth),
@@ -112,11 +173,17 @@ export function LearningPath({ slug }: { slug: string }) {
     () => Object.fromEntries(path.nodes.map((node) => [node.id, node])),
     [path.nodes]
   )
+  const marks = React.useMemo(() => sequenceMarks(path), [path])
   const selected =
     (selectedId ? nodeById[selectedId] : null) ?? nodes[0] ?? path.nodes[0]
+  const selectedMark = selected ? marks[selected.id] : undefined
+  const selectedParent = selectedMark?.parentId
+    ? nodeById[selectedMark.parentId]
+    : null
   const exploredCount = path.nodes.filter(
     (node) => node.status === 'explored'
   ).length
+  const myResources = selected ? userResources[selected.id] ?? [] : []
 
   function markExplored() {
     if (!selected || selected.kind === 'goal') return
@@ -134,12 +201,27 @@ export function LearningPath({ slug }: { slug: string }) {
     if (!label) return
     const id = newId('n')
     const count = path.nodes.length
+    const underGoal = !selected || selected.kind === 'goal'
+    const siblingKind = underGoal ? 'concept' : 'prerequisite'
+    const parentId = selected?.id ?? 'goal'
+    const siblings = underGoal
+      ? path.nodes.filter(
+          (item) => item.kind === 'concept' || item.kind === 'milestone'
+        )
+      : path.edges
+          .filter((edge) => edge.from === parentId)
+          .map((edge) => path.nodes.find((item) => item.id === edge.to))
+          .filter(
+            (item): item is LearningPathNode =>
+              !!item && item.kind === 'prerequisite'
+          )
     const node: LearningPathNode = {
       id,
       label,
-      kind: 'concept',
-      sub: 'Added by you',
+      kind: siblingKind,
+      sub: underGoal ? 'Need this' : 'As deep as you need',
       status: 'next',
+      sequence: siblings.length + 1,
       x: 22 + ((count * 19) % 58),
       y: 54 + (count % 3) * 8,
       description:
@@ -147,15 +229,52 @@ export function LearningPath({ slug }: { slug: string }) {
       why: 'You added this because it sits between where you are and the goal.',
       resources: []
     }
-    const fromId = selected?.id ?? 'goal'
     setPath((prev) => ({
       ...prev,
       nodes: [...prev.nodes, node],
-      edges: [...prev.edges, { from: fromId, to: id }]
+      edges: [...prev.edges, { from: parentId, to: id }]
     }))
     setSelectedId(id)
     setAddLabel('')
     setAddOpen(false)
+  }
+
+  async function copyShareUrl() {
+    const url = `${window.location.origin}/learning-path/${path.slug}`
+    try {
+      await navigator.clipboard.writeText(url)
+      setShareCopied(true)
+      if (shareTimer.current) clearTimeout(shareTimer.current)
+      shareTimer.current = setTimeout(() => {
+        setShareCopied(false)
+        shareTimer.current = null
+      }, 2000)
+    } catch {
+      window.prompt('Copy this link', url)
+    }
+  }
+
+  function addUserResource(event: React.FormEvent) {
+    event.preventDefault()
+    if (!selected) return
+    const title = resourceDraft.title.trim()
+    const passage = resourceDraft.passage.trim()
+    if (!title || !passage) return
+    const href = resourceDraft.href.trim()
+    const item: LearningPathUserResource = {
+      id: newId('ur'),
+      kind: resourceDraft.kind,
+      title,
+      href: href || undefined,
+      passage,
+      why: resourceDraft.why.trim()
+    }
+    setUserResources((prev) => ({
+      ...prev,
+      [selected.id]: [item, ...(prev[selected.id] ?? [])]
+    }))
+    setResourceDraft(EMPTY_RESOURCE_DRAFT)
+    setAddResourceOpen(false)
   }
 
   if (!selected) {
@@ -202,21 +321,42 @@ export function LearningPath({ slug }: { slug: string }) {
             </strong>{' '}
             concepts explored
           </span>
-          <label className={styles.depth}>
-            Depth
-            <select
-              className={styles.depthSelect}
-              value={depth}
-              aria-label='How much of the map to show'
-              onChange={(event) =>
-                setDepth(event.target.value as DepthFilter)
+          <div className={styles.metaTools}>
+            <label className={styles.depth}>
+              Depth
+              <select
+                className={styles.depthSelect}
+                value={depth}
+                aria-label='How much of the map to show'
+                onChange={(event) =>
+                  setDepth(event.target.value as DepthFilter)
+                }
+              >
+                <option value='all'>All connections</option>
+                <option value='core'>Core path</option>
+                <option value='unfinished'>Only unfinished</option>
+              </select>
+            </label>
+            <button
+              type='button'
+              className={
+                shareCopied
+                  ? `${styles.shareBtn} ${styles.shareBtnCopied}`
+                  : styles.shareBtn
+              }
+              onClick={() => void copyShareUrl()}
+              aria-label={
+                shareCopied
+                  ? 'Link copied to clipboard'
+                  : 'Copy link to this learning path'
               }
             >
-              <option value='all'>All connections</option>
-              <option value='core'>Core path</option>
-              <option value='unfinished'>Only unfinished</option>
-            </select>
-          </label>
+              <ShareIcon />
+              <span aria-live='polite'>
+                {shareCopied ? 'Copied' : 'Share'}
+              </span>
+            </button>
+          </div>
         </div>
 
         <div className={styles.layout}>
@@ -224,7 +364,7 @@ export function LearningPath({ slug }: { slug: string }) {
             <div className={styles.mapToolbar}>
               <h2 className={styles.mapTitle}>The map</h2>
               <span className={styles.mapHint}>
-                Goal → what you need → how deep to go
+                1 → 2 → 3 is the order · a, b how deep to go
               </span>
             </div>
             <div className={styles.canvas}>
@@ -252,22 +392,47 @@ export function LearningPath({ slug }: { slug: string }) {
                   )
                 })}
               </svg>
-              {nodes.map((node) => (
-                <button
-                  key={node.id}
-                  type='button'
-                  className={nodeClass(node, node.id === selected.id)}
-                  style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                  onClick={() => {
-                    setSelectedId(node.id)
-                    setPromptOpen(false)
-                  }}
-                >
-                  <span className={styles.nodeStatus} />
-                  <span className={styles.nodeLabel}>{node.label}</span>
-                  <span className={styles.nodeSub}>{node.sub}</span>
-                </button>
-              ))}
+              {nodes.map((node) => {
+                const mark = marks[node.id]
+                return (
+                  <button
+                    key={node.id}
+                    type='button'
+                    className={nodeClass(node, node.id === selected.id)}
+                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                    aria-label={
+                      mark
+                        ? mark.role === 'core'
+                          ? `Step ${mark.mark}: ${node.label}`
+                          : `${node.label}, ${mark.mark})`
+                        : node.label
+                    }
+                    onClick={() => {
+                      setSelectedId(node.id)
+                      setPromptOpen(false)
+                      setAddResourceOpen(false)
+                      setResourceDraft(EMPTY_RESOURCE_DRAFT)
+                    }}
+                  >
+                    <span className={styles.nodeStatus} />
+                    <span className={styles.nodeHead}>
+                      {mark ? (
+                        <span
+                          className={
+                            mark.role === 'branch'
+                              ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
+                              : styles.nodeMark
+                          }
+                        >
+                          {mark.role === 'branch' ? `${mark.mark})` : mark.mark}
+                        </span>
+                      ) : null}
+                      <span className={styles.nodeLabel}>{node.label}</span>
+                    </span>
+                    <span className={styles.nodeSub}>{node.sub}</span>
+                  </button>
+                )
+              })}
               <button
                 type='button'
                 className={styles.addNode}
@@ -298,7 +463,13 @@ export function LearningPath({ slug }: { slug: string }) {
 
           <aside className={styles.detail} aria-live='polite'>
             <div className={styles.detailKicker}>
-              <span>{selected.kind}</span>
+              <span>
+                {selectedMark
+                  ? selectedMark.role === 'core'
+                    ? `Core path · ${selectedMark.mark}`
+                    : `Under ${selectedParent?.label ?? 'this step'} · ${selectedMark.mark})`
+                  : selected.kind}
+              </span>
               <span className={styles.detailStatus}>
                 {statusLabel(selected.status)}
               </span>
@@ -355,6 +526,173 @@ export function LearningPath({ slug }: { slug: string }) {
             </div>
 
             <div className={styles.block}>
+              <div className={styles.blockTitleRow}>
+                <h3 className={styles.blockTitle}>Your resources</h3>
+                {!addResourceOpen ? (
+                  <button
+                    type='button'
+                    className={styles.addResourceBtn}
+                    onClick={() => setAddResourceOpen(true)}
+                  >
+                    + Add a resource
+                  </button>
+                ) : null}
+              </div>
+              <p className={styles.blockCopy}>
+                Bookmark the exact part that made this click — a chapter,
+                timestamp, diagram, or exercise.
+              </p>
+              {addResourceOpen ? (
+                <form
+                  className={styles.resourceForm}
+                  onSubmit={addUserResource}
+                >
+                  <label className={styles.modalLabel}>
+                    Title
+                    <input
+                      className={styles.modalInput}
+                      value={resourceDraft.title}
+                      onChange={(event) =>
+                        setResourceDraft((prev) => ({
+                          ...prev,
+                          title: event.target.value
+                        }))
+                      }
+                      placeholder='The Illustrated Transformer'
+                      required
+                    />
+                  </label>
+                  <label className={styles.modalLabel}>
+                    URL
+                    <input
+                      className={styles.modalInput}
+                      type='url'
+                      value={resourceDraft.href}
+                      onChange={(event) =>
+                        setResourceDraft((prev) => ({
+                          ...prev,
+                          href: event.target.value
+                        }))
+                      }
+                      placeholder='https://…'
+                    />
+                  </label>
+                  <label className={styles.modalLabel}>
+                    Type
+                    <select
+                      className={styles.modalInput}
+                      value={resourceDraft.kind}
+                      onChange={(event) =>
+                        setResourceDraft((prev) => ({
+                          ...prev,
+                          kind: event.target.value as LearningPathResourceKind
+                        }))
+                      }
+                    >
+                      {RESOURCE_KINDS.map((kind) => (
+                        <option key={kind} value={kind}>
+                          {kind}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className={styles.modalLabel}>
+                    The part that helped
+                    <input
+                      className={styles.modalInput}
+                      value={resourceDraft.passage}
+                      onChange={(event) =>
+                        setResourceDraft((prev) => ({
+                          ...prev,
+                          passage: event.target.value
+                        }))
+                      }
+                      placeholder='e.g. the QKV diagram, 12:40–14:10, chapter 4'
+                      required
+                    />
+                  </label>
+                  <label className={styles.modalLabel}>
+                    Why it helped
+                    <textarea
+                      className={styles.note}
+                      rows={3}
+                      value={resourceDraft.why}
+                      onChange={(event) =>
+                        setResourceDraft((prev) => ({
+                          ...prev,
+                          why: event.target.value
+                        }))
+                      }
+                      placeholder='What did this specific part make click?'
+                    />
+                  </label>
+                  <div className={styles.resourceFormActions}>
+                    <button
+                      type='button'
+                      className={styles.modalCancel}
+                      onClick={() => {
+                        setAddResourceOpen(false)
+                        setResourceDraft(EMPTY_RESOURCE_DRAFT)
+                      }}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type='submit'
+                      className={styles.modalSubmit}
+                      disabled={
+                        !resourceDraft.title.trim() ||
+                        !resourceDraft.passage.trim()
+                      }
+                    >
+                      Save resource
+                    </button>
+                  </div>
+                </form>
+              ) : null}
+              {myResources.length === 0 && !addResourceOpen ? (
+                <p className={styles.resourceEmpty}>
+                  Nothing saved here yet.
+                </p>
+              ) : (
+                <ul className={styles.resourceList}>
+                  {myResources.map((resource) => {
+                    const inner = (
+                      <>
+                        <p className={styles.resourceKind}>{resource.kind}</p>
+                        <p className={styles.resourceTitle}>
+                          {resource.title}
+                        </p>
+                        <p className={styles.resourcePassage}>
+                          {resource.passage}
+                        </p>
+                        {resource.why ? (
+                          <p className={styles.resourceWhy}>{resource.why}</p>
+                        ) : null}
+                      </>
+                    )
+                    return (
+                      <li key={resource.id}>
+                        {resource.href ? (
+                          <a
+                            className={styles.resource}
+                            href={resource.href}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                          >
+                            {inner}
+                          </a>
+                        ) : (
+                          <div className={styles.resource}>{inner}</div>
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+            </div>
+
+            <div className={styles.block}>
               <h3 className={styles.blockTitle}>Your note</h3>
               <textarea
                 className={styles.note}
@@ -366,7 +704,7 @@ export function LearningPath({ slug }: { slug: string }) {
                     [selected.id]: event.target.value
                   }))
                 }
-                placeholder='What made this click? Which part of which resource?'
+                placeholder='What do you understand now? What is still fuzzy?'
               />
             </div>
 

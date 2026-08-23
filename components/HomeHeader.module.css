@@ -1,4 +1,6 @@
 .headerArea {
+  position: relative;
+  z-index: 20;
   padding-top: 32px;
 }
 
@@ -92,6 +94,116 @@
 .interactiveLink:hover::after,
 .interactiveLink:focus-visible::after {
   width: 100%;
+}
+
+.communityFlyout {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.communityPanel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 30;
+  padding-top: 14px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.communityPanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 14px;
+}
+
+.communityPanelInner {
+  min-width: 168px;
+  padding: 8px 0;
+  border: 1px solid var(--outline, #e6e6e6);
+  background: #f8f7f4;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.communityLink {
+  display: block;
+  padding: 8px 16px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  color: var(--midGrey, #37352f);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: color 180ms ease, opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.communityLink:hover,
+.communityLink:focus-visible {
+  color: #0089c4;
+}
+
+.communityFlyout:hover .communityPanel,
+.communityFlyout:focus-within .communityPanel,
+.communityFlyout[data-open='true'] .communityPanel {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.communityFlyout:hover .communityPanelInner,
+.communityFlyout:focus-within .communityPanelInner,
+.communityFlyout[data-open='true'] .communityPanelInner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.communityFlyout:hover .communityLink,
+.communityFlyout:focus-within .communityLink,
+.communityFlyout[data-open='true'] .communityLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.communityFlyout:hover .communityLink:nth-child(1),
+.communityFlyout:focus-within .communityLink:nth-child(1),
+.communityFlyout[data-open='true'] .communityLink:nth-child(1) {
+  transition-delay: 40ms;
+}
+
+.communityFlyout:hover .communityLink:nth-child(2),
+.communityFlyout:focus-within .communityLink:nth-child(2),
+.communityFlyout[data-open='true'] .communityLink:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.communityFlyout:hover .communityLink:nth-child(3),
+.communityFlyout:focus-within .communityLink:nth-child(3),
+.communityFlyout[data-open='true'] .communityLink:nth-child(3) {
+  transition-delay: 140ms;
+}
+
+.communityFlyout:hover .interactiveLink::after,
+.communityFlyout:focus-within .interactiveLink::after,
+.communityFlyout[data-open='true'] .interactiveLink::after {
+  width: 100%;
+}
+
+.communityFlyout:hover .interactiveLink,
+.communityFlyout:focus-within .interactiveLink,
+.communityFlyout[data-open='true'] .interactiveLink {
+  color: #0089c4;
 }
 
 .resetButton {
@@ -371,6 +483,27 @@
   color: #0089c4;
 }
 
+.menuNavChild {
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  color: #6b7280;
+  text-decoration: none;
+  padding: 2px 0 2px 14px;
+  transition: color 0.2s ease;
+}
+
+.menuNavChild:hover,
+.menuNavChild:focus-visible {
+  color: #0089c4;
+}
+
+.menuNavGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .menuFooter {
   margin-top: auto;
   padding-top: 20px;
@@ -456,5 +589,22 @@
 
   .divider {
     margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .communityPanelInner,
+  .communityLink {
+    transition: opacity 160ms ease;
+    transform: none;
+  }
+
+  .communityFlyout:hover .communityPanelInner,
+  .communityFlyout:focus-within .communityPanelInner,
+  .communityFlyout[data-open='true'] .communityPanelInner,
+  .communityFlyout:hover .communityLink,
+  .communityFlyout:focus-within .communityLink,
+  .communityFlyout[data-open='true'] .communityLink {
+    transform: none;
   }
 }

@@ -104,8 +104,44 @@
   font-weight: 600;
 }
 
-.depth {
+.metaTools {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shareBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  background: transparent;
+  border: 1px solid #e6e6e6;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.shareBtn:hover,
+.shareBtn:focus-visible {
+  border-color: #0089c4;
+  color: #0089c4;
+}
+
+.shareBtn:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+.shareBtnCopied {
+  border-color: #0089c4;
+  color: #0089c4;
+}
+
+.depth {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -197,7 +233,7 @@
   position: absolute;
   transform: translate(-50%, -50%);
   min-width: 128px;
-  max-width: 168px;
+  max-width: 176px;
   padding: 10px 12px 10px 26px;
   border: 1px solid #d7d8da;
   background: #fff;
@@ -252,12 +288,37 @@
   box-shadow: inset 0 0 0 1px #fff;
 }
 
+.nodeHead {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
 .nodeLabel {
   display: block;
   font-size: 13px;
   font-weight: 600;
   line-height: 1.25;
   color: inherit;
+}
+
+.nodeMark {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #0089c4;
+  font-variant-numeric: tabular-nums;
+}
+
+.nodeMarkBranch {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.nodeMilestone .nodeMark {
+  color: #fff;
 }
 
 .nodeSub {
@@ -382,6 +443,34 @@
   color: #000;
 }
 
+.blockTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.blockTitleRow .blockTitle {
+  margin: 0;
+}
+
+.addResourceBtn {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0089c4;
+  cursor: pointer;
+}
+
+.addResourceBtn:hover {
+  text-decoration: underline;
+}
+
 .blockCopy {
   margin: 0;
   font-size: 13px;
@@ -389,9 +478,34 @@
   color: #3f3f46;
 }
 
+.resourceEmpty {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.resourceForm {
+  margin-top: 12px;
+}
+
+.resourceForm .modalLabel {
+  margin-bottom: 0.75rem;
+}
+
+.resourceForm .note {
+  min-height: 4rem;
+}
+
+.resourceFormActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin: 0 0 12px;
+}
+
 .resourceList {
   list-style: none;
-  margin: 0;
+  margin: 12px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -433,6 +547,17 @@
   font-size: 12px;
   line-height: 1.45;
   color: #6b7280;
+}
+
+.resourcePassage {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-left: 2px solid #0089c4;
+  background: color-mix(in srgb, #0089c4 8%, #fff);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.4;
+  color: #000;
 }
 
 .note {
@@ -760,7 +885,7 @@
     border-bottom: 1px solid #e6e6e6;
   }
 
-  .depth {
+  .metaTools {
     margin-left: 0;
   }
 
