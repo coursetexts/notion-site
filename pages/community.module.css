@@ -7,8 +7,10 @@
 
 .section {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 56px 0 96px;
+  padding: 56px 0 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
@@ -24,11 +26,35 @@
 
 /* Header */
 .header {
-  margin-bottom: 40px;
+  margin-bottom: 0;
+}
+
+.body {
+  width: 100%;
+  margin-top: 48px;
+  background: #ffffff;
+  border-top: 1px solid #f1edea;
+  padding: 48px 0 0;
+  box-sizing: border-box;
+}
+
+.resourcesBand {
+  width: 100%;
+  background: var(--footer, #f8f7f4);
+  padding: 48px 0 40px;
+  box-sizing: border-box;
+}
+
+.resourcesFeed {
+  flex: 1;
+  width: 100%;
+  background: #ffffff;
+  padding: 0 0 96px;
+  box-sizing: border-box;
 }
 
 .resourcesHeader {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .sectionRule {
@@ -258,16 +284,24 @@
 
 /* Section bar — solid hairlines top and bottom, like the home view-all bar */
 .feedBar {
-  margin-top: 40px;
+  margin-top: 0;
   width: 100%;
   padding: 16px 0;
   border-top: 1px solid var(--outline, #e6e6e6);
   border-bottom: 1px solid var(--outline, #e6e6e6);
   box-sizing: border-box;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.feedActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .feedHeadingLabel {

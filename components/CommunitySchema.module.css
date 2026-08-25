@@ -39,7 +39,7 @@
 .pathGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr);
-  grid-template-rows: auto 18px auto 18px auto;
+  grid-template-rows: auto 18px auto 18px auto 18px auto;
   align-items: center;
   justify-items: stretch;
 }
@@ -73,14 +73,22 @@
   color: #3a458c;
 }
 
+.chipNotes {
+  background: #f8e4d4;
+  border-color: #e0b898;
+  color: #7a4a2a;
+}
+
 .arrowDown,
-.arrowRight {
+.arrowRight,
+.arrowUp {
   display: block;
   margin: 0 auto;
   color: #2c1a0c;
 }
 
-.arrowDown {
+.arrowDown,
+.arrowUp {
   width: 10px;
   height: 16px;
 }

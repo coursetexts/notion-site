@@ -59,13 +59,12 @@ import {
 import {
   SEEDED_LEARNING_PATHS,
   readStoredLearningPaths,
-  writeStoredLearningPaths,
   type StoredLearningPath
 } from '@/lib/learning-path-seed'
 import {
-  ensureUniqueSlug,
-  slugifyLearningPathName
-} from '@/lib/learning-path-slug'
+  listCatalogLearningPaths,
+  listOwnedLearningPaths
+} from '@/lib/learning-path-db'
 import {
   type ReplyNotification,
   getReplyNotifications,
@@ -405,14 +404,32 @@ export default function ProfilePage() {
   }, [effectiveUser?.id, loadPersonalLinks])
 
   useEffect(() => {
-    const stored = readStoredLearningPaths()
-    if (!stored.length) return
-    setLearningPaths((prev) => {
-      const slugs = new Set(prev.map((item) => item.slug))
-      const extras = stored.filter((item) => !slugs.has(item.slug))
-      return extras.length ? [...extras, ...prev] : prev
-    })
-  }, [])
+    let cancelled = false
+    void (async () => {
+      const [catalog, owned] = await Promise.all([
+        listCatalogLearningPaths(),
+        listOwnedLearningPaths()
+      ])
+      if (cancelled) return
+      const catalogItems: StoredLearningPath[] = catalog.map((path) => ({
+        id: path.id ?? `seed-${path.slug}`,
+        goal: path.goal,
+        slug: path.slug,
+        data: path
+      }))
+      const catalogSlugs = new Set(catalogItems.map((item) => item.slug))
+      const ownedItems = owned.filter((item) => !catalogSlugs.has(item.slug))
+      const stored = readStoredLearningPaths().filter(
+        (item) =>
+          !catalogSlugs.has(item.slug) &&
+          !ownedItems.some((row) => row.slug === item.slug)
+      )
+      setLearningPaths([...ownedItems, ...stored, ...catalogItems])
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [effectiveUser?.id])
 
   useEffect(() => {
     if (isEditingProfile) setBioDraft(bioText)
@@ -529,21 +546,11 @@ export default function ProfilePage() {
     e.preventDefault()
     const goal = learningPathDraft.trim()
     if (!goal) return
-    const slug = ensureUniqueSlug(
-      slugifyLearningPathName(goal),
-      learningPaths.map((item) => item.slug)
-    )
-    const item: LearningPathItem = {
-      id: `path-${Date.now()}`,
-      goal,
-      slug
-    }
-    setLearningPaths((prev) => [item, ...prev])
-    writeStoredLearningPaths([
-      ...readStoredLearningPaths().filter((row) => row.slug !== slug),
-      item
-    ])
     closeLearningPathModal()
+    void router.push({
+      pathname: '/learning-path/new',
+      query: { goal }
+    })
   }
 
   const handleAddLink = async (e: React.FormEvent) => {
@@ -2167,7 +2174,7 @@ export default function ProfilePage() {
                                 className={styles.modalSubmitBtn}
                                 disabled={!learningPathDraft.trim()}
                               >
-                                Create
+                                Continue
                               </button>
                             </div>
                           </form>

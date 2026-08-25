@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Link from 'next/link'
 
 import {
   type LearningPathData,
@@ -12,10 +11,19 @@ import {
   resolveLearningPath,
   sequenceMarks
 } from '@/lib/learning-path-seed'
+import {
+  getLearningPathRecord,
+  loadLearningPathUserState,
+  overlayUserState,
+  saveLearningPathUserState,
+  upsertOwnedLearningPath,
+  userStateFromPath,
+  writeLocalUserState
+} from '@/lib/learning-path-db'
 
 import styles from './LearningPath.module.css'
 
-type DepthFilter = 'all' | 'core' | 'unfinished'
+type DepthFilter = 'all' | 'core' | 'unfinished' | 'branch'
 
 const RESOURCE_KINDS: LearningPathResourceKind[] = [
   'article',
@@ -38,15 +46,65 @@ function newId(prefix: string) {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
 }
 
+function descendantIds(path: LearningPathData, rootId: string): string[] {
+  const children = new Map<string, string[]>()
+  for (const edge of path.edges) {
+    const list = children.get(edge.from) ?? []
+    list.push(edge.to)
+    children.set(edge.from, list)
+  }
+  const found: string[] = []
+  const stack = [...(children.get(rootId) ?? [])]
+  const seen = new Set<string>()
+  while (stack.length > 0) {
+    const id = stack.pop() as string
+    if (seen.has(id)) continue
+    seen.add(id)
+    found.push(id)
+    stack.push(...(children.get(id) ?? []))
+  }
+  return found
+}
+
+function removeNodeSubtree(
+  path: LearningPathData,
+  rootId: string
+): LearningPathData {
+  const remove = new Set([rootId, ...descendantIds(path, rootId)])
+  const incoming = path.edges
+    .filter((edge) => edge.to === rootId && !remove.has(edge.from))
+    .map((edge) => edge.from)
+  const outgoing = path.edges
+    .filter((edge) => edge.from === rootId && !remove.has(edge.to))
+    .map((edge) => edge.to)
+  const nodes = path.nodes.filter((node) => !remove.has(node.id))
+  const edges = path.edges.filter(
+    (edge) => !remove.has(edge.from) && !remove.has(edge.to)
+  )
+  for (const from of incoming) {
+    for (const to of outgoing) {
+      if (!edges.some((edge) => edge.from === from && edge.to === to)) {
+        edges.push({ from, to })
+      }
+    }
+  }
+  return { ...path, nodes, edges }
+}
+
 function statusLabel(status: LearningPathNodeStatus) {
   if (status === 'explored') return 'Explored'
   if (status === 'exploring') return 'Exploring'
   return 'Next'
 }
 
-function nodeClass(node: LearningPathNode, selected: boolean) {
+function nodeClass(
+  node: LearningPathNode,
+  selected: boolean,
+  packed = false
+) {
   const parts = [styles.node]
   if (selected) parts.push(styles.nodeSelected)
+  if (packed) parts.push(styles.nodePacked)
   if (node.kind === 'goal') parts.push(styles.nodeGoal)
   if (node.kind === 'milestone') parts.push(styles.nodeMilestone)
   if (node.status === 'explored') parts.push(styles.nodeExplored)
@@ -54,12 +112,294 @@ function nodeClass(node: LearningPathNode, selected: boolean) {
   return parts.join(' ')
 }
 
-function visibleNodes(path: LearningPathData, depth: DepthFilter) {
+function ancestorIds(path: LearningPathData, nodeId: string): string[] {
+  const parentOf = new Map<string, string>()
+  for (const edge of path.edges) {
+    if (!parentOf.has(edge.to)) parentOf.set(edge.to, edge.from)
+  }
+  const chain: string[] = []
+  const seen = new Set<string>()
+  let current = parentOf.get(nodeId)
+  while (current && !seen.has(current)) {
+    seen.add(current)
+    chain.push(current)
+    current = parentOf.get(current)
+  }
+  return chain
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value))
+}
+
+function parentMap(path: LearningPathData) {
+  const parentOf = new Map<string, string>()
+  for (const edge of path.edges) {
+    if (!parentOf.has(edge.to)) parentOf.set(edge.to, edge.from)
+  }
+  return parentOf
+}
+
+function expandedParents(path: LearningPathData, selectedId: string) {
+  const byId = Object.fromEntries(path.nodes.map((node) => [node.id, node]))
+  const parentOf = parentMap(path)
+  const expanded = new Set<string>([selectedId])
+  let current = selectedId
+  const seen = new Set<string>()
+  while (current && !seen.has(current)) {
+    seen.add(current)
+    const node = byId[current]
+    const parentId = parentOf.get(current)
+    if (node?.kind === 'prerequisite' && parentId) expanded.add(parentId)
+    current = parentId ?? ''
+  }
+  return expanded
+}
+
+function graphLayout(
+  path: LearningPathData,
+  selectedId: string,
+  visibleIds: Set<string>
+) {
+  const byId = Object.fromEntries(path.nodes.map((node) => [node.id, node]))
+  const parentOf = parentMap(path)
+  const expanded = expandedParents(path, selectedId)
+  const childrenOf = new Map<string, LearningPathNode[]>()
+  for (const edge of path.edges) {
+    if (!visibleIds.has(edge.to) || !visibleIds.has(edge.from)) continue
+    const child = byId[edge.to]
+    if (!child) continue
+    const list = childrenOf.get(edge.from) ?? []
+    if (!list.some((node) => node.id === child.id)) list.push(child)
+    childrenOf.set(edge.from, list)
+  }
+  for (const [id, list] of childrenOf) {
+    childrenOf.set(id, [...list].sort(sortTreeNodes))
+  }
+
+  const positions: Record<string, { x: number; y: number }> = {}
+  for (const node of path.nodes) {
+    if (!visibleIds.has(node.id)) continue
+    positions[node.id] = { x: node.x, y: node.y }
+  }
+
+  function visit(parentId: string, seen: Set<string>) {
+    if (seen.has(parentId) || !positions[parentId]) return
+    seen.add(parentId)
+    const children = childrenOf.get(parentId) ?? []
+    const branch = children.filter((node) => node.kind === 'prerequisite')
+    if (branch.length > 0) {
+      const open = expanded.has(parentId)
+      const n = branch.length
+      const px = positions[parentId].x
+      const py = positions[parentId].y
+      branch.forEach((child, index) => {
+        if (open) {
+          const gap = n === 1 ? 0 : Math.min(24, Math.max(14, 48 / (n - 1)))
+          positions[child.id] = {
+            x: clamp(px + (index - (n - 1) / 2) * gap, 12, 88),
+            y: clamp(py + 18, 16, 90)
+          }
+        } else {
+          positions[child.id] = {
+            x: clamp(px + (index - (n - 1) / 2) * 1.6, 12, 88),
+            y: clamp(py + 8 + index * 1.2, 16, 90)
+          }
+        }
+      })
+    }
+    for (const child of children) visit(child.id, seen)
+  }
+
+  const childIds = new Set(
+    path.edges
+      .filter((edge) => visibleIds.has(edge.from) && visibleIds.has(edge.to))
+      .map((edge) => edge.to)
+  )
+  const seen = new Set<string>()
+  for (const node of path.nodes) {
+    if (visibleIds.has(node.id) && !childIds.has(node.id)) {
+      visit(node.id, seen)
+    }
+  }
+
+  return { positions, expanded, parentOf }
+}
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = React.useState(false)
+  React.useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(media.matches)
+    const onChange = () => setReduced(media.matches)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
+  return reduced
+}
+
+function useAnimatedPositions(
+  targets: Record<string, { x: number; y: number }>,
+  enabled: boolean
+) {
+  const [current, setCurrent] = React.useState(targets)
+  const currentRef = React.useRef(targets)
+  const rafRef = React.useRef(0)
+
+  React.useEffect(() => {
+    if (!enabled) {
+      currentRef.current = targets
+      setCurrent(targets)
+      return
+    }
+    const from = { ...currentRef.current }
+    const start = performance.now()
+    const duration = 580
+    const ease = (t: number) => 1 - Math.pow(1 - t, 4)
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration)
+      const e = ease(t)
+      const next: Record<string, { x: number; y: number }> = {}
+      const ids = new Set([...Object.keys(from), ...Object.keys(targets)])
+      for (const id of ids) {
+        const end = targets[id]
+        const begin = from[id] ?? end
+        if (!end) continue
+        next[id] = {
+          x: begin.x + (end.x - begin.x) * e,
+          y: begin.y + (end.y - begin.y) * e
+        }
+      }
+      currentRef.current = next
+      setCurrent(next)
+      if (t < 1) rafRef.current = requestAnimationFrame(tick)
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [targets, enabled])
+
+  return current
+}
+
+function currentBranchIds(path: LearningPathData, selectedId: string): Set<string> {
+  const ids = new Set<string>([selectedId])
+  for (const id of ancestorIds(path, selectedId)) ids.add(id)
+  for (const edge of path.edges) {
+    if (edge.from === selectedId) ids.add(edge.to)
+  }
+  return ids
+}
+
+function visibleNodes(
+  path: LearningPathData,
+  depth: DepthFilter,
+  selectedId?: string | null
+) {
   return path.nodes.filter((node) => {
     if (depth === 'core') return node.kind !== 'prerequisite'
     if (depth === 'unfinished') return node.status !== 'explored'
+    if (depth === 'branch') {
+      const focusId = selectedId || path.nodes[0]?.id
+      if (!focusId) return true
+      return currentBranchIds(path, focusId).has(node.id)
+    }
     return true
   })
+}
+
+type PathTreeItem = {
+  node: LearningPathNode
+  children: PathTreeItem[]
+}
+
+function sortTreeNodes(a: LearningPathNode, b: LearningPathNode) {
+  const as = a.sequence ?? a.x
+  const bs = b.sequence ?? b.x
+  if (as !== bs) return as - bs
+  return a.x - b.x
+}
+
+function isCoreStep(node: LearningPathNode) {
+  return node.kind === 'concept' || node.kind === 'milestone'
+}
+
+function visibleTree(
+  path: LearningPathData,
+  visible: LearningPathNode[]
+): PathTreeItem[] {
+  const visibleIds = new Set(visible.map((node) => node.id))
+  const childrenOf = new Map<string, LearningPathNode[]>()
+  const assigned = new Set<string>()
+  const goalId = visible.find((node) => node.kind === 'goal')?.id
+
+  for (const edge of path.edges) {
+    if (!visibleIds.has(edge.to) || assigned.has(edge.to)) continue
+    const child = path.nodes.find((node) => node.id === edge.to)
+    if (!child) continue
+    let parentId = edge.from
+    const seen = new Set<string>()
+    while (parentId && !visibleIds.has(parentId) && !seen.has(parentId)) {
+      seen.add(parentId)
+      const incoming = path.edges.find((item) => item.to === parentId)
+      parentId = incoming?.from ?? ''
+    }
+    let key = parentId && visibleIds.has(parentId) ? parentId : '__root__'
+    const parent = key !== '__root__' ? path.nodes.find((node) => node.id === key) : null
+    // Numbered steps are a chain on the graph (1→2→3) but siblings in the outline.
+    if (isCoreStep(child) && parent && parent.kind !== 'goal') {
+      key = goalId && visibleIds.has(goalId) ? goalId : '__root__'
+    }
+    const list = childrenOf.get(key) ?? []
+    list.push(child)
+    childrenOf.set(key, list)
+    assigned.add(child.id)
+  }
+
+  function branch(node: LearningPathNode): PathTreeItem {
+    const kids = [...(childrenOf.get(node.id) ?? [])].sort(sortTreeNodes)
+    return { node, children: kids.map(branch) }
+  }
+
+  const hanging = childrenOf.get('__root__') ?? []
+  const roots = [
+    ...visible.filter((node) => !assigned.has(node.id)),
+    ...hanging
+  ]
+    .filter(
+      (node, index, list) =>
+        list.findIndex((item) => item.id === node.id) === index
+    )
+    .sort((a, b) => {
+      if (a.kind === 'goal') return -1
+      if (b.kind === 'goal') return 1
+      return sortTreeNodes(a, b)
+    })
+
+  return roots.map(branch)
+}
+
+function flattenTree(items: PathTreeItem[]): LearningPathNode[] {
+  const flat: LearningPathNode[] = []
+  function walk(nodes: PathTreeItem[]) {
+    for (const item of nodes) {
+      flat.push(item.node)
+      walk(item.children)
+    }
+  }
+  walk(items)
+  return flat
+}
+
+function nextOutlineNode(
+  path: LearningPathData,
+  selectedId: string
+): LearningPathNode | null {
+  const order = flattenTree(visibleTree(path, path.nodes))
+  const index = order.findIndex((node) => node.id === selectedId)
+  if (index < 0) return order[0] ?? null
+  return order[index + 1] ?? null
 }
 
 function edgePath(
@@ -71,14 +411,19 @@ function edgePath(
 }
 
 function tutorPrompt(path: LearningPathData, node: LearningPathNode) {
-  const known = path.nodes
-    .filter((item) => item.status === 'explored' && item.id !== node.id)
-    .map((item) => item.label)
-  const knownLine =
-    known.length > 0
-      ? `Assume I already understand: ${known.join(', ')}.`
-      : 'Assume I am starting this concept from scratch.'
-  return `Goal: ${path.goal}\n\nExplain “${node.label}” only as deeply as I need to reach that goal. ${knownLine} Show me one example, then one thing I should try myself.`
+  const prior = ancestorIds(path, node.id)
+    .map((id) => path.nodes.find((item) => item.id === id))
+    .filter(
+      (item): item is LearningPathNode => !!item && item.kind !== 'goal'
+    )
+    .reverse()
+  const familiar =
+    prior.length > 0
+      ? ` So far I am familiar with ${prior
+          .map((item) => `“${item.label}”`)
+          .join(' and ')} and this is my next learning goal.`
+      : ''
+  return `Goal: ${path.goal}\n\nExplain “${node.label}” only as deeply as I need to reach that goal. Assume I am starting this concept from scratch. Show me one example, then one thing I should try myself.${familiar}`
 }
 
 function PlusIcon() {
@@ -125,6 +470,150 @@ function initialSelection(path: LearningPathData) {
   )
 }
 
+function PathLegend() {
+  return (
+    <div className={styles.legend}>
+      <span>
+        <i className={`${styles.legendDot} ${styles.legendExplored}`} /> Explored
+      </span>
+      <span>
+        <i className={`${styles.legendDot} ${styles.legendExploring}`} />{' '}
+        Exploring
+      </span>
+      <span>
+        <i className={`${styles.legendDot} ${styles.legendNext}`} /> Next
+      </span>
+    </div>
+  )
+}
+
+function PathOutlineList({
+  items,
+  marks,
+  selectedId,
+  onSelect
+}: {
+  items: PathTreeItem[]
+  marks: ReturnType<typeof sequenceMarks>
+  selectedId: string
+  onSelect: (id: string) => void
+}) {
+  if (items.length === 0) return null
+  return (
+    <ul className={styles.pathList}>
+      {items.map((item) => {
+        const mark = marks[item.node.id]
+        const selected = item.node.id === selectedId
+        return (
+          <li key={item.node.id} className={styles.pathListItem}>
+            <button
+              type='button'
+              className={
+                selected
+                  ? `${styles.pathListRow} ${styles.pathListRowSelected}`
+                  : styles.pathListRow
+              }
+              aria-current={selected ? 'true' : undefined}
+              aria-label={
+                mark
+                  ? mark.role === 'core'
+                    ? `Step ${mark.mark}: ${item.node.label}`
+                    : `${item.node.label}, ${mark.mark})`
+                  : item.node.label
+              }
+              onClick={() => onSelect(item.node.id)}
+            >
+              <i
+                className={[
+                  styles.pathListDot,
+                  item.node.status === 'explored'
+                    ? styles.legendExplored
+                    : item.node.status === 'exploring'
+                      ? styles.legendExploring
+                      : styles.legendNext
+                ].join(' ')}
+                aria-hidden
+              />
+              {mark ? (
+                <span
+                  className={
+                    mark.role === 'branch'
+                      ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
+                      : styles.nodeMark
+                  }
+                >
+                  {mark.role === 'branch' ? `${mark.mark})` : mark.mark}
+                </span>
+              ) : item.node.kind === 'goal' ? (
+                <span className={styles.pathListGoalMark}>Goal</span>
+              ) : (
+                <span className={styles.nodeMark} />
+              )}
+              <span className={styles.pathListCopy}>
+                <span className={styles.pathListLabel}>{item.node.label}</span>
+                <span className={styles.pathListMeta}>
+                  {item.node.kind === 'goal'
+                    ? item.node.sub || 'The destination'
+                    : `${statusLabel(item.node.status)}${
+                        item.node.sub ? ` · ${item.node.sub}` : ''
+                      }`}
+                </span>
+              </span>
+            </button>
+            {item.children.length > 0 ? (
+              <PathOutlineList
+                items={item.children}
+                marks={marks}
+                selectedId={selectedId}
+                onSelect={onSelect}
+              />
+            ) : null}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+const CLOSED_SECTIONS = {
+  why: false,
+  helped: false,
+  resources: false,
+  note: false
+}
+
+function DetailToggle({
+  title,
+  open,
+  onToggle,
+  extra,
+  children
+}: {
+  title: string
+  open: boolean
+  onToggle: () => void
+  extra?: React.ReactNode
+  children: React.ReactNode
+}) {
+  return (
+    <div className={styles.block}>
+      <div className={styles.blockTitleRow}>
+        <button
+          type='button'
+          className={styles.blockToggle}
+          aria-expanded={open}
+          onClick={onToggle}
+        >
+          <span className={styles.blockTitle}>{title}</span>
+          <span className={styles.blockChevron} aria-hidden />
+        </button>
+        {open ? extra : null}
+      </div>
+      {open ? <div className={styles.blockBody}>{children}</div> : null}
+    </div>
+  )
+}
+
 export function LearningPath({ slug }: { slug: string }) {
   const [path, setPath] = React.useState<LearningPathData>(() =>
     resolveLearningPath(slug)
@@ -137,38 +626,116 @@ export function LearningPath({ slug }: { slug: string }) {
     Record<string, LearningPathUserResource[]>
   >({})
   const [depth, setDepth] = React.useState<DepthFilter>('all')
+  const [viewMode, setViewMode] = React.useState<'graph' | 'list'>('graph')
   const [addOpen, setAddOpen] = React.useState(false)
   const [addLabel, setAddLabel] = React.useState('')
+  const [addPlacement, setAddPlacement] = React.useState<'step' | 'child'>(
+    'child'
+  )
+  const [editOpen, setEditOpen] = React.useState(false)
+  const [editLabel, setEditLabel] = React.useState('')
+  const [editDescription, setEditDescription] = React.useState('')
+  const [editWhy, setEditWhy] = React.useState('')
+  const [deleteOpen, setDeleteOpen] = React.useState(false)
   const [promptOpen, setPromptOpen] = React.useState(false)
   const [circleOpen, setCircleOpen] = React.useState(false)
   const [addResourceOpen, setAddResourceOpen] = React.useState(false)
+  const [openSections, setOpenSections] = React.useState(CLOSED_SECTIONS)
   const [resourceDraft, setResourceDraft] = React.useState(EMPTY_RESOURCE_DRAFT)
   const [shareCopied, setShareCopied] = React.useState(false)
+  const [pathRowId, setPathRowId] = React.useState<string | null>(null)
   const shareTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  const stateTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  const pathRef = React.useRef(path)
+  const notesRef = React.useRef(notes)
+  const resourcesRef = React.useRef(userResources)
+  const pathRowIdRef = React.useRef(pathRowId)
+  pathRef.current = path
+  notesRef.current = notes
+  resourcesRef.current = userResources
+  pathRowIdRef.current = pathRowId
+
+  function persistGraph(next: LearningPathData) {
+    void upsertOwnedLearningPath(next).then((id) => {
+      if (id) setPathRowId(id)
+    })
+  }
+
+  function queueUserStateSave() {
+    const state = userStateFromPath(
+      pathRef.current,
+      notesRef.current,
+      resourcesRef.current
+    )
+    writeLocalUserState(slug, state)
+    if (stateTimer.current) clearTimeout(stateTimer.current)
+    stateTimer.current = setTimeout(() => {
+      void saveLearningPathUserState(pathRowIdRef.current, slug, state)
+    }, 500)
+  }
+
+  function flushUserState() {
+    if (stateTimer.current) {
+      clearTimeout(stateTimer.current)
+      stateTimer.current = null
+    }
+    void saveLearningPathUserState(
+      pathRowIdRef.current,
+      slug,
+      userStateFromPath(
+        pathRef.current,
+        notesRef.current,
+        resourcesRef.current
+      )
+    )
+  }
 
   React.useEffect(() => {
-    const next = resolveLearningPath(slug, readStoredLearningPaths())
-    setPath(next)
-    setSelectedId(initialSelection(next))
-    setNotes({})
-    setUserResources({})
+    let cancelled = false
+    const local = resolveLearningPath(slug, readStoredLearningPaths())
+    setPath(local)
+    setSelectedId(initialSelection(local))
+    setPathRowId(null)
     setPromptOpen(false)
     setCircleOpen(false)
     setAddResourceOpen(false)
+    setOpenSections(CLOSED_SECTIONS)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
     setShareCopied(false)
+    setEditOpen(false)
+    setDeleteOpen(false)
+    setAddOpen(false)
+
+    void (async () => {
+      const record = await getLearningPathRecord(slug)
+      const base = record?.data ?? local
+      const state = await loadLearningPathUserState(record?.id ?? null, slug)
+      if (cancelled) return
+      const next = overlayUserState(base, state)
+      setPath(next)
+      setPathRowId(record?.id ?? null)
+      setNotes(state.notes)
+      setUserResources(state.resources)
+      setSelectedId(initialSelection(next))
+    })()
+
+    return () => {
+      cancelled = true
+    }
   }, [slug])
 
   React.useEffect(() => {
     return () => {
       if (shareTimer.current) clearTimeout(shareTimer.current)
+      flushUserState()
     }
-  }, [])
+  }, [slug])
 
   const nodes = React.useMemo(
-    () => visibleNodes(path, depth),
-    [path, depth]
+    () => visibleNodes(path, depth, selectedId),
+    [path, depth, selectedId]
   )
+  const tree = React.useMemo(() => visibleTree(path, nodes), [path, nodes])
   const nodeById = React.useMemo(
     () => Object.fromEntries(path.nodes.map((node) => [node.id, node])),
     [path.nodes]
@@ -176,6 +743,21 @@ export function LearningPath({ slug }: { slug: string }) {
   const marks = React.useMemo(() => sequenceMarks(path), [path])
   const selected =
     (selectedId ? nodeById[selectedId] : null) ?? nodes[0] ?? path.nodes[0]
+  const visibleIds = React.useMemo(
+    () => new Set(nodes.map((node) => node.id)),
+    [nodes]
+  )
+  const layout = React.useMemo(
+    () =>
+      graphLayout(
+        path,
+        selected?.id ?? path.nodes[0]?.id ?? '',
+        visibleIds
+      ),
+    [path, selected?.id, visibleIds]
+  )
+  const reduceMotion = usePrefersReducedMotion()
+  const displayPositions = useAnimatedPositions(layout.positions, !reduceMotion)
   const selectedMark = selected ? marks[selected.id] : undefined
   const selectedParent = selectedMark?.parentId
     ? nodeById[selectedMark.parentId]
@@ -184,56 +766,177 @@ export function LearningPath({ slug }: { slug: string }) {
     (node) => node.status === 'explored'
   ).length
   const myResources = selected ? userResources[selected.id] ?? [] : []
+  const nestedToDelete =
+    selected && selected.kind !== 'goal'
+      ? descendantIds(path, selected.id)
+      : []
+  const nextNode = selected
+    ? nextOutlineNode(path, selected.id)
+    : null
+
+  function selectNode(id: string) {
+    setSelectedId(id)
+    setPromptOpen(false)
+    setAddResourceOpen(false)
+    setResourceDraft(EMPTY_RESOURCE_DRAFT)
+  }
+
+  function openAdd(placement: 'step' | 'child') {
+    setAddPlacement(placement)
+    setAddLabel('')
+    setAddOpen(true)
+  }
+
+  function openEdit() {
+    if (!selected) return
+    setEditLabel(selected.label)
+    setEditDescription(selected.description)
+    setEditWhy(selected.why)
+    setEditOpen(true)
+  }
+
+  function saveEdit(event: React.FormEvent) {
+    event.preventDefault()
+    const label = editLabel.trim()
+    if (!label || !selected) return
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        title: selected.kind === 'goal' ? label : prev.title,
+        goal:
+          selected.kind === 'goal'
+            ? /^i want to\s+/i.test(label)
+              ? label
+              : `I want to ${label}`
+            : prev.goal,
+        nodes: prev.nodes.map((node) =>
+          node.id === selected.id
+            ? {
+                ...node,
+                label,
+                description: editDescription.trim(),
+                why: editWhy.trim()
+              }
+            : node
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+    setEditOpen(false)
+  }
+
+  function deleteSelected() {
+    if (!selected || selected.kind === 'goal') return
+    const fallback = selectedParent?.id ?? 'goal'
+    setPath((prev) => {
+      const next = removeNodeSubtree(prev, selected.id)
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
+    setSelectedId(fallback)
+    setDeleteOpen(false)
+  }
 
   function markExplored() {
     if (!selected || selected.kind === 'goal') return
-    setPath((prev) => ({
-      ...prev,
-      nodes: prev.nodes.map((node) =>
-        node.id === selected.id ? { ...node, status: 'explored' } : node
-      )
-    }))
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        nodes: prev.nodes.map((node) =>
+          node.id === selected.id
+            ? { ...node, status: 'explored' as const }
+            : node
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
   }
 
-  function addConcept(event: React.FormEvent) {
+  function addNode(event: React.FormEvent) {
     event.preventDefault()
     const label = addLabel.trim()
-    if (!label) return
+    if (!label || !selected) return
     const id = newId('n')
-    const count = path.nodes.length
-    const underGoal = !selected || selected.kind === 'goal'
-    const siblingKind = underGoal ? 'concept' : 'prerequisite'
-    const parentId = selected?.id ?? 'goal'
-    const siblings = underGoal
-      ? path.nodes.filter(
-          (item) => item.kind === 'concept' || item.kind === 'milestone'
-        )
-      : path.edges
-          .filter((edge) => edge.from === parentId)
-          .map((edge) => path.nodes.find((item) => item.id === edge.to))
-          .filter(
-            (item): item is LearningPathNode =>
-              !!item && item.kind === 'prerequisite'
-          )
-    const node: LearningPathNode = {
-      id,
-      label,
-      kind: siblingKind,
-      sub: underGoal ? 'Need this' : 'As deep as you need',
-      status: 'next',
-      sequence: siblings.length + 1,
-      x: 22 + ((count * 19) % 58),
-      y: 54 + (count % 3) * 8,
-      description:
-        'A concept you placed on this path. Attach why it belongs, then the resource that made it click.',
-      why: 'You added this because it sits between where you are and the goal.',
-      resources: []
-    }
-    setPath((prev) => ({
-      ...prev,
-      nodes: [...prev.nodes, node],
-      edges: [...prev.edges, { from: parentId, to: id }]
-    }))
+    const asStep = addPlacement === 'step' || selected.kind === 'goal'
+
+    setPath((prev) => {
+      const core = prev.nodes.filter(
+        (item) => item.kind === 'concept' || item.kind === 'milestone'
+      )
+      const lastCore = [...core].sort(
+        (a, b) => (a.sequence ?? 0) - (b.sequence ?? 0)
+      )[core.length - 1]
+      const parentId = asStep
+        ? lastCore?.id ?? 'goal'
+        : selected.id
+      const parent =
+        prev.nodes.find((item) => item.id === parentId) ?? selected
+      const siblings = prev.edges
+        .filter((edge) => edge.from === parentId)
+        .map((edge) => prev.nodes.find((item) => item.id === edge.to))
+        .filter((item): item is LearningPathNode => !!item)
+
+      const node: LearningPathNode = asStep
+        ? {
+            id,
+            label,
+            kind: 'milestone',
+            sub: `Step ${core.length + 1}`,
+            status: 'next',
+            sequence: core.length + 1,
+            x: Math.min(88, Math.max(12, (lastCore?.x ?? 34) + 16)),
+            y: 36,
+            description: `A milestone on the way to ${prev.title}.`,
+            why: 'Steps are the major checkpoints. Concepts sit inside them.',
+            resources: []
+          }
+        : {
+            id,
+            label,
+            kind: 'prerequisite',
+            sub:
+              parent.kind === 'prerequisite'
+                ? 'As deep as you need'
+                : 'Need this',
+            status: 'next',
+            sequence: siblings.length + 1,
+            x: Math.min(
+              88,
+              Math.max(12, parent.x + siblings.length * 8 - 8)
+            ),
+            y: Math.min(
+              88,
+              parent.y + (parent.kind === 'prerequisite' ? 16 : 20)
+            ),
+            description:
+              parent.kind === 'prerequisite'
+                ? 'A finer concept under the parent idea.'
+                : 'A concept this step depends on.',
+            why:
+              parent.kind === 'prerequisite'
+                ? 'Go only as deep as the goal requires.'
+                : 'You placed this because it sits inside the step.',
+            resources: []
+          }
+
+      const next = {
+        ...prev,
+        nodes: [...prev.nodes, node],
+        edges: [...prev.edges, { from: parentId, to: id }]
+      }
+      persistGraph(next)
+      pathRef.current = next
+      queueUserStateSave()
+      return next
+    })
     setSelectedId(id)
     setAddLabel('')
     setAddOpen(false)
@@ -269,10 +972,15 @@ export function LearningPath({ slug }: { slug: string }) {
       passage,
       why: resourceDraft.why.trim()
     }
-    setUserResources((prev) => ({
-      ...prev,
-      [selected.id]: [item, ...(prev[selected.id] ?? [])]
-    }))
+    setUserResources((prev) => {
+      const next = {
+        ...prev,
+        [selected.id]: [item, ...(prev[selected.id] ?? [])]
+      }
+      resourcesRef.current = next
+      queueUserStateSave()
+      return next
+    })
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
     setAddResourceOpen(false)
   }
@@ -291,20 +999,6 @@ export function LearningPath({ slug }: { slug: string }) {
   return (
     <section className={styles.section} aria-label='Learning path'>
       <div className={styles.container}>
-        <nav className={styles.crumb} aria-label='Breadcrumb'>
-          <Link href='/profile'>
-            <a>Profile</a>
-          </Link>
-          <span className={styles.crumbSep} aria-hidden>
-            /
-          </span>
-          <span>Learning path</span>
-          <span className={styles.crumbSep} aria-hidden>
-            /
-          </span>
-          <span>{path.title}</span>
-        </nav>
-
         <p className={styles.eyebrow}>Learning path</p>
         <div className={styles.headerRow}>
           <div>
@@ -312,8 +1006,11 @@ export function LearningPath({ slug }: { slug: string }) {
             <p className={styles.summary}>{path.summary}</p>
           </div>
         </div>
-        <p className={styles.intention}>“{path.goal}”</p>
+      </div>
 
+      <div className={styles.body}>
+        <div className={styles.container}>
+        <p className={styles.intention}>“{path.goal}”</p>
         <div className={styles.metaRow}>
           <span className={styles.meta}>
             <strong>
@@ -334,6 +1031,7 @@ export function LearningPath({ slug }: { slug: string }) {
               >
                 <option value='all'>All connections</option>
                 <option value='core'>Core path</option>
+                <option value='branch'>Current children path</option>
                 <option value='unfinished'>Only unfinished</option>
               </select>
             </label>
@@ -362,128 +1060,194 @@ export function LearningPath({ slug }: { slug: string }) {
         <div className={styles.layout}>
           <section className={styles.mapPanel}>
             <div className={styles.mapToolbar}>
-              <h2 className={styles.mapTitle}>The map</h2>
-              <span className={styles.mapHint}>
-                1 → 2 → 3 is the order · a, b how deep to go
-              </span>
-            </div>
-            <div className={styles.canvas}>
-              <svg
-                className={styles.connections}
-                viewBox='0 0 100 100'
-                preserveAspectRatio='none'
-                aria-hidden
-              >
-                {path.edges.map((edge) => {
-                  const from = nodeById[edge.from]
-                  const to = nodeById[edge.to]
-                  if (!from || !to) return null
-                  if (
-                    !nodes.some((node) => node.id === from.id) ||
-                    !nodes.some((node) => node.id === to.id)
-                  ) {
-                    return null
-                  }
-                  return (
-                    <path
-                      key={`${edge.from}-${edge.to}`}
-                      d={edgePath(from, to)}
-                    />
-                  )
-                })}
-              </svg>
-              {nodes.map((node) => {
-                const mark = marks[node.id]
-                return (
-                  <button
-                    key={node.id}
-                    type='button'
-                    className={nodeClass(node, node.id === selected.id)}
-                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                    aria-label={
-                      mark
-                        ? mark.role === 'core'
-                          ? `Step ${mark.mark}: ${node.label}`
-                          : `${node.label}, ${mark.mark})`
-                        : node.label
-                    }
-                    onClick={() => {
-                      setSelectedId(node.id)
-                      setPromptOpen(false)
-                      setAddResourceOpen(false)
-                      setResourceDraft(EMPTY_RESOURCE_DRAFT)
-                    }}
-                  >
-                    <span className={styles.nodeStatus} />
-                    <span className={styles.nodeHead}>
-                      {mark ? (
-                        <span
-                          className={
-                            mark.role === 'branch'
-                              ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
-                              : styles.nodeMark
-                          }
-                        >
-                          {mark.role === 'branch' ? `${mark.mark})` : mark.mark}
-                        </span>
-                      ) : null}
-                      <span className={styles.nodeLabel}>{node.label}</span>
-                    </span>
-                    <span className={styles.nodeSub}>{node.sub}</span>
-                  </button>
-                )
-              })}
-              <button
-                type='button'
-                className={styles.addNode}
-                onClick={() => setAddOpen(true)}
-              >
-                <PlusIcon /> Add concept
-              </button>
-              <div className={styles.legend}>
-                <span>
-                  <i
-                    className={`${styles.legendDot} ${styles.legendExplored}`}
-                  />{' '}
-                  Explored
-                </span>
-                <span>
-                  <i
-                    className={`${styles.legendDot} ${styles.legendExploring}`}
-                  />{' '}
-                  Exploring
-                </span>
-                <span>
-                  <i className={`${styles.legendDot} ${styles.legendNext}`} />{' '}
-                  Next
+              <div className={styles.mapToolbarCopy}>
+                <h2 className={styles.mapTitle}>
+                  {viewMode === 'list' ? 'The outline' : 'The map'}
+                </h2>
+                <span className={styles.mapHint}>
+                  {viewMode === 'list'
+                    ? 'Select a step to read it on the right'
+                    : '1 → 2 → 3 is the order · a, b how deep to go'}
                 </span>
               </div>
+              <div className={styles.viewToggle} role='group' aria-label='Path view'>
+                <button
+                  type='button'
+                  className={styles.viewToggleBtn}
+                  aria-pressed={viewMode === 'graph'}
+                  onClick={() => setViewMode('graph')}
+                >
+                  Graph
+                </button>
+                <button
+                  type='button'
+                  className={styles.viewToggleBtn}
+                  aria-pressed={viewMode === 'list'}
+                  onClick={() => setViewMode('list')}
+                >
+                  List
+                </button>
+              </div>
             </div>
+            {viewMode === 'list' ? (
+              <div className={styles.pathListWrap}>
+                <div className={styles.pathListScroll}>
+                  {tree.length === 0 ? (
+                    <p className={styles.pathListEmpty}>
+                      Nothing on this depth yet.
+                    </p>
+                  ) : (
+                    <PathOutlineList
+                      items={tree}
+                      marks={marks}
+                      selectedId={selected.id}
+                      onSelect={selectNode}
+                    />
+                  )}
+                </div>
+                <div className={styles.pathListFooter}>
+                  <PathLegend />
+                  <button
+                    type='button'
+                    className={`${styles.addNode} ${styles.addNodeInline}`}
+                    onClick={() =>
+                      openAdd(selected.kind === 'goal' ? 'step' : 'child')
+                    }
+                  >
+                    <PlusIcon /> Add to path
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.canvas}>
+                <svg
+                  className={styles.connections}
+                  viewBox='0 0 100 100'
+                  preserveAspectRatio='none'
+                  aria-hidden
+                >
+                  {path.edges.map((edge) => {
+                    const from = nodeById[edge.from]
+                    const to = nodeById[edge.to]
+                    if (!from || !to) return null
+                    if (
+                      !nodes.some((node) => node.id === from.id) ||
+                      !nodes.some((node) => node.id === to.id)
+                    ) {
+                      return null
+                    }
+                    const fromPos = displayPositions[from.id]
+                    const toPos = displayPositions[to.id]
+                    if (!fromPos || !toPos) return null
+                    return (
+                      <path
+                        key={`${edge.from}-${edge.to}`}
+                        d={edgePath(
+                          { ...from, x: fromPos.x, y: fromPos.y },
+                          { ...to, x: toPos.x, y: toPos.y }
+                        )}
+                      />
+                    )
+                  })}
+                </svg>
+                {nodes.map((node) => {
+                  const mark = marks[node.id]
+                  const pos = displayPositions[node.id] ?? {
+                    x: node.x,
+                    y: node.y
+                  }
+                  const parentId = layout.parentOf.get(node.id)
+                  const packed =
+                    node.kind === 'prerequisite' &&
+                    !!parentId &&
+                    !layout.expanded.has(parentId)
+                  return (
+                    <button
+                      key={node.id}
+                      type='button'
+                      className={nodeClass(
+                        node,
+                        node.id === selected.id,
+                        packed
+                      )}
+                      style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+                      aria-label={
+                        mark
+                          ? mark.role === 'core'
+                            ? `Step ${mark.mark}: ${node.label}`
+                            : `${node.label}, ${mark.mark})`
+                          : node.label
+                      }
+                      onClick={() => selectNode(node.id)}
+                    >
+                      <span className={styles.nodeStatus} />
+                      <span className={styles.nodeHead}>
+                        {mark ? (
+                          <span
+                            className={
+                              mark.role === 'branch'
+                                ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
+                                : styles.nodeMark
+                            }
+                          >
+                            {mark.role === 'branch' ? `${mark.mark})` : mark.mark}
+                          </span>
+                        ) : null}
+                        <span className={styles.nodeLabel}>{node.label}</span>
+                      </span>
+                      <span className={styles.nodeSub}>{node.sub}</span>
+                    </button>
+                  )
+                })}
+                <button
+                  type='button'
+                  className={styles.addNode}
+                  onClick={() =>
+                    openAdd(selected.kind === 'goal' ? 'step' : 'child')
+                  }
+                >
+                  <PlusIcon /> Add to path
+                </button>
+                <PathLegend />
+              </div>
+            )}
           </section>
 
           <aside className={styles.detail} aria-live='polite'>
-            <div className={styles.detailKicker}>
-              <span>
-                {selectedMark
-                  ? selectedMark.role === 'core'
-                    ? `Core path · ${selectedMark.mark}`
-                    : `Under ${selectedParent?.label ?? 'this step'} · ${selectedMark.mark})`
-                  : selected.kind}
-              </span>
-              <span className={styles.detailStatus}>
-                {statusLabel(selected.status)}
-              </span>
+            <div className={styles.detailHead}>
+              <div className={styles.detailKicker}>
+                <span>
+                  {selectedMark
+                    ? selectedMark.role === 'core'
+                      ? `Core path · ${selectedMark.mark}`
+                      : `Under ${selectedParent?.label ?? 'this step'} · ${selectedMark.mark})`
+                    : selected.kind}
+                </span>
+                {selected.status === 'explored' ? (
+                  <span className={styles.detailStatus}>Explored</span>
+                ) : null}
+              </div>
+              <h2 className={styles.detailTitle}>{selected.label}</h2>
+              <p className={styles.detailBody}>{selected.description}</p>
             </div>
-            <h2 className={styles.detailTitle}>{selected.label}</h2>
-            <p className={styles.detailBody}>{selected.description}</p>
 
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Why it is on your path</h3>
+            <DetailToggle
+              title='Why it is on your path'
+              open={openSections.why}
+              onToggle={() =>
+                setOpenSections((prev) => ({ ...prev, why: !prev.why }))
+              }
+            >
               <p className={styles.blockCopy}>{selected.why}</p>
-            </div>
+            </DetailToggle>
 
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>What helped other people</h3>
+            <DetailToggle
+              title='What helped other people'
+              open={openSections.helped}
+              onToggle={() =>
+                setOpenSections((prev) => ({ ...prev, helped: !prev.helped }))
+              }
+            >
               {selected.resources.length === 0 ? (
                 <p className={styles.blockCopy}>
                   No traces here yet. When something makes this click — a
@@ -523,12 +1287,23 @@ export function LearningPath({ slug }: { slug: string }) {
                   })}
                 </ul>
               )}
-            </div>
+            </DetailToggle>
 
-            <div className={styles.block}>
-              <div className={styles.blockTitleRow}>
-                <h3 className={styles.blockTitle}>Your resources</h3>
-                {!addResourceOpen ? (
+            <DetailToggle
+              title='Your resources'
+              open={openSections.resources}
+              onToggle={() =>
+                setOpenSections((prev) => {
+                  const nextOpen = !prev.resources
+                  if (!nextOpen) {
+                    setAddResourceOpen(false)
+                    setResourceDraft(EMPTY_RESOURCE_DRAFT)
+                  }
+                  return { ...prev, resources: nextOpen }
+                })
+              }
+              extra={
+                !addResourceOpen ? (
                   <button
                     type='button'
                     className={styles.addResourceBtn}
@@ -536,8 +1311,9 @@ export function LearningPath({ slug }: { slug: string }) {
                   >
                     + Add a resource
                   </button>
-                ) : null}
-              </div>
+                ) : null
+              }
+            >
               <p className={styles.blockCopy}>
                 Bookmark the exact part that made this click — a chapter,
                 timestamp, diagram, or exercise.
@@ -690,25 +1466,53 @@ export function LearningPath({ slug }: { slug: string }) {
                   })}
                 </ul>
               )}
-            </div>
+            </DetailToggle>
 
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Your note</h3>
+            <DetailToggle
+              title='Your note'
+              open={openSections.note}
+              onToggle={() =>
+                setOpenSections((prev) => ({ ...prev, note: !prev.note }))
+              }
+            >
               <textarea
                 className={styles.note}
                 rows={4}
                 value={notes[selected.id] ?? ''}
-                onChange={(event) =>
-                  setNotes((prev) => ({
-                    ...prev,
-                    [selected.id]: event.target.value
-                  }))
-                }
+                onChange={(event) => {
+                  const value = event.target.value
+                  setNotes((prev) => {
+                    const next = { ...prev, [selected.id]: value }
+                    notesRef.current = next
+                    queueUserStateSave()
+                    return next
+                  })
+                }}
                 placeholder='What do you understand now? What is still fuzzy?'
               />
-            </div>
+            </DetailToggle>
 
             <div className={styles.actions}>
+              <button
+                type='button'
+                className={styles.ghostBtn}
+                onClick={openEdit}
+              >
+                Edit this node
+              </button>
+              <button
+                type='button'
+                className={styles.ghostBtn}
+                onClick={() =>
+                  openAdd(selected.kind === 'goal' ? 'step' : 'child')
+                }
+              >
+                {selected.kind === 'goal'
+                  ? 'Add a step'
+                  : selected.kind === 'prerequisite'
+                    ? 'Add a sub-concept'
+                    : 'Add a concept here'}
+              </button>
               <button
                 type='button'
                 className={styles.ghostBtn}
@@ -716,17 +1520,30 @@ export function LearningPath({ slug }: { slug: string }) {
               >
                 {promptOpen ? 'Hide tutor prompt' : 'Ask for an explanation'}
               </button>
-              {selected.kind !== 'goal' ? (
-                <button
-                  type='button'
-                  className={styles.primaryBtn}
-                  onClick={markExplored}
-                  disabled={selected.status === 'explored'}
-                >
-                  {selected.status === 'explored'
-                    ? 'Explored'
-                    : 'Mark as explored'}
-                </button>
+              {selected.kind !== 'goal' || nextNode ? (
+                <div className={styles.actionRow}>
+                  {selected.kind !== 'goal' ? (
+                    <button
+                      type='button'
+                      className={styles.primaryBtn}
+                      onClick={markExplored}
+                      disabled={selected.status === 'explored'}
+                    >
+                      {selected.status === 'explored'
+                        ? 'Explored'
+                        : 'Mark as explored'}
+                    </button>
+                  ) : null}
+                  {nextNode ? (
+                    <button
+                      type='button'
+                      className={`${styles.primaryBtn} ${styles.nextBtn}`}
+                      onClick={() => selectNode(nextNode.id)}
+                    >
+                      Next
+                    </button>
+                  ) : null}
+                </div>
               ) : null}
             </div>
             {promptOpen ? (
@@ -765,6 +1582,7 @@ export function LearningPath({ slug }: { slug: string }) {
             </div>
           ) : null}
         </section>
+        </div>
       </div>
 
       {addOpen ? (
@@ -784,7 +1602,7 @@ export function LearningPath({ slug }: { slug: string }) {
           >
             <div className={styles.modalHeader}>
               <h2 id='add-concept-title' className={styles.modalTitle}>
-                Add a concept
+                Add to path
               </h2>
               <button
                 type='button'
@@ -795,14 +1613,49 @@ export function LearningPath({ slug }: { slug: string }) {
                 ×
               </button>
             </div>
-            <form className={styles.modalForm} onSubmit={addConcept}>
+            <form className={styles.modalForm} onSubmit={addNode}>
+              {selected.kind !== 'goal' ? (
+                <fieldset className={styles.placement}>
+                  <legend className={styles.placementLegend}>Where</legend>
+                  <label className={styles.placementOption}>
+                    <input
+                      type='radio'
+                      name='add-placement'
+                      checked={addPlacement === 'child'}
+                      onChange={() => setAddPlacement('child')}
+                    />
+                    Under “{selected.label}”
+                  </label>
+                  <label className={styles.placementOption}>
+                    <input
+                      type='radio'
+                      name='add-placement'
+                      checked={addPlacement === 'step'}
+                      onChange={() => setAddPlacement('step')}
+                    />
+                    New step on the core path
+                  </label>
+                </fieldset>
+              ) : (
+                <p className={styles.placementHint}>
+                  This will be added as the next step on the core path.
+                </p>
+              )}
               <label className={styles.modalLabel}>
-                What belongs on the way to this goal?
+                {addPlacement === 'step' || selected.kind === 'goal'
+                  ? 'Step title'
+                  : selected.kind === 'prerequisite'
+                    ? 'Sub-concept'
+                    : 'Concept'}
                 <input
                   className={styles.modalInput}
                   value={addLabel}
                   onChange={(event) => setAddLabel(event.target.value)}
-                  placeholder='e.g. Positional embeddings'
+                  placeholder={
+                    addPlacement === 'step' || selected.kind === 'goal'
+                      ? 'e.g. Practice project'
+                      : 'e.g. Positional embeddings'
+                  }
                   autoFocus
                 />
               </label>
@@ -823,6 +1676,159 @@ export function LearningPath({ slug }: { slug: string }) {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      ) : null}
+
+      {editOpen ? (
+        <div
+          className={styles.backdrop}
+          role='presentation'
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setEditOpen(false)
+          }}
+        >
+          <div
+            className={styles.modal}
+            role='dialog'
+            aria-modal='true'
+            aria-labelledby='edit-node-title'
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h2 id='edit-node-title' className={styles.modalTitle}>
+                Edit node
+              </h2>
+              <button
+                type='button'
+                className={styles.modalClose}
+                onClick={() => setEditOpen(false)}
+                aria-label='Close'
+              >
+                ×
+              </button>
+            </div>
+            <form className={styles.modalForm} onSubmit={saveEdit}>
+              <label className={styles.modalLabel}>
+                {selected.kind === 'goal'
+                  ? 'Goal'
+                  : selected.kind === 'milestone'
+                    ? 'Step title'
+                    : 'Name'}
+                <input
+                  className={styles.modalInput}
+                  value={editLabel}
+                  onChange={(event) => setEditLabel(event.target.value)}
+                  autoFocus
+                />
+              </label>
+              <label className={styles.modalLabel}>
+                Description
+                <textarea
+                  className={styles.modalTextarea}
+                  rows={3}
+                  value={editDescription}
+                  onChange={(event) => setEditDescription(event.target.value)}
+                />
+              </label>
+              <label className={styles.modalLabel}>
+                Why it is on your path
+                <textarea
+                  className={styles.modalTextarea}
+                  rows={3}
+                  value={editWhy}
+                  onChange={(event) => setEditWhy(event.target.value)}
+                />
+              </label>
+              <div className={styles.modalActions}>
+                {selected.kind !== 'goal' ? (
+                  <button
+                    type='button'
+                    className={styles.modalDelete}
+                    onClick={() => {
+                      setEditOpen(false)
+                      setDeleteOpen(true)
+                    }}
+                  >
+                    Delete this node
+                  </button>
+                ) : null}
+                <button
+                  type='button'
+                  className={styles.modalCancel}
+                  onClick={() => setEditOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type='submit'
+                  className={styles.modalSubmit}
+                  disabled={!editLabel.trim()}
+                >
+                  Save changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
+
+      {deleteOpen && selected.kind !== 'goal' ? (
+        <div
+          className={styles.backdrop}
+          role='presentation'
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setDeleteOpen(false)
+          }}
+        >
+          <div
+            className={styles.modal}
+            role='alertdialog'
+            aria-modal='true'
+            aria-labelledby='delete-node-title'
+            aria-describedby='delete-node-warning'
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h2 id='delete-node-title' className={styles.modalTitle}>
+                Delete this node?
+              </h2>
+              <button
+                type='button'
+                className={styles.modalClose}
+                onClick={() => setDeleteOpen(false)}
+                aria-label='Close'
+              >
+                ×
+              </button>
+            </div>
+            <div className={styles.modalForm}>
+              <p id='delete-node-warning' className={styles.deleteWarning}>
+                You are about to delete “{selected.label}”.
+                {nestedToDelete.length > 0
+                  ? ` This will also remove ${nestedToDelete.length} nested ${
+                      nestedToDelete.length === 1 ? 'concept' : 'concepts'
+                    } underneath it.`
+                  : ''}{' '}
+                This cannot be undone.
+              </p>
+              <div className={styles.modalActions}>
+                <button
+                  type='button'
+                  className={styles.modalCancel}
+                  onClick={() => setDeleteOpen(false)}
+                >
+                  Keep node
+                </button>
+                <button
+                  type='button'
+                  className={styles.modalDanger}
+                  onClick={deleteSelected}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}

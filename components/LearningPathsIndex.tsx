@@ -7,16 +7,53 @@ import {
   type StoredLearningPath,
   SEEDED_LEARNING_PATHS,
   emptyLearningPath,
-  readStoredLearningPaths,
-  writeStoredLearningPaths
+  readStoredLearningPaths
 } from '@/lib/learning-path-seed'
 import {
-  ensureUniqueSlug,
-  slugifyLearningPathName
-} from '@/lib/learning-path-slug'
-import { TRENDING_CONCEPTS } from '@/lib/trending-concepts-seed'
+  listCatalogLearningPaths,
+  listOwnedLearningPaths
+} from '@/lib/learning-path-db'
+import {
+  TRENDING_CONCEPTS,
+  type TrendingConcept
+} from '@/lib/trending-concepts-seed'
 
 import styles from './LearningPathsIndex.module.css'
+
+function normalizeSearch(value: string) {
+  return value.trim().toLowerCase()
+}
+
+function matchesSearch(haystack: string, query: string) {
+  return haystack.toLowerCase().includes(query)
+}
+
+function pathMatchesQuery(path: LearningPathData, query: string) {
+  if (!query) return true
+  return (
+    matchesSearch(path.title, query) ||
+    matchesSearch(path.goal, query) ||
+    matchesSearch(path.summary, query)
+  )
+}
+
+function circleMatchesQuery(path: LearningPathData, query: string) {
+  if (!query) return true
+  return (
+    matchesSearch(path.circle.name, query) ||
+    matchesSearch(path.circle.description, query) ||
+    matchesSearch(path.title, query)
+  )
+}
+
+function conceptMatchesQuery(concept: TrendingConcept, query: string) {
+  if (!query) return true
+  return (
+    matchesSearch(concept.label, query) ||
+    matchesSearch(concept.blurb, query) ||
+    matchesSearch(concept.pathTitle, query)
+  )
+}
 
 function conceptStats(path: LearningPathData) {
   const concepts = path.nodes.filter((node) => node.kind !== 'goal')
@@ -32,7 +69,15 @@ function trendingCircles(paths: LearningPathData[]) {
 
 function storedToPath(item: StoredLearningPath): LearningPathData {
   const seeded = SEEDED_LEARNING_PATHS.find((path) => path.slug === item.slug)
-  return seeded ?? emptyLearningPath(item.goal, item.slug)
+  if (seeded) return seeded
+  if (item.data && Array.isArray(item.data.nodes)) {
+    return {
+      ...item.data,
+      slug: item.slug,
+      goal: item.goal
+    }
+  }
+  return emptyLearningPath(item.goal, item.slug)
 }
 
 function formatCount(n: number) {
@@ -61,28 +106,86 @@ function PlusIcon() {
 
 export function LearningPathsIndex() {
   const router = useRouter()
+  const [catalogPaths, setCatalogPaths] = React.useState<LearningPathData[]>(
+    SEEDED_LEARNING_PATHS
+  )
   const [customPaths, setCustomPaths] = React.useState<StoredLearningPath[]>(
     []
   )
   const [createOpen, setCreateOpen] = React.useState(false)
   const [draft, setDraft] = React.useState('')
+  const [query, setQuery] = React.useState('')
+  const [isSearchPulse, setIsSearchPulse] = React.useState(false)
+  const pulseTimeoutRef = React.useRef<number | null>(null)
+  const submitFromButtonRef = React.useRef(false)
 
   React.useEffect(() => {
     setCustomPaths(readStoredLearningPaths())
+    void listCatalogLearningPaths().then(setCatalogPaths)
+    void listOwnedLearningPaths().then(setCustomPaths)
+  }, [])
+
+  React.useEffect(() => {
+    return () => {
+      if (pulseTimeoutRef.current !== null) {
+        window.clearTimeout(pulseTimeoutRef.current)
+      }
+    }
   }, [])
 
   const seededSlugs = React.useMemo(
-    () => new Set(SEEDED_LEARNING_PATHS.map((path) => path.slug)),
-    []
+    () => new Set(catalogPaths.map((path) => path.slug)),
+    [catalogPaths]
   )
   const customOnly = customPaths.filter(
     (item) => !seededSlugs.has(item.slug)
   )
   const paths = [
     ...customOnly.map(storedToPath),
-    ...SEEDED_LEARNING_PATHS
+    ...catalogPaths
   ]
-  const circles = trendingCircles(SEEDED_LEARNING_PATHS)
+  const circles = trendingCircles(catalogPaths)
+  const search = normalizeSearch(query)
+  const filteredPaths = paths.filter((path) => pathMatchesQuery(path, search))
+  const filteredCircles = circles.filter((path) =>
+    circleMatchesQuery(path, search)
+  )
+  const filteredConcepts = TRENDING_CONCEPTS.filter((concept) =>
+    conceptMatchesQuery(concept, search)
+  )
+
+  const triggerSearchPulse = React.useCallback(() => {
+    setIsSearchPulse(false)
+
+    window.requestAnimationFrame(() => {
+      setIsSearchPulse(true)
+    })
+
+    if (pulseTimeoutRef.current !== null) {
+      window.clearTimeout(pulseTimeoutRef.current)
+    }
+
+    pulseTimeoutRef.current = window.setTimeout(() => {
+      setIsSearchPulse(false)
+      pulseTimeoutRef.current = null
+    }, 900)
+  }, [])
+
+  const markSearchButtonSubmit = React.useCallback(() => {
+    submitFromButtonRef.current = true
+  }, [])
+
+  const handleSearchSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      const fromSearchButton = submitFromButtonRef.current
+      submitFromButtonRef.current = false
+      if (fromSearchButton) {
+        triggerSearchPulse()
+      }
+    },
+    [triggerSearchPulse]
+  )
 
   function closeCreate() {
     setCreateOpen(false)
@@ -93,24 +196,11 @@ export function LearningPathsIndex() {
     event.preventDefault()
     const goal = draft.trim()
     if (!goal) return
-    const existing = [
-      ...SEEDED_LEARNING_PATHS.map((path) => path.slug),
-      ...readStoredLearningPaths().map((item) => item.slug)
-    ]
-    const slug = ensureUniqueSlug(slugifyLearningPathName(goal), existing)
-    const item: StoredLearningPath = {
-      id: `path-${Date.now()}`,
-      goal,
-      slug
-    }
-    const next = [
-      item,
-      ...readStoredLearningPaths().filter((row) => row.slug !== slug)
-    ]
-    writeStoredLearningPaths(next)
-    setCustomPaths(next)
     closeCreate()
-    void router.push(`/learning-path/${slug}`)
+    void router.push({
+      pathname: '/learning-path/new',
+      query: { goal }
+    })
   }
 
   return (
@@ -135,19 +225,50 @@ export function LearningPathsIndex() {
           </p>
         </header>
 
+        <form
+          id='learning-paths-search'
+          className={`${styles.searchWrap} ${
+            isSearchPulse ? styles.searchWrapPulse : ''
+          }`}
+          onSubmit={handleSearchSubmit}
+          role='search'
+        >
+          <input
+            type='text'
+            className={styles.searchInput}
+            placeholder='What are you curious about?'
+            aria-label='What are you curious about?'
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <button
+            type='submit'
+            className={styles.searchButton}
+            onClick={markSearchButtonSubmit}
+          >
+            Search
+          </button>
+        </form>
+      </div>
+
+      <div className={styles.body}>
+        <div className={styles.container}>
         <div className={styles.columns}>
           <div>
             <div className={styles.bar}>
               <span>
                 <span className={styles.barLabel}>All learning paths</span>
-                <span className={styles.barCount}>({paths.length})</span>
+                <span className={styles.barCount}>({filteredPaths.length})</span>
               </span>
               <span className={styles.barHint}>
                 What people are trying to do
               </span>
             </div>
+            {filteredPaths.length === 0 ? (
+              <p className={styles.empty}>No matching learning paths.</p>
+            ) : (
             <ul className={styles.list}>
-              {paths.map((path) => {
+              {filteredPaths.map((path) => {
                 const stats = conceptStats(path)
                 const yours = customOnly.some((item) => item.slug === path.slug)
                 return (
@@ -177,18 +298,22 @@ export function LearningPathsIndex() {
                 )
               })}
             </ul>
+            )}
           </div>
 
           <div>
             <div className={styles.bar}>
               <span>
                 <span className={styles.barLabel}>Communities</span>
-                <span className={styles.barCount}>({circles.length})</span>
+                <span className={styles.barCount}>({filteredCircles.length})</span>
               </span>
               <span className={styles.barHint}>Who people are joining</span>
             </div>
+            {filteredCircles.length === 0 ? (
+              <p className={styles.empty}>No matching communities.</p>
+            ) : (
             <ul className={styles.list}>
-              {circles.map((path, index) => (
+              {filteredCircles.map((path, index) => (
                 <li key={path.slug} className={styles.item}>
                   <p className={styles.kicker}>Joining · {index + 1}</p>
                   <h2 className={styles.itemTitle}>
@@ -222,6 +347,7 @@ export function LearningPathsIndex() {
                 </li>
               ))}
             </ul>
+            )}
           </div>
         </div>
 
@@ -230,7 +356,7 @@ export function LearningPathsIndex() {
             <span>
               <span className={styles.barLabel}>Concepts</span>
               <span className={styles.barCount}>
-                ({TRENDING_CONCEPTS.length})
+                ({filteredConcepts.length})
               </span>
             </span>
             <span className={styles.barHint}>Trending now</span>
@@ -241,8 +367,11 @@ export function LearningPathsIndex() {
             to a concept, detail which part of the resource helped the concept
             click.
           </p>
+          {filteredConcepts.length === 0 ? (
+            <p className={styles.empty}>No matching concepts.</p>
+          ) : (
           <ul className={styles.conceptGrid}>
-            {TRENDING_CONCEPTS.map((concept, index) => (
+            {filteredConcepts.map((concept, index) => (
               <li key={concept.id} className={styles.item}>
                 <p className={styles.kicker}>
                   Trending · {index + 1}
@@ -266,6 +395,7 @@ export function LearningPathsIndex() {
               </li>
             ))}
           </ul>
+          )}
         </div>
 
         <div className={styles.invite}>
@@ -280,6 +410,7 @@ export function LearningPathsIndex() {
           >
             Create your own learning path
           </button>
+        </div>
         </div>
       </div>
 
@@ -343,7 +474,7 @@ export function LearningPathsIndex() {
                   className={styles.submitBtn}
                   disabled={!draft.trim()}
                 >
-                  Create
+                  Continue
                 </button>
               </div>
             </form>

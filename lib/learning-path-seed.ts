@@ -1,9 +1,9 @@
-/** Frontend-only seed for /learning-path/[slug]. Not wired to a database. */
+/** Catalog dummy paths plus sessionStorage fallback. Supabase is the source of truth when signed in. */
 
 import {
   slugifyLearningPathName,
   titleFromSlug
-} from '@/lib/learning-path-slug'
+} from './learning-path-slug'
 
 export const LEARNING_PATH_STORAGE_KEY = 'coursetexts.learning-paths'
 
@@ -79,6 +79,7 @@ export type LearningPathCircle = {
 }
 
 export type LearningPathData = {
+  id?: string
   slug: string
   title: string
   goal: string
@@ -92,6 +93,19 @@ export type StoredLearningPath = {
   id: string
   goal: string
   slug: string
+  data?: LearningPathData
+}
+
+export type LearningPathOutlineConcept = {
+  id: string
+  label: string
+  subconcepts: Array<{ id: string; label: string }>
+}
+
+export type LearningPathOutlineStep = {
+  id: string
+  title: string
+  concepts: LearningPathOutlineConcept[]
 }
 
 const TRANSFORMERS: LearningPathData = {
@@ -665,7 +679,147 @@ const TREE_HOUSE: LearningPathData = {
   }
 }
 
+const SPANISH: LearningPathData = {
+  slug: 'learn-spanish',
+  title: 'Learn Spanish',
+  goal: 'learn spanish',
+  summary:
+    'A path from core words and the present tense into conversations — only as deep as you need to start speaking.',
+  nodes: [
+    {
+      id: 'goal',
+      label: 'learn spanish',
+      kind: 'goal',
+      sub: 'Your goal',
+      status: 'exploring',
+      x: 50,
+      y: 12,
+      description:
+        'Enough Spanish to greet people, ask questions, and talk about the present — not a linguistics degree.',
+      why: 'The goal is the unit of the path. Everything else is here only because it is required to start speaking.',
+      resources: []
+    },
+    {
+      id: 'step-1',
+      label: '500 core words',
+      kind: 'milestone',
+      sub: 'Step 1',
+      status: 'exploring',
+      sequence: 1,
+      x: 18,
+      y: 36,
+      description:
+        'A small, high-frequency vocabulary: pronouns, question words, connectors, and the function words every sentence leans on.',
+      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      resources: []
+    },
+    {
+      id: 'c-1-1',
+      label: 'Pronouns, question words, connectors, basic function words',
+      kind: 'prerequisite',
+      sub: 'Need this',
+      status: 'next',
+      sequence: 1,
+      x: 18,
+      y: 58,
+      description:
+        'yo, tú, qué, dónde, y, pero — the glue that lets 500 words become sentences.',
+      why: 'You placed this because it sits inside the step.',
+      resources: []
+    },
+    {
+      id: 's-1-1-1',
+      label: 'yo',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 12,
+      y: 76,
+      description: 'The first-person pronoun — how you talk about yourself.',
+      why: 'Go only as deep as the goal requires.',
+      resources: []
+    },
+    {
+      id: 's-1-1-2',
+      label: 'tú',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 2,
+      x: 24,
+      y: 76,
+      description: 'The informal you — how you talk to someone you know.',
+      why: 'Go only as deep as the goal requires.',
+      resources: []
+    },
+    {
+      id: 'step-2',
+      label: 'present tense',
+      kind: 'milestone',
+      sub: 'Step 2',
+      status: 'next',
+      sequence: 2,
+      x: 39,
+      y: 36,
+      description:
+        'Regular present-tense verbs so those 500 words can actually happen now.',
+      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      resources: []
+    },
+    {
+      id: 'step-3',
+      label: 'basic conversations',
+      kind: 'milestone',
+      sub: 'Step 3',
+      status: 'next',
+      sequence: 3,
+      x: 61,
+      y: 36,
+      description:
+        'Greetings, questions, and short exchanges you can use the same day.',
+      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      resources: []
+    },
+    {
+      id: 'step-4',
+      label: '1,500-2,500 words',
+      kind: 'milestone',
+      sub: 'Step 4',
+      status: 'next',
+      sequence: 4,
+      x: 82,
+      y: 36,
+      description:
+        'A wider working vocabulary once the present tense and basic talk are in place.',
+      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      resources: []
+    }
+  ],
+  edges: [
+    { from: 'goal', to: 'step-1' },
+    { from: 'step-1', to: 'step-2' },
+    { from: 'step-2', to: 'step-3' },
+    { from: 'step-3', to: 'step-4' },
+    { from: 'step-1', to: 'c-1-1' },
+    { from: 'c-1-1', to: 's-1-1-1' },
+    { from: 'c-1-1', to: 's-1-1-2' }
+  ],
+  circle: {
+    name: 'Speaking from day one',
+    description:
+      'People collecting the words and phrases that actually got them through a first conversation — and leaving the traces for the next learner.',
+    members: [
+      { initials: 'MR', name: 'Marta R.' },
+      { initials: 'JL', name: 'Jules L.' },
+      { initials: 'CA', name: 'Camila A.' },
+      { initials: 'DN', name: 'Diego N.' }
+    ]
+  }
+}
+
 export const SEEDED_LEARNING_PATHS: LearningPathData[] = [
+  SPANISH,
   TRANSFORMERS,
   ROM_COM,
   TREE_HOUSE
@@ -673,6 +827,10 @@ export const SEEDED_LEARNING_PATHS: LearningPathData[] = [
 
 export const SEEDED_LEARNING_PATHS_BY_SLUG: Record<string, LearningPathData> =
   Object.fromEntries(SEEDED_LEARNING_PATHS.map((path) => [path.slug, path]))
+
+export function isCatalogLearningPathSlug(slug: string) {
+  return Boolean(SEEDED_LEARNING_PATHS_BY_SLUG[slug])
+}
 
 const BRANCH_LETTERS = 'abcdefghijklmnopqrstuvwxyz'
 const BRANCH_ROMANS = [
@@ -740,6 +898,142 @@ export function sequenceMarks(
   return marks
 }
 
+function layoutX(index: number, total: number) {
+  if (total <= 1) return 50
+  const span = 64
+  const start = 50 - span / 2
+  return start + (span * index) / (total - 1)
+}
+
+export function learningPathFromOutline({
+  goal,
+  slug,
+  steps
+}: {
+  goal: string
+  slug: string
+  steps: LearningPathOutlineStep[]
+}): LearningPathData {
+  const title =
+    goal.replace(/^I want to\s+/i, '').replace(/\.$/, '') || titleFromSlug(slug)
+
+  const filledSteps = steps
+    .map((step) => ({
+      title: step.title.trim(),
+      concepts: step.concepts
+        .map((concept) => ({
+          label: concept.label.trim(),
+          subconcepts: concept.subconcepts
+            .map((item) => item.label.trim())
+            .filter(Boolean)
+        }))
+        .filter((concept) => concept.label)
+    }))
+    .filter((step) => step.title)
+
+  if (filledSteps.length === 0) {
+    return emptyLearningPath(goal, slug)
+  }
+
+  const nodes: LearningPathNode[] = [
+    {
+      id: 'goal',
+      label: title,
+      kind: 'goal',
+      sub: 'Your goal',
+      status: 'exploring',
+      x: 50,
+      y: 12,
+      description:
+        'Begin with the intention. Work backward into the knowledge that would make you capable of it.',
+      why: 'This path starts from what you are trying to do.',
+      resources: []
+    }
+  ]
+  const edges: LearningPathEdge[] = []
+  const stepIds: string[] = []
+
+  filledSteps.forEach((step, stepIndex) => {
+    const stepId = `step-${stepIndex + 1}`
+    stepIds.push(stepId)
+    const x = layoutX(stepIndex, filledSteps.length)
+    nodes.push({
+      id: stepId,
+      label: step.title,
+      kind: 'milestone',
+      sub: `Step ${stepIndex + 1}`,
+      status: stepIndex === 0 ? 'exploring' : 'next',
+      sequence: stepIndex + 1,
+      x,
+      y: 36,
+      description: `A milestone on the way to ${title}.`,
+      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      resources: []
+    })
+    edges.push({
+      from: stepIndex === 0 ? 'goal' : stepIds[stepIndex - 1],
+      to: stepId
+    })
+
+    step.concepts.forEach((concept, conceptIndex) => {
+      const conceptId = `c-${stepIndex + 1}-${conceptIndex + 1}`
+      const offset =
+        (conceptIndex - (step.concepts.length - 1) / 2) * 12
+      const conceptX = Math.min(88, Math.max(12, x + offset))
+      nodes.push({
+        id: conceptId,
+        label: concept.label,
+        kind: 'prerequisite',
+        sub: 'Need this',
+        status: 'next',
+        sequence: conceptIndex + 1,
+        x: conceptX,
+        y: 58,
+        description: 'A concept this step depends on.',
+        why: 'You placed this because it sits inside the step.',
+        resources: []
+      })
+      edges.push({ from: stepId, to: conceptId })
+
+      concept.subconcepts.forEach((sub, subIndex) => {
+        const subId = `s-${stepIndex + 1}-${conceptIndex + 1}-${subIndex + 1}`
+        const subOffset =
+          (subIndex - (concept.subconcepts.length - 1) / 2) * 8
+        nodes.push({
+          id: subId,
+          label: sub,
+          kind: 'prerequisite',
+          sub: 'As deep as you need',
+          status: 'next',
+          sequence: subIndex + 1,
+          x: Math.min(88, Math.max(12, conceptX + subOffset)),
+          y: 76,
+          description: 'A finer concept under the parent idea.',
+          why: 'Go only as deep as the goal requires.',
+          resources: []
+        })
+        edges.push({ from: conceptId, to: subId })
+      })
+    })
+  })
+
+  return {
+    slug,
+    title,
+    goal,
+    summary:
+      'A path you mapped from the goal: steps as milestones, concepts nested only as deep as you need.',
+    nodes,
+    edges,
+    circle: {
+      name: 'Start a study circle',
+      description:
+        'When you make this path visible, other people trying to reach a similar goal can learn beside you — and leave traces for the next person.',
+      members: []
+    }
+  }
+}
+
 export function emptyLearningPath(
   goal: string,
   slug = slugifyLearningPathName(goal)
@@ -804,6 +1098,23 @@ export function writeStoredLearningPaths(items: StoredLearningPath[]) {
   )
 }
 
+export function saveStoredLearningPath(path: LearningPathData) {
+  if (typeof window === 'undefined') return
+  if (SEEDED_LEARNING_PATHS_BY_SLUG[path.slug]) return
+  const stored = readStoredLearningPaths()
+  const existing = stored.find((item) => item.slug === path.slug)
+  const item: StoredLearningPath = {
+    id: existing?.id ?? `path-${Date.now()}`,
+    goal: path.goal,
+    slug: path.slug,
+    data: path
+  }
+  writeStoredLearningPaths([
+    item,
+    ...stored.filter((row) => row.slug !== path.slug)
+  ])
+}
+
 export function resolveLearningPath(
   slug: string,
   stored: StoredLearningPath[] = []
@@ -811,7 +1122,39 @@ export function resolveLearningPath(
   const seeded = SEEDED_LEARNING_PATHS_BY_SLUG[slug]
   if (seeded) return seeded
   const custom = stored.find((item) => item.slug === slug)
+  if (custom?.data && Array.isArray(custom.data.nodes)) {
+    return {
+      ...custom.data,
+      id: custom.data.id ?? custom.id,
+      slug: custom.slug,
+      goal: custom.goal,
+      title: custom.data.title || emptyLearningPath(custom.goal, custom.slug).title
+    }
+  }
   if (custom) return emptyLearningPath(custom.goal, custom.slug)
   const fromSlug = titleFromSlug(slug)
   return emptyLearningPath(`I want to ${fromSlug.toLowerCase()}`, slug)
+}
+
+export function nodeStatusMap(
+  path: LearningPathData
+): Record<string, LearningPathNodeStatus> {
+  return Object.fromEntries(path.nodes.map((node) => [node.id, node.status]))
+}
+
+export function applyNodeStatus(
+  path: LearningPathData,
+  status: Record<string, string> | null | undefined
+): LearningPathData {
+  if (!status || typeof status !== 'object') return path
+  return {
+    ...path,
+    nodes: path.nodes.map((node) => {
+      const next = status[node.id]
+      if (next === 'explored' || next === 'exploring' || next === 'next') {
+        return { ...node, status: next }
+      }
+      return node
+    })
+  }
 }

@@ -33,6 +33,88 @@ function newId(prefix: string) {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
 }
 
+function normalizeSearch(value: string) {
+  return value.trim().toLowerCase()
+}
+
+function matchesSearch(haystack: string, query: string) {
+  return haystack.toLowerCase().includes(query)
+}
+
+function questionMatchesQuery(question: AtlasQuestion, query: string) {
+  if (!query) return true
+  return (
+    matchesSearch(question.title, query) ||
+    matchesSearch(question.posed, query) ||
+    matchesSearch(question.disciplinePath, query) ||
+    question.hypotheses.some((item) => matchesSearch(item.statement, query))
+  )
+}
+
+function factMatchesQuery(fact: AtlasKnownFact, query: string) {
+  if (!query) return true
+  return (
+    matchesSearch(fact.title, query) ||
+    matchesSearch(fact.note, query) ||
+    matchesSearch(fact.disciplinePath, query)
+  )
+}
+
+function filterAtlasTree(
+  nodes: AtlasTreeNode[],
+  query: string,
+  questions: Record<string, AtlasQuestion>,
+  facts: Record<string, AtlasKnownFact>
+): AtlasTreeNode[] {
+  if (!query) return nodes
+
+  const next: AtlasTreeNode[] = []
+
+  for (const node of nodes) {
+    const selfMatch = matchesSearch(node.label, query)
+
+    if (node.kind === 'known') {
+      const factIds = (node.factIds ?? []).filter((id) => {
+        const fact = facts[id]
+        return fact ? factMatchesQuery(fact, query) : false
+      })
+      if (factIds.length === 0 && !selfMatch) continue
+      next.push({
+        ...node,
+        factIds: factIds.length > 0 ? factIds : node.factIds
+      })
+      continue
+    }
+
+    if (node.kind === 'unresolved') {
+      const questionIds = (node.questionIds ?? []).filter((id) => {
+        const question = questions[id]
+        return question ? questionMatchesQuery(question, query) : false
+      })
+      if (questionIds.length === 0 && !selfMatch) continue
+      next.push({
+        ...node,
+        questionIds: questionIds.length > 0 ? questionIds : node.questionIds
+      })
+      continue
+    }
+
+    const children = filterAtlasTree(
+      node.children ?? [],
+      query,
+      questions,
+      facts
+    )
+    if (children.length === 0 && !selfMatch) continue
+    next.push({
+      ...node,
+      children: children.length > 0 ? children : node.children
+    })
+  }
+
+  return next
+}
+
 type AtlasSelection =
   | { kind: 'question'; id: string }
   | { kind: 'known'; id: string }
@@ -46,6 +128,10 @@ export function HumanKnowledgeAtlas() {
   const [tree, setTree] = React.useState<AtlasTreeNode[]>(ATLAS_TREE)
   const [selected, setSelected] = React.useState<AtlasSelection | null>(null)
   const [createOpen, setCreateOpen] = React.useState(false)
+  const [query, setQuery] = React.useState('')
+  const [isSearchPulse, setIsSearchPulse] = React.useState(false)
+  const pulseTimeoutRef = React.useRef<number | null>(null)
+  const submitFromButtonRef = React.useRef(false)
 
   React.useEffect(() => {
     if (!router.isReady) return
@@ -56,6 +142,14 @@ export function HumanKnowledgeAtlas() {
     }
   }, [router.isReady, router.query.q])
 
+  React.useEffect(() => {
+    return () => {
+      if (pulseTimeoutRef.current !== null) {
+        window.clearTimeout(pulseTimeoutRef.current)
+      }
+    }
+  }, [])
+
   const targets = React.useMemo(
     () => collectAtlasSubmissionTargets(tree),
     [tree]
@@ -65,6 +159,44 @@ export function HumanKnowledgeAtlas() {
     selected?.kind === 'question' ? questions[selected.id] ?? null : null
   const selectedFact =
     selected?.kind === 'known' ? facts[selected.id] ?? null : null
+  const search = normalizeSearch(query)
+  const filteredTree = React.useMemo(
+    () => filterAtlasTree(tree, search, questions, facts),
+    [tree, search, questions, facts]
+  )
+
+  const triggerSearchPulse = React.useCallback(() => {
+    setIsSearchPulse(false)
+
+    window.requestAnimationFrame(() => {
+      setIsSearchPulse(true)
+    })
+
+    if (pulseTimeoutRef.current !== null) {
+      window.clearTimeout(pulseTimeoutRef.current)
+    }
+
+    pulseTimeoutRef.current = window.setTimeout(() => {
+      setIsSearchPulse(false)
+      pulseTimeoutRef.current = null
+    }, 900)
+  }, [])
+
+  const markSearchButtonSubmit = React.useCallback(() => {
+    submitFromButtonRef.current = true
+  }, [])
+
+  const handleSearchSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      const fromSearchButton = submitFromButtonRef.current
+      submitFromButtonRef.current = false
+      if (fromSearchButton) {
+        triggerSearchPulse()
+      }
+    },
+    [triggerSearchPulse]
+  )
 
   function handleCreated(question: AtlasQuestion, targetNodeId: string) {
     setQuestions((prev) => ({ ...prev, [question.id]: question }))
@@ -91,6 +223,34 @@ export function HumanKnowledgeAtlas() {
           </p>
         </header>
 
+        <form
+          id='human-knowledge-atlas-search'
+          className={`${styles.searchWrap} ${
+            isSearchPulse ? styles.searchWrapPulse : ''
+          }`}
+          onSubmit={handleSearchSubmit}
+          role='search'
+        >
+          <input
+            type='text'
+            className={styles.searchInput}
+            placeholder='What are you curious about?'
+            aria-label='What are you curious about?'
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <button
+            type='submit'
+            className={styles.searchButton}
+            onClick={markSearchButtonSubmit}
+          >
+            Search
+          </button>
+        </form>
+      </div>
+
+      <div className={styles.body}>
+        <div className={styles.container}>
         <div className={styles.toolbar}>
           <div className={styles.legend}>
             {LEGEND_ORDER.map((status) => (
@@ -128,13 +288,19 @@ export function HumanKnowledgeAtlas() {
           </span>
         </div>
 
+        {filteredTree.length === 0 ? (
+          <p className={`${styles.empty} ${styles.treeEmpty}`}>
+            No matching questions or known facts.
+          </p>
+        ) : (
         <div className={styles.tree}>
-          {tree.map((domain, i) => (
+          {filteredTree.map((domain, i) => (
             <Branch
               key={domain.id}
               node={domain}
               depth={0}
               defaultOpen={i === 0}
+              forceOpen={Boolean(search)}
               questions={questions}
               facts={facts}
               selected={selected}
@@ -143,12 +309,14 @@ export function HumanKnowledgeAtlas() {
             />
           ))}
         </div>
+        )}
 
         <p className={styles.quote}>
           “The map is not the territory — but a map of our questions is the
           closest thing we have to a portrait of the edge of human
           understanding.”
         </p>
+        </div>
       </div>
 
       {selectedQuestion ? (
@@ -186,6 +354,7 @@ function Branch({
   node,
   depth,
   defaultOpen = false,
+  forceOpen = false,
   questions,
   facts,
   selected,
@@ -195,6 +364,7 @@ function Branch({
   node: AtlasTreeNode
   depth: number
   defaultOpen?: boolean
+  forceOpen?: boolean
   questions: Record<string, AtlasQuestion>
   facts: Record<string, AtlasKnownFact>
   selected: AtlasSelection | null
@@ -204,6 +374,7 @@ function Branch({
   const initialOpen =
     node.kind === 'domain' ? defaultOpen : node.kind !== 'known'
   const [open, setOpen] = React.useState(initialOpen)
+  const expanded = forceOpen || open
 
   const count =
     node.kind === 'unresolved'
@@ -235,10 +406,10 @@ function Branch({
         type='button'
         className={styles.branchToggle}
         onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
+        aria-expanded={expanded}
       >
         <span
-          className={`${styles.chevron}${open ? ` ${styles.chevronOpen}` : ''}`}
+          className={`${styles.chevron}${expanded ? ` ${styles.chevronOpen}` : ''}`}
           aria-hidden
         >
           <ChevronIcon />
@@ -246,13 +417,14 @@ function Branch({
         {label}
       </button>
 
-      {open ? (
+      {expanded ? (
         <div>
           {node.children?.map((child) => (
             <Branch
               key={child.id}
               node={child}
               depth={depth + 1}
+              forceOpen={forceOpen}
               questions={questions}
               facts={facts}
               selected={selected}

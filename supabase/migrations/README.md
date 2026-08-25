@@ -69,8 +69,9 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `017_curated_course_links.sql` | Per-topic tests and slides (`curated_course_links`) |
 | `018_resource_concept_tree.sql` | `resources.concept_tree` + curated-course origin; videos/links link to `resources` |
 | `019_curated_course_pins.sql` | Per-user pinned curated courses (`curated_course_pins`) |
+| `020_learning_paths.sql` | Catalog + user learning paths, notes, resources, node status |
 
-**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`, `018`, and `019`). Skip `015`/`016` unless you already had old table names.
+**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`, `018`, `019`, and `020`). Skip `015`/`016` unless you already had old table names.
 
 ## 4. Optional seeds
 
@@ -78,9 +79,11 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 yarn seed:curated-courses                  # loads data/curated-courses/fluid-mechanics.json
 yarn seed:curated-courses -- --slug=slug   # any JSON file in that folder
 yarn seed:community
+yarn seed:learning-paths                   # Learn Spanish, transformers, rom-com, tree house
 ```
 
 Needs `SUPABASE_SERVICE_ROLE_KEY` + `CURATED_COURSES_SEED_PROJECT_REF`.
+Learning paths also accept `LEARNING_PATHS_SEED_PROJECT_REF` or `COMMUNITY_SEED_PROJECT_REF`.
 
 **SQL Editor (no service role):** curated seeds live in [`../seeds/curated-courses/`](../seeds/curated-courses/):
 

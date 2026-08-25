@@ -24,7 +24,8 @@
     "test:lint": "eslint '**/*.{ts,tsx}'",
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
     "seed:community": "node scripts/seed-community.mjs",
-    "seed:curated-courses": "node scripts/seed-curated-courses.mjs"
+    "seed:curated-courses": "node scripts/seed-curated-courses.mjs",
+    "seed:learning-paths": "npx tsx scripts/seed-learning-paths.ts"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",

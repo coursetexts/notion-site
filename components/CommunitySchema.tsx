@@ -41,6 +41,20 @@ function ArrowRight() {
   )
 }
 
+function ArrowUp() {
+  return (
+    <svg className={styles.arrowUp} viewBox='0 0 10 16' fill='none' aria-hidden>
+      <path
+        d='M5 15V3M1.5 6.5L5 2l3.5 4.5'
+        stroke='currentColor'
+        strokeWidth='1.4'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
 export function CommunitySchema() {
   return (
     <figure className={styles.figure} aria-label='How community knowledge is structured'>
@@ -98,6 +112,18 @@ export function CommunitySchema() {
             <span className={`${styles.chip} ${styles.chipConcept}`}>
               Concept
             </span>
+
+            <ArrowUp />
+            <span />
+            <ArrowUp />
+            <span />
+            <ArrowUp />
+
+            <span className={`${styles.chip} ${styles.chipNotes}`}>Notes</span>
+            <span />
+            <span className={`${styles.chip} ${styles.chipNotes}`}>Notes</span>
+            <span />
+            <span className={`${styles.chip} ${styles.chipNotes}`}>Notes</span>
           </div>
         </div>
 

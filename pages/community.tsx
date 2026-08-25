@@ -704,26 +704,21 @@ export default function CommunityPage() {
               </p>
               <CommunitySchema />
             </header>
+          </div>
 
-            <CommunityLearning />
+          <div className={styles.body}>
+            <div className={styles.container}>
+              <CommunityLearning />
+            </div>
+          </div>
 
-            <div className={styles.sectionRule} role='separator' />
-
+          <div className={styles.resourcesBand}>
+            <div className={styles.container}>
             <header className={styles.resourcesHeader}>
-              <div className={styles.titleRow}>
-                <h2 className={styles.title}>Community Resources</h2>
-                <button
-                  type='button'
-                  className={styles.shareBtn}
-                  onClick={() => setModal('resource')}
-                >
-                  <PlusIcon />
-                  Share a resource
-                </button>
-              </div>
+              <h2 className={styles.title}>Community Resources</h2>
               <p className={styles.subtitle}>
                 Articles, lectures, tools, and papers that helped other
-                learners. Upvote what helps you.
+                learners a concept. Upvote what helps you.
               </p>
             </header>
 
@@ -797,7 +792,11 @@ export default function CommunityPage() {
                 )}
               </div>
             </div>
+            </div>
+          </div>
 
+          <div className={styles.resourcesFeed}>
+            <div className={styles.container}>
             <div className={styles.feedBar}>
               <span>
                 <span className={styles.feedHeadingLabel}>
@@ -807,13 +806,23 @@ export default function CommunityPage() {
                   ({filtered.length})
                 </span>
               </span>
-              <button
-                type='button'
-                className={styles.quietLink}
-                onClick={() => setModal('knowledge')}
-              >
-                Add a knowledge component
-              </button>
+              <div className={styles.feedActions}>
+                <button
+                  type='button'
+                  className={styles.quietLink}
+                  onClick={() => setModal('knowledge')}
+                >
+                  Add a Concept
+                </button>
+                <button
+                  type='button'
+                  className={styles.shareBtn}
+                  onClick={() => setModal('resource')}
+                >
+                  <PlusIcon />
+                  Share a resource
+                </button>
+              </div>
             </div>
 
             {resourcesError && (
@@ -994,6 +1003,7 @@ export default function CommunityPage() {
                 ))}
               </div>
             )}
+            </div>
           </div>
         </section>
 
@@ -1072,7 +1082,7 @@ export default function CommunityPage() {
       )}
 
       {modal === 'knowledge' && (
-        <Modal title='Add a knowledge component' onClose={closeModal}>
+        <Modal title='Add a Concept' onClose={closeModal}>
           <p className={styles.hint}>
             Add one specific idea or skill that someone can learn. This form is
             a preview, so your entry won&apos;t be saved yet.
