@@ -37,7 +37,7 @@ whether it is rendering production or preview.
 
 | File | Role |
 | --- | --- |
-| `lib/notion-api.ts` | The `notion-client` instance, plus `getPageWithRetry` (up to 6 attempts — Notion's unofficial API is flaky under build load) and `getPages` for batches |
+| `lib/notion-api.ts` | The `notion-client` instance, plus `getPageWithRetry` (up to 6 attempts — Notion's unofficial API is flaky under build load, and returns 403 outright to some datacenter IPs; see [ci.md](ci.md)) and `getPages` for batches |
 | `lib/notion.ts` | `getPage` and `search`, the two calls the app actually makes |
 | `lib/resolve-notion-page.ts` | Turns a URL path into a page: pretty slug → canonical page id → `recordMap` |
 | `lib/get-canonical-page-id.ts`, `lib/map-page-url.ts` | Pretty-URL generation (`getCanonicalPageId`, `mapPageUrl`, `getCanonicalPageUrl`) |

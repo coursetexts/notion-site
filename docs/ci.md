@@ -42,6 +42,27 @@ In-repo runs still use the secret, so pointing CI at a different page only requi
 the secret. Changing the shape of that line in `lib/consts.ts` breaks the fallback — the
 build then fails on fork PRs the same way it used to.
 
+## Notion 403s from GitHub runners
+
+There is a second, unrelated failure mode, and the workflow tolerates it deliberately.
+Notion's unofficial API (`POST https://www.notion.so/api/v3/loadPageChunk`) intermittently
+returns **403 Forbidden** to GitHub-hosted runners — it blocks or rate-limits datacenter
+IPs. When that happens the six retries in `getPageWithRetry` (`lib/notion-api.ts`) all fail
+and `next build` dies with `Error occurred prerendering page "/"`, on a commit that could
+not possibly have caused it.
+
+So the build step runs `yarn build`, captures the output, and — **only** when the failure
+output contains that exact 403 — emits a warning annotation and exits 0. Any other build
+failure still fails the job. If you remove that block, expect CI to go red whenever Notion
+is blocking Actions, regardless of what the commit changed.
+
+A job that passed with that warning has **not** verified the build. When it matters, rerun
+the job (the block is intermittent) or build locally:
+
+```
+NEXT_PUBLIC_NOTION_PAGE_ID=<page id> yarn build
+```
+
 ## What is deliberately not in CI
 
 `yarn test:prettier` is part of `yarn test` locally but is **not** run in CI: about 30
