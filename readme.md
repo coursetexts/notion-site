@@ -10,6 +10,30 @@ To setup, make sure to set the `NEXT_PUBLIC_NOTION_PAGE_ID` environment variable
 
 Railway deployment notes, required env vars, and the current production service details live in [docs/railway.md](./docs/railway.md).
 
+## Documentation
+
+| Document | Covers |
+| --- | --- |
+| [docs/architecture.md](./docs/architecture.md) | Request flow, the `lib/` Notion layer, pages, API routes, components and styles — a map of what lives where |
+| [docs/notion-page-rendering.md](./docs/notion-page-rendering.md) | `components/NotionPage.tsx`: how course cards, the filter row and the course-page layout are built by rewriting the DOM react-notion-x produced |
+| [docs/ci.md](./docs/ci.md) | `.github/workflows/build.yml`, and why pull requests from forks used to fail |
+| [docs/railway.md](./docs/railway.md) | Railway deployment and environment variables |
+| [contributing.md](./contributing.md) | Contribution workflow |
+
+Quick orientation:
+
+- All configuration is one file, `site.config.ts` (typed by `lib/site-config.ts`, read via
+  `lib/config.ts`). `NEXT_PUBLIC_NOTION_PAGE_ID` overrides `rootNotionPageId`, which is how
+  production and preview run the same code against different Notion roots;
+  `lib/consts.ts` records the production id so the app can tell which one it is serving.
+- Notion fetching lives in `lib/notion-api.ts`, `lib/notion.ts` and
+  `lib/resolve-notion-page.ts`.
+- The preview-site password gate is `middleware.ts` plus `lib/session.ts`,
+  `lib/session-config.ts`, `pages/signin.tsx`, `pages/api/login.ts` and
+  `pages/api/logout.ts`; it is active only when `PASSWORD_PROTECT=true`.
+- Everything coursetexts-specific about how a page looks is in
+  `components/NotionPage.tsx` and `styles/notion.css`.
+
 ---
 
 > The perfect starter kit for building websites with Next.js and Notion.
