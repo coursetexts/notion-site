@@ -2,13 +2,37 @@ name: Build
 
 on: [push, pull_request]
 
+# A push to a branch that also has an open PR triggers this workflow twice.
+# Cancel the older run instead of paying for both.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  # Runs everywhere, including pull requests from forks: neither eslint nor tsc
+  # needs a Notion page id or any other secret.
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+      - name: lint
+        run: yarn test:lint
+      - name: typecheck
+        run: npx tsc --noEmit
+
   Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: yarn
@@ -17,4 +41,18 @@ jobs:
       - name: build
         env:
           NEXT_PUBLIC_NOTION_PAGE_ID: ${{ secrets.NEXT_PUBLIC_NOTION_PAGE_ID }}
-        run: yarn build
+        run: |
+          # `next build` runs getStaticProps, which fetches the site's root Notion page,
+          # so the build fails outright without a page id
+          # (`Config error: missing required site config key "rootNotionPageId"`).
+          # GitHub withholds secrets from pull requests opened from forks, which is why
+          # every fork PR used to fail here. Fall back to the production page id already
+          # committed as NOTION_PRODUCTION_URL in lib/consts.ts — it is a public Notion
+          # page, not a secret — so fork PRs get a real build too. Read from the file
+          # rather than duplicating the value, so there is one source of truth.
+          if [ -z "$NEXT_PUBLIC_NOTION_PAGE_ID" ]; then
+            NEXT_PUBLIC_NOTION_PAGE_ID=$(sed -n "s/.*NOTION_PRODUCTION_URL *= *'\\([^']*\\)'.*/\\1/p" lib/consts.ts)
+            echo "No NEXT_PUBLIC_NOTION_PAGE_ID secret (expected on fork PRs); using the public production page id from lib/consts.ts"
+          fi
+          export NEXT_PUBLIC_NOTION_PAGE_ID
+          yarn build
