@@ -3,59 +3,64 @@ import * as React from 'react'
 import { useAuthOptional } from '@/contexts/AuthContext'
 
 import {
-  addCuratedCourseLink,
-  addCuratedCourseVideo,
-  createLocalCuratedCourseLink,
-  createLocalCuratedCourseVideo,
-  getCuratedCourseData,
-  persistCuratedCourseVideoOrder,
-  setCuratedCourseVideoVote
-} from '@/lib/curated-course-db'
+  addCourseLearningPathLink,
+  addCourseLearningPathVideo,
+  createLocalCourseLearningPathLink,
+  createLocalCourseLearningPathVideo,
+  getCourseLearningPathData,
+  persistCourseLearningPathVideoOrder,
+  setCourseLearningPathVideoVote
+} from '@/lib/course-learning-path-db'
 import {
-  CURATED_COURSE_RESOURCES_SECTION_ID,
-  CURATED_COURSE_SYLLABUS_SECTION_ID,
-  getCuratedCourseResourcesBySlug,
-  isCuratedCourseMentalMapSelection,
-  isCuratedCourseResourceSelection,
-  isCuratedCourseSyllabusSelection,
+  readCourseLearningPathExplored,
+  writeCourseLearningPathExplored
+} from '@/lib/course-learning-path-progress'
+import {
+  COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
+  COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
+  getCourseLearningPathResourcesBySlug,
+  isCourseLearningPathMentalMapSelection,
+  isCourseLearningPathResourceSelection,
+  isCourseLearningPathSyllabusSelection,
   isMentalMapVideoNodeId
-} from '@/lib/curated-course-resources'
+} from '@/lib/course-learning-path-resources'
 import {
-  DEFAULT_CURATED_COURSE_SLUG,
+  DEFAULT_COURSE_LEARNING_PATH_SLUG,
   fluidMechanicsSeedCourse
-} from '@/lib/curated-course-seed'
+} from '@/lib/course-learning-path-seed'
 import {
-  type CuratedCourseData,
-  buildCuratedCourseIndex,
-  formatCuratedCourseConceptTree,
+  type CourseLearningPathData,
+  buildCourseLearningPathIndex,
+  formatCourseLearningPathConceptTree,
   insertLinkAtPlacement,
   insertVideoAtPlacement,
   linkFieldForKind,
-  mapCuratedCourseMentalMapVideos,
-  mapCuratedCourseNodeLinks,
-  mapCuratedCourseNodeVideos
-} from '@/lib/curated-course-types'
+  mapCourseLearningPathMentalMapVideos,
+  mapCourseLearningPathNodeLinks,
+  mapCourseLearningPathNodeVideos,
+  nextCourseLearningPathNode
+} from '@/lib/course-learning-path-types'
 
-import styles from './CuratedCourse.module.css'
-import { CuratedCourseMentalMap } from './CuratedCourseMentalMap'
-import { CuratedCourseResources } from './CuratedCourseResources'
-import { CuratedCourseSyllabusNav } from './CuratedCourseSyllabusNav'
-import { CuratedCourseSyllabusOverview } from './CuratedCourseSyllabusOverview'
-import { CuratedCourseTopicContent } from './CuratedCourseTopicContent'
+import styles from './CourseLearningPath.module.css'
+import { CourseLearningPathMentalMap } from './CourseLearningPathMentalMap'
+import { CourseLearningPathResources } from './CourseLearningPathResources'
+import { CourseLearningPathSyllabusNav } from './CourseLearningPathSyllabusNav'
+import { CourseLearningPathSyllabusOverview } from './CourseLearningPathSyllabusOverview'
+import { CourseLearningPathTopicContent } from './CourseLearningPathTopicContent'
 
-export interface CuratedCourseProps {
+export interface CourseLearningPathProps {
   /** Syllabus course slug in Supabase. Falls back to seed data when missing. */
   slug?: string
   /** Optional preloaded course (skips fetch). */
-  course?: CuratedCourseData
+  course?: CourseLearningPathData
 }
 
 function withCurriculumResources(
-  course: CuratedCourseData,
+  course: CourseLearningPathData,
   slug: string
-): CuratedCourseData {
+): CourseLearningPathData {
   if (course.resources?.length) return course
-  const resources = getCuratedCourseResourcesBySlug(slug || course.slug)
+  const resources = getCourseLearningPathResourcesBySlug(slug || course.slug)
   if (!resources.length) return course
   return { ...course, resources }
 }
@@ -64,12 +69,12 @@ function withCurriculumResources(
  * Syllabus navigator + curated video library for a course.
  * Loads from Supabase `curated_*` tables; uses local seed when empty.
  */
-export function CuratedCourse({
-  slug = DEFAULT_CURATED_COURSE_SLUG,
+export function CourseLearningPath({
+  slug = DEFAULT_COURSE_LEARNING_PATH_SLUG,
   course: courseProp
-}: CuratedCourseProps) {
+}: CourseLearningPathProps) {
   const auth = useAuthOptional()
-  const [course, setCourse] = React.useState<CuratedCourseData | null>(() =>
+  const [course, setCourse] = React.useState<CourseLearningPathData | null>(() =>
     courseProp ? withCurriculumResources(courseProp, slug) : null
   )
   const [loading, setLoading] = React.useState(!courseProp)
@@ -79,9 +84,13 @@ export function CuratedCourse({
   )
   const loadedSlugRef = React.useRef<string | null>(courseProp ? slug : null)
   const [selectedId, setSelectedId] = React.useState(
-    CURATED_COURSE_SYLLABUS_SECTION_ID
+    COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
   )
   const [expanded, setExpanded] = React.useState<Set<string>>(() => new Set())
+  const [exploredIds, setExploredIds] = React.useState<Set<string>>(
+    () => new Set()
+  )
+  const mainRef = React.useRef<HTMLElement>(null)
 
   React.useEffect(() => {
     if (courseProp) {
@@ -95,15 +104,15 @@ export function CuratedCourse({
     const firstLoadForSlug = loadedSlugRef.current !== slug
     if (firstLoadForSlug) setLoading(true)
     ;(async () => {
-      const fromDb = await getCuratedCourseData(slug)
+      const fromDb = await getCourseLearningPathData(slug)
       if (cancelled) return
 
       if (fromDb) {
-        // Prefer DB row even with an empty syllabus (placeholder curated courses).
+        // Prefer DB row even with an empty syllabus (placeholder course learning paths).
         // Fluid Mechanics keeps local seed only when the DB course has no topics yet.
         if (
           fromDb.topics.length === 0 &&
-          slug === DEFAULT_CURATED_COURSE_SLUG
+          slug === DEFAULT_COURSE_LEARNING_PATH_SLUG
         ) {
           setCourse((prev) =>
             prev && prev.slug === slug && !prev.dbBacked
@@ -116,7 +125,7 @@ export function CuratedCourse({
         } else {
           setCourse(withCurriculumResources(fromDb, slug))
         }
-      } else if (slug === DEFAULT_CURATED_COURSE_SLUG) {
+      } else if (slug === DEFAULT_COURSE_LEARNING_PATH_SLUG) {
         setCourse((prev) =>
           prev && prev.slug === slug && !prev.dbBacked
             ? prev
@@ -143,18 +152,22 @@ export function CuratedCourse({
     const key = `${course.id}:${slug}`
     if (courseIdentityRef.current === key) return
     courseIdentityRef.current = key
-    setSelectedId(CURATED_COURSE_SYLLABUS_SECTION_ID)
+    setSelectedId(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
     setExpanded(new Set())
   }, [course, slug])
 
+  React.useEffect(() => {
+    setExploredIds(readCourseLearningPathExplored(slug))
+  }, [slug])
+
   const index = React.useMemo(
-    () => (course ? buildCuratedCourseIndex(course) : {}),
+    () => (course ? buildCourseLearningPathIndex(course) : {}),
     [course]
   )
 
-  const showingSyllabus = isCuratedCourseSyllabusSelection(selectedId)
-  const showingMentalMap = isCuratedCourseMentalMapSelection(selectedId)
-  const showingResources = isCuratedCourseResourceSelection(selectedId)
+  const showingSyllabus = isCourseLearningPathSyllabusSelection(selectedId)
+  const showingMentalMap = isCourseLearningPathMentalMapSelection(selectedId)
+  const showingResources = isCourseLearningPathResourceSelection(selectedId)
   const entry =
     showingSyllabus || showingMentalMap || showingResources
       ? null
@@ -167,13 +180,29 @@ export function CuratedCourse({
     setExpanded((prev) => {
       const next = new Set(prev)
       next.add(id)
-      if (isCuratedCourseResourceSelection(id)) {
-        next.add(CURATED_COURSE_RESOURCES_SECTION_ID)
+      if (isCourseLearningPathResourceSelection(id)) {
+        next.add(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
       }
       for (const parent of index[id]?.parents ?? []) next.add(parent.id)
       return next
     })
     setMobileNavOpen(false)
+  }
+
+  function handleMarkExplored(nodeId: string) {
+    setExploredIds((prev) => {
+      if (prev.has(nodeId)) return prev
+      const next = new Set(prev)
+      next.add(nodeId)
+      writeCourseLearningPathExplored(slug, next)
+      return next
+    })
+  }
+
+  function handleNext(nodeId: string) {
+    handleSelect(nodeId)
+    window.scrollTo(0, 0)
+    mainRef.current?.scrollTo(0, 0)
   }
 
   function handleToggle(id: string) {
@@ -196,10 +225,10 @@ export function CuratedCourse({
 
     if (isMentalMapVideoNodeId(input.nodeId)) {
       const current = course.mentalMapVideos ?? []
-      const local = createLocalCuratedCourseVideo(input)
+      const local = createLocalCourseLearningPathVideo(input)
       setCourse((prev) =>
         prev
-          ? mapCuratedCourseMentalMapVideos(prev, (videos) =>
+          ? mapCourseLearningPathMentalMapVideos(prev, (videos) =>
               insertVideoAtPlacement(
                 videos,
                 local,
@@ -211,10 +240,10 @@ export function CuratedCourse({
       return true
     }
 
-    const entry = buildCuratedCourseIndex(course)[input.nodeId]
+    const entry = buildCourseLearningPathIndex(course)[input.nodeId]
     const current = entry?.node.videos ?? []
     const conceptTree = entry
-      ? formatCuratedCourseConceptTree(
+      ? formatCourseLearningPathConceptTree(
           course.title,
           entry.parents,
           entry.node.title
@@ -222,23 +251,23 @@ export function CuratedCourse({
       : undefined
 
     if (course.dbBacked) {
-      const result = await addCuratedCourseVideo(
+      const result = await addCourseLearningPathVideo(
         { ...input, conceptTree, courseSlug: course.slug },
         current
       )
       if (!result) return false
       setCourse((prev) =>
         prev
-          ? mapCuratedCourseNodeVideos(prev, input.nodeId, () => result.ordered)
+          ? mapCourseLearningPathNodeVideos(prev, input.nodeId, () => result.ordered)
           : prev
       )
       return true
     }
 
-    const local = createLocalCuratedCourseVideo(input)
+    const local = createLocalCourseLearningPathVideo(input)
     setCourse((prev) =>
       prev
-        ? mapCuratedCourseNodeVideos(prev, input.nodeId, (videos) =>
+        ? mapCourseLearningPathNodeVideos(prev, input.nodeId, (videos) =>
             insertVideoAtPlacement(
               videos,
               local,
@@ -260,10 +289,10 @@ export function CuratedCourse({
   }): Promise<boolean> {
     if (!course) return false
     const field = linkFieldForKind(input.kind)
-    const entry = buildCuratedCourseIndex(course)[input.nodeId]
+    const entry = buildCourseLearningPathIndex(course)[input.nodeId]
     const current = entry?.node[field] ?? []
     const conceptTree = entry
-      ? formatCuratedCourseConceptTree(
+      ? formatCourseLearningPathConceptTree(
           course.title,
           entry.parents,
           entry.node.title
@@ -271,14 +300,14 @@ export function CuratedCourse({
       : undefined
 
     if (course.dbBacked) {
-      const result = await addCuratedCourseLink(
+      const result = await addCourseLearningPathLink(
         { ...input, conceptTree, courseSlug: course.slug },
         current
       )
       if (!result) return false
       setCourse((prev) =>
         prev
-          ? mapCuratedCourseNodeLinks(
+          ? mapCourseLearningPathNodeLinks(
               prev,
               input.nodeId,
               field,
@@ -289,10 +318,10 @@ export function CuratedCourse({
       return true
     }
 
-    const local = createLocalCuratedCourseLink(input)
+    const local = createLocalCourseLearningPathLink(input)
     setCourse((prev) =>
       prev
-        ? mapCuratedCourseNodeLinks(prev, input.nodeId, field, (links) =>
+        ? mapCourseLearningPathNodeLinks(prev, input.nodeId, field, (links) =>
             insertLinkAtPlacement(
               links,
               local,
@@ -314,7 +343,7 @@ export function CuratedCourse({
     if (isMentalMapVideoNodeId(nodeId)) {
       setCourse((prev) =>
         prev
-          ? mapCuratedCourseMentalMapVideos(
+          ? mapCourseLearningPathMentalMapVideos(
               prev,
               (videos) =>
                 videos.map((v) => {
@@ -333,11 +362,11 @@ export function CuratedCourse({
     }
 
     if (course.dbBacked) {
-      const newScore = await setCuratedCourseVideoVote(videoId, value)
+      const newScore = await setCourseLearningPathVideoVote(videoId, value)
       if (newScore === null) return
       setCourse((prev) => {
         if (!prev) return prev
-        const next = mapCuratedCourseNodeVideos(
+        const next = mapCourseLearningPathNodeVideos(
           prev,
           nodeId,
           (videos) =>
@@ -346,8 +375,8 @@ export function CuratedCourse({
             ),
           { rerankByScore: true }
         )
-        const ordered = buildCuratedCourseIndex(next)[nodeId]?.node.videos ?? []
-        void persistCuratedCourseVideoOrder(ordered)
+        const ordered = buildCourseLearningPathIndex(next)[nodeId]?.node.videos ?? []
+        void persistCourseLearningPathVideoOrder(ordered)
         return next
       })
       return
@@ -356,7 +385,7 @@ export function CuratedCourse({
     // Local / seed: apply vote delta client-side and re-rank by score.
     setCourse((prev) =>
       prev
-        ? mapCuratedCourseNodeVideos(
+        ? mapCourseLearningPathNodeVideos(
             prev,
             nodeId,
             (videos) =>
@@ -381,7 +410,7 @@ export function CuratedCourse({
   if (!course) {
     return (
       <div className={styles.error}>
-        No curated course found for “{slug}”. Seed curated_courses or check the
+        No course learning path found for “{slug}”. Seed curated_courses or check the
         slug.
       </div>
     )
@@ -409,10 +438,11 @@ export function CuratedCourse({
           }`}
         >
           <div className={styles.asideInner}>
-            <CuratedCourseSyllabusNav
+            <CourseLearningPathSyllabusNav
               course={course}
               selectedId={selectedId}
               expanded={expanded}
+              exploredIds={exploredIds}
               onSelect={handleSelect}
               onToggle={handleToggle}
             />
@@ -428,16 +458,17 @@ export function CuratedCourse({
           />
         )}
 
-        <main className={styles.main}>
+        <main ref={mainRef} className={styles.main}>
           {showingSyllabus ? (
-            <CuratedCourseSyllabusOverview
+            <CourseLearningPathSyllabusOverview
               course={course}
               onSelectTopic={handleSelect}
             />
           ) : showingMentalMap ? (
-            <CuratedCourseMentalMap
-              courseTitle={course.title}
-              courseSlug={course.slug}
+            <CourseLearningPathMentalMap
+              course={course}
+              exploredIds={exploredIds}
+              onSelect={handleSelect}
               videos={course.mentalMapVideos}
               dbBacked={false}
               signedIn={Boolean(auth?.user)}
@@ -446,13 +477,13 @@ export function CuratedCourse({
               onVoteVideo={handleVoteVideo}
             />
           ) : showingResources ? (
-            <CuratedCourseResources
+            <CourseLearningPathResources
               selectedId={selectedId}
               resources={course.resources}
               courseTitle={course.title}
             />
           ) : entry ? (
-            <CuratedCourseTopicContent
+            <CourseLearningPathTopicContent
               entry={entry}
               onSelect={handleSelect}
               courseSlug={course.slug}
@@ -462,6 +493,10 @@ export function CuratedCourse({
               onAddVideo={handleAddVideo}
               onVoteVideo={handleVoteVideo}
               onAddLink={handleAddLink}
+              explored={exploredIds.has(entry.node.id)}
+              onMarkExplored={() => handleMarkExplored(entry.node.id)}
+              nextNode={nextCourseLearningPathNode(course, entry.node.id)}
+              onNext={handleNext}
             />
           ) : (
             <div className={styles.emptyComingSoon}>
@@ -526,4 +561,4 @@ function CloseIcon() {
   )
 }
 
-export default CuratedCourse
+export default CourseLearningPath

@@ -7,17 +7,17 @@ import {
   addCommunityPageResource
 } from './community-comments-db'
 import {
-  type CuratedCourseData,
-  type CuratedCourseLink,
-  type CuratedCourseLinkKind,
-  type CuratedCourseNode,
-  type CuratedCourseNodeType,
-  type CuratedCourseVideo,
+  type CourseLearningPathData,
+  type CourseLearningPathLink,
+  type CourseLearningPathLinkKind,
+  type CourseLearningPathNode,
+  type CourseLearningPathNodeType,
+  type CourseLearningPathVideo,
   insertLinkAtPlacement,
   insertVideoAtPlacement,
-  sortCuratedCourseByRank,
-  sortCuratedCourseLinks
-} from './curated-course-types'
+  sortCourseLearningPathByRank,
+  sortCourseLearningPathLinks
+} from './course-learning-path-types'
 import { getSupabaseClient } from './supabase'
 import {
   extractYouTubeVideoId,
@@ -35,7 +35,7 @@ type NodeRow = {
   id: string
   course_id: string
   parent_id: string | null
-  node_type: CuratedCourseNodeType
+  node_type: CourseLearningPathNodeType
   title: string
   description: string | null
   sort_order: number
@@ -56,7 +56,7 @@ type VideoRow = {
 type LinkRow = {
   id: string
   node_id: string
-  kind: CuratedCourseLinkKind
+  kind: CourseLearningPathLinkKind
   sort_order: number
   title: string
   url: string
@@ -75,10 +75,10 @@ function buildTree(
   nodes: NodeRow[],
   videos: VideoRow[],
   voteByVideo: Record<string, { score: number; user_vote: 1 | -1 | null }>,
-  resources?: CuratedCourseData['resources'],
+  resources?: CourseLearningPathData['resources'],
   links: LinkRow[] = []
-): CuratedCourseData {
-  const videosByNode = new Map<string, CuratedCourseVideo[]>()
+): CourseLearningPathData {
+  const videosByNode = new Map<string, CourseLearningPathVideo[]>()
   for (const v of videos) {
     const list = videosByNode.get(v.node_id) ?? []
     const vote = voteByVideo[v.id]
@@ -97,13 +97,13 @@ function buildTree(
     videosByNode.set(v.node_id, list)
   }
   for (const [nodeId, list] of videosByNode) {
-    videosByNode.set(nodeId, sortCuratedCourseByRank(list))
+    videosByNode.set(nodeId, sortCourseLearningPathByRank(list))
   }
 
-  const testsByNode = new Map<string, CuratedCourseLink[]>()
-  const slidesByNode = new Map<string, CuratedCourseLink[]>()
+  const testsByNode = new Map<string, CourseLearningPathLink[]>()
+  const slidesByNode = new Map<string, CourseLearningPathLink[]>()
   for (const link of links) {
-    const item: CuratedCourseLink = {
+    const item: CourseLearningPathLink = {
       id: link.id,
       position: link.sort_order + 1,
       title: link.title,
@@ -115,10 +115,10 @@ function buildTree(
     bucket.set(link.node_id, list)
   }
   for (const [nodeId, list] of testsByNode) {
-    testsByNode.set(nodeId, sortCuratedCourseLinks(list))
+    testsByNode.set(nodeId, sortCourseLearningPathLinks(list))
   }
   for (const [nodeId, list] of slidesByNode) {
-    slidesByNode.set(nodeId, sortCuratedCourseLinks(list))
+    slidesByNode.set(nodeId, sortCourseLearningPathLinks(list))
   }
 
   const childrenByParent = new Map<string | null, NodeRow[]>()
@@ -132,7 +132,7 @@ function buildTree(
     list.sort((a, b) => a.sort_order - b.sort_order)
   }
 
-  function toNode(row: NodeRow): CuratedCourseNode {
+  function toNode(row: NodeRow): CourseLearningPathNode {
     const childRows = childrenByParent.get(row.id) ?? []
     const nodeVideos = videosByNode.get(row.id)
     const nodeTests = testsByNode.get(row.id)
@@ -198,9 +198,9 @@ async function getVoteSummaries(
  * Load a syllabus course by slug from Supabase.
  * Returns null when Supabase is unavailable or the slug is missing.
  */
-export async function getCuratedCourseData(
+export async function getCourseLearningPathData(
   slug: string
-): Promise<CuratedCourseData | null> {
+): Promise<CourseLearningPathData | null> {
   const supabase = getSupabaseClient()
   if (!supabase || !slug) return null
 
@@ -250,7 +250,7 @@ export async function getCuratedCourseData(
 
   const voteByVideo = await getVoteSummaries(videos.map((v) => v.id))
 
-  let resources: CuratedCourseData['resources'] = undefined
+  let resources: CourseLearningPathData['resources'] = undefined
   const { data: resourceRows, error: resourcesError } = await supabase
     .from('curated_course_resources')
     .select('kind, title, link_or_site, description, sort_order')
@@ -277,7 +277,7 @@ export async function getCuratedCourseData(
 }
 
 /** List available syllabus courses (title + slug) for a future course picker. */
-export async function listCuratedCourses(): Promise<
+export async function listCourseLearningPaths(): Promise<
   Array<{ id: string; slug: string; title: string }>
 > {
   const supabase = getSupabaseClient()
@@ -292,7 +292,7 @@ export async function listCuratedCourses(): Promise<
   return data
 }
 
-export type AddCuratedCourseVideoInput = {
+export type AddCourseLearningPathVideoInput = {
   nodeId: string
   url: string
   title?: string
@@ -300,7 +300,7 @@ export type AddCuratedCourseVideoInput = {
   description?: string
   /** Auto-filled syllabus path for the community resources feed. */
   conceptTree?: string
-  /** Curated course slug for the community feed link. */
+  /** Course learning path slug for the community feed link. */
   courseSlug?: string
   /** 1-based suggested index in the current list (1 … length+1). */
   suggestedPlacement?: number
@@ -324,8 +324,8 @@ function titleFromUrl(url: string): string {
 }
 
 /** Persist 1-based positions as 0-based sort_order for a node. */
-export async function persistCuratedCourseVideoOrder(
-  orderedVideos: CuratedCourseVideo[]
+export async function persistCourseLearningPathVideoOrder(
+  orderedVideos: CourseLearningPathVideo[]
 ): Promise<boolean> {
   const supabase = getSupabaseClient()
   if (!supabase || orderedVideos.length === 0) return true
@@ -341,13 +341,13 @@ export async function persistCuratedCourseVideoOrder(
   return results.every((r) => !r.error)
 }
 
-function communityTypeForCuratedLink(
-  kind: CuratedCourseLinkKind
+function communityTypeForCourseLearningPathLink(
+  kind: CourseLearningPathLinkKind
 ): ResourceDbType {
   return kind === 'slide' ? 'slides' : 'problem_set'
 }
 
-async function curatedOriginForNode(nodeId: string): Promise<{
+async function courseLearningPathOriginForNode(nodeId: string): Promise<{
   conceptTree: string
   courseSlug: string | null
 } | null> {
@@ -386,7 +386,7 @@ async function curatedOriginForNode(nodeId: string): Promise<{
   return { conceptTree, courseSlug }
 }
 
-async function publishCuratedItemToCommunity(input: {
+async function publishCourseLearningPathItemToCommunity(input: {
   title: string
   description?: string
   url: string
@@ -398,7 +398,7 @@ async function publishCuratedItemToCommunity(input: {
   let conceptTree = input.conceptTree?.trim() || ''
   let courseSlug = input.courseSlug?.trim() || ''
   if (!conceptTree || !courseSlug) {
-    const origin = await curatedOriginForNode(input.nodeId)
+    const origin = await courseLearningPathOriginForNode(input.nodeId)
     conceptTree = conceptTree || origin?.conceptTree || ''
     courseSlug = courseSlug || origin?.courseSlug || ''
   }
@@ -408,11 +408,11 @@ async function publishCuratedItemToCommunity(input: {
     url: input.url,
     type: input.type,
     conceptTree,
-    fromCuratedCourse: true,
-    curatedCourseSlug: courseSlug || null
+    fromCourseLearningPath: true,
+    courseLearningPathSlug: courseSlug || null
   })
   if (!created) {
-    console.error('publishCuratedItemToCommunity failed')
+    console.error('publishCourseLearningPathItemToCommunity failed')
     return null
   }
   return created.id
@@ -423,12 +423,12 @@ async function publishCuratedItemToCommunity(input: {
  * Returns the new video and the full reordered list for that node.
  * Also publishes the video to the community resources feed.
  */
-export async function addCuratedCourseVideo(
-  input: AddCuratedCourseVideoInput,
-  currentVideos: CuratedCourseVideo[]
+export async function addCourseLearningPathVideo(
+  input: AddCourseLearningPathVideoInput,
+  currentVideos: CourseLearningPathVideo[]
 ): Promise<{
-  video: CuratedCourseVideo
-  ordered: CuratedCourseVideo[]
+  video: CourseLearningPathVideo
+  ordered: CourseLearningPathVideo[]
 } | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
@@ -470,12 +470,12 @@ export async function addCuratedCourseVideo(
     .single()
 
   if (error || !data) {
-    console.error('addCuratedCourseVideo failed', error)
+    console.error('addCourseLearningPathVideo failed', error)
     return null
   }
 
   const row = data as VideoRow
-  const created: CuratedCourseVideo = {
+  const created: CourseLearningPathVideo = {
     id: row.id,
     position: placement,
     title: row.title,
@@ -489,12 +489,12 @@ export async function addCuratedCourseVideo(
   }
 
   const ordered = insertVideoAtPlacement(currentVideos, created, placement)
-  const ok = await persistCuratedCourseVideoOrder(ordered)
+  const ok = await persistCourseLearningPathVideoOrder(ordered)
   if (!ok) {
-    console.error('addCuratedCourseVideo: failed to persist order')
+    console.error('addCourseLearningPathVideo: failed to persist order')
   }
 
-  const resourceId = await publishCuratedItemToCommunity({
+  const resourceId = await publishCourseLearningPathItemToCommunity({
     title: row.title,
     description: input.description,
     url: row.url,
@@ -510,7 +510,7 @@ export async function addCuratedCourseVideo(
       .eq('id', row.id)
     if (linkError) {
       console.error(
-        'addCuratedCourseVideo: failed to link community resource',
+        'addCourseLearningPathVideo: failed to link community resource',
         linkError
       )
     }
@@ -519,22 +519,22 @@ export async function addCuratedCourseVideo(
   return { video: { ...created, position: placement }, ordered }
 }
 
-export type AddCuratedCourseLinkInput = {
+export type AddCourseLearningPathLinkInput = {
   nodeId: string
-  kind: CuratedCourseLinkKind
+  kind: CourseLearningPathLinkKind
   url: string
   title?: string
   description?: string
   /** Auto-filled syllabus path for the community resources feed. */
   conceptTree?: string
-  /** Curated course slug for the community feed link. */
+  /** Course learning path slug for the community feed link. */
   courseSlug?: string
   /** 1-based suggested index in the current list (1 … length+1). */
   suggestedPlacement?: number
 }
 
-export async function persistCuratedCourseLinkOrder(
-  orderedLinks: CuratedCourseLink[]
+export async function persistCourseLearningPathLinkOrder(
+  orderedLinks: CourseLearningPathLink[]
 ): Promise<boolean> {
   const supabase = getSupabaseClient()
   if (!supabase || orderedLinks.length === 0) return true
@@ -550,10 +550,10 @@ export async function persistCuratedCourseLinkOrder(
   return results.every((r) => !r.error)
 }
 
-export async function addCuratedCourseLink(
-  input: AddCuratedCourseLinkInput,
-  currentLinks: CuratedCourseLink[]
-): Promise<{ link: CuratedCourseLink; ordered: CuratedCourseLink[] } | null> {
+export async function addCourseLearningPathLink(
+  input: AddCourseLearningPathLinkInput,
+  currentLinks: CourseLearningPathLink[]
+): Promise<{ link: CourseLearningPathLink; ordered: CourseLearningPathLink[] } | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
 
@@ -586,12 +586,12 @@ export async function addCuratedCourseLink(
     .single()
 
   if (error || !data) {
-    console.error('addCuratedCourseLink failed', error)
+    console.error('addCourseLearningPathLink failed', error)
     return null
   }
 
   const row = data as LinkRow
-  const created: CuratedCourseLink = {
+  const created: CourseLearningPathLink = {
     id: row.id,
     position: placement,
     title: row.title,
@@ -599,16 +599,16 @@ export async function addCuratedCourseLink(
   }
 
   const ordered = insertLinkAtPlacement(currentLinks, created, placement)
-  const ok = await persistCuratedCourseLinkOrder(ordered)
+  const ok = await persistCourseLearningPathLinkOrder(ordered)
   if (!ok) {
-    console.error('addCuratedCourseLink: failed to persist order')
+    console.error('addCourseLearningPathLink: failed to persist order')
   }
 
-  const resourceId = await publishCuratedItemToCommunity({
+  const resourceId = await publishCourseLearningPathItemToCommunity({
     title: row.title,
     description: input.description,
     url: row.url,
-    type: communityTypeForCuratedLink(input.kind),
+    type: communityTypeForCourseLearningPathLink(input.kind),
     conceptTree: input.conceptTree,
     courseSlug: input.courseSlug,
     nodeId: input.nodeId
@@ -620,7 +620,7 @@ export async function addCuratedCourseLink(
       .eq('id', row.id)
     if (linkError) {
       console.error(
-        'addCuratedCourseLink: failed to link community resource',
+        'addCourseLearningPathLink: failed to link community resource',
         linkError
       )
     }
@@ -629,9 +629,9 @@ export async function addCuratedCourseLink(
   return { link: { ...created, position: placement }, ordered }
 }
 
-export function createLocalCuratedCourseLink(
-  input: Omit<AddCuratedCourseLinkInput, 'nodeId'> & { nodeId?: string }
-): CuratedCourseLink {
+export function createLocalCourseLearningPathLink(
+  input: Omit<AddCourseLearningPathLinkInput, 'nodeId'> & { nodeId?: string }
+): CourseLearningPathLink {
   const url = input.url.trim()
   return {
     id: `local_${input.kind}_${Date.now()}_${Math.random()
@@ -644,7 +644,7 @@ export function createLocalCuratedCourseLink(
 }
 
 /** Vote on a course video (null clears). Returns the new score, or null on failure. */
-export async function setCuratedCourseVideoVote(
+export async function setCourseLearningPathVideoVote(
   videoId: string,
   value: 1 | -1 | null
 ): Promise<number | null> {
@@ -694,9 +694,9 @@ export async function setCuratedCourseVideoVote(
 }
 
 /** Build a local-only video ref (seed / offline edit mode). */
-export function createLocalCuratedCourseVideo(
-  input: Omit<AddCuratedCourseVideoInput, 'nodeId'> & { nodeId?: string }
-): CuratedCourseVideo {
+export function createLocalCourseLearningPathVideo(
+  input: Omit<AddCourseLearningPathVideoInput, 'nodeId'> & { nodeId?: string }
+): CourseLearningPathVideo {
   const url = input.url.trim()
   const ytId = extractYouTubeVideoId(url)
   return {

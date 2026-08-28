@@ -1,0 +1,259 @@
+.root {
+  width: 100%;
+  min-width: 280px;
+  max-width: 360px;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  border-left: 1px solid #e5e1d3;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.rootSheet {
+  max-width: none;
+  min-width: 0;
+  width: 100%;
+  border-left: none;
+  min-height: 0;
+  flex: 1 1 auto;
+  height: 100%;
+  max-height: 100%;
+  box-shadow: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #25272b;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.saveStatus {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.hideBtn {
+  font-size: 0.8125rem;
+  color: #5d534b;
+  background: #fff;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+}
+
+.hideBtn:hover {
+  color: #25272b;
+  border-color: #d4cfc4;
+}
+
+.hideBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
+.meta {
+  border-bottom: 1px solid #e5e1d3;
+  padding: 0.7rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.courseTitle {
+  margin: 0;
+  color: #5d534b;
+  font-size: 0.8rem;
+}
+
+.hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.signInLink {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #0089c4;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.loading {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.notesToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e6e6e6;
+  flex-shrink: 0;
+}
+
+.notesToolBtn {
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
+  background: #fff;
+  color: #25272b;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.notesToolBtn:hover {
+  border-color: #0089c4;
+  color: #0089c4;
+}
+
+.notesToolBtnActive {
+  border-color: #0089c4;
+  background: color-mix(in srgb, #0089c4 12%, #fff);
+  color: #0089c4;
+}
+
+.notesFileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.notesEditor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 4px 12px;
+}
+
+.notesProseMirror {
+  min-height: 160px;
+  padding: 8px 12px;
+  outline: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #25272b;
+}
+
+.notesProseMirror :global(p) {
+  margin: 0 0 0.65em;
+}
+
+.notesProseMirror :global(p:last-child) {
+  margin-bottom: 0;
+}
+
+.notesProseMirror :global(h2) {
+  margin: 0.4em 0 0.5em;
+  font-family: 'Guyot Press', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #000;
+}
+
+.notesProseMirror :global(h3) {
+  margin: 0.35em 0 0.45em;
+  font-family: 'Guyot Press', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #000;
+}
+
+.notesProseMirror :global(ul),
+.notesProseMirror :global(ol) {
+  margin: 0 0 0.65em;
+  padding-left: 1.35rem;
+}
+
+.notesProseMirror :global(li) {
+  margin: 0.15em 0;
+}
+
+.notesProseMirror :global(blockquote) {
+  margin: 0 0 0.65em;
+  padding: 0.25rem 0 0.25rem 0.75rem;
+  border-left: 2px solid #0089c4;
+}
+
+.notesProseMirror :global(strong) {
+  font-weight: 650;
+}
+
+.notesProseMirror :global(a) {
+  color: #0089c4;
+}
+
+.notesProseMirror :global(img),
+.notesProseMirror :global(img.notesImage) {
+  max-width: 100%;
+  height: auto;
+}
+
+.notesProseMirror :global(.Tiptap-mathematics-render) {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.notesProseMirror :global(.Tiptap-mathematics-render .katex) {
+  font-size: 1.05em;
+}
+
+.notesProseMirror :global(.Tiptap-mathematics-editor.Tiptap-mathematics-editor--hidden) {
+  user-select: none;
+}
+
+.notesProseMirror :global(p.is-editor-empty:first-child::before) {
+  content: attr(data-placeholder);
+  float: left;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}

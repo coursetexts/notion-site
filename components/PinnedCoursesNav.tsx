@@ -2,31 +2,31 @@ import * as React from 'react'
 import Link from 'next/link'
 
 import {
-  type PinnedCuratedCourse,
-  curatedCoursePath,
-  listMyCuratedCoursePins,
-  setCuratedCoursePinned,
-  subscribeCuratedCoursePins
-} from '@/lib/curated-course-pins-db'
+  type PinnedCourseLearningPath,
+  courseLearningPathHref,
+  listMyCourseLearningPathPins,
+  setCourseLearningPathPinned,
+  subscribeCourseLearningPathPins
+} from '@/lib/course-learning-path-pins-db'
 
 import { PinIcon } from './PinIcon'
 import styles from './PinnedCoursesNav.module.css'
 
 export function PinnedCoursesNav() {
   const [open, setOpen] = React.useState(false)
-  const [pins, setPins] = React.useState<PinnedCuratedCourse[]>([])
+  const [pins, setPins] = React.useState<PinnedCourseLearningPath[]>([])
   const [loading, setLoading] = React.useState(true)
   const rootRef = React.useRef<HTMLDivElement>(null)
 
   const refresh = React.useCallback(async () => {
-    const rows = await listMyCuratedCoursePins()
+    const rows = await listMyCourseLearningPathPins()
     setPins(rows)
     setLoading(false)
   }, [])
 
   React.useEffect(() => {
     void refresh()
-    return subscribeCuratedCoursePins(() => {
+    return subscribeCourseLearningPathPins(() => {
       void refresh()
     })
   }, [refresh])
@@ -51,7 +51,7 @@ export function PinnedCoursesNav() {
   async function unpin(courseId: string) {
     const previous = pins
     setPins((rows) => rows.filter((row) => row.courseId !== courseId))
-    const result = await setCuratedCoursePinned(courseId, false)
+    const result = await setCourseLearningPathPinned(courseId, false)
     if (result === null) setPins(previous)
   }
 
@@ -74,13 +74,13 @@ export function PinnedCoursesNav() {
             <p className={styles.empty}>Loading…</p>
           ) : pins.length === 0 ? (
             <p className={styles.empty}>
-              Pin a curated course from its syllabus to see it here.
+              Pin a course learning path from its syllabus to see it here.
             </p>
           ) : (
             <ul className={styles.list}>
               {pins.map((pin) => (
                 <li key={pin.pinId} className={styles.row}>
-                  <Link href={curatedCoursePath(pin.slug)} legacyBehavior>
+                  <Link href={courseLearningPathHref(pin.slug)} legacyBehavior>
                     <a
                       className={styles.courseLink}
                       role='menuitem'

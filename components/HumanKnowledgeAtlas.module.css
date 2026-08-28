@@ -1,4 +1,4 @@
-/* Human Knowledge Atlas — Coursetexts beige, Guyot + Hanken, square hairlines. */
+/* Field Atlas — Coursetexts beige, Guyot + Hanken, square hairlines. */
 
 .section {
   flex: 1;
@@ -121,15 +121,6 @@
   box-sizing: border-box;
 }
 
-.eyebrow {
-  margin: 0 0 12px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #6b7280;
-}
-
 .titleRow {
   display: flex;
   align-items: flex-end;
@@ -140,9 +131,10 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-serif);
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: clamp(28px, 4vw, 36px);
-  font-weight: 400;
+  font-style: normal;
+  font-weight: 500;
   line-height: 1.15;
   color: #000;
 }
@@ -150,10 +142,17 @@
 .subtitle {
   margin: 16px 0 0;
   max-width: 40rem;
-  font-family: var(--font-serif);
-  font-size: 16px;
-  line-height: 1.5;
-  color: #25272b;
+  color: #37352f;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.006px;
+}
+
+.subtitle em {
+  font-style: italic;
 }
 
 .toolbar {
@@ -248,6 +247,7 @@
 
 .treeTitle {
   margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -423,6 +423,95 @@
   color: #6b7280;
 }
 
+.questionItem {
+  min-width: 0;
+}
+
+.questionRow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.questionExpand,
+.questionExpandSpacer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.questionExpand {
+  cursor: pointer;
+  color: inherit;
+}
+
+.questionExpand:hover {
+  background: color-mix(in srgb, #000 4%, transparent);
+}
+
+.questionRow .questionBtn {
+  flex: 1;
+  min-width: 0;
+}
+
+.hypoListTree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 0 6px 20px;
+  padding: 2px 0 6px 14px;
+  border-left: 1px solid #e6e6e6;
+}
+
+.hypoBtn {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  border-left: 2px solid transparent;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+.hypoBtn:hover {
+  background: color-mix(in srgb, #000 4%, transparent);
+}
+
+.hypoBtnActive {
+  background: color-mix(in srgb, #0089c4 10%, transparent);
+  border-left-color: #0089c4;
+}
+
+.hypoMark {
+  width: 6px;
+  height: 6px;
+  margin-top: 7px;
+  flex-shrink: 0;
+  border: 1px solid #2c1a0c;
+  background: transparent;
+}
+
+.hypoBtnActive .hypoMark {
+  background: #0089c4;
+  border-color: #0089c4;
+}
+
+.hypoBtnTitle {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.35;
+  color: #000;
+}
+
 .contributed {
   color: #0089c4;
   font-weight: 500;
@@ -510,6 +599,10 @@
   background: #e7eef2;
 }
 
+.drawerHeaderHypo {
+  background: color-mix(in srgb, #2c1a0c 8%, #fff);
+}
+
 .drawerHeaderBody {
   min-width: 0;
   flex: 1;
@@ -574,8 +667,46 @@
   color: #25272b;
 }
 
+.discoveryCopy {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: #25272b;
+}
+
 .block {
   margin-top: 22px;
+}
+
+.startPathWrap {
+  margin-top: 22px;
+  width: 100%;
+}
+
+a.startPathBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 14px 18px;
+  white-space: normal;
+  border: none;
+  background: #2c1a0c;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+a.startPathBtn:hover {
+  color: #fff;
+  opacity: 0.9;
 }
 
 .blockTitle {
@@ -612,6 +743,41 @@
   background: #fff;
 }
 
+.hypoItemBtn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.hypoItemBtn:hover {
+  border-color: #0089c4;
+}
+
+.hypoOpenHint {
+  margin: 8px 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0089c4;
+}
+
+.hypoPanelWeight {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border: 1px solid #2c1a0c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2c1a0c;
+}
+
 .hypoItemLeading {
   background: color-mix(in srgb, #0089c4 10%, transparent);
   border-color: #0089c4;
@@ -642,6 +808,10 @@
   margin: 6px 0 0;
   font-size: 12px;
   color: #6b7280;
+}
+
+.hypoReadings {
+  margin-top: 2px;
 }
 
 .evidenceItem,

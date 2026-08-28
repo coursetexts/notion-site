@@ -5,8 +5,8 @@ export default function Chem163() {
   const router = useRouter()
 
   useEffect(() => {
-    router.push('/modern-atomic-and-optical-physics-iphysics285a')
-    window.location.href = '/modern-atomic-and-optical-physics-iphysics285a'
+    router.push('/course/modern-atomic-and-optical-physics-iphysics285a')
+    window.location.href = '/course/modern-atomic-and-optical-physics-iphysics285a'
   }, [router])
 
   return null

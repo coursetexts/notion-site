@@ -1,51 +1,40 @@
 import * as React from 'react'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 import { NotionPage } from '@/components/NotionPage'
-import { domain, isDev } from '@/lib/config'
-import { getSiteMap } from '@/lib/get-site-map'
+import { domain, pageUrlAdditions, pageUrlOverrides } from '@/lib/config'
+import { notionPageHref } from '@/lib/map-page-url'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { PageProps, Params } from '@/lib/types'
 
-export const getStaticProps: GetStaticProps<PageProps, Params> = async (
-  context
-) => {
-  const rawPageId = context.params.pageId as string
-
-  try {
-    const props = await resolveNotionPage(domain, rawPageId)
-
-    return { props, revalidate: 10 }
-  } catch (err) {
-    console.error('page error', domain, rawPageId, err)
-
-    // Avoid failing the whole build on transient Notion API errors for one page.
-    return { notFound: true, revalidate: 10 }
-  }
+function isRootNotionOverride(rawPageId: string): boolean {
+  return Boolean(pageUrlOverrides[rawPageId] || pageUrlAdditions[rawPageId])
 }
 
-export async function getStaticPaths() {
-  if (isDev) {
+export const getServerSideProps: GetServerSideProps<PageProps, Params> = async (
+  context
+) => {
+  const rawPageId = context.params?.pageId
+  if (typeof rawPageId !== 'string' || !rawPageId.trim()) {
+    return { notFound: true }
+  }
+
+  if (!isRootNotionOverride(rawPageId)) {
     return {
-      paths: [],
-      fallback: true
+      redirect: {
+        destination: notionPageHref(rawPageId),
+        permanent: true
+      }
     }
   }
 
-  const siteMap = await getSiteMap()
-
-  const staticPaths = {
-    paths: Object.keys(siteMap.canonicalPageMap).map((pageId) => ({
-      params: {
-        pageId
-      }
-    })),
-    // paths: [],
-    fallback: true
+  try {
+    const props = await resolveNotionPage(domain, rawPageId)
+    return { props }
+  } catch (err) {
+    console.error('page error', domain, rawPageId, err)
+    return { notFound: true }
   }
-
-  console.log(staticPaths.paths)
-  return staticPaths
 }
 
 export default function NotionDomainDynamicPage(props) {

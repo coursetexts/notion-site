@@ -1,18 +1,18 @@
 import * as React from 'react'
 
-import styles from './CuratedCourse.module.css'
-import { PlayIcon } from './CuratedCourseSyllabusNav'
-import type { CuratedCourseData } from '@/lib/curated-course-types'
+import styles from './CourseLearningPath.module.css'
+import { PlayIcon } from './CourseLearningPathSyllabusNav'
+import type { CourseLearningPathData } from '@/lib/course-learning-path-types'
 
-interface CuratedCourseSyllabusOverviewProps {
-  course: CuratedCourseData
+interface CourseLearningPathSyllabusOverviewProps {
+  course: CourseLearningPathData
   onSelectTopic: (id: string) => void
 }
 
-export function CuratedCourseSyllabusOverview({
+export function CourseLearningPathSyllabusOverview({
   course,
   onSelectTopic
-}: CuratedCourseSyllabusOverviewProps) {
+}: CourseLearningPathSyllabusOverviewProps) {
   return (
     <article className={styles.article}>
       <header className={styles.articleHeader}>
@@ -69,7 +69,7 @@ export function CuratedCourseSyllabusOverview({
 }
 
 function countVideos(
-  node: CuratedCourseData['topics'][number]
+  node: CourseLearningPathData['topics'][number]
 ): number {
   const own = node.videos?.length ?? 0
   const child = (node.children ?? []).reduce(

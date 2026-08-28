@@ -1,15 +1,15 @@
 /**
- * Fallback / seed syllabus for /curated-course when Supabase is empty.
+ * Fallback / seed syllabus for /course-learning-path when Supabase is empty.
  * Canonical curated data lives in data/curated-courses/{slug}.json —
  * this re-exports Fluid Mechanics for the client-side fallback.
  */
 import fluidMechanicsJson from '@/data/curated-courses/fluid-mechanics.json'
 import type {
-  CuratedCourseData,
-  CuratedCourseLink,
-  CuratedCourseNode,
-  CuratedCourseVideo
-} from './curated-course-types'
+  CourseLearningPathData,
+  CourseLearningPathLink,
+  CourseLearningPathNode,
+  CourseLearningPathVideo
+} from './course-learning-path-types'
 import type { CourseResource } from '@/lib/undergraduate-degrees'
 
 type JsonVideo = {
@@ -37,7 +37,7 @@ type JsonNode = {
   children?: JsonNode[]
 }
 
-function mapVideos(videos: JsonVideo[] | undefined): CuratedCourseVideo[] | undefined {
+function mapVideos(videos: JsonVideo[] | undefined): CourseLearningPathVideo[] | undefined {
   if (!videos?.length) return undefined
   return videos.map((v, i) => ({
     id: `local_video_${i}_${v.title.slice(0, 24)}`,
@@ -55,7 +55,7 @@ function mapVideos(videos: JsonVideo[] | undefined): CuratedCourseVideo[] | unde
 function mapLinks(
   links: JsonLink[] | undefined,
   kind: 'test' | 'slide'
-): CuratedCourseLink[] | undefined {
+): CourseLearningPathLink[] | undefined {
   if (!links?.length) return undefined
   return links.map((item, i) => ({
     id: `local_${kind}_${i}_${item.title.slice(0, 24)}`,
@@ -65,7 +65,7 @@ function mapLinks(
   }))
 }
 
-function mapNode(node: JsonNode, path: string): CuratedCourseNode {
+function mapNode(node: JsonNode, path: string): CourseLearningPathNode {
   return {
     id: `local_${path}`,
     type: node.type,
@@ -89,7 +89,7 @@ const raw = fluidMechanicsJson as {
 }
 
 /** Client fallback when DB has no Fluid Mechanics syllabus tree yet. */
-export const fluidMechanicsSeedCourse: CuratedCourseData = {
+export const fluidMechanicsSeedCourse: CourseLearningPathData = {
   id: 'course_fluid_mechanics',
   slug: raw.slug,
   title: raw.title,
@@ -99,5 +99,5 @@ export const fluidMechanicsSeedCourse: CuratedCourseData = {
   dbBacked: false
 }
 
-/** Default slug used by /curated-course when none is specified. */
-export const DEFAULT_CURATED_COURSE_SLUG = 'fluid-mechanics'
+/** Default slug used by /course-learning-path when none is specified. */
+export const DEFAULT_COURSE_LEARNING_PATH_SLUG = 'fluid-mechanics'

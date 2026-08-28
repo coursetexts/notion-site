@@ -924,7 +924,7 @@ export default function PublicProfilePage() {
                               const { bookmark, resource, course } = row.data
                               const rowNoteId = `cr-${bookmark.id}`
                               const courseHref =
-                                course.url ?? `/${course.notion_page_id}`
+                                course.url ?? `/course/${course.notion_page_id}`
                               const raw = resource.link?.trim() ?? ''
                               const primaryHref =
                                 raw && /^https?:\/\//i.test(raw)
@@ -1313,7 +1313,7 @@ export default function PublicProfilePage() {
                               >
                                 <Link
                                   href={
-                                    course.url ?? `/${course.notion_page_id}`
+                                    course.url ?? `/course/${course.notion_page_id}`
                                   }
                                 >
                                   <a className={styles.listLink}>
@@ -1345,7 +1345,7 @@ export default function PublicProfilePage() {
                             >
                               <Link
                                 href={
-                                  course.url ?? `/${course.notion_page_id}`
+                                  course.url ?? `/course/${course.notion_page_id}`
                                 }
                               >
                                 <a className={styles.listLink}>

@@ -402,12 +402,12 @@ export function addReactComponentBeforeTitle(reactNode: React.ReactNode) {
 }
 
 function addReactComponentAfterHeader(reactNode: React.ReactNode) {
-  waitForElement('.notion-header')
-    .then((notionHeader) => {
-      if (!notionHeader) return
+  waitForElement('[data-site-header], .notion-header')
+    .then((siteHeader) => {
+      if (!siteHeader) return
       const newContainer = document.createElement('div')
       newContainer.className = 'fill-article-row'
-      notionHeader.insertAdjacentElement('afterend', newContainer)
+      siteHeader.insertAdjacentElement('afterend', newContainer)
       createRoot(newContainer).render(reactNode)
     })
     .catch((err) => console.warn(err.message))
@@ -454,6 +454,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
   const useHomeChrome =
     !isLiteMode &&
     (pathForLayout === '/why' || pathForLayout === '/about')
+  const useHomeNav = useHomeChrome || (!isLiteMode && pageClass === 'course-page')
 
   const filterRootRef = React.useRef<{
     root: Root | null
@@ -1523,7 +1524,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       Pdf,
       Modal,
       Tweet,
-      Header: useHomeChrome
+      Header: useHomeNav
         ? function MarketingNotionHeader() {
             return null
           }
@@ -1532,7 +1533,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       propertyTextValue,
       propertyDateValue
     }),
-    [useHomeChrome]
+    [useHomeNav]
   )
 
   const { isDarkMode } = useDarkMode()
@@ -1667,7 +1668,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
     const courseHeroCourseInfo = {
       coursePageId: rendererBlockId,
       courseTitle: title,
-      courseUrl: router.asPath?.split('?')[0] ?? `/${pageId}`
+      courseUrl: router.asPath?.split('?')[0] ?? `/course/${pageId}`
     }
 
     function ensureMountAndRender(
@@ -1971,7 +1972,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
             coursePageId={rendererBlockId}
             courseTitle={title}
             courseDescription={courseDescription}
-            courseUrl={router.asPath?.split('?')[0] ?? `/${pageId}`}
+            courseUrl={router.asPath?.split('?')[0] ?? `/course/${pageId}`}
             mainRef={(el) => {
               const node = contentInnerToMoveRef.current
               if (!el || !node) return
@@ -2203,7 +2204,7 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       {/* {isLiteMode && <BodyClassName className='notion-lite' />}
       {isDarkMode && <BodyClassName className='dark-mode' />} */}
       <BodyClassName
-        className={cs(pageClass, useHomeChrome && 'ct-notion-home-chrome')}
+        className={cs(pageClass, useHomeNav && 'ct-notion-home-chrome')}
       />
 
       {pageClass === 'course-page' && !contentVisible && (
@@ -2312,6 +2313,19 @@ export const NotionPage: React.FC<NotionPageProps> = ({
         </main>
       ) : (
         <>
+          {useHomeNav && (
+            <>
+              <Head>
+                <link rel='preconnect' href='https://use.typekit.net' />
+                <link rel='preconnect' href='https://p.typekit.net' />
+                <link
+                  rel='stylesheet'
+                  href='https://use.typekit.net/vxh3dki.css'
+                />
+              </Head>
+              <HomeHeader />
+            </>
+          )}
           <div
             style={{
               visibility: contentVisible ? 'visible' : 'hidden'

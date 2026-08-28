@@ -9,9 +9,9 @@ import Placeholder from '@tiptap/extension-placeholder'
 import StarterKit from '@tiptap/starter-kit'
 
 import {
-  getCuratedCourseNote,
-  saveCuratedCourseNote
-} from '@/lib/curated-course-notes-db'
+  getCourseLearningPathNote,
+  saveCourseLearningPathNote
+} from '@/lib/course-learning-path-notes-db'
 import {
   NOTEBOOK_EMPTY_DOC,
   type NotebookDocJson
@@ -26,11 +26,12 @@ import {
   setLinkFromUrlPrompt
 } from '@/lib/tiptap-editor-image'
 
-import styles from './CuratedCourse.module.css'
+import styles from './CourseLearningPath.module.css'
+import { CourseLearningPathSectionToggle } from './CourseLearningPathLinkSection'
 
 const SAVE_MS = 700
 
-export interface CuratedCourseNotesProps {
+export interface CourseLearningPathNotesProps {
   nodeId: string
   courseSlug: string
   topicTitle?: string
@@ -39,16 +40,16 @@ export interface CuratedCourseNotesProps {
 }
 
 /**
- * Minimizable rich-text notes for a syllabus topic (bold, lists, images, LaTeX, links).
+ * Collapsible rich-text notes for a syllabus topic (bold, lists, images, LaTeX, links).
  */
-export function CuratedCourseNotes({
+export function CourseLearningPathNotes({
   nodeId,
   courseSlug,
   topicTitle,
   signedIn = false,
   onSignIn
-}: CuratedCourseNotesProps) {
-  const [minimized, setMinimized] = React.useState(false)
+}: CourseLearningPathNotesProps) {
+  const [open, setOpen] = React.useState(false)
   const [ready, setReady] = React.useState(false)
   const [initialContent, setInitialContent] = React.useState<NotebookDocJson>(
     NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
@@ -71,8 +72,9 @@ export function CuratedCourseNotes({
     let cancelled = false
     setReady(false)
     setSaveState('idle')
+    setOpen(false)
     ;(async () => {
-      const content = await getCuratedCourseNote(nodeId, courseSlug)
+      const content = await getCourseLearningPathNote(nodeId, courseSlug)
       if (cancelled) return
       latestJson.current = content
       setInitialContent(content)
@@ -89,7 +91,7 @@ export function CuratedCourseNotes({
       saveTimer.current = null
     }
     setSaveState('saving')
-    const ok = await saveCuratedCourseNote(
+    const ok = await saveCourseLearningPathNote(
       nodeIdRef.current,
       courseSlugRef.current,
       latestJson.current
@@ -147,7 +149,9 @@ export function CuratedCourseNotes({
         attributes: {
           spellcheck: 'true',
           class: styles.notesProseMirror,
-          'aria-label': 'Topic notes'
+          'aria-label': topicTitle
+            ? `Notes for ${topicTitle}`
+            : 'Topic notes'
         },
         handlePaste: (view, event) => handleEditorImagePaste(view, event),
         handleDrop: (view, event, _slice, moved) =>
@@ -176,7 +180,7 @@ export function CuratedCourseNotes({
         clearTimeout(saveTimer.current)
         saveTimer.current = null
       }
-      void saveCuratedCourseNote(
+      void saveCourseLearningPathNote(
         nodeIdRef.current,
         courseSlugRef.current,
         latestJson.current
@@ -196,54 +200,34 @@ export function CuratedCourseNotes({
           : ''
 
   return (
-    <section
-      className={`${styles.notesSection}${
-        minimized ? ` ${styles.notesSectionMinimized}` : ''
-      }`}
-      aria-label='Topic notes'
-    >
-      <header className={styles.notesHeader}>
-        <button
-          type='button'
-          className={styles.notesToggle}
-          onClick={() => setMinimized((v) => !v)}
-          aria-expanded={!minimized}
-          aria-controls='curated-course-notes-body'
-        >
-          <span className={styles.notesToggleIcon} aria-hidden>
-            <ChevronIcon open={!minimized} />
+    <section aria-labelledby='course-learning-path-notes-heading'>
+      <div
+        className={`${styles.videosHeader}${
+          open ? '' : ` ${styles.videosHeaderCollapsed}`
+        }`}
+      >
+        <h2 id='course-learning-path-notes-heading' className={styles.videosTitle}>
+          <span style={{ color: '#0089c4', display: 'inline-flex' }}>
+            <NoteIcon />
           </span>
-          <span className={styles.notesTitle}>
-            <span className={styles.notesTitleAccent} aria-hidden>
-              <NoteIcon />
+          Your Notes
+        </h2>
+        <div className={styles.videosHeaderActions}>
+          {open && saveLabel ? (
+            <span className={styles.videosMeta} aria-live='polite'>
+              {saveLabel}
             </span>
-            Notes
-          </span>
-        </button>
-        <span className={styles.notesHeaderMeta}>
-          {minimized
-            ? 'Your notes on this topic'
-            : topicTitle
-              ? topicTitle
-              : 'This topic'}
-        </span>
-        {!minimized && saveLabel ? (
-          <span className={styles.notesSaveState} aria-live='polite'>
-            {saveLabel}
-          </span>
-        ) : null}
-        <button
-          type='button'
-          className={styles.notesMinBtn}
-          onClick={() => setMinimized((v) => !v)}
-          aria-label={minimized ? 'Expand notes' : 'Minimize notes'}
-        >
-          {minimized ? 'Expand' : 'Minimize'}
-        </button>
-      </header>
+          ) : null}
+          <CourseLearningPathSectionToggle
+            open={open}
+            label='Your Notes'
+            onToggle={() => setOpen((value) => !value)}
+          />
+        </div>
+      </div>
 
-      {!minimized && (
-        <div id='curated-course-notes-body' className={styles.notesBody}>
+      {open ? (
+        <div id='course-learning-path-notes-body' className={styles.notesBody}>
           {!signedIn && (
             <p className={styles.notesHint}>
               Notes save in this browser.{' '}
@@ -401,33 +385,8 @@ export function CuratedCourseNotes({
             </>
           )}
         </div>
-      )}
+      ) : null}
     </section>
-  )
-}
-
-function ChevronIcon({ open }: { open: boolean }) {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='14'
-      height='14'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-      style={{
-        transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
-        transition: 'transform 160ms ease'
-      }}
-    >
-      <path
-        d='M6 3.5L10.5 8L6 12.5'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-    </svg>
   )
 }
 
@@ -435,8 +394,8 @@ function NoteIcon() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width='16'
-      height='16'
+      width='20'
+      height='20'
       viewBox='0 0 16 16'
       fill='none'
       aria-hidden

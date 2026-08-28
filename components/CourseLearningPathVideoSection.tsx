@@ -1,15 +1,15 @@
 import * as React from 'react'
 
-import type { CuratedCourseVideo } from '@/lib/curated-course-types'
+import type { CourseLearningPathVideo } from '@/lib/course-learning-path-types'
 
-import styles from './CuratedCourse.module.css'
-import { CuratedCourseSectionToggle } from './CuratedCourseLinkSection'
-import { PlayIcon } from './CuratedCourseSyllabusNav'
-import { CuratedCourseVideoList } from './CuratedCourseVideoList'
+import styles from './CourseLearningPath.module.css'
+import { CourseLearningPathSectionToggle } from './CourseLearningPathLinkSection'
+import { PlayIcon } from './CourseLearningPathSyllabusNav'
+import { CourseLearningPathVideoList } from './CourseLearningPathVideoList'
 
-interface CuratedCourseVideoSectionProps {
+interface CourseLearningPathVideoSectionProps {
   nodeId: string
-  videos: CuratedCourseVideo[]
+  videos: CourseLearningPathVideo[]
   headingId?: string
   formIdPrefix?: string
   dbBacked?: boolean
@@ -29,7 +29,7 @@ interface CuratedCourseVideoSectionProps {
   ) => Promise<void>
 }
 
-export function CuratedCourseVideoSection({
+export function CourseLearningPathVideoSection({
   nodeId,
   videos,
   headingId = 'videos-heading',
@@ -39,7 +39,7 @@ export function CuratedCourseVideoSection({
   onSignIn,
   onAddVideo,
   onVoteVideo
-}: CuratedCourseVideoSectionProps) {
+}: CourseLearningPathVideoSectionProps) {
   const [editing, setEditing] = React.useState(false)
   const [open, setOpen] = React.useState(false)
   const [url, setUrl] = React.useState('')
@@ -180,7 +180,7 @@ export function CuratedCourseVideoSection({
           >
             {editing ? 'Done' : 'Edit'}
           </button>
-          <CuratedCourseSectionToggle
+          <CourseLearningPathSectionToggle
             open={open}
             label='Videos'
             onToggle={() => setOpen((v) => !v)}
@@ -311,7 +311,7 @@ export function CuratedCourseVideoSection({
             </div>
           )}
 
-          <CuratedCourseVideoList
+          <CourseLearningPathVideoList
             videos={videos}
             editing={editing}
             voteDisabled={Boolean(votingId)}

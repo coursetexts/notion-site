@@ -15,7 +15,7 @@ import { PinnedCoursesNav } from './PinnedCoursesNav'
 
 const communityChildren = [
   { label: 'Degrees', href: '/degrees' },
-  { label: 'Field Atlas', href: '/human-knowledge-atlas' },
+  { label: 'Field Atlas', href: '/field-atlas' },
   { label: 'Learning Paths', href: '/learning-paths' }
 ]
 
@@ -390,7 +390,7 @@ export function HomeHeader({
 
   return (
     <>
-      <section className={className} style={cssVars}>
+      <section className={className} style={cssVars} data-site-header=''>
         <div className={styles.headerArea}>
           <header className={styles.header}>
             <Link href='/' legacyBehavior>

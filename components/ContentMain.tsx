@@ -5,7 +5,7 @@ import { useAuthOptional } from '@/contexts/AuthContext'
 import styles from './ContentMain.module.css'
 import { PdfEmbed } from './PdfEmbed'
 import { ViewAnnotationsButton } from './ViewAnnotationsButton'
-import { ViewCourseChatButton } from './ViewCourseChatButton'
+import { ViewYourNotesButton } from './ViewYourNotesButton'
 import { WebEmbed } from './WebEmbed'
 
 export interface ContentMainProps {
@@ -15,8 +15,8 @@ export interface ContentMainProps {
   showAnnotations?: boolean
   onShowAnnotations?: () => void
   annotationCount?: number
-  showChat?: boolean
-  onShowChat?: () => void
+  showNotes?: boolean
+  onShowNotes?: () => void
   /** Optional URL to embed at the top of the content main section */
   embedUrl?: string
   /** Item name to show above the viewer (e.g. selected TOC link label) */
@@ -47,7 +47,7 @@ export interface ContentMainProps {
   onNextSection?: () => void
   /** When false, hide the Next button (e.g. on last section) */
   hasNextSection?: boolean
-  /** Hide only the Annotations and Course chat buttons; bar strip remains (e.g. Community Wall). */
+  /** Hide the Annotations / Your Notes buttons; bar strip remains (e.g. Community Wall). */
   hideAnnotationsChatButtons?: boolean
   /** Hide Completed? / Bookmark in the section footer (e.g. Community Wall tab). */
   hideCompleteBookmark?: boolean
@@ -62,7 +62,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   innerRef,
   onShowAnnotations,
   annotationCount = 0,
-  onShowChat,
+  onShowNotes,
   embedUrl,
   embedTitle,
   embedParentTitle,
@@ -87,7 +87,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   const auth = useAuthOptional()
   const isSignedIn = Boolean(auth?.user)
   const showViewBar = Boolean(
-    (onShowAnnotations || onShowChat) && !hideAnnotationsChatButtons
+    (onShowAnnotations || onShowNotes) && !hideAnnotationsChatButtons
   )
   const isPdf = Boolean(embedUrl && /\.pdf(?:$|[?#])/i.test(embedUrl))
   const isCompleted = sectionStatus?.isCompleted ?? false
@@ -105,7 +105,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
               onClick={onShowAnnotations}
             />
           )}
-          {onShowChat && <ViewCourseChatButton onClick={onShowChat} />}
+          {onShowNotes && <ViewYourNotesButton onClick={onShowNotes} />}
         </div>
       )}
       <div className={styles.slot}>

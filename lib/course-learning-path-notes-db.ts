@@ -1,5 +1,5 @@
 /**
- * TipTap notes for curated course nodes (`curated_course_notes`).
+ * TipTap notes for course learning path nodes (`curated_course_notes`).
  * Falls back to localStorage when the user is signed out or Supabase is unavailable.
  */
 import { NOTEBOOK_EMPTY_DOC, type NotebookDocJson } from './notebook-editor-default'
@@ -42,7 +42,7 @@ function writeLocal(
 }
 
 /** Load note content for a syllabus node (DB if signed in, else localStorage). */
-export async function getCuratedCourseNote(
+export async function getCourseLearningPathNote(
   nodeId: string,
   courseSlug: string
 ): Promise<NotebookDocJson> {
@@ -72,7 +72,7 @@ export async function getCuratedCourseNote(
 }
 
 /** Persist note content (DB upsert when signed in; always mirrors to localStorage). */
-export async function saveCuratedCourseNote(
+export async function saveCourseLearningPathNote(
   nodeId: string,
   courseSlug: string,
   content: NotebookDocJson
@@ -101,7 +101,7 @@ export async function saveCuratedCourseNote(
   )
 
   if (error) {
-    console.error('saveCuratedCourseNote failed', error)
+    console.error('saveCourseLearningPathNote failed', error)
     return false
   }
   return true

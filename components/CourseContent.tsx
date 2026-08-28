@@ -27,7 +27,7 @@ import { CommunityWall, type CommunityWallHandle } from './CommunityWall'
 import cwStyles from './CommunityWall.module.css'
 import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
-import { CourseChatPanel } from './CourseChatPanel'
+import { CourseNotesPanel } from './CourseNotesPanel'
 import styles from './CourseContent.module.css'
 import { TableOfContents } from './TableOfContents'
 
@@ -47,11 +47,10 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   children,
   coursePageId,
   courseTitle,
-  courseDescription,
   courseUrl
 }) => {
   const [rightPanel, setRightPanel] = React.useState<
-    'none' | 'annotations' | 'chat'
+    'none' | 'annotations' | 'notes'
   >('none')
   const [isRightPanelExiting, setIsRightPanelExiting] = React.useState(false)
   const [contentSlotReady, setContentSlotReady] = React.useState(false)
@@ -475,10 +474,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     [coursePageId]
   )
 
-  const openRightPanel = React.useCallback((panel: 'annotations' | 'chat') => {
-    setIsRightPanelExiting(false)
-    setRightPanel(panel)
-  }, [])
+  const openRightPanel = React.useCallback(
+    (panel: 'annotations' | 'notes') => {
+      setIsRightPanelExiting(false)
+      setRightPanel(panel)
+    },
+    []
+  )
 
   const closeRightPanel = React.useCallback(() => {
     setIsRightPanelExiting(true)
@@ -529,26 +531,35 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     return () => window.removeEventListener('keydown', onKey)
   }, [showMobileRightPanel, closeRightPanel])
 
-  const renderRightPanel = (sheetLayout: boolean) =>
-    rightPanel === 'annotations' ? (
-      <AnnotationWidget
-        courseUrl={courseUrl}
-        courseTitle={courseTitle}
-        coursePageId={coursePageId}
-        sectionId={currentSectionLabel}
-        onHide={closeRightPanel}
-        onAnnotationCountChange={handleAnnotationCountChange}
-        onActivityPosted={bumpActivityRefresh}
-        sheetLayout={sheetLayout}
-      />
-    ) : (
-      <CourseChatPanel
-        courseTitle={courseTitle}
-        courseDescription={courseDescription}
-        onHide={closeRightPanel}
-        sheetLayout={sheetLayout}
-      />
-    )
+  const renderRightPanel = (sheetLayout: boolean) => {
+    if (rightPanel === 'annotations') {
+      return (
+        <AnnotationWidget
+          courseUrl={courseUrl}
+          courseTitle={courseTitle}
+          coursePageId={coursePageId}
+          sectionId={currentSectionLabel}
+          onHide={closeRightPanel}
+          onAnnotationCountChange={handleAnnotationCountChange}
+          onActivityPosted={bumpActivityRefresh}
+          sheetLayout={sheetLayout}
+        />
+      )
+    }
+    if (rightPanel === 'notes') {
+      return (
+        <CourseNotesPanel
+          coursePageId={coursePageId}
+          courseTitle={courseTitle}
+          signedIn={Boolean(authUser)}
+          onSignIn={() => auth?.signInWithGoogle()}
+          onHide={closeRightPanel}
+          sheetLayout={sheetLayout}
+        />
+      )
+    }
+    return null
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -576,8 +587,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           showAnnotations={rightPanel === 'annotations'}
           onShowAnnotations={() => openRightPanel('annotations')}
           annotationCount={annotationCount}
-          showChat={rightPanel === 'chat'}
-          onShowChat={() => openRightPanel('chat')}
+          showNotes={rightPanel === 'notes'}
+          onShowNotes={() => openRightPanel('notes')}
           embedUrl={embedUrl}
           embedTitle={embedTitle}
           embedParentTitle={embedParentTitle}
@@ -688,7 +699,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
                   role='dialog'
                   aria-modal='true'
                   aria-label={
-                    rightPanel === 'annotations' ? 'Annotations' : 'Course chat'
+                    rightPanel === 'annotations' ? 'Annotations' : 'Your notes'
                   }
                   className={styles.mobilePanelSheet}
                   initial={{ y: '100%' }}

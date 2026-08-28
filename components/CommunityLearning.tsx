@@ -129,12 +129,12 @@ export function CommunityLearning() {
             <span className={styles.barLabel}>Trending questions</span>
             <span className={styles.barCount}>({frontier.length})</span>
           </span>
-          <Link href='/human-knowledge-atlas' className={styles.barLink}>
+          <Link href='/field-atlas' className={styles.barLink}>
             Field Atlas
           </Link>
         </div>
         <p className={styles.questionsHint}>
-          Frontier questions people are researching — from the knowledge atlas.
+          Frontier questions people are researching — from the Field Atlas.
         </p>
         <ul className={styles.questionGrid}>
           {frontier.map((question, index) => {
@@ -148,7 +148,7 @@ export function CommunityLearning() {
                 </p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/human-knowledge-atlas?q=${encodeURIComponent(
+                    href={`/field-atlas?q=${encodeURIComponent(
                       question.id
                     )}`}
                     className={styles.titleLink}
@@ -230,7 +230,7 @@ export function CommunityLearning() {
                 </p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/curated-course/${course.slug}`}
+                    href={`/course-learning-path/${course.slug}`}
                     className={styles.titleLink}
                   >
                     {course.title}

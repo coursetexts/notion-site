@@ -2,6 +2,7 @@ import type { GetServerSideProps } from 'next'
 
 import { host } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
+import { notionPageHref } from '@/lib/map-page-url'
 import type { SiteMap } from '@/lib/types'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
@@ -46,7 +47,7 @@ const createSitemap = (siteMap: SiteMap) =>
       .map((canonicalPagePath) =>
         `
           <url>
-            <loc>${host}/${canonicalPagePath}</loc>
+            <loc>${host}${notionPageHref(canonicalPagePath)}</loc>
           </url>
         `.trim()
       )

@@ -13,6 +13,21 @@ module.exports = withBundleAnalyzer({
         source: '/undergraduate-degrees',
         destination: '/degrees',
         permanent: true
+      },
+      {
+        source: '/curated-course/:courseSlug',
+        destination: '/course-learning-path/:courseSlug',
+        permanent: true
+      },
+      {
+        source: '/curated-course/:courseSlug/videos',
+        destination: '/course-learning-path/:courseSlug',
+        permanent: true
+      },
+      {
+        source: '/human-knowledge-atlas',
+        destination: '/field-atlas',
+        permanent: true
       }
     ]
   },

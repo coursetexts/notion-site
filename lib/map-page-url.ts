@@ -1,13 +1,30 @@
 import { ExtendedRecordMap } from 'notion-types'
 import { parsePageId, uuidToId } from 'notion-utils'
 
-import { includeNotionIdInUrls } from './config'
+import {
+  includeNotionIdInUrls,
+  pageUrlAdditions,
+  pageUrlOverrides
+} from './config'
 import { getCanonicalPageId } from './get-canonical-page-id'
 import { Site } from './types'
 
 // include UUIDs in page URLs during local development but not in production
 // (they're nice for debugging and speed up local dev)
 const uuid = !!includeNotionIdInUrls
+
+/** Site pages that stay at the root (`/why`, `/about`, `/process`). */
+function isRootNotionPath(canonicalId: string): boolean {
+  return Boolean(pageUrlOverrides[canonicalId] || pageUrlAdditions[canonicalId])
+}
+
+/** Public path for a Notion page: `/course/{id}` except root overrides. */
+export function notionPageHref(canonicalId: string | null | undefined): string {
+  const path = (canonicalId ?? '').replace(/^\//, '').trim()
+  if (!path) return '/'
+  if (isRootNotionPath(path)) return `/${path}`
+  return `/course/${path}`
+}
 
 export const mapPageUrl =
   (site: Site, recordMap: ExtendedRecordMap, searchParams: URLSearchParams) =>
@@ -18,7 +35,7 @@ export const mapPageUrl =
       return createUrl('/', searchParams)
     } else {
       return createUrl(
-        `/${getCanonicalPageId(pageUuid, recordMap, { uuid })}`,
+        notionPageHref(getCanonicalPageId(pageUuid, recordMap, { uuid })),
         searchParams
       )
     }
@@ -32,9 +49,11 @@ export const getCanonicalPageUrl =
     if (uuidToId(pageId) === site.rootNotionPageId) {
       return `https://${site.domain}`
     } else {
-      return `https://${site.domain}/${getCanonicalPageId(pageUuid, recordMap, {
-        uuid
-      })}`
+      return `https://${site.domain}${notionPageHref(
+        getCanonicalPageId(pageUuid, recordMap, {
+          uuid
+        })
+      )}`
     }
   }
 

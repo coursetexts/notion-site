@@ -1,14 +1,14 @@
 import * as React from 'react'
 
 import type {
-  CuratedCourseLink,
-  CuratedCourseLinkKind
-} from '@/lib/curated-course-types'
+  CourseLearningPathLink,
+  CourseLearningPathLinkKind
+} from '@/lib/course-learning-path-types'
 
-import styles from './CuratedCourse.module.css'
+import styles from './CourseLearningPath.module.css'
 
 const SECTION: Record<
-  CuratedCourseLinkKind,
+  CourseLearningPathLinkKind,
   { heading: string; singular: string; plural: string; addLabel: string }
 > = {
   test: {
@@ -25,16 +25,16 @@ const SECTION: Record<
   }
 }
 
-interface CuratedCourseLinkSectionProps {
-  kind: CuratedCourseLinkKind
+interface CourseLearningPathLinkSectionProps {
+  kind: CourseLearningPathLinkKind
   nodeId: string
-  items: CuratedCourseLink[]
+  items: CourseLearningPathLink[]
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
   onAdd?: (input: {
     nodeId: string
-    kind: CuratedCourseLinkKind
+    kind: CourseLearningPathLinkKind
     url: string
     title?: string
     description?: string
@@ -42,7 +42,7 @@ interface CuratedCourseLinkSectionProps {
   }) => Promise<boolean>
 }
 
-export function CuratedCourseLinkSection({
+export function CourseLearningPathLinkSection({
   kind,
   nodeId,
   items,
@@ -50,7 +50,7 @@ export function CuratedCourseLinkSection({
   signedIn = false,
   onSignIn,
   onAdd
-}: CuratedCourseLinkSectionProps) {
+}: CourseLearningPathLinkSectionProps) {
   const copy = SECTION[kind]
   const headingId = `${kind}s-heading`
 
@@ -183,7 +183,7 @@ export function CuratedCourseLinkSection({
           >
             {editing ? 'Done' : 'Edit'}
           </button>
-          <CuratedCourseSectionToggle
+          <CourseLearningPathSectionToggle
             open={open}
             label={copy.heading}
             onToggle={() => setOpen((v) => !v)}
@@ -314,14 +314,14 @@ export function CuratedCourseLinkSection({
             </div>
           )}
 
-          <CuratedCourseLinkList kind={kind} items={items} />
+          <CourseLearningPathLinkList kind={kind} items={items} />
         </>
       )}
     </section>
   )
 }
 
-export function CuratedCourseSectionToggle({
+export function CourseLearningPathSectionToggle({
   open,
   label,
   onToggle
@@ -359,12 +359,12 @@ export function CuratedCourseSectionToggle({
   )
 }
 
-function CuratedCourseLinkList({
+function CourseLearningPathLinkList({
   kind,
   items
 }: {
-  kind: CuratedCourseLinkKind
-  items: CuratedCourseLink[]
+  kind: CourseLearningPathLinkKind
+  items: CourseLearningPathLink[]
 }) {
   const copy = SECTION[kind]
 
@@ -390,7 +390,7 @@ function CuratedCourseLinkList({
   )
 }
 
-function LinkRow({ item }: { item: CuratedCourseLink }) {
+function LinkRow({ item }: { item: CourseLearningPathLink }) {
   const href = item.url && item.url !== '#' ? item.url : undefined
   const host = hostFromUrl(item.url)
 

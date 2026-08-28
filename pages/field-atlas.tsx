@@ -1,31 +1,18 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 
-import { CourseLearningPath } from '@/components/CourseLearningPath'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import { DEFAULT_COURSE_LEARNING_PATH_SLUG } from '@/lib/course-learning-path-seed'
+import { HumanKnowledgeAtlas } from '@/components/HumanKnowledgeAtlas'
 
-/**
- * Standalone syllabus + curated video library page.
- * Query: ?slug=fluid-mechanics (defaults to Fluid Mechanics seed / DB row).
- */
-export default function CourseLearningPathLegacyPage() {
-  const router = useRouter()
-  const slugParam = router.query.slug
-  const slug =
-    typeof slugParam === 'string' && slugParam.trim()
-      ? slugParam.trim()
-      : DEFAULT_COURSE_LEARNING_PATH_SLUG
-
+export default function FieldAtlasPage() {
   return (
     <>
       <Head>
-        <title>Course Videos | Coursetexts</title>
+        <title>Research Field Atlas | Coursetexts</title>
         <meta
           name='description'
-          content='Browse a course syllabus with curated, ordered videos for each topic.'
+          content='A map of science charting questions. What we know, what we suspect, and what we are trying to find out.'
         />
       </Head>
 
@@ -44,7 +31,7 @@ export default function CourseLearningPathLegacyPage() {
         }
       >
         <HomeHeader />
-        <CourseLearningPath key={slug} slug={slug} />
+        <HumanKnowledgeAtlas />
         <HomeFooterSection />
       </main>
     </>

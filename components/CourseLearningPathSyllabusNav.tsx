@@ -3,48 +3,50 @@ import * as React from 'react'
 import { useAuthOptional } from '@/contexts/AuthContext'
 
 import {
-  isCuratedCoursePinId,
-  isCuratedCoursePinned,
-  setCuratedCoursePinned,
-  subscribeCuratedCoursePins
-} from '@/lib/curated-course-pins-db'
+  isCourseLearningPathPinId,
+  isCourseLearningPathPinned,
+  setCourseLearningPathPinned,
+  subscribeCourseLearningPathPins
+} from '@/lib/course-learning-path-pins-db'
 import {
-  CURATED_COURSE_MENTAL_MAP_SECTION_ID,
-  CURATED_COURSE_RESOURCES_SECTION_ID,
-  CURATED_COURSE_RESOURCE_SECTIONS,
-  CURATED_COURSE_SYLLABUS_SECTION_ID,
-  type CuratedCourseResourceSection,
-  isCuratedCourseMentalMapSelection,
-  isCuratedCourseResourceSelection,
-  isCuratedCourseSyllabusSelection,
+  COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
+  COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
+  COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
+  COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
+  type CourseLearningPathResourceSection,
+  isCourseLearningPathMentalMapSelection,
+  isCourseLearningPathResourceSelection,
+  isCourseLearningPathSyllabusSelection,
   resourcesForSection
-} from '@/lib/curated-course-resources'
+} from '@/lib/course-learning-path-resources'
 import type {
-  CuratedCourseData,
-  CuratedCourseNode
-} from '@/lib/curated-course-types'
+  CourseLearningPathData,
+  CourseLearningPathNode
+} from '@/lib/course-learning-path-types'
 
-import styles from './CuratedCourse.module.css'
+import styles from './CourseLearningPath.module.css'
 import { PinIcon } from './PinIcon'
 
 interface SyllabusNavProps {
-  course: CuratedCourseData
+  course: CourseLearningPathData
   selectedId: string
   expanded: Set<string>
+  exploredIds: Set<string>
   onSelect: (id: string) => void
   onToggle: (id: string) => void
 }
 
-export function CuratedCourseSyllabusNav({
+export function CourseLearningPathSyllabusNav({
   course,
   selectedId,
   expanded,
+  exploredIds,
   onSelect,
   onToggle
 }: SyllabusNavProps) {
   const auth = useAuthOptional()
   const signedIn = Boolean(auth?.user)
-  const canPin = Boolean(course.dbBacked && isCuratedCoursePinId(course.id))
+  const canPin = Boolean(course.dbBacked && isCourseLearningPathPinId(course.id))
   const [pinned, setPinned] = React.useState(false)
   const [pinBusy, setPinBusy] = React.useState(false)
 
@@ -54,11 +56,11 @@ export function CuratedCourseSyllabusNav({
       return
     }
     let alive = true
-    void isCuratedCoursePinned(course.id).then((value) => {
+    void isCourseLearningPathPinned(course.id).then((value) => {
       if (alive) setPinned(value)
     })
-    const unsub = subscribeCuratedCoursePins(() => {
-      void isCuratedCoursePinned(course.id).then((value) => {
+    const unsub = subscribeCourseLearningPathPins(() => {
+      void isCourseLearningPathPinned(course.id).then((value) => {
         if (alive) setPinned(value)
       })
     })
@@ -78,15 +80,15 @@ export function CuratedCourseSyllabusNav({
     const next = !pinned
     setPinBusy(true)
     setPinned(next)
-    const result = await setCuratedCoursePinned(course.id, next)
+    const result = await setCourseLearningPathPinned(course.id, next)
     if (result === null) setPinned(!next)
     setPinBusy(false)
   }
 
-  const resourcesOpen = expanded.has(CURATED_COURSE_RESOURCES_SECTION_ID)
-  const resourceSelected = isCuratedCourseResourceSelection(selectedId)
-  const syllabusSelected = isCuratedCourseSyllabusSelection(selectedId)
-  const mentalMapSelected = isCuratedCourseMentalMapSelection(selectedId)
+  const resourcesOpen = expanded.has(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+  const resourceSelected = isCourseLearningPathResourceSelection(selectedId)
+  const syllabusSelected = isCourseLearningPathSyllabusSelection(selectedId)
+  const mentalMapSelected = isCourseLearningPathMentalMapSelection(selectedId)
 
   return (
     <nav aria-label='Course syllabus' className={styles.nav}>
@@ -136,7 +138,7 @@ export function CuratedCourseSyllabusNav({
           </span>
           <button
             type='button'
-            onClick={() => onSelect(CURATED_COURSE_SYLLABUS_SECTION_ID)}
+            onClick={() => onSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)}
             aria-current={syllabusSelected ? 'true' : undefined}
             className={styles.navSelect}
           >
@@ -164,7 +166,7 @@ export function CuratedCourseSyllabusNav({
           </span>
           <button
             type='button'
-            onClick={() => onSelect(CURATED_COURSE_MENTAL_MAP_SECTION_ID)}
+            onClick={() => onSelect(COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID)}
             aria-current={mentalMapSelected ? 'true' : undefined}
             className={styles.navSelect}
           >
@@ -188,6 +190,7 @@ export function CuratedCourseSyllabusNav({
                 depth={0}
                 selectedId={selectedId}
                 expanded={expanded}
+                exploredIds={exploredIds}
                 onSelect={onSelect}
                 onToggle={onToggle}
               />
@@ -209,7 +212,7 @@ export function CuratedCourseSyllabusNav({
         >
           <button
             type='button'
-            onClick={() => onToggle(CURATED_COURSE_RESOURCES_SECTION_ID)}
+            onClick={() => onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)}
             aria-label={
               resourcesOpen ? 'Collapse Resources' : 'Expand Resources'
             }
@@ -225,8 +228,8 @@ export function CuratedCourseSyllabusNav({
           <button
             type='button'
             onClick={() => {
-              if (!resourcesOpen) onToggle(CURATED_COURSE_RESOURCES_SECTION_ID)
-              const first = CURATED_COURSE_RESOURCE_SECTIONS[0]
+              if (!resourcesOpen) onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+              const first = COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
               onSelect(first.id)
             }}
             className={styles.navSelect}
@@ -248,7 +251,7 @@ export function CuratedCourseSyllabusNav({
 
         {resourcesOpen ? (
           <ol className={styles.navList}>
-            {CURATED_COURSE_RESOURCE_SECTIONS.map((section) => (
+            {COURSE_LEARNING_PATH_RESOURCE_SECTIONS.map((section) => (
               <ResourceNavItem
                 key={section.id}
                 section={section}
@@ -272,7 +275,7 @@ function ResourceNavItem({
   selectedId,
   onSelect
 }: {
-  section: CuratedCourseResourceSection
+  section: CourseLearningPathResourceSection
   count: number
   selectedId: string
   onSelect: (id: string) => void
@@ -313,11 +316,12 @@ function ResourceNavItem({
 }
 
 interface NavItemProps {
-  node: CuratedCourseNode
+  node: CourseLearningPathNode
   index: number
   depth: number
   selectedId: string
   expanded: Set<string>
+  exploredIds: Set<string>
   onSelect: (id: string) => void
   onToggle: (id: string) => void
 }
@@ -328,12 +332,14 @@ function NavItem({
   depth,
   selectedId,
   expanded,
+  exploredIds,
   onSelect,
   onToggle
 }: NavItemProps) {
   const hasChildren = Boolean(node.children?.length)
   const isOpen = expanded.has(node.id)
   const isSelected = selectedId === node.id
+  const isExplored = exploredIds.has(node.id)
   const videoCount = node.videos?.length ?? 0
 
   return (
@@ -352,7 +358,9 @@ function NavItem({
               isOpen ? `Collapse ${node.title}` : `Expand ${node.title}`
             }
             aria-expanded={isOpen}
-            className={styles.chevronBtn}
+            className={`${styles.chevronBtn}${
+              isExplored ? ` ${styles.chevronBtnExplored}` : ''
+            }`}
           >
             <ChevronIcon
               className={`${styles.chevronIcon}${
@@ -362,7 +370,11 @@ function NavItem({
           </button>
         ) : (
           <span className={styles.leafDot} aria-hidden>
-            <span className={styles.dot} />
+            <span
+              className={`${styles.dot}${
+                isExplored ? ` ${styles.dotExplored}` : ''
+              }`}
+            />
           </span>
         )}
 
@@ -404,6 +416,7 @@ function NavItem({
               depth={depth + 1}
               selectedId={selectedId}
               expanded={expanded}
+              exploredIds={exploredIds}
               onSelect={onSelect}
               onToggle={onToggle}
             />

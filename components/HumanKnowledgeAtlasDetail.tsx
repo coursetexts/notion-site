@@ -5,6 +5,7 @@ import {
   ATLAS_STATUS_META,
   appendAtlasReply,
   countAtlasThread,
+  type AtlasHypothesis,
   type AtlasKnownFact,
   type AtlasQuestion,
   type AtlasQuestionStatus,
@@ -26,6 +27,15 @@ function formatDate(value: string) {
   })
 }
 
+function atlasLearningPathCopy(
+  kind: 'known' | 'unresolved',
+  topic: string
+) {
+  const trimmed = topic.trim().replace(/[.?!]+$/, '')
+  if (kind === 'known') return `Understand why ${trimmed}.`
+  return `Understand the background of why ${trimmed}.`
+}
+
 function makeComment(body: string): AtlasThreadComment {
   return {
     id: newId('c'),
@@ -43,7 +53,7 @@ const STATUS_CLASS: Record<AtlasQuestionStatus, string> = {
   settled: styles.badgeSettled
 }
 
-const WEIGHT_LABEL: Record<string, string> = {
+export const WEIGHT_LABEL: Record<string, string> = {
   leading: 'Leading',
   contender: 'Contender',
   fringe: 'Fringe'
@@ -67,11 +77,13 @@ export function StatusBadge({ status }: { status: AtlasQuestionStatus }) {
 export function HumanKnowledgeAtlasDetail({
   question,
   onClose,
-  onChange
+  onChange,
+  onSelectHypothesis
 }: {
   question: AtlasQuestion
   onClose: () => void
   onChange: (next: AtlasQuestion) => void
+  onSelectHypothesis: (hypothesisId: string) => void
 }) {
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -168,15 +180,23 @@ export function HumanKnowledgeAtlasDetail({
               <h3 className={styles.blockTitle}>Competing hypotheses</h3>
               <ul className={styles.hypoList}>
                 {question.hypotheses.map((h) => (
-                  <li
-                    key={h.id}
-                    className={`${styles.hypoItem}${
-                      h.weight === 'leading' ? ` ${styles.hypoItemLeading}` : ''
-                    }`}
-                  >
-                    <p className={styles.hypoWeight}>{WEIGHT_LABEL[h.weight]}</p>
-                    <p className={styles.hypoStatement}>{h.statement}</p>
-                    <p className={styles.hypoWho}>{h.proponents}</p>
+                  <li key={h.id}>
+                    <button
+                      type='button'
+                      className={`${styles.hypoItem}${
+                        h.weight === 'leading' ? ` ${styles.hypoItemLeading}` : ''
+                      } ${styles.hypoItemBtn}`}
+                      onClick={() => onSelectHypothesis(h.id)}
+                    >
+                      <p className={styles.hypoWeight}>{WEIGHT_LABEL[h.weight]}</p>
+                      <p className={styles.hypoStatement}>{h.statement}</p>
+                      <p className={styles.hypoWho}>{h.proponents}</p>
+                      <p className={styles.hypoOpenHint}>
+                        {h.readingList.length}{' '}
+                        {h.readingList.length === 1 ? 'reading' : 'readings'} ·
+                        Open
+                      </p>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -223,6 +243,10 @@ export function HumanKnowledgeAtlasDetail({
           <AtlasReadingDiscussion
             readingList={question.readingList}
             threads={question.threads}
+            learningPathGoal={atlasLearningPathCopy(
+              'unresolved',
+              question.title
+            )}
             onAddReading={addReading}
             onReadingReply={addReadingReply}
             onThreadReply={addQuestionReply}
@@ -358,6 +382,24 @@ export function HumanKnowledgeAtlasKnownDetail({
           <AtlasReadingDiscussion
             readingList={fact.readingList}
             threads={fact.threads}
+            learningPathGoal={atlasLearningPathCopy('known', fact.title)}
+            afterReading={
+              <section
+                className={styles.block}
+                aria-labelledby='atlas-how-discovered'
+              >
+                <h3 id='atlas-how-discovered' className={styles.blockTitle}>
+                  How we discovered this
+                </h3>
+                {fact.howDiscovered.trim() ? (
+                  <p className={styles.discoveryCopy}>{fact.howDiscovered}</p>
+                ) : (
+                  <p className={styles.readingEmpty}>
+                    No discovery note yet.
+                  </p>
+                )}
+              </section>
+            }
             onAddReading={addReading}
             onReadingReply={addReadingReply}
             onThreadReply={addFactReply}
@@ -368,15 +410,143 @@ export function HumanKnowledgeAtlasKnownDetail({
   )
 }
 
+export function HumanKnowledgeAtlasHypothesisDetail({
+  question,
+  hypothesis,
+  onClose,
+  onChange,
+  onOpenQuestion
+}: {
+  question: AtlasQuestion
+  hypothesis: AtlasHypothesis
+  onClose: () => void
+  onChange: (next: AtlasHypothesis) => void
+  onOpenQuestion: () => void
+}) {
+  React.useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', onKey)
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = previous
+    }
+  }, [onClose])
+
+  const threads = hypothesis.threads ?? []
+
+  function addHypothesisReply(parentId: string | null, body: string) {
+    onChange({
+      ...hypothesis,
+      threads: appendAtlasReply(threads, parentId, makeComment(body))
+    })
+  }
+
+  function addReadingReply(
+    readingId: string,
+    parentId: string | null,
+    body: string
+  ) {
+    onChange({
+      ...hypothesis,
+      readingList: hypothesis.readingList.map((item) =>
+        item.id === readingId
+          ? {
+              ...item,
+              threads: appendAtlasReply(item.threads, parentId, makeComment(body))
+            }
+          : item
+      )
+    })
+  }
+
+  function addReading(item: AtlasReadingItem) {
+    onChange({
+      ...hypothesis,
+      readingList: [...hypothesis.readingList, item]
+    })
+  }
+
+  return (
+    <>
+      <button
+        type='button'
+        className={styles.drawerBackdrop}
+        aria-label='Close hypothesis'
+        onClick={onClose}
+      />
+      <aside
+        className={styles.drawer}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='atlas-hypothesis-title'
+      >
+        <div className={`${styles.drawerHeader} ${styles.drawerHeaderHypo}`}>
+          <div className={styles.drawerHeaderBody}>
+            <p className={styles.drawerPath}>
+              {question.disciplinePath} / {question.title}
+            </p>
+            <h2 id='atlas-hypothesis-title' className={styles.drawerTitle}>
+              {hypothesis.statement}
+            </h2>
+            <div className={styles.drawerMeta}>
+              <span className={styles.hypoPanelWeight}>
+                {WEIGHT_LABEL[hypothesis.weight]}
+              </span>
+              <span className={styles.threadMeta}>{hypothesis.proponents}</span>
+            </div>
+          </div>
+          <button
+            type='button'
+            className={styles.closeBtn}
+            onClick={onClose}
+            aria-label='Close'
+          >
+            <CloseIcon />
+          </button>
+        </div>
+
+        <div className={styles.drawerBody}>
+          <button
+            type='button'
+            className={styles.quietBtn}
+            onClick={onOpenQuestion}
+          >
+            ← Back to the question
+          </button>
+          <AtlasReadingDiscussion
+            readingList={hypothesis.readingList}
+            threads={threads}
+            learningPathGoal={atlasLearningPathCopy(
+              'unresolved',
+              hypothesis.statement
+            )}
+            onAddReading={addReading}
+            onReadingReply={addReadingReply}
+            onThreadReply={addHypothesisReply}
+          />
+        </div>
+      </aside>
+    </>
+  )
+}
+
 function AtlasReadingDiscussion({
   readingList,
   threads,
+  afterReading,
+  learningPathGoal,
   onAddReading,
   onReadingReply,
   onThreadReply
 }: {
   readingList: AtlasReadingItem[]
   threads: AtlasThreadComment[]
+  afterReading?: React.ReactNode
+  learningPathGoal: string
   onAddReading: (item: AtlasReadingItem) => void
   onReadingReply: (
     readingId: string,
@@ -390,40 +560,25 @@ function AtlasReadingDiscussion({
       <section className={styles.block}>
         <h3 className={styles.blockTitle}>Reading list</h3>
         <div className={styles.readingBlock}>
-          {readingList.length === 0 ? (
-            <p className={styles.readingEmpty}>No readings attached yet.</p>
-          ) : (
-            <ul className={styles.readingList}>
-              {readingList.map((item) => (
-                <li key={item.id} className={styles.readingItem}>
-                  {item.url ? (
-                    <a
-                      href={item.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className={styles.readingTitle}
-                    >
-                      {item.title}
-                    </a>
-                  ) : (
-                    <span className={styles.readingTitle}>{item.title}</span>
-                  )}
-                  {item.note ? (
-                    <p className={styles.readingNote}>{item.note}</p>
-                  ) : null}
-                  <ReadingThread
-                    item={item}
-                    onReply={(parentId, body) =>
-                      onReadingReply(item.id, parentId, body)
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          )}
-          <AddReadingForm onAdd={onAddReading} />
+          <ReadingListBlock
+            readingList={readingList}
+            empty='No readings attached yet.'
+            onAddReading={onAddReading}
+            onReadingReply={onReadingReply}
+          />
         </div>
       </section>
+
+      {afterReading}
+
+      <div className={styles.startPathWrap}>
+        <a
+          href={`/learning-path/new?goal=${encodeURIComponent(learningPathGoal)}`}
+          className={styles.startPathBtn}
+        >
+          Start Learning Path
+        </a>
+      </div>
 
       <section className={styles.block} aria-labelledby='atlas-discussion'>
         <h3 id='atlas-discussion' className={styles.blockTitle}>
@@ -439,6 +594,59 @@ function AtlasReadingDiscussion({
   )
 }
 
+function ReadingListBlock({
+  readingList,
+  empty,
+  onAddReading,
+  onReadingReply
+}: {
+  readingList: AtlasReadingItem[]
+  empty: string
+  onAddReading: (item: AtlasReadingItem) => void
+  onReadingReply: (
+    readingId: string,
+    parentId: string | null,
+    body: string
+  ) => void
+}) {
+  return (
+    <>
+      {readingList.length === 0 ? (
+        <p className={styles.readingEmpty}>{empty}</p>
+      ) : (
+        <ul className={styles.readingList}>
+          {readingList.map((item) => (
+            <li key={item.id} className={styles.readingItem}>
+              {item.url ? (
+                <a
+                  href={item.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={styles.readingTitle}
+                >
+                  {item.title}
+                </a>
+              ) : (
+                <span className={styles.readingTitle}>{item.title}</span>
+              )}
+              {item.note ? (
+                <p className={styles.readingNote}>{item.note}</p>
+              ) : null}
+              <ReadingThread
+                item={item}
+                onReply={(parentId, body) =>
+                  onReadingReply(item.id, parentId, body)
+                }
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+      <AddReadingForm onAdd={onAddReading} />
+    </>
+  )
+}
+
 function ReadingThread({
   item,
   onReply
@@ -446,7 +654,7 @@ function ReadingThread({
   item: AtlasReadingItem
   onReply: (parentId: string | null, body: string) => void
 }) {
-  const [open, setOpen] = React.useState(item.threads.length > 0)
+  const [open, setOpen] = React.useState(false)
   const count = countAtlasThread(item.threads)
 
   return (

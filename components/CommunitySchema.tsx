@@ -149,9 +149,9 @@ export function CommunitySchema() {
               <span className={styles.cardSub}>Seeded From Real Courses</span>
             </a>
           </Link>
-          <Link href='/human-knowledge-atlas'>
+          <Link href='/field-atlas'>
             <a className={`${styles.card} ${styles.cardQuestions}`}>
-              <span className={styles.cardTitle}>Research Questions</span>
+              <span className={styles.cardTitle}>Field Atlas</span>
               <span className={styles.cardSub}>Seeded From Open Questions</span>
             </a>
           </Link>

@@ -2,22 +2,22 @@ import * as React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { CuratedCourse } from '@/components/CuratedCourse'
+import { CourseLearningPath } from '@/components/CourseLearningPath'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
-import { DEFAULT_CURATED_COURSE_SLUG } from '@/lib/curated-course-seed'
+import { DEFAULT_COURSE_LEARNING_PATH_SLUG } from '@/lib/course-learning-path-seed'
 
 /**
- * Curated-course video library for a degrees-page course.
- * Path: /curated-course/[courseSlug]
+ * Course learning path video library for a degrees-page course.
+ * Path: /course-learning-path/[courseSlug]
  */
-export default function CuratedCoursePage() {
+export default function CourseLearningPathPage() {
   const router = useRouter()
   const raw = router.query.courseSlug
   const slug =
     typeof raw === 'string' && raw.trim()
       ? raw.trim()
-      : DEFAULT_CURATED_COURSE_SLUG
+      : DEFAULT_COURSE_LEARNING_PATH_SLUG
 
   const titleLabel = slug
     .split('-')
@@ -55,7 +55,7 @@ export default function CuratedCoursePage() {
       >
         <HomeHeader />
         {router.isReady ? (
-          <CuratedCourse key={slug} slug={slug} />
+          <CourseLearningPath key={slug} slug={slug} />
         ) : (
           <div style={{ padding: '48px var(--home-side)' }}>Loading…</div>
         )}

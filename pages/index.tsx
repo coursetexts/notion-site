@@ -27,6 +27,7 @@ import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeSocialLearningSection } from '@/components/HomeSocialLearningSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
+import { notionPageHref } from '@/lib/map-page-url'
 import { getRecordBlockValue } from '@/lib/notion-record-block'
 
 export type NotionHomeDebugPayload = {
@@ -954,7 +955,7 @@ function extractHomeCoursesFromRootPage(params: {
 
     let href: string
     if (nestedCoursePage) {
-      href = subPagePath ? `/${subPagePath}` : `/${coursePageSegment}`
+      href = notionPageHref(subPagePath || coursePageSegment)
     } else {
       const rootPathForHash =
         rootPagePath ||
@@ -1156,7 +1157,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 
       pool.push({
         id: pageId,
-        href: `/${pagePath}`,
+        href: notionPageHref(pagePath),
         meta: buildCourseMeta({
           schoolDate,
           school,

@@ -1,23 +1,23 @@
 import * as React from 'react'
 
 import { VoteRow } from '@/components/CourseActivity'
-import styles from './CuratedCourse.module.css'
-import { PlayIcon } from './CuratedCourseSyllabusNav'
+import styles from './CourseLearningPath.module.css'
+import { PlayIcon } from './CourseLearningPathSyllabusNav'
 import {
-  formatCuratedCourseVideoDuration,
-  type CuratedCourseVideo
-} from '@/lib/curated-course-types'
+  formatCourseLearningPathVideoDuration,
+  type CourseLearningPathVideo
+} from '@/lib/course-learning-path-types'
 import { youtubeThumbnailFromUrl } from '@/lib/youtube-thumbnail'
 
 interface VideoListProps {
-  videos: CuratedCourseVideo[]
+  videos: CourseLearningPathVideo[]
   editing?: boolean
   voteDisabled?: boolean
   votingId?: string | null
   onVote?: (videoId: string, value: 1 | -1 | null) => void
 }
 
-export function CuratedCourseVideoList({
+export function CourseLearningPathVideoList({
   videos,
   editing = false,
   voteDisabled = false,
@@ -57,7 +57,7 @@ function VideoRow({
   voteDisabled,
   onVote
 }: {
-  video: CuratedCourseVideo
+  video: CourseLearningPathVideo
   editing: boolean
   voteDisabled: boolean
   onVote?: (videoId: string, value: 1 | -1 | null) => void
@@ -85,7 +85,7 @@ function VideoRow({
         )}
         {video.durationSeconds > 0 && (
           <span className={styles.duration}>
-            {formatCuratedCourseVideoDuration(video.durationSeconds)}
+            {formatCourseLearningPathVideoDuration(video.durationSeconds)}
           </span>
         )}
         <span className={styles.playOverlay}>

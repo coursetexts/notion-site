@@ -1,4 +1,4 @@
-/** Frontend-only seed for /human-knowledge-atlas. Not wired to a database. */
+/** Frontend-only seed for /field-atlas. Not wired to a database. */
 
 export type AtlasQuestionStatus = 'settled' | 'active' | 'contested' | 'emerging'
 export type AtlasHypothesisWeight = 'leading' | 'contender' | 'fringe'
@@ -31,6 +31,8 @@ export type AtlasHypothesis = {
   statement: string
   weight: AtlasHypothesisWeight
   proponents: string
+  readingList: AtlasReadingItem[]
+  threads?: AtlasThreadComment[]
 }
 
 export type AtlasEvidence = {
@@ -70,6 +72,7 @@ export type AtlasKnownFact = {
   title: string
   note: string
   disciplinePath: string
+  howDiscovered: string
   readingList: AtlasReadingItem[]
   threads: AtlasThreadComment[]
   updated: string
@@ -123,21 +126,68 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         statement:
           'String theory: particles are vibrating one-dimensional strings in higher-dimensional space.',
         weight: 'leading',
-        proponents: 'Witten, Maldacena, and the AdS/CFT community'
+        proponents: 'Witten, Maldacena, and the AdS/CFT community',
+        readingList: [
+          {
+            id: 'r-qg-h1-gs',
+            title: 'Superstring Theory',
+            note: 'Green, Schwarz & Witten — the first long-form map of the string hypothesis.',
+            threads: []
+          },
+          {
+            id: 'r-qg-h1-malda',
+            title:
+              'The Large N Limit of Superconformal Field Theories and Supergravity',
+            url: 'https://arxiv.org/abs/hep-th/9711200',
+            note: 'Maldacena, 1997 — why this camp treats AdS/CFT as a working model.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement:
           'Loop quantum gravity: spacetime itself is quantized into discrete loops of area and volume.',
         weight: 'contender',
-        proponents: 'Rovelli, Smolin, Ashtekar'
+        proponents: 'Rovelli, Smolin, Ashtekar',
+        readingList: [
+          {
+            id: 'r-qg-h2-rovelli',
+            title: 'Quantum Gravity',
+            note: 'Rovelli — the loop-quantized geometry this camp is actually claiming.',
+            threads: []
+          },
+          {
+            id: 'r-qg-h2-ashtekar',
+            title: 'New Variables for Classical and Quantum Gravity',
+            url: 'https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.57.2244',
+            note: 'Ashtekar, 1986 — the variables the loops are built from.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h3',
         statement:
           'Spacetime and gravity are emergent from quantum entanglement (ER = EPR).',
         weight: 'contender',
-        proponents: 'Van Raamsdonk, Susskind'
+        proponents: 'Van Raamsdonk, Susskind',
+        readingList: [
+          {
+            id: 'r-qg-h3-erepr',
+            title: 'Cool horizons for entangled black holes',
+            url: 'https://arxiv.org/abs/1306.0533',
+            note: 'Maldacena & Susskind, 2013 — ER = EPR as a claim, not a slogan.',
+            threads: []
+          },
+          {
+            id: 'r-qg-h3-vanr',
+            title: 'Building up spacetime with quantum entanglement',
+            url: 'https://arxiv.org/abs/1005.3035',
+            note: 'Van Raamsdonk, 2010 — geometry from entanglement.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -238,14 +288,38 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         statement:
           'Spacetime emerges from entanglement structure of a quantum system.',
         weight: 'leading',
-        proponents: 'Van Raamsdonk, Swingle'
+        proponents: 'Van Raamsdonk, Swingle',
+        readingList: [
+          {
+            id: 'r-st-h1-rt',
+            title: 'Holographic Derivation of Entanglement Entropy from AdS/CFT',
+            url: 'https://arxiv.org/abs/hep-th/0603001',
+            note: 'Ryu & Takayanagi, 2006 — the formula this emergence story leans on.',
+            threads: []
+          },
+          {
+            id: 'r-st-h1-swingle',
+            title: 'Entanglement Renormalization and Holography',
+            url: 'https://arxiv.org/abs/0905.1317',
+            note: 'Swingle — tensor networks as a picture of emergent bulk.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement:
           'Spacetime is fundamental; emergence is an artifact of our models.',
         weight: 'contender',
-        proponents: 'Traditionalists'
+        proponents: 'Traditionalists',
+        readingList: [
+          {
+            id: 'r-st-h2-wald',
+            title: 'General Relativity',
+            note: 'Wald — spacetime as the thing the theory is about, not a large-N approximation.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -295,20 +369,55 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         id: 'h1',
         statement: 'A cosmological constant (vacuum energy) with fixed value.',
         weight: 'leading',
-        proponents: 'ΛCDM standard model'
+        proponents: 'ΛCDM standard model',
+        readingList: [
+          {
+            id: 'r-de-h1-weinberg',
+            title: 'The cosmological constant problem',
+            url: 'https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.61.1',
+            note: 'Weinberg, 1989 — why a constant is both the default and a scandal.',
+            threads: []
+          },
+          {
+            id: 'r-de-h1-riess',
+            title:
+              'Observational Evidence from Supernovae for an Accelerating Universe',
+            url: 'https://arxiv.org/abs/astro-ph/9805201',
+            note: 'Riess et al., 1998 — the measurement ΛCDM absorbed.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement:
           'Quintessence: a dynamical field whose energy density evolves.',
         weight: 'contender',
-        proponents: 'Steinhardt et al.'
+        proponents: 'Steinhardt et al.',
+        readingList: [
+          {
+            id: 'r-de-h2-rp',
+            title: 'Cosmological Consequences of a Rolling Homogeneous Scalar Field',
+            url: 'https://journals.aps.org/prd/abstract/10.1103/PhysRevD.37.3406',
+            note: 'Ratra & Peebles, 1988 — an evolving field instead of a constant.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h3',
         statement: 'Modified gravity on cosmic scales, not a new substance.',
         weight: 'fringe',
-        proponents: 'MOND / f(R) theorists'
+        proponents: 'MOND / f(R) theorists',
+        readingList: [
+          {
+            id: 'r-de-h3-clifton',
+            title: 'Modified Gravity and Cosmology',
+            url: 'https://arxiv.org/abs/1106.2476',
+            note: 'Clifton et al. — the case that the acceleration is gravity, not a fluid.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -396,13 +505,39 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         id: 'h1',
         statement: 'A scalar inflaton field drove exponential expansion.',
         weight: 'leading',
-        proponents: 'Guth, Linde, Starobinsky'
+        proponents: 'Guth, Linde, Starobinsky',
+        readingList: [
+          {
+            id: 'r-inf-h1-guth',
+            title:
+              'Inflationary universe: A possible solution to the horizon and flatness problems',
+            url: 'https://journals.aps.org/prd/abstract/10.1103/PhysRevD.23.347',
+            note: 'Guth, 1981 — the original inflaton story.',
+            threads: []
+          },
+          {
+            id: 'r-inf-h1-linde',
+            title: 'A new inflationary universe scenario',
+            url: 'https://www.sciencedirect.com/science/article/pii/0370269382909199',
+            note: 'Linde, 1982 — slow-roll as a workable field.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement: 'A cyclic/bouncing cosmology replaces inflation.',
         weight: 'contender',
-        proponents: 'Steinhardt, Turok'
+        proponents: 'Steinhardt, Turok',
+        readingList: [
+          {
+            id: 'r-inf-h2-ekpyrotic',
+            title: 'A Cyclic Model of the Universe',
+            url: 'https://arxiv.org/abs/hep-th/0111098',
+            note: 'Steinhardt & Turok, 2002 — bounce instead of a first inflaton.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -459,20 +594,47 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         id: 'h1',
         statement: 'Thousands of tiny-effect common variants (omnigenic model).',
         weight: 'leading',
-        proponents: 'Pritchard, Boyle'
+        proponents: 'Pritchard, Boyle',
+        readingList: [
+          {
+            id: 'r-her-h1-omni',
+            title: 'An Expanded View of Complex Traits: From Polygenic to Omnigenic',
+            url: 'https://www.cell.com/cell/fulltext/S0092-8674(17)30629-3',
+            note: 'Boyle, Li, Pritchard, 2017 — the leading “everything is a little causal” claim.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement: 'Rare variants of large effect missed by common-SNP arrays.',
         weight: 'contender',
-        proponents: 'Rare-variant camp'
+        proponents: 'Rare-variant camp',
+        readingList: [
+          {
+            id: 'r-her-h2-manolio',
+            title: 'Finding the missing heritability of complex diseases',
+            url: 'https://www.nature.com/articles/nature08494',
+            note: 'Manolio et al., 2009 — where the rare-variant gap was first priced.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h3',
         statement:
           'Gene–gene and gene–environment interactions inflate twin estimates.',
         weight: 'contender',
-        proponents: 'Epistasis proponents'
+        proponents: 'Epistasis proponents',
+        readingList: [
+          {
+            id: 'r-her-h3-zuk',
+            title: 'The mystery of missing heritability: Genetic interactions create phantom heritability',
+            url: 'https://www.pnas.org/doi/10.1073/pnas.1119675109',
+            note: 'Zuk et al., 2012 — interactions as the thing twin studies overcount.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -528,21 +690,53 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         statement:
           'Global Workspace: consciousness is information broadcast across cortex.',
         weight: 'leading',
-        proponents: 'Dehaene, Baars'
+        proponents: 'Dehaene, Baars',
+        readingList: [
+          {
+            id: 'r-con-h1-baars',
+            title: 'A Cognitive Theory of Consciousness',
+            note: 'Baars — the workspace this camp is named for.',
+            threads: []
+          },
+          {
+            id: 'r-con-h1-dehaene',
+            title: 'Consciousness and the brain',
+            note: 'Dehaene — the experimental program attached to global workspace.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement:
           'Integrated Information Theory: consciousness = integrated information (Φ).',
         weight: 'contender',
-        proponents: 'Tononi, Koch'
+        proponents: 'Tononi, Koch',
+        readingList: [
+          {
+            id: 'r-con-h2-tononi',
+            title: 'An information integration theory of consciousness',
+            url: 'https://bmcneurosci.biomedcentral.com/articles/10.1186/1471-2202-5-42',
+            note: 'Tononi, 2004 — Φ as the quantity, not a metaphor.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h3',
         statement:
           'Higher-order theories: awareness requires representing one’s own states.',
         weight: 'contender',
-        proponents: 'Lau, Rosenthal'
+        proponents: 'Lau, Rosenthal',
+        readingList: [
+          {
+            id: 'r-con-h3-lau',
+            title: 'A higher order Bayesian decision theory of consciousness',
+            url: 'https://www.sciencedirect.com/science/article/pii/S0079612307680022',
+            note: 'Lau — awareness as a representation of one’s own first-order state.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -617,14 +811,38 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         statement:
           'The hypothesis is true; a spectral / random-matrix interpretation will prove it.',
         weight: 'leading',
-        proponents: 'Montgomery–Dyson correspondence'
+        proponents: 'Montgomery–Dyson correspondence',
+        readingList: [
+          {
+            id: 'r-rh-h1-mont',
+            title: 'The pair correlation of zeros of the zeta function',
+            url: 'https://www.ams.org/books/pspum/024.2/',
+            note: 'Montgomery, 1973 — the spectral statistics this camp is betting on.',
+            threads: []
+          },
+          {
+            id: 'r-rh-h1-odlyzko',
+            title: 'On the distribution of spacings between zeros of the zeta function',
+            url: 'https://www.ams.org/journals/mcom/1987-48-177/S0025-5718-1987-0866115-0/',
+            note: 'Odlyzko — the numerical match to random-matrix theory.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement:
           'A proof will come via the Langlands program and automorphic forms.',
         weight: 'contender',
-        proponents: 'Langlands community'
+        proponents: 'Langlands community',
+        readingList: [
+          {
+            id: 'r-rh-h2-frenkel',
+            title: 'Love and Math',
+            note: 'Frenkel — a readable door into why automorphic forms are offered as a proof route.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -674,13 +892,38 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
         statement:
           'P ≠ NP — the widely held expectation among complexity theorists.',
         weight: 'leading',
-        proponents: 'Majority of the field'
+        proponents: 'Majority of the field',
+        readingList: [
+          {
+            id: 'r-pnp-h1-aaronson',
+            title: 'P ≟ NP',
+            url: 'https://www.scottaaronson.com/papers/pnp.pdf',
+            note: 'Aaronson — why most of the field expects inequality, with the barriers in view.',
+            threads: []
+          },
+          {
+            id: 'r-pnp-h1-rrz',
+            title: 'Natural Proofs',
+            url: 'https://www.cs.utexas.edu/~diz/library/natural.pdf',
+            note: 'Razborov & Rudich — the barrier this camp uses to explain decades of stall.',
+            threads: []
+          }
+        ]
       },
       {
         id: 'h2',
         statement: 'P = NP — a hidden efficient algorithm exists.',
         weight: 'fringe',
-        proponents: 'A small minority'
+        proponents: 'A small minority',
+        readingList: [
+          {
+            id: 'r-pnp-h2-impagliazzo',
+            title: 'A Personal View of Average-Case Complexity',
+            url: 'https://cseweb.ucsd.edu/~russell/average.ps',
+            note: 'Impagliazzo’s five worlds — the closest honest map of what P = NP would actually buy.',
+            threads: []
+          }
+        ]
       }
     ],
     evidence: [
@@ -733,6 +976,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'General relativity describes gravity as spacetime curvature and passes every solar-system test.',
     note: 'This is settled at ordinary curvatures. The remaining puzzle is how the same geometry behaves where quantum effects cannot be ignored.',
+    howDiscovered:
+      'Einstein wrote the field equations in 1915 after a decade of trying to make gravity geometric. The 1919 eclipse expeditions measured starlight bending as predicted; perihelion, Shapiro delay, and then LIGO’s 2015 waveforms closed the strong-field case. The theory was not voted in. It kept surviving tests that could have killed it.',
     disciplinePath: 'Physics / Quantum Gravity',
     readingList: [
       {
@@ -779,6 +1024,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'Quantum field theory predicts particle physics to 12 decimal places.',
     note: 'The Standard Model is the most precise empirical theory we have. It is not a theory of spacetime.',
+    howDiscovered:
+      'QED was assembled after the war by Feynman, Schwinger, and Tomonaga, then renormalized into a theory that matched the electron’s magnetic moment to absurd precision. Electroweak unification and QCD followed; collider after collider filled in the particle table until the Higgs closed the last predicted gap. The 12 decimal places are not a slogan. They are a laboratory record.',
     disciplinePath: 'Physics / Quantum Gravity',
     readingList: [
       {
@@ -796,6 +1043,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'Black holes radiate (Hawking) and carry entropy proportional to horizon area.',
     note: 'Thermodynamics of horizons is as close as we have to a quantum-gravity fact. What the microstates are is still open.',
+    howDiscovered:
+      'Bekenstein argued that black holes must carry entropy proportional to horizon area, or the second law would fail when matter fell in. Hawking’s 1975 calculation showed that quantum fields near the horizon produce a thermal flux — radiation with a temperature. The result is still a calculation, not a telescope detection, but every serious quantum-gravity program treats it as a fact that has to be recovered.',
     disciplinePath: 'Physics / Quantum Gravity',
     readingList: [
       {
@@ -813,6 +1062,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-cos-expand',
     title: 'The universe is expanding and is ~13.8 billion years old.',
     note: 'Age and expansion are not in dispute. What is driving the late-time acceleration is.',
+    howDiscovered:
+      'Slipher measured redshifts of nebulae; Hubble, in 1929, plotted them against distance and found a line. Friedmann and Lemaître had already written expanding solutions of Einstein’s equations. The age settled later: the Hubble constant, nucleosynthesis, and the microwave background together pin the clock near 13.8 billion years. Expansion was a diagram before it was a consensus.',
     disciplinePath: 'Physics / Cosmology',
     readingList: [
       {
@@ -838,6 +1089,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'Ordinary matter is ~5% of the cosmos; dark matter ~27%; dark energy ~68%.',
     note: 'The inventory is robust. The identities of the two large terms are not.',
+    howDiscovered:
+      'Zwicky saw galaxies in clusters moving too fast for the visible mass; Rubin’s rotation curves made the same point inside spirals. In 1998 two supernova teams found the expansion accelerating, which required a dominant dark-energy term. Planck’s map of the microwave sky then locked the budget: a few percent atoms, about a quarter dark matter, the rest a cosmological constant we still cannot name.',
     disciplinePath: 'Physics / Cosmology',
     readingList: [],
     threads: [],
@@ -848,6 +1101,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'The cosmic microwave background is a near-perfect 2.7 K blackbody.',
     note: 'The spectrum is settled. What the polarization may still say about inflation is not.',
+    howDiscovered:
+      'Penzias and Wilson found a leftover hiss in a Bell Labs horn in 1965 and could not get rid of it. Dicke’s group recognized it as the predicted relic of a hot early universe. COBE’s FIRAS instrument later showed the spectrum is a 2.725 K blackbody to a part in 10⁴ — the cleanest thermal spectrum in nature, measured rather than assumed.',
     disciplinePath: 'Physics / Cosmology',
     readingList: [
       {
@@ -865,6 +1120,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-gen-dna',
     title: 'DNA encodes heredity via the four-base genetic code.',
     note: 'The code itself is known. How that code is regulated across a lifetime is the live subject.',
+    howDiscovered:
+      'Avery’s group showed that DNA, not protein, carries heredity; Hershey and Chase confirmed it with labeled phage. Watson and Crick’s 1953 model made a copying mechanism geometric. The four-base code itself was cracked in the 1960s by Nirenberg, Matthaei, and Khorana, codon by codon, in cell-free systems — a table, not a metaphor.',
     disciplinePath: 'Biology / Genetics',
     readingList: [
       {
@@ -883,6 +1140,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'The human genome contains ~20,000 protein-coding genes.',
     note: 'The count stabilized after the first overestimates. Function is not a count.',
+    howDiscovered:
+      'Early guesses ran to 100,000 genes. The Human Genome Project’s draft, and the finishes that followed, kept cutting the protein-coding count as overlapping predictions were reconciled. Around 20,000 is where the catalogs stopped moving. The surprise was not that we sequenced a genome. It was how few genes it took.',
     disciplinePath: 'Biology / Genetics',
     readingList: [],
     threads: [],
@@ -892,6 +1151,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-gen-noncoding',
     title: 'Most of the genome is non-coding, much of it regulatory.',
     note: '“Junk DNA” is the wrong slogan. How much is functional is still argued; that regulation lives here is not.',
+    howDiscovered:
+      'Most of the sequence does not code for protein — that was clear as soon as genome size and gene count diverged. Comparative genomics, then ENCODE and the regulatory maps that followed, showed promoters, enhancers, and non-coding RNAs living in the remainder. “Junk” lost the argument as a total description. How much of the rest is doing work is the part still being priced.',
     disciplinePath: 'Biology / Genetics',
     readingList: [],
     threads: [
@@ -908,6 +1169,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-neuro-ap',
     title: 'Neurons communicate via electrochemical action potentials.',
     note: 'The spike is the known coin of the nervous system. How spikes become experience is not.',
+    howDiscovered:
+      'Nineteenth-century electrophysiology showed that nerves speak in electricity. Hodgkin and Huxley, working on the squid giant axon, wrote equations for sodium and potassium currents that reproduce the action potential from ion flow. The spike is a measured waveform with a mechanism, not an analogy.',
     disciplinePath: 'Biology / Neuroscience',
     readingList: [
       {
@@ -926,6 +1189,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'Specific cortical regions map to sensory and motor functions.',
     note: 'Localization is real enough to plan surgery around. It is not a full theory of mind.',
+    howDiscovered:
+      'Broca and Wernicke tied lesions to speech. Penfield’s intraoperative stimulations drew the sensory and motor homunculus on the cortex. Later imaging and more careful lesion work refined the maps without erasing them. You can still plan around these regions. You cannot read a mind off them.',
     disciplinePath: 'Biology / Neuroscience',
     readingList: [],
     threads: [],
@@ -935,6 +1200,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-neuro-memory',
     title: 'Memory involves synaptic plasticity in the hippocampus.',
     note: 'LTP and hippocampal circuits are the known mechanism of one kind of memory. They are not the whole of remembering.',
+    howDiscovered:
+      'Patient H.M., after a hippocampal resection, lost the ability to form new episodic memories and made the structure’s role undeniable. Bliss and Lømo then recorded long-term potentiation in rabbit hippocampus — synapses that stay stronger after a burst. The circuit and the plasticity are both laboratory facts. They explain a kind of memory, not memory as such.',
     disciplinePath: 'Biology / Neuroscience',
     readingList: [],
     threads: [],
@@ -944,6 +1211,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-nt-euclid',
     title: 'There are infinitely many primes (Euclid).',
     note: 'The proof is older than the rest of this atlas. What remains is how they are distributed.',
+    howDiscovered:
+      'Euclid’s Elements, Book IX, Proposition 20: given any finite list of primes, form their product plus one; that number has a prime factor not on the list. The argument is still the one taught. Later proofs exist; none is older, and none made the fact more true.',
     disciplinePath: 'Mathematics / Number Theory',
     readingList: [
       {
@@ -968,6 +1237,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-nt-fta',
     title: 'Every integer > 1 factors uniquely into primes.',
     note: 'The fundamental theorem of arithmetic. Unique factorization is the reason primes are the atoms of the integers.',
+    howDiscovered:
+      'Euclid had existence of a prime factorization. Uniqueness waited: Gauss stated and proved it cleanly in the Disquisitiones Arithmeticae. Once unique factorization is in hand, the integers have atoms. Every later uniqueness theorem in algebra is a descendant of this one.',
     disciplinePath: 'Mathematics / Number Theory',
     readingList: [],
     threads: [],
@@ -978,6 +1249,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'The prime number theorem describes prime density asymptotically.',
     note: 'We know the density. The Riemann Hypothesis is a sharper claim about the error term.',
+    howDiscovered:
+      'Gauss guessed that the count of primes near x is about x / log x from tables he kept as a teenager. The proof came in 1896, independently, from Hadamard and de la Vallée Poussin, using complex analysis on the zeta function. The theorem is an analytic fact about density. Riemann’s hypothesis is a claim about how tightly that approximation sits.',
     disciplinePath: 'Mathematics / Number Theory',
     readingList: [],
     threads: [],
@@ -987,6 +1260,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     id: 'k-cx-halt',
     title: 'Some problems are provably undecidable (the halting problem).',
     note: 'Undecidability is settled. P vs NP is a question about the decidable remainder.',
+    howDiscovered:
+      'Turing’s 1936 paper defined a machine and asked whether it could decide, of an arbitrary machine and input, whether computation would halt. A diagonal argument shows that no such decider exists. Church had a parallel result in the λ-calculus. Undecidability is not a rumor about hard problems. It is a proof that some questions have no algorithm at all.',
     disciplinePath: 'Mathematics / Complexity Theory',
     readingList: [
       {
@@ -1005,6 +1280,8 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     title:
       'Thousands of problems are known to be NP-complete and inter-reducible.',
     note: 'NP-completeness is a map of equivalent difficulty. Whether any of them is in P is the open question.',
+    howDiscovered:
+      'Cook and Levin showed that SAT is NP-complete: every problem in NP reduces to it. Karp’s 1972 paper then exhibited twenty-one combinatorial problems that inherit that completeness by reduction. The list grew into the thousands. Completeness is a web of equivalences, built one reduction at a time — not a single experiment.',
     disciplinePath: 'Mathematics / Complexity Theory',
     readingList: [
       {
@@ -1223,6 +1500,16 @@ export function atlasQuestionDiscussionCount(question: AtlasQuestion): number {
     countAtlasThread(question.threads) +
     question.readingList.reduce(
       (sum, item) => sum + countAtlasThread(item.threads),
+      0
+    ) +
+    question.hypotheses.reduce(
+      (sum, hypothesis) =>
+        sum +
+        countAtlasThread(hypothesis.threads ?? []) +
+        hypothesis.readingList.reduce(
+          (inner, item) => inner + countAtlasThread(item.threads),
+          0
+        ),
       0
     )
   )

@@ -1,24 +1,24 @@
 import * as React from 'react'
 
-import styles from './CuratedCourse.module.css'
+import styles from './CourseLearningPath.module.css'
 import {
-  getCuratedCourseResourceSection,
+  getCourseLearningPathResourceSection,
   resourcesForSection
-} from '@/lib/curated-course-resources'
+} from '@/lib/course-learning-path-resources'
 import { isResourceUrl, type CourseResource } from '@/lib/undergraduate-degrees'
 
-interface CuratedCourseResourcesProps {
+interface CourseLearningPathResourcesProps {
   selectedId: string
   resources: CourseResource[] | undefined
   courseTitle: string
 }
 
-export function CuratedCourseResources({
+export function CourseLearningPathResources({
   selectedId,
   resources,
   courseTitle
-}: CuratedCourseResourcesProps) {
-  const section = getCuratedCourseResourceSection(selectedId)
+}: CourseLearningPathResourcesProps) {
+  const section = getCourseLearningPathResourceSection(selectedId)
   if (!section) return null
 
   const items = resourcesForSection(resources, section.kind)

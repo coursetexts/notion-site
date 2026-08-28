@@ -22,7 +22,7 @@ import {
   type CommunitySearchHit,
   searchCommunity
 } from '@/lib/community-search-db'
-import { getCuratedCoursePath } from '@/lib/undergraduate-degrees'
+import { getCourseLearningPathHref } from '@/lib/undergraduate-degrees'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './community.module.css'
@@ -55,8 +55,8 @@ interface CommunityResource {
   /** Search results can also surface knowledge components. */
   kind?: 'resource' | 'knowledge_component'
   conceptTree?: string | null
-  fromCuratedCourse?: boolean
-  curatedCourseSlug?: string | null
+  fromCourseLearningPath?: boolean
+  courseLearningPathSlug?: string | null
   authorId?: string | null
 }
 
@@ -74,8 +74,8 @@ function dbToFeedItem(r: CommunityPageResource): CommunityResource {
     dbBacked: true,
     commentCount: r.comment_count,
     conceptTree: r.concept_tree,
-    fromCuratedCourse: r.from_curated_course,
-    curatedCourseSlug: r.curated_course_slug,
+    fromCourseLearningPath: r.from_curated_course,
+    courseLearningPathSlug: r.curated_course_slug,
     authorId: r.author_id
   }
 }
@@ -116,43 +116,43 @@ function courseNameFromConceptTree(tree?: string | null): string {
   return tree.split(' --> ')[0]?.trim() || ''
 }
 
-function curatedCourseHref(
+function courseLearningPathHref(
   slug?: string | null,
   courseName?: string
 ): string | null {
   const trimmed = slug?.trim()
-  if (trimmed) return `/curated-course/${trimmed}`
+  if (trimmed) return `/course-learning-path/${trimmed}`
   if (!courseName) return null
-  const path = getCuratedCoursePath(courseName)
-  return path.startsWith('/curated-course/') ? path : null
+  const path = getCourseLearningPathHref(courseName)
+  return path.startsWith('/course-learning-path/') ? path : null
 }
 
-function CuratedConceptTreeLine({
-  fromCuratedCourse,
+function CourseLearningPathConceptTreeLine({
+  fromCourseLearningPath,
   conceptTree,
-  curatedCourseSlug
+  courseLearningPathSlug
 }: {
-  fromCuratedCourse?: boolean
+  fromCourseLearningPath?: boolean
   conceptTree?: string | null
-  curatedCourseSlug?: string | null
+  courseLearningPathSlug?: string | null
 }) {
-  if (!fromCuratedCourse && !conceptTree) return null
+  if (!fromCourseLearningPath && !conceptTree) return null
   const name = courseNameFromConceptTree(conceptTree) || 'course'
-  const href = fromCuratedCourse
-    ? curatedCourseHref(curatedCourseSlug, name)
+  const href = fromCourseLearningPath
+    ? courseLearningPathHref(courseLearningPathSlug, name)
     : null
 
   return (
     <p className={styles.conceptTree}>
-      {fromCuratedCourse && (
+      {fromCourseLearningPath && (
         <>
-          From curated course{' '}
+          From course learning path{' '}
           {href ? (
-            <Link href={href} className={styles.curatedCourseLink}>
+            <Link href={href} className={styles.courseLearningPathLink}>
               {name}
             </Link>
           ) : (
-            <span className={styles.curatedCourseName}>{name}</span>
+            <span className={styles.courseLearningPathName}>{name}</span>
           )}
           {conceptTree ? (
             <span className={styles.conceptTreeSep} aria-hidden>
@@ -961,10 +961,10 @@ export default function CommunityPage() {
                         </span>
                       )}
                     </h3>
-                    <CuratedConceptTreeLine
-                      fromCuratedCourse={r.fromCuratedCourse}
+                    <CourseLearningPathConceptTreeLine
+                      fromCourseLearningPath={r.fromCourseLearningPath}
                       conceptTree={r.conceptTree}
-                      curatedCourseSlug={r.curatedCourseSlug}
+                      courseLearningPathSlug={r.courseLearningPathSlug}
                     />
                     {r.description ? (
                       <p className={styles.rowDesc}>{r.description}</p>

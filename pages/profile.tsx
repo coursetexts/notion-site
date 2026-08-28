@@ -1371,7 +1371,7 @@ export default function ProfilePage() {
                               const { bookmark, resource, course } = row.data
                               const rowNoteId = `cr-${bookmark.id}`
                               const courseHref =
-                                course.url ?? `/${course.notion_page_id}`
+                                course.url ?? `/course/${course.notion_page_id}`
                               const raw = resource.link?.trim() ?? ''
                               const primaryHref =
                                 raw && /^https?:\/\//i.test(raw)
@@ -1915,7 +1915,7 @@ export default function ProfilePage() {
                                   <div className={styles.feedCardActions}>
                                     <span>replied on </span>
                                     <Link
-                                      href={n.course_url ?? `/${n.course_id}`}
+                                      href={n.course_url ?? `/course/${n.course_id}`}
                                     >
                                       <a className={styles.inlineLink}>
                                         {n.course_name}
@@ -1933,7 +1933,7 @@ export default function ProfilePage() {
                             }
                             const item = row.item
                             const courseHref =
-                              item.course_url ?? `/${item.course_id}`
+                              item.course_url ?? `/course/${item.course_id}`
                             const actorLabel =
                               item.actor_display_name?.trim() || 'Someone'
                             return (
@@ -2016,7 +2016,7 @@ export default function ProfilePage() {
                                 >
                                   <Link
                                     href={
-                                      course.url ?? `/${course.notion_page_id}`
+                                      course.url ?? `/course/${course.notion_page_id}`
                                     }
                                   >
                                     <a className={styles.listLink}>
@@ -2048,7 +2048,7 @@ export default function ProfilePage() {
                               >
                                 <Link
                                   href={
-                                    course.url ?? `/${course.notion_page_id}`
+                                    course.url ?? `/course/${course.notion_page_id}`
                                   }
                                 >
                                   <a className={styles.listLink}>

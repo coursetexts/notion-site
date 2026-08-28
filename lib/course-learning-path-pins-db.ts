@@ -1,30 +1,30 @@
 /**
- * Per-user pinned curated courses (header dropdown + syllabus nav).
+ * Per-user pinned course learning paths (header dropdown + syllabus nav).
  */
 import { getSupabaseClient } from './supabase'
 
-const PINS_CHANGED_EVENT = 'ct:curated-course-pins-changed'
+const PINS_CHANGED_EVENT = 'ct:course-learning-path-pins-changed'
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-export function isCuratedCoursePinId(id: string | undefined | null): boolean {
+export function isCourseLearningPathPinId(id: string | undefined | null): boolean {
   return Boolean(id && UUID_RE.test(id))
 }
 
-export interface PinnedCuratedCourse {
+export interface PinnedCourseLearningPath {
   pinId: string
   courseId: string
   slug: string
   title: string
 }
 
-export function notifyCuratedCoursePinsChanged() {
+export function notifyCourseLearningPathPinsChanged() {
   if (typeof window === 'undefined') return
   window.dispatchEvent(new Event(PINS_CHANGED_EVENT))
 }
 
-export function subscribeCuratedCoursePins(listener: () => void): () => void {
+export function subscribeCourseLearningPathPins(listener: () => void): () => void {
   if (typeof window === 'undefined') {
     return () => undefined
   }
@@ -33,12 +33,12 @@ export function subscribeCuratedCoursePins(listener: () => void): () => void {
 }
 
 function pathForSlug(slug: string): string {
-  return `/curated-course/${slug}`
+  return `/course-learning-path/${slug}`
 }
 
-/** Current user's pinned curated courses, newest first. */
-export async function listMyCuratedCoursePins(): Promise<
-  PinnedCuratedCourse[]
+/** Current user's pinned course learning paths, newest first. */
+export async function listMyCourseLearningPathPins(): Promise<
+  PinnedCourseLearningPath[]
 > {
   const supabase = getSupabaseClient()
   if (!supabase) return []
@@ -54,11 +54,11 @@ export async function listMyCuratedCoursePins(): Promise<
     .order('created_at', { ascending: false })
 
   if (error || !data) {
-    if (error) console.error('listMyCuratedCoursePins failed', error)
+    if (error) console.error('listMyCourseLearningPathPins failed', error)
     return []
   }
 
-  const rows: PinnedCuratedCourse[] = []
+  const rows: PinnedCourseLearningPath[] = []
   for (const row of data as Array<{
     id: string
     course_id: string
@@ -81,14 +81,14 @@ export async function listMyCuratedCoursePins(): Promise<
   return rows
 }
 
-export function curatedCoursePath(slug: string): string {
+export function courseLearningPathHref(slug: string): string {
   return pathForSlug(slug)
 }
 
-export async function isCuratedCoursePinned(
+export async function isCourseLearningPathPinned(
   courseId: string
 ): Promise<boolean> {
-  if (!isCuratedCoursePinId(courseId)) return false
+  if (!isCourseLearningPathPinId(courseId)) return false
   const supabase = getSupabaseClient()
   if (!supabase) return false
   const {
@@ -107,11 +107,11 @@ export async function isCuratedCoursePinned(
 }
 
 /** Pin or unpin. Returns the resulting pinned state, or null on failure. */
-export async function setCuratedCoursePinned(
+export async function setCourseLearningPathPinned(
   courseId: string,
   pinned: boolean
 ): Promise<boolean | null> {
-  if (!isCuratedCoursePinId(courseId)) return null
+  if (!isCourseLearningPathPinId(courseId)) return null
   const supabase = getSupabaseClient()
   if (!supabase) return null
   const {
@@ -125,7 +125,7 @@ export async function setCuratedCoursePinned(
       course_id: courseId
     })
     if (error && error.code !== '23505') {
-      console.error('setCuratedCoursePinned insert failed', error)
+      console.error('setCourseLearningPathPinned insert failed', error)
       return null
     }
   } else {
@@ -135,11 +135,11 @@ export async function setCuratedCoursePinned(
       .eq('user_id', user.id)
       .eq('course_id', courseId)
     if (error) {
-      console.error('setCuratedCoursePinned delete failed', error)
+      console.error('setCourseLearningPathPinned delete failed', error)
       return null
     }
   }
 
-  notifyCuratedCoursePinsChanged()
+  notifyCourseLearningPathPinsChanged()
   return pinned
 }

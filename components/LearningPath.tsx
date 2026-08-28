@@ -20,6 +20,12 @@ import {
   userStateFromPath,
   writeLocalUserState
 } from '@/lib/learning-path-db'
+import {
+  edgePath,
+  layoutHoverGraph,
+  visibleTree,
+  type PathTreeItem
+} from '@/lib/learning-path-graph-layout'
 
 import styles from './LearningPath.module.css'
 
@@ -97,14 +103,9 @@ function statusLabel(status: LearningPathNodeStatus) {
   return 'Next'
 }
 
-function nodeClass(
-  node: LearningPathNode,
-  selected: boolean,
-  packed = false
-) {
+function nodeClass(node: LearningPathNode, selected: boolean) {
   const parts = [styles.node]
   if (selected) parts.push(styles.nodeSelected)
-  if (packed) parts.push(styles.nodePacked)
   if (node.kind === 'goal') parts.push(styles.nodeGoal)
   if (node.kind === 'milestone') parts.push(styles.nodeMilestone)
   if (node.status === 'explored') parts.push(styles.nodeExplored)
@@ -126,104 +127,6 @@ function ancestorIds(path: LearningPathData, nodeId: string): string[] {
     current = parentOf.get(current)
   }
   return chain
-}
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, value))
-}
-
-function parentMap(path: LearningPathData) {
-  const parentOf = new Map<string, string>()
-  for (const edge of path.edges) {
-    if (!parentOf.has(edge.to)) parentOf.set(edge.to, edge.from)
-  }
-  return parentOf
-}
-
-function expandedParents(path: LearningPathData, selectedId: string) {
-  const byId = Object.fromEntries(path.nodes.map((node) => [node.id, node]))
-  const parentOf = parentMap(path)
-  const expanded = new Set<string>([selectedId])
-  let current = selectedId
-  const seen = new Set<string>()
-  while (current && !seen.has(current)) {
-    seen.add(current)
-    const node = byId[current]
-    const parentId = parentOf.get(current)
-    if (node?.kind === 'prerequisite' && parentId) expanded.add(parentId)
-    current = parentId ?? ''
-  }
-  return expanded
-}
-
-function graphLayout(
-  path: LearningPathData,
-  selectedId: string,
-  visibleIds: Set<string>
-) {
-  const byId = Object.fromEntries(path.nodes.map((node) => [node.id, node]))
-  const parentOf = parentMap(path)
-  const expanded = expandedParents(path, selectedId)
-  const childrenOf = new Map<string, LearningPathNode[]>()
-  for (const edge of path.edges) {
-    if (!visibleIds.has(edge.to) || !visibleIds.has(edge.from)) continue
-    const child = byId[edge.to]
-    if (!child) continue
-    const list = childrenOf.get(edge.from) ?? []
-    if (!list.some((node) => node.id === child.id)) list.push(child)
-    childrenOf.set(edge.from, list)
-  }
-  for (const [id, list] of childrenOf) {
-    childrenOf.set(id, [...list].sort(sortTreeNodes))
-  }
-
-  const positions: Record<string, { x: number; y: number }> = {}
-  for (const node of path.nodes) {
-    if (!visibleIds.has(node.id)) continue
-    positions[node.id] = { x: node.x, y: node.y }
-  }
-
-  function visit(parentId: string, seen: Set<string>) {
-    if (seen.has(parentId) || !positions[parentId]) return
-    seen.add(parentId)
-    const children = childrenOf.get(parentId) ?? []
-    const branch = children.filter((node) => node.kind === 'prerequisite')
-    if (branch.length > 0) {
-      const open = expanded.has(parentId)
-      const n = branch.length
-      const px = positions[parentId].x
-      const py = positions[parentId].y
-      branch.forEach((child, index) => {
-        if (open) {
-          const gap = n === 1 ? 0 : Math.min(24, Math.max(14, 48 / (n - 1)))
-          positions[child.id] = {
-            x: clamp(px + (index - (n - 1) / 2) * gap, 12, 88),
-            y: clamp(py + 18, 16, 90)
-          }
-        } else {
-          positions[child.id] = {
-            x: clamp(px + (index - (n - 1) / 2) * 1.6, 12, 88),
-            y: clamp(py + 8 + index * 1.2, 16, 90)
-          }
-        }
-      })
-    }
-    for (const child of children) visit(child.id, seen)
-  }
-
-  const childIds = new Set(
-    path.edges
-      .filter((edge) => visibleIds.has(edge.from) && visibleIds.has(edge.to))
-      .map((edge) => edge.to)
-  )
-  const seen = new Set<string>()
-  for (const node of path.nodes) {
-    if (visibleIds.has(node.id) && !childIds.has(node.id)) {
-      visit(node.id, seen)
-    }
-  }
-
-  return { positions, expanded, parentOf }
 }
 
 function usePrefersReducedMotion() {
@@ -309,77 +212,6 @@ function visibleNodes(
   })
 }
 
-type PathTreeItem = {
-  node: LearningPathNode
-  children: PathTreeItem[]
-}
-
-function sortTreeNodes(a: LearningPathNode, b: LearningPathNode) {
-  const as = a.sequence ?? a.x
-  const bs = b.sequence ?? b.x
-  if (as !== bs) return as - bs
-  return a.x - b.x
-}
-
-function isCoreStep(node: LearningPathNode) {
-  return node.kind === 'concept' || node.kind === 'milestone'
-}
-
-function visibleTree(
-  path: LearningPathData,
-  visible: LearningPathNode[]
-): PathTreeItem[] {
-  const visibleIds = new Set(visible.map((node) => node.id))
-  const childrenOf = new Map<string, LearningPathNode[]>()
-  const assigned = new Set<string>()
-  const goalId = visible.find((node) => node.kind === 'goal')?.id
-
-  for (const edge of path.edges) {
-    if (!visibleIds.has(edge.to) || assigned.has(edge.to)) continue
-    const child = path.nodes.find((node) => node.id === edge.to)
-    if (!child) continue
-    let parentId = edge.from
-    const seen = new Set<string>()
-    while (parentId && !visibleIds.has(parentId) && !seen.has(parentId)) {
-      seen.add(parentId)
-      const incoming = path.edges.find((item) => item.to === parentId)
-      parentId = incoming?.from ?? ''
-    }
-    let key = parentId && visibleIds.has(parentId) ? parentId : '__root__'
-    const parent = key !== '__root__' ? path.nodes.find((node) => node.id === key) : null
-    // Numbered steps are a chain on the graph (1→2→3) but siblings in the outline.
-    if (isCoreStep(child) && parent && parent.kind !== 'goal') {
-      key = goalId && visibleIds.has(goalId) ? goalId : '__root__'
-    }
-    const list = childrenOf.get(key) ?? []
-    list.push(child)
-    childrenOf.set(key, list)
-    assigned.add(child.id)
-  }
-
-  function branch(node: LearningPathNode): PathTreeItem {
-    const kids = [...(childrenOf.get(node.id) ?? [])].sort(sortTreeNodes)
-    return { node, children: kids.map(branch) }
-  }
-
-  const hanging = childrenOf.get('__root__') ?? []
-  const roots = [
-    ...visible.filter((node) => !assigned.has(node.id)),
-    ...hanging
-  ]
-    .filter(
-      (node, index, list) =>
-        list.findIndex((item) => item.id === node.id) === index
-    )
-    .sort((a, b) => {
-      if (a.kind === 'goal') return -1
-      if (b.kind === 'goal') return 1
-      return sortTreeNodes(a, b)
-    })
-
-  return roots.map(branch)
-}
-
 function flattenTree(items: PathTreeItem[]): LearningPathNode[] {
   const flat: LearningPathNode[] = []
   function walk(nodes: PathTreeItem[]) {
@@ -400,14 +232,6 @@ function nextOutlineNode(
   const index = order.findIndex((node) => node.id === selectedId)
   if (index < 0) return order[0] ?? null
   return order[index + 1] ?? null
-}
-
-function edgePath(
-  from: LearningPathNode,
-  to: LearningPathNode
-): string {
-  const midY = (from.y + to.y) / 2
-  return `M${from.x} ${from.y} C${from.x} ${midY} ${to.x} ${midY} ${to.x} ${to.y}`
 }
 
 function tutorPrompt(path: LearningPathData, node: LearningPathNode) {
@@ -627,6 +451,7 @@ export function LearningPath({ slug }: { slug: string }) {
   >({})
   const [depth, setDepth] = React.useState<DepthFilter>('all')
   const [viewMode, setViewMode] = React.useState<'graph' | 'list'>('graph')
+  const [hoverId, setHoverId] = React.useState<string | null>(null)
   const [addOpen, setAddOpen] = React.useState(false)
   const [addLabel, setAddLabel] = React.useState('')
   const [addPlacement, setAddPlacement] = React.useState<'step' | 'child'>(
@@ -695,6 +520,7 @@ export function LearningPath({ slug }: { slug: string }) {
     const local = resolveLearningPath(slug, readStoredLearningPaths())
     setPath(local)
     setSelectedId(initialSelection(local))
+    setHoverId(null)
     setPathRowId(null)
     setPromptOpen(false)
     setCircleOpen(false)
@@ -747,14 +573,10 @@ export function LearningPath({ slug }: { slug: string }) {
     () => new Set(nodes.map((node) => node.id)),
     [nodes]
   )
+  const graphFocusId = hoverId ?? selected?.id ?? path.nodes[0]?.id ?? ''
   const layout = React.useMemo(
-    () =>
-      graphLayout(
-        path,
-        selected?.id ?? path.nodes[0]?.id ?? '',
-        visibleIds
-      ),
-    [path, selected?.id, visibleIds]
+    () => layoutHoverGraph(path, graphFocusId, visibleIds),
+    [path, graphFocusId, visibleIds]
   )
   const reduceMotion = usePrefersReducedMotion()
   const displayPositions = useAnimatedPositions(layout.positions, !reduceMotion)
@@ -1067,7 +889,7 @@ export function LearningPath({ slug }: { slug: string }) {
                 <span className={styles.mapHint}>
                   {viewMode === 'list'
                     ? 'Select a step to read it on the right'
-                    : '1 → 2 → 3 is the order · a, b how deep to go'}
+                    : 'Hover a step to see its children · click a node to read it'}
                 </span>
               </div>
               <div className={styles.viewToggle} role='group' aria-label='Path view'>
@@ -1119,86 +941,92 @@ export function LearningPath({ slug }: { slug: string }) {
                 </div>
               </div>
             ) : (
-              <div className={styles.canvas}>
-                <svg
-                  className={styles.connections}
-                  viewBox='0 0 100 100'
-                  preserveAspectRatio='none'
-                  aria-hidden
-                >
-                  {path.edges.map((edge) => {
-                    const from = nodeById[edge.from]
-                    const to = nodeById[edge.to]
-                    if (!from || !to) return null
-                    if (
-                      !nodes.some((node) => node.id === from.id) ||
-                      !nodes.some((node) => node.id === to.id)
-                    ) {
-                      return null
-                    }
-                    const fromPos = displayPositions[from.id]
-                    const toPos = displayPositions[to.id]
-                    if (!fromPos || !toPos) return null
-                    return (
-                      <path
-                        key={`${edge.from}-${edge.to}`}
-                        d={edgePath(
-                          { ...from, x: fromPos.x, y: fromPos.y },
-                          { ...to, x: toPos.x, y: toPos.y }
-                        )}
-                      />
-                    )
-                  })}
-                </svg>
-                {nodes.map((node) => {
-                  const mark = marks[node.id]
-                  const pos = displayPositions[node.id] ?? {
-                    x: node.x,
-                    y: node.y
-                  }
-                  const parentId = layout.parentOf.get(node.id)
-                  const packed =
-                    node.kind === 'prerequisite' &&
-                    !!parentId &&
-                    !layout.expanded.has(parentId)
-                  return (
-                    <button
-                      key={node.id}
-                      type='button'
-                      className={nodeClass(
-                        node,
-                        node.id === selected.id,
-                        packed
-                      )}
-                      style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
-                      aria-label={
-                        mark
-                          ? mark.role === 'core'
-                            ? `Step ${mark.mark}: ${node.label}`
-                            : `${node.label}, ${mark.mark})`
-                          : node.label
-                      }
-                      onClick={() => selectNode(node.id)}
+              <div
+                className={styles.mapStage}
+                onMouseLeave={() => setHoverId(null)}
+              >
+                <div className={styles.mapScroll}>
+                  <div
+                    className={styles.canvas}
+                    style={{
+                      minHeight: layout.height,
+                      minWidth: layout.width,
+                      height: layout.height,
+                      width: layout.width
+                    }}
+                  >
+                    <svg
+                      className={styles.connections}
+                      viewBox={`0 0 ${layout.width} ${layout.height}`}
+                      preserveAspectRatio='none'
+                      aria-hidden
+                      style={{ inset: 0, width: '100%', height: '100%' }}
                     >
-                      <span className={styles.nodeStatus} />
-                      <span className={styles.nodeHead}>
-                        {mark ? (
-                          <span
-                            className={
-                              mark.role === 'branch'
-                                ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
-                                : styles.nodeMark
-                            }
-                          >
-                            {mark.role === 'branch' ? `${mark.mark})` : mark.mark}
+                      {path.edges.map((edge) => {
+                        if (
+                          !layout.visibleIds.has(edge.from) ||
+                          !layout.visibleIds.has(edge.to)
+                        ) {
+                          return null
+                        }
+                        const fromPos = displayPositions[edge.from]
+                        const toPos = displayPositions[edge.to]
+                        if (!fromPos || !toPos) return null
+                        return (
+                          <path
+                            key={`${edge.from}-${edge.to}`}
+                            d={edgePath(fromPos, toPos)}
+                            style={{ strokeWidth: 1.4 }}
+                          />
+                        )
+                      })}
+                    </svg>
+                    {path.nodes.map((node) => {
+                      if (!layout.visibleIds.has(node.id)) return null
+                      const mark = marks[node.id]
+                      const pos =
+                        displayPositions[node.id] ?? layout.positions[node.id]
+                      if (!pos) return null
+                      return (
+                        <button
+                          key={node.id}
+                          type='button'
+                          className={nodeClass(node, node.id === selected.id)}
+                          style={{ left: pos.x, top: pos.y }}
+                          aria-label={
+                            mark
+                              ? mark.role === 'core'
+                                ? `Step ${mark.mark}: ${node.label}`
+                                : `${node.label}, ${mark.mark})`
+                              : node.label
+                          }
+                          onMouseEnter={() => setHoverId(node.id)}
+                          onFocus={() => setHoverId(node.id)}
+                          onClick={() => selectNode(node.id)}
+                        >
+                          <span className={styles.nodeStatus} />
+                          <span className={styles.nodeHead}>
+                            {mark ? (
+                              <span
+                                className={
+                                  mark.role === 'branch'
+                                    ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
+                                    : styles.nodeMark
+                                }
+                              >
+                                {mark.role === 'branch'
+                                  ? `${mark.mark})`
+                                  : mark.mark}
+                              </span>
+                            ) : null}
+                            <span className={styles.nodeLabel}>{node.label}</span>
                           </span>
-                        ) : null}
-                        <span className={styles.nodeLabel}>{node.label}</span>
-                      </span>
-                      <span className={styles.nodeSub}>{node.sub}</span>
-                    </button>
-                  )
-                })}
+                          <span className={styles.nodeSub}>{node.sub}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
                 <button
                   type='button'
                   className={styles.addNode}

@@ -1,39 +1,20 @@
-import * as React from 'react'
-import Head from 'next/head'
+import type { GetServerSideProps } from 'next'
 
-import { HomeFooterSection } from '@/components/HomeFooterSection'
-import { HomeHeader } from '@/components/HomeHeader'
-import { HumanKnowledgeAtlas } from '@/components/HumanKnowledgeAtlas'
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const params = new URLSearchParams()
+  for (const [key, value] of Object.entries(query)) {
+    if (typeof value === 'string') params.set(key, value)
+    else if (Array.isArray(value) && value[0]) params.set(key, value[0])
+  }
+  const suffix = params.toString()
+  return {
+    redirect: {
+      destination: suffix ? `/field-atlas?${suffix}` : '/field-atlas',
+      permanent: true
+    }
+  }
+}
 
-export default function HumanKnowledgeAtlasPage() {
-  return (
-    <>
-      <Head>
-        <title>Human Knowledge Atlas | Coursetexts</title>
-        <meta
-          name='description'
-          content='An atlas of what we know, what we suspect, and what we are trying to find out. Map questions, attach a reading list, and join the discussion.'
-        />
-      </Head>
-
-      <main
-        style={
-          {
-            '--home-side': 'clamp(20px, 4.03vw, 58px)',
-            '--home-main-max': '1324px',
-            '--home-content-max': '1000px',
-            '--home-footer-side': 'max(28px, 15.28vw)',
-            minHeight: '100vh',
-            background: 'var(--footer, #F8F7F4)',
-            display: 'flex',
-            flexDirection: 'column'
-          } as React.CSSProperties
-        }
-      >
-        <HomeHeader />
-        <HumanKnowledgeAtlas />
-        <HomeFooterSection />
-      </main>
-    </>
-  )
+export default function HumanKnowledgeAtlasRedirect() {
+  return null
 }

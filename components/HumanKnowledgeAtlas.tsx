@@ -4,8 +4,10 @@ import { useRouter } from 'next/router'
 import styles from './HumanKnowledgeAtlas.module.css'
 import {
   HumanKnowledgeAtlasDetail,
+  HumanKnowledgeAtlasHypothesisDetail,
   HumanKnowledgeAtlasKnownDetail,
-  StatusBadge
+  StatusBadge,
+  WEIGHT_LABEL
 } from './HumanKnowledgeAtlasDetail'
 import {
   ATLAS_FACTS,
@@ -47,7 +49,15 @@ function questionMatchesQuery(question: AtlasQuestion, query: string) {
     matchesSearch(question.title, query) ||
     matchesSearch(question.posed, query) ||
     matchesSearch(question.disciplinePath, query) ||
-    question.hypotheses.some((item) => matchesSearch(item.statement, query))
+    question.hypotheses.some(
+      (item) =>
+        matchesSearch(item.statement, query) ||
+        item.readingList.some(
+          (reading) =>
+            matchesSearch(reading.title, query) ||
+            matchesSearch(reading.note ?? '', query)
+        )
+    )
   )
 }
 
@@ -56,6 +66,7 @@ function factMatchesQuery(fact: AtlasKnownFact, query: string) {
   return (
     matchesSearch(fact.title, query) ||
     matchesSearch(fact.note, query) ||
+    matchesSearch(fact.howDiscovered, query) ||
     matchesSearch(fact.disciplinePath, query)
   )
 }
@@ -118,6 +129,7 @@ function filterAtlasTree(
 type AtlasSelection =
   | { kind: 'question'; id: string }
   | { kind: 'known'; id: string }
+  | { kind: 'hypothesis'; questionId: string; hypothesisId: string }
 
 export function HumanKnowledgeAtlas() {
   const router = useRouter()
@@ -159,6 +171,16 @@ export function HumanKnowledgeAtlas() {
     selected?.kind === 'question' ? questions[selected.id] ?? null : null
   const selectedFact =
     selected?.kind === 'known' ? facts[selected.id] ?? null : null
+  const selectedHypothesisQuestion =
+    selected?.kind === 'hypothesis'
+      ? questions[selected.questionId] ?? null
+      : null
+  const selectedHypothesis =
+    selected?.kind === 'hypothesis'
+      ? selectedHypothesisQuestion?.hypotheses.find(
+          (item) => item.id === selected.hypothesisId
+        ) ?? null
+      : null
   const search = normalizeSearch(query)
   const filteredTree = React.useMemo(
     () => filterAtlasTree(tree, search, questions, facts),
@@ -206,25 +228,25 @@ export function HumanKnowledgeAtlas() {
   }
 
   return (
-    <section className={styles.section} aria-label='Human knowledge atlas'>
+    <section className={styles.section} aria-label='Research Field Atlas'>
       <div className={styles.container}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Human Knowledge Atlas</p>
           <div className={styles.titleRow}>
-            <h1 className={styles.title}>
-              An atlas of what we know, <br/>what we suspect, and what <br/>we are trying
-              to find out.
-            </h1>
+            <h1 className={styles.title}>Research Field Atlas</h1>
           </div>
           <p className={styles.subtitle}>
-            Most maps of science chart papers. This one charts questions. Each
-            frontier node holds the chain of inquiry — competing hypotheses, a
-            reading list, and a thread for the work of talking it through.
+            A map of science charting questions.{' '}
+            <em>
+              What we know, what we suspect, and what we are trying to find out.
+            </em>{' '}
+            Each frontier node holds the chain of inquiry — competing
+            hypotheses, a reading list, and a thread for the work of talking it
+            through. Start a learning path in an inquiry node to get caught up!
           </p>
         </header>
 
         <form
-          id='human-knowledge-atlas-search'
+          id='field-atlas-search'
           className={`${styles.searchWrap} ${
             isSearchPulse ? styles.searchWrapPulse : ''
           }`}
@@ -284,7 +306,7 @@ export function HumanKnowledgeAtlas() {
         <div className={styles.treeHead}>
           <h2 className={styles.treeTitle}>The knowledge tree</h2>
           <span className={styles.treeHint}>
-            domain → subfield → known / unresolved → question
+            domain → subfield → known / unresolved → question → hypothesis
           </span>
         </div>
 
@@ -294,18 +316,20 @@ export function HumanKnowledgeAtlas() {
           </p>
         ) : (
         <div className={styles.tree}>
-          {filteredTree.map((domain, i) => (
+          {filteredTree.map((domain) => (
             <Branch
               key={domain.id}
               node={domain}
               depth={0}
-              defaultOpen={i === 0}
               forceOpen={Boolean(search)}
               questions={questions}
               facts={facts}
               selected={selected}
               onSelectQuestion={(id) => setSelected({ kind: 'question', id })}
               onSelectFact={(id) => setSelected({ kind: 'known', id })}
+              onSelectHypothesis={(questionId, hypothesisId) =>
+                setSelected({ kind: 'hypothesis', questionId, hypothesisId })
+              }
             />
           ))}
         </div>
@@ -326,6 +350,13 @@ export function HumanKnowledgeAtlas() {
           onChange={(next) =>
             setQuestions((prev) => ({ ...prev, [next.id]: next }))
           }
+          onSelectHypothesis={(hypothesisId) =>
+            setSelected({
+              kind: 'hypothesis',
+              questionId: selectedQuestion.id,
+              hypothesisId
+            })
+          }
         />
       ) : null}
 
@@ -335,6 +366,35 @@ export function HumanKnowledgeAtlas() {
           onClose={() => setSelected(null)}
           onChange={(next) =>
             setFacts((prev) => ({ ...prev, [next.id]: next }))
+          }
+        />
+      ) : null}
+
+      {selectedHypothesisQuestion && selectedHypothesis ? (
+        <HumanKnowledgeAtlasHypothesisDetail
+          question={selectedHypothesisQuestion}
+          hypothesis={selectedHypothesis}
+          onClose={() => setSelected(null)}
+          onChange={(next) =>
+            setQuestions((prev) => {
+              const current = prev[selectedHypothesisQuestion.id]
+              if (!current) return prev
+              return {
+                ...prev,
+                [current.id]: {
+                  ...current,
+                  hypotheses: current.hypotheses.map((item) =>
+                    item.id === next.id ? next : item
+                  )
+                }
+              }
+            })
+          }
+          onOpenQuestion={() =>
+            setSelected({
+              kind: 'question',
+              id: selectedHypothesisQuestion.id
+            })
           }
         />
       ) : null}
@@ -353,27 +413,25 @@ export function HumanKnowledgeAtlas() {
 function Branch({
   node,
   depth,
-  defaultOpen = false,
   forceOpen = false,
   questions,
   facts,
   selected,
   onSelectQuestion,
-  onSelectFact
+  onSelectFact,
+  onSelectHypothesis
 }: {
   node: AtlasTreeNode
   depth: number
-  defaultOpen?: boolean
   forceOpen?: boolean
   questions: Record<string, AtlasQuestion>
   facts: Record<string, AtlasKnownFact>
   selected: AtlasSelection | null
   onSelectQuestion: (id: string) => void
   onSelectFact: (id: string) => void
+  onSelectHypothesis: (questionId: string, hypothesisId: string) => void
 }) {
-  const initialOpen =
-    node.kind === 'domain' ? defaultOpen : node.kind !== 'known'
-  const [open, setOpen] = React.useState(initialOpen)
+  const [open, setOpen] = React.useState(false)
   const expanded = forceOpen || open
 
   const count =
@@ -430,6 +488,7 @@ function Branch({
               selected={selected}
               onSelectQuestion={onSelectQuestion}
               onSelectFact={onSelectFact}
+              onSelectHypothesis={onSelectHypothesis}
             />
           ))}
 
@@ -478,39 +537,142 @@ function Branch({
               {node.questionIds?.map((qid) => {
                 const q = questions[qid]
                 if (!q) return null
-                const active =
-                  selected?.kind === 'question' && selected.id === qid
-                const replies = countAtlasThread(q.threads)
                 return (
-                  <button
+                  <QuestionItem
                     key={qid}
-                    type='button'
-                    className={`${styles.questionBtn}${
-                      active ? ` ${styles.questionBtnActive}` : ''
-                    }`}
-                    onClick={() => onSelectQuestion(qid)}
-                    aria-current={active ? 'true' : undefined}
-                  >
-                    <span className={styles.questionMark} aria-hidden />
-                    <span className={styles.questionBtnBody}>
-                      <span className={styles.questionBtnTitle}>{q.title}</span>
-                      <span className={styles.questionBtnMeta}>
-                        <StatusBadge status={q.status} />
-                        <span>
-                          {q.readingList.length}{' '}
-                          {q.readingList.length === 1 ? 'reading' : 'readings'}{' '}
-                          · {replies} {replies === 1 ? 'reply' : 'replies'}
-                        </span>
-                        {q.contributedBy ? (
-                          <span className={styles.contributed}>contributed</span>
-                        ) : null}
-                      </span>
-                    </span>
-                  </button>
+                    question={q}
+                    forceOpen={forceOpen}
+                    selected={selected}
+                    onSelectQuestion={onSelectQuestion}
+                    onSelectHypothesis={onSelectHypothesis}
+                  />
                 )
               })}
             </div>
           ) : null}
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+function QuestionItem({
+  question,
+  forceOpen = false,
+  selected,
+  onSelectQuestion,
+  onSelectHypothesis
+}: {
+  question: AtlasQuestion
+  forceOpen?: boolean
+  selected: AtlasSelection | null
+  onSelectQuestion: (id: string) => void
+  onSelectHypothesis: (questionId: string, hypothesisId: string) => void
+}) {
+  const belongs =
+    (selected?.kind === 'question' && selected.id === question.id) ||
+    (selected?.kind === 'hypothesis' &&
+      selected.questionId === question.id)
+  const [open, setOpen] = React.useState(belongs)
+  const expanded = forceOpen || open || belongs
+  const questionActive =
+    selected?.kind === 'question' && selected.id === question.id
+  const replies = countAtlasThread(question.threads)
+  const hasHypos = question.hypotheses.length > 0
+
+  return (
+    <div className={styles.questionItem}>
+      <div className={styles.questionRow}>
+        {hasHypos ? (
+          <button
+            type='button'
+            className={styles.questionExpand}
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={expanded}
+            aria-label={
+              expanded
+                ? 'Hide hypotheses'
+                : `Show ${question.hypotheses.length} hypotheses`
+            }
+          >
+            <span
+              className={`${styles.chevron}${
+                expanded ? ` ${styles.chevronOpen}` : ''
+              }`}
+              aria-hidden
+            >
+              <ChevronIcon />
+            </span>
+          </button>
+        ) : (
+          <span className={styles.questionExpandSpacer} aria-hidden />
+        )}
+        <button
+          type='button'
+          className={`${styles.questionBtn}${
+            questionActive ? ` ${styles.questionBtnActive}` : ''
+          }`}
+          onClick={() => onSelectQuestion(question.id)}
+          aria-current={questionActive ? 'true' : undefined}
+        >
+          <span className={styles.questionMark} aria-hidden />
+          <span className={styles.questionBtnBody}>
+            <span className={styles.questionBtnTitle}>{question.title}</span>
+            <span className={styles.questionBtnMeta}>
+              <StatusBadge status={question.status} />
+              <span>
+                {question.hypotheses.length}{' '}
+                {question.hypotheses.length === 1
+                  ? 'hypothesis'
+                  : 'hypotheses'}{' '}
+                · {question.readingList.length}{' '}
+                {question.readingList.length === 1 ? 'reading' : 'readings'}{' '}
+                · {replies} {replies === 1 ? 'reply' : 'replies'}
+              </span>
+              {question.contributedBy ? (
+                <span className={styles.contributed}>contributed</span>
+              ) : null}
+            </span>
+          </span>
+        </button>
+      </div>
+      {expanded && hasHypos ? (
+        <div className={styles.hypoListTree}>
+          {question.hypotheses.map((hypothesis) => {
+            const active =
+              selected?.kind === 'hypothesis' &&
+              selected.questionId === question.id &&
+              selected.hypothesisId === hypothesis.id
+            return (
+              <button
+                key={hypothesis.id}
+                type='button'
+                className={`${styles.hypoBtn}${
+                  active ? ` ${styles.hypoBtnActive}` : ''
+                }`}
+                onClick={() =>
+                  onSelectHypothesis(question.id, hypothesis.id)
+                }
+                aria-current={active ? 'true' : undefined}
+              >
+                <span className={styles.hypoMark} aria-hidden />
+                <span className={styles.questionBtnBody}>
+                  <span className={styles.hypoBtnTitle}>
+                    {hypothesis.statement}
+                  </span>
+                  <span className={styles.questionBtnMeta}>
+                    <span>{WEIGHT_LABEL[hypothesis.weight]}</span>
+                    <span>
+                      {hypothesis.readingList.length}{' '}
+                      {hypothesis.readingList.length === 1
+                        ? 'reading'
+                        : 'readings'}
+                    </span>
+                  </span>
+                </span>
+              </button>
+            )
+          })}
         </div>
       ) : null}
     </div>
@@ -574,7 +736,9 @@ function ChartQuestionModal({
         id: newId('h'),
         statement,
         weight: (i === 0 ? 'leading' : 'contender') as 'leading' | 'contender',
-        proponents: contributor.trim() || 'Community contributor'
+        proponents: contributor.trim() || 'Community contributor',
+        readingList: [],
+        threads: []
       }))
 
     onCreate(

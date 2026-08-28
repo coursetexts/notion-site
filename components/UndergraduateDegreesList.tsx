@@ -3,7 +3,7 @@ import * as React from 'react'
 import {
   filterDegrees,
   getCoursePageUrl,
-  getCuratedCoursePath,
+  getCourseLearningPathHref,
   groupResources,
   type CourseResource,
   type CourseResourceKind,
@@ -102,18 +102,24 @@ function DocumentIcon() {
 
 function CourseDocumentLink({
   url,
-  courseName
+  courseName,
+  href
 }: {
   url?: string
   courseName: string
+  href?: string
 }) {
-  const label = `Course document for ${courseName}`
+  const destination = href ?? getCoursePageUrl(url)
+  const isInternal = destination.startsWith('/')
+  const label = isInternal
+    ? `Full Course Learning Path for ${courseName}`
+    : `Course document for ${courseName}`
 
   return (
     <a
-      href={getCoursePageUrl(url)}
-      target='_blank'
-      rel='noreferrer'
+      href={destination}
+      target={isInternal ? undefined : '_blank'}
+      rel={isInternal ? undefined : 'noreferrer'}
       className={styles.courseDocumentLink}
       aria-label={label}
       onClick={(event) => event.stopPropagation()}
@@ -287,18 +293,18 @@ function SyllabusTopics({ course }: { course: UndergraduateCourse }) {
             rel='noreferrer'
             className={styles.resourceLink}
           >
-            See full course outline on Google Docs ⇗
+            Course Outline Google Doc ⇗
           </a>
         </li>
         <li
-          key={`${course.number}-topic-curated-course`}
+          key={`${course.number}-topic-course-learning-path`}
           className={styles.topicItem}
         >
           <a
-            href={getCuratedCoursePath(course.name)}
+            href={getCourseLearningPathHref(course.name)}
             className={styles.resourceLink}
           >
-            See full curated course ⇗
+            Full Course Learning Path ⇗
           </a>
         </li>
       </ul>
@@ -379,12 +385,14 @@ function SchoolsOfferingSection({
 
 function CourseRow({
   course,
-  defaultOpen
+  defaultOpen,
+  hideResources = false
 }: {
   course: UndergraduateCourse
   defaultOpen: boolean
+  hideResources?: boolean
 }) {
-  const resources = course.resources ?? []
+  const resources = hideResources ? [] : course.resources ?? []
   const hasTopics = course.topics.length > 0
   const hasResources = resources.length > 0
   const canExpand = hasTopics || hasResources
@@ -422,6 +430,11 @@ function CourseRow({
             <CourseDocumentLink
               url={course.documentUrl}
               courseName={course.name}
+              href={
+                hideResources
+                  ? getCourseLearningPathHref(course.name)
+                  : undefined
+              }
             />
             <YearTag year={course.year} />
           </span>
@@ -475,10 +488,12 @@ function CourseRow({
 
 function DegreeCard({
   degree,
-  queryActive
+  queryActive,
+  hideResources = false
 }: {
   degree: UndergraduateDegree
   queryActive: boolean
+  hideResources?: boolean
 }) {
   const schools = degree.schoolsOffering ?? []
   const [coursesOpen, setCoursesOpen] = React.useState(queryActive)
@@ -527,6 +542,7 @@ function DegreeCard({
               key={`${degree.id}-${course.number}-${course.name}`}
               course={course}
               defaultOpen={queryActive}
+              hideResources={hideResources}
             />
           ))}
         </div>
@@ -545,12 +561,14 @@ function DegreeSectionGroup({
   title,
   description,
   degrees,
-  queryActive
+  queryActive,
+  hideResources = false
 }: {
   title: string
   description: string
   degrees: UndergraduateDegree[]
   queryActive: boolean
+  hideResources?: boolean
 }) {
   return (
     <section className={styles.categorySection} aria-label={title}>
@@ -564,6 +582,7 @@ function DegreeSectionGroup({
             key={degree.id}
             degree={degree}
             queryActive={queryActive}
+            hideResources={hideResources}
           />
         ))}
       </div>
@@ -689,6 +708,10 @@ export function UndergraduateDegreesList({
                 description={activeGroup.section.description}
                 degrees={activeGroup.degrees}
                 queryActive={queryActive}
+                hideResources={
+                  level === 'undergraduate' &&
+                  activeGroup.section.id === 'stem'
+                }
               />
             </div>
           </div>

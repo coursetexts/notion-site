@@ -2,38 +2,40 @@ import * as React from 'react'
 import dynamic from 'next/dynamic'
 
 import type {
-  CuratedCourseFlatNode,
-  CuratedCourseNode
-} from '@/lib/curated-course-types'
+  CourseLearningPathFlatNode,
+  CourseLearningPathNode
+} from '@/lib/course-learning-path-types'
 
-import styles from './CuratedCourse.module.css'
-import { CuratedCourseLinkSection } from './CuratedCourseLinkSection'
-import { PlayIcon } from './CuratedCourseSyllabusNav'
-import { CuratedCourseVideoSection } from './CuratedCourseVideoSection'
+import styles from './CourseLearningPath.module.css'
+import { CourseLearningPathLinkSection } from './CourseLearningPathLinkSection'
+import { PlayIcon } from './CourseLearningPathSyllabusNav'
+import { CourseLearningPathVideoSection } from './CourseLearningPathVideoSection'
 
-const CuratedCourseNotes = dynamic(
-  () => import('./CuratedCourseNotes').then((m) => m.CuratedCourseNotes),
+const CourseLearningPathNotes = dynamic(
+  () => import('./CourseLearningPathNotes').then((m) => m.CourseLearningPathNotes),
   {
     ssr: false,
     loading: () => (
-      <div className={styles.notesSection}>
-        <div className={styles.notesHeader}>
-          <span className={styles.notesTitle}>Notes</span>
-          <span className={styles.notesHeaderMeta}>Loading…</span>
+      <section>
+        <div
+          className={`${styles.videosHeader} ${styles.videosHeaderCollapsed}`}
+        >
+          <h2 className={styles.videosTitle}>Your Notes</h2>
+          <span className={styles.videosMeta}>Loading…</span>
         </div>
-      </div>
+      </section>
     )
   }
 )
 
-const TYPE_LABEL: Record<CuratedCourseNode['type'], string> = {
+const TYPE_LABEL: Record<CourseLearningPathNode['type'], string> = {
   topic: 'Topic',
   subtopic: 'Subtopic',
   concept: 'Concept'
 }
 
 interface TopicContentProps {
-  entry: CuratedCourseFlatNode
+  entry: CourseLearningPathFlatNode
   onSelect: (id: string) => void
   courseSlug?: string
   /** Whether mutations can be saved to Supabase. */
@@ -60,9 +62,13 @@ interface TopicContentProps {
     description?: string
     suggestedPlacement?: number
   }) => Promise<boolean>
+  explored?: boolean
+  onMarkExplored?: () => void
+  nextNode?: CourseLearningPathNode | null
+  onNext?: (id: string) => void
 }
 
-export function CuratedCourseTopicContent({
+export function CourseLearningPathTopicContent({
   entry,
   onSelect,
   courseSlug = '',
@@ -71,7 +77,11 @@ export function CuratedCourseTopicContent({
   onSignIn,
   onAddVideo,
   onVoteVideo,
-  onAddLink
+  onAddLink,
+  explored = false,
+  onMarkExplored,
+  nextNode = null,
+  onNext
 }: TopicContentProps) {
   const { node, parents } = entry
   const videos = node.videos ?? []
@@ -141,7 +151,7 @@ export function CuratedCourseTopicContent({
         </section>
       )}
 
-      <CuratedCourseNotes
+      <CourseLearningPathNotes
         nodeId={node.id}
         courseSlug={courseSlug || 'course'}
         topicTitle={node.title}
@@ -149,7 +159,7 @@ export function CuratedCourseTopicContent({
         onSignIn={onSignIn}
       />
 
-      <CuratedCourseVideoSection
+      <CourseLearningPathVideoSection
         nodeId={node.id}
         videos={videos}
         dbBacked={dbBacked}
@@ -159,7 +169,17 @@ export function CuratedCourseTopicContent({
         onVoteVideo={onVoteVideo}
       />
 
-      <CuratedCourseLinkSection
+      <CourseLearningPathLinkSection
+        kind='slide'
+        nodeId={node.id}
+        items={slides}
+        dbBacked={dbBacked}
+        signedIn={signedIn}
+        onSignIn={onSignIn}
+        onAdd={onAddLink}
+      />
+
+      <CourseLearningPathLinkSection
         kind='test'
         nodeId={node.id}
         items={tests}
@@ -169,15 +189,25 @@ export function CuratedCourseTopicContent({
         onAdd={onAddLink}
       />
 
-      <CuratedCourseLinkSection
-        kind='slide'
-        nodeId={node.id}
-        items={slides}
-        dbBacked={dbBacked}
-        signedIn={signedIn}
-        onSignIn={onSignIn}
-        onAdd={onAddLink}
-      />
+      <div className={styles.actionRow}>
+        <button
+          type='button'
+          className={styles.primaryBtn}
+          onClick={onMarkExplored}
+          disabled={explored}
+        >
+          {explored ? 'Explored' : 'Mark as explored'}
+        </button>
+        {nextNode ? (
+          <button
+            type='button'
+            className={`${styles.primaryBtn} ${styles.nextBtn}`}
+            onClick={() => onNext?.(nextNode.id)}
+          >
+            Next
+          </button>
+        ) : null}
+      </div>
     </article>
   )
 }

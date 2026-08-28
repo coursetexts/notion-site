@@ -371,8 +371,8 @@ export async function addCommunityPageResource(input: {
   url: string
   type: ResourceDbType
   conceptTree?: string | null
-  fromCuratedCourse?: boolean
-  curatedCourseSlug?: string | null
+  fromCourseLearningPath?: boolean
+  courseLearningPathSlug?: string | null
 }): Promise<CommunityPageResource | null> {
   const supabase = getSupabaseClient()
   if (!supabase) return null
@@ -393,8 +393,8 @@ export async function addCommunityPageResource(input: {
       type: input.type,
       submitted_by: user.id,
       concept_tree: trimConceptTree(input.conceptTree),
-      from_curated_course: Boolean(input.fromCuratedCourse),
-      curated_course_slug: trimCourseSlug(input.curatedCourseSlug)
+      from_curated_course: Boolean(input.fromCourseLearningPath),
+      curated_course_slug: trimCourseSlug(input.courseLearningPathSlug)
     })
     .select(
       'id, title, url, type, description, submitted_by, created_at, concept_tree, from_curated_course, curated_course_slug'
