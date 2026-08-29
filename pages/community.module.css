@@ -93,13 +93,13 @@
   font-size: clamp(28px, 4vw, 36px);
   font-style: normal;
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.05;
   color: #000;
   margin: 0;
 }
 
 .subtitle {
-  margin: 20px 0 0;
+  margin: 8px 0 0;
   max-width: 424px;
   color: #37352f;
   font-family: 'Hanken Grotesk', sans-serif;
@@ -111,7 +111,7 @@
 }
 
 .lede {
-  margin: 20px 0 0;
+  margin: 8px 0 0;
   max-width: 38rem;
   color: #37352f;
   font-family: 'Hanken Grotesk', sans-serif;
@@ -152,6 +152,21 @@
 .shareBtn:focus-visible {
   outline: 2px solid rgba(0, 137, 196, 0.35);
   outline-offset: 2px;
+}
+
+.shareBtnDisabled,
+.shareBtn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.shareBtnDisabled:hover,
+.shareBtn[aria-disabled='true']:hover,
+.shareBtnDisabled:focus-visible,
+.shareBtn[aria-disabled='true']:focus-visible {
+  opacity: 0.45;
+  transform: none;
 }
 
 /* Search — square hairline field, like the home hero search */
@@ -367,6 +382,21 @@
 .quietLink:focus-visible {
   outline: 2px solid rgba(0, 137, 196, 0.35);
   outline-offset: 2px;
+}
+
+.quietLinkDisabled,
+.quietLink[aria-disabled='true'] {
+  color: #9ca3af;
+  cursor: not-allowed;
+  text-decoration-color: #e6e6e6;
+}
+
+.quietLinkDisabled:hover,
+.quietLink[aria-disabled='true']:hover,
+.quietLinkDisabled:focus-visible,
+.quietLink[aria-disabled='true']:focus-visible {
+  color: #9ca3af;
+  text-decoration-color: #e6e6e6;
 }
 
 /* The ledger — flat rows separated by dashed rules */

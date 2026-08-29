@@ -2,20 +2,20 @@ import * as React from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
 
+import { courseLearningPathActivityPageId } from '@/lib/course-activity-db'
 import {
-  addCourseLearningPathLink,
-  addCourseLearningPathVideo,
-  createLocalCourseLearningPathLink,
-  createLocalCourseLearningPathVideo,
-  getCourseLearningPathData,
-  persistCourseLearningPathVideoOrder,
-  setCourseLearningPathVideoVote
+  addCourseLearningPathTopicResource,
+  createLocalCourseLearningPathTopicResource,
+  ensureMentalMapNodeId,
+  getCourseLearningPathData
 } from '@/lib/course-learning-path-db'
 import {
   readCourseLearningPathExplored,
   writeCourseLearningPathExplored
 } from '@/lib/course-learning-path-progress'
+import { MENTAL_MAP_GOAL_ID } from '@/lib/course-learning-path-graph'
 import {
+  COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   getCourseLearningPathResourcesBySlug,
@@ -30,23 +30,25 @@ import {
 } from '@/lib/course-learning-path-seed'
 import {
   type CourseLearningPathData,
+  type CourseLearningPathTopicResourceKind,
   buildCourseLearningPathIndex,
   formatCourseLearningPathConceptTree,
-  insertLinkAtPlacement,
-  insertVideoAtPlacement,
-  linkFieldForKind,
-  mapCourseLearningPathMentalMapVideos,
-  mapCourseLearningPathNodeLinks,
-  mapCourseLearningPathNodeVideos,
+  insertTopicResourceAtPlacement,
+  mapCourseLearningPathMentalMapTopicResources,
+  mapCourseLearningPathNodeTopicResources,
   nextCourseLearningPathNode
 } from '@/lib/course-learning-path-types'
 
 import styles from './CourseLearningPath.module.css'
+import { CourseActivity } from './CourseActivity'
+import { CourseHero, formatHeroPublishedDate } from './CourseHero'
+import { CourseLearningPathHeroActions } from './CourseLearningPathHeroActions'
 import { CourseLearningPathMentalMap } from './CourseLearningPathMentalMap'
 import { CourseLearningPathResources } from './CourseLearningPathResources'
 import { CourseLearningPathSyllabusNav } from './CourseLearningPathSyllabusNav'
 import { CourseLearningPathSyllabusOverview } from './CourseLearningPathSyllabusOverview'
 import { CourseLearningPathTopicContent } from './CourseLearningPathTopicContent'
+import { PathGraphCanvas } from './PathGraphCanvas'
 
 export interface CourseLearningPathProps {
   /** Syllabus course slug in Supabase. Falls back to seed data when missing. */
@@ -63,6 +65,59 @@ function withCurriculumResources(
   const resources = getCourseLearningPathResourcesBySlug(slug || course.slug)
   if (!resources.length) return course
   return { ...course, resources }
+}
+
+const GRAPH_MAIN_MIN = 280
+const GRAPH_ASIDE_MIN = 360
+const GRAPH_MAIN_DEFAULT = 400
+const GRAPH_SPLIT_STORAGE_KEY = 'coursetexts-course-path-graph-main-width'
+
+function readStoredGraphMainWidth() {
+  if (typeof window === 'undefined') return GRAPH_MAIN_DEFAULT
+  try {
+    const raw = window.localStorage.getItem(GRAPH_SPLIT_STORAGE_KEY)
+    const n = raw ? Number(raw) : NaN
+    return Number.isFinite(n) ? n : GRAPH_MAIN_DEFAULT
+  } catch {
+    return GRAPH_MAIN_DEFAULT
+  }
+}
+
+function persistGraphMainWidth(width: number) {
+  try {
+    window.localStorage.setItem(
+      GRAPH_SPLIT_STORAGE_KEY,
+      String(Math.round(width))
+    )
+  } catch {
+    // ignore quota / private mode
+  }
+}
+
+function clampGraphMainWidth(width: number, bodyWidth: number) {
+  const max = Math.max(GRAPH_MAIN_MIN, Math.floor(bodyWidth - GRAPH_ASIDE_MIN))
+  return Math.round(Math.min(max, Math.max(GRAPH_MAIN_MIN, width)))
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+function courseDescriptionHtml(description: string) {
+  const text = description.trim()
+  if (!text) {
+    return '<p>Browse the recommended topic sequence for this course, then open a topic to watch curated videos.</p>'
+  }
+  return text
+    .split(/\n{2,}/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => `<p>${escapeHtml(part).replace(/\n/g, '<br/>')}</p>`)
+    .join('')
 }
 
 /**
@@ -86,11 +141,99 @@ export function CourseLearningPath({
   const [selectedId, setSelectedId] = React.useState(
     COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
   )
+  const [navView, setNavView] = React.useState<'list' | 'graph'>('list')
   const [expanded, setExpanded] = React.useState<Set<string>>(() => new Set())
   const [exploredIds, setExploredIds] = React.useState<Set<string>>(
     () => new Set()
   )
+  const [graphMainWidth, setGraphMainWidth] = React.useState(GRAPH_MAIN_DEFAULT)
+  const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
   const mainRef = React.useRef<HTMLElement>(null)
+  const bodyRef = React.useRef<HTMLDivElement>(null)
+  const graphMainWidthRef = React.useRef(graphMainWidth)
+  const graphSplitDraggingRef = React.useRef(false)
+  graphMainWidthRef.current = graphMainWidth
+
+  function measureGraphBodyWidth() {
+    return (
+      bodyRef.current?.getBoundingClientRect().width ??
+      (typeof window !== 'undefined' ? window.innerWidth : 1200)
+    )
+  }
+
+  function applyGraphMainWidth(width: number, persist = false) {
+    const next = clampGraphMainWidth(width, measureGraphBodyWidth())
+    graphMainWidthRef.current = next
+    setGraphMainWidth(next)
+    if (persist) persistGraphMainWidth(next)
+    return next
+  }
+
+  React.useEffect(() => {
+    if (navView !== 'graph') return
+    applyGraphMainWidth(readStoredGraphMainWidth())
+  }, [navView])
+
+  React.useEffect(() => {
+    if (navView !== 'graph') return
+    function onResize() {
+      applyGraphMainWidth(graphMainWidthRef.current)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [navView])
+
+  function handleGraphSplitPointerDown(
+    event: React.PointerEvent<HTMLButtonElement>
+  ) {
+    event.preventDefault()
+    event.currentTarget.setPointerCapture(event.pointerId)
+    graphSplitDraggingRef.current = true
+    setGraphSplitDragging(true)
+  }
+
+  function handleGraphSplitPointerMove(
+    event: React.PointerEvent<HTMLButtonElement>
+  ) {
+    if (!graphSplitDraggingRef.current) return
+    const body = bodyRef.current
+    if (!body) return
+    applyGraphMainWidth(body.getBoundingClientRect().right - event.clientX)
+  }
+
+  function handleGraphSplitPointerUp(
+    event: React.PointerEvent<HTMLButtonElement>
+  ) {
+    if (!graphSplitDraggingRef.current) return
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+    graphSplitDraggingRef.current = false
+    setGraphSplitDragging(false)
+    persistGraphMainWidth(graphMainWidthRef.current)
+  }
+
+  function handleGraphSplitKeyDown(
+    event: React.KeyboardEvent<HTMLButtonElement>
+  ) {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault()
+      applyGraphMainWidth(graphMainWidthRef.current + 24, true)
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault()
+      applyGraphMainWidth(graphMainWidthRef.current - 24, true)
+    } else if (event.key === 'Home') {
+      event.preventDefault()
+      applyGraphMainWidth(GRAPH_MAIN_MIN, true)
+    } else if (event.key === 'End') {
+      event.preventDefault()
+      applyGraphMainWidth(measureGraphBodyWidth() - GRAPH_ASIDE_MIN, true)
+    }
+  }
+
+  function handleGraphSplitDoubleClick() {
+    applyGraphMainWidth(GRAPH_MAIN_DEFAULT, true)
+  }
 
   React.useEffect(() => {
     if (courseProp) {
@@ -153,6 +296,7 @@ export function CourseLearningPath({
     if (courseIdentityRef.current === key) return
     courseIdentityRef.current = key
     setSelectedId(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+    setNavView('list')
     setExpanded(new Set())
   }, [course, slug])
 
@@ -189,6 +333,16 @@ export function CourseLearningPath({
     setMobileNavOpen(false)
   }
 
+  function handleGraphSelect(id: string) {
+    handleSelect(
+      id === MENTAL_MAP_GOAL_ID
+        ? COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID
+        : id
+    )
+    window.scrollTo(0, 0)
+    mainRef.current?.scrollTo(0, 0)
+  }
+
   function handleMarkExplored(nodeId: string) {
     setExploredIds((prev) => {
       if (prev.has(nodeId)) return prev
@@ -214,23 +368,48 @@ export function CourseLearningPath({
     })
   }
 
-  async function handleAddVideo(input: {
+  async function handleAddTopicResource(input: {
     nodeId: string
-    url: string
+    kind: CourseLearningPathTopicResourceKind
+    url?: string
     title?: string
-    description?: string
+    passage?: string
+    why?: string
     suggestedPlacement?: number
   }): Promise<boolean> {
     if (!course) return false
 
     if (isMentalMapVideoNodeId(input.nodeId)) {
-      const current = course.mentalMapVideos ?? []
-      const local = createLocalCourseLearningPathVideo(input)
+      const current = course.mentalMapTopicResources ?? []
+      if (course.dbBacked) {
+        const mapNodeId = await ensureMentalMapNodeId(course.id)
+        if (!mapNodeId) return false
+        const result = await addCourseLearningPathTopicResource(
+          {
+            ...input,
+            nodeId: mapNodeId,
+            conceptTree: `${course.title} --> Mental Map`,
+            courseSlug: course.slug
+          },
+          current
+        )
+        if (!result) return false
+        setCourse((prev) =>
+          prev
+            ? mapCourseLearningPathMentalMapTopicResources(
+                prev,
+                () => result.ordered
+              )
+            : prev
+        )
+        return true
+      }
+      const local = createLocalCourseLearningPathTopicResource(input)
       setCourse((prev) =>
         prev
-          ? mapCourseLearningPathMentalMapVideos(prev, (videos) =>
-              insertVideoAtPlacement(
-                videos,
+          ? mapCourseLearningPathMentalMapTopicResources(prev, (items) =>
+              insertTopicResourceAtPlacement(
+                items,
                 local,
                 input.suggestedPlacement ?? current.length + 1
               )
@@ -241,7 +420,7 @@ export function CourseLearningPath({
     }
 
     const entry = buildCourseLearningPathIndex(course)[input.nodeId]
-    const current = entry?.node.videos ?? []
+    const current = entry?.node.topicResources ?? []
     const conceptTree = entry
       ? formatCourseLearningPathConceptTree(
           course.title,
@@ -251,66 +430,16 @@ export function CourseLearningPath({
       : undefined
 
     if (course.dbBacked) {
-      const result = await addCourseLearningPathVideo(
+      const result = await addCourseLearningPathTopicResource(
         { ...input, conceptTree, courseSlug: course.slug },
         current
       )
       if (!result) return false
       setCourse((prev) =>
         prev
-          ? mapCourseLearningPathNodeVideos(prev, input.nodeId, () => result.ordered)
-          : prev
-      )
-      return true
-    }
-
-    const local = createLocalCourseLearningPathVideo(input)
-    setCourse((prev) =>
-      prev
-        ? mapCourseLearningPathNodeVideos(prev, input.nodeId, (videos) =>
-            insertVideoAtPlacement(
-              videos,
-              local,
-              input.suggestedPlacement ?? videos.length + 1
-            )
-          )
-        : prev
-    )
-    return true
-  }
-
-  async function handleAddLink(input: {
-    nodeId: string
-    kind: 'test' | 'slide'
-    url: string
-    title?: string
-    description?: string
-    suggestedPlacement?: number
-  }): Promise<boolean> {
-    if (!course) return false
-    const field = linkFieldForKind(input.kind)
-    const entry = buildCourseLearningPathIndex(course)[input.nodeId]
-    const current = entry?.node[field] ?? []
-    const conceptTree = entry
-      ? formatCourseLearningPathConceptTree(
-          course.title,
-          entry.parents,
-          entry.node.title
-        )
-      : undefined
-
-    if (course.dbBacked) {
-      const result = await addCourseLearningPathLink(
-        { ...input, conceptTree, courseSlug: course.slug },
-        current
-      )
-      if (!result) return false
-      setCourse((prev) =>
-        prev
-          ? mapCourseLearningPathNodeLinks(
+          ? mapCourseLearningPathNodeTopicResources(
               prev,
               input.nodeId,
-              field,
               () => result.ordered
             )
           : prev
@@ -318,89 +447,19 @@ export function CourseLearningPath({
       return true
     }
 
-    const local = createLocalCourseLearningPathLink(input)
+    const local = createLocalCourseLearningPathTopicResource(input)
     setCourse((prev) =>
       prev
-        ? mapCourseLearningPathNodeLinks(prev, input.nodeId, field, (links) =>
-            insertLinkAtPlacement(
-              links,
+        ? mapCourseLearningPathNodeTopicResources(prev, input.nodeId, (items) =>
+            insertTopicResourceAtPlacement(
+              items,
               local,
-              input.suggestedPlacement ?? links.length + 1
+              input.suggestedPlacement ?? items.length + 1
             )
           )
         : prev
     )
     return true
-  }
-
-  async function handleVoteVideo(
-    nodeId: string,
-    videoId: string,
-    value: 1 | -1 | null
-  ) {
-    if (!course) return
-
-    if (isMentalMapVideoNodeId(nodeId)) {
-      setCourse((prev) =>
-        prev
-          ? mapCourseLearningPathMentalMapVideos(
-              prev,
-              (videos) =>
-                videos.map((v) => {
-                  if (v.id !== videoId) return v
-                  const prevVote = v.userVote ?? null
-                  let score = v.score ?? 0
-                  if (prevVote) score -= prevVote
-                  if (value) score += value
-                  return { ...v, score, userVote: value }
-                }),
-              { rerankByScore: true }
-            )
-          : prev
-      )
-      return
-    }
-
-    if (course.dbBacked) {
-      const newScore = await setCourseLearningPathVideoVote(videoId, value)
-      if (newScore === null) return
-      setCourse((prev) => {
-        if (!prev) return prev
-        const next = mapCourseLearningPathNodeVideos(
-          prev,
-          nodeId,
-          (videos) =>
-            videos.map((v) =>
-              v.id === videoId ? { ...v, score: newScore, userVote: value } : v
-            ),
-          { rerankByScore: true }
-        )
-        const ordered = buildCourseLearningPathIndex(next)[nodeId]?.node.videos ?? []
-        void persistCourseLearningPathVideoOrder(ordered)
-        return next
-      })
-      return
-    }
-
-    // Local / seed: apply vote delta client-side and re-rank by score.
-    setCourse((prev) =>
-      prev
-        ? mapCourseLearningPathNodeVideos(
-            prev,
-            nodeId,
-            (videos) =>
-              videos.map((v) => {
-                if (v.id !== videoId) return v
-                const prevVote = v.userVote ?? null
-                let score = v.score ?? 0
-                if (prevVote) score -= prevVote
-                if (value) score += value
-                return { ...v, score, userVote: value }
-              }),
-            { rerankByScore: true }
-          )
-        : prev
-    )
   }
 
   if (loading) {
@@ -417,48 +476,158 @@ export function CourseLearningPath({
   }
 
   const hasSyllabus = course.topics.length > 0
+  const graphSelectedId = showingMentalMap
+    ? MENTAL_MAP_GOAL_ID
+    : showingSyllabus || showingResources
+      ? ''
+      : selectedId
 
   return (
     <div className={styles.root}>
+      <div className={styles.hero}>
+        <CourseHero
+          courseCode='Course Learning Path'
+          title={course.title}
+          instructors={[{ name: 'By Coursetexts' }]}
+          descriptionHtml={courseDescriptionHtml(course.description)}
+          schoolDate={formatHeroPublishedDate(course.createdAt)}
+          publisherAvatarFallback='coursetexts'
+          publisherAvatarAlt='Coursetexts'
+          actions={<CourseLearningPathHeroActions course={course} />}
+        />
+      </div>
       <header className={styles.topBar}>
         <button
           type='button'
           onClick={() => setMobileNavOpen((v) => !v)}
           className={styles.menuBtn}
-          aria-label={mobileNavOpen ? 'Close syllabus' : 'Open syllabus'}
+          aria-label={
+            mobileNavOpen
+              ? navView === 'graph'
+                ? 'Close map'
+                : 'Close syllabus'
+              : navView === 'graph'
+                ? 'Open map'
+                : 'Open syllabus'
+          }
         >
           {mobileNavOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </header>
 
-      <div className={styles.body}>
+      <div
+        ref={bodyRef}
+        className={`${styles.body}${
+          navView === 'graph' ? ` ${styles.bodyGraph}` : ''
+        }${graphSplitDragging ? ` ${styles.bodyGraphDragging}` : ''}`}
+      >
         <aside
           className={`${styles.aside}${
             mobileNavOpen ? ` ${styles.asideOpen}` : ''
-          }`}
+          }${navView === 'graph' ? ` ${styles.asideGraph}` : ''}`}
         >
           <div className={styles.asideInner}>
-            <CourseLearningPathSyllabusNav
-              course={course}
-              selectedId={selectedId}
-              expanded={expanded}
-              exploredIds={exploredIds}
-              onSelect={handleSelect}
-              onToggle={handleToggle}
-            />
+            <div className={styles.asideToolbar}>
+              <div className={styles.asideToolbarCopy}>
+                <h2 className={styles.asideMapTitle}>
+                  {navView === 'list' ? 'The outline' : 'The map'}
+                </h2>
+                {navView === 'graph' ? (
+                  <span className={styles.asideMapHint}>
+                    Hover a topic to see its children · click a node to read it
+                  </span>
+                ) : null}
+              </div>
+              <div
+                className={styles.viewToggle}
+                role='group'
+                aria-label='Course view'
+              >
+                <button
+                  type='button'
+                  className={styles.viewToggleBtn}
+                  aria-pressed={navView === 'graph'}
+                  onClick={() => setNavView('graph')}
+                >
+                  Graph
+                </button>
+                <button
+                  type='button'
+                  className={styles.viewToggleBtn}
+                  aria-pressed={navView === 'list'}
+                  onClick={() => setNavView('list')}
+                >
+                  List
+                </button>
+              </div>
+            </div>
+            {navView === 'graph' ? (
+              <div className={styles.asideGraphStage}>
+                <PathGraphCanvas
+                  course={course}
+                  exploredIds={exploredIds}
+                  selectedId={graphSelectedId}
+                  onOpenNode={handleGraphSelect}
+                />
+              </div>
+            ) : (
+              <CourseLearningPathSyllabusNav
+                course={course}
+                selectedId={selectedId}
+                expanded={expanded}
+                exploredIds={exploredIds}
+                onSelect={handleSelect}
+                onToggle={handleToggle}
+              />
+            )}
           </div>
         </aside>
+
+        {navView === 'graph' ? (
+          <button
+            type='button'
+            className={`${styles.splitHandle}${
+              graphSplitDragging ? ` ${styles.splitHandleActive}` : ''
+            }`}
+            aria-label='Resize content panel'
+            aria-orientation='vertical'
+            aria-valuemin={GRAPH_MAIN_MIN}
+            aria-valuenow={graphMainWidth}
+            title='Drag to resize. Double-click to reset.'
+            onPointerDown={handleGraphSplitPointerDown}
+            onPointerMove={handleGraphSplitPointerMove}
+            onPointerUp={handleGraphSplitPointerUp}
+            onPointerCancel={handleGraphSplitPointerUp}
+            onLostPointerCapture={handleGraphSplitPointerUp}
+            onKeyDown={handleGraphSplitKeyDown}
+            onDoubleClick={handleGraphSplitDoubleClick}
+          />
+        ) : null}
 
         {mobileNavOpen && (
           <button
             type='button'
-            aria-label='Close syllabus'
+            aria-label={navView === 'graph' ? 'Close map' : 'Close syllabus'}
             onClick={() => setMobileNavOpen(false)}
             className={styles.overlay}
           />
         )}
 
-        <main ref={mainRef} className={styles.main}>
+        <main
+          ref={mainRef}
+          className={`${styles.main}${
+            navView === 'graph' ? ` ${styles.mainGraph}` : ''
+          }`}
+          style={
+            navView === 'graph'
+              ? {
+                  flexBasis: graphMainWidth,
+                  width: graphMainWidth,
+                  maxWidth: 'none'
+                }
+              : undefined
+          }
+        >
           {showingSyllabus ? (
             <CourseLearningPathSyllabusOverview
               course={course}
@@ -467,14 +636,11 @@ export function CourseLearningPath({
           ) : showingMentalMap ? (
             <CourseLearningPathMentalMap
               course={course}
-              exploredIds={exploredIds}
-              onSelect={handleSelect}
-              videos={course.mentalMapVideos}
-              dbBacked={false}
+              topicResources={course.mentalMapTopicResources}
+              dbBacked={Boolean(course.dbBacked)}
               signedIn={Boolean(auth?.user)}
               onSignIn={() => auth?.signInWithGoogle()}
-              onAddVideo={handleAddVideo}
-              onVoteVideo={handleVoteVideo}
+              onAddTopicResource={handleAddTopicResource}
             />
           ) : showingResources ? (
             <CourseLearningPathResources
@@ -490,9 +656,7 @@ export function CourseLearningPath({
               dbBacked={Boolean(course.dbBacked)}
               signedIn={Boolean(auth?.user)}
               onSignIn={() => auth?.signInWithGoogle()}
-              onAddVideo={handleAddVideo}
-              onVoteVideo={handleVoteVideo}
-              onAddLink={handleAddLink}
+              onAddTopicResource={handleAddTopicResource}
               explored={exploredIds.has(entry.node.id)}
               onMarkExplored={() => handleMarkExplored(entry.node.id)}
               nextNode={nextCourseLearningPathNode(course, entry.node.id)}
@@ -516,6 +680,13 @@ export function CourseLearningPath({
             </div>
           )}
         </main>
+      </div>
+      <div className={styles.activitySection}>
+        <CourseActivity
+          coursePageId={courseLearningPathActivityPageId(course.slug)}
+          courseTitle={course.title}
+          courseUrl={`/course-learning-path/${course.slug}`}
+        />
       </div>
     </div>
   )

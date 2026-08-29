@@ -7,6 +7,15 @@ const withBundleAnalyzer =
     : (config) => config
 
 module.exports = withBundleAnalyzer({
+  webpack(config) {
+    // Next 12 webpack breaks katex's ESM build (`de is not defined` in katex.mjs).
+    // Force the CJS bundle for `import katex from 'katex'` only.
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      katex$: require.resolve('katex/dist/katex.js')
+    }
+    return config
+  },
   async redirects() {
     return [
       {

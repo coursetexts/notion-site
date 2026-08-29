@@ -135,12 +135,12 @@
   font-size: clamp(28px, 4vw, 36px);
   font-style: normal;
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.05;
   color: #000;
 }
 
 .subtitle {
-  margin: 16px 0 0;
+  margin: 8px 0 0;
   max-width: 40rem;
   color: #37352f;
   font-family: 'Hanken Grotesk', sans-serif;

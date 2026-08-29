@@ -452,33 +452,10 @@
   color: #888;
 }
 
-.toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+.editorToolbar {
   margin-bottom: 0.75rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #eee;
-}
-
-.toolBtn {
-  font-size: 0.8125rem;
-  padding: 0.35rem 0.55rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background: #fff;
-  color: #444;
-  cursor: pointer;
-}
-
-.toolBtn:hover {
-  background: #f7f7f5;
-}
-
-.toolBtnActive {
-  background: #25272b;
-  color: #fff;
-  border-color: #25272b;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .editorSurface {
@@ -551,6 +528,23 @@
   text-decoration: underline;
 }
 
+.editorSurface :global(.ProseMirror mark),
+.editorSurface :global(.ProseMirror mark.notesHighlight) {
+  background-color: #fff3a0;
+  color: inherit;
+  border-radius: 0.12em;
+  padding: 0.05em 0.14em;
+  box-decoration-break: clone;
+}
+
+.editorSurface :global(.ProseMirror u),
+.editorSurface :global(.ProseMirror u.notesUnderline) {
+  text-decoration: underline;
+  text-decoration-color: #1a1a1a;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+}
+
 .editorSurface :global(.ProseMirror img) {
   display: block;
   max-width: 100%;
@@ -599,6 +593,12 @@
   margin: 0.75rem 0;
 }
 
+.editorSurface :global(hr) {
+  border: none;
+  border-top: 1px solid #d8d4cc;
+  margin: 1.1em 0;
+}
+
 .editorSurface :global(.Tiptap-mathematics-render) {
   display: inline-block;
   margin: 0 0.12em;
@@ -610,7 +610,8 @@
   font-size: 1.05em;
 }
 
-.editorSurface :global(.Tiptap-mathematics-editor.Tiptap-mathematics-editor--hidden) {
+.editorSurface
+  :global(.Tiptap-mathematics-editor.Tiptap-mathematics-editor--hidden) {
   user-select: none;
 }
 

@@ -4,12 +4,13 @@ import dynamic from 'next/dynamic'
 import { getMentalMapNotesNodeId } from '@/lib/course-learning-path-resources'
 import type {
   CourseLearningPathData,
-  CourseLearningPathVideo
+  CourseLearningPathTopicResource,
+  CourseLearningPathTopicResourceKind
 } from '@/lib/course-learning-path-types'
 
 import styles from './CourseLearningPath.module.css'
-import { PathGraphCanvas } from './PathGraphCanvas'
-import { CourseLearningPathVideoSection } from './CourseLearningPathVideoSection'
+import { CourseLearningPathNodeResources } from './CourseLearningPathNodeResources'
+import { CourseLearningPathWhy } from './CourseLearningPathWhy'
 
 const CourseLearningPathNotes = dynamic(
   () => import('./CourseLearningPathNotes').then((m) => m.CourseLearningPathNotes),
@@ -30,78 +31,61 @@ const CourseLearningPathNotes = dynamic(
 
 interface CourseLearningPathMentalMapProps {
   course: CourseLearningPathData
-  exploredIds: Set<string>
-  onSelect: (id: string) => void
-  videos?: CourseLearningPathVideo[]
+  topicResources?: CourseLearningPathTopicResource[]
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
-  onAddVideo?: (input: {
+  onAddTopicResource?: (input: {
     nodeId: string
-    url: string
+    kind: CourseLearningPathTopicResourceKind
+    url?: string
     title?: string
-    description?: string
+    passage?: string
+    why?: string
     suggestedPlacement?: number
   }) => Promise<boolean>
-  onVoteVideo?: (
-    nodeId: string,
-    videoId: string,
-    value: 1 | -1 | null
-  ) => Promise<void>
 }
 
 export function CourseLearningPathMentalMap({
   course,
-  exploredIds,
-  onSelect,
-  videos = [],
+  topicResources = [],
   dbBacked = false,
   signedIn = false,
   onSignIn,
-  onAddVideo,
-  onVoteVideo
+  onAddTopicResource
 }: CourseLearningPathMentalMapProps) {
   const notesNodeId = getMentalMapNotesNodeId(course.slug)
 
   return (
-    <article className={`${styles.article} ${styles.mentalMapArticle}`}>
-      <header className={`${styles.articleHeader} ${styles.mentalMapLead}`}>
+    <article className={styles.article}>
+      <header className={styles.articleHeader}>
         <span className={styles.typeBadge}>Mental Map</span>
         <h1 className={styles.articleTitle}>{course.title}</h1>
       </header>
 
-      <div className={styles.mentalMapGraph}>
-        <PathGraphCanvas
-          course={course}
-          exploredIds={exploredIds}
-          onOpenNode={(id) => {
-            onSelect(id)
-            window.scrollTo(0, 0)
-          }}
-        />
-      </div>
+      <CourseLearningPathWhy
+        text={course.description}
+        headingId='mental-map-why-heading'
+        resetKey={course.id}
+      />
 
-      <div className={styles.mentalMapRest}>
-        <CourseLearningPathNotes
-          nodeId={notesNodeId}
-          courseSlug={course.slug || 'course'}
-          topicTitle='Mental Map'
-          signedIn={signedIn}
-          onSignIn={onSignIn}
-        />
+      <CourseLearningPathNodeResources
+        nodeId={notesNodeId}
+        items={topicResources}
+        headingId='mental-map-resources-heading'
+        dbBacked={dbBacked}
+        signedIn={signedIn}
+        onSignIn={onSignIn}
+        onAdd={onAddTopicResource}
+      />
 
-        <CourseLearningPathVideoSection
-          nodeId={notesNodeId}
-          videos={videos}
-          headingId='mental-map-videos-heading'
-          formIdPrefix='mm'
-          dbBacked={dbBacked}
-          signedIn={signedIn}
-          onSignIn={onSignIn}
-          onAddVideo={onAddVideo}
-          onVoteVideo={onVoteVideo}
-        />
-      </div>
+      <CourseLearningPathNotes
+        nodeId={notesNodeId}
+        courseSlug={course.slug || 'course'}
+        topicTitle='Mental Map'
+        signedIn={signedIn}
+        onSignIn={onSignIn}
+      />
     </article>
   )
 }

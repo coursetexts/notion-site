@@ -5,7 +5,7 @@ import { SaveCourseButton } from './SaveCourseButton'
 
 export interface CourseHeroInstructor {
   name: string
-  url: string
+  url?: string
 }
 
 export interface CourseHeroData {
@@ -30,6 +30,14 @@ interface CourseHeroProps extends CourseHeroData {
   coursePageId?: string
   courseTitle?: string
   courseUrl?: string
+  /** Extra controls in the save row (share, custom save, etc.). */
+  actions?: React.ReactNode
+  /** Circular photo of the user (or brand) who published this path. */
+  publisherAvatarUrl?: string | null
+  /** Shown when there is no photo — a letter, or `coursetexts` for the book mark. */
+  publisherAvatarFallback?: string
+  publisherAvatarAlt?: string
+  publisherAvatarHref?: string
 }
 
 const COPYRIGHT_TOGGLE_TITLE = '⚖️ Copyright Report'
@@ -347,6 +355,24 @@ function getSchoolLogo(school: string): [string, string] | null {
   return null
 }
 
+/** Hero meta line: "Published | Aug 2026" — CourseHero splits on `|` into Published · month year. */
+export function formatHeroPublishedDate(
+  value?: string | Date | null
+): string {
+  const parsed =
+    value instanceof Date
+      ? value
+      : typeof value === 'string' && value.trim()
+        ? new Date(value)
+        : new Date()
+  const date = Number.isNaN(parsed.getTime()) ? new Date() : parsed
+  const monthYear = date.toLocaleString('en-US', {
+    month: 'short',
+    year: 'numeric'
+  })
+  return `Published | ${monthYear}`
+}
+
 /** Normalize schoolDate: school first, then date. Returns single string or [school, date] for styled dot. */
 function formatSchoolDate(raw: string): string | [string, string] {
   const value = raw.trim()
@@ -395,6 +421,55 @@ function SchoolDateSeparator() {
   )
 }
 
+export function PublisherAvatar({
+  url,
+  fallback,
+  alt,
+  href
+}: {
+  url?: string | null
+  fallback?: string
+  alt?: string
+  href?: string
+}) {
+  const mark = url ? (
+    <img
+      src={url}
+      alt={href ? '' : alt ?? ''}
+      className={styles.publisherAvatar}
+      width={24}
+      height={24}
+    />
+  ) : fallback === 'coursetexts' ? (
+    <span className={styles.publisherAvatarFallback} aria-hidden>
+      <img
+        src='/coursetexts-book.svg'
+        alt=''
+        width={13}
+        height={11}
+        className={styles.publisherBrandIcon}
+      />
+    </span>
+  ) : fallback ? (
+    <span className={styles.publisherAvatarFallback} aria-hidden>
+      {fallback.slice(0, 1).toUpperCase()}
+    </span>
+  ) : null
+  if (!mark) return null
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={styles.publisherAvatarLink}
+        aria-label={alt || 'Publisher profile'}
+      >
+        {mark}
+      </a>
+    )
+  }
+  return mark
+}
+
 export const CourseHero: React.FC<CourseHeroProps> = ({
   courseCode: courseCodeProp,
   title,
@@ -405,7 +480,12 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   descriptionHtml,
   coursePageId,
   courseTitle,
-  courseUrl
+  courseUrl,
+  actions,
+  publisherAvatarUrl,
+  publisherAvatarFallback,
+  publisherAvatarAlt,
+  publisherAvatarHref
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
   const [copyrightReport, setCopyrightReport] =
@@ -516,11 +596,15 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
     }
   }, [isCopyrightModalOpen])
 
-  // Derive course code from content in brackets at end of title, e.g. "Intro to CS (CS 101)" → "CS 101"
+  // Prefer an explicit courseCode (e.g. "Course Learning Path"). Otherwise
+  // derive it from brackets at the end of the title, e.g. "Intro to CS (CS 101)".
   const bracketMatch = title.match(/\(([^)]+)\)\s*$/)
-  const derivedCourseCode = bracketMatch
-    ? bracketMatch[1].trim()
-    : courseCodeProp ?? ''
+  const derivedCourseCode =
+    courseCodeProp != null && courseCodeProp.trim() !== ''
+      ? courseCodeProp.trim()
+      : bracketMatch
+        ? bracketMatch[1].trim()
+        : ''
   const displayTitle = bracketMatch
     ? title.replace(/\s*\([^)]+\)\s*$/, '').trim()
     : title
@@ -560,21 +644,41 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
             {instructors.map((inst, i) => (
               <React.Fragment key={i}>
                 {i > 0 && ' '}
-                <a href={inst.url} className={styles.instructorLink}>
-                  {inst.name}
-                </a>
+                {inst.url ? (
+                  <a href={inst.url} className={styles.instructorLink}>
+                    {inst.name}
+                  </a>
+                ) : (
+                  <span className={styles.instructorName}>{inst.name}</span>
+                )}
               </React.Fragment>
             ))}
           </div>
         ) : null}
-        {schoolDate || showSaveButton ? (
+        {schoolDate || showSaveButton || actions ? (
           <div className={styles.schoolDateRow}>
             {schoolDate ? (
               <div className={styles.schoolDate}>
                 {(() => {
+                  const hasPublisher = Boolean(
+                    publisherAvatarUrl || publisherAvatarFallback
+                  )
+                  const publisher = hasPublisher ? (
+                    <PublisherAvatar
+                      url={publisherAvatarUrl}
+                      fallback={publisherAvatarFallback}
+                      alt={publisherAvatarAlt}
+                      href={publisherAvatarHref}
+                    />
+                  ) : null
                   const formatted = formatSchoolDate(schoolDate)
                   if (typeof formatted === 'string') {
-                    return <span className={styles.schoolDateText}>{formatted}</span>
+                    return (
+                      <>
+                        {publisher}
+                        <span className={styles.schoolDateText}>{formatted}</span>
+                      </>
+                    )
                   }
                   const [school, date] = formatted
                   const schoolLogo = getSchoolLogo(school)
@@ -583,15 +687,17 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                   return (
                     <>
                       <span className={styles.schoolDateLead}>
-                        {logoPath ? (
-                          <img
-                            src={logoPath}
-                            alt=''
-                            className={styles.schoolLogo}
-                            width={24}
-                            height={24}
-                          />
-                        ) : null}
+                        {hasPublisher
+                          ? publisher
+                          : logoPath ? (
+                              <img
+                                src={logoPath}
+                                alt=''
+                                className={styles.schoolLogo}
+                                width={24}
+                                height={24}
+                              />
+                            ) : null}
                         <span className={styles.schoolDateText}>{displayName}</span>
                       </span>
                       <SchoolDateSeparator />
@@ -601,13 +707,16 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                 })()}
               </div>
             ) : null}
-            {showSaveButton ? (
+            {showSaveButton || actions ? (
               <div className={styles.saveWrap}>
-                <SaveCourseButton
-                  courseUrl={courseUrl}
-                  courseTitle={courseTitle ?? title}
-                  coursePageId={coursePageId}
-                />
+                {actions}
+                {showSaveButton ? (
+                  <SaveCourseButton
+                    courseUrl={courseUrl}
+                    courseTitle={courseTitle ?? title}
+                    coursePageId={coursePageId}
+                  />
+                ) : null}
               </div>
             ) : null}
           </div>

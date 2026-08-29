@@ -47,7 +47,7 @@ export default function CourseLearningPathPage() {
             '--home-content-max': '1000px',
             '--home-footer-side': 'max(28px, 15.28vw)',
             minHeight: '100vh',
-            background: 'var(--footer, #F8F7F4)',
+            background: '#fff',
             display: 'flex',
             flexDirection: 'column'
           } as React.CSSProperties

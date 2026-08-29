@@ -100,22 +100,53 @@ type HomeHeaderProps = {
   style?: React.CSSProperties
   sidePadding?: string
   maxWidth?: string
-  /** When true, hides the desktop account link and mobile menu account link (e.g. on profile). */
-  hideAccountActions?: boolean
+}
+
+function HeaderAccountAction({
+  isLoggedIn,
+  isOwnProfilePage,
+  accountHref,
+  accountLabel,
+  className,
+  onNavigate,
+  onSignOut
+}: {
+  isLoggedIn: boolean
+  isOwnProfilePage: boolean
+  accountHref: string
+  accountLabel: string
+  className: string
+  onNavigate?: () => void
+  onSignOut: () => void
+}) {
+  if (isLoggedIn && isOwnProfilePage) {
+    return (
+      <button type='button' className={className} onClick={onSignOut}>
+        Sign out
+      </button>
+    )
+  }
+  return (
+    <Link href={accountHref} legacyBehavior>
+      <a className={className} onClick={onNavigate}>
+        {accountLabel}
+      </a>
+    </Link>
+  )
 }
 
 export function HomeHeader({
   className,
   style,
   sidePadding = 'clamp(20px, 4.03vw, 58px)',
-  maxWidth = '1324px',
-  hideAccountActions = false
+  maxWidth = '1324px'
 }: HomeHeaderProps) {
   const router = useRouter()
   const auth = useAuthOptional()
   const cached = React.useMemo(() => getCachedAuth(), [])
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
+  const isOwnProfilePage = router.pathname === '/profile'
   const accountHref = isLoggedIn
     ? '/profile'
     : `/signin?redirect=${encodeURIComponent('/profile')}`
@@ -176,6 +207,12 @@ export function HomeHeader({
     })
     setMenuOpen(false)
   }, [])
+
+  const handleSignOut = React.useCallback(async () => {
+    closeMenu()
+    if (auth?.signOut) await auth.signOut()
+    void router.replace('/')
+  }, [auth, closeMenu, router])
 
   const openMenu = React.useCallback(() => {
     const r = menuBtnRef.current?.getBoundingClientRect() ?? null
@@ -372,15 +409,19 @@ export function HomeHeader({
                 )}
               </nav>
 
-              {!hideAccountActions && (
-                <div className={styles.menuFooter}>
-                  <Link href={accountHref} legacyBehavior>
-                    <a className={styles.menuSignUp} onClick={closeMenu}>
-                      {accountLabel}
-                    </a>
-                  </Link>
-                </div>
-              )}
+              <div className={styles.menuFooter}>
+                <HeaderAccountAction
+                  isLoggedIn={isLoggedIn}
+                  isOwnProfilePage={isOwnProfilePage}
+                  accountHref={accountHref}
+                  accountLabel={accountLabel}
+                  className={styles.menuSignUp}
+                  onNavigate={closeMenu}
+                  onSignOut={() => {
+                    void handleSignOut()
+                  }}
+                />
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -460,14 +501,19 @@ export function HomeHeader({
             </div>
 
             <div className={styles.headerEnd}>
-              {isLoggedIn && <PinnedCoursesNav />}
-              {!hideAccountActions && (
-                <div className={styles.headerDesktopOnly}>
-                  <Link href={accountHref} legacyBehavior>
-                    <a className={styles.signUp}>{accountLabel}</a>
-                  </Link>
-                </div>
-              )}
+              {isLoggedIn && !isOwnProfilePage && <PinnedCoursesNav />}
+              <div className={styles.headerDesktopOnly}>
+                <HeaderAccountAction
+                  isLoggedIn={isLoggedIn}
+                  isOwnProfilePage={isOwnProfilePage}
+                  accountHref={accountHref}
+                  accountLabel={accountLabel}
+                  className={styles.signUp}
+                  onSignOut={() => {
+                    void handleSignOut()
+                  }}
+                />
+              </div>
               <button
                 ref={menuBtnRef}
                 type='button'

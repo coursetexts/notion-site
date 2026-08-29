@@ -816,8 +816,18 @@ export default function CommunityPage() {
                 </button>
                 <button
                   type='button'
-                  className={styles.shareBtn}
-                  onClick={() => setModal('resource')}
+                  className={`${styles.shareBtn}${
+                    !signedIn ? ` ${styles.shareBtnDisabled}` : ''
+                  }`}
+                  aria-disabled={!signedIn}
+                  title={signedIn ? undefined : 'Sign in to add a resource'}
+                  onClick={() => {
+                    if (!signedIn) {
+                      void auth?.signInWithGoogle()
+                      return
+                    }
+                    setModal('resource')
+                  }}
                 >
                   <PlusIcon />
                   Share a resource
@@ -864,8 +874,18 @@ export default function CommunityPage() {
                 ) : (
                   <button
                     type='button'
-                    className={styles.quietLink}
-                    onClick={() => setModal('resource')}
+                    className={`${styles.quietLink}${
+                      !signedIn ? ` ${styles.quietLinkDisabled}` : ''
+                    }`}
+                    aria-disabled={!signedIn}
+                    title={signedIn ? undefined : 'Sign in to add a resource'}
+                    onClick={() => {
+                      if (!signedIn) {
+                        void auth?.signInWithGoogle()
+                        return
+                      }
+                      setModal('resource')
+                    }}
                   >
                     Be the first to share a resource
                   </button>

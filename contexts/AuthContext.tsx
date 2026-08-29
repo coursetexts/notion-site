@@ -15,6 +15,7 @@ import {
   subscribeToAuthCache
 } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
+import { persistAllBeforeSignOut } from '@/lib/persist-before-sign-out'
 import { getSupabaseClient } from '@/lib/supabase'
 import type { Profile } from '@/lib/supabase-types'
 
@@ -223,6 +224,7 @@ export function AuthProvider({
     setError(null)
     const supabase = getSupabaseClient()
     if (!supabase) return
+    await persistAllBeforeSignOut()
     await supabase.auth.signOut()
     setUserState(null)
     setProfileState(null)

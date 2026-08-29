@@ -694,7 +694,6 @@ function ChartQuestionModal({
     targets[0]?.nodeId ?? ''
   )
   const [status, setStatus] = React.useState<AtlasQuestionStatus>('emerging')
-  const [contributor, setContributor] = React.useState('')
   const [hypotheses, setHypotheses] = React.useState([''])
   const [readings, setReadings] = React.useState<
     Array<{ key: string; title: string; url: string; note: string }>
@@ -736,7 +735,7 @@ function ChartQuestionModal({
         id: newId('h'),
         statement,
         weight: (i === 0 ? 'leading' : 'contender') as 'leading' | 'contender',
-        proponents: contributor.trim() || 'Community contributor',
+        proponents: 'Community contributor',
         readingList: [],
         threads: []
       }))
@@ -757,7 +756,7 @@ function ChartQuestionModal({
         researchers: [],
         labs: [],
         threads: [],
-        contributedBy: contributor.trim() || 'anonymous',
+        contributedBy: 'anonymous',
         updated: new Date().toISOString().slice(0, 10)
       },
       targetNodeId
@@ -927,16 +926,6 @@ function ChartQuestionModal({
               </div>
             ))}
           </div>
-
-          <label className={styles.field}>
-            <span className={styles.label}>Your name or handle</span>
-            <input
-              className={styles.input}
-              value={contributor}
-              onChange={(e) => setContributor(e.target.value)}
-              placeholder='anonymous'
-            />
-          </label>
 
           <div className={styles.modalActions}>
             <button

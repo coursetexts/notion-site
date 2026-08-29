@@ -1,13 +1,5 @@
 import * as React from 'react'
 
-import { useAuthOptional } from '@/contexts/AuthContext'
-
-import {
-  isCourseLearningPathPinId,
-  isCourseLearningPathPinned,
-  setCourseLearningPathPinned,
-  subscribeCourseLearningPathPins
-} from '@/lib/course-learning-path-pins-db'
 import {
   COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
@@ -25,7 +17,26 @@ import type {
 } from '@/lib/course-learning-path-types'
 
 import styles from './CourseLearningPath.module.css'
-import { PinIcon } from './PinIcon'
+
+function matchesQuery(text: string, query: string) {
+  return text.toLowerCase().includes(query)
+}
+
+function filterTopicTree(
+  nodes: CourseLearningPathNode[],
+  query: string
+): CourseLearningPathNode[] {
+  if (!query) return nodes
+  return nodes
+    .map((node) => {
+      const selfMatch = matchesQuery(node.title, query)
+      const children = filterTopicTree(node.children ?? [], query)
+      if (selfMatch) return node
+      if (children.length) return { ...node, children }
+      return null
+    })
+    .filter((node): node is CourseLearningPathNode => node != null)
+}
 
 interface SyllabusNavProps {
   course: CourseLearningPathData
@@ -44,89 +55,56 @@ export function CourseLearningPathSyllabusNav({
   onSelect,
   onToggle
 }: SyllabusNavProps) {
-  const auth = useAuthOptional()
-  const signedIn = Boolean(auth?.user)
-  const canPin = Boolean(course.dbBacked && isCourseLearningPathPinId(course.id))
-  const [pinned, setPinned] = React.useState(false)
-  const [pinBusy, setPinBusy] = React.useState(false)
-
-  React.useEffect(() => {
-    if (!canPin || !signedIn) {
-      setPinned(false)
-      return
-    }
-    let alive = true
-    void isCourseLearningPathPinned(course.id).then((value) => {
-      if (alive) setPinned(value)
-    })
-    const unsub = subscribeCourseLearningPathPins(() => {
-      void isCourseLearningPathPinned(course.id).then((value) => {
-        if (alive) setPinned(value)
-      })
-    })
-    return () => {
-      alive = false
-      unsub()
-    }
-  }, [canPin, signedIn, course.id])
-
-  async function handleTogglePin() {
-    if (!canPin) return
-    if (!signedIn) {
-      auth?.signInWithGoogle()
-      return
-    }
-    if (pinBusy) return
-    const next = !pinned
-    setPinBusy(true)
-    setPinned(next)
-    const result = await setCourseLearningPathPinned(course.id, next)
-    if (result === null) setPinned(!next)
-    setPinBusy(false)
-  }
-
-  const resourcesOpen = expanded.has(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+  const [search, setSearch] = React.useState('')
+  const query = search.trim().toLowerCase()
+  const searching = query.length > 0
+  const filteredTopics = React.useMemo(
+    () => filterTopicTree(course.topics, query),
+    [course.topics, query]
+  )
+  const showSyllabus =
+    !searching || matchesQuery('Recommended Syllabus', query)
+  const showMentalMap = !searching || matchesQuery('Mental Map', query)
+  const matchingResourceSections = searching
+    ? COURSE_LEARNING_PATH_RESOURCE_SECTIONS.filter(
+        (section) =>
+          matchesQuery('Resources', query) || matchesQuery(section.label, query)
+      )
+    : COURSE_LEARNING_PATH_RESOURCE_SECTIONS
+  const showResources =
+    !searching ||
+    matchesQuery('Resources', query) ||
+    matchingResourceSections.length > 0
+  const resourcesOpen =
+    searching || expanded.has(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
   const resourceSelected = isCourseLearningPathResourceSelection(selectedId)
   const syllabusSelected = isCourseLearningPathSyllabusSelection(selectedId)
   const mentalMapSelected = isCourseLearningPathMentalMapSelection(selectedId)
+  const noMatches =
+    searching &&
+    !showSyllabus &&
+    !showMentalMap &&
+    !showResources &&
+    filteredTopics.length === 0
 
   return (
     <nav aria-label='Course syllabus' className={styles.nav}>
-      <div>
-        <p className={styles.navLabel}>Course</p>
-        <div className={styles.navCourseTitleRow}>
-          <h2 className={styles.navCourseTitle}>{course.title}</h2>
-          {canPin && (
-            <button
-              type='button'
-              className={`${styles.navPinBtn}${
-                pinned ? ` ${styles.navPinBtnPinned}` : ''
-              }`}
-              onClick={() => void handleTogglePin()}
-              disabled={pinBusy}
-              aria-pressed={pinned}
-              aria-label={
-                pinned
-                  ? `Unpin ${course.title}`
-                  : signedIn
-                  ? `Pin ${course.title}`
-                  : `Sign in to pin ${course.title}`
-              }
-              title={
-                pinned
-                  ? 'Unpin course'
-                  : signedIn
-                  ? 'Pin course'
-                  : 'Sign in to pin this course'
-              }
-            >
-              <PinIcon filled={pinned} size={16} />
-            </button>
-          )}
-        </div>
+      <div className={styles.searchWrap}>
+        <input
+          type='search'
+          className={styles.search}
+          placeholder='SEARCH'
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          aria-label='Search in syllabus'
+        />
       </div>
-
+      {noMatches ? (
+        <p className={styles.navSyllabusEmpty}>No matching topics.</p>
+      ) : null}
+      {showSyllabus || showMentalMap || filteredTopics.length > 0 || (!searching && course.topics.length === 0) ? (
       <div className={styles.navPanelSection}>
+        {showSyllabus ? (
         <div
           className={`${styles.navRow}${
             syllabusSelected ? ` ${styles.navRowSelected}` : ''
@@ -154,7 +132,9 @@ export function CourseLearningPathSyllabusNav({
             ) : null}
           </button>
         </div>
+        ) : null}
 
+        {showMentalMap ? (
         <div
           className={`${styles.navRow}${
             mentalMapSelected ? ` ${styles.navRowSelected}` : ''
@@ -179,10 +159,11 @@ export function CourseLearningPathSyllabusNav({
             </span>
           </button>
         </div>
+        ) : null}
 
-        {course.topics.length > 0 ? (
+        {filteredTopics.length > 0 ? (
           <ol className={styles.navList}>
-            {course.topics.map((topic, i) => (
+            {filteredTopics.map((topic, i) => (
               <NavItem
                 key={topic.id}
                 node={topic}
@@ -191,18 +172,21 @@ export function CourseLearningPathSyllabusNav({
                 selectedId={selectedId}
                 expanded={expanded}
                 exploredIds={exploredIds}
+                forceOpen={searching}
                 onSelect={onSelect}
                 onToggle={onToggle}
               />
             ))}
           </ol>
-        ) : (
+        ) : !searching && course.topics.length === 0 ? (
           <p className={styles.navSyllabusEmpty}>
             Syllabus topics coming soon.
           </p>
-        )}
+        ) : null}
       </div>
+      ) : null}
 
+      {showResources ? (
       <div className={styles.navPanelSection}>
         <div
           className={`${styles.navRow}${
@@ -229,7 +213,7 @@ export function CourseLearningPathSyllabusNav({
             type='button'
             onClick={() => {
               if (!resourcesOpen) onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
-              const first = COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
+              const first = matchingResourceSections[0] ?? COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
               onSelect(first.id)
             }}
             className={styles.navSelect}
@@ -251,7 +235,7 @@ export function CourseLearningPathSyllabusNav({
 
         {resourcesOpen ? (
           <ol className={styles.navList}>
-            {COURSE_LEARNING_PATH_RESOURCE_SECTIONS.map((section) => (
+            {matchingResourceSections.map((section) => (
               <ResourceNavItem
                 key={section.id}
                 section={section}
@@ -265,6 +249,7 @@ export function CourseLearningPathSyllabusNav({
           </ol>
         ) : null}
       </div>
+      ) : null}
     </nav>
   )
 }
@@ -322,6 +307,7 @@ interface NavItemProps {
   selectedId: string
   expanded: Set<string>
   exploredIds: Set<string>
+  forceOpen?: boolean
   onSelect: (id: string) => void
   onToggle: (id: string) => void
 }
@@ -333,14 +319,15 @@ function NavItem({
   selectedId,
   expanded,
   exploredIds,
+  forceOpen = false,
   onSelect,
   onToggle
 }: NavItemProps) {
   const hasChildren = Boolean(node.children?.length)
-  const isOpen = expanded.has(node.id)
+  const isOpen = forceOpen || expanded.has(node.id)
   const isSelected = selectedId === node.id
   const isExplored = exploredIds.has(node.id)
-  const videoCount = node.videos?.length ?? 0
+  const videoCount = node.topicResources?.length ?? 0
 
   return (
     <li>
@@ -398,10 +385,7 @@ function NavItem({
             {node.title}
           </span>
           {videoCount > 0 && (
-            <span className={styles.videoCount}>
-              <PlayIcon size={12} />
-              {videoCount}
-            </span>
+            <span className={styles.videoCount}>{videoCount}</span>
           )}
         </button>
       </div>
@@ -417,6 +401,7 @@ function NavItem({
               selectedId={selectedId}
               expanded={expanded}
               exploredIds={exploredIds}
+              forceOpen={forceOpen}
               onSelect={onSelect}
               onToggle={onToggle}
             />

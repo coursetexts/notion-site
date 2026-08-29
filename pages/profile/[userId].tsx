@@ -12,7 +12,11 @@ import { HomeHeader } from '@/components/HomeHeader'
 import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
+import {
+  ProfileCommunityLearningPathCard
+} from '@/components/ProfileLearningPathCard'
 import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
+import { BookmarkNotePreview } from '@/components/SiteNotesEditor'
 import {
   type CommunityResourceBookmarkWithCourse,
   ensureCommunityResourceBookmark,
@@ -40,11 +44,25 @@ import {
   type ProfilePersonalLink,
   listPersonalLinksByUserId
 } from '@/lib/profile-personal-links-db'
+import {
+  notebookNoteWithAttribution,
+  storedNotebookNoteHasContent
+} from '@/lib/notebook-editor-default'
 import { parseNotebookIdFromUserLinkUrl } from '@/lib/notebook-bookmark-link'
+import {
+  learningPathsFromUserLinks,
+  mergeOwnedAndSavedLearningPaths
+} from '@/lib/learning-path-bookmark-link'
+import {
+  attachLearningPathKinds,
+  listOwnedLearningPathsByUserId
+} from '@/lib/learning-path-db'
+import { readStoredLearningPaths, type StoredLearningPath } from '@/lib/learning-path-seed'
 import {
   type LinkTag,
   type UserLinkWithTag,
   addLink,
+  deleteLink,
   getLinkTagsByUserId,
   getLinksByUserId,
   getMyLinks
@@ -107,6 +125,22 @@ function formatDate(iso: string): string {
   })
 }
 
+type PathsCoursesFilter = 'course' | 'research' | 'official' | 'community'
+
+const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
+  { id: 'course', label: 'Course Learning Path' },
+  { id: 'research', label: 'Research Learning Path' },
+  { id: 'community', label: 'Community Learning Path' },
+  { id: 'official', label: 'Official Courses' }
+]
+
+function nextPathsCoursesFilter(
+  current: PathsCoursesFilter | null,
+  clicked: PathsCoursesFilter
+): PathsCoursesFilter | null {
+  return current === clicked ? null : clicked
+}
+
 const profileFontLinks = (
   <>
     <link rel='preconnect' href='https://use.typekit.net' />
@@ -137,6 +171,10 @@ export default function PublicProfilePage() {
     CommunityResourceBookmarkWithCourse[]
   >([])
   const [userLinks, setUserLinks] = useState<UserLinkWithTag[]>([])
+  const [communityLearningPaths, setCommunityLearningPaths] = useState<
+    StoredLearningPath[]
+  >([])
+  const [unsavePathBusyId, setUnsavePathBusyId] = useState<string | null>(null)
   const [profileLinkTags, setProfileLinkTags] = useState<LinkTag[]>([])
   const [bookmarkTagFilter, setBookmarkTagFilter] = useState<BookmarkTagFilter>(
     EMPTY_BOOKMARK_TAG_FILTER
@@ -228,10 +266,28 @@ export default function PublicProfilePage() {
     return rows
   }, [comments, annotations])
 
+  const publicCommunityPaths = useMemo(
+    () => communityLearningPaths.filter((item) => item.kind !== 'research'),
+    [communityLearningPaths]
+  )
+  const publicResearchPaths = useMemo(
+    () => communityLearningPaths.filter((item) => item.kind === 'research'),
+    [communityLearningPaths]
+  )
+
   const [profileInterestTags, setProfileInterestTags] = useState<string[]>([])
   const [mainTab, setMainTab] = useState<
     'learning-path' | 'bookmarks' | 'activity'
-  >('activity')
+  >('learning-path')
+  const [pathsCoursesFilter, setPathsCoursesFilter] =
+    useState<PathsCoursesFilter | null>(null)
+  const showAllLearningCards = pathsCoursesFilter == null
+  const showResearchCards =
+    showAllLearningCards || pathsCoursesFilter === 'research'
+  const showCommunityCards =
+    showAllLearningCards || pathsCoursesFilter === 'community'
+  const hasAnyPublicLearningCards =
+    publicCommunityPaths.length > 0 || publicResearchPaths.length > 0
   const [loading, setLoading] = useState(true)
   const [followLoading, setFollowLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
@@ -319,9 +375,9 @@ export default function PublicProfilePage() {
       try {
         const row = await addLink(url, {
           title: l.title,
-          note: l.note?.trim()
-            ? `${l.note.trim()} (from someone's profile)`
-            : 'Saved from a profile'
+          note: storedNotebookNoteHasContent(l.note)
+            ? notebookNoteWithAttribution(l.note, "(from someone's profile)")
+            : notebookNoteWithAttribution(null, 'Saved from a profile')
         })
         if (!row) {
           await loadViewerBookmarkCopyState()
@@ -347,6 +403,24 @@ export default function PublicProfilePage() {
     ]
   )
 
+  const handleUnsaveLearningPath = useCallback(
+    async (linkId: string) => {
+      if (!currentUserId || unsavePathBusyId) return
+      setUnsavePathBusyId(linkId)
+      const ok = await deleteLink(linkId)
+      if (ok) {
+        setCommunityLearningPaths((prev) =>
+          prev.filter((item) => item.savedLinkId !== linkId)
+        )
+        setUserLinks((prev) => prev.filter((l) => l.id !== linkId))
+      } else {
+        window.alert('Could not unsave this path.')
+      }
+      setUnsavePathBusyId(null)
+    },
+    [currentUserId, unsavePathBusyId]
+  )
+
   const loadProfile = useCallback(
     async (uid: string) => {
       setLoading(true)
@@ -366,7 +440,8 @@ export default function PublicProfilePage() {
         personal,
         c,
         a,
-        interestTags
+        interestTags,
+        ownedPaths
       ] = await Promise.all([
         getProfileByUserId(uid),
         currentUserId ? getFollowStatus(currentUserId, uid) : false,
@@ -380,12 +455,14 @@ export default function PublicProfilePage() {
         listPersonalLinksByUserId(uid),
         getCommentsByUser(uid),
         getAnnotationsByUser(uid),
-        getProfileInterestsByUserId(uid)
+        getProfileInterestsByUserId(uid),
+        listOwnedLearningPathsByUserId(uid, currentUserId === uid)
       ])
       if (!p) {
         setProfile(null)
         setPersonalLinks([])
         setProfileLinkTags([])
+        setCommunityLearningPaths([])
         setNotFound(true)
         setLoading(false)
         return
@@ -403,6 +480,16 @@ export default function PublicProfilePage() {
       setComments(c)
       setAnnotations(a)
       setProfileInterestTags(interestTags)
+      setCommunityLearningPaths(
+        await attachLearningPathKinds(
+          mergeOwnedAndSavedLearningPaths({
+            owned: ownedPaths,
+            stored:
+              currentUserId === uid ? readStoredLearningPaths() : undefined,
+            saved: learningPathsFromUserLinks(links)
+          })
+        )
+      )
       setLoading(false)
     },
     [currentUserId]
@@ -814,7 +901,7 @@ export default function PublicProfilePage() {
                     }
                     onClick={() => setMainTab('learning-path')}
                   >
-                    Learning Path
+                    Learning
                   </button>
                   <button
                     type='button'
@@ -1251,7 +1338,7 @@ export default function PublicProfilePage() {
                                     </div>
                                     <div className={styles.userLinkMeta}>
                                       <div className={styles.userLinkMetaTags}>
-                                        {l.note ? (
+                                        {storedNotebookNoteHasContent(l.note) ? (
                                           <button
                                             type='button'
                                             className={styles.userLinkNoteToggle}
@@ -1277,10 +1364,13 @@ export default function PublicProfilePage() {
                                       <span className={styles.userLinkDate}>
                                         {formatDate(l.created_at)}
                                       </span>
-                                      {l.note && showNoteForLinkId === l.id ? (
-                                        <p className={styles.userLinkNote}>
-                                          {l.note}
-                                        </p>
+                                      {storedNotebookNoteHasContent(l.note) &&
+                                      showNoteForLinkId === l.id ? (
+                                        <div
+                                          className={`${styles.userLinkNote} ${styles.userLinkNoteRich}`}
+                                        >
+                                          <BookmarkNotePreview note={l.note} />
+                                        </div>
                                       ) : null}
                                     </div>
                                   </div>
@@ -1379,7 +1469,102 @@ export default function PublicProfilePage() {
 
                 {mainTab === 'learning-path' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>Learning Path</h2>
+                    <h2 className={styles.mainSerifTitle}>
+                      Learning Paths & Courses
+                    </h2>
+                    <div
+                      className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}
+                    >
+                      <div
+                        className={styles.linkFilterTagsWrap}
+                        role='group'
+                        aria-label='Filter learning paths and courses'
+                      >
+                        {PATHS_COURSES_FILTERS.map((filter) => (
+                          <button
+                            key={filter.id}
+                            type='button'
+                            aria-pressed={pathsCoursesFilter === filter.id}
+                            className={
+                              pathsCoursesFilter === filter.id
+                                ? styles.linkFilterBtnActive
+                                : styles.linkFilterBtn
+                            }
+                            onClick={() =>
+                              setPathsCoursesFilter((current) =>
+                                nextPathsCoursesFilter(current, filter.id)
+                              )
+                            }
+                          >
+                            {filter.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    {!showAllLearningCards &&
+                    pathsCoursesFilter === 'course' ? (
+                      <p className={styles.placeholder}>
+                        No course learning paths on this profile yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      pathsCoursesFilter === 'official' ? (
+                      <p className={styles.placeholder}>
+                        No official courses on this profile yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      pathsCoursesFilter === 'research' &&
+                      publicResearchPaths.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No research learning paths on this profile yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      pathsCoursesFilter === 'community' &&
+                      publicCommunityPaths.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No community learning paths on this profile yet.
+                      </p>
+                    ) : showAllLearningCards && !hasAnyPublicLearningCards ? (
+                      <p className={styles.placeholder}>
+                        No learning paths on this profile yet.
+                      </p>
+                    ) : (
+                      <ul className={styles.learningPathList}>
+                        {showResearchCards
+                          ? publicResearchPaths.map((item) => (
+                              <li key={item.id}>
+                                <ProfileCommunityLearningPathCard
+                                  item={item}
+                                  onUnsave={
+                                    currentUserId && userId === currentUserId
+                                      ? handleUnsaveLearningPath
+                                      : undefined
+                                  }
+                                  unsaveBusy={
+                                    unsavePathBusyId === item.savedLinkId
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                        {showCommunityCards
+                          ? publicCommunityPaths.map((item) => (
+                              <li key={item.id}>
+                                <ProfileCommunityLearningPathCard
+                                  item={item}
+                                  onUnsave={
+                                    currentUserId && userId === currentUserId
+                                      ? handleUnsaveLearningPath
+                                      : undefined
+                                  }
+                                  unsaveBusy={
+                                    unsavePathBusyId === item.savedLinkId
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                      </ul>
+                    )}
                   </div>
                 )}
               </div>

@@ -1,0 +1,150 @@
+.toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e6e6e6;
+  flex-shrink: 0;
+}
+
+.toolbarDisabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.toolbarWithExpand {
+  padding-right: 36px;
+}
+
+.toolbarTools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+}
+
+.group:not(:first-child) {
+  padding-left: 8px;
+  margin-left: 4px;
+  border-left: 1px solid #e6e6e6;
+}
+
+.toolBtn {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #25272b;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.toolBtn svg {
+  display: block;
+}
+
+.toolBtn:hover,
+.toolBtn:focus-visible {
+  border-color: #0089c4;
+  color: #0089c4;
+}
+
+.toolBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 1px;
+}
+
+.toolBtnActive {
+  border-color: #0089c4;
+  background: color-mix(in srgb, #0089c4 12%, #fff);
+  color: #0089c4;
+}
+
+.toolBtn::after,
+.expandIconBtn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 6px);
+  z-index: 8;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #25272b;
+  color: #fff;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-2px);
+  transition: opacity 80ms ease 160ms, transform 80ms ease 160ms;
+}
+
+.toolBtn:hover::after,
+.toolBtn:focus-visible::after,
+.expandIconBtn:hover::after,
+.expandIconBtn:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.expandIconBtn::after {
+  left: auto;
+  right: 0;
+  transform: translateY(-2px);
+}
+
+.expandIconBtn:hover::after,
+.expandIconBtn:focus-visible::after {
+  transform: translateY(0);
+}
+
+.expandIconBtn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #25272b;
+  cursor: pointer;
+}
+
+.expandIconBtn:hover,
+.expandIconBtn:focus-visible {
+  border: none;
+  background: transparent;
+  color: #0089c4;
+}
+
+.expandIcon {
+  display: block;
+}

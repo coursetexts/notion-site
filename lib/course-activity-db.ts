@@ -183,6 +183,16 @@ export async function setVote(
   return score
 }
 
+/** Stable activity id for `/learning-path/[slug]` (community + research). */
+export function learningPathActivityPageId(slug: string): string {
+  return `learning-path:${slug}`
+}
+
+/** Stable activity id for `/course-learning-path/[courseSlug]`. */
+export function courseLearningPathActivityPageId(slug: string): string {
+  return `course-learning-path:${slug}`
+}
+
 /** Get or create a course by notion_page_id (page/route id). Returns course id (notion_page_id). */
 export async function getOrCreateCourse(
   notionPageId: string,

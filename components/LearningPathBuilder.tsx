@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useRouter } from 'next/router'
 
 import {
+  type LearningPathKind,
   type LearningPathOutlineConcept,
   type LearningPathOutlineStep,
   learningPathFromOutline,
@@ -108,14 +109,18 @@ function PlusIcon() {
 }
 
 export function LearningPathBuilder({
-  initialGoal = ''
+  initialGoal = '',
+  initialKind = 'community'
 }: {
   initialGoal?: string
+  initialKind?: LearningPathKind
 }) {
   const router = useRouter()
   const [goalDraft, setGoalDraft] = React.useState(initialGoal)
   const [goal, setGoal] = React.useState(initialGoal)
   const [steps, setSteps] = React.useState<LearningPathOutlineStep[]>(initialSteps)
+  const kind: LearningPathKind =
+    initialKind === 'research' ? 'research' : 'community'
 
   function closeBuilder() {
     void router.push('/learning-paths')
@@ -127,7 +132,13 @@ export function LearningPathBuilder({
     if (!next) return
     setGoal(next)
     void router.replace(
-      { pathname: '/learning-path/new', query: { goal: next } },
+      {
+        pathname: '/learning-path/new',
+        query: {
+          goal: next,
+          ...(kind === 'research' ? { kind: 'research' } : {})
+        }
+      },
       undefined,
       { shallow: true }
     )
@@ -218,12 +229,13 @@ export function LearningPathBuilder({
     const existing = await listAllLearningPathSlugs()
     const slug = ensureUniqueSlug(slugifyLearningPathName(goal), existing)
     const data = learningPathFromOutline({ goal, slug, steps })
-    const id = await upsertOwnedLearningPath(data)
+    const id = await upsertOwnedLearningPath(data, { kind })
     const item = {
       id: id ?? `path-${Date.now()}`,
       goal,
       slug,
-      data: id ? { ...data, id } : data
+      data: id ? { ...data, id } : data,
+      kind
     }
     writeStoredLearningPaths([
       item,

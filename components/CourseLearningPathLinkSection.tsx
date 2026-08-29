@@ -77,6 +77,10 @@ export function CourseLearningPathLinkSection({
   }, [nodeId])
 
   React.useEffect(() => {
+    if (!signedIn) setEditing(false)
+  }, [signedIn])
+
+  React.useEffect(() => {
     if (placement === '') return
     const n = Number(placement)
     if (Number.isFinite(n) && n > maxPlacement) {
@@ -116,7 +120,7 @@ export function CourseLearningPathLinkSection({
       suggestedPlacement = n
     }
 
-    if (dbBacked && !signedIn) {
+    if (!signedIn) {
       setFormError(`Sign in to add ${copy.plural}.`)
       return
     }
@@ -171,15 +175,23 @@ export function CourseLearningPathLinkSection({
           )}
           <button
             type='button'
-            className={styles.editBtn}
+            className={`${styles.editBtn}${
+              !signedIn ? ` ${styles.editBtnDisabled}` : ''
+            }`}
+            aria-disabled={!signedIn}
+            aria-pressed={editing}
+            title={signedIn ? undefined : 'Sign in to add resources'}
             onClick={() => {
+              if (!signedIn) {
+                onSignIn?.()
+                return
+              }
               setEditing((v) => {
                 const next = !v
                 if (next) setOpen(true)
                 return next
               })
             }}
-            aria-pressed={editing}
           >
             {editing ? 'Done' : 'Edit'}
           </button>
@@ -193,7 +205,7 @@ export function CourseLearningPathLinkSection({
 
       {open && (
         <>
-          {editing && (
+          {editing && signedIn && (
             <div className={styles.editPanel}>
               <p className={styles.editHint}>
                 Add a link with a suggested order. It will also appear in
@@ -206,19 +218,6 @@ export function CourseLearningPathLinkSection({
                       Changes stay in this session until the course is seeded in
                       the database.
                     </span>
-                  </>
-                )}
-                {dbBacked && !signedIn && (
-                  <>
-                    {' '}
-                    <button
-                      type='button'
-                      className={styles.signInLink}
-                      onClick={() => onSignIn?.()}
-                    >
-                      Sign in
-                    </button>{' '}
-                    to save.
                   </>
                 )}
               </p>
@@ -305,7 +304,7 @@ export function CourseLearningPathLinkSection({
                   <button
                     type='submit'
                     className={styles.addSubmit}
-                    disabled={submitting || !url.trim()}
+                    disabled={submitting || !url.trim() || !signedIn}
                   >
                     {submitting ? 'Adding…' : copy.addLabel}
                   </button>

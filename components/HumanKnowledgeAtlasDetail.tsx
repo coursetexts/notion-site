@@ -573,7 +573,7 @@ function AtlasReadingDiscussion({
 
       <div className={styles.startPathWrap}>
         <a
-          href={`/learning-path/new?goal=${encodeURIComponent(learningPathGoal)}`}
+          href={`/learning-path/new?goal=${encodeURIComponent(learningPathGoal)}&kind=research`}
           className={styles.startPathBtn}
         >
           Start Learning Path

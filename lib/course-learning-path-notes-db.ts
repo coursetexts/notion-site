@@ -41,6 +41,15 @@ function writeLocal(
   }
 }
 
+export function cacheCourseLearningPathNote(
+  courseSlug: string,
+  nodeId: string,
+  content: NotebookDocJson
+): void {
+  if (!nodeId) return
+  writeLocal(courseSlug, nodeId, content)
+}
+
 /** Load note content for a syllabus node (DB if signed in, else localStorage). */
 export async function getCourseLearningPathNote(
   nodeId: string,

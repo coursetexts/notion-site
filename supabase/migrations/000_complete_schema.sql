@@ -1718,10 +1718,11 @@ create table if not exists public.course_notes (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users (id) on delete cascade,
   course_id text not null check (char_length(course_id) between 1 and 200),
+  topic_id text not null default '' check (char_length(topic_id) <= 200),
   content jsonb not null default '{"type":"doc","content":[{"type":"paragraph"}]}'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  unique (user_id, course_id)
+  unique (user_id, course_id, topic_id)
 );
 
 create index if not exists course_notes_user_course_idx
@@ -1751,3 +1752,193 @@ create policy "Users delete own course notes"
   using (auth.uid() = user_id);
 
 -- <<< END 021_course_notes.sql
+
+-- >>> BEGIN 022_learning_path_privacy.sql
+
+-- name: 022_learning_path_privacy
+-- =============================================================================
+-- User-owned learning paths can be public (shareable) or private (owner only).
+-- Catalog rows stay publicly readable.
+-- =============================================================================
+
+alter table public.learning_paths
+  add column if not exists is_private boolean not null default true;
+
+update public.learning_paths
+  set is_private = false
+  where is_catalog = true;
+
+drop policy if exists "Anyone can read catalog learning paths"
+  on public.learning_paths;
+drop policy if exists "Anyone can read public learning paths"
+  on public.learning_paths;
+create policy "Anyone can read public learning paths"
+  on public.learning_paths for select
+  using (is_catalog = true or is_private = false);
+
+-- <<< END 022_learning_path_privacy.sql
+
+-- >>> BEGIN 023_learning_path_kind.sql
+
+-- name: 023_learning_path_kind
+-- =============================================================================
+-- User-owned paths created from a Field Atlas research question are
+-- research learning paths. Everything else stays community (default).
+-- =============================================================================
+
+alter table public.learning_paths
+  add column if not exists kind text not null default 'community';
+
+alter table public.learning_paths
+  drop constraint if exists learning_paths_kind_ck;
+
+alter table public.learning_paths
+  add constraint learning_paths_kind_ck
+  check (kind in ('community', 'research'));
+
+-- <<< END 023_learning_path_kind.sql
+
+
+-- >>> BEGIN 024_course_notes_topic.sql
+
+-- name: 024_course_notes_topic
+-- =============================================================================
+-- Course notes are per topic/tab, not one document for the whole course.
+-- Existing rows keep topic_id = '' and are used as a read fallback.
+-- =============================================================================
+
+alter table public.course_notes
+  add column if not exists topic_id text not null default '';
+
+alter table public.course_notes
+  drop constraint if exists course_notes_topic_id_len;
+alter table public.course_notes
+  add constraint course_notes_topic_id_len
+  check (char_length(topic_id) <= 200);
+
+alter table public.course_notes
+  drop constraint if exists course_notes_user_id_course_id_key;
+alter table public.course_notes
+  drop constraint if exists course_notes_user_id_course_id_topic_id_key;
+alter table public.course_notes
+  drop constraint if exists course_notes_user_course_topic_key;
+alter table public.course_notes
+  add constraint course_notes_user_course_topic_key
+  unique (user_id, course_id, topic_id);
+
+-- <<< END 024_course_notes_topic.sql
+
+-- >>> BEGIN 025_curated_course_node_resources.sql
+
+-- name: 025_curated_course_node_resources
+-- =============================================================================
+-- One sequenced resource list per syllabus node (article, video, book, course,
+-- paper, exercise). Replaces separate Videos / Slides / Tests sections.
+-- Existing videos and links are copied in so the new list is not empty.
+-- =============================================================================
+
+do $$ begin
+  create type public.curated_course_node_resource_kind as enum (
+    'article', 'video', 'book', 'course', 'paper', 'exercise'
+  );
+exception when duplicate_object then null;
+end $$;
+
+create table if not exists public.curated_course_node_resources (
+  id uuid primary key default gen_random_uuid(),
+  node_id uuid not null
+    references public.curated_course_nodes(id) on delete cascade,
+  kind public.curated_course_node_resource_kind not null,
+  sort_order integer not null default 0,
+  title text not null check (char_length(title) between 1 and 500),
+  url text check (url is null or char_length(url) between 1 and 2048),
+  passage text,
+  why text,
+  resource_id uuid references public.resources(id) on delete set null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists curated_course_node_resources_node_idx
+  on public.curated_course_node_resources(node_id, sort_order);
+
+create index if not exists curated_course_node_resources_resource_idx
+  on public.curated_course_node_resources(resource_id)
+  where resource_id is not null;
+
+alter table public.curated_course_node_resources enable row level security;
+
+drop policy if exists "Curated course node resources are publicly readable"
+  on public.curated_course_node_resources;
+create policy "Curated course node resources are publicly readable"
+  on public.curated_course_node_resources for select using (true);
+
+drop policy if exists "Authenticated users can insert curated course node resources"
+  on public.curated_course_node_resources;
+create policy "Authenticated users can insert curated course node resources"
+  on public.curated_course_node_resources for insert
+  with check (auth.uid() is not null);
+
+drop policy if exists "Authenticated users can update curated course node resources"
+  on public.curated_course_node_resources;
+create policy "Authenticated users can update curated course node resources"
+  on public.curated_course_node_resources for update
+  using (auth.uid() is not null)
+  with check (auth.uid() is not null);
+
+drop policy if exists "Authenticated users can delete curated course node resources"
+  on public.curated_course_node_resources;
+create policy "Authenticated users can delete curated course node resources"
+  on public.curated_course_node_resources for delete
+  using (auth.uid() is not null);
+
+insert into public.curated_course_node_resources (
+  id, node_id, kind, sort_order, title, url, passage, resource_id, created_at, updated_at
+)
+select
+  v.id,
+  v.node_id,
+  'video'::public.curated_course_node_resource_kind,
+  v.sort_order,
+  v.title,
+  nullif(btrim(v.url), ''),
+  v.annotation,
+  v.resource_id,
+  v.created_at,
+  v.updated_at
+from public.curated_course_videos v
+where not exists (
+  select 1
+  from public.curated_course_node_resources r
+  where r.id = v.id
+);
+
+insert into public.curated_course_node_resources (
+  id, node_id, kind, sort_order, title, url, resource_id, created_at, updated_at
+)
+select
+  l.id,
+  l.node_id,
+  case
+    when l.kind = 'test' then 'exercise'::public.curated_course_node_resource_kind
+    else 'article'::public.curated_course_node_resource_kind
+  end,
+  coalesce(vm.max_order, -1) + 1 + l.sort_order,
+  l.title,
+  nullif(btrim(l.url), ''),
+  l.resource_id,
+  l.created_at,
+  l.updated_at
+from public.curated_course_links l
+left join (
+  select node_id, max(sort_order) as max_order
+  from public.curated_course_node_resources
+  group by node_id
+) vm on vm.node_id = l.node_id
+where not exists (
+  select 1
+  from public.curated_course_node_resources r
+  where r.id = l.id
+);
+
+-- <<< END 025_curated_course_node_resources.sql

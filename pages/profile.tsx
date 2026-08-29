@@ -23,7 +23,15 @@ import {
   ProfilePersonalLinkAnchorRow,
   ProfilePersonalLinksPanel
 } from '@/components/ProfilePersonalLinksPanel'
+import {
+  ProfileCommunityLearningPathCard,
+  ProfileLearningPathCard
+} from '@/components/ProfileLearningPathCard'
 import { UserLink } from '@/components/UserLink'
+import {
+  BookmarkNotePreview,
+  SiteNotesEditor
+} from '@/components/SiteNotesEditor'
 import { getCachedAuth, setCachedAuth } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
 import {
@@ -36,7 +44,9 @@ import {
   type Annotation as DbAnnotation,
   type Comment as DbComment,
   getMyAnnotations,
-  getMyComments
+  getMyBookmarks,
+  getMyComments,
+  removeBookmark
 } from '@/lib/course-activity-db'
 import {
   type ProfileListItem,
@@ -57,12 +67,15 @@ import {
   getProfileFeed
 } from '@/lib/profile-feed-db'
 import {
-  SEEDED_LEARNING_PATHS,
   readStoredLearningPaths,
   type StoredLearningPath
 } from '@/lib/learning-path-seed'
 import {
-  listCatalogLearningPaths,
+  learningPathsFromUserLinks,
+  mergeOwnedAndSavedLearningPaths
+} from '@/lib/learning-path-bookmark-link'
+import {
+  attachLearningPathKinds,
   listOwnedLearningPaths
 } from '@/lib/learning-path-db'
 import {
@@ -70,6 +83,12 @@ import {
   getReplyNotifications,
   markReplyNotificationsRead
 } from '@/lib/reply-notifications'
+import {
+  listMyCourseLearningPathPins,
+  setCourseLearningPathPinned,
+  subscribeCourseLearningPathPins,
+  type PinnedCourseLearningPath
+} from '@/lib/course-learning-path-pins-db'
 import { getSupabaseClient } from '@/lib/supabase'
 import {
   type LinkTag,
@@ -84,6 +103,13 @@ import {
 import styles from '@/styles/profile.module.css'
 
 import { useAuthOptional } from '../contexts/AuthContext'
+import {
+  emptyNotebookDoc,
+  parseStoredNotebookNote,
+  serializeStoredNotebookNote,
+  storedNotebookNoteHasContent,
+  type NotebookDocJson
+} from '@/lib/notebook-editor-default'
 
 import {
   EMPTY_BOOKMARK_TAG_FILTER,
@@ -105,12 +131,21 @@ function formatDate(iso: string): string {
 
 type LearningPathItem = StoredLearningPath
 
-const INITIAL_LEARNING_PATHS: LearningPathItem[] =
-  SEEDED_LEARNING_PATHS.map((path) => ({
-    id: `seed-${path.slug}`,
-    goal: path.goal,
-    slug: path.slug
-  }))
+type PathsCoursesFilter = 'course' | 'research' | 'official' | 'community'
+
+const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
+  { id: 'course', label: 'Course Learning Path' },
+  { id: 'research', label: 'Research Learning Path' },
+  { id: 'community', label: 'Community Learning Path' },
+  { id: 'official', label: 'Official Courses' }
+]
+
+function nextPathsCoursesFilter(
+  current: PathsCoursesFilter | null,
+  clicked: PathsCoursesFilter
+): PathsCoursesFilter | null {
+  return current === clicked ? null : clicked
+}
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -118,7 +153,6 @@ export default function ProfilePage() {
   const user = auth?.user ?? null
   const profile = auth?.profile ?? null
   const isLoading = auth?.isLoading ?? true
-  const signOut = auth?.signOut ?? (async () => Promise.resolve())
 
   const cached = getCachedAuth()
   const [resolvedUser, setResolvedUser] = useState<User | null>(
@@ -138,13 +172,26 @@ export default function ProfilePage() {
   const [feedItems, setFeedItems] = useState<ProfileFeedItem[]>([])
   const [mainTab, setMainTab] = useState<
     'learning-path' | 'bookmarks' | 'activity'
-  >('activity')
+  >('learning-path')
   const [activitySubTab, setActivitySubTab] = useState<'feed' | 'yours'>(
     'feed'
   )
-  const [learningPaths, setLearningPaths] = useState<LearningPathItem[]>(
-    INITIAL_LEARNING_PATHS
+  const [learningPaths, setLearningPaths] = useState<LearningPathItem[]>([])
+  const [unsavePathBusyId, setUnsavePathBusyId] = useState<string | null>(null)
+  const [unpinCourseBusyId, setUnpinCourseBusyId] = useState<string | null>(
+    null
   )
+  const [unsaveOfficialBusyId, setUnsaveOfficialBusyId] = useState<
+    string | null
+  >(null)
+  const [courseLearningPaths, setCourseLearningPaths] = useState<
+    PinnedCourseLearningPath[]
+  >([])
+  const [officialCourses, setOfficialCourses] = useState<
+    { bookmark: { id: string }; course: CourseType }[]
+  >([])
+  const [pathsCoursesFilter, setPathsCoursesFilter] =
+    useState<PathsCoursesFilter | null>(null)
   const [showLearningPathModal, setShowLearningPathModal] = useState(false)
   const [learningPathDraft, setLearningPathDraft] = useState('')
   type ProfileView = 'profile' | 'connections'
@@ -168,7 +215,9 @@ export default function ProfilePage() {
   const [linkFormTitle, setLinkFormTitle] = useState('')
   const [linkFormUrl, setLinkFormUrl] = useState('')
   const [linkFormTagIds, setLinkFormTagIds] = useState<string[]>([])
-  const [linkFormNote, setLinkFormNote] = useState('')
+  const [linkFormNoteDoc, setLinkFormNoteDoc] = useState<NotebookDocJson>(
+    emptyNotebookDoc
+  )
   const [linkFormIsPrivate, setLinkFormIsPrivate] = useState(false)
   const [newTagName, setNewTagName] = useState('')
   const [showNewTagInput, setShowNewTagInput] = useState(false)
@@ -184,7 +233,9 @@ export default function ProfilePage() {
     type: LinkActionType
     link: UserLinkWithTag
   } | null>(null)
-  const [editNote, setEditNote] = useState('')
+  const [editNoteDoc, setEditNoteDoc] = useState<NotebookDocJson>(
+    emptyNotebookDoc
+  )
   const [editTagIds, setEditTagIds] = useState<string[]>([])
   const [editIsPrivate, setEditIsPrivate] = useState(false)
   const [editSubmitting, setEditSubmitting] = useState(false)
@@ -383,6 +434,29 @@ export default function ProfilePage() {
     return rows
   }, [comments, annotations])
 
+  const communityLearningPaths = useMemo(
+    () => learningPaths.filter((item) => item.kind !== 'research'),
+    [learningPaths]
+  )
+  const researchLearningPaths = useMemo(
+    () => learningPaths.filter((item) => item.kind === 'research'),
+    [learningPaths]
+  )
+  const showAllLearningCards = pathsCoursesFilter == null
+  const showCourseCards =
+    showAllLearningCards || pathsCoursesFilter === 'course'
+  const showResearchCards =
+    showAllLearningCards || pathsCoursesFilter === 'research'
+  const showCommunityCards =
+    showAllLearningCards || pathsCoursesFilter === 'community'
+  const showOfficialCards =
+    showAllLearningCards || pathsCoursesFilter === 'official'
+  const hasAnyLearningCards =
+    courseLearningPaths.length > 0 ||
+    researchLearningPaths.length > 0 ||
+    communityLearningPaths.length > 0 ||
+    officialCourses.length > 0
+
   const loadPersonalLinks = useCallback(async () => {
     const list = await listMyPersonalLinks()
     setPersonalLinks(list)
@@ -406,28 +480,49 @@ export default function ProfilePage() {
   useEffect(() => {
     let cancelled = false
     void (async () => {
-      const [catalog, owned] = await Promise.all([
-        listCatalogLearningPaths(),
-        listOwnedLearningPaths()
+      const [owned, links] = await Promise.all([
+        listOwnedLearningPaths(),
+        getMyLinks()
       ])
       if (cancelled) return
-      const catalogItems: StoredLearningPath[] = catalog.map((path) => ({
-        id: path.id ?? `seed-${path.slug}`,
-        goal: path.goal,
-        slug: path.slug,
-        data: path
-      }))
-      const catalogSlugs = new Set(catalogItems.map((item) => item.slug))
-      const ownedItems = owned.filter((item) => !catalogSlugs.has(item.slug))
-      const stored = readStoredLearningPaths().filter(
-        (item) =>
-          !catalogSlugs.has(item.slug) &&
-          !ownedItems.some((row) => row.slug === item.slug)
+      const merged = await attachLearningPathKinds(
+        mergeOwnedAndSavedLearningPaths({
+          owned,
+          stored: readStoredLearningPaths(),
+          saved: learningPathsFromUserLinks(links)
+        })
       )
-      setLearningPaths([...ownedItems, ...stored, ...catalogItems])
+      if (cancelled) return
+      setLearningPaths(merged)
     })()
     return () => {
       cancelled = true
+    }
+  }, [effectiveUser?.id])
+
+  useEffect(() => {
+    if (!effectiveUser?.id) {
+      setCourseLearningPaths([])
+      setOfficialCourses([])
+      return
+    }
+    let cancelled = false
+    const load = async () => {
+      const [pins, bookmarks] = await Promise.all([
+        listMyCourseLearningPathPins(),
+        getMyBookmarks()
+      ])
+      if (cancelled) return
+      setCourseLearningPaths(pins)
+      setOfficialCourses(bookmarks)
+    }
+    void load()
+    const unsubscribe = subscribeCourseLearningPathPins(() => {
+      void load()
+    })
+    return () => {
+      cancelled = true
+      unsubscribe()
     }
   }, [effectiveUser?.id])
 
@@ -528,7 +623,7 @@ export default function ProfilePage() {
     setLinkFormTitle('')
     setLinkFormUrl('')
     setLinkFormTagIds([])
-    setLinkFormNote('')
+    setLinkFormNoteDoc(emptyNotebookDoc())
     setLinkFormIsPrivate(false)
   }
 
@@ -560,7 +655,7 @@ export default function ProfilePage() {
     const link = await addLink(linkFormUrl, {
       title: linkFormTitle || null,
       tagIds: linkFormTagIds.length ? linkFormTagIds : undefined,
-      note: linkFormNote || null,
+      note: serializeStoredNotebookNote(linkFormNoteDoc),
       isPrivate: linkFormIsPrivate
     })
     if (link) {
@@ -577,20 +672,68 @@ export default function ProfilePage() {
     const ok = await deleteLink(linkId)
     if (ok) {
       setUserLinks((prev) => prev.filter((l) => l.id !== linkId))
+      setLearningPaths((prev) =>
+        prev.filter((item) => item.savedLinkId !== linkId)
+      )
       setLinkActionOverlay(null)
     }
   }
 
+  const handleUnsaveLearningPath = async (linkId: string) => {
+    if (unsavePathBusyId) return
+    setUnsavePathBusyId(linkId)
+    const ok = await deleteLink(linkId)
+    if (ok) {
+      setLearningPaths((prev) =>
+        prev.filter((item) => item.savedLinkId !== linkId)
+      )
+      setUserLinks((prev) => prev.filter((l) => l.id !== linkId))
+    } else {
+      window.alert('Could not unsave this path.')
+    }
+    setUnsavePathBusyId(null)
+  }
+
+  const handleUnpinCourseLearningPath = async (courseId: string) => {
+    if (unpinCourseBusyId) return
+    setUnpinCourseBusyId(courseId)
+    const previous = courseLearningPaths
+    setCourseLearningPaths((prev) =>
+      prev.filter((item) => item.courseId !== courseId)
+    )
+    const result = await setCourseLearningPathPinned(courseId, false)
+    if (result === null) {
+      setCourseLearningPaths(previous)
+      window.alert('Could not unsave this path.')
+    }
+    setUnpinCourseBusyId(null)
+  }
+
+  const handleUnsaveOfficialCourse = async (courseId: string) => {
+    if (unsaveOfficialBusyId) return
+    setUnsaveOfficialBusyId(courseId)
+    const previous = officialCourses
+    setOfficialCourses((prev) =>
+      prev.filter((row) => row.course.notion_page_id !== courseId)
+    )
+    const ok = await removeBookmark(courseId)
+    if (!ok) {
+      setOfficialCourses(previous)
+      window.alert('Could not unsave this course.')
+    }
+    setUnsaveOfficialBusyId(null)
+  }
+
   const openLinkAction = (type: LinkActionType, link: UserLinkWithTag) => {
     setLinkActionOverlay({ type, link })
-    setEditNote(link.note ?? '')
+    setEditNoteDoc(parseStoredNotebookNote(link.note))
     setEditTagIds(link.tag_ids ? [...link.tag_ids] : [])
     setEditIsPrivate(link.is_private ?? false)
   }
 
   const closeLinkActionOverlay = () => {
     setLinkActionOverlay(null)
-    setEditNote('')
+    setEditNoteDoc(emptyNotebookDoc())
     setEditTagIds([])
     setEditIsPrivate(false)
   }
@@ -604,7 +747,7 @@ export default function ProfilePage() {
       return
     setEditSubmitting(true)
     const updated = await updateLink(linkActionOverlay.link.id, {
-      note: editNote
+      note: serializeStoredNotebookNote(editNoteDoc)
     })
     if (updated) {
       setUserLinks((prev) =>
@@ -671,14 +814,6 @@ export default function ProfilePage() {
     }
   }, [user, isLoading, resolvedUser])
 
-  const handleSignOut = async () => {
-    await signOut()
-    const supabase = getSupabaseClient()
-    if (supabase) await supabase.auth.signOut()
-    setResolvedUser(null)
-    router.replace('/')
-  }
-
   if ((isLoading && !resolvedUser) || !effectiveUser) {
     return (
       <>
@@ -693,7 +828,7 @@ export default function ProfilePage() {
             href='https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
           />
         </Head>
-        <HomeHeader hideAccountActions />
+        <HomeHeader />
         <div className={styles.pageShell}>
           <div className={styles.loading}>Loading…</div>
         </div>
@@ -724,7 +859,7 @@ export default function ProfilePage() {
           href='https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
         />
       </Head>
-      <HomeHeader hideAccountActions />
+      <HomeHeader />
       <div className={styles.pageShell}>
         <div className={styles.profileGrid}>
           <aside className={styles.profileSidebar}>
@@ -1078,7 +1213,7 @@ export default function ProfilePage() {
                       }
                       onClick={() => setMainTab('learning-path')}
                     >
-                      Learning Path
+                      Learning
                     </button>
                     <button
                       type='button'
@@ -1225,7 +1360,7 @@ export default function ProfilePage() {
                           role='presentation'
                         >
                           <div
-                            className={styles.modalCard}
+                            className={`${styles.modalCard} ${styles.modalCardWide}`}
                             onClick={(e) => e.stopPropagation()}
                           >
                             <div className={styles.modalHeader}>
@@ -1273,18 +1408,21 @@ export default function ProfilePage() {
                                   required
                                 />
                               </label>
-                              <label className={styles.modalLabel}>
-                                Description{' '}
-                                <textarea
-                                  className={styles.modalTextarea}
-                                  placeholder='A brief description of this bookmark...'
-                                  value={linkFormNote}
-                                  onChange={(e) =>
-                                    setLinkFormNote(e.target.value)
+                              <div className={styles.modalLabel}>
+                                Description
+                                <SiteNotesEditor
+                                  key={
+                                    showAddLinkModal
+                                      ? 'add-bookmark-note'
+                                      : 'add-bookmark-note-closed'
                                   }
-                                  rows={3}
+                                  value={linkFormNoteDoc}
+                                  onChange={setLinkFormNoteDoc}
+                                  placeholder='A brief description of this bookmark...'
+                                  ariaLabel='Bookmark description'
+                                  compact
                                 />
-                              </label>
+                              </div>
                               <div className={styles.modalLabel}>
                                 <span>Tags</span>
                                 <div
@@ -1635,7 +1773,7 @@ export default function ProfilePage() {
                                             Private
                                           </button>
                                         )}
-                                        {l.note ? (
+                                        {storedNotebookNoteHasContent(l.note) ? (
                                           <button
                                             type='button'
                                             className={styles.userLinkNoteToggle}
@@ -1661,10 +1799,13 @@ export default function ProfilePage() {
                                       <span className={styles.userLinkDate}>
                                         {formatDate(l.created_at)}
                                       </span>
-                                      {l.note && showNoteForLinkId === l.id ? (
-                                        <p className={styles.userLinkNote}>
-                                          {l.note}
-                                        </p>
+                                      {storedNotebookNoteHasContent(l.note) &&
+                                      showNoteForLinkId === l.id ? (
+                                        <div
+                                          className={`${styles.userLinkNote} ${styles.userLinkNoteRich}`}
+                                        >
+                                          <BookmarkNotePreview note={l.note} />
+                                        </div>
                                       ) : null}
                                     </div>
                                     {showPrivateMessageForLinkId === l.id && (
@@ -1689,7 +1830,11 @@ export default function ProfilePage() {
                           role='presentation'
                         >
                           <div
-                            className={styles.actionOverlayCard}
+                            className={`${styles.actionOverlayCard} ${
+                              linkActionOverlay.type === 'edit-note'
+                                ? styles.actionOverlayCardWide
+                                : ''
+                            }`}
                             onClick={(e) => e.stopPropagation()}
                           >
                             {linkActionOverlay.type === 'edit-note' && (
@@ -1697,13 +1842,14 @@ export default function ProfilePage() {
                                 <h4 className={styles.actionOverlayTitle}>
                                   Edit note
                                 </h4>
-                                <textarea
-                                  className={styles.actionOverlayInput}
+                                <SiteNotesEditor
+                                  key={linkActionOverlay.link.id}
+                                  value={editNoteDoc}
+                                  onChange={setEditNoteDoc}
                                   placeholder='Note (optional)'
-                                  value={editNote}
-                                  onChange={(e) => setEditNote(e.target.value)}
-                                  rows={3}
-                                  autoFocus
+                                  ariaLabel='Bookmark note'
+                                  compact
+                                  className={styles.actionOverlayEditor}
                                 />
                                 <div className={styles.actionOverlayActions}>
                                   <button
@@ -2084,26 +2230,148 @@ export default function ProfilePage() {
                 {mainTab === 'learning-path' && (
                   <div className={styles.tabPanel}>
                     <div className={styles.tabPanelHeaderRow}>
-                      <h2 className={styles.mainSerifTitle}>Learning Path</h2>
-                      <button
-                        type='button'
-                        className={styles.notebooksCreateBtn}
-                        onClick={openLearningPathModal}
-                      >
-                        + New learning path
-                      </button>
+                      <h2 className={styles.mainSerifTitle}>
+                        Learning
+                      </h2>
+                      {showAllLearningCards ||
+                      pathsCoursesFilter === 'community' ? (
+                        <button
+                          type='button'
+                          className={styles.notebooksCreateBtn}
+                          onClick={openLearningPathModal}
+                        >
+                          + New learning path
+                        </button>
+                      ) : null}
                     </div>
-                    <ul className={styles.learningPathList}>
-                      {learningPaths.map((item) => (
-                        <li key={item.id}>
-                          <Link href={`/learning-path/${item.slug}`}>
-                            <a className={styles.learningPathCard}>
-                              {item.goal}
-                            </a>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                    <div
+                      className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}
+                    >
+                      <div
+                        className={styles.linkFilterTagsWrap}
+                        role='group'
+                        aria-label='Filter learning paths and courses'
+                      >
+                        {PATHS_COURSES_FILTERS.map((filter) => (
+                          <button
+                            key={filter.id}
+                            type='button'
+                            aria-pressed={pathsCoursesFilter === filter.id}
+                            className={
+                              pathsCoursesFilter === filter.id
+                                ? styles.linkFilterBtnActive
+                                : styles.linkFilterBtn
+                            }
+                            onClick={() =>
+                              setPathsCoursesFilter((current) =>
+                                nextPathsCoursesFilter(current, filter.id)
+                              )
+                            }
+                          >
+                            {filter.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    {!showAllLearningCards &&
+                    pathsCoursesFilter === 'course' &&
+                    courseLearningPaths.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No course learning paths pinned yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      pathsCoursesFilter === 'research' &&
+                      researchLearningPaths.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No research learning paths yet. Start one from a
+                        question in the Field Atlas.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      pathsCoursesFilter === 'community' &&
+                      communityLearningPaths.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No community learning paths yet.
+                      </p>
+                    ) : !showAllLearningCards &&
+                      pathsCoursesFilter === 'official' &&
+                      officialCourses.length === 0 ? (
+                      <p className={styles.placeholder}>
+                        No official courses saved yet.
+                      </p>
+                    ) : showAllLearningCards && !hasAnyLearningCards ? (
+                      <p className={styles.placeholder}>
+                        No learning paths or courses yet.
+                      </p>
+                    ) : (
+                      <ul className={styles.learningPathList}>
+                        {showCourseCards
+                          ? courseLearningPaths.map((item) => (
+                              <li key={item.pinId}>
+                                <ProfileLearningPathCard
+                                  href={`/course-learning-path/${item.slug}`}
+                                  title={item.title}
+                                  onUnsave={() =>
+                                    void handleUnpinCourseLearningPath(
+                                      item.courseId
+                                    )
+                                  }
+                                  unsaveBusy={
+                                    unpinCourseBusyId === item.courseId
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                        {showResearchCards
+                          ? researchLearningPaths.map((item) => (
+                              <li key={item.id}>
+                                <ProfileCommunityLearningPathCard
+                                  item={item}
+                                  onUnsave={handleUnsaveLearningPath}
+                                  unsaveBusy={
+                                    unsavePathBusyId === item.savedLinkId
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                        {showCommunityCards
+                          ? communityLearningPaths.map((item) => (
+                              <li key={item.id}>
+                                <ProfileCommunityLearningPathCard
+                                  item={item}
+                                  onUnsave={handleUnsaveLearningPath}
+                                  unsaveBusy={
+                                    unsavePathBusyId === item.savedLinkId
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                        {showOfficialCards
+                          ? officialCourses.map(({ bookmark, course }) => (
+                              <li key={bookmark.id}>
+                                <ProfileLearningPathCard
+                                  href={
+                                    course.url ??
+                                    `/course/${course.notion_page_id}`
+                                  }
+                                  title={course.name}
+                                  onUnsave={() =>
+                                    void handleUnsaveOfficialCourse(
+                                      course.notion_page_id
+                                    )
+                                  }
+                                  unsaveBusy={
+                                    unsaveOfficialBusyId ===
+                                    course.notion_page_id
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                      </ul>
+                    )}
                     {showLearningPathModal && (
                       <div
                         className={styles.modalBackdrop}
@@ -2186,15 +2454,6 @@ export default function ProfilePage() {
               </div>
             )}
           </div>
-        </div>
-        <div className={styles.pageFooterBar}>
-          <button
-            type='button'
-            className={styles.signOutFooter}
-            onClick={handleSignOut}
-          >
-            Sign out
-          </button>
         </div>
       </div>
       <HomeFooterSection />

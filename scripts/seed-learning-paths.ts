@@ -58,6 +58,7 @@ async function seed() {
       summary: path.summary,
       data,
       is_catalog: true,
+      is_private: false,
       updated_at: new Date().toISOString()
     }
     const { data: existing, error: lookupError } = await admin

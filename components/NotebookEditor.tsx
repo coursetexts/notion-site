@@ -1,32 +1,28 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
-import { EditorContent, useEditor } from '@tiptap/react'
+
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
-import Mathematics, {
-  defaultShouldRender
-} from '@tiptap/extension-mathematics'
+import Mathematics, { defaultShouldRender } from '@tiptap/extension-mathematics'
 import Placeholder from '@tiptap/extension-placeholder'
-import StarterKit from '@tiptap/starter-kit'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import Youtube from '@tiptap/extension-youtube'
+import { EditorContent, useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
 import 'katex/dist/katex.min.css'
 
-import { NotebookPdf, isAllowedPdfEmbedUrl } from '@/lib/tiptap-notebook-pdf'
+import { NotesEditorToolbar } from '@/components/NotesEditorToolbar'
+import { NOTEBOOK_EMPTY_DOC } from '@/lib/notebook-editor-default'
+import type { NotebookDocJson } from '@/lib/notebook-editor-default'
 import {
   handleEditorImageDrop,
   handleEditorImagePaste,
-  insertBlockMathPrompt,
-  insertImageFile,
-  insertInlineMathPrompt,
-  setImageFromUrlOrFile,
-  setLinkFromUrlPrompt
+  insertImageFile
 } from '@/lib/tiptap-editor-image'
-import { NOTEBOOK_EMPTY_DOC } from '@/lib/notebook-editor-default'
-import type { NotebookDocJson } from '@/lib/notebook-editor-default'
-
+import { NotebookPdf } from '@/lib/tiptap-notebook-pdf'
+import { notesFormatExtensions } from '@/lib/tiptap-notes-blocks'
 import styles from '@/styles/notebook.module.css'
 
 const SAVE_MS = 700
@@ -43,21 +39,6 @@ type NotebookEditorProps = {
    * of `ref` when the editor is wrapped in `next/dynamic` (refs are not forwarded).
    */
   flushSaveRef?: React.MutableRefObject<(() => Promise<void>) | null>
-}
-
-function isYoutubeUrl(url: string): boolean {
-  try {
-    const u = new URL(url.trim())
-    const h = u.hostname.replace(/^www\./, '')
-    return (
-      h === 'youtube.com' ||
-      h === 'youtu.be' ||
-      h === 'm.youtube.com' ||
-      h === 'www.youtube-nocookie.com'
-    )
-  } catch {
-    return false
-  }
 }
 
 export function NotebookEditor({
@@ -160,7 +141,8 @@ export function NotebookEditor({
       }),
       Placeholder.configure({
         placeholder: editable ? 'Start writing…' : ''
-      })
+      }),
+      ...notesFormatExtensions()
     ],
     [editable]
   )
@@ -168,8 +150,10 @@ export function NotebookEditor({
   const editor = useEditor({
     editable,
     extensions,
-    content: (initialContent ??
-      NOTEBOOK_EMPTY_DOC) as unknown as Record<string, unknown>,
+    content: (initialContent ?? NOTEBOOK_EMPTY_DOC) as unknown as Record<
+      string,
+      unknown
+    >,
     editorProps: {
       attributes: {
         spellcheck: 'true'
@@ -217,73 +201,6 @@ export function NotebookEditor({
     }
   }, [tabId, editor, initialContent])
 
-  const setHeading = (level: 1 | 2 | 3) => {
-    editor?.chain().focus().toggleHeading({ level }).run()
-  }
-
-  const setBullet = () => {
-    editor?.chain().focus().toggleBulletList().run()
-  }
-
-  const setLink = () => {
-    if (!editor) return
-    setLinkFromUrlPrompt(editor)
-  }
-
-  const setImage = () => {
-    if (!editor) return
-    setImageFromUrlOrFile(editor, () => imageInputRef.current?.click())
-  }
-
-  const setYoutube = () => {
-    if (!editor) return
-    const url = window.prompt('YouTube URL')
-    if (url === null || !url.trim()) return
-    const trimmed = url.trim()
-    if (!isYoutubeUrl(trimmed)) {
-      window.alert('Please paste a valid YouTube link.')
-      return
-    }
-    editor.chain().focus().setYoutubeVideo({ src: trimmed }).run()
-  }
-
-  const setPdfEmbed = () => {
-    if (!editor) return
-    const url = window.prompt(
-      'PDF URL (https link to the file — must allow embedding in an iframe; many academic PDFs work)',
-      'https://'
-    )
-    if (url === null || !url.trim()) return
-    const trimmed = url.trim()
-    if (!isAllowedPdfEmbedUrl(trimmed)) {
-      window.alert('Please paste an http(s) URL to a PDF file.')
-      return
-    }
-    const ok = editor.chain().focus().setNotebookPdf({ src: trimmed }).run()
-    if (!ok) {
-      window.alert('Could not insert PDF embed.')
-    }
-  }
-
-  const insertTable = () => {
-    if (!editor) return
-    editor
-      .chain()
-      .focus()
-      .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
-      .run()
-  }
-
-  const insertInlineMath = () => {
-    if (!editor) return
-    insertInlineMathPrompt(editor)
-  }
-
-  const insertBlockMath = () => {
-    if (!editor) return
-    insertBlockMathPrompt(editor)
-  }
-
   if (!editor) {
     return <p className={styles.saveStatus}>Loading editor…</p>
   }
@@ -291,95 +208,30 @@ export function NotebookEditor({
   return (
     <div>
       {editable ? (
-        <div className={styles.toolbar} role='toolbar' aria-label='Formatting'>
-        <input
-          ref={imageInputRef}
-          type='file'
-          accept='image/*'
-          className={styles.fileInput}
-          aria-hidden
-          tabIndex={-1}
-          onChange={(event) => {
-            const file = event.target.files?.[0]
-            event.target.value = ''
-            if (!file || !editor) return
-            void insertImageFile(editor.view, file)
-          }}
-        />
-        <button
-          type='button'
-          className={
-            editor.isActive('heading', { level: 1 })
-              ? `${styles.toolBtn} ${styles.toolBtnActive}`
-              : styles.toolBtn
-          }
-          onClick={() => setHeading(1)}
-        >
-          H1
-        </button>
-        <button
-          type='button'
-          className={
-            editor.isActive('heading', { level: 2 })
-              ? `${styles.toolBtn} ${styles.toolBtnActive}`
-              : styles.toolBtn
-          }
-          onClick={() => setHeading(2)}
-        >
-          H2
-        </button>
-        <button
-          type='button'
-          className={
-            editor.isActive('heading', { level: 3 })
-              ? `${styles.toolBtn} ${styles.toolBtnActive}`
-              : styles.toolBtn
-          }
-          onClick={() => setHeading(3)}
-        >
-          H3
-        </button>
-        <button
-          type='button'
-          className={
-            editor.isActive('bulletList')
-              ? `${styles.toolBtn} ${styles.toolBtnActive}`
-              : styles.toolBtn
-          }
-          onClick={setBullet}
-        >
-          Bullets
-        </button>
-        <button type='button' className={styles.toolBtn} onClick={setLink}>
-          Link
-        </button>
-        <button type='button' className={styles.toolBtn} onClick={setImage}>
-          Image
-        </button>
-        <button type='button' className={styles.toolBtn} onClick={setYoutube}>
-          YouTube
-        </button>
-        <button type='button' className={styles.toolBtn} onClick={setPdfEmbed}>
-          PDF
-        </button>
-        <button type='button' className={styles.toolBtn} onClick={insertTable}>
-          Table
-        </button>
-        <button
-          type='button'
-          className={styles.toolBtn}
-          onClick={insertInlineMath}
-        >
-          LaTeX
-        </button>
-        <button
-          type='button'
-          className={styles.toolBtn}
-          onClick={insertBlockMath}
-        >
-          LaTeX block
-        </button>
-        </div>
+        <>
+          <input
+            ref={imageInputRef}
+            type='file'
+            accept='image/*'
+            className={styles.fileInput}
+            aria-hidden
+            tabIndex={-1}
+            onChange={(event) => {
+              const file = event.target.files?.[0]
+              event.target.value = ''
+              if (!file || !editor) return
+              void insertImageFile(editor.view, file)
+            }}
+          />
+          <NotesEditorToolbar
+            editor={editor}
+            imageInputRef={imageInputRef}
+            headingLevels={[1, 2, 3]}
+            showYoutube
+            showPdf
+            className={styles.editorToolbar}
+          />
+        </>
       ) : null}
       <div className={styles.editorSurface}>
         <EditorContent editor={editor} />

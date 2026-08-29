@@ -351,6 +351,15 @@
   opacity: 0.8;
 }
 
+.instructorName {
+  color: #5d534b;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.16px;
+}
+
 .schoolDateRow {
   margin-top: 1.5rem;
   margin-bottom: 1.25rem;
@@ -399,6 +408,47 @@
   border-radius: 50%;
 }
 
+.publisherAvatar {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+  border-radius: 50%;
+}
+
+.publisherAvatarFallback {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.12);
+  color: #37352f;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.publisherBrandIcon {
+  display: block;
+}
+
+.publisherAvatarLink {
+  display: inline-flex;
+  flex-shrink: 0;
+  border-radius: 50%;
+  line-height: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
 .schoolDateDot {
   display: inline-flex;
   align-items: center;
@@ -415,6 +465,37 @@
 .saveWrap {
   flex-shrink: 0;
   margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.shareLink {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #37352f;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.shareLink:hover,
+.shareLink:focus-visible {
+  color: #0089c4;
+}
+
+.shareLink:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
 }
 
 /* .descriptionWrap {
@@ -474,6 +555,12 @@
 
 :global(.dark-mode) .schoolDateDot {
   color: rgba(255, 255, 255, 0.88);
+}
+
+:global(.dark-mode) .publisherAvatarFallback {
+  background: #2c2a26;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #eceae4;
 }
 
 @media (max-width: 800px) {

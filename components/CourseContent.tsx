@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { createPortal } from 'react-dom'
 
 import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
+import { courseNoteTopicKey } from '@/lib/course-notes-db'
 import {
   type SectionProgressStatus,
   getSectionProgressMap,
@@ -353,6 +354,16 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     (childSectionTotal > 0 && childSectionIndex > 1) || sectionIndex > 1
 
   const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? ''
+  const noteTopicId = courseNoteTopicKey(
+    currentSectionLabel,
+    embedParentTitle
+  )
+  const noteTopicTitle =
+    embedParentTitle &&
+    embedParentTitle.trim() &&
+    embedParentTitle.trim() !== currentSectionLabel
+      ? `${embedParentTitle} · ${currentSectionLabel}`
+      : currentSectionLabel
   const isCommunityWallTab = currentSectionLabel === COMMUNITY_WALL_LABEL
   const currentStatus = sectionProgress[currentSectionLabel] ?? {
     isCompleted: false,
@@ -551,6 +562,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
         <CourseNotesPanel
           coursePageId={coursePageId}
           courseTitle={courseTitle}
+          topicId={noteTopicId}
+          topicTitle={noteTopicTitle}
           signedIn={Boolean(authUser)}
           onSignIn={() => auth?.signInWithGoogle()}
           onHide={closeRightPanel}
@@ -619,8 +632,18 @@ export const CourseContent: React.FC<CourseContentProps> = ({
             isCommunityWallTab ? (
               <button
                 type='button'
-                className={cwStyles.btnPrimary}
-                onClick={() => communityWallRef.current?.openAdd()}
+                className={`${cwStyles.btnPrimary}${
+                  !authUser ? ` ${cwStyles.btnPrimaryDisabled}` : ''
+                }`}
+                aria-disabled={!authUser}
+                title={authUser ? undefined : 'Sign in to add a resource'}
+                onClick={() => {
+                  if (!authUser) {
+                    auth?.signInWithGoogle()
+                    return
+                  }
+                  communityWallRef.current?.openAdd()
+                }}
               >
                 + Add Resource
               </button>

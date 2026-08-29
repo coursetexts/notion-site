@@ -12,11 +12,16 @@ import {
   type CourseLearningPathLinkKind,
   type CourseLearningPathNode,
   type CourseLearningPathNodeType,
+  type CourseLearningPathTopicResource,
+  type CourseLearningPathTopicResourceKind,
   type CourseLearningPathVideo,
   insertLinkAtPlacement,
+  insertTopicResourceAtPlacement,
   insertVideoAtPlacement,
+  mergeCourseLearningPathLegacyResources,
   sortCourseLearningPathByRank,
-  sortCourseLearningPathLinks
+  sortCourseLearningPathLinks,
+  sortCourseLearningPathTopicResources
 } from './course-learning-path-types'
 import { getSupabaseClient } from './supabase'
 import {
@@ -29,6 +34,7 @@ type CourseRow = {
   slug: string
   title: string
   description: string | null
+  created_at?: string | null
 }
 
 type NodeRow = {
@@ -39,6 +45,13 @@ type NodeRow = {
   title: string
   description: string | null
   sort_order: number
+}
+
+/** Hidden syllabus node that holds Mental Map videos (`node_id` is a UUID FK). */
+export const MENTAL_MAP_NODE_MARKER = '__coursetexts_mental_map__'
+
+function isMentalMapNodeRow(row: { description: string | null }): boolean {
+  return row.description === MENTAL_MAP_NODE_MARKER
 }
 
 type VideoRow = {
@@ -62,6 +75,17 @@ type LinkRow = {
   url: string
 }
 
+type TopicResourceRow = {
+  id: string
+  node_id: string
+  kind: CourseLearningPathTopicResourceKind
+  sort_order: number
+  title: string
+  url: string | null
+  passage: string | null
+  why: string | null
+}
+
 type ResourceRow = {
   kind: 'textbook' | 'website' | 'youtube'
   title: string
@@ -76,7 +100,8 @@ function buildTree(
   videos: VideoRow[],
   voteByVideo: Record<string, { score: number; user_vote: 1 | -1 | null }>,
   resources?: CourseLearningPathData['resources'],
-  links: LinkRow[] = []
+  links: LinkRow[] = [],
+  topicResources: TopicResourceRow[] = []
 ): CourseLearningPathData {
   const videosByNode = new Map<string, CourseLearningPathVideo[]>()
   for (const v of videos) {
@@ -121,8 +146,51 @@ function buildTree(
     slidesByNode.set(nodeId, sortCourseLearningPathLinks(list))
   }
 
+  const topicResourcesByNode = new Map<string, CourseLearningPathTopicResource[]>()
+  for (const row of topicResources) {
+    const list = topicResourcesByNode.get(row.node_id) ?? []
+    list.push({
+      id: row.id,
+      kind: row.kind,
+      position: row.sort_order + 1,
+      title: row.title,
+      url: row.url?.trim() || undefined,
+      passage: row.passage?.trim() || undefined,
+      why: row.why?.trim() || undefined
+    })
+    topicResourcesByNode.set(row.node_id, list)
+  }
+  for (const [nodeId, list] of topicResourcesByNode) {
+    topicResourcesByNode.set(nodeId, sortCourseLearningPathTopicResources(list))
+  }
+
   const childrenByParent = new Map<string | null, NodeRow[]>()
+  let mentalMapVideos: CourseLearningPathVideo[] | undefined
+  let mentalMapTopicResources: CourseLearningPathTopicResource[] | undefined
   for (const n of nodes) {
+    if (isMentalMapNodeRow(n)) {
+      const list = videosByNode.get(n.id)
+      if (list?.length) {
+        mentalMapVideos = sortCourseLearningPathByRank([
+          ...(mentalMapVideos ?? []),
+          ...list
+        ])
+      }
+      const stored = topicResourcesByNode.get(n.id)
+      const legacy = mergeCourseLearningPathLegacyResources(
+        videosByNode.get(n.id),
+        slidesByNode.get(n.id),
+        testsByNode.get(n.id)
+      )
+      const combined = stored?.length ? stored : legacy
+      if (combined.length) {
+        mentalMapTopicResources = sortCourseLearningPathTopicResources([
+          ...(mentalMapTopicResources ?? []),
+          ...combined
+        ])
+      }
+      continue
+    }
     const key = n.parent_id
     const list = childrenByParent.get(key) ?? []
     list.push(n)
@@ -137,6 +205,10 @@ function buildTree(
     const nodeVideos = videosByNode.get(row.id)
     const nodeTests = testsByNode.get(row.id)
     const nodeSlides = slidesByNode.get(row.id)
+    const stored = topicResourcesByNode.get(row.id)
+    const topicResourceList = stored?.length
+      ? stored
+      : mergeCourseLearningPathLegacyResources(nodeVideos, nodeSlides, nodeTests)
     return {
       id: row.id,
       type: row.node_type,
@@ -145,6 +217,7 @@ function buildTree(
       videos: nodeVideos?.length ? nodeVideos : undefined,
       tests: nodeTests?.length ? nodeTests : undefined,
       slides: nodeSlides?.length ? nodeSlides : undefined,
+      topicResources: topicResourceList.length ? topicResourceList : undefined,
       children: childRows.length ? childRows.map(toNode) : undefined
     }
   }
@@ -157,8 +230,65 @@ function buildTree(
     description: course.description ?? '',
     topics: roots.map(toNode),
     resources: resources?.length ? resources : undefined,
-    dbBacked: true
+    mentalMapVideos,
+    mentalMapTopicResources,
+    dbBacked: true,
+    createdAt: course.created_at || undefined
   }
+}
+
+/**
+ * Get or create the hidden node that stores Mental Map videos for a course.
+ * `curated_course_videos.node_id` is a UUID FK, so videos cannot use the
+ * `mental-map:${slug}` notes key.
+ */
+export async function ensureMentalMapNodeId(
+  courseId: string
+): Promise<string | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !courseId) return null
+
+  const { data: existingRows, error: findError } = await supabase
+    .from('curated_course_nodes')
+    .select('id')
+    .eq('course_id', courseId)
+    .eq('description', MENTAL_MAP_NODE_MARKER)
+    .order('sort_order', { ascending: true })
+    .limit(1)
+
+  if (findError) {
+    console.error('ensureMentalMapNodeId: lookup failed', findError)
+    return null
+  }
+  const existingId = existingRows?.[0]?.id
+  if (existingId) return existingId
+
+  const { data: created, error: insertError } = await supabase
+    .from('curated_course_nodes')
+    .insert({
+      course_id: courseId,
+      parent_id: null,
+      node_type: 'topic',
+      title: 'Mental Map',
+      description: MENTAL_MAP_NODE_MARKER,
+      sort_order: -1
+    })
+    .select('id')
+    .single()
+
+  if (created?.id) return created.id
+
+  const { data: racedRows } = await supabase
+    .from('curated_course_nodes')
+    .select('id')
+    .eq('course_id', courseId)
+    .eq('description', MENTAL_MAP_NODE_MARKER)
+    .limit(1)
+  const racedId = racedRows?.[0]?.id
+  if (racedId) return racedId
+
+  console.error('ensureMentalMapNodeId: insert failed', insertError)
+  return null
 }
 
 async function getVoteSummaries(
@@ -206,7 +336,7 @@ export async function getCourseLearningPathData(
 
   const { data: course, error: courseError } = await supabase
     .from('curated_courses')
-    .select('id, slug, title, description')
+    .select('id, slug, title, description, created_at')
     .eq('slug', slug)
     .maybeSingle()
 
@@ -248,6 +378,19 @@ export async function getCourseLearningPathData(
     if (!linksError) links = (linkRows || []) as LinkRow[]
   }
 
+  let topicResources: TopicResourceRow[] = []
+  if (nodeIds.length > 0) {
+    const { data: topicResourceRows, error: topicResourcesError } = await supabase
+      .from('curated_course_node_resources')
+      .select('id, node_id, kind, sort_order, title, url, passage, why')
+      .in('node_id', nodeIds)
+      .order('sort_order', { ascending: true })
+
+    if (!topicResourcesError) {
+      topicResources = (topicResourceRows || []) as TopicResourceRow[]
+    }
+  }
+
   const voteByVideo = await getVoteSummaries(videos.map((v) => v.id))
 
   let resources: CourseLearningPathData['resources'] = undefined
@@ -272,7 +415,8 @@ export async function getCourseLearningPathData(
     videos,
     voteByVideo,
     resources,
-    links
+    links,
+    topicResources
   )
 }
 
@@ -710,5 +854,220 @@ export function createLocalCourseLearningPathVideo(
     annotation: input.annotation?.trim() || undefined,
     score: 0,
     userVote: null
+  }
+}
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+function isUuid(id: string): boolean {
+  return Boolean(id && UUID_RE.test(id))
+}
+
+function communityTypeForTopicResource(
+  kind: CourseLearningPathTopicResourceKind
+): ResourceDbType {
+  if (kind === 'video') return 'video'
+  if (kind === 'paper') return 'paper'
+  if (kind === 'exercise') return 'problem_set'
+  return 'textbook'
+}
+
+export type AddCourseLearningPathTopicResourceInput = {
+  nodeId: string
+  kind: CourseLearningPathTopicResourceKind
+  title?: string
+  url?: string
+  passage?: string
+  why?: string
+  conceptTree?: string
+  courseSlug?: string
+  suggestedPlacement?: number
+}
+
+export async function persistCourseLearningPathTopicResourceOrder(
+  ordered: CourseLearningPathTopicResource[]
+): Promise<boolean> {
+  const supabase = getSupabaseClient()
+  if (!supabase || ordered.length === 0) return true
+
+  const results = await Promise.all(
+    ordered.map((item, i) =>
+      supabase
+        .from('curated_course_node_resources')
+        .update({ sort_order: i, updated_at: new Date().toISOString() })
+        .eq('id', item.id)
+    )
+  )
+  return results.every((r) => !r.error)
+}
+
+async function copyLegacyTopicResourcesIfNeeded(
+  nodeId: string,
+  current: CourseLearningPathTopicResource[]
+): Promise<CourseLearningPathTopicResource[]> {
+  const supabase = getSupabaseClient()
+  if (!supabase || current.length === 0) return current
+
+  const { data: existing, error } = await supabase
+    .from('curated_course_node_resources')
+    .select('id')
+    .eq('node_id', nodeId)
+    .limit(1)
+
+  if (error) {
+    console.error('copyLegacyTopicResourcesIfNeeded: lookup failed', error)
+    return current
+  }
+  if (existing?.length) return current
+
+  const rows = current.map((item, i) => ({
+    ...(isUuid(item.id) ? { id: item.id } : {}),
+    node_id: nodeId,
+    kind: item.kind,
+    sort_order: i,
+    title: item.title,
+    url: item.url?.trim() || null,
+    passage: item.passage?.trim() || null,
+    why: item.why?.trim() || null
+  }))
+
+  const { data: inserted, error: insertError } = await supabase
+    .from('curated_course_node_resources')
+    .insert(rows)
+    .select('id, kind, sort_order, title, url, passage, why')
+
+  if (insertError || !inserted?.length) {
+    console.error('copyLegacyTopicResourcesIfNeeded: insert failed', insertError)
+    return current
+  }
+
+  return sortCourseLearningPathTopicResources(
+    (inserted as TopicResourceRow[]).map((row) => ({
+      id: row.id,
+      kind: row.kind,
+      position: row.sort_order + 1,
+      title: row.title,
+      url: row.url?.trim() || undefined,
+      passage: row.passage?.trim() || undefined,
+      why: row.why?.trim() || undefined
+    }))
+  )
+}
+
+export async function addCourseLearningPathTopicResource(
+  input: AddCourseLearningPathTopicResourceInput,
+  currentResources: CourseLearningPathTopicResource[]
+): Promise<{
+  resource: CourseLearningPathTopicResource
+  ordered: CourseLearningPathTopicResource[]
+} | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return null
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return null
+
+  const url = (input.url || '').trim()
+  const title =
+    (input.title || '').trim() || (url ? titleFromUrl(url) : '')
+  if (!title) return null
+
+  const seeded = await copyLegacyTopicResourcesIfNeeded(
+    input.nodeId,
+    currentResources
+  )
+
+  const maxPlacement = seeded.length + 1
+  const placementRaw = input.suggestedPlacement
+  const placement =
+    placementRaw == null || !Number.isFinite(Number(placementRaw))
+      ? maxPlacement
+      : Math.min(Math.max(1, Math.round(Number(placementRaw))), maxPlacement)
+
+  const { data, error } = await supabase
+    .from('curated_course_node_resources')
+    .insert({
+      node_id: input.nodeId,
+      kind: input.kind,
+      sort_order: placement - 1,
+      title,
+      url: url || null,
+      passage: input.passage?.trim() || null,
+      why: input.why?.trim() || null
+    })
+    .select('id, node_id, kind, sort_order, title, url, passage, why')
+    .single()
+
+  if (error || !data) {
+    console.error('addCourseLearningPathTopicResource failed', error)
+    return null
+  }
+
+  const row = data as TopicResourceRow
+  const created: CourseLearningPathTopicResource = {
+    id: row.id,
+    kind: row.kind,
+    position: placement,
+    title: row.title,
+    url: row.url?.trim() || undefined,
+    passage: row.passage?.trim() || undefined,
+    why: row.why?.trim() || undefined
+  }
+
+  const ordered = insertTopicResourceAtPlacement(seeded, created, placement)
+  const ok = await persistCourseLearningPathTopicResourceOrder(ordered)
+  if (!ok) {
+    console.error('addCourseLearningPathTopicResource: failed to persist order')
+  }
+
+  if (url) {
+    const description = [input.passage, input.why]
+      .map((part) => part?.trim())
+      .filter(Boolean)
+      .join('\n\n')
+    const resourceId = await publishCourseLearningPathItemToCommunity({
+      title: row.title,
+      description,
+      url,
+      type: communityTypeForTopicResource(row.kind),
+      conceptTree: input.conceptTree,
+      courseSlug: input.courseSlug,
+      nodeId: input.nodeId
+    })
+    if (resourceId) {
+      const { error: linkError } = await supabase
+        .from('curated_course_node_resources')
+        .update({
+          resource_id: resourceId,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', row.id)
+      if (linkError) {
+        console.error(
+          'addCourseLearningPathTopicResource: failed to link community resource',
+          linkError
+        )
+      }
+    }
+  }
+
+  return { resource: created, ordered }
+}
+
+export function createLocalCourseLearningPathTopicResource(
+  input: AddCourseLearningPathTopicResourceInput
+): CourseLearningPathTopicResource {
+  const url = (input.url || '').trim()
+  return {
+    id: `local_topic_res_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    kind: input.kind,
+    position: 9999,
+    title: (input.title || '').trim() || (url ? titleFromUrl(url) : 'Untitled'),
+    url: url || undefined,
+    passage: input.passage?.trim() || undefined,
+    why: input.why?.trim() || undefined
   }
 }

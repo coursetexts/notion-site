@@ -63,6 +63,18 @@
   border-color: #d5d5d5;
 }
 
+.btnPrimaryDisabled,
+.btnPrimary[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btnPrimaryDisabled:hover,
+.btnPrimary[aria-disabled='true']:hover {
+  background: #fff;
+  border-color: #e6e6e6;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

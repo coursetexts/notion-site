@@ -4,11 +4,12 @@
  * this re-exports Fluid Mechanics for the client-side fallback.
  */
 import fluidMechanicsJson from '@/data/curated-courses/fluid-mechanics.json'
-import type {
-  CourseLearningPathData,
-  CourseLearningPathLink,
-  CourseLearningPathNode,
-  CourseLearningPathVideo
+import {
+  type CourseLearningPathData,
+  type CourseLearningPathLink,
+  type CourseLearningPathNode,
+  type CourseLearningPathVideo,
+  mergeCourseLearningPathLegacyResources
 } from './course-learning-path-types'
 import type { CourseResource } from '@/lib/undergraduate-degrees'
 
@@ -66,14 +67,23 @@ function mapLinks(
 }
 
 function mapNode(node: JsonNode, path: string): CourseLearningPathNode {
+  const videos = mapVideos(node.videos)
+  const tests = mapLinks(node.tests, 'test')
+  const slides = mapLinks(node.slides, 'slide')
+  const topicResources = mergeCourseLearningPathLegacyResources(
+    videos,
+    slides,
+    tests
+  )
   return {
     id: `local_${path}`,
     type: node.type,
     title: node.title,
     description: node.description,
-    videos: mapVideos(node.videos),
-    tests: mapLinks(node.tests, 'test'),
-    slides: mapLinks(node.slides, 'slide'),
+    videos,
+    tests,
+    slides,
+    topicResources: topicResources.length ? topicResources : undefined,
     children: node.children?.map((child, i) =>
       mapNode(child, `${path}_${i}`)
     )

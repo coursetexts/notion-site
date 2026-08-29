@@ -244,6 +244,8 @@
   height: 33px;
   padding: 6px 14px;
   gap: 24px;
+  appearance: none;
+  background: transparent;
   border: 1px solid var(--outline, #e6e6e6);
   box-sizing: border-box;
   font-family: 'Hanken Grotesk', sans-serif;
@@ -515,6 +517,8 @@
   justify-content: center;
   width: 100%;
   padding: 12px 16px;
+  appearance: none;
+  background: transparent;
   border: 1px solid var(--outline, #e6e6e6);
   border-radius: 10px;
   box-sizing: border-box;
@@ -522,6 +526,7 @@
   font-size: 0.9375rem;
   color: #000000;
   text-decoration: none;
+  cursor: pointer;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 

@@ -704,6 +704,10 @@
   overflow-y: auto;
 }
 
+.modalCardWide {
+  max-width: 560px;
+}
+
 .modalHeader {
   display: flex;
   align-items: center;
@@ -891,6 +895,10 @@
   width: 100%;
 }
 
+.actionOverlayCardWide {
+  max-width: 560px;
+}
+
 .actionOverlayTitle {
   font-size: 1rem;
   font-weight: 600;
@@ -947,6 +955,10 @@
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
+}
+
+.actionOverlayEditor {
+  margin-bottom: 1rem;
 }
 
 .actionOverlayCancel {
@@ -1347,6 +1359,12 @@
   font-style: italic;
 }
 
+.userLinkNoteRich {
+  font-style: normal;
+  width: 100%;
+  align-self: stretch;
+}
+
 /* —— Profile page layout (header + two columns + tabs) —— */
 
 .pageShell {
@@ -1721,11 +1739,15 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
 }
 
 .tabPanelHeaderRow .mainSerifTitle {
   margin: 0;
+}
+
+.pathsCoursesFilter {
+  margin-bottom: 1.25rem;
 }
 
 .primaryTab,
@@ -1810,42 +1832,6 @@
 .activitySubTabActive {
   background: #f6f6f6;
   color: #25272b;
-}
-
-.pageFooterBar {
-  display: flex;
-  justify-content: flex-end;
-  width: min(var(--profile-main-max), calc(100vw - (var(--profile-side) * 2)));
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 0 0 1.5rem;
-}
-
-.signOutFooter {
-  font: inherit;
-  font-size: 0.875rem;
-  padding: 0.45rem 1rem;
-  color: #25272b;
-  background: rgba(230, 230, 230, 0.32);
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.signOutFooter:hover {
-  background: #f7f7f7;
-}
-
-@media (max-width: 860px) {
-  .pageFooterBar {
-    width: min(var(--profile-main-max), calc(100vw - (var(--profile-side) * 2)));
-    justify-content: stretch;
-  }
-
-  .signOutFooter {
-    width: 100%;
-    text-align: center;
-    box-sizing: border-box;
-  }
 }
 
 /* —— Profile “Your notebooks” tab —— */
@@ -2559,7 +2545,10 @@
 
 .learningPathCard {
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   margin: 0;
   padding: 1.15rem 1.25rem;
   border: 1px solid #e8e6e1;
@@ -2569,11 +2558,72 @@
   font-size: 1rem;
   line-height: 1.45;
   color: #25272b;
+}
+
+.learningPathCardLink {
+  min-width: 0;
+  flex: 1;
+  color: inherit;
   text-decoration: none;
   cursor: pointer;
 }
 
+.learningPathCardTitle {
+  min-width: 0;
+  display: block;
+}
+
 .learningPathCard:hover {
   border-color: #0089c4;
+}
+
+a.learningPathCard {
+  text-decoration: none;
+  color: #25272b;
+  cursor: pointer;
+}
+
+a.learningPathCard:hover {
   color: #000;
+}
+
+.learningPathCardLink:hover {
+  color: #000;
+}
+
+.learningPathPrivateTag,
+.learningPathPublicTag {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.learningPathPrivateTag {
+  color: #1f4f6b;
+  background: #e6f4ff;
+}
+
+.learningPathPublicTag {
+  color: #2e7d32;
+  background: #e8f5e9;
+}
+
+.learningPathSaveBtn {
+  color: #0089c4;
+}
+
+.learningPathSaveBtn:hover:not(:disabled) {
+  color: #0077b0;
+}
+
+.learningPathSaveIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: #0089c4;
+  flex-shrink: 0;
 }

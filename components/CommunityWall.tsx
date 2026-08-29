@@ -495,12 +495,12 @@ export const CommunityWall = React.forwardRef<
 
   const openAdd = React.useCallback(() => {
     if (!isSignedIn) {
-      setError('Sign in to add a resource.')
+      auth?.signInWithGoogle()
       return
     }
     setAddOpen(true)
     setError(null)
-  }, [isSignedIn])
+  }, [isSignedIn, auth])
 
   React.useImperativeHandle(ref, () => ({ openAdd }), [openAdd])
 

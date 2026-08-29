@@ -1,9 +1,5 @@
 /** Catalog dummy paths plus sessionStorage fallback. Supabase is the source of truth when signed in. */
-
-import {
-  slugifyLearningPathName,
-  titleFromSlug
-} from './learning-path-slug'
+import { slugifyLearningPathName, titleFromSlug } from './learning-path-slug'
 
 export const LEARNING_PATH_STORAGE_KEY = 'coursetexts.learning-paths'
 
@@ -39,6 +35,150 @@ export type LearningPathUserResource = {
   href?: string
   passage: string
   why: string
+  /** 1-based place in the combined Resources list. */
+  sequence?: number
+}
+
+export type LearningPathListedResource = {
+  id: string
+  kind: LearningPathResourceKind
+  title: string
+  href?: string
+  source?: string
+  passage?: string
+  why: string
+  addedByYou: boolean
+  sequence: number
+}
+
+function clampResourcePlacement(value: number, max: number): number {
+  if (!Number.isFinite(value)) return max
+  return Math.min(Math.max(1, Math.round(value)), Math.max(1, max))
+}
+
+function listedFromSeeded(
+  resource: LearningPathResource,
+  sequence: number
+): LearningPathListedResource {
+  return {
+    id: resource.id,
+    kind: resource.kind,
+    title: resource.title,
+    href: resource.href,
+    source: resource.source,
+    why: resource.why,
+    addedByYou: false,
+    sequence
+  }
+}
+
+function listedFromUser(
+  resource: LearningPathUserResource,
+  sequence: number
+): LearningPathListedResource {
+  return {
+    id: resource.id,
+    kind: resource.kind,
+    title: resource.title,
+    href: resource.href,
+    passage: resource.passage,
+    why: resource.why,
+    addedByYou: true,
+    sequence
+  }
+}
+
+/**
+ * Combine path resources with ones you added. User items occupy their saved
+ * sequence slots; remaining slots keep the original path order.
+ */
+export function mergeLearningPathResources(
+  seeded: LearningPathResource[],
+  mine: LearningPathUserResource[]
+): LearningPathListedResource[] {
+  const sequenced = mine.filter(
+    (resource) =>
+      resource.sequence != null && Number.isFinite(resource.sequence)
+  )
+  const unsequenced = mine.filter(
+    (resource) =>
+      resource.sequence == null || !Number.isFinite(resource.sequence)
+  )
+  const slotCount = seeded.length + sequenced.length
+  if (slotCount === 0 && unsequenced.length === 0) return []
+
+  const slots: Array<LearningPathListedResource | null> = Array.from(
+    { length: slotCount },
+    () => null
+  )
+  const orderedMine = [...sequenced].sort((a, b) => {
+    const diff = (a.sequence ?? 0) - (b.sequence ?? 0)
+    if (diff !== 0) return diff
+    return a.id.localeCompare(b.id)
+  })
+
+  for (const resource of orderedMine) {
+    if (slots.length === 0) break
+    let idx =
+      clampResourcePlacement(resource.sequence ?? slots.length, slots.length) -
+      1
+    while (idx < slots.length && slots[idx]) idx += 1
+    if (idx >= slots.length) {
+      idx = slots.length - 1
+      while (idx >= 0 && slots[idx]) idx -= 1
+    }
+    if (idx < 0) continue
+    slots[idx] = listedFromUser(resource, idx + 1)
+  }
+
+  let seedIndex = 0
+  for (let i = 0; i < slots.length; i += 1) {
+    if (slots[i] || seedIndex >= seeded.length) continue
+    slots[i] = listedFromSeeded(seeded[seedIndex], i + 1)
+    seedIndex += 1
+  }
+
+  const listed = slots.filter(
+    (item): item is LearningPathListedResource => item != null
+  )
+  for (const resource of unsequenced) {
+    listed.push(listedFromUser(resource, listed.length + 1))
+  }
+  return listed.map((item, index) => ({ ...item, sequence: index + 1 }))
+}
+
+export function insertLearningPathUserResource(
+  seeded: LearningPathResource[],
+  mine: LearningPathUserResource[],
+  item: Omit<LearningPathUserResource, 'sequence'>,
+  placement: number
+): LearningPathUserResource[] {
+  const current = mergeLearningPathResources(seeded, mine)
+  const max = current.length + 1
+  const sequence = clampResourcePlacement(placement, max)
+  const nextItem: LearningPathUserResource = { ...item, sequence }
+  const listed = [...current]
+  listed.splice(sequence - 1, 0, listedFromUser(nextItem, sequence))
+  const byId = new Map(mine.map((resource) => [resource.id, resource]))
+  byId.set(nextItem.id, nextItem)
+  return listed
+    .map((row, index) => ({ ...row, sequence: index + 1 }))
+    .filter((row) => row.addedByYou)
+    .map((row) => {
+      const original = byId.get(row.id)
+      if (!original) {
+        return {
+          id: row.id,
+          kind: row.kind,
+          title: row.title,
+          href: row.href,
+          passage: row.passage ?? '',
+          why: row.why,
+          sequence: row.sequence
+        }
+      }
+      return { ...original, sequence: row.sequence }
+    })
 }
 
 export type LearningPathNode = {
@@ -78,6 +218,12 @@ export type LearningPathCircle = {
   members: LearningPathCircleMember[]
 }
 
+export type LearningPathKind = 'community' | 'research'
+
+export function parseLearningPathKind(value: unknown): LearningPathKind {
+  return value === 'research' ? 'research' : 'community'
+}
+
 export type LearningPathData = {
   id?: string
   slug: string
@@ -87,6 +233,8 @@ export type LearningPathData = {
   nodes: LearningPathNode[]
   edges: LearningPathEdge[]
   circle: LearningPathCircle
+  /** ISO timestamp from learning_paths.created_at or first local save. */
+  createdAt?: string
 }
 
 export type StoredLearningPath = {
@@ -94,6 +242,12 @@ export type StoredLearningPath = {
   goal: string
   slug: string
   data?: LearningPathData
+  isPrivate?: boolean
+  kind?: LearningPathKind
+  /** Present when this row is a saved (bookmarked) path, not one we own. */
+  savedLinkId?: string
+  /** ISO timestamp when this path was first created. */
+  createdAt?: string
 }
 
 export type LearningPathOutlineConcept = {
@@ -111,8 +265,7 @@ export type LearningPathOutlineStep = {
 const TRANSFORMERS: LearningPathData = {
   slug: 'understand-how-transformers-work-well-enough-to-implement-one',
   title: 'Implement a transformer',
-  goal:
-    'I want to understand how transformers work well enough to implement one.',
+  goal: 'I want to understand how transformers work well enough to implement one.',
   summary:
     'Work backward from a working model: attention, the pieces of linear algebra and probability it actually uses, and a small implementation — not a full ML degree.',
   nodes: [
@@ -892,7 +1045,9 @@ export function sequenceMarks(
   for (const parent of core) {
     markChildren(parent.id, 'prerequisite', BRANCH_LETTERS.split(''))
   }
-  for (const parent of path.nodes.filter((node) => node.kind === 'prerequisite')) {
+  for (const parent of path.nodes.filter(
+    (node) => node.kind === 'prerequisite'
+  )) {
     markChildren(parent.id, 'prerequisite', BRANCH_ROMANS)
   }
   return marks
@@ -977,8 +1132,7 @@ export function learningPathFromOutline({
 
     step.concepts.forEach((concept, conceptIndex) => {
       const conceptId = `c-${stepIndex + 1}-${conceptIndex + 1}`
-      const offset =
-        (conceptIndex - (step.concepts.length - 1) / 2) * 12
+      const offset = (conceptIndex - (step.concepts.length - 1) / 2) * 12
       const conceptX = Math.min(88, Math.max(12, x + offset))
       nodes.push({
         id: conceptId,
@@ -997,8 +1151,7 @@ export function learningPathFromOutline({
 
       concept.subconcepts.forEach((sub, subIndex) => {
         const subId = `s-${stepIndex + 1}-${conceptIndex + 1}-${subIndex + 1}`
-        const subOffset =
-          (subIndex - (concept.subconcepts.length - 1) / 2) * 8
+        const subOffset = (subIndex - (concept.subconcepts.length - 1) / 2) * 8
         nodes.push({
           id: subId,
           label: sub,
@@ -1028,7 +1181,7 @@ export function learningPathFromOutline({
     circle: {
       name: 'Start a study circle',
       description:
-        'When you make this path visible, other people trying to reach a similar goal can learn beside you — and leave traces for the next person.',
+        'When you make this path visible, other people trying to reach a similar goal can learn beside you — and leave resource traces for the next person.',
       members: []
     }
   }
@@ -1064,7 +1217,7 @@ export function emptyLearningPath(
     circle: {
       name: 'Start a study circle',
       description:
-        'When you make this path visible, other people trying to reach a similar goal can learn beside you — and leave traces for the next person.',
+        'When you make this path visible, other people trying to reach a similar goal can learn beside you — and leave resource traces for the next person.',
       members: []
     }
   }
@@ -1098,16 +1251,41 @@ export function writeStoredLearningPaths(items: StoredLearningPath[]) {
   )
 }
 
-export function saveStoredLearningPath(path: LearningPathData) {
+function createdAtFromStoredItem(
+  item?: StoredLearningPath | null
+): string | undefined {
+  if (!item) return undefined
+  if (item.createdAt) return item.createdAt
+  if (item.data?.createdAt) return item.data.createdAt
+  const match = /^path-(\d+)$/.exec(item.id)
+  if (match) {
+    const n = Number(match[1])
+    if (Number.isFinite(n) && n > 1e12) return new Date(n).toISOString()
+  }
+  return undefined
+}
+
+export function saveStoredLearningPath(
+  path: LearningPathData,
+  extras?: { kind?: LearningPathKind }
+) {
   if (typeof window === 'undefined') return
   if (SEEDED_LEARNING_PATHS_BY_SLUG[path.slug]) return
   const stored = readStoredLearningPaths()
   const existing = stored.find((item) => item.slug === path.slug)
+  const createdAt =
+    existing?.createdAt ??
+    path.createdAt ??
+    createdAtFromStoredItem(existing) ??
+    new Date().toISOString()
   const item: StoredLearningPath = {
     id: existing?.id ?? `path-${Date.now()}`,
     goal: path.goal,
     slug: path.slug,
-    data: path
+    data: { ...path, createdAt },
+    isPrivate: existing?.isPrivate ?? true,
+    kind: parseLearningPathKind(extras?.kind ?? existing?.kind),
+    createdAt
   }
   writeStoredLearningPaths([
     item,
@@ -1122,16 +1300,22 @@ export function resolveLearningPath(
   const seeded = SEEDED_LEARNING_PATHS_BY_SLUG[slug]
   if (seeded) return seeded
   const custom = stored.find((item) => item.slug === slug)
+  const createdAt = createdAtFromStoredItem(custom)
   if (custom?.data && Array.isArray(custom.data.nodes)) {
     return {
       ...custom.data,
       id: custom.data.id ?? custom.id,
       slug: custom.slug,
       goal: custom.goal,
-      title: custom.data.title || emptyLearningPath(custom.goal, custom.slug).title
+      title:
+        custom.data.title || emptyLearningPath(custom.goal, custom.slug).title,
+      createdAt: createdAt ?? custom.data.createdAt
     }
   }
-  if (custom) return emptyLearningPath(custom.goal, custom.slug)
+  if (custom) {
+    const empty = emptyLearningPath(custom.goal, custom.slug)
+    return createdAt ? { ...empty, createdAt } : empty
+  }
   const fromSlug = titleFromSlug(slug)
   return emptyLearningPath(`I want to ${fromSlug.toLowerCase()}`, slug)
 }

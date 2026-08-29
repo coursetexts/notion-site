@@ -8,6 +8,7 @@ import { LearningPathBuilder } from '@/components/LearningPathBuilder'
 
 type NewLearningPathPageProps = {
   initialGoal: string
+  initialKind: 'community' | 'research'
 }
 
 export const getServerSideProps: GetServerSideProps<
@@ -15,12 +16,15 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
   const raw = context.query.goal
   const initialGoal = typeof raw === 'string' ? raw.trim() : ''
+  const rawKind = context.query.kind
+  const initialKind = rawKind === 'research' ? 'research' : 'community'
 
-  return { props: { initialGoal } }
+  return { props: { initialGoal, initialKind } }
 }
 
 export default function NewLearningPathPage({
-  initialGoal
+  initialGoal,
+  initialKind
 }: NewLearningPathPageProps) {
   return (
     <>
@@ -57,7 +61,10 @@ export default function NewLearningPathPage({
         }
       >
         <HomeHeader />
-        <LearningPathBuilder initialGoal={initialGoal} />
+        <LearningPathBuilder
+          initialGoal={initialGoal}
+          initialKind={initialKind}
+        />
         <HomeFooterSection />
       </main>
     </>

@@ -33,6 +33,30 @@ export interface CourseLearningPathLink {
   url: string
 }
 
+export type CourseLearningPathTopicResourceKind =
+  | 'article'
+  | 'video'
+  | 'book'
+  | 'course'
+  | 'paper'
+  | 'exercise'
+
+export const COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS: CourseLearningPathTopicResourceKind[] =
+  ['article', 'video', 'book', 'course', 'paper', 'exercise']
+
+/** Unified sequenced resource on a syllabus topic (or Mental Map). */
+export interface CourseLearningPathTopicResource {
+  id: string
+  kind: CourseLearningPathTopicResourceKind
+  /** 1-based place in the combined Resources list. */
+  position: number
+  title: string
+  url?: string
+  /** The specific part that helped. */
+  passage?: string
+  why?: string
+}
+
 export interface CourseLearningPathNode {
   id: string
   type: CourseLearningPathNodeType
@@ -41,6 +65,7 @@ export interface CourseLearningPathNode {
   videos?: CourseLearningPathVideo[]
   tests?: CourseLearningPathLink[]
   slides?: CourseLearningPathLink[]
+  topicResources?: CourseLearningPathTopicResource[]
   children?: CourseLearningPathNode[]
 }
 
@@ -56,6 +81,10 @@ export interface CourseLearningPathData {
   dbBacked?: boolean
   /** Course-level videos on the Mental Map page. */
   mentalMapVideos?: CourseLearningPathVideo[]
+  /** Unified sequenced resources on the Mental Map page. */
+  mentalMapTopicResources?: CourseLearningPathTopicResource[]
+  /** ISO timestamp from curated_courses.created_at when loaded from the DB. */
+  createdAt?: string
 }
 
 /** Flatten the tree into a lookup map by node id, with parent chain for breadcrumbs. */
@@ -165,6 +194,67 @@ export function insertLinkAtPlacement(
   return next.map((item, i) => ({ ...item, position: i + 1 }))
 }
 
+export function sortCourseLearningPathTopicResources(
+  items: CourseLearningPathTopicResource[]
+): CourseLearningPathTopicResource[] {
+  return [...items]
+    .sort((a, b) => a.position - b.position)
+    .map((item, i) => ({ ...item, position: i + 1 }))
+}
+
+export function insertTopicResourceAtPlacement(
+  items: CourseLearningPathTopicResource[],
+  item: CourseLearningPathTopicResource,
+  placement: number
+): CourseLearningPathTopicResource[] {
+  const ordered = sortCourseLearningPathTopicResources(items)
+  const max = ordered.length + 1
+  const raw = Number(placement)
+  const p = Number.isFinite(raw)
+    ? Math.min(Math.max(1, Math.round(raw)), max)
+    : max
+  const next = [...ordered]
+  next.splice(p - 1, 0, { ...item, position: p })
+  return next.map((entry, i) => ({ ...entry, position: i + 1 }))
+}
+
+export function mergeCourseLearningPathLegacyResources(
+  videos?: CourseLearningPathVideo[],
+  slides?: CourseLearningPathLink[],
+  tests?: CourseLearningPathLink[]
+): CourseLearningPathTopicResource[] {
+  const out: CourseLearningPathTopicResource[] = []
+  for (const video of videos ?? []) {
+    out.push({
+      id: video.id,
+      kind: 'video',
+      position: out.length + 1,
+      title: video.title,
+      url: video.url && video.url !== '#' ? video.url : undefined,
+      passage: video.annotation?.trim() || undefined
+    })
+  }
+  for (const slide of slides ?? []) {
+    out.push({
+      id: slide.id,
+      kind: 'article',
+      position: out.length + 1,
+      title: slide.title,
+      url: slide.url && slide.url !== '#' ? slide.url : undefined
+    })
+  }
+  for (const test of tests ?? []) {
+    out.push({
+      id: test.id,
+      kind: 'exercise',
+      position: out.length + 1,
+      title: test.title,
+      url: test.url && test.url !== '#' ? test.url : undefined
+    })
+  }
+  return out
+}
+
 export type CourseLearningPathLinkField = 'tests' | 'slides'
 
 export function linkFieldForKind(
@@ -193,6 +283,45 @@ export function mapCourseLearningPathNodeLinks(
     })
   }
   return { ...course, topics: mapNodes(course.topics) }
+}
+
+export function mapCourseLearningPathNodeTopicResources(
+  course: CourseLearningPathData,
+  nodeId: string,
+  updater: (
+    items: CourseLearningPathTopicResource[]
+  ) => CourseLearningPathTopicResource[]
+): CourseLearningPathData {
+  function mapNodes(nodes: CourseLearningPathNode[]): CourseLearningPathNode[] {
+    return nodes.map((node) => {
+      if (node.id === nodeId) {
+        const next = sortCourseLearningPathTopicResources(
+          updater(node.topicResources ?? [])
+        )
+        return { ...node, topicResources: next.length ? next : undefined }
+      }
+      if (node.children?.length) {
+        return { ...node, children: mapNodes(node.children) }
+      }
+      return node
+    })
+  }
+  return { ...course, topics: mapNodes(course.topics) }
+}
+
+export function mapCourseLearningPathMentalMapTopicResources(
+  course: CourseLearningPathData,
+  updater: (
+    items: CourseLearningPathTopicResource[]
+  ) => CourseLearningPathTopicResource[]
+): CourseLearningPathData {
+  const next = sortCourseLearningPathTopicResources(
+    updater(course.mentalMapTopicResources ?? [])
+  )
+  return {
+    ...course,
+    mentalMapTopicResources: next.length ? next : undefined
+  }
 }
 
 /** Immutably replace videos on a node anywhere in the tree. */
