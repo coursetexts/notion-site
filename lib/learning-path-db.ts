@@ -19,6 +19,7 @@ import {
   writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
 import { storedNotebookNoteHasContent } from '@/lib/notebook-editor-default'
+import { slugifyLearningPathName } from '@/lib/learning-path-slug'
 import { getSupabaseClient } from '@/lib/supabase'
 
 export type LearningPathUserState = {
@@ -546,6 +547,74 @@ export async function saveLearningPathUserState(
     console.error('saveLearningPathUserState failed', error)
   }
   return id
+}
+
+/**
+ * Public research path for a Field Atlas question. Matched by the prefilled
+ * goal string or the slug derived from it, so a published path from that
+ * question surfaces on the atlas even if punctuation differs.
+ */
+export async function findPublicResearchLearningPathSlugByGoal(
+  goal: string
+): Promise<string | null> {
+  const trimmed = goal.trim()
+  if (!trimmed) return null
+  const slug = slugifyLearningPathName(trimmed)
+
+  const supabase = getSupabaseClient()
+  if (supabase) {
+    const bySlug = await supabase
+      .from('learning_paths')
+      .select('slug')
+      .eq('is_private', false)
+      .eq('kind', 'research')
+      .eq('slug', slug)
+      .maybeSingle()
+    if (!bySlug.error && bySlug.data && typeof bySlug.data.slug === 'string') {
+      return bySlug.data.slug
+    }
+
+    const withKind = await supabase
+      .from('learning_paths')
+      .select('slug')
+      .eq('is_private', false)
+      .eq('kind', 'research')
+      .eq('goal', trimmed)
+      .order('updated_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (
+      !withKind.error &&
+      withKind.data &&
+      typeof withKind.data.slug === 'string'
+    ) {
+      return withKind.data.slug
+    }
+
+    const withoutKind = await supabase
+      .from('learning_paths')
+      .select('slug, kind')
+      .eq('is_private', false)
+      .eq('slug', slug)
+      .maybeSingle()
+    if (!withoutKind.error && withoutKind.data) {
+      const row = withoutKind.data as { slug?: string; kind?: string }
+      if (
+        row.slug &&
+        (parseLearningPathKind(row.kind) === 'research' || !row.kind)
+      ) {
+        return row.slug
+      }
+    }
+  }
+
+  const local = readStoredLearningPaths().find(
+    (item) =>
+      parseLearningPathKind(item.kind) === 'research' &&
+      item.isPrivate === false &&
+      (item.slug === slug || item.goal.trim() === trimmed)
+  )
+  return local?.slug ?? null
 }
 
 export function overlayUserState(

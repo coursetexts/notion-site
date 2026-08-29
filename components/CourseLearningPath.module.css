@@ -82,6 +82,12 @@
   top: 0;
   height: 100svh;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.aside::-webkit-scrollbar {
+  display: none;
 }
 
 .asideInner {
@@ -184,10 +190,19 @@
 }
 
 .asideGraphStage {
+  position: relative;
   flex: 1;
   min-width: 0;
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.asideGraphStage > * {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
 }
 
 .splitHandle {
@@ -635,6 +650,7 @@
   gap: 8px;
   width: auto;
   margin-left: auto;
+  overflow-anchor: auto;
 }
 
 .primaryBtn {

@@ -57,7 +57,11 @@ import {
   serializeStoredNotebookNote
 } from '@/lib/notebook-editor-default'
 import { registerPersistBeforeSignOut } from '@/lib/persist-before-sign-out'
+import { restoreScrollAfter } from '@/lib/restore-scroll-after'
+import { centerGraphNode } from '@/lib/center-graph-node'
 import { addLink, deleteLink, getMyLinks } from '@/lib/user-links'
+
+import { GraphViewport } from './GraphViewport'
 
 import heroStyles from './CourseHero.module.css'
 import styles from './LearningPath.module.css'
@@ -786,6 +790,7 @@ export function LearningPath({ slug }: { slug: string }) {
     React.useState(GRAPH_DETAIL_DEFAULT)
   const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
   const bodyRef = React.useRef<HTMLDivElement>(null)
+  const detailRef = React.useRef<HTMLElement>(null)
   const graphDetailWidthRef = React.useRef(graphDetailWidth)
   const graphSplitDraggingRef = React.useRef(false)
   graphDetailWidthRef.current = graphDetailWidth
@@ -1164,6 +1169,10 @@ export function LearningPath({ slug }: { slug: string }) {
     setOpenSections(CLOSED_SECTIONS)
     setAddResourceOpen(false)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
+  }
+
+  function selectNodeKeepingScroll(id: string) {
+    restoreScrollAfter(() => selectNode(id), detailRef.current)
   }
 
   function openAdd(placement: 'step' | 'child') {
@@ -1720,22 +1729,23 @@ export function LearningPath({ slug }: { slug: string }) {
                   className={styles.mapStage}
                   onMouseLeave={() => setHoverId(null)}
                 >
-                  <div className={styles.mapScroll}>
-                    <div
-                      className={styles.canvas}
-                      style={{
-                        minHeight: layout.height,
-                        minWidth: layout.width,
-                        height: layout.height,
-                        width: layout.width
-                      }}
-                    >
+                  <GraphViewport
+                    scrollerClassName={styles.mapScroll}
+                    padClassName={styles.graphPad}
+                    canvasClassName={styles.canvas}
+                    canvasStyle={
+                      {
+                        '--graph-w': `${layout.width}px`,
+                        '--graph-h': `${layout.height}px`
+                      } as React.CSSProperties
+                    }
+                    overlay={<PathLegend />}
+                  >
                       <svg
                         className={styles.connections}
                         viewBox={`0 0 ${layout.width} ${layout.height}`}
-                        preserveAspectRatio='none'
+                        preserveAspectRatio='xMinYMin meet'
                         aria-hidden
-                        style={{ inset: 0, width: '100%', height: '100%' }}
                       >
                         {path.edges.map((edge) => {
                           if (
@@ -1780,7 +1790,10 @@ export function LearningPath({ slug }: { slug: string }) {
                             }
                             onMouseEnter={() => setHoverId(node.id)}
                             onFocus={() => setHoverId(node.id)}
-                            onClick={() => selectNode(node.id)}
+                            onClick={(event) => {
+                              centerGraphNode(event.currentTarget)
+                              selectNodeKeepingScroll(node.id)
+                            }}
                           >
                             <span className={styles.nodeStatus} />
                             <span className={styles.nodeHead}>
@@ -1805,8 +1818,7 @@ export function LearningPath({ slug }: { slug: string }) {
                           </button>
                         )
                       })}
-                    </div>
-                  </div>
+                  </GraphViewport>
                   <PathStageActions
                     onEdit={openEdit}
                     onAdd={() =>
@@ -1820,7 +1832,6 @@ export function LearningPath({ slug }: { slug: string }) {
                       )
                     }
                   />
-                  <PathLegend />
                 </div>
               )}
             </section>
@@ -1847,6 +1858,7 @@ export function LearningPath({ slug }: { slug: string }) {
             ) : null}
 
             <aside
+              ref={detailRef}
               className={styles.detail}
               aria-live='polite'
               style={
@@ -2201,7 +2213,7 @@ export function LearningPath({ slug }: { slug: string }) {
                     <button
                       type='button'
                       className={`${styles.primaryBtn} ${styles.nextBtn}`}
-                      onClick={() => selectNode(nextNode.id)}
+                      onClick={() => selectNodeKeepingScroll(nextNode.id)}
                     >
                       Next
                     </button>

@@ -12,6 +12,8 @@ import {
   type AtlasReadingItem,
   type AtlasThreadComment
 } from '@/lib/human-knowledge-atlas-seed'
+import { findPublicResearchLearningPathSlugByGoal } from '@/lib/learning-path-db'
+import { learningPathHref } from '@/lib/learning-path-bookmark-link'
 
 function newId(prefix: string) {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
@@ -534,6 +536,43 @@ export function HumanKnowledgeAtlasHypothesisDetail({
   )
 }
 
+function AtlasLearningPathActions({ goal }: { goal: string }) {
+  const [existingSlug, setExistingSlug] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    let cancelled = false
+    const trimmed = goal.trim()
+    if (!trimmed) {
+      setExistingSlug(null)
+      return
+    }
+    void findPublicResearchLearningPathSlugByGoal(trimmed).then((slug) => {
+      if (!cancelled) setExistingSlug(slug)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [goal])
+
+  const createHref = `/learning-path/new?goal=${encodeURIComponent(goal)}&kind=research`
+
+  return (
+    <div className={styles.startPathWrap}>
+      <a href={createHref} className={styles.startPathBtn}>
+        Create New Learning Path
+      </a>
+      {existingSlug ? (
+        <a
+          href={learningPathHref(existingSlug)}
+          className={`${styles.startPathBtn} ${styles.startPathBtnDark}`}
+        >
+          Start Learning Path
+        </a>
+      ) : null}
+    </div>
+  )
+}
+
 function AtlasReadingDiscussion({
   readingList,
   threads,
@@ -571,14 +610,7 @@ function AtlasReadingDiscussion({
 
       {afterReading}
 
-      <div className={styles.startPathWrap}>
-        <a
-          href={`/learning-path/new?goal=${encodeURIComponent(learningPathGoal)}&kind=research`}
-          className={styles.startPathBtn}
-        >
-          Start Learning Path
-        </a>
-      </div>
+      <AtlasLearningPathActions goal={learningPathGoal} />
 
       <section className={styles.block} aria-labelledby='atlas-discussion'>
         <h3 id='atlas-discussion' className={styles.blockTitle}>

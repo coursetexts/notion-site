@@ -38,6 +38,7 @@ import {
   mapCourseLearningPathNodeTopicResources,
   nextCourseLearningPathNode
 } from '@/lib/course-learning-path-types'
+import { restoreScrollAfter } from '@/lib/restore-scroll-after'
 
 import styles from './CourseLearningPath.module.css'
 import { CourseActivity } from './CourseActivity'
@@ -334,13 +335,13 @@ export function CourseLearningPath({
   }
 
   function handleGraphSelect(id: string) {
-    handleSelect(
-      id === MENTAL_MAP_GOAL_ID
-        ? COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID
-        : id
-    )
-    window.scrollTo(0, 0)
-    mainRef.current?.scrollTo(0, 0)
+    restoreScrollAfter(() => {
+      handleSelect(
+        id === MENTAL_MAP_GOAL_ID
+          ? COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID
+          : id
+      )
+    }, mainRef.current)
   }
 
   function handleMarkExplored(nodeId: string) {
@@ -354,9 +355,7 @@ export function CourseLearningPath({
   }
 
   function handleNext(nodeId: string) {
-    handleSelect(nodeId)
-    window.scrollTo(0, 0)
-    mainRef.current?.scrollTo(0, 0)
+    restoreScrollAfter(() => handleSelect(nodeId), mainRef.current)
   }
 
   function handleToggle(id: string) {

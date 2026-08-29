@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { centerGraphNode } from '@/lib/center-graph-node'
 import {
   courseLearningPathToGraphData,
   layoutMentalMapGraph,
@@ -12,6 +13,7 @@ import {
   type LearningPathNode
 } from '@/lib/learning-path-seed'
 
+import { GraphViewport } from './GraphViewport'
 import lp from './LearningPath.module.css'
 
 function usePrefersReducedMotion() {
@@ -141,22 +143,24 @@ export function PathGraphCanvas({
   }
 
   return (
-    <div
-      className={lp.canvas}
-      style={{
-        minHeight: layout.height,
-        minWidth: layout.width,
-        height: layout.height,
-        width: layout.width
-      }}
+    <GraphViewport
+      scrollerClassName={lp.mapScroll}
+      padClassName={lp.graphPad}
+      canvasClassName={lp.canvas}
+      canvasStyle={
+        {
+          '--graph-w': `${layout.width}px`,
+          '--graph-h': `${layout.height}px`
+        } as React.CSSProperties
+      }
       onMouseLeave={() => setHoverId(null)}
+      overlay={<PathLegend />}
     >
       <svg
         className={lp.connections}
         viewBox={`0 0 ${layout.width} ${layout.height}`}
-        preserveAspectRatio='none'
+        preserveAspectRatio='xMinYMin meet'
         aria-hidden
-        style={{ inset: 0, width: '100%', height: '100%' }}
       >
         {path.edges.map((edge) => {
           if (
@@ -197,7 +201,10 @@ export function PathGraphCanvas({
             }
             onMouseEnter={() => setHoverId(node.id)}
             onFocus={() => setHoverId(node.id)}
-            onClick={() => onOpenNode(node.id)}
+            onClick={(event) => {
+              centerGraphNode(event.currentTarget)
+              onOpenNode(node.id)
+            }}
           >
             <span className={lp.nodeStatus} />
             <span className={lp.nodeHead}>
@@ -218,7 +225,6 @@ export function PathGraphCanvas({
           </button>
         )
       })}
-      <PathLegend />
-    </div>
+    </GraphViewport>
   )
 }
