@@ -1,7 +1,8 @@
 import * as React from 'react'
 
-import styles from './ExploreQuestions.module.css'
 import { ExploreQuestionFieldMap } from './ExploreQuestionFieldMap'
+import { FormSelect } from './FormSelect'
+import styles from './ExploreQuestions.module.css'
 import {
   EXPLORE_FIELDS,
   EXPLORE_QUESTIONS_SEED,
@@ -414,20 +415,20 @@ function CreateQuestionModal({
               required
             />
           </label>
-          <label className={styles.field}>
-            <span className={styles.label}>Field</span>
-            <select
-              className={styles.input}
+          <div className={styles.field}>
+            <span className={styles.label} id='explore-field-label'>
+              Field
+            </span>
+            <FormSelect<ExploreFieldId>
+              labelledBy='explore-field-label'
               value={field}
-              onChange={(e) => setField(e.target.value as ExploreFieldId)}
-            >
-              {EXPLORE_FIELDS.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
+              options={EXPLORE_FIELDS.map((item) => ({
+                value: item.id,
+                label: item.label
+              }))}
+              onChange={setField}
+            />
+          </div>
 
           <div className={styles.readingEditor}>
             <div className={styles.readingEditorHead}>

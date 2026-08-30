@@ -301,7 +301,7 @@ function trimCourseSlug(value: string | null | undefined): string | null {
   return trimmed.slice(0, 200)
 }
 
-/** Resources on the /community page, newest first, with votes and counts. */
+/** Resources on the /community-resources page, newest first, with votes and counts. */
 export async function getCommunityPageResources(): Promise<
   CommunityPageResource[]
 > {

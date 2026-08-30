@@ -57,8 +57,11 @@ function ArrowUp() {
 
 export function CommunitySchema() {
   return (
-    <figure className={styles.figure} aria-label='How community knowledge is structured'>
-      <div className={styles.layout}>
+    <>
+      <figure
+        className={styles.layout}
+        aria-label='How community knowledge is structured'
+      >
         <div className={styles.pathBox}>
           <p className={styles.pathLabel}>
             <strong>Learning Path:</strong>
@@ -126,43 +129,22 @@ export function CommunitySchema() {
             <span className={`${styles.chip} ${styles.chipNotes}`}>Notes</span>
           </div>
         </div>
-
-        <svg
-          className={styles.brace}
-          viewBox='0 0 36 100'
-          preserveAspectRatio='none'
-          aria-hidden
-        >
-          <path
-            d='M0 50 H16 M16 23 V77 M16 23 H36 M16 77 H36'
-            fill='none'
-            stroke='#2c1a0c'
-            strokeWidth='1.5'
-            vectorEffect='non-scaling-stroke'
-          />
-        </svg>
-
-        <div className={styles.cards}>
-          <Link href='/degrees'>
-            <a className={`${styles.card} ${styles.cardDegrees}`}>
-              <span className={styles.cardTitle}>Degrees</span>
-              <span className={styles.cardSub}>Seeded From Real Courses</span>
-            </a>
-          </Link>
-          <Link href='/field-atlas'>
-            <a className={`${styles.card} ${styles.cardQuestions}`}>
-              <span className={styles.cardTitle}>Field Atlas</span>
-              <span className={styles.cardSub}>Seeded From Open Questions</span>
-            </a>
-          </Link>
-        </div>
-      </div>
-      <figcaption className={styles.note}>
+      </figure>
+      <p className={styles.notes}>
         A learning path can be anything. We think there are two subsets of
-        this that are special cases. Learning an academic degree — e.g.{' '}
-        <em>I want to learn computer science</em> — the structure for this is
-        generally standardized, and we can seed these learning paths. The
-        other is open questions in research fields — e.g.{' '}
+        this that are special cases.{' '}
+        <Link href='/degrees' legacyBehavior>
+          <a className={styles.notesLink}>Learning an academic degree</a>
+        </Link>{' '}
+        — e.g. <em>I want to learn computer science</em> — the structure for
+        this is generally standardized, and we can seed these learning paths.
+        The other is{' '}
+        <Link href='/field-atlas' legacyBehavior>
+          <a className={styles.notesLink}>
+            open questions in research fields
+          </a>
+        </Link>{' '}
+        — e.g.{' '}
         <em>
           I want enough background to understand how general relativity and
           quantum mechanics reconcile
@@ -170,7 +152,29 @@ export function CommunitySchema() {
         . These are popularly discussed questions, and there is a general
         consensus in these fields for the background someone needs, so we can
         seed them.
-      </figcaption>
-    </figure>
+      </p>
+      <div className={styles.startPathWrap}>
+        <Link href='/learning-path/new' legacyBehavior>
+          <a className={styles.startPathBtn}>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='14'
+              height='14'
+              viewBox='0 0 14 14'
+              fill='none'
+              aria-hidden
+            >
+              <path
+                d='M7 2.5V11.5M2.5 7H11.5'
+                stroke='currentColor'
+                strokeWidth='1.4'
+                strokeLinecap='round'
+              />
+            </svg>
+            Start a learning path
+          </a>
+        </Link>
+      </div>
+    </>
   )
 }

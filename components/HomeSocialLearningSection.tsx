@@ -8,22 +8,22 @@ import styles from './HomeSocialLearningSection.module.css'
 
 const features = [
   {
-    title: 'Create your bookshelf',
-    body: 'Add private or public pins, saved links, and social links to your profile',
-    image: '/images/home/social-feature-bookshelf-ss.png',
-    imageAlt: 'Profile bookshelf with follow button and social links'
+    title: 'Create a learning path',
+    body: 'Start with a learning goal. Create a learning path map that helps organize your notes, resources, and progress towards that learning goal',
+    image: '/images/home/social-feature-track-progress-ss.png',
+    imageAlt: 'Learning path with a goal, outline, and organized resources'
   },
   {
-    title: 'Annotate with friends',
+    title: 'Curate Resources',
+    body: 'Find and rank the best resources to learn a concept in a goal, or bookmark a resource for later',
+    image: '/images/home/social-feature-bookshelf-ss.png',
+    imageAlt: 'Learners ranking resources for a concept'
+  },
+  {
+    title: 'Discuss with friends',
     body: 'Chat with other learners across course materials, syllabi, and shared material',
     image: '/images/home/social-feature-annotate-ss.png',
-    imageAlt: 'Annotation thread with learner comments'
-  },
-  {
-    title: 'Track your learning progress',
-    body: 'Learn frontier material at your own pace. Mark as completed when you feel ready.',
-    image: '/images/home/social-feature-track-progress-ss.png',
-    imageAlt: 'Table of contents with completed readings'
+    imageAlt: 'Discussion among learners on course materials'
   }
 ] as const
 

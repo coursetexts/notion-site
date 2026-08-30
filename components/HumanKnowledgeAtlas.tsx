@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 
+import { FormSelect } from './FormSelect'
 import styles from './HumanKnowledgeAtlas.module.css'
 import {
   HumanKnowledgeAtlasDetail,
@@ -235,13 +236,15 @@ export function HumanKnowledgeAtlas() {
             <h1 className={styles.title}>Research Field Atlas</h1>
           </div>
           <p className={styles.subtitle}>
-            A map of science charting questions.{' '}
+            Explore research learning paths through this map of frontier
+            research questions.{' '}
             <em>
-              What we know, what we suspect, and what we are trying to find out.
+              What we know, what we suspect, and what we are trying to find out
+              in each field.
             </em>{' '}
-            Each frontier node holds the chain of inquiry — competing
-            hypotheses, a reading list, and a thread for the work of talking it
-            through. Start a learning path in an inquiry node to get caught up!
+            Expand a question to see the chain of inquiry — competing
+            hypotheses, a reading list, and community discussion. Dive deeper by
+            starting a learning path
           </p>
         </header>
 
@@ -803,34 +806,35 @@ function ChartQuestionModal({
             />
           </label>
           <div className={styles.fieldRow}>
-            <label className={styles.field}>
-              <span className={styles.label}>Place it under</span>
-              <select
-                className={styles.select}
+            <div className={styles.field}>
+              <span className={styles.label} id='atlas-place-label'>
+                Place it under
+              </span>
+              <FormSelect
+                labelledBy='atlas-place-label'
                 value={targetNodeId}
-                onChange={(e) => setTargetNodeId(e.target.value)}
-              >
-                {targets.map((t) => (
-                  <option key={t.nodeId} value={t.nodeId}>
-                    {t.path}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className={styles.field}>
-              <span className={styles.label}>Status</span>
-              <select
-                className={styles.select}
+                options={targets.map((t) => ({
+                  value: t.nodeId,
+                  label: t.path
+                }))}
+                onChange={setTargetNodeId}
+              />
+            </div>
+            <div className={styles.field}>
+              <span className={styles.label} id='atlas-status-label'>
+                Status
+              </span>
+              <FormSelect<AtlasQuestionStatus>
+                labelledBy='atlas-status-label'
                 value={status}
-                onChange={(e) =>
-                  setStatus(e.target.value as AtlasQuestionStatus)
-                }
-              >
-                <option value='emerging'>Emerging</option>
-                <option value='active'>Active</option>
-                <option value='contested'>Contested</option>
-              </select>
-            </label>
+                options={[
+                  { value: 'emerging', label: 'Emerging' },
+                  { value: 'active', label: 'Active' },
+                  { value: 'contested', label: 'Contested' }
+                ]}
+                onChange={setStatus}
+              />
+            </div>
           </div>
 
           <div className={styles.field}>

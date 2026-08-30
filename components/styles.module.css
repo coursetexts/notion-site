@@ -389,6 +389,11 @@
   margin-bottom: 12px;
   gap: 30px;
   align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #37352f;
 }
 
 .FeedbackFormForm label div {

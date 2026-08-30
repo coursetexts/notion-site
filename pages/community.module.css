@@ -27,6 +27,15 @@
 /* Header */
 .header {
   margin-bottom: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+  column-gap: 36px;
+  row-gap: 20px;
+  align-items: start;
+}
+
+.header .titleRow {
+  grid-column: 1 / -1;
 }
 
 .body {
@@ -41,7 +50,7 @@
 .resourcesBand {
   width: 100%;
   background: var(--footer, #f8f7f4);
-  padding: 48px 0 40px;
+  padding: 0 0 40px;
   box-sizing: border-box;
 }
 
@@ -58,9 +67,14 @@
 }
 
 .resourcesHeader .title {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
+  font-family: 'Guyot Press', serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 401;
+  line-height: 1.15;
+  letter-spacing: 0.0002em;
+  color: #000;
+  margin: 0;
 }
 
 .resourcesHeader .subtitle {
@@ -88,6 +102,22 @@
   flex-wrap: wrap;
 }
 
+.header .title {
+  font-family: 'Guyot Press', serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 401;
+  line-height: 1.15;
+  letter-spacing: 0.0002em;
+  color: #000;
+  margin: 0;
+}
+
+.header .title em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
 .title {
   font-family: 'Hanken Grotesk', sans-serif;
   font-size: clamp(28px, 4vw, 36px);
@@ -111,8 +141,9 @@
 }
 
 .lede {
-  margin: 8px 0 0;
-  max-width: 38rem;
+  margin: 0;
+  max-width: none;
+  grid-column: 1;
   color: #37352f;
   font-family: 'Hanken Grotesk', sans-serif;
   font-size: 14px;
@@ -120,6 +151,19 @@
   font-weight: 400;
   line-height: 22px;
   letter-spacing: -0.006px;
+}
+
+.lede p {
+  margin: 0;
+}
+
+.lede p + p {
+  margin-top: 14px;
+}
+
+.lede em {
+  font-style: italic;
+  font-weight: 700;
 }
 
 /* Dark-brown square action, from the home hero search button */
@@ -137,6 +181,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  text-decoration: none;
   box-shadow: 0px 3px 6px 0px #8a8a8a14;
   cursor: pointer;
   box-sizing: border-box;
@@ -597,7 +642,7 @@
 .modalBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(37, 39, 43, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -609,10 +654,9 @@
   width: 100%;
   max-width: 460px;
   background: #fff;
-  border: 1px solid #d7d8da;
-  border-radius: 0;
+  border-radius: 12px;
   padding: 28px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   max-height: calc(100vh - 48px);
   overflow-y: auto;
@@ -846,6 +890,14 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .lede {
+    grid-column: 1;
+  }
+
   .section {
     padding: 40px 0 64px;
   }

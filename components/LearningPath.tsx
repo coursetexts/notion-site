@@ -3,8 +3,15 @@ import { useRouter } from 'next/router'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
 
-import { CourseHero, formatHeroPublishedDate } from '@/components/CourseHero'
+import {
+  CourseHero,
+  formatHeroPublishedDate,
+  unwrapFirstLetterInDescription,
+  wrapFirstLetterInDescription
+} from '@/components/CourseHero'
 import { CourseActivity } from '@/components/CourseActivity'
+import { FormSelect } from '@/components/FormSelect'
+import { PathContentActivity } from '@/components/PathContentActivity'
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
 import { getProfileByUserId } from '@/lib/follows'
 import {
@@ -49,7 +56,8 @@ import {
   mergeLearningPathResources,
   readStoredLearningPaths,
   resolveLearningPath,
-  sequenceMarks
+  sequenceMarks,
+  updateLearningPathUserResource
 } from '@/lib/learning-path-seed'
 import {
   type NotebookDocJson,
@@ -75,6 +83,32 @@ const RESOURCE_KINDS: LearningPathResourceKind[] = [
   'paper',
   'exercise'
 ]
+
+const RESOURCE_KIND_OPTIONS = RESOURCE_KINDS.map((kind) => ({
+  value: kind,
+  label: kind.charAt(0).toUpperCase() + kind.slice(1)
+}))
+
+function ResourceEditPencilIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='13'
+      height='13'
+      viewBox='0 0 14 14'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M8.6 2.2l3.2 3.2M3 11.2l2.9-.6 6.1-6.1a.9.9 0 0 0 0-1.3L10.8 2a.9.9 0 0 0-1.3 0L3.4 8.1 3 11.2Z'
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
 
 const EMPTY_RESOURCE_DRAFT = {
   title: '',
@@ -772,6 +806,167 @@ function PathStageActions({
   )
 }
 
+const DESCRIPTION_LINE_HEIGHT = 24
+const DESCRIPTION_COLLAPSED_LINES = 8
+const DESCRIPTION_COLLAPSED_PX =
+  DESCRIPTION_LINE_HEIGHT * DESCRIPTION_COLLAPSED_LINES
+
+function applyDescriptionDropCap(el: HTMLElement | null, enabled: boolean) {
+  if (!el) return
+  unwrapFirstLetterInDescription(el)
+  if (enabled) wrapFirstLetterInDescription(el)
+}
+
+function LearningPathDescription({
+  value,
+  editable,
+  onChange,
+  onSave
+}: {
+  value: string
+  editable: boolean
+  onChange: (next: string) => void
+  onSave: (next?: string) => void
+}) {
+  const [expanded, setExpanded] = React.useState(false)
+  const [overflows, setOverflows] = React.useState(false)
+  const [fullHeight, setFullHeight] = React.useState(DESCRIPTION_COLLAPSED_PX)
+  const [clamped, setClamped] = React.useState(true)
+  const [focused, setFocused] = React.useState(false)
+  const wrapRef = React.useRef<HTMLDivElement>(null)
+  const textRef = React.useRef<HTMLDivElement>(null)
+  const sizerRef = React.useRef<HTMLDivElement>(null)
+
+  const measure = React.useCallback(() => {
+    const sizer = sizerRef.current
+    if (!sizer) return
+    const height = Math.max(sizer.scrollHeight, DESCRIPTION_LINE_HEIGHT)
+    setFullHeight(height)
+    setOverflows(height > DESCRIPTION_COLLAPSED_PX + 1)
+  }, [])
+
+  React.useLayoutEffect(() => {
+    const showDropCap = Boolean(value.trim()) && !focused
+    applyDescriptionDropCap(textRef.current, showDropCap)
+    applyDescriptionDropCap(sizerRef.current, showDropCap)
+    measure()
+  }, [measure, value, expanded, focused])
+
+  React.useEffect(() => {
+    const wrap = wrapRef.current
+    if (!wrap || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver(() => measure())
+    observer.observe(wrap)
+    return () => observer.disconnect()
+  }, [measure])
+
+  const empty = !value.trim()
+  const isEditing = editable && (expanded || empty || !overflows)
+  const canToggle = overflows || expanded || (empty && editable)
+
+  function readText() {
+    return (textRef.current?.innerText ?? value).replace(/\n$/, '')
+  }
+
+  function toggle() {
+    if (window.getSelection()?.toString()) return
+    if (empty && editable && !expanded) {
+      setClamped(false)
+      setExpanded(true)
+      return
+    }
+    if (!overflows && !expanded) return
+    if (expanded) {
+      const next = readText()
+      onChange(next)
+      onSave(next)
+      setExpanded(false)
+      return
+    }
+    setClamped(false)
+    setExpanded(true)
+  }
+
+  function onTransitionEnd(event: React.TransitionEvent<HTMLDivElement>) {
+    if (event.propertyName !== 'max-height') return
+    if (!expanded) setClamped(true)
+  }
+
+  return (
+    <div
+      ref={wrapRef}
+      className={`${heroStyles.descriptionToggle}${
+        canToggle ? ` ${heroStyles.descriptionToggleInteractive}` : ''
+      }${
+        clamped && overflows && !expanded
+          ? ` ${heroStyles.descriptionToggleClamped}`
+          : ''
+      }`}
+      style={{
+        maxHeight:
+          expanded || !overflows ? fullHeight : DESCRIPTION_COLLAPSED_PX
+      }}
+      role={canToggle && !isEditing ? 'button' : undefined}
+      tabIndex={canToggle && !isEditing ? 0 : undefined}
+      aria-expanded={overflows || expanded ? expanded : undefined}
+      aria-label='Learning path description'
+      title={
+        canToggle
+          ? expanded
+            ? 'Click to collapse'
+            : 'Click to expand'
+          : undefined
+      }
+      onClick={toggle}
+      onTransitionEnd={onTransitionEnd}
+      onKeyDown={(event) => {
+        if (isEditing) return
+        if (event.key !== 'Enter' && event.key !== ' ') return
+        event.preventDefault()
+        toggle()
+      }}
+    >
+      <div
+        ref={sizerRef}
+        className={heroStyles.descriptionToggleSizer}
+        aria-hidden
+        dangerouslySetInnerHTML={{
+          __html: value.trim()
+            ? escapeHtml(value).replace(/\n/g, '<br/>')
+            : '&nbsp;'
+        }}
+      />
+      <div
+        ref={textRef}
+        className={heroStyles.descriptionToggleInner}
+        contentEditable={isEditing}
+        suppressContentEditableWarning
+        data-placeholder='Add a description…'
+        dangerouslySetInnerHTML={{
+          __html: escapeHtml(value).replace(/\n/g, '<br/>')
+        }}
+        onInput={(event) => {
+          const el = event.currentTarget
+          const height = Math.max(el.scrollHeight, DESCRIPTION_LINE_HEIGHT)
+          setFullHeight(height)
+          if (height > DESCRIPTION_COLLAPSED_PX + 1) {
+            setOverflows(true)
+            setClamped(false)
+            setExpanded(true)
+          }
+        }}
+        onFocus={() => setFocused(true)}
+        onBlur={() => {
+          setFocused(false)
+          const next = readText()
+          onChange(next)
+          onSave(next)
+        }}
+      />
+    </div>
+  )
+}
+
 export function LearningPath({ slug }: { slug: string }) {
   const router = useRouter()
   const auth = useAuthOptional()
@@ -779,6 +974,7 @@ export function LearningPath({ slug }: { slug: string }) {
   const [path, setPath] = React.useState<LearningPathData>(() =>
     resolveLearningPath(slug)
   )
+  const [summaryDraft, setSummaryDraft] = React.useState(path.summary)
   const [selectedId, setSelectedId] = React.useState(() => initialSelection())
   const [notes, setNotes] = React.useState<Record<string, string>>({})
   const [userResources, setUserResources] = React.useState<
@@ -790,10 +986,11 @@ export function LearningPath({ slug }: { slug: string }) {
     React.useState(GRAPH_DETAIL_DEFAULT)
   const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
   const bodyRef = React.useRef<HTMLDivElement>(null)
-  const detailRef = React.useRef<HTMLElement>(null)
+  const detailRef = React.useRef<HTMLDivElement>(null)
   const graphDetailWidthRef = React.useRef(graphDetailWidth)
   const graphSplitDraggingRef = React.useRef(false)
   graphDetailWidthRef.current = graphDetailWidth
+  const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
   const [hoverId, setHoverId] = React.useState<string | null>(null)
   const [addOpen, setAddOpen] = React.useState(false)
   const [addLabel, setAddLabel] = React.useState('')
@@ -806,6 +1003,9 @@ export function LearningPath({ slug }: { slug: string }) {
   const [editWhy, setEditWhy] = React.useState('')
   const [deleteOpen, setDeleteOpen] = React.useState(false)
   const [addResourceOpen, setAddResourceOpen] = React.useState(false)
+  const [editingResourceId, setEditingResourceId] = React.useState<string | null>(
+    null
+  )
   const [openSections, setOpenSections] = React.useState(CLOSED_SECTIONS)
   const [resourceDraft, setResourceDraft] = React.useState(EMPTY_RESOURCE_DRAFT)
   const [shareCopied, setShareCopied] = React.useState(false)
@@ -846,6 +1046,21 @@ export function LearningPath({ slug }: { slug: string }) {
   function persistGraph(next: LearningPathData) {
     void upsertOwnedLearningPath(next).then((id) => {
       if (id) setPathRowId(id)
+    })
+  }
+
+  function savePathSummary(nextValue?: string) {
+    if (!isOwnPath) return
+    const nextSummary = (nextValue ?? summaryDraft).trim()
+    if (nextValue !== undefined && nextValue !== summaryDraft) {
+      setSummaryDraft(nextValue)
+    }
+    if (nextSummary === path.summary) return
+    setPath((prev) => {
+      const next = { ...prev, summary: nextSummary }
+      persistGraph(next)
+      pathRef.current = next
+      return next
     })
   }
 
@@ -894,6 +1109,7 @@ export function LearningPath({ slug }: { slug: string }) {
     setPathRowId(null)
     setUserStateReady(false)
     setAddResourceOpen(false)
+    setEditingResourceId(null)
     setOpenSections(CLOSED_SECTIONS)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
     setShareCopied(false)
@@ -955,6 +1171,10 @@ export function LearningPath({ slug }: { slug: string }) {
     }
     return false
   }, [slug, currentUserId, pathOwnerId])
+
+  React.useEffect(() => {
+    setSummaryDraft(path.summary)
+  }, [path.summary])
 
   function measureGraphBodyWidth() {
     return (
@@ -1053,7 +1273,10 @@ export function LearningPath({ slug }: { slug: string }) {
   }, [pathOwnerId, currentUserId])
 
   React.useEffect(() => {
-    if (!currentUserId) setAddResourceOpen(false)
+    if (!currentUserId) {
+      setAddResourceOpen(false)
+      setEditingResourceId(null)
+    }
   }, [currentUserId])
 
   React.useEffect(() => {
@@ -1155,7 +1378,10 @@ export function LearningPath({ slug }: { slug: string }) {
   const listedResources = selected
     ? mergeLearningPathResources(selected.resources, myResources)
     : []
-  const resourcePlacementMax = listedResources.length + 1
+  const resourceFormOpen = addResourceOpen || Boolean(editingResourceId)
+  const resourcePlacementMax = resourceFormOpen && editingResourceId
+    ? Math.max(listedResources.length, 1)
+    : listedResources.length + 1
   const nestedToDelete =
     selected && selected.kind !== 'goal' ? descendantIds(path, selected.id) : []
   const nextNode = selected ? nextOutlineNode(path, selected.id) : null
@@ -1168,6 +1394,7 @@ export function LearningPath({ slug }: { slug: string }) {
     setSelectedId(next)
     setOpenSections(CLOSED_SECTIONS)
     setAddResourceOpen(false)
+    setEditingResourceId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
   }
 
@@ -1411,7 +1638,39 @@ export function LearningPath({ slug }: { slug: string }) {
     }
   }
 
-  function addUserResource(event: React.FormEvent) {
+  function closeResourceForm() {
+    setAddResourceOpen(false)
+    setEditingResourceId(null)
+    setResourceDraft(EMPTY_RESOURCE_DRAFT)
+  }
+
+  function openEditResource(resource: {
+    id: string
+    kind: LearningPathResourceKind
+    title: string
+    href?: string
+    passage?: string
+    why: string
+    sequence: number
+  }) {
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    setAddResourceOpen(false)
+    setEditingResourceId(resource.id)
+    setResourceDraft({
+      title: resource.title,
+      href: resource.href ?? '',
+      kind: resource.kind,
+      passage: resource.passage ?? '',
+      why: resource.why,
+      sequence: String(resource.sequence)
+    })
+    setOpenSections((prev) => ({ ...prev, resources: true }))
+  }
+
+  function saveUserResource(event: React.FormEvent) {
     event.preventDefault()
     if (!currentUserId) {
       requestSignIn()
@@ -1425,10 +1684,13 @@ export function LearningPath({ slug }: { slug: string }) {
     const rawPlacement = Number(resourceDraft.sequence)
     const placement =
       resourceDraft.sequence.trim() === '' || !Number.isFinite(rawPlacement)
-        ? listedResources.length + 1
+        ? editingResourceId
+          ? listedResources.find((row) => row.id === editingResourceId)
+              ?.sequence ?? listedResources.length
+          : listedResources.length + 1
         : rawPlacement
     const item: Omit<LearningPathUserResource, 'sequence'> = {
-      id: newId('ur'),
+      id: editingResourceId ?? newId('ur'),
       kind: resourceDraft.kind,
       title,
       href: href || undefined,
@@ -1436,12 +1698,21 @@ export function LearningPath({ slug }: { slug: string }) {
       why: resourceDraft.why.trim()
     }
     setUserResources((prev) => {
-      const nextMine = insertLearningPathUserResource(
-        selected.resources,
-        prev[selected.id] ?? [],
-        item,
-        placement
-      )
+      const current = prev[selected.id] ?? []
+      const nextMine = editingResourceId
+        ? updateLearningPathUserResource(
+            selected.resources,
+            current,
+            editingResourceId,
+            item,
+            placement
+          )
+        : insertLearningPathUserResource(
+            selected.resources,
+            current,
+            item,
+            placement
+          )
       const next = {
         ...prev,
         [selected.id]: nextMine
@@ -1450,8 +1721,7 @@ export function LearningPath({ slug }: { slug: string }) {
       queueUserStateSave()
       return next
     })
-    setResourceDraft(EMPTY_RESOURCE_DRAFT)
-    setAddResourceOpen(false)
+    closeResourceForm()
   }
 
   if (!goalNode) {
@@ -1521,6 +1791,14 @@ export function LearningPath({ slug }: { slug: string }) {
           title={path.title}
           instructors={heroInstructors}
           descriptionHtml={pathDescriptionHtml(path.summary)}
+          descriptionSlot={
+            <LearningPathDescription
+              value={isOwnPath ? summaryDraft : path.summary}
+              editable={isOwnPath}
+              onChange={setSummaryDraft}
+              onSave={savePathSummary}
+            />
+          }
           schoolDate={formatHeroPublishedDate(path.createdAt)}
           publisherAvatarUrl={publisherAvatarUrl}
           publisherAvatarFallback={publisherAvatarFallback}
@@ -1857,10 +2135,10 @@ export function LearningPath({ slug }: { slug: string }) {
               />
             ) : null}
 
-            <aside
-              ref={detailRef}
+            <PathContentActivity
               className={styles.detail}
-              aria-live='polite'
+              contentClassName={styles.detailContent}
+              contentRef={detailRef}
               style={
                 viewMode === 'graph'
                   ? {
@@ -1869,6 +2147,45 @@ export function LearningPath({ slug }: { slug: string }) {
                       maxWidth: 'none'
                     }
                   : undefined
+              }
+              coursePageId={learningPathActivityPageId(slug)}
+              courseTitle={path.title}
+              courseUrl={learningPathHref(slug)}
+              sectionId={selectedId}
+              notesTopicTitle={
+                showingRecommended
+                  ? 'Recommended Path'
+                  : showingMentalMap
+                    ? 'Mental Map'
+                    : selected?.label ?? path.title
+              }
+              notesEditor={
+                userStateReady ? (
+                  <SiteNotesEditor
+                    key={`${slug}:${selectedId}:${currentUserId ?? 'anon'}`}
+                    value={parseStoredNotebookNote(notes[selectedId])}
+                    onChange={(doc) => persistSelectedNote(selectedId, doc)}
+                    placeholder='Write notes for this topic…'
+                    ariaLabel='Your notes'
+                    expandTitle='Your Notes'
+                    expandTopic={
+                      showingRecommended
+                        ? 'Recommended Path'
+                        : showingMentalMap
+                          ? 'Mental Map'
+                          : selected?.label
+                    }
+                    fillHeight
+                    locked={!currentUserId}
+                    lockedMessage='Sign in to add your notes'
+                    onUnlock={requestSignIn}
+                  />
+                ) : (
+                  <p className={styles.resourceEmpty}>Loading notes…</p>
+                )
+              }
+              onActivityPosted={() =>
+                setActivityRefreshNonce((n) => n + 1)
               }
             >
               {showingRecommended ? (
@@ -1924,18 +2241,13 @@ export function LearningPath({ slug }: { slug: string }) {
                 icon={<ResourcesIcon />}
                 open={openSections.resources}
                 onToggle={() =>
-                  setOpenSections((prev) => {
-                    const nextOpen = !prev.resources
-                    if (!nextOpen) {
-                      setAddResourceOpen(false)
-                      setResourceDraft(EMPTY_RESOURCE_DRAFT)
-                    }
-                    return { ...prev, resources: nextOpen }
-                  })
+                  setOpenSections((prev) => ({
+                    ...prev,
+                    resources: !prev.resources
+                  }))
                 }
                 extra={
-                  !addResourceOpen ? (
-                    <>
+                  <>
                       {listedResources.length > 0 ? (
                         <span className={styles.sectionMeta}>
                           {listedResources.length}{' '}
@@ -1959,6 +2271,8 @@ export function LearningPath({ slug }: { slug: string }) {
                           requestSignIn()
                           return
                         }
+                        setEditingResourceId(null)
+                        setResourceDraft(EMPTY_RESOURCE_DRAFT)
                         setAddResourceOpen(true)
                         setOpenSections((prev) => ({
                           ...prev,
@@ -1968,205 +2282,83 @@ export function LearningPath({ slug }: { slug: string }) {
                     >
                       + Add a resource
                     </button>
-                    </>
-                  ) : null
+                  </>
                 }
               >
-                {addResourceOpen ? (
-                  <form
-                    className={styles.resourceForm}
-                    onSubmit={addUserResource}
-                  >
-                    <label className={styles.modalLabel}>
-                      Title
-                      <input
-                        className={styles.modalInput}
-                        value={resourceDraft.title}
-                        onChange={(event) =>
-                          setResourceDraft((prev) => ({
-                            ...prev,
-                            title: event.target.value
-                          }))
-                        }
-                        placeholder='The Illustrated Transformer'
-                        required
-                      />
-                    </label>
-                    <label className={styles.modalLabel}>
-                      URL
-                      <input
-                        className={styles.modalInput}
-                        type='url'
-                        value={resourceDraft.href}
-                        onChange={(event) =>
-                          setResourceDraft((prev) => ({
-                            ...prev,
-                            href: event.target.value
-                          }))
-                        }
-                        placeholder='https://…'
-                      />
-                    </label>
-                    <label className={styles.modalLabel}>
-                      Type
-                      <select
-                        className={styles.modalInput}
-                        value={resourceDraft.kind}
-                        onChange={(event) =>
-                          setResourceDraft((prev) => ({
-                            ...prev,
-                            kind: event.target.value as LearningPathResourceKind
-                          }))
-                        }
-                      >
-                        {RESOURCE_KINDS.map((kind) => (
-                          <option key={kind} value={kind}>
-                            {kind}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <label className={styles.modalLabel}>
-                      The part that helped
-                      <input
-                        className={styles.modalInput}
-                        value={resourceDraft.passage}
-                        onChange={(event) =>
-                          setResourceDraft((prev) => ({
-                            ...prev,
-                            passage: event.target.value
-                          }))
-                        }
-                        placeholder='e.g. the QKV diagram, 12:40–14:10, chapter 4'
-                        required
-                      />
-                    </label>
-                    <label className={styles.modalLabel}>
-                      Why it helped
-                      <textarea
-                        className={styles.note}
-                        rows={3}
-                        value={resourceDraft.why}
-                        onChange={(event) =>
-                          setResourceDraft((prev) => ({
-                            ...prev,
-                            why: event.target.value
-                          }))
-                        }
-                        placeholder='What did this specific part make click?'
-                      />
-                    </label>
-                    <label className={styles.modalLabel}>
-                      Suggested order
-                      <span className={styles.placementRow}>
-                        <input
-                          className={`${styles.modalInput} ${styles.placementInput}`}
-                          type='number'
-                          inputMode='numeric'
-                          min={1}
-                          max={resourcePlacementMax}
-                          step={1}
-                          value={resourceDraft.sequence}
-                          onChange={(event) =>
-                            setResourceDraft((prev) => ({
-                              ...prev,
-                              sequence: event.target.value
-                            }))
-                          }
-                          placeholder={String(resourcePlacementMax)}
-                        />
-                        <span className={styles.placementHint}>
-                          1–{resourcePlacementMax}
-                          {listedResources.length === 0
-                            ? ' (first resource)'
-                            : ` · blank = end (${resourcePlacementMax})`}
-                        </span>
-                      </span>
-                    </label>
-                    <div className={styles.resourceFormActions}>
-                      <button
-                        type='button'
-                        className={styles.modalCancel}
-                        onClick={() => {
-                          setAddResourceOpen(false)
-                          setResourceDraft(EMPTY_RESOURCE_DRAFT)
-                        }}
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type='submit'
-                        className={styles.modalSubmit}
-                        disabled={
-                          !resourceDraft.title.trim() ||
-                          !resourceDraft.passage.trim()
-                        }
-                      >
-                        Save resource
-                      </button>
-                    </div>
-                  </form>
-                ) : null}
-                {listedResources.length === 0 && !addResourceOpen ? (
+                {listedResources.length === 0 ? (
                   <p className={styles.resourceEmpty}>
                     Nothing here yet. When something makes this click, add it in
                     the order you would study it.
                   </p>
-                ) : listedResources.length > 0 ? (
+                ) : (
                   <ol className={styles.resourceList}>
                     {listedResources.map((resource) => {
                       const kindLabel = resource.source
                         ? `${resource.kind} · ${resource.source}`
                         : resource.kind
-                      const inner = (
-                        <>
-                          <span className={styles.resourcePos}>
-                            {resource.sequence}
-                          </span>
-                          <div className={styles.resourceBody}>
-                            <div className={styles.resourceMetaRow}>
-                              <p className={styles.resourceKind}>{kindLabel}</p>
-                              {resource.addedByYou ? (
-                                <span className={styles.resourceYou}>
-                                  Added by you
-                                </span>
-                              ) : null}
-                            </div>
-                            <p className={styles.resourceTitle}>
-                              {resource.title}
-                            </p>
-                            {resource.passage ? (
-                              <p className={styles.resourcePassage}>
-                                {resource.passage}
-                              </p>
-                            ) : null}
-                            {resource.why ? (
-                              <p className={styles.resourceWhy}>
-                                {resource.why}
-                              </p>
-                            ) : null}
-                          </div>
-                        </>
+                      const title = resource.href ? (
+                        <a
+                          className={styles.resourceTitle}
+                          href={resource.href}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
+                          {resource.title}
+                        </a>
+                      ) : (
+                        <p className={styles.resourceTitle}>{resource.title}</p>
                       )
                       return (
                         <li key={resource.id}>
-                          {resource.href ? (
-                            <a
-                              className={styles.resource}
-                              href={resource.href}
-                              target='_blank'
-                              rel='noopener noreferrer'
-                            >
-                              {inner}
-                            </a>
-                          ) : (
-                            <div className={styles.resource}>{inner}</div>
-                          )}
+                          <div
+                            className={`${styles.resource}${
+                              editingResourceId === resource.id
+                                ? ` ${styles.resourceEditing}`
+                                : ''
+                            }`}
+                          >
+                            <span className={styles.resourcePos}>
+                              {resource.sequence}
+                            </span>
+                            <div className={styles.resourceBody}>
+                              <div className={styles.resourceMetaRow}>
+                                <p className={styles.resourceKind}>{kindLabel}</p>
+                                <div className={styles.resourceMetaActions}>
+                                  {resource.addedByYou ? (
+                                    <span className={styles.resourceYou}>
+                                      Added by you
+                                    </span>
+                                  ) : null}
+                                  {resource.addedByYou ? (
+                                    <button
+                                      type='button'
+                                      className={styles.resourceEditBtn}
+                                      onClick={() => openEditResource(resource)}
+                                      aria-label='Edit'
+                                    >
+                                      <ResourceEditPencilIcon />
+                                    </button>
+                                  ) : null}
+                                </div>
+                              </div>
+                              {title}
+                              {resource.passage ? (
+                                <p className={styles.resourcePassage}>
+                                  {resource.passage}
+                                </p>
+                              ) : null}
+                              {resource.why ? (
+                                <p className={styles.resourceWhy}>
+                                  {resource.why}
+                                </p>
+                              ) : null}
+                            </div>
+                          </div>
                         </li>
                       )
                     })}
                   </ol>
-                ) : null}
+                )}
               </PathContentSection>
 
               <PathContentSection
@@ -2222,7 +2414,7 @@ export function LearningPath({ slug }: { slug: string }) {
               ) : null}
                 </article>
               ) : null}
-            </aside>
+            </PathContentActivity>
           </div>
       </div>
 
@@ -2231,8 +2423,170 @@ export function LearningPath({ slug }: { slug: string }) {
           coursePageId={learningPathActivityPageId(slug)}
           courseTitle={path.title}
           courseUrl={learningPathHref(slug)}
+          activityRefreshNonce={activityRefreshNonce}
         />
       </div>
+
+      {resourceFormOpen ? (
+        <div
+          className={styles.backdrop}
+          role='presentation'
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeResourceForm()
+          }}
+        >
+          <div
+            className={`${styles.modal} ${styles.modalResource}`}
+            role='dialog'
+            aria-modal='true'
+            aria-labelledby='resource-form-title'
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h2 id='resource-form-title' className={styles.modalTitle}>
+                {editingResourceId ? 'Edit resource' : 'Add a resource'}
+              </h2>
+              <button
+                type='button'
+                className={styles.modalClose}
+                onClick={closeResourceForm}
+                aria-label='Close'
+              >
+                ×
+              </button>
+            </div>
+            <form className={styles.modalForm} onSubmit={saveUserResource}>
+              <label className={styles.modalLabel}>
+                Title
+                <input
+                  className={styles.modalInput}
+                  value={resourceDraft.title}
+                  onChange={(event) =>
+                    setResourceDraft((prev) => ({
+                      ...prev,
+                      title: event.target.value
+                    }))
+                  }
+                  placeholder='The Illustrated Transformer'
+                  required
+                  autoFocus
+                />
+              </label>
+              <label className={styles.modalLabel}>
+                URL
+                <input
+                  className={styles.modalInput}
+                  type='url'
+                  value={resourceDraft.href}
+                  onChange={(event) =>
+                    setResourceDraft((prev) => ({
+                      ...prev,
+                      href: event.target.value
+                    }))
+                  }
+                  placeholder='https://…'
+                />
+              </label>
+              <div className={styles.modalLabel}>
+                <span id='resource-type-label'>Type</span>
+                <FormSelect<LearningPathResourceKind>
+                  labelledBy='resource-type-label'
+                  value={resourceDraft.kind}
+                  options={RESOURCE_KIND_OPTIONS}
+                  onChange={(kind) =>
+                    setResourceDraft((prev) => ({
+                      ...prev,
+                      kind
+                    }))
+                  }
+                />
+              </div>
+              <label className={styles.modalLabel}>
+                The part that helped
+                <input
+                  className={styles.modalInput}
+                  value={resourceDraft.passage}
+                  onChange={(event) =>
+                    setResourceDraft((prev) => ({
+                      ...prev,
+                      passage: event.target.value
+                    }))
+                  }
+                  placeholder='e.g. the QKV diagram, 12:40–14:10, chapter 4'
+                  required
+                />
+              </label>
+              <label className={styles.modalLabel}>
+                Why it helped
+                <textarea
+                  className={styles.modalTextarea}
+                  rows={3}
+                  value={resourceDraft.why}
+                  onChange={(event) =>
+                    setResourceDraft((prev) => ({
+                      ...prev,
+                      why: event.target.value
+                    }))
+                  }
+                  placeholder='What did this specific part make click?'
+                />
+              </label>
+              <label className={styles.modalLabel}>
+                Suggested order
+                <span className={styles.placementRow}>
+                  <input
+                    className={`${styles.modalInput} ${styles.placementInput}`}
+                    type='number'
+                    inputMode='numeric'
+                    min={1}
+                    max={resourcePlacementMax}
+                    step={1}
+                    value={resourceDraft.sequence}
+                    onChange={(event) =>
+                      setResourceDraft((prev) => ({
+                        ...prev,
+                        sequence: event.target.value
+                      }))
+                    }
+                    placeholder={String(resourcePlacementMax)}
+                  />
+                  <span className={styles.placementHint}>
+                    1–{resourcePlacementMax}
+                    {listedResources.length === 0
+                      ? ' (first resource)'
+                      : editingResourceId
+                        ? ` · current ${
+                            listedResources.find(
+                              (row) => row.id === editingResourceId
+                            )?.sequence ?? ''
+                          }`
+                        : ` · blank = end (${resourcePlacementMax})`}
+                  </span>
+                </span>
+              </label>
+              <div className={styles.modalActions}>
+                <button
+                  type='button'
+                  className={styles.modalCancel}
+                  onClick={closeResourceForm}
+                >
+                  Cancel
+                </button>
+                <button
+                  type='submit'
+                  className={styles.modalSubmit}
+                  disabled={
+                    !resourceDraft.title.trim() ||
+                    !resourceDraft.passage.trim()
+                  }
+                >
+                  {editingResourceId ? 'Save changes' : 'Save resource'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
 
       {addOpen ? (
         <div

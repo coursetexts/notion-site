@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&display=swap');
+
 .root {
   display: grid;
   grid-template-columns: 425px 1fr;
@@ -90,7 +92,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,8 +103,8 @@
   width: min(920px, 100%);
   max-height: min(720px, calc(100vh - 48px));
   background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -119,10 +121,10 @@
 }
 
 .copyrightModalTitle {
-  font-family: 'Guyot Press', serif;
+  font-family: 'Fraunces', serif;
   font-size: 22px;
-  font-weight: 600;
-  color: #353B48;
+  font-weight: 401;
+  color: #000;
   letter-spacing: 0.003px;
 }
 
@@ -530,20 +532,83 @@
   font-family: 'Guyot Press', serif;
   color: #25272B;
   font-size: 15px;
-  line-height: 24px; /* 37.5% */
+  line-height: 24px;
+}
+
+.descriptionToggle {
+  position: relative;
+  width: 97%;
+  overflow: hidden;
+  max-height: calc(8 * 24px);
+  transition: max-height 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.descriptionToggleInteractive {
+  cursor: pointer;
+}
+
+.descriptionToggleInner,
+.descriptionToggleSizer {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  font-family: 'Guyot Press', serif;
+  color: #25272b;
+  font-size: 15px;
+  line-height: 24px;
+  outline: none;
+}
+
+.descriptionToggleSizer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.descriptionToggleClamped .descriptionToggleInner {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  line-clamp: 8;
+  overflow: hidden;
+}
+
+.descriptionToggleInner:empty::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+}
+
+.descriptionToggleInner[contenteditable='true'] {
+  cursor: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .descriptionToggle {
+    transition: none;
+  }
 }
 
 .description :global(p) {
   margin-bottom: 0.75rem;
 }
 
-/* Drop cap: first letter wrapped by JS (CourseHero) and styled here */
+/* Drop cap: first letter wrapped by JS (CourseHero) and styled here.
+   Inline (not float:left) so the letter sits on the baseline and rises
+   above the first line, matching the original official-course look. */
 .dropCap {
-  float: top;
+  float: none;
   font-size: 50px;
   line-height: 0.85;
   padding-right: 0.10rem;
-  padding-top: 0.06em;
+  padding-top: 0;
+  vertical-align: baseline;
   font-family: 'Guyot Press', serif;
   font-weight: 400;
   color: #25272B;

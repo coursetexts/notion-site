@@ -37,15 +37,6 @@ function pathMatchesQuery(path: LearningPathData, query: string) {
   )
 }
 
-function circleMatchesQuery(path: LearningPathData, query: string) {
-  if (!query) return true
-  return (
-    matchesSearch(path.circle.name, query) ||
-    matchesSearch(path.circle.description, query) ||
-    matchesSearch(path.title, query)
-  )
-}
-
 function conceptMatchesQuery(concept: TrendingConcept, query: string) {
   if (!query) return true
   return (
@@ -59,12 +50,6 @@ function conceptStats(path: LearningPathData) {
   const concepts = path.nodes.filter((node) => node.kind !== 'goal')
   const explored = concepts.filter((node) => node.status === 'explored').length
   return { total: concepts.length, explored }
-}
-
-function trendingCircles(paths: LearningPathData[]) {
-  return [...paths]
-    .filter((path) => path.circle.members.length > 0)
-    .sort((a, b) => b.circle.members.length - a.circle.members.length)
 }
 
 function storedToPath(item: StoredLearningPath): LearningPathData {
@@ -144,12 +129,8 @@ export function LearningPathsIndex() {
     ...customOnly.map(storedToPath),
     ...catalogPaths
   ]
-  const circles = trendingCircles(catalogPaths)
   const search = normalizeSearch(query)
   const filteredPaths = paths.filter((path) => pathMatchesQuery(path, search))
-  const filteredCircles = circles.filter((path) =>
-    circleMatchesQuery(path, search)
-  )
   const filteredConcepts = TRENDING_CONCEPTS.filter((concept) =>
     conceptMatchesQuery(concept, search)
   )
@@ -297,55 +278,6 @@ export function LearningPathsIndex() {
                   </li>
                 )
               })}
-            </ul>
-            )}
-          </div>
-
-          <div>
-            <div className={styles.bar}>
-              <span>
-                <span className={styles.barLabel}>Communities</span>
-                <span className={styles.barCount}>({filteredCircles.length})</span>
-              </span>
-              <span className={styles.barHint}>Who people are joining</span>
-            </div>
-            {filteredCircles.length === 0 ? (
-              <p className={styles.empty}>No matching communities.</p>
-            ) : (
-            <ul className={styles.list}>
-              {filteredCircles.map((path, index) => (
-                <li key={path.slug} className={styles.item}>
-                  <p className={styles.kicker}>Joining · {index + 1}</p>
-                  <h2 className={styles.itemTitle}>
-                    <Link
-                      href={`/learning-path/${path.slug}`}
-                      className={styles.titleLink}
-                    >
-                      {path.circle.name}
-                    </Link>
-                  </h2>
-                  <p className={styles.copy}>{path.circle.description}</p>
-                  <div className={styles.circleMeta}>
-                    <div className={styles.avatars} aria-hidden>
-                      {path.circle.members.slice(0, 3).map((member) => (
-                        <span key={member.initials} className={styles.avatar}>
-                          {member.initials}
-                        </span>
-                      ))}
-                      {path.circle.members.length > 3 ? (
-                        <span className={styles.avatarMore}>
-                          +{path.circle.members.length - 3}
-                        </span>
-                      ) : null}
-                    </div>
-                    <p className={styles.meta}>
-                      {path.circle.members.length} learning together
-                      <span aria-hidden> · </span>
-                      On {path.title}
-                    </p>
-                  </div>
-                </li>
-              ))}
             </ul>
             )}
           </div>

@@ -118,6 +118,7 @@ export function LearningPathBuilder({
   const router = useRouter()
   const [goalDraft, setGoalDraft] = React.useState(initialGoal)
   const [goal, setGoal] = React.useState(initialGoal)
+  const [descriptionDraft, setDescriptionDraft] = React.useState('')
   const [steps, setSteps] = React.useState<LearningPathOutlineStep[]>(initialSteps)
   const kind: LearningPathKind =
     initialKind === 'research' ? 'research' : 'community'
@@ -228,7 +229,12 @@ export function LearningPathBuilder({
     if (!goal || !canCreate) return
     const existing = await listAllLearningPathSlugs()
     const slug = ensureUniqueSlug(slugifyLearningPathName(goal), existing)
-    const data = learningPathFromOutline({ goal, slug, steps })
+    const data = learningPathFromOutline({
+      goal,
+      slug,
+      steps,
+      summary: descriptionDraft.trim()
+    })
     const id = await upsertOwnedLearningPath(data, { kind })
     const item = {
       id: id ?? `path-${Date.now()}`,
@@ -306,7 +312,7 @@ export function LearningPathBuilder({
         <header className={styles.header}>
           <p className={styles.eyebrow}>New learning path</p>
           <div className={styles.titleRow}>
-            <h1 className={styles.title}>Build the path you will follow.</h1>
+            <h1 className={styles.title}>“{goal}”</h1>
             <button
               type='button'
               className={styles.closeBtn}
@@ -316,16 +322,22 @@ export function LearningPathBuilder({
               ×
             </button>
           </div>
-          <p className={styles.lede}>
-            Arrange the knowledge you need into an ordered outline. Steps are
-            the major milestones; concepts and sub-concepts sit inside them.
+          <p className={styles.lede}>Build the path you will follow.</p>
+          <p className={styles.llmHint}>
+            Ask your favorite LLM to give you a learning path for “{goal}”,
+            then paste the structure into this form — steps, with the concepts
+            and sub-concepts that belong in each one.
           </p>
-          <p className={styles.goalQuote}>“{goal}”</p>
         </header>
 
         <form onSubmit={handleCreate}>
           <div className={styles.outlineHead}>
-            <h2 className={styles.outlineTitle}>Path outline</h2>
+            <div className={styles.outlineTitleRow}>
+              <h2 className={styles.outlineTitle}>Path outline</h2>
+              <button type='button' className={styles.fillPathBtn}>
+                Fill out this path for me
+              </button>
+            </div>
             <div className={styles.colLabels} aria-hidden>
               <span>Step</span>
               <span>Concepts needed</span>
@@ -449,6 +461,17 @@ export function LearningPathBuilder({
             <PlusIcon />
             Add another step
           </button>
+
+          <label className={`${styles.field} ${styles.descriptionField}`}>
+            <span className={styles.label}>Description</span>
+            <textarea
+              className={styles.textarea}
+              value={descriptionDraft}
+              onChange={(event) => setDescriptionDraft(event.target.value)}
+              placeholder='What is this path, and who is it for?'
+              rows={4}
+            />
+          </label>
 
           <div className={styles.formActions}>
             <button

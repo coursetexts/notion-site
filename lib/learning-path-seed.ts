@@ -181,6 +181,22 @@ export function insertLearningPathUserResource(
     })
 }
 
+export function updateLearningPathUserResource(
+  seeded: LearningPathResource[],
+  mine: LearningPathUserResource[],
+  id: string,
+  item: Omit<LearningPathUserResource, 'sequence'>,
+  placement: number
+): LearningPathUserResource[] {
+  if (!mine.some((resource) => resource.id === id)) return mine
+  return insertLearningPathUserResource(
+    seeded,
+    mine.filter((resource) => resource.id !== id),
+    { ...item, id },
+    placement
+  )
+}
+
 export type LearningPathNode = {
   id: string
   label: string
@@ -1063,11 +1079,13 @@ function layoutX(index: number, total: number) {
 export function learningPathFromOutline({
   goal,
   slug,
-  steps
+  steps,
+  summary
 }: {
   goal: string
   slug: string
   steps: LearningPathOutlineStep[]
+  summary?: string
 }): LearningPathData {
   const title =
     goal.replace(/^I want to\s+/i, '').replace(/\.$/, '') || titleFromSlug(slug)
@@ -1175,6 +1193,7 @@ export function learningPathFromOutline({
     title,
     goal,
     summary:
+      summary?.trim() ||
       'A path you mapped from the goal: steps as milestones, concepts nested only as deep as you need.',
     nodes,
     edges,

@@ -375,7 +375,7 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
             <p className={styles.threadNote}>
               <a
                 className={styles.quietLink}
-                href='/signin?redirect=/community'
+                href='/signin?redirect=/community-resources'
               >
                 Sign in
               </a>{' '}

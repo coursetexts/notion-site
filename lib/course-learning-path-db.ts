@@ -19,6 +19,7 @@ import {
   insertTopicResourceAtPlacement,
   insertVideoAtPlacement,
   mergeCourseLearningPathLegacyResources,
+  moveTopicResourceToPlacement,
   sortCourseLearningPathByRank,
   sortCourseLearningPathLinks,
   sortCourseLearningPathTopicResources
@@ -1055,6 +1056,93 @@ export async function addCourseLearningPathTopicResource(
   }
 
   return { resource: created, ordered }
+}
+
+export type UpdateCourseLearningPathTopicResourceInput =
+  AddCourseLearningPathTopicResourceInput & { resourceId: string }
+
+export async function updateCourseLearningPathTopicResource(
+  input: UpdateCourseLearningPathTopicResourceInput,
+  currentResources: CourseLearningPathTopicResource[]
+): Promise<{
+  resource: CourseLearningPathTopicResource
+  ordered: CourseLearningPathTopicResource[]
+} | null> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return null
+
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return null
+
+  const original = currentResources.find((item) => item.id === input.resourceId)
+  if (!original) return null
+
+  const url = (input.url || '').trim()
+  const title =
+    (input.title || '').trim() || (url ? titleFromUrl(url) : original.title)
+  if (!title) return null
+
+  const seeded = await copyLegacyTopicResourcesIfNeeded(
+    input.nodeId,
+    currentResources
+  )
+  const target =
+    seeded.find((item) => item.id === input.resourceId) ??
+    seeded.find(
+      (item) =>
+        item.title === original.title && item.position === original.position
+    )
+  if (!target) return null
+
+  const { error } = await supabase
+    .from('curated_course_node_resources')
+    .update({
+      kind: input.kind,
+      title,
+      url: url || null,
+      passage: input.passage?.trim() || null,
+      why: input.why?.trim() || null,
+      updated_at: new Date().toISOString()
+    })
+    .eq('id', target.id)
+
+  if (error) {
+    console.error('updateCourseLearningPathTopicResource failed', error)
+    return null
+  }
+
+  const patched: CourseLearningPathTopicResource = {
+    ...target,
+    kind: input.kind,
+    title,
+    url: url || undefined,
+    passage: input.passage?.trim() || undefined,
+    why: input.why?.trim() || undefined
+  }
+  const withFields = seeded.map((item) =>
+    item.id === target.id ? patched : item
+  )
+  const placement =
+    input.suggestedPlacement == null ||
+    !Number.isFinite(Number(input.suggestedPlacement))
+      ? patched.position
+      : Number(input.suggestedPlacement)
+  const ordered = moveTopicResourceToPlacement(
+    withFields,
+    target.id,
+    placement
+  )
+  const ok = await persistCourseLearningPathTopicResourceOrder(ordered)
+  if (!ok) {
+    console.error(
+      'updateCourseLearningPathTopicResource: failed to persist order'
+    )
+  }
+
+  const resource = ordered.find((item) => item.id === target.id) ?? patched
+  return { resource, ordered }
 }
 
 export function createLocalCourseLearningPathTopicResource(

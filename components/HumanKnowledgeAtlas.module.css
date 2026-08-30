@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..700&display=swap');
+
 /* Field Atlas — Coursetexts beige, Guyot + Hanken, square hairlines. */
 
 .section {
@@ -131,11 +133,12 @@
 
 .title {
   margin: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: clamp(28px, 4vw, 36px);
+  font-family: 'Guyot Press', serif;
+  font-size: 32px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 1.05;
+  font-weight: 401;
+  line-height: 1.15;
+  letter-spacing: 0.0002em;
   color: #000;
 }
 
@@ -568,7 +571,7 @@
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0, 13, 26, 0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .drawer {
@@ -1072,21 +1075,23 @@ a.readingTitle:hover {
   justify-content: center;
   padding: 32px 24px;
   overflow-y: auto;
-  background: rgba(0, 13, 26, 0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .modal {
   width: min(560px, 100%);
   padding: 28px;
-  border: 1px solid #d7d8da;
+  border-radius: 12px;
   background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 .modalTitle {
   margin: 0 0 8px;
-  font-family: var(--font-serif);
+  font-family: 'Fraunces', serif;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 401;
   color: #000;
 }
 
@@ -1111,11 +1116,11 @@ a.readingTitle:hover {
 .label {
   display: block;
   margin-bottom: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #6b7280;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #37352f;
 }
 
 .readingEditor {

@@ -23,6 +23,7 @@ export interface CourseLearningPathNotesProps {
   topicTitle?: string
   signedIn?: boolean
   onSignIn?: () => void
+  variant?: 'section' | 'panel'
 }
 
 function noteStorageKey(courseSlug: string, nodeId: string) {
@@ -37,7 +38,8 @@ export function CourseLearningPathNotes({
   courseSlug,
   topicTitle,
   signedIn = false,
-  onSignIn
+  onSignIn,
+  variant = 'section'
 }: CourseLearningPathNotesProps) {
   const [open, setOpen] = React.useState(false)
   const currentKey = noteStorageKey(courseSlug, nodeId)
@@ -136,6 +138,30 @@ export function CourseLearningPathNotes({
     ? `Notes for ${topicTitle}`
     : 'Topic notes'
 
+  const editor = showEditor ? (
+    <SiteNotesEditor
+      key={loadedKey}
+      value={initialContent}
+      onChange={scheduleSave}
+      placeholder='Write notes for this topic…'
+      ariaLabel={ariaLabel}
+      expandTitle='Your Notes'
+      expandTopic={topicTitle}
+      fillHeight={variant === 'panel'}
+      locked={!signedIn}
+      lockedMessage='Sign in to add your notes'
+      onUnlock={onSignIn}
+    />
+  ) : (
+    <p className={variant === 'panel' ? undefined : styles.notesLoading}>
+      Loading notes…
+    </p>
+  )
+
+  if (variant === 'panel') {
+    return editor
+  }
+
   return (
     <section aria-labelledby='course-learning-path-notes-heading'>
       <div
@@ -168,22 +194,7 @@ export function CourseLearningPathNotes({
 
       {open ? (
         <div id='course-learning-path-notes-body' className={styles.notesBody}>
-          {showEditor ? (
-            <SiteNotesEditor
-              key={loadedKey}
-              value={initialContent}
-              onChange={scheduleSave}
-              placeholder='Write notes for this topic…'
-              ariaLabel={ariaLabel}
-              expandTitle='Your Notes'
-              expandTopic={topicTitle}
-              locked={!signedIn}
-              lockedMessage='Sign in to add your notes'
-              onUnlock={onSignIn}
-            />
-          ) : (
-            <p className={styles.notesLoading}>Loading notes…</p>
-          )}
+          {editor}
         </div>
       ) : null}
     </section>

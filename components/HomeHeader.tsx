@@ -14,9 +14,9 @@ import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
 
 const communityChildren = [
+  { label: 'Learning Paths', href: '/learning-paths' },
   { label: 'Degrees', href: '/degrees' },
-  { label: 'Field Atlas', href: '/field-atlas' },
-  { label: 'Learning Paths', href: '/learning-paths' }
+  { label: 'Field Atlas', href: '/field-atlas' }
 ]
 
 const navItems = [

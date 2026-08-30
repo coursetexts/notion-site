@@ -2,6 +2,8 @@ import * as React from 'react'
 import Link from 'next/link'
 
 import styles from './HomeCoursesSection.module.css'
+import { HomeLearningPathsSection } from './HomeLearningPathsSection'
+import { HomeSocialLearningSection } from './HomeSocialLearningSection'
 import { getSchoolLogoForMeta } from './courseSchoolLogo'
 
 export type HomeCourseCard = {
@@ -186,6 +188,12 @@ export function HomeCoursesSection({
             </a>
           </Link>
         </div>
+      </div>
+
+      <HomeSocialLearningSection />
+
+      <div className={`${styles.content} ${styles.contentBottom}`}>
+        <HomeLearningPathsSection />
       </div>
     </section>
   )

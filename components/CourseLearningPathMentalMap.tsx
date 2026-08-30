@@ -4,12 +4,14 @@ import dynamic from 'next/dynamic'
 import { getMentalMapNotesNodeId } from '@/lib/course-learning-path-resources'
 import type {
   CourseLearningPathData,
-  CourseLearningPathTopicResource,
-  CourseLearningPathTopicResourceKind
+  CourseLearningPathTopicResource
 } from '@/lib/course-learning-path-types'
 
 import styles from './CourseLearningPath.module.css'
-import { CourseLearningPathNodeResources } from './CourseLearningPathNodeResources'
+import {
+  CourseLearningPathNodeResources,
+  type CourseLearningPathTopicResourceInput
+} from './CourseLearningPathNodeResources'
 import { CourseLearningPathWhy } from './CourseLearningPathWhy'
 
 const CourseLearningPathNotes = dynamic(
@@ -35,15 +37,12 @@ interface CourseLearningPathMentalMapProps {
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
-  onAddTopicResource?: (input: {
-    nodeId: string
-    kind: CourseLearningPathTopicResourceKind
-    url?: string
-    title?: string
-    passage?: string
-    why?: string
-    suggestedPlacement?: number
-  }) => Promise<boolean>
+  onAddTopicResource?: (
+    input: CourseLearningPathTopicResourceInput
+  ) => Promise<boolean>
+  onUpdateTopicResource?: (
+    input: CourseLearningPathTopicResourceInput & { resourceId: string }
+  ) => Promise<boolean>
 }
 
 export function CourseLearningPathMentalMap({
@@ -52,7 +51,8 @@ export function CourseLearningPathMentalMap({
   dbBacked = false,
   signedIn = false,
   onSignIn,
-  onAddTopicResource
+  onAddTopicResource,
+  onUpdateTopicResource
 }: CourseLearningPathMentalMapProps) {
   const notesNodeId = getMentalMapNotesNodeId(course.slug)
 
@@ -77,6 +77,7 @@ export function CourseLearningPathMentalMap({
         signedIn={signedIn}
         onSignIn={onSignIn}
         onAdd={onAddTopicResource}
+        onUpdate={onUpdateTopicResource}
       />
 
       <CourseLearningPathNotes

@@ -9,6 +9,7 @@ import {
 import styles from './CourseLearningPath.module.css'
 import { CourseLearningPathSectionToggle } from './CourseLearningPathLinkSection'
 import { PlayIcon } from './CourseLearningPathSyllabusNav'
+import { FormSelect } from './FormSelect'
 
 const EMPTY_DRAFT = {
   title: '',
@@ -19,6 +20,44 @@ const EMPTY_DRAFT = {
   sequence: ''
 }
 
+const RESOURCE_KIND_OPTIONS = COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS.map(
+  (kind) => ({
+    value: kind,
+    label: kind.charAt(0).toUpperCase() + kind.slice(1)
+  })
+)
+
+function ResourceEditPencilIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='13'
+      height='13'
+      viewBox='0 0 14 14'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M8.6 2.2l3.2 3.2M3 11.2l2.9-.6 6.1-6.1a.9.9 0 0 0 0-1.3L10.8 2a.9.9 0 0 0-1.3 0L3.4 8.1 3 11.2Z'
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+export type CourseLearningPathTopicResourceInput = {
+  nodeId: string
+  kind: CourseLearningPathTopicResourceKind
+  url?: string
+  title?: string
+  passage?: string
+  why?: string
+  suggestedPlacement?: number
+}
+
 interface CourseLearningPathNodeResourcesProps {
   nodeId: string
   items: CourseLearningPathTopicResource[]
@@ -26,15 +65,10 @@ interface CourseLearningPathNodeResourcesProps {
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
-  onAdd?: (input: {
-    nodeId: string
-    kind: CourseLearningPathTopicResourceKind
-    url?: string
-    title?: string
-    passage?: string
-    why?: string
-    suggestedPlacement?: number
-  }) => Promise<boolean>
+  onAdd?: (input: CourseLearningPathTopicResourceInput) => Promise<boolean>
+  onUpdate?: (
+    input: CourseLearningPathTopicResourceInput & { resourceId: string }
+  ) => Promise<boolean>
 }
 
 export function CourseLearningPathNodeResources({
@@ -44,25 +78,37 @@ export function CourseLearningPathNodeResources({
   dbBacked = false,
   signedIn = false,
   onSignIn,
-  onAdd
+  onAdd,
+  onUpdate
 }: CourseLearningPathNodeResourcesProps) {
   const [open, setOpen] = React.useState(false)
   const [adding, setAdding] = React.useState(false)
+  const [editingId, setEditingId] = React.useState<string | null>(null)
   const [draft, setDraft] = React.useState(EMPTY_DRAFT)
   const [formError, setFormError] = React.useState<string | null>(null)
   const [submitting, setSubmitting] = React.useState(false)
 
-  const maxPlacement = items.length + 1
+  const formOpen = adding || Boolean(editingId)
+  const maxPlacement = editingId
+    ? Math.max(items.length, 1)
+    : items.length + 1
+  const editingResource = editingId
+    ? items.find((item) => item.id === editingId)
+    : undefined
 
   React.useEffect(() => {
     setOpen(false)
     setAdding(false)
+    setEditingId(null)
     setDraft(EMPTY_DRAFT)
     setFormError(null)
   }, [nodeId])
 
   React.useEffect(() => {
-    if (!signedIn) setAdding(false)
+    if (!signedIn) {
+      setAdding(false)
+      setEditingId(null)
+    }
   }, [signedIn])
 
   React.useEffect(() => {
@@ -75,11 +121,31 @@ export function CourseLearningPathNodeResources({
 
   function resetForm() {
     setAdding(false)
+    setEditingId(null)
     setDraft(EMPTY_DRAFT)
     setFormError(null)
   }
 
-  async function handleAdd(e: React.FormEvent) {
+  function openEdit(resource: CourseLearningPathTopicResource) {
+    if (!signedIn) {
+      onSignIn?.()
+      return
+    }
+    setAdding(false)
+    setEditingId(resource.id)
+    setDraft({
+      title: resource.title,
+      url: resource.url ?? '',
+      kind: resource.kind,
+      passage: resource.passage ?? '',
+      why: resource.why ?? '',
+      sequence: String(resource.position)
+    })
+    setFormError(null)
+    setOpen(true)
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setFormError(null)
     if (!signedIn) {
@@ -104,7 +170,9 @@ export function CourseLearningPathNodeResources({
       }
     }
 
-    let suggestedPlacement = maxPlacement
+    let suggestedPlacement = editingId
+      ? editingResource?.position ?? maxPlacement
+      : maxPlacement
     if (draft.sequence.trim() !== '') {
       const n = Number(draft.sequence)
       if (!Number.isFinite(n) || !Number.isInteger(n)) {
@@ -120,14 +188,12 @@ export function CourseLearningPathNodeResources({
       suggestedPlacement = n
     }
 
-    if (!onAdd) return
-    setSubmitting(true)
     const normalized = url
       ? url.startsWith('http')
         ? url
         : `https://${url}`
       : undefined
-    const ok = await onAdd({
+    const payload: CourseLearningPathTopicResourceInput = {
       nodeId,
       kind: draft.kind,
       url: normalized,
@@ -135,7 +201,23 @@ export function CourseLearningPathNodeResources({
       passage,
       why: draft.why.trim() || undefined,
       suggestedPlacement
-    })
+    }
+
+    setSubmitting(true)
+    let ok = false
+    if (editingId) {
+      if (!onUpdate) {
+        setSubmitting(false)
+        return
+      }
+      ok = await onUpdate({ ...payload, resourceId: editingId })
+    } else {
+      if (!onAdd) {
+        setSubmitting(false)
+        return
+      }
+      ok = await onAdd(payload)
+    }
     setSubmitting(false)
     if (!ok) {
       setFormError(
@@ -162,42 +244,37 @@ export function CourseLearningPathNodeResources({
           Resources
         </h2>
         <div className={styles.videosHeaderActions}>
-          {items.length > 0 && !adding ? (
+          {items.length > 0 ? (
             <span className={styles.videosMeta}>
               {items.length} {items.length === 1 ? 'resource' : 'resources'} · in
               order
             </span>
           ) : null}
-          {!adding ? (
-            <button
-              type='button'
-              className={`${styles.addResourceBtn}${
-                !signedIn ? ` ${styles.addResourceBtnDisabled}` : ''
-              }`}
-              aria-disabled={!signedIn}
-              title={signedIn ? undefined : 'Sign in to add a resource'}
-              onClick={() => {
-                if (!signedIn) {
-                  onSignIn?.()
-                  return
-                }
-                setAdding(true)
-                setOpen(true)
-              }}
-            >
-              + Add a resource
-            </button>
-          ) : null}
+          <button
+            type='button'
+            className={`${styles.addResourceBtn}${
+              !signedIn ? ` ${styles.addResourceBtnDisabled}` : ''
+            }`}
+            aria-disabled={!signedIn}
+            title={signedIn ? undefined : 'Sign in to add a resource'}
+            onClick={() => {
+              if (!signedIn) {
+                onSignIn?.()
+                return
+              }
+              setAdding(true)
+              setEditingId(null)
+              setDraft(EMPTY_DRAFT)
+              setFormError(null)
+              setOpen(true)
+            }}
+          >
+            + Add a resource
+          </button>
           <CourseLearningPathSectionToggle
             open={open}
             label='Resources'
-            onToggle={() => {
-              setOpen((value) => {
-                const next = !value
-                if (!next) resetForm()
-                return next
-              })
-            }}
+            onToggle={() => setOpen((value) => !value)}
           />
         </div>
       </div>
@@ -209,15 +286,107 @@ export function CourseLearningPathNodeResources({
               {items.length} {items.length === 1 ? 'resource' : 'resources'} · in
               order
             </p>
-          ) : !adding ? (
+          ) : (
             <p className={styles.topicResourcesEmpty}>
               Nothing here yet. When something makes this click, add it in the
               order you would study it.
             </p>
-          ) : null}
+          )}
 
-          {adding ? (
-            <form className={styles.topicResourceForm} onSubmit={handleAdd}>
+          {items.length > 0 ? (
+            <ol className={styles.topicResourceList}>
+              {items.map((resource) => {
+                const title = resource.url ? (
+                  <a
+                    className={styles.topicResourceTitle}
+                    href={resource.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {resource.title}
+                  </a>
+                ) : (
+                  <p className={styles.topicResourceTitle}>{resource.title}</p>
+                )
+                return (
+                  <li key={resource.id}>
+                    <div
+                      className={`${styles.topicResource}${
+                        editingId === resource.id
+                          ? ` ${styles.topicResourceEditing}`
+                          : ''
+                      }`}
+                    >
+                      <span className={styles.topicResourcePos}>
+                        {resource.position}
+                      </span>
+                      <div className={styles.topicResourceBody}>
+                        <div className={styles.topicResourceMetaRow}>
+                          <p className={styles.topicResourceKind}>
+                            {resource.kind}
+                          </p>
+                          <button
+                            type='button'
+                            className={styles.topicResourceEditBtn}
+                            onClick={() => openEdit(resource)}
+                            aria-label='Edit'
+                          >
+                            <ResourceEditPencilIcon />
+                          </button>
+                        </div>
+                        {title}
+                        {resource.passage ? (
+                          <p className={styles.topicResourcePassage}>
+                            {resource.passage}
+                          </p>
+                        ) : null}
+                        {resource.why ? (
+                          <p className={styles.topicResourceWhy}>
+                            {resource.why}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
+          ) : null}
+        </div>
+      ) : null}
+
+      {formOpen ? (
+        <div
+          className={styles.resourceModalBackdrop}
+          role='presentation'
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) resetForm()
+          }}
+        >
+          <div
+            className={styles.resourceModal}
+            role='dialog'
+            aria-modal='true'
+            aria-labelledby='topic-resource-form-title'
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className={styles.resourceModalHeader}>
+              <h2
+                id='topic-resource-form-title'
+                className={styles.resourceModalTitle}
+              >
+                {editingId ? 'Edit resource' : 'Add a resource'}
+              </h2>
+              <button
+                type='button'
+                className={styles.resourceModalClose}
+                onClick={resetForm}
+                aria-label='Close'
+              >
+                ×
+              </button>
+            </div>
+            <form className={styles.resourceModalForm} onSubmit={handleSubmit}>
               <label className={styles.topicResourceLabel}>
                 Title
                 <input
@@ -228,6 +397,7 @@ export function CourseLearningPathNodeResources({
                   }
                   placeholder='The Illustrated Transformer'
                   required
+                  autoFocus
                 />
               </label>
               <label className={styles.topicResourceLabel}>
@@ -242,25 +412,20 @@ export function CourseLearningPathNodeResources({
                   placeholder='https://…'
                 />
               </label>
-              <label className={styles.topicResourceLabel}>
-                Type
-                <select
-                  className={styles.topicResourceInput}
+              <div className={styles.topicResourceLabel}>
+                <span id='topic-resource-type-label'>Type</span>
+                <FormSelect<CourseLearningPathTopicResourceKind>
+                  labelledBy='topic-resource-type-label'
                   value={draft.kind}
-                  onChange={(event) =>
+                  options={RESOURCE_KIND_OPTIONS}
+                  onChange={(kind) =>
                     setDraft((prev) => ({
                       ...prev,
-                      kind: event.target.value as CourseLearningPathTopicResourceKind
+                      kind
                     }))
                   }
-                >
-                  {COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS.map((kind) => (
-                    <option key={kind} value={kind}>
-                      {kind}
-                    </option>
-                  ))}
-                </select>
-              </label>
+                />
+              </div>
               <label className={styles.topicResourceLabel}>
                 The part that helped
                 <input
@@ -311,7 +476,9 @@ export function CourseLearningPathNodeResources({
                     1–{maxPlacement}
                     {items.length === 0
                       ? ' (first resource)'
-                      : ` · blank = end (${maxPlacement})`}
+                      : editingId
+                        ? ` · current ${editingResource?.position ?? ''}`
+                        : ` · blank = end (${maxPlacement})`}
                   </span>
                 </span>
               </label>
@@ -331,55 +498,15 @@ export function CourseLearningPathNodeResources({
                     submitting || !draft.title.trim() || !draft.passage.trim()
                   }
                 >
-                  {submitting ? 'Saving…' : 'Save resource'}
+                  {submitting
+                    ? 'Saving…'
+                    : editingId
+                      ? 'Save changes'
+                      : 'Save resource'}
                 </button>
               </div>
             </form>
-          ) : null}
-
-          {items.length > 0 ? (
-            <ol className={styles.topicResourceList}>
-              {items.map((resource) => {
-                const inner = (
-                  <>
-                    <span className={styles.topicResourcePos}>
-                      {resource.position}
-                    </span>
-                    <div className={styles.topicResourceBody}>
-                      <p className={styles.topicResourceKind}>{resource.kind}</p>
-                      <p className={styles.topicResourceTitle}>
-                        {resource.title}
-                      </p>
-                      {resource.passage ? (
-                        <p className={styles.topicResourcePassage}>
-                          {resource.passage}
-                        </p>
-                      ) : null}
-                      {resource.why ? (
-                        <p className={styles.topicResourceWhy}>{resource.why}</p>
-                      ) : null}
-                    </div>
-                  </>
-                )
-                return (
-                  <li key={resource.id}>
-                    {resource.url ? (
-                      <a
-                        className={styles.topicResource}
-                        href={resource.url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        {inner}
-                      </a>
-                    ) : (
-                      <div className={styles.topicResource}>{inner}</div>
-                    )}
-                  </li>
-                )
-              })}
-            </ol>
-          ) : null}
+          </div>
         </div>
       ) : null}
     </section>

@@ -218,6 +218,24 @@ export function insertTopicResourceAtPlacement(
   return next.map((entry, i) => ({ ...entry, position: i + 1 }))
 }
 
+export function moveTopicResourceToPlacement(
+  items: CourseLearningPathTopicResource[],
+  id: string,
+  placement: number
+): CourseLearningPathTopicResource[] {
+  const ordered = sortCourseLearningPathTopicResources(items)
+  const from = ordered.findIndex((item) => item.id === id)
+  if (from < 0) return ordered
+  const [item] = ordered.splice(from, 1)
+  const max = ordered.length + 1
+  const raw = Number(placement)
+  const p = Number.isFinite(raw)
+    ? Math.min(Math.max(1, Math.round(raw)), max)
+    : from + 1
+  ordered.splice(p - 1, 0, item)
+  return ordered.map((entry, i) => ({ ...entry, position: i + 1 }))
+}
+
 export function mergeCourseLearningPathLegacyResources(
   videos?: CourseLearningPathVideo[],
   slides?: CourseLearningPathLink[],

@@ -16,6 +16,10 @@
   margin: 0 auto;
 }
 
+.contentBottom {
+  padding: 80px 0 128px;
+}
+
 .heading {
   margin: 0;
   color: #000000;
@@ -374,6 +378,10 @@
 @media (max-width: 640px) {
   .content {
     padding: 96px 0;
+  }
+
+  .contentBottom {
+    padding: 56px 0 96px;
   }
 
   .heading {

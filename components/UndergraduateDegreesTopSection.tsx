@@ -13,7 +13,7 @@ const LEVEL_OPTIONS: DegreeLevel[] = ['undergraduate', 'graduate']
 
 const INTRO_COPY: Record<DegreeLevel, string> = {
   undergraduate:
-    'Coursetexts curated curriculum for the top 50 most common undergraduate degrees. Helping self learners structure their learning, and linking out to world class resources.',
+    'Coursetexts curated curriculum for the top 50 most common undergraduate degrees. Helping self learners structure their learning, and linking out to world class resources. Each course is created using the syllabi structure from the top 10 schools offering the degree. Expand a degree to see the academic course learning paths',
   graduate:
     'Coursetexts curated curriculum for the top 50 most common graduate degrees. Helping self learners structure their learning, and linking out to world class resources.'
 }

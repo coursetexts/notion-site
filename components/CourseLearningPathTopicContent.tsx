@@ -3,12 +3,14 @@ import dynamic from 'next/dynamic'
 
 import type {
   CourseLearningPathFlatNode,
-  CourseLearningPathNode,
-  CourseLearningPathTopicResourceKind
+  CourseLearningPathNode
 } from '@/lib/course-learning-path-types'
 
 import styles from './CourseLearningPath.module.css'
-import { CourseLearningPathNodeResources } from './CourseLearningPathNodeResources'
+import {
+  CourseLearningPathNodeResources,
+  type CourseLearningPathTopicResourceInput
+} from './CourseLearningPathNodeResources'
 import { CourseLearningPathWhy } from './CourseLearningPathWhy'
 
 const CourseLearningPathNotes = dynamic(
@@ -42,15 +44,12 @@ interface TopicContentProps {
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
-  onAddTopicResource?: (input: {
-    nodeId: string
-    kind: CourseLearningPathTopicResourceKind
-    url?: string
-    title?: string
-    passage?: string
-    why?: string
-    suggestedPlacement?: number
-  }) => Promise<boolean>
+  onAddTopicResource?: (
+    input: CourseLearningPathTopicResourceInput
+  ) => Promise<boolean>
+  onUpdateTopicResource?: (
+    input: CourseLearningPathTopicResourceInput & { resourceId: string }
+  ) => Promise<boolean>
   explored?: boolean
   onMarkExplored?: () => void
   nextNode?: CourseLearningPathNode | null
@@ -65,6 +64,7 @@ export function CourseLearningPathTopicContent({
   signedIn = false,
   onSignIn,
   onAddTopicResource,
+  onUpdateTopicResource,
   explored = false,
   onMarkExplored,
   nextNode = null,
@@ -112,6 +112,7 @@ export function CourseLearningPathTopicContent({
         signedIn={signedIn}
         onSignIn={onSignIn}
         onAdd={onAddTopicResource}
+        onUpdate={onUpdateTopicResource}
       />
 
       <CourseLearningPathNotes

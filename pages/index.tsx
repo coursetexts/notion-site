@@ -24,7 +24,6 @@ import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
 import { HomeLearnSection } from '@/components/HomeLearnSection'
-import { HomeSocialLearningSection } from '@/components/HomeSocialLearningSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { notionPageHref } from '@/lib/map-page-url'
@@ -1384,7 +1383,6 @@ export default function HomePage({
           onSubjectToggle={handleSubjectToggle}
         />
         <HomeLearnSection />
-        <HomeSocialLearningSection />
         <HomeDonateSection />
         <HomeBlogSection />
         <HomeFooterSection />

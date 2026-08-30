@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..700&display=swap');
+
 .root {
   width: 100%;
   min-height: 60vh;
@@ -495,7 +497,7 @@ a.previewIconBtn {
 .modalBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 19000;
   display: flex;
   align-items: center;
@@ -508,16 +510,18 @@ a.previewIconBtn {
   max-width: 560px;
   background: #fff;
   border-radius: 12px;
-  border: 1px solid #e6e6e6;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   padding: 1.1rem;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .modalTitle {
   margin: 0 0 0.9rem;
-  font-family: 'Guyot Press', serif;
-  font-weight: 400;
+  font-family: 'Fraunces', serif;
+  font-weight: 401;
   font-size: 1.25rem;
+  color: #000;
 }
 
 .field {
@@ -528,11 +532,11 @@ a.previewIconBtn {
 }
 
 .label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #5d534b;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #37352f;
 }
 
 .input,

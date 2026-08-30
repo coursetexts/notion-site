@@ -14,6 +14,10 @@
   margin-top: 8px;
 }
 
+.paths {
+  scroll-margin-top: 24px;
+}
+
 .bar {
   width: 100%;
   padding: 16px 0;
@@ -139,18 +143,6 @@
   margin: 8px 0 0;
 }
 
-.circleMeta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.circleMeta .meta {
-  margin: 0;
-}
-
 .questions {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -164,6 +156,7 @@
   margin: 12px 0 0;
 }
 
+.pathGrid,
 .questionGrid {
   list-style: none;
   margin: 0;
@@ -181,6 +174,7 @@
 }
 
 @media (min-width: 801px) {
+  .pathGrid .item:nth-last-child(-n + 2),
   .questionGrid .item:nth-last-child(-n + 2) {
     border-bottom: none;
     border-image: none;
@@ -211,53 +205,9 @@
   outline-offset: 2px;
 }
 
-.avatars {
-  display: flex;
-  align-items: center;
-}
-
-.avatar,
-.avatarMore {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  margin-left: -6px;
-  border: 1px solid #ffffff;
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.avatar:first-child,
-.avatarMore:first-child {
-  margin-left: 0;
-}
-
-.avatar {
-  background: #e7eef2;
-  color: #0089c4;
-}
-
-.avatar:nth-child(2) {
-  background: #f3eee8;
-  color: #2c1a0c;
-}
-
-.avatar:nth-child(3) {
-  background: #2c1a0c;
-  color: #fff;
-}
-
-.avatarMore {
-  background: #fff;
-  color: #6b7280;
-  border-color: #e6e6e6;
-}
-
 @media (max-width: 800px) {
   .columns,
+  .pathGrid,
   .questionGrid {
     grid-template-columns: 1fr;
     gap: 32px;

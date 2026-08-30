@@ -147,6 +147,76 @@ function nextPathsCoursesFilter(
   return current === clicked ? null : clicked
 }
 
+function normalizeSearch(value: string) {
+  return value.trim().toLowerCase()
+}
+
+function matchesSearch(haystack: string, query: string) {
+  if (!query) return true
+  return haystack.toLowerCase().includes(query)
+}
+
+function storedPathMatchesQuery(item: StoredLearningPath, query: string) {
+  if (!query) return true
+  return (
+    matchesSearch(item.goal, query) ||
+    matchesSearch(item.slug.replace(/-/g, ' '), query) ||
+    (item.data?.title ? matchesSearch(item.data.title, query) : false)
+  )
+}
+
+function bookmarkRowMatchesQuery(
+  row:
+    | { kind: 'link'; link: UserLinkWithTag }
+    | { kind: 'community'; data: CommunityResourceBookmarkWithCourse },
+  query: string
+) {
+  if (!query) return true
+  if (row.kind === 'link') {
+    const link = row.link
+    return (
+      matchesSearch(link.title ?? '', query) ||
+      matchesSearch(link.url, query) ||
+      matchesSearch(link.note ?? '', query) ||
+      link.tag_names.some((name) => matchesSearch(name, query))
+    )
+  }
+  const { resource, course } = row.data
+  return (
+    matchesSearch(resource.title, query) ||
+    matchesSearch(resource.description ?? '', query) ||
+    matchesSearch(resource.link ?? '', query) ||
+    matchesSearch(course.name, query) ||
+    matchesSearch('community resource', query)
+  )
+}
+
+function ProfilePanelSearch({
+  id,
+  value,
+  onChange,
+  ariaLabel
+}: {
+  id: string
+  value: string
+  onChange: (value: string) => void
+  ariaLabel: string
+}) {
+  return (
+    <div className={styles.panelSearchWrap}>
+      <input
+        id={id}
+        type='search'
+        className={styles.panelSearchInput}
+        placeholder='SEARCH'
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        aria-label={ariaLabel}
+      />
+    </div>
+  )
+}
+
 export default function ProfilePage() {
   const router = useRouter()
   const auth = useAuthOptional()
@@ -192,6 +262,8 @@ export default function ProfilePage() {
   >([])
   const [pathsCoursesFilter, setPathsCoursesFilter] =
     useState<PathsCoursesFilter | null>(null)
+  const [learningSearch, setLearningSearch] = useState('')
+  const [bookmarkSearch, setBookmarkSearch] = useState('')
   const [showLearningPathModal, setShowLearningPathModal] = useState(false)
   const [learningPathDraft, setLearningPathDraft] = useState('')
   type ProfileView = 'profile' | 'connections'
@@ -383,6 +455,15 @@ export default function ProfilePage() {
     return rows
   }, [userLinks, resourceBookmarks, bookmarkTagFilter])
 
+  const bookmarkQuery = normalizeSearch(bookmarkSearch)
+  const visibleBookmarkRows = useMemo(
+    () =>
+      savedBookmarkRows.filter((row) =>
+        bookmarkRowMatchesQuery(row, bookmarkQuery)
+      ),
+    [savedBookmarkRows, bookmarkQuery]
+  )
+
   const activityFeedRows = useMemo(() => {
     type Row =
       | { kind: 'feed'; item: ProfileFeedItem }
@@ -442,6 +523,35 @@ export default function ProfilePage() {
     () => learningPaths.filter((item) => item.kind === 'research'),
     [learningPaths]
   )
+  const learningQuery = normalizeSearch(learningSearch)
+  const filteredCourseLearningPaths = useMemo(
+    () =>
+      courseLearningPaths.filter((item) =>
+        matchesSearch(item.title, learningQuery)
+      ),
+    [courseLearningPaths, learningQuery]
+  )
+  const filteredResearchLearningPaths = useMemo(
+    () =>
+      researchLearningPaths.filter((item) =>
+        storedPathMatchesQuery(item, learningQuery)
+      ),
+    [researchLearningPaths, learningQuery]
+  )
+  const filteredCommunityLearningPaths = useMemo(
+    () =>
+      communityLearningPaths.filter((item) =>
+        storedPathMatchesQuery(item, learningQuery)
+      ),
+    [communityLearningPaths, learningQuery]
+  )
+  const filteredOfficialCourses = useMemo(
+    () =>
+      officialCourses.filter(({ course }) =>
+        matchesSearch(course.name, learningQuery)
+      ),
+    [officialCourses, learningQuery]
+  )
   const showAllLearningCards = pathsCoursesFilter == null
   const showCourseCards =
     showAllLearningCards || pathsCoursesFilter === 'course'
@@ -456,6 +566,11 @@ export default function ProfilePage() {
     researchLearningPaths.length > 0 ||
     communityLearningPaths.length > 0 ||
     officialCourses.length > 0
+  const hasVisibleLearningCards =
+    (showCourseCards && filteredCourseLearningPaths.length > 0) ||
+    (showResearchCards && filteredResearchLearningPaths.length > 0) ||
+    (showCommunityCards && filteredCommunityLearningPaths.length > 0) ||
+    (showOfficialCards && filteredOfficialCourses.length > 0)
 
   const loadPersonalLinks = useCallback(async () => {
     const list = await listMyPersonalLinks()
@@ -1268,6 +1383,13 @@ export default function ProfilePage() {
                       </div>
                     </div>
                     <div className={styles.section}>
+                      <div className={styles.filterSearchBlock}>
+                      <ProfilePanelSearch
+                        id='profile-bookmarks-search'
+                        value={bookmarkSearch}
+                        onChange={setBookmarkSearch}
+                        ariaLabel='Search bookmarks'
+                      />
                       <div className={styles.linkFilterRow}>
                         <div className={styles.linkFilterTagsWrap}>
                           <button
@@ -1352,6 +1474,7 @@ export default function ProfilePage() {
                             />
                           ) : null}
                         </div>
+                      </div>
                       </div>
                       {showAddLinkModal && (
                         <div
@@ -1502,9 +1625,13 @@ export default function ProfilePage() {
                           No saved links yet. Add a bookmark or save a resource
                           from a course Community Wall.
                         </p>
+                      ) : visibleBookmarkRows.length === 0 ? (
+                        <p className={styles.placeholder}>
+                          No matching bookmarks.
+                        </p>
                       ) : (
                         <ul className={styles.userLinksList}>
-                          {savedBookmarkRows.map((row) => {
+                          {visibleBookmarkRows.map((row) => {
                             if (row.kind === 'community') {
                               const { bookmark, resource, course } = row.data
                               const rowNoteId = `cr-${bookmark.id}`
@@ -2244,6 +2371,13 @@ export default function ProfilePage() {
                         </button>
                       ) : null}
                     </div>
+                    <div className={styles.filterSearchBlock}>
+                    <ProfilePanelSearch
+                      id='profile-learning-search'
+                      value={learningSearch}
+                      onChange={setLearningSearch}
+                      ariaLabel='Search learning paths and courses'
+                    />
                     <div
                       className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}
                     >
@@ -2272,6 +2406,7 @@ export default function ProfilePage() {
                           </button>
                         ))}
                       </div>
+                    </div>
                     </div>
                     {!showAllLearningCards &&
                     pathsCoursesFilter === 'course' &&
@@ -2302,10 +2437,14 @@ export default function ProfilePage() {
                       <p className={styles.placeholder}>
                         No learning paths or courses yet.
                       </p>
+                    ) : !hasVisibleLearningCards ? (
+                      <p className={styles.placeholder}>
+                        No matching learning paths or courses.
+                      </p>
                     ) : (
                       <ul className={styles.learningPathList}>
                         {showCourseCards
-                          ? courseLearningPaths.map((item) => (
+                          ? filteredCourseLearningPaths.map((item) => (
                               <li key={item.pinId}>
                                 <ProfileLearningPathCard
                                   href={`/course-learning-path/${item.slug}`}
@@ -2323,7 +2462,7 @@ export default function ProfilePage() {
                             ))
                           : null}
                         {showResearchCards
-                          ? researchLearningPaths.map((item) => (
+                          ? filteredResearchLearningPaths.map((item) => (
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
@@ -2336,7 +2475,7 @@ export default function ProfilePage() {
                             ))
                           : null}
                         {showCommunityCards
-                          ? communityLearningPaths.map((item) => (
+                          ? filteredCommunityLearningPaths.map((item) => (
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
@@ -2349,7 +2488,7 @@ export default function ProfilePage() {
                             ))
                           : null}
                         {showOfficialCards
-                          ? officialCourses.map(({ bookmark, course }) => (
+                          ? filteredOfficialCourses.map(({ bookmark, course }) => (
                               <li key={bookmark.id}>
                                 <ProfileLearningPathCard
                                   href={

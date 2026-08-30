@@ -7,7 +7,8 @@ import {
   addCourseLearningPathTopicResource,
   createLocalCourseLearningPathTopicResource,
   ensureMentalMapNodeId,
-  getCourseLearningPathData
+  getCourseLearningPathData,
+  updateCourseLearningPathTopicResource
 } from '@/lib/course-learning-path-db'
 import {
   readCourseLearningPathExplored,
@@ -30,12 +31,14 @@ import {
 } from '@/lib/course-learning-path-seed'
 import {
   type CourseLearningPathData,
+  type CourseLearningPathTopicResource,
   type CourseLearningPathTopicResourceKind,
   buildCourseLearningPathIndex,
   formatCourseLearningPathConceptTree,
   insertTopicResourceAtPlacement,
   mapCourseLearningPathMentalMapTopicResources,
   mapCourseLearningPathNodeTopicResources,
+  moveTopicResourceToPlacement,
   nextCourseLearningPathNode
 } from '@/lib/course-learning-path-types'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
@@ -45,10 +48,12 @@ import { CourseActivity } from './CourseActivity'
 import { CourseHero, formatHeroPublishedDate } from './CourseHero'
 import { CourseLearningPathHeroActions } from './CourseLearningPathHeroActions'
 import { CourseLearningPathMentalMap } from './CourseLearningPathMentalMap'
+import { CourseLearningPathNotes } from './CourseLearningPathNotes'
 import { CourseLearningPathResources } from './CourseLearningPathResources'
 import { CourseLearningPathSyllabusNav } from './CourseLearningPathSyllabusNav'
 import { CourseLearningPathSyllabusOverview } from './CourseLearningPathSyllabusOverview'
 import { CourseLearningPathTopicContent } from './CourseLearningPathTopicContent'
+import { PathContentActivity } from './PathContentActivity'
 import { PathGraphCanvas } from './PathGraphCanvas'
 
 export interface CourseLearningPathProps {
@@ -149,7 +154,8 @@ export function CourseLearningPath({
   )
   const [graphMainWidth, setGraphMainWidth] = React.useState(GRAPH_MAIN_DEFAULT)
   const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
-  const mainRef = React.useRef<HTMLElement>(null)
+  const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
+  const mainRef = React.useRef<HTMLDivElement>(null)
   const bodyRef = React.useRef<HTMLDivElement>(null)
   const graphMainWidthRef = React.useRef(graphMainWidth)
   const graphSplitDraggingRef = React.useRef(false)
@@ -461,6 +467,113 @@ export function CourseLearningPath({
     return true
   }
 
+  async function handleUpdateTopicResource(input: {
+    resourceId: string
+    nodeId: string
+    kind: CourseLearningPathTopicResourceKind
+    url?: string
+    title?: string
+    passage?: string
+    why?: string
+    suggestedPlacement?: number
+  }): Promise<boolean> {
+    if (!course) return false
+
+    function applyLocal(items: CourseLearningPathTopicResource[]) {
+      const current = items.find((item) => item.id === input.resourceId)
+      if (!current) return items
+      const patched = items.map((item) =>
+        item.id === input.resourceId
+          ? {
+              ...item,
+              kind: input.kind,
+              title: (input.title || item.title).trim(),
+              url: input.url,
+              passage: input.passage,
+              why: input.why
+            }
+          : item
+      )
+      return moveTopicResourceToPlacement(
+        patched,
+        input.resourceId,
+        input.suggestedPlacement ?? current.position
+      )
+    }
+
+    if (isMentalMapVideoNodeId(input.nodeId)) {
+      const current = course.mentalMapTopicResources ?? []
+      if (course.dbBacked) {
+        const mapNodeId = await ensureMentalMapNodeId(course.id)
+        if (!mapNodeId) return false
+        const result = await updateCourseLearningPathTopicResource(
+          {
+            ...input,
+            nodeId: mapNodeId,
+            conceptTree: `${course.title} --> Mental Map`,
+            courseSlug: course.slug
+          },
+          current
+        )
+        if (!result) return false
+        setCourse((prev) =>
+          prev
+            ? mapCourseLearningPathMentalMapTopicResources(
+                prev,
+                () => result.ordered
+              )
+            : prev
+        )
+        return true
+      }
+      setCourse((prev) =>
+        prev
+          ? mapCourseLearningPathMentalMapTopicResources(prev, applyLocal)
+          : prev
+      )
+      return true
+    }
+
+    const entry = buildCourseLearningPathIndex(course)[input.nodeId]
+    const current = entry?.node.topicResources ?? []
+    const conceptTree = entry
+      ? formatCourseLearningPathConceptTree(
+          course.title,
+          entry.parents,
+          entry.node.title
+        )
+      : undefined
+
+    if (course.dbBacked) {
+      const result = await updateCourseLearningPathTopicResource(
+        { ...input, conceptTree, courseSlug: course.slug },
+        current
+      )
+      if (!result) return false
+      setCourse((prev) =>
+        prev
+          ? mapCourseLearningPathNodeTopicResources(
+              prev,
+              input.nodeId,
+              () => result.ordered
+            )
+          : prev
+      )
+      return true
+    }
+
+    setCourse((prev) =>
+      prev
+        ? mapCourseLearningPathNodeTopicResources(
+            prev,
+            input.nodeId,
+            applyLocal
+          )
+        : prev
+    )
+    return true
+  }
+
   if (loading) {
     return <div className={styles.loading}>Loading syllabus…</div>
   }
@@ -612,11 +725,12 @@ export function CourseLearningPath({
           />
         )}
 
-        <main
-          ref={mainRef}
+        <PathContentActivity
           className={`${styles.main}${
             navView === 'graph' ? ` ${styles.mainGraph}` : ''
           }`}
+          contentClassName={styles.mainBody}
+          contentRef={mainRef}
           style={
             navView === 'graph'
               ? {
@@ -626,6 +740,38 @@ export function CourseLearningPath({
                 }
               : undefined
           }
+          coursePageId={courseLearningPathActivityPageId(course.slug)}
+          courseTitle={course.title}
+          courseUrl={`/course-learning-path/${course.slug}`}
+          sectionId={selectedId}
+          notesTopicTitle={
+            showingSyllabus
+              ? 'Syllabus'
+              : showingMentalMap
+                ? 'Mental Map'
+                : showingResources
+                  ? 'Resources'
+                  : entry?.node.title ?? course.title
+          }
+          notesEditor={
+            <CourseLearningPathNotes
+              variant='panel'
+              nodeId={selectedId}
+              courseSlug={course.slug}
+              topicTitle={
+                showingSyllabus
+                  ? 'Syllabus'
+                  : showingMentalMap
+                    ? 'Mental Map'
+                    : showingResources
+                      ? 'Resources'
+                      : entry?.node.title
+              }
+              signedIn={Boolean(auth?.user)}
+              onSignIn={() => auth?.signInWithGoogle()}
+            />
+          }
+          onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
         >
           {showingSyllabus ? (
             <CourseLearningPathSyllabusOverview
@@ -640,6 +786,7 @@ export function CourseLearningPath({
               signedIn={Boolean(auth?.user)}
               onSignIn={() => auth?.signInWithGoogle()}
               onAddTopicResource={handleAddTopicResource}
+              onUpdateTopicResource={handleUpdateTopicResource}
             />
           ) : showingResources ? (
             <CourseLearningPathResources
@@ -656,6 +803,7 @@ export function CourseLearningPath({
               signedIn={Boolean(auth?.user)}
               onSignIn={() => auth?.signInWithGoogle()}
               onAddTopicResource={handleAddTopicResource}
+              onUpdateTopicResource={handleUpdateTopicResource}
               explored={exploredIds.has(entry.node.id)}
               onMarkExplored={() => handleMarkExplored(entry.node.id)}
               nextNode={nextCourseLearningPathNode(course, entry.node.id)}
@@ -678,13 +826,14 @@ export function CourseLearningPath({
               )}
             </div>
           )}
-        </main>
+        </PathContentActivity>
       </div>
       <div className={styles.activitySection}>
         <CourseActivity
           coursePageId={courseLearningPathActivityPageId(course.slug)}
           courseTitle={course.title}
           courseUrl={`/course-learning-path/${course.slug}`}
+          activityRefreshNonce={activityRefreshNonce}
         />
       </div>
     </div>

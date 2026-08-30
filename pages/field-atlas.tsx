@@ -12,7 +12,7 @@ export default function FieldAtlasPage() {
         <title>Research Field Atlas | Coursetexts</title>
         <meta
           name='description'
-          content='A map of science charting questions. What we know, what we suspect, and what we are trying to find out.'
+          content='Explore research learning paths through this map of frontier research questions. What we know, what we suspect, and what we are trying to find out in each field.'
         />
       </Head>
 

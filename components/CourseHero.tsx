@@ -38,6 +38,8 @@ interface CourseHeroProps extends CourseHeroData {
   publisherAvatarFallback?: string
   publisherAvatarAlt?: string
   publisherAvatarHref?: string
+  /** Replaces the HTML description (e.g. an editable field on owned paths). */
+  descriptionSlot?: React.ReactNode
 }
 
 const COPYRIGHT_TOGGLE_TITLE = '⚖️ Copyright Report'
@@ -61,7 +63,7 @@ type CopyrightReportData = {
   restHtml: string
 }
 
-function wrapFirstLetterInDescription(container: HTMLElement) {
+export function wrapFirstLetterInDescription(container: HTMLElement) {
   if (container.querySelector('[data-course-hero-drop-cap]')) return
 
   const wrap = (node: ChildNode): boolean => {
@@ -98,6 +100,18 @@ function wrapFirstLetterInDescription(container: HTMLElement) {
   for (let i = 0; i < container.childNodes.length; i++) {
     if (wrap(container.childNodes[i])) break
   }
+}
+
+export function unwrapFirstLetterInDescription(container: HTMLElement) {
+  const existing = container.querySelector('[data-course-hero-drop-cap]')
+  if (!existing) return
+  const parent = existing.parentNode
+  if (!parent) return
+  parent.replaceChild(
+    document.createTextNode(existing.textContent ?? ''),
+    existing
+  )
+  parent.normalize()
 }
 
 function extractToggleInnerHtmlBySummaryText(
@@ -485,7 +499,8 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   publisherAvatarUrl,
   publisherAvatarFallback,
   publisherAvatarAlt,
-  publisherAvatarHref
+  publisherAvatarHref,
+  descriptionSlot
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
   const [copyrightReport, setCopyrightReport] =
@@ -723,11 +738,15 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
         ) : null}
       </div>
       <div className={styles.right}>
-        <div
-          ref={descriptionRef}
-          className={styles.description}
-          dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-        />
+        {descriptionSlot ? (
+          descriptionSlot
+        ) : (
+          <div
+            ref={descriptionRef}
+            className={styles.description}
+            dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+          />
+        )}
 
         {copyrightReport ? (
           <div className={styles.copyrightCtaRow}>
