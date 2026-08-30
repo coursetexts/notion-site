@@ -234,10 +234,29 @@ export type LearningPathCircle = {
   members: LearningPathCircleMember[]
 }
 
-export type LearningPathKind = 'community' | 'research'
+export type LearningPathKind = 'community' | 'research' | 'course'
+
+export type LearningPathVisibility = 'private' | 'public' | 'collaborative'
 
 export function parseLearningPathKind(value: unknown): LearningPathKind {
-  return value === 'research' ? 'research' : 'community'
+  if (value === 'research' || value === 'course') return value
+  return 'community'
+}
+
+export function parseLearningPathVisibility(
+  value: unknown,
+  fallbackIsPrivate?: boolean,
+  isCatalog?: boolean
+): LearningPathVisibility {
+  if (
+    value === 'private' ||
+    value === 'public' ||
+    value === 'collaborative'
+  ) {
+    return value
+  }
+  if (isCatalog) return 'public'
+  return fallbackIsPrivate === false ? 'public' : 'private'
 }
 
 export type LearningPathData = {
@@ -259,6 +278,7 @@ export type StoredLearningPath = {
   slug: string
   data?: LearningPathData
   isPrivate?: boolean
+  visibility?: LearningPathVisibility
   kind?: LearningPathKind
   /** Present when this row is a saved (bookmarked) path, not one we own. */
   savedLinkId?: string
@@ -987,11 +1007,355 @@ const SPANISH: LearningPathData = {
   }
 }
 
+const HOST_DINNER: LearningPathData = {
+  slug: 'host-a-dinner',
+  title: 'Host a dinner',
+  goal: 'I want to cook a dinner for friends',
+  summary:
+    'A menu you can actually finish, timing that holds, and the few techniques that make the food taste like you meant it — not culinary school.',
+  nodes: [
+    {
+      id: 'goal',
+      label: 'Dinner for friends',
+      kind: 'goal',
+      sub: 'Your goal',
+      status: 'exploring',
+      x: 50,
+      y: 12,
+      description:
+        'A meal you can sit down to with other people — hot, on time, and not a scramble of five unfinished pans.',
+      why: 'The goal is hospitality you can repeat, not a tasting menu.',
+      resources: []
+    },
+    {
+      id: 'menu',
+      label: 'Pick a menu',
+      kind: 'concept',
+      sub: 'Start here',
+      status: 'explored',
+      sequence: 1,
+      x: 24,
+      y: 38,
+      description:
+        'One main that can wait, one side you can finish last, and a dessert that is done before anyone arrives.',
+      why: 'A menu that needs four things at once is how dinners fall apart.',
+      resources: [
+        {
+          id: 'r-salt-fat',
+          kind: 'book',
+          title: 'Salt, Fat, Acid, Heat',
+          source: 'Samin Nosrat',
+          href: 'https://www.saltfatacidheat.com/',
+          why: 'The four levers that make a simple menu taste like a plan.'
+        }
+      ]
+    },
+    {
+      id: 'timing',
+      label: 'Timing & mise en place',
+      kind: 'concept',
+      sub: 'Need this',
+      status: 'exploring',
+      sequence: 2,
+      x: 50,
+      y: 38,
+      description:
+        'What you can do the day before, what has to happen in the last twenty minutes, and a list you can cook from without rereading the recipe.',
+      why: 'Cooking for people is mostly logistics. Flavor is easier when the clock is not the enemy.',
+      resources: [
+        {
+          id: 'r-serious-mise',
+          kind: 'article',
+          title: 'The Food Lab: Mise en Place',
+          source: 'Kenji López-Alt',
+          href: 'https://www.seriouseats.com/how-to-mise-en-place',
+          why: 'Turns “prep” into a sequence instead of a pile of chopped things.'
+        }
+      ]
+    },
+    {
+      id: 'taste',
+      label: 'Seasoning',
+      kind: 'concept',
+      sub: 'Need this',
+      status: 'next',
+      sequence: 3,
+      x: 76,
+      y: 38,
+      description:
+        'Salt early, acid at the end, and tasting as you go so the plate is bright instead of merely cooked.',
+      why: 'Undersalted food is the most common way a decent menu tastes unfinished.',
+      resources: []
+    },
+    {
+      id: 'heat',
+      label: 'Heat control',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 22,
+      y: 64,
+      description:
+        'When a pan is actually hot, when to back off, and how not to steam what you meant to brown.',
+      why: 'Browning is a technique, not a setting on the stove.',
+      resources: [
+        {
+          id: 'r-sear',
+          kind: 'article',
+          title: 'How to sear',
+          source: 'Serious Eats',
+          href: 'https://www.seriouseats.com/the-food-lab-how-to-sear',
+          why: 'Makes pan heat a decision instead of a guess.'
+        }
+      ]
+    },
+    {
+      id: 'protein',
+      label: 'One protein, done',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 50,
+      y: 64,
+      description:
+        'Roast, braise, or pan — pick one method you can hit without a thermometer panic. Carryover heat counts.',
+      why: 'The main is the thing people remember. It only has to be one thing, cooked through.',
+      resources: []
+    },
+    {
+      id: 'table',
+      label: 'The table',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 76,
+      y: 64,
+      description:
+        'Plates, a drink, and a room that is ready before the food is. You cannot host from the stove the whole night.',
+      why: 'Dinner is the sitting-down. The cooking is how you get there.',
+      resources: []
+    },
+    {
+      id: 'serve',
+      label: 'Sit down to it',
+      kind: 'milestone',
+      sub: 'You are here when',
+      status: 'next',
+      sequence: 4,
+      x: 82,
+      y: 88,
+      description:
+        'Food on the table while it is still hot, and you in a chair. Leftovers are a success, not a failure of scale.',
+      why: 'The path is done when you ate with people. The next dinner is a later path.',
+      resources: []
+    }
+  ],
+  edges: [
+    { from: 'goal', to: 'menu' },
+    { from: 'goal', to: 'timing' },
+    { from: 'goal', to: 'taste' },
+    { from: 'menu', to: 'protein' },
+    { from: 'timing', to: 'heat' },
+    { from: 'taste', to: 'table' },
+    { from: 'protein', to: 'serve' },
+    { from: 'heat', to: 'serve' },
+    { from: 'timing', to: 'serve' }
+  ],
+  circle: {
+    name: 'Dinner, not a performance',
+    description:
+      'People trading menus that actually survived a Friday night — what they prepped ahead, and what they will never try for guests again.',
+    members: [
+      { initials: 'SN', name: 'Sami N.' },
+      { initials: 'KL', name: 'Kenji L.' },
+      { initials: 'AR', name: 'Asha R.' },
+      { initials: 'TB', name: 'Theo B.' },
+      { initials: 'MG', name: 'Mina G.' }
+    ]
+  }
+}
+
+const PLAY_GUITAR: LearningPathData = {
+  slug: 'play-a-song-on-guitar',
+  title: 'Play a song on guitar',
+  goal: 'I want to play a song on guitar',
+  summary:
+    'Chords, a strum you can keep, and one song you can get through — not music theory for its own sake.',
+  nodes: [
+    {
+      id: 'goal',
+      label: 'One song, all the way through',
+      kind: 'goal',
+      sub: 'Your goal',
+      status: 'exploring',
+      x: 50,
+      y: 12,
+      description:
+        'A song you can play for someone else without stopping to restart every eight bars.',
+      why: 'The goal is a piece of music, not a catalog of chords.',
+      resources: []
+    },
+    {
+      id: 'chords',
+      label: 'Open chords',
+      kind: 'concept',
+      sub: 'Start here',
+      status: 'explored',
+      sequence: 1,
+      x: 24,
+      y: 38,
+      description:
+        'G, C, D, Em, Am — the handful that covers most first songs. Clean enough that each string rings.',
+      why: 'You do not need the whole neck. You need the shapes this song uses.',
+      resources: [
+        {
+          id: 'r-justin-chords',
+          kind: 'video',
+          title: 'Beginner guitar course',
+          source: 'Justin Guitar',
+          href: 'https://www.justinguitar.com/guitar-lessons/beginner-guitar-course-grade-1-bc-101',
+          why: 'The sequence most people actually finish, chord by chord.'
+        }
+      ]
+    },
+    {
+      id: 'strum',
+      label: 'Strumming & time',
+      kind: 'concept',
+      sub: 'Need this',
+      status: 'exploring',
+      sequence: 2,
+      x: 50,
+      y: 38,
+      description:
+        'A down-up pattern you can keep while the left hand changes. The right hand is the drum.',
+      why: 'A perfect chord that arrives late is still a missed beat.',
+      resources: [
+        {
+          id: 'r-strum',
+          kind: 'video',
+          title: 'Strumming patterns for beginners',
+          source: 'Justin Guitar',
+          href: 'https://www.justinguitar.com/guitar-lessons/easy-songs-for-beginners-bg-1114',
+          why: 'Puts a pattern under the chords instead of guessing at the recording.'
+        }
+      ]
+    },
+    {
+      id: 'changes',
+      label: 'Chord changes',
+      kind: 'concept',
+      sub: 'Need this',
+      status: 'next',
+      sequence: 3,
+      x: 76,
+      y: 38,
+      description:
+        'Moving between two shapes without a pause. The change is the skill; the hold is just waiting.',
+      why: 'Songs live in the transitions. Slow the song down until the change is on time.',
+      resources: []
+    },
+    {
+      id: 'tuning',
+      label: 'Tuning & setup',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 22,
+      y: 64,
+      description:
+        'A tuner, strings that are not dead, and an action you can press without fighting the guitar.',
+      why: 'An out-of-tune guitar teaches you the wrong sounds. Fix that first.',
+      resources: []
+    },
+    {
+      id: 'fretting',
+      label: 'Fretting',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 50,
+      y: 64,
+      description:
+        'Close behind the fret, arched fingers, and enough pressure that the note is a note — then no more.',
+      why: 'Buzz and mute are almost always a hand shape, not a talent gap.',
+      resources: []
+    },
+    {
+      id: 'song',
+      label: 'The song itself',
+      kind: 'prerequisite',
+      sub: 'As deep as you need',
+      status: 'next',
+      sequence: 1,
+      x: 76,
+      y: 64,
+      description:
+        'A chart with three or four chords, a tempo you can speak, and a recording you will play along with.',
+      why: 'Pick one song and stay there. A new song every day is how people never finish one.',
+      resources: [
+        {
+          id: 'r-easy-songs',
+          kind: 'article',
+          title: 'Easy songs for beginners',
+          source: 'Justin Guitar',
+          href: 'https://www.justinguitar.com/modules/easy-songs-for-beginners',
+          why: 'A short list of songs that actually fit the first chord set.'
+        }
+      ]
+    },
+    {
+      id: 'play',
+      label: 'Play it through',
+      kind: 'milestone',
+      sub: 'You are here when',
+      status: 'next',
+      sequence: 4,
+      x: 82,
+      y: 88,
+      description:
+        'Verse and chorus, start to end, without stopping. Ugly and complete beats pretty and abandoned.',
+      why: 'The path is a song you can play. The next song is a later path.',
+      resources: []
+    }
+  ],
+  edges: [
+    { from: 'goal', to: 'chords' },
+    { from: 'goal', to: 'strum' },
+    { from: 'goal', to: 'changes' },
+    { from: 'chords', to: 'fretting' },
+    { from: 'strum', to: 'tuning' },
+    { from: 'changes', to: 'song' },
+    { from: 'fretting', to: 'play' },
+    { from: 'song', to: 'play' },
+    { from: 'strum', to: 'play' }
+  ],
+  circle: {
+    name: 'First song club',
+    description:
+      'People posting the song they finally got through — the chord that would not change, and the tempo that made it click.',
+    members: [
+      { initials: 'JG', name: 'Justin G.' },
+      { initials: 'LW', name: 'Leah W.' },
+      { initials: 'MC', name: 'Marco C.' },
+      { initials: 'PS', name: 'Priya S.' },
+      { initials: 'EK', name: 'Eli K.' }
+    ]
+  }
+}
+
 export const SEEDED_LEARNING_PATHS: LearningPathData[] = [
   SPANISH,
   TRANSFORMERS,
   ROM_COM,
-  TREE_HOUSE
+  TREE_HOUSE,
+  HOST_DINNER,
+  PLAY_GUITAR
 ]
 
 export const SEEDED_LEARNING_PATHS_BY_SLUG: Record<string, LearningPathData> =
@@ -1303,6 +1667,7 @@ export function saveStoredLearningPath(
     slug: path.slug,
     data: { ...path, createdAt },
     isPrivate: existing?.isPrivate ?? true,
+    visibility: existing?.visibility,
     kind: parseLearningPathKind(extras?.kind ?? existing?.kind),
     createdAt
   }

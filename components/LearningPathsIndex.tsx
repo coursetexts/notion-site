@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 import {
   type LearningPathData,
@@ -18,6 +17,7 @@ import {
   type TrendingConcept
 } from '@/lib/trending-concepts-seed'
 
+import { CreateLearningPathModal } from './CreateLearningPathModal'
 import styles from './LearningPathsIndex.module.css'
 
 function normalizeSearch(value: string) {
@@ -90,7 +90,6 @@ function PlusIcon() {
 }
 
 export function LearningPathsIndex() {
-  const router = useRouter()
   const [catalogPaths, setCatalogPaths] = React.useState<LearningPathData[]>(
     SEEDED_LEARNING_PATHS
   )
@@ -98,7 +97,6 @@ export function LearningPathsIndex() {
     []
   )
   const [createOpen, setCreateOpen] = React.useState(false)
-  const [draft, setDraft] = React.useState('')
   const [query, setQuery] = React.useState('')
   const [isSearchPulse, setIsSearchPulse] = React.useState(false)
   const pulseTimeoutRef = React.useRef<number | null>(null)
@@ -168,21 +166,7 @@ export function LearningPathsIndex() {
     [triggerSearchPulse]
   )
 
-  function closeCreate() {
-    setCreateOpen(false)
-    setDraft('')
-  }
-
-  function handleCreate(event: React.FormEvent) {
-    event.preventDefault()
-    const goal = draft.trim()
-    if (!goal) return
-    closeCreate()
-    void router.push({
-      pathname: '/learning-path/new',
-      query: { goal }
-    })
-  }
+  const closeCreate = React.useCallback(() => setCreateOpen(false), [])
 
   return (
     <section className={styles.section} aria-label='Learning paths'>
@@ -346,73 +330,7 @@ export function LearningPathsIndex() {
         </div>
       </div>
 
-      {createOpen ? (
-        <div
-          className={styles.backdrop}
-          role='presentation'
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) closeCreate()
-          }}
-        >
-          <div
-            className={styles.modal}
-            role='dialog'
-            aria-modal='true'
-            aria-labelledby='create-path-title'
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <div className={styles.modalHeader}>
-              <h2 id='create-path-title' className={styles.modalTitle}>
-                What do you want to learn?
-              </h2>
-              <button
-                type='button'
-                className={styles.modalClose}
-                onClick={closeCreate}
-                aria-label='Close'
-              >
-                ×
-              </button>
-            </div>
-            <form className={styles.modalForm} onSubmit={handleCreate}>
-              <label className={styles.field}>
-                <span className={styles.label}>Your goal</span>
-                <textarea
-                  className={styles.textarea}
-                  value={draft}
-                  onChange={(event) => setDraft(event.target.value)}
-                  placeholder='I want to…'
-                  rows={4}
-                  autoFocus
-                  onKeyDown={(event) => {
-                    if (event.key === 'Escape') closeCreate()
-                  }}
-                />
-              </label>
-              <p className={styles.hint}>
-                The path starts from the intention. Work backward into the
-                knowledge that would make you capable of it.
-              </p>
-              <div className={styles.modalActions}>
-                <button
-                  type='button'
-                  className={styles.cancelBtn}
-                  onClick={closeCreate}
-                >
-                  Cancel
-                </button>
-                <button
-                  type='submit'
-                  className={styles.submitBtn}
-                  disabled={!draft.trim()}
-                >
-                  Continue
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
+      <CreateLearningPathModal open={createOpen} onClose={closeCreate} />
     </section>
   )
 }

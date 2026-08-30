@@ -20,6 +20,10 @@
   border-bottom: 1px solid #e6e6e6;
 }
 
+.visibilitySelect {
+  min-width: 7rem;
+}
+
 .hero > * {
   margin-top: 0;
   margin-bottom: 0;
@@ -1185,6 +1189,44 @@
   color: #0089c4;
 }
 
+.resourceVoteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: 2px 6px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  color: #9ca3af;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.resourceVoteBtn:hover:not(:disabled),
+.resourceVoteBtn:focus-visible {
+  color: #6b7280;
+  border-color: #d1d5db;
+  outline: none;
+}
+
+.resourceVoteBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.resourceVoteBtnOn {
+  color: #9ca3af;
+}
+
+.resourceVoteCount {
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: inherit;
+}
+
 .resourceBody {
   min-width: 0;
   flex: 1;
@@ -1219,6 +1261,11 @@
 .resourceEditBtn:focus-visible {
   color: #6b7280;
   outline: none;
+}
+
+.resourceEditBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .resourceEditing {

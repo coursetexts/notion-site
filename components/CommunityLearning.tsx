@@ -179,7 +179,7 @@ export function CommunityLearning() {
                 </p>
                 <h2 className={styles.title}>
                   <Link
-                    href={`/course-learning-path/${course.slug}`}
+                    href={`/learning-path/${course.slug}`}
                     className={styles.titleLink}
                   >
                     {course.title}

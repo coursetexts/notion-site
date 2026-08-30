@@ -35,5 +35,13 @@ export function getSchoolLogoForMeta(meta: string): SchoolLogo {
     return { src: '/images/home/waterloo.png', alt: 'Waterloo' }
   }
 
+  if (
+    value.includes('coursetexts') ||
+    value.includes('course learning path') ||
+    value.includes('learning path')
+  ) {
+    return { src: '/coursetexts-book.svg', alt: 'Coursetexts' }
+  }
+
   return DEFAULT_LOGO
 }

@@ -120,10 +120,10 @@ function courseLearningPathHref(
   courseName?: string
 ): string | null {
   const trimmed = slug?.trim()
-  if (trimmed) return `/course-learning-path/${trimmed}`
+  if (trimmed) return `/learning-path/${trimmed}`
   if (!courseName) return null
   const path = getCourseLearningPathHref(courseName)
-  return path.startsWith('/course-learning-path/') ? path : null
+  return path.startsWith('/learning-path/') ? path : null
 }
 
 function CourseLearningPathConceptTreeLine({

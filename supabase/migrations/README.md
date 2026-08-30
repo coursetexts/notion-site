@@ -1,9 +1,9 @@
 # Fresh Supabase database (final schema)
 
 These SQL files recreate the **current** app schema for a brand-new Supabase project.
-They collapse historical migrations `001`–`028` into a clean final state (no drop/recreate churn).
+They collapse historical migrations into a clean final state (no drop/recreate churn).
 
-Run them **in numeric order** in the Supabase SQL Editor (or via CLI). Do **not** also run the old `supabase/migrations/*.sql` files on the same empty database.
+Run them **in numeric order** in the Supabase SQL Editor (or via CLI). On an empty database, prefer **`000_complete_schema.sql` once** (includes `001`–`030`). Do **not** also run `001`–`030` on the same empty database.
 
 ## 1. Create the project
 
@@ -21,6 +21,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
 SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
 COMMUNITY_SEED_PROJECT_REF=<project-ref>
 CURATED_COURSES_SEED_PROJECT_REF=<project-ref>
+LEARNING_PATHS_SEED_PROJECT_REF=<project-ref>
 ```
 
 ## 2. Auth (required for the site to work the same)
@@ -57,41 +58,55 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `005_follows.sql` | follows + public profile/bookmark reads |
 | `006_user_links.sql` | link tags, user links, M2M |
 | `007_course_section_progress.sql` | section completion / bookmarks |
-| `008_course_community_wall.sql` | per-course wall resources |
+| `008_course_community_wall.sql` | per-course wall resources (legacy UI; tables still used by profile feed) |
 | `009_notebooks.sql` | notebooks + tabs |
 | `010_profile_interests_and_links.sql` | interests, personal links, `list_users_directory` |
 | `011_community_wall_subscriptions.sql` | wall feed subscriptions |
-| `012_community_resources_and_search.sql` | site `/community` + `search_community` |
+| `012_community_resources_and_search.sql` | `/community-resources` + `search_community` |
 | `013_curated_courses.sql` | `curated_courses` + nodes + videos + notes |
 | `014_curated_course_resources.sql` | `curated_course_resources` |
 | `015_rename_course_video_to_curated.sql` | **existing DBs only:** `course_video_*` → `curated_*` |
 | `016_fix_curated_table_names.sql` | **existing DBs only:** fix `curated_courses_course` / FKs |
 | `017_curated_course_links.sql` | Per-topic tests and slides (`curated_course_links`) |
-| `018_resource_concept_tree.sql` | `resources.concept_tree` + curated-course origin; videos/links link to `resources` |
-| `019_curated_course_pins.sql` | Per-user pinned curated courses (`curated_course_pins`) |
+| `018_resource_concept_tree.sql` | `resources.concept_tree` + curated-course origin |
+| `019_curated_course_pins.sql` | Per-user pinned course learning paths |
 | `020_learning_paths.sql` | Catalog + user learning paths, notes, resources, node status |
+| `021_course_notes.sql` | Per-user TipTap notes for Notion courses |
+| `022_learning_path_privacy.sql` | `learning_paths.is_private` + public-read policy |
+| `023_learning_path_kind.sql` | `learning_paths.kind` (`community` \| `research`) |
+| `024_course_notes_topic.sql` | `course_notes.topic_id` (one doc per TOC tab) |
+| `025_curated_course_node_resources.sql` | Unified per-node resource list; copies videos/links |
+| `026_learning_paths_public_research_goal.sql` | Index for Field Atlas lookup by public research `goal` |
+| `027_unify_learning_paths.sql` | `kind=course`, `visibility`, `learning_path_pins`, copy notes/pins from curated. Does **not** move official Notion courses onto `learning_paths` (future work). |
+| `028_learning_path_resource_votes.sql` | Upvotes on public/collaborative learning-path resource lists |
+| `029_learning_path_is_filled.sql` | `learning_paths.is_filled` for course syllabi that have a real topic tree |
+| `030_learning_path_commitments.sql` | Per-user committed flags on Learning tab items (future finish reminders) |
 
-**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`, `018`, `019`, and `020`). Skip `015`/`016` unless you already had old table names.
+**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`). Skip `015`/`016` unless you already had old table names.
+
+Existing projects that already ran `000` through `029` should apply `030` (do not re-run `000`).
 
 ## 4. Optional seeds
 
 ```bash
-yarn seed:curated-courses                  # loads data/curated-courses/fluid-mechanics.json
+yarn seed:curated-courses                  # loads JSON into curated_* then learning_paths
 yarn seed:curated-courses -- --slug=slug   # any JSON file in that folder
+yarn migrate:course-learning-paths         # copy all curated_* syllabi into learning_paths.data
 yarn seed:community
-yarn seed:learning-paths                   # Learn Spanish, transformers, rom-com, tree house
+yarn seed:learning-paths                   # six catalog paths (Spanish, transformers, rom-com, tree house, dinner, guitar)
 ```
 
-Needs `SUPABASE_SERVICE_ROLE_KEY` + `CURATED_COURSES_SEED_PROJECT_REF`.
-Learning paths also accept `LEARNING_PATHS_SEED_PROJECT_REF` or `COMMUNITY_SEED_PROJECT_REF`.
+Needs `SUPABASE_SERVICE_ROLE_KEY` + the matching `*_SEED_PROJECT_REF`.
+Learning paths accept `LEARNING_PATHS_SEED_PROJECT_REF` or `COMMUNITY_SEED_PROJECT_REF`.
 
 **SQL Editor (no service role):** curated seeds live in [`../seeds/curated-courses/`](../seeds/curated-courses/):
 
-1. `seed_curated_course_video_courses.sql` — catalog rows in `curated_courses` (all degrees course names)  
-2. `seed_fluid_mechanics_curated_course.sql` — **self-contained** Fluid Mechanics load (schema repair + full tree / videos / resources)  
-3. `seed_deep_learning_curated_course.sql` / `seed_data_structures_curated_course.sql` / `seed_algorithms_curated_course.sql` — syllabus trees (data only)
+1. `seed_curated_course_video_courses.sql` — catalog rows in `curated_courses` (all degrees course names)
+2. `seed_fluid_mechanics_curated_course.sql` — **self-contained** Fluid Mechanics load
+3. Other `seed_*_curated_course.sql` files — syllabus trees (data only)
 
-Canonical content: `data/curated-courses/` — see [docs/curated-courses.md](../../docs/curated-courses.md).
+Canonical content: `data/curated-courses/` — see [docs/curated-courses.md](../../docs/curated-courses.md).  
+Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 
 ### Expected curated table names
 
@@ -102,16 +117,26 @@ Canonical content: `data/curated-courses/` — see [docs/curated-courses.md](../
 | `curated_course_videos` | `course_videos` |
 | `curated_course_notes` | `course_video_notes`, `curated_courses_notes` |
 | `curated_course_resources` | (distinct from Community Wall `course_resources`) |
+| `curated_course_node_resources` | — |
 
 ## 5. Smoke checklist after swap
 
 - [ ] Google sign-in → row appears in `profiles`
-- [ ] Open a Notion course page → row in `courses`; comment / bookmark / annotation work
-- [ ] `/community` search + resource comments/votes
-- [ ] Course Community Wall post / vote / subscribe
-- [ ] Profile: notebooks, interests, personal links, bookmarked links
+- [ ] Open a Notion course page → row in `courses`; comment / bookmark / annotation / notes work
+- [ ] `/community-resources` search + resource comments/votes
+- [ ] Profile: notebooks, interests, personal links, bookmarked links, feed
 - [ ] `/users` directory loads
-- [ ] `/curated-course/fluid-mechanics` loads from DB (syllabus + resources)
+- [ ] `/learning-path/fluid-mechanics` loads the syllabus UI from `learning_paths`
+- [ ] `/learning-paths` and home community grid show catalog paths (not empty course placeholders)
+- [ ] Create a path while signed in → row in `learning_paths`; notes persist in `learning_path_user_state`
+- [ ] Owned path visibility: Private / Public / Collaborative
+- [ ] Field Atlas → new path with `kind=research`
+- [ ] Pin a course learning path → row in `learning_path_pins`
+- [ ] Public/collaborative path: signed-in upvote on a resource (grey arrow) does not change sequence
+- [ ] `/all-courses` **courses** view: second grid lists only `kind=course` rows with `is_filled` (not title-only stubs); degrees promo → `/degrees`
+- [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; atlas callouts; empty search opens create modal
+- [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
+- [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`
 
 ## Notes
 
@@ -120,3 +145,4 @@ Canonical content: `data/curated-courses/` — see [docs/curated-courses.md](../
 - `profiles.user_id` is the auth uid everywhere (not `profiles.id`).
 - Privacy for `user_links.is_private` is enforced in the app, not RLS (public SELECT remains, matching production).
 - Votes for curated clips still use `votes.target_type = 'course_video'` (polymorphic label, not a table name).
+- The in-course Community Wall TOC tab was removed; `course_resources*` tables remain for older posts and the profile feed.

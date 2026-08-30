@@ -1,52 +1,23 @@
-import * as React from 'react'
-import Head from 'next/head'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { CourseLearningPath } from '@/components/CourseLearningPath'
-import { HomeFooterSection } from '@/components/HomeFooterSection'
-import { HomeHeader } from '@/components/HomeHeader'
 import { DEFAULT_COURSE_LEARNING_PATH_SLUG } from '@/lib/course-learning-path-seed'
 
 /**
- * Standalone syllabus + curated video library page.
- * Query: ?slug=fluid-mechanics (defaults to Fluid Mechanics seed / DB row).
+ * Legacy /course-videos?slug= → /learning-path/{slug}
  */
 export default function CourseLearningPathLegacyPage() {
   const router = useRouter()
-  const slugParam = router.query.slug
-  const slug =
-    typeof slugParam === 'string' && slugParam.trim()
-      ? slugParam.trim()
-      : DEFAULT_COURSE_LEARNING_PATH_SLUG
 
-  return (
-    <>
-      <Head>
-        <title>Course Videos | Coursetexts</title>
-        <meta
-          name='description'
-          content='Browse a course syllabus with curated, ordered videos for each topic.'
-        />
-      </Head>
+  useEffect(() => {
+    if (!router.isReady) return
+    const slugParam = router.query.slug
+    const slug =
+      typeof slugParam === 'string' && slugParam.trim()
+        ? slugParam.trim()
+        : DEFAULT_COURSE_LEARNING_PATH_SLUG
+    void router.replace(`/learning-path/${slug}`)
+  }, [router])
 
-      <main
-        style={
-          {
-            '--home-side': 'clamp(20px, 4.03vw, 58px)',
-            '--home-main-max': '1324px',
-            '--home-content-max': '1000px',
-            '--home-footer-side': 'max(28px, 15.28vw)',
-            minHeight: '100vh',
-            background: 'var(--footer, #F8F7F4)',
-            display: 'flex',
-            flexDirection: 'column'
-          } as React.CSSProperties
-        }
-      >
-        <HomeHeader />
-        <CourseLearningPath key={slug} slug={slug} />
-        <HomeFooterSection />
-      </main>
-    </>
-  )
+  return null
 }

@@ -25,7 +25,8 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
     "seed:community": "node scripts/seed-community.mjs",
     "seed:curated-courses": "node scripts/seed-curated-courses.mjs",
-    "seed:learning-paths": "npx tsx scripts/seed-learning-paths.ts"
+    "seed:learning-paths": "npx tsx scripts/seed-learning-paths.ts",
+    "migrate:course-learning-paths": "npx tsx scripts/migrate-course-learning-paths.ts"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",

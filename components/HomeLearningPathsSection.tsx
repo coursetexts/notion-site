@@ -7,6 +7,7 @@ import {
   SEEDED_LEARNING_PATHS
 } from '@/lib/learning-path-seed'
 
+import { CreateLearningPathModal } from './CreateLearningPathModal'
 import courseStyles from './HomeCoursesSection.module.css'
 import styles from './HomeLearningPathsSection.module.css'
 
@@ -47,6 +48,7 @@ export function HomeLearningPathsSection() {
   const [paths, setPaths] = React.useState<LearningPathData[]>(
     SEEDED_LEARNING_PATHS
   )
+  const [createOpen, setCreateOpen] = React.useState(false)
 
   React.useEffect(() => {
     void listCatalogLearningPaths().then((next) => {
@@ -55,6 +57,7 @@ export function HomeLearningPathsSection() {
   }, [])
 
   const cards = paths.slice(0, 12).map(pathToCard)
+  const closeCreate = React.useCallback(() => setCreateOpen(false), [])
 
   return (
     <div
@@ -65,9 +68,13 @@ export function HomeLearningPathsSection() {
         <h2 className={styles.heading}>
           Try learning paths from our community
         </h2>
-        <Link href='/community' legacyBehavior>
-          <a className={styles.cta}>What&apos;s a learning path?</a>
-        </Link>
+        <button
+          type='button'
+          className={styles.cta}
+          onClick={() => setCreateOpen(true)}
+        >
+          Or create your own learning path
+        </button>
       </div>
 
       {cards.length === 0 ? (
@@ -106,7 +113,7 @@ export function HomeLearningPathsSection() {
       )}
 
       <div className={courseStyles.viewAllBar}>
-        <Link href='/learning-paths' legacyBehavior>
+        <Link href='/all-courses?view=learning-paths' legacyBehavior>
           <a
             className={courseStyles.viewAllBarLink}
             aria-label='View all learning paths'
@@ -132,6 +139,8 @@ export function HomeLearningPathsSection() {
           </a>
         </Link>
       </div>
+
+      <CreateLearningPathModal open={createOpen} onClose={closeCreate} />
     </div>
   )
 }

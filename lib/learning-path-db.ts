@@ -8,12 +8,14 @@ import {
   type LearningPathKind,
   type LearningPathNodeStatus,
   type LearningPathUserResource,
+  type LearningPathVisibility,
   type StoredLearningPath,
   SEEDED_LEARNING_PATHS,
   applyNodeStatus,
   isCatalogLearningPathSlug,
   nodeStatusMap,
   parseLearningPathKind,
+  parseLearningPathVisibility,
   readStoredLearningPaths,
   saveStoredLearningPath,
   writeStoredLearningPaths
@@ -34,6 +36,7 @@ export type LearningPathRecord = {
   ownerId: string | null
   isCatalog: boolean
   isPrivate: boolean
+  visibility: LearningPathVisibility
   kind: LearningPathKind
   data: LearningPathData
   createdAt: string | null
@@ -49,11 +52,15 @@ type LearningPathRow = {
   data: LearningPathData
   is_catalog: boolean
   is_private?: boolean
+  visibility?: string
   kind?: string
   created_at?: string | null
 }
 
 const PATH_COLUMNS =
+  'id, slug, owner_id, title, goal, summary, data, is_catalog, is_private, kind, visibility, created_at'
+
+const PATH_COLUMNS_WITHOUT_VISIBILITY =
   'id, slug, owner_id, title, goal, summary, data, is_catalog, is_private, kind, created_at'
 
 const PATH_COLUMNS_WITHOUT_KIND =
@@ -177,6 +184,11 @@ export function writeLocalUserState(slug: string, state: LearningPathUserState) 
 
 function rowToRecord(row: LearningPathRow): LearningPathRecord {
   const createdAt = row.created_at || row.data?.createdAt || null
+  const visibility = parseLearningPathVisibility(
+    row.visibility,
+    row.is_private,
+    row.is_catalog
+  )
   const data: LearningPathData = {
     ...row.data,
     id: row.id,
@@ -191,7 +203,8 @@ function rowToRecord(row: LearningPathRow): LearningPathRecord {
     slug: row.slug,
     ownerId: row.owner_id,
     isCatalog: row.is_catalog,
-    isPrivate: row.is_catalog ? false : row.is_private !== false,
+    isPrivate: visibility === 'private',
+    visibility,
     kind: parseLearningPathKind(row.kind),
     data,
     createdAt
@@ -224,29 +237,141 @@ async function currentUserId() {
   return { supabase, userId: user?.id ?? null }
 }
 
+function withSeededCatalog(paths: LearningPathData[]): LearningPathData[] {
+  const seen = new Set(paths.map((path) => path.slug))
+  const extra = SEEDED_LEARNING_PATHS.filter((path) => !seen.has(path.slug))
+  return extra.length === 0 ? paths : [...paths, ...extra]
+}
+
 export async function listCatalogLearningPaths(): Promise<LearningPathData[]> {
   const supabase = getSupabaseClient()
   if (supabase) {
     const columnSets = [
       PATH_COLUMNS,
+      PATH_COLUMNS_WITHOUT_VISIBILITY,
       PATH_COLUMNS_WITHOUT_KIND,
       PATH_COLUMNS_MINIMAL
     ]
-    for (const columns of columnSets) {
-      const { data, error } = await supabase
+    for (let i = 0; i < columnSets.length; i += 1) {
+      let query = supabase
         .from('learning_paths')
-        .select(columns)
+        .select(columnSets[i])
         .eq('is_catalog', true)
         .order('created_at', { ascending: true })
+      if (i === 0 || i === 1) {
+        query = query.eq('kind', 'community')
+      }
+      const { data, error } = await query
       if (!error && Array.isArray(data) && data.length > 0) {
-        return (data as unknown as LearningPathRow[]).map(
+        const fromDb = (data as unknown as LearningPathRow[]).map(
           (row) => rowToRecord(row).data
         )
+        return withSeededCatalog(fromDb)
       }
       if (!error) break
     }
   }
   return SEEDED_LEARNING_PATHS
+}
+
+export type NonCourseLearningPathCard = {
+  id: string
+  slug: string
+  title: string
+  description: string
+  kind: LearningPathKind
+}
+
+const NON_COURSE_LIST_COLUMNS =
+  'id, slug, title, goal, summary, kind, visibility, created_at'
+const NON_COURSE_LIST_COLUMNS_WITHOUT_VISIBILITY =
+  'id, slug, title, goal, summary, kind, is_private, created_at'
+
+function seededNonCourseLearningPathCards(): NonCourseLearningPathCard[] {
+  return SEEDED_LEARNING_PATHS.map((path) => ({
+    id: path.id || path.slug,
+    slug: path.slug,
+    title: path.title,
+    description: path.summary || path.goal,
+    kind: 'community' as const
+  }))
+}
+
+function withSeededNonCourseCards(
+  cards: NonCourseLearningPathCard[]
+): NonCourseLearningPathCard[] {
+  const seen = new Set(cards.map((card) => card.slug))
+  const extra = seededNonCourseLearningPathCards().filter(
+    (card) => !seen.has(card.slug)
+  )
+  const merged = extra.length === 0 ? cards : [...cards, ...extra]
+  return merged.sort((a, b) =>
+    a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
+  )
+}
+
+function rowToNonCourseCard(row: {
+  id?: string
+  slug?: string
+  title?: string
+  goal?: string
+  summary?: string
+  kind?: string
+  visibility?: string
+  is_private?: boolean
+}): NonCourseLearningPathCard | null {
+  if (!row.slug) return null
+  const kind = parseLearningPathKind(row.kind)
+  if (kind === 'course') return null
+  if (row.visibility === 'private') return null
+  if (row.visibility == null && row.is_private === true) return null
+  return {
+    id: row.id || row.slug,
+    slug: row.slug,
+    title: row.title || row.slug,
+    description: (row.summary || row.goal || '').trim(),
+    kind
+  }
+}
+
+/** Public community + research paths. Excludes kind=course (including empty stubs). */
+export async function listNonCourseLearningPaths(): Promise<
+  NonCourseLearningPathCard[]
+> {
+  const seeded = seededNonCourseLearningPathCards()
+  const supabase = getSupabaseClient()
+  if (supabase) {
+    const columnSets = [
+      NON_COURSE_LIST_COLUMNS,
+      NON_COURSE_LIST_COLUMNS_WITHOUT_VISIBILITY
+    ]
+    for (const columns of columnSets) {
+      const { data, error } = await supabase
+        .from('learning_paths')
+        .select(columns)
+        .in('kind', ['community', 'research'])
+        .order('title', { ascending: true })
+        .limit(1000)
+      if (!error && Array.isArray(data)) {
+        const cards = (
+          data as Array<{
+            id?: string
+            slug?: string
+            title?: string
+            goal?: string
+            summary?: string
+            kind?: string
+            visibility?: string
+            is_private?: boolean
+          }>
+        )
+          .map(rowToNonCourseCard)
+          .filter((card): card is NonCourseLearningPathCard => card != null)
+        return withSeededNonCourseCards(cards)
+      }
+    }
+  }
+  return withSeededNonCourseCards(seeded)
 }
 
 function rowsToOwnedItems(rows: LearningPathRow[]): StoredLearningPath[] {
@@ -258,6 +383,7 @@ function rowsToOwnedItems(rows: LearningPathRow[]): StoredLearningPath[] {
       slug: row.slug,
       data: record.data,
       isPrivate: record.isPrivate,
+      visibility: record.visibility,
       kind: record.kind,
       createdAt: record.createdAt ?? undefined
     }
@@ -273,6 +399,7 @@ export async function listOwnedLearningPathsByUserId(
   if (!supabase) return []
   const columnSets = [
     PATH_COLUMNS,
+    PATH_COLUMNS_WITHOUT_VISIBILITY,
     PATH_COLUMNS_WITHOUT_KIND,
     PATH_COLUMNS_MINIMAL
   ]
@@ -284,7 +411,7 @@ export async function listOwnedLearningPathsByUserId(
       .eq('is_catalog', false)
       .order('updated_at', { ascending: false })
     if (!includePrivate) {
-      if (i === 2) return []
+      if (i === 3) return []
       query = query.eq('is_private', false)
     }
     const { data, error } = await query
@@ -306,6 +433,7 @@ export async function listOwnedLearningPaths(): Promise<StoredLearningPath[]> {
     .map((item) => ({
       ...item,
       isPrivate: item.isPrivate ?? true,
+      visibility: item.visibility,
       kind: parseLearningPathKind(item.kind)
     }))
 }
@@ -337,7 +465,12 @@ export async function attachLearningPathKinds(
   items: StoredLearningPath[]
 ): Promise<StoredLearningPath[]> {
   const missing = items
-    .filter((item) => item.kind !== 'research' && item.kind !== 'community')
+    .filter(
+      (item) =>
+        item.kind !== 'research' &&
+        item.kind !== 'community' &&
+        item.kind !== 'course'
+    )
     .map((item) => item.slug)
   const kinds =
     missing.length > 0 ? await getLearningPathKindsBySlugs(missing) : {}
@@ -348,14 +481,20 @@ export async function attachLearningPathKinds(
 }
 
 export async function listAllLearningPathSlugs(): Promise<string[]> {
-  const [catalog, owned] = await Promise.all([
-    listCatalogLearningPaths(),
-    listOwnedLearningPaths()
-  ])
-  return [
-    ...catalog.map((path) => path.slug),
-    ...owned.map((item) => item.slug)
-  ]
+  const slugs = new Set<string>()
+  const supabase = getSupabaseClient()
+  if (supabase) {
+    const { data, error } = await supabase.from('learning_paths').select('slug')
+    if (!error && Array.isArray(data)) {
+      for (const row of data as Array<{ slug?: string }>) {
+        if (row.slug) slugs.add(row.slug)
+      }
+    }
+  }
+  for (const path of SEEDED_LEARNING_PATHS) slugs.add(path.slug)
+  const owned = await listOwnedLearningPaths()
+  for (const item of owned) slugs.add(item.slug)
+  return [...slugs]
 }
 
 export async function getLearningPathRecord(
@@ -365,6 +504,7 @@ export async function getLearningPathRecord(
   if (!supabase || !slug) return null
   const columnSets = [
     PATH_COLUMNS,
+    PATH_COLUMNS_WITHOUT_VISIBILITY,
     PATH_COLUMNS_WITHOUT_KIND,
     PATH_COLUMNS_MINIMAL
   ]
@@ -426,13 +566,25 @@ export async function upsertOwnedLearningPath(
   const insertKind = parseLearningPathKind(
     options?.kind ?? storedKindForSlug(path.slug)
   )
-  const insertPayload = { ...payload, kind: insertKind }
+  const insertPayload = {
+    ...payload,
+    kind: insertKind,
+    visibility: 'private' as const,
+    is_private: true
+  }
   const first = await supabase
     .from('learning_paths')
     .insert(insertPayload)
     .select('id')
     .maybeSingle()
   if (!first.error) return first.data?.id ?? null
+
+  const retryKind = await supabase
+    .from('learning_paths')
+    .insert({ ...payload, kind: insertKind, is_private: true })
+    .select('id')
+    .maybeSingle()
+  if (!retryKind.error) return retryKind.data?.id ?? null
 
   const retry = await supabase
     .from('learning_paths')
@@ -446,27 +598,39 @@ export async function upsertOwnedLearningPath(
   return retry.data?.id ?? null
 }
 
-export async function setOwnedLearningPathPrivate(
+export async function setOwnedLearningPathVisibility(
   pathId: string,
-  isPrivate: boolean,
+  visibility: LearningPathVisibility,
   slug?: string
 ): Promise<boolean> {
   if (!pathId) return false
+  const isPrivate = visibility === 'private'
   const localOnly = pathId.startsWith('path-')
   const { supabase, userId } = await currentUserId()
   if (supabase && userId && !localOnly) {
-    const { error } = await supabase
+    const withVisibility = await supabase
       .from('learning_paths')
       .update({
-        is_private: isPrivate,
+        visibility,
         updated_at: new Date().toISOString()
       })
       .eq('id', pathId)
       .eq('owner_id', userId)
       .eq('is_catalog', false)
-    if (error) {
-      console.error('setOwnedLearningPathPrivate failed', error)
-      return false
+    if (withVisibility.error) {
+      const { error } = await supabase
+        .from('learning_paths')
+        .update({
+          is_private: isPrivate,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', pathId)
+        .eq('owner_id', userId)
+        .eq('is_catalog', false)
+      if (error) {
+        console.error('setOwnedLearningPathVisibility failed', error)
+        return false
+      }
     }
   }
   if (slug) {
@@ -474,12 +638,24 @@ export async function setOwnedLearningPathPrivate(
     writeStoredLearningPaths(
       stored.map((item) =>
         item.slug === slug || item.id === pathId
-          ? { ...item, isPrivate }
+          ? { ...item, isPrivate, visibility }
           : item
       )
     )
   }
   return true
+}
+
+export async function setOwnedLearningPathPrivate(
+  pathId: string,
+  isPrivate: boolean,
+  slug?: string
+): Promise<boolean> {
+  return setOwnedLearningPathVisibility(
+    pathId,
+    isPrivate ? 'private' : 'public',
+    slug
+  )
 }
 
 export async function loadLearningPathUserState(
@@ -563,6 +739,21 @@ export async function findPublicResearchLearningPathSlugByGoal(
 
   const supabase = getSupabaseClient()
   if (supabase) {
+    const bySlugVis = await supabase
+      .from('learning_paths')
+      .select('slug')
+      .eq('visibility', 'public')
+      .eq('kind', 'research')
+      .eq('slug', slug)
+      .maybeSingle()
+    if (
+      !bySlugVis.error &&
+      bySlugVis.data &&
+      typeof bySlugVis.data.slug === 'string'
+    ) {
+      return bySlugVis.data.slug
+    }
+
     const bySlug = await supabase
       .from('learning_paths')
       .select('slug')
@@ -572,6 +763,23 @@ export async function findPublicResearchLearningPathSlugByGoal(
       .maybeSingle()
     if (!bySlug.error && bySlug.data && typeof bySlug.data.slug === 'string') {
       return bySlug.data.slug
+    }
+
+    const withKindVis = await supabase
+      .from('learning_paths')
+      .select('slug')
+      .eq('visibility', 'public')
+      .eq('kind', 'research')
+      .eq('goal', trimmed)
+      .order('updated_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (
+      !withKindVis.error &&
+      withKindVis.data &&
+      typeof withKindVis.data.slug === 'string'
+    ) {
+      return withKindVis.data.slug
     }
 
     const withKind = await supabase
@@ -612,6 +820,7 @@ export async function findPublicResearchLearningPathSlugByGoal(
     (item) =>
       parseLearningPathKind(item.kind) === 'research' &&
       item.isPrivate === false &&
+      (item.visibility ? item.visibility === 'public' : true) &&
       (item.slug === slug || item.goal.trim() === trimmed)
   )
   return local?.slug ?? null

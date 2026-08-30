@@ -86,12 +86,22 @@ module.exports = withBundleAnalyzer({
       },
       {
         source: '/curated-course/:courseSlug',
-        destination: '/course-learning-path/:courseSlug',
+        destination: '/learning-path/:courseSlug',
         permanent: true
       },
       {
         source: '/curated-course/:courseSlug/videos',
-        destination: '/course-learning-path/:courseSlug',
+        destination: '/learning-path/:courseSlug',
+        permanent: true
+      },
+      {
+        source: '/course-learning-path/:courseSlug',
+        destination: '/learning-path/:courseSlug',
+        permanent: true
+      },
+      {
+        source: '/course-learning-path/:courseSlug/videos',
+        destination: '/learning-path/:courseSlug',
         permanent: true
       },
       {

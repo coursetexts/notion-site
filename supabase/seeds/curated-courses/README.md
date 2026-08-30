@@ -1,6 +1,8 @@
 # Curated course SQL seeds
 
-Run these in the Supabase SQL Editor after schema migrations (`013` / `014`, or `000_complete_schema.sql`).
+Run these in the Supabase SQL Editor after schema migrations (`013` / `014` / `025`, or `000_complete_schema.sql`).
+
+Loaded syllabi appear at `/learning-path/{slug}` (legacy `/course-learning-path/{slug}` and `/curated-course/{slug}` redirect). After `027`, copy trees into `learning_paths` with `yarn migrate:course-learning-paths`.
 
 | File | Purpose |
 |------|---------|

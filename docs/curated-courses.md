@@ -1,6 +1,13 @@
-# Curated courses
+# Course learning paths (curated syllabi)
 
-Curated courses are **not** Notion pages. They are syllabus + video libraries linked from the Degrees page.
+Degree syllabi with a topic tree and sequenced resources. They live on the same `learning_paths` table as community/research paths (`kind = course`) and share `/learning-path/{slug}`. See [learning-paths.md](./learning-paths.md) for the graph UI.
+
+**Official Notion courses stay on `/course/{pageId}`.** They are not `kind = course` rows. A later pass will migrate those professor courses onto `learning_paths` too so every Coursetexts course is a learning path. That work is not started — see [architecture — Future](./architecture.md#future-official-notion-courses).
+
+**Canonical route:** `/learning-path/{slug}`  
+**Legacy:** `/course-learning-path/{slug}` and `/curated-course/{slug}` redirect here. `/course-videos?slug=` client-redirects to the same URL.
+
+Migrated rows: `kind = 'course'`, `visibility = 'public'`, `is_catalog = true`, `owner_id = null`. `curated_*` tables are **not dropped**; they remain a backup. The app reads/writes `learning_paths.data` after cutover.
 
 ## End-to-end flow
 
@@ -16,64 +23,65 @@ flowchart TB
 
   subgraph Slug["Slug"]
     Name["course.name"]
-    Fn["getCuratedCourseSlug()"]
-    Path["/curated-course/{slug}"]
+    Fn["getCourseLearningPathHref()"]
+    Path["/learning-path/{slug}"]
     Name --> Fn --> Path
   end
 
-  UI -->|"See curated course videos"| Path
+  UI -->|"open syllabus"| Path
 
   subgraph Data["Content"]
     JSON["data/curated-courses/{slug}.json<br/>source of truth"]
     Catalog["supabase/seeds/curated-courses/<br/>seed_curated_course_video_courses.sql<br/>slug + title only"]
-    Full["supabase/seeds/curated-courses/<br/>seed_*_curated_course.sql<br/>or yarn seed:curated-courses"]
+    Full["yarn seed:curated-courses<br/>then yarn migrate:course-learning-paths"]
   end
 
   subgraph DB["Supabase"]
-    CVC["curated_courses"]
-    Nodes["curated_course_nodes"]
-    Vids["curated_course_videos"]
-    Res["curated_course_resources"]
-    Notes["curated_course_notes"]
+    LP["learning_paths<br/>kind=course"]
+    State["learning_path_user_state"]
+    Pins["learning_path_pins"]
+    Backup["curated_* backup"]
   end
 
-  Catalog --> CVC
+  Catalog --> Backup
   JSON --> Full
-  Full --> CVC
-  Full --> Nodes
-  Full --> Vids
-  Full --> Res
+  Full --> Backup
+  Full --> LP
 
-  Path --> Page["CuratedCourse component"]
-  Page --> Load["curated-course-db"]
-  Load --> CVC
-  Load --> Nodes
-  Load --> Vids
-  Load --> Res
-  Load -.->|"fallback if empty<br/>fluid-mechanics only"| JSON
+  Path --> Page["LearningPath shell"]
+  Page --> Load["course-learning-path-db"]
+  Load --> LP
+  Load --> State
+  Load --> Pins
+  Load -.->|"fallback if empty"| Backup
+  Load -.->|"fallback if empty"| JSON
 ```
 
-## Tables
+## Tables (live vs backup)
 
-| Table | Purpose |
-|-------|---------|
-| `curated_courses` | One row per slug |
-| `curated_course_nodes` | Syllabus tree |
-| `curated_course_videos` | Videos on a node (also published to community `resources`) |
-| `curated_course_links` | Tests and slides on a node (also published to community `resources`) |
-| `curated_course_resources` | Textbooks / websites / channels |
-| `curated_course_notes` | Per-user notes |
-| `curated_course_pins` | Per-user pinned courses (header dropdown) |
+| Table | Role after unify |
+|-------|------------------|
+| `learning_paths` (`kind=course`) | Identity + syllabus JSON (`data`) |
+| `learning_path_user_state` | Per-user TipTap notes keyed by node id |
+| `learning_path_pins` | Per-user pinned syllabi (header dropdown) |
+| `curated_courses` / `curated_course_*` | Backup + migrate/seed source; app does not write these after cutover |
 
-Videos, tests, and slides added on a syllabus node also appear in the `/community` feed. They are auto-labeled with a plain-text **concept tree** such as `Linear Algebra --> Linear Systems and Elimination --> Gaussian elimination and row reduction --> Echelon and reduced echelon forms`.
+Resources added on a syllabus node also appear in `/community-resources`. They are labeled with a plain-text **concept tree** such as `Linear Algebra --> Linear Systems and Elimination --> Gaussian elimination and row reduction`.
+
+Comments/bookmarks on the page keep `courses.notion_page_id = 'course-learning-path:{slug}'` so existing threads stay attached.
+
+Empty catalog placeholders (~1800 slug+title rows) become `kind=course` catalog paths with empty `topics` and `is_filled = false`. Home does **not** list them. The **courses** view of `/all-courses` (default; not `?view=learning-paths`) lists official Notion courses, then (below a divider) filled syllabi: every `data/curated-courses/{slug}.json` that has a topic tree, plus any extra `learning_paths` rows with `is_filled`. A brown promo in that syllabus grid links to `/degrees`. A trigger keeps `is_filled` in sync when `data` changes. Existing DBs: apply `029_learning_path_is_filled.sql`. The learning-paths title toggle does **not** list these syllabi (see [learning-paths.md](./learning-paths.md)). The profile Learning tab **Courses** filter uses the same split: official Notion bookmarks plus `kind=course` paths.
+
+Subject icons on those cards reuse the degrees-page SVG set (`DegreeCardIcon`). Area is **not** a Supabase column: optional JSON `"area": "mathematics"` (a degree id) overrides slug-based keywords. The Coursetexts book mark stays on the card; the colored icon is the subject.
 
 ## Left-nav page sections
 
 ```mermaid
 flowchart TB
   Nav["Left panel"]
-  Rec["Recommended Syllabus<br/>→ overview page"]
+  Rec["Recommended Syllabus<br/>→ overview"]
   Tree["Topic / subtopic / concept tree"]
+  MM["Mental map"]
   Res["Resources"]
   TB["Core Textbooks"]
   Web["Websites and Open Resources"]
@@ -81,15 +89,19 @@ flowchart TB
 
   Nav --> Rec
   Nav --> Tree
+  Nav --> MM
   Nav --> Res
   Res --> TB
   Res --> Web
   Res --> YT
 ```
 
-- **Recommended Syllabus** — selectable section (course blurb + topic list); does **not** wrap the tree.  
-- **Topic tree** — loads curated videos in the main panel.  
-- **Resources** — from `curated_course_resources` (or degrees JSON fallback).
+- **Recommended Syllabus** — course blurb + topic list; does **not** wrap the tree.
+- **Topic tree** — loads that node’s sequenced resources from `learning_paths.data`.
+- **Mental map** — graph of the syllabus (`data.mentalMapNodeId` holds map-only clips).
+- **Resources** — from `data.resources` (or degrees JSON fallback).
+
+Notes open from the content bar (side panel), not an in-page dropdown.
 
 ## JSON shape
 
@@ -100,17 +112,17 @@ See [`data/curated-courses/README.md`](../data/curated-courses/README.md).
   slug, title, description
   resources[]     kind: textbook | website | youtube
   topics[]        type: topic → subtopic → concept
-    videos[]      ordered curated clips per node
+    videos[]      ordered clips (seeded into videos, then node_resources)
 ```
 
 ## Filling another course
 
-1. Add `data/curated-courses/{slug}.json` (copy Fluid Mechanics).  
-2. Ensure catalog row exists (`curated_courses` — degrees catalog seed covers most names).  
-3. Load tree:
-   - **SQL Editor:** `supabase/seeds/curated-courses/seed_fluid_mechanics_curated_course.sql` is the template (self-contained: rename/fix/create + data), or  
-   - `yarn seed:curated-courses -- --slug={slug}` (needs service role).  
-4. Open `/curated-course/{slug}`.
+1. Add `data/curated-courses/{slug}.json` (copy Fluid Mechanics).
+2. Ensure a catalog row exists in `curated_courses` (degrees catalog seed covers most names).
+3. Load the tree:
+   - **SQL Editor:** `supabase/seeds/curated-courses/seed_fluid_mechanics_curated_course.sql` is the template, or
+   - `yarn seed:curated-courses -- --slug={slug}` (writes `curated_*` then upserts `learning_paths`).
+4. Open `/learning-path/{slug}`.
 
 ## SQL seeds folder
 
@@ -301,7 +313,7 @@ All curated-course SQL seeds live in [`supabase/seeds/curated-courses/`](../supa
 |-------|----------|
 | JSON SoT | `data/curated-courses/fluid-mechanics.json` |
 | SQL seed | `supabase/seeds/curated-courses/seed_fluid_mechanics_curated_course.sql` |
-| Route | `/curated-course/fluid-mechanics` |
-| Degrees link | Engineering degrees → Fluid Mechanics → “See curated course videos” |
+| Route | `/learning-path/fluid-mechanics` |
+| Degrees link | Engineering degrees → Fluid Mechanics |
 
 The Fluid Mechanics SQL seed is **self-contained**: it renames legacy `course_video_*` tables if needed, repairs bad names like `curated_courses_course`, ensures schema, then upserts the full tree.

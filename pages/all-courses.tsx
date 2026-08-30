@@ -1,16 +1,92 @@
 import * as React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import type { GetStaticProps } from 'next'
 
 import { AllCoursesNewGridSection } from '@/components/AllCoursesNewGridSection'
-import { AllCoursesNewTopSection } from '@/components/AllCoursesNewTopSection'
+import {
+  AllCoursesNewTopSection,
+  type AllCoursesView
+} from '@/components/AllCoursesNewTopSection'
 import type { HomeCourseCard } from '@/components/HomeCoursesSection'
+import { listCourseLearningPaths } from '@/lib/course-learning-path-db'
+import { getCourseLearningPathSubject } from '@/lib/course-learning-path-subject'
+import { listNonCourseLearningPaths } from '@/lib/learning-path-db'
+import { learningPathKicker } from '@/lib/learning-path-kind-ui'
 import type { NotionHomeDebugPayload } from './index'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 
+function coursePathToCard(path: {
+  id: string
+  slug: string
+  title: string
+  description: string
+  area?: string | null
+}): HomeCourseCard {
+  const subject = getCourseLearningPathSubject(
+    path.slug,
+    path.title,
+    path.area
+  )
+  return {
+    id: path.id,
+    href: `/learning-path/${path.slug}`,
+    meta: `Coursetexts · ${subject.label}`,
+    title: path.title,
+    description: path.description,
+    subjectDegreeId: subject.degreeId
+  }
+}
+
+function mergeCoursePathCards(
+  base: HomeCourseCard[],
+  extra: HomeCourseCard[]
+): HomeCourseCard[] {
+  if (extra.length === 0) return base
+  const byHref = new Map(base.map((card) => [card.href, card]))
+  for (const card of extra) {
+    const prior = byHref.get(card.href)
+    byHref.set(card.href, {
+      ...prior,
+      ...card,
+      subjectDegreeId: card.subjectDegreeId || prior?.subjectDegreeId
+    })
+  }
+  return [...byHref.values()].sort((a, b) =>
+    a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
+  )
+}
+
+function nonCoursePathToCard(path: {
+  id: string
+  slug: string
+  title: string
+  description: string
+  kind: 'community' | 'research' | 'course'
+}): HomeCourseCard {
+  return {
+    id: path.id,
+    href: `/learning-path/${path.slug}`,
+    meta: `Coursetexts · ${learningPathKicker(path.kind)}`,
+    title: path.title,
+    description: path.description,
+    communityMark: true
+  }
+}
+
+function parseViewParam(
+  value: string | string[] | undefined
+): AllCoursesView {
+  const raw = Array.isArray(value) ? value[0] || '' : value || ''
+  if (raw === 'learning-paths' || raw === 'paths') return 'learning-paths'
+  return 'courses'
+}
+
 type AllCoursesPageProps = {
   courses: HomeCourseCard[]
+  coursePaths?: HomeCourseCard[]
+  learningPaths?: HomeCourseCard[]
   notionHomeDebug?: NotionHomeDebugPayload | null
 }
 
@@ -59,15 +135,79 @@ function sameSubjects(a: HomeSubject[], b: HomeSubject[]): boolean {
   return a.every((subject, index) => subject === b[index])
 }
 
-export { getStaticProps } from './index'
+export const getStaticProps: GetStaticProps<AllCoursesPageProps> = async (
+  ctx
+) => {
+  const { getStaticProps: getHomeStaticProps } = await import('./index')
+  const home = await getHomeStaticProps(ctx)
+  if (!('props' in home)) return home
+
+  const { listFilledCuratedCourseCatalog } = await import(
+    '@/lib/curated-course-catalog'
+  )
+  const coursePaths = listFilledCuratedCourseCatalog().map(coursePathToCard)
+  const { SEEDED_LEARNING_PATHS } = await import('@/lib/learning-path-seed')
+  const learningPaths = SEEDED_LEARNING_PATHS.map((path) =>
+    nonCoursePathToCard({
+      id: path.id || path.slug,
+      slug: path.slug,
+      title: path.title,
+      description: path.summary || path.goal,
+      kind: 'community'
+    })
+  )
+
+  return {
+    ...home,
+    props: {
+      ...home.props,
+      coursePaths,
+      learningPaths
+    }
+  }
+}
 
 export default function AllCoursesPage({
   courses,
+  coursePaths: initialCoursePaths = [],
+  learningPaths: initialLearningPaths = [],
   notionHomeDebug
 }: AllCoursesPageProps) {
   const router = useRouter()
   const [query, setQuery] = React.useState('')
+  const [view, setView] = React.useState<AllCoursesView>('courses')
   const [activeSubjects, setActiveSubjects] = React.useState<HomeSubject[]>([])
+  const [coursePaths, setCoursePaths] =
+    React.useState<HomeCourseCard[]>(initialCoursePaths)
+  const [coursePathsReady, setCoursePathsReady] = React.useState(
+    initialCoursePaths.length > 0
+  )
+  const [learningPaths, setLearningPaths] = React.useState<HomeCourseCard[]>(
+    initialLearningPaths
+  )
+  const [learningPathsReady, setLearningPathsReady] = React.useState(
+    initialLearningPaths.length > 0
+  )
+
+  React.useEffect(() => {
+    let cancelled = false
+    void listCourseLearningPaths()
+      .then((rows) => {
+        if (cancelled) return
+        setCoursePaths((current) =>
+          mergeCoursePathCards(current, rows.map(coursePathToCard))
+        )
+      })
+      .catch(() => {
+        /* Keep the JSON catalog from getStaticProps. */
+      })
+      .finally(() => {
+        if (!cancelled) setCoursePathsReady(true)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   React.useEffect(() => {
     if (notionHomeDebug && typeof window !== 'undefined') {
@@ -80,6 +220,27 @@ export default function AllCoursesPage({
   }, [notionHomeDebug])
 
   React.useEffect(() => {
+    if (view !== 'learning-paths') return
+    let cancelled = false
+    void listNonCourseLearningPaths()
+      .then((rows) => {
+        if (cancelled) return
+        setLearningPaths((current) =>
+          mergeCoursePathCards(current, rows.map(nonCoursePathToCard))
+        )
+      })
+      .catch(() => {
+        /* Keep seeded cards from getStaticProps. */
+      })
+      .finally(() => {
+        if (!cancelled) setLearningPathsReady(true)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [view])
+
+  React.useEffect(() => {
     if (!router.isReady) return
 
     const urlQuery = Array.isArray(router.query.q)
@@ -88,15 +249,21 @@ export default function AllCoursesPage({
     const urlSubjects = parseSubjectsParam(
       router.query.subjects as string | string[] | undefined
     )
+    const urlView = parseViewParam(router.query.view)
 
     setQuery((current) => (current === urlQuery ? current : urlQuery))
     setActiveSubjects((current) =>
       sameSubjects(current, urlSubjects) ? current : urlSubjects
     )
-  }, [router.isReady, router.query.q, router.query.subjects])
+    setView((current) => (current === urlView ? current : urlView))
+  }, [router.isReady, router.query.q, router.query.subjects, router.query.view])
 
   const updateUrl = React.useCallback(
-    (nextQuery: string, nextSubjects: HomeSubject[]) => {
+    (
+      nextQuery: string,
+      nextSubjects: HomeSubject[],
+      nextView: AllCoursesView
+    ) => {
       if (!router.isReady) return
 
       const trimmedQuery = nextQuery.trim()
@@ -108,6 +275,10 @@ export default function AllCoursesPage({
 
       if (nextSubjects.length > 0) {
         nextRouteQuery.subjects = nextSubjects.join(',')
+      }
+
+      if (nextView === 'learning-paths') {
+        nextRouteQuery.view = 'learning-paths'
       }
 
       void router.replace(
@@ -123,8 +294,16 @@ export default function AllCoursesPage({
   )
 
   const handleSearchSubmit = React.useCallback(() => {
-    updateUrl(query, activeSubjects)
-  }, [activeSubjects, query, updateUrl])
+    updateUrl(query, activeSubjects, view)
+  }, [activeSubjects, query, updateUrl, view])
+
+  const handleViewChange = React.useCallback(
+    (nextView: AllCoursesView) => {
+      setView(nextView)
+      updateUrl(query, activeSubjects, nextView)
+    },
+    [activeSubjects, query, updateUrl]
+  )
 
   const handleSubjectToggle = React.useCallback(
     (subject: string) => {
@@ -137,11 +316,11 @@ export default function AllCoursesPage({
           : [...current, typedSubject]
         const ordered = SUBJECT_OPTIONS.filter((item) => next.includes(item))
 
-        updateUrl(query, ordered)
+        updateUrl(query, ordered, view)
         return ordered
       })
     },
-    [query, updateUrl]
+    [query, updateUrl, view]
   )
 
   const filteredCourses = React.useMemo(() => {
@@ -178,6 +357,26 @@ export default function AllCoursesPage({
     return subset
   }, [activeSubjects, courses, query])
 
+  const filteredCoursePaths = React.useMemo(() => {
+    const needle = query.trim().toLowerCase()
+    if (!needle) return coursePaths
+    return coursePaths.filter((course) => {
+      const searchable =
+        `${course.title} ${course.description} ${course.meta}`.toLowerCase()
+      return searchable.includes(needle)
+    })
+  }, [coursePaths, query])
+
+  const filteredLearningPaths = React.useMemo(() => {
+    const needle = query.trim().toLowerCase()
+    if (!needle) return learningPaths
+    return learningPaths.filter((path) => {
+      const searchable =
+        `${path.title} ${path.description} ${path.meta}`.toLowerCase()
+      return searchable.includes(needle)
+    })
+  }, [learningPaths, query])
+
   return (
     <>
       <Head>
@@ -211,15 +410,32 @@ export default function AllCoursesPage({
         }
       >
         <HomeHeader />
-        <section style={{ flex: 1 }} aria-label='All courses workspace'>
+        <section
+          style={{ flex: 1 }}
+          aria-label={
+            view === 'learning-paths'
+              ? 'All learning paths workspace'
+              : 'All courses workspace'
+          }
+        >
           <AllCoursesNewTopSection
             query={query}
+            view={view}
             activeSubjects={activeSubjects}
             onQueryChange={setQuery}
+            onViewChange={handleViewChange}
             onSubjectToggle={handleSubjectToggle}
             onSearchSubmit={handleSearchSubmit}
           />
-          <AllCoursesNewGridSection courses={filteredCourses} />
+          <AllCoursesNewGridSection
+            view={view}
+            courses={filteredCourses}
+            coursePaths={filteredCoursePaths}
+            coursePathsReady={coursePathsReady}
+            coursePathQuery={query.trim()}
+            learningPaths={filteredLearningPaths}
+            learningPathsReady={learningPathsReady}
+          />
         </section>
         <HomeFooterSection />
       </main>

@@ -24,6 +24,7 @@ import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
 import { HomeLearnSection } from '@/components/HomeLearnSection'
+import { HomeWhatIsLearningPathSection } from '@/components/HomeWhatIsLearningPathSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { notionPageHref } from '@/lib/map-page-url'
@@ -1352,7 +1353,7 @@ export default function HomePage({
           crossOrigin=''
         />
         <link
-          href='https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap'
+          href='https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@400;600&display=swap'
           rel='stylesheet'
         />
       </Head>
@@ -1377,6 +1378,7 @@ export default function HomePage({
           onSubjectToggle={handleSubjectToggle}
         />
         <HomeDotGrid courses={courses} />
+        <HomeWhatIsLearningPathSection />
         <HomeCoursesSection
           courses={filteredCourses}
           activeSubjects={activeSubjects}

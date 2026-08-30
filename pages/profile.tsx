@@ -79,6 +79,13 @@ import {
   listOwnedLearningPaths
 } from '@/lib/learning-path-db'
 import {
+  learningPathCommitmentKey,
+  listMyLearningPathCommitments,
+  officialCourseCommitmentKey,
+  setLearningPathCommitted
+} from '@/lib/learning-path-commitments-db'
+import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
+import {
   type ReplyNotification,
   getReplyNotifications,
   markReplyNotificationsRead
@@ -131,13 +138,12 @@ function formatDate(iso: string): string {
 
 type LearningPathItem = StoredLearningPath
 
-type PathsCoursesFilter = 'course' | 'research' | 'official' | 'community'
+type PathsCoursesFilter = 'courses' | 'learning-paths' | 'committed'
 
 const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
-  { id: 'course', label: 'Course Learning Path' },
-  { id: 'research', label: 'Research Learning Path' },
-  { id: 'community', label: 'Community Learning Path' },
-  { id: 'official', label: 'Official Courses' }
+  { id: 'courses', label: 'Courses' },
+  { id: 'learning-paths', label: 'Learning paths' },
+  { id: 'committed', label: 'Committed' }
 ]
 
 function nextPathsCoursesFilter(
@@ -254,6 +260,10 @@ export default function ProfilePage() {
   const [unsaveOfficialBusyId, setUnsaveOfficialBusyId] = useState<
     string | null
   >(null)
+  const [committedKeys, setCommittedKeys] = useState<Set<string>>(
+    () => new Set()
+  )
+  const [commitBusyKey, setCommitBusyKey] = useState<string | null>(null)
   const [courseLearningPaths, setCourseLearningPaths] = useState<
     PinnedCourseLearningPath[]
   >([])
@@ -516,58 +526,135 @@ export default function ProfilePage() {
   }, [comments, annotations])
 
   const communityLearningPaths = useMemo(
-    () => learningPaths.filter((item) => item.kind !== 'research'),
+    () =>
+      learningPaths.filter(
+        (item) => item.kind !== 'research' && !isCourseKindPath(item.kind)
+      ),
     [learningPaths]
   )
   const researchLearningPaths = useMemo(
     () => learningPaths.filter((item) => item.kind === 'research'),
     [learningPaths]
   )
+  const savedCourseKindPaths = useMemo(() => {
+    const pinnedSlugs = new Set(courseLearningPaths.map((item) => item.slug))
+    return learningPaths.filter(
+      (item) => isCourseKindPath(item.kind) && !pinnedSlugs.has(item.slug)
+    )
+  }, [learningPaths, courseLearningPaths])
   const learningQuery = normalizeSearch(learningSearch)
+  const coursesOnly = pathsCoursesFilter === 'courses'
+  const learningPathsOnly = pathsCoursesFilter === 'learning-paths'
+  const committedOnly = pathsCoursesFilter === 'committed'
   const filteredCourseLearningPaths = useMemo(
     () =>
-      courseLearningPaths.filter((item) =>
-        matchesSearch(item.title, learningQuery)
-      ),
-    [courseLearningPaths, learningQuery]
+      courseLearningPaths.filter((item) => {
+        if (!matchesSearch(item.title, learningQuery)) return false
+        if (
+          committedOnly &&
+          !committedKeys.has(learningPathCommitmentKey(item.slug))
+        ) {
+          return false
+        }
+        return true
+      }),
+    [courseLearningPaths, learningQuery, committedOnly, committedKeys]
+  )
+  const filteredSavedCourseKindPaths = useMemo(
+    () =>
+      savedCourseKindPaths.filter((item) => {
+        if (!storedPathMatchesQuery(item, learningQuery)) return false
+        if (
+          committedOnly &&
+          !committedKeys.has(learningPathCommitmentKey(item.slug))
+        ) {
+          return false
+        }
+        return true
+      }),
+    [savedCourseKindPaths, learningQuery, committedOnly, committedKeys]
   )
   const filteredResearchLearningPaths = useMemo(
     () =>
-      researchLearningPaths.filter((item) =>
-        storedPathMatchesQuery(item, learningQuery)
-      ),
-    [researchLearningPaths, learningQuery]
+      researchLearningPaths.filter((item) => {
+        if (!storedPathMatchesQuery(item, learningQuery)) return false
+        if (
+          committedOnly &&
+          !committedKeys.has(learningPathCommitmentKey(item.slug))
+        ) {
+          return false
+        }
+        return true
+      }),
+    [researchLearningPaths, learningQuery, committedOnly, committedKeys]
   )
   const filteredCommunityLearningPaths = useMemo(
     () =>
-      communityLearningPaths.filter((item) =>
-        storedPathMatchesQuery(item, learningQuery)
-      ),
-    [communityLearningPaths, learningQuery]
+      communityLearningPaths.filter((item) => {
+        if (!storedPathMatchesQuery(item, learningQuery)) return false
+        if (
+          committedOnly &&
+          !committedKeys.has(learningPathCommitmentKey(item.slug))
+        ) {
+          return false
+        }
+        return true
+      }),
+    [communityLearningPaths, learningQuery, committedOnly, committedKeys]
   )
   const filteredOfficialCourses = useMemo(
     () =>
-      officialCourses.filter(({ course }) =>
-        matchesSearch(course.name, learningQuery)
-      ),
-    [officialCourses, learningQuery]
+      officialCourses.filter(({ course }) => {
+        if (!matchesSearch(course.name, learningQuery)) return false
+        if (
+          committedOnly &&
+          !committedKeys.has(
+            officialCourseCommitmentKey(course.notion_page_id)
+          )
+        ) {
+          return false
+        }
+        return true
+      }),
+    [officialCourses, learningQuery, committedOnly, committedKeys]
   )
   const showAllLearningCards = pathsCoursesFilter == null
-  const showCourseCards =
-    showAllLearningCards || pathsCoursesFilter === 'course'
-  const showResearchCards =
-    showAllLearningCards || pathsCoursesFilter === 'research'
-  const showCommunityCards =
-    showAllLearningCards || pathsCoursesFilter === 'community'
-  const showOfficialCards =
-    showAllLearningCards || pathsCoursesFilter === 'official'
-  const hasAnyLearningCards =
+  const showCoursesGroup =
+    showAllLearningCards || coursesOnly || committedOnly
+  const showLearningPathsGroup =
+    showAllLearningCards || learningPathsOnly || committedOnly
+  const showCourseCards = showCoursesGroup
+  const showSavedCourseKindCards = showCoursesGroup
+  const showOfficialCards = showCoursesGroup
+  const showResearchCards = showLearningPathsGroup
+  const showCommunityCards = showLearningPathsGroup
+  const hasAnyCourseCards =
     courseLearningPaths.length > 0 ||
-    researchLearningPaths.length > 0 ||
-    communityLearningPaths.length > 0 ||
+    savedCourseKindPaths.length > 0 ||
     officialCourses.length > 0
+  const hasAnyNonCourseLearningCards =
+    researchLearningPaths.length > 0 || communityLearningPaths.length > 0
+  const hasAnyCommittedCards =
+    courseLearningPaths.some((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    ) ||
+    savedCourseKindPaths.some((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    ) ||
+    researchLearningPaths.some((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    ) ||
+    communityLearningPaths.some((item) =>
+      committedKeys.has(learningPathCommitmentKey(item.slug))
+    ) ||
+    officialCourses.some(({ course }) =>
+      committedKeys.has(officialCourseCommitmentKey(course.notion_page_id))
+    )
+  const hasAnyLearningCards =
+    hasAnyCourseCards || hasAnyNonCourseLearningCards
   const hasVisibleLearningCards =
     (showCourseCards && filteredCourseLearningPaths.length > 0) ||
+    (showSavedCourseKindCards && filteredSavedCourseKindPaths.length > 0) ||
     (showResearchCards && filteredResearchLearningPaths.length > 0) ||
     (showCommunityCards && filteredCommunityLearningPaths.length > 0) ||
     (showOfficialCards && filteredOfficialCourses.length > 0)
@@ -610,6 +697,16 @@ export default function ProfilePage() {
       if (cancelled) return
       setLearningPaths(merged)
     })()
+    return () => {
+      cancelled = true
+    }
+  }, [effectiveUser?.id])
+
+  useEffect(() => {
+    let cancelled = false
+    void listMyLearningPathCommitments().then((keys) => {
+      if (!cancelled) setCommittedKeys(new Set(keys))
+    })
     return () => {
       cancelled = true
     }
@@ -837,6 +934,29 @@ export default function ProfilePage() {
       window.alert('Could not unsave this course.')
     }
     setUnsaveOfficialBusyId(null)
+  }
+
+  const handleToggleCommit = async (targetKey: string) => {
+    if (commitBusyKey) return
+    const next = !committedKeys.has(targetKey)
+    setCommitBusyKey(targetKey)
+    setCommittedKeys((prev) => {
+      const keys = new Set(prev)
+      if (next) keys.add(targetKey)
+      else keys.delete(targetKey)
+      return keys
+    })
+    const ok = await setLearningPathCommitted(targetKey, next)
+    if (!ok) {
+      setCommittedKeys((prev) => {
+        const keys = new Set(prev)
+        if (next) keys.delete(targetKey)
+        else keys.add(targetKey)
+        return keys
+      })
+      window.alert('Could not update committed.')
+    }
+    setCommitBusyKey(null)
   }
 
   const openLinkAction = (type: LinkActionType, link: UserLinkWithTag) => {
@@ -1364,7 +1484,9 @@ export default function ProfilePage() {
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
                     <div className={styles.tabPanelHeaderRow}>
-                      <h2 className={styles.mainSerifTitle}>Bookmarks</h2>
+                      <h2 className={styles.mainSerifTitle}>
+                        Bookmarked Resources
+                      </h2>
                       <div className={styles.primaryTabsRightActions}>
                         <button
                           type='button'
@@ -2360,8 +2482,7 @@ export default function ProfilePage() {
                       <h2 className={styles.mainSerifTitle}>
                         Learning
                       </h2>
-                      {showAllLearningCards ||
-                      pathsCoursesFilter === 'community' ? (
+                      {showAllLearningCards || learningPathsOnly ? (
                         <button
                           type='button'
                           className={styles.notebooksCreateBtn}
@@ -2409,29 +2530,22 @@ export default function ProfilePage() {
                     </div>
                     </div>
                     {!showAllLearningCards &&
-                    pathsCoursesFilter === 'course' &&
-                    courseLearningPaths.length === 0 ? (
+                    coursesOnly &&
+                    !hasAnyCourseCards ? (
                       <p className={styles.placeholder}>
-                        No course learning paths pinned yet.
+                        No courses yet. Official courses and course learning
+                        paths show up here.
                       </p>
                     ) : !showAllLearningCards &&
-                      pathsCoursesFilter === 'research' &&
-                      researchLearningPaths.length === 0 ? (
+                      learningPathsOnly &&
+                      !hasAnyNonCourseLearningCards ? (
                       <p className={styles.placeholder}>
-                        No research learning paths yet. Start one from a
-                        question in the Field Atlas.
+                        No learning paths yet.
                       </p>
-                    ) : !showAllLearningCards &&
-                      pathsCoursesFilter === 'community' &&
-                      communityLearningPaths.length === 0 ? (
+                    ) : committedOnly && !hasAnyCommittedCards ? (
                       <p className={styles.placeholder}>
-                        No community learning paths yet.
-                      </p>
-                    ) : !showAllLearningCards &&
-                      pathsCoursesFilter === 'official' &&
-                      officialCourses.length === 0 ? (
-                      <p className={styles.placeholder}>
-                        No official courses saved yet.
+                        No committed learning paths yet. Mark a path as
+                        Committed to get reminders when you want to finish it.
                       </p>
                     ) : showAllLearningCards && !hasAnyLearningCards ? (
                       <p className={styles.placeholder}>
@@ -2447,7 +2561,7 @@ export default function ProfilePage() {
                           ? filteredCourseLearningPaths.map((item) => (
                               <li key={item.pinId}>
                                 <ProfileLearningPathCard
-                                  href={`/course-learning-path/${item.slug}`}
+                                  href={`/learning-path/${item.slug}`}
                                   title={item.title}
                                   onUnsave={() =>
                                     void handleUnpinCourseLearningPath(
@@ -2456,6 +2570,43 @@ export default function ProfilePage() {
                                   }
                                   unsaveBusy={
                                     unpinCourseBusyId === item.courseId
+                                  }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  onToggleCommit={() =>
+                                    void handleToggleCommit(
+                                      learningPathCommitmentKey(item.slug)
+                                    )
+                                  }
+                                  commitBusy={
+                                    commitBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
+                        {showSavedCourseKindCards
+                          ? filteredSavedCourseKindPaths.map((item) => (
+                              <li key={item.id}>
+                                <ProfileCommunityLearningPathCard
+                                  item={item}
+                                  onUnsave={handleUnsaveLearningPath}
+                                  unsaveBusy={
+                                    unsavePathBusyId === item.savedLinkId
+                                  }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  onToggleCommit={(slug) =>
+                                    void handleToggleCommit(
+                                      learningPathCommitmentKey(slug)
+                                    )
+                                  }
+                                  commitBusy={
+                                    commitBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
                                   }
                                 />
                               </li>
@@ -2470,6 +2621,18 @@ export default function ProfilePage() {
                                   unsaveBusy={
                                     unsavePathBusyId === item.savedLinkId
                                   }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  onToggleCommit={(slug) =>
+                                    void handleToggleCommit(
+                                      learningPathCommitmentKey(slug)
+                                    )
+                                  }
+                                  commitBusy={
+                                    commitBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
+                                  }
                                 />
                               </li>
                             ))
@@ -2482,6 +2645,18 @@ export default function ProfilePage() {
                                   onUnsave={handleUnsaveLearningPath}
                                   unsaveBusy={
                                     unsavePathBusyId === item.savedLinkId
+                                  }
+                                  committed={committedKeys.has(
+                                    learningPathCommitmentKey(item.slug)
+                                  )}
+                                  onToggleCommit={(slug) =>
+                                    void handleToggleCommit(
+                                      learningPathCommitmentKey(slug)
+                                    )
+                                  }
+                                  commitBusy={
+                                    commitBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
                                   }
                                 />
                               </li>
@@ -2504,6 +2679,24 @@ export default function ProfilePage() {
                                   unsaveBusy={
                                     unsaveOfficialBusyId ===
                                     course.notion_page_id
+                                  }
+                                  committed={committedKeys.has(
+                                    officialCourseCommitmentKey(
+                                      course.notion_page_id
+                                    )
+                                  )}
+                                  onToggleCommit={() =>
+                                    void handleToggleCommit(
+                                      officialCourseCommitmentKey(
+                                        course.notion_page_id
+                                      )
+                                    )
+                                  }
+                                  commitBusy={
+                                    commitBusyKey ===
+                                    officialCourseCommitmentKey(
+                                      course.notion_page_id
+                                    )
                                   }
                                 />
                               </li>

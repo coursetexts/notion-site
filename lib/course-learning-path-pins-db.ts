@@ -33,7 +33,14 @@ export function subscribeCourseLearningPathPins(listener: () => void): () => voi
 }
 
 function pathForSlug(slug: string): string {
-  return `/course-learning-path/${slug}`
+  return `/learning-path/${slug}`
+}
+
+type PathJoin = { id: string; slug: string; title: string; kind?: string }
+
+function unwrapPath(value: PathJoin | PathJoin[] | null | undefined): PathJoin | null {
+  if (!value) return null
+  return Array.isArray(value) ? value[0] ?? null : value
 }
 
 /** Current user's pinned course learning paths, newest first. */
@@ -46,6 +53,32 @@ export async function listMyCourseLearningPathPins(): Promise<
     data: { user }
   } = await supabase.auth.getUser()
   if (!user) return []
+
+  const fromPaths = await supabase
+    .from('learning_path_pins')
+    .select('id, path_id, learning_paths!path_id ( id, slug, title, kind )')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+
+  if (!fromPaths.error && Array.isArray(fromPaths.data)) {
+    const rows: PinnedCourseLearningPath[] = []
+    for (const row of fromPaths.data as Array<{
+      id: string
+      path_id: string
+      learning_paths: PathJoin | PathJoin[] | null
+    }>) {
+      const path = unwrapPath(row.learning_paths)
+      if (!path?.slug || !path.title) continue
+      if (path.kind && path.kind !== 'course') continue
+      rows.push({
+        pinId: row.id,
+        courseId: path.id,
+        slug: path.slug,
+        title: path.title
+      })
+    }
+    return rows
+  }
 
   const { data, error } = await supabase
     .from('curated_course_pins')
@@ -96,6 +129,14 @@ export async function isCourseLearningPathPinned(
   } = await supabase.auth.getUser()
   if (!user) return false
 
+  const fromPaths = await supabase
+    .from('learning_path_pins')
+    .select('id')
+    .eq('user_id', user.id)
+    .eq('path_id', courseId)
+    .maybeSingle()
+  if (!fromPaths.error) return Boolean(fromPaths.data)
+
   const { data, error } = await supabase
     .from('curated_course_pins')
     .select('id')
@@ -120,6 +161,14 @@ export async function setCourseLearningPathPinned(
   if (!user) return null
 
   if (pinned) {
+    const insertPath = await supabase.from('learning_path_pins').insert({
+      user_id: user.id,
+      path_id: courseId
+    })
+    if (!insertPath.error || insertPath.error.code === '23505') {
+      notifyCourseLearningPathPinsChanged()
+      return pinned
+    }
     const { error } = await supabase.from('curated_course_pins').insert({
       user_id: user.id,
       course_id: courseId
@@ -129,14 +178,21 @@ export async function setCourseLearningPathPinned(
       return null
     }
   } else {
-    const { error } = await supabase
-      .from('curated_course_pins')
+    const deletePath = await supabase
+      .from('learning_path_pins')
       .delete()
       .eq('user_id', user.id)
-      .eq('course_id', courseId)
-    if (error) {
-      console.error('setCourseLearningPathPinned delete failed', error)
-      return null
+      .eq('path_id', courseId)
+    if (deletePath.error) {
+      const { error } = await supabase
+        .from('curated_course_pins')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('course_id', courseId)
+      if (error) {
+        console.error('setCourseLearningPathPinned delete failed', error)
+        return null
+      }
     }
   }
 

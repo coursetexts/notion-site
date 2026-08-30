@@ -73,6 +73,7 @@
 .list {
   margin: 0;
   padding: 4px 0;
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -92,7 +93,14 @@
   color: #25272b;
   text-align: left;
   cursor: pointer;
+  white-space: nowrap;
   transition: background-color 140ms ease, color 140ms ease;
+}
+
+.option span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .option:hover,

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import styles from './HomeCoursesSection.module.css'
 import { HomeLearningPathsSection } from './HomeLearningPathsSection'
 import { HomeSocialLearningSection } from './HomeSocialLearningSection'
+import { DegreeCardIcon } from './degreeCardIcons'
 import { getSchoolLogoForMeta } from './courseSchoolLogo'
 
 export type HomeCourseCard = {
@@ -13,12 +14,41 @@ export type HomeCourseCard = {
   title: string
   description: string
   subjects?: string[]
+  /** Degrees-page icon key (`DegreeCardIcon`) for course learning path cards. */
+  subjectDegreeId?: string
+  /** Graph mark used for community / research learning path cards. */
+  communityMark?: boolean
+}
+
+function CommunityPathMark() {
+  return (
+    <span className={styles.communityMark} aria-hidden>
+      <svg
+        width='12'
+        height='12'
+        viewBox='0 0 12 12'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <circle cx='3' cy='8' r='1.15' fill='currentColor' />
+        <circle cx='6' cy='3.2' r='1.15' fill='currentColor' />
+        <circle cx='9' cy='7.4' r='1.15' fill='currentColor' />
+        <path
+          d='M3.6 7.15L5.4 4.05M6.55 4.05L8.45 6.45'
+          stroke='currentColor'
+          strokeWidth='0.9'
+          strokeLinecap='round'
+        />
+      </svg>
+    </span>
+  )
 }
 
 type CourseCardGridProps = {
   cards: HomeCourseCard[]
   emptyMessage: string
   descriptionWidth?: React.CSSProperties['width']
+  startSlot?: React.ReactNode
 }
 
 function HomeCourseCardItem({
@@ -39,12 +69,29 @@ function HomeCourseCardItem({
       <a className={styles.courseCardLink}>
         <article className={styles.courseCard}>
           <div className={styles.courseMetaRow}>
-            <span className={styles.schoolLogoWrap}>
-              <img
-                src={schoolLogo.src}
-                alt={schoolLogo.alt}
-                className={styles.schoolLogo}
-              />
+            <span
+              className={
+                course.subjectDegreeId ? styles.logoStack : undefined
+              }
+            >
+              <span className={styles.schoolLogoWrap}>
+                {course.communityMark ? (
+                  <CommunityPathMark />
+                ) : (
+                  <img
+                    src={schoolLogo.src}
+                    alt={schoolLogo.alt}
+                    className={styles.schoolLogo}
+                  />
+                )}
+              </span>
+              {course.subjectDegreeId ? (
+                <DegreeCardIcon
+                  degreeId={course.subjectDegreeId}
+                  className={styles.subjectIcon}
+                  iconClassName={styles.subjectIconSvg}
+                />
+              ) : null}
             </span>
             <span className={styles.courseMetaText}>{course.meta}</span>
           </div>
@@ -70,14 +117,16 @@ function HomeCourseCardItem({
 export function CourseCardGrid({
   cards,
   emptyMessage,
-  descriptionWidth
+  descriptionWidth,
+  startSlot
 }: CourseCardGridProps) {
-  if (cards.length === 0) {
+  if (cards.length === 0 && !startSlot) {
     return <p className={styles.emptyState}>{emptyMessage}</p>
   }
 
   return (
     <div className={styles.courseGrid}>
+      {startSlot}
       {cards.map((course) => (
         <HomeCourseCardItem
           key={course.id}
@@ -190,11 +239,11 @@ export function HomeCoursesSection({
         </div>
       </div>
 
-      <HomeSocialLearningSection />
-
       <div className={`${styles.content} ${styles.contentBottom}`}>
         <HomeLearningPathsSection />
       </div>
+
+      <HomeSocialLearningSection />
     </section>
   )
 }

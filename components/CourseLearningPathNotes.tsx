@@ -12,9 +12,6 @@ import {
 } from '@/lib/notebook-editor-default'
 import { registerPersistBeforeSignOut } from '@/lib/persist-before-sign-out'
 
-import styles from './CourseLearningPath.module.css'
-import { CourseLearningPathSectionToggle } from './CourseLearningPathLinkSection'
-
 const SAVE_MS = 700
 
 export interface CourseLearningPathNotesProps {
@@ -23,7 +20,6 @@ export interface CourseLearningPathNotesProps {
   topicTitle?: string
   signedIn?: boolean
   onSignIn?: () => void
-  variant?: 'section' | 'panel'
 }
 
 function noteStorageKey(courseSlug: string, nodeId: string) {
@@ -31,25 +27,21 @@ function noteStorageKey(courseSlug: string, nodeId: string) {
 }
 
 /**
- * Collapsible rich-text notes for a syllabus topic (bold, lists, images, LaTeX, links).
+ * Rich-text notes for a syllabus topic (bold, lists, images, LaTeX, links).
+ * Used in the path content notes panel opened from the top nav.
  */
 export function CourseLearningPathNotes({
   nodeId,
   courseSlug,
   topicTitle,
   signedIn = false,
-  onSignIn,
-  variant = 'section'
+  onSignIn
 }: CourseLearningPathNotesProps) {
-  const [open, setOpen] = React.useState(false)
   const currentKey = noteStorageKey(courseSlug, nodeId)
   const [loadedKey, setLoadedKey] = React.useState('')
   const [initialContent, setInitialContent] = React.useState<NotebookDocJson>(
     NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
   )
-  const [saveState, setSaveState] = React.useState<
-    'idle' | 'saving' | 'saved' | 'error'
-  >('idle')
 
   const saveTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const latestJson = React.useRef<NotebookDocJson>(
@@ -67,7 +59,6 @@ export function CourseLearningPathNotes({
     const id = nodeId
     const slug = courseSlug
     setLoadedKey('')
-    setSaveState('idle')
     latestJson.current = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
     ;(async () => {
       const content = await getCourseLearningPathNote(id, slug)
@@ -98,9 +89,7 @@ export function CourseLearningPathNotes({
     const slug = courseSlugRef.current
     const doc = latestJson.current
     if (!id) return
-    setSaveState('saving')
-    const ok = await saveCourseLearningPathNote(id, slug, doc)
-    setSaveState(ok ? 'saved' : 'error')
+    await saveCourseLearningPathNote(id, slug, doc)
   }, [])
 
   const scheduleSave = React.useCallback((json: NotebookDocJson) => {
@@ -109,14 +98,10 @@ export function CourseLearningPathNotes({
     const slug = courseSlugRef.current
     latestJson.current = json
     cacheCourseLearningPathNote(slug, id, json)
-    setSaveState('idle')
     if (saveTimer.current) clearTimeout(saveTimer.current)
     saveTimer.current = setTimeout(() => {
       saveTimer.current = null
-      setSaveState('saving')
-      void saveCourseLearningPathNote(id, slug, json).then((ok) => {
-        setSaveState(ok ? 'saved' : 'error')
-      })
+      void saveCourseLearningPathNote(id, slug, json)
     }, SAVE_MS)
   }, [])
 
@@ -124,21 +109,14 @@ export function CourseLearningPathNotes({
     return registerPersistBeforeSignOut(() => flushSave())
   }, [flushSave])
 
-  const saveLabel =
-    signedIn && saveState === 'saving'
-      ? 'Saving…'
-      : signedIn && saveState === 'saved'
-      ? 'Saved'
-      : signedIn && saveState === 'error'
-      ? 'Save failed'
-      : ''
-
   const showEditor = loadedKey === currentKey && Boolean(nodeId)
-  const ariaLabel = topicTitle
-    ? `Notes for ${topicTitle}`
-    : 'Topic notes'
+  const ariaLabel = topicTitle ? `Notes for ${topicTitle}` : 'Topic notes'
 
-  const editor = showEditor ? (
+  if (!showEditor) {
+    return <p>Loading notes…</p>
+  }
+
+  return (
     <SiteNotesEditor
       key={loadedKey}
       value={initialContent}
@@ -147,88 +125,10 @@ export function CourseLearningPathNotes({
       ariaLabel={ariaLabel}
       expandTitle='Your Notes'
       expandTopic={topicTitle}
-      fillHeight={variant === 'panel'}
+      fillHeight
       locked={!signedIn}
       lockedMessage='Sign in to add your notes'
       onUnlock={onSignIn}
     />
-  ) : (
-    <p className={variant === 'panel' ? undefined : styles.notesLoading}>
-      Loading notes…
-    </p>
-  )
-
-  if (variant === 'panel') {
-    return editor
-  }
-
-  return (
-    <section aria-labelledby='course-learning-path-notes-heading'>
-      <div
-        className={`${styles.videosHeader}${
-          open ? '' : ` ${styles.videosHeaderCollapsed}`
-        }`}
-      >
-        <h2
-          id='course-learning-path-notes-heading'
-          className={styles.videosTitle}
-        >
-          <span style={{ color: '#0089c4', display: 'inline-flex' }}>
-            <NoteIcon />
-          </span>
-          Your Notes
-        </h2>
-        <div className={styles.videosHeaderActions}>
-          {open && saveLabel ? (
-            <span className={styles.videosMeta} aria-live='polite'>
-              {saveLabel}
-            </span>
-          ) : null}
-          <CourseLearningPathSectionToggle
-            open={open}
-            label='Your Notes'
-            onToggle={() => setOpen((value) => !value)}
-          />
-        </div>
-      </div>
-
-      {open ? (
-        <div id='course-learning-path-notes-body' className={styles.notesBody}>
-          {editor}
-        </div>
-      ) : null}
-    </section>
-  )
-}
-
-function NoteIcon() {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='20'
-      height='20'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M3.5 2.5h7l2 2V13.5h-9V2.5Z'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M10.5 2.5V4.5H12.5'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M5.5 7H10.5M5.5 9.5H10.5M5.5 12H8.5'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinecap='round'
-      />
-    </svg>
   )
 }

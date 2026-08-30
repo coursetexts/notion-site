@@ -128,7 +128,7 @@ export function HomeHero({
         </h1>
 
         <p className={styles.description}>
-          High-quality learning materials and structure to help you <br />actually finish what you set out to learn.
+          Learning paths with high-quality materials and structure to help you <br />actually finish what you set out to learn.
         </p>
 
         <form
@@ -196,7 +196,8 @@ export function HomeHero({
           </div>
         </div>
         <p className={styles.nonProfitNote}>
-           Coursetexts is a 501(c)(3) nonprofit building open tools for self-directed learning.
+           {/* Coursetexts is a 501(c)(3) nonprofit building open tools for self-directed learning. */}
+           Coursetexts is a registered 501© <br/>non-profit doing open research on self-learning, <br/>educational interfaces, and scaling open source software.
         </p>
       </div>
     </section>

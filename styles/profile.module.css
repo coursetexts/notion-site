@@ -2656,13 +2656,24 @@ a.learningPathCard:hover {
   color: #000;
 }
 
-.learningPathPrivateTag,
-.learningPathPublicTag {
+.learningPathCardTags {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.learningPathTag {
   flex-shrink: 0;
   font-size: 0.75rem;
   line-height: 1.2;
   padding: 0.15rem 0.35rem;
   border-radius: 4px;
+}
+
+.learningPathCreatedTag {
+  color: #4a3c2a;
+  background: #f3eee6;
 }
 
 .learningPathPrivateTag {
@@ -2675,20 +2686,131 @@ a.learningPathCard:hover {
   background: #e8f5e9;
 }
 
-.learningPathSaveBtn {
-  color: #0089c4;
+.learningPathSavedTag {
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.15rem 0.35rem;
+  border: none;
+  border-radius: 4px;
+  color: #5c5c5c;
+  background: #e4e4e4;
 }
 
-.learningPathSaveBtn:hover:not(:disabled) {
-  color: #0077b0;
-}
-
-.learningPathSaveIcon {
-  display: inline-flex;
+button.learningPathSavedTag {
+  display: inline-grid;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  color: #0089c4;
-  flex-shrink: 0;
+  cursor: pointer;
+}
+
+button.learningPathSavedTag:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.learningPathSavedTag:hover:not(:disabled),
+button.learningPathSavedTag:focus-visible:not(:disabled) {
+  color: #3d3d3d;
+  background: #d8d8d8;
+}
+
+button.learningPathSavedTag:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.15);
+  outline-offset: 1px;
+}
+
+.learningPathSavedLabel,
+.learningPathUnsaveLabel {
+  grid-area: 1 / 1;
+}
+
+.learningPathUnsaveLabel {
+  visibility: hidden;
+}
+
+button.learningPathSavedTag:hover:not(:disabled) .learningPathSavedLabel,
+button.learningPathSavedTag:focus-visible:not(:disabled)
+  .learningPathSavedLabel {
+  visibility: hidden;
+}
+
+button.learningPathSavedTag:hover:not(:disabled) .learningPathUnsaveLabel,
+button.learningPathSavedTag:focus-visible:not(:disabled)
+  .learningPathUnsaveLabel {
+  visibility: visible;
+}
+
+.learningPathCommitTag,
+.learningPathCommittedTag {
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.learningPathCommitTag {
+  color: #5c5c5c;
+  background: transparent;
+  border: 1px solid #d0d0d0;
+  cursor: pointer;
+}
+
+.learningPathCommitTag:hover:not(:disabled),
+.learningPathCommitTag:focus-visible:not(:disabled) {
+  color: #3d3d3d;
+  background: #f3f3f3;
+}
+
+.learningPathCommittedTag {
+  color: #6b4f12;
+  background: #f7ecd0;
+  border: 1px solid transparent;
+}
+
+button.learningPathCommittedTag {
+  display: inline-grid;
+  justify-items: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+button.learningPathCommitTag:disabled,
+button.learningPathCommittedTag:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.learningPathCommitTag:focus-visible,
+button.learningPathCommittedTag:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.15);
+  outline-offset: 1px;
+}
+
+button.learningPathCommittedTag:hover:not(:disabled),
+button.learningPathCommittedTag:focus-visible:not(:disabled) {
+  color: #4a3608;
+  background: #f0e0b8;
+}
+
+.learningPathCommittedLabel,
+.learningPathUncommitLabel {
+  grid-area: 1 / 1;
+}
+
+.learningPathUncommitLabel {
+  visibility: hidden;
+}
+
+button.learningPathCommittedTag:hover:not(:disabled) .learningPathCommittedLabel,
+button.learningPathCommittedTag:focus-visible:not(:disabled)
+  .learningPathCommittedLabel {
+  visibility: hidden;
+}
+
+button.learningPathCommittedTag:hover:not(:disabled) .learningPathUncommitLabel,
+button.learningPathCommittedTag:focus-visible:not(:disabled)
+  .learningPathUncommitLabel {
+  visibility: visible;
 }

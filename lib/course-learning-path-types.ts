@@ -83,8 +83,34 @@ export interface CourseLearningPathData {
   mentalMapVideos?: CourseLearningPathVideo[]
   /** Unified sequenced resources on the Mental Map page. */
   mentalMapTopicResources?: CourseLearningPathTopicResource[]
+  /** Hidden node id for Mental Map resources stored in learning_paths.data. */
+  mentalMapNodeId?: string
   /** ISO timestamp from curated_courses.created_at when loaded from the DB. */
   createdAt?: string
+}
+
+export function isCourseLearningPathPayload(
+  value: unknown
+): value is CourseLearningPathData {
+  if (!value || typeof value !== 'object') return false
+  const row = value as { slug?: unknown; topics?: unknown }
+  return typeof row.slug === 'string' && Array.isArray(row.topics)
+}
+
+/**
+ * True when the syllabus JSON has at least one topic with children.
+ * Title-only catalog stubs (`topics: []` or topics without a tree) are false.
+ * Matches `learning_paths.is_filled` (migration 029).
+ */
+export function courseLearningPathIsFilled(data: unknown): boolean {
+  if (!data || typeof data !== 'object') return false
+  const topics = (data as { topics?: unknown }).topics
+  if (!Array.isArray(topics) || topics.length === 0) return false
+  return topics.some((topic) => {
+    if (!topic || typeof topic !== 'object') return false
+    const children = (topic as { children?: unknown }).children
+    return Array.isArray(children) && children.length > 0
+  })
 }
 
 /** Flatten the tree into a lookup map by node id, with parent chain for breadcrumbs. */

@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-/** Legacy path: /course-learning-path/[courseSlug]/videos → /course-learning-path/[courseSlug] */
+import { DEFAULT_COURSE_LEARNING_PATH_SLUG } from '@/lib/course-learning-path-seed'
+
+/** Legacy path: /course-learning-path/[courseSlug]/videos → /learning-path/[slug] */
 export default function CourseLearningPathLegacyVideosRedirect() {
   const router = useRouter()
 
@@ -9,9 +11,9 @@ export default function CourseLearningPathLegacyVideosRedirect() {
     if (!router.isReady) return
     const slug = router.query.courseSlug
     if (typeof slug === 'string' && slug.trim()) {
-      void router.replace(`/course-learning-path/${slug.trim()}`)
+      void router.replace(`/learning-path/${slug.trim()}`)
     } else {
-      void router.replace('/course-videos')
+      void router.replace(`/learning-path/${DEFAULT_COURSE_LEARNING_PATH_SLUG}`)
     }
   }, [router])
 

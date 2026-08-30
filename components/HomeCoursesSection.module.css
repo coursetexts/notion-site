@@ -12,12 +12,12 @@
     calc(100vw - (var(--home-side, 58px) * 2))
   );
   height: 100%;
-  padding: 128px 0;
+  padding: 128px 0 36px;
   margin: 0 auto;
 }
 
 .contentBottom {
-  padding: 80px 0 128px;
+  padding: 28px 0 96px;
 }
 
 .heading {
@@ -182,6 +182,19 @@
   box-sizing: border-box;
 }
 
+.communityMark {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0089c4;
+}
+
+.communityMark svg {
+  display: block;
+}
+
 .schoolLogo {
   width: 100%;
   height: 100%;
@@ -189,6 +202,41 @@
   display: block;
   border-radius: 50%;
   image-rendering: -webkit-optimize-contrast;
+}
+
+.logoStack {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoStack .schoolLogoWrap {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+}
+
+.subjectIcon {
+  display: inline-flex;
+  width: 21px;
+  height: 21px;
+  margin-left: -7px;
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 999px;
+  color: #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.subjectIconSvg {
+  display: block;
+  width: 12px;
+  height: 12px;
+  color: inherit;
 }
 
 .courseMetaText {
@@ -377,11 +425,11 @@
 
 @media (max-width: 640px) {
   .content {
-    padding: 96px 0;
+    padding: 96px 0 24px;
   }
 
   .contentBottom {
-    padding: 56px 0 96px;
+    padding: 20px 0 72px;
   }
 
   .heading {

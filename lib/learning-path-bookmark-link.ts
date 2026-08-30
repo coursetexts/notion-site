@@ -1,6 +1,7 @@
 /**
  * Recognize profile “Saved links” rows that point at /learning-path/:slug
  * so we can bookmark someone else’s community learning path.
+ * Resource bookmarks use the resource href, or the same path with node/resource query.
  */
 
 import {
@@ -21,22 +22,38 @@ export function learningPathAbsoluteUrl(slug: string, origin: string): string {
   return `${base}${learningPathHref(slug)}`
 }
 
+export function normalizeUserLinkUrl(url: string): string {
+  return url.trim()
+}
+
+function parseUserLinkParts(url: string): {
+  pathname: string
+  searchParams: URLSearchParams
+} | null {
+  const trimmed = url.trim()
+  if (!trimmed) return null
+  try {
+    const parsed = /^https?:\/\//i.test(trimmed)
+      ? new URL(trimmed)
+      : new URL(trimmed, 'https://placeholder.local')
+    return { pathname: parsed.pathname, searchParams: parsed.searchParams }
+  } catch {
+    return null
+  }
+}
+
 /** Returns the path slug if URL path is /learning-path/<slug> (absolute or relative). */
 export function parseLearningPathSlugFromUserLinkUrl(
   url: string
 ): string | null {
-  const trimmed = url.trim()
-  if (!trimmed) return null
-  try {
-    const pathOnly = trimmed.startsWith('http')
-      ? new URL(trimmed).pathname
-      : trimmed.split('?')[0] ?? trimmed
-    const m = pathOnly.replace(/\/$/, '').match(LEARNING_PATH_PATH_RE)
-    if (!m?.[1]) return null
-    return decodeURIComponent(m[1])
-  } catch {
+  const parts = parseUserLinkParts(url)
+  if (!parts) return null
+  if (parts.searchParams.has('resource') || parts.searchParams.has('node')) {
     return null
   }
+  const m = parts.pathname.replace(/\/$/, '').match(LEARNING_PATH_PATH_RE)
+  if (!m?.[1]) return null
+  return decodeURIComponent(m[1])
 }
 
 export function userLinkMatchesLearningPathSlug(
@@ -44,6 +61,29 @@ export function userLinkMatchesLearningPathSlug(
   slug: string
 ): boolean {
   return parseLearningPathSlugFromUserLinkUrl(url) === slug
+}
+
+/** URL stored on user_links for a resource bookmark. */
+export function learningPathResourceBookmarkUrl(args: {
+  slug: string
+  nodeId: string
+  resourceId: string
+  href?: string
+  origin: string
+}): string {
+  const href = args.href?.trim()
+  if (href) {
+    if (/^https?:\/\//i.test(href)) return href
+    if (href.startsWith('/')) {
+      const origin = args.origin.replace(/\/$/, '')
+      return origin ? `${origin}${href}` : href
+    }
+    return href
+  }
+  const query = `node=${encodeURIComponent(args.nodeId)}&resource=${encodeURIComponent(args.resourceId)}`
+  const origin = args.origin.replace(/\/$/, '')
+  if (!origin) return `${learningPathHref(args.slug)}?${query}`
+  return `${origin}${learningPathHref(args.slug)}?${query}`
 }
 
 /** Learning paths saved via the profile bookmark / Save button. */

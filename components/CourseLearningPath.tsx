@@ -41,9 +41,11 @@ import {
   moveTopicResourceToPlacement,
   nextCourseLearningPathNode
 } from '@/lib/course-learning-path-types'
+import { learningPathKicker, learningPathOutlineHint } from '@/lib/learning-path-kind-ui'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
 
 import styles from './CourseLearningPath.module.css'
+import pathStyles from './LearningPath.module.css'
 import { CourseActivity } from './CourseActivity'
 import { CourseHero, formatHeroPublishedDate } from './CourseHero'
 import { CourseLearningPathHeroActions } from './CourseLearningPathHeroActions'
@@ -53,6 +55,7 @@ import { CourseLearningPathResources } from './CourseLearningPathResources'
 import { CourseLearningPathSyllabusNav } from './CourseLearningPathSyllabusNav'
 import { CourseLearningPathSyllabusOverview } from './CourseLearningPathSyllabusOverview'
 import { CourseLearningPathTopicContent } from './CourseLearningPathTopicContent'
+import { LearningPathOutlinePanel } from './LearningPathOutlinePanel'
 import { PathContentActivity } from './PathContentActivity'
 import { PathGraphCanvas } from './PathGraphCanvas'
 
@@ -61,6 +64,8 @@ export interface CourseLearningPathProps {
   slug?: string
   /** Optional preloaded course (skips fetch). */
   course?: CourseLearningPathData
+  /** Hero kicker above the title. */
+  kicker?: string
 }
 
 function withCurriculumResources(
@@ -128,11 +133,12 @@ function courseDescriptionHtml(description: string) {
 
 /**
  * Syllabus navigator + curated video library for a course.
- * Loads from Supabase `curated_*` tables; uses local seed when empty.
+ * Loads from learning_paths (kind = course); uses local seed when empty.
  */
 export function CourseLearningPath({
   slug = DEFAULT_COURSE_LEARNING_PATH_SLUG,
-  course: courseProp
+  course: courseProp,
+  kicker = learningPathKicker('course')
 }: CourseLearningPathProps) {
   const auth = useAuthOptional()
   const [course, setCourse] = React.useState<CourseLearningPathData | null>(() =>
@@ -148,6 +154,7 @@ export function CourseLearningPath({
     COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
   )
   const [navView, setNavView] = React.useState<'list' | 'graph'>('list')
+  const [outlineSearch, setOutlineSearch] = React.useState('')
   const [expanded, setExpanded] = React.useState<Set<string>>(() => new Set())
   const [exploredIds, setExploredIds] = React.useState<Set<string>>(
     () => new Set()
@@ -304,6 +311,7 @@ export function CourseLearningPath({
     courseIdentityRef.current = key
     setSelectedId(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
     setNavView('list')
+    setOutlineSearch('')
     setExpanded(new Set())
   }, [course, slug])
 
@@ -387,7 +395,7 @@ export function CourseLearningPath({
     if (isMentalMapVideoNodeId(input.nodeId)) {
       const current = course.mentalMapTopicResources ?? []
       if (course.dbBacked) {
-        const mapNodeId = await ensureMentalMapNodeId(course.id)
+        const mapNodeId = await ensureMentalMapNodeId(course.id, course.slug)
         if (!mapNodeId) return false
         const result = await addCourseLearningPathTopicResource(
           {
@@ -504,7 +512,7 @@ export function CourseLearningPath({
     if (isMentalMapVideoNodeId(input.nodeId)) {
       const current = course.mentalMapTopicResources ?? []
       if (course.dbBacked) {
-        const mapNodeId = await ensureMentalMapNodeId(course.id)
+        const mapNodeId = await ensureMentalMapNodeId(course.id, course.slug)
         if (!mapNodeId) return false
         const result = await updateCourseLearningPathTopicResource(
           {
@@ -595,10 +603,10 @@ export function CourseLearningPath({
       : selectedId
 
   return (
-    <div className={styles.root}>
-      <div className={styles.hero}>
+    <div className={pathStyles.section}>
+      <div className={pathStyles.hero}>
         <CourseHero
-          courseCode='Course Learning Path'
+          courseCode={kicker}
           title={course.title}
           instructors={[{ name: 'By Coursetexts' }]}
           descriptionHtml={courseDescriptionHtml(course.description)}
@@ -629,77 +637,58 @@ export function CourseLearningPath({
 
       <div
         ref={bodyRef}
-        className={`${styles.body}${
-          navView === 'graph' ? ` ${styles.bodyGraph}` : ''
-        }${graphSplitDragging ? ` ${styles.bodyGraphDragging}` : ''}`}
+        className={`${pathStyles.body}${
+          navView === 'graph' ? ` ${pathStyles.bodyGraph}` : ''
+        }${graphSplitDragging ? ` ${pathStyles.bodyGraphDragging}` : ''}`}
       >
+        <div
+          className={`${pathStyles.layout} ${
+            navView === 'graph' ? pathStyles.layoutGraph : pathStyles.layoutList
+          }`}
+        >
         <aside
           className={`${styles.aside}${
             mobileNavOpen ? ` ${styles.asideOpen}` : ''
           }${navView === 'graph' ? ` ${styles.asideGraph}` : ''}`}
         >
-          <div className={styles.asideInner}>
-            <div className={styles.asideToolbar}>
-              <div className={styles.asideToolbarCopy}>
-                <h2 className={styles.asideMapTitle}>
-                  {navView === 'list' ? 'The outline' : 'The map'}
-                </h2>
-                {navView === 'graph' ? (
-                  <span className={styles.asideMapHint}>
-                    Hover a topic to see its children · click a node to read it
-                  </span>
-                ) : null}
-              </div>
-              <div
-                className={styles.viewToggle}
-                role='group'
-                aria-label='Course view'
-              >
-                <button
-                  type='button'
-                  className={styles.viewToggleBtn}
-                  aria-pressed={navView === 'graph'}
-                  onClick={() => setNavView('graph')}
-                >
-                  Graph
-                </button>
-                <button
-                  type='button'
-                  className={styles.viewToggleBtn}
-                  aria-pressed={navView === 'list'}
-                  onClick={() => setNavView('list')}
-                >
-                  List
-                </button>
-              </div>
-            </div>
-            {navView === 'graph' ? (
-              <div className={styles.asideGraphStage}>
-                <PathGraphCanvas
-                  course={course}
-                  exploredIds={exploredIds}
-                  selectedId={graphSelectedId}
-                  onOpenNode={handleGraphSelect}
-                />
-              </div>
-            ) : (
-              <CourseLearningPathSyllabusNav
+        <LearningPathOutlinePanel
+          viewMode={navView}
+          onViewModeChange={setNavView}
+          search={outlineSearch}
+          onSearchChange={setOutlineSearch}
+          searchAriaLabel='Search in outline'
+          graphHint={learningPathOutlineHint('course')}
+          list={
+            <CourseLearningPathSyllabusNav
+              course={course}
+              selectedId={selectedId}
+              expanded={expanded}
+              exploredIds={exploredIds}
+              onSelect={handleSelect}
+              onToggle={handleToggle}
+              search={outlineSearch}
+              onSearchChange={setOutlineSearch}
+              hideSearch
+            />
+          }
+          graph={
+            <div className={pathStyles.mapStage}>
+              <PathGraphCanvas
                 course={course}
-                selectedId={selectedId}
-                expanded={expanded}
                 exploredIds={exploredIds}
-                onSelect={handleSelect}
-                onToggle={handleToggle}
+                selectedId={graphSelectedId}
+                onOpenNode={handleGraphSelect}
               />
-            )}
-          </div>
+            </div>
+          }
+        />
         </aside>
 
         {navView === 'graph' ? (
           <button
             type='button'
-            className={`${styles.splitHandle}${
-              graphSplitDragging ? ` ${styles.splitHandleActive}` : ''
+            className={`${pathStyles.splitHandle}${
+              graphSplitDragging ? ` ${pathStyles.splitHandleActive}` : ''
             }`}
             aria-label='Resize content panel'
             aria-orientation='vertical'
@@ -726,10 +715,8 @@ export function CourseLearningPath({
         )}
 
         <PathContentActivity
-          className={`${styles.main}${
-            navView === 'graph' ? ` ${styles.mainGraph}` : ''
-          }`}
-          contentClassName={styles.mainBody}
+          className={pathStyles.detail}
+          contentClassName={pathStyles.detailContent}
           contentRef={mainRef}
           style={
             navView === 'graph'
@@ -742,7 +729,7 @@ export function CourseLearningPath({
           }
           coursePageId={courseLearningPathActivityPageId(course.slug)}
           courseTitle={course.title}
-          courseUrl={`/course-learning-path/${course.slug}`}
+          courseUrl={`/learning-path/${course.slug}`}
           sectionId={selectedId}
           notesTopicTitle={
             showingSyllabus
@@ -755,7 +742,6 @@ export function CourseLearningPath({
           }
           notesEditor={
             <CourseLearningPathNotes
-              variant='panel'
               nodeId={selectedId}
               courseSlug={course.slug}
               topicTitle={
@@ -798,7 +784,6 @@ export function CourseLearningPath({
             <CourseLearningPathTopicContent
               entry={entry}
               onSelect={handleSelect}
-              courseSlug={course.slug}
               dbBacked={Boolean(course.dbBacked)}
               signedIn={Boolean(auth?.user)}
               onSignIn={() => auth?.signInWithGoogle()}
@@ -827,12 +812,13 @@ export function CourseLearningPath({
             </div>
           )}
         </PathContentActivity>
+        </div>
       </div>
-      <div className={styles.activitySection}>
+      <div className={pathStyles.activitySection}>
         <CourseActivity
           coursePageId={courseLearningPathActivityPageId(course.slug)}
           courseTitle={course.title}
-          courseUrl={`/course-learning-path/${course.slug}`}
+          courseUrl={`/learning-path/${course.slug}`}
           activityRefreshNonce={activityRefreshNonce}
         />
       </div>

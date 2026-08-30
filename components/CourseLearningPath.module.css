@@ -83,12 +83,14 @@
   z-index: 10;
   width: 300px;
   flex-shrink: 0;
-  border-right: 1px solid #e6e6e6;
+  border-right: none;
   background: #fff;
   position: sticky;
   top: 0;
   height: 100svh;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -710,30 +712,6 @@
   font-size: 13px;
   font-weight: 600;
   color: #000;
-}
-
-/* --- Topic notes --- */
-
-.notesBody {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.notesHint {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.4;
-  color: #6b7280;
-}
-
-.notesLoading {
-  margin: 0;
-  padding: 16px 12px;
-  font-size: 13px;
-  color: #6b7280;
-  border: 1px solid #e6e6e6;
-  background: #fff;
 }
 
 .whyBody {

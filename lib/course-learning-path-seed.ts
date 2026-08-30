@@ -1,5 +1,5 @@
 /**
- * Fallback / seed syllabus for /course-learning-path when Supabase is empty.
+ * Fallback / seed syllabus for /learning-path when Supabase is empty.
  * Canonical curated data lives in data/curated-courses/{slug}.json —
  * this re-exports Fluid Mechanics for the client-side fallback.
  */
@@ -109,5 +109,5 @@ export const fluidMechanicsSeedCourse: CourseLearningPathData = {
   dbBacked: false
 }
 
-/** Default slug used by /course-learning-path when none is specified. */
+/** Default slug used by /learning-path when none is specified. */
 export const DEFAULT_COURSE_LEARNING_PATH_SLUG = 'fluid-mechanics'

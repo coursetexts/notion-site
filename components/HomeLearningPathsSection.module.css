@@ -28,6 +28,7 @@
   justify-content: center;
   min-height: 44px;
   padding: 12px 22px;
+  border: none;
   border-radius: 6px;
   background: #1a1a1a;
   color: #ffffff;
@@ -37,6 +38,7 @@
   line-height: 1.2;
   letter-spacing: -0.0004em;
   text-decoration: none;
+  cursor: pointer;
   box-sizing: border-box;
   transition:
     background 200ms ease,

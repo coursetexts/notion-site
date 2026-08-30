@@ -45,6 +45,9 @@ interface SyllabusNavProps {
   exploredIds: Set<string>
   onSelect: (id: string) => void
   onToggle: (id: string) => void
+  search?: string
+  onSearchChange?: (value: string) => void
+  hideSearch?: boolean
 }
 
 export function CourseLearningPathSyllabusNav({
@@ -53,9 +56,17 @@ export function CourseLearningPathSyllabusNav({
   expanded,
   exploredIds,
   onSelect,
-  onToggle
+  onToggle,
+  search: searchProp,
+  onSearchChange,
+  hideSearch = false
 }: SyllabusNavProps) {
-  const [search, setSearch] = React.useState('')
+  const [searchState, setSearchState] = React.useState('')
+  const search = searchProp ?? searchState
+  function setSearch(value: string) {
+    onSearchChange?.(value)
+    if (searchProp === undefined) setSearchState(value)
+  }
   const query = search.trim().toLowerCase()
   const searching = query.length > 0
   const filteredTopics = React.useMemo(
@@ -89,6 +100,7 @@ export function CourseLearningPathSyllabusNav({
 
   return (
     <nav aria-label='Course syllabus' className={styles.nav}>
+      {hideSearch ? null : (
       <div className={styles.searchWrap}>
         <input
           type='search'
@@ -99,6 +111,7 @@ export function CourseLearningPathSyllabusNav({
           aria-label='Search in syllabus'
         />
       </div>
+      )}
       {noMatches ? (
         <p className={styles.navSyllabusEmpty}>No matching topics.</p>
       ) : null}

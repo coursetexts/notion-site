@@ -1,0 +1,168 @@
+.section {
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #f1edea;
+  scroll-margin-top: 32px;
+  overflow-x: clip;
+}
+
+.content {
+  width: min(
+    var(--home-content-max, 640px),
+    calc(100vw - (var(--home-side, 58px) * 2))
+  );
+  padding: 96px 0 88px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+  column-gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+}
+
+.copy {
+  min-width: 0;
+}
+
+.diagram {
+  position: relative;
+  min-width: 0;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.diagramPeek {
+  position: absolute;
+  z-index: 0;
+  top: 10%;
+  left: 42%;
+  width: 88%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 14px;
+  line-height: 0;
+  transform-origin: 18% 42%;
+  transition:
+    transform 560ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    z-index 0s 560ms;
+}
+
+.diagramPeek img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.diagramFront {
+  position: relative;
+  z-index: 1;
+  transform-origin: 30% 60%;
+  transition: transform 560ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.diagramPeek:hover,
+.diagramPeek:focus-visible {
+  z-index: 2;
+  transform: translate(-22%, -6%) rotate(-2deg) scale(1.06);
+  box-shadow: 0 22px 44px rgba(44, 26, 12, 0.16);
+  outline: none;
+  transition:
+    transform 560ms cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    z-index 0s;
+}
+
+.diagramPeek:hover ~ .diagramFront,
+.diagramPeek:focus-visible ~ .diagramFront {
+  transform: translate(-10%, 12%) rotate(3.5deg) scale(0.92);
+}
+
+.diagramPeek:focus-visible {
+  box-shadow:
+    0 22px 44px rgba(44, 26, 12, 0.16),
+    0 0 0 2px #ffffff,
+    0 0 0 4px #0089c4;
+}
+
+.heading {
+  margin: 0;
+  max-width: 720px;
+  color: #000000;
+  font-family: 'Guyot Press', serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.28;
+  letter-spacing: 0.0002em;
+}
+
+/* Global `span { font-family: sans }` would otherwise win over the h2 serif */
+.headingAccent {
+  font-family: 'Guyot Press', serif;
+  font-style: italic;
+  font-weight: inherit;
+}
+
+.body {
+  margin: 22px 0 0;
+  max-width: 640px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.0004em;
+  color: #37352f;
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+    align-items: start;
+  }
+
+  .diagramPeek {
+    top: 12%;
+    left: 36%;
+    width: 78%;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 72px 0 64px;
+  }
+
+  .heading {
+    font-size: 26px;
+  }
+
+  .body {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagramPeek,
+  .diagramFront,
+  .diagramPeek:hover,
+  .diagramPeek:focus-visible,
+  .diagramPeek:hover ~ .diagramFront,
+  .diagramPeek:focus-visible ~ .diagramFront {
+    transition: none;
+    transform: none;
+  }
+
+  .diagramPeek:hover,
+  .diagramPeek:focus-visible {
+    z-index: 2;
+  }
+}

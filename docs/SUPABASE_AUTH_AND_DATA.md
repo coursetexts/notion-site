@@ -1,11 +1,11 @@
 # Supabase Auth & Data Design
 
-**This file is outdated.** Schema and product surfaces have moved on (Notion `notion_page_id` PKs, community platform, curated courses, notebooks, etc.).
-
-→ Use the docs in this folder instead:
+**This file is a pointer.** Schema and product surfaces live in the docs below.
 
 - [Documentation index](./README.md)
 - [Architecture](./architecture.md)
 - [Database](./database.md)
 - [Auth](./auth.md)
-- [Curated courses](./curated-courses.md)
+- [Community learning paths](./learning-paths.md)
+- [Course learning paths](./curated-courses.md)
+- [Migrations](../supabase/migrations/README.md)

@@ -34,7 +34,7 @@ export function getCoursePageUrl(documentUrl?: string): string {
   return trimmed || COURSE_PAGE_PLACEHOLDER_URL
 }
 
-/** Kebab-case slug for course-learning-path video pages (shared across degrees by name). */
+/** Kebab-case slug for course syllabus pages (shared across degrees by name). */
 export function getCourseLearningPathSlug(courseName: string): string {
   return courseName
     .toLowerCase()
@@ -44,10 +44,12 @@ export function getCourseLearningPathSlug(courseName: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
-/** Path: /course-learning-path/{slug} */
+/** Path: /learning-path/{slug} */
 export function getCourseLearningPathHref(courseName: string): string {
   const slug = getCourseLearningPathSlug(courseName)
-  return slug ? `/course-learning-path/${slug}` : '/course-videos'
+  return slug
+    ? `/learning-path/${slug}`
+    : '/learning-path/fluid-mechanics'
 }
 
 export type UndergraduateDegree = {

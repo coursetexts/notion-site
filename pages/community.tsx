@@ -1,8 +1,12 @@
 import * as React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { CommunityLearning } from '@/components/CommunityLearning'
-import { CommunitySchema } from '@/components/CommunitySchema'
+import {
+  CommunitySchema,
+  ResourceVoteSchemaDiagram
+} from '@/components/CommunitySchema'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 
@@ -90,6 +94,57 @@ export default function CommunityPage() {
               </div>
               <CommunitySchema />
             </header>
+
+            <section
+              className={styles.collabSection}
+              aria-labelledby='collab-resources-heading'
+            >
+              <h2
+                id='collab-resources-heading'
+                className={styles.collabTitle}
+              >
+                Community <em>Collab Resources</em>
+              </h2>
+              <ResourceVoteSchemaDiagram />
+              <div className={styles.collabCopy}>
+                <div className={styles.collabLede}>
+                  <p>
+                    A learning path is only as good as the resources on each
+                    concept: the lecture that ordered the ideas, the paper that
+                    finally made something click, the problem set that proved you
+                    understood it. Those traces usually stay in someone&apos;s
+                    tabs.
+                  </p>
+                  <p>
+                    When people attach those materials to a path, and others vote
+                    on what actually helped, the list gets better than any one
+                    person would assemble alone. You get the right order to
+                    consume the resources, and you can be sure they are of good
+                    quality - because the community has already used them, ranked
+                    them, and kept the ones that worked. That is the work a great
+                    professor does for a course - choosing what to read, in what
+                    order, and why. Collaborative resources let a community do
+                    that for any goal.
+                  </p>
+                  <p>
+                    It is also a place to talk to other people about your goal.
+                    Each step has annotations, so you can ask a question, leave a
+                    note, or pick up a conversation right where someone else got
+                    stuck - on that concept, not in a scattered chat.
+                  </p>
+                  <p>
+                    <em>
+                      Sharing a resource is not a side feature. It is how
+                      Coursetexts compounds: every paper, video, or note that
+                      helped you can shorten the path for whoever comes next.
+                    </em>
+                  </p>
+                </div>
+                <Link href='/community-resources' legacyBehavior>
+                  <a className={styles.shareBtn}>Browse collab resources</a>
+                </Link>
+              </div>
+            </section>
           </div>
 
           <div className={styles.body}>

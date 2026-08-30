@@ -1,5 +1,6 @@
 /**
- * Seed catalog learning paths (Learn Spanish, transformers, rom-com, tree house).
+ * Seed catalog learning paths (Spanish, transformers, rom-com, tree house,
+ * host a dinner, play a song on guitar).
  *
  * Requires tables from supabase/migrations/020_learning_paths.sql.
  * Env:
@@ -59,6 +60,8 @@ async function seed() {
       data,
       is_catalog: true,
       is_private: false,
+      kind: 'community',
+      visibility: 'public',
       updated_at: new Date().toISOString()
     }
     const { data: existing, error: lookupError } = await admin

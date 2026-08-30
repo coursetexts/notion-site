@@ -166,6 +166,73 @@
   font-weight: 700;
 }
 
+.collabSection {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid #f1edea;
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 1fr);
+  column-gap: 36px;
+  row-gap: 20px;
+  align-items: start;
+}
+
+.collabTitle {
+  grid-column: 2;
+  justify-self: start;
+  margin: 0;
+  color: #000;
+  font-family: 'Guyot Press', serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 401;
+  line-height: 1.15;
+  letter-spacing: 0.0002em;
+  text-align: left;
+}
+
+.collabTitle em {
+  font-family: 'Guyot Press', serif;
+  font-style: italic;
+  font-weight: inherit;
+}
+
+.collabCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.collabLede {
+  margin: 0;
+  max-width: 520px;
+  color: #37352f;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.006px;
+}
+
+.collabLede p {
+  margin: 0;
+}
+
+.collabLede p + p {
+  margin-top: 14px;
+}
+
+.collabLede em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.collabSection .shareBtn {
+  margin-top: 20px;
+}
+
 /* Dark-brown square action, from the home hero search button */
 .shareBtn {
   display: inline-flex;
@@ -895,6 +962,15 @@
   }
 
   .lede {
+    grid-column: 1;
+  }
+
+  .collabSection {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .collabTitle {
     grid-column: 1;
   }
 

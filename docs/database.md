@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/new/`](../supabase/migrations/new/README.md) (prefer `000_complete_schema.sql`, which includes curated courses through `014`).
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`).
 
 ## Table groups
 
@@ -11,14 +11,18 @@ flowchart TB
     profiles["profiles"]
   end
 
-  subgraph NotionActivity["Notion course activity"]
+  subgraph NotionActivity["Notion + path activity"]
     courses["courses<br/>(PK notion_page_id)"]
     comments["comments"]
     bookmarks["bookmarks"]
     annotations["annotations"]
+    progress["course_section_progress"]
+    courseNotes["course_notes"]
+  end
+
+  subgraph Wall["Legacy Community Wall"]
     wall["course_resources<br/>+ votes/comments/bookmarks"]
     wall_sub["community_wall_subscriptions"]
-    progress["course_section_progress"]
   end
 
   subgraph Polymorphic
@@ -37,17 +41,27 @@ flowchart TB
     tabs["notebook_tabs"]
   end
 
-  subgraph CommunityPage["/community"]
+  subgraph CommunityPage["/community-resources"]
     resources["resources"]
     kc["knowledge_components"]
   end
 
-  subgraph Curated["Curated courses"]
+  subgraph Curated["Course syllabus backup"]
     cvc["curated_courses"]
     nodes["curated_course_nodes"]
+    nodeRes["curated_course_node_resources"]
     videos["curated_course_videos"]
-    notes["curated_course_notes"]
+    clinks["curated_course_links"]
     ccr["curated_course_resources"]
+    cnotes["curated_course_notes"]
+    cpins["curated_course_pins"]
+  end
+
+  subgraph Paths["learning_paths"]
+    lp["learning_paths<br/>community · research · course"]
+    lpState["learning_path_user_state"]
+    lpPins["learning_path_pins"]
+    lpCommit["learning_path_commitments"]
   end
 
   auth_users --> profiles
@@ -56,21 +70,34 @@ flowchart TB
   auth_users --> annotations
   auth_users --> votes
   auth_users --> notebooks
-  auth_users --> notes
+  auth_users --> courseNotes
+  auth_users --> cnotes
+  auth_users --> lp
   courses --> comments
   courses --> bookmarks
   courses --> annotations
   courses --> wall
   courses --> wall_sub
+  courses --> courseNotes
   courses -.-> cvc
   cvc --> nodes
   nodes --> nodes
   nodes --> videos
+  nodes --> clinks
+  nodes --> nodeRes
   cvc --> ccr
+  cvc --> cpins
+  lp --> lpState
+  lp --> lpPins
+  auth_users --> lpCommit
   notebooks --> tabs
 ```
 
-## Core ERD (identity + Notion activity)
+## Core ERD (identity + activity)
+
+`courses.notion_page_id` is a text PK. It is a real Notion id for professor courses, or a synthetic id for path activity (`learning-path:{slug}`, `course-learning-path:{slug}`).
+
+Official Notion courses are **not** on `learning_paths` yet. Degree syllabi (`kind = course`) already are. A later migrate will move Notion professor courses onto `learning_paths` as well; until then do not reuse Notion page ids as path slugs or merge activity prefixes. See [architecture — Future](./architecture.md#future-official-notion-courses).
 
 ```mermaid
 erDiagram
@@ -81,12 +108,14 @@ erDiagram
   auth_users ||--o{ votes : ""
   auth_users ||--o{ follows : "follower / following"
   auth_users ||--o{ course_section_progress : ""
+  auth_users ||--o{ course_notes : ""
 
   courses ||--o{ comments : "course_id"
   courses ||--o{ bookmarks : ""
   courses ||--o{ annotations : ""
   courses ||--o{ course_resources : ""
   courses ||--o{ community_wall_subscriptions : ""
+  courses ||--o{ course_notes : "course_id"
 
   comments ||--o{ comments : "parent_comment_id"
   annotations ||--o{ annotations : "parent_annotation_id"
@@ -114,10 +143,10 @@ erDiagram
   comments {
     uuid id PK
     uuid user_id FK
-    text course_id FK "nullable if community target"
+    text course_id FK
     uuid parent_comment_id FK
     text body
-    text target_type "resource for /community"
+    text target_type
     uuid target_id
   }
 
@@ -136,28 +165,37 @@ erDiagram
     text body
   }
 
+  course_notes {
+    uuid id PK
+    uuid user_id FK
+    text course_id
+    text topic_id
+    jsonb content
+  }
+
   votes {
     uuid id PK
     uuid user_id FK
     text target_type
     uuid target_id
-    smallint value "1 or -1"
+    smallint value
   }
 ```
 
-## Community wall vs site community
+`course_notes` is one TipTap document per `(user_id, course_id, topic_id)`. `topic_id` is the TOC tab key (or `parent::child` for a sub-tab). Empty `topic_id` is a read fallback from the earlier one-doc-per-course shape.
 
-Two different “resource” concepts:
+## Three “resource” concepts
 
-| Table | Used by | Meaning |
-|-------|---------|---------|
-| `course_resources` (+ `_votes`, `_comments`, `_bookmarks`) | Course **Community Wall** on a Notion course page | Per-course posts |
-| `resources` + `knowledge_components` | `/community` | Site-wide library + FTS (`search_community`) |
-| `curated_course_resources` | `/curated-course/{slug}` Resources nav | Textbooks / websites / channels |
+| Tables | Used by | Meaning |
+|--------|---------|---------|
+| `course_resources` (+ votes / comments / bookmarks) | **Legacy** Community Wall; profile feed still reads these | Per-course wall posts. Not shown on the course TOC anymore. |
+| `resources` + `knowledge_components` | `/community-resources` | Site-wide library + FTS (`search_community`) |
+| `learning_paths.data` (`kind=course`) | Course learning path syllabus + Resources nav | Topic tree and sequenced resources |
+| `curated_course_*` | Backup / migrate source | Previous syllabus tables (not written by the app after `027`) |
 
 ```mermaid
 erDiagram
-  courses ||--o{ course_resources : "wall"
+  courses ||--o{ course_resources : "legacy wall"
   course_resources ||--o{ course_resource_votes : ""
   course_resources ||--o{ course_resource_comments : ""
   course_resources ||--o{ course_resource_bookmarks : ""
@@ -165,19 +203,41 @@ erDiagram
   resources ||--o{ comments : "target_type=resource"
   resources ||--o{ votes : "target_type=resource"
 
-  curated_courses ||--o{ curated_course_resources : ""
+  curated_courses ||--o{ curated_course_resources : "course-level"
+  curated_course_nodes ||--o{ curated_course_node_resources : "per topic"
+  curated_course_node_resources }o--o| resources : "resource_id"
 ```
 
-## Curated course ERD
+## Course learning path ERD
+
+Live identity is `learning_paths` (`kind = course`). Route: `/learning-path/{slug}`. Legacy `/course-learning-path/{slug}` and `/curated-course/{slug}` redirect here. `curated_*` tables stay as backup.
+
+```mermaid
+erDiagram
+  learning_paths ||--o{ learning_path_user_state : "path_id"
+  learning_paths ||--o{ learning_path_pins : "path_id"
+  auth_users ||--o{ learning_path_user_state : "user_id"
+  auth_users ||--o{ learning_path_pins : "user_id"
+```
+
+Backup tables (`curated_courses`, nodes, videos, links, node_resources, resources, notes, pins) are unchanged. `025` copied videos/links into `curated_course_node_resources`. The migrate script copies assembled trees into `learning_paths.data`.
+
+Votes for clips still use `votes.target_type = 'course_video'` keyed by resource/video UUID inside the JSON.
+
+Backup `curated_*` ERD (tables retained; app no longer reads/writes them after cutover):
 
 ```mermaid
 erDiagram
   courses |o--o| curated_courses : "optional notion_page_id"
   curated_courses ||--o{ curated_course_nodes : ""
   curated_course_nodes ||--o{ curated_course_nodes : "parent_id"
-  curated_course_nodes ||--o{ curated_course_videos : ""
+  curated_course_nodes ||--o{ curated_course_videos : "legacy"
+  curated_course_nodes ||--o{ curated_course_links : "legacy slides/tests"
+  curated_course_nodes ||--o{ curated_course_node_resources : "current list"
   curated_courses ||--o{ curated_course_resources : ""
+  curated_courses ||--o{ curated_course_pins : ""
   auth_users ||--o{ curated_course_notes : ""
+  auth_users ||--o{ curated_course_pins : ""
   curated_course_videos ||--o{ votes : "target_type=course_video"
 
   curated_courses {
@@ -197,14 +257,16 @@ erDiagram
     int sort_order
   }
 
-  curated_course_videos {
+  curated_course_node_resources {
     uuid id PK
     uuid node_id FK
+    enum kind "article video book course paper exercise"
     int sort_order
     text title
-    text channel
-    int duration_seconds
     text url
+    text passage
+    text why
+    uuid resource_id FK
   }
 
   curated_course_resources {
@@ -223,21 +285,92 @@ erDiagram
     text course_slug
     jsonb content
   }
+
+  curated_course_pins {
+    uuid id PK
+    uuid user_id FK
+    uuid course_id FK
+  }
 ```
 
-### Table name map (current)
+`curated_course_videos` and `curated_course_links` still exist as backup. Repair scripts for old names: `015_rename_course_video_to_curated.sql`, `016_fix_curated_table_names.sql`. Do **not** run those on a fresh DB.
 
-| Table | Role |
-|-------|------|
-| `curated_courses` | Catalog row per slug (`fluid-mechanics`, …) |
-| `curated_course_nodes` | Syllabus tree (topic / subtopic / concept) |
-| `curated_course_videos` | Ordered videos on a node |
-| `curated_course_resources` | Textbooks / websites / channels |
-| `curated_course_notes` | Per-user TipTap notes |
+## Learning path ERD
 
-> Do **not** confuse with Community Wall `course_resources`, or legacy names `course_video_*` / `curated_courses_course`. Repair scripts: `015_rename_course_video_to_curated.sql`, `016_fix_curated_table_names.sql`.
+```mermaid
+erDiagram
+  auth_users ||--o{ learning_paths : "owner_id"
+  learning_paths ||--o{ learning_path_user_state : "path_id"
+  learning_paths ||--o{ learning_path_pins : "path_id"
+  learning_paths ||--o{ learning_path_resource_votes : "path_id"
+  auth_users ||--o{ learning_path_user_state : "user_id"
+  auth_users ||--o{ learning_path_pins : "user_id"
+  auth_users ||--o{ learning_path_resource_votes : "user_id"
+  auth_users ||--o{ learning_path_commitments : "user_id"
 
-Votes still use polymorphic `target_type = 'course_video'` (string discriminant, not a table name).
+  learning_paths {
+    uuid id PK
+    text slug UK
+    uuid owner_id FK "null if catalog"
+    text title
+    text goal
+    text summary
+    jsonb data
+    boolean is_catalog
+    boolean is_private
+    text visibility "private public collaborative"
+    text kind "community research course"
+    boolean is_filled "course syllabi with a topic tree"
+    timestamptz created_at
+    timestamptz updated_at
+  }
+
+  learning_path_user_state {
+    uuid user_id PK
+    uuid path_id PK
+    jsonb notes
+    jsonb resources
+    jsonb node_status
+    timestamptz updated_at
+  }
+
+  learning_path_pins {
+    uuid id PK
+    uuid user_id FK
+    uuid path_id FK
+  }
+
+  learning_path_resource_votes {
+    uuid id PK
+    uuid user_id FK
+    uuid path_id FK
+    text node_id
+    text resource_id
+  }
+
+  learning_path_commitments {
+    uuid user_id PK
+    text target_key PK "learning-path:{slug} or course:{pageId}"
+    timestamptz created_at
+  }
+```
+
+| Column / table | Role |
+|----------------|------|
+| `is_catalog` | Seeded public examples (`owner_id` must be null). User paths must have an owner. |
+| `visibility` | `private` / `public` / `collaborative`. Catalog rows are `public`. |
+| `is_private` | Kept in sync with `visibility = 'private'` for one release. |
+| `kind` | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet. |
+| `is_filled` | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **courses** view of `/all-courses` lists only filled course paths. |
+| `data` | Graph JSON (community/research) or `CourseLearningPathData` (course). |
+| `learning_path_user_state` | Per-learner overlay: TipTap notes, extra resources, node status. |
+| `learning_path_pins` | Per-user pinned **course** syllabi. |
+| `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`). |
+| `learning_path_commitments` | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Later: reminders to finish the path. Existing DBs: apply `030_learning_path_commitments.sql`. |
+
+Saving someone else’s community path is a `user_links` row whose URL is `/learning-path/{slug}` — not a separate saves table.
+
+Index `learning_paths_public_research_goal_idx` (`026`/`027`) speeds Field Atlas lookup of a public research path by `goal` (`visibility = 'public'`).
 
 ## Social + notebooks
 
@@ -281,8 +414,11 @@ erDiagram
 
 ## RLS pattern (summary)
 
-- **Public read** for social content (profiles, comments, curated courses, published notebooks).
-- **Owner write** (`auth.uid() = user_id` / author columns).
-- **Courses** (Notion refs): anyone can insert/update (no PII; created on first visit).
-- **Curated video tree**: public read; any authenticated user can mutate (curation left open).
+- **Public read** for social content (profiles, comments, catalog/public learning paths, curated courses, published notebooks).
+- **Owner write** (`auth.uid() = user_id` / `owner_id`).
+- **Courses** (Notion / synthetic refs): anyone can insert/update (no PII; created on first visit).
+- **Curated syllabus tree + node resources**: public read; any authenticated user can mutate (curation left open).
+- **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata; signed-in users may patch `data` on collaborative paths and catalog courses.
+- **`learning_path_user_state` / `course_notes` / `learning_path_pins` / `learning_path_commitments`**: owner only.
+- **`learning_path_resource_votes`**: readable when the path is; signed-in users may upvote on `public` / `collaborative` paths.
 - **`user_links.is_private`**: filtered in app code, not RLS.

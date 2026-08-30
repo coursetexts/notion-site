@@ -1,5 +1,4 @@
 import * as React from 'react'
-import dynamic from 'next/dynamic'
 
 import { getMentalMapNotesNodeId } from '@/lib/course-learning-path-resources'
 import type {
@@ -13,23 +12,6 @@ import {
   type CourseLearningPathTopicResourceInput
 } from './CourseLearningPathNodeResources'
 import { CourseLearningPathWhy } from './CourseLearningPathWhy'
-
-const CourseLearningPathNotes = dynamic(
-  () => import('./CourseLearningPathNotes').then((m) => m.CourseLearningPathNotes),
-  {
-    ssr: false,
-    loading: () => (
-      <section>
-        <div
-          className={`${styles.videosHeader} ${styles.videosHeaderCollapsed}`}
-        >
-          <h2 className={styles.videosTitle}>Your Notes</h2>
-          <span className={styles.videosMeta}>Loading…</span>
-        </div>
-      </section>
-    )
-  }
-)
 
 interface CourseLearningPathMentalMapProps {
   course: CourseLearningPathData
@@ -78,14 +60,6 @@ export function CourseLearningPathMentalMap({
         onSignIn={onSignIn}
         onAdd={onAddTopicResource}
         onUpdate={onUpdateTopicResource}
-      />
-
-      <CourseLearningPathNotes
-        nodeId={notesNodeId}
-        courseSlug={course.slug || 'course'}
-        topicTitle='Mental Map'
-        signedIn={signedIn}
-        onSignIn={onSignIn}
       />
     </article>
   )

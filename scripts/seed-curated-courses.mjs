@@ -1,7 +1,8 @@
 /**
  * Seed curated course syllabus trees from data/curated-courses/{slug}.json
  *
- * Requires curated_courses / curated_course_* tables.
+ * Writes curated_* then upserts learning_paths (kind = course).
+ *
  * Env:
  *   NEXT_PUBLIC_SUPABASE_URL
  *   SUPABASE_SERVICE_ROLE_KEY
@@ -13,6 +14,7 @@
  *
  * Idempotent per slug: deletes existing curated_courses row (cascade) then re-inserts.
  */
+import { spawnSync } from 'child_process'
 import { createClient } from '@supabase/supabase-js'
 import 'dotenv/config'
 import { readFileSync, existsSync } from 'fs'
@@ -173,6 +175,25 @@ async function main() {
   }
 
   console.log('\nDone.')
+
+  const migrateEnv = {
+    ...process.env,
+    LEARNING_PATHS_SEED_PROJECT_REF:
+      process.env.LEARNING_PATHS_SEED_PROJECT_REF ||
+      process.env.CURATED_COURSES_SEED_PROJECT_REF
+  }
+  const migrate = spawnSync(
+    'npx',
+    ['tsx', 'scripts/migrate-course-learning-paths.ts', `--slug=${slug}`],
+    {
+      stdio: 'inherit',
+      env: migrateEnv,
+      cwd: join(__dirname, '..')
+    }
+  )
+  if (migrate.status) {
+    process.exit(migrate.status)
+  }
 }
 
 main().catch((err) => {

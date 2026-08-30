@@ -10,26 +10,40 @@ import {
   wrapFirstLetterInDescription
 } from '@/components/CourseHero'
 import { CourseActivity } from '@/components/CourseActivity'
+import { CourseLearningPath } from '@/components/CourseLearningPath'
 import { FormSelect } from '@/components/FormSelect'
+import { LearningPathOutlinePanel } from '@/components/LearningPathOutlinePanel'
 import { PathContentActivity } from '@/components/PathContentActivity'
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
 import { getProfileByUserId } from '@/lib/follows'
 import {
   learningPathAbsoluteUrl,
   learningPathHref,
+  learningPathResourceBookmarkUrl,
+  normalizeUserLinkUrl,
   userLinkMatchesLearningPathSlug
 } from '@/lib/learning-path-bookmark-link'
 import { learningPathActivityPageId } from '@/lib/course-activity-db'
+import { getCourseLearningPathData } from '@/lib/course-learning-path-db'
+import { DEFAULT_COURSE_LEARNING_PATH_SLUG } from '@/lib/course-learning-path-seed'
+import { isCourseLearningPathPayload } from '@/lib/course-learning-path-types'
+import { learningPathKicker, learningPathOutlineHint } from '@/lib/learning-path-kind-ui'
 import {
   getLearningPathRecord,
   loadLearningPathUserState,
   overlayUserState,
   saveLearningPathUserState,
-  setOwnedLearningPathPrivate,
+  setOwnedLearningPathVisibility,
   upsertOwnedLearningPath,
   userStateFromPath,
   writeLocalUserState
 } from '@/lib/learning-path-db'
+import {
+  getLearningPathResourceVoteSummaries,
+  learningPathResourceVoteKey,
+  setLearningPathResourceUpvote,
+  type LearningPathResourceVoteSummary
+} from '@/lib/learning-path-resource-votes-db'
 import {
   type PathTreeItem,
   edgePath,
@@ -46,17 +60,22 @@ import {
 } from '@/lib/learning-path-sections'
 import {
   type LearningPathData,
+  type LearningPathKind,
+  type LearningPathListedResource,
   type LearningPathNode,
   type LearningPathNodeStatus,
   type LearningPathResourceKind,
   type LearningPathUserResource,
+  type LearningPathVisibility,
   emptyLearningPath,
   insertLearningPathUserResource,
   isCatalogLearningPathSlug,
   mergeLearningPathResources,
+  parseLearningPathKind,
   readStoredLearningPaths,
   resolveLearningPath,
   sequenceMarks,
+  SEEDED_LEARNING_PATHS_BY_SLUG,
   updateLearningPathUserResource
 } from '@/lib/learning-path-seed'
 import {
@@ -88,6 +107,15 @@ const RESOURCE_KIND_OPTIONS = RESOURCE_KINDS.map((kind) => ({
   value: kind,
   label: kind.charAt(0).toUpperCase() + kind.slice(1)
 }))
+
+const VISIBILITY_OPTIONS: Array<{
+  value: LearningPathVisibility
+  label: string
+}> = [
+  { value: 'private', label: 'Private' },
+  { value: 'public', label: 'Public' },
+  { value: 'collaborative', label: 'Collab' }
+]
 
 function ResourceEditPencilIcon() {
   return (
@@ -187,6 +215,130 @@ function clampGraphDetailWidth(width: number, bodyWidth: number) {
 
 function newId(prefix: string) {
   return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+}
+
+function isLearningPathRowUuid(id: string | null | undefined): id is string {
+  return Boolean(
+    id &&
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        id
+      )
+  )
+}
+
+function ResourceUpvoteIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='11'
+      height='11'
+      viewBox='0 0 16 16'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M13.3563 9.64376L8.35635 4.64376C8.26155 4.54986 8.13352 4.49719 8.0001 4.49719C7.86667 4.49719 7.73865 4.54986 7.64385 4.64376L2.64385 9.64376C2.57602 9.71605 2.53004 9.80607 2.51124 9.9034C2.49244 10.0007 2.50158 10.1014 2.5376 10.1938C2.57585 10.2848 2.64018 10.3624 2.72249 10.4169C2.80479 10.4714 2.90139 10.5003 3.0001 10.5H13.0001C13.0988 10.5003 13.1954 10.4714 13.2777 10.4169C13.36 10.3624 13.4243 10.2848 13.4626 10.1938C13.4986 10.1014 13.5078 10.0007 13.489 9.9034C13.4702 9.80607 13.4242 9.71605 13.3563 9.64376Z'
+        fill='currentColor'
+      />
+    </svg>
+  )
+}
+
+function ResourceVoteControl({
+  score,
+  userVoted,
+  disabled,
+  signedIn,
+  onToggle
+}: {
+  score: number
+  userVoted: boolean
+  disabled: boolean
+  signedIn: boolean
+  onToggle: () => void
+}) {
+  return (
+    <button
+      type='button'
+      className={`${styles.resourceVoteBtn}${
+        userVoted ? ` ${styles.resourceVoteBtnOn}` : ''
+      }`}
+      onClick={onToggle}
+      disabled={disabled}
+      aria-pressed={userVoted}
+      aria-label={
+        userVoted
+          ? 'Remove upvote'
+          : signedIn
+            ? 'Upvote this resource'
+            : 'Sign in to upvote this resource'
+      }
+      title={
+        userVoted
+          ? 'Remove upvote'
+          : signedIn
+            ? 'Upvote — does not change list order'
+            : 'Sign in to upvote'
+      }
+    >
+      <ResourceUpvoteIcon />
+      <span className={styles.resourceVoteCount} aria-live='polite' aria-atomic='true'>
+        {score}
+      </span>
+    </button>
+  )
+}
+
+function BookmarkIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg width='13' height='13' viewBox='0 0 14 16' fill='none' aria-hidden>
+      <path
+        d='M2.75 2.25h8.5v10.85L7 9.35l-4.25 3.75V2.25z'
+        fill={filled ? 'currentColor' : 'none'}
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+function ResourceBookmarkControl({
+  saved,
+  disabled,
+  signedIn,
+  onToggle
+}: {
+  saved: boolean
+  disabled: boolean
+  signedIn: boolean
+  onToggle: () => void
+}) {
+  return (
+    <button
+      type='button'
+      className={styles.resourceEditBtn}
+      onClick={onToggle}
+      disabled={disabled}
+      aria-pressed={saved}
+      aria-label={
+        saved
+          ? 'Remove bookmark'
+          : signedIn
+            ? 'Bookmark this resource'
+            : 'Sign in to bookmark this resource'
+      }
+      title={
+        saved
+          ? 'Remove bookmark'
+          : signedIn
+            ? 'Save to your bookmarked links'
+            : 'Sign in to bookmark'
+      }
+    >
+      <BookmarkIcon filled={saved} />
+    </button>
+  )
 }
 
 function descendantIds(path: LearningPathData, rootId: string): string[] {
@@ -365,60 +517,6 @@ function ShareIcon() {
         strokeWidth='0.75'
         strokeLinecap='round'
         strokeLinejoin='round'
-      />
-    </svg>
-  )
-}
-
-function BookmarkIcon({ filled }: { filled: boolean }) {
-  return (
-    <svg width='13' height='13' viewBox='0 0 14 16' fill='none' aria-hidden>
-      <path
-        d='M2.75 2.25h8.5v10.85L7 9.35l-4.25 3.75V2.25z'
-        fill={filled ? 'currentColor' : 'none'}
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinejoin='round'
-      />
-    </svg>
-  )
-}
-
-function PrivacyIcon({ locked }: { locked: boolean }) {
-  return locked ? (
-    <svg width='13' height='13' viewBox='0 0 13 13' fill='none' aria-hidden>
-      <rect
-        x='2.5'
-        y='6'
-        width='8'
-        height='5.5'
-        rx='1'
-        stroke='currentColor'
-        strokeWidth='1.2'
-      />
-      <path
-        d='M4.25 6V4.5a2.25 2.25 0 1 1 4.5 0V6'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinecap='round'
-      />
-    </svg>
-  ) : (
-    <svg width='13' height='13' viewBox='0 0 13 13' fill='none' aria-hidden>
-      <rect
-        x='2.5'
-        y='6'
-        width='8'
-        height='5.5'
-        rx='1'
-        stroke='currentColor'
-        strokeWidth='1.2'
-      />
-      <path
-        d='M4.25 6V4.5a2.25 2.25 0 0 1 4.1-1.25'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinecap='round'
       />
     </svg>
   )
@@ -620,8 +718,7 @@ function LearningPathRecommendedOverview({
 
 const CLOSED_SECTIONS = {
   why: false,
-  resources: false,
-  note: false
+  resources: false
 }
 
 function pathTypeBadge(node: LearningPathNode, mentalMap: boolean) {
@@ -725,38 +822,6 @@ function ResourcesIcon() {
     >
       <circle cx='8' cy='8' r='6.25' stroke='currentColor' strokeWidth='1.2' />
       <path d='M6.75 5.5L11 8L6.75 10.5V5.5Z' fill='currentColor' />
-    </svg>
-  )
-}
-
-function NoteIcon() {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='20'
-      height='20'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M3.5 2.5h7l2 2V13.5h-9V2.5Z'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M10.5 2.5V4.5H12.5'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M5.5 7H10.5M5.5 9.5H10.5M5.5 12H8.5'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinecap='round'
-      />
     </svg>
   )
 }
@@ -967,7 +1032,15 @@ function LearningPathDescription({
   )
 }
 
-export function LearningPath({ slug }: { slug: string }) {
+function CommunityLearningPath({
+  slug,
+  kicker,
+  kind
+}: {
+  slug: string
+  kicker: string
+  kind: Exclude<LearningPathKind, 'course'>
+}) {
   const router = useRouter()
   const auth = useAuthOptional()
   const currentUserId = auth?.user?.id ?? null
@@ -1018,8 +1091,21 @@ export function LearningPath({ slug }: { slug: string }) {
     null
   )
   const [bookmarkBusy, setBookmarkBusy] = React.useState(false)
-  const [pathIsPrivate, setPathIsPrivate] = React.useState(true)
+  const [savedLinkByUrl, setSavedLinkByUrl] = React.useState<
+    Record<string, string>
+  >({})
+  const [bookmarkingResourceId, setBookmarkingResourceId] = React.useState<
+    string | null
+  >(null)
+  const [pathVisibility, setPathVisibility] =
+    React.useState<LearningPathVisibility>('private')
   const [privacyBusy, setPrivacyBusy] = React.useState(false)
+  const [resourceVotes, setResourceVotes] = React.useState<
+    Record<string, LearningPathResourceVoteSummary>
+  >({})
+  const [votingResourceId, setVotingResourceId] = React.useState<string | null>(
+    null
+  )
   const [pathRowId, setPathRowId] = React.useState<string | null>(null)
   const [userStateReady, setUserStateReady] = React.useState(false)
   const shareTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -1118,7 +1204,13 @@ export function LearningPath({ slug }: { slug: string }) {
     setCreatorAvatarUrl(null)
     setBookmarkLinkId(null)
     setBookmarkBusy(false)
-    setPathIsPrivate(!isCatalogLearningPathSlug(slug))
+    setSavedLinkByUrl({})
+    setBookmarkingResourceId(null)
+    setPathVisibility(
+      isCatalogLearningPathSlug(slug) ? 'public' : 'private'
+    )
+    setResourceVotes({})
+    setVotingResourceId(null)
     setPrivacyBusy(false)
     setEditOpen(false)
     setDeleteOpen(false)
@@ -1126,15 +1218,24 @@ export function LearningPath({ slug }: { slug: string }) {
 
     void (async () => {
       const record = await getLearningPathRecord(slug)
-      const base = record?.data ?? local
+      const base =
+        record &&
+        record.kind !== 'course' &&
+        Array.isArray(record.data?.nodes)
+          ? record.data
+          : local
       const state = await loadLearningPathUserState(record?.id ?? null, slug)
       if (cancelled) return
       const next = overlayUserState(base, state)
       setPath(next)
       setPathRowId(record?.id ?? null)
       setPathOwnerId(record?.ownerId ?? null)
-      setPathIsPrivate(
-        record ? record.isPrivate : !isCatalogLearningPathSlug(slug)
+      setPathVisibility(
+        record
+          ? record.visibility
+          : isCatalogLearningPathSlug(slug)
+            ? 'public'
+            : 'private'
       )
       setNotes(state.notes)
       setUserResources(state.resources)
@@ -1171,6 +1272,23 @@ export function LearningPath({ slug }: { slug: string }) {
     }
     return false
   }, [slug, currentUserId, pathOwnerId])
+
+  const canVoteOnResources =
+    pathVisibility === 'public' || pathVisibility === 'collaborative'
+
+  React.useEffect(() => {
+    if (!canVoteOnResources || !isLearningPathRowUuid(pathRowId)) {
+      setResourceVotes({})
+      return
+    }
+    let cancelled = false
+    void getLearningPathResourceVoteSummaries(pathRowId).then((next) => {
+      if (!cancelled) setResourceVotes(next)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [pathRowId, canVoteOnResources, currentUserId])
 
   React.useEffect(() => {
     setSummaryDraft(path.summary)
@@ -1282,15 +1400,23 @@ export function LearningPath({ slug }: { slug: string }) {
   React.useEffect(() => {
     let cancelled = false
     setBookmarkLinkId(null)
-    if (!currentUserId || isOwnPath) {
+    setSavedLinkByUrl({})
+    if (!currentUserId) {
       return
     }
     void getMyLinks().then((links) => {
       if (cancelled) return
-      const existing = links.find((link) =>
-        userLinkMatchesLearningPathSlug(link.url, slug)
-      )
-      setBookmarkLinkId(existing?.id ?? null)
+      const byUrl: Record<string, string> = {}
+      for (const link of links) {
+        byUrl[normalizeUserLinkUrl(link.url)] = link.id
+      }
+      setSavedLinkByUrl(byUrl)
+      if (!isOwnPath) {
+        const existing = links.find((link) =>
+          userLinkMatchesLearningPathSlug(link.url, slug)
+        )
+        setBookmarkLinkId(existing?.id ?? null)
+      }
     })
     return () => {
       cancelled = true
@@ -1592,16 +1718,30 @@ export function LearningPath({ slug }: { slug: string }) {
     try {
       if (bookmarkLinkId) {
         const ok = await deleteLink(bookmarkLinkId)
-        if (ok) setBookmarkLinkId(null)
-        else window.alert('Could not remove this saved path.')
+        if (ok) {
+          const pathUrl = normalizeUserLinkUrl(
+            learningPathAbsoluteUrl(path.slug, window.location.origin)
+          )
+          setBookmarkLinkId(null)
+          setSavedLinkByUrl((prev) => {
+            const next = { ...prev }
+            delete next[pathUrl]
+            return next
+          })
+        } else window.alert('Could not remove this saved path.')
         return
       }
       const row = await addLink(
         learningPathAbsoluteUrl(path.slug, window.location.origin),
         { title: path.title || path.goal }
       )
-      if (row) setBookmarkLinkId(row.id)
-      else
+      if (row) {
+        setBookmarkLinkId(row.id)
+        setSavedLinkByUrl((prev) => ({
+          ...prev,
+          [normalizeUserLinkUrl(row.url)]: row.id
+        }))
+      } else
         window.alert(
           'Could not save this path. It may already be in your list.'
         )
@@ -1610,15 +1750,14 @@ export function LearningPath({ slug }: { slug: string }) {
     }
   }
 
-  async function togglePathPrivacy() {
-    if (privacyBusy || !isOwnPath) return
+  async function setPathVisibilityChoice(next: LearningPathVisibility) {
+    if (privacyBusy || !isOwnPath || next === pathVisibility) return
     if (!currentUserId) {
       void router.push(
         `/signin?redirect=${encodeURIComponent(`/learning-path/${path.slug}`)}`
       )
       return
     }
-    const nextPrivate = !pathIsPrivate
     setPrivacyBusy(true)
     try {
       let id = pathRowId
@@ -1630,8 +1769,8 @@ export function LearningPath({ slug }: { slug: string }) {
         window.alert('Could not update privacy. Try signing in again.')
         return
       }
-      const ok = await setOwnedLearningPathPrivate(id, nextPrivate, path.slug)
-      if (ok) setPathIsPrivate(nextPrivate)
+      const ok = await setOwnedLearningPathVisibility(id, next, path.slug)
+      if (ok) setPathVisibility(next)
       else window.alert('Could not update privacy.')
     } finally {
       setPrivacyBusy(false)
@@ -1724,6 +1863,89 @@ export function LearningPath({ slug }: { slug: string }) {
     closeResourceForm()
   }
 
+  async function toggleResourceUpvote(resourceId: string) {
+    if (!canVoteOnResources) return
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    const nodeId = selected?.id
+    if (!isLearningPathRowUuid(pathRowId) || !nodeId) return
+    const key = learningPathResourceVoteKey(nodeId, resourceId)
+    const current = resourceVotes[key] ?? { score: 0, userVoted: false }
+    const nextVoted = !current.userVoted
+    const optimistic: LearningPathResourceVoteSummary = {
+      score: Math.max(0, current.score + (nextVoted ? 1 : -1)),
+      userVoted: nextVoted
+    }
+    setVotingResourceId(resourceId)
+    setResourceVotes((prev) => ({ ...prev, [key]: optimistic }))
+    try {
+      const score = await setLearningPathResourceUpvote(
+        pathRowId,
+        nodeId,
+        resourceId,
+        nextVoted
+      )
+      if (score == null) {
+        setResourceVotes((prev) => ({ ...prev, [key]: current }))
+        window.alert('Could not save your upvote. Try signing in again.')
+        return
+      }
+      setResourceVotes((prev) => ({
+        ...prev,
+        [key]: { score, userVoted: nextVoted }
+      }))
+    } finally {
+      setVotingResourceId(null)
+    }
+  }
+
+  async function toggleResourceBookmark(resource: LearningPathListedResource) {
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    const nodeId = selected?.id
+    if (!nodeId || bookmarkingResourceId) return
+    const url = learningPathResourceBookmarkUrl({
+      slug: path.slug,
+      nodeId,
+      resourceId: resource.id,
+      href: resource.href,
+      origin: window.location.origin
+    })
+    const key = normalizeUserLinkUrl(url)
+    const existingId = savedLinkByUrl[key]
+    setBookmarkingResourceId(resource.id)
+    try {
+      if (existingId) {
+        const ok = await deleteLink(existingId)
+        if (!ok) {
+          window.alert('Could not remove this bookmark.')
+          return
+        }
+        setSavedLinkByUrl((prev) => {
+          const next = { ...prev }
+          delete next[key]
+          return next
+        })
+        return
+      }
+      const row = await addLink(url, { title: resource.title })
+      if (!row) {
+        window.alert('Could not bookmark this resource. Try signing in again.')
+        return
+      }
+      setSavedLinkByUrl((prev) => ({
+        ...prev,
+        [normalizeUserLinkUrl(row.url)]: row.id
+      }))
+    } finally {
+      setBookmarkingResourceId(null)
+    }
+  }
+
   if (!goalNode) {
     const empty = emptyLearningPath(path.goal, path.slug)
     return (
@@ -1787,7 +2009,7 @@ export function LearningPath({ slug }: { slug: string }) {
     <section className={styles.section} aria-label='Learning path'>
       <div className={styles.hero}>
         <CourseHero
-          courseCode='Learning Path'
+          courseCode={kicker}
           title={path.title}
           instructors={heroInstructors}
           descriptionHtml={pathDescriptionHtml(path.summary)}
@@ -1826,28 +2048,14 @@ export function LearningPath({ slug }: { slug: string }) {
                 {shareCopied ? 'Copied' : 'Share'}
               </button>
               {isOwnPath ? (
-                <div className={saveStyles.wrap}>
-                  <button
-                    type='button'
-                    className={
-                      pathIsPrivate ? saveStyles.savedBtn : saveStyles.saveBtn
-                    }
-                    onClick={() => void togglePathPrivacy()}
+                <div className={`${saveStyles.wrap} ${styles.visibilitySelect}`}>
+                  <FormSelect<LearningPathVisibility>
+                    ariaLabel='Learning path visibility'
+                    value={pathVisibility}
+                    options={VISIBILITY_OPTIONS}
                     disabled={privacyBusy}
-                    aria-pressed={pathIsPrivate}
-                    aria-label={
-                      pathIsPrivate
-                        ? 'Make this learning path public'
-                        : 'Make this learning path private'
-                    }
-                  >
-                    <span className={saveStyles.icon} aria-hidden>
-                      <PrivacyIcon locked={pathIsPrivate} />
-                    </span>
-                    <span className={saveStyles.label}>
-                      {pathIsPrivate ? 'Make public' : 'Make private'}
-                    </span>
-                  </button>
+                    onChange={(next) => void setPathVisibilityChoice(next)}
+                  />
                 </div>
               ) : (
                 <div className={saveStyles.wrap}>
@@ -1890,59 +2098,14 @@ export function LearningPath({ slug }: { slug: string }) {
             viewMode === 'graph' ? styles.layoutGraph : styles.layoutList
           }`}
         >
-            <section className={styles.mapPanel}>
-              <div className={styles.mapToolbar}>
-                <div className={styles.mapToolbarRow}>
-                  <div className={styles.mapToolbarCopy}>
-                    <h2 className={styles.mapTitle}>
-                      {viewMode === 'list' ? 'The outline' : 'The map'}
-                    </h2>
-                    {viewMode === 'graph' ? (
-                      <span className={styles.mapHint}>
-                        Hover a step to see its children · click a node to read
-                        it
-                      </span>
-                    ) : null}
-                  </div>
-                  <div
-                    className={styles.viewToggle}
-                    role='group'
-                    aria-label='Path view'
-                  >
-                    <button
-                      type='button'
-                      className={styles.viewToggleBtn}
-                      aria-pressed={viewMode === 'graph'}
-                      onClick={() => setViewMode('graph')}
-                    >
-                      Graph
-                    </button>
-                    <button
-                      type='button'
-                      className={styles.viewToggleBtn}
-                      aria-pressed={viewMode === 'list'}
-                      onClick={() => setViewMode('list')}
-                    >
-                      List
-                    </button>
-                  </div>
-                </div>
-                {viewMode === 'list' ? (
-                  <div className={styles.searchWrap}>
-                    <input
-                      type='search'
-                      className={styles.search}
-                      placeholder='SEARCH'
-                      value={outlineSearch}
-                      onChange={(event) => setOutlineSearch(event.target.value)}
-                      aria-label='Search in outline'
-                    />
-                  </div>
-                ) : null}
-              </div>
-              {viewMode === 'list' ? (
-                <div className={styles.pathListWrap}>
-                  <div className={styles.pathListScroll}>
+            <LearningPathOutlinePanel
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
+              search={outlineSearch}
+              onSearchChange={setOutlineSearch}
+              graphHint={learningPathOutlineHint(kind)}
+              list={
+                <>
                     {outlineNoMatches ? (
                       <p className={styles.pathListEmpty}>
                         No matching steps.
@@ -1983,8 +2146,10 @@ export function LearningPath({ slug }: { slug: string }) {
                         Nothing on this path yet.
                       </p>
                     ) : null}
-                  </div>
-                  <div className={styles.pathListFooter}>
+                </>
+              }
+              footer={
+                    <>
                     <PathLegend />
                     <PathStageActions
                       inline
@@ -2000,9 +2165,9 @@ export function LearningPath({ slug }: { slug: string }) {
                         )
                       }
                     />
-                  </div>
-                </div>
-              ) : (
+                    </>
+              }
+              graph={
                 <div
                   className={styles.mapStage}
                   onMouseLeave={() => setHoverId(null)}
@@ -2111,8 +2276,8 @@ export function LearningPath({ slug }: { slug: string }) {
                     }
                   />
                 </div>
-              )}
-            </section>
+              }
+            />
 
             {viewMode === 'graph' ? (
               <button
@@ -2296,6 +2461,30 @@ export function LearningPath({ slug }: { slug: string }) {
                       const kindLabel = resource.source
                         ? `${resource.kind} · ${resource.source}`
                         : resource.kind
+                      const vote =
+                        selected
+                          ? resourceVotes[
+                              learningPathResourceVoteKey(
+                                selected.id,
+                                resource.id
+                              )
+                            ]
+                          : undefined
+                      const voteScore = vote?.score ?? 0
+                      const userVoted = Boolean(vote?.userVoted)
+                      const bookmarkUrl = learningPathResourceBookmarkUrl({
+                        slug: path.slug,
+                        nodeId: selected.id,
+                        resourceId: resource.id,
+                        href: resource.href,
+                        origin:
+                          typeof window === 'undefined'
+                            ? ''
+                            : window.location.origin
+                      })
+                      const bookmarkSaved = Boolean(
+                        savedLinkByUrl[normalizeUserLinkUrl(bookmarkUrl)]
+                      )
                       const title = resource.href ? (
                         <a
                           className={styles.resourceTitle}
@@ -2329,6 +2518,30 @@ export function LearningPath({ slug }: { slug: string }) {
                                       Added by you
                                     </span>
                                   ) : null}
+                                  {canVoteOnResources ? (
+                                    <ResourceVoteControl
+                                      score={voteScore}
+                                      userVoted={userVoted}
+                                      disabled={
+                                        votingResourceId === resource.id ||
+                                        !isLearningPathRowUuid(pathRowId)
+                                      }
+                                      signedIn={Boolean(currentUserId)}
+                                      onToggle={() =>
+                                        void toggleResourceUpvote(resource.id)
+                                      }
+                                    />
+                                  ) : null}
+                                  <ResourceBookmarkControl
+                                    saved={bookmarkSaved}
+                                    disabled={
+                                      bookmarkingResourceId === resource.id
+                                    }
+                                    signedIn={Boolean(currentUserId)}
+                                    onToggle={() =>
+                                      void toggleResourceBookmark(resource)
+                                    }
+                                  />
                                   {resource.addedByYou ? (
                                     <button
                                       type='button'
@@ -2358,32 +2571,6 @@ export function LearningPath({ slug }: { slug: string }) {
                       )
                     })}
                   </ol>
-                )}
-              </PathContentSection>
-
-              <PathContentSection
-                title='Your Notes'
-                icon={<NoteIcon />}
-                open={openSections.note}
-                onToggle={() =>
-                  setOpenSections((prev) => ({ ...prev, note: !prev.note }))
-                }
-              >
-                {userStateReady ? (
-                  <SiteNotesEditor
-                    key={`${slug}:${selected.id}:${currentUserId ?? 'anon'}`}
-                    value={parseStoredNotebookNote(notes[selected.id])}
-                    onChange={(doc) => persistSelectedNote(selected.id, doc)}
-                    placeholder='Write notes for this topic…'
-                    ariaLabel='Your notes'
-                    expandTitle='Your Notes'
-                    expandTopic={selected.label}
-                    locked={!currentUserId}
-                    lockedMessage='Sign in to add your notes'
-                    onUnlock={requestSignIn}
-                  />
-                ) : (
-                  <p className={styles.resourceEmpty}>Loading notes…</p>
                 )}
               </PathContentSection>
 
@@ -2838,5 +3025,64 @@ export function LearningPath({ slug }: { slug: string }) {
         </div>
       ) : null}
     </section>
+  )
+}
+
+export function LearningPath({ slug }: { slug: string }) {
+  const seeded = SEEDED_LEARNING_PATHS_BY_SLUG[slug]
+  const [kind, setKind] = React.useState<LearningPathKind | null>(
+    seeded ? 'community' : null
+  )
+
+  React.useEffect(() => {
+    if (seeded) {
+      setKind('community')
+      return
+    }
+    let cancelled = false
+    void (async () => {
+      const record = await getLearningPathRecord(slug)
+      if (cancelled) return
+      if (
+        record?.kind === 'course' ||
+        isCourseLearningPathPayload(record?.data as unknown)
+      ) {
+        setKind('course')
+        return
+      }
+      if (record) {
+        setKind(parseLearningPathKind(record.kind))
+        return
+      }
+      const course = await getCourseLearningPathData(slug)
+      if (cancelled) return
+      if (course || slug === DEFAULT_COURSE_LEARNING_PATH_SLUG) {
+        setKind('course')
+        return
+      }
+      setKind('community')
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [slug, seeded])
+
+  if (!kind) {
+    return (
+      <div style={{ padding: '48px var(--home-side)' }}>Loading…</div>
+    )
+  }
+
+  const kicker = learningPathKicker(kind)
+  if (kind === 'course') {
+    return <CourseLearningPath key={slug} slug={slug} kicker={kicker} />
+  }
+  return (
+    <CommunityLearningPath
+      key={slug}
+      slug={slug}
+      kicker={kicker}
+      kind={kind}
+    />
   )
 }

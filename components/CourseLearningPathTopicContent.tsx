@@ -1,5 +1,4 @@
 import * as React from 'react'
-import dynamic from 'next/dynamic'
 
 import type {
   CourseLearningPathFlatNode,
@@ -13,23 +12,6 @@ import {
 } from './CourseLearningPathNodeResources'
 import { CourseLearningPathWhy } from './CourseLearningPathWhy'
 
-const CourseLearningPathNotes = dynamic(
-  () => import('./CourseLearningPathNotes').then((m) => m.CourseLearningPathNotes),
-  {
-    ssr: false,
-    loading: () => (
-      <section>
-        <div
-          className={`${styles.videosHeader} ${styles.videosHeaderCollapsed}`}
-        >
-          <h2 className={styles.videosTitle}>Your Notes</h2>
-          <span className={styles.videosMeta}>Loading…</span>
-        </div>
-      </section>
-    )
-  }
-)
-
 const TYPE_LABEL: Record<CourseLearningPathNode['type'], string> = {
   topic: 'Topic',
   subtopic: 'Subtopic',
@@ -39,7 +21,6 @@ const TYPE_LABEL: Record<CourseLearningPathNode['type'], string> = {
 interface TopicContentProps {
   entry: CourseLearningPathFlatNode
   onSelect: (id: string) => void
-  courseSlug?: string
   /** Whether mutations can be saved to Supabase. */
   dbBacked?: boolean
   signedIn?: boolean
@@ -59,7 +40,6 @@ interface TopicContentProps {
 export function CourseLearningPathTopicContent({
   entry,
   onSelect,
-  courseSlug = '',
   dbBacked = false,
   signedIn = false,
   onSignIn,
@@ -113,14 +93,6 @@ export function CourseLearningPathTopicContent({
         onSignIn={onSignIn}
         onAdd={onAddTopicResource}
         onUpdate={onUpdateTopicResource}
-      />
-
-      <CourseLearningPathNotes
-        nodeId={node.id}
-        courseSlug={courseSlug || 'course'}
-        topicTitle={node.title}
-        signedIn={signedIn}
-        onSignIn={onSignIn}
       />
 
       <div className={styles.actionRow}>

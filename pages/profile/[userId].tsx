@@ -57,6 +57,7 @@ import {
   attachLearningPathKinds,
   listOwnedLearningPathsByUserId
 } from '@/lib/learning-path-db'
+import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
 import { readStoredLearningPaths, type StoredLearningPath } from '@/lib/learning-path-seed'
 import {
   type LinkTag,
@@ -125,13 +126,11 @@ function formatDate(iso: string): string {
   })
 }
 
-type PathsCoursesFilter = 'course' | 'research' | 'official' | 'community'
+type PathsCoursesFilter = 'courses' | 'learning-paths'
 
 const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
-  { id: 'course', label: 'Course Learning Path' },
-  { id: 'research', label: 'Research Learning Path' },
-  { id: 'community', label: 'Community Learning Path' },
-  { id: 'official', label: 'Official Courses' }
+  { id: 'courses', label: 'Courses' },
+  { id: 'learning-paths', label: 'Learning paths' }
 ]
 
 function nextPathsCoursesFilter(
@@ -266,8 +265,15 @@ export default function PublicProfilePage() {
     return rows
   }, [comments, annotations])
 
+  const publicCoursePaths = useMemo(
+    () => communityLearningPaths.filter((item) => isCourseKindPath(item.kind)),
+    [communityLearningPaths]
+  )
   const publicCommunityPaths = useMemo(
-    () => communityLearningPaths.filter((item) => item.kind !== 'research'),
+    () =>
+      communityLearningPaths.filter(
+        (item) => item.kind !== 'research' && !isCourseKindPath(item.kind)
+      ),
     [communityLearningPaths]
   )
   const publicResearchPaths = useMemo(
@@ -282,12 +288,18 @@ export default function PublicProfilePage() {
   const [pathsCoursesFilter, setPathsCoursesFilter] =
     useState<PathsCoursesFilter | null>(null)
   const showAllLearningCards = pathsCoursesFilter == null
-  const showResearchCards =
-    showAllLearningCards || pathsCoursesFilter === 'research'
-  const showCommunityCards =
-    showAllLearningCards || pathsCoursesFilter === 'community'
-  const hasAnyPublicLearningCards =
+  const coursesOnly = pathsCoursesFilter === 'courses'
+  const learningPathsOnly = pathsCoursesFilter === 'learning-paths'
+  const showCoursesGroup = showAllLearningCards || coursesOnly
+  const showLearningPathsGroup = showAllLearningCards || learningPathsOnly
+  const showCourseCards = showCoursesGroup
+  const showResearchCards = showLearningPathsGroup
+  const showCommunityCards = showLearningPathsGroup
+  const hasAnyPublicCourseCards = publicCoursePaths.length > 0
+  const hasAnyPublicNonCourseCards =
     publicCommunityPaths.length > 0 || publicResearchPaths.length > 0
+  const hasAnyPublicLearningCards =
+    hasAnyPublicCourseCards || hasAnyPublicNonCourseCards
   const [loading, setLoading] = useState(true)
   const [followLoading, setFollowLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
@@ -933,7 +945,9 @@ export default function PublicProfilePage() {
 
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
-                    <h2 className={styles.mainSerifTitle}>Bookmarks</h2>
+                    <h2 className={styles.mainSerifTitle}>
+                      Bookmarked Resources
+                    </h2>
                     <div className={styles.section}>
                       {showPublicBookmarkTagFilters ? (
                         <div className={styles.linkFilterRow}>
@@ -1502,33 +1516,40 @@ export default function PublicProfilePage() {
                       </div>
                     </div>
                     {!showAllLearningCards &&
-                    pathsCoursesFilter === 'course' ? (
+                    coursesOnly &&
+                    !hasAnyPublicCourseCards ? (
                       <p className={styles.placeholder}>
-                        No course learning paths on this profile yet.
+                        No courses on this profile yet.
                       </p>
                     ) : !showAllLearningCards &&
-                      pathsCoursesFilter === 'official' ? (
-                      <p className={styles.placeholder}>
-                        No official courses on this profile yet.
-                      </p>
-                    ) : !showAllLearningCards &&
-                      pathsCoursesFilter === 'research' &&
-                      publicResearchPaths.length === 0 ? (
-                      <p className={styles.placeholder}>
-                        No research learning paths on this profile yet.
-                      </p>
-                    ) : !showAllLearningCards &&
-                      pathsCoursesFilter === 'community' &&
-                      publicCommunityPaths.length === 0 ? (
-                      <p className={styles.placeholder}>
-                        No community learning paths on this profile yet.
-                      </p>
-                    ) : showAllLearningCards && !hasAnyPublicLearningCards ? (
+                      learningPathsOnly &&
+                      !hasAnyPublicNonCourseCards ? (
                       <p className={styles.placeholder}>
                         No learning paths on this profile yet.
                       </p>
+                    ) : showAllLearningCards && !hasAnyPublicLearningCards ? (
+                      <p className={styles.placeholder}>
+                        No learning paths or courses on this profile yet.
+                      </p>
                     ) : (
                       <ul className={styles.learningPathList}>
+                        {showCourseCards
+                          ? publicCoursePaths.map((item) => (
+                              <li key={item.id}>
+                                <ProfileCommunityLearningPathCard
+                                  item={item}
+                                  onUnsave={
+                                    currentUserId && userId === currentUserId
+                                      ? handleUnsaveLearningPath
+                                      : undefined
+                                  }
+                                  unsaveBusy={
+                                    unsavePathBusyId === item.savedLinkId
+                                  }
+                                />
+                              </li>
+                            ))
+                          : null}
                         {showResearchCards
                           ? publicResearchPaths.map((item) => (
                               <li key={item.id}>
