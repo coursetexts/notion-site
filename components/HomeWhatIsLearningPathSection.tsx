@@ -17,8 +17,9 @@ export function HomeWhatIsLearningPathSection() {
             id='what-is-a-learning-path-heading'
             className={styles.heading}
           >
-            What is a{' '}
-            <span className={styles.headingAccent}>learning path?</span>
+             A new educational interface. <br/>
+{' '}
+            <span className={styles.headingAccent}>Learning paths.</span>
           </h2>
           <p className={styles.body}>
             {/* The interface you consume any learning content on here is called a
@@ -47,7 +48,7 @@ export function HomeWhatIsLearningPathSection() {
             We organize offical courses as boops in this boop interface too, but we lock the resources to the official course. */}
         
 
-            A new educational interface. <br/> When you want to learn something, you usually have a goal in mind. A learning path breaks that goal into the concepts you need to understand, puts them in a useful order, and gives you a place to collect the best resources and your notes for each one.
+          Everything on coursetexts is wrapped in a learning path.<br/> When you want to learn something, you usually have a goal in mind. A learning path breaks that goal into the concepts you need to understand, puts them in a useful order, and gives you a place to collect the best resources and your notes for each one.
 
 <br/> <br/>
 You can make a learning path for yourself or publish it for others. When a path is public, <b>people can suggest resources</b>, vote on which ones are most useful, and help improve the sequence over time - essentially crowdsourcing the kind of curation a great teacher would normally do.

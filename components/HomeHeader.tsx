@@ -13,9 +13,10 @@ import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
 
-const communityChildren = [
-  { label: 'Degrees', href: '/degrees' },
-  { label: 'Field Atlas', href: '/field-atlas' }
+const communityChildren: Array<{ label: string; href: string }> = [
+  // Restore the Community dropdown by uncommenting these items.
+  // { label: 'Degrees', href: '/degrees' },
+  // { label: 'Field Atlas', href: '/field-atlas' }
 ]
 
 const navItems = [
@@ -456,7 +457,7 @@ export function HomeHeader({
                     >
                       {item.label}
                     </a>
-                  ) : item.children ? (
+                  ) : item.children?.length ? (
                     <CommunityFlyout key={item.label} href={item.href} />
                   ) : (
                     <Link key={item.label} href={item.href} legacyBehavior>

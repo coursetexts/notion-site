@@ -124,11 +124,11 @@ export function HomeHero({
     <section className={styles.heroWrapper}>
       <div className={styles.heroContent}>
         <h1 className={styles.title}>
-          The <span className={styles.titleFree}>free</span> library for learners
+          A  library for <span className={styles.titleFree}>self</span>-learners
         </h1>
 
         <p className={styles.description}>
-          Learning paths with high-quality materials and structure to help you <br />actually finish what you set out to learn.
+          Learning paths with high-quality materials and structure to help you <br />actually finish what you set out to do.
         </p>
 
         <form
@@ -142,7 +142,7 @@ export function HomeHero({
           <input
             type='text'
             className={styles.input}
-            placeholder='What are you curious about?'
+            placeholder='What do you want to learn?'
             aria-label='What are you curious about?'
             value={query}
             onChange={(event) => setQuery(event.target.value)}

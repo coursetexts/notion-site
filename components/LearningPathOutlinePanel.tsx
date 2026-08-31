@@ -39,18 +39,18 @@ export function LearningPathOutlinePanel({
             <button
               type='button'
               className={styles.viewToggleBtn}
-              aria-pressed={viewMode === 'graph'}
-              onClick={() => onViewModeChange('graph')}
-            >
-              Graph
-            </button>
-            <button
-              type='button'
-              className={styles.viewToggleBtn}
               aria-pressed={viewMode === 'list'}
               onClick={() => onViewModeChange('list')}
             >
               List
+            </button>
+            <button
+              type='button'
+              className={styles.viewToggleBtn}
+              aria-pressed={viewMode === 'graph'}
+              onClick={() => onViewModeChange('graph')}
+            >
+              Graph
             </button>
           </div>
         </div>

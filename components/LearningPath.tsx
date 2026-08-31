@@ -29,6 +29,12 @@ import { DEFAULT_COURSE_LEARNING_PATH_SLUG } from '@/lib/course-learning-path-se
 import { isCourseLearningPathPayload } from '@/lib/course-learning-path-types'
 import { learningPathKicker, learningPathOutlineHint } from '@/lib/learning-path-kind-ui'
 import {
+  addLearningPathResourceSuggestion,
+  deleteLearningPathResourceSuggestion,
+  listLearningPathResourceSuggestions,
+  type LearningPathResourceSuggestion
+} from '@/lib/learning-path-resource-suggestions-db'
+import {
   getLearningPathRecord,
   loadLearningPathUserState,
   overlayUserState,
@@ -64,10 +70,12 @@ import {
   type LearningPathListedResource,
   type LearningPathNode,
   type LearningPathNodeStatus,
+  type LearningPathResource,
   type LearningPathResourceKind,
   type LearningPathUserResource,
   type LearningPathVisibility,
   emptyLearningPath,
+  insertLearningPathOfficialResource,
   insertLearningPathUserResource,
   isCatalogLearningPathSlug,
   mergeLearningPathResources,
@@ -494,6 +502,20 @@ function PlusIcon() {
   )
 }
 
+function PencilIcon() {
+  return (
+    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' aria-hidden>
+      <path
+        d='M7.35 1.85l2.8 2.8M2.15 9.55l2.45-.5 5.25-5.25a.8.8 0 0 0 0-1.13L8.53 1.35a.8.8 0 0 0-1.13 0L2.5 7.25 2.15 9.55Z'
+        stroke='currentColor'
+        strokeWidth='1.3'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
 function ShareIcon() {
   return (
     <svg
@@ -850,22 +872,68 @@ function ChevronSmall() {
 function PathStageActions({
   onAdd,
   onEdit,
-  inline = false
+  inline = false,
+  popout = false,
+  underLabel
 }: {
   onAdd: () => void
   onEdit: () => void
   inline?: boolean
+  popout?: boolean
+  underLabel?: string
 }) {
+  const wrapClass = popout
+    ? styles.nodeMenu
+    : inline
+      ? styles.graphActionsInline
+      : styles.graphActions
   const btnClass = inline
     ? `${styles.addNode} ${styles.addNodeInline}`
-    : styles.addNode
+    : popout
+      ? `${styles.addNode} ${styles.addNodePopout}`
+      : styles.addNode
+  const plusClass = popout ? styles.nodePlusBtn : btnClass
+  const addAria = popout
+    ? underLabel
+      ? `New node under “${underLabel}”`
+      : 'New node under this node'
+    : 'Add to path'
   return (
-    <div className={inline ? styles.graphActionsInline : styles.graphActions}>
-      <button type='button' className={btnClass} onClick={onEdit}>
-        Edit this node
+    <div
+      className={wrapClass}
+      role={popout ? 'menu' : undefined}
+      aria-label={popout ? 'Node actions' : undefined}
+      data-no-pan={popout ? '' : undefined}
+    >
+      <button
+        type='button'
+        className={btnClass}
+        role={popout ? 'menuitem' : undefined}
+        aria-label='Edit this node'
+        title='Edit this node'
+        onClick={(event) => {
+          event.stopPropagation()
+          onEdit()
+        }}
+      >
+        {popout ? <PencilIcon /> : 'Edit this node'}
       </button>
-      <button type='button' className={btnClass} onClick={onAdd}>
-        <PlusIcon /> Add to path
+      <button
+        type='button'
+        className={plusClass}
+        role={popout ? 'menuitem' : undefined}
+        aria-label={addAria}
+        title={addAria}
+        onClick={(event) => {
+          event.stopPropagation()
+          onAdd()
+        }}
+      >
+        {popout ? <PlusIcon /> : (
+          <>
+            <PlusIcon /> Add to path
+          </>
+        )}
       </button>
     </div>
   )
@@ -1053,6 +1121,9 @@ function CommunityLearningPath({
   const [userResources, setUserResources] = React.useState<
     Record<string, LearningPathUserResource[]>
   >({})
+  const [resourceSuggestions, setResourceSuggestions] = React.useState<
+    LearningPathResourceSuggestion[]
+  >([])
   const [viewMode, setViewMode] = React.useState<'graph' | 'list'>('list')
   const [outlineSearch, setOutlineSearch] = React.useState('')
   const [graphDetailWidth, setGraphDetailWidth] =
@@ -1067,7 +1138,7 @@ function CommunityLearningPath({
   const [hoverId, setHoverId] = React.useState<string | null>(null)
   const [addOpen, setAddOpen] = React.useState(false)
   const [addLabel, setAddLabel] = React.useState('')
-  const [addPlacement, setAddPlacement] = React.useState<'step' | 'child'>(
+  const [addPlacement, setAddPlacement] = React.useState<'child' | 'after'>(
     'child'
   )
   const [editOpen, setEditOpen] = React.useState(false)
@@ -1275,6 +1346,23 @@ function CommunityLearningPath({
 
   const canVoteOnResources =
     pathVisibility === 'public' || pathVisibility === 'collaborative'
+  const isCollabPath = pathVisibility === 'collaborative'
+  const canSuggestResources = isCollabPath && !isOwnPath
+
+  React.useEffect(() => {
+    if (!isCollabPath) {
+      setResourceSuggestions([])
+      return
+    }
+    const id = pathRowId ?? slug
+    let cancelled = false
+    void listLearningPathResourceSuggestions(id).then((rows) => {
+      if (!cancelled) setResourceSuggestions(rows)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [isCollabPath, pathRowId, slug, currentUserId])
 
   React.useEffect(() => {
     if (!canVoteOnResources || !isLearningPathRowUuid(pathRowId)) {
@@ -1501,8 +1589,28 @@ function CommunityLearningPath({
     ? nodeById[selectedMark.parentId]
     : null
   const myResources = selected ? userResources[selected.id] ?? [] : []
+  const nodeSuggestions = selected
+    ? resourceSuggestions
+        .filter((row) => row.nodeId === selected.id)
+        .map((row) => ({
+          id: row.id,
+          kind: row.kind,
+          title: row.title,
+          href: row.href,
+          passage: row.passage,
+          why: row.why,
+          sequence: row.sequence,
+          suggestedByYou: Boolean(
+            currentUserId && row.userId === currentUserId
+          )
+        }))
+    : []
   const listedResources = selected
-    ? mergeLearningPathResources(selected.resources, myResources)
+    ? mergeLearningPathResources(
+        selected.resources,
+        myResources,
+        nodeSuggestions
+      )
     : []
   const resourceFormOpen = addResourceOpen || Boolean(editingResourceId)
   const resourcePlacementMax = resourceFormOpen && editingResourceId
@@ -1528,10 +1636,19 @@ function CommunityLearningPath({
     restoreScrollAfter(() => selectNode(id), detailRef.current)
   }
 
-  function openAdd(placement: 'step' | 'child') {
+  function openAdd(placement: 'child' | 'after') {
     setAddPlacement(placement)
     setAddLabel('')
     setAddOpen(true)
+  }
+
+  function addToPathFromSelection() {
+    openAdd('child')
+  }
+
+  function addAfterSelected() {
+    if (!(selected ?? goalNode)) return
+    openAdd('after')
   }
 
   function openEdit() {
@@ -1618,68 +1735,132 @@ function CommunityLearningPath({
     const target = selected ?? goalNode
     if (!label || !target) return
     const id = newId('n')
-    const asStep = addPlacement === 'step' || target.kind === 'goal'
+    const after = addPlacement === 'after'
+    const afterOnCore =
+      after &&
+      (target.kind === 'goal' ||
+        target.kind === 'concept' ||
+        target.kind === 'milestone')
 
     setPath((prev) => {
-      const core = prev.nodes.filter(
-        (item) => item.kind === 'concept' || item.kind === 'milestone'
-      )
-      const lastCore = [...core].sort(
-        (a, b) => (a.sequence ?? 0) - (b.sequence ?? 0)
-      )[core.length - 1]
-      const parentId = asStep
-        ? lastCore?.id ?? (goalNode?.id ?? target.id)
+      const core = prev.nodes
+        .filter(
+          (item) => item.kind === 'concept' || item.kind === 'milestone'
+        )
+        .sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0))
+      const coreIds = new Set(core.map((item) => item.id))
+      const goal =
+        prev.nodes.find((item) => item.kind === 'goal') ?? target
+
+      if (afterOnCore) {
+        const afterIndex =
+          target.kind === 'goal'
+            ? -1
+            : core.findIndex((item) => item.id === target.id)
+        const sequence = afterIndex + 2
+        const fromId = target.kind === 'goal' ? goal.id : target.id
+        const oldNext = prev.edges.find(
+          (edge) => edge.from === fromId && coreIds.has(edge.to)
+        )
+        const nodes = prev.nodes.map((item) => {
+          if (item.kind !== 'concept' && item.kind !== 'milestone') {
+            return item
+          }
+          const seq = item.sequence ?? 0
+          if (seq >= sequence) {
+            return { ...item, sequence: seq + 1, sub: `Step ${seq + 1}` }
+          }
+          return item
+        })
+        const node: LearningPathNode = {
+          id,
+          label,
+          kind: 'milestone',
+          sub: `Step ${sequence}`,
+          status: 'next',
+          sequence,
+          x: Math.min(88, Math.max(12, (target.x ?? 34) + 16)),
+          y: target.kind === 'goal' ? 36 : target.y,
+          description: `A milestone on the way to ${prev.title}.`,
+          why: 'Steps are the major checkpoints. Concepts sit inside them.',
+          resources: []
+        }
+        const edges = oldNext
+          ? [
+              ...prev.edges.filter(
+                (edge) =>
+                  !(edge.from === fromId && edge.to === oldNext.to)
+              ),
+              { from: fromId, to: id },
+              { from: id, to: oldNext.to }
+            ]
+          : [...prev.edges, { from: fromId, to: id }]
+        const next = { ...prev, nodes: [...nodes, node], edges }
+        persistGraph(next)
+        pathRef.current = next
+        queueUserStateSave()
+        return next
+      }
+
+      const parentId = after
+        ? prev.edges.find((edge) => edge.to === target.id)?.from ??
+          target.id
         : target.id
       const parent =
         prev.nodes.find((item) => item.id === parentId) ?? target
       const siblings = prev.edges
         .filter((edge) => edge.from === parentId)
         .map((edge) => prev.nodes.find((item) => item.id === edge.to))
-        .filter((item): item is LearningPathNode => !!item)
+        .filter(
+          (item): item is LearningPathNode =>
+            !!item && item.kind === 'prerequisite'
+        )
+        .sort((a, b) => (a.sequence ?? 0) - (b.sequence ?? 0))
+      const sequence = after
+        ? (target.sequence ?? 0) + 1
+        : siblings.length + 1
+      const siblingIds = new Set(siblings.map((item) => item.id))
+      const nodes = after
+        ? prev.nodes.map((item) => {
+            if (!siblingIds.has(item.id)) return item
+            const seq = item.sequence ?? 0
+            if (seq >= sequence) return { ...item, sequence: seq + 1 }
+            return item
+          })
+        : prev.nodes
 
-      const node: LearningPathNode = asStep
-        ? {
-            id,
-            label,
-            kind: 'milestone',
-            sub: `Step ${core.length + 1}`,
-            status: 'next',
-            sequence: core.length + 1,
-            x: Math.min(88, Math.max(12, (lastCore?.x ?? 34) + 16)),
-            y: 36,
-            description: `A milestone on the way to ${prev.title}.`,
-            why: 'Steps are the major checkpoints. Concepts sit inside them.',
-            resources: []
-          }
-        : {
-            id,
-            label,
-            kind: 'prerequisite',
-            sub:
-              parent.kind === 'prerequisite'
-                ? 'As deep as you need'
-                : 'Need this',
-            status: 'next',
-            sequence: siblings.length + 1,
-            x: Math.min(88, Math.max(12, parent.x + siblings.length * 8 - 8)),
-            y: Math.min(
-              88,
-              parent.y + (parent.kind === 'prerequisite' ? 16 : 20)
-            ),
-            description:
-              parent.kind === 'prerequisite'
-                ? 'A finer concept under the parent idea.'
-                : 'A concept this step depends on.',
-            why:
-              parent.kind === 'prerequisite'
-                ? 'Go only as deep as the goal requires.'
-                : 'You placed this because it sits inside the step.',
-            resources: []
-          }
+      const node: LearningPathNode = {
+        id,
+        label,
+        kind: 'prerequisite',
+        sub:
+          parent.kind === 'prerequisite'
+            ? 'As deep as you need'
+            : 'Need this',
+        status: 'next',
+        sequence,
+        x: Math.min(
+          88,
+          Math.max(12, parent.x + (after ? 8 : siblings.length * 8 - 8))
+        ),
+        y: Math.min(
+          88,
+          parent.y + (parent.kind === 'prerequisite' ? 16 : 20)
+        ),
+        description:
+          parent.kind === 'prerequisite'
+            ? 'A finer concept under the parent idea.'
+            : 'A concept this step depends on.',
+        why:
+          parent.kind === 'prerequisite'
+            ? 'Go only as deep as the goal requires.'
+            : 'You placed this because it sits inside the step.',
+        resources: []
+      }
 
       const next = {
         ...prev,
-        nodes: [...prev.nodes, node],
+        nodes: [...nodes, node],
         edges: [...prev.edges, { from: parentId, to: id }]
       }
       persistGraph(next)
@@ -1809,7 +1990,7 @@ function CommunityLearningPath({
     setOpenSections((prev) => ({ ...prev, resources: true }))
   }
 
-  function saveUserResource(event: React.FormEvent) {
+  async function saveUserResource(event: React.FormEvent) {
     event.preventDefault()
     if (!currentUserId) {
       requestSignIn()
@@ -1828,6 +2009,25 @@ function CommunityLearningPath({
               ?.sequence ?? listedResources.length
           : listedResources.length + 1
         : rawPlacement
+    if (canSuggestResources && !editingResourceId) {
+      const created = await addLearningPathResourceSuggestion({
+        pathId: pathRowId ?? path.slug,
+        nodeId: selected.id,
+        kind: resourceDraft.kind,
+        title,
+        href: href || undefined,
+        passage,
+        why: resourceDraft.why.trim(),
+        sequence: placement
+      })
+      if (!created) {
+        window.alert('Could not send this suggestion. Try signing in again.')
+        return
+      }
+      setResourceSuggestions((prev) => [...prev, created])
+      closeResourceForm()
+      return
+    }
     const item: Omit<LearningPathUserResource, 'sequence'> = {
       id: editingResourceId ?? newId('ur'),
       kind: resourceDraft.kind,
@@ -1861,6 +2061,69 @@ function CommunityLearningPath({
       return next
     })
     closeResourceForm()
+  }
+
+  async function acceptSuggestedResource(resource: LearningPathListedResource) {
+    if (!isOwnPath || !selected || !resource.suggested) return
+    const suggestion = resourceSuggestions.find((row) => row.id === resource.id)
+    const placement =
+      suggestion?.sequence ?? selected.resources.length + 1
+    const official: LearningPathResource = {
+      id: newId('r'),
+      kind: resource.kind,
+      title: resource.title,
+      source: 'Community',
+      href: resource.href,
+      why:
+        [resource.passage, resource.why].filter(Boolean).join(' — ') ||
+        resource.why
+    }
+    setPath((prev) => {
+      const next: LearningPathData = {
+        ...prev,
+        nodes: prev.nodes.map((node) =>
+          node.id === selected.id
+            ? {
+                ...node,
+                resources: insertLearningPathOfficialResource(
+                  node.resources,
+                  official,
+                  placement
+                )
+              }
+            : node
+        )
+      }
+      persistGraph(next)
+      pathRef.current = next
+      return next
+    })
+    const ok = await deleteLearningPathResourceSuggestion(
+      resource.id,
+      pathRowId ?? path.slug
+    )
+    if (!ok) {
+      window.alert('Could not accept this suggestion.')
+      return
+    }
+    setResourceSuggestions((prev) =>
+      prev.filter((row) => row.id !== resource.id)
+    )
+  }
+
+  async function dismissSuggestedResource(resource: LearningPathListedResource) {
+    if (!resource.suggested) return
+    const ok = await deleteLearningPathResourceSuggestion(
+      resource.id,
+      pathRowId ?? path.slug
+    )
+    if (!ok) {
+      window.alert('Could not remove this suggestion.')
+      return
+    }
+    setResourceSuggestions((prev) =>
+      prev.filter((row) => row.id !== resource.id)
+    )
   }
 
   async function toggleResourceUpvote(resourceId: string) {
@@ -1959,10 +2222,10 @@ function CommunityLearningPath({
 
   const editorNode = selected ?? goalNode
   const addingOnCore =
-    showingRecommended ||
-    showingMentalMap ||
-    editorNode.kind === 'goal' ||
-    addPlacement === 'step'
+    addPlacement === 'after' &&
+    (editorNode.kind === 'goal' ||
+      editorNode.kind === 'concept' ||
+      editorNode.kind === 'milestone')
 
   const heroInstructors =
     isOwnPath
@@ -2154,16 +2417,8 @@ function CommunityLearningPath({
                     <PathStageActions
                       inline
                       onEdit={openEdit}
-                      onAdd={() =>
-                        openAdd(
-                          showingRecommended ||
-                            showingMentalMap ||
-                            !selected ||
-                            selected.kind === 'goal'
-                            ? 'step'
-                            : 'child'
-                        )
-                      }
+                      onAdd={addToPathFromSelection}
+                      underLabel={editorNode.label}
                     />
                     </>
               }
@@ -2215,66 +2470,84 @@ function CommunityLearningPath({
                         const pos =
                           displayPositions[node.id] ?? layout.positions[node.id]
                         if (!pos) return null
+                        const isSelected = node.id === graphSelectedId
                         return (
-                          <button
+                          <div
                             key={node.id}
-                            type='button'
-                            className={nodeClass(
-                              node,
-                              node.id === graphSelectedId
-                            )}
-                            style={{ left: pos.x, top: pos.y }}
-                            aria-label={
-                              mark
-                                ? mark.role === 'core'
-                                  ? `Step ${mark.mark}: ${node.label}`
-                                  : `${node.label}, ${mark.mark})`
-                                : node.label
+                            className={
+                              isSelected
+                                ? `${styles.nodeAnchor} ${styles.nodeAnchorSelected}`
+                                : styles.nodeAnchor
                             }
-                            onMouseEnter={() => setHoverId(node.id)}
-                            onFocus={() => setHoverId(node.id)}
-                            onClick={(event) => {
-                              centerGraphNode(event.currentTarget)
-                              selectNodeKeepingScroll(node.id)
-                            }}
+                            style={{ left: pos.x, top: pos.y }}
                           >
-                            <span className={styles.nodeStatus} />
-                            <span className={styles.nodeHead}>
-                              {mark ? (
-                                <span
-                                  className={
-                                    mark.role === 'branch'
-                                      ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
-                                      : styles.nodeMark
-                                  }
-                                >
-                                  {mark.role === 'branch'
-                                    ? `${mark.mark})`
-                                    : mark.mark}
+                            <button
+                              type='button'
+                              className={nodeClass(node, isSelected)}
+                              aria-haspopup='menu'
+                              aria-expanded={isSelected}
+                              aria-label={
+                                mark
+                                  ? mark.role === 'core'
+                                    ? `Step ${mark.mark}: ${node.label}`
+                                    : `${node.label}, ${mark.mark})`
+                                  : node.label
+                              }
+                              onMouseEnter={() => setHoverId(node.id)}
+                              onFocus={() => setHoverId(node.id)}
+                              onClick={(event) => {
+                                centerGraphNode(event.currentTarget)
+                                selectNodeKeepingScroll(node.id)
+                              }}
+                            >
+                              <span className={styles.nodeStatus} />
+                              <span className={styles.nodeHead}>
+                                {mark ? (
+                                  <span
+                                    className={
+                                      mark.role === 'branch'
+                                        ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
+                                        : styles.nodeMark
+                                    }
+                                  >
+                                    {mark.role === 'branch'
+                                      ? `${mark.mark})`
+                                      : mark.mark}
+                                  </span>
+                                ) : null}
+                                <span className={styles.nodeLabel}>
+                                  {node.label}
                                 </span>
-                              ) : null}
-                              <span className={styles.nodeLabel}>
-                                {node.label}
                               </span>
-                            </span>
-                            <span className={styles.nodeSub}>{node.sub}</span>
-                          </button>
+                              <span className={styles.nodeSub}>{node.sub}</span>
+                            </button>
+                            {isSelected ? (
+                              <button
+                                type='button'
+                                className={`${styles.nodePlusBtn} ${styles.nodeAfterBtn}`}
+                                data-no-pan=''
+                                aria-label={`New after “${node.label}”`}
+                                title={`New after “${node.label}”`}
+                                onClick={(event) => {
+                                  event.stopPropagation()
+                                  addAfterSelected()
+                                }}
+                              >
+                                <PlusIcon />
+                              </button>
+                            ) : null}
+                            {isSelected ? (
+                              <PathStageActions
+                                popout
+                                onEdit={openEdit}
+                                onAdd={addToPathFromSelection}
+                                underLabel={node.label}
+                              />
+                            ) : null}
+                          </div>
                         )
                       })}
                   </GraphViewport>
-                  <PathStageActions
-                    onEdit={openEdit}
-                    onAdd={() =>
-                      openAdd(
-                        showingRecommended ||
-                          showingMentalMap ||
-                          !selected ||
-                          selected.kind === 'goal'
-                          ? 'step'
-                          : 'child'
-                      )
-                    }
-                  />
                 </div>
               }
             />
@@ -2429,7 +2702,11 @@ function CommunityLearningPath({
                       }`}
                       aria-disabled={!currentUserId}
                       title={
-                        currentUserId ? undefined : 'Sign in to add a resource'
+                        currentUserId
+                          ? undefined
+                          : canSuggestResources
+                            ? 'Sign in to suggest a resource'
+                            : 'Sign in to add a resource'
                       }
                       onClick={() => {
                         if (!currentUserId) {
@@ -2445,15 +2722,18 @@ function CommunityLearningPath({
                         }))
                       }}
                     >
-                      + Add a resource
+                      {canSuggestResources
+                        ? '+ Suggest a resource'
+                        : '+ Add a resource'}
                     </button>
                   </>
                 }
               >
                 {listedResources.length === 0 ? (
                   <p className={styles.resourceEmpty}>
-                    Nothing here yet. When something makes this click, add it in
-                    the order you would study it.
+                    {canSuggestResources
+                      ? 'Nothing here yet. Suggest a resource for the owner to review.'
+                      : 'Nothing here yet. When something makes this click, add it in the order you would study it.'}
                   </p>
                 ) : (
                   <ol className={styles.resourceList}>
@@ -2504,6 +2784,10 @@ function CommunityLearningPath({
                               editingResourceId === resource.id
                                 ? ` ${styles.resourceEditing}`
                                 : ''
+                            }${
+                              resource.suggested
+                                ? ` ${styles.resourceSuggested}`
+                                : ''
                             }`}
                           >
                             <span className={styles.resourcePos}>
@@ -2513,12 +2797,41 @@ function CommunityLearningPath({
                               <div className={styles.resourceMetaRow}>
                                 <p className={styles.resourceKind}>{kindLabel}</p>
                                 <div className={styles.resourceMetaActions}>
-                                  {resource.addedByYou ? (
+                                  {resource.suggested ? (
+                                    <span className={styles.resourceYou}>
+                                      {resource.suggestedByYou
+                                        ? 'Suggested by you'
+                                        : 'Suggested'}
+                                    </span>
+                                  ) : resource.addedByYou ? (
                                     <span className={styles.resourceYou}>
                                       Added by you
                                     </span>
                                   ) : null}
-                                  {canVoteOnResources ? (
+                                  {resource.suggested && isOwnPath ? (
+                                    <button
+                                      type='button'
+                                      className={styles.resourceAcceptBtn}
+                                      onClick={() =>
+                                        void acceptSuggestedResource(resource)
+                                      }
+                                    >
+                                      Add
+                                    </button>
+                                  ) : null}
+                                  {resource.suggested &&
+                                  (isOwnPath || resource.suggestedByYou) ? (
+                                    <button
+                                      type='button'
+                                      className={styles.resourceDismissBtn}
+                                      onClick={() =>
+                                        void dismissSuggestedResource(resource)
+                                      }
+                                    >
+                                      {isOwnPath ? 'Dismiss' : 'Withdraw'}
+                                    </button>
+                                  ) : null}
+                                  {canVoteOnResources && !resource.suggested ? (
                                     <ResourceVoteControl
                                       score={voteScore}
                                       userVoted={userVoted}
@@ -2767,7 +3080,11 @@ function CommunityLearningPath({
                     !resourceDraft.passage.trim()
                   }
                 >
-                  {editingResourceId ? 'Save changes' : 'Save resource'}
+                  {editingResourceId
+                    ? 'Save changes'
+                    : canSuggestResources
+                      ? 'Suggest resource'
+                      : 'Save resource'}
                 </button>
               </div>
             </form>
@@ -2804,35 +3121,11 @@ function CommunityLearningPath({
               </button>
             </div>
             <form className={styles.modalForm} onSubmit={addNode}>
-              {editorNode.kind !== 'goal' &&
-              !showingRecommended &&
-              !showingMentalMap ? (
-                <fieldset className={styles.placement}>
-                  <legend className={styles.placementLegend}>Where</legend>
-                  <label className={styles.placementOption}>
-                    <input
-                      type='radio'
-                      name='add-placement'
-                      checked={addPlacement === 'child'}
-                      onChange={() => setAddPlacement('child')}
-                    />
-                    Under “{editorNode.label}”
-                  </label>
-                  <label className={styles.placementOption}>
-                    <input
-                      type='radio'
-                      name='add-placement'
-                      checked={addPlacement === 'step'}
-                      onChange={() => setAddPlacement('step')}
-                    />
-                    New step on the core path
-                  </label>
-                </fieldset>
-              ) : (
-                <p className={styles.placementHint}>
-                  This will be added as the next step on the core path.
-                </p>
-              )}
+              <p className={styles.placementHint}>
+                {addPlacement === 'after'
+                  ? `New after “${editorNode.label}”`
+                  : `New node under “${editorNode.label}”`}
+              </p>
               <label className={styles.modalLabel}>
                 {addingOnCore
                   ? 'Step title'

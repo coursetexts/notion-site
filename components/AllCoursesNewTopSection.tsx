@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 
+import { CreateLearningPathModal } from './CreateLearningPathModal'
 import styles from './AllCoursesNewTopSection.module.css'
 
 const SUBJECTS = [
@@ -180,9 +181,11 @@ export function AllCoursesNewTopSection({
   onSearchSubmit
 }: AllCoursesNewTopSectionProps) {
   const [isSearchPulse, setIsSearchPulse] = React.useState(false)
+  const [createOpen, setCreateOpen] = React.useState(false)
   const pulseTimeoutRef = React.useRef<number | null>(null)
   const submitFromButtonRef = React.useRef(false)
   const showCourseFilters = view === 'courses'
+  const closeCreate = React.useCallback(() => setCreateOpen(false), [])
 
   React.useEffect(() => {
     return () => {
@@ -240,7 +243,23 @@ export function AllCoursesNewTopSection({
 
   return (
     <section className={styles.section}>
-      <CatalogViewSelect view={view} onViewChange={onViewChange} />
+      <div className={styles.headingRow}>
+        <CatalogViewSelect view={view} onViewChange={onViewChange} />
+        {view === 'learning-paths' ? (
+          <div className={styles.createPathCta}>
+            <p className={styles.createPathPrompt}>
+              Can&apos;t find what you&apos;re looking for?
+            </p>
+            <button
+              type='button'
+              className={styles.createPathButton}
+              onClick={() => setCreateOpen(true)}
+            >
+              Create your own learning path
+            </button>
+          </div>
+        ) : null}
+      </div>
 
       <form
         id='all-courses-search'
@@ -253,7 +272,7 @@ export function AllCoursesNewTopSection({
         <input
           type='text'
           className={styles.input}
-          placeholder='What are you curious about?'
+          placeholder='What do you want to learn?'
           aria-label='What are you curious about?'
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
@@ -314,6 +333,7 @@ export function AllCoursesNewTopSection({
           </div>
         </div>
       ) : null}
+      <CreateLearningPathModal open={createOpen} onClose={closeCreate} />
     </section>
   )
 }

@@ -175,6 +175,19 @@ export function HomeCoursesSection({
     <section className={styles.section}>
       <div className={styles.content}>
         <h2 className={styles.heading}>Try courses from top schools.</h2>
+        <p className={styles.headingSub}>
+          We work directly with professors to bring niche, hard-to-find graduate
+          courses online through our{' '}
+          <a
+            href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
+            target='_blank'
+            rel='noreferrer'
+            className={styles.headingSubLink}
+          >
+            publishing pipeline
+          </a>
+          .  We want to open source courses across every major unverisity. It's opensource, compliant and really fast!
+        </p>
 
         <div className={styles.subjectGroup}>
           <div className={styles.dashedRule} />

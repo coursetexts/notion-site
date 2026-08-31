@@ -380,6 +380,7 @@
   flex: none;
   width: var(--graph-w, 720px);
   height: var(--graph-h, 520px);
+  overflow: visible;
   background: transparent;
 }
 
@@ -509,6 +510,108 @@
   color: #6b7280;
 }
 
+.nodeAnchor {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nodeAnchor:hover {
+  z-index: 5;
+}
+
+.nodeAnchorSelected {
+  z-index: 8;
+}
+
+.nodeAnchor .node,
+.nodeAnchor .nodeSelected,
+.nodeAnchor .nodePacked {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  z-index: auto;
+}
+
+.nodeMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  z-index: 9;
+}
+
+.addNodePopout {
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  background: #fff;
+  border-style: solid;
+  border-color: #e6e6e6;
+  gap: 0;
+}
+
+.addNodePopout svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.nodePlusBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  padding: 0;
+  border: 1px dashed #c9cbce;
+  background: transparent;
+  color: #0089c4;
+  cursor: pointer;
+}
+
+.nodePlusBtn:hover,
+.nodePlusBtn:focus-visible {
+  border-color: #0089c4;
+  border-style: solid;
+}
+
+.nodePlusBtn:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+.nodePlusBtn svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+.nodeAfterBtn {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  z-index: 10;
+  transform: translate(8px, -50%);
+}
+
 .graphActions {
   position: absolute;
   right: 16px;
@@ -545,6 +648,16 @@
 
 .addNodeInline {
   background: #fff;
+}
+
+.addNode.addNodePopout {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  background: #fff;
+  border-style: solid;
+  border-color: #e6e6e6;
+  gap: 0;
 }
 
 .pathListWrap {
@@ -900,6 +1013,7 @@
   width: max-content;
   min-width: 100%;
   min-height: 100%;
+  padding: 28px 36px 96px;
   background-color: #f8f7f4;
   background-image: radial-gradient(#d7d8da 0.7px, transparent 0.7px);
   background-size: 16px 16px;
@@ -1174,6 +1288,17 @@
   border-color: #0089c4;
 }
 
+.resourceSuggested {
+  border: 1px dashed #9ca3af;
+  background: #fff;
+}
+
+.resourceSuggested:hover,
+.resourceSuggested:focus-within {
+  border-style: dashed;
+  border-color: #0089c4;
+}
+
 .resourcePos {
   display: flex;
   align-items: center;
@@ -1290,6 +1415,43 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #9ca3af;
+}
+
+.resourceAcceptBtn {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0089c4;
+  cursor: pointer;
+}
+
+.resourceAcceptBtn:hover,
+.resourceAcceptBtn:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.resourceDismissBtn {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.resourceDismissBtn:hover,
+.resourceDismissBtn:focus-visible {
+  color: #6b7280;
+  text-decoration: underline;
+  outline: none;
 }
 
 .resourceTitle {
@@ -1899,12 +2061,25 @@ a.resourceTitle:focus-visible {
   .nodeSelected {
     transform: translate(-50%, -50%) scale(0.92);
   }
+
+  .nodeAnchor {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  .nodeAnchor .node,
+  .nodeAnchor .nodeSelected,
+  .nodeAnchor .nodePacked {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .node,
   .nodePacked,
-  .nodeSelected {
+  .nodeSelected,
+  .nodeAnchor,
+  .nodeMenu {
     transition: none;
+    animation: none;
   }
 }

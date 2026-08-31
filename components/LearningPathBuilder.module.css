@@ -124,7 +124,8 @@
 
 .textarea:focus-visible,
 .stepTitle:focus-visible,
-.rowInput:focus-visible {
+.rowInput:focus-visible,
+.whyTextarea:focus-visible {
   outline: none;
   border-color: #0089c4;
 }
@@ -174,6 +175,19 @@
 .fillPathBtn:focus-visible {
   outline: 2px solid rgba(0, 137, 196, 0.35);
   outline-offset: 2px;
+}
+
+.fillPathBtn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.fillError {
+  margin: 0 0 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #b42318;
 }
 
 .colLabels {
@@ -310,11 +324,54 @@
   font-style: italic;
 }
 
+.whyField {
+  display: block;
+  margin: 4px 0 8px 26px;
+}
+
+.stepCard > .whyField {
+  margin-left: 34px;
+}
+
+.whyLabel {
+  display: block;
+  margin-bottom: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #6b7280;
+}
+
+.whyTextarea {
+  width: 100%;
+  min-height: 52px;
+  resize: vertical;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #25272b;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+
+.whyTextarea::placeholder {
+  color: #9aa0a6;
+}
+
 .subTree {
   margin-left: 26px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.subItem {
+  display: flex;
+  flex-direction: column;
 }
 
 .addConcept,

@@ -6,6 +6,67 @@
   margin: 74px auto 0;
 }
 
+.headingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+}
+
+.createPathCta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.createPathPrompt {
+  margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.0004em;
+  color: var(--midGrey, #37352f);
+  text-align: right;
+}
+
+.createPathButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: -0.0004em;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background 200ms ease,
+    opacity 200ms ease;
+}
+
+.createPathButton:hover,
+.createPathButton:focus-visible {
+  background: #2c2c2c;
+  opacity: 0.96;
+}
+
+.createPathButton:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
 .heading {
   margin: 0;
   color: #000000;
@@ -356,6 +417,16 @@
 }
 
 @media (max-width: 768px) {
+  .headingRow {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .createPathCta {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
   .searchWrap,
   .filtersRow {
     width: 100%;

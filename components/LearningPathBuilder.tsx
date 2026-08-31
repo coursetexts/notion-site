@@ -2,6 +2,10 @@ import * as React from 'react'
 import { useRouter } from 'next/router'
 
 import {
+  outlineFromFilledLearningPath,
+  type FilledLearningPath
+} from '@/lib/learning-path-fill'
+import {
   type LearningPathKind,
   type LearningPathOutlineConcept,
   type LearningPathOutlineStep,
@@ -49,13 +53,14 @@ function romanMark(index: number) {
 }
 
 function emptySubconcept() {
-  return { id: newId('s'), label: '' }
+  return { id: newId('s'), label: '', why: '' }
 }
 
 function emptyConcept(): LearningPathOutlineConcept {
   return {
     id: newId('c'),
     label: '',
+    why: '',
     subconcepts: [emptySubconcept()]
   }
 }
@@ -64,6 +69,7 @@ function emptyStep(): LearningPathOutlineStep {
   return {
     id: newId('st'),
     title: '',
+    why: '',
     concepts: [emptyConcept()]
   }
 }
@@ -73,22 +79,26 @@ function initialSteps(): LearningPathOutlineStep[] {
     {
       id: 'st-1',
       title: '',
+      why: '',
       concepts: [
         {
           id: 'c-1',
           label: '',
-          subconcepts: [{ id: 's-1', label: '' }]
+          why: '',
+          subconcepts: [{ id: 's-1', label: '', why: '' }]
         }
       ]
     },
     {
       id: 'st-2',
       title: '',
+      why: '',
       concepts: [
         {
           id: 'c-2',
           label: '',
-          subconcepts: [{ id: 's-2', label: '' }]
+          why: '',
+          subconcepts: [{ id: 's-2', label: '', why: '' }]
         }
       ]
     }
@@ -108,6 +118,30 @@ function PlusIcon() {
   )
 }
 
+function WhyField({
+  id,
+  value,
+  onChange
+}: {
+  id: string
+  value: string
+  onChange: (value: string) => void
+}) {
+  return (
+    <label className={styles.whyField} htmlFor={id}>
+      <span className={styles.whyLabel}>Why is this on the learning path</span>
+      <textarea
+        id={id}
+        className={styles.whyTextarea}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder='What this is, and why it belongs on the way to the goal.'
+        rows={2}
+      />
+    </label>
+  )
+}
+
 export function LearningPathBuilder({
   initialGoal = '',
   initialKind = 'community'
@@ -120,6 +154,8 @@ export function LearningPathBuilder({
   const [goal, setGoal] = React.useState(initialGoal)
   const [descriptionDraft, setDescriptionDraft] = React.useState('')
   const [steps, setSteps] = React.useState<LearningPathOutlineStep[]>(initialSteps)
+  const [filling, setFilling] = React.useState(false)
+  const [fillError, setFillError] = React.useState<string | null>(null)
   const kind: LearningPathKind =
     initialKind === 'research' ? 'research' : 'community'
 
@@ -184,6 +220,15 @@ export function LearningPathBuilder({
     }))
   }
 
+  function setConceptWhy(stepId: string, conceptId: string, why: string) {
+    updateStep(stepId, (step) => ({
+      ...step,
+      concepts: step.concepts.map((item) =>
+        item.id === conceptId ? { ...item, why } : item
+      )
+    }))
+  }
+
   function addSubconcept(stepId: string, conceptId: string, afterId?: string) {
     updateStep(stepId, (step) => ({
       ...step,
@@ -222,6 +267,27 @@ export function LearningPathBuilder({
     }))
   }
 
+  function setSubconceptWhy(
+    stepId: string,
+    conceptId: string,
+    subId: string,
+    why: string
+  ) {
+    updateStep(stepId, (step) => ({
+      ...step,
+      concepts: step.concepts.map((concept) =>
+        concept.id === conceptId
+          ? {
+              ...concept,
+              subconcepts: concept.subconcepts.map((item) =>
+                item.id === subId ? { ...item, why } : item
+              )
+            }
+          : concept
+      )
+    }))
+  }
+
   const canCreate = steps.some((step) => step.title.trim())
 
   async function handleCreate(event: React.FormEvent) {
@@ -248,6 +314,36 @@ export function LearningPathBuilder({
       ...readStoredLearningPaths().filter((row) => row.slug !== slug)
     ])
     void router.push(`/learning-path/${slug}`)
+  }
+
+  async function handleFillPath() {
+    if (!goal.trim() || filling) return
+    setFilling(true)
+    setFillError(null)
+    try {
+      const response = await fetch('/api/fill-learning-path', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ goal })
+      })
+      const payload = (await response.json()) as FilledLearningPath & {
+        error?: string
+      }
+      if (!response.ok) {
+        setFillError(payload.error || 'Could not fill this path.')
+        return
+      }
+      if (!payload.steps?.length) {
+        setFillError('Could not read a path outline from the model.')
+        return
+      }
+      setDescriptionDraft(payload.description || '')
+      setSteps(outlineFromFilledLearningPath(payload, newId))
+    } catch {
+      setFillError('Could not fill this path. Try again.')
+    } finally {
+      setFilling(false)
+    }
   }
 
   if (!goal) {
@@ -324,9 +420,8 @@ export function LearningPathBuilder({
           </div>
           <p className={styles.lede}>Build the path you will follow.</p>
           <p className={styles.llmHint}>
-            Ask your favorite LLM to give you a learning path for “{goal}”,
-            then paste the structure into this form — steps, with the concepts
-            and sub-concepts that belong in each one.
+            Fill the outline from your goal, then edit anything that is off —
+            steps, concepts, and why each one is on the path.
           </p>
         </header>
 
@@ -334,10 +429,23 @@ export function LearningPathBuilder({
           <div className={styles.outlineHead}>
             <div className={styles.outlineTitleRow}>
               <h2 className={styles.outlineTitle}>Path outline</h2>
-              <button type='button' className={styles.fillPathBtn}>
-                Fill out this path for me
+              <button
+                type='button'
+                className={styles.fillPathBtn}
+                onClick={() => {
+                  void handleFillPath()
+                }}
+                disabled={filling}
+                aria-busy={filling}
+              >
+                {filling ? 'Filling…' : 'Fill out this path for me'}
               </button>
             </div>
+            {fillError ? (
+              <p className={styles.fillError} role='alert'>
+                {fillError}
+              </p>
+            ) : null}
             <div className={styles.colLabels} aria-hidden>
               <span>Step</span>
               <span>Concepts needed</span>
@@ -374,6 +482,14 @@ export function LearningPathBuilder({
                   </button>
                 </div>
 
+                <WhyField
+                  id={`why-${step.id}`}
+                  value={step.why ?? ''}
+                  onChange={(why) =>
+                    updateStep(step.id, (current) => ({ ...current, why }))
+                  }
+                />
+
                 <div className={styles.conceptTree}>
                   {step.concepts.map((concept, conceptIndex) => (
                     <div key={concept.id} className={styles.conceptBlock}>
@@ -406,38 +522,62 @@ export function LearningPathBuilder({
                         </button>
                       </div>
 
+                      <WhyField
+                        id={`why-${concept.id}`}
+                        value={concept.why ?? ''}
+                        onChange={(why) =>
+                          setConceptWhy(step.id, concept.id, why)
+                        }
+                      />
+
                       <div className={styles.subTree}>
                         {concept.subconcepts.map((sub, subIndex) => (
-                          <div key={sub.id} className={styles.row}>
-                            <span className={styles.mark} aria-hidden>
-                              {romanMark(subIndex)})
-                            </span>
-                            <input
-                              className={styles.rowInput}
-                              value={sub.label}
-                              onChange={(event) =>
-                                setSubconceptLabel(
-                                  step.id,
-                                  concept.id,
-                                  sub.id,
-                                  event.target.value
-                                )
-                              }
-                              placeholder='Optional sub-concept…'
-                              aria-label={`Sub-concept ${romanMark(subIndex)} under ${
-                                letterMark(conceptIndex)
-                              }`}
-                            />
-                            <button
-                              type='button'
-                              className={styles.iconBtn}
-                              onClick={() =>
-                                addSubconcept(step.id, concept.id, sub.id)
-                              }
-                              aria-label='Add sub-concept'
-                            >
-                              <PlusIcon />
-                            </button>
+                          <div key={sub.id} className={styles.subItem}>
+                            <div className={styles.row}>
+                              <span className={styles.mark} aria-hidden>
+                                {romanMark(subIndex)})
+                              </span>
+                              <input
+                                className={styles.rowInput}
+                                value={sub.label}
+                                onChange={(event) =>
+                                  setSubconceptLabel(
+                                    step.id,
+                                    concept.id,
+                                    sub.id,
+                                    event.target.value
+                                  )
+                                }
+                                placeholder='Optional sub-concept…'
+                                aria-label={`Sub-concept ${romanMark(subIndex)} under ${
+                                  letterMark(conceptIndex)
+                                }`}
+                              />
+                              <button
+                                type='button'
+                                className={styles.iconBtn}
+                                onClick={() =>
+                                  addSubconcept(step.id, concept.id, sub.id)
+                                }
+                                aria-label='Add sub-concept'
+                              >
+                                <PlusIcon />
+                              </button>
+                            </div>
+                            {sub.label.trim() || (sub.why ?? '').trim() ? (
+                              <WhyField
+                                id={`why-${sub.id}`}
+                                value={sub.why ?? ''}
+                                onChange={(why) =>
+                                  setSubconceptWhy(
+                                    step.id,
+                                    concept.id,
+                                    sub.id,
+                                    why
+                                  )
+                                }
+                              />
+                            ) : null}
                           </div>
                         ))}
                       </div>

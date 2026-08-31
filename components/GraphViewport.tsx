@@ -54,7 +54,7 @@ export function GraphViewport({
     const target = event.target
     if (
       target instanceof Element &&
-      target.closest('a, input, textarea, select, [data-no-pan]')
+      target.closest('a, input, textarea, select, [data-no-pan], [role="menu"]')
     ) {
       return
     }

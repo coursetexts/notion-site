@@ -49,6 +49,8 @@ export type LearningPathListedResource = {
   why: string
   addedByYou: boolean
   sequence: number
+  suggested?: boolean
+  suggestedByYou?: boolean
 }
 
 function clampResourcePlacement(value: number, max: number): number {
@@ -88,13 +90,37 @@ function listedFromUser(
   }
 }
 
+function listedFromSuggestion(
+  resource: LearningPathUserResource,
+  sequence: number,
+  suggestedByYou: boolean
+): LearningPathListedResource {
+  return {
+    id: resource.id,
+    kind: resource.kind,
+    title: resource.title,
+    href: resource.href,
+    passage: resource.passage,
+    why: resource.why,
+    addedByYou: false,
+    sequence,
+    suggested: true,
+    suggestedByYou
+  }
+}
+
 /**
  * Combine path resources with ones you added. User items occupy their saved
- * sequence slots; remaining slots keep the original path order.
+ * sequence slots; remaining slots keep the original path order. Pending
+ * collab suggestions are inserted at their requested place with a suggested
+ * flag so they never become official resources on their own.
  */
 export function mergeLearningPathResources(
   seeded: LearningPathResource[],
-  mine: LearningPathUserResource[]
+  mine: LearningPathUserResource[],
+  suggestions: Array<
+    LearningPathUserResource & { suggestedByYou?: boolean }
+  > = []
 ): LearningPathListedResource[] {
   const sequenced = mine.filter(
     (resource) =>
@@ -105,7 +131,9 @@ export function mergeLearningPathResources(
       resource.sequence == null || !Number.isFinite(resource.sequence)
   )
   const slotCount = seeded.length + sequenced.length
-  if (slotCount === 0 && unsequenced.length === 0) return []
+  if (slotCount === 0 && unsequenced.length === 0 && suggestions.length === 0) {
+    return []
+  }
 
   const slots: Array<LearningPathListedResource | null> = Array.from(
     { length: slotCount },
@@ -144,7 +172,33 @@ export function mergeLearningPathResources(
   for (const resource of unsequenced) {
     listed.push(listedFromUser(resource, listed.length + 1))
   }
+  const orderedSuggestions = [...suggestions].sort((a, b) => {
+    const diff = (a.sequence ?? Number.MAX_SAFE_INTEGER) - (b.sequence ?? Number.MAX_SAFE_INTEGER)
+    if (diff !== 0) return diff
+    return a.id.localeCompare(b.id)
+  })
+  for (const resource of orderedSuggestions) {
+    const max = listed.length + 1
+    const idx =
+      clampResourcePlacement(resource.sequence ?? max, max) - 1
+    listed.splice(
+      idx,
+      0,
+      listedFromSuggestion(resource, idx + 1, Boolean(resource.suggestedByYou))
+    )
+  }
   return listed.map((item, index) => ({ ...item, sequence: index + 1 }))
+}
+
+export function insertLearningPathOfficialResource(
+  resources: LearningPathResource[],
+  item: LearningPathResource,
+  placement: number
+): LearningPathResource[] {
+  const next = [...resources]
+  const idx = clampResourcePlacement(placement, next.length + 1) - 1
+  next.splice(idx, 0, item)
+  return next
 }
 
 export function insertLearningPathUserResource(
@@ -286,15 +340,23 @@ export type StoredLearningPath = {
   createdAt?: string
 }
 
+export type LearningPathOutlineSubconcept = {
+  id: string
+  label: string
+  why: string
+}
+
 export type LearningPathOutlineConcept = {
   id: string
   label: string
-  subconcepts: Array<{ id: string; label: string }>
+  why: string
+  subconcepts: LearningPathOutlineSubconcept[]
 }
 
 export type LearningPathOutlineStep = {
   id: string
   title: string
+  why: string
   concepts: LearningPathOutlineConcept[]
 }
 
@@ -1457,12 +1519,17 @@ export function learningPathFromOutline({
   const filledSteps = steps
     .map((step) => ({
       title: step.title.trim(),
+      why: (step.why ?? '').trim(),
       concepts: step.concepts
         .map((concept) => ({
           label: concept.label.trim(),
+          why: (concept.why ?? '').trim(),
           subconcepts: concept.subconcepts
-            .map((item) => item.label.trim())
-            .filter(Boolean)
+            .map((item) => ({
+              label: item.label.trim(),
+              why: (item.why ?? '').trim()
+            }))
+            .filter((item) => item.label)
         }))
         .filter((concept) => concept.label)
     }))
@@ -1494,6 +1561,8 @@ export function learningPathFromOutline({
     const stepId = `step-${stepIndex + 1}`
     stepIds.push(stepId)
     const x = layoutX(stepIndex, filledSteps.length)
+    const stepWhy =
+      step.why || 'Steps are the major checkpoints. Concepts sit inside them.'
     nodes.push({
       id: stepId,
       label: step.title,
@@ -1503,8 +1572,8 @@ export function learningPathFromOutline({
       sequence: stepIndex + 1,
       x,
       y: 36,
-      description: `A milestone on the way to ${title}.`,
-      why: 'Steps are the major checkpoints. Concepts sit inside them.',
+      description: step.why || `A milestone on the way to ${title}.`,
+      why: stepWhy,
       resources: []
     })
     edges.push({
@@ -1516,6 +1585,8 @@ export function learningPathFromOutline({
       const conceptId = `c-${stepIndex + 1}-${conceptIndex + 1}`
       const offset = (conceptIndex - (step.concepts.length - 1) / 2) * 12
       const conceptX = Math.min(88, Math.max(12, x + offset))
+      const conceptWhy =
+        concept.why || 'You placed this because it sits inside the step.'
       nodes.push({
         id: conceptId,
         label: concept.label,
@@ -1525,8 +1596,8 @@ export function learningPathFromOutline({
         sequence: conceptIndex + 1,
         x: conceptX,
         y: 58,
-        description: 'A concept this step depends on.',
-        why: 'You placed this because it sits inside the step.',
+        description: concept.why || 'A concept this step depends on.',
+        why: conceptWhy,
         resources: []
       })
       edges.push({ from: stepId, to: conceptId })
@@ -1534,17 +1605,18 @@ export function learningPathFromOutline({
       concept.subconcepts.forEach((sub, subIndex) => {
         const subId = `s-${stepIndex + 1}-${conceptIndex + 1}-${subIndex + 1}`
         const subOffset = (subIndex - (concept.subconcepts.length - 1) / 2) * 8
+        const subWhy = sub.why || 'Go only as deep as the goal requires.'
         nodes.push({
           id: subId,
-          label: sub,
+          label: sub.label,
           kind: 'prerequisite',
           sub: 'As deep as you need',
           status: 'next',
           sequence: subIndex + 1,
           x: Math.min(88, Math.max(12, conceptX + subOffset)),
           y: 76,
-          description: 'A finer concept under the parent idea.',
-          why: 'Go only as deep as the goal requires.',
+          description: sub.why || 'A finer concept under the parent idea.',
+          why: subWhy,
           resources: []
         })
         edges.push({ from: conceptId, to: subId })

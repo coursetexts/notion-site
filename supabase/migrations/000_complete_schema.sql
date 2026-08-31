@@ -2370,3 +2370,119 @@ create policy "Users can delete own learning path commitments"
 
 -- <<< END 030_learning_path_commitments.sql
 
+-- >>> BEGIN 031_nav_pins.sql
+
+-- name: 031_nav_pins
+-- =============================================================================
+-- Per-user “pin to top” flags for the header saved courses / paths list.
+-- Saved bookmarks stay separate; this only sorts items to the top of the flyout.
+-- target_key is `learning-path:{slug}` or `course:{notion_page_id}`.
+-- =============================================================================
+
+create table if not exists public.nav_pins (
+  user_id uuid not null references auth.users (id) on delete cascade,
+  target_key text not null,
+  created_at timestamptz not null default now(),
+  primary key (user_id, target_key)
+);
+
+create index if not exists nav_pins_user_idx
+  on public.nav_pins (user_id, created_at desc);
+
+alter table public.nav_pins enable row level security;
+
+drop policy if exists "Users can read own nav pins"
+  on public.nav_pins;
+create policy "Users can read own nav pins"
+  on public.nav_pins for select
+  using (auth.uid() = user_id);
+
+drop policy if exists "Users can insert own nav pins"
+  on public.nav_pins;
+create policy "Users can insert own nav pins"
+  on public.nav_pins for insert
+  with check (auth.uid() = user_id);
+
+drop policy if exists "Users can delete own nav pins"
+  on public.nav_pins;
+create policy "Users can delete own nav pins"
+  on public.nav_pins for delete
+  using (auth.uid() = user_id);
+
+-- <<< END 031_nav_pins.sql
+
+-- >>> BEGIN 032_learning_path_resource_suggestions.sql
+
+-- name: 032_learning_path_resource_suggestions
+-- =============================================================================
+-- Suggested resources on collaborative learning paths.
+-- Visitors propose items to the owner; they are not added to the official list
+-- until the owner accepts them.
+-- =============================================================================
+
+create table if not exists public.learning_path_resource_suggestions (
+  id uuid primary key default gen_random_uuid(),
+  path_id uuid not null references public.learning_paths (id) on delete cascade,
+  node_id text not null,
+  user_id uuid not null references auth.users (id) on delete cascade,
+  kind text not null,
+  title text not null,
+  href text,
+  passage text not null default '',
+  why text not null default '',
+  sequence integer,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists learning_path_resource_suggestions_path_idx
+  on public.learning_path_resource_suggestions (path_id, node_id, created_at desc);
+
+alter table public.learning_path_resource_suggestions enable row level security;
+
+drop policy if exists "Anyone can read collab resource suggestions"
+  on public.learning_path_resource_suggestions;
+create policy "Anyone can read collab resource suggestions"
+  on public.learning_path_resource_suggestions for select
+  using (
+    exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and (
+          p.visibility = 'collaborative'
+          or p.owner_id = auth.uid()
+        )
+    )
+  );
+
+drop policy if exists "Users can suggest resources on collab paths"
+  on public.learning_path_resource_suggestions;
+create policy "Users can suggest resources on collab paths"
+  on public.learning_path_resource_suggestions for insert
+  with check (
+    auth.uid() = user_id
+    and exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and p.visibility = 'collaborative'
+        and p.owner_id is distinct from auth.uid()
+    )
+  );
+
+drop policy if exists "Suggester or owner can delete resource suggestions"
+  on public.learning_path_resource_suggestions;
+create policy "Suggester or owner can delete resource suggestions"
+  on public.learning_path_resource_suggestions for delete
+  using (
+    auth.uid() = user_id
+    or exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and p.owner_id = auth.uid()
+    )
+  );
+
+-- <<< END 032_learning_path_resource_suggestions.sql
+

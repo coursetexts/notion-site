@@ -11,23 +11,36 @@ type NavItem = {
   external?: boolean
 }
 
+type SupportCard = NavItem & {
+  image: string
+  title: string
+}
+
 type HomeFooterProps = {
   /** Use 'course' on course pages to match hero background and reduce gap above footer */
   variant?: 'default' | 'course'
 }
 
 export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
-  const supportCards: Array<NavItem & { image: string }> = [
+  const supportCards: SupportCard[] = [
     {
       image: '/images/home/footer-for-students.png',
-      label: 'for students',
-      href: 'https://hcb.hackclub.com/donations/start/coursetexts',
-      external: true
+      label: 'for Learners',
+      title: 'Start Learning',
+      href: '/all-courses'
     },
     {
       image: '/images/home/footer-for-professors.png',
       label: 'for professors',
+      title: 'Contribute your material',
       href: '/manifesto'
+    },
+    {
+      image: '/images/home/donation-badge.png',
+      label: 'for supporters',
+      title: 'Donate',
+      href: 'https://hcb.hackclub.com/donations/start/coursetexts',
+      external: true
     }
   ]
 
@@ -105,11 +118,7 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
 
                       <div className={styles.supportCardCopy}>
                         <p className={styles.supportCardLabel}>{card.label}</p>
-                        <p className={styles.supportCardTitle}>
-                          {card.label === 'for students'
-                            ? 'Donate to support'
-                            : 'Contribute your material'}
-                        </p>
+                        <p className={styles.supportCardTitle}>{card.title}</p>
                       </div>
                     </>
                   )

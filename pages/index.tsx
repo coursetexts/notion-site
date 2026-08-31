@@ -23,7 +23,7 @@ import { HomeDotGrid } from '@/components/HomeDotGrid'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
-import { HomeLearnSection } from '@/components/HomeLearnSection'
+// import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeWhatIsLearningPathSection } from '@/components/HomeWhatIsLearningPathSection'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
@@ -1384,7 +1384,7 @@ export default function HomePage({
           activeSubjects={activeSubjects}
           onSubjectToggle={handleSubjectToggle}
         />
-        <HomeLearnSection />
+        {/* <HomeLearnSection /> */}
         <HomeDonateSection />
         <HomeBlogSection />
         <HomeFooterSection />
