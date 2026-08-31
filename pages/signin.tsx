@@ -34,7 +34,9 @@ export default function SignIn() {
   }, [effectiveUser, router])
 
   const handleGoogleSignIn = () => {
-    auth?.signInWithGoogle()
+    const redirectUrl =
+      typeof router.query.redirect === 'string' ? router.query.redirect : undefined
+    void auth?.signInWithGoogle(redirectUrl)
   }
 
   const handlePreviewSubmit = async (e: React.FormEvent) => {

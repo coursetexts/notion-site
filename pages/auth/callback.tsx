@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 import { getSupabaseClient } from '@/lib/supabase'
+import { takeAuthRedirect } from '@/lib/auth-redirect'
 
 /**
  * OAuth callback: Supabase redirects here after Google sign-in.
@@ -30,7 +31,8 @@ export default function AuthCallbackPage() {
         return
       }
       setStatus('done')
-      router.replace(session ? '/profile' : '/')
+      const next = takeAuthRedirect()
+      router.replace(session ? next || '/profile' : '/')
     }
 
     run()

@@ -462,6 +462,53 @@
   cursor: not-allowed;
 }
 
+.formWrap {
+  position: relative;
+}
+
+.signInCover {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px 24px;
+  background: rgba(248, 247, 244, 0.78);
+  backdrop-filter: blur(3px);
+}
+
+.signInCard {
+  width: min(100%, 380px);
+  padding: 24px 22px 22px;
+  background: #fff;
+  border: 1px solid #d7d8da;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.signInTitle {
+  margin: 0 0 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 401;
+  line-height: 1.2;
+  color: #000;
+}
+
+.signInCopy {
+  margin: 0 0 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #37352f;
+}
+
+.formCovered {
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (max-width: 640px) {
   .outlineTitleRow {
     align-items: flex-start;

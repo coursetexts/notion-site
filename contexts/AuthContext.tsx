@@ -16,6 +16,7 @@ import {
 } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
 import { persistAllBeforeSignOut } from '@/lib/persist-before-sign-out'
+import { setAuthRedirect } from '@/lib/auth-redirect'
 import { getSupabaseClient } from '@/lib/supabase'
 import type { Profile } from '@/lib/supabase-types'
 
@@ -24,7 +25,7 @@ interface AuthContextValue {
   profile: Profile | null
   isLoading: boolean
   error: string | null
-  signInWithGoogle: () => Promise<void>
+  signInWithGoogle: (nextPath?: string) => Promise<void>
   signOut: () => Promise<void>
   refreshProfile: () => Promise<void>
 }
@@ -193,8 +194,9 @@ export function AuthProvider({
     })
   }, [])
 
-  const signInWithGoogle = useCallback(async () => {
+  const signInWithGoogle = useCallback(async (nextPath?: string) => {
     setError(null)
+    setAuthRedirect(nextPath)
     const supabase = getSupabaseClient()
     if (!supabase) {
       setError(

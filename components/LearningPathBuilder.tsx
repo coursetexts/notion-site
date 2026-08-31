@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 
+import { useAuthOptional } from '@/contexts/AuthContext'
 import {
   outlineFromFilledLearningPath,
   type FilledLearningPath
 } from '@/lib/learning-path-fill'
+import { LEARNING_PATH_FILL_DAILY_LIMIT } from '@/lib/learning-path-fill-quota'
 import {
   type LearningPathKind,
   type LearningPathOutlineConcept,
@@ -21,6 +23,7 @@ import {
   ensureUniqueSlug,
   slugifyLearningPathName
 } from '@/lib/learning-path-slug'
+import { getSupabaseClient } from '@/lib/supabase'
 
 import styles from './LearningPathBuilder.module.css'
 
@@ -150,6 +153,9 @@ export function LearningPathBuilder({
   initialKind?: LearningPathKind
 }) {
   const router = useRouter()
+  const auth = useAuthOptional()
+  const signedIn = Boolean(auth?.user)
+  const needsSignIn = !auth?.isLoading && !signedIn
   const [goalDraft, setGoalDraft] = React.useState(initialGoal)
   const [goal, setGoal] = React.useState(initialGoal)
   const [descriptionDraft, setDescriptionDraft] = React.useState('')
@@ -161,6 +167,15 @@ export function LearningPathBuilder({
 
   function closeBuilder() {
     void router.push('/learning-paths')
+  }
+
+  function requestSignIn() {
+    const next = router.asPath || '/learning-path/new'
+    if (auth?.signInWithGoogle) {
+      void auth.signInWithGoogle(next)
+      return
+    }
+    void router.push(`/signin?redirect=${encodeURIComponent(next)}`)
   }
 
   function handleGoalSubmit(event: React.FormEvent) {
@@ -288,10 +303,14 @@ export function LearningPathBuilder({
     }))
   }
 
-  const canCreate = steps.some((step) => step.title.trim())
+  const canCreate = signedIn && steps.some((step) => step.title.trim())
 
   async function handleCreate(event: React.FormEvent) {
     event.preventDefault()
+    if (!signedIn) {
+      requestSignIn()
+      return
+    }
     if (!goal || !canCreate) return
     const existing = await listAllLearningPathSlugs()
     const slug = ensureUniqueSlug(slugifyLearningPathName(goal), existing)
@@ -318,16 +337,45 @@ export function LearningPathBuilder({
 
   async function handleFillPath() {
     if (!goal.trim() || filling) return
+    if (!signedIn) {
+      requestSignIn()
+      return
+    }
     setFilling(true)
     setFillError(null)
     try {
+      const supabase = getSupabaseClient()
+      const session = supabase
+        ? (await supabase.auth.getSession()).data.session
+        : null
+      const accessToken = session?.access_token
+      if (!accessToken) {
+        requestSignIn()
+        setFillError('Sign in to auto-fill a learning path.')
+        return
+      }
       const response = await fetch('/api/fill-learning-path', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`
+        },
         body: JSON.stringify({ goal })
       })
       const payload = (await response.json()) as FilledLearningPath & {
         error?: string
+      }
+      if (response.status === 401) {
+        requestSignIn()
+        setFillError(payload.error || 'Sign in to auto-fill a learning path.')
+        return
+      }
+      if (response.status === 429) {
+        setFillError(
+          payload.error ||
+            `You've used all ${LEARNING_PATH_FILL_DAILY_LIMIT} auto-fills for today. Try again tomorrow.`
+        )
+        return
       }
       if (!response.ok) {
         setFillError(payload.error || 'Could not fill this path.')
@@ -418,14 +466,45 @@ export function LearningPathBuilder({
               ×
             </button>
           </div>
-          <p className={styles.lede}>Build the path you will follow.</p>
+          <p className={styles.lede}>Let&apos;s build the path you will follow.</p>
           <p className={styles.llmHint}>
             Fill the outline from your goal, then edit anything that is off —
             steps, concepts, and why each one is on the path.
           </p>
         </header>
 
-        <form onSubmit={handleCreate}>
+        <div className={styles.formWrap}>
+          {needsSignIn ? (
+            <div
+              className={styles.signInCover}
+              role='dialog'
+              aria-modal='true'
+              aria-labelledby='path-signin-title'
+            >
+              <div className={styles.signInCard}>
+                <h2 id='path-signin-title' className={styles.signInTitle}>
+                  Please sign in
+                </h2>
+                <p className={styles.signInCopy}>
+                  Anyone can start from a goal. Building and saving the path
+                  needs a Coursetexts account.
+                </p>
+                <button
+                  type='button'
+                  className={styles.submitBtn}
+                  onClick={requestSignIn}
+                >
+                  Sign in
+                </button>
+              </div>
+            </div>
+          ) : null}
+
+          <form
+            onSubmit={handleCreate}
+            className={needsSignIn ? styles.formCovered : undefined}
+            aria-hidden={needsSignIn}
+          >
           <div className={styles.outlineHead}>
             <div className={styles.outlineTitleRow}>
               <h2 className={styles.outlineTitle}>Path outline</h2>
@@ -435,7 +514,7 @@ export function LearningPathBuilder({
                 onClick={() => {
                   void handleFillPath()
                 }}
-                disabled={filling}
+                disabled={filling || !signedIn}
                 aria-busy={filling}
               >
                 {filling ? 'Filling…' : 'Fill out this path for me'}
@@ -630,6 +709,7 @@ export function LearningPathBuilder({
             </button>
           </div>
         </form>
+        </div>
       </div>
     </section>
   )

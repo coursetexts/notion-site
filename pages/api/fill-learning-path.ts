@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import got from 'got'
 
+import { getApiUser } from '@/lib/api-user'
 import {
   buildLearningPathFillUserPrompt,
   extractJsonObject,
@@ -9,6 +10,10 @@ import {
   normalizeFilledLearningPath,
   type FilledLearningPath
 } from '@/lib/learning-path-fill'
+import {
+  consumeLearningPathFillQuota,
+  LEARNING_PATH_FILL_DAILY_LIMIT
+} from '@/lib/learning-path-fill-quota'
 
 type GeminiPart = {
   text?: string
@@ -103,11 +108,16 @@ async function generateFill(
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<FilledLearningPath | { error: string }>
+  res: NextApiResponse<FilledLearningPath | { error: string; remaining?: number }>
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
     return res.status(405).json({ error: 'Method not allowed' })
+  }
+
+  const auth = await getApiUser(req)
+  if (!auth) {
+    return res.status(401).json({ error: 'Sign in to auto-fill a learning path.' })
   }
 
   const goal = readGoal(req.body).slice(0, 800)
@@ -118,6 +128,19 @@ export default async function handler(
   const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) {
     return res.status(500).json({ error: 'Missing GEMINI_API_KEY' })
+  }
+
+  try {
+    const quota = await consumeLearningPathFillQuota(auth.supabase)
+    if (!quota.allowed) {
+      return res.status(429).json({
+        error: `You've used all ${LEARNING_PATH_FILL_DAILY_LIMIT} auto-fills for today. Try again tomorrow.`,
+        remaining: 0
+      })
+    }
+  } catch (error: unknown) {
+    console.error('[fill-learning-path] quota', error)
+    return res.status(500).json({ error: 'Could not check auto-fill limit.' })
   }
 
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash'

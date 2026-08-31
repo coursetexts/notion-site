@@ -20,7 +20,7 @@ export interface AuthState {
   profile: Profile | null
   isLoading: boolean
   error: string | null
-  signInWithGoogle: () => Promise<void>
+  signInWithGoogle: (nextPath?: string) => Promise<void>
   signOut: () => Promise<void>
   refreshProfile: () => Promise<void>
 }
