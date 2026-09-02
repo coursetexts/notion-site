@@ -11,7 +11,7 @@ This Next.js app renders **Notion** professor courses at `/course/{pageId}` and 
 | [docs/README.md](./docs/README.md)                   | Index                                                                                                  |
 | [Architecture](./docs/architecture.md)               | Routes, home, how pages talk to Notion + Supabase                                                      |
 | [Database](./docs/database.md)                       | Schema groups, ERDs, RLS                                                                               |
-| [Auth](./docs/auth.md)                               | Google OAuth → profiles                                                                                |
+| [Auth](./docs/auth.md)                               | Google OAuth → profiles. Return to the gated page after sign-in.                                       |
 | [Community learning paths](./docs/learning-paths.md) | `/learning-path/{slug}`. Publish only with 2 resources + why per topic.                                |
 | [Course learning paths](./docs/curated-courses.md)   | `/learning-path/{slug}`                                                                                |
 | [Knowledge](./docs/knowledge.md)                     | Profile Knowledge tab, finish celebration, duration + enjoyment %, shared graph (daily LLM job is off) |

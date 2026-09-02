@@ -72,6 +72,14 @@ a {
   font-family: var(--font-sans);
 }
 
+button:not(:disabled),
+[type='button']:not(:disabled),
+[type='submit']:not(:disabled),
+[role='button']:not([aria-disabled='true']),
+a[href] {
+  cursor: pointer;
+}
+
 code,
 pre,
 kbd,

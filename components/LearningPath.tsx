@@ -17,6 +17,7 @@ import { PathContentActivity } from '@/components/PathContentActivity'
 import { ReportButton, reportHoverTargetClass } from '@/components/ReportButton'
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
 import { getCachedAuth } from '@/lib/auth-cache'
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import { centerGraphNode } from '@/lib/center-graph-node'
 import { pathResourceReportId } from '@/lib/content-reports'
 import { learningPathActivityPageId } from '@/lib/course-activity-db'
@@ -113,7 +114,7 @@ import {
   sequenceMarks,
   updateLearningPathUserResource
 } from '@/lib/learning-path-seed'
-import { readSearchParam } from '@/lib/note-deep-link'
+import { readSearchParam, replaceSearchParams } from '@/lib/note-deep-link'
 import {
   type NotebookDocJson,
   parseStoredNotebookNote,
@@ -1240,13 +1241,17 @@ function CommunityLearningPath({
   resourcesRef.current = userResources
   pathRowIdRef.current = pathRowId
 
-  function requestSignIn() {
-    const next = `/learning-path/${slug}`
+  function requestSignIn(intent?: 'notes' | 'annotations') {
+    const extra: Record<string, string> = {}
+    if (selectedId) extra.node = selectedId
+    if (intent === 'notes') extra.notes = '1'
+    if (intent === 'annotations') extra.annotations = '1'
+    const next = currentAuthRedirectPath(extra)
     if (auth?.signInWithGoogle) {
       void auth.signInWithGoogle(next)
       return
     }
-    void router.push(`/signin?redirect=${encodeURIComponent(next)}`)
+    void router.push(signInPageHref(next))
   }
 
   function persistGraph(next: LearningPathData) {
@@ -1319,7 +1324,11 @@ function CommunityLearningPath({
     let cancelled = false
     const local = resolveLearningPath(slug, readStoredLearningPaths())
     setPath(local)
-    setSelectedId(selectionFromSearch(local.nodes.map((node) => node.id)))
+    const localSelection = selectionFromSearch(
+      local.nodes.map((node) => node.id)
+    )
+    setSelectedId(localSelection)
+    replaceSearchParams({ node: localSelection })
     setHoverId(null)
     setPathRowId(null)
     setUserStateReady(false)
@@ -1370,7 +1379,11 @@ function CommunityLearningPath({
       )
       setNotes(state.notes)
       setUserResources(state.resources)
-      setSelectedId(selectionFromSearch(next.nodes.map((node) => node.id)))
+      const nextSelection = selectionFromSearch(
+        next.nodes.map((node) => node.id)
+      )
+      setSelectedId(nextSelection)
+      replaceSearchParams({ node: nextSelection })
       setUserStateReady(true)
     })()
 
@@ -1402,6 +1415,7 @@ function CommunityLearningPath({
     if (!isLearningPathKnowledgeSelection(selectedId)) return
     if (isLearningPathFinished(path)) return
     setSelectedId(LEARNING_PATH_RECOMMENDED_SECTION_ID)
+    replaceSearchParams({ node: LEARNING_PATH_RECOMMENDED_SECTION_ID })
   }, [path, selectedId])
 
   React.useEffect(() => {
@@ -1722,6 +1736,7 @@ function CommunityLearningPath({
     const next =
       nodeById[id]?.kind === 'goal' ? LEARNING_PATH_MENTAL_MAP_SECTION_ID : id
     setSelectedId(next)
+    replaceSearchParams({ node: next })
     setOpenSections(CLOSED_SECTIONS)
     setAddResourceOpen(false)
     setEditingResourceId(null)
@@ -1804,6 +1819,7 @@ function CommunityLearningPath({
       return next
     })
     setSelectedId(fallback)
+    replaceSearchParams({ node: fallback })
     setDeleteOpen(false)
   }
 
@@ -1846,6 +1862,7 @@ function CommunityLearningPath({
         else setPendingFinish(true)
         setViewMode('list')
         setSelectedId(LEARNING_PATH_KNOWLEDGE_SECTION_ID)
+        replaceSearchParams({ node: LEARNING_PATH_KNOWLEDGE_SECTION_ID })
       }
     }
   }
@@ -1973,6 +1990,7 @@ function CommunityLearningPath({
       return next
     })
     setSelectedId(id)
+    replaceSearchParams({ node: id })
     setAddLabel('')
     setAddOpen(false)
   }
@@ -1994,9 +2012,8 @@ function CommunityLearningPath({
 
   async function toggleBookmarkPath() {
     if (bookmarkBusy) return
-    const href = `/learning-path/${path.slug}`
     if (!currentUserId) {
-      void router.push(`/signin?redirect=${encodeURIComponent(href)}`)
+      requestSignIn()
       return
     }
     setBookmarkBusy(true)
@@ -2038,9 +2055,7 @@ function CommunityLearningPath({
   async function setPathVisibilityChoice(next: LearningPathVisibility) {
     if (privacyBusy || !isOwnPath || next === pathVisibility) return
     if (!currentUserId) {
-      void router.push(
-        `/signin?redirect=${encodeURIComponent(`/learning-path/${path.slug}`)}`
-      )
+      requestSignIn()
       return
     }
     const publishingFromPrivate =
@@ -2269,13 +2284,25 @@ function CommunityLearningPath({
   }
 
   async function toggleResourceUpvote(resourceId: string) {
-    if (!canVoteOnResources) return
     if (!currentUserId) {
       requestSignIn()
       return
     }
+    if (!canVoteOnResources) return
     const nodeId = selected?.id
-    if (!isLearningPathRowUuid(pathRowId) || !nodeId) return
+    if (!nodeId) return
+    let id = pathRowId
+    if (!isLearningPathRowUuid(id)) {
+      const record = await getLearningPathRecord(slug)
+      id = record?.id ?? null
+      if (isLearningPathRowUuid(id)) setPathRowId(id)
+    }
+    if (!isLearningPathRowUuid(id)) {
+      window.alert(
+        'Could not save your upvote. This path is not in the database yet.'
+      )
+      return
+    }
     const key = learningPathResourceVoteKey(nodeId, resourceId)
     const current = resourceVotes[key] ?? { score: 0, userVoted: false }
     const nextVoted = !current.userVoted
@@ -2287,7 +2314,7 @@ function CommunityLearningPath({
     setResourceVotes((prev) => ({ ...prev, [key]: optimistic }))
     try {
       const score = await setLearningPathResourceUpvote(
-        pathRowId,
+        id,
         nodeId,
         resourceId,
         nextVoted
@@ -2857,7 +2884,7 @@ function CommunityLearningPath({
                   fillHeight
                   locked={!currentUserId}
                   lockedMessage='Sign in to add your notes'
-                  onUnlock={requestSignIn}
+                  onUnlock={() => requestSignIn('notes')}
                 />
               ) : (
                 <p className={styles.resourceEmpty}>Loading notes…</p>
@@ -3093,8 +3120,7 @@ function CommunityLearningPath({
                                         score={voteScore}
                                         userVoted={userVoted}
                                         disabled={
-                                          votingResourceId === resource.id ||
-                                          !isLearningPathRowUuid(pathRowId)
+                                          votingResourceId === resource.id
                                         }
                                         signedIn={Boolean(currentUserId)}
                                         onToggle={() =>

@@ -64,6 +64,7 @@
 .googleBtn:hover:not(:disabled) {
   background: #f5f5f5;
   border-color: #d5d5d5;
+  cursor: pointer;
 }
 
 .googleBtn:disabled {

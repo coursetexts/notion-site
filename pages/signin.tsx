@@ -5,6 +5,10 @@ import React, { useState } from 'react'
 
 import { getCachedAuth } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
+import {
+  redirectParamFromLocation,
+  sanitizeAuthRedirect
+} from '@/lib/auth-redirect'
 import { name as siteName } from '@/lib/config'
 import styles from '@/styles/login.module.css'
 
@@ -29,14 +33,21 @@ export default function SignIn() {
       isLoading: auth?.isLoading ?? null
     })
     if (!effectiveUser) return
-    const redirectUrl = (router.query.redirect as string) || '/profile'
+    const redirectUrl =
+      sanitizeAuthRedirect(
+        typeof router.query.redirect === 'string' ? router.query.redirect : null
+      ) ||
+      redirectParamFromLocation() ||
+      '/'
     router.replace(redirectUrl)
   }, [effectiveUser, router])
 
   const handleGoogleSignIn = () => {
     const redirectUrl =
-      typeof router.query.redirect === 'string' ? router.query.redirect : undefined
-    void auth?.signInWithGoogle(redirectUrl)
+      sanitizeAuthRedirect(
+        typeof router.query.redirect === 'string' ? router.query.redirect : null
+      ) || redirectParamFromLocation()
+    void auth?.signInWithGoogle(redirectUrl ?? undefined)
   }
 
   const handlePreviewSubmit = async (e: React.FormEvent) => {
@@ -50,7 +61,14 @@ export default function SignIn() {
         body: JSON.stringify({ password })
       })
       if (res.ok) {
-        const redirectUrl = (router.query.redirect as string) || '/'
+        const redirectUrl =
+          sanitizeAuthRedirect(
+            typeof router.query.redirect === 'string'
+              ? router.query.redirect
+              : null
+          ) ||
+          redirectParamFromLocation() ||
+          '/'
         await router.push(redirectUrl)
       } else {
         const data = await res.json()

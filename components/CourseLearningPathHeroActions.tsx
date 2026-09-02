@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
+import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import {
   isCourseLearningPathPinId,
   isCourseLearningPathPinned,
@@ -118,7 +119,7 @@ export function CourseLearningPathSaveButton({
 
   async function handleClick() {
     if (!signedIn) {
-      auth?.signInWithGoogle()
+      auth?.signInWithGoogle(currentAuthRedirectPath())
       return
     }
     if (!canPin || loading) return

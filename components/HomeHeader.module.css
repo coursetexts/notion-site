@@ -266,6 +266,7 @@
   color: #0089c4;
   background-color: #f5fbff;
   opacity: 0.95;
+  cursor: pointer;
 }
 
 .divider {
@@ -534,6 +535,7 @@
 .menuSignUp:focus-visible {
   border-color: #0089c4;
   background: #f5fbff;
+  cursor: pointer;
 }
 
 @media (max-width: 980px) {

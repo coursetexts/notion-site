@@ -15,8 +15,13 @@ import {
   subscribeToAuthCache
 } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
+import {
+  clearAuthRedirect,
+  getAuthCallbackUrl,
+  resolveAuthRedirect,
+  setAuthRedirect
+} from '@/lib/auth-redirect'
 import { persistAllBeforeSignOut } from '@/lib/persist-before-sign-out'
-import { getAuthCallbackUrl, setAuthRedirect } from '@/lib/auth-redirect'
 import { getSupabaseClient } from '@/lib/supabase'
 import type { Profile } from '@/lib/supabase-types'
 
@@ -196,7 +201,8 @@ export function AuthProvider({
 
   const signInWithGoogle = useCallback(async (nextPath?: string) => {
     setError(null)
-    setAuthRedirect(nextPath)
+    const next = resolveAuthRedirect(nextPath)
+    setAuthRedirect(next)
     const supabase = getSupabaseClient()
     if (!supabase) {
       setError(
@@ -230,6 +236,7 @@ export function AuthProvider({
     setUserState(null)
     setProfileState(null)
     clearCachedAuth()
+    clearAuthRedirect()
   }, [])
 
   const value: AuthContextValue = {

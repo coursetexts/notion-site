@@ -125,6 +125,7 @@
   display: inline-flex;
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 /* Button look (border, background) on the span so it’s visible and not overridden by preflight on <a> */
@@ -147,6 +148,7 @@
 .headerBar .profileLink:hover .signUpBtn {
   border-color: #777;
   color: #1a1a1a;
+  cursor: pointer;
 }
 
 .profileLinkLabelWrap {

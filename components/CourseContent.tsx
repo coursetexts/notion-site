@@ -3,14 +3,9 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { createPortal } from 'react-dom'
 
-import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
 import { currentAuthRedirectPath } from '@/lib/auth-redirect'
+import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
 import { courseNoteTopicKey } from '@/lib/course-notes-db'
-import {
-  courseTopicLabelFromKey,
-  readSearchParam,
-  urlWantsNotesPanel
-} from '@/lib/note-deep-link'
 import {
   type SectionProgressStatus,
   getSectionProgressMap,
@@ -20,13 +15,20 @@ import {
   type TocItem,
   buildSectionsFromHeadings
 } from '@/lib/courseContentSections'
+import {
+  courseTopicLabelFromKey,
+  readSearchParam,
+  replaceSearchParams,
+  urlWantsAnnotationsPanel,
+  urlWantsNotesPanel
+} from '@/lib/note-deep-link'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import { AnnotationWidget } from './AnnotationWidget'
 import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
-import { CourseNotesPanel } from './CourseNotesPanel'
 import styles from './CourseContent.module.css'
+import { CourseNotesPanel } from './CourseNotesPanel'
 import { TableOfContents } from './TableOfContents'
 
 export interface CourseContentProps {
@@ -321,10 +323,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     (childSectionTotal > 0 && childSectionIndex > 1) || sectionIndex > 1
 
   const currentSectionLabel = embedTitle ?? tocItems[0]?.label ?? ''
-  const noteTopicId = courseNoteTopicKey(
-    currentSectionLabel,
-    embedParentTitle
-  )
+  const noteTopicId = courseNoteTopicKey(currentSectionLabel, embedParentTitle)
   const noteTopicTitle =
     embedParentTitle &&
     embedParentTitle.trim() &&
@@ -335,6 +334,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     isCompleted: false,
     isBookmarked: false
   }
+
+  React.useEffect(() => {
+    if (!currentSectionLabel) return
+    replaceSearchParams({
+      topic: noteTopicId || currentSectionLabel
+    })
+  }, [currentSectionLabel, noteTopicId])
 
   const handleAnnotationCountChange = React.useCallback((n: number) => {
     setAnnotationCount(n)
@@ -404,17 +410,19 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     [coursePageId]
   )
 
-  const openRightPanel = React.useCallback(
-    (panel: 'annotations' | 'notes') => {
-      setIsRightPanelExiting(false)
-      setRightPanel(panel)
-    },
-    []
-  )
+  const openRightPanel = React.useCallback((panel: 'annotations' | 'notes') => {
+    setIsRightPanelExiting(false)
+    setRightPanel(panel)
+    replaceSearchParams({
+      notes: panel === 'notes' ? '1' : null,
+      annotations: panel === 'annotations' ? '1' : null
+    })
+  }, [])
 
   const closeRightPanel = React.useCallback(() => {
     setIsRightPanelExiting(true)
     setRightPanel('none')
+    replaceSearchParams({ notes: null, annotations: null })
   }, [])
 
   const rightPanelTransition = React.useMemo(
@@ -433,8 +441,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   React.useEffect(() => setPortalReady(true), [])
 
   React.useEffect(() => {
-    if (!urlWantsNotesPanel()) return
-    openRightPanel('notes')
+    if (urlWantsNotesPanel()) {
+      openRightPanel('notes')
+      return
+    }
+    if (urlWantsAnnotationsPanel()) {
+      openRightPanel('annotations')
+    }
   }, [openRightPanel])
 
   const appliedTopicRef = React.useRef(false)
@@ -510,7 +523,14 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           topicId={noteTopicId}
           topicTitle={noteTopicTitle}
           signedIn={Boolean(authUser)}
-          onSignIn={() => auth?.signInWithGoogle(currentAuthRedirectPath())}
+          onSignIn={() =>
+            auth?.signInWithGoogle(
+              currentAuthRedirectPath({
+                notes: '1',
+                topic: noteTopicId || undefined
+              })
+            )
+          }
           onHide={closeRightPanel}
           sheetLayout={sheetLayout}
         />

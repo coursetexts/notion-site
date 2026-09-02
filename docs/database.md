@@ -513,5 +513,5 @@ erDiagram
 - **`knowledge_topics` / `knowledge_topic_edges`**: public read; writes via service role (ingest API; daily LLM cron is off).
 - **`content_reports`**: public read (testing); signed-in users insert their own rows. Restrict `/reports` later via `REPORTS_DASHBOARD_OPEN`.
 - **`learning_path_ratings`**: owner read/write; localStorage fallback when signed out or `038` is missing.
-- **`learning_path_resource_votes`**: readable when the path is; signed-in users may upvote on `public` / `collaborative` paths.
+- **`learning_path_resource_votes`**: readable when the path is; any signed-in user may upvote on `public` / `collaborative` paths. Votes do not change resource sequence.
 - **`user_links.is_private`**: filtered in app code, not RLS.

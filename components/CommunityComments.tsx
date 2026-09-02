@@ -1,7 +1,10 @@
 import * as React from 'react'
 
+import { useAuthOptional } from '@/contexts/AuthContext'
+
 import { VoteRow } from '@/components/CourseActivity'
 import { ReportButton, reportHoverTargetClass } from '@/components/ReportButton'
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import {
   type ThreadedComment,
   addResourceComment,
@@ -242,6 +245,7 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
   signedIn,
   onCountChange
 }) => {
+  const auth = useAuthOptional()
   const [thread, setThread] = React.useState<ThreadedComment[]>([])
   const [loading, setLoading] = React.useState(true)
   const [error, setError] = React.useState<string | null>(null)
@@ -389,7 +393,17 @@ export const CommunityComments: React.FC<CommunityCommentsProps> = ({
             <p className={styles.threadNote}>
               <a
                 className={styles.quietLink}
-                href='/signin?redirect=/community-resources'
+                href='/signin'
+                onClick={(event) => {
+                  event.preventDefault()
+                  if (auth?.signInWithGoogle) {
+                    void auth.signInWithGoogle(currentAuthRedirectPath())
+                    return
+                  }
+                  window.location.href = signInPageHref(
+                    currentAuthRedirectPath()
+                  )
+                }}
               >
                 Sign in
               </a>{' '}

@@ -1,16 +1,21 @@
 import * as React from 'react'
+
 import { AnimatePresence, motion } from 'framer-motion'
 import { createPortal } from 'react-dom'
 
 import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
-import { urlWantsNotesPanel } from '@/lib/note-deep-link'
+import {
+  replaceSearchParams,
+  urlWantsAnnotationsPanel,
+  urlWantsNotesPanel
+} from '@/lib/note-deep-link'
 
 import { AnnotationWidget } from './AnnotationWidget'
 import contentMainStyles from './ContentMain.module.css'
 import notesStyles from './CourseNotesPanel.module.css'
+import styles from './PathContentActivity.module.css'
 import { ViewAnnotationsButton } from './ViewAnnotationsButton'
 import { ViewYourNotesButton } from './ViewYourNotesButton'
-import styles from './PathContentActivity.module.css'
 
 type RightPanel = 'none' | 'annotations' | 'notes'
 
@@ -48,18 +53,28 @@ export function PathContentActivity({
 
   const openRightPanel = React.useCallback((panel: 'annotations' | 'notes') => {
     setRightPanel(panel)
+    replaceSearchParams({
+      notes: panel === 'notes' ? '1' : null,
+      annotations: panel === 'annotations' ? '1' : null
+    })
   }, [])
 
   const closeRightPanel = React.useCallback(() => {
     setRightPanel('none')
+    replaceSearchParams({ notes: null, annotations: null })
   }, [])
 
   React.useEffect(() => setPortalReady(true), [])
 
   React.useEffect(() => {
-    if (!urlWantsNotesPanel()) return
-    setRightPanel('notes')
-  }, [])
+    if (urlWantsNotesPanel()) {
+      openRightPanel('notes')
+      return
+    }
+    if (urlWantsAnnotationsPanel()) {
+      openRightPanel('annotations')
+    }
+  }, [openRightPanel])
 
   React.useEffect(() => {
     const mq = window.matchMedia('(max-width: 1100px)')
@@ -76,7 +91,11 @@ export function PathContentActivity({
     }
     let cancelled = false
     ;(async () => {
-      const result = await getOrCreateCourse(coursePageId, courseTitle, courseUrl)
+      const result = await getOrCreateCourse(
+        coursePageId,
+        courseTitle,
+        courseUrl
+      )
       if (!result || cancelled) return
       const list = await getAnnotations(result.courseId, sectionId)
       if (!cancelled) setAnnotationCount(list.length)
@@ -195,10 +214,7 @@ export function PathContentActivity({
           {children}
         </div>
       </div>
-      <AnimatePresence
-        mode='wait'
-        initial={false}
-      >
+      <AnimatePresence mode='wait' initial={false}>
         {showDesktopRightPanel ? (
           <motion.div
             key={rightPanel}
@@ -214,9 +230,7 @@ export function PathContentActivity({
       </AnimatePresence>
       {portalReady
         ? createPortal(
-            <AnimatePresence
-              initial={false}
-            >
+            <AnimatePresence initial={false}>
               {showMobileRightPanel ? (
                 <>
                   <motion.button
@@ -235,7 +249,9 @@ export function PathContentActivity({
                     role='dialog'
                     aria-modal='true'
                     aria-label={
-                      rightPanel === 'annotations' ? 'Annotations' : 'Your notes'
+                      rightPanel === 'annotations'
+                        ? 'Annotations'
+                        : 'Your notes'
                     }
                     className={styles.mobilePanelSheet}
                     initial={{ y: '100%' }}

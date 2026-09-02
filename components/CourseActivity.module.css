@@ -271,6 +271,7 @@
 .signInHint a {
   color: #0089c4;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .signInHint a:hover {

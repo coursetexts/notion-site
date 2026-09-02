@@ -22,7 +22,7 @@ Official professor courses from Notion are **not** a `kind` yet. They stay at `/
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
 | `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Courses. Atlas callouts; empty search opens the create modal. |
-| `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug                                                                                                            |
+| `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here.                          |
 | `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline.                                                                    |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
@@ -44,7 +44,7 @@ flowchart TB
   AllList["listNonCourseLearningPaths()<br/>kind in community, research"]
   Page["/learning-path/{slug}"]
   State["learning_path_user_state"]
-  Local["sessionStorage drafts"]
+  Local["sessionStorage / localStorage drafts"]
 
   Seed --> Script --> DB
   Seed --> HomeList
@@ -135,7 +135,7 @@ When the switch succeeds, the owner’s overlay resources are copied onto `learn
 
 Course catalog pages have no privacy toggle. Owned community/research paths use a three-way control.
 
-Upvotes on a resource list are stored in `learning_path_resource_votes` and **do not change sequence**. The number in the list is still the study order; the grey arrow is a separate usefulness signal. Apply `028_learning_path_resource_votes.sql` on existing databases. `/community` explains this with a schema diagram (`ResourceVoteSchemaDiagram`): sequence `1 2 3` vs ↑ votes, and the highest vote count is deliberately not on item 1.
+Upvotes on a resource list are stored in `learning_path_resource_votes` and **do not change sequence**. The number in the list is still the study order; the arrow is a separate usefulness signal (idle brown, voted blue). Any signed-in user can upvote on a `public` or `collaborative` path — the control stays enabled except while a vote is saving. Apply `028_learning_path_resource_votes.sql` on existing databases. `/community` explains this with a schema diagram (`ResourceVoteSchemaDiagram`): sequence `1 2 3` vs ↑ votes, and the highest vote count is deliberately not on item 1.
 
 ## Activity
 

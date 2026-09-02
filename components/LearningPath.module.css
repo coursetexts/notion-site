@@ -1380,15 +1380,15 @@
   padding: 2px 6px;
   border: 1px solid #e6e6e6;
   background: #fff;
-  color: #9ca3af;
+  color: #5d534b;
   cursor: pointer;
   line-height: 1;
 }
 
 .resourceVoteBtn:hover:not(:disabled),
 .resourceVoteBtn:focus-visible {
-  color: #6b7280;
-  border-color: #d1d5db;
+  color: #25272b;
+  border-color: #0089c4;
   outline: none;
 }
 
@@ -1398,7 +1398,9 @@
 }
 
 .resourceVoteBtnOn {
-  color: #9ca3af;
+  color: #0089c4;
+  border-color: #c5e8f5;
+  background: #f5fbff;
 }
 
 .resourceVoteCount {

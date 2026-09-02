@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
+import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import { createPortal } from 'react-dom'
 
 import {
@@ -495,7 +496,7 @@ export const CommunityWall = React.forwardRef<
 
   const openAdd = React.useCallback(() => {
     if (!isSignedIn) {
-      auth?.signInWithGoogle()
+      auth?.signInWithGoogle(currentAuthRedirectPath())
       return
     }
     setAddOpen(true)

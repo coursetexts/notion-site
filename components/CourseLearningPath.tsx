@@ -4,7 +4,6 @@ import { useAuthOptional } from '@/contexts/AuthContext'
 
 import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import { courseLearningPathActivityPageId } from '@/lib/course-activity-db'
-import { readSearchParam } from '@/lib/note-deep-link'
 import {
   addCourseLearningPathTopicResource,
   createLocalCourseLearningPathTopicResource,
@@ -61,6 +60,7 @@ import {
   hasLocalLearningPathRating
 } from '@/lib/learning-path-ratings'
 import { submitLearningPathRating } from '@/lib/learning-path-ratings-db'
+import { readSearchParam, replaceSearchParams } from '@/lib/note-deep-link'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
 import { addKnowledgeTopicsFromCompletedPath } from '@/lib/user-knowledge-topics-db'
 
@@ -369,6 +369,7 @@ export function CourseLearningPath({
     courseIdentityRef.current = key
     const selected = initialCourseSelection(course)
     setSelectedId(selected)
+    replaceSearchParams({ node: selected })
     setNavView('list')
     setOutlineSearch('')
     setExpanded(expandedIdsForCourseSelection(course, selected))
@@ -386,6 +387,7 @@ export function CourseLearningPath({
     if (!isCourseLearningPathKnowledgeSelection(selectedId)) return
     if (isCourseLearningPathFinished(course, exploredIds)) return
     setSelectedId(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+    replaceSearchParams({ node: COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID })
   }, [course, exploredIds, selectedId])
 
   React.useEffect(() => {
@@ -422,6 +424,7 @@ export function CourseLearningPath({
 
   function handleSelect(id: string) {
     setSelectedId(id)
+    replaceSearchParams({ node: id })
     setExpanded((prev) => {
       const next = new Set(prev)
       next.add(id)
@@ -467,6 +470,7 @@ export function CourseLearningPath({
         else setPendingFinish(true)
         setNavView('list')
         setSelectedId(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)
+        replaceSearchParams({ node: COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID })
         setMobileNavOpen(false)
       }
     }
@@ -932,7 +936,12 @@ export function CourseLearningPath({
                 }
                 signedIn={Boolean(auth?.user)}
                 onSignIn={() =>
-                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                  auth?.signInWithGoogle(
+                    currentAuthRedirectPath({
+                      notes: '1',
+                      node: selectedId
+                    })
+                  )
                 }
               />
             }
@@ -956,7 +965,9 @@ export function CourseLearningPath({
                 dbBacked={Boolean(course.dbBacked)}
                 signedIn={Boolean(auth?.user)}
                 onSignIn={() =>
-                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                  auth?.signInWithGoogle(
+                    currentAuthRedirectPath({ node: selectedId })
+                  )
                 }
                 onAddTopicResource={handleAddTopicResource}
                 onUpdateTopicResource={handleUpdateTopicResource}
@@ -974,7 +985,9 @@ export function CourseLearningPath({
                 dbBacked={Boolean(course.dbBacked)}
                 signedIn={Boolean(auth?.user)}
                 onSignIn={() =>
-                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                  auth?.signInWithGoogle(
+                    currentAuthRedirectPath({ node: selectedId })
+                  )
                 }
                 onAddTopicResource={handleAddTopicResource}
                 onUpdateTopicResource={handleUpdateTopicResource}

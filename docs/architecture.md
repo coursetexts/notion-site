@@ -82,7 +82,7 @@ Public `community` and `research` rows via `listNonCourseLearningPaths()` — **
 Two explainers, then trending lists.
 
 1. **Learning paths** — copy plus `CommunitySchema` (goal graph).
-2. **Community Collab Resources** — copy plus `ResourceVoteSchemaDiagram`: numbered study order (`1 2 3`) is independent of ↑ votes for quality (highest vote is deliberately not on item 1). CTA → `/community-resources`.
+2. **Community Collab Resources** — copy plus `ResourceVoteSchemaDiagram`: numbered study order (`1 2 3`) is independent of ↑ votes for quality (highest vote is deliberately not on item 1). CTA → `/all-courses?view=learning-paths`.
 
 ## App surfaces
 
@@ -112,7 +112,7 @@ flowchart LR
   All -->|"courses view"| Course
   All -->|"courses view syllabi"| LP
   All -->|"?view=learning-paths"| LP
-  Community --> Resources
+  Community -->|"?view=learning-paths"| All
   Course --> Reports
   LP --> Reports
   Resources --> Reports
@@ -135,7 +135,7 @@ flowchart LR
 | Resource library           | `/community-resources`                                           | `resources`, `knowledge_components`, `search_community`                                                                                                                                                                                                                                                                                                                                                         |
 | Reports                    | `/reports`                                                       | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only.                                                                                                                                                                                                                                                                                                                                 |
 | Profile / social           | `/profile`, `/profile/{userId}`, `/users`                        | profiles, follows, links, notebooks, owned/saved paths. Tabs: **Learning** (pills: **Courses** · **Learning paths** · **By you** · **Committed**) · **Knowledge** (list + graph) · **Notes** (private topic notes; `/profile` only; editable; **Open** → that topic with the notes panel) · **Bookmarks** · **Activity** (pills: **Feed** · **Your activity**, plus search). Shared SEARCH width on those tabs. |
-| Auth                       | `/signin`, `/auth/callback`                                      | Supabase Auth. `redirectTo` is `{origin}/auth/callback`; allowlist localhost or local Google sign-in lands on the Site URL.                                                                                                                                                                                                                                                                                     |
+| Auth                       | `/signin`, `/auth/callback`                                      | Google OAuth. Return to the gated page/section (`sessionStorage` / `localStorage` + `?node=` / `?topic=` / `?notes=1` / `?annotations=1`). Callback reads the path once. Fallback `/`, not `/profile`.                                                                                                                                                                                                          |
 
 Legacy URLs:
 

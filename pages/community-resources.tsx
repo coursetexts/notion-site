@@ -32,6 +32,7 @@ import {
 import { getCourseLearningPathHref } from '@/lib/undergraduate-degrees'
 
 import { useAuthOptional } from '../contexts/AuthContext'
+import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import styles from './community.module.css'
 
 type ResourceType = ResourceDbType
@@ -709,7 +710,7 @@ export default function CommunityResourcesPage() {
                   title={signedIn ? undefined : 'Sign in to add a resource'}
                   onClick={() => {
                     if (!signedIn) {
-                      void auth?.signInWithGoogle()
+                      void auth?.signInWithGoogle(currentAuthRedirectPath())
                       return
                     }
                     setModal('resource')
@@ -767,7 +768,7 @@ export default function CommunityResourcesPage() {
                     title={signedIn ? undefined : 'Sign in to add a resource'}
                     onClick={() => {
                       if (!signedIn) {
-                        void auth?.signInWithGoogle()
+                        void auth?.signInWithGoogle(currentAuthRedirectPath())
                         return
                       }
                       setModal('resource')

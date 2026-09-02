@@ -1,9 +1,12 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
+import {
+  clearAuthRedirect,
+  readCallbackAuthRedirect
+} from '@/lib/auth-redirect'
 import { getSupabaseClient } from '@/lib/supabase'
-import { takeAuthRedirect } from '@/lib/auth-redirect'
 
 /**
  * OAuth callback: Google returns here on the same origin that started sign-in
@@ -13,8 +16,12 @@ import { takeAuthRedirect } from '@/lib/auth-redirect'
 export default function AuthCallbackPage() {
   const router = useRouter()
   const [status, setStatus] = useState<'loading' | 'done' | 'error'>('loading')
+  const ranRef = useRef(false)
 
   useEffect(() => {
+    if (ranRef.current) return
+    ranRef.current = true
+
     const supabase = getSupabaseClient()
     if (!supabase) {
       setStatus('error')
@@ -63,8 +70,9 @@ export default function AuthCallbackPage() {
         return
       }
       setStatus('done')
-      const next = takeAuthRedirect()
-      router.replace(session ? next || '/profile' : '/')
+      const next = readCallbackAuthRedirect()
+      clearAuthRedirect()
+      await router.replace(session ? next || '/' : '/')
     }
 
     void run()

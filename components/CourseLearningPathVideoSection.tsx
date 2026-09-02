@@ -205,9 +205,9 @@ export function CourseLearningPathVideoSection({
           {editing && signedIn && (
             <div className={styles.editPanel}>
               <p className={styles.editHint}>
-                Add a link with a suggested order, or upvote / downvote to
-                change the curated ranking. Videos also appear in Community
-                resources, labeled with this topic&apos;s concept tree.
+                Add a link with a suggested order. Upvotes do not change
+                that order. Videos also appear in Community resources, labeled
+                with this topic&apos;s concept tree.
                 {!dbBacked && (
                   <>
                     {' '}

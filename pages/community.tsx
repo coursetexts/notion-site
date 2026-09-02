@@ -140,8 +140,11 @@ export default function CommunityPage() {
                     </em>
                   </p>
                 </div>
-                <Link href='/community-resources' legacyBehavior>
-                  <a className={styles.shareBtn}>Browse collab resources</a>
+                <Link
+                  href='/all-courses?view=learning-paths'
+                  legacyBehavior
+                >
+                  <a className={styles.shareBtn}>Browse all learning paths</a>
                 </Link>
               </div>
             </section>

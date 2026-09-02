@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { createPortal, flushSync } from 'react-dom'
 
 import { getCachedAuth } from '@/lib/auth-cache'
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
 import styles from './HomeHeader.module.css'
@@ -128,7 +129,15 @@ function HeaderAccountAction({
   }
   return (
     <Link href={accountHref} legacyBehavior>
-      <a className={className} onClick={onNavigate}>
+      <a
+        className={className}
+        onClick={(event) => {
+          onNavigate?.()
+          if (isLoggedIn) return
+          event.preventDefault()
+          window.location.assign(signInPageHref(currentAuthRedirectPath()))
+        }}
+      >
         {accountLabel}
       </a>
     </Link>
@@ -147,9 +156,7 @@ export function HomeHeader({
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
   const isOwnProfilePage = router.pathname === '/profile'
-  const accountHref = isLoggedIn
-    ? '/profile'
-    : `/signin?redirect=${encodeURIComponent('/profile')}`
+  const accountHref = isLoggedIn ? '/profile' : signInPageHref(router.asPath)
   const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
 
   const [menuOpen, setMenuOpen] = React.useState(false)

@@ -1,18 +1,19 @@
 import * as React from 'react'
-import { createPortal, flushSync } from 'react-dom'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import * as types from 'notion-types'
-import { AnimatePresence, motion } from 'framer-motion'
 import { IoClose } from '@react-icons/all-files/io5/IoClose'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
 import { IoSunnyOutline } from '@react-icons/all-files/io5/IoSunnyOutline'
 import cs from 'classnames'
+import { AnimatePresence, motion } from 'framer-motion'
+import { createPortal, flushSync } from 'react-dom'
 import { Header, Search, useNotionContext } from 'react-notion-x'
 
 import { getCachedAuth, subscribeToAuthCache } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import {
   isSearchEnabled,
   navigationLinks,
@@ -77,6 +78,13 @@ export const NotionPageHeader: React.FC<{
   const closeBtnRef = React.useRef<HTMLButtonElement>(null)
   const user = auth?.user ?? cached.user
   const isLoggedIn = Boolean(user)
+  const accountHref = isLoggedIn ? '/profile' : signInPageHref(router.asPath)
+
+  function handleAccountClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    if (isLoggedIn) return
+    event.preventDefault()
+    window.location.assign(signInPageHref(currentAuthRedirectPath()))
+  }
 
   React.useEffect(() => {
     return subscribeToAuthCache(() => setCached(getCachedAuth()))
@@ -281,9 +289,12 @@ export const NotionPageHeader: React.FC<{
                   <ToggleThemeButton className={styles.menuThemeToggle} />
                 </div>
                 <Link
-                  href={isLoggedIn ? '/profile' : '/signin'}
+                  href={accountHref}
                   className={styles.menuProfileLink}
-                  onClick={closeMenu}
+                  onClick={(event) => {
+                    closeMenu()
+                    handleAccountClick(event)
+                  }}
                 >
                   <span className={styles.menuProfileInner}>
                     <span>{isLoggedIn ? 'Profile' : 'Sign in'}</span>
@@ -355,8 +366,9 @@ export const NotionPageHeader: React.FC<{
             <div className={styles.headerRhs}>
               <ToggleThemeButton />
               <Link
-                href={isLoggedIn ? '/profile' : '/signin'}
+                href={accountHref}
                 className={styles.profileLink}
+                onClick={handleAccountClick}
               >
                 <span
                   className={cs(styles.profileLinkLabelWrap, styles.signUpBtn)}
@@ -390,8 +402,7 @@ export const NotionPageHeader: React.FC<{
         </div>
       </header>
 
-      {portalReady &&
-        createPortal(mobileMenu, document.body)}
+      {portalReady && createPortal(mobileMenu, document.body)}
     </>
   )
 }

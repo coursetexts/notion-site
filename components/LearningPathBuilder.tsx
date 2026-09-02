@@ -2,9 +2,24 @@ import * as React from 'react'
 import { useRouter } from 'next/router'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
+
 import {
-  outlineFromFilledLearningPath,
-  type FilledLearningPath
+  mergeQueryIntoPath,
+  sanitizeAuthRedirect,
+  signInPageHref
+} from '@/lib/auth-redirect'
+import {
+  clearLearningPathBuilderDraft,
+  readLearningPathBuilderDraft,
+  writeLearningPathBuilderDraft
+} from '@/lib/learning-path-builder-draft'
+import {
+  listAllLearningPathSlugs,
+  upsertOwnedLearningPath
+} from '@/lib/learning-path-db'
+import {
+  type FilledLearningPath,
+  outlineFromFilledLearningPath
 } from '@/lib/learning-path-fill'
 import { LEARNING_PATH_FILL_DAILY_LIMIT } from '@/lib/learning-path-fill-quota'
 import {
@@ -16,10 +31,6 @@ import {
   writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
 import {
-  listAllLearningPathSlugs,
-  upsertOwnedLearningPath
-} from '@/lib/learning-path-db'
-import {
   ensureUniqueSlug,
   slugifyLearningPathName
 } from '@/lib/learning-path-slug'
@@ -27,18 +38,7 @@ import { getSupabaseClient } from '@/lib/supabase'
 
 import styles from './LearningPathBuilder.module.css'
 
-const ROMANS = [
-  'i',
-  'ii',
-  'iii',
-  'iv',
-  'v',
-  'vi',
-  'vii',
-  'viii',
-  'ix',
-  'x'
-]
+const ROMANS = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x']
 
 let idSeq = 10
 
@@ -159,23 +159,61 @@ export function LearningPathBuilder({
   const [goalDraft, setGoalDraft] = React.useState(initialGoal)
   const [goal, setGoal] = React.useState(initialGoal)
   const [descriptionDraft, setDescriptionDraft] = React.useState('')
-  const [steps, setSteps] = React.useState<LearningPathOutlineStep[]>(initialSteps)
+  const [steps, setSteps] =
+    React.useState<LearningPathOutlineStep[]>(initialSteps)
   const [filling, setFilling] = React.useState(false)
   const [fillError, setFillError] = React.useState<string | null>(null)
   const kind: LearningPathKind =
     initialKind === 'research' ? 'research' : 'community'
+  const [draftReady, setDraftReady] = React.useState(false)
+
+  React.useEffect(() => {
+    const draft = readLearningPathBuilderDraft(initialGoal, kind)
+    if (draft) {
+      if (draft.goal) {
+        setGoal(draft.goal)
+        setGoalDraft(draft.goal)
+      }
+      if (draft.description) setDescriptionDraft(draft.description)
+      if (draft.steps.length) setSteps(draft.steps)
+    }
+    setDraftReady(true)
+  }, [initialGoal, kind])
+
+  React.useEffect(() => {
+    if (!draftReady) return
+    if (!goal.trim()) return
+    writeLearningPathBuilderDraft({
+      goal,
+      kind,
+      description: descriptionDraft,
+      steps
+    })
+  }, [draftReady, goal, kind, descriptionDraft, steps])
 
   function closeBuilder() {
     void router.push('/learning-paths')
   }
 
   function requestSignIn() {
-    const next = router.asPath || '/learning-path/new'
+    writeLearningPathBuilderDraft({
+      goal: goal || goalDraft,
+      kind,
+      description: descriptionDraft,
+      steps
+    })
+    const extra: Record<string, string> = {}
+    const nextGoal = (goal || goalDraft).trim()
+    if (nextGoal) extra.goal = nextGoal
+    if (kind === 'research') extra.kind = 'research'
+    const next =
+      sanitizeAuthRedirect(mergeQueryIntoPath('/learning-path/new', extra)) ||
+      '/learning-path/new'
     if (auth?.signInWithGoogle) {
       void auth.signInWithGoogle(next)
       return
     }
-    void router.push(`/signin?redirect=${encodeURIComponent(next)}`)
+    void router.push(signInPageHref(next))
   }
 
   function handleGoalSubmit(event: React.FormEvent) {
@@ -253,7 +291,9 @@ export function LearningPathBuilder({
         if (!afterId) {
           return { ...concept, subconcepts: [...concept.subconcepts, next] }
         }
-        const index = concept.subconcepts.findIndex((item) => item.id === afterId)
+        const index = concept.subconcepts.findIndex(
+          (item) => item.id === afterId
+        )
         const subconcepts = [...concept.subconcepts]
         subconcepts.splice(index + 1, 0, next)
         return { ...concept, subconcepts }
@@ -333,6 +373,7 @@ export function LearningPathBuilder({
       ...readStoredLearningPaths().filter((row) => row.slug !== slug)
     ])
     void router.push(`/learning-path/${slug}`)
+    clearLearningPathBuilderDraft()
   }
 
   async function handleFillPath() {
@@ -466,7 +507,9 @@ export function LearningPathBuilder({
               ×
             </button>
           </div>
-          <p className={styles.lede}>Let&apos;s build the path you will follow.</p>
+          <p className={styles.lede}>
+            Let&apos;s build the path you will follow.
+          </p>
           <p className={styles.llmHint}>
             Fill the outline from your goal, then edit anything that is off —
             steps, concepts, and why each one is on the path.
@@ -505,210 +548,210 @@ export function LearningPathBuilder({
             className={needsSignIn ? styles.formCovered : undefined}
             aria-hidden={needsSignIn}
           >
-          <div className={styles.outlineHead}>
-            <div className={styles.outlineTitleRow}>
-              <h2 className={styles.outlineTitle}>Path outline</h2>
-              <button
-                type='button'
-                className={styles.fillPathBtn}
-                onClick={() => {
-                  void handleFillPath()
-                }}
-                disabled={filling || !signedIn}
-                aria-busy={filling}
-              >
-                {filling ? 'Filling…' : 'Fill out this path for me'}
-              </button>
-            </div>
-            {fillError ? (
-              <p className={styles.fillError} role='alert'>
-                {fillError}
-              </p>
-            ) : null}
-            <div className={styles.colLabels} aria-hidden>
-              <span>Step</span>
-              <span>Concepts needed</span>
-            </div>
-          </div>
-
-          <div className={styles.steps}>
-            {steps.map((step, stepIndex) => (
-              <article key={step.id} className={styles.stepCard}>
-                <div className={styles.stepHeader}>
-                  <span className={styles.stepBadge} aria-hidden>
-                    {stepIndex + 1}
-                  </span>
-                  <input
-                    className={styles.stepTitle}
-                    value={step.title}
-                    onChange={(event) =>
-                      updateStep(step.id, (current) => ({
-                        ...current,
-                        title: event.target.value
-                      }))
-                    }
-                    placeholder={`Step ${stepIndex + 1} title`}
-                    aria-label={`Step ${stepIndex + 1} title`}
-                  />
-                  <button
-                    type='button'
-                    className={styles.iconBtn}
-                    onClick={() => removeStep(step.id)}
-                    aria-label={`Remove step ${stepIndex + 1}`}
-                    disabled={steps.length <= 1}
-                  >
-                    ×
-                  </button>
-                </div>
-
-                <WhyField
-                  id={`why-${step.id}`}
-                  value={step.why ?? ''}
-                  onChange={(why) =>
-                    updateStep(step.id, (current) => ({ ...current, why }))
-                  }
-                />
-
-                <div className={styles.conceptTree}>
-                  {step.concepts.map((concept, conceptIndex) => (
-                    <div key={concept.id} className={styles.conceptBlock}>
-                      <div className={styles.row}>
-                        <span className={styles.mark} aria-hidden>
-                          {letterMark(conceptIndex)})
-                        </span>
-                        <input
-                          className={styles.rowInput}
-                          value={concept.label}
-                          onChange={(event) =>
-                            setConceptLabel(
-                              step.id,
-                              concept.id,
-                              event.target.value
-                            )
-                          }
-                          placeholder='Add a concept…'
-                          aria-label={`Concept ${letterMark(conceptIndex)} in step ${
-                            stepIndex + 1
-                          }`}
-                        />
-                        <button
-                          type='button'
-                          className={styles.iconBtn}
-                          onClick={() => addConcept(step.id, concept.id)}
-                          aria-label='Add concept'
-                        >
-                          <PlusIcon />
-                        </button>
-                      </div>
-
-                      <WhyField
-                        id={`why-${concept.id}`}
-                        value={concept.why ?? ''}
-                        onChange={(why) =>
-                          setConceptWhy(step.id, concept.id, why)
-                        }
-                      />
-
-                      <div className={styles.subTree}>
-                        {concept.subconcepts.map((sub, subIndex) => (
-                          <div key={sub.id} className={styles.subItem}>
-                            <div className={styles.row}>
-                              <span className={styles.mark} aria-hidden>
-                                {romanMark(subIndex)})
-                              </span>
-                              <input
-                                className={styles.rowInput}
-                                value={sub.label}
-                                onChange={(event) =>
-                                  setSubconceptLabel(
-                                    step.id,
-                                    concept.id,
-                                    sub.id,
-                                    event.target.value
-                                  )
-                                }
-                                placeholder='Optional sub-concept…'
-                                aria-label={`Sub-concept ${romanMark(subIndex)} under ${
-                                  letterMark(conceptIndex)
-                                }`}
-                              />
-                              <button
-                                type='button'
-                                className={styles.iconBtn}
-                                onClick={() =>
-                                  addSubconcept(step.id, concept.id, sub.id)
-                                }
-                                aria-label='Add sub-concept'
-                              >
-                                <PlusIcon />
-                              </button>
-                            </div>
-                            {sub.label.trim() || (sub.why ?? '').trim() ? (
-                              <WhyField
-                                id={`why-${sub.id}`}
-                                value={sub.why ?? ''}
-                                onChange={(why) =>
-                                  setSubconceptWhy(
-                                    step.id,
-                                    concept.id,
-                                    sub.id,
-                                    why
-                                  )
-                                }
-                              />
-                            ) : null}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
+            <div className={styles.outlineHead}>
+              <div className={styles.outlineTitleRow}>
+                <h2 className={styles.outlineTitle}>Path outline</h2>
                 <button
                   type='button'
-                  className={styles.addConcept}
-                  onClick={() => addConcept(step.id)}
+                  className={styles.fillPathBtn}
+                  onClick={() => {
+                    void handleFillPath()
+                  }}
+                  disabled={filling || !signedIn}
+                  aria-busy={filling}
                 >
-                  <PlusIcon />
-                  Add concept to step {stepIndex + 1}
+                  {filling ? 'Filling…' : 'Fill out this path for me'}
                 </button>
-              </article>
-            ))}
-          </div>
+              </div>
+              {fillError ? (
+                <p className={styles.fillError} role='alert'>
+                  {fillError}
+                </p>
+              ) : null}
+              <div className={styles.colLabels} aria-hidden>
+                <span>Step</span>
+                <span>Concepts needed</span>
+              </div>
+            </div>
 
-          <button type='button' className={styles.addStep} onClick={addStep}>
-            <PlusIcon />
-            Add another step
-          </button>
+            <div className={styles.steps}>
+              {steps.map((step, stepIndex) => (
+                <article key={step.id} className={styles.stepCard}>
+                  <div className={styles.stepHeader}>
+                    <span className={styles.stepBadge} aria-hidden>
+                      {stepIndex + 1}
+                    </span>
+                    <input
+                      className={styles.stepTitle}
+                      value={step.title}
+                      onChange={(event) =>
+                        updateStep(step.id, (current) => ({
+                          ...current,
+                          title: event.target.value
+                        }))
+                      }
+                      placeholder={`Step ${stepIndex + 1} title`}
+                      aria-label={`Step ${stepIndex + 1} title`}
+                    />
+                    <button
+                      type='button'
+                      className={styles.iconBtn}
+                      onClick={() => removeStep(step.id)}
+                      aria-label={`Remove step ${stepIndex + 1}`}
+                      disabled={steps.length <= 1}
+                    >
+                      ×
+                    </button>
+                  </div>
 
-          <label className={`${styles.field} ${styles.descriptionField}`}>
-            <span className={styles.label}>Description</span>
-            <textarea
-              className={styles.textarea}
-              value={descriptionDraft}
-              onChange={(event) => setDescriptionDraft(event.target.value)}
-              placeholder='What is this path, and who is it for?'
-              rows={4}
-            />
-          </label>
+                  <WhyField
+                    id={`why-${step.id}`}
+                    value={step.why ?? ''}
+                    onChange={(why) =>
+                      updateStep(step.id, (current) => ({ ...current, why }))
+                    }
+                  />
 
-          <div className={styles.formActions}>
-            <button
-              type='button'
-              className={styles.cancelBtn}
-              onClick={closeBuilder}
-            >
-              Cancel
+                  <div className={styles.conceptTree}>
+                    {step.concepts.map((concept, conceptIndex) => (
+                      <div key={concept.id} className={styles.conceptBlock}>
+                        <div className={styles.row}>
+                          <span className={styles.mark} aria-hidden>
+                            {letterMark(conceptIndex)})
+                          </span>
+                          <input
+                            className={styles.rowInput}
+                            value={concept.label}
+                            onChange={(event) =>
+                              setConceptLabel(
+                                step.id,
+                                concept.id,
+                                event.target.value
+                              )
+                            }
+                            placeholder='Add a concept…'
+                            aria-label={`Concept ${letterMark(
+                              conceptIndex
+                            )} in step ${stepIndex + 1}`}
+                          />
+                          <button
+                            type='button'
+                            className={styles.iconBtn}
+                            onClick={() => addConcept(step.id, concept.id)}
+                            aria-label='Add concept'
+                          >
+                            <PlusIcon />
+                          </button>
+                        </div>
+
+                        <WhyField
+                          id={`why-${concept.id}`}
+                          value={concept.why ?? ''}
+                          onChange={(why) =>
+                            setConceptWhy(step.id, concept.id, why)
+                          }
+                        />
+
+                        <div className={styles.subTree}>
+                          {concept.subconcepts.map((sub, subIndex) => (
+                            <div key={sub.id} className={styles.subItem}>
+                              <div className={styles.row}>
+                                <span className={styles.mark} aria-hidden>
+                                  {romanMark(subIndex)})
+                                </span>
+                                <input
+                                  className={styles.rowInput}
+                                  value={sub.label}
+                                  onChange={(event) =>
+                                    setSubconceptLabel(
+                                      step.id,
+                                      concept.id,
+                                      sub.id,
+                                      event.target.value
+                                    )
+                                  }
+                                  placeholder='Optional sub-concept…'
+                                  aria-label={`Sub-concept ${romanMark(
+                                    subIndex
+                                  )} under ${letterMark(conceptIndex)}`}
+                                />
+                                <button
+                                  type='button'
+                                  className={styles.iconBtn}
+                                  onClick={() =>
+                                    addSubconcept(step.id, concept.id, sub.id)
+                                  }
+                                  aria-label='Add sub-concept'
+                                >
+                                  <PlusIcon />
+                                </button>
+                              </div>
+                              {sub.label.trim() || (sub.why ?? '').trim() ? (
+                                <WhyField
+                                  id={`why-${sub.id}`}
+                                  value={sub.why ?? ''}
+                                  onChange={(why) =>
+                                    setSubconceptWhy(
+                                      step.id,
+                                      concept.id,
+                                      sub.id,
+                                      why
+                                    )
+                                  }
+                                />
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type='button'
+                    className={styles.addConcept}
+                    onClick={() => addConcept(step.id)}
+                  >
+                    <PlusIcon />
+                    Add concept to step {stepIndex + 1}
+                  </button>
+                </article>
+              ))}
+            </div>
+
+            <button type='button' className={styles.addStep} onClick={addStep}>
+              <PlusIcon />
+              Add another step
             </button>
-            <button
-              type='submit'
-              className={styles.submitBtn}
-              disabled={!canCreate}
-            >
-              Create this path
-            </button>
-          </div>
-        </form>
+
+            <label className={`${styles.field} ${styles.descriptionField}`}>
+              <span className={styles.label}>Description</span>
+              <textarea
+                className={styles.textarea}
+                value={descriptionDraft}
+                onChange={(event) => setDescriptionDraft(event.target.value)}
+                placeholder='What is this path, and who is it for?'
+                rows={4}
+              />
+            </label>
+
+            <div className={styles.formActions}>
+              <button
+                type='button'
+                className={styles.cancelBtn}
+                onClick={closeBuilder}
+              >
+                Cancel
+              </button>
+              <button
+                type='submit'
+                className={styles.submitBtn}
+                disabled={!canCreate}
+              >
+                Create this path
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>

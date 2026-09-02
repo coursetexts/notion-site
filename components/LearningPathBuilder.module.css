@@ -455,6 +455,7 @@
 .submitBtn:hover:not(:disabled),
 .submitBtn:focus-visible:not(:disabled) {
   opacity: 0.9;
+  cursor: pointer;
 }
 
 .submitBtn:disabled {

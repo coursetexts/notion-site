@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { createPortal } from 'react-dom'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
-import { currentAuthRedirectPath } from '@/lib/auth-redirect'
+import { createPortal } from 'react-dom'
+
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import {
   type ContentReportTarget,
   contentReportTypeLabel
@@ -88,7 +89,7 @@ export function ReportButton({
         void auth.signInWithGoogle(next)
         return
       }
-      window.location.href = `/signin?redirect=${encodeURIComponent(next)}`
+      window.location.href = signInPageHref(next)
       return
     }
     setOpen(true)

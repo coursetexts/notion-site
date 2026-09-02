@@ -248,6 +248,7 @@
 .signInHint a:hover,
 .signInHintBtn:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .error {

@@ -44,6 +44,10 @@
   font: inherit;
 }
 
+button.lockOverlay {
+  cursor: pointer;
+}
+
 .lockMessage {
   max-width: 16rem;
   padding: 8px 12px;

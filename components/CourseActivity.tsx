@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 import { motion } from 'framer-motion'
 
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import { snippetFromText } from '@/lib/content-reports'
 import {
   type Annotation as DbAnnotation,
@@ -64,6 +64,25 @@ function activityPageUrl(courseUrl?: string): string {
   if (courseUrl && courseUrl.trim()) return courseUrl
   if (typeof window === 'undefined') return '/'
   return `${window.location.pathname}${window.location.search}`
+}
+
+function SignInReturnLink({ children }: { children: React.ReactNode }) {
+  const auth = useAuthOptional()
+  return (
+    <a
+      href='/signin'
+      onClick={(event) => {
+        event.preventDefault()
+        if (auth?.signInWithGoogle) {
+          void auth.signInWithGoogle(currentAuthRedirectPath())
+          return
+        }
+        window.location.href = signInPageHref(currentAuthRedirectPath())
+      }}
+    >
+      {children}
+    </a>
+  )
 }
 
 const ReplyArrowIcon: React.FC = () => (
@@ -809,12 +828,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
               )}
               {!auth?.user && (
                 <p className={styles.signInHint}>
-                  <Link
-                    href={`/signin?redirect=${encodeURIComponent(courseUrl)}`}
-                  >
-                    Sign in
-                  </Link>{' '}
-                  to add a comment.
+                  <SignInReturnLink>Sign in</SignInReturnLink> to add a comment.
                 </p>
               )}
               {error && <p className={styles.error}>{error}</p>}
@@ -1160,7 +1174,9 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   <button
                     type='button'
                     className={styles.activityCtaGoogleBtn}
-                    onClick={() => auth?.signInWithGoogle?.()}
+                    onClick={() =>
+                      auth?.signInWithGoogle?.(currentAuthRedirectPath())
+                    }
                     disabled={!auth}
                   >
                     <GoogleIcon />
@@ -1347,14 +1363,7 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
 
         {isReplyOpen && !authUser && (
           <p className={styles.signInHint}>
-            <Link
-              href={`/signin?redirect=${encodeURIComponent(
-                courseUrl || '/profile'
-              )}`}
-            >
-              Sign in
-            </Link>{' '}
-            to reply.
+            <SignInReturnLink>Sign in</SignInReturnLink> to reply.
           </p>
         )}
       </div>

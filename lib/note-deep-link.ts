@@ -10,13 +10,54 @@ export function parseNotesPanelQuery(value: unknown): boolean {
   return raw === '1' || raw === 'true' || raw === 'notes' || raw === 'open'
 }
 
+export function parseAnnotationsPanelQuery(value: unknown): boolean {
+  const raw = firstQueryParam(value).toLowerCase()
+  return (
+    raw === '1' ||
+    raw === 'true' ||
+    raw === 'annotations' ||
+    raw === 'annotate' ||
+    raw === 'open'
+  )
+}
+
 export function readSearchParam(name: string): string {
   if (typeof window === 'undefined') return ''
   return new URLSearchParams(window.location.search).get(name)?.trim() || ''
 }
 
+/** Update the current URL without a navigation. Keeps other query flags. */
+export function replaceSearchParams(
+  updates: Record<string, string | null | undefined>
+) {
+  if (typeof window === 'undefined') return
+  const url = new URL(window.location.href)
+  let changed = false
+  for (const [key, value] of Object.entries(updates)) {
+    const current = url.searchParams.get(key)
+    if (value == null || value === '') {
+      if (current != null) {
+        url.searchParams.delete(key)
+        changed = true
+      }
+      continue
+    }
+    if (current !== value) {
+      url.searchParams.set(key, value)
+      changed = true
+    }
+  }
+  if (!changed) return
+  const next = `${url.pathname}${url.search}${url.hash}`
+  window.history.replaceState(window.history.state, '', next)
+}
+
 export function urlWantsNotesPanel(): boolean {
   return parseNotesPanelQuery(readSearchParam('notes'))
+}
+
+export function urlWantsAnnotationsPanel(): boolean {
+  return parseAnnotationsPanelQuery(readSearchParam('annotations'))
 }
 
 export function pathSlugFromCourseNotesId(courseId: string): string | null {
@@ -37,7 +78,10 @@ export function learningPathNoteHref(slug: string, nodeId: string): string {
   return `${learningPathHref(slug)}?${params.toString()}`
 }
 
-export function coursePageNoteHref(coursePageId: string, topicId: string): string {
+export function coursePageNoteHref(
+  coursePageId: string,
+  topicId: string
+): string {
   const params = new URLSearchParams()
   if (topicId) params.set('topic', topicId)
   params.set('notes', '1')

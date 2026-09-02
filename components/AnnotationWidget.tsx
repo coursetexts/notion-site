@@ -5,7 +5,7 @@ import { useFollowingIds } from '@/hooks/useFollowingIds'
 import cs from 'classnames'
 
 import { authDebug } from '@/lib/auth-debug'
-import { currentAuthRedirectPath } from '@/lib/auth-redirect'
+import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import { snippetFromText } from '@/lib/content-reports'
 import {
   type Annotation as DbAnnotation,
@@ -252,20 +252,27 @@ const SubmitArrowIcon: React.FC = () => (
   </svg>
 )
 
-function useRequestSignIn() {
+function useRequestSignIn(sectionId?: string) {
   const auth = useAuthOptional()
   return useCallback(() => {
-    const next = currentAuthRedirectPath()
+    const next = currentAuthRedirectPath({
+      annotations: '1',
+      node: sectionId || undefined,
+      topic: sectionId || undefined
+    })
     if (auth?.signInWithGoogle) {
       void auth.signInWithGoogle(next)
       return
     }
-    window.location.href = `/signin?redirect=${encodeURIComponent(next)}`
-  }, [auth])
+    window.location.href = signInPageHref(next)
+  }, [auth, sectionId])
 }
 
-const SignInHint: React.FC<{ action: string }> = ({ action }) => {
-  const requestSignIn = useRequestSignIn()
+const SignInHint: React.FC<{ action: string; sectionId?: string }> = ({
+  action,
+  sectionId
+}) => {
+  const requestSignIn = useRequestSignIn(sectionId)
   return (
     <p className={styles.signInHint}>
       <button
@@ -615,7 +622,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
           </div>
         </div>
       ) : (
-        <SignInHint action='add annotations' />
+        <SignInHint action='add annotations' sectionId={sectionId} />
       )}
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.list}>
@@ -634,6 +641,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
               authUser={Boolean(auth?.user)}
               courseUrl={courseUrl}
               courseTitle={courseTitle}
+              sectionId={sectionId}
               followingIds={followingIds}
               followerIds={followerIds}
               replyDraftById={replyDraftById}
@@ -677,6 +685,7 @@ interface ThreadAnnotationItemProps {
   authUser: boolean
   courseUrl?: string
   courseTitle?: string
+  sectionId?: string
   followingIds: Set<string>
   followerIds: Set<string>
   replyDraftById: Record<string, string>
@@ -699,6 +708,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
   authUser,
   courseUrl,
   courseTitle,
+  sectionId,
   followingIds,
   followerIds,
   replyDraftById,
@@ -833,7 +843,9 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
             </div>
           </div>
         )}
-        {isReplyOpen && !authUser && <SignInHint action='reply' />}
+        {isReplyOpen && !authUser && (
+          <SignInHint action='reply' sectionId={sectionId} />
+        )}
       </div>
 
       {hasReplies && (
@@ -889,6 +901,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
               authUser={authUser}
               courseUrl={courseUrl}
               courseTitle={courseTitle}
+              sectionId={sectionId}
               followingIds={followingIds}
               followerIds={followerIds}
               replyDraftById={replyDraftById}
