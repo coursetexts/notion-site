@@ -14,6 +14,7 @@ import { AnnotationWidget } from './AnnotationWidget'
 import contentMainStyles from './ContentMain.module.css'
 import notesStyles from './CourseNotesPanel.module.css'
 import styles from './PathContentActivity.module.css'
+import { ExportContextButton } from './ExportContextButton'
 import { ViewAnnotationsButton } from './ViewAnnotationsButton'
 import { ViewYourNotesButton } from './ViewYourNotesButton'
 
@@ -31,7 +32,8 @@ export function PathContentActivity({
   contentRef,
   style,
   children,
-  onActivityPosted
+  onActivityPosted,
+  onExportContext
 }: {
   coursePageId: string
   courseTitle: string
@@ -45,6 +47,8 @@ export function PathContentActivity({
   style?: React.CSSProperties
   children: React.ReactNode
   onActivityPosted?: () => void
+  /** Copies LLM-ready path context (current step, outline, whys, goal). */
+  onExportContext?: () => string
 }) {
   const [rightPanel, setRightPanel] = React.useState<RightPanel>('none')
   const [annotationCount, setAnnotationCount] = React.useState(0)
@@ -205,6 +209,9 @@ export function PathContentActivity({
             onClick={() => openRightPanel('annotations')}
           />
           <ViewYourNotesButton onClick={() => openRightPanel('notes')} />
+          {onExportContext ? (
+            <ExportContextButton getText={onExportContext} />
+          ) : null}
         </div>
         <div
           className={`${styles.contentBody}${

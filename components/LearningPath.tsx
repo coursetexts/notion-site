@@ -33,6 +33,7 @@ import {
   normalizeUserLinkUrl,
   userLinkMatchesLearningPathSlug
 } from '@/lib/learning-path-bookmark-link'
+import { formatLearningPathExportContext } from '@/lib/learning-path-export-context'
 import {
   getLearningPathRecord,
   loadLearningPathUserState,
@@ -2914,6 +2915,12 @@ function CommunityLearningPath({
               )
             }
             onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
+            onExportContext={() =>
+              formatLearningPathExportContext({
+                path,
+                selectedId
+              })
+            }
           >
             {showingRecommended ? (
               <LearningPathRecommendedOverview

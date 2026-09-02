@@ -23,7 +23,7 @@ Official professor courses from Notion are **not** a `kind` yet. They stay at `/
 | `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
 | `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Courses. Atlas callouts; empty search opens the create modal. |
 | `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here.                          |
-| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. Visitors see **Published Publicly** / **Published Collaboratively** on the date line; only the owner can **Edit this node** / **Add to path**. |
+| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. Visitors see **Published Publicly** / **Published Collaboratively** on the date line; only the owner can **Edit this node** / **Add to path**. **Export Context** (next to Annotations / Your Notes) copies an LLM prompt: current step and ancestors, the numbered outline (mark and title on one line, with each topic’s why), and the goal/summary. |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
 
@@ -136,6 +136,8 @@ When the switch succeeds, the owner’s overlay resources are copied onto `learn
 - RLS `UPDATE`: owner as before; signed-in users may update `data` only when `kind = 'course' AND is_catalog` (syllabus resources). Collaborative community/research outlines are owner-only. A trigger blocks non-owners from changing slug/owner/kind/visibility/title/goal/summary, and from changing `data` except on catalog courses.
 
 Course catalog pages have no privacy toggle. Owned community/research paths use a three-way control.
+
+**Export Context** (topic bar, next to Annotations / Your Notes) copies a prompt for an external LLM: the current step and its parents, the numbered outline with each topic’s why, then the goal and summary. Each outline row keeps the mark on the same line as the title (`1 Title`, `a) Title`, `i) Title`). Empty and placeholder whys are omitted. Course syllabi do not show this button.
 
 Upvotes on a resource list are stored in `learning_path_resource_votes` and **do not change sequence**. The number in the list is still the study order; the arrow is a separate usefulness signal (idle brown, voted blue). Any signed-in user can upvote on a `public` or `collaborative` path — the control stays enabled except while a vote is saving. Apply `028_learning_path_resource_votes.sql` on existing databases. `/community` explains this with a schema diagram (`ResourceVoteSchemaDiagram`): sequence `1 2 3` vs ↑ votes, and the highest vote count is deliberately not on item 1.
 

@@ -142,6 +142,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] Create a path while signed in → row in `learning_paths`; notes persist in `learning_path_user_state`
 - [ ] Owned path visibility: Private / Public / Collaborative
 - [ ] Collaborative path: visitor does **not** see Edit this node / Add to path; owner still does. Apply `040_learning_path_outline_owner_only.sql`.
+- [ ] Community/research path: **Export Context** copies current step + numbered outline (mark and title on one line) + whys + goal
 - [ ] Field Atlas → new path with `kind=research`
 - [ ] Pin a course learning path → row in `learning_path_pins`
 - [ ] Public/collaborative path: signed-in upvote on a resource (grey arrow) does not change sequence
