@@ -40,6 +40,27 @@ export function isNotebookDocEmpty(
   return !content.some(nodeHasVisibleContent)
 }
 
+export function notebookDocPlainText(
+  doc: NotebookDocJson | null | undefined
+): string {
+  if (!doc || typeof doc !== 'object') return ''
+  const parts: string[] = []
+  function walk(node: unknown) {
+    if (!node || typeof node !== 'object') return
+    const n = node as Record<string, unknown>
+    if (n.type === 'text' && typeof n.text === 'string') {
+      const text = n.text.trim()
+      if (text) parts.push(text)
+      return
+    }
+    if (Array.isArray(n.content)) {
+      for (const child of n.content) walk(child)
+    }
+  }
+  walk(doc)
+  return parts.join(' ').replace(/\s+/g, ' ').trim()
+}
+
 /** Parse a stored note: TipTap JSON, or legacy plain text. */
 export function parseStoredNotebookNote(
   raw: string | null | undefined

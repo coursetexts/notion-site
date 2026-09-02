@@ -6,8 +6,9 @@ import { getSupabaseClient } from '@/lib/supabase'
 import { takeAuthRedirect } from '@/lib/auth-redirect'
 
 /**
- * OAuth callback: Supabase redirects here after Google sign-in.
- * We let the client absorb the session from the URL hash, then redirect.
+ * OAuth callback: Google returns here on the same origin that started sign-in
+ * (localhost in dev, the live site in production). Exchange the code / hash
+ * for a session, then continue on this host.
  */
 export default function AuthCallbackPage() {
   const router = useRouter()
@@ -21,10 +22,41 @@ export default function AuthCallbackPage() {
     }
 
     const run = async () => {
-      const {
+      const params = new URLSearchParams(window.location.search)
+      const hashParams = new URLSearchParams(
+        window.location.hash.replace(/^#/, '')
+      )
+      const code = params.get('code')
+      const oauthError =
+        params.get('error_description') ||
+        params.get('error') ||
+        hashParams.get('error_description') ||
+        hashParams.get('error')
+      if (oauthError) {
+        console.error('Auth callback error:', oauthError)
+        setStatus('error')
+        return
+      }
+
+      if (code) {
+        const { error: exchangeError } =
+          await supabase.auth.exchangeCodeForSession(code)
+        if (exchangeError) {
+          // AuthProvider may already have consumed the code via detectSessionInUrl.
+          console.warn('Auth callback exchange:', exchangeError.message)
+        }
+      }
+
+      let {
         data: { session },
         error
       } = await supabase.auth.getSession()
+      if (!session && (code || hashParams.get('access_token'))) {
+        await new Promise((resolve) => setTimeout(resolve, 400))
+        const retry = await supabase.auth.getSession()
+        session = retry.data.session
+        error = retry.error
+      }
       if (error) {
         console.error('Auth callback error:', error)
         setStatus('error')
@@ -35,7 +67,7 @@ export default function AuthCallbackPage() {
       router.replace(session ? next || '/profile' : '/')
     }
 
-    run()
+    void run()
   }, [router])
 
   return (

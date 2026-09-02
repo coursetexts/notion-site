@@ -57,7 +57,16 @@ Needs a session (or local-only until sign-in):
 ## Dashboard setup (new project)
 
 1. Enable **Google** provider (Client ID / Secret).
-2. Site URL + redirect allowlist include `{origin}/auth/callback`.
+2. Under **URL configuration**, keep **Site URL** as the live app (`https://coursetexts.org` or preview). Then add **every** return URL you actually use under **Redirect URLs**. If localhost is missing, Google sign-in from `yarn dev` sends you to the Site URL instead.
+
+   Allow at least:
+
+   - `http://localhost:3000/auth/callback`
+   - `http://127.0.0.1:3000/auth/callback`
+   - `https://coursetexts.org/auth/callback`
+   - `https://preview.coursetexts.org/auth/callback`
+
+   The app always sets `redirectTo` to `{window.location.origin}/auth/callback`, so local tabs stay on localhost and deployed tabs stay on that host.
 3. Google OAuth redirect: `https://<project-ref>.supabase.co/auth/v1/callback`.
 4. Env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 

@@ -83,8 +83,10 @@ import {
   isLearningPathKnowledgeSelection,
   isLearningPathMentalMapSelection,
   isLearningPathRecommendedSelection,
+  isLearningPathSectionSelection,
   outlineTreeWithoutGoal
 } from '@/lib/learning-path-sections'
+import { readSearchParam } from '@/lib/note-deep-link'
 import {
   type LearningPathData,
   type LearningPathKind,
@@ -569,7 +571,17 @@ function ShareIcon() {
   )
 }
 
-function initialSelection() {
+function fallbackSelection() {
+  return LEARNING_PATH_RECOMMENDED_SECTION_ID
+}
+
+function selectionFromSearch(nodeIds: Iterable<string>) {
+  const node = readSearchParam('node')
+  if (!node) return LEARNING_PATH_RECOMMENDED_SECTION_ID
+  if (isLearningPathSectionSelection(node)) return node
+  for (const id of nodeIds) {
+    if (id === node) return node
+  }
   return LEARNING_PATH_RECOMMENDED_SECTION_ID
 }
 
@@ -1136,7 +1148,7 @@ function CommunityLearningPath({
     resolveLearningPath(slug)
   )
   const [summaryDraft, setSummaryDraft] = React.useState(path.summary)
-  const [selectedId, setSelectedId] = React.useState(() => initialSelection())
+  const [selectedId, setSelectedId] = React.useState(() => fallbackSelection())
   const [notes, setNotes] = React.useState<Record<string, string>>({})
   const [userResources, setUserResources] = React.useState<
     Record<string, LearningPathUserResource[]>
@@ -1295,7 +1307,7 @@ function CommunityLearningPath({
     let cancelled = false
     const local = resolveLearningPath(slug, readStoredLearningPaths())
     setPath(local)
-    setSelectedId(initialSelection())
+    setSelectedId(selectionFromSearch(local.nodes.map((node) => node.id)))
     setHoverId(null)
     setPathRowId(null)
     setUserStateReady(false)
@@ -1345,7 +1357,7 @@ function CommunityLearningPath({
       )
       setNotes(state.notes)
       setUserResources(state.resources)
-      setSelectedId(initialSelection())
+      setSelectedId(selectionFromSearch(next.nodes.map((node) => node.id)))
       setUserStateReady(true)
     })()
 

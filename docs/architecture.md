@@ -134,8 +134,8 @@ flowchart LR
 | Community explainer | `/community` | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists |
 | Resource library | `/community-resources` | `resources`, `knowledge_components`, `search_community` |
 | Reports | `/reports` | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only. |
-| Profile / social | `/profile`, `/profile/{userId}`, `/users` | profiles, follows, links, notebooks, owned/saved paths. Tabs: **Learning** (filters: **Courses** · **Learning paths** · **Committed**) · **Knowledge** (list + graph of acquired topics) · **Bookmarks** · **Activity**. |
-| Auth | `/signin`, `/auth/callback` | Supabase Auth |
+| Profile / social | `/profile`, `/profile/{userId}`, `/users` | profiles, follows, links, notebooks, owned/saved paths. Tabs: **Learning** (pills: **Courses** · **Learning paths** · **By you** · **Committed**) · **Knowledge** (list + graph) · **Notes** (private topic notes; `/profile` only; editable; **Open** → that topic with the notes panel) · **Bookmarks** · **Activity** (pills: **Feed** · **Your activity**, plus search). Shared SEARCH width on those tabs. |
+| Auth | `/signin`, `/auth/callback` | Supabase Auth. `redirectTo` is `{origin}/auth/callback`; allowlist localhost or local Google sign-in lands on the Site URL. |
 
 Legacy URLs:
 
@@ -204,6 +204,12 @@ Adding a resource on a syllabus node patches `learning_paths.data` and also publ
 ## Knowledge on a profile
 
 Finishing a community, research, or course path records unique topic labels on `user_knowledge_topics` and may ingest structural edges into the shared catalog. Newly explored topics (and finishing the whole map) ask for learner-entered duration and a 0–100% enjoyment rating (`learning_path_ratings`). The Knowledge tab List / Graph and the path **What you learned** row are documented in [knowledge.md](./knowledge.md). A daily Gemini job that would add extra catalog edges is **in the repo but not scheduled**.
+
+## Notes on a profile
+
+`/profile` has a **Notes** tab (not shown on `/profile/{userId}`). It lists the signed-in user's private TipTap notes from Notion `course_notes` and from `learning_path_user_state` (plus leftover `curated_course_notes`). Opening a row lets you edit the note in place. **Open** goes to that topic on the course or learning path (`?node=` or `?topic=`) and opens the notes side panel (`?notes=1`).
+
+**Activity** uses the same pill style as Learning (**Feed** · **Your activity**) plus the shared SEARCH field.
 
 ## Reports (`/reports`)
 

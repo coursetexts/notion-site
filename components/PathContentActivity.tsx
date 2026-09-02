@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { createPortal } from 'react-dom'
 
 import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
+import { urlWantsNotesPanel } from '@/lib/note-deep-link'
 
 import { AnnotationWidget } from './AnnotationWidget'
 import contentMainStyles from './ContentMain.module.css'
@@ -54,6 +55,11 @@ export function PathContentActivity({
   }, [])
 
   React.useEffect(() => setPortalReady(true), [])
+
+  React.useEffect(() => {
+    if (!urlWantsNotesPanel()) return
+    setRightPanel('notes')
+  }, [])
 
   React.useEffect(() => {
     const mq = window.matchMedia('(max-width: 1100px)')

@@ -7,7 +7,9 @@ import { sessionOptions } from '@/lib/session-config'
 export const config = {
   // Match all routes except for specific ones like API routes, static files,
   // the sign-in page itself, and Next.js internal paths.
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|signin|logo.svg).*)']
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|signin|auth|logo.svg).*)'
+  ]
 }
 
 export async function middleware(req: NextRequest) {

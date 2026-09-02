@@ -4,6 +4,7 @@ import { useAuthOptional } from '@/contexts/AuthContext'
 
 import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import { courseLearningPathActivityPageId } from '@/lib/course-activity-db'
+import { readSearchParam } from '@/lib/note-deep-link'
 import {
   addCourseLearningPathTopicResource,
   createLocalCourseLearningPathTopicResource,
@@ -153,6 +154,37 @@ function courseDescriptionHtml(description: string) {
     .join('')
 }
 
+function initialCourseSelection(course: CourseLearningPathData): string {
+  const node = readSearchParam('node')
+  if (!node) return COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
+  if (
+    isCourseLearningPathSyllabusSelection(node) ||
+    isCourseLearningPathMentalMapSelection(node) ||
+    isCourseLearningPathResourceSelection(node) ||
+    isCourseLearningPathKnowledgeSelection(node) ||
+    isMentalMapVideoNodeId(node)
+  ) {
+    return node
+  }
+  const index = buildCourseLearningPathIndex(course)
+  if (index[node]) return node
+  return COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
+}
+
+function expandedIdsForCourseSelection(
+  course: CourseLearningPathData,
+  id: string
+): Set<string> {
+  const next = new Set<string>()
+  next.add(id)
+  if (isCourseLearningPathResourceSelection(id)) {
+    next.add(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+  }
+  const index = buildCourseLearningPathIndex(course)
+  for (const parent of index[id]?.parents ?? []) next.add(parent.id)
+  return next
+}
+
 /**
  * Syllabus navigator + curated video library for a course.
  * Loads from learning_paths (kind = course); uses local seed when empty.
@@ -168,9 +200,7 @@ export function CourseLearningPath({
   )
   const [loading, setLoading] = React.useState(!courseProp)
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
-  const courseIdentityRef = React.useRef<string | null>(
-    courseProp ? `${courseProp.id}:${slug}` : null
-  )
+  const courseIdentityRef = React.useRef<string | null>(null)
   const loadedSlugRef = React.useRef<string | null>(courseProp ? slug : null)
   const [selectedId, setSelectedId] = React.useState(
     COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
@@ -337,10 +367,11 @@ export function CourseLearningPath({
     const key = `${course.id}:${slug}`
     if (courseIdentityRef.current === key) return
     courseIdentityRef.current = key
-    setSelectedId(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+    const selected = initialCourseSelection(course)
+    setSelectedId(selected)
     setNavView('list')
     setOutlineSearch('')
-    setExpanded(new Set())
+    setExpanded(expandedIdsForCourseSelection(course, selected))
   }, [course, slug])
 
   React.useEffect(() => {

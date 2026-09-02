@@ -1728,6 +1728,7 @@
 
 .primaryTabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.75rem;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 1.25rem;
@@ -1778,9 +1779,8 @@
 
 .panelSearchWrap {
   margin: 0 0 1rem;
-  align-self: stretch;
-  width: 0;
-  min-width: 100%;
+  width: min(100%, 25rem);
+  min-width: 0;
   box-sizing: border-box;
 }
 
@@ -1814,12 +1814,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: fit-content;
   max-width: 100%;
 }
 
 .filterSearchBlock .linkFilterRow {
-  width: max-content;
   max-width: 100%;
 }
 
@@ -1873,46 +1871,6 @@
 
 .tabPanel {
   padding-top: 0.25rem;
-}
-
-.activitySubTabs {
-  display: flex;
-  width: 100%;
-  flex-wrap: nowrap;
-  gap: 0;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.activitySubTab,
-.activitySubTabActive {
-  font: inherit;
-  flex: 1;
-  min-width: 0;
-  text-align: center;
-  font-size: 0.9375rem;
-  padding: 0.65rem 0.75rem;
-  border: none;
-  background: #fff;
-  color: #666;
-  cursor: pointer;
-}
-
-.activitySubTab:not(:last-child),
-.activitySubTabActive:not(:last-child) {
-  border-right: 1px solid #e0e0e0;
-}
-
-.activitySubTab:hover {
-  background: #fafafa;
-  color: #25272b;
-}
-
-.activitySubTabActive {
-  background: #f6f6f6;
-  color: #25272b;
 }
 
 /* —— Profile “Your notebooks” tab —— */
@@ -2894,4 +2852,53 @@ button.learningPathCommittedTag:hover:not(:disabled) .learningPathUncommitLabel,
 button.learningPathCommittedTag:focus-visible:not(:disabled)
   .learningPathUncommitLabel {
   visibility: visible;
+}
+
+.noteListBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.noteListBtn:hover {
+  background: #fafafa;
+}
+
+.noteListBtn .notebooksListTitle {
+  width: 100%;
+}
+
+.noteListBtn .notebooksListMeta {
+  flex-shrink: 1;
+  white-space: normal;
+}
+
+.noteSource {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: #666;
+}
+
+.noteBody {
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 0.75rem 1rem 1rem;
+  background: #fff;
+  min-height: 320px;
+}
+
+.noteSaveStatus {
+  font-size: 0.8125rem;
+  color: #888;
 }

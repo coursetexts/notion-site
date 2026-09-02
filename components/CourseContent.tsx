@@ -7,6 +7,11 @@ import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
 import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import { courseNoteTopicKey } from '@/lib/course-notes-db'
 import {
+  courseTopicLabelFromKey,
+  readSearchParam,
+  urlWantsNotesPanel
+} from '@/lib/note-deep-link'
+import {
   type SectionProgressStatus,
   getSectionProgressMap,
   updateSectionProgress
@@ -426,6 +431,32 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const [portalReady, setPortalReady] = React.useState(false)
 
   React.useEffect(() => setPortalReady(true), [])
+
+  React.useEffect(() => {
+    if (!urlWantsNotesPanel()) return
+    openRightPanel('notes')
+  }, [openRightPanel])
+
+  const appliedTopicRef = React.useRef(false)
+  React.useEffect(() => {
+    if (appliedTopicRef.current) return
+    const topic = readSearchParam('topic')
+    if (!topic) {
+      appliedTopicRef.current = true
+      return
+    }
+    if (tocItems.length === 0) return
+    const label = courseTopicLabelFromKey(topic)
+    if (!label) {
+      appliedTopicRef.current = true
+      return
+    }
+    const frame = window.requestAnimationFrame(() => {
+      tocRef.current?.goToSectionByLabel(label)
+      appliedTopicRef.current = true
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [tocItems])
 
   React.useEffect(() => {
     const mq = window.matchMedia('(max-width: 1100px)')

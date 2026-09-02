@@ -16,7 +16,7 @@ import {
 } from '@/lib/auth-cache'
 import { authDebug } from '@/lib/auth-debug'
 import { persistAllBeforeSignOut } from '@/lib/persist-before-sign-out'
-import { setAuthRedirect } from '@/lib/auth-redirect'
+import { getAuthCallbackUrl, setAuthRedirect } from '@/lib/auth-redirect'
 import { getSupabaseClient } from '@/lib/supabase'
 import type { Profile } from '@/lib/supabase-types'
 
@@ -204,14 +204,13 @@ export function AuthProvider({
       )
       return
     }
+    const redirectTo = getAuthCallbackUrl()
     try {
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo:
-            typeof window !== 'undefined'
-              ? `${window.location.origin}/auth/callback`
-              : undefined
+          redirectTo,
+          skipBrowserRedirect: false
         }
       })
       if (signInError) {

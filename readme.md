@@ -35,7 +35,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=…
 ```
 
-Google sign-in and a matching redirect `{origin}/auth/callback` are required for comments, notes, and owned paths. See [docs/auth.md](./docs/auth.md).
+Google sign-in returns to `{current origin}/auth/callback` (localhost while you `yarn dev`, the live host in production). In Supabase → Authentication → URL configuration, add `http://localhost:3000/auth/callback` to **Redirect URLs** or local sign-in will bounce to the Site URL. See [docs/auth.md](./docs/auth.md).
 
 Optional seeds (service role, never the production project):
 

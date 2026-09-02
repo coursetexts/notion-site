@@ -22,6 +22,9 @@ export function getSupabaseClient(): SupabaseClient | null {
          * parallel `getUser`/`getSession` calls on profile). `processLock` uses an
          * in-process promise queue instead of `navigator.locks`, avoiding steal.
          */
+        flowType: 'pkce',
+        detectSessionInUrl: true,
+        persistSession: true,
         lock: processLock,
         lockAcquireTimeout: -1
       }

@@ -195,7 +195,7 @@ erDiagram
   }
 ```
 
-`course_notes` is one TipTap document per `(user_id, course_id, topic_id)`. `topic_id` is the TOC tab key (or `parent::child` for a sub-tab). Empty `topic_id` is a read fallback from the earlier one-doc-per-course shape.
+`course_notes` is one TipTap document per `(user_id, course_id, topic_id)`. `topic_id` is the TOC tab key (or `parent::child` for a sub-tab). Empty `topic_id` is a read fallback from the earlier one-doc-per-course shape. The signed-in owner's notes appear on `/profile` → **Notes**, where they can be edited. **Open** sends you to that topic (`?node=` on a learning path, `?topic=` on a Notion course) with the notes side panel open (`?notes=1`). The same notes also live in `learning_path_user_state`.
 
 ## Three “resource” concepts
 

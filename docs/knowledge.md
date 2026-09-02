@@ -4,7 +4,7 @@ Topics you pick up by finishing learning paths, plus an optional Coursetexts-wid
 
 ## What people see
 
-On `/profile` and `/profile/{userId}`, the primary tabs are **Learning | Knowledge | Bookmarks | Activity**.
+On `/profile` and `/profile/{userId}`, the primary tabs are **Learning | Knowledge | Notes | Bookmarks | Activity**. **Notes** is owner-only (`/profile`). Search fields on those tabs share one width.
 
 The Knowledge tab has **List** and **Graph**:
 

@@ -29,9 +29,13 @@ LEARNING_PATHS_SEED_PROJECT_REF=<project-ref>
 In Supabase Dashboard → **Authentication**:
 
 1. Enable **Google** provider (Client ID / Secret from Google Cloud).
-2. Under URL configuration, allow your app origins and redirect:
-   - Site URL: your app origin (e.g. `http://localhost:3000`)
-   - Redirect URLs: `{origin}/auth/callback` (and production equivalents)
+2. Under URL configuration:
+   - **Site URL:** live origin (`https://coursetexts.org` or preview)
+   - **Redirect URLs** (all of these; missing localhost is why local Google sign-in jumps to production):
+     - `http://localhost:3000/auth/callback`
+     - `http://127.0.0.1:3000/auth/callback`
+     - `https://coursetexts.org/auth/callback`
+     - `https://preview.coursetexts.org/auth/callback`
 3. Confirm the Google OAuth redirect URI includes:
    `https://<project-ref>.supabase.co/auth/v1/callback`
 

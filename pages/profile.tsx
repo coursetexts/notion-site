@@ -20,6 +20,7 @@ import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
 import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
+import { ProfileNotesPanel } from '@/components/ProfileNotesPanel'
 import {
   ProfilePersonalLinkAnchorRow,
   ProfilePersonalLinksPanel
@@ -106,6 +107,10 @@ import {
   type UserKnowledgeTopic,
   listMyKnowledgeTopics
 } from '@/lib/user-knowledge-topics-db'
+import {
+  type ProfileTopicNote,
+  listMyTopicNotes
+} from '@/lib/profile-notes-db'
 import {
   type LinkTag,
   type UserLinkWithTag,
@@ -289,6 +294,13 @@ const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
   { id: 'committed', label: 'Committed' }
 ]
 
+type ActivityFilter = 'feed' | 'yours'
+
+const ACTIVITY_FILTERS: { id: ActivityFilter; label: string }[] = [
+  { id: 'feed', label: 'Feed' },
+  { id: 'yours', label: 'Your activity' }
+]
+
 function nextPathsCoursesFilter(
   current: PathsCoursesFilter | null,
   clicked: PathsCoursesFilter
@@ -341,6 +353,94 @@ function bookmarkRowMatchesQuery(
     matchesSearch(resource.link ?? '', query) ||
     matchesSearch(course.name, query) ||
     matchesSearch('community resource', query)
+  )
+}
+
+function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
+  if (!query) return true
+  const fields: string[] = [
+    item.actor_display_name ?? '',
+    item.kind.replace(/_/g, ' ')
+  ]
+  switch (item.kind) {
+    case 'wall_resource':
+      fields.push(item.course_name, item.resource_title, 'community wall')
+      break
+    case 'followed_course_bookmark':
+      fields.push(item.course_name, 'saved course')
+      break
+    case 'followed_resource_bookmark':
+      fields.push(item.course_name, item.resource_title, 'bookmarked')
+      break
+    case 'followed_link_bookmark':
+      fields.push(item.link_title, item.link_href, 'bookmarked')
+      break
+    case 'followed_comment':
+      fields.push(
+        item.target_title,
+        item.body,
+        item.is_reply ? 'replied' : 'commented'
+      )
+      break
+    case 'followed_annotation':
+      fields.push(item.target_title, item.body, item.section_id, 'annotated')
+      break
+    case 'followed_learning_path':
+      fields.push(item.path_title, 'learning path')
+      break
+    case 'followed_path_progress':
+      fields.push(item.path_title, item.node_label)
+      break
+    case 'suggestion_for_you':
+      fields.push(item.path_title, item.resource_title, item.body, 'suggested')
+      break
+    case 'suggestion_response':
+      fields.push(item.path_title, item.resource_title, item.decision)
+      break
+  }
+  return fields.some((field) => matchesSearch(field, query))
+}
+
+function activityFeedRowMatchesQuery(
+  row:
+    | { kind: 'feed'; item: ProfileFeedItem }
+    | { kind: 'reply'; notification: ReplyNotification },
+  query: string
+) {
+  if (!query) return true
+  if (row.kind === 'reply') {
+    const notification = row.notification
+    return (
+      matchesSearch(notification.author_name, query) ||
+      matchesSearch(notification.course_name, query) ||
+      matchesSearch(notification.body, query) ||
+      matchesSearch(notification.section_id ?? '', query) ||
+      matchesSearch('replied', query) ||
+      matchesSearch(notification.type, query)
+    )
+  }
+  return feedItemMatchesQuery(row.item, query)
+}
+
+function myActivityRowMatchesQuery(
+  row:
+    | { kind: 'comment'; comment: DbComment; course: CourseType }
+    | { kind: 'annotation'; annotation: DbAnnotation; course: CourseType },
+  query: string
+) {
+  if (!query) return true
+  if (row.kind === 'comment') {
+    return (
+      matchesSearch('comment', query) ||
+      matchesSearch(row.course.name, query) ||
+      matchesSearch(row.comment.body, query)
+    )
+  }
+  return (
+    matchesSearch('annotation', query) ||
+    matchesSearch(row.course.name, query) ||
+    matchesSearch(row.annotation.body, query) ||
+    matchesSearch(row.annotation.section_id ?? '', query)
   )
 }
 
@@ -397,12 +497,12 @@ export default function ProfilePage() {
     []
   )
   const [knowledgeLoading, setKnowledgeLoading] = useState(true)
+  const [topicNotes, setTopicNotes] = useState<ProfileTopicNote[]>([])
+  const [notesLoading, setNotesLoading] = useState(true)
   const [mainTab, setMainTab] = useState<
-    'learning-path' | 'knowledge' | 'bookmarks' | 'activity'
+    'learning-path' | 'knowledge' | 'notes' | 'bookmarks' | 'activity'
   >('learning-path')
-  const [activitySubTab, setActivitySubTab] = useState<'feed' | 'yours'>(
-    'feed'
-  )
+  const [activitySubTab, setActivitySubTab] = useState<ActivityFilter>('feed')
   const [learningPaths, setLearningPaths] = useState<LearningPathItem[]>([])
   const [unsavePathBusyId, setUnsavePathBusyId] = useState<string | null>(null)
   const [unpinCourseBusyId, setUnpinCourseBusyId] = useState<string | null>(
@@ -425,6 +525,7 @@ export default function ProfilePage() {
     useState<PathsCoursesFilter | null>(null)
   const [learningSearch, setLearningSearch] = useState('')
   const [bookmarkSearch, setBookmarkSearch] = useState('')
+  const [activitySearch, setActivitySearch] = useState('')
   const [showLearningPathModal, setShowLearningPathModal] = useState(false)
   const [learningPathDraft, setLearningPathDraft] = useState('')
   type ProfileView = 'profile' | 'connections'
@@ -646,6 +747,15 @@ export default function ProfilePage() {
     return rows
   }, [feedItems, notifications])
 
+  const activityQuery = normalizeSearch(activitySearch)
+  const visibleActivityFeedRows = useMemo(
+    () =>
+      activityFeedRows.filter((row) =>
+        activityFeedRowMatchesQuery(row, activityQuery)
+      ),
+    [activityFeedRows, activityQuery]
+  )
+
   const myActivityRows = useMemo(() => {
     type Row =
       | {
@@ -675,6 +785,14 @@ export default function ProfilePage() {
     })
     return rows
   }, [comments, annotations])
+
+  const visibleMyActivityRows = useMemo(
+    () =>
+      myActivityRows.filter((row) =>
+        myActivityRowMatchesQuery(row, activityQuery)
+      ),
+    [myActivityRows, activityQuery]
+  )
 
   const communityLearningPaths = useMemo(
     () =>
@@ -871,6 +989,24 @@ export default function ProfilePage() {
       if (cancelled) return
       setKnowledgeTopics(topics)
       setKnowledgeLoading(false)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [effectiveUser?.id])
+
+  useEffect(() => {
+    if (!effectiveUser?.id) {
+      setTopicNotes([])
+      setNotesLoading(false)
+      return
+    }
+    let cancelled = false
+    setNotesLoading(true)
+    void listMyTopicNotes().then((notes) => {
+      if (cancelled) return
+      setTopicNotes(notes)
+      setNotesLoading(false)
     })
     return () => {
       cancelled = true
@@ -1669,6 +1805,19 @@ export default function ProfilePage() {
                     <button
                       type='button'
                       role='tab'
+                      aria-selected={mainTab === 'notes'}
+                      className={
+                        mainTab === 'notes'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => setMainTab('notes')}
+                    >
+                      Notes
+                    </button>
+                    <button
+                      type='button'
+                      role='tab'
                       aria-selected={mainTab === 'bookmarks'}
                       className={
                         mainTab === 'bookmarks'
@@ -1705,6 +1854,18 @@ export default function ProfilePage() {
                     emptyMessage='Topics you complete on learning paths will show up here. You can also add them yourself.'
                     canAdd
                     onTopicsChange={setKnowledgeTopics}
+                  />
+                )}
+
+                {mainTab === 'notes' && (
+                  <ProfileNotesPanel
+                    notes={topicNotes}
+                    loading={notesLoading}
+                    onNoteChange={(note) => {
+                      setTopicNotes((prev) =>
+                        prev.map((item) => (item.id === note.id ? note : item))
+                      )
+                    }}
                   />
                 )}
 
@@ -2457,38 +2618,39 @@ export default function ProfilePage() {
                 {mainTab === 'activity' && (
                   <div className={styles.tabPanel}>
                     <h2 className={styles.mainSerifTitle}>Activity</h2>
-                    <nav
-                      className={styles.activitySubTabs}
-                      role='tablist'
-                      aria-label='Activity type'
-                    >
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={activitySubTab === 'feed'}
-                        className={
-                          activitySubTab === 'feed'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setActivitySubTab('feed')}
+                    <div className={styles.filterSearchBlock}>
+                      <ProfilePanelSearch
+                        id='profile-activity-search'
+                        value={activitySearch}
+                        onChange={setActivitySearch}
+                        ariaLabel='Search activity'
+                      />
+                      <div
+                        className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}
                       >
-                        Feed
-                      </button>
-                      <button
-                        type='button'
-                        role='tab'
-                        aria-selected={activitySubTab === 'yours'}
-                        className={
-                          activitySubTab === 'yours'
-                            ? styles.activitySubTabActive
-                            : styles.activitySubTab
-                        }
-                        onClick={() => setActivitySubTab('yours')}
-                      >
-                        Your activity
-                      </button>
-                    </nav>
+                        <div
+                          className={styles.linkFilterTagsWrap}
+                          role='group'
+                          aria-label='Activity type'
+                        >
+                          {ACTIVITY_FILTERS.map((filter) => (
+                            <button
+                              key={filter.id}
+                              type='button'
+                              aria-pressed={activitySubTab === filter.id}
+                              className={
+                                activitySubTab === filter.id
+                                  ? styles.linkFilterBtnActive
+                                  : styles.linkFilterBtn
+                              }
+                              onClick={() => setActivitySubTab(filter.id)}
+                            >
+                              {filter.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
 
                     {activityLoading && (
                       <p className={styles.placeholder}>Loading…</p>
@@ -2504,9 +2666,13 @@ export default function ProfilePage() {
                           annotations, plus suggestions on your resource lists,
                           show up here as well.
                         </p>
+                      ) : visibleActivityFeedRows.length === 0 ? (
+                        <p className={styles.placeholder}>
+                          No matching activity.
+                        </p>
                       ) : (
                         <ul className={styles.list}>
-                          {activityFeedRows.map((row) => {
+                          {visibleActivityFeedRows.map((row) => {
                             if (row.kind === 'reply') {
                               const n = row.notification
                               return (
@@ -2603,9 +2769,13 @@ export default function ProfilePage() {
                           course pages will appear here with a Comment or
                           Annotation label.
                         </p>
+                      ) : visibleMyActivityRows.length === 0 ? (
+                        <p className={styles.placeholder}>
+                          No matching activity.
+                        </p>
                       ) : (
                         <ul className={styles.list}>
-                          {myActivityRows.map((row) => {
+                          {visibleMyActivityRows.map((row) => {
                             if (row.kind === 'comment') {
                               const { comment, course } = row
                               return (
