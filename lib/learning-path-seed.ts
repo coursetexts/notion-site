@@ -173,14 +173,15 @@ export function mergeLearningPathResources(
     listed.push(listedFromUser(resource, listed.length + 1))
   }
   const orderedSuggestions = [...suggestions].sort((a, b) => {
-    const diff = (a.sequence ?? Number.MAX_SAFE_INTEGER) - (b.sequence ?? Number.MAX_SAFE_INTEGER)
+    const diff =
+      (a.sequence ?? Number.MAX_SAFE_INTEGER) -
+      (b.sequence ?? Number.MAX_SAFE_INTEGER)
     if (diff !== 0) return diff
     return a.id.localeCompare(b.id)
   })
   for (const resource of orderedSuggestions) {
     const max = listed.length + 1
-    const idx =
-      clampResourcePlacement(resource.sequence ?? max, max) - 1
+    const idx = clampResourcePlacement(resource.sequence ?? max, max) - 1
     listed.splice(
       idx,
       0,
@@ -302,11 +303,7 @@ export function parseLearningPathVisibility(
   fallbackIsPrivate?: boolean,
   isCatalog?: boolean
 ): LearningPathVisibility {
-  if (
-    value === 'private' ||
-    value === 'public' ||
-    value === 'collaborative'
-  ) {
+  if (value === 'private' || value === 'public' || value === 'collaborative') {
     return value
   }
   if (isCatalog) return 'public'
@@ -1561,8 +1558,7 @@ export function learningPathFromOutline({
     const stepId = `step-${stepIndex + 1}`
     stepIds.push(stepId)
     const x = layoutX(stepIndex, filledSteps.length)
-    const stepWhy =
-      step.why || 'Steps are the major checkpoints. Concepts sit inside them.'
+    const stepWhy = (step.why ?? '').trim()
     nodes.push({
       id: stepId,
       label: step.title,
@@ -1572,7 +1568,7 @@ export function learningPathFromOutline({
       sequence: stepIndex + 1,
       x,
       y: 36,
-      description: step.why || `A milestone on the way to ${title}.`,
+      description: stepWhy || `A milestone on the way to ${title}.`,
       why: stepWhy,
       resources: []
     })
@@ -1585,8 +1581,7 @@ export function learningPathFromOutline({
       const conceptId = `c-${stepIndex + 1}-${conceptIndex + 1}`
       const offset = (conceptIndex - (step.concepts.length - 1) / 2) * 12
       const conceptX = Math.min(88, Math.max(12, x + offset))
-      const conceptWhy =
-        concept.why || 'You placed this because it sits inside the step.'
+      const conceptWhy = (concept.why ?? '').trim()
       nodes.push({
         id: conceptId,
         label: concept.label,
@@ -1596,7 +1591,7 @@ export function learningPathFromOutline({
         sequence: conceptIndex + 1,
         x: conceptX,
         y: 58,
-        description: concept.why || 'A concept this step depends on.',
+        description: conceptWhy || 'A concept this step depends on.',
         why: conceptWhy,
         resources: []
       })
@@ -1605,7 +1600,7 @@ export function learningPathFromOutline({
       concept.subconcepts.forEach((sub, subIndex) => {
         const subId = `s-${stepIndex + 1}-${conceptIndex + 1}-${subIndex + 1}`
         const subOffset = (subIndex - (concept.subconcepts.length - 1) / 2) * 8
-        const subWhy = sub.why || 'Go only as deep as the goal requires.'
+        const subWhy = (sub.why ?? '').trim()
         nodes.push({
           id: subId,
           label: sub.label,
@@ -1615,7 +1610,7 @@ export function learningPathFromOutline({
           sequence: subIndex + 1,
           x: Math.min(88, Math.max(12, conceptX + subOffset)),
           y: 76,
-          description: sub.why || 'A finer concept under the parent idea.',
+          description: subWhy || 'A finer concept under the parent idea.',
           why: subWhy,
           resources: []
         })

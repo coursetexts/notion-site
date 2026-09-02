@@ -59,6 +59,17 @@ import {
   knowledgeTopicsFromLearningPath
 } from '@/lib/learning-path-knowledge'
 import {
+  type LearningPathPublishTopicGap,
+  checkLearningPathPublishResources,
+  isLearningPathPublishVisibility,
+  promoteLearningPathOwnerResources
+} from '@/lib/learning-path-publish'
+import {
+  LEARNING_PATH_RATING_TARGET,
+  hasLocalLearningPathRating
+} from '@/lib/learning-path-ratings'
+import { submitLearningPathRating } from '@/lib/learning-path-ratings-db'
+import {
   type LearningPathResourceSuggestion,
   addLearningPathResourceSuggestion,
   deleteLearningPathResourceSuggestion,
@@ -72,11 +83,6 @@ import {
   setLearningPathResourceUpvote
 } from '@/lib/learning-path-resource-votes-db'
 import {
-  LEARNING_PATH_RATING_TARGET,
-  hasLocalLearningPathRating
-} from '@/lib/learning-path-ratings'
-import { submitLearningPathRating } from '@/lib/learning-path-ratings-db'
-import {
   LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   LEARNING_PATH_RECOMMENDED_SECTION_ID,
@@ -86,7 +92,6 @@ import {
   isLearningPathSectionSelection,
   outlineTreeWithoutGoal
 } from '@/lib/learning-path-sections'
-import { readSearchParam } from '@/lib/note-deep-link'
 import {
   type LearningPathData,
   type LearningPathKind,
@@ -108,6 +113,7 @@ import {
   sequenceMarks,
   updateLearningPathUserResource
 } from '@/lib/learning-path-seed'
+import { readSearchParam } from '@/lib/note-deep-link'
 import {
   type NotebookDocJson,
   parseStoredNotebookNote,
@@ -123,6 +129,7 @@ import { GraphViewport } from './GraphViewport'
 import styles from './LearningPath.module.css'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
 import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
+import { LearningPathPublishModal } from './LearningPathPublishModal'
 import { LearningPathRatingModal } from './LearningPathRatingModal'
 import saveStyles from './SaveCourseButton.module.css'
 
@@ -1209,6 +1216,11 @@ function CommunityLearningPath({
   const [pathVisibility, setPathVisibility] =
     React.useState<LearningPathVisibility>('private')
   const [privacyBusy, setPrivacyBusy] = React.useState(false)
+  const [publishModal, setPublishModal] = React.useState<{
+    visibility: Extract<LearningPathVisibility, 'public' | 'collaborative'>
+    needsTopics: boolean
+    gaps: LearningPathPublishTopicGap[]
+  } | null>(null)
   const [resourceVotes, setResourceVotes] = React.useState<
     Record<string, LearningPathResourceVoteSummary>
   >({})
@@ -1330,6 +1342,7 @@ function CommunityLearningPath({
     setResourceVotes({})
     setVotingResourceId(null)
     setPrivacyBusy(false)
+    setPublishModal(null)
     setEditOpen(false)
     setDeleteOpen(false)
     setAddOpen(false)
@@ -1887,7 +1900,7 @@ function CommunityLearningPath({
           x: Math.min(88, Math.max(12, (target.x ?? 34) + 16)),
           y: target.kind === 'goal' ? 36 : target.y,
           description: `A milestone on the way to ${prev.title}.`,
-          why: 'Steps are the major checkpoints. Concepts sit inside them.',
+          why: '',
           resources: []
         }
         const edges = oldNext
@@ -1945,10 +1958,7 @@ function CommunityLearningPath({
           parent.kind === 'prerequisite'
             ? 'A finer concept under the parent idea.'
             : 'A concept this step depends on.',
-        why:
-          parent.kind === 'prerequisite'
-            ? 'Go only as deep as the goal requires.'
-            : 'You placed this because it sits inside the step.',
+        why: '',
         resources: []
       }
 
@@ -2033,16 +2043,48 @@ function CommunityLearningPath({
       )
       return
     }
+    const publishingFromPrivate =
+      pathVisibility === 'private' && isLearningPathPublishVisibility(next)
+    let nextPath = path
+    let nextUserResources = userResources
+    if (publishingFromPrivate) {
+      const check = checkLearningPathPublishResources(path, userResources)
+      if (!check.ok) {
+        setPublishModal({
+          visibility: next,
+          needsTopics: check.needsTopics,
+          gaps: check.gaps
+        })
+        return
+      }
+      const promoted = promoteLearningPathOwnerResources(path, userResources)
+      nextPath = promoted.path
+      nextUserResources = promoted.userResources
+    }
     setPrivacyBusy(true)
     try {
+      if (publishingFromPrivate) {
+        setPath(nextPath)
+        pathRef.current = nextPath
+        setUserResources(nextUserResources)
+        resourcesRef.current = nextUserResources
+      }
       let id = pathRowId
-      if (!id || id.startsWith('path-')) {
-        id = await upsertOwnedLearningPath(path)
+      if (!id || id.startsWith('path-') || publishingFromPrivate) {
+        id = await upsertOwnedLearningPath(nextPath)
         if (id) setPathRowId(id)
       }
       if (!id) {
         window.alert('Could not update privacy. Try signing in again.')
         return
+      }
+      if (publishingFromPrivate) {
+        await saveLearningPathUserState(
+          id,
+          slug,
+          userStateFromPath(nextPath, notesRef.current, nextUserResources),
+          currentUserId
+        )
       }
       const ok = await setOwnedLearningPathVisibility(id, next, path.slug)
       if (ok) setPathVisibility(next)
@@ -2422,6 +2464,30 @@ function CommunityLearningPath({
         onSelectTopic={(id) => {
           setShowFinishedModal(false)
           selectNode(id)
+        }}
+      />
+      <LearningPathPublishModal
+        open={Boolean(publishModal)}
+        intendedVisibility={publishModal?.visibility ?? 'public'}
+        needsTopics={publishModal?.needsTopics ?? false}
+        gaps={publishModal?.gaps ?? []}
+        onClose={() => setPublishModal(null)}
+        onSelectTopic={(gap) => {
+          setPublishModal(null)
+          selectNode(gap.id)
+          setOpenSections({
+            why: gap.missingWhy,
+            resources: gap.needed > 0
+          })
+          if (gap.missingWhy) {
+            const node = path.nodes.find((item) => item.id === gap.id)
+            if (node) {
+              setEditLabel(node.label)
+              setEditDescription(node.description)
+              setEditWhy(node.why)
+              setEditOpen(true)
+            }
+          }
         }}
       />
       <div className={styles.hero}>

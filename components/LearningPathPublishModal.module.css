@@ -1,0 +1,171 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 13, 26, 0.42);
+}
+
+.modal {
+  width: min(480px, 100%);
+  max-height: min(86vh, 720px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Guyot Press', 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 401;
+  line-height: 1.25;
+  color: #000;
+}
+
+.close {
+  border: none;
+  background: none;
+  padding: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus-visible {
+  color: #0089c4;
+}
+
+.intro {
+  margin: 0;
+  padding: 0 1.25rem 0.75rem;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.empty {
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.5rem;
+  overflow: auto;
+  flex: 1 1 auto;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.item {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.itemBtn,
+.itemStatic {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #000d1a;
+}
+
+.itemBtn {
+  cursor: pointer;
+}
+
+.itemBtn:hover {
+  color: #0089c4;
+  background: color-mix(in srgb, #0089c4 8%, transparent);
+}
+
+.itemBtn:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: -2px;
+}
+
+.label {
+  font-size: 15px;
+}
+
+.count {
+  flex-shrink: 0;
+  max-width: 58%;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #0089c4;
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.keepPrivate {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 12px 20px;
+  border: none;
+  background: var(--dark-brown, #2c1a0c);
+  color: #fff;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.keepPrivate:hover,
+.keepPrivate:focus-visible {
+  opacity: 0.9;
+}
+
+.keepPrivate:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}

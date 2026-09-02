@@ -8,22 +8,22 @@ A path starts from a **goal** (“play a song on guitar”), then a graph of con
 
 Three kinds (`learning_paths.kind`):
 
-| Kind | UI | How it is created | Where it shows |
-|------|----|-------------------|----------------|
-| `community` (default) | Shared `LearningPath` shell · kicker “Learning Path” · community outline | Home / `/learning-paths` / `/all-courses` learning-paths view / profile → “create your own” | Home catalog, community lists, `/all-courses?view=learning-paths`, profile **Learning paths** filter |
-| `research` | Same shell · kicker “Research Learning Path” · community outline | Field Atlas question → `/learning-path/new?kind=research` | Profile **Learning paths** filter, header pin empty-state, `/all-courses?view=learning-paths` |
-| `course` | Same shell · kicker “Course Learning Path” · syllabus outline | Migrated / seeded degree syllabus | Degrees, `/all-courses` **courses** view (filled syllabi only), course pins, profile **Courses** filter — **not** the home community grid, the all-courses learning-paths view, or the profile Learning paths filter |
+| Kind                  | UI                                                                       | How it is created                                                                           | Where it shows                                                                                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `community` (default) | Shared `LearningPath` shell · kicker “Learning Path” · community outline | Home / `/learning-paths` / `/all-courses` learning-paths view / profile → “create your own” | Home catalog, community lists, `/all-courses?view=learning-paths`, profile **Learning paths** filter                                                                                                                 |
+| `research`            | Same shell · kicker “Research Learning Path” · community outline         | Field Atlas question → `/learning-path/new?kind=research`                                   | Profile **Learning paths** filter, header pin empty-state, `/all-courses?view=learning-paths`                                                                                                                        |
+| `course`              | Same shell · kicker “Course Learning Path” · syllabus outline            | Migrated / seeded degree syllabus                                                           | Degrees, `/all-courses` **courses** view (filled syllabi only), course pins, profile **Courses** filter — **not** the home community grid, the all-courses learning-paths view, or the profile Learning paths filter |
 
 Official professor courses from Notion are **not** a `kind` yet. They stay at `/course/{pageId}`. A later migrate will move those onto `learning_paths` as well; do not do that until that pass is designed. See [architecture — Future](./architecture.md#future-official-notion-courses).
 
 ## Routes
 
-| Route | UI |
-|-------|----|
-| `/learning-paths` | Catalog + “your paths”, search, create modal |
+| Route                              | UI                                                                                                                                                        |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
 | `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Courses. Atlas callouts; empty search opens the create modal. |
-| `/learning-path/new?goal=…` | Outline builder, then redirect to the new slug |
-| `/learning-path/{slug}` | Shared learning-path shell. `kind` only changes the title kicker and the left outline. |
+| `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug                                                                                                            |
+| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline.                                                                    |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
 
@@ -69,14 +69,14 @@ Saving a path you do not own writes a `user_links` row to `/learning-path/{slug}
 
 `SEEDED_LEARNING_PATHS` in `lib/learning-path-seed.ts`:
 
-| Title | Slug |
-|-------|------|
-| Learn Spanish | `learn-spanish` |
+| Title                   | Slug                                                            |
+| ----------------------- | --------------------------------------------------------------- |
+| Learn Spanish           | `learn-spanish`                                                 |
 | Implement a transformer | `understand-how-transformers-work-well-enough-to-implement-one` |
-| Write a rom-com novel | `write-a-rom-com-novel` |
-| Build a tree house | `build-a-tree-house` |
-| Host a dinner | `host-a-dinner` |
-| Play a song on guitar | `play-a-song-on-guitar` |
+| Write a rom-com novel   | `write-a-rom-com-novel`                                         |
+| Build a tree house      | `build-a-tree-house`                                            |
+| Host a dinner           | `host-a-dinner`                                                 |
+| Play a song on guitar   | `play-a-song-on-guitar`                                         |
 
 Seed into Supabase with `yarn seed:learning-paths` (service role; refuses the production project). Sets `kind = community`, `visibility = public`.
 
@@ -108,14 +108,28 @@ User overlay (`learning_path_user_state`):
 
 Replaces the old boolean `is_private`. The column remains, kept in sync (`is_private = visibility = 'private'`).
 
-| Value | Read | Add / reorder resources | Upvote resources |
-|-------|------|-------------------------|------------------|
-| `private` | Owner only | Owner | No |
-| `public` | Anyone | Owner only | Any signed-in user |
-| `collaborative` | Anyone | Owner + any signed-in user | Any signed-in user |
+| Value           | Read       | Add / reorder resources    | Upvote resources   |
+| --------------- | ---------- | -------------------------- | ------------------ |
+| `private`       | Owner only | Owner                      | No                 |
+| `public`        | Anyone     | Owner only                 | Any signed-in user |
+| `collaborative` | Anyone     | Owner + any signed-in user | Any signed-in user |
 
 - Catalog community / research / course rows: `visibility = public`, `owner_id` null.
-- New user paths: `visibility = private` until the owner changes it.
+- New user paths: `visibility = private` until the owner changes it. Going back to private is always allowed.
+
+### Publishing (private → public / collab)
+
+The catalog should inherit a trail someone actually built, not an empty outline. `lib/learning-path-publish.ts` gates the switch:
+
+| Required on every non-goal topic              | What counts                                                                                                                               |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| At least **2 resources**                      | Official `node.resources` plus the owner’s overlay (`learning_path_user_state.resources`)                                                 |
+| A filled **Why is this on the learning path** | Non-empty `node.why`. Empty text and the old placeholder sentences (e.g. “You placed this because it sits inside the step.”) do not count |
+
+If the bar is not met, the visibility control stays Private and **Finish topics to publish** lists the gaps (`N of 2 resources`, `Needs why`, or both). Click a row to jump to that topic; missing why opens the edit dialog.
+
+When the switch succeeds, the owner’s overlay resources are copied onto `learning_paths.data` so visitors see the same list. New nodes start with a blank why. AI fill still counts when it wrote a real reason.
+
 - RLS `SELECT`: `is_catalog OR visibility in ('public','collaborative') OR owner_id = auth.uid()`.
 - RLS `UPDATE`: owner as before; signed-in users may update `data` when `visibility = collaborative` **or** (`kind = 'course' AND is_catalog`). A trigger blocks collaborators from changing slug/owner/kind/visibility/title/goal/summary.
 

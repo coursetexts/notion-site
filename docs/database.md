@@ -199,12 +199,12 @@ erDiagram
 
 ## Three “resource” concepts
 
-| Tables | Used by | Meaning |
-|--------|---------|---------|
-| `course_resources` (+ votes / comments / bookmarks) | **Legacy** Community Wall; profile feed still reads these | Per-course wall posts. Not shown on the course TOC anymore. |
-| `resources` + `knowledge_components` | `/community-resources` | Site-wide library + FTS (`search_community`) |
-| `learning_paths.data` (`kind=course`) | Course learning path syllabus + Resources nav | Topic tree and sequenced resources |
-| `curated_course_*` | Backup / migrate source | Previous syllabus tables (not written by the app after `027`) |
+| Tables                                              | Used by                                                   | Meaning                                                       |
+| --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------- |
+| `course_resources` (+ votes / comments / bookmarks) | **Legacy** Community Wall; profile feed still reads these | Per-course wall posts. Not shown on the course TOC anymore.   |
+| `resources` + `knowledge_components`                | `/community-resources`                                    | Site-wide library + FTS (`search_community`)                  |
+| `learning_paths.data` (`kind=course`)               | Course learning path syllabus + Resources nav             | Topic tree and sequenced resources                            |
+| `curated_course_*`                                  | Backup / migrate source                                   | Previous syllabus tables (not written by the app after `027`) |
 
 ```mermaid
 erDiagram
@@ -368,18 +368,18 @@ erDiagram
   }
 ```
 
-| Column / table | Role |
-|----------------|------|
-| `is_catalog` | Seeded public examples (`owner_id` must be null). User paths must have an owner. |
-| `visibility` | `private` / `public` / `collaborative`. Catalog rows are `public`. |
-| `is_private` | Kept in sync with `visibility = 'private'` for one release. |
-| `kind` | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet. |
-| `is_filled` | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **courses** view of `/all-courses` lists only filled course paths. |
-| `data` | Graph JSON (community/research) or `CourseLearningPathData` (course). |
-| `learning_path_user_state` | Per-learner overlay: TipTap notes, extra resources, node status. |
-| `learning_path_pins` | Per-user pinned **course** syllabi. |
-| `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`). |
-| `learning_path_commitments` | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Later: reminders to finish the path. Existing DBs: apply `030_learning_path_commitments.sql`. |
+| Column / table                 | Role                                                                                                                                                                                                           |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `is_catalog`                   | Seeded public examples (`owner_id` must be null). User paths must have an owner.                                                                                                                               |
+| `visibility`                   | `private` / `public` / `collaborative`. Catalog rows are `public`. Owned paths may switch from private to public/collab only when every topic has a filled why and at least 2 resources (client gate + modal). |
+| `is_private`                   | Kept in sync with `visibility = 'private'` for one release.                                                                                                                                                    |
+| `kind`                         | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet.                                                                                    |
+| `is_filled`                    | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **courses** view of `/all-courses` lists only filled course paths.           |
+| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course).                                                                                                                                          |
+| `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
+| `learning_path_pins`           | Per-user pinned **course** syllabi.                                                                                                                                                                            |
+| `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
+| `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Later: reminders to finish the path. Existing DBs: apply `030_learning_path_commitments.sql`.                        |
 
 Saving someone else’s community path is a `user_links` row whose URL is `/learning-path/{slug}` — not a separate saves table.
 
@@ -494,12 +494,12 @@ erDiagram
 
 ## RPCs
 
-| Function | Purpose |
-|----------|---------|
-| `handle_new_user()` | Trigger: create `profiles` on signup |
-| `list_users_directory(...)` | `/users` pagination + interest filter |
-| `search_community(q, max)` | FTS over `resources` + `knowledge_components` |
-| `delete_*_votes()` | Clean polymorphic votes on delete |
+| Function                    | Purpose                                       |
+| --------------------------- | --------------------------------------------- |
+| `handle_new_user()`         | Trigger: create `profiles` on signup          |
+| `list_users_directory(...)` | `/users` pagination + interest filter         |
+| `search_community(q, max)`  | FTS over `resources` + `knowledge_components` |
+| `delete_*_votes()`          | Clean polymorphic votes on delete             |
 
 ## RLS pattern (summary)
 
