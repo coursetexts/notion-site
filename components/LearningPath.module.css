@@ -844,6 +844,71 @@
   color: #6b7280;
 }
 
+.learnedIntro {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.learnedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e6e6e6;
+}
+
+.learnedItem {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.learnedItemBtn,
+.learnedStatic {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 14px 4px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #000d1a;
+}
+
+.learnedItemBtn {
+  cursor: pointer;
+}
+
+.learnedItemBtn:hover {
+  color: #0089c4;
+}
+
+.learnedItemBtn:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
+.learnedIndex {
+  flex-shrink: 0;
+  width: 1.75rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+
+.learnedLabel {
+  font-size: 16px;
+}
+
 .childrenGrid {
   list-style: none;
   margin: 0;
@@ -903,7 +968,7 @@
 
 .pathListRow {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   width: 100%;
   padding: 8px 10px 8px 8px;
@@ -939,7 +1004,6 @@
   flex: none;
   width: 7px;
   height: 7px;
-  margin-top: 6px;
   display: inline-block;
   border: 1px solid #9aa0a6;
 }
@@ -951,7 +1015,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #0089c4;
-  margin-top: 2px;
 }
 
 .pathListCopy {
@@ -966,11 +1029,6 @@
   font-weight: 500;
   line-height: 1.35;
   color: #000;
-}
-
-.pathListMeta {
-  font-size: 12px;
-  color: #6b7280;
 }
 
 .pathListFooter {
@@ -1580,6 +1638,38 @@ a.resourceTitle:focus-visible {
 .primaryBtn:disabled {
   opacity: 0.45;
   cursor: default;
+}
+
+.exploredBtn {
+  opacity: 0.45;
+}
+
+.primaryBtn.exploredBtn:hover,
+.primaryBtn.exploredBtn:focus-visible {
+  opacity: 0.62;
+}
+
+.exploredLabel {
+  display: grid;
+  justify-items: center;
+}
+
+.exploredLabel > span {
+  grid-area: 1 / 1;
+}
+
+.exploredHover {
+  visibility: hidden;
+}
+
+.exploredBtn:hover .exploredIdle,
+.exploredBtn:focus-visible .exploredIdle {
+  visibility: hidden;
+}
+
+.exploredBtn:hover .exploredHover,
+.exploredBtn:focus-visible .exploredHover {
+  visibility: visible;
 }
 
 .sectionHeader {

@@ -2557,3 +2557,318 @@ grant execute on function public.consume_learning_path_fill(integer) to authenti
 
 -- <<< END 033_learning_path_fill_usage.sql
 
+-- >>> BEGIN 034_activity_feed_events.sql
+
+-- name: 034_activity_feed_events
+-- =============================================================================
+-- Profile activity feed: keep resource-list suggestion decisions, and record
+-- explored-node progress so followers can see public/collaborative path work.
+-- =============================================================================
+
+alter table public.learning_path_resource_suggestions
+  add column if not exists status text not null default 'pending';
+
+alter table public.learning_path_resource_suggestions
+  add column if not exists responded_at timestamptz;
+
+alter table public.learning_path_resource_suggestions
+  drop constraint if exists learning_path_resource_suggestions_status_ck;
+
+alter table public.learning_path_resource_suggestions
+  add constraint learning_path_resource_suggestions_status_ck
+  check (status in ('pending', 'accepted', 'declined'));
+
+create index if not exists learning_path_resource_suggestions_user_status_idx
+  on public.learning_path_resource_suggestions (user_id, status, responded_at desc);
+
+drop policy if exists "Anyone can read collab resource suggestions"
+  on public.learning_path_resource_suggestions;
+create policy "Anyone can read collab resource suggestions"
+  on public.learning_path_resource_suggestions for select
+  using (
+    auth.uid() = user_id
+    or exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and (
+          p.visibility = 'collaborative'
+          or p.owner_id = auth.uid()
+        )
+    )
+  );
+
+drop policy if exists "Path owner can respond to resource suggestions"
+  on public.learning_path_resource_suggestions;
+create policy "Path owner can respond to resource suggestions"
+  on public.learning_path_resource_suggestions for update
+  using (
+    exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and p.owner_id = auth.uid()
+    )
+  )
+  with check (
+    exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and p.owner_id = auth.uid()
+    )
+  );
+
+create table if not exists public.learning_path_progress_events (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  path_id uuid not null references public.learning_paths (id) on delete cascade,
+  node_id text not null,
+  node_label text not null default '',
+  status text not null default 'explored',
+  created_at timestamptz not null default now(),
+  unique (user_id, path_id, node_id, status),
+  constraint learning_path_progress_events_status_ck
+    check (status in ('explored', 'exploring'))
+);
+
+create index if not exists learning_path_progress_events_user_created_idx
+  on public.learning_path_progress_events (user_id, created_at desc);
+
+create index if not exists learning_path_progress_events_path_idx
+  on public.learning_path_progress_events (path_id, created_at desc);
+
+alter table public.learning_path_progress_events enable row level security;
+
+drop policy if exists "Users can insert own learning path progress events"
+  on public.learning_path_progress_events;
+create policy "Users can insert own learning path progress events"
+  on public.learning_path_progress_events for insert
+  with check (auth.uid() = user_id);
+
+drop policy if exists "Users can read visible learning path progress events"
+  on public.learning_path_progress_events;
+create policy "Users can read visible learning path progress events"
+  on public.learning_path_progress_events for select
+  using (
+    auth.uid() = user_id
+    or exists (
+      select 1
+      from public.learning_paths p
+      where p.id = path_id
+        and (
+          p.is_catalog = true
+          or p.visibility in ('public', 'collaborative')
+        )
+    )
+  );
+
+-- <<< END 034_activity_feed_events.sql
+
+-- >>> BEGIN 035_user_knowledge_topics.sql
+
+-- name: 035_user_knowledge_topics
+-- =============================================================================
+-- Topics a user has gained by finishing learning paths. Labels are unique per
+-- user so the same knowledge can recur across paths without duplicating.
+-- =============================================================================
+
+create table if not exists public.user_knowledge_topics (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  label text not null,
+  normalized_label text not null,
+  source_path_id uuid references public.learning_paths (id) on delete set null,
+  source_path_slug text,
+  source_path_title text,
+  created_at timestamptz not null default now(),
+  unique (user_id, normalized_label)
+);
+
+create index if not exists user_knowledge_topics_user_label_idx
+  on public.user_knowledge_topics (user_id, label);
+
+create index if not exists user_knowledge_topics_user_created_idx
+  on public.user_knowledge_topics (user_id, created_at desc);
+
+alter table public.user_knowledge_topics enable row level security;
+
+drop policy if exists "Anyone can read user knowledge topics"
+  on public.user_knowledge_topics;
+create policy "Anyone can read user knowledge topics"
+  on public.user_knowledge_topics for select
+  using (true);
+
+drop policy if exists "Users can insert own knowledge topics"
+  on public.user_knowledge_topics;
+create policy "Users can insert own knowledge topics"
+  on public.user_knowledge_topics for insert
+  with check (auth.uid() = user_id);
+
+drop policy if exists "Users can delete own knowledge topics"
+  on public.user_knowledge_topics;
+create policy "Users can delete own knowledge topics"
+  on public.user_knowledge_topics for delete
+  using (auth.uid() = user_id);
+
+-- <<< END 035_user_knowledge_topics.sql
+
+-- >>> BEGIN 036_knowledge_graph.sql
+
+-- name: 036_knowledge_graph
+-- =============================================================================
+-- Site-wide knowledge catalog + edges. Users overlay acquired topics on this
+-- graph. Writes go through the ingest API (and the unused cron handler).
+-- Daily Gemini rebuild is implemented but disabled — see docs/knowledge.md.
+-- =============================================================================
+
+create table if not exists public.knowledge_topics (
+  id uuid primary key default gen_random_uuid(),
+  label text not null,
+  normalized_label text not null,
+  last_seen_at timestamptz not null default now(),
+  last_llm_at timestamptz,
+  created_at timestamptz not null default now(),
+  unique (normalized_label)
+);
+
+create table if not exists public.knowledge_topic_edges (
+  id uuid primary key default gen_random_uuid(),
+  from_id uuid not null references public.knowledge_topics (id) on delete cascade,
+  to_id uuid not null references public.knowledge_topics (id) on delete cascade,
+  kind text not null,
+  source text not null,
+  confidence real not null default 1,
+  updated_at timestamptz not null default now(),
+  unique (from_id, to_id, kind),
+  constraint knowledge_topic_edges_kind_ck
+    check (kind in ('prerequisite', 'related', 'part_of')),
+  constraint knowledge_topic_edges_source_ck
+    check (source in ('path_structure', 'llm')),
+  constraint knowledge_topic_edges_not_self_ck
+    check (from_id <> to_id)
+);
+
+create index if not exists knowledge_topics_last_llm_idx
+  on public.knowledge_topics (last_llm_at nulls first, last_seen_at desc);
+
+create index if not exists knowledge_topic_edges_from_idx
+  on public.knowledge_topic_edges (from_id);
+
+create index if not exists knowledge_topic_edges_to_idx
+  on public.knowledge_topic_edges (to_id);
+
+alter table public.knowledge_topics enable row level security;
+alter table public.knowledge_topic_edges enable row level security;
+
+drop policy if exists "Anyone can read knowledge topics"
+  on public.knowledge_topics;
+create policy "Anyone can read knowledge topics"
+  on public.knowledge_topics for select
+  using (true);
+
+drop policy if exists "Anyone can read knowledge topic edges"
+  on public.knowledge_topic_edges;
+create policy "Anyone can read knowledge topic edges"
+  on public.knowledge_topic_edges for select
+  using (true);
+
+-- <<< END 036_knowledge_graph.sql
+
+-- >>> BEGIN 037_content_reports.sql
+
+create table if not exists public.content_reports (
+  id uuid primary key default gen_random_uuid(),
+  reporter_id uuid not null references auth.users (id) on delete cascade,
+  reporter_email text,
+  reporter_display_name text,
+  target_type text not null,
+  target_id text not null,
+  target_url text,
+  target_title text,
+  target_snippet text,
+  reason text not null,
+  status text not null default 'open',
+  created_at timestamptz not null default now(),
+  constraint content_reports_type_ck
+    check (target_type in ('annotation', 'comment', 'learning_path', 'resource')),
+  constraint content_reports_status_ck
+    check (status in ('open', 'reviewed', 'dismissed')),
+  constraint content_reports_reason_ck
+    check (char_length(trim(reason)) > 0)
+);
+
+create unique index if not exists content_reports_reporter_target_uidx
+  on public.content_reports (reporter_id, target_type, target_id);
+
+create index if not exists content_reports_created_idx
+  on public.content_reports (created_at desc);
+
+create index if not exists content_reports_type_idx
+  on public.content_reports (target_type, created_at desc);
+
+alter table public.content_reports enable row level security;
+
+drop policy if exists "Anyone can read content reports"
+  on public.content_reports;
+create policy "Anyone can read content reports"
+  on public.content_reports for select
+  using (true);
+
+drop policy if exists "Users can insert own content reports"
+  on public.content_reports;
+create policy "Users can insert own content reports"
+  on public.content_reports for insert
+  with check (auth.uid() = reporter_id);
+
+-- <<< END 037_content_reports.sql
+
+-- >>> BEGIN 038_learning_path_ratings.sql
+
+create table if not exists public.learning_path_ratings (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  path_id uuid references public.learning_paths (id) on delete cascade,
+  path_slug text not null,
+  target_type text not null,
+  target_id text not null,
+  target_title text,
+  rating smallint not null,
+  duration_ms integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint learning_path_ratings_type_ck
+    check (target_type in ('topic', 'path')),
+  constraint learning_path_ratings_rating_ck
+    check (rating >= 0 and rating <= 100),
+  constraint learning_path_ratings_duration_ck
+    check (duration_ms >= 0),
+  unique (user_id, path_slug, target_type, target_id)
+);
+
+create index if not exists learning_path_ratings_path_idx
+  on public.learning_path_ratings (path_slug, target_type, created_at desc);
+
+alter table public.learning_path_ratings enable row level security;
+
+drop policy if exists "Users can read own learning path ratings"
+  on public.learning_path_ratings;
+create policy "Users can read own learning path ratings"
+  on public.learning_path_ratings for select
+  using (auth.uid() = user_id);
+
+drop policy if exists "Users can insert own learning path ratings"
+  on public.learning_path_ratings;
+create policy "Users can insert own learning path ratings"
+  on public.learning_path_ratings for insert
+  with check (auth.uid() = user_id);
+
+drop policy if exists "Users can update own learning path ratings"
+  on public.learning_path_ratings;
+create policy "Users can update own learning path ratings"
+  on public.learning_path_ratings for update
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+-- <<< END 038_learning_path_ratings.sql
+

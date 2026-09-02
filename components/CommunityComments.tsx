@@ -1,12 +1,14 @@
 import * as React from 'react'
 
 import { VoteRow } from '@/components/CourseActivity'
+import { ReportButton, reportHoverTargetClass } from '@/components/ReportButton'
 import {
   type ThreadedComment,
   addResourceComment,
   getResourceCommentThread,
   setResourceCommentVote
 } from '@/lib/community-comments-db'
+import { snippetFromText } from '@/lib/content-reports'
 
 import styles from './CommunityComments.module.css'
 
@@ -105,7 +107,10 @@ const CommentNode: React.FC<CommentNodeProps> = ({
   const karma = comment.author?.karma_score ?? 0
 
   return (
-    <div className={styles.comment} data-testid='comment-item'>
+    <div
+      className={`${styles.comment} ${reportHoverTargetClass}`}
+      data-testid='comment-item'
+    >
       <div className={styles.commentMeta}>
         <button
           type='button'
@@ -140,6 +145,15 @@ const CommentNode: React.FC<CommentNodeProps> = ({
             onVote={(value) => onVote(comment, value)}
           />
         </span>
+        <ReportButton
+          target={{
+            type: 'comment',
+            id: comment.id,
+            url: '/community-resources',
+            title: 'Community resource comment',
+            snippet: snippetFromText(comment.body)
+          }}
+        />
       </div>
 
       {!collapsed && (

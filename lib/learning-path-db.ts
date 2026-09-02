@@ -1,7 +1,9 @@
 /**
  * Learning paths in Supabase: catalog rows, user-owned paths, and per-user
- * notes / resources / node status. Falls back to sessionStorage / localStorage
- * when signed out or when Supabase is unavailable.
+ * notes / resources / node status. Falls back to localStorage when Supabase
+ * is unavailable. Notes are always private to the signed-in owner: local
+ * caches are keyed by user id, and signed-out sessions never read or write
+ * notes.
  */
 import {
   type LearningPathData,
@@ -20,7 +22,9 @@ import {
   saveStoredLearningPath,
   writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
+import { getCachedAuth } from '@/lib/auth-cache'
 import { storedNotebookNoteHasContent } from '@/lib/notebook-editor-default'
+import { recordNewlyExploredLearningPathNodes } from '@/lib/learning-path-progress-events-db'
 import { slugifyLearningPathName } from '@/lib/learning-path-slug'
 import { getSupabaseClient } from '@/lib/supabase'
 
@@ -81,8 +85,39 @@ function emptyUserState(): LearningPathUserState {
   return { notes: {}, resources: {}, nodeStatus: {} }
 }
 
-function userStateKey(slug: string) {
+function userStateKey(slug: string, userId: string | null) {
+  if (userId) return `${USER_STATE_KEY_PREFIX}${userId}:${slug}`
   return `${USER_STATE_KEY_PREFIX}${slug}`
+}
+
+function resolveLocalUserId(userId?: string | null) {
+  if (userId !== undefined) return userId
+  return getCachedAuth().user?.id ?? null
+}
+
+function parseStoredUserState(raw: string | null): LearningPathUserState {
+  if (!raw) return emptyUserState()
+  try {
+    const parsed = JSON.parse(raw) as Partial<LearningPathUserState>
+    return {
+      notes: normalizeNotes(
+        parsed.notes as Record<string, unknown> | undefined
+      ),
+      resources: normalizeResources(
+        parsed.resources as Record<string, LearningPathUserResource[]> | undefined
+      ),
+      nodeStatus:
+        parsed.nodeStatus && typeof parsed.nodeStatus === 'object'
+          ? parsed.nodeStatus
+          : {}
+    }
+  } catch {
+    return emptyUserState()
+  }
+}
+
+function withoutNotes(state: LearningPathUserState): LearningPathUserState {
+  return { ...state, notes: {} }
 }
 
 function isPathUuid(id: string) {
@@ -150,33 +185,29 @@ function preferFilledUserState(
   }
 }
 
-export function readLocalUserState(slug: string): LearningPathUserState {
+export function readLocalUserState(
+  slug: string,
+  userId?: string | null
+): LearningPathUserState {
   if (typeof window === 'undefined') return emptyUserState()
-  try {
-    const raw = window.localStorage.getItem(userStateKey(slug))
-    if (!raw) return emptyUserState()
-    const parsed = JSON.parse(raw) as Partial<LearningPathUserState>
-    return {
-      notes: normalizeNotes(
-        parsed.notes as Record<string, unknown> | undefined
-      ),
-      resources: normalizeResources(
-        parsed.resources as Record<string, LearningPathUserResource[]> | undefined
-      ),
-      nodeStatus:
-        parsed.nodeStatus && typeof parsed.nodeStatus === 'object'
-          ? parsed.nodeStatus
-          : {}
-    }
-  } catch {
-    return emptyUserState()
-  }
+  const id = resolveLocalUserId(userId)
+  const stored = parseStoredUserState(
+    window.localStorage.getItem(userStateKey(slug, id))
+  )
+  if (!id) return withoutNotes(stored)
+  return stored
 }
 
-export function writeLocalUserState(slug: string, state: LearningPathUserState) {
+export function writeLocalUserState(
+  slug: string,
+  state: LearningPathUserState,
+  userId?: string | null
+) {
   if (typeof window === 'undefined') return
+  const id = resolveLocalUserId(userId)
+  const toStore = id ? state : withoutNotes(state)
   try {
-    window.localStorage.setItem(userStateKey(slug), JSON.stringify(state))
+    window.localStorage.setItem(userStateKey(slug, id), JSON.stringify(toStore))
   } catch {
     /* quota / private mode */
   }
@@ -662,11 +693,10 @@ export async function loadLearningPathUserState(
   pathId: string | null | undefined,
   slug: string
 ): Promise<LearningPathUserState> {
-  const local = readLocalUserState(slug)
-  if (!pathId || !isPathUuid(pathId)) return local
-
   const { supabase, userId } = await currentUserId()
-  if (!supabase || !userId) return local
+  const local = readLocalUserState(slug, userId)
+  if (!userId) return withoutNotes(local)
+  if (!pathId || !isPathUuid(pathId) || !supabase) return local
 
   const { data, error } = await supabase
     .from('learning_path_user_state')
@@ -686,16 +716,22 @@ export async function loadLearningPathUserState(
         : {}
   }
   const state = preferFilledUserState(local, remote)
-  writeLocalUserState(slug, state)
+  writeLocalUserState(slug, state, userId)
   return state
 }
 
 export async function saveLearningPathUserState(
   pathId: string | null | undefined,
   slug: string,
-  state: LearningPathUserState
+  state: LearningPathUserState,
+  expectedUserId?: string | null
 ): Promise<string | null> {
-  writeLocalUserState(slug, state)
+  const { supabase, userId } = await currentUserId()
+  if (expectedUserId !== undefined && expectedUserId !== userId) {
+    return pathId && isPathUuid(pathId) ? pathId : null
+  }
+
+  writeLocalUserState(slug, userId ? state : withoutNotes(state), userId)
 
   let id = pathId && isPathUuid(pathId) ? pathId : null
   if (!id) {
@@ -703,9 +739,14 @@ export async function saveLearningPathUserState(
     id = record?.id ?? null
   }
   if (!id) return null
-
-  const { supabase, userId } = await currentUserId()
   if (!supabase || !userId) return id
+
+  const { data: previousRow } = await supabase
+    .from('learning_path_user_state')
+    .select('node_status')
+    .eq('user_id', userId)
+    .eq('path_id', id)
+    .maybeSingle()
 
   const { error } = await supabase.from('learning_path_user_state').upsert(
     {
@@ -721,7 +762,21 @@ export async function saveLearningPathUserState(
 
   if (error) {
     console.error('saveLearningPathUserState failed', error)
+    return id
   }
+
+  const previousStatus =
+    previousRow &&
+    previousRow.node_status &&
+    typeof previousRow.node_status === 'object'
+      ? (previousRow.node_status as Record<string, string>)
+      : null
+  void recordNewlyExploredLearningPathNodes({
+    userId,
+    pathId: id,
+    previousStatus,
+    nextStatus: state.nodeStatus
+  })
   return id
 }
 

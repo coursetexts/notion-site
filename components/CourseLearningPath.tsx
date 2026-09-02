@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
 
+import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import { courseLearningPathActivityPageId } from '@/lib/course-activity-db'
 import {
   addCourseLearningPathTopicResource,
@@ -10,16 +11,18 @@ import {
   getCourseLearningPathData,
   updateCourseLearningPathTopicResource
 } from '@/lib/course-learning-path-db'
+import { MENTAL_MAP_GOAL_ID } from '@/lib/course-learning-path-graph'
 import {
   readCourseLearningPathExplored,
   writeCourseLearningPathExplored
 } from '@/lib/course-learning-path-progress'
-import { MENTAL_MAP_GOAL_ID } from '@/lib/course-learning-path-graph'
 import {
+  COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   getCourseLearningPathResourcesBySlug,
+  isCourseLearningPathKnowledgeSelection,
   isCourseLearningPathMentalMapSelection,
   isCourseLearningPathResourceSelection,
   isCourseLearningPathSyllabusSelection,
@@ -41,13 +44,28 @@ import {
   moveTopicResourceToPlacement,
   nextCourseLearningPathNode
 } from '@/lib/course-learning-path-types'
-import { learningPathKicker, learningPathOutlineHint } from '@/lib/learning-path-kind-ui'
+import { structuralKnowledgeEdgesFromCourseLearningPath } from '@/lib/knowledge-graph'
+import {
+  learningPathKicker,
+  learningPathOutlineHint
+} from '@/lib/learning-path-kind-ui'
+import {
+  isCourseLearningPathFinished,
+  knowledgeTopicItemsFromCourseLearningPath,
+  knowledgeTopicsFromCourseLearningPath
+} from '@/lib/learning-path-knowledge'
+import { recordLearningPathProgressEvent } from '@/lib/learning-path-progress-events-db'
+import {
+  LEARNING_PATH_RATING_TARGET,
+  hasLocalLearningPathRating
+} from '@/lib/learning-path-ratings'
+import { submitLearningPathRating } from '@/lib/learning-path-ratings-db'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
+import { addKnowledgeTopicsFromCompletedPath } from '@/lib/user-knowledge-topics-db'
 
-import styles from './CourseLearningPath.module.css'
-import pathStyles from './LearningPath.module.css'
 import { CourseActivity } from './CourseActivity'
 import { CourseHero, formatHeroPublishedDate } from './CourseHero'
+import styles from './CourseLearningPath.module.css'
 import { CourseLearningPathHeroActions } from './CourseLearningPathHeroActions'
 import { CourseLearningPathMentalMap } from './CourseLearningPathMentalMap'
 import { CourseLearningPathNotes } from './CourseLearningPathNotes'
@@ -55,7 +73,11 @@ import { CourseLearningPathResources } from './CourseLearningPathResources'
 import { CourseLearningPathSyllabusNav } from './CourseLearningPathSyllabusNav'
 import { CourseLearningPathSyllabusOverview } from './CourseLearningPathSyllabusOverview'
 import { CourseLearningPathTopicContent } from './CourseLearningPathTopicContent'
+import pathStyles from './LearningPath.module.css'
+import { LearningPathFinishedModal } from './LearningPathFinishedModal'
+import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
 import { LearningPathOutlinePanel } from './LearningPathOutlinePanel'
+import { LearningPathRatingModal } from './LearningPathRatingModal'
 import { PathContentActivity } from './PathContentActivity'
 import { PathGraphCanvas } from './PathGraphCanvas'
 
@@ -141,8 +163,8 @@ export function CourseLearningPath({
   kicker = learningPathKicker('course')
 }: CourseLearningPathProps) {
   const auth = useAuthOptional()
-  const [course, setCourse] = React.useState<CourseLearningPathData | null>(() =>
-    courseProp ? withCurriculumResources(courseProp, slug) : null
+  const [course, setCourse] = React.useState<CourseLearningPathData | null>(
+    () => (courseProp ? withCurriculumResources(courseProp, slug) : null)
   )
   const [loading, setLoading] = React.useState(!courseProp)
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
@@ -162,6 +184,12 @@ export function CourseLearningPath({
   const [graphMainWidth, setGraphMainWidth] = React.useState(GRAPH_MAIN_DEFAULT)
   const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
+  const [showFinishedModal, setShowFinishedModal] = React.useState(false)
+  const [topicRating, setTopicRating] = React.useState<{
+    id: string
+    title: string
+  } | null>(null)
+  const [pendingFinish, setPendingFinish] = React.useState(false)
   const mainRef = React.useRef<HTMLDivElement>(null)
   const bodyRef = React.useRef<HTMLDivElement>(null)
   const graphMainWidthRef = React.useRef(graphMainWidth)
@@ -317,7 +345,29 @@ export function CourseLearningPath({
 
   React.useEffect(() => {
     setExploredIds(readCourseLearningPathExplored(slug))
+    setShowFinishedModal(false)
+    setTopicRating(null)
+    setPendingFinish(false)
   }, [slug])
+
+  React.useEffect(() => {
+    if (!course) return
+    if (!isCourseLearningPathKnowledgeSelection(selectedId)) return
+    if (isCourseLearningPathFinished(course, exploredIds)) return
+    setSelectedId(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+  }, [course, exploredIds, selectedId])
+
+  React.useEffect(() => {
+    if (!course || !auth?.user) return
+    if (!isCourseLearningPathFinished(course, exploredIds)) return
+    void addKnowledgeTopicsFromCompletedPath({
+      labels: knowledgeTopicsFromCourseLearningPath(course),
+      pathId: course.id,
+      pathSlug: course.slug,
+      pathTitle: course.title,
+      graphEdges: structuralKnowledgeEdgesFromCourseLearningPath(course)
+    })
+  }, [auth?.user, course, exploredIds])
 
   const index = React.useMemo(
     () => (course ? buildCourseLearningPathIndex(course) : {}),
@@ -327,8 +377,13 @@ export function CourseLearningPath({
   const showingSyllabus = isCourseLearningPathSyllabusSelection(selectedId)
   const showingMentalMap = isCourseLearningPathMentalMapSelection(selectedId)
   const showingResources = isCourseLearningPathResourceSelection(selectedId)
+  const showingKnowledge = isCourseLearningPathKnowledgeSelection(selectedId)
+  const learnedTopics = React.useMemo(
+    () => (course ? knowledgeTopicItemsFromCourseLearningPath(course) : []),
+    [course]
+  )
   const entry =
-    showingSyllabus || showingMentalMap || showingResources
+    showingSyllabus || showingMentalMap || showingResources || showingKnowledge
       ? null
       : selectedId && index[selectedId]
       ? index[selectedId]
@@ -358,14 +413,40 @@ export function CourseLearningPath({
     }, mainRef.current)
   }
 
-  function handleMarkExplored(nodeId: string) {
-    setExploredIds((prev) => {
-      if (prev.has(nodeId)) return prev
-      const next = new Set(prev)
-      next.add(nodeId)
-      writeCourseLearningPathExplored(slug, next)
-      return next
-    })
+  function handleToggleExplored(nodeId: string) {
+    if (!course) return
+    const wasExplored = exploredIds.has(nodeId)
+    const next = new Set(exploredIds)
+    if (wasExplored) next.delete(nodeId)
+    else next.add(nodeId)
+    const justFinished =
+      !wasExplored &&
+      !isCourseLearningPathFinished(course, exploredIds) &&
+      isCourseLearningPathFinished(course, next)
+    setExploredIds(next)
+    writeCourseLearningPathExplored(slug, next)
+    if (!wasExplored) {
+      const title = index[nodeId]?.node.title || 'Topic'
+      const alreadyRated = hasLocalLearningPathRating(slug, 'topic', nodeId)
+      if (!alreadyRated) {
+        setTopicRating({ id: nodeId, title })
+      }
+      if (justFinished) {
+        if (alreadyRated) setShowFinishedModal(true)
+        else setPendingFinish(true)
+        setNavView('list')
+        setSelectedId(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)
+        setMobileNavOpen(false)
+      }
+    }
+    if (!wasExplored && course.dbBacked) {
+      void recordLearningPathProgressEvent({
+        pathId: course.id,
+        nodeId,
+        nodeLabel: index[nodeId]?.node.title,
+        status: 'explored'
+      })
+    }
   }
 
   function handleNext(nodeId: string) {
@@ -589,8 +670,8 @@ export function CourseLearningPath({
   if (!course) {
     return (
       <div className={styles.error}>
-        No course learning path found for “{slug}”. Seed curated_courses or check the
-        slug.
+        No course learning path found for “{slug}”. Seed curated_courses or
+        check the slug.
       </div>
     )
   }
@@ -598,12 +679,67 @@ export function CourseLearningPath({
   const hasSyllabus = course.topics.length > 0
   const graphSelectedId = showingMentalMap
     ? MENTAL_MAP_GOAL_ID
-    : showingSyllabus || showingResources
-      ? ''
-      : selectedId
+    : showingSyllabus || showingResources || showingKnowledge
+    ? ''
+    : selectedId
 
   return (
     <div className={pathStyles.section}>
+      <LearningPathRatingModal
+        open={Boolean(topicRating)}
+        badge='Topic complete'
+        title={topicRating ? `You finished ${topicRating.title}` : ''}
+        onSkip={() => {
+          setTopicRating(null)
+          if (pendingFinish) {
+            setPendingFinish(false)
+            setShowFinishedModal(true)
+          }
+        }}
+        onSubmit={(rating, durationMs) => {
+          if (topicRating) {
+            void submitLearningPathRating({
+              pathSlug: slug,
+              pathId: course.id,
+              targetType: 'topic',
+              targetId: topicRating.id,
+              targetTitle: topicRating.title,
+              rating,
+              durationMs
+            })
+          }
+          setTopicRating(null)
+          if (pendingFinish) {
+            setPendingFinish(false)
+            setShowFinishedModal(true)
+          }
+        }}
+      />
+      <LearningPathFinishedModal
+        open={showFinishedModal}
+        pathTitle={course.title}
+        topics={learnedTopics}
+        kindLabel='course'
+        showRating={
+          !hasLocalLearningPathRating(slug, 'path', LEARNING_PATH_RATING_TARGET)
+        }
+        onClose={() => setShowFinishedModal(false)}
+        onSubmitRating={(rating, durationMs) => {
+          void submitLearningPathRating({
+            pathSlug: slug,
+            pathId: course.id,
+            targetType: 'path',
+            targetId: LEARNING_PATH_RATING_TARGET,
+            targetTitle: course.title,
+            rating,
+            durationMs
+          })
+        }}
+        onSelectTopic={(id) => {
+          setShowFinishedModal(false)
+          handleSelect(id)
+        }}
+      />
       <div className={pathStyles.hero}>
         <CourseHero
           courseCode={kicker}
@@ -611,6 +747,12 @@ export function CourseLearningPath({
           instructors={[{ name: 'By Coursetexts' }]}
           descriptionHtml={courseDescriptionHtml(course.description)}
           schoolDate={formatHeroPublishedDate(course.createdAt)}
+          reportTarget={{
+            type: 'learning_path',
+            id: course.id || course.slug,
+            url: `/learning-path/${course.slug}`,
+            title: course.title
+          }}
           publisherAvatarFallback='coursetexts'
           publisherAvatarAlt='Coursetexts'
           actions={<CourseLearningPathHeroActions course={course} />}
@@ -627,8 +769,8 @@ export function CourseLearningPath({
                 ? 'Close map'
                 : 'Close syllabus'
               : navView === 'graph'
-                ? 'Open map'
-                : 'Open syllabus'
+              ? 'Open map'
+              : 'Open syllabus'
           }
         >
           {mobileNavOpen ? <CloseIcon /> : <MenuIcon />}
@@ -646,172 +788,192 @@ export function CourseLearningPath({
             navView === 'graph' ? pathStyles.layoutGraph : pathStyles.layoutList
           }`}
         >
-        <aside
-          className={`${styles.aside}${
-            mobileNavOpen ? ` ${styles.asideOpen}` : ''
-          }${navView === 'graph' ? ` ${styles.asideGraph}` : ''}`}
-        >
-        <LearningPathOutlinePanel
-          viewMode={navView}
-          onViewModeChange={setNavView}
-          search={outlineSearch}
-          onSearchChange={setOutlineSearch}
-          searchAriaLabel='Search in outline'
-          graphHint={learningPathOutlineHint('course')}
-          list={
-            <CourseLearningPathSyllabusNav
-              course={course}
-              selectedId={selectedId}
-              expanded={expanded}
-              exploredIds={exploredIds}
-              onSelect={handleSelect}
-              onToggle={handleToggle}
+          <aside
+            className={`${styles.aside}${
+              mobileNavOpen ? ` ${styles.asideOpen}` : ''
+            }${navView === 'graph' ? ` ${styles.asideGraph}` : ''}`}
+          >
+            <LearningPathOutlinePanel
+              viewMode={navView}
+              onViewModeChange={setNavView}
               search={outlineSearch}
               onSearchChange={setOutlineSearch}
-              hideSearch
-            />
-          }
-          graph={
-            <div className={pathStyles.mapStage}>
-              <PathGraphCanvas
-                course={course}
-                exploredIds={exploredIds}
-                selectedId={graphSelectedId}
-                onOpenNode={handleGraphSelect}
-              />
-            </div>
-          }
-        />
-        </aside>
-
-        {navView === 'graph' ? (
-          <button
-            type='button'
-            className={`${pathStyles.splitHandle}${
-              graphSplitDragging ? ` ${pathStyles.splitHandleActive}` : ''
-            }`}
-            aria-label='Resize content panel'
-            aria-orientation='vertical'
-            aria-valuemin={GRAPH_MAIN_MIN}
-            aria-valuenow={graphMainWidth}
-            title='Drag to resize. Double-click to reset.'
-            onPointerDown={handleGraphSplitPointerDown}
-            onPointerMove={handleGraphSplitPointerMove}
-            onPointerUp={handleGraphSplitPointerUp}
-            onPointerCancel={handleGraphSplitPointerUp}
-            onLostPointerCapture={handleGraphSplitPointerUp}
-            onKeyDown={handleGraphSplitKeyDown}
-            onDoubleClick={handleGraphSplitDoubleClick}
-          />
-        ) : null}
-
-        {mobileNavOpen && (
-          <button
-            type='button'
-            aria-label={navView === 'graph' ? 'Close map' : 'Close syllabus'}
-            onClick={() => setMobileNavOpen(false)}
-            className={styles.overlay}
-          />
-        )}
-
-        <PathContentActivity
-          className={pathStyles.detail}
-          contentClassName={pathStyles.detailContent}
-          contentRef={mainRef}
-          style={
-            navView === 'graph'
-              ? {
-                  flexBasis: graphMainWidth,
-                  width: graphMainWidth,
-                  maxWidth: 'none'
-                }
-              : undefined
-          }
-          coursePageId={courseLearningPathActivityPageId(course.slug)}
-          courseTitle={course.title}
-          courseUrl={`/learning-path/${course.slug}`}
-          sectionId={selectedId}
-          notesTopicTitle={
-            showingSyllabus
-              ? 'Syllabus'
-              : showingMentalMap
-                ? 'Mental Map'
-                : showingResources
-                  ? 'Resources'
-                  : entry?.node.title ?? course.title
-          }
-          notesEditor={
-            <CourseLearningPathNotes
-              nodeId={selectedId}
-              courseSlug={course.slug}
-              topicTitle={
-                showingSyllabus
-                  ? 'Syllabus'
-                  : showingMentalMap
-                    ? 'Mental Map'
-                    : showingResources
-                      ? 'Resources'
-                      : entry?.node.title
+              searchAriaLabel='Search in outline'
+              graphHint={learningPathOutlineHint('course')}
+              list={
+                <CourseLearningPathSyllabusNav
+                  course={course}
+                  selectedId={selectedId}
+                  expanded={expanded}
+                  exploredIds={exploredIds}
+                  onSelect={handleSelect}
+                  onToggle={handleToggle}
+                  search={outlineSearch}
+                  onSearchChange={setOutlineSearch}
+                  hideSearch
+                />
               }
-              signedIn={Boolean(auth?.user)}
-              onSignIn={() => auth?.signInWithGoogle()}
+              graph={
+                <div className={pathStyles.mapStage}>
+                  <PathGraphCanvas
+                    course={course}
+                    exploredIds={exploredIds}
+                    selectedId={graphSelectedId}
+                    onOpenNode={handleGraphSelect}
+                  />
+                </div>
+              }
             />
-          }
-          onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
-        >
-          {showingSyllabus ? (
-            <CourseLearningPathSyllabusOverview
-              course={course}
-              onSelectTopic={handleSelect}
+          </aside>
+
+          {navView === 'graph' ? (
+            <button
+              type='button'
+              className={`${pathStyles.splitHandle}${
+                graphSplitDragging ? ` ${pathStyles.splitHandleActive}` : ''
+              }`}
+              aria-label='Resize content panel'
+              aria-orientation='vertical'
+              aria-valuemin={GRAPH_MAIN_MIN}
+              aria-valuenow={graphMainWidth}
+              title='Drag to resize. Double-click to reset.'
+              onPointerDown={handleGraphSplitPointerDown}
+              onPointerMove={handleGraphSplitPointerMove}
+              onPointerUp={handleGraphSplitPointerUp}
+              onPointerCancel={handleGraphSplitPointerUp}
+              onLostPointerCapture={handleGraphSplitPointerUp}
+              onKeyDown={handleGraphSplitKeyDown}
+              onDoubleClick={handleGraphSplitDoubleClick}
             />
-          ) : showingMentalMap ? (
-            <CourseLearningPathMentalMap
-              course={course}
-              topicResources={course.mentalMapTopicResources}
-              dbBacked={Boolean(course.dbBacked)}
-              signedIn={Boolean(auth?.user)}
-              onSignIn={() => auth?.signInWithGoogle()}
-              onAddTopicResource={handleAddTopicResource}
-              onUpdateTopicResource={handleUpdateTopicResource}
+          ) : null}
+
+          {mobileNavOpen && (
+            <button
+              type='button'
+              aria-label={navView === 'graph' ? 'Close map' : 'Close syllabus'}
+              onClick={() => setMobileNavOpen(false)}
+              className={styles.overlay}
             />
-          ) : showingResources ? (
-            <CourseLearningPathResources
-              selectedId={selectedId}
-              resources={course.resources}
-              courseTitle={course.title}
-            />
-          ) : entry ? (
-            <CourseLearningPathTopicContent
-              entry={entry}
-              onSelect={handleSelect}
-              dbBacked={Boolean(course.dbBacked)}
-              signedIn={Boolean(auth?.user)}
-              onSignIn={() => auth?.signInWithGoogle()}
-              onAddTopicResource={handleAddTopicResource}
-              onUpdateTopicResource={handleUpdateTopicResource}
-              explored={exploredIds.has(entry.node.id)}
-              onMarkExplored={() => handleMarkExplored(entry.node.id)}
-              nextNode={nextCourseLearningPathNode(course, entry.node.id)}
-              onNext={handleNext}
-            />
-          ) : (
-            <div className={styles.emptyComingSoon}>
-              <p className={styles.emptyComingSoonTitle}>
-                {hasSyllabus ? 'Select a topic' : 'Curated videos coming soon'}
-              </p>
-              {course.description ? (
-                <p className={styles.emptyComingSoonBody}>
-                  {course.description}
-                </p>
-              ) : (
-                <p className={styles.emptyComingSoonBody}>
-                  This course is listed in our curated catalog. Video syllabus
-                  content will appear here once it is added.
-                </p>
-              )}
-            </div>
           )}
-        </PathContentActivity>
+
+          <PathContentActivity
+            className={pathStyles.detail}
+            contentClassName={pathStyles.detailContent}
+            contentRef={mainRef}
+            style={
+              navView === 'graph'
+                ? {
+                    flexBasis: graphMainWidth,
+                    width: graphMainWidth,
+                    maxWidth: 'none'
+                  }
+                : undefined
+            }
+            coursePageId={courseLearningPathActivityPageId(course.slug)}
+            courseTitle={course.title}
+            courseUrl={`/learning-path/${course.slug}`}
+            sectionId={selectedId}
+            notesTopicTitle={
+              showingSyllabus
+                ? 'Syllabus'
+                : showingMentalMap
+                ? 'Mental Map'
+                : showingKnowledge
+                ? 'What you learned'
+                : showingResources
+                ? 'Resources'
+                : entry?.node.title ?? course.title
+            }
+            notesEditor={
+              <CourseLearningPathNotes
+                nodeId={selectedId}
+                courseSlug={course.slug}
+                topicTitle={
+                  showingSyllabus
+                    ? 'Syllabus'
+                    : showingMentalMap
+                    ? 'Mental Map'
+                    : showingKnowledge
+                    ? 'What you learned'
+                    : showingResources
+                    ? 'Resources'
+                    : entry?.node.title
+                }
+                signedIn={Boolean(auth?.user)}
+                onSignIn={() =>
+                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                }
+              />
+            }
+            onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
+          >
+            {showingKnowledge ? (
+              <LearningPathLearnedPanel
+                pathTitle={course.title}
+                topics={learnedTopics}
+                onSelectTopic={handleSelect}
+              />
+            ) : showingSyllabus ? (
+              <CourseLearningPathSyllabusOverview
+                course={course}
+                onSelectTopic={handleSelect}
+              />
+            ) : showingMentalMap ? (
+              <CourseLearningPathMentalMap
+                course={course}
+                topicResources={course.mentalMapTopicResources}
+                dbBacked={Boolean(course.dbBacked)}
+                signedIn={Boolean(auth?.user)}
+                onSignIn={() =>
+                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                }
+                onAddTopicResource={handleAddTopicResource}
+                onUpdateTopicResource={handleUpdateTopicResource}
+              />
+            ) : showingResources ? (
+              <CourseLearningPathResources
+                selectedId={selectedId}
+                resources={course.resources}
+                courseTitle={course.title}
+              />
+            ) : entry ? (
+              <CourseLearningPathTopicContent
+                entry={entry}
+                onSelect={handleSelect}
+                dbBacked={Boolean(course.dbBacked)}
+                signedIn={Boolean(auth?.user)}
+                onSignIn={() =>
+                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                }
+                onAddTopicResource={handleAddTopicResource}
+                onUpdateTopicResource={handleUpdateTopicResource}
+                explored={exploredIds.has(entry.node.id)}
+                onToggleExplored={() => handleToggleExplored(entry.node.id)}
+                nextNode={nextCourseLearningPathNode(course, entry.node.id)}
+                onNext={handleNext}
+                pathSlug={course.slug}
+                pathTitle={course.title}
+              />
+            ) : (
+              <div className={styles.emptyComingSoon}>
+                <p className={styles.emptyComingSoonTitle}>
+                  {hasSyllabus
+                    ? 'Select a topic'
+                    : 'Curated videos coming soon'}
+                </p>
+                {course.description ? (
+                  <p className={styles.emptyComingSoonBody}>
+                    {course.description}
+                  </p>
+                ) : (
+                  <p className={styles.emptyComingSoonBody}>
+                    This course is listed in our curated catalog. Video syllabus
+                    content will appear here once it is added.
+                  </p>
+                )}
+              </div>
+            )}
+          </PathContentActivity>
         </div>
       </div>
       <div className={pathStyles.activitySection}>

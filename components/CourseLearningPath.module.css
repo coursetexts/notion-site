@@ -694,6 +694,38 @@
   cursor: default;
 }
 
+.exploredBtn {
+  opacity: 0.45;
+}
+
+.primaryBtn.exploredBtn:hover,
+.primaryBtn.exploredBtn:focus-visible {
+  opacity: 0.62;
+}
+
+.exploredLabel {
+  display: grid;
+  justify-items: center;
+}
+
+.exploredLabel > span {
+  grid-area: 1 / 1;
+}
+
+.exploredHover {
+  visibility: hidden;
+}
+
+.exploredBtn:hover .exploredIdle,
+.exploredBtn:focus-visible .exploredIdle {
+  visibility: hidden;
+}
+
+.exploredBtn:hover .exploredHover,
+.exploredBtn:focus-visible .exploredHover {
+  visibility: visible;
+}
+
 .nextBtn {
   flex: none;
   min-width: 88px;
@@ -1623,6 +1655,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.topicResourceMetaActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .topicResourceEditBtn {

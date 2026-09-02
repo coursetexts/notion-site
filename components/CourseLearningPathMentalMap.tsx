@@ -58,6 +58,8 @@ export function CourseLearningPathMentalMap({
         dbBacked={dbBacked}
         signedIn={signedIn}
         onSignIn={onSignIn}
+        pathSlug={course.slug}
+        pathTitle={course.title}
         onAdd={onAddTopicResource}
         onUpdate={onUpdateTopicResource}
       />

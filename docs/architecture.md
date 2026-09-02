@@ -100,6 +100,7 @@ flowchart LR
   Resources["/community-resources"]
   Profile["/profile  /profile/{userId}"]
   Users["/users"]
+  Reports["/reports"]
   Notebook["/notebook/{id}"]
   Signin["/signin  /auth/callback"]
 
@@ -112,6 +113,9 @@ flowchart LR
   All -->|"courses view syllabi"| LP
   All -->|"?view=learning-paths"| LP
   Community --> Resources
+  Course --> Reports
+  LP --> Reports
+  Resources --> Reports
   Course -->|"comments / notes / bookmarks"| Profile
   Community --> Profile
   Profile --> Notebook
@@ -129,7 +133,8 @@ flowchart LR
 | Field Atlas | `/field-atlas` | Seeded atlas tree; can start a `kind=research` path |
 | Community explainer | `/community` | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists |
 | Resource library | `/community-resources` | `resources`, `knowledge_components`, `search_community` |
-| Profile / social | `/profile`, `/profile/{userId}`, `/users` | profiles, follows, links, notebooks, owned/saved paths. Learning tab filters: **Courses** (official Notion **or** `kind=course`) · **Learning paths** (`community` + `research`) · **Committed**. |
+| Reports | `/reports` | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only. |
+| Profile / social | `/profile`, `/profile/{userId}`, `/users` | profiles, follows, links, notebooks, owned/saved paths. Tabs: **Learning** (filters: **Courses** · **Learning paths** · **Committed**) · **Knowledge** (list + graph of acquired topics) · **Bookmarks** · **Activity**. |
 | Auth | `/signin`, `/auth/callback` | Supabase Auth |
 
 Legacy URLs:
@@ -196,13 +201,21 @@ Degree pages link to `/learning-path/{slug}`. The unified route always renders t
 
 Adding a resource on a syllabus node patches `learning_paths.data` and also publishes a row in site-wide `resources` (for `/community-resources`). Catalog course rows stay writable for signed-in users (same as before). `curated_*` tables are not dropped; they are a backup and the migrate/seed source.
 
+## Knowledge on a profile
+
+Finishing a community, research, or course path records unique topic labels on `user_knowledge_topics` and may ingest structural edges into the shared catalog. Newly explored topics (and finishing the whole map) ask for learner-entered duration and a 0–100% enjoyment rating (`learning_path_ratings`). The Knowledge tab List / Graph and the path **What you learned** row are documented in [knowledge.md](./knowledge.md). A daily Gemini job that would add extra catalog edges is **in the repo but not scheduled**.
+
+## Reports (`/reports`)
+
+Users can flag **annotations**, **comments**, **learning paths**, and **uploaded resources**. Hover a card (or the date on a learning-path hero) and send a reason. Rows land in `content_reports` and show on `/reports`. That dashboard is **open while testing**; later it should be limited to `coursetexts.info@gmail.com` (`REPORTS_DASHBOARD_OPEN` in `lib/content-reports.ts`).
+
 ## Key conventions
 
 - **Browser client** uses the anon key + user JWT only (`lib/supabase.ts`). RLS is the ACL.
 - **`profiles.user_id`** is the auth uid everywhere (not `profiles.id`).
 - **Official Notion courses** use `courses.notion_page_id` (text PK) and stay at `/course/{pageId}` until a future migrate.
 - **All non-Notion paths** share `learning_paths.slug`. One `/learning-path/{slug}` shell: `kind` selects the title kicker and left outline (`community` / `research` → goal graph, `course` → syllabus tree).
-- **Service role** is for seed scripts only, never the browser.
+- **Service role** is for seed scripts and (if re-enabled) the knowledge-graph cron. Never the browser.
 
 ## Future: official Notion courses
 

@@ -19,6 +19,7 @@ import { ProfileBackArrow } from '@/components/ProfileBackArrow'
 import { ProfileSidebarBackHome } from '@/components/ProfileSidebarBackHome'
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
 import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
+import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
 import {
   ProfilePersonalLinkAnchorRow,
   ProfilePersonalLinksPanel
@@ -57,6 +58,10 @@ import {
   getFollowingList,
   unfollowUser
 } from '@/lib/follows'
+import {
+  followButtonLabel,
+  followRelationship
+} from '@/lib/follow-relationship'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
 import {
   type ProfilePersonalLink,
@@ -98,6 +103,10 @@ import {
 } from '@/lib/course-learning-path-pins-db'
 import { getSupabaseClient } from '@/lib/supabase'
 import {
+  type UserKnowledgeTopic,
+  listMyKnowledgeTopics
+} from '@/lib/user-knowledge-topics-db'
+import {
   type LinkTag,
   type UserLinkWithTag,
   addLink,
@@ -136,13 +145,147 @@ function formatDate(iso: string): string {
   })
 }
 
+function isInternalHref(href: string) {
+  return href.startsWith('/')
+}
+
+function FeedTargetLink({
+  href,
+  children
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  if (isInternalHref(href)) {
+    return (
+      <Link href={href}>
+        <a className={styles.inlineLink}>{children}</a>
+      </Link>
+    )
+  }
+  return (
+    <a
+      href={href}
+      className={styles.inlineLink}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      {children}
+    </a>
+  )
+}
+
+function FeedItemNarrative({ item }: { item: ProfileFeedItem }) {
+  switch (item.kind) {
+    case 'wall_resource':
+      return (
+        <>
+          added <em>{item.resource_title}</em> to the Community Wall on{' '}
+          <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
+            {item.course_name}
+          </FeedTargetLink>
+        </>
+      )
+    case 'followed_course_bookmark':
+      return (
+        <>
+          saved course{' '}
+          <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
+            {item.course_name}
+          </FeedTargetLink>
+        </>
+      )
+    case 'followed_resource_bookmark':
+      return (
+        <>
+          bookmarked <em>{item.resource_title}</em> on{' '}
+          <FeedTargetLink href={item.course_url ?? `/course/${item.course_id}`}>
+            {item.course_name}
+          </FeedTargetLink>
+        </>
+      )
+    case 'followed_link_bookmark':
+      return (
+        <>
+          bookmarked{' '}
+          <FeedTargetLink href={item.link_href}>{item.link_title}</FeedTargetLink>
+        </>
+      )
+    case 'followed_comment':
+      return (
+        <>
+          {item.is_reply ? 'replied on ' : 'commented on '}
+          <FeedTargetLink href={item.target_href}>{item.target_title}</FeedTargetLink>
+        </>
+      )
+    case 'followed_annotation':
+      return (
+        <>
+          annotated{' '}
+          <FeedTargetLink href={item.target_href}>{item.target_title}</FeedTargetLink>
+        </>
+      )
+    case 'followed_learning_path':
+      return (
+        <>
+          started a new learning path{' '}
+          <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
+        </>
+      )
+    case 'followed_path_progress':
+      return (
+        <>
+          explored <em>{item.node_label}</em> on{' '}
+          <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
+        </>
+      )
+    case 'suggestion_for_you':
+      return (
+        <>
+          suggested <em>{item.resource_title}</em> for your resource list on{' '}
+          <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
+        </>
+      )
+    case 'suggestion_response':
+      return (
+        <>
+          {item.decision === 'accepted' ? 'accepted' : 'declined'} your
+          suggestion <em>{item.resource_title}</em> on{' '}
+          <FeedTargetLink href={item.path_href}>{item.path_title}</FeedTargetLink>
+        </>
+      )
+    default:
+      return null
+  }
+}
+
+function feedItemExcerpt(item: ProfileFeedItem): string | null {
+  if (
+    item.kind === 'followed_comment' ||
+    item.kind === 'followed_annotation' ||
+    item.kind === 'suggestion_for_you'
+  ) {
+    const body = item.body.trim()
+    return body || null
+  }
+  return null
+}
+
+function feedItemMeta(item: ProfileFeedItem): string | null {
+  if (item.kind === 'followed_annotation' && item.section_id) {
+    return `Section: ${item.section_id}`
+  }
+  return null
+}
+
 type LearningPathItem = StoredLearningPath
 
-type PathsCoursesFilter = 'courses' | 'learning-paths' | 'committed'
+type PathsCoursesFilter = 'courses' | 'learning-paths' | 'by-you' | 'committed'
 
 const PATHS_COURSES_FILTERS: { id: PathsCoursesFilter; label: string }[] = [
   { id: 'courses', label: 'Courses' },
   { id: 'learning-paths', label: 'Learning paths' },
+  { id: 'by-you', label: 'By you' },
   { id: 'committed', label: 'Committed' }
 ]
 
@@ -151,6 +294,10 @@ function nextPathsCoursesFilter(
   clicked: PathsCoursesFilter
 ): PathsCoursesFilter | null {
   return current === clicked ? null : clicked
+}
+
+function isCreatedLearningPath(item: StoredLearningPath) {
+  return !item.savedLinkId
 }
 
 function normalizeSearch(value: string) {
@@ -246,8 +393,12 @@ export default function ProfilePage() {
   const [notifications, setNotifications] = useState<ReplyNotification[]>([])
   const [activityLoading, setActivityLoading] = useState(true)
   const [feedItems, setFeedItems] = useState<ProfileFeedItem[]>([])
+  const [knowledgeTopics, setKnowledgeTopics] = useState<UserKnowledgeTopic[]>(
+    []
+  )
+  const [knowledgeLoading, setKnowledgeLoading] = useState(true)
   const [mainTab, setMainTab] = useState<
-    'learning-path' | 'bookmarks' | 'activity'
+    'learning-path' | 'knowledge' | 'bookmarks' | 'activity'
   >('learning-path')
   const [activitySubTab, setActivitySubTab] = useState<'feed' | 'yours'>(
     'feed'
@@ -545,10 +696,12 @@ export default function ProfilePage() {
   const learningQuery = normalizeSearch(learningSearch)
   const coursesOnly = pathsCoursesFilter === 'courses'
   const learningPathsOnly = pathsCoursesFilter === 'learning-paths'
+  const byYouOnly = pathsCoursesFilter === 'by-you'
   const committedOnly = pathsCoursesFilter === 'committed'
   const filteredCourseLearningPaths = useMemo(
     () =>
       courseLearningPaths.filter((item) => {
+        if (byYouOnly) return false
         if (!matchesSearch(item.title, learningQuery)) return false
         if (
           committedOnly &&
@@ -558,11 +711,18 @@ export default function ProfilePage() {
         }
         return true
       }),
-    [courseLearningPaths, learningQuery, committedOnly, committedKeys]
+    [
+      courseLearningPaths,
+      learningQuery,
+      byYouOnly,
+      committedOnly,
+      committedKeys
+    ]
   )
   const filteredSavedCourseKindPaths = useMemo(
     () =>
       savedCourseKindPaths.filter((item) => {
+        if (byYouOnly && !isCreatedLearningPath(item)) return false
         if (!storedPathMatchesQuery(item, learningQuery)) return false
         if (
           committedOnly &&
@@ -572,11 +732,18 @@ export default function ProfilePage() {
         }
         return true
       }),
-    [savedCourseKindPaths, learningQuery, committedOnly, committedKeys]
+    [
+      savedCourseKindPaths,
+      learningQuery,
+      byYouOnly,
+      committedOnly,
+      committedKeys
+    ]
   )
   const filteredResearchLearningPaths = useMemo(
     () =>
       researchLearningPaths.filter((item) => {
+        if (byYouOnly && !isCreatedLearningPath(item)) return false
         if (!storedPathMatchesQuery(item, learningQuery)) return false
         if (
           committedOnly &&
@@ -586,11 +753,18 @@ export default function ProfilePage() {
         }
         return true
       }),
-    [researchLearningPaths, learningQuery, committedOnly, committedKeys]
+    [
+      researchLearningPaths,
+      learningQuery,
+      byYouOnly,
+      committedOnly,
+      committedKeys
+    ]
   )
   const filteredCommunityLearningPaths = useMemo(
     () =>
       communityLearningPaths.filter((item) => {
+        if (byYouOnly && !isCreatedLearningPath(item)) return false
         if (!storedPathMatchesQuery(item, learningQuery)) return false
         if (
           committedOnly &&
@@ -600,11 +774,18 @@ export default function ProfilePage() {
         }
         return true
       }),
-    [communityLearningPaths, learningQuery, committedOnly, committedKeys]
+    [
+      communityLearningPaths,
+      learningQuery,
+      byYouOnly,
+      committedOnly,
+      committedKeys
+    ]
   )
   const filteredOfficialCourses = useMemo(
     () =>
       officialCourses.filter(({ course }) => {
+        if (byYouOnly) return false
         if (!matchesSearch(course.name, learningQuery)) return false
         if (
           committedOnly &&
@@ -616,15 +797,15 @@ export default function ProfilePage() {
         }
         return true
       }),
-    [officialCourses, learningQuery, committedOnly, committedKeys]
+    [officialCourses, learningQuery, byYouOnly, committedOnly, committedKeys]
   )
   const showAllLearningCards = pathsCoursesFilter == null
   const showCoursesGroup =
     showAllLearningCards || coursesOnly || committedOnly
   const showLearningPathsGroup =
-    showAllLearningCards || learningPathsOnly || committedOnly
+    showAllLearningCards || learningPathsOnly || committedOnly || byYouOnly
   const showCourseCards = showCoursesGroup
-  const showSavedCourseKindCards = showCoursesGroup
+  const showSavedCourseKindCards = showCoursesGroup || byYouOnly
   const showOfficialCards = showCoursesGroup
   const showResearchCards = showLearningPathsGroup
   const showCommunityCards = showLearningPathsGroup
@@ -634,6 +815,10 @@ export default function ProfilePage() {
     officialCourses.length > 0
   const hasAnyNonCourseLearningCards =
     researchLearningPaths.length > 0 || communityLearningPaths.length > 0
+  const hasAnyCreatedCards =
+    savedCourseKindPaths.some(isCreatedLearningPath) ||
+    researchLearningPaths.some(isCreatedLearningPath) ||
+    communityLearningPaths.some(isCreatedLearningPath)
   const hasAnyCommittedCards =
     courseLearningPaths.some((item) =>
       committedKeys.has(learningPathCommitmentKey(item.slug))
@@ -672,6 +857,24 @@ export default function ProfilePage() {
   useEffect(() => {
     if (!effectiveUser?.id) return
     void getProfileInterestsByUserId(effectiveUser.id).then(setProfileInterests)
+  }, [effectiveUser?.id])
+
+  useEffect(() => {
+    if (!effectiveUser?.id) {
+      setKnowledgeTopics([])
+      setKnowledgeLoading(false)
+      return
+    }
+    let cancelled = false
+    setKnowledgeLoading(true)
+    void listMyKnowledgeTopics().then((topics) => {
+      if (cancelled) return
+      setKnowledgeTopics(topics)
+      setKnowledgeLoading(false)
+    })
+    return () => {
+      cancelled = true
+    }
   }, [effectiveUser?.id])
 
   useEffect(() => {
@@ -1307,6 +1510,10 @@ export default function ProfilePage() {
                         const showFollow = !!selfId && u.user_id !== selfId
                         const isFollowingRow = followingIds.has(u.user_id)
                         const busy = rowFollowBusyId === u.user_id
+                        const relationship = followRelationship(
+                          isFollowingRow,
+                          followerIds.has(u.user_id)
+                        )
                         return (
                           <li key={u.user_id} className={styles.userListItem}>
                             <a
@@ -1350,11 +1557,7 @@ export default function ProfilePage() {
                                   )
                                 }
                               >
-                                {busy
-                                  ? '…'
-                                  : isFollowingRow
-                                    ? 'Following'
-                                    : 'Follow'}
+                                {followButtonLabel(relationship, busy)}
                               </button>
                             ) : null}
                           </li>
@@ -1373,6 +1576,10 @@ export default function ProfilePage() {
                       const showFollow = !!selfId && u.user_id !== selfId
                       const isFollowingRow = followingIds.has(u.user_id)
                       const busy = rowFollowBusyId === u.user_id
+                      const relationship = followRelationship(
+                        isFollowingRow,
+                        followerIds.has(u.user_id)
+                      )
                       return (
                         <li key={u.user_id} className={styles.userListItem}>
                           <a
@@ -1414,11 +1621,7 @@ export default function ProfilePage() {
                                 void handleConnectionRowFollowToggle(u.user_id)
                               }
                             >
-                              {busy
-                                ? '…'
-                                : isFollowingRow
-                                  ? 'Following'
-                                  : 'Follow'}
+                              {followButtonLabel(relationship, busy)}
                             </button>
                           ) : null}
                         </li>
@@ -1453,6 +1656,19 @@ export default function ProfilePage() {
                     <button
                       type='button'
                       role='tab'
+                      aria-selected={mainTab === 'knowledge'}
+                      className={
+                        mainTab === 'knowledge'
+                          ? styles.primaryTabActive
+                          : styles.primaryTab
+                      }
+                      onClick={() => setMainTab('knowledge')}
+                    >
+                      Knowledge
+                    </button>
+                    <button
+                      type='button'
+                      role='tab'
                       aria-selected={mainTab === 'bookmarks'}
                       className={
                         mainTab === 'bookmarks'
@@ -1480,6 +1696,17 @@ export default function ProfilePage() {
 
                   <div className={styles.primaryTabsRightActions} />
                 </div>
+
+                {mainTab === 'knowledge' && (
+                  <ProfileKnowledgePanel
+                    topics={knowledgeTopics}
+                    loading={knowledgeLoading}
+                    searchId='profile-knowledge-search'
+                    emptyMessage='Topics you complete on learning paths will show up here. You can also add them yourself.'
+                    canAdd
+                    onTopicsChange={setKnowledgeTopics}
+                  />
+                )}
 
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
@@ -2271,10 +2498,11 @@ export default function ProfilePage() {
                       activitySubTab === 'feed' &&
                       (activityFeedRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          Nothing in your feed yet. Subscribe to Community Walls
-                          on course pages, and follow people to see new wall
-                          posts and their course and resource bookmarks. Replies
-                          to your comments and annotations show up here as well.
+                          Nothing in your feed yet. Follow people to see their
+                          comments, annotations, bookmarks, new learning paths,
+                          and progress. Replies to your comments and
+                          annotations, plus suggestions on your resource lists,
+                          show up here as well.
                         </p>
                       ) : (
                         <ul className={styles.list}>
@@ -2327,10 +2555,10 @@ export default function ProfilePage() {
                               )
                             }
                             const item = row.item
-                            const courseHref =
-                              item.course_url ?? `/course/${item.course_id}`
                             const actorLabel =
                               item.actor_display_name?.trim() || 'Someone'
+                            const excerpt = feedItemExcerpt(item)
+                            const meta = feedItemMeta(item)
                             return (
                               <li key={item.id} className={styles.listItem}>
                                 <div className={styles.feedCardHead}>
@@ -2351,40 +2579,16 @@ export default function ProfilePage() {
                                   </span>
                                 </div>
                                 <div className={styles.feedCardActions}>
-                                  {item.kind === 'wall_resource' && (
-                                    <>
-                                      added <em>{item.resource_title}</em> to
-                                      the Community Wall on{' '}
-                                      <Link href={courseHref}>
-                                        <a className={styles.inlineLink}>
-                                          {item.course_name}
-                                        </a>
-                                      </Link>
-                                    </>
-                                  )}
-                                  {item.kind === 'followed_course_bookmark' && (
-                                    <>
-                                      saved course{' '}
-                                      <Link href={courseHref}>
-                                        <a className={styles.inlineLink}>
-                                          {item.course_name}
-                                        </a>
-                                      </Link>
-                                    </>
-                                  )}
-                                  {item.kind ===
-                                    'followed_resource_bookmark' && (
-                                    <>
-                                      bookmarked <em>{item.resource_title}</em>{' '}
-                                      on{' '}
-                                      <Link href={courseHref}>
-                                        <a className={styles.inlineLink}>
-                                          {item.course_name}
-                                        </a>
-                                      </Link>
-                                    </>
-                                  )}
+                                  <FeedItemNarrative item={item} />
                                 </div>
+                                {meta ? (
+                                  <p className={styles.notificationMeta}>
+                                    {meta}
+                                  </p>
+                                ) : null}
+                                {excerpt ? (
+                                  <p className={styles.listBody}>{excerpt}</p>
+                                ) : null}
                               </li>
                             )
                           })}
@@ -2482,7 +2686,9 @@ export default function ProfilePage() {
                       <h2 className={styles.mainSerifTitle}>
                         Learning
                       </h2>
-                      {showAllLearningCards || learningPathsOnly ? (
+                      {showAllLearningCards ||
+                      learningPathsOnly ||
+                      byYouOnly ? (
                         <button
                           type='button'
                           className={styles.notebooksCreateBtn}
@@ -2541,6 +2747,10 @@ export default function ProfilePage() {
                       !hasAnyNonCourseLearningCards ? (
                       <p className={styles.placeholder}>
                         No learning paths yet.
+                      </p>
+                    ) : byYouOnly && !hasAnyCreatedCards ? (
+                      <p className={styles.placeholder}>
+                        No learning paths created by you yet.
                       </p>
                     ) : committedOnly && !hasAnyCommittedCards ? (
                       <p className={styles.placeholder}>

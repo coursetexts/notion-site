@@ -6,6 +6,7 @@ import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 import { motion } from 'framer-motion'
 
+import { snippetFromText } from '@/lib/content-reports'
 import {
   type Annotation as DbAnnotation,
   type Comment as DbComment,
@@ -18,6 +19,7 @@ import {
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './CourseActivity.module.css'
+import { ReportButton, reportHoverTargetClass } from './ReportButton'
 import { UserLink } from './UserLink'
 
 type TabId = 'all' | 'comments' | 'annotations'
@@ -26,7 +28,8 @@ type ThreadComment = DbComment & { replies: ThreadComment[] }
 
 function autoGrowTextArea(el: HTMLTextAreaElement | null) {
   if (!el) return
-  el.style.height = 'auto'
+  el.style.overflowY = 'hidden'
+  el.style.height = '0px'
   el.style.height = `${el.scrollHeight}px`
 }
 
@@ -55,6 +58,12 @@ function formatRelativeTime(iso: string): string {
   if (hours < 24) return `${hours}h`
   if (days < 7) return `${days}d`
   return d.toLocaleDateString()
+}
+
+function activityPageUrl(courseUrl?: string): string {
+  if (courseUrl && courseUrl.trim()) return courseUrl
+  if (typeof window === 'undefined') return '/'
+  return `${window.location.pathname}${window.location.search}`
 }
 
 const ReplyArrowIcon: React.FC = () => (
@@ -817,6 +826,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                     depth={0}
                     authUser={Boolean(auth?.user)}
                     courseUrl={courseUrl}
+                    courseTitle={courseTitle}
                     followingIds={followingIds}
                     followerIds={followerIds}
                     replyDraftById={replyDraftById}
@@ -886,7 +896,9 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
               )}
               {sortAnnotationRoots(annotations, sortBy).map((a) => (
                 <div key={a.id} className={styles.threadItemRoot}>
-                  <div className={styles.annotationItem}>
+                  <div
+                    className={`${styles.annotationItem} ${reportHoverTargetClass}`}
+                  >
                     <div className={styles.commentHeader}>
                       <span className={styles.author}>
                         <UserLink
@@ -914,6 +926,17 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                             if (newScore !== null)
                               updateAnnotationVote(a.id, newScore, value)
                             setVotingId(null)
+                          }}
+                        />
+                        <ReportButton
+                          target={{
+                            type: 'annotation',
+                            id: a.id,
+                            url: activityPageUrl(courseUrl),
+                            title: courseTitle
+                              ? `Annotation on ${courseTitle}`
+                              : 'Annotation',
+                            snippet: snippetFromText(a.body)
                           }}
                         />
                       </span>
@@ -963,7 +986,9 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
               {allActivity.map(({ type, item }) =>
                 type === 'comment' ? (
                   <div key={`c-${item.id}`} className={styles.threadItemRoot}>
-                    <div className={styles.comment}>
+                    <div
+                      className={`${styles.comment} ${reportHoverTargetClass}`}
+                    >
                       <div className={styles.commentHeader}>
                         <span className={styles.author}>
                           <UserLink
@@ -1000,6 +1025,17 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                               setVotingId(null)
                             }}
                           />
+                          <ReportButton
+                            target={{
+                              type: 'comment',
+                              id: item.id,
+                              url: activityPageUrl(courseUrl),
+                              title: courseTitle
+                                ? `Comment on ${courseTitle}`
+                                : 'Comment',
+                              snippet: snippetFromText((item as DbComment).body)
+                            }}
+                          />
                         </span>
                         <span className={styles.typeTag}>Comment</span>
                       </div>
@@ -1008,7 +1044,9 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                   </div>
                 ) : (
                   <div key={`a-${item.id}`} className={styles.threadItemRoot}>
-                    <div className={styles.annotationItem}>
+                    <div
+                      className={`${styles.annotationItem} ${reportHoverTargetClass}`}
+                    >
                       <div className={styles.commentHeader}>
                         <span className={styles.author}>
                           <UserLink
@@ -1045,6 +1083,19 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                               if (newScore !== null)
                                 updateAnnotationVote(item.id, newScore, value)
                               setVotingId(null)
+                            }}
+                          />
+                          <ReportButton
+                            target={{
+                              type: 'annotation',
+                              id: item.id,
+                              url: activityPageUrl(courseUrl),
+                              title: courseTitle
+                                ? `Annotation on ${courseTitle}`
+                                : 'Annotation',
+                              snippet: snippetFromText(
+                                (item as DbAnnotation).body
+                              )
                             }}
                           />
                         </span>
@@ -1133,6 +1184,7 @@ interface ThreadCommentItemProps {
   depth: number
   authUser: boolean
   courseUrl?: string
+  courseTitle?: string
   followingIds: Set<string>
   followerIds: Set<string>
   replyDraftById: Record<string, string>
@@ -1154,6 +1206,7 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
   depth,
   authUser,
   courseUrl,
+  courseTitle,
   followingIds,
   followerIds,
   replyDraftById,
@@ -1198,7 +1251,7 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
       }
       style={{ marginLeft }}
     >
-      <div className={styles.comment}>
+      <div className={`${styles.comment} ${reportHoverTargetClass}`}>
         <div className={styles.commentHeader}>
           <span className={styles.author}>
             <UserLink
@@ -1217,6 +1270,15 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
               userVote={node.user_vote ?? null}
               disabled={!authUser || votingId === node.id}
               onVote={(value) => onVote(node.id, value)}
+            />
+            <ReportButton
+              target={{
+                type: 'comment',
+                id: node.id,
+                url: activityPageUrl(courseUrl),
+                title: courseTitle ? `Comment on ${courseTitle}` : 'Comment',
+                snippet: snippetFromText(node.body)
+              }}
             />
           </span>
         </div>
@@ -1349,6 +1411,7 @@ const ThreadCommentItem: React.FC<ThreadCommentItemProps> = ({
               depth={depth + 1}
               authUser={authUser}
               courseUrl={courseUrl}
+              courseTitle={courseTitle}
               followingIds={followingIds}
               followerIds={followerIds}
               replyDraftById={replyDraftById}

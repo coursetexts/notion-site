@@ -266,6 +266,10 @@
   flex-shrink: 0;
   padding: 0.35rem 0.75rem !important;
   font-size: 0.875rem !important;
+  max-width: 9.75rem;
+  white-space: normal;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .connectionsTabs {
@@ -439,6 +443,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.knowledgeList .listTitle {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  font-weight: 400;
 }
 
 .listMeta {
@@ -1628,6 +1639,7 @@
   margin-top: 0.75rem;
   box-sizing: border-box;
   text-align: center;
+  white-space: nowrap;
 }
 
 .publicProfileSingleCol {
@@ -1753,6 +1765,15 @@
 
 .tabPanelHeaderRow .mainSerifTitle {
   margin: 0;
+}
+
+.knowledgeHeaderActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .panelSearchWrap {
@@ -1913,6 +1934,57 @@
   position: relative;
 }
 
+.knowledgeAddInput {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: #fff;
+  color: #25272b;
+  width: 16rem;
+  max-width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.knowledgeAddInput::placeholder {
+  color: #888;
+}
+
+.knowledgeAddInput:focus {
+  border-color: #0089c4;
+}
+
+.knowledgeGraphStage {
+  position: relative;
+  height: 480px;
+  min-height: 420px;
+  margin: 0 0 0.75rem;
+  border: 1px solid #000d1a16;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8f7f4;
+}
+
+.knowledgeGraphScroll {
+  min-height: 0;
+  height: 100%;
+}
+
+.knowledgeGraphNode {
+  cursor: default;
+}
+
+.knowledgeGraphHint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #666;
+  line-height: 1.4;
+}
+
 .notebooksCreateBtn {
   font: inherit;
   font-size: 0.8125rem;
@@ -1926,6 +1998,15 @@
 
 .notebooksCreateBtn:hover {
   background: #f7f7f7;
+}
+
+.notebooksCreateBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.notebooksCreateBtn:disabled:hover {
+  background: #fff;
 }
 
 .notebooksCreateMenu {

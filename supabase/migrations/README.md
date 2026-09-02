@@ -81,10 +81,16 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `028_learning_path_resource_votes.sql` | Upvotes on public/collaborative learning-path resource lists |
 | `029_learning_path_is_filled.sql` | `learning_paths.is_filled` for course syllabi that have a real topic tree |
 | `030_learning_path_commitments.sql` | Per-user committed flags on Learning tab items (future finish reminders) |
+| `034_activity_feed_events.sql` | Suggestion accepted/declined status + `learning_path_progress_events` for the profile feed |
+| `035_user_knowledge_topics.sql` | Profile Knowledge tab: unique completed topics gained from finished learning paths |
+| `036_knowledge_graph.sql` | Site-wide `knowledge_topics` + `knowledge_topic_edges`. Structural ingest on finish; daily Gemini linking is **implemented but disabled** |
+| `037_content_reports.sql` | User reports for annotations, comments, learning paths, and uploaded resources. `/reports` dashboard (open while testing) |
+| `038_learning_path_ratings.sql` | Topic and path/course enjoyment % (0–100) plus learner-entered duration after marking explored / finishing |
+| `039_learning_path_ratings_percent.sql` | **Existing DBs only:** widen `learning_path_ratings.rating` from 1–5 to 0–100 if `038` already ran |
 
-**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`). Skip `015`/`016` unless you already had old table names.
+**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran `000` through `029` should apply `030` (do not re-run `000`).
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`.
 
 ## 4. Optional seeds
 
@@ -137,6 +143,9 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; atlas callouts; empty search opens create modal
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
 - [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`
+- [ ] Profile Knowledge tab: List + Graph; finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
+- [ ] `/reports` loads (open while testing). Hover an annotation/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
+- [ ] Mark a topic explored → enter duration + enjoyment %. Finish the path/course → same for the whole map. Apply `038_learning_path_ratings.sql` (and `039` if `038` already ran with 1–5 stars).
 
 ## Notes
 

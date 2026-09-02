@@ -10,7 +10,8 @@
 }
 
 .tagFollowing,
-.tagFollowsYou {
+.tagFollowsYou,
+.tagEachOther {
   display: inline-block;
   margin-left: 0.35rem;
   padding: 0.1rem 0.4rem;
@@ -20,6 +21,7 @@
   letter-spacing: 0.02em;
   border-radius: 4px;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .tagFollowing {
@@ -30,4 +32,9 @@
 .tagFollowsYou {
   color: #1e40af;
   background: #dbeafe;
+}
+
+.tagEachOther {
+  color: #0f766e;
+  background: #ccfbf1;
 }

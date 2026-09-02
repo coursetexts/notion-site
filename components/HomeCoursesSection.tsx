@@ -174,6 +174,10 @@ export function HomeCoursesSection({
   return (
     <section className={styles.section}>
       <div className={styles.content}>
+        <HomeLearningPathsSection />
+      </div>
+
+      <div className={`${styles.content} ${styles.contentBottom}`}>
         <h2 className={styles.heading}>Try courses from top schools.</h2>
         <p className={styles.headingSub}>
           We work directly with professors to bring niche, hard-to-find graduate
@@ -216,6 +220,14 @@ export function HomeCoursesSection({
                 <span className={styles.subjectLabel}>{subject.label}</span>
               </button>
             ))}
+            <a
+              href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
+              target='_blank'
+              rel='noreferrer'
+              className={styles.cta}
+            >
+              The Publishing Pipeline
+            </a>
           </div>
 
           <div className={styles.dashedRule} />
@@ -250,10 +262,6 @@ export function HomeCoursesSection({
             </a>
           </Link>
         </div>
-      </div>
-
-      <div className={`${styles.content} ${styles.contentBottom}`}>
-        <HomeLearningPathsSection />
       </div>
 
       <HomeSocialLearningSection />

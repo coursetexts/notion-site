@@ -68,9 +68,16 @@ export function CourseNotesPanel({
     let cancelled = false
     const id = courseId
     const topicKey = topic
-    setLoadedKey('')
+    const empty = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
     setSaveState('idle')
-    latestJson.current = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
+    if (!signedIn) {
+      latestJson.current = empty
+      setInitialContent(empty)
+      setLoadedKey(topicStorageKey(id, topicKey))
+      return
+    }
+    setLoadedKey('')
+    latestJson.current = empty
     ;(async () => {
       const content = await getCourseNote(id, topicKey)
       if (cancelled) return
@@ -136,6 +143,7 @@ export function CourseNotesPanel({
       : ''
 
   const showEditor = loadedKey === currentKey && Boolean(currentKey !== '::')
+  const editorKey = `${loadedKey}:${signedIn ? 'in' : 'out'}`
   const ariaLabel = topicTitle
     ? `Notes for ${topicTitle}`
     : courseTitle
@@ -176,7 +184,7 @@ export function CourseNotesPanel({
       <div className={styles.body}>
         {showEditor ? (
           <SiteNotesEditor
-            key={loadedKey}
+            key={editorKey}
             value={initialContent}
             onChange={scheduleSave}
             placeholder='Write your notes for this topic…'

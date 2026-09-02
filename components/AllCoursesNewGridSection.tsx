@@ -14,6 +14,7 @@ type AllCoursesNewGridSectionProps = {
   coursePathQuery?: string
   learningPaths?: HomeCourseCard[]
   learningPathsReady?: boolean
+  topicActive?: boolean
 }
 
 function fallbackCards(): HomeCourseCard[] {
@@ -38,9 +39,16 @@ function coursePathEmptyMessage(
 
 function learningPathEmptyMessage(
   ready: boolean,
-  query: string
+  query: string,
+  topicActive: boolean
 ): string {
   if (!ready) return 'Loading learning paths…'
+  if (query.trim() && topicActive) {
+    return 'No existing learning paths matched that topic and search.'
+  }
+  if (topicActive) {
+    return 'No existing learning paths matched that topic.'
+  }
   if (query.trim()) {
     return 'No existing learning paths matched your search.'
   }
@@ -52,27 +60,41 @@ function PromoCard({
   title,
   body,
   href,
-  buttonLabel
+  buttonLabel,
+  onButtonClick
 }: {
   className: string
   title: string
-  body: string
-  href: string
+  body?: string
+  href?: string
   buttonLabel: string
+  onButtonClick?: () => void
 }) {
+  const action = href ? (
+    <Link href={href} legacyBehavior>
+      <a
+        className={styles.promoButton}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {buttonLabel}
+      </a>
+    </Link>
+  ) : (
+    <button
+      type='button'
+      className={styles.promoButton}
+      onClick={onButtonClick}
+    >
+      {buttonLabel}
+    </button>
+  )
+
   return (
     <article className={`${styles.promoCard} ${className}`}>
       <p className={styles.promoTitle}>{title}</p>
-      <p className={styles.promoBody}>{body}</p>
-      <Link href={href} legacyBehavior>
-        <a
-          className={styles.promoButton}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          {buttonLabel}
-        </a>
-      </Link>
+      {body ? <p className={styles.promoBody}>{body}</p> : null}
+      {action}
     </article>
   )
 }
@@ -85,6 +107,17 @@ function DegreesPromoCard() {
       body='to see full course tracklists of the top  50 most popular undergrad & grad degrees'
       href='/degrees'
       buttonLabel='View degrees'
+    />
+  )
+}
+
+function CreatePathPromoCard({ onCreate }: { onCreate: () => void }) {
+  return (
+    <PromoCard
+      className={styles.createPathPromo}
+      title={"Can't find what you're looking for?"}
+      buttonLabel='Create your own learning path'
+      onButtonClick={onCreate}
     />
   )
 }
@@ -125,9 +158,16 @@ function LifeSkillsAtlasPromoCard() {
   )
 }
 
-function LearningPathsPromoSlot({ inline }: { inline?: boolean }) {
+function LearningPathsPromoSlot({
+  inline,
+  onCreate
+}: {
+  inline?: boolean
+  onCreate: () => void
+}) {
   const cards = (
     <>
+      <CreatePathPromoCard onCreate={onCreate} />
       <FieldAtlasPromoCard />
       <JobSkillsAtlasPromoCard />
       <LifeSkillsAtlasPromoCard />
@@ -148,16 +188,18 @@ export function AllCoursesNewGridSection({
   coursePathsReady = true,
   coursePathQuery = '',
   learningPaths = [],
-  learningPathsReady = true
+  learningPathsReady = true,
+  topicActive = false
 }: AllCoursesNewGridSectionProps) {
   const cards = courses ?? fallbackCards()
   const [createOpen, setCreateOpen] = React.useState(false)
   const closeCreate = React.useCallback(() => setCreateOpen(false), [])
+  const openCreate = React.useCallback(() => setCreateOpen(true), [])
   const noLearningPathMatches =
     view === 'learning-paths' &&
     learningPathsReady &&
-    Boolean(coursePathQuery.trim()) &&
-    learningPaths.length === 0
+    learningPaths.length === 0 &&
+    (Boolean(coursePathQuery.trim()) || topicActive)
 
   if (view === 'learning-paths') {
     return (
@@ -167,28 +209,26 @@ export function AllCoursesNewGridSection({
             <>
               <div className={styles.emptyCreate}>
                 <p className={styles.emptyCreateText}>
-                  No existing learning paths matched your search.
+                  {learningPathEmptyMessage(
+                    true,
+                    coursePathQuery,
+                    topicActive
+                  )}
                 </p>
-                <button
-                  type='button'
-                  className={styles.emptyCreateButton}
-                  onClick={() => setCreateOpen(true)}
-                >
-                  Create your own learning path?
-                </button>
               </div>
               <div className={styles.sectionDivider} role='separator' />
-              <LearningPathsPromoSlot inline />
+              <LearningPathsPromoSlot inline onCreate={openCreate} />
             </>
           ) : (
             <CourseCardGrid
               cards={learningPaths}
               emptyMessage={learningPathEmptyMessage(
                 learningPathsReady,
-                coursePathQuery
+                coursePathQuery,
+                topicActive
               )}
               descriptionWidth='75%'
-              startSlot={<LearningPathsPromoSlot />}
+              startSlot={<LearningPathsPromoSlot onCreate={openCreate} />}
             />
           )}
         </div>

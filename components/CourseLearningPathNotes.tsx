@@ -58,8 +58,15 @@ export function CourseLearningPathNotes({
     let cancelled = false
     const id = nodeId
     const slug = courseSlug
+    const empty = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
+    if (!signedIn) {
+      latestJson.current = empty
+      setInitialContent(empty)
+      setLoadedKey(noteStorageKey(slug, id))
+      return
+    }
     setLoadedKey('')
-    latestJson.current = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
+    latestJson.current = empty
     ;(async () => {
       const content = await getCourseLearningPathNote(id, slug)
       if (cancelled) return
@@ -110,6 +117,7 @@ export function CourseLearningPathNotes({
   }, [flushSave])
 
   const showEditor = loadedKey === currentKey && Boolean(nodeId)
+  const editorKey = `${loadedKey}:${signedIn ? 'in' : 'out'}`
   const ariaLabel = topicTitle ? `Notes for ${topicTitle}` : 'Topic notes'
 
   if (!showEditor) {
@@ -118,7 +126,7 @@ export function CourseLearningPathNotes({
 
   return (
     <SiteNotesEditor
-      key={loadedKey}
+      key={editorKey}
       value={initialContent}
       onChange={scheduleSave}
       placeholder='Write notes for this topic…'

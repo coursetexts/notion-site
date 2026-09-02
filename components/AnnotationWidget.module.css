@@ -234,12 +234,19 @@
   margin: 0;
 }
 
-.signInHint a {
+.signInHint a,
+.signInHintBtn {
   color: #0089c4;
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
-.signInHint a:hover {
+.signInHint a:hover,
+.signInHintBtn:hover {
   text-decoration: underline;
 }
 
@@ -269,7 +276,15 @@
   box-sizing: border-box;
   resize: none;
   overflow: hidden;
+  overflow-y: hidden;
+  scrollbar-width: none;
   line-height: 1.35;
+}
+
+.addInput::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .addInput::placeholder {
@@ -356,7 +371,13 @@
 }
 
 .annotation {
-  padding: 0.5rem 0 0;
+  padding: 0.5rem 0.5rem 0.35rem;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.annotation:hover {
+  background: #f5f5f57f;
 }
 
 /* Row: author, then time + votes grouped together (not pushed to the right) */
@@ -499,6 +520,10 @@
 
 .replyComposer .addInput {
   padding-right: 2.75rem;
+  min-height: 2.75rem;
+  resize: none;
+  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .replyComposer .submitBtn {

@@ -29,6 +29,8 @@ Home (“Try learning paths from our community”) shows the first 12 **communit
 
 The profile **Learning** tab filters are **Courses**, **Learning paths**, and **Committed**. Courses = an official Notion course bookmark **or** a `learning_paths` row with `kind=course` (`isCourseKindPath`). Learning paths = `community` + `research` only. **Committed** is a per-user flag (click Commit; hover Committed → Uncommit) in `learning_path_commitments`; reminders to finish the path are not built yet. Existing DBs: apply `030_learning_path_commitments.sql`.
 
+Profile tabs also include **Knowledge** (acquired topics + optional graph). Finishing a path records unique node labels, shows blue confetti and a concepts modal, and adds a **What you learned** outline row. Hover **Explored** on the topic action to **Mark unexplored**. Completing a topic (or the whole path) asks how long it took and how enjoyable learning was with the given resources (0–100%). The left outline shows the topic name and a status square only (blue filled = explored); it does not print Exploring / Need this / As deep as you need. See [knowledge.md](./knowledge.md). Daily Gemini linking of the shared catalog is **implemented but disabled**.
+
 `/all-courses?view=learning-paths` is the full public browse of non-course paths: `listNonCourseLearningPaths()` selects `kind in ('community','research')` (title, goal, summary only — not the JSON blob), then appends any missing `SEEDED_LEARNING_PATHS`. Private rows stay hidden by RLS. **`kind=course` is excluded**, including empty stubs.
 
 ## Data flow
@@ -87,6 +89,8 @@ Community / research:
   slug, title, goal, summary
   nodes[]   id, label, kind: goal | concept | prerequisite | milestone
             status, sequence, x, y, description, why, resources[]
+            sub   still stored (seeded “Need this” / “As deep as you need”
+                  are hidden in the outline and on the map)
   edges[]   from, to
   circle    name, description, members[]
 }
@@ -98,7 +102,7 @@ User overlay (`learning_path_user_state`):
 
 - `notes` — TipTap JSON per node id (community paths and course syllabi)
 - `resources` — extra resources the learner added
-- `node_status` — `explored` / `exploring` / `next`
+- `node_status` — `explored` / `exploring` / `next`. The learner can toggle a topic back to `next` from **Explored** in the main pane. The outline square is blue when `explored`, outlined blue when `exploring`, grey otherwise.
 
 ## Visibility
 

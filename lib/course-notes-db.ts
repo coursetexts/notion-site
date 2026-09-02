@@ -1,8 +1,9 @@
 /**
  * TipTap notes for Notion database courses (`course_notes`).
- * One document per course topic/tab. Falls back to localStorage when the user
- * is signed out or Supabase is unavailable.
+ * Notes are always private: only the signed-in owner can read or write them.
+ * Local cache is keyed by user id and is never used while signed out.
  */
+import { getCachedAuth } from './auth-cache'
 import {
   NOTEBOOK_EMPTY_DOC,
   type NotebookDocJson
@@ -29,19 +30,20 @@ export function courseNoteTopicKey(
   return section.slice(0, TOPIC_ID_MAX)
 }
 
-function localKey(courseId: string, topicId: string): string {
+function localKey(userId: string, courseId: string, topicId: string): string {
   return topicId
-    ? `course-notes:${courseId}:${topicId}`
-    : `course-notes:${courseId}`
+    ? `course-notes:${userId}:${courseId}:${topicId}`
+    : `course-notes:${userId}:${courseId}`
 }
 
 function readLocal(
+  userId: string,
   courseId: string,
   topicId: string
 ): NotebookDocJson | null {
   if (typeof window === 'undefined') return null
   try {
-    const raw = window.localStorage.getItem(localKey(courseId, topicId))
+    const raw = window.localStorage.getItem(localKey(userId, courseId, topicId))
     if (!raw) return null
     const parsed = JSON.parse(raw) as NotebookDocJson
     if (!parsed || typeof parsed !== 'object') return null
@@ -52,6 +54,7 @@ function readLocal(
 }
 
 function writeLocal(
+  userId: string,
   courseId: string,
   topicId: string,
   content: NotebookDocJson
@@ -59,7 +62,7 @@ function writeLocal(
   if (typeof window === 'undefined') return
   try {
     window.localStorage.setItem(
-      localKey(courseId, topicId),
+      localKey(userId, courseId, topicId),
       JSON.stringify(content)
     )
   } catch {
@@ -72,8 +75,9 @@ export function cacheCourseNote(
   content: NotebookDocJson,
   topicId = ''
 ): void {
-  if (!courseId) return
-  writeLocal(courseId, topicId.trim(), content)
+  const userId = getCachedAuth().user?.id
+  if (!userId || !courseId) return
+  writeLocal(userId, courseId, topicId.trim(), content)
 }
 
 async function fetchCourseNoteRow(
@@ -107,10 +111,17 @@ export async function getCourseNote(
   if (!courseId) return empty
   const topic = topicId.trim()
 
+  const supabase = getSupabaseClient()
+  if (!supabase) return empty
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return empty
+
   const fromDb = await fetchCourseNoteRow(courseId, topic)
   if (fromDb) return fromDb
 
-  return readLocal(courseId, topic) ?? empty
+  return readLocal(user.id, courseId, topic) ?? empty
 }
 
 export async function saveCourseNote(
@@ -121,15 +132,15 @@ export async function saveCourseNote(
   if (!courseId) return false
   const topic = topicId.trim()
 
-  writeLocal(courseId, topic, content)
-
   const supabase = getSupabaseClient()
-  if (!supabase) return true
+  if (!supabase) return false
 
   const {
     data: { user }
   } = await supabase.auth.getUser()
-  if (!user) return true
+  if (!user) return false
+
+  writeLocal(user.id, courseId, topic, content)
 
   const { error } = await supabase.from('course_notes').upsert(
     {

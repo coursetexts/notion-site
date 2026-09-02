@@ -1,11 +1,12 @@
-import Link from 'next/link'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import cs from 'classnames'
 
 import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
+import cs from 'classnames'
 
 import { authDebug } from '@/lib/auth-debug'
+import { currentAuthRedirectPath } from '@/lib/auth-redirect'
+import { snippetFromText } from '@/lib/content-reports'
 import {
   type Annotation as DbAnnotation,
   addAnnotation,
@@ -16,6 +17,7 @@ import {
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './AnnotationWidget.module.css'
+import { ReportButton, reportHoverTargetClass } from './ReportButton'
 import { UserLink } from './UserLink'
 
 type SortBy = 'time' | 'votes'
@@ -66,7 +68,8 @@ type ThreadAnnotation = DbAnnotation & { replies: ThreadAnnotation[] }
 
 function autoGrowTextArea(el: HTMLTextAreaElement | null) {
   if (!el) return
-  el.style.height = 'auto'
+  el.style.overflowY = 'hidden'
+  el.style.height = '0px'
   el.style.height = `${el.scrollHeight}px`
 }
 
@@ -248,6 +251,34 @@ const SubmitArrowIcon: React.FC = () => (
     />
   </svg>
 )
+
+function useRequestSignIn() {
+  const auth = useAuthOptional()
+  return useCallback(() => {
+    const next = currentAuthRedirectPath()
+    if (auth?.signInWithGoogle) {
+      void auth.signInWithGoogle(next)
+      return
+    }
+    window.location.href = `/signin?redirect=${encodeURIComponent(next)}`
+  }, [auth])
+}
+
+const SignInHint: React.FC<{ action: string }> = ({ action }) => {
+  const requestSignIn = useRequestSignIn()
+  return (
+    <p className={styles.signInHint}>
+      <button
+        type='button'
+        className={styles.signInHintBtn}
+        onClick={requestSignIn}
+      >
+        Sign in
+      </button>{' '}
+      to {action}.
+    </p>
+  )
+}
 
 const VoteRow: React.FC<VoteRowProps> = ({
   score,
@@ -584,20 +615,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
           </div>
         </div>
       ) : (
-        <p className={styles.signInHint}>
-          <Link
-            href={
-              typeof window !== 'undefined'
-                ? `/signin?redirect=${encodeURIComponent(
-                    window.location.pathname
-                  )}`
-                : '/signin'
-            }
-          >
-            Sign in
-          </Link>{' '}
-          to add annotations.
-        </p>
+        <SignInHint action='add annotations' />
       )}
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.list}>
@@ -615,6 +633,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
               depth={0}
               authUser={Boolean(auth?.user)}
               courseUrl={courseUrl}
+              courseTitle={courseTitle}
               followingIds={followingIds}
               followerIds={followerIds}
               replyDraftById={replyDraftById}
@@ -657,6 +676,7 @@ interface ThreadAnnotationItemProps {
   depth: number
   authUser: boolean
   courseUrl?: string
+  courseTitle?: string
   followingIds: Set<string>
   followerIds: Set<string>
   replyDraftById: Record<string, string>
@@ -678,6 +698,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
   depth,
   authUser,
   courseUrl,
+  courseTitle,
   followingIds,
   followerIds,
   replyDraftById,
@@ -723,7 +744,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
       }
       style={{ marginLeft }}
     >
-      <div className={styles.annotation}>
+      <div className={`${styles.annotation} ${reportHoverTargetClass}`}>
         <div className={styles.annotationMetaRow}>
           <span className={styles.author}>
             <UserLink
@@ -742,6 +763,17 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
               userVote={node.user_vote ?? null}
               disabled={!authUser || votingId === node.id}
               onVote={(value) => onVote(node.id, value)}
+            />
+            <ReportButton
+              target={{
+                type: 'annotation',
+                id: node.id,
+                url: courseUrl || '',
+                title: courseTitle
+                  ? `Annotation on ${courseTitle}`
+                  : 'Annotation',
+                snippet: snippetFromText(node.body)
+              }}
             />
           </span>
         </div>
@@ -801,18 +833,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
             </div>
           </div>
         )}
-        {isReplyOpen && !authUser && (
-          <p className={styles.signInHint}>
-            <Link
-              href={`/signin?redirect=${encodeURIComponent(
-                courseUrl || '/profile'
-              )}`}
-            >
-              Sign in
-            </Link>{' '}
-            to reply.
-          </p>
-        )}
+        {isReplyOpen && !authUser && <SignInHint action='reply' />}
       </div>
 
       {hasReplies && (
@@ -867,6 +888,7 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
               depth={depth + 1}
               authUser={authUser}
               courseUrl={courseUrl}
+              courseTitle={courseTitle}
               followingIds={followingIds}
               followerIds={followerIds}
               replyDraftById={replyDraftById}

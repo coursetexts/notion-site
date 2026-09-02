@@ -14,6 +14,7 @@ This Next.js app renders **Notion** professor courses at `/course/{pageId}` and 
 | [Auth](./docs/auth.md) | Google OAuth → profiles |
 | [Community learning paths](./docs/learning-paths.md) | `/learning-path/{slug}` |
 | [Course learning paths](./docs/curated-courses.md) | `/learning-path/{slug}` |
+| [Knowledge](./docs/knowledge.md) | Profile Knowledge tab, finish celebration, duration + enjoyment %, shared graph (daily LLM job is off) |
 | [Migrations](./supabase/migrations/README.md) | Fresh Supabase setup and seeds |
 
 ## Local setup

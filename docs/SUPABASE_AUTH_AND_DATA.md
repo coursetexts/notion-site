@@ -8,4 +8,5 @@
 - [Auth](./auth.md)
 - [Community learning paths](./learning-paths.md)
 - [Course learning paths](./curated-courses.md)
+- [Knowledge](./knowledge.md)
 - [Migrations](../supabase/migrations/README.md)

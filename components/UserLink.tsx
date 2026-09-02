@@ -1,5 +1,10 @@
 import React from 'react'
 
+import {
+  followRelationship,
+  followTagLabel
+} from '@/lib/follow-relationship'
+
 import styles from './UserLink.module.css'
 
 export interface UserLinkProps {
@@ -21,17 +26,23 @@ export const UserLink: React.FC<UserLinkProps> = ({
 }) => {
   const name = displayName || 'Anonymous'
   const href = `/profile/${userId}`
+  const relationship = followRelationship(
+    showFollowingTag,
+    showFollowsYouTag
+  )
+  const tag = followTagLabel(relationship)
+  const tagClass =
+    relationship === 'each-other'
+      ? styles.tagEachOther
+      : relationship === 'following'
+        ? styles.tagFollowing
+        : styles.tagFollowsYou
   return (
     <span className={className}>
       <a href={href} className={styles.link}>
         {name}
       </a>
-      {showFollowingTag && (
-        <span className={styles.tagFollowing}>following</span>
-      )}
-      {showFollowsYouTag && (
-        <span className={styles.tagFollowsYou}>follows you</span>
-      )}
+      {tag ? <span className={tagClass}>{tag}</span> : null}
     </span>
   )
 }

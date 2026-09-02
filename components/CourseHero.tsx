@@ -1,6 +1,9 @@
 import React from 'react'
 
+import type { ContentReportTarget } from '@/lib/content-reports'
+
 import styles from './CourseHero.module.css'
+import { ReportButton } from './ReportButton'
 import { SaveCourseButton } from './SaveCourseButton'
 
 export interface CourseHeroInstructor {
@@ -40,6 +43,8 @@ interface CourseHeroProps extends CourseHeroData {
   publisherAvatarHref?: string
   /** Replaces the HTML description (e.g. an editable field on owned paths). */
   descriptionSlot?: React.ReactNode
+  /** Grey flag next to the published date (learning path heroes). */
+  reportTarget?: ContentReportTarget
 }
 
 const COPYRIGHT_TOGGLE_TITLE = '⚖️ Copyright Report'
@@ -370,15 +375,13 @@ function getSchoolLogo(school: string): [string, string] | null {
 }
 
 /** Hero meta line: "Published | Aug 2026" — CourseHero splits on `|` into Published · month year. */
-export function formatHeroPublishedDate(
-  value?: string | Date | null
-): string {
+export function formatHeroPublishedDate(value?: string | Date | null): string {
   const parsed =
     value instanceof Date
       ? value
       : typeof value === 'string' && value.trim()
-        ? new Date(value)
-        : new Date()
+      ? new Date(value)
+      : new Date()
   const date = Number.isNaN(parsed.getTime()) ? new Date() : parsed
   const monthYear = date.toLocaleString('en-US', {
     month: 'short',
@@ -500,7 +503,8 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   publisherAvatarFallback,
   publisherAvatarAlt,
   publisherAvatarHref,
-  descriptionSlot
+  descriptionSlot,
+  reportTarget
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
   const [copyrightReport, setCopyrightReport] =
@@ -618,8 +622,8 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
     courseCodeProp != null && courseCodeProp.trim() !== ''
       ? courseCodeProp.trim()
       : bracketMatch
-        ? bracketMatch[1].trim()
-        : ''
+      ? bracketMatch[1].trim()
+      : ''
   const displayTitle = bracketMatch
     ? title.replace(/\s*\([^)]+\)\s*$/, '').trim()
     : title
@@ -670,7 +674,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
             ))}
           </div>
         ) : null}
-        {schoolDate || showSaveButton || actions ? (
+        {schoolDate || showSaveButton || actions || reportTarget ? (
           <div className={styles.schoolDateRow}>
             {schoolDate ? (
               <div className={styles.schoolDate}>
@@ -691,7 +695,9 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                     return (
                       <>
                         {publisher}
-                        <span className={styles.schoolDateText}>{formatted}</span>
+                        <span className={styles.schoolDateText}>
+                          {formatted}
+                        </span>
                       </>
                     )
                   }
@@ -702,25 +708,32 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                   return (
                     <>
                       <span className={styles.schoolDateLead}>
-                        {hasPublisher
-                          ? publisher
-                          : logoPath ? (
-                              <img
-                                src={logoPath}
-                                alt=''
-                                className={styles.schoolLogo}
-                                width={24}
-                                height={24}
-                              />
-                            ) : null}
-                        <span className={styles.schoolDateText}>{displayName}</span>
+                        {hasPublisher ? (
+                          publisher
+                        ) : logoPath ? (
+                          <img
+                            src={logoPath}
+                            alt=''
+                            className={styles.schoolLogo}
+                            width={24}
+                            height={24}
+                          />
+                        ) : null}
+                        <span className={styles.schoolDateText}>
+                          {displayName}
+                        </span>
                       </span>
                       <SchoolDateSeparator />
                       <span className={styles.schoolDateText}>{date}</span>
                     </>
                   )
                 })()}
+                {reportTarget ? (
+                  <ReportButton target={reportTarget} variant='always' />
+                ) : null}
               </div>
+            ) : reportTarget ? (
+              <ReportButton target={reportTarget} variant='always' />
             ) : null}
             {showSaveButton || actions ? (
               <div className={styles.saveWrap}>

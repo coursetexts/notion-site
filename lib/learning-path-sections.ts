@@ -6,6 +6,9 @@ export const LEARNING_PATH_RECOMMENDED_SECTION_ID = 'recommended-path'
 /** Left-nav / main-panel section for the path mental map. */
 export const LEARNING_PATH_MENTAL_MAP_SECTION_ID = 'mental-map'
 
+/** Left-nav / main-panel section for topics learned after finishing the path. */
+export const LEARNING_PATH_KNOWLEDGE_SECTION_ID = 'knowledge-gained'
+
 export function isLearningPathRecommendedSelection(id: string) {
   return id === LEARNING_PATH_RECOMMENDED_SECTION_ID
 }
@@ -14,10 +17,15 @@ export function isLearningPathMentalMapSelection(id: string) {
   return id === LEARNING_PATH_MENTAL_MAP_SECTION_ID
 }
 
+export function isLearningPathKnowledgeSelection(id: string) {
+  return id === LEARNING_PATH_KNOWLEDGE_SECTION_ID
+}
+
 export function isLearningPathSectionSelection(id: string) {
   return (
     isLearningPathRecommendedSelection(id) ||
-    isLearningPathMentalMapSelection(id)
+    isLearningPathMentalMapSelection(id) ||
+    isLearningPathKnowledgeSelection(id)
   )
 }
 

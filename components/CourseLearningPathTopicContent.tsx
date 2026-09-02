@@ -32,9 +32,11 @@ interface TopicContentProps {
     input: CourseLearningPathTopicResourceInput & { resourceId: string }
   ) => Promise<boolean>
   explored?: boolean
-  onMarkExplored?: () => void
+  onToggleExplored?: () => void
   nextNode?: CourseLearningPathNode | null
   onNext?: (id: string) => void
+  pathSlug?: string
+  pathTitle?: string
 }
 
 export function CourseLearningPathTopicContent({
@@ -46,9 +48,11 @@ export function CourseLearningPathTopicContent({
   onAddTopicResource,
   onUpdateTopicResource,
   explored = false,
-  onMarkExplored,
+  onToggleExplored,
   nextNode = null,
-  onNext
+  onNext,
+  pathSlug,
+  pathTitle
 }: TopicContentProps) {
   const { node, parents } = entry
   const topicResources = node.topicResources ?? []
@@ -91,6 +95,8 @@ export function CourseLearningPathTopicContent({
         dbBacked={dbBacked}
         signedIn={signedIn}
         onSignIn={onSignIn}
+        pathSlug={pathSlug}
+        pathTitle={pathTitle}
         onAdd={onAddTopicResource}
         onUpdate={onUpdateTopicResource}
       />
@@ -98,11 +104,19 @@ export function CourseLearningPathTopicContent({
       <div className={styles.actionRow}>
         <button
           type='button'
-          className={styles.primaryBtn}
-          onClick={onMarkExplored}
-          disabled={explored}
+          className={`${styles.primaryBtn}${
+            explored ? ` ${styles.exploredBtn}` : ''
+          }`}
+          onClick={onToggleExplored}
         >
-          {explored ? 'Explored' : 'Mark as explored'}
+          {explored ? (
+            <span className={styles.exploredLabel}>
+              <span className={styles.exploredIdle}>Explored</span>
+              <span className={styles.exploredHover}>Mark unexplored</span>
+            </span>
+          ) : (
+            'Mark as explored'
+          )}
         </button>
         {nextNode ? (
           <button

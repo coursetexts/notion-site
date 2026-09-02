@@ -1,7 +1,9 @@
 /**
  * TipTap notes for syllabus nodes. Stored in learning_path_user_state.notes
- * keyed by node id. Falls back to curated_course_notes, then localStorage.
+ * keyed by node id. Falls back to curated_course_notes, then a user-scoped
+ * local cache. Notes are always private to the signed-in owner.
  */
+import { getCachedAuth } from './auth-cache'
 import {
   getLearningPathRecord,
   loadLearningPathUserState,
@@ -10,8 +12,12 @@ import {
 import { NOTEBOOK_EMPTY_DOC, type NotebookDocJson } from './notebook-editor-default'
 import { getSupabaseClient } from './supabase'
 
-function localKey(courseSlug: string, nodeId: string): string {
-  return `curated-course-notes:${courseSlug}:${nodeId}`
+function emptyDoc(): NotebookDocJson {
+  return NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
+}
+
+function localKey(userId: string, courseSlug: string, nodeId: string): string {
+  return `curated-course-notes:${userId}:${courseSlug}:${nodeId}`
 }
 
 function parseNoteContent(value: unknown): NotebookDocJson | null {
@@ -30,12 +36,15 @@ function parseNoteContent(value: unknown): NotebookDocJson | null {
 }
 
 function readLocal(
+  userId: string,
   courseSlug: string,
   nodeId: string
 ): NotebookDocJson | null {
   if (typeof window === 'undefined') return null
   try {
-    const raw = window.localStorage.getItem(localKey(courseSlug, nodeId))
+    const raw = window.localStorage.getItem(
+      localKey(userId, courseSlug, nodeId)
+    )
     if (!raw) return null
     const parsed = JSON.parse(raw) as NotebookDocJson
     if (!parsed || typeof parsed !== 'object') return null
@@ -46,6 +55,7 @@ function readLocal(
 }
 
 function writeLocal(
+  userId: string,
   courseSlug: string,
   nodeId: string,
   content: NotebookDocJson
@@ -53,7 +63,7 @@ function writeLocal(
   if (typeof window === 'undefined') return
   try {
     window.localStorage.setItem(
-      localKey(courseSlug, nodeId),
+      localKey(userId, courseSlug, nodeId),
       JSON.stringify(content)
     )
   } catch {
@@ -66,8 +76,9 @@ export function cacheCourseLearningPathNote(
   nodeId: string,
   content: NotebookDocJson
 ): void {
-  if (!nodeId) return
-  writeLocal(courseSlug, nodeId, content)
+  const userId = getCachedAuth().user?.id
+  if (!userId || !nodeId) return
+  writeLocal(userId, courseSlug, nodeId, content)
 }
 
 async function loadNoteFromCuratedTable(
@@ -89,13 +100,20 @@ async function loadNoteFromCuratedTable(
   return data.content as NotebookDocJson
 }
 
-/** Load note content for a syllabus node (DB if signed in, else localStorage). */
+/** Load the signed-in user's note for a syllabus node. Empty while signed out. */
 export async function getCourseLearningPathNote(
   nodeId: string,
   courseSlug: string
 ): Promise<NotebookDocJson> {
-  const empty = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
+  const empty = emptyDoc()
   if (!nodeId) return empty
+
+  const supabase = getSupabaseClient()
+  if (!supabase) return empty
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return empty
 
   const record = courseSlug ? await getLearningPathRecord(courseSlug) : null
   if (record?.id) {
@@ -107,10 +125,10 @@ export async function getCourseLearningPathNote(
   const fromCurated = await loadNoteFromCuratedTable(nodeId)
   if (fromCurated) return fromCurated
 
-  return readLocal(courseSlug, nodeId) ?? empty
+  return readLocal(user.id, courseSlug, nodeId) ?? empty
 }
 
-/** Persist note content (DB upsert when signed in; always mirrors to localStorage). */
+/** Persist note content for the signed-in owner. No-op while signed out. */
 export async function saveCourseLearningPathNote(
   nodeId: string,
   courseSlug: string,
@@ -118,7 +136,14 @@ export async function saveCourseLearningPathNote(
 ): Promise<boolean> {
   if (!nodeId) return false
 
-  writeLocal(courseSlug, nodeId, content)
+  const supabase = getSupabaseClient()
+  if (!supabase) return false
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return false
+
+  writeLocal(user.id, courseSlug, nodeId, content)
 
   const record = courseSlug ? await getLearningPathRecord(courseSlug) : null
   if (record?.id) {
@@ -130,16 +155,14 @@ export async function saveCourseLearningPathNote(
         [nodeId]: JSON.stringify(content)
       }
     }
-    const savedId = await saveLearningPathUserState(record.id, courseSlug, next)
+    const savedId = await saveLearningPathUserState(
+      record.id,
+      courseSlug,
+      next,
+      user.id
+    )
     return Boolean(savedId)
   }
-
-  const supabase = getSupabaseClient()
-  if (!supabase) return true
-  const {
-    data: { user }
-  } = await supabase.auth.getUser()
-  if (!user) return true
 
   const { error } = await supabase.from('curated_course_notes').upsert(
     {

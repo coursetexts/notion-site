@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { createPortal } from 'react-dom'
 
 import { getAnnotations, getOrCreateCourse } from '@/lib/course-activity-db'
+import { currentAuthRedirectPath } from '@/lib/auth-redirect'
 import { courseNoteTopicKey } from '@/lib/course-notes-db'
 import {
   type SectionProgressStatus,
@@ -478,7 +479,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           topicId={noteTopicId}
           topicTitle={noteTopicTitle}
           signedIn={Boolean(authUser)}
-          onSignIn={() => auth?.signInWithGoogle()}
+          onSignIn={() => auth?.signInWithGoogle(currentAuthRedirectPath())}
           onHide={closeRightPanel}
           sheetLayout={sheetLayout}
         />

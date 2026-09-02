@@ -70,7 +70,7 @@ Resources added on a syllabus node also appear in `/community-resources`. They a
 
 Comments/bookmarks on the page keep `courses.notion_page_id = 'course-learning-path:{slug}'` so existing threads stay attached.
 
-Empty catalog placeholders (~1800 slug+title rows) become `kind=course` catalog paths with empty `topics` and `is_filled = false`. Home does **not** list them. The **courses** view of `/all-courses` (default; not `?view=learning-paths`) lists official Notion courses, then (below a divider) filled syllabi: every `data/curated-courses/{slug}.json` that has a topic tree, plus any extra `learning_paths` rows with `is_filled`. A brown promo in that syllabus grid links to `/degrees`. A trigger keeps `is_filled` in sync when `data` changes. Existing DBs: apply `029_learning_path_is_filled.sql`. The learning-paths title toggle does **not** list these syllabi (see [learning-paths.md](./learning-paths.md)). The profile Learning tab **Courses** filter uses the same split: official Notion bookmarks plus `kind=course` paths.
+Empty catalog placeholders (~1800 slug+title rows) become `kind=course` catalog paths with empty `topics` and `is_filled = false`. Home does **not** list them. The **courses** view of `/all-courses` (default; not `?view=learning-paths`) lists official Notion courses, then (below a divider) filled syllabi: every `data/curated-courses/{slug}.json` that has a topic tree, plus any extra `learning_paths` rows with `is_filled`. A brown promo in that syllabus grid links to `/degrees`. A trigger keeps `is_filled` in sync when `data` changes. Existing DBs: apply `029_learning_path_is_filled.sql`. The learning-paths title toggle does **not** list these syllabi (see [learning-paths.md](./learning-paths.md)). The profile Learning tab **Courses** filter uses the same split: official Notion bookmarks plus `kind=course` paths. Finishing every syllabus topic records Knowledge labels, shows the completion modal, and adds **What you learned** under Resources in the left nav. See [knowledge.md](./knowledge.md).
 
 Subject icons on those cards reuse the degrees-page SVG set (`DegreeCardIcon`). Area is **not** a Supabase column: optional JSON `"area": "mathematics"` (a degree id) overrides slug-based keywords. The Coursetexts book mark stays on the card; the colored icon is the subject.
 
@@ -80,26 +80,30 @@ Subject icons on those cards reuse the degrees-page SVG set (`DegreeCardIcon`). 
 flowchart TB
   Nav["Left panel"]
   Rec["Recommended Syllabus<br/>→ overview"]
-  Tree["Topic / subtopic / concept tree"]
   MM["Mental map"]
+  Tree["Topic / subtopic / concept tree"]
   Res["Resources"]
   TB["Core Textbooks"]
   Web["Websites and Open Resources"]
   YT["Video Channels"]
+  Learned["What you learned<br/>after the path is finished"]
 
   Nav --> Rec
-  Nav --> Tree
   Nav --> MM
+  Nav --> Tree
   Nav --> Res
   Res --> TB
   Res --> Web
   Res --> YT
+  Nav --> Learned
 ```
 
 - **Recommended Syllabus** — course blurb + topic list; does **not** wrap the tree.
 - **Topic tree** — loads that node’s sequenced resources from `learning_paths.data`.
 - **Mental map** — graph of the syllabus (`data.mentalMapNodeId` holds map-only clips).
 - **Resources** — from `data.resources` (or degrees JSON fallback).
+- **What you learned** — appears only after every syllabus node is explored.
+- **Ratings** — marking a topic explored asks how long it took and a % for how enjoyable learning that module was using the given resources; finishing the course asks the same for the whole course.
 
 Notes open from the content bar (side panel), not an in-page dropdown.
 

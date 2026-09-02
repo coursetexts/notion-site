@@ -4,8 +4,7 @@
 
 .heading {
   margin: 0;
-  width: 100%;
-  text-align: right;
+  text-align: left;
   color: #000000;
   font-family: 'Guyot Press', serif;
   font-weight: 401;
@@ -18,16 +17,22 @@
 .headingBlock {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 22px;
+  align-items: flex-start;
+}
+
+.topicRow {
+  flex-wrap: wrap;
+  row-gap: 12px;
 }
 
 .cta {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 12px 22px;
+  margin-left: auto;
+  min-height: 36px;
+  padding: 8px 18px;
   border: none;
   border-radius: 6px;
   background: #1a1a1a;
@@ -68,6 +73,13 @@
 
 .metaMark svg {
   display: block;
+}
+
+.topicIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  color: #5d534b;
 }
 
 @media (max-width: 800px) {

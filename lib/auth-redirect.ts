@@ -4,6 +4,11 @@ export function isSafeAuthRedirect(path: string) {
   return path.startsWith('/') && !path.startsWith('//') && !path.includes('\\')
 }
 
+export function currentAuthRedirectPath() {
+  if (typeof window === 'undefined') return '/'
+  return `${window.location.pathname}${window.location.search}`
+}
+
 export function setAuthRedirect(path: string | undefined | null) {
   if (typeof window === 'undefined') return
   if (!path || !isSafeAuthRedirect(path)) {

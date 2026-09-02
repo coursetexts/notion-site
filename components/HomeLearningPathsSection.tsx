@@ -6,7 +6,13 @@ import {
   type LearningPathData,
   SEEDED_LEARNING_PATHS
 } from '@/lib/learning-path-seed'
+import {
+  LEARNING_PATH_TOPICS,
+  learningPathTopics,
+  type LearningPathTopicId
+} from '@/lib/learning-path-topic'
 
+import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 import courseStyles from './HomeCoursesSection.module.css'
 import styles from './HomeLearningPathsSection.module.css'
 
@@ -47,6 +53,8 @@ export function HomeLearningPathsSection() {
   const [paths, setPaths] = React.useState<LearningPathData[]>(
     SEEDED_LEARNING_PATHS
   )
+  const [activeTopic, setActiveTopic] =
+    React.useState<LearningPathTopicId | null>(null)
 
   React.useEffect(() => {
     void listCatalogLearningPaths().then((next) => {
@@ -54,7 +62,19 @@ export function HomeLearningPathsSection() {
     })
   }, [])
 
-  const cards = paths.slice(0, 12).map(pathToCard)
+  const handleTopicToggle = React.useCallback((topic: LearningPathTopicId) => {
+    setActiveTopic((current) => (current === topic ? null : topic))
+  }, [])
+
+  const cards = React.useMemo(() => {
+    const matched =
+      activeTopic == null
+        ? paths
+        : paths.filter((path) =>
+            learningPathTopics(path).includes(activeTopic)
+          )
+    return matched.slice(0, 12).map(pathToCard)
+  }, [activeTopic, paths])
 
   return (
     <div
@@ -63,16 +83,44 @@ export function HomeLearningPathsSection() {
     >
       <div className={styles.headingBlock}>
         <h2 className={styles.heading}>
-          Try learning paths from our community
+          Try learning paths from our community.
         </h2>
-        <Link href='/community' legacyBehavior>
-          <a className={styles.cta}>The Community</a>
-        </Link>
+      </div>
+
+      <div className={courseStyles.subjectGroup}>
+        <div className={courseStyles.dashedRule} />
+        <div className={`${courseStyles.subjectRow} ${styles.topicRow}`}>
+          {LEARNING_PATH_TOPICS.map((topic) => (
+            <button
+              key={topic.id}
+              type='button'
+              className={`${courseStyles.subjectItem} ${
+                activeTopic === topic.id ? courseStyles.subjectItemActive : ''
+              }`}
+              onClick={() => handleTopicToggle(topic.id)}
+              aria-pressed={activeTopic === topic.id}
+            >
+              <span className={courseStyles.subjectIconWrap}>
+                <LearningPathTopicIcon
+                  id={topic.id}
+                  className={styles.topicIcon}
+                />
+              </span>
+              <span className={courseStyles.subjectLabel}>{topic.label}</span>
+            </button>
+          ))}
+          <Link href='/community' legacyBehavior>
+            <a className={styles.cta}>The Community</a>
+          </Link>
+        </div>
+        <div className={courseStyles.dashedRule} />
       </div>
 
       {cards.length === 0 ? (
         <p className={courseStyles.emptyState}>
-          No community learning paths yet.
+          {activeTopic
+            ? 'No community learning paths matched that topic yet.'
+            : 'No community learning paths yet.'}
         </p>
       ) : (
         <div className={courseStyles.courseGrid}>
@@ -106,7 +154,14 @@ export function HomeLearningPathsSection() {
       )}
 
       <div className={courseStyles.viewAllBar}>
-        <Link href='/all-courses?view=learning-paths' legacyBehavior>
+        <Link
+          href={
+            activeTopic
+              ? `/all-courses?view=learning-paths&topic=${activeTopic}`
+              : '/all-courses?view=learning-paths'
+          }
+          legacyBehavior
+        >
           <a
             className={courseStyles.viewAllBarLink}
             aria-label='View all learning paths'

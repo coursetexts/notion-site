@@ -1,0 +1,192 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 41000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 13, 26, 0.42);
+}
+
+.modal {
+  width: min(440px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1.25rem 1.25rem 0.35rem;
+}
+
+.badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 2px 0;
+  border-bottom: 1px solid #0089c4;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0089c4;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-family: var(--font-serif, 'Fraunces', serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #000;
+}
+
+.close {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.body {
+  padding: 0.35rem 1.25rem 1.25rem;
+}
+
+.fields {
+  margin: 0 0 1.1rem;
+}
+
+.prompt {
+  margin: 0 0 0.5rem;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #5d534b;
+}
+
+.durationRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 1rem;
+}
+
+.durationField {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.durationInput,
+.percentInput {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 14px;
+  color: #25272b;
+  border: 1px solid #d7d8da;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.durationInput {
+  width: 4.4rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.durationInput:focus,
+.percentInput:focus {
+  outline: none;
+  border-color: #0089c4;
+}
+
+.durationUnit,
+.percentUnit {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.percentRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.percentSlider {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  accent-color: #0089c4;
+  cursor: pointer;
+}
+
+.percentValue {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.percentInput {
+  width: 3.6rem;
+  padding: 0.4rem 0.45rem;
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.skip {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.875rem;
+  padding: 0.55rem 0.85rem;
+  border: none;
+  background: none;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.skip:hover,
+.skip:focus-visible {
+  color: #25272b;
+  outline: none;
+}
+
+.submit {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.1rem;
+  background: #0089c4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.submit:hover,
+.submit:focus-visible {
+  background: #0074a8;
+  outline: none;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.finishFields {
+  margin: 0 1.25rem 0.35rem;
+}

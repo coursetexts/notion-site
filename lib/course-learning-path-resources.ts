@@ -46,6 +46,9 @@ export const COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID = 'syllabus:overview'
 /** Selectable left-nav / main-panel section for the course mental map. */
 export const COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID = 'mental-map'
 
+/** Selectable left-nav / main-panel section for topics learned after finishing. */
+export const COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID = 'knowledge-gained'
+
 export function isCourseLearningPathResourceSelection(id: string): boolean {
   return COURSE_LEARNING_PATH_RESOURCE_SECTIONS.some((section) => section.id === id)
 }
@@ -56,6 +59,10 @@ export function isCourseLearningPathSyllabusSelection(id: string): boolean {
 
 export function isCourseLearningPathMentalMapSelection(id: string): boolean {
   return id === COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID
+}
+
+export function isCourseLearningPathKnowledgeSelection(id: string): boolean {
+  return id === COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID
 }
 
 export function getMentalMapNotesNodeId(slug: string): string {

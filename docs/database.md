@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`).
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030` and `034`–`038`, with `rating` already 0–100). Existing DBs that already ran an older 1–5 `038` should also apply `039`.
 
 ## Table groups
 
@@ -64,6 +64,16 @@ flowchart TB
     lpCommit["learning_path_commitments"]
   end
 
+  subgraph Knowledge["Knowledge"]
+    ukt["user_knowledge_topics"]
+    kt["knowledge_topics"]
+    ke["knowledge_topic_edges"]
+  end
+
+  subgraph Reports["Reports"]
+    cr["content_reports"]
+  end
+
   auth_users --> profiles
   auth_users --> comments
   auth_users --> bookmarks
@@ -90,6 +100,9 @@ flowchart TB
   lp --> lpState
   lp --> lpPins
   auth_users --> lpCommit
+  auth_users --> ukt
+  auth_users --> cr
+  kt --> ke
   notebooks --> tabs
 ```
 
@@ -403,6 +416,82 @@ erDiagram
   }
 ```
 
+## Knowledge
+
+Per-user acquired topics plus a shared catalog used by the Knowledge Graph view. See [knowledge.md](./knowledge.md).
+
+```mermaid
+erDiagram
+  auth_users ||--o{ user_knowledge_topics : "user_id"
+  learning_paths |o--o{ user_knowledge_topics : "source_path_id"
+  knowledge_topics ||--o{ knowledge_topic_edges : "from_id"
+  knowledge_topics ||--o{ knowledge_topic_edges : "to_id"
+
+  user_knowledge_topics {
+    uuid id PK
+    uuid user_id FK
+    text label
+    text normalized_label
+    uuid source_path_id FK
+  }
+
+  knowledge_topics {
+    uuid id PK
+    text label
+    text normalized_label UK
+  }
+
+  knowledge_topic_edges {
+    uuid id PK
+    uuid from_id FK
+    uuid to_id FK
+    text kind "prerequisite related part_of"
+    text source "path_structure llm"
+  }
+```
+
+The daily Gemini job that would add `source = llm` edges is **disabled**. Structural edges (`path_structure`) still ingest when someone finishes a public path.
+
+## Reports
+
+Flagged annotations, comments, learning paths, and uploaded resources. Dashboard: `/reports`.
+
+```mermaid
+erDiagram
+  auth_users ||--o{ content_reports : "reporter_id"
+
+  content_reports {
+    uuid id PK
+    uuid reporter_id FK
+    text target_type "annotation comment learning_path resource"
+    text target_id
+    text reason
+    text status "open reviewed dismissed"
+  }
+```
+
+Existing DBs: apply `037_content_reports.sql`. Public SELECT is open for testing; insert is owner-only.
+
+## Ratings
+
+After a learner marks a topic explored, a popup asks how long it took and a 0–100% rating of how enjoyable learning that module was with the given resources. Finishing the whole path/course asks the same for the entire map. Signed-in rows go to `learning_path_ratings` (`038`; apply `039` if an older 1–5 `rating` check is already live). Duration is what the learner types (hours and minutes).
+
+```mermaid
+erDiagram
+  auth_users ||--o{ learning_path_ratings : "user_id"
+  learning_paths |o--o{ learning_path_ratings : "path_id"
+
+  learning_path_ratings {
+    uuid id PK
+    uuid user_id FK
+    uuid path_id FK
+    text path_slug
+    text target_type "topic path"
+    smallint rating "0-100 enjoyment"
+    int duration_ms
+  }
+```
+
 ## RPCs
 
 | Function | Purpose |
@@ -420,5 +509,9 @@ erDiagram
 - **Curated syllabus tree + node resources**: public read; any authenticated user can mutate (curation left open).
 - **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata; signed-in users may patch `data` on collaborative paths and catalog courses.
 - **`learning_path_user_state` / `course_notes` / `learning_path_pins` / `learning_path_commitments`**: owner only.
+- **`user_knowledge_topics`**: public read; owner insert/delete.
+- **`knowledge_topics` / `knowledge_topic_edges`**: public read; writes via service role (ingest API; daily LLM cron is off).
+- **`content_reports`**: public read (testing); signed-in users insert their own rows. Restrict `/reports` later via `REPORTS_DASHBOARD_OPEN`.
+- **`learning_path_ratings`**: owner read/write; localStorage fallback when signed out or `038` is missing.
 - **`learning_path_resource_votes`**: readable when the path is; signed-in users may upvote on `public` / `collaborative` paths.
 - **`user_links.is_private`**: filtered in app code, not RLS.

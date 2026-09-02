@@ -13,6 +13,11 @@ import { listCourseLearningPaths } from '@/lib/course-learning-path-db'
 import { getCourseLearningPathSubject } from '@/lib/course-learning-path-subject'
 import { listNonCourseLearningPaths } from '@/lib/learning-path-db'
 import { learningPathKicker } from '@/lib/learning-path-kind-ui'
+import {
+  learningPathTopics,
+  parseLearningPathTopicId,
+  type LearningPathTopicId
+} from '@/lib/learning-path-topic'
 import type { NotionHomeDebugPayload } from './index'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
@@ -73,6 +78,10 @@ function nonCoursePathToCard(path: {
     description: path.description,
     communityMark: true
   }
+}
+
+function learningPathCardSlug(path: HomeCourseCard) {
+  return path.href.split('/').filter(Boolean).pop() || path.id
 }
 
 function parseViewParam(
@@ -177,6 +186,8 @@ export default function AllCoursesPage({
   const [query, setQuery] = React.useState('')
   const [view, setView] = React.useState<AllCoursesView>('courses')
   const [activeSubjects, setActiveSubjects] = React.useState<HomeSubject[]>([])
+  const [activeTopic, setActiveTopic] =
+    React.useState<LearningPathTopicId | null>(null)
   const [coursePaths, setCoursePaths] =
     React.useState<HomeCourseCard[]>(initialCoursePaths)
   const [coursePathsReady, setCoursePathsReady] = React.useState(
@@ -250,19 +261,31 @@ export default function AllCoursesPage({
       router.query.subjects as string | string[] | undefined
     )
     const urlView = parseViewParam(router.query.view)
+    const urlTopic =
+      urlView === 'learning-paths'
+        ? parseLearningPathTopicId(router.query.topic)
+        : null
 
     setQuery((current) => (current === urlQuery ? current : urlQuery))
     setActiveSubjects((current) =>
       sameSubjects(current, urlSubjects) ? current : urlSubjects
     )
+    setActiveTopic((current) => (current === urlTopic ? current : urlTopic))
     setView((current) => (current === urlView ? current : urlView))
-  }, [router.isReady, router.query.q, router.query.subjects, router.query.view])
+  }, [
+    router.isReady,
+    router.query.q,
+    router.query.subjects,
+    router.query.topic,
+    router.query.view
+  ])
 
   const updateUrl = React.useCallback(
     (
       nextQuery: string,
       nextSubjects: HomeSubject[],
-      nextView: AllCoursesView
+      nextView: AllCoursesView,
+      nextTopic: LearningPathTopicId | null
     ) => {
       if (!router.isReady) return
 
@@ -273,12 +296,11 @@ export default function AllCoursesPage({
         nextRouteQuery.q = trimmedQuery
       }
 
-      if (nextSubjects.length > 0) {
-        nextRouteQuery.subjects = nextSubjects.join(',')
-      }
-
       if (nextView === 'learning-paths') {
         nextRouteQuery.view = 'learning-paths'
+        if (nextTopic) nextRouteQuery.topic = nextTopic
+      } else if (nextSubjects.length > 0) {
+        nextRouteQuery.subjects = nextSubjects.join(',')
       }
 
       void router.replace(
@@ -294,15 +316,20 @@ export default function AllCoursesPage({
   )
 
   const handleSearchSubmit = React.useCallback(() => {
-    updateUrl(query, activeSubjects, view)
-  }, [activeSubjects, query, updateUrl, view])
+    updateUrl(query, activeSubjects, view, activeTopic)
+  }, [activeSubjects, activeTopic, query, updateUrl, view])
 
   const handleViewChange = React.useCallback(
     (nextView: AllCoursesView) => {
       setView(nextView)
-      updateUrl(query, activeSubjects, nextView)
+      if (nextView === 'learning-paths') {
+        updateUrl(query, [], nextView, activeTopic)
+        return
+      }
+      setActiveTopic(null)
+      updateUrl(query, activeSubjects, nextView, null)
     },
-    [activeSubjects, query, updateUrl]
+    [activeSubjects, activeTopic, query, updateUrl]
   )
 
   const handleSubjectToggle = React.useCallback(
@@ -316,11 +343,22 @@ export default function AllCoursesPage({
           : [...current, typedSubject]
         const ordered = SUBJECT_OPTIONS.filter((item) => next.includes(item))
 
-        updateUrl(query, ordered, view)
+        updateUrl(query, ordered, view, null)
         return ordered
       })
     },
     [query, updateUrl, view]
+  )
+
+  const handleTopicToggle = React.useCallback(
+    (topic: LearningPathTopicId) => {
+      setActiveTopic((current) => {
+        const next = current === topic ? null : topic
+        updateUrl(query, [], 'learning-paths', next)
+        return next
+      })
+    },
+    [query, updateUrl]
   )
 
   const filteredCourses = React.useMemo(() => {
@@ -369,13 +407,21 @@ export default function AllCoursesPage({
 
   const filteredLearningPaths = React.useMemo(() => {
     const needle = query.trim().toLowerCase()
-    if (!needle) return learningPaths
     return learningPaths.filter((path) => {
+      const matchesTopic =
+        activeTopic == null ||
+        learningPathTopics({
+          slug: learningPathCardSlug(path),
+          title: path.title,
+          summary: path.description
+        }).includes(activeTopic)
+      if (!matchesTopic) return false
+      if (!needle) return true
       const searchable =
         `${path.title} ${path.description} ${path.meta}`.toLowerCase()
       return searchable.includes(needle)
     })
-  }, [learningPaths, query])
+  }, [activeTopic, learningPaths, query])
 
   return (
     <>
@@ -422,9 +468,11 @@ export default function AllCoursesPage({
             query={query}
             view={view}
             activeSubjects={activeSubjects}
+            activeTopic={activeTopic}
             onQueryChange={setQuery}
             onViewChange={handleViewChange}
             onSubjectToggle={handleSubjectToggle}
+            onTopicToggle={handleTopicToggle}
             onSearchSubmit={handleSearchSubmit}
           />
           <AllCoursesNewGridSection
@@ -435,6 +483,7 @@ export default function AllCoursesPage({
             coursePathQuery={query.trim()}
             learningPaths={filteredLearningPaths}
             learningPathsReady={learningPathsReady}
+            topicActive={Boolean(activeTopic)}
           />
         </section>
         <HomeFooterSection />

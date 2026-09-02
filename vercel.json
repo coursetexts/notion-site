@@ -1,0 +1,8 @@
+{
+  "crons": [],
+  "functions": {
+    "pages/api/cron/rebuild-knowledge-graph.ts": {
+      "maxDuration": 60
+    }
+  }
+}

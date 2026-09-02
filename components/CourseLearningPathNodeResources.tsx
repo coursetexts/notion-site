@@ -1,15 +1,18 @@
 import * as React from 'react'
 
+import { pathResourceReportId } from '@/lib/content-reports'
 import {
   COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS,
   type CourseLearningPathTopicResource,
   type CourseLearningPathTopicResourceKind
 } from '@/lib/course-learning-path-types'
+import { learningPathHref } from '@/lib/learning-path-bookmark-link'
 
 import styles from './CourseLearningPath.module.css'
 import { CourseLearningPathSectionToggle } from './CourseLearningPathLinkSection'
 import { PlayIcon } from './CourseLearningPathSyllabusNav'
 import { FormSelect } from './FormSelect'
+import { ReportButton, reportHoverTargetClass } from './ReportButton'
 
 const EMPTY_DRAFT = {
   title: '',
@@ -65,6 +68,8 @@ interface CourseLearningPathNodeResourcesProps {
   dbBacked?: boolean
   signedIn?: boolean
   onSignIn?: () => void
+  pathSlug?: string
+  pathTitle?: string
   onAdd?: (input: CourseLearningPathTopicResourceInput) => Promise<boolean>
   onUpdate?: (
     input: CourseLearningPathTopicResourceInput & { resourceId: string }
@@ -78,6 +83,8 @@ export function CourseLearningPathNodeResources({
   dbBacked = false,
   signedIn = false,
   onSignIn,
+  pathSlug,
+  pathTitle,
   onAdd,
   onUpdate
 }: CourseLearningPathNodeResourcesProps) {
@@ -89,9 +96,7 @@ export function CourseLearningPathNodeResources({
   const [submitting, setSubmitting] = React.useState(false)
 
   const formOpen = adding || Boolean(editingId)
-  const maxPlacement = editingId
-    ? Math.max(items.length, 1)
-    : items.length + 1
+  const maxPlacement = editingId ? Math.max(items.length, 1) : items.length + 1
   const editingResource = editingId
     ? items.find((item) => item.id === editingId)
     : undefined
@@ -246,8 +251,8 @@ export function CourseLearningPathNodeResources({
         <div className={styles.videosHeaderActions}>
           {items.length > 0 ? (
             <span className={styles.videosMeta}>
-              {items.length} {items.length === 1 ? 'resource' : 'resources'} · in
-              order
+              {items.length} {items.length === 1 ? 'resource' : 'resources'} ·
+              in order
             </span>
           ) : null}
           <button
@@ -283,8 +288,8 @@ export function CourseLearningPathNodeResources({
         <div className={styles.topicResourcesBody}>
           {items.length > 0 ? (
             <p className={styles.topicResourcesLead}>
-              {items.length} {items.length === 1 ? 'resource' : 'resources'} · in
-              order
+              {items.length} {items.length === 1 ? 'resource' : 'resources'} ·
+              in order
             </p>
           ) : (
             <p className={styles.topicResourcesEmpty}>
@@ -311,7 +316,9 @@ export function CourseLearningPathNodeResources({
                 return (
                   <li key={resource.id}>
                     <div
-                      className={`${styles.topicResource}${
+                      className={`${
+                        styles.topicResource
+                      } ${reportHoverTargetClass}${
                         editingId === resource.id
                           ? ` ${styles.topicResourceEditing}`
                           : ''
@@ -325,14 +332,33 @@ export function CourseLearningPathNodeResources({
                           <p className={styles.topicResourceKind}>
                             {resource.kind}
                           </p>
-                          <button
-                            type='button'
-                            className={styles.topicResourceEditBtn}
-                            onClick={() => openEdit(resource)}
-                            aria-label='Edit'
-                          >
-                            <ResourceEditPencilIcon />
-                          </button>
+                          <div className={styles.topicResourceMetaActions}>
+                            {pathSlug ? (
+                              <ReportButton
+                                target={{
+                                  type: 'resource',
+                                  id: pathResourceReportId({
+                                    slug: pathSlug,
+                                    nodeId,
+                                    resourceId: resource.id
+                                  }),
+                                  url: learningPathHref(pathSlug),
+                                  title: pathTitle
+                                    ? `${resource.title} — ${pathTitle}`
+                                    : resource.title,
+                                  snippet: resource.why || resource.passage
+                                }}
+                              />
+                            ) : null}
+                            <button
+                              type='button'
+                              className={styles.topicResourceEditBtn}
+                              onClick={() => openEdit(resource)}
+                              aria-label='Edit'
+                            >
+                              <ResourceEditPencilIcon />
+                            </button>
+                          </div>
                         </div>
                         {title}
                         {resource.passage ? (
@@ -477,12 +503,14 @@ export function CourseLearningPathNodeResources({
                     {items.length === 0
                       ? ' (first resource)'
                       : editingId
-                        ? ` · current ${editingResource?.position ?? ''}`
-                        : ` · blank = end (${maxPlacement})`}
+                      ? ` · current ${editingResource?.position ?? ''}`
+                      : ` · blank = end (${maxPlacement})`}
                   </span>
                 </span>
               </label>
-              {formError ? <p className={styles.formError}>{formError}</p> : null}
+              {formError ? (
+                <p className={styles.formError}>{formError}</p>
+              ) : null}
               <div className={styles.topicResourceFormActions}>
                 <button
                   type='button'
@@ -501,8 +529,8 @@ export function CourseLearningPathNodeResources({
                   {submitting
                     ? 'Saving…'
                     : editingId
-                      ? 'Save changes'
-                      : 'Save resource'}
+                    ? 'Save changes'
+                    : 'Save resource'}
                 </button>
               </div>
             </form>

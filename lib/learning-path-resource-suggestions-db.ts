@@ -21,6 +21,11 @@ const RESOURCE_KINDS: LearningPathResourceKind[] = [
   'exercise'
 ]
 
+const SUGGESTION_STATUSES = ['pending', 'accepted', 'declined'] as const
+
+export type LearningPathResourceSuggestionStatus =
+  (typeof SUGGESTION_STATUSES)[number]
+
 export type LearningPathResourceSuggestion = {
   id: string
   pathId: string
@@ -32,6 +37,9 @@ export type LearningPathResourceSuggestion = {
   passage: string
   why: string
   sequence?: number
+  createdAt?: string
+  status: LearningPathResourceSuggestionStatus
+  respondedAt?: string | null
 }
 
 type SuggestionInput = {
@@ -45,6 +53,12 @@ type SuggestionInput = {
   sequence?: number
 }
 
+const SUGGESTION_COLUMNS =
+  'id, path_id, node_id, user_id, kind, title, href, passage, why, sequence, created_at, status, responded_at'
+
+const SUGGESTION_COLUMNS_MINIMAL =
+  'id, path_id, node_id, user_id, kind, title, href, passage, why, sequence'
+
 function isUuid(id: string | null | undefined): id is string {
   return Boolean(id && UUID_RE.test(id))
 }
@@ -57,6 +71,16 @@ function parseKind(value: unknown): LearningPathResourceKind {
     return value as LearningPathResourceKind
   }
   return 'article'
+}
+
+function parseStatus(value: unknown): LearningPathResourceSuggestionStatus {
+  if (
+    typeof value === 'string' &&
+    SUGGESTION_STATUSES.includes(value as LearningPathResourceSuggestionStatus)
+  ) {
+    return value as LearningPathResourceSuggestionStatus
+  }
+  return 'pending'
 }
 
 function readLocalSuggestions(): LearningPathResourceSuggestion[] {
@@ -89,7 +113,12 @@ function readLocalSuggestions(): LearningPathResourceSuggestion[] {
           passage: typeof item.passage === 'string' ? item.passage : '',
           why: typeof item.why === 'string' ? item.why : '',
           sequence:
-            typeof item.sequence === 'number' ? item.sequence : undefined
+            typeof item.sequence === 'number' ? item.sequence : undefined,
+          createdAt:
+            typeof item.createdAt === 'string' ? item.createdAt : undefined,
+          status: parseStatus(item.status),
+          respondedAt:
+            typeof item.respondedAt === 'string' ? item.respondedAt : null
         }
       ]
     })
@@ -114,6 +143,9 @@ function rowFromDb(row: {
   passage: string | null
   why: string | null
   sequence: number | null
+  created_at?: string | null
+  status?: string | null
+  responded_at?: string | null
 }): LearningPathResourceSuggestion {
   return {
     id: row.id,
@@ -125,8 +157,33 @@ function rowFromDb(row: {
     href: row.href || undefined,
     passage: row.passage ?? '',
     why: row.why ?? '',
-    sequence: row.sequence ?? undefined
+    sequence: row.sequence ?? undefined,
+    createdAt: row.created_at ?? undefined,
+    status: parseStatus(row.status),
+    respondedAt: row.responded_at ?? null
   }
+}
+
+function asDbRow(row: unknown) {
+  return row as {
+    id: string
+    path_id: string
+    node_id: string
+    user_id: string
+    kind: string
+    title: string
+    href: string | null
+    passage: string | null
+    why: string | null
+    sequence: number | null
+    created_at?: string | null
+    status?: string | null
+    responded_at?: string | null
+  }
+}
+
+function isPending(row: LearningPathResourceSuggestion) {
+  return row.status === 'pending'
 }
 
 async function currentUser() {
@@ -141,35 +198,33 @@ async function currentUser() {
 export async function listLearningPathResourceSuggestions(
   pathId: string
 ): Promise<LearningPathResourceSuggestion[]> {
-  const local = readLocalSuggestions().filter((row) => row.pathId === pathId)
+  const local = readLocalSuggestions().filter(
+    (row) => row.pathId === pathId && isPending(row)
+  )
   if (!isUuid(pathId)) return local
   const { supabase } = await currentUser()
   if (!supabase) return local
-  const { data, error } = await supabase
+  const first = await supabase
     .from('learning_path_resource_suggestions')
-    .select(
-      'id, path_id, node_id, user_id, kind, title, href, passage, why, sequence'
-    )
+    .select(SUGGESTION_COLUMNS)
     .eq('path_id', pathId)
     .order('created_at', { ascending: true })
+  let data: unknown[] | null = first.data
+  let error = first.error
+  if (error) {
+    const retry = await supabase
+      .from('learning_path_resource_suggestions')
+      .select(SUGGESTION_COLUMNS_MINIMAL)
+      .eq('path_id', pathId)
+      .order('created_at', { ascending: true })
+    data = retry.data
+    error = retry.error
+  }
   if (error || !Array.isArray(data)) return local
-  const rows = data.map((row) =>
-    rowFromDb(
-      row as {
-        id: string
-        path_id: string
-        node_id: string
-        user_id: string
-        kind: string
-        title: string
-        href: string | null
-        passage: string | null
-        why: string | null
-        sequence: number | null
-      }
-    )
+  const rows = data.map((row) => rowFromDb(asDbRow(row))).filter(isPending)
+  const others = readLocalSuggestions().filter(
+    (row) => row.pathId !== pathId || !isPending(row)
   )
-  const others = readLocalSuggestions().filter((row) => row.pathId !== pathId)
   writeLocalSuggestions([...others, ...rows])
   return rows
 }
@@ -191,7 +246,9 @@ export async function addLearningPathResourceSuggestion(
     href: input.href?.trim() || undefined,
     passage: input.passage.trim(),
     why: input.why.trim(),
-    sequence: input.sequence
+    sequence: input.sequence,
+    createdAt: new Date().toISOString(),
+    status: 'pending'
   }
 
   if (!supabase || !userId || !isUuid(input.pathId)) {
@@ -212,9 +269,7 @@ export async function addLearningPathResourceSuggestion(
       why: localRow.why,
       sequence: input.sequence ?? null
     })
-    .select(
-      'id, path_id, node_id, user_id, kind, title, href, passage, why, sequence'
-    )
+    .select(SUGGESTION_COLUMNS_MINIMAL)
     .maybeSingle()
 
   if (error || !data) {
@@ -223,25 +278,46 @@ export async function addLearningPathResourceSuggestion(
     return localRow
   }
 
-  const row = rowFromDb(
-    data as {
-      id: string
-      path_id: string
-      node_id: string
-      user_id: string
-      kind: string
-      title: string
-      href: string | null
-      passage: string | null
-      why: string | null
-      sequence: number | null
-    }
-  )
+  const row = rowFromDb(asDbRow(data))
   writeLocalSuggestions([
     ...readLocalSuggestions().filter((item) => item.id !== row.id),
     row
   ])
   return row
+}
+
+export async function respondToLearningPathResourceSuggestion(
+  suggestionId: string,
+  pathId: string,
+  decision: 'accepted' | 'declined'
+): Promise<boolean> {
+  const respondedAt = new Date().toISOString()
+  writeLocalSuggestions(
+    readLocalSuggestions().map((row) =>
+      row.id === suggestionId
+        ? { ...row, status: decision, respondedAt }
+        : row
+    )
+  )
+  if (!isUuid(suggestionId) || !isUuid(pathId)) return true
+  const { supabase, userId } = await currentUser()
+  if (!supabase || !userId) return true
+  const { error } = await supabase
+    .from('learning_path_resource_suggestions')
+    .update({ status: decision, responded_at: respondedAt })
+    .eq('id', suggestionId)
+    .eq('path_id', pathId)
+  if (!error) return true
+  const { error: deleteError } = await supabase
+    .from('learning_path_resource_suggestions')
+    .delete()
+    .eq('id', suggestionId)
+    .eq('path_id', pathId)
+  if (deleteError) {
+    console.error('respondToLearningPathResourceSuggestion failed', error)
+    return false
+  }
+  return true
 }
 
 export async function deleteLearningPathResourceSuggestion(

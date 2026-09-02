@@ -128,7 +128,8 @@ export function HomeHero({
         </h1>
 
         <p className={styles.description}>
-          Learning paths with high-quality materials and structure to help you <br />actually finish what you set out to do.
+          Learning paths with high-quality materials and structure to help you <br />actually finish what you set to learn.
+          {/* or set out to do ?*/}
         </p>
 
         <form

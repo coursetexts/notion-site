@@ -49,23 +49,25 @@
 }
 
 .degreesPromo,
-.fieldAtlasPromo {
+.createPathPromo {
   grid-column: 3;
   grid-row: 1 / span 2;
 }
 
 .fieldAtlasPromo {
+  grid-column: 3;
+  grid-row: 3 / span 2;
   background: #006f9e;
 }
 
 .jobSkillsPromo {
   grid-column: 3;
-  grid-row: 3 / span 2;
+  grid-row: 5 / span 2;
 }
 
 .lifeSkillsPromo {
   grid-column: 3;
-  grid-row: 5 / span 2;
+  grid-row: 7 / span 2;
   background: #000d1a;
 }
 
@@ -98,10 +100,12 @@
   margin-top: 20px;
   min-height: 40px;
   padding: 10px 18px;
+  appearance: none;
   border: none;
   border-radius: 6px;
   background: #f8f7f4;
   color: #2c1a0c;
+  text-align: left;
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 500;
   font-size: 13px;
@@ -152,50 +156,19 @@
   color: #37352f;
 }
 
-.emptyCreateButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 12px 22px;
-  border: none;
-  border-radius: 6px;
-  background: #1a1a1a;
-  color: #ffffff;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 1.2;
-  letter-spacing: -0.0004em;
-  cursor: pointer;
-  box-sizing: border-box;
-  transition:
-    background 200ms ease,
-    opacity 200ms ease;
-}
-
-.emptyCreateButton:hover,
-.emptyCreateButton:focus-visible {
-  background: #2c2c2c;
-  opacity: 0.96;
-}
-
-.emptyCreateButton:focus-visible {
-  outline: 2px solid #0089c4;
-  outline-offset: 2px;
-}
-
 .promoRow {
   margin-top: 48px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 20px;
+  row-gap: 20px;
 }
 
 .sectionDivider + .promoRow {
   margin-top: 32px;
 }
 
+.promoRow .createPathPromo,
 .promoRow .fieldAtlasPromo,
 .promoRow .jobSkillsPromo,
 .promoRow .lifeSkillsPromo {
@@ -207,6 +180,7 @@
 
 @media (max-width: 1100px) {
   .degreesPromo,
+  .createPathPromo,
   .fieldAtlasPromo,
   .jobSkillsPromo,
   .lifeSkillsPromo {
@@ -222,6 +196,7 @@
 
 @media (max-width: 640px) {
   .degreesPromo,
+  .createPathPromo,
   .fieldAtlasPromo,
   .jobSkillsPromo,
   .lifeSkillsPromo {

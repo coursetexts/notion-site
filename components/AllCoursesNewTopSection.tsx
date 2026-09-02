@@ -1,7 +1,12 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { CreateLearningPathModal } from './CreateLearningPathModal'
+import {
+  LEARNING_PATH_TOPICS,
+  type LearningPathTopicId
+} from '@/lib/learning-path-topic'
+
+import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 import styles from './AllCoursesNewTopSection.module.css'
 
 const SUBJECTS = [
@@ -46,9 +51,11 @@ type AllCoursesNewTopSectionProps = {
   query: string
   view: AllCoursesView
   activeSubjects: string[]
+  activeTopic?: LearningPathTopicId | null
   onQueryChange: (value: string) => void
   onViewChange: (view: AllCoursesView) => void
   onSubjectToggle: (subject: string) => void
+  onTopicToggle?: (topic: LearningPathTopicId) => void
   onSearchSubmit: () => void
 }
 
@@ -175,17 +182,18 @@ export function AllCoursesNewTopSection({
   query,
   view,
   activeSubjects,
+  activeTopic = null,
   onQueryChange,
   onViewChange,
   onSubjectToggle,
+  onTopicToggle,
   onSearchSubmit
 }: AllCoursesNewTopSectionProps) {
   const [isSearchPulse, setIsSearchPulse] = React.useState(false)
-  const [createOpen, setCreateOpen] = React.useState(false)
   const pulseTimeoutRef = React.useRef<number | null>(null)
   const submitFromButtonRef = React.useRef(false)
   const showCourseFilters = view === 'courses'
-  const closeCreate = React.useCallback(() => setCreateOpen(false), [])
+  const showPathFilters = view === 'learning-paths'
 
   React.useEffect(() => {
     return () => {
@@ -245,20 +253,6 @@ export function AllCoursesNewTopSection({
     <section className={styles.section}>
       <div className={styles.headingRow}>
         <CatalogViewSelect view={view} onViewChange={onViewChange} />
-        {view === 'learning-paths' ? (
-          <div className={styles.createPathCta}>
-            <p className={styles.createPathPrompt}>
-              Can&apos;t find what you&apos;re looking for?
-            </p>
-            <button
-              type='button'
-              className={styles.createPathButton}
-              onClick={() => setCreateOpen(true)}
-            >
-              Create your own learning path
-            </button>
-          </div>
-        ) : null}
       </div>
 
       <form
@@ -285,6 +279,32 @@ export function AllCoursesNewTopSection({
           Search
         </button>
       </form>
+
+      {showPathFilters ? (
+        <div className={`${styles.filtersRow} ${styles.pathFiltersRow}`}>
+          <div className={styles.subjectRow}>
+            {LEARNING_PATH_TOPICS.map((topic) => (
+              <button
+                key={topic.id}
+                type='button'
+                className={`${styles.subjectItem} ${
+                  activeTopic === topic.id ? styles.subjectItemActive : ''
+                }`}
+                onClick={() => onTopicToggle?.(topic.id)}
+                aria-pressed={activeTopic === topic.id}
+              >
+                <span className={styles.subjectIconWrap}>
+                  <LearningPathTopicIcon
+                    id={topic.id}
+                    className={styles.topicIcon}
+                  />
+                </span>
+                <span className={styles.subjectLabel}>{topic.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {showCourseFilters ? (
         <div className={styles.filtersRow}>
@@ -333,7 +353,6 @@ export function AllCoursesNewTopSection({
           </div>
         </div>
       ) : null}
-      <CreateLearningPathModal open={createOpen} onClose={closeCreate} />
     </section>
   )
 }

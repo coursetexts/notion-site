@@ -1,16 +1,22 @@
 import * as React from 'react'
 
 import {
+  COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   type CourseLearningPathResourceSection,
+  isCourseLearningPathKnowledgeSelection,
   isCourseLearningPathMentalMapSelection,
   isCourseLearningPathResourceSelection,
   isCourseLearningPathSyllabusSelection,
   resourcesForSection
 } from '@/lib/course-learning-path-resources'
+import {
+  isCourseLearningPathFinished,
+  knowledgeTopicItemsFromCourseLearningPath
+} from '@/lib/learning-path-knowledge'
 import type {
   CourseLearningPathData,
   CourseLearningPathNode
@@ -76,6 +82,18 @@ export function CourseLearningPathSyllabusNav({
   const showSyllabus =
     !searching || matchesQuery('Recommended Syllabus', query)
   const showMentalMap = !searching || matchesQuery('Mental Map', query)
+  const learnedTopics = React.useMemo(
+    () => knowledgeTopicItemsFromCourseLearningPath(course),
+    [course]
+  )
+  const pathFinished = isCourseLearningPathFinished(course, exploredIds)
+  const showKnowledge =
+    pathFinished &&
+    (!searching ||
+      matchesQuery('What you learned', query) ||
+      matchesQuery('knowledge', query) ||
+      matchesQuery('learned', query) ||
+      learnedTopics.some((topic) => matchesQuery(topic.label, query)))
   const matchingResourceSections = searching
     ? COURSE_LEARNING_PATH_RESOURCE_SECTIONS.filter(
         (section) =>
@@ -91,10 +109,12 @@ export function CourseLearningPathSyllabusNav({
   const resourceSelected = isCourseLearningPathResourceSelection(selectedId)
   const syllabusSelected = isCourseLearningPathSyllabusSelection(selectedId)
   const mentalMapSelected = isCourseLearningPathMentalMapSelection(selectedId)
+  const knowledgeSelected = isCourseLearningPathKnowledgeSelection(selectedId)
   const noMatches =
     searching &&
     !showSyllabus &&
     !showMentalMap &&
+    !showKnowledge &&
     !showResources &&
     filteredTopics.length === 0
 
@@ -261,6 +281,38 @@ export function CourseLearningPathSyllabusNav({
             ))}
           </ol>
         ) : null}
+      </div>
+      ) : null}
+
+      {showKnowledge ? (
+      <div className={styles.navPanelSection}>
+        <div
+          className={`${styles.navRow}${
+            knowledgeSelected ? ` ${styles.navRowSelected}` : ''
+          }`}
+          style={{ paddingLeft: 4 }}
+        >
+          <span className={styles.leafDot} aria-hidden>
+            <span className={styles.dot} />
+          </span>
+          <button
+            type='button'
+            onClick={() => onSelect(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)}
+            aria-current={knowledgeSelected ? 'true' : undefined}
+            className={styles.navSelect}
+          >
+            <span
+              className={`${styles.navTitle} ${styles.navTitleTopic}${
+                knowledgeSelected ? ` ${styles.navTitleSelected}` : ''
+              }`}
+            >
+              What you learned
+            </span>
+            {learnedTopics.length > 0 ? (
+              <span className={styles.videoCount}>{learnedTopics.length}</span>
+            ) : null}
+          </button>
+        </div>
       </div>
       ) : null}
     </nav>

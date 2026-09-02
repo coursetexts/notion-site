@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useAuthOptional } from '@/contexts/AuthContext'
+import { useFollowerIds } from '@/hooks/useFollowerIds'
 import { useFollowingIds } from '@/hooks/useFollowingIds'
 
 import { FollowCountDividerDot } from '@/components/FollowCountDividerDot'
@@ -15,6 +16,7 @@ import { ProfileInterestsPanel } from '@/components/ProfileInterestsPanel'
 import {
   ProfileCommunityLearningPathCard
 } from '@/components/ProfileLearningPathCard'
+import { ProfileKnowledgePanel } from '@/components/ProfileKnowledgePanel'
 import { ProfilePersonalLinksPanel } from '@/components/ProfilePersonalLinksPanel'
 import { BookmarkNotePreview } from '@/components/SiteNotesEditor'
 import {
@@ -41,6 +43,10 @@ import {
 } from '@/lib/follows'
 import { getProfileInterestsByUserId } from '@/lib/profile-interests-db'
 import {
+  type UserKnowledgeTopic,
+  listKnowledgeTopicsByUserId
+} from '@/lib/user-knowledge-topics-db'
+import {
   type ProfilePersonalLink,
   listPersonalLinksByUserId
 } from '@/lib/profile-personal-links-db'
@@ -58,6 +64,10 @@ import {
   listOwnedLearningPathsByUserId
 } from '@/lib/learning-path-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
+import {
+  followButtonLabel,
+  followRelationship
+} from '@/lib/follow-relationship'
 import { readStoredLearningPaths, type StoredLearningPath } from '@/lib/learning-path-seed'
 import {
   type LinkTag,
@@ -283,8 +293,11 @@ export default function PublicProfilePage() {
 
   const [profileInterestTags, setProfileInterestTags] = useState<string[]>([])
   const [mainTab, setMainTab] = useState<
-    'learning-path' | 'bookmarks' | 'activity'
+    'learning-path' | 'knowledge' | 'bookmarks' | 'activity'
   >('learning-path')
+  const [knowledgeTopics, setKnowledgeTopics] = useState<UserKnowledgeTopic[]>(
+    []
+  )
   const [pathsCoursesFilter, setPathsCoursesFilter] =
     useState<PathsCoursesFilter | null>(null)
   const showAllLearningCards = pathsCoursesFilter == null
@@ -310,6 +323,7 @@ export default function PublicProfilePage() {
     useState<ConnectionsTab>('following')
   const [rowFollowBusyId, setRowFollowBusyId] = useState<string | null>(null)
   const { followingIds, refresh: refreshFollowingIds } = useFollowingIds()
+  const { followerIds } = useFollowerIds()
 
   const [viewerResourceBookmarkIds, setViewerResourceBookmarkIds] = useState<
     Set<string>
@@ -453,7 +467,8 @@ export default function PublicProfilePage() {
         c,
         a,
         interestTags,
-        ownedPaths
+        ownedPaths,
+        knowledge
       ] = await Promise.all([
         getProfileByUserId(uid),
         currentUserId ? getFollowStatus(currentUserId, uid) : false,
@@ -468,13 +483,15 @@ export default function PublicProfilePage() {
         getCommentsByUser(uid),
         getAnnotationsByUser(uid),
         getProfileInterestsByUserId(uid),
-        listOwnedLearningPathsByUserId(uid, currentUserId === uid)
+        listOwnedLearningPathsByUserId(uid, currentUserId === uid),
+        listKnowledgeTopicsByUserId(uid)
       ])
       if (!p) {
         setProfile(null)
         setPersonalLinks([])
         setProfileLinkTags([])
         setCommunityLearningPaths([])
+        setKnowledgeTopics([])
         setNotFound(true)
         setLoading(false)
         return
@@ -492,6 +509,7 @@ export default function PublicProfilePage() {
       setComments(c)
       setAnnotations(a)
       setProfileInterestTags(interestTags)
+      setKnowledgeTopics(knowledge)
       setCommunityLearningPaths(
         await attachLearningPathKinds(
           mergeOwnedAndSavedLearningPaths({
@@ -710,7 +728,13 @@ export default function PublicProfilePage() {
                 onClick={handleFollowToggle}
                 disabled={followLoading}
               >
-                {followLoading ? '…' : isFollowing ? 'Following' : 'Follow'}
+                {followButtonLabel(
+                  followRelationship(
+                    isFollowing,
+                    userId ? followerIds.has(userId) : false
+                  ),
+                  followLoading
+                )}
               </button>
             )}
           </aside>
@@ -773,6 +797,10 @@ export default function PublicProfilePage() {
                           !!currentUserId && u.user_id !== currentUserId
                         const isFollowingRow = followingIds.has(u.user_id)
                         const busy = rowFollowBusyId === u.user_id
+                        const relationship = followRelationship(
+                          isFollowingRow,
+                          followerIds.has(u.user_id)
+                        )
                         return (
                           <li key={u.user_id} className={styles.userListItem}>
                             <a
@@ -816,11 +844,7 @@ export default function PublicProfilePage() {
                                   )
                                 }
                               >
-                                {busy
-                                  ? '…'
-                                  : isFollowingRow
-                                    ? 'Following'
-                                    : 'Follow'}
+                                {followButtonLabel(relationship, busy)}
                               </button>
                             ) : null}
                           </li>
@@ -839,6 +863,10 @@ export default function PublicProfilePage() {
                         !!currentUserId && u.user_id !== currentUserId
                       const isFollowingRow = followingIds.has(u.user_id)
                       const busy = rowFollowBusyId === u.user_id
+                      const relationship = followRelationship(
+                        isFollowingRow,
+                        followerIds.has(u.user_id)
+                      )
                       return (
                         <li key={u.user_id} className={styles.userListItem}>
                           <a
@@ -880,11 +908,7 @@ export default function PublicProfilePage() {
                                 void handleConnectionRowFollowToggle(u.user_id)
                               }
                             >
-                              {busy
-                                ? '…'
-                                : isFollowingRow
-                                  ? 'Following'
-                                  : 'Follow'}
+                              {followButtonLabel(relationship, busy)}
                             </button>
                           ) : null}
                         </li>
@@ -918,6 +942,19 @@ export default function PublicProfilePage() {
                   <button
                     type='button'
                     role='tab'
+                    aria-selected={mainTab === 'knowledge'}
+                    className={
+                      mainTab === 'knowledge'
+                        ? styles.primaryTabActive
+                        : styles.primaryTab
+                    }
+                    onClick={() => setMainTab('knowledge')}
+                  >
+                    Knowledge
+                  </button>
+                  <button
+                    type='button'
+                    role='tab'
                     aria-selected={mainTab === 'bookmarks'}
                     className={
                       mainTab === 'bookmarks'
@@ -942,6 +979,15 @@ export default function PublicProfilePage() {
                     Activity
                   </button>
                 </nav>
+
+                {mainTab === 'knowledge' && (
+                  <ProfileKnowledgePanel
+                    topics={knowledgeTopics}
+                    loading={loading}
+                    searchId='public-profile-knowledge-search'
+                    emptyMessage='No completed topics yet.'
+                  />
+                )}
 
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>

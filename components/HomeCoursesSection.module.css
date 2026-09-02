@@ -55,6 +55,43 @@
   opacity: 0.85;
 }
 
+.cta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  min-height: 36px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: -0.0004em;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background 200ms ease,
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: #2c2c2c;
+  opacity: 0.96;
+}
+
+.cta:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
+}
+
 .subjectGroup {
   margin-top: 52px;
   display: flex;
@@ -80,6 +117,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
+  row-gap: 12px;
 }
 
 .subjectItem {
@@ -332,7 +371,8 @@
 
 .viewAllBar {
   margin-top: 56px;
-  width: 100%;
+  margin-left: auto;
+  width: 50%;
   height: 58px;
   padding: 16px 12px;
   border-top: 1px solid var(--outline, #e6e6e6);

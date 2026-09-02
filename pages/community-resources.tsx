@@ -10,6 +10,10 @@ import { FormSelect } from '@/components/FormSelect'
 import { HomeFooterSection } from '@/components/HomeFooterSection'
 import { HomeHeader } from '@/components/HomeHeader'
 import {
+  ReportButton,
+  reportHoverTargetClass
+} from '@/components/ReportButton'
+import {
   type CommunityPageResource,
   RESOURCE_TYPES,
   type ResourceDbType,
@@ -21,6 +25,10 @@ import {
   type CommunitySearchHit,
   searchCommunity
 } from '@/lib/community-search-db'
+import {
+  communityResourceReportId,
+  snippetFromText
+} from '@/lib/content-reports'
 import { getCourseLearningPathHref } from '@/lib/undergraduate-degrees'
 
 import { useAuthOptional } from '../contexts/AuthContext'
@@ -774,7 +782,7 @@ export default function CommunityResourcesPage() {
                 {filtered.map((r) => (
                   <article
                     key={r.id}
-                    className={styles.row}
+                    className={`${styles.row} ${reportHoverTargetClass}`}
                     data-testid='resource-row'
                   >
                     <div className={styles.rowMeta}>
@@ -836,6 +844,15 @@ export default function CommunityResourcesPage() {
                             onVote={(value) => handleVote(r, value)}
                           />
                         </span>
+                        <ReportButton
+                          target={{
+                            type: 'resource',
+                            id: communityResourceReportId(r.id, r.kind),
+                            url: '/community-resources',
+                            title: r.title,
+                            snippet: snippetFromText(r.description)
+                          }}
+                        />
                       </span>
                     </div>
 
