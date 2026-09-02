@@ -2037,17 +2037,13 @@ create policy "Collaborators can update shared learning path data"
   on public.learning_paths for update
   using (
     auth.uid() is not null
-    and (
-      visibility = 'collaborative'
-      or (kind = 'course' and is_catalog = true)
-    )
+    and kind = 'course'
+    and is_catalog = true
   )
   with check (
     auth.uid() is not null
-    and (
-      visibility = 'collaborative'
-      or (kind = 'course' and is_catalog = true)
-    )
+    and kind = 'course'
+    and is_catalog = true
   );
 
 create or replace function public.learning_paths_collaborator_guard()
@@ -2070,6 +2066,10 @@ begin
      or old.goal is distinct from new.goal
      or old.summary is distinct from new.summary then
     raise exception 'Only the owner can change learning path metadata';
+  end if;
+  if old.data is distinct from new.data
+     and not (old.kind = 'course' and old.is_catalog = true) then
+    raise exception 'Only the owner can change the learning path outline';
   end if;
   return new;
 end;

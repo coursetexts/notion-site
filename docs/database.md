@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030` and `034`–`038`, with `rating` already 0–100). Existing DBs that already ran an older 1–5 `038` should also apply `039`.
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline.
 
 ## Table groups
 
@@ -375,7 +375,7 @@ erDiagram
 | `is_private`                   | Kept in sync with `visibility = 'private'` for one release.                                                                                                                                                    |
 | `kind`                         | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet.                                                                                    |
 | `is_filled`                    | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **courses** view of `/all-courses` lists only filled course paths.           |
-| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course).                                                                                                                                          |
+| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course). Community/research outline is owner-only; catalog course syllabus JSON stays writable for signed-in users. Existing DBs: apply `040_learning_path_outline_owner_only.sql`. |
 | `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
 | `learning_path_pins`           | Per-user pinned **course** syllabi.                                                                                                                                                                            |
 | `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
@@ -507,7 +507,7 @@ erDiagram
 - **Owner write** (`auth.uid() = user_id` / `owner_id`).
 - **Courses** (Notion / synthetic refs): anyone can insert/update (no PII; created on first visit).
 - **Curated syllabus tree + node resources**: public read; any authenticated user can mutate (curation left open).
-- **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata; signed-in users may patch `data` on collaborative paths and catalog courses.
+- **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata and community/research `data` (outline). Signed-in users may patch `data` only on catalog courses. Collaborative visibility does not grant outline edits.
 - **`learning_path_user_state` / `course_notes` / `learning_path_pins` / `learning_path_commitments`**: owner only.
 - **`user_knowledge_topics`**: public read; owner insert/delete.
 - **`knowledge_topics` / `knowledge_topic_edges`**: public read; writes via service role (ingest API; daily LLM cron is off).

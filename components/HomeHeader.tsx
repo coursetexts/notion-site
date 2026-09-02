@@ -508,7 +508,7 @@ export function HomeHeader({
             </div>
 
             <div className={styles.headerEnd}>
-              {isLoggedIn && !isOwnProfilePage && <PinnedCoursesNav />}
+              {isLoggedIn && <PinnedCoursesNav />}
               <div className={styles.headerDesktopOnly}>
                 <HeaderAccountAction
                   isLoggedIn={isLoggedIn}

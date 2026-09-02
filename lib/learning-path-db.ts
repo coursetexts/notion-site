@@ -558,13 +558,17 @@ export async function upsertOwnedLearningPath(
   path: LearningPathData,
   options?: { kind?: LearningPathKind }
 ): Promise<string | null> {
-  saveStoredLearningPath(path, { kind: options?.kind })
   if (isCatalogLearningPathSlug(path.slug)) {
     const existing = await getLearningPathRecord(path.slug)
     return existing?.id ?? null
   }
 
   const { supabase, userId } = await currentUserId()
+  const record = supabase ? await getLearningPathRecord(path.slug) : null
+  if (record?.isCatalog) return record.id ?? null
+  if (record?.ownerId && record.ownerId !== userId) return null
+
+  saveStoredLearningPath(path, { kind: options?.kind })
   if (!supabase || !userId) return path.id ?? null
 
   const payload = {
@@ -575,9 +579,7 @@ export async function upsertOwnedLearningPath(
   }
 
   const existing =
-    path.id && !path.id.startsWith('path-')
-      ? path.id
-      : (await getLearningPathRecord(path.slug))?.id
+    path.id && !path.id.startsWith('path-') ? path.id : record?.id
 
   if (existing) {
     const { data, error } = await supabase

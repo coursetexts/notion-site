@@ -23,7 +23,7 @@ Official professor courses from Notion are **not** a `kind` yet. They stay at `/
 | `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
 | `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Courses. Atlas callouts; empty search opens the create modal. |
 | `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here.                          |
-| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline.                                                                    |
+| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. Visitors see **Published Publicly** / **Published Collaboratively** on the date line; only the owner can **Edit this node** / **Add to path**. |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
 
@@ -108,14 +108,16 @@ User overlay (`learning_path_user_state`):
 
 Replaces the old boolean `is_private`. The column remains, kept in sync (`is_private = visibility = 'private'`).
 
-| Value           | Read       | Add / reorder resources    | Upvote resources   |
-| --------------- | ---------- | -------------------------- | ------------------ |
-| `private`       | Owner only | Owner                      | No                 |
-| `public`        | Anyone     | Owner only                 | Any signed-in user |
-| `collaborative` | Anyone     | Owner + any signed-in user | Any signed-in user |
+| Value           | Read       | Outline (add / edit / delete nodes) | Add / reorder resources                                      | Upvote resources   |
+| --------------- | ---------- | ----------------------------------- | ------------------------------------------------------------ | ------------------ |
+| `private`       | Owner only | Owner                               | Owner                                                        | No                 |
+| `public`        | Anyone     | Owner                               | Owner                                                        | Any signed-in user |
+| `collaborative` | Anyone     | Owner                               | Owner (official list); any signed-in user may suggest        | Any signed-in user |
 
 - Catalog community / research / course rows: `visibility = public`, `owner_id` null.
 - New user paths: `visibility = private` until the owner changes it. Going back to private is always allowed.
+- Visitors (not the owner) see the mode on the hero date: **Published Publicly · Aug 2026** or **Published Collaboratively · Aug 2026**. The owner’s date line stays **Published**; they already have the Private / Public / Collab control. Catalog course syllabi stay **Published** (no public/collab toggle).
+- Outline edits (**Edit this node**, **Add to path**, delete node) are owner-only, including on collaborative paths. List footer and graph popout hide those controls for everyone else. Signed-out local drafts still count as the owner. Apply `040_learning_path_outline_owner_only.sql` on existing databases.
 
 ### Publishing (private → public / collab)
 
@@ -131,7 +133,7 @@ If the bar is not met, the visibility control stays Private and **Finish topics 
 When the switch succeeds, the owner’s overlay resources are copied onto `learning_paths.data` so visitors see the same list. New nodes start with a blank why. AI fill still counts when it wrote a real reason.
 
 - RLS `SELECT`: `is_catalog OR visibility in ('public','collaborative') OR owner_id = auth.uid()`.
-- RLS `UPDATE`: owner as before; signed-in users may update `data` when `visibility = collaborative` **or** (`kind = 'course' AND is_catalog`). A trigger blocks collaborators from changing slug/owner/kind/visibility/title/goal/summary.
+- RLS `UPDATE`: owner as before; signed-in users may update `data` only when `kind = 'course' AND is_catalog` (syllabus resources). Collaborative community/research outlines are owner-only. A trigger blocks non-owners from changing slug/owner/kind/visibility/title/goal/summary, and from changing `data` except on catalog courses.
 
 Course catalog pages have no privacy toggle. Owned community/research paths use a three-way control.
 

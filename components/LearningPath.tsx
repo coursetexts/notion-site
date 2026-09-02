@@ -1255,6 +1255,7 @@ function CommunityLearningPath({
   }
 
   function persistGraph(next: LearningPathData) {
+    if (!canEditPathStructure) return
     void upsertOwnedLearningPath(next).then((id) => {
       if (id) setPathRowId(id)
     })
@@ -1438,6 +1439,13 @@ function CommunityLearningPath({
     }
     return false
   }, [slug, currentUserId, pathOwnerId])
+
+  const canEditPathStructure =
+    isOwnPath ||
+    (!currentUserId &&
+      !pathOwnerId &&
+      !isCatalogLearningPathSlug(slug) &&
+      readStoredLearningPaths().some((item) => item.slug === slug))
 
   const canVoteOnResources =
     pathVisibility === 'public' || pathVisibility === 'collaborative'
@@ -1748,6 +1756,7 @@ function CommunityLearningPath({
   }
 
   function openAdd(placement: 'child' | 'after') {
+    if (!canEditPathStructure) return
     setAddPlacement(placement)
     setAddLabel('')
     setAddOpen(true)
@@ -1758,11 +1767,13 @@ function CommunityLearningPath({
   }
 
   function addAfterSelected() {
+    if (!canEditPathStructure) return
     if (!(selected ?? goalNode)) return
     openAdd('after')
   }
 
   function openEdit() {
+    if (!canEditPathStructure) return
     const node = selected ?? goalNode
     if (!node) return
     setEditLabel(node.label)
@@ -1773,6 +1784,7 @@ function CommunityLearningPath({
 
   function saveEdit(event: React.FormEvent) {
     event.preventDefault()
+    if (!canEditPathStructure) return
     const node = selected ?? goalNode
     const label = editLabel.trim()
     if (!label || !node) return
@@ -1806,6 +1818,7 @@ function CommunityLearningPath({
   }
 
   function deleteSelected() {
+    if (!canEditPathStructure) return
     if (!selected || selected.kind === 'goal') return
     const fallback =
       !selectedParent || selectedParent.kind === 'goal'
@@ -1869,6 +1882,7 @@ function CommunityLearningPath({
 
   function addNode(event: React.FormEvent) {
     event.preventDefault()
+    if (!canEditPathStructure) return
     const label = addLabel.trim()
     const target = selected ?? goalNode
     if (!label || !target) return
@@ -2531,7 +2545,14 @@ function CommunityLearningPath({
               onSave={savePathSummary}
             />
           }
-          schoolDate={formatHeroPublishedDate(path.createdAt)}
+          schoolDate={formatHeroPublishedDate(
+            path.createdAt,
+            !isOwnPath &&
+              (pathVisibility === 'public' ||
+                pathVisibility === 'collaborative')
+              ? { visibility: pathVisibility }
+              : undefined
+          )}
           reportTarget={{
             type: 'learning_path',
             id: pathRowId || path.slug,
@@ -2677,12 +2698,14 @@ function CommunityLearningPath({
               </>
             }
             footer={
-              <PathStageActions
-                inline
-                onEdit={openEdit}
-                onAdd={addToPathFromSelection}
-                underLabel={editorNode.label}
-              />
+              canEditPathStructure ? (
+                <PathStageActions
+                  inline
+                  onEdit={openEdit}
+                  onAdd={addToPathFromSelection}
+                  underLabel={editorNode.label}
+                />
+              ) : undefined
             }
             graph={
               <div
@@ -2785,7 +2808,7 @@ function CommunityLearningPath({
                             <span className={styles.nodeSub}>{node.sub}</span>
                           ) : null}
                         </button>
-                        {isSelected ? (
+                        {isSelected && canEditPathStructure ? (
                           <button
                             type='button'
                             className={`${styles.nodePlusBtn} ${styles.nodeAfterBtn}`}
@@ -2800,7 +2823,7 @@ function CommunityLearningPath({
                             <PlusIcon />
                           </button>
                         ) : null}
-                        {isSelected ? (
+                        {isSelected && canEditPathStructure ? (
                           <PathStageActions
                             popout
                             onEdit={openEdit}
@@ -3402,7 +3425,7 @@ function CommunityLearningPath({
         </div>
       ) : null}
 
-      {addOpen ? (
+      {addOpen && canEditPathStructure ? (
         <div
           className={styles.backdrop}
           role='presentation'
@@ -3475,7 +3498,7 @@ function CommunityLearningPath({
         </div>
       ) : null}
 
-      {editOpen ? (
+      {editOpen && canEditPathStructure ? (
         <div
           className={styles.backdrop}
           role='presentation'
@@ -3568,7 +3591,10 @@ function CommunityLearningPath({
         </div>
       ) : null}
 
-      {deleteOpen && selected && selected.kind !== 'goal' ? (
+      {deleteOpen &&
+      canEditPathStructure &&
+      selected &&
+      selected.kind !== 'goal' ? (
         <div
           className={styles.backdrop}
           role='presentation'

@@ -3,7 +3,7 @@
 These SQL files recreate the **current** app schema for a brand-new Supabase project.
 They collapse historical migrations into a clean final state (no drop/recreate churn).
 
-Run them **in numeric order** in the Supabase SQL Editor (or via CLI). On an empty database, prefer **`000_complete_schema.sql` once** (includes `001`–`030`). Do **not** also run `001`–`030` on the same empty database.
+Run them **in numeric order** in the Supabase SQL Editor (or via CLI). On an empty database, prefer **`000_complete_schema.sql` once** (includes `001`–`030`, `034`–`038`, and `040`). Do **not** also run `001`–`030` on the same empty database.
 
 ## 1. Create the project
 
@@ -91,10 +91,11 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `037_content_reports.sql` | User reports for annotations, comments, learning paths, and uploaded resources. `/reports` dashboard (open while testing) |
 | `038_learning_path_ratings.sql` | Topic and path/course enjoyment % (0–100) plus learner-entered duration after marking explored / finishing |
 | `039_learning_path_ratings_percent.sql` | **Existing DBs only:** widen `learning_path_ratings.rating` from 1–5 to 0–100 if `038` already ran |
+| `040_learning_path_outline_owner_only.sql` | Community/research outline (`data`) is owner-only; catalog course syllabus JSON stays writable for signed-in users |
 
-**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`). Skip `015`/`016` unless you already had old table names.
+**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`.
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline.
 
 ## 4. Optional seeds
 
@@ -140,6 +141,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/learning-paths` and home community grid show catalog paths (not empty course placeholders)
 - [ ] Create a path while signed in → row in `learning_paths`; notes persist in `learning_path_user_state`
 - [ ] Owned path visibility: Private / Public / Collaborative
+- [ ] Collaborative path: visitor does **not** see Edit this node / Add to path; owner still does. Apply `040_learning_path_outline_owner_only.sql`.
 - [ ] Field Atlas → new path with `kind=research`
 - [ ] Pin a course learning path → row in `learning_path_pins`
 - [ ] Public/collaborative path: signed-in upvote on a resource (grey arrow) does not change sequence
