@@ -160,14 +160,11 @@ const propertyTextValue = (
 function License() {
   return (
     <p className={styles.licenseText}>
-      Except where otherwise noted, content on this site is licensed under a{' '}
-      <a
-        href='https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en'
-        target='_blank'
-        rel='noreferrer'
-      >
-        Creative Commons BY-NC-SA 4.0 License
+      Except where otherwise noted, course materials are licensed under the{' '}
+      <a href='/course-materials-license'>
+        Coursetexts Course Materials License 1.0
       </a>
+      . AI training requires a paid license.
     </p>
   )
 }
