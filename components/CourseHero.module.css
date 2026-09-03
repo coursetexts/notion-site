@@ -365,10 +365,11 @@
 .schoolDateRow {
   margin-top: 1.5rem;
   margin-bottom: 1.25rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
   width: 100%;
 }
 
@@ -382,7 +383,8 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
+  min-width: 0;
 }
 
 .schoolDateText {
@@ -399,6 +401,7 @@
   align-items: center;
   gap: 8px;
   min-width: 0;
+  white-space: nowrap;
 }
 
 .schoolLogo {
@@ -465,11 +468,11 @@
 }
 
 .saveWrap {
+  justify-self: end;
   flex-shrink: 0;
-  margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .shareLink {

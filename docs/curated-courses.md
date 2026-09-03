@@ -98,14 +98,14 @@ flowchart TB
   Nav --> Learned
 ```
 
-- **General Approach** — graph of the syllabus (`data.mentalMapNodeId` holds map-only clips).
+- **General Approach** — graph of the syllabus (`data.mentalMapNodeId` holds map-only clips). Resources only; no **Why is this on the learning path** (the course blurb stays in the hero).
 - **Recommended Syllabus** — course blurb + topic list; does **not** wrap the tree.
 - **Topic tree** — loads that node’s sequenced resources from `learning_paths.data`. **Why is this on the learning path** and **Resources** start open.
 - **Resources** — from `data.resources` (or degrees JSON fallback).
 - **What you learned** — appears only after every syllabus node is explored.
 - **Ratings** — marking a topic explored asks how long it took and a % for how enjoyable learning that module was using the given resources; finishing the course asks the same for the whole course.
 
-Notes open from the content bar (side panel), not an in-page dropdown.
+Notes open from the content bar (side panel), not an in-page dropdown. **Export PDF** on the notes toolbar downloads the current note as a PDF.
 
 ## JSON shape
 

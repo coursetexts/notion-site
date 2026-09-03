@@ -47,7 +47,7 @@ export function PathContentActivity({
   style?: React.CSSProperties
   children: React.ReactNode
   onActivityPosted?: () => void
-  /** Copies LLM-ready path context (current step, outline, whys, goal). */
+  /** Opens a dialog with LLM-ready path context (current step, outline, whys, goal). */
   onExportContext?: () => string
 }) {
   const [rightPanel, setRightPanel] = React.useState<RightPanel>('none')

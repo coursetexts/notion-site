@@ -12,7 +12,6 @@ import {
   CourseLearningPathNodeResources,
   type CourseLearningPathTopicResourceInput
 } from './CourseLearningPathNodeResources'
-import { CourseLearningPathWhy } from './CourseLearningPathWhy'
 
 interface CourseLearningPathMentalMapProps {
   course: CourseLearningPathData
@@ -47,12 +46,6 @@ export function CourseLearningPathMentalMap({
         </span>
         <h1 className={styles.articleTitle}>{course.title}</h1>
       </header>
-
-      <CourseLearningPathWhy
-        text={course.description}
-        headingId='mental-map-why-heading'
-        resetKey={course.id}
-      />
 
       <CourseLearningPathNodeResources
         nodeId={notesNodeId}

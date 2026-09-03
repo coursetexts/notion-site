@@ -10,6 +10,7 @@ import 'katex/dist/katex.min.css'
 import { createPortal } from 'react-dom'
 
 import { NotesEditorToolbar } from '@/components/NotesEditorToolbar'
+import { exportRenderedNoteToPdf } from '@/lib/export-note-pdf'
 import {
   type NotebookDocJson,
   emptyNotebookDoc,
@@ -91,6 +92,7 @@ export function SiteNotesEditor({
   const headingTopic = expandTopic?.trim() || ''
   const [expanded, setExpanded] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
+  const [exportingPdf, setExportingPdf] = React.useState(false)
 
   React.useEffect(() => {
     setPortalReady(true)
@@ -172,6 +174,20 @@ export function SiteNotesEditor({
     editor.setEditable(canType)
   }, [editor, canType])
 
+  const exportPdf = React.useCallback(async () => {
+    if (!editor || exportingPdf) return
+    setExportingPdf(true)
+    try {
+      await exportRenderedNoteToPdf({
+        title: headingTitle,
+        topic: headingTopic || undefined,
+        source: editor.view.dom
+      })
+    } finally {
+      setExportingPdf(false)
+    }
+  }, [editor, exportingPdf, headingTitle, headingTopic])
+
   const editorClass = [
     styles.editor,
     compact && !expanded ? styles.editorCompact : '',
@@ -241,6 +257,8 @@ export function SiteNotesEditor({
           editor={editor}
           imageInputRef={imageInputRef}
           disabled={isLocked}
+          onExportPdf={isLocked ? undefined : () => void exportPdf()}
+          exportingPdf={exportingPdf}
           onExpand={
             canExpand && !expanded ? () => setExpanded(true) : undefined
           }

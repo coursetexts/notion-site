@@ -9,11 +9,13 @@ import { courseNoteTopicKey } from '@/lib/course-notes-db'
 import {
   type SectionProgressStatus,
   getSectionProgressMap,
-  updateSectionProgress
+  updateSectionProgress,
+  writeCourseTocLabels
 } from '@/lib/course-section-progress'
 import {
   type TocItem,
-  buildSectionsFromHeadings
+  buildSectionsFromHeadings,
+  tocCompletableLabels
 } from '@/lib/courseContentSections'
 import {
   courseTopicLabelFromKey,
@@ -145,6 +147,11 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     }, 400)
     return () => clearTimeout(timer)
   }, [contentSlotReady, tocItems.length])
+
+  React.useEffect(() => {
+    if (!coursePageId || tocItems.length === 0) return
+    writeCourseTocLabels(coursePageId, tocCompletableLabels(tocItems))
+  }, [coursePageId, tocItems])
 
   /**
    * Citation links with icons: mark then restructure into a 2-column layout

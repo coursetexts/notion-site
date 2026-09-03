@@ -91,6 +91,7 @@ import {
   setLearningPathCommitted
 } from '@/lib/learning-path-commitments-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
+import { loadProfileLearningProgress } from '@/lib/profile-learning-progress'
 import {
   type ReplyNotification,
   getReplyNotifications,
@@ -522,6 +523,12 @@ export default function ProfilePage() {
   const [officialCourses, setOfficialCourses] = useState<
     { bookmark: { id: string }; course: CourseType }[]
   >([])
+  const [progressByPathSlug, setProgressByPathSlug] = useState<
+    Record<string, number>
+  >({})
+  const [progressByOfficialPageId, setProgressByOfficialPageId] = useState<
+    Record<string, number>
+  >({})
   const [pathsCoursesFilter, setPathsCoursesFilter] =
     useState<PathsCoursesFilter | null>(null)
   const [learningSearch, setLearningSearch] = useState('')
@@ -1077,6 +1084,32 @@ export default function ProfilePage() {
       unsubscribe()
     }
   }, [effectiveUser?.id])
+
+  useEffect(() => {
+    if (!effectiveUser?.id) {
+      setProgressByPathSlug({})
+      setProgressByOfficialPageId({})
+      return
+    }
+    let cancelled = false
+    const pathSlugs = [
+      ...learningPaths.map((item) => item.slug),
+      ...courseLearningPaths.map((item) => item.slug)
+    ]
+    const officialPageIds = officialCourses.map(
+      ({ course }) => course.notion_page_id
+    )
+    void loadProfileLearningProgress({ pathSlugs, officialPageIds }).then(
+      (result) => {
+        if (cancelled) return
+        setProgressByPathSlug(result.byPathSlug)
+        setProgressByOfficialPageId(result.byOfficialPageId)
+      }
+    )
+    return () => {
+      cancelled = true
+    }
+  }, [effectiveUser?.id, learningPaths, courseLearningPaths, officialCourses])
 
   useEffect(() => {
     if (isEditingProfile) setBioDraft(bioText)
@@ -2964,6 +2997,9 @@ export default function ProfilePage() {
                                     commitBusyKey ===
                                     learningPathCommitmentKey(item.slug)
                                   }
+                                  completedPercent={
+                                    progressByPathSlug[item.slug] ?? null
+                                  }
                                 />
                               </li>
                             ))
@@ -2988,6 +3024,9 @@ export default function ProfilePage() {
                                   commitBusy={
                                     commitBusyKey ===
                                     learningPathCommitmentKey(item.slug)
+                                  }
+                                  completedPercent={
+                                    progressByPathSlug[item.slug] ?? null
                                   }
                                 />
                               </li>
@@ -3014,6 +3053,9 @@ export default function ProfilePage() {
                                     commitBusyKey ===
                                     learningPathCommitmentKey(item.slug)
                                   }
+                                  completedPercent={
+                                    progressByPathSlug[item.slug] ?? null
+                                  }
                                 />
                               </li>
                             ))
@@ -3038,6 +3080,9 @@ export default function ProfilePage() {
                                   commitBusy={
                                     commitBusyKey ===
                                     learningPathCommitmentKey(item.slug)
+                                  }
+                                  completedPercent={
+                                    progressByPathSlug[item.slug] ?? null
                                   }
                                 />
                               </li>
@@ -3078,6 +3123,11 @@ export default function ProfilePage() {
                                     officialCourseCommitmentKey(
                                       course.notion_page_id
                                     )
+                                  }
+                                  completedPercent={
+                                    progressByOfficialPageId[
+                                      course.notion_page_id
+                                    ] ?? null
                                   }
                                 />
                               </li>

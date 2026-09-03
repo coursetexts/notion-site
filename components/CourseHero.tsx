@@ -375,7 +375,7 @@ function getSchoolLogo(school: string): [string, string] | null {
 }
 
 /** Hero meta line: "Published | Aug 2026" — CourseHero splits on `|` into Published · month year.
- *  Visitors on a public or collaborative path get "Published Publicly" / "Published Collaboratively". */
+ *  Visitors on a public or collaborative path get "Public, Published" / "Collab, Published". */
 export function formatHeroPublishedDate(
   value?: string | Date | null,
   options?: { visibility?: 'public' | 'collaborative' }
@@ -393,9 +393,9 @@ export function formatHeroPublishedDate(
   })
   const lead =
     options?.visibility === 'collaborative'
-      ? 'Published Collaboratively'
+      ? 'Collab, Published'
       : options?.visibility === 'public'
-      ? 'Published Publicly'
+      ? 'Public, Published'
       : 'Published'
   return `${lead} | ${monthYear}`
 }

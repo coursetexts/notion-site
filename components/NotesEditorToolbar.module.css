@@ -73,6 +73,17 @@
   outline-offset: 1px;
 }
 
+.toolBtn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.toolBtn:disabled:hover,
+.toolBtn:disabled:focus-visible {
+  border-color: transparent;
+  color: #25272b;
+}
+
 .toolBtnActive {
   border-color: #0089c4;
   background: color-mix(in srgb, #0089c4 12%, #fff);

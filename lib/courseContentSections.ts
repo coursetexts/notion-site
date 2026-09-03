@@ -267,3 +267,23 @@ export function buildSectionsFromHeadings(
 
   return items
 }
+
+/** Labels that can be marked complete: leaf tabs (children when present, else the parent). */
+export function tocCompletableLabels(items: TocItem[]): string[] {
+  const labels: string[] = []
+  const seen = new Set<string>()
+  function add(label: string) {
+    const next = label.replace(/\s+/g, ' ').trim()
+    if (!next || seen.has(next)) return
+    seen.add(next)
+    labels.push(next)
+  }
+  for (const item of items) {
+    if (item.children && item.children.length > 0) {
+      for (const child of item.children) add(child.label)
+    } else {
+      add(item.label)
+    }
+  }
+  return labels
+}

@@ -92,3 +92,65 @@ export async function updateSectionProgress(
   if (error) return null
   return next
 }
+
+const TOC_LABELS_KEY_PREFIX = 'coursetexts.course-toc-labels:'
+
+export function writeCourseTocLabels(coursePageId: string, labels: string[]) {
+  if (typeof window === 'undefined' || !coursePageId || labels.length === 0) {
+    return
+  }
+  try {
+    window.localStorage.setItem(
+      TOC_LABELS_KEY_PREFIX + coursePageId,
+      JSON.stringify(labels)
+    )
+  } catch {
+    /* quota / private mode */
+  }
+}
+
+export function readCourseTocLabels(coursePageId: string): string[] {
+  if (typeof window === 'undefined' || !coursePageId) return []
+  try {
+    const raw = window.localStorage.getItem(TOC_LABELS_KEY_PREFIX + coursePageId)
+    if (!raw) return []
+    const parsed = JSON.parse(raw) as unknown
+    if (!Array.isArray(parsed)) return []
+    return parsed.filter(
+      (label): label is string => typeof label === 'string' && label.trim().length > 0
+    )
+  } catch {
+    return []
+  }
+}
+
+export async function listMyCourseSectionProgress(): Promise<
+  Record<string, { label: string; isCompleted: boolean }[]>
+> {
+  const supabase = getSupabaseClient()
+  if (!supabase) return {}
+  const {
+    data: { user }
+  } = await supabase.auth.getUser()
+  if (!user) return {}
+  const { data, error } = await supabase
+    .from(TABLE_NAME)
+    .select('course_page_id, section_label, is_completed')
+    .eq('user_id', user.id)
+  if (error || !data) return {}
+  const out: Record<string, { label: string; isCompleted: boolean }[]> = {}
+  for (const row of data as Array<{
+    course_page_id: string
+    section_label: string
+    is_completed: boolean
+  }>) {
+    const pageId = row.course_page_id
+    if (!pageId) continue
+    if (!out[pageId]) out[pageId] = []
+    out[pageId].push({
+      label: row.section_label,
+      isCompleted: !!row.is_completed
+    })
+  }
+  return out
+}

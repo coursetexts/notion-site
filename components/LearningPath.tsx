@@ -2963,22 +2963,22 @@ function CommunityLearningPath({
                   </h1>
                 </header>
 
-                <PathContentSection
-                  title='Why is this on the learning path'
-                  icon={<WhyIcon />}
-                  open={openSections.why}
-                  onToggle={() =>
-                    setOpenSections((prev) => ({ ...prev, why: !prev.why }))
-                  }
-                >
-                  <p className={styles.whyCopy}>
-                    {selected.why ||
-                      (showingMentalMap
-                        ? path.summary
-                        : selected.description) ||
-                      'A reason has not been written for this step yet.'}
-                  </p>
-                </PathContentSection>
+                {!showingMentalMap ? (
+                  <PathContentSection
+                    title='Why is this on the learning path'
+                    icon={<WhyIcon />}
+                    open={openSections.why}
+                    onToggle={() =>
+                      setOpenSections((prev) => ({ ...prev, why: !prev.why }))
+                    }
+                  >
+                    <p className={styles.whyCopy}>
+                      {selected.why ||
+                        selected.description ||
+                        'A reason has not been written for this step yet.'}
+                    </p>
+                  </PathContentSection>
+                ) : null}
 
                 <PathContentSection
                   title='Resources'

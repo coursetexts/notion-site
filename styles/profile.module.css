@@ -2702,6 +2702,47 @@ a.learningPathCard:hover {
   flex-shrink: 0;
 }
 
+.learningPathCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.learningPathProgress {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.learningPathProgress svg {
+  display: block;
+}
+
+.learningPathProgressLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+  color: #0089c4;
+  pointer-events: none;
+}
+
+.learningPathProgressPct {
+  font-size: 7px;
+  font-weight: 600;
+}
+
 .learningPathTag {
   flex-shrink: 0;
   font-size: 0.75rem;

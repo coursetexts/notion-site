@@ -410,6 +410,32 @@ function PdfIcon() {
   )
 }
 
+function ExportPdfIcon() {
+  return (
+    <Icon>
+      <path
+        d='M4 2.4h5.2L12.6 6v2.2'
+        stroke='currentColor'
+        strokeWidth='1.5'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M9.2 2.4V6h3.4'
+        stroke='currentColor'
+        strokeWidth='1.5'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M8 8.4v5.4M6.1 11.9L8 13.8l1.9-1.9'
+        stroke='currentColor'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </Icon>
+  )
+}
+
 function ExpandIcon() {
   return (
     <svg
@@ -483,11 +509,13 @@ function insertPdfPrompt(editor: Editor) {
 function ToolBtn({
   label,
   active,
+  disabled,
   onClick,
   children
 }: {
   label: string
   active?: boolean
+  disabled?: boolean
   onClick: () => void
   children: React.ReactNode
 }) {
@@ -496,8 +524,10 @@ function ToolBtn({
       type='button'
       className={`${styles.toolBtn}${active ? ` ${styles.toolBtnActive}` : ''}`}
       onClick={onClick}
+      disabled={disabled}
       aria-label={label}
       aria-pressed={active}
+      aria-busy={disabled ? true : undefined}
       data-tooltip={label}
     >
       {children}
@@ -509,6 +539,8 @@ export function NotesEditorToolbar({
   editor,
   imageInputRef,
   onExpand,
+  onExportPdf,
+  exportingPdf = false,
   headingLevels = [2],
   showYoutube = false,
   showPdf = false,
@@ -518,6 +550,8 @@ export function NotesEditorToolbar({
   editor: Editor
   imageInputRef: React.RefObject<HTMLInputElement | null>
   onExpand?: () => void
+  onExportPdf?: () => void
+  exportingPdf?: boolean
   headingLevels?: Array<1 | 2 | 3>
   showYoutube?: boolean
   showPdf?: boolean
@@ -679,6 +713,15 @@ export function NotesEditorToolbar({
           <ToolBtn label='Line' onClick={() => insertNotesDivider(editor)}>
             <LineIcon />
           </ToolBtn>
+          {onExportPdf ? (
+            <ToolBtn
+              label={exportingPdf ? 'Exporting PDF' : 'Export PDF'}
+              disabled={exportingPdf}
+              onClick={onExportPdf}
+            >
+              <ExportPdfIcon />
+            </ToolBtn>
+          ) : null}
         </div>
       </div>
       {onExpand ? (
