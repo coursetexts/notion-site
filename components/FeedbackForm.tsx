@@ -156,10 +156,11 @@ const FeedbackForm = ({ courseName }) => {
         </div>
       )}{' '}
       <div className={styles.feedbackLicense}>
-        All content is licensed under{' '}
-        <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>
-          CC BY-NC-SA 4.0
+        Course materials use is governed by the{' '}
+        <a href='/course-materials-license'>
+          Coursetexts Course Materials License 1.0
         </a>
+        . AI training requires a paid license.
       </div>
     </div>
   )

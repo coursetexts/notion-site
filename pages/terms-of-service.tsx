@@ -37,7 +37,7 @@ const TermsOfService = () => {
             >
               <h1 className='notion-title'>Coursetexts Terms of Service</h1>
               <div style={{ marginBottom: '1rem' }} className='notion-text'>
-                Last updated: 10-21-2024
+                Last updated: September 3, 2026
               </div>
               <h2 style={{ marginBottom: '1rem' }} className='notion-h-title'>
                 1. Acceptance of Terms
@@ -58,9 +58,12 @@ const TermsOfService = () => {
                 materials. Coursetexts has neither sought nor received
                 permission from any university to open-source courses that were
                 taught at that university. It is not affiliated with, sponsored
-                by, or endorsed by any university. All course materials are
-                licensed under the Creative Commons
-                Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) license.
+                by, or endorsed by any university. Course materials are made
+                available under the custom Coursetexts Course Materials License
+                1.0. Except for AI Training, that license preserves the existing
+                Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                permissions and conditions. AI Training requires a separate
+                written license and payment to Coursetexts before use.
               </p>
               <h2 style={{ marginBottom: '1rem' }}>3. User Responsibilities</h2>
               <p className='notion-text'>Users of the Site agree to:</p>
@@ -77,8 +80,11 @@ const TermsOfService = () => {
                 <li>Not distribute or share access credentials</li>
                 <li>Respect intellectual property rights</li>
                 <li>
-                  Comply with the CC BY-NC-SA license terms when using course
-                  materials
+                  Comply with the{' '}
+                  <a href='/course-materials-license'>
+                    Coursetexts Course Materials License 1.0
+                  </a>{' '}
+                  when using course materials
                 </li>
               </ul>
               <h2
@@ -88,23 +94,28 @@ const TermsOfService = () => {
                 4. Intellectual Property
               </h2>
               <p style={{ marginBottom: '2rem' }}>
-                All course content on the Site is licensed under the Creative
-                Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)
-                license. This means you are free to share and adapt the
-                materials for non-commercial purposes, as long as you give
-                appropriate credit, indicate if changes were made, and
-                distribute your contributions under the same license. All other
-                content on the Site, including but not limited to text,
-                graphics, logos, and software, is the property of Coursetexts or
-                its content providers and is protected by copyright and other
-                intellectual property laws.
+                Course materials are licensed under the custom{' '}
+                <a href='/course-materials-license'>
+                  Coursetexts Course Materials License 1.0
+                </a>
+                . Except for AI Training, you may share and adapt the materials
+                for non-commercial purposes under the same permissions and
+                conditions as CC BY-NC-SA 4.0. The general permission does not
+                include using course materials to train, pre-train, fine-tune,
+                retrain, distill, or otherwise improve an AI or machine-learning
+                model. Every such use requires Coursetexts&apos;s prior written
+                permission and payment of an agreed fee. All other content on
+                the Site, including but not limited to text, graphics, logos,
+                and software, is the property of Coursetexts or its content
+                providers and is protected by copyright and other intellectual
+                property laws.
               </p>
               <h2 style={{ marginBottom: '1rem' }}>5. Professor Access</h2>
               <p style={{ marginBottom: '2rem' }} className='notion-text'>
                 Professors may update their course pages through Google
                 authentication. By doing so, they grant Coursetexts permission
                 to display and distribute their provided materials to authorized
-                users under the CC BY-NC-SA license.
+                users under the Coursetexts Course Materials License 1.0.
               </p>
               <h2 style={{ marginBottom: '1rem' }}>
                 6. Disclaimer of Warranties
