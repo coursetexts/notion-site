@@ -416,7 +416,8 @@ function rowsToOwnedItems(rows: LearningPathRow[]): StoredLearningPath[] {
       isPrivate: record.isPrivate,
       visibility: record.visibility,
       kind: record.kind,
-      createdAt: record.createdAt ?? undefined
+      createdAt: record.createdAt ?? undefined,
+      ownerId: record.ownerId
     }
   })
 }
@@ -509,6 +510,84 @@ export async function attachLearningPathKinds(
     ...item,
     kind: parseLearningPathKind(item.kind ?? kinds[item.slug])
   }))
+}
+
+export async function attachLearningPathBylines(
+  items: StoredLearningPath[]
+): Promise<StoredLearningPath[]> {
+  if (items.length === 0) return items
+  const supabase = getSupabaseClient()
+  if (!supabase) return items
+
+  const slugs = [...new Set(items.map((item) => item.slug).filter(Boolean))]
+  const metaBySlug: Record<
+    string,
+    { ownerId: string | null; visibility: LearningPathVisibility }
+  > = {}
+  if (slugs.length > 0) {
+    const { data, error } = await supabase
+      .from('learning_paths')
+      .select('slug, owner_id, visibility, is_private')
+      .in('slug', slugs)
+    if (!error && Array.isArray(data)) {
+      for (const row of data as Array<{
+        slug?: string
+        owner_id?: string | null
+        visibility?: string
+        is_private?: boolean
+      }>) {
+        if (!row.slug) continue
+        metaBySlug[row.slug] = {
+          ownerId: row.owner_id ?? null,
+          visibility: parseLearningPathVisibility(
+            row.visibility,
+            row.is_private
+          )
+        }
+      }
+    }
+  }
+
+  const ownerIds = [
+    ...new Set(
+      items
+        .map((item) => metaBySlug[item.slug]?.ownerId ?? item.ownerId)
+        .filter((id): id is string => Boolean(id))
+    )
+  ]
+  const names: Record<string, string> = {}
+  if (ownerIds.length > 0) {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('user_id, display_name')
+      .in('user_id', ownerIds)
+    if (!error && Array.isArray(data)) {
+      for (const row of data as Array<{
+        user_id?: string
+        display_name?: string | null
+      }>) {
+        if (!row.user_id) continue
+        const name = row.display_name?.trim()
+        if (name) names[row.user_id] = name
+      }
+    }
+  }
+
+  return items.map((item) => {
+    const meta = metaBySlug[item.slug]
+    const ownerId = meta?.ownerId ?? item.ownerId ?? null
+    const visibility = meta?.visibility ?? item.visibility
+    const ownerName = ownerId
+      ? names[ownerId] ?? item.ownerName ?? null
+      : item.ownerName ?? (meta ? 'Coursetexts' : null)
+    return {
+      ...item,
+      ownerId,
+      ownerName,
+      visibility,
+      isPrivate: visibility ? visibility === 'private' : item.isPrivate
+    }
+  })
 }
 
 export async function listAllLearningPathSlugs(): Promise<string[]> {

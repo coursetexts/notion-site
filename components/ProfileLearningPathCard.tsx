@@ -1,16 +1,76 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import type { StoredLearningPath } from '@/lib/learning-path-seed'
+import type {
+  LearningPathVisibility,
+  StoredLearningPath
+} from '@/lib/learning-path-seed'
+import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
+import { COURSETEXTS_BYLINE_AUTHOR } from '@/lib/course-byline'
 import type { LearningPathReminder } from '@/lib/learning-path-commitments-db'
+import { formatLearningStreakLabel } from '@/lib/profile-learning-streaks'
 import styles from '@/styles/profile.module.css'
 import { ProfileCommitmentReminder } from './ProfileCommitmentReminder'
+
+function formatLearningPathByline(
+  author?: string | null,
+  privacy?: LearningPathVisibility | null
+): string | null {
+  const who = author?.trim()
+  const privacyLabel =
+    privacy === 'private'
+      ? 'Private'
+      : privacy === 'collaborative'
+        ? 'Collaborative'
+        : privacy === 'public'
+          ? 'Public'
+          : null
+  const prefix = who && /^you$/i.test(who) ? 'Created by' : 'By'
+  if (who && privacyLabel) return `${prefix} ${who} · ${privacyLabel}`
+  if (who) return `${prefix} ${who}`
+  if (privacyLabel) return privacyLabel
+  return null
+}
+
+function GrowingPlantIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='15'
+      height='15'
+      viewBox='0 0 16 16'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M8 9.1C3.8 10 2.4 6.1 3.6 3.3C7.8 3.6 8.6 6.8 8 9.1Z'
+        fill='#6b944f'
+      />
+      <path
+        d='M8 8.3C12.1 6.6 13.8 8.8 13 12C9.1 12.5 7.7 9.8 8 8.3Z'
+        fill='#5a833f'
+      />
+      <path
+        d='M8 8.6v5.5'
+        stroke='#5a7348'
+        strokeWidth='1.35'
+        strokeLinecap='round'
+      />
+      <path
+        d='M5.4 14.4c.8-.75 4.4-.75 5.2 0'
+        stroke='#5a7348'
+        strokeWidth='1.2'
+        strokeLinecap='round'
+      />
+    </svg>
+  )
+}
 
 export function ProfileLearningPathCard({
   href,
   title,
   privacy,
-  created = false,
+  bylineAuthor,
   onUnsave,
   unsaveBusy = false,
   showSavedTag = false,
@@ -18,6 +78,7 @@ export function ProfileLearningPathCard({
   onToggleCommit,
   commitBusy = false,
   completedPercent,
+  streakDays = 0,
   reminder = null,
   onSaveReminder,
   onRemoveReminder,
@@ -25,8 +86,8 @@ export function ProfileLearningPathCard({
 }: {
   href: string
   title: string
-  privacy?: 'public' | 'private'
-  created?: boolean
+  privacy?: LearningPathVisibility | null
+  bylineAuthor?: string | null
   onUnsave?: () => void
   unsaveBusy?: boolean
   showSavedTag?: boolean
@@ -34,31 +95,12 @@ export function ProfileLearningPathCard({
   onToggleCommit?: () => void
   commitBusy?: boolean
   completedPercent?: number | null
+  streakDays?: number | null
   reminder?: LearningPathReminder | null
   onSaveReminder?: (reminder: LearningPathReminder) => void
   onRemoveReminder?: () => void
   reminderBusy?: boolean
 }) {
-  const createdTag = created ? (
-    <span
-      className={`${styles.learningPathTag} ${styles.learningPathCreatedTag}`}
-    >
-      Created
-    </span>
-  ) : null
-
-  const privacyTag = privacy ? (
-    <span
-      className={`${styles.learningPathTag} ${
-        privacy === 'private'
-          ? styles.learningPathPrivateTag
-          : styles.learningPathPublicTag
-      }`}
-    >
-      {privacy === 'private' ? 'Private' : 'Public'}
-    </span>
-  ) : null
-
   const savedControl = onUnsave ? (
     <button
       type='button'
@@ -142,27 +184,51 @@ export function ProfileLearningPathCard({
     </span>
   ) : null
 
-  const hasTags = Boolean(
-    createdTag ||
-      privacyTag ||
-      savedControl ||
-      commitControl ||
-      reminderControl ||
-      completeTag
+  const streak =
+    streakDays != null && Number.isFinite(streakDays)
+      ? Math.max(0, Math.round(streakDays))
+      : 0
+  const streakLabel = formatLearningStreakLabel(streak)
+  const streakTag =
+    streak > 0 ? (
+      <span
+        className={`${styles.learningPathTag} ${styles.learningPathStreakTag}`}
+      >
+        <GrowingPlantIcon />
+        <span>{streakLabel}</span>
+      </span>
+    ) : null
+
+  const byline = formatLearningPathByline(bylineAuthor, privacy ?? null)
+
+  const hasActionTags = Boolean(
+    savedControl || streakTag || completeTag || commitControl || reminderControl
   )
 
   return (
-    <div className={styles.learningPathCard}>
-      <Link href={href}>
-        <a className={styles.learningPathCardLink}>
-          <span className={styles.learningPathCardTitle}>{title}</span>
-        </a>
-      </Link>
-      {hasTags ? (
+    <div
+      className={`${styles.learningPathCard}${
+        byline ? ` ${styles.learningPathCardWithByline}` : ''
+      }`}
+    >
+      <div className={styles.learningPathCardMain}>
+        <Link href={href}>
+          <a className={styles.learningPathCardLink}>
+            <span className={styles.learningPathCardTitle} title={title}>
+              {title}
+            </span>
+          </a>
+        </Link>
+        {byline ? (
+          <span className={styles.learningPathCardByline} title={byline}>
+            {byline}
+          </span>
+        ) : null}
+      </div>
+      {hasActionTags ? (
         <span className={styles.learningPathCardTags}>
-          {createdTag}
-          {privacyTag}
           {savedControl}
+          {streakTag}
           {completeTag}
           {commitControl}
           {reminderControl}
@@ -174,24 +240,28 @@ export function ProfileLearningPathCard({
 
 export function ProfileCommunityLearningPathCard({
   item,
+  ownAuthorLabel = 'you',
   onUnsave,
   unsaveBusy = false,
   committed = false,
   onToggleCommit,
   commitBusy = false,
   completedPercent,
+  streakDays = 0,
   reminder = null,
   onSaveReminder,
   onRemoveReminder,
   reminderBusy = false
 }: {
   item: StoredLearningPath
+  ownAuthorLabel?: string
   onUnsave?: (linkId: string) => void
   unsaveBusy?: boolean
   committed?: boolean
   onToggleCommit?: (slug: string) => void
   commitBusy?: boolean
   completedPercent?: number | null
+  streakDays?: number | null
   reminder?: LearningPathReminder | null
   onSaveReminder?: (reminder: LearningPathReminder) => void
   onRemoveReminder?: () => void
@@ -200,18 +270,20 @@ export function ProfileCommunityLearningPathCard({
   const savedLinkId = item.savedLinkId
   const canUnsave = Boolean(savedLinkId && onUnsave)
   const isCreated = !savedLinkId
+  const isCourse = isCourseKindPath(item.kind)
+  const bylineAuthor = isCreated
+    ? ownAuthorLabel
+    : item.ownerName?.trim() ||
+      (isCourse ? COURSETEXTS_BYLINE_AUTHOR : 'someone')
+  const privacy: LearningPathVisibility =
+    item.visibility ??
+    (item.isPrivate === false || isCourse ? 'public' : 'private')
   return (
     <ProfileLearningPathCard
       href={`/learning-path/${item.slug}`}
       title={item.goal}
-      created={isCreated}
-      privacy={
-        isCreated
-          ? item.isPrivate !== false
-            ? 'private'
-            : 'public'
-          : undefined
-      }
+      bylineAuthor={bylineAuthor}
+      privacy={privacy}
       onUnsave={
         canUnsave ? () => onUnsave?.(savedLinkId as string) : undefined
       }
@@ -223,6 +295,7 @@ export function ProfileCommunityLearningPathCard({
       }
       commitBusy={commitBusy}
       completedPercent={completedPercent}
+      streakDays={streakDays}
       reminder={reminder}
       onSaveReminder={onSaveReminder}
       onRemoveReminder={onRemoveReminder}

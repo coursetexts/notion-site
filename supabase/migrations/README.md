@@ -151,7 +151,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; atlas callouts; empty search opens create modal
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
 - [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit
-- [ ] Profile Knowledge tab: List + Graph; finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
+- [ ] Profile Knowledge tab: topic list (graph view hidden); finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
 - [ ] `/reports` loads (open while testing). Hover a discussion/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
 - [ ] Mark a topic explored → enter duration + enjoyment %. Finish the path/course → same for the whole map. Apply `038_learning_path_ratings.sql` (and `039` if `038` already ran with 1–5 stars).
 

@@ -423,7 +423,7 @@ erDiagram
 
 ## Knowledge
 
-Per-user acquired topics plus a shared catalog used by the Knowledge Graph view. See [knowledge.md](./knowledge.md).
+Per-user acquired topics plus a shared catalog of labels and edges. The profile Knowledge tab shows a list only; the catalog still powers ingest and can feed a graph later. See [knowledge.md](./knowledge.md).
 
 ```mermaid
 erDiagram

@@ -60,6 +60,7 @@ import {
   mergeOwnedAndSavedLearningPaths
 } from '@/lib/learning-path-bookmark-link'
 import {
+  attachLearningPathBylines,
   attachLearningPathKinds,
   listOwnedLearningPathsByUserId
 } from '@/lib/learning-path-db'
@@ -511,13 +512,15 @@ export default function PublicProfilePage() {
       setProfileInterestTags(interestTags)
       setKnowledgeTopics(knowledge)
       setCommunityLearningPaths(
-        await attachLearningPathKinds(
-          mergeOwnedAndSavedLearningPaths({
-            owned: ownedPaths,
-            stored:
-              currentUserId === uid ? readStoredLearningPaths() : undefined,
-            saved: learningPathsFromUserLinks(links)
-          })
+        await attachLearningPathBylines(
+          await attachLearningPathKinds(
+            mergeOwnedAndSavedLearningPaths({
+              owned: ownedPaths,
+              stored:
+                currentUserId === uid ? readStoredLearningPaths() : undefined,
+              saved: learningPathsFromUserLinks(links)
+            })
+          )
         )
       )
       setLoading(false)
@@ -1584,6 +1587,11 @@ export default function PublicProfilePage() {
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
+                                  ownAuthorLabel={
+                                    currentUserId && userId === currentUserId
+                                      ? 'you'
+                                      : displayName
+                                  }
                                   onUnsave={
                                     currentUserId && userId === currentUserId
                                       ? handleUnsaveLearningPath
@@ -1601,6 +1609,11 @@ export default function PublicProfilePage() {
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
+                                  ownAuthorLabel={
+                                    currentUserId && userId === currentUserId
+                                      ? 'you'
+                                      : displayName
+                                  }
                                   onUnsave={
                                     currentUserId && userId === currentUserId
                                       ? handleUnsaveLearningPath
@@ -1618,6 +1631,11 @@ export default function PublicProfilePage() {
                               <li key={item.id}>
                                 <ProfileCommunityLearningPathCard
                                   item={item}
+                                  ownAuthorLabel={
+                                    currentUserId && userId === currentUserId
+                                      ? 'you'
+                                      : displayName
+                                  }
                                   onUnsave={
                                     currentUserId && userId === currentUserId
                                       ? handleUnsaveLearningPath

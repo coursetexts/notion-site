@@ -2664,9 +2664,23 @@
   color: #25272b;
 }
 
-.learningPathCardLink {
+.learningPathCardWithByline {
+  align-items: flex-start;
+}
+
+.learningPathCardMain {
   min-width: 0;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.learningPathCardLink {
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -2675,6 +2689,9 @@
 .learningPathCardTitle {
   min-width: 0;
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .learningPathCard:hover {
@@ -2695,6 +2712,17 @@ a.learningPathCard:hover {
   color: #000;
 }
 
+.learningPathCardByline {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  font-weight: 400;
+  color: #8a8a8a;
+}
+
 .learningPathCardTags {
   display: flex;
   align-items: center;
@@ -2702,6 +2730,10 @@ a.learningPathCard:hover {
   flex-wrap: wrap;
   gap: 0.35rem;
   flex-shrink: 0;
+}
+
+.learningPathCardWithByline .learningPathCardTags {
+  padding-top: 0.15rem;
 }
 
 .learningPathTag {
@@ -2712,24 +2744,22 @@ a.learningPathCard:hover {
   border-radius: 4px;
 }
 
-.learningPathCreatedTag {
-  color: #4a3c2a;
-  background: #f3eee6;
-}
-
-.learningPathPrivateTag {
-  color: #1f4f6b;
-  background: #e6f4ff;
-}
-
-.learningPathPublicTag {
-  color: #2e7d32;
-  background: #e8f5e9;
-}
-
 .learningPathCompleteTag {
-  color: #4d5a52;
-  background: #e6eae6;
+  color: #6b944f;
+  background: #eef0e3;
+}
+
+.learningPathStreakTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  color: #6b944f;
+  background: #eef0e3;
+}
+
+.learningPathStreakTag svg {
+  flex-shrink: 0;
+  display: block;
 }
 
 .learningPathSavedTag {

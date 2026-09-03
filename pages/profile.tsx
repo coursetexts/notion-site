@@ -81,6 +81,7 @@ import {
   mergeOwnedAndSavedLearningPaths
 } from '@/lib/learning-path-bookmark-link'
 import {
+  attachLearningPathBylines,
   attachLearningPathKinds,
   listOwnedLearningPaths
 } from '@/lib/learning-path-db'
@@ -94,6 +95,13 @@ import {
 } from '@/lib/learning-path-commitments-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
 import { loadProfileLearningProgress } from '@/lib/profile-learning-progress'
+import { mockLearningStreakDays } from '@/lib/profile-learning-streaks'
+import {
+  COURSETEXTS_BYLINE_AUTHOR,
+  officialCourseBylineAuthor,
+  readOfficialCourseBylineMeta,
+  type OfficialCourseBylineMeta
+} from '@/lib/course-byline'
 import {
   type ReplyNotification,
   getReplyNotifications,
@@ -529,6 +537,9 @@ export default function ProfilePage() {
   const [officialCourses, setOfficialCourses] = useState<
     { bookmark: { id: string }; course: CourseType }[]
   >([])
+  const [officialBylineMeta, setOfficialBylineMeta] = useState<
+    Record<string, OfficialCourseBylineMeta>
+  >({})
   const [progressByPathSlug, setProgressByPathSlug] = useState<
     Record<string, number>
   >({})
@@ -982,6 +993,19 @@ export default function ProfilePage() {
   }, [])
 
   useEffect(() => {
+    const refresh = () => {
+      setOfficialBylineMeta(readOfficialCourseBylineMeta())
+    }
+    refresh()
+    window.addEventListener('focus', refresh)
+    window.addEventListener('pageshow', refresh)
+    return () => {
+      window.removeEventListener('focus', refresh)
+      window.removeEventListener('pageshow', refresh)
+    }
+  }, [])
+
+  useEffect(() => {
     if (!effectiveUser) return
     loadLinks()
   }, [effectiveUser, loadLinks])
@@ -1040,12 +1064,14 @@ export default function ProfilePage() {
         getMyLinks()
       ])
       if (cancelled) return
-      const merged = await attachLearningPathKinds(
-        mergeOwnedAndSavedLearningPaths({
-          owned,
-          stored: readStoredLearningPaths(),
-          saved: learningPathsFromUserLinks(links)
-        })
+      const merged = await attachLearningPathBylines(
+        await attachLearningPathKinds(
+          mergeOwnedAndSavedLearningPaths({
+            owned,
+            stored: readStoredLearningPaths(),
+            saved: learningPathsFromUserLinks(links)
+          })
+        )
       )
       if (cancelled) return
       setLearningPaths(merged)
@@ -3042,6 +3068,8 @@ export default function ProfilePage() {
                                 <ProfileLearningPathCard
                                   href={`/learning-path/${item.slug}`}
                                   title={item.title}
+                                  bylineAuthor={COURSETEXTS_BYLINE_AUTHOR}
+                                  privacy='public'
                                   onUnsave={() =>
                                     void handleUnpinCourseLearningPath(
                                       item.courseId
@@ -3065,6 +3093,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  streakDays={mockLearningStreakDays(item.title)}
                                   reminder={
                                     commitmentReminders[
                                       learningPathCommitmentKey(item.slug)
@@ -3113,6 +3142,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
                                     commitmentReminders[
                                       learningPathCommitmentKey(item.slug)
@@ -3161,6 +3191,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
                                     commitmentReminders[
                                       learningPathCommitmentKey(item.slug)
@@ -3209,6 +3240,7 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  streakDays={mockLearningStreakDays(item.goal)}
                                   reminder={
                                     commitmentReminders[
                                       learningPathCommitmentKey(item.slug)
@@ -3242,6 +3274,11 @@ export default function ProfilePage() {
                                     `/course/${course.notion_page_id}`
                                   }
                                   title={course.name}
+                                  bylineAuthor={officialCourseBylineAuthor(
+                                    course,
+                                    officialBylineMeta
+                                  )}
+                                  privacy='public'
                                   onUnsave={() =>
                                     void handleUnsaveOfficialCourse(
                                       course.notion_page_id
@@ -3274,6 +3311,9 @@ export default function ProfilePage() {
                                       course.notion_page_id
                                     ] ?? null
                                   }
+                                  streakDays={mockLearningStreakDays(
+                                    course.name
+                                  )}
                                   reminder={
                                     commitmentReminders[
                                       officialCourseCommitmentKey(

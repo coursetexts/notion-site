@@ -1,23 +1,10 @@
 import * as React from 'react'
 
-import { ProfileKnowledgeGraph } from '@/components/ProfileKnowledgeGraph'
-import {
-  type KnowledgeGraphSubset,
-  listKnowledgeGraphSubset,
-  subsetFromUserTopics
-} from '@/lib/knowledge-graph-db'
 import {
   type UserKnowledgeTopic,
   addMyKnowledgeTopics
 } from '@/lib/user-knowledge-topics-db'
 import styles from '@/styles/profile.module.css'
-
-const KNOWLEDGE_VIEWS = [
-  { id: 'list', label: 'List' },
-  { id: 'graph', label: 'Graph' }
-] as const
-
-type KnowledgeView = (typeof KNOWLEDGE_VIEWS)[number]['id']
 
 export function formatKnowledgeExportText(topics: UserKnowledgeTopic[]): string {
   const labels = topics.map((topic) => topic.label.trim()).filter(Boolean)
@@ -46,11 +33,6 @@ export function ProfileKnowledgePanel({
   const [query, setQuery] = React.useState('')
   const [draft, setDraft] = React.useState('')
   const [showAddInput, setShowAddInput] = React.useState(false)
-  const [view, setView] = React.useState<KnowledgeView>('list')
-  const [graph, setGraph] = React.useState<KnowledgeGraphSubset>(() =>
-    subsetFromUserTopics(topics)
-  )
-  const [graphLoading, setGraphLoading] = React.useState(false)
   const [exportCopied, setExportCopied] = React.useState(false)
   const addingRef = React.useRef(false)
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -67,37 +49,10 @@ export function ProfileKnowledgePanel({
     inputRef.current?.focus()
   }, [showAddInput])
 
-  React.useEffect(() => {
-    if (view !== 'graph') return
-    let cancelled = false
-    setGraphLoading(true)
-    void listKnowledgeGraphSubset(topics).then((next) => {
-      if (cancelled) return
-      setGraph(next)
-      setGraphLoading(false)
-    })
-    return () => {
-      cancelled = true
-    }
-  }, [view, topics])
-
   const normalized = query.trim().toLowerCase()
   const visible = normalized
     ? topics.filter((topic) => topic.label.toLowerCase().includes(normalized))
     : topics
-  const graphForView = React.useMemo(() => {
-    if (!normalized) return graph
-    const nodes = graph.nodes.filter((node) =>
-      node.label.toLowerCase().includes(normalized)
-    )
-    const ids = new Set(nodes.map((node) => node.id))
-    return {
-      nodes,
-      edges: graph.edges.filter(
-        (edge) => ids.has(edge.fromId) && ids.has(edge.toId)
-      )
-    }
-  }, [graph, normalized])
 
   function cancelAdd() {
     setShowAddInput(false)
@@ -200,49 +155,11 @@ export function ProfileKnowledgePanel({
             aria-label='Search completed topics'
           />
         </div>
-        <div className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}>
-          <div
-            className={styles.linkFilterTagsWrap}
-            role='group'
-            aria-label='Knowledge view'
-          >
-            {KNOWLEDGE_VIEWS.map((item) => (
-              <button
-                key={item.id}
-                type='button'
-                aria-pressed={view === item.id}
-                className={
-                  view === item.id
-                    ? styles.linkFilterBtnActive
-                    : styles.linkFilterBtn
-                }
-                onClick={() => setView(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
       {loading ? (
         <p className={styles.placeholder}>Loading…</p>
       ) : topics.length === 0 ? (
         <p className={styles.placeholder}>{emptyMessage}</p>
-      ) : view === 'graph' ? (
-        graphLoading ? (
-          <p className={styles.placeholder}>Loading…</p>
-        ) : graphForView.nodes.length === 0 ? (
-          <p className={styles.placeholder}>No matching topics.</p>
-        ) : (
-          <>
-            <ProfileKnowledgeGraph graph={graphForView} />
-            <p className={styles.knowledgeGraphHint}>
-              Links come from learning paths and a daily pass over Coursetexts
-              topics. Isolated nodes still count — they connect when the graph
-              catches up.
-            </p>
-          </>
-        )
       ) : visible.length === 0 ? (
         <p className={styles.placeholder}>No matching topics.</p>
       ) : (

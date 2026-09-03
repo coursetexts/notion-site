@@ -1,6 +1,11 @@
 import React from 'react'
 
 import type { ContentReportTarget } from '@/lib/content-reports'
+import {
+  formatInstructorByline,
+  rememberOfficialCourseByline,
+  schoolNameFromSchoolDate
+} from '@/lib/course-byline'
 
 import styles from './CourseHero.module.css'
 import { ReportButton } from './ReportButton'
@@ -528,7 +533,22 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
       ? instructorsProp!
       : instructorNameLegacy && instructorUrlLegacy
       ? [{ name: instructorNameLegacy, url: instructorUrlLegacy }]
+      : instructorNameLegacy
+      ? [{ name: instructorNameLegacy }]
       : []
+  const instructorLine = formatInstructorByline(
+    instructors.map((instructor) => instructor.name)
+  )
+
+  React.useEffect(() => {
+    if (!coursePageId) return
+    const school = schoolDate ? schoolNameFromSchoolDate(schoolDate) : ''
+    if (!school && !instructorLine) return
+    rememberOfficialCourseByline(coursePageId, {
+      school: school || undefined,
+      instructors: instructorLine || undefined
+    })
+  }, [coursePageId, schoolDate, instructorLine])
 
   React.useLayoutEffect(() => {
     const el = descriptionRef.current

@@ -335,6 +335,8 @@ export type StoredLearningPath = {
   savedLinkId?: string
   /** ISO timestamp when this path was first created. */
   createdAt?: string
+  ownerId?: string | null
+  ownerName?: string | null
 }
 
 export type LearningPathOutlineSubconcept = {

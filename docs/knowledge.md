@@ -6,10 +6,7 @@ Topics you pick up by finishing learning paths, plus an optional Coursetexts-wid
 
 On `/profile` and `/profile/{userId}`, the primary tabs are **Learning | Knowledge | Notes | Bookmarks | Activity**. **Notes** is owner-only (`/profile`). Search fields on those tabs share one width.
 
-The Knowledge tab has **List** and **Graph**:
-
-- **List** — unique topics for that user (`user_knowledge_topics`), A–Z, with search. On your own profile you can add a topic and export the list.
-- **Graph** — the user’s acquired topics as an induced subgraph of the shared catalog (`knowledge_topics` + `knowledge_topic_edges`). Isolated topics still show.
+The Knowledge tab is a **list** of unique topics for that user (`user_knowledge_topics`), A–Z, with search. On your own profile you can add a topic and export the list. The profile graph view is hidden.
 
 On a learning path (`/learning-path/{slug}`), finishing the last remaining topic:
 
@@ -75,4 +72,4 @@ To enable later:
 
 Vercel will send `Authorization: Bearer $CRON_SECRET`. The job is incremental (~8 focus topics + neighbors/candidates) and `maxDuration` is 60s.
 
-Until then, the Graph view still works from structural edges and any topics already in the catalog.
+Until then, catalog ingest still writes structural edges. The Knowledge tab no longer shows a graph; `ProfileKnowledgeGraph` stays in the repo if we turn that view back on.
