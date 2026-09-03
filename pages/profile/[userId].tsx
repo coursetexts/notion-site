@@ -1449,7 +1449,7 @@ export default function PublicProfilePage() {
                     <h2 className={styles.mainSerifTitle}>All activity</h2>
                     {publicActivityRows.length === 0 ? (
                       <p className={styles.placeholder}>
-                        No comments or annotations yet.
+                        No comments or discussions yet.
                       </p>
                     ) : (
                       <ul className={styles.list}>
@@ -1502,9 +1502,9 @@ export default function PublicProfilePage() {
                                   <span className={styles.listTitle}>
                                     <span
                                       className={styles.userLinkTag}
-                                      aria-label='Annotation'
+                                      aria-label='Discussion'
                                     >
-                                      Annotation
+                                      Discussion
                                     </span>{' '}
                                     {course.name}
                                   </span>

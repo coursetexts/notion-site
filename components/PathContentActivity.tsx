@@ -59,13 +59,14 @@ export function PathContentActivity({
     setRightPanel(panel)
     replaceSearchParams({
       notes: panel === 'notes' ? '1' : null,
-      annotations: panel === 'annotations' ? '1' : null
+      annotations: panel === 'annotations' ? '1' : null,
+      discussions: null
     })
   }, [])
 
   const closeRightPanel = React.useCallback(() => {
     setRightPanel('none')
-    replaceSearchParams({ notes: null, annotations: null })
+    replaceSearchParams({ notes: null, annotations: null, discussions: null })
   }, [])
 
   React.useEffect(() => setPortalReady(true), [])
@@ -257,7 +258,7 @@ export function PathContentActivity({
                     aria-modal='true'
                     aria-label={
                       rightPanel === 'annotations'
-                        ? 'Annotations'
+                        ? 'Discussions'
                         : 'Your notes'
                     }
                     className={styles.mobilePanelSheet}

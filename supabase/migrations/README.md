@@ -88,7 +88,7 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `034_activity_feed_events.sql` | Suggestion accepted/declined status + `learning_path_progress_events` for the profile feed |
 | `035_user_knowledge_topics.sql` | Profile Knowledge tab: unique completed topics gained from finished learning paths |
 | `036_knowledge_graph.sql` | Site-wide `knowledge_topics` + `knowledge_topic_edges`. Structural ingest on finish; daily Gemini linking is **implemented but disabled** |
-| `037_content_reports.sql` | User reports for annotations, comments, learning paths, and uploaded resources. `/reports` dashboard (open while testing) |
+| `037_content_reports.sql` | User reports for discussions, comments, learning paths, and uploaded resources. `/reports` dashboard (open while testing) |
 | `038_learning_path_ratings.sql` | Topic and path/course enjoyment % (0–100) plus learner-entered duration after marking explored / finishing |
 | `039_learning_path_ratings_percent.sql` | **Existing DBs only:** widen `learning_path_ratings.rating` from 1–5 to 0–100 if `038` already ran |
 | `040_learning_path_outline_owner_only.sql` | Community/research outline (`data`) is owner-only; catalog course syllabus JSON stays writable for signed-in users |
@@ -133,7 +133,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 ## 5. Smoke checklist after swap
 
 - [ ] Google sign-in → row appears in `profiles`
-- [ ] Open a Notion course page → row in `courses`; comment / bookmark / annotation / notes work
+- [ ] Open a Notion course page → row in `courses`; comment / bookmark / discussion (`annotations`) / notes work
 - [ ] `/community-resources` search + resource comments/votes
 - [ ] Profile: notebooks, interests, personal links, bookmarked links, feed
 - [ ] `/users` directory loads
@@ -151,7 +151,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
 - [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`
 - [ ] Profile Knowledge tab: List + Graph; finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
-- [ ] `/reports` loads (open while testing). Hover an annotation/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
+- [ ] `/reports` loads (open while testing). Hover a discussion/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
 - [ ] Mark a topic explored → enter duration + enjoyment %. Finish the path/course → same for the whole map. Apply `038_learning_path_ratings.sql` (and `039` if `038` already ran with 1–5 stars).
 
 ## Notes

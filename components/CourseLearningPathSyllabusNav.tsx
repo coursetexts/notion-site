@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { LEARNING_PATH_MENTAL_MAP_LABEL } from '@/lib/learning-path-sections'
 import {
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
@@ -81,7 +82,10 @@ export function CourseLearningPathSyllabusNav({
   )
   const showSyllabus =
     !searching || matchesQuery('Recommended Syllabus', query)
-  const showMentalMap = !searching || matchesQuery('Mental Map', query)
+  const showMentalMap =
+    !searching ||
+    matchesQuery('Mental Map', query) ||
+    matchesQuery(LEARNING_PATH_MENTAL_MAP_LABEL, query)
   const learnedTopics = React.useMemo(
     () => knowledgeTopicItemsFromCourseLearningPath(course),
     [course]
@@ -137,6 +141,33 @@ export function CourseLearningPathSyllabusNav({
       ) : null}
       {showSyllabus || showMentalMap || filteredTopics.length > 0 || (!searching && course.topics.length === 0) ? (
       <div className={styles.navPanelSection}>
+        {showMentalMap ? (
+        <div
+          className={`${styles.navRow}${
+            mentalMapSelected ? ` ${styles.navRowSelected}` : ''
+          }`}
+          style={{ paddingLeft: 4 }}
+        >
+          <span className={styles.leafDot} aria-hidden>
+            <span className={styles.dot} />
+          </span>
+          <button
+            type='button'
+            onClick={() => onSelect(COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID)}
+            aria-current={mentalMapSelected ? 'true' : undefined}
+            className={styles.navSelect}
+          >
+            <span
+              className={`${styles.navTitle} ${styles.navTitleTopic}${
+                mentalMapSelected ? ` ${styles.navTitleSelected}` : ''
+              }`}
+            >
+              {LEARNING_PATH_MENTAL_MAP_LABEL}
+            </span>
+          </button>
+        </div>
+        ) : null}
+
         {showSyllabus ? (
         <div
           className={`${styles.navRow}${
@@ -163,33 +194,6 @@ export function CourseLearningPathSyllabusNav({
             {course.topics.length > 0 ? (
               <span className={styles.videoCount}>{course.topics.length}</span>
             ) : null}
-          </button>
-        </div>
-        ) : null}
-
-        {showMentalMap ? (
-        <div
-          className={`${styles.navRow}${
-            mentalMapSelected ? ` ${styles.navRowSelected}` : ''
-          }`}
-          style={{ paddingLeft: 4 }}
-        >
-          <span className={styles.leafDot} aria-hidden>
-            <span className={styles.dot} />
-          </span>
-          <button
-            type='button'
-            onClick={() => onSelect(COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID)}
-            aria-current={mentalMapSelected ? 'true' : undefined}
-            className={styles.navSelect}
-          >
-            <span
-              className={`${styles.navTitle} ${styles.navTitleTopic}${
-                mentalMapSelected ? ` ${styles.navTitleSelected}` : ''
-              }`}
-            >
-              Mental Map
-            </span>
           </button>
         </div>
         ) : null}

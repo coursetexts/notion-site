@@ -128,7 +128,7 @@ export default function CommunityPage() {
                   </p>
                   <p>
                     It is also a place to talk to other people about your goal.
-                    Each step has annotations, so you can ask a question, leave a
+                    Each step has discussions, so you can ask a question, leave a
                     note, or pick up a conversation right where someone else got
                     stuck - on that concept, not in a scattered chat.
                   </p>

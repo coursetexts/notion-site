@@ -36,6 +36,7 @@ import {
 } from '@/lib/learning-path-slug'
 import { getSupabaseClient } from '@/lib/supabase'
 
+import { LearningPathFillOverlay } from './LearningPathFillOverlay'
 import styles from './LearningPathBuilder.module.css'
 
 const ROMANS = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x']
@@ -560,7 +561,7 @@ export function LearningPathBuilder({
                   disabled={filling || !signedIn}
                   aria-busy={filling}
                 >
-                  {filling ? 'Filling…' : 'Fill out this path for me'}
+                  Fill out this path for me
                 </button>
               </div>
               {fillError ? (
@@ -754,6 +755,7 @@ export function LearningPathBuilder({
           </form>
         </div>
       </div>
+      <LearningPathFillOverlay open={filling} />
     </section>
   )
 }

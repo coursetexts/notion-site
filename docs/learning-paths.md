@@ -21,15 +21,24 @@ Official professor courses from Notion are **not** a `kind` yet. They stay at `/
 | Route                              | UI                                                                                                                                                        |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
-| `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Courses. Atlas callouts; empty search opens the create modal. |
-| `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here.                          |
-| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. Visitors see **Published Publicly** / **Published Collaboratively** on the date line; only the owner can **Edit this node** / **Add to path**. **Export Context** (next to Annotations / Your Notes) copies an LLM prompt: current step and ancestors, the numbered outline (mark and title on one line, with each topic’s why), and the goal/summary. |
+| `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Academic Courses. Atlas callouts; empty search opens the create modal. |
+| `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here. **Fill out this path for me** shows a watering-plant popup (**Watering your path.** / **Creating your steps.**) until the outline lands. |
+| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. Visitors see **Published Publicly** / **Published Collaboratively** on the date line; only the owner can **Edit this node** / **Add to path**. **Export Context** (next to Discussions / Your Notes) copies an LLM prompt: current step and ancestors, the numbered outline (mark and title on one line, with each topic’s why), and the goal/summary. |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
 
 The profile **Learning** tab filters are **Courses**, **Learning paths**, **By you**, and **Committed**. Courses = an official Notion course bookmark **or** a `learning_paths` row with `kind=course` (`isCourseKindPath`). Learning paths = `community` + `research` only. **Committed** is a per-user flag (click Commit; hover Committed → Uncommit) in `learning_path_commitments`; reminders to finish the path are not built yet. Existing DBs: apply `030_learning_path_commitments.sql`.
 
-Profile tabs also include **Knowledge** (acquired topics + optional graph) and **Notes** (your private topic notes from courses and learning paths; `/profile` only; editable, with Open jumping to that topic and the notes panel). Finishing a path records unique node labels, shows blue confetti and a concepts modal, and adds a **What you learned** outline row. Hover **Explored** on the topic action to **Mark unexplored**. Completing a topic (or the whole path) asks how long it took and how enjoyable learning was with the given resources (0–100%). The left outline shows the topic name and a status square only (blue filled = explored); it does not print Exploring / Need this / As deep as you need. See [knowledge.md](./knowledge.md). Daily Gemini linking of the shared catalog is **implemented but disabled**.
+Profile tabs also include **Knowledge** (acquired topics + optional graph) and **Notes** (your private topic notes from courses and learning paths; `/profile` only; editable, with Open jumping to that topic and the notes panel). Finishing a path records unique node labels, shows blue confetti and a concepts modal, and adds a **What you learned** outline row. Hover **Explored** on the topic action to **Mark unexplored**. Completing a topic (or the whole path) asks how long it took and how enjoyable learning was with the given resources (0–100%). The left outline shows the topic name and a status square only (blue filled = explored); it does not print Exploring / Need this / As deep as you need. On a topic, **Why is this on the learning path** and **Resources** start open. See [knowledge.md](./knowledge.md). Daily Gemini linking of the shared catalog is **implemented but disabled**.
+
+## Left outline (community / research)
+
+1. **General Approach** — the goal / map overview (stored as the mental-map section, `?node=mental-map`)
+2. **Recommended Path** — overview of core steps, with the step count
+3. The numbered topic tree. A thicker rule sits between the two tabs and this list.
+4. **What you learned** — only after the path is finished
+
+The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. Searching the outline for “mental map” still finds **General Approach**. Course syllabi use the same tab order with **Recommended Syllabus** instead of Recommended Path (see [curated-courses.md](./curated-courses.md)).
 
 `/all-courses?view=learning-paths` is the full public browse of non-course paths: `listNonCourseLearningPaths()` selects `kind in ('community','research')` (title, goal, summary only — not the JSON blob), then appends any missing `SEEDED_LEARNING_PATHS`. Private rows stay hidden by RLS. **`kind=course` is excluded**, including empty stubs.
 
@@ -137,10 +146,10 @@ When the switch succeeds, the owner’s overlay resources are copied onto `learn
 
 Course catalog pages have no privacy toggle. Owned community/research paths use a three-way control.
 
-**Export Context** (topic bar, next to Annotations / Your Notes) copies a prompt for an external LLM: the current step and its parents, the numbered outline with each topic’s why, then the goal and summary. Each outline row keeps the mark on the same line as the title (`1 Title`, `a) Title`, `i) Title`). Empty and placeholder whys are omitted. Course syllabi do not show this button.
+**Export Context** (topic bar, next to Discussions / Your Notes) copies a prompt for an external LLM: the current step and its parents, the numbered outline with each topic’s why, then the goal and summary. Each outline row keeps the mark on the same line as the title (`1 Title`, `a) Title`, `i) Title`). Empty and placeholder whys are omitted. Course syllabi do not show this button.
 
 Upvotes on a resource list are stored in `learning_path_resource_votes` and **do not change sequence**. The number in the list is still the study order; the arrow is a separate usefulness signal (idle brown, voted blue). Any signed-in user can upvote on a `public` or `collaborative` path — the control stays enabled except while a vote is saving. Apply `028_learning_path_resource_votes.sql` on existing databases. `/community` explains this with a schema diagram (`ResourceVoteSchemaDiagram`): sequence `1 2 3` vs ↑ votes, and the highest vote count is deliberately not on item 1.
 
 ## Activity
 
-Comments and course-style bookmarks use `courses.notion_page_id = 'learning-path:{slug}'` for graph paths. Course syllabi keep `course-learning-path:{slug}` so existing threads are not orphaned.
+Comments, discussions (`annotations` table), and course-style bookmarks use `courses.notion_page_id = 'learning-path:{slug}'` for graph paths. Course syllabi keep `course-learning-path:{slug}` so existing threads are not orphaned.

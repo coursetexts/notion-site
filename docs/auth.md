@@ -30,7 +30,7 @@ Return path rules (`lib/auth-redirect.ts`):
 - Must start with `/` (no `//`, no `://`)
 - `/signin` and `/auth/*` are rejected
 - Default is the current `pathname + search + hash`
-- Gates can add query flags so the same section reopens: `node`, `topic`, `notes=1`, `annotations=1`
+- Gates can add query flags so the same section reopens: `node`, `topic`, `notes=1`, `annotations=1` (Discussions panel; `discussions=1` also works)
 - Header **Sign in** uses `?redirect=` of the current `asPath`
 - The home **Create an Account** CTA still goes to `/profile` on purpose
 
@@ -58,7 +58,7 @@ Needs a session (or local-only until sign-in):
 
 | Action                            | Signed in                                                     | Signed out                               |
 | --------------------------------- | ------------------------------------------------------------- | ---------------------------------------- |
-| Comments, votes, annotations      | Supabase                                                      | disabled                                 |
+| Comments, votes, discussions      | Supabase (`annotations` table)                                | disabled                                 |
 | Course / path notes               | `course_notes` / `learning_path_user_state`                   | `localStorage`                           |
 | Create / edit own learning path   | `learning_paths`                                              | `sessionStorage` / `localStorage` drafts |
 | Save someone else’s path          | `user_links` row pointing at `/learning-path/{slug}`          | n/a                                      |

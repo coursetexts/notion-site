@@ -4,7 +4,7 @@
 
 Coursetexts is a Next.js site with four content pillars:
 
-1. **Official Notion courses** — professor course pages from Notion at `/course/{pageId}`; comments, annotations, bookmarks, and notes in Supabase
+1. **Official Notion courses** — professor course pages from Notion at `/course/{pageId}`; comments, discussions, bookmarks, and notes in Supabase
 2. **Course learning paths** — degree syllabi (topic tree + sequenced resources) stored as `learning_paths` rows with `kind = course`
 3. **Community / research learning paths** — goal-based maps people publish, keep private, or open for collaboration
 4. **Community / profiles** — users, follows, notebooks, resource library, Field Atlas
@@ -61,7 +61,7 @@ Course cards come from the Notion sitemap in `getStaticProps`. Community path ca
 
 ## All Courses (`/all-courses`)
 
-The Guyot title is a dropdown: **All Courses** (default) or **All Learning Paths**. The choice is `?view=learning-paths` (omit `view` for courses). Search `q` is shared. Subject chips and school logos apply only to the courses view.
+The Guyot title is a dropdown: **All Academic Courses** (default) or **All Learning Paths**. The choice is `?view=learning-paths` (omit `view` for courses). Search `q` is shared. Subject chips and school logos apply only to the courses view.
 
 **Courses view**
 
@@ -81,7 +81,7 @@ Public `community` and `research` rows via `listNonCourseLearningPaths()` — **
 
 Two explainers, then trending lists.
 
-1. **Learning paths** — copy plus `CommunitySchema` (goal graph).
+1. **Learning paths** — copy plus `CommunitySchema` (goal graph). Each step has **Discussions**.
 2. **Community Collab Resources** — copy plus `ResourceVoteSchemaDiagram`: numbered study order (`1 2 3`) is independent of ↑ votes for quality (highest vote is deliberately not on item 1). CTA → `/all-courses?view=learning-paths`.
 
 ## App surfaces
@@ -126,16 +126,16 @@ flowchart LR
 | -------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Home                       | `/`                                                              | Notion sitemap + catalog learning paths                                                                                                                                                                                                                                                                                                                                                                         |
 | Notion courses             | `/course/{pageId}`, `/[pageId]`, `/c/*`                          | Notion + `courses` / activity / `course_notes`                                                                                                                                                                                                                                                                                                                                                                  |
-| Catalog browse             | `/all-courses`                                                   | Title toggle. Courses: Notion + filled `kind=course` syllabi (`is_filled`) + degrees promo. Learning paths (`?view=learning-paths`): public `community` + `research` via `listNonCourseLearningPaths()` + atlas callouts.                                                                                                                                                                                       |
+| Catalog browse             | `/all-courses`                                                   | Title toggle **All Academic Courses** (default) or **All Learning Paths**. Courses: Notion + filled `kind=course` syllabi (`is_filled`) + degrees promo. Learning paths (`?view=learning-paths`): public `community` + `research` via `listNonCourseLearningPaths()` + atlas callouts.                                                                                                                           |
 | Degrees                    | `/degrees`                                                       | UG / grad JSON                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Course learning path       | `/learning-path/{slug}` (`kind=course`)                          | Same shell; syllabus outline + `learning_paths.data` (`curated_*` backup)                                                                                                                                                                                                                                                                                                                                       |
-| Community / research paths | `/learning-paths`, `/learning-path/{slug}`, `/learning-path/new` | `learning_paths` + `learning_path_user_state`. Visitors see public vs collab on the hero date; only the owner can add/edit nodes. **Export Context** copies the current step, numbered outline (mark and title on one line, with whys), and goal for an LLM. |
+| Community / research paths | `/learning-paths`, `/learning-path/{slug}`, `/learning-path/new` | `learning_paths` + `learning_path_user_state`. Left outline: **General Approach**, then **Recommended Path**, then the tree. Visitors see public vs collab on the hero date; only the owner can add/edit nodes. **Export Context** copies the current step, numbered outline (mark and title on one line, with whys), and goal for an LLM. Auto-fill shows a watering-plant popup until the outline is ready. Topic threads are **Discussions**. |
 | Field Atlas                | `/field-atlas`                                                   | Seeded atlas tree; can start a `kind=research` path                                                                                                                                                                                                                                                                                                                                                             |
 | Community explainer        | `/community`                                                     | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists                                                                                                                                                                                                                                                                                                              |
 | Resource library           | `/community-resources`                                           | `resources`, `knowledge_components`, `search_community`                                                                                                                                                                                                                                                                                                                                                         |
 | Reports                    | `/reports`                                                       | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only.                                                                                                                                                                                                                                                                                                                                 |
 | Profile / social           | `/profile`, `/profile/{userId}`, `/users`                        | profiles, follows, links, notebooks, owned/saved paths. Header pin nav (saved courses / paths) also shows on `/profile`. Tabs: **Learning** (pills: **Courses** · **Learning paths** · **By you** · **Committed**) · **Knowledge** (list + graph) · **Notes** (private topic notes; `/profile` only; editable; **Open** → that topic with the notes panel) · **Bookmarks** · **Activity** (pills: **Feed** · **Your activity**, plus search). Shared SEARCH width on those tabs. |
-| Auth                       | `/signin`, `/auth/callback`                                      | Google OAuth. Return to the gated page/section (`sessionStorage` / `localStorage` + `?node=` / `?topic=` / `?notes=1` / `?annotations=1`). Callback reads the path once. Fallback `/`, not `/profile`.                                                                                                                                                                                                          |
+| Auth                       | `/signin`, `/auth/callback`                                      | Google OAuth. Return to the gated page/section (`sessionStorage` / `localStorage` + `?node=` / `?topic=` / `?notes=1` / `?annotations=1` for Discussions). Callback reads the path once. Fallback `/`, not `/profile`.                                                                                                                                                                                          |
 
 Legacy URLs:
 
@@ -157,9 +157,9 @@ sequenceDiagram
   Page->>Notion: Fetch page blocks
   Notion-->>Page: HTML / recordMap
   Page->>SB: Upsert courses row (notion_page_id)
-  Page->>SB: Load comments, bookmarks, annotations, notes, section progress
+  Page->>SB: Load comments, bookmarks, discussions, notes, section progress
   SB-->>Page: Activity + RLS
-  User->>Page: Comment / bookmark / annotate / note
+  User->>Page: Comment / bookmark / discuss / note
   Page->>SB: Insert/update as auth.uid()
 ```
 
@@ -213,7 +213,7 @@ Finishing a community, research, or course path records unique topic labels on `
 
 ## Reports (`/reports`)
 
-Users can flag **annotations**, **comments**, **learning paths**, and **uploaded resources**. Hover a card (or the date on a learning-path hero) and send a reason. Rows land in `content_reports` and show on `/reports`. That dashboard is **open while testing**; later it should be limited to `coursetexts.info@gmail.com` (`REPORTS_DASHBOARD_OPEN` in `lib/content-reports.ts`).
+Users can flag **discussions**, **comments**, **learning paths**, and **uploaded resources**. Hover a card (or the date on a learning-path hero) and send a reason. Rows land in `content_reports` and show on `/reports`. That dashboard is **open while testing**; later it should be limited to `coursetexts.info@gmail.com` (`REPORTS_DASHBOARD_OPEN` in `lib/content-reports.ts`).
 
 ## Key conventions
 

@@ -22,7 +22,7 @@ type FilterId = 'all' | ContentReportTargetType
 
 const FILTERS: { id: FilterId; label: string }[] = [
   { id: 'all', label: 'All' },
-  { id: 'annotation', label: 'Annotations' },
+  { id: 'annotation', label: 'Discussions' },
   { id: 'comment', label: 'Comments' },
   { id: 'learning_path', label: 'Learning paths' },
   { id: 'resource', label: 'Resources' }
@@ -128,7 +128,7 @@ export default function ReportsPage() {
           <section className={styles.topSection} aria-label='Reports'>
             <h1 className={styles.heading}>Reports</h1>
             <p className={styles.lede}>
-              Content people have flagged on Coursetexts — annotations,
+              Content people have flagged on Coursetexts — discussions,
               comments, learning paths, and uploaded resources.
               {REPORTS_DASHBOARD_OPEN
                 ? ' This page is open while we test it.'

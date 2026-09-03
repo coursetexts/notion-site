@@ -226,7 +226,7 @@ function FeedItemNarrative({ item }: { item: ProfileFeedItem }) {
     case 'followed_annotation':
       return (
         <>
-          annotated{' '}
+          posted in Discussions on{' '}
           <FeedTargetLink href={item.target_href}>{item.target_title}</FeedTargetLink>
         </>
       )
@@ -383,7 +383,7 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
       )
       break
     case 'followed_annotation':
-      fields.push(item.target_title, item.body, item.section_id, 'annotated')
+      fields.push(item.target_title, item.body, item.section_id, 'discussion')
       break
     case 'followed_learning_path':
       fields.push(item.path_title, 'learning path')
@@ -438,6 +438,7 @@ function myActivityRowMatchesQuery(
   }
   return (
     matchesSearch('annotation', query) ||
+    matchesSearch('discussion', query) ||
     matchesSearch(row.course.name, query) ||
     matchesSearch(row.annotation.body, query) ||
     matchesSearch(row.annotation.section_id ?? '', query)
@@ -2661,9 +2662,9 @@ export default function ProfilePage() {
                       (activityFeedRows.length === 0 ? (
                         <p className={styles.placeholder}>
                           Nothing in your feed yet. Follow people to see their
-                          comments, annotations, bookmarks, new learning paths,
+                          comments, discussions, bookmarks, new learning paths,
                           and progress. Replies to your comments and
-                          annotations, plus suggestions on your resource lists,
+                          discussions, plus suggestions on your resource lists,
                           show up here as well.
                         </p>
                       ) : visibleActivityFeedRows.length === 0 ? (
@@ -2765,9 +2766,9 @@ export default function ProfilePage() {
                       activitySubTab === 'yours' &&
                       (myActivityRows.length === 0 ? (
                         <p className={styles.placeholder}>
-                          No comments or annotations yet. Content you add on
+                          No comments or discussions yet. Content you add on
                           course pages will appear here with a Comment or
-                          Annotation label.
+                          Discussion label.
                         </p>
                       ) : visibleMyActivityRows.length === 0 ? (
                         <p className={styles.placeholder}>
@@ -2824,9 +2825,9 @@ export default function ProfilePage() {
                                     <span className={styles.listTitle}>
                                       <span
                                         className={styles.userLinkTag}
-                                        aria-label='Annotation'
+                                        aria-label='Discussion'
                                       >
-                                        Annotation
+                                        Discussion
                                       </span>{' '}
                                       {course.name}
                                     </span>

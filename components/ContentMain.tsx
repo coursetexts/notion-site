@@ -47,7 +47,7 @@ export interface ContentMainProps {
   onNextSection?: () => void
   /** When false, hide the Next button (e.g. on last section) */
   hasNextSection?: boolean
-  /** Hide the Annotations / Your Notes buttons; bar strip remains (e.g. Community Wall). */
+  /** Hide the Discussions / Your Notes buttons; bar strip remains (e.g. Community Wall). */
   hideAnnotationsChatButtons?: boolean
   /** Hide Completed? / Bookmark in the section footer (e.g. Community Wall tab). */
   hideCompleteBookmark?: boolean

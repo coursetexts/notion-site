@@ -30,6 +30,7 @@ import {
   sortCourseLearningPathLinks,
   sortCourseLearningPathTopicResources
 } from './course-learning-path-types'
+import { LEARNING_PATH_MENTAL_MAP_LABEL } from './learning-path-sections'
 import { getSupabaseClient } from './supabase'
 import {
   extractYouTubeVideoId,
@@ -455,7 +456,7 @@ async function ensureMentalMapNodeIdFromCurated(
       course_id: courseId,
       parent_id: null,
       node_type: 'topic',
-      title: 'Mental Map',
+      title: LEARNING_PATH_MENTAL_MAP_LABEL,
       description: MENTAL_MAP_NODE_MARKER,
       sort_order: -1
     })
@@ -717,7 +718,7 @@ function conceptTreeFromCourse(
   nodeId: string
 ): string {
   if (nodeId === course.mentalMapNodeId) {
-    return `${course.title} --> Mental Map`
+    return `${course.title} --> ${LEARNING_PATH_MENTAL_MAP_LABEL}`
   }
   function walk(
     nodes: CourseLearningPathNode[],

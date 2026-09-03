@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { getMentalMapNotesNodeId } from '@/lib/course-learning-path-resources'
+import { LEARNING_PATH_MENTAL_MAP_LABEL } from '@/lib/learning-path-sections'
 import type {
   CourseLearningPathData,
   CourseLearningPathTopicResource
@@ -41,7 +42,9 @@ export function CourseLearningPathMentalMap({
   return (
     <article className={styles.article}>
       <header className={styles.articleHeader}>
-        <span className={styles.typeBadge}>Mental Map</span>
+        <span className={styles.typeBadge}>
+          {LEARNING_PATH_MENTAL_MAP_LABEL}
+        </span>
         <h1 className={styles.articleTitle}>{course.title}</h1>
       </header>
 

@@ -6,6 +6,9 @@ export const LEARNING_PATH_RECOMMENDED_SECTION_ID = 'recommended-path'
 /** Left-nav / main-panel section for the path mental map. */
 export const LEARNING_PATH_MENTAL_MAP_SECTION_ID = 'mental-map'
 
+/** User-facing name for the mental-map section in the outline. */
+export const LEARNING_PATH_MENTAL_MAP_LABEL = 'General Approach'
+
 /** Left-nav / main-panel section for topics learned after finishing the path. */
 export const LEARNING_PATH_KNOWLEDGE_SECTION_ID = 'knowledge-gained'
 
@@ -29,7 +32,7 @@ export function isLearningPathSectionSelection(id: string) {
   )
 }
 
-/** Outline under Recommended Path / Mental Map — the goal lives on Mental Map. */
+/** Outline under General Approach / Recommended Path — the goal lives on General Approach. */
 export function outlineTreeWithoutGoal(items: PathTreeItem[]): PathTreeItem[] {
   const out: PathTreeItem[] = []
   for (const item of items) {

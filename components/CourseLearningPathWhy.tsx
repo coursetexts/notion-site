@@ -14,11 +14,11 @@ export function CourseLearningPathWhy({
   headingId = 'course-learning-path-why-heading',
   resetKey
 }: CourseLearningPathWhyProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
   const body = (text ?? '').trim()
 
   React.useEffect(() => {
-    setOpen(false)
+    setOpen(true)
   }, [resetKey, text])
 
   return (

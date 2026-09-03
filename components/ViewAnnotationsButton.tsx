@@ -33,10 +33,10 @@ export const ViewAnnotationsButton: React.FC<ViewAnnotationsButtonProps> = ({
       type='button'
       className={styles.root}
       onClick={onClick}
-      aria-label={`Annotations (${count})`}
+      aria-label={`Discussions (${count})`}
     >
       <AnnotationsIcon />
-      <span>Annotations</span>
+      <span>Discussions</span>
       <span className={styles.count}>({count})</span>
     </button>
   )

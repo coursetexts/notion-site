@@ -44,7 +44,7 @@ export type CourseLearningPathTopicResourceKind =
 export const COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS: CourseLearningPathTopicResourceKind[] =
   ['article', 'video', 'book', 'course', 'paper', 'exercise']
 
-/** Unified sequenced resource on a syllabus topic (or Mental Map). */
+/** Unified sequenced resource on a syllabus topic (or General Approach). */
 export interface CourseLearningPathTopicResource {
   id: string
   kind: CourseLearningPathTopicResourceKind
@@ -79,11 +79,11 @@ export interface CourseLearningPathData {
   resources?: CourseResource[]
   /** True when loaded from Supabase (mutations can persist). */
   dbBacked?: boolean
-  /** Course-level videos on the Mental Map page. */
+  /** Course-level videos on the General Approach page. */
   mentalMapVideos?: CourseLearningPathVideo[]
-  /** Unified sequenced resources on the Mental Map page. */
+  /** Unified sequenced resources on the General Approach page. */
   mentalMapTopicResources?: CourseLearningPathTopicResource[]
-  /** Hidden node id for Mental Map resources stored in learning_paths.data. */
+  /** Hidden node id for General Approach resources stored in learning_paths.data. */
   mentalMapNodeId?: string
   /** ISO timestamp from curated_courses.created_at when loaded from the DB. */
   createdAt?: string

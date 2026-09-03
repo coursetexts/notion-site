@@ -86,6 +86,7 @@ import {
 } from '@/lib/learning-path-resource-votes-db'
 import {
   LEARNING_PATH_KNOWLEDGE_SECTION_ID,
+  LEARNING_PATH_MENTAL_MAP_LABEL,
   LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   LEARNING_PATH_RECOMMENDED_SECTION_ID,
   isLearningPathKnowledgeSelection,
@@ -777,13 +778,13 @@ function LearningPathRecommendedOverview({
   )
 }
 
-const CLOSED_SECTIONS = {
-  why: false,
-  resources: false
+const OPEN_SECTIONS = {
+  why: true,
+  resources: true
 }
 
 function pathTypeBadge(node: LearningPathNode, mentalMap: boolean) {
-  if (mentalMap || node.kind === 'goal') return 'Mental Map'
+  if (mentalMap || node.kind === 'goal') return LEARNING_PATH_MENTAL_MAP_LABEL
   if (node.kind === 'prerequisite') return 'Concept'
   if (node.kind === 'milestone') return 'Step'
   return 'Step'
@@ -1197,7 +1198,7 @@ function CommunityLearningPath({
   const [editingResourceId, setEditingResourceId] = React.useState<
     string | null
   >(null)
-  const [openSections, setOpenSections] = React.useState(CLOSED_SECTIONS)
+  const [openSections, setOpenSections] = React.useState(OPEN_SECTIONS)
   const [resourceDraft, setResourceDraft] = React.useState(EMPTY_RESOURCE_DRAFT)
   const [shareCopied, setShareCopied] = React.useState(false)
   const [pathOwnerId, setPathOwnerId] = React.useState<string | null>(null)
@@ -1336,7 +1337,7 @@ function CommunityLearningPath({
     setUserStateReady(false)
     setAddResourceOpen(false)
     setEditingResourceId(null)
-    setOpenSections(CLOSED_SECTIONS)
+    setOpenSections(OPEN_SECTIONS)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
     setShareCopied(false)
     setShowFinishedModal(false)
@@ -1670,6 +1671,7 @@ function CommunityLearningPath({
   const showMentalMapNav =
     !searching ||
     'mental map'.includes(outlineQuery) ||
+    'general approach'.includes(outlineQuery) ||
     (goalNode?.label ?? '').toLowerCase().includes(outlineQuery)
   const showKnowledgeNav =
     pathFinished &&
@@ -1746,7 +1748,7 @@ function CommunityLearningPath({
       nodeById[id]?.kind === 'goal' ? LEARNING_PATH_MENTAL_MAP_SECTION_ID : id
     setSelectedId(next)
     replaceSearchParams({ node: next })
-    setOpenSections(CLOSED_SECTIONS)
+    setOpenSections(OPEN_SECTIONS)
     setAddResourceOpen(false)
     setEditingResourceId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
@@ -2651,6 +2653,15 @@ function CommunityLearningPath({
                 ) : null}
                 {showRecommendedNav || showMentalMapNav ? (
                   <div className={styles.navPanelSection}>
+                    {showMentalMapNav ? (
+                      <PathSectionRow
+                        label={LEARNING_PATH_MENTAL_MAP_LABEL}
+                        selected={showingMentalMap}
+                        onSelect={() =>
+                          selectNode(LEARNING_PATH_MENTAL_MAP_SECTION_ID)
+                        }
+                      />
+                    ) : null}
                     {showRecommendedNav ? (
                       <PathSectionRow
                         label='Recommended Path'
@@ -2658,15 +2669,6 @@ function CommunityLearningPath({
                         selected={showingRecommended}
                         onSelect={() =>
                           selectNode(LEARNING_PATH_RECOMMENDED_SECTION_ID)
-                        }
-                      />
-                    ) : null}
-                    {showMentalMapNav ? (
-                      <PathSectionRow
-                        label='Mental Map'
-                        selected={showingMentalMap}
-                        onSelect={() =>
-                          selectNode(LEARNING_PATH_MENTAL_MAP_SECTION_ID)
                         }
                       />
                     ) : null}
@@ -2882,7 +2884,7 @@ function CommunityLearningPath({
               showingRecommended
                 ? 'Recommended Path'
                 : showingMentalMap
-                ? 'Mental Map'
+                ? LEARNING_PATH_MENTAL_MAP_LABEL
                 : showingKnowledge
                 ? 'What you learned'
                 : selected?.label ?? path.title
@@ -2900,7 +2902,7 @@ function CommunityLearningPath({
                     showingRecommended
                       ? 'Recommended Path'
                       : showingMentalMap
-                      ? 'Mental Map'
+                      ? LEARNING_PATH_MENTAL_MAP_LABEL
                       : showingKnowledge
                       ? 'What you learned'
                       : selected?.label

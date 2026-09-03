@@ -43,7 +43,7 @@ export const ALL_COURSES_VIEWS = ['courses', 'learning-paths'] as const
 export type AllCoursesView = (typeof ALL_COURSES_VIEWS)[number]
 
 export const ALL_COURSES_VIEW_LABELS: Record<AllCoursesView, string> = {
-  courses: 'All Courses',
+  courses: 'All Academic Courses',
   'learning-paths': 'All Learning Paths'
 }
 

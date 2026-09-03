@@ -85,7 +85,7 @@ export function communityResourceReportId(
 
 export function contentReportTypeLabel(type: ContentReportTargetType): string {
   if (type === 'learning_path') return 'Learning path'
-  if (type === 'annotation') return 'Annotation'
+  if (type === 'annotation') return 'Discussion'
   if (type === 'comment') return 'Comment'
   return 'Resource'
 }

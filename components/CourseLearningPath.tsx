@@ -54,6 +54,7 @@ import {
   knowledgeTopicItemsFromCourseLearningPath,
   knowledgeTopicsFromCourseLearningPath
 } from '@/lib/learning-path-knowledge'
+import { LEARNING_PATH_MENTAL_MAP_LABEL } from '@/lib/learning-path-sections'
 import { recordLearningPathProgressEvent } from '@/lib/learning-path-progress-events-db'
 import {
   LEARNING_PATH_RATING_TARGET,
@@ -517,7 +518,7 @@ export function CourseLearningPath({
           {
             ...input,
             nodeId: mapNodeId,
-            conceptTree: `${course.title} --> Mental Map`,
+            conceptTree: `${course.title} --> ${LEARNING_PATH_MENTAL_MAP_LABEL}`,
             courseSlug: course.slug
           },
           current
@@ -634,7 +635,7 @@ export function CourseLearningPath({
           {
             ...input,
             nodeId: mapNodeId,
-            conceptTree: `${course.title} --> Mental Map`,
+            conceptTree: `${course.title} --> ${LEARNING_PATH_MENTAL_MAP_LABEL}`,
             courseSlug: course.slug
           },
           current
@@ -912,7 +913,7 @@ export function CourseLearningPath({
               showingSyllabus
                 ? 'Syllabus'
                 : showingMentalMap
-                ? 'Mental Map'
+                ? LEARNING_PATH_MENTAL_MAP_LABEL
                 : showingKnowledge
                 ? 'What you learned'
                 : showingResources
@@ -927,7 +928,7 @@ export function CourseLearningPath({
                   showingSyllabus
                     ? 'Syllabus'
                     : showingMentalMap
-                    ? 'Mental Map'
+                    ? LEARNING_PATH_MENTAL_MAP_LABEL
                     : showingKnowledge
                     ? 'What you learned'
                     : showingResources

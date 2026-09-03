@@ -35,7 +35,7 @@ export interface CourseContentProps {
   /** Optional ref for the main content container so existing DOM can be moved into it */
   mainRef?: React.Ref<HTMLDivElement>
   children?: React.ReactNode
-  /** Course identity for activity (comments, bookmarks, annotations) */
+  /** Course identity for activity (comments, bookmarks, discussions) */
   coursePageId?: string
   courseTitle?: string
   courseDescription?: string
@@ -415,14 +415,15 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     setRightPanel(panel)
     replaceSearchParams({
       notes: panel === 'notes' ? '1' : null,
-      annotations: panel === 'annotations' ? '1' : null
+      annotations: panel === 'annotations' ? '1' : null,
+      discussions: null
     })
   }, [])
 
   const closeRightPanel = React.useCallback(() => {
     setIsRightPanelExiting(true)
     setRightPanel('none')
-    replaceSearchParams({ notes: null, annotations: null })
+    replaceSearchParams({ notes: null, annotations: null, discussions: null })
   }, [])
 
   const rightPanelTransition = React.useMemo(
@@ -633,7 +634,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
                   role='dialog'
                   aria-modal='true'
                   aria-label={
-                    rightPanel === 'annotations' ? 'Annotations' : 'Your notes'
+                    rightPanel === 'annotations' ? 'Discussions' : 'Your notes'
                   }
                   className={styles.mobilePanelSheet}
                   initial={{ y: '100%' }}

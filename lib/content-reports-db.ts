@@ -1,5 +1,5 @@
 /**
- * Content reports (annotations, comments, learning paths, uploaded resources).
+ * Content reports (discussions, comments, learning paths, uploaded resources).
  * Requires migration 037. Missing-table errors surface as a friendly message.
  */
 import { getCachedAuth } from '@/lib/auth-cache'

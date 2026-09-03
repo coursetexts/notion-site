@@ -402,7 +402,7 @@ const SortMenu: React.FC<SortMenuProps> = ({ value, onChange }) => {
           ref={menuRef}
           className={styles.sortMenu}
           role='menu'
-          aria-label='Sort annotations'
+          aria-label='Sort discussions'
         >
           <button
             type='button'
@@ -533,7 +533,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
       setAnnotations((prev) => [...prev, added])
       onActivityPosted?.()
     } else {
-      setError('Could not add annotation. Try again.')
+      setError('Could not add discussion. Try again.')
     }
     if (parentAnnotationId) setSubmittingReplyId(null)
     else setSubmitting(false)
@@ -567,11 +567,11 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   return (
     <aside
       className={cs(styles.root, sheetLayout && styles.rootSheet)}
-      aria-label='Annotations'
+      aria-label='Discussions'
     >
       <div className={styles.header}>
         <h2 className={styles.title}>
-          Annotations{' '}
+          Discussions{' '}
           <span className={styles.titleCount}>({displayCount})</span>
         </h2>
         <div className={styles.headerActions}>
@@ -580,7 +580,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
             type='button'
             className={styles.hideBtn}
             onClick={onHide}
-            aria-label='Hide annotations'
+            aria-label='Hide discussions'
           >
             Hide
           </button>
@@ -601,7 +601,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
                 handleSubmit(undefined)
               }}
               onInput={(e) => autoGrowTextArea(e.currentTarget)}
-              aria-label='Add annotation'
+              aria-label='Add discussion'
               disabled={submitting || !sectionId}
               rows={1}
             />
@@ -610,7 +610,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
               className={styles.submitBtn}
               onClick={() => handleSubmit(undefined)}
               disabled={submitting || !inputValue.trim() || !sectionId}
-              aria-label={submitting ? 'Submitting' : 'Submit annotation'}
+              aria-label={submitting ? 'Submitting' : 'Submit discussion'}
               title='Submit'
             >
               {submitting ? (
@@ -622,14 +622,14 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
           </div>
         </div>
       ) : (
-        <SignInHint action='add annotations' sectionId={sectionId} />
+        <SignInHint action='join the discussion' sectionId={sectionId} />
       )}
       {error && <p className={styles.error}>{error}</p>}
       <div className={styles.list}>
         {loading && <p className={styles.placeholder}>Loading…</p>}
         {!loading && threadedAnnotations.length === 0 && (
           <p className={styles.placeholder}>
-            No annotations on this section yet.
+            No discussions on this section yet.
           </p>
         )}
         {!loading &&
@@ -780,8 +780,8 @@ const ThreadAnnotationItem: React.FC<ThreadAnnotationItemProps> = ({
                 id: node.id,
                 url: courseUrl || '',
                 title: courseTitle
-                  ? `Annotation on ${courseTitle}`
-                  : 'Annotation',
+                  ? `Discussion on ${courseTitle}`
+                  : 'Discussion',
                 snippet: snippetFromText(node.body)
               }}
             />

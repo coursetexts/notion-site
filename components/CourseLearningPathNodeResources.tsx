@@ -88,7 +88,7 @@ export function CourseLearningPathNodeResources({
   onAdd,
   onUpdate
 }: CourseLearningPathNodeResourcesProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
   const [adding, setAdding] = React.useState(false)
   const [editingId, setEditingId] = React.useState<string | null>(null)
   const [draft, setDraft] = React.useState(EMPTY_DRAFT)
@@ -102,7 +102,7 @@ export function CourseLearningPathNodeResources({
     : undefined
 
   React.useEffect(() => {
-    setOpen(false)
+    setOpen(true)
     setAdding(false)
     setEditingId(null)
     setDraft(EMPTY_DRAFT)

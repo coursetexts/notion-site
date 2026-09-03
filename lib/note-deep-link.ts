@@ -17,6 +17,8 @@ export function parseAnnotationsPanelQuery(value: unknown): boolean {
     raw === 'true' ||
     raw === 'annotations' ||
     raw === 'annotate' ||
+    raw === 'discussions' ||
+    raw === 'discussion' ||
     raw === 'open'
   )
 }
@@ -57,7 +59,10 @@ export function urlWantsNotesPanel(): boolean {
 }
 
 export function urlWantsAnnotationsPanel(): boolean {
-  return parseAnnotationsPanelQuery(readSearchParam('annotations'))
+  return (
+    parseAnnotationsPanelQuery(readSearchParam('annotations')) ||
+    parseAnnotationsPanelQuery(readSearchParam('discussions'))
+  )
 }
 
 export function pathSlugFromCourseNotesId(courseId: string): string | null {

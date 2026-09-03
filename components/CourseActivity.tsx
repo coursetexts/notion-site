@@ -643,7 +643,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
   const tabs: { id: TabId; label: string; count: number }[] = [
     { id: 'all', label: 'All Activity', count: totalCount },
     { id: 'comments', label: 'Comments', count: commentCount },
-    { id: 'annotations', label: 'Annotations', count: annotationCount }
+    { id: 'annotations', label: 'Discussions', count: annotationCount }
   ]
 
   const allActivity = React.useMemo(() => {
@@ -885,7 +885,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
             <div className={styles.annotationsPanel}>
               <div className={styles.headingRow}>
                 <h3 className={styles.commentsHeading}>
-                  Annotations{' '}
+                  Discussions{' '}
                   <span className={styles.commentsHeadingCount}>
                     ({annotationCount})
                   </span>
@@ -893,18 +893,18 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                 <div
                   className={styles.sortWrap}
                   role='group'
-                  aria-label='Sort annotations'
+                  aria-label='Sort discussions'
                 >
                   <SortMenu
                     value={sortBy}
                     onChange={setSortBy}
-                    ariaLabel='Sort annotations'
+                    ariaLabel='Sort discussions'
                   />
                 </div>
               </div>
               {annotations.length === 0 && (
                 <p className={styles.placeholderText}>
-                  No annotations yet. Add annotations from the sidebar on a
+                  No discussions yet. Start one from Discussions on a
                   specific section.
                 </p>
               )}
@@ -948,8 +948,8 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                             id: a.id,
                             url: activityPageUrl(courseUrl),
                             title: courseTitle
-                              ? `Annotation on ${courseTitle}`
-                              : 'Annotation',
+                              ? `Discussion on ${courseTitle}`
+                              : 'Discussion',
                             snippet: snippetFromText(a.body)
                           }}
                         />
@@ -1105,15 +1105,15 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
                               id: item.id,
                               url: activityPageUrl(courseUrl),
                               title: courseTitle
-                                ? `Annotation on ${courseTitle}`
-                                : 'Annotation',
+                                ? `Discussion on ${courseTitle}`
+                                : 'Discussion',
                               snippet: snippetFromText(
                                 (item as DbAnnotation).body
                               )
                             }}
                           />
                         </span>
-                        <span className={styles.typeTag}>Annotation</span>
+                        <span className={styles.typeTag}>Discussion</span>
                         {onSectionClick && (item as DbAnnotation).section_id ? (
                           <SectionTagButton
                             label={(item as DbAnnotation).section_id ?? ''}
