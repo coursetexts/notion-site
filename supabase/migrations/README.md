@@ -3,7 +3,7 @@
 These SQL files recreate the **current** app schema for a brand-new Supabase project.
 They collapse historical migrations into a clean final state (no drop/recreate churn).
 
-Run them **in numeric order** in the Supabase SQL Editor (or via CLI). On an empty database, prefer **`000_complete_schema.sql` once** (includes `001`–`030`, `034`–`038`, and `040`). Do **not** also run `001`–`030` on the same empty database.
+Run them **in numeric order** in the Supabase SQL Editor (or via CLI). On an empty database, prefer **`000_complete_schema.sql` once** (includes `001`–`030`, `034`–`038`, and `040`, with commitment reminder columns). Do **not** also run `001`–`030` on the same empty database.
 
 ## 1. Create the project
 
@@ -84,7 +84,7 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `027_unify_learning_paths.sql` | `kind=course`, `visibility`, `learning_path_pins`, copy notes/pins from curated. Does **not** move official Notion courses onto `learning_paths` (future work). |
 | `028_learning_path_resource_votes.sql` | Upvotes on public/collaborative learning-path resource lists |
 | `029_learning_path_is_filled.sql` | `learning_paths.is_filled` for course syllabi that have a real topic tree |
-| `030_learning_path_commitments.sql` | Per-user committed flags on Learning tab items (future finish reminders) |
+| `030_learning_path_commitments.sql` | Per-user committed flags on Learning tab items |
 | `034_activity_feed_events.sql` | Suggestion accepted/declined status + `learning_path_progress_events` for the profile feed |
 | `035_user_knowledge_topics.sql` | Profile Knowledge tab: unique completed topics gained from finished learning paths |
 | `036_knowledge_graph.sql` | Site-wide `knowledge_topics` + `knowledge_topic_edges`. Structural ingest on finish; daily Gemini linking is **implemented but disabled** |
@@ -92,10 +92,11 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `038_learning_path_ratings.sql` | Topic and path/course enjoyment % (0–100) plus learner-entered duration after marking explored / finishing |
 | `039_learning_path_ratings_percent.sql` | **Existing DBs only:** widen `learning_path_ratings.rating` from 1–5 to 0–100 if `038` already ran |
 | `040_learning_path_outline_owner_only.sql` | Community/research outline (`data`) is owner-only; catalog course syllabus JSON stays writable for signed-in users |
+| `041_learning_path_commitment_reminders.sql` | Creates `learning_path_commitments` if missing, then optional reminder cadence. Commit without a reminder is allowed; a reminder requires a commitment. UI only; sending is not built yet |
 
-**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`). Skip `015`/`016` unless you already had old table names.
+**Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`, and commitment reminder columns). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline.
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied).
 
 ## 4. Optional seeds
 
@@ -149,7 +150,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/all-courses` **courses** view: second grid lists only `kind=course` rows with `is_filled` (not title-only stubs); degrees promo → `/degrees`
 - [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; atlas callouts; empty search opens create modal
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
-- [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`
+- [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit
 - [ ] Profile Knowledge tab: List + Graph; finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))
 - [ ] `/reports` loads (open while testing). Hover a discussion/comment/resource and send a reason; flag next to the date on a learning-path hero. Row appears on `/reports`. Apply `037_content_reports.sql` first.
 - [ ] Mark a topic explored → enter duration + enjoyment %. Finish the path/course → same for the whole map. Apply `038_learning_path_ratings.sql` (and `039` if `038` already ran with 1–5 stars).

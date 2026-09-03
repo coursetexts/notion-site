@@ -2,56 +2,9 @@ import * as React from 'react'
 import Link from 'next/link'
 
 import type { StoredLearningPath } from '@/lib/learning-path-seed'
+import type { LearningPathReminder } from '@/lib/learning-path-commitments-db'
 import styles from '@/styles/profile.module.css'
-
-function ProfileCompletionMeter({ percent }: { percent: number }) {
-  const size = 36
-  const stroke = 3
-  const radius = (size - stroke) / 2
-  const circumference = 2 * Math.PI * radius
-  const clamped = Math.min(100, Math.max(1, Math.round(percent)))
-  const offset = circumference * (1 - clamped / 100)
-  const center = size / 2
-  return (
-    <span
-      className={styles.learningPathProgress}
-      title={`${clamped}% complete`}
-      aria-label={`${clamped}% complete`}
-    >
-      <svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        aria-hidden
-      >
-        <circle
-          cx={center}
-          cy={center}
-          r={radius}
-          fill='none'
-          stroke='#e6e6e6'
-          strokeWidth={stroke}
-        />
-        <circle
-          cx={center}
-          cy={center}
-          r={radius}
-          fill='none'
-          stroke='#0089c4'
-          strokeWidth={stroke}
-          strokeLinecap='round'
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          transform={`rotate(-90 ${center} ${center})`}
-        />
-      </svg>
-      <span className={styles.learningPathProgressLabel}>
-        {clamped}
-        <span className={styles.learningPathProgressPct}>%</span>
-      </span>
-    </span>
-  )
-}
+import { ProfileCommitmentReminder } from './ProfileCommitmentReminder'
 
 export function ProfileLearningPathCard({
   href,
@@ -64,7 +17,11 @@ export function ProfileLearningPathCard({
   committed = false,
   onToggleCommit,
   commitBusy = false,
-  completedPercent
+  completedPercent,
+  reminder = null,
+  onSaveReminder,
+  onRemoveReminder,
+  reminderBusy = false
 }: {
   href: string
   title: string
@@ -77,6 +34,10 @@ export function ProfileLearningPathCard({
   onToggleCommit?: () => void
   commitBusy?: boolean
   completedPercent?: number | null
+  reminder?: LearningPathReminder | null
+  onSaveReminder?: (reminder: LearningPathReminder) => void
+  onRemoveReminder?: () => void
+  reminderBusy?: boolean
 }) {
   const createdTag = created ? (
     <span
@@ -156,13 +117,39 @@ export function ProfileLearningPathCard({
     </span>
   ) : null
 
-  const hasTags = Boolean(
-    createdTag || privacyTag || savedControl || commitControl
-  )
+  const reminderControl =
+    committed && onSaveReminder && onRemoveReminder ? (
+      <ProfileCommitmentReminder
+        reminder={reminder}
+        onSave={onSaveReminder}
+        onRemove={onRemoveReminder}
+        busy={reminderBusy}
+      />
+    ) : null
+
   const showProgress =
     completedPercent != null &&
     completedPercent > 0 &&
     Number.isFinite(completedPercent)
+  const completePercent = showProgress
+    ? Math.min(100, Math.max(1, Math.round(completedPercent as number)))
+    : 0
+  const completeTag = showProgress ? (
+    <span
+      className={`${styles.learningPathTag} ${styles.learningPathCompleteTag}`}
+    >
+      {completePercent}% complete
+    </span>
+  ) : null
+
+  const hasTags = Boolean(
+    createdTag ||
+      privacyTag ||
+      savedControl ||
+      commitControl ||
+      reminderControl ||
+      completeTag
+  )
 
   return (
     <div className={styles.learningPathCard}>
@@ -171,19 +158,14 @@ export function ProfileLearningPathCard({
           <span className={styles.learningPathCardTitle}>{title}</span>
         </a>
       </Link>
-      {hasTags || showProgress ? (
-        <span className={styles.learningPathCardMeta}>
-          {hasTags ? (
-            <span className={styles.learningPathCardTags}>
-              {createdTag}
-              {privacyTag}
-              {savedControl}
-              {commitControl}
-            </span>
-          ) : null}
-          {showProgress ? (
-            <ProfileCompletionMeter percent={completedPercent as number} />
-          ) : null}
+      {hasTags ? (
+        <span className={styles.learningPathCardTags}>
+          {createdTag}
+          {privacyTag}
+          {savedControl}
+          {completeTag}
+          {commitControl}
+          {reminderControl}
         </span>
       ) : null}
     </div>
@@ -197,7 +179,11 @@ export function ProfileCommunityLearningPathCard({
   committed = false,
   onToggleCommit,
   commitBusy = false,
-  completedPercent
+  completedPercent,
+  reminder = null,
+  onSaveReminder,
+  onRemoveReminder,
+  reminderBusy = false
 }: {
   item: StoredLearningPath
   onUnsave?: (linkId: string) => void
@@ -206,6 +192,10 @@ export function ProfileCommunityLearningPathCard({
   onToggleCommit?: (slug: string) => void
   commitBusy?: boolean
   completedPercent?: number | null
+  reminder?: LearningPathReminder | null
+  onSaveReminder?: (reminder: LearningPathReminder) => void
+  onRemoveReminder?: () => void
+  reminderBusy?: boolean
 }) {
   const savedLinkId = item.savedLinkId
   const canUnsave = Boolean(savedLinkId && onUnsave)
@@ -233,6 +223,10 @@ export function ProfileCommunityLearningPathCard({
       }
       commitBusy={commitBusy}
       completedPercent={completedPercent}
+      reminder={reminder}
+      onSaveReminder={onSaveReminder}
+      onRemoveReminder={onRemoveReminder}
+      reminderBusy={reminderBusy}
     />
   )
 }

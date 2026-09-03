@@ -194,6 +194,7 @@ export function FormSelect<T extends string>({
               <motion.div
                 key='form-select-menu'
                 ref={menuRef}
+                data-form-select-menu=''
                 className={`${styles.menu}${
                   menuBox.openUp ? ` ${styles.menuUp}` : ''
                 }`}

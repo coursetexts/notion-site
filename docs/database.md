@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline.
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied).
 
 ## Table groups
 
@@ -367,6 +367,9 @@ erDiagram
     uuid user_id PK
     text target_key PK "learning-path:{slug} or course:{pageId}"
     timestamptz created_at
+    text reminder_frequency "daily or weekday, nullable"
+    smallint reminder_minute "0-1439 local minutes"
+    text reminder_timezone "IANA"
   }
 ```
 
@@ -381,7 +384,7 @@ erDiagram
 | `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
 | `learning_path_pins`           | Per-user pinned **course** syllabi.                                                                                                                                                                            |
 | `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
-| `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Later: reminders to finish the path. Existing DBs: apply `030_learning_path_commitments.sql`.                        |
+| `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). |
 
 Saving someone else’s community path is a `user_links` row whose URL is `/learning-path/{slug}` — not a separate saves table.
 

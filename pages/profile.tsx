@@ -88,7 +88,9 @@ import {
   learningPathCommitmentKey,
   listMyLearningPathCommitments,
   officialCourseCommitmentKey,
-  setLearningPathCommitted
+  setLearningPathCommitted,
+  setLearningPathReminder,
+  type LearningPathReminder
 } from '@/lib/learning-path-commitments-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
 import { loadProfileLearningProgress } from '@/lib/profile-learning-progress'
@@ -516,7 +518,11 @@ export default function ProfilePage() {
   const [committedKeys, setCommittedKeys] = useState<Set<string>>(
     () => new Set()
   )
+  const [commitmentReminders, setCommitmentReminders] = useState<
+    Record<string, LearningPathReminder>
+  >({})
   const [commitBusyKey, setCommitBusyKey] = useState<string | null>(null)
+  const [reminderBusyKey, setReminderBusyKey] = useState<string | null>(null)
   const [courseLearningPaths, setCourseLearningPaths] = useState<
     PinnedCourseLearningPath[]
   >([])
@@ -1051,8 +1057,14 @@ export default function ProfilePage() {
 
   useEffect(() => {
     let cancelled = false
-    void listMyLearningPathCommitments().then((keys) => {
-      if (!cancelled) setCommittedKeys(new Set(keys))
+    void listMyLearningPathCommitments().then((rows) => {
+      if (cancelled) return
+      setCommittedKeys(new Set(rows.map((row) => row.targetKey)))
+      const reminders: Record<string, LearningPathReminder> = {}
+      for (const row of rows) {
+        if (row.reminder) reminders[row.targetKey] = row.reminder
+      }
+      setCommitmentReminders(reminders)
     })
     return () => {
       cancelled = true
@@ -1319,6 +1331,14 @@ export default function ProfilePage() {
       else keys.delete(targetKey)
       return keys
     })
+    if (!next) {
+      setCommitmentReminders((prev) => {
+        if (!(targetKey in prev)) return prev
+        const nextReminders = { ...prev }
+        delete nextReminders[targetKey]
+        return nextReminders
+      })
+    }
     const ok = await setLearningPathCommitted(targetKey, next)
     if (!ok) {
       setCommittedKeys((prev) => {
@@ -1330,6 +1350,51 @@ export default function ProfilePage() {
       window.alert('Could not update committed.')
     }
     setCommitBusyKey(null)
+  }
+
+  const handleSaveReminder = async (
+    targetKey: string,
+    reminder: LearningPathReminder
+  ) => {
+    if (reminderBusyKey) return
+    if (!committedKeys.has(targetKey)) return
+    const previous = commitmentReminders[targetKey] ?? null
+    setReminderBusyKey(targetKey)
+    setCommitmentReminders((prev) => ({ ...prev, [targetKey]: reminder }))
+    const ok = await setLearningPathReminder(targetKey, reminder)
+    if (!ok) {
+      setCommitmentReminders((prev) => {
+        const nextReminders = { ...prev }
+        if (previous) nextReminders[targetKey] = previous
+        else delete nextReminders[targetKey]
+        return nextReminders
+      })
+      window.alert('Could not save this reminder.')
+    }
+    setReminderBusyKey(null)
+  }
+
+  const handleRemoveReminder = async (targetKey: string) => {
+    if (reminderBusyKey) return
+    if (!committedKeys.has(targetKey)) return
+    const previous = commitmentReminders[targetKey] ?? null
+    setReminderBusyKey(targetKey)
+    setCommitmentReminders((prev) => {
+      const nextReminders = { ...prev }
+      delete nextReminders[targetKey]
+      return nextReminders
+    })
+    const ok = await setLearningPathReminder(targetKey, null)
+    if (!ok) {
+      if (previous) {
+        setCommitmentReminders((prev) => ({
+          ...prev,
+          [targetKey]: previous
+        }))
+      }
+      window.alert('Could not remove this reminder.')
+    }
+    setReminderBusyKey(null)
   }
 
   const openLinkAction = (type: LinkActionType, link: UserLinkWithTag) => {
@@ -3000,6 +3065,26 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  reminder={
+                                    commitmentReminders[
+                                      learningPathCommitmentKey(item.slug)
+                                    ] ?? null
+                                  }
+                                  onSaveReminder={(reminder) =>
+                                    void handleSaveReminder(
+                                      learningPathCommitmentKey(item.slug),
+                                      reminder
+                                    )
+                                  }
+                                  onRemoveReminder={() =>
+                                    void handleRemoveReminder(
+                                      learningPathCommitmentKey(item.slug)
+                                    )
+                                  }
+                                  reminderBusy={
+                                    reminderBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
+                                  }
                                 />
                               </li>
                             ))
@@ -3027,6 +3112,26 @@ export default function ProfilePage() {
                                   }
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
+                                  }
+                                  reminder={
+                                    commitmentReminders[
+                                      learningPathCommitmentKey(item.slug)
+                                    ] ?? null
+                                  }
+                                  onSaveReminder={(reminder) =>
+                                    void handleSaveReminder(
+                                      learningPathCommitmentKey(item.slug),
+                                      reminder
+                                    )
+                                  }
+                                  onRemoveReminder={() =>
+                                    void handleRemoveReminder(
+                                      learningPathCommitmentKey(item.slug)
+                                    )
+                                  }
+                                  reminderBusy={
+                                    reminderBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
                                   }
                                 />
                               </li>
@@ -3056,6 +3161,26 @@ export default function ProfilePage() {
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
                                   }
+                                  reminder={
+                                    commitmentReminders[
+                                      learningPathCommitmentKey(item.slug)
+                                    ] ?? null
+                                  }
+                                  onSaveReminder={(reminder) =>
+                                    void handleSaveReminder(
+                                      learningPathCommitmentKey(item.slug),
+                                      reminder
+                                    )
+                                  }
+                                  onRemoveReminder={() =>
+                                    void handleRemoveReminder(
+                                      learningPathCommitmentKey(item.slug)
+                                    )
+                                  }
+                                  reminderBusy={
+                                    reminderBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
+                                  }
                                 />
                               </li>
                             ))
@@ -3083,6 +3208,26 @@ export default function ProfilePage() {
                                   }
                                   completedPercent={
                                     progressByPathSlug[item.slug] ?? null
+                                  }
+                                  reminder={
+                                    commitmentReminders[
+                                      learningPathCommitmentKey(item.slug)
+                                    ] ?? null
+                                  }
+                                  onSaveReminder={(reminder) =>
+                                    void handleSaveReminder(
+                                      learningPathCommitmentKey(item.slug),
+                                      reminder
+                                    )
+                                  }
+                                  onRemoveReminder={() =>
+                                    void handleRemoveReminder(
+                                      learningPathCommitmentKey(item.slug)
+                                    )
+                                  }
+                                  reminderBusy={
+                                    reminderBusyKey ===
+                                    learningPathCommitmentKey(item.slug)
                                   }
                                 />
                               </li>
@@ -3128,6 +3273,34 @@ export default function ProfilePage() {
                                     progressByOfficialPageId[
                                       course.notion_page_id
                                     ] ?? null
+                                  }
+                                  reminder={
+                                    commitmentReminders[
+                                      officialCourseCommitmentKey(
+                                        course.notion_page_id
+                                      )
+                                    ] ?? null
+                                  }
+                                  onSaveReminder={(reminder) =>
+                                    void handleSaveReminder(
+                                      officialCourseCommitmentKey(
+                                        course.notion_page_id
+                                      ),
+                                      reminder
+                                    )
+                                  }
+                                  onRemoveReminder={() =>
+                                    void handleRemoveReminder(
+                                      officialCourseCommitmentKey(
+                                        course.notion_page_id
+                                      )
+                                    )
+                                  }
+                                  reminderBusy={
+                                    reminderBusyKey ===
+                                    officialCourseCommitmentKey(
+                                      course.notion_page_id
+                                    )
                                   }
                                 />
                               </li>
