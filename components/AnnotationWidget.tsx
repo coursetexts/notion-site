@@ -31,6 +31,8 @@ export interface AnnotationWidgetProps {
   coursePageId?: string
   /** Current section/tab label for this annotation context */
   sectionId?: string
+  /** Human-readable topic / tab name, shown like Notes. */
+  sectionTitle?: string
   /** Called after a new annotation or reply is saved (e.g. to refresh course activity below). */
   onActivityPosted?: () => void
   /** Full-viewport sheet on small screens (no sidebar border / max-width). */
@@ -445,6 +447,7 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
   courseTitle,
   coursePageId,
   sectionId,
+  sectionTitle,
   onActivityPosted,
   sheetLayout = false
 }) => {
@@ -586,6 +589,16 @@ export const AnnotationWidget: React.FC<AnnotationWidgetProps> = ({
           </button>
         </div>
       </div>
+      {(sectionTitle || courseTitle) && (
+        <div className={styles.meta}>
+          {sectionTitle ? (
+            <p className={styles.topicTitle}>{sectionTitle}</p>
+          ) : null}
+          {courseTitle ? (
+            <p className={styles.courseTitle}>{courseTitle}</p>
+          ) : null}
+        </div>
+      )}
       {auth?.user ? (
         <div className={styles.addWrap}>
           <div className={styles.addWrapInner}>

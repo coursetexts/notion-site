@@ -545,7 +545,8 @@ export function NotesEditorToolbar({
   showYoutube = false,
   showPdf = false,
   className,
-  disabled = false
+  disabled = false,
+  saveStatus = null
 }: {
   editor: Editor
   imageInputRef: React.RefObject<HTMLInputElement | null>
@@ -557,8 +558,15 @@ export function NotesEditorToolbar({
   showPdf?: boolean
   className?: string
   disabled?: boolean
+  saveStatus?: 'saving' | 'saved' | null
 }) {
   const showHeadingLevels = headingLevels.length > 1
+  const saveLabel =
+    saveStatus === 'saving'
+      ? 'Saving'
+      : saveStatus === 'saved'
+      ? 'Saved'
+      : null
 
   return (
     <div
@@ -724,6 +732,11 @@ export function NotesEditorToolbar({
           ) : null}
         </div>
       </div>
+      {saveLabel ? (
+        <span className={styles.saveStatus} aria-live='polite'>
+          {saveLabel}
+        </span>
+      ) : null}
       {onExpand ? (
         <button
           type='button'

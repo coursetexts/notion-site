@@ -15,7 +15,7 @@ On a learning path (`/learning-path/{slug}`), finishing the last remaining topic
 3. Opens a **Path complete** / **Course complete** modal listing the concepts, plus duration and enjoyment for the whole map
 4. Adds a **What you learned** row at the bottom of the left outline (hidden until the path is finished)
 
-The outline marks progress with a square only (blue filled = explored). **Explored** / **Mark unexplored** lives on the topic action in the main pane, not as outline text.
+The outline marks progress with a light-blue stroke check when a topic is explored (shown on parent accordion rows and nested steps). **Explored** / **Mark unexplored** lives on the topic action in the main pane, not as outline text.
 
 **Finished** means every non-goal node is `explored` (community/research) or every flattened syllabus node is in the explored set (course). Un-exploring a topic hides the What you learned tab again until the path is complete.
 

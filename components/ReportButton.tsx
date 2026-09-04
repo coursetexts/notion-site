@@ -38,11 +38,13 @@ export const reportHoverTargetClass = styles.reportHoverTarget
 export function ReportButton({
   target,
   variant = 'hover',
-  className
+  className,
+  onOpen
 }: {
   target: ContentReportTarget
-  variant?: 'hover' | 'always'
+  variant?: 'hover' | 'always' | 'menuItem'
   className?: string
+  onOpen?: () => void
 }) {
   const auth = useAuthOptional()
   const [open, setOpen] = React.useState(false)
@@ -83,6 +85,7 @@ export function ReportButton({
   function handleOpen(event: React.MouseEvent) {
     event.preventDefault()
     event.stopPropagation()
+    onOpen?.()
     if (!auth?.user) {
       const next = currentAuthRedirectPath()
       if (auth?.signInWithGoogle) {
@@ -195,19 +198,25 @@ export function ReportButton({
           document.body
         )
 
+  const buttonClass =
+    variant === 'menuItem'
+      ? `${styles.menuItem}${className ? ` ${className}` : ''}`
+      : `${variant === 'always' ? styles.flagAlways : styles.flag}${
+          className ? ` ${className}` : ''
+        }`
+
   return (
     <>
       <button
         type='button'
-        className={`${variant === 'always' ? styles.flagAlways : styles.flag}${
-          className ? ` ${className}` : ''
-        }`}
+        className={buttonClass}
         onClick={handleOpen}
         onMouseDown={(event) => event.stopPropagation()}
         aria-label={`Report this ${kind}`}
         title='Report'
+        role={variant === 'menuItem' ? 'menuitem' : undefined}
       >
-        <FlagIcon />
+        {variant === 'menuItem' ? 'Report' : <FlagIcon />}
       </button>
       {modal}
     </>

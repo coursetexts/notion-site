@@ -58,6 +58,9 @@ export function NotebookEditor({
   const onSaveRef = useRef(onSave)
   onSaveRef.current = onSave
   const imageInputRef = useRef<HTMLInputElement>(null)
+  const [saveStatus, setSaveStatus] = React.useState<
+    'saving' | 'saved' | null
+  >(null)
 
   const flushSave = useCallback(async () => {
     if (saveTimer.current) {
@@ -65,9 +68,11 @@ export function NotebookEditor({
       saveTimer.current = null
     }
     onSaveState?.('saving')
+    setSaveStatus('saving')
     try {
       await onSaveRef.current(latestJson.current)
       onSaveState?.('saved')
+      setSaveStatus('saved')
     } catch {
       onSaveState?.('error')
     }
@@ -78,6 +83,7 @@ export function NotebookEditor({
       if (!editableRef.current) return
       latestJson.current = json
       onSaveState?.('idle')
+      setSaveStatus('saving')
       if (saveTimer.current) clearTimeout(saveTimer.current)
       saveTimer.current = setTimeout(() => {
         saveTimer.current = null
@@ -229,6 +235,7 @@ export function NotebookEditor({
             headingLevels={[1, 2, 3]}
             showYoutube
             showPdf
+            saveStatus={saveStatus}
             className={styles.editorToolbar}
           />
         </>

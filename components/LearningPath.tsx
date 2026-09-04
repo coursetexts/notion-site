@@ -12,13 +12,22 @@ import {
 } from '@/components/CourseHero'
 import { CourseLearningPath } from '@/components/CourseLearningPath'
 import { FormSelect } from '@/components/FormSelect'
+import {
+  HeroMoreMenu,
+  HeroSaveButton,
+  HeroShareButton
+} from '@/components/HeroBarActions'
+import { LearningPathCommitRemindButton } from '@/components/LearningPathCommitRemindButton'
 import { LearningPathOutlinePanel } from '@/components/LearningPathOutlinePanel'
+import {
+  OutlineAccordionChevron,
+  PathCompleteCheck
+} from '@/components/PathCompleteCheck'
 import { PathContentActivity } from '@/components/PathContentActivity'
 import { ReportButton, reportHoverTargetClass } from '@/components/ReportButton'
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
 import { getCachedAuth } from '@/lib/auth-cache'
 import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
-import { centerGraphNode } from '@/lib/center-graph-node'
 import { pathResourceReportId } from '@/lib/content-reports'
 import { learningPathActivityPageId } from '@/lib/course-activity-db'
 import { getCourseLearningPathData } from '@/lib/course-learning-path-db'
@@ -33,6 +42,7 @@ import {
   normalizeUserLinkUrl,
   userLinkMatchesLearningPathSlug
 } from '@/lib/learning-path-bookmark-link'
+import { learningPathCommitmentKey } from '@/lib/learning-path-commitments-db'
 import { formatLearningPathExportContext } from '@/lib/learning-path-export-context'
 import {
   getLearningPathRecord,
@@ -46,15 +56,10 @@ import {
 } from '@/lib/learning-path-db'
 import {
   type PathTreeItem,
-  edgePath,
   isCoreStep,
-  layoutHoverGraph,
   visibleTree
 } from '@/lib/learning-path-graph-layout'
-import {
-  learningPathKicker,
-  learningPathOutlineHint
-} from '@/lib/learning-path-kind-ui'
+import { learningPathKicker } from '@/lib/learning-path-kind-ui'
 import {
   isLearningPathFinished,
   knowledgeTopicItemsFromLearningPath,
@@ -86,12 +91,13 @@ import {
 } from '@/lib/learning-path-resource-votes-db'
 import {
   LEARNING_PATH_KNOWLEDGE_SECTION_ID,
-  LEARNING_PATH_MENTAL_MAP_LABEL,
   LEARNING_PATH_MENTAL_MAP_SECTION_ID,
+  LEARNING_PATH_OVERVIEW_LABEL,
+  LEARNING_PATH_OVERVIEW_SECTION_ID,
   LEARNING_PATH_RECOMMENDED_SECTION_ID,
+  canonicalizeLearningPathSectionId,
   isLearningPathKnowledgeSelection,
-  isLearningPathMentalMapSelection,
-  isLearningPathRecommendedSelection,
+  isLearningPathOverviewSelection,
   isLearningPathSectionSelection,
   outlineTreeWithoutGoal
 } from '@/lib/learning-path-sections'
@@ -128,13 +134,11 @@ import { addKnowledgeTopicsFromCompletedPath } from '@/lib/user-knowledge-topics
 import { addLink, deleteLink, getMyLinks } from '@/lib/user-links'
 
 import heroStyles from './CourseHero.module.css'
-import { GraphViewport } from './GraphViewport'
 import styles from './LearningPath.module.css'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
 import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
 import { LearningPathPublishModal } from './LearningPathPublishModal'
 import { LearningPathRatingModal } from './LearningPathRatingModal'
-import saveStyles from './SaveCourseButton.module.css'
 
 const RESOURCE_KINDS: LearningPathResourceKind[] = [
   'article',
@@ -149,15 +153,6 @@ const RESOURCE_KIND_OPTIONS = RESOURCE_KINDS.map((kind) => ({
   value: kind,
   label: kind.charAt(0).toUpperCase() + kind.slice(1)
 }))
-
-const VISIBILITY_OPTIONS: Array<{
-  value: LearningPathVisibility
-  label: string
-}> = [
-  { value: 'private', label: 'Private' },
-  { value: 'public', label: 'Public' },
-  { value: 'collaborative', label: 'Collab' }
-]
 
 function ResourceEditPencilIcon() {
   return (
@@ -188,11 +183,6 @@ const EMPTY_RESOURCE_DRAFT = {
   why: '',
   sequence: ''
 }
-
-const GRAPH_DETAIL_MIN = 280
-const GRAPH_MAP_MIN = 360
-const GRAPH_DETAIL_DEFAULT = 400
-const GRAPH_SPLIT_STORAGE_KEY = 'coursetexts-learning-path-detail-width'
 
 function escapeHtml(value: string) {
   return value
@@ -226,33 +216,6 @@ function filterPathTree(items: PathTreeItem[], query: string): PathTreeItem[] {
       return null
     })
     .filter((item): item is PathTreeItem => item != null)
-}
-
-function readStoredGraphDetailWidth() {
-  if (typeof window === 'undefined') return GRAPH_DETAIL_DEFAULT
-  try {
-    const raw = window.localStorage.getItem(GRAPH_SPLIT_STORAGE_KEY)
-    const n = raw ? Number(raw) : NaN
-    return Number.isFinite(n) ? n : GRAPH_DETAIL_DEFAULT
-  } catch {
-    return GRAPH_DETAIL_DEFAULT
-  }
-}
-
-function persistGraphDetailWidth(width: number) {
-  try {
-    window.localStorage.setItem(
-      GRAPH_SPLIT_STORAGE_KEY,
-      String(Math.round(width))
-    )
-  } catch {
-    // ignore quota / private mode
-  }
-}
-
-function clampGraphDetailWidth(width: number, bodyWidth: number) {
-  const max = Math.max(GRAPH_DETAIL_MIN, Math.floor(bodyWidth - GRAPH_MAP_MIN))
-  return Math.round(Math.min(max, Math.max(GRAPH_DETAIL_MIN, width)))
 }
 
 function newId(prefix: string) {
@@ -432,78 +395,6 @@ function removeNodeSubtree(
   return { ...path, nodes, edges }
 }
 
-function isCannedPathSub(sub: string) {
-  const value = sub.trim().toLowerCase()
-  return value === 'need this' || value === 'as deep as you need'
-}
-
-function nodeClass(node: LearningPathNode, selected: boolean) {
-  const parts = [styles.node]
-  if (selected) parts.push(styles.nodeSelected)
-  if (node.kind === 'goal') parts.push(styles.nodeGoal)
-  if (node.kind === 'milestone') parts.push(styles.nodeMilestone)
-  if (node.status === 'explored') parts.push(styles.nodeExplored)
-  if (node.status === 'exploring') parts.push(styles.nodeExploring)
-  return parts.join(' ')
-}
-
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = React.useState(false)
-  React.useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReduced(media.matches)
-    const onChange = () => setReduced(media.matches)
-    media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
-  }, [])
-  return reduced
-}
-
-function useAnimatedPositions(
-  targets: Record<string, { x: number; y: number }>,
-  enabled: boolean
-) {
-  const [current, setCurrent] = React.useState(targets)
-  const currentRef = React.useRef(targets)
-  const rafRef = React.useRef(0)
-
-  React.useEffect(() => {
-    if (!enabled) {
-      currentRef.current = targets
-      setCurrent(targets)
-      return
-    }
-    const from = { ...currentRef.current }
-    const start = performance.now()
-    const duration = 580
-    const ease = (t: number) => 1 - Math.pow(1 - t, 4)
-
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration)
-      const e = ease(t)
-      const next: Record<string, { x: number; y: number }> = {}
-      const ids = new Set([...Object.keys(from), ...Object.keys(targets)])
-      for (const id of ids) {
-        const end = targets[id]
-        const begin = from[id] ?? end
-        if (!end) continue
-        next[id] = {
-          x: begin.x + (end.x - begin.x) * e,
-          y: begin.y + (end.y - begin.y) * e
-        }
-      }
-      currentRef.current = next
-      setCurrent(next)
-      if (t < 1) rafRef.current = requestAnimationFrame(tick)
-    }
-
-    rafRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [targets, enabled])
-
-  return current
-}
-
 function flattenTree(items: PathTreeItem[]): LearningPathNode[] {
   const flat: LearningPathNode[] = []
   function walk(nodes: PathTreeItem[]) {
@@ -553,144 +444,197 @@ function PencilIcon() {
   )
 }
 
-function ShareIcon() {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='14'
-      height='14'
-      viewBox='0 0 8 8'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M4.14058 1.91565L4.44058 1.61252C4.70255 1.37375 5.04645 1.2451 5.40081 1.2533C5.75518 1.2615 6.09276 1.40593 6.3434 1.65657C6.59404 1.90721 6.73847 2.24479 6.74667 2.59916C6.75488 2.95352 6.62622 3.29742 6.38745 3.5594L5.44058 4.50315C5.31312 4.63108 5.16166 4.73259 4.99488 4.80186C4.8281 4.87112 4.64929 4.90678 4.4687 4.90678C4.28811 4.90678 4.1093 4.87112 3.94252 4.80186C3.77574 4.73259 3.62428 4.63108 3.49683 4.50315'
-        stroke='currentColor'
-        strokeWidth='0.75'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M3.8594 6.08439L3.5594 6.38752C3.29742 6.62629 2.95352 6.75494 2.59916 6.74674C2.24479 6.73853 1.90721 6.5941 1.65657 6.34346C1.40593 6.09282 1.2615 5.75524 1.2533 5.40088C1.2451 5.04651 1.37375 4.70261 1.61252 4.44064L2.5594 3.49689C2.68685 3.36896 2.83831 3.26745 3.00509 3.19818C3.17187 3.12892 3.35068 3.09326 3.53127 3.09326C3.71186 3.09326 3.89067 3.12892 4.05745 3.19818C4.22423 3.26745 4.37569 3.36896 4.50315 3.49689'
-        stroke='currentColor'
-        strokeWidth='0.75'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-    </svg>
-  )
-}
-
 function fallbackSelection() {
-  return LEARNING_PATH_RECOMMENDED_SECTION_ID
+  return LEARNING_PATH_OVERVIEW_SECTION_ID
 }
 
 function selectionFromSearch(nodeIds: Iterable<string>) {
   const node = readSearchParam('node')
-  if (!node) return LEARNING_PATH_RECOMMENDED_SECTION_ID
-  if (isLearningPathSectionSelection(node)) return node
+  if (!node) return LEARNING_PATH_OVERVIEW_SECTION_ID
+  if (isLearningPathSectionSelection(node)) {
+    return canonicalizeLearningPathSectionId(node)
+  }
   for (const id of nodeIds) {
     if (id === node) return node
   }
-  return LEARNING_PATH_RECOMMENDED_SECTION_ID
+  return LEARNING_PATH_OVERVIEW_SECTION_ID
 }
 
-function PathLegend() {
-  return (
-    <div className={styles.legend}>
-      <span>
-        <i className={`${styles.legendDot} ${styles.legendExplored}`} />{' '}
-        Explored
-      </span>
-      <span>
-        <i className={`${styles.legendDot} ${styles.legendExploring}`} />{' '}
-        Exploring
-      </span>
-      <span>
-        <i className={`${styles.legendDot} ${styles.legendNext}`} /> Next
-      </span>
-    </div>
-  )
+function outlineContainsId(items: PathTreeItem[], id: string): boolean {
+  for (const item of items) {
+    if (item.node.id === id) return true
+    if (outlineContainsId(item.children, id)) return true
+  }
+  return false
 }
 
-function PathOutlineList({
+function outlineRootIdsToOpen(
+  items: PathTreeItem[],
+  selectedId: string
+): Set<string> {
+  const open = new Set<string>()
+  for (const item of items) {
+    if (
+      item.node.id === selectedId ||
+      outlineContainsId(item.children, selectedId)
+    ) {
+      open.add(item.node.id)
+    }
+  }
+  return open
+}
+
+function PathOutlineBranch({
   items,
-  marks,
+  depth,
   selectedId,
-  onSelect
+  expanded,
+  forceOpen,
+  onSelect,
+  onToggle
 }: {
   items: PathTreeItem[]
-  marks: ReturnType<typeof sequenceMarks>
+  depth: number
   selectedId: string
+  expanded: Set<string>
+  forceOpen: boolean
   onSelect: (id: string) => void
+  onToggle: (id: string) => void
 }) {
   if (items.length === 0) return null
+  const isRoot = depth === 0
   return (
-    <ul className={styles.pathList}>
+    <ul className={isRoot ? styles.pathList : styles.pathListChildren}>
       {items.map((item) => {
-        const mark = marks[item.node.id]
         const selected = item.node.id === selectedId
+        const completed = item.node.status === 'explored'
+        const hasChildren = item.children.length > 0
+        const isOpen = Boolean(
+          hasChildren && (forceOpen || depth > 0 || expanded.has(item.node.id))
+        )
         return (
-          <li key={item.node.id} className={styles.pathListItem}>
-            <button
-              type='button'
+          <li
+            key={item.node.id}
+            className={isRoot ? styles.pathListTopic : styles.pathListItem}
+          >
+            <div
               className={
                 selected
                   ? `${styles.pathListRow} ${styles.pathListRowSelected}`
                   : styles.pathListRow
               }
-              aria-current={selected ? 'true' : undefined}
-              aria-label={
-                mark
-                  ? mark.role === 'core'
-                    ? `Step ${mark.mark}: ${item.node.label}`
-                    : `${item.node.label}, ${mark.mark})`
-                  : item.node.label
-              }
-              onClick={() => onSelect(item.node.id)}
             >
-              <i
-                className={[
-                  styles.pathListDot,
-                  item.node.status === 'explored'
-                    ? styles.legendExplored
-                    : item.node.status === 'exploring'
-                    ? styles.legendExploring
-                    : styles.legendNext
-                ].join(' ')}
-                aria-hidden
-              />
-              {mark ? (
-                <span
-                  className={
-                    mark.role === 'branch'
-                      ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
-                      : styles.nodeMark
-                  }
-                >
-                  {mark.role === 'branch' ? `${mark.mark})` : mark.mark}
+              <button
+                type='button'
+                className={styles.pathListSelect}
+                aria-current={selected ? 'true' : undefined}
+                aria-label={item.node.label}
+                onClick={() => onSelect(item.node.id)}
+              >
+                <span className={styles.pathListCopy}>
+                  <span className={styles.pathListLabel}>
+                    {item.node.label}
+                  </span>
                 </span>
-              ) : item.node.kind === 'goal' ? (
-                <span className={styles.pathListGoalMark}>Goal</span>
-              ) : (
-                <span className={styles.nodeMark} />
-              )}
-              <span className={styles.pathListCopy}>
-                <span className={styles.pathListLabel}>{item.node.label}</span>
+              </button>
+              <span className={styles.completeCheckSlot}>
+                {completed ? <PathCompleteCheck /> : null}
               </span>
-            </button>
-            {item.children.length > 0 ? (
-              <PathOutlineList
+              {hasChildren && depth === 0 ? (
+                <button
+                  type='button'
+                  className={styles.outlineChevronBtn}
+                  aria-label={
+                    isOpen
+                      ? `Collapse ${item.node.label}`
+                      : `Expand ${item.node.label}`
+                  }
+                  aria-expanded={isOpen}
+                  onClick={() => onToggle(item.node.id)}
+                >
+                  <OutlineAccordionChevron open={isOpen} />
+                </button>
+              ) : null}
+            </div>
+            {hasChildren && isOpen ? (
+              <PathOutlineBranch
                 items={item.children}
-                marks={marks}
+                depth={depth + 1}
                 selectedId={selectedId}
+                expanded={expanded}
+                forceOpen={forceOpen}
                 onSelect={onSelect}
+                onToggle={onToggle}
               />
             ) : null}
           </li>
         )
       })}
     </ul>
+  )
+}
+
+function PathOutlineList({
+  items,
+  selectedId,
+  onSelect,
+  forceOpen = false
+}: {
+  items: PathTreeItem[]
+  selectedId: string
+  onSelect: (id: string) => void
+  forceOpen?: boolean
+}) {
+  const [expanded, setExpanded] = React.useState<Set<string>>(() =>
+    outlineRootIdsToOpen(items, selectedId)
+  )
+
+  React.useEffect(() => {
+    setExpanded((prev) => {
+      const needed = outlineRootIdsToOpen(items, selectedId)
+      let changed = false
+      const next = new Set(prev)
+      for (const id of needed) {
+        if (!next.has(id)) {
+          next.add(id)
+          changed = true
+        }
+      }
+      return changed ? next : prev
+    })
+  }, [items, selectedId])
+
+  function onToggle(id: string) {
+    setExpanded((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  function handleSelect(id: string) {
+    const roots = outlineRootIdsToOpen(items, id)
+    if (roots.size > 0) {
+      setExpanded((prev) => {
+        const next = new Set(prev)
+        for (const rootId of roots) next.add(rootId)
+        return next
+      })
+    }
+    onSelect(id)
+  }
+
+  return (
+    <PathOutlineBranch
+      items={items}
+      depth={0}
+      selectedId={selectedId}
+      expanded={expanded}
+      forceOpen={forceOpen}
+      onSelect={handleSelect}
+      onToggle={onToggle}
+    />
   )
 }
 
@@ -711,14 +655,11 @@ function PathSectionRow({
         selected ? ` ${styles.navRowSelected}` : ''
       }`}
     >
-      <span className={styles.leafDot} aria-hidden>
-        <span className={styles.dot} />
-      </span>
       <button
         type='button'
         onClick={onSelect}
         aria-current={selected ? 'true' : undefined}
-        className={styles.navSelect}
+        className={`${styles.navSelect} ${styles.navSelectNoDot}`}
       >
         <span
           className={`${styles.navTitle}${
@@ -735,156 +676,25 @@ function PathSectionRow({
   )
 }
 
-function LearningPathRecommendedOverview({
-  steps,
-  marks,
-  onSelect
-}: {
-  steps: LearningPathNode[]
-  marks: ReturnType<typeof sequenceMarks>
-  onSelect: (id: string) => void
-}) {
-  return (
-    <article className={styles.article}>
-      <header className={styles.articleHeader}>
-        <span className={styles.typeBadge}>Recommended Path</span>
-      </header>
-      {steps.length === 0 ? (
-        <p className={styles.articleEmpty}>
-          Steps for this path will appear here as you add them.
-        </p>
-      ) : (
-        <ul className={styles.childrenGrid}>
-          {steps.map((step) => {
-            const mark = marks[step.id]
-            return (
-              <li key={step.id}>
-                <button
-                  type='button'
-                  onClick={() => onSelect(step.id)}
-                  className={styles.childBtn}
-                >
-                  <span className={styles.childTitle}>
-                    {mark?.role === 'core' ? `${mark.mark}. ` : null}
-                    {step.label}
-                  </span>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      )}
-    </article>
-  )
-}
-
-const OPEN_SECTIONS = {
-  why: true,
-  resources: true
-}
-
-function pathTypeBadge(node: LearningPathNode, mentalMap: boolean) {
-  if (mentalMap || node.kind === 'goal') return LEARNING_PATH_MENTAL_MAP_LABEL
-  if (node.kind === 'prerequisite') return 'Concept'
-  if (node.kind === 'milestone') return 'Step'
-  return 'Step'
-}
-
 function PathContentSection({
   title,
-  icon,
-  open,
-  onToggle,
   extra,
   children
 }: {
   title: string
-  icon: React.ReactNode
-  open: boolean
-  onToggle: () => void
   extra?: React.ReactNode
   children: React.ReactNode
 }) {
   return (
     <section>
-      <div
-        className={`${styles.sectionHeader}${
-          open ? '' : ` ${styles.sectionHeaderCollapsed}`
-        }`}
-      >
-        <h2 className={styles.sectionTitle}>
-          <span className={styles.sectionIcon}>{icon}</span>
-          {title}
-        </h2>
-        <div className={styles.sectionHeaderActions}>
-          {extra}
-          <button
-            type='button'
-            className={styles.sectionToggleBtn}
-            onClick={onToggle}
-            aria-expanded={open}
-            aria-label={open ? `Collapse ${title}` : `Expand ${title}`}
-          >
-            <svg
-              className={`${styles.sectionToggleIcon}${
-                open ? ` ${styles.sectionToggleIconOpen}` : ''
-              }`}
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 16 16'
-              fill='none'
-              aria-hidden
-            >
-              <path
-                d='M6 3.5L10.5 8L6 12.5'
-                stroke='currentColor'
-                strokeWidth='1.4'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </button>
-        </div>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>{title}</h2>
+        {extra ? (
+          <div className={styles.sectionHeaderActions}>{extra}</div>
+        ) : null}
       </div>
-      {open ? <div className={styles.sectionBody}>{children}</div> : null}
+      <div className={styles.sectionBody}>{children}</div>
     </section>
-  )
-}
-
-function WhyIcon() {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='20'
-      height='20'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <circle cx='8' cy='8' r='6.25' stroke='currentColor' strokeWidth='1.2' />
-      <path
-        d='M6.4 6.15c0-1 0.85-1.7 1.7-1.7 0.9 0 1.65 0.6 1.65 1.5 0 0.85-0.55 1.2-1.15 1.55-0.5 0.3-0.7 0.55-0.7 1.1v0.2'
-        stroke='currentColor'
-        strokeWidth='1.2'
-        strokeLinecap='round'
-      />
-      <circle cx='8' cy='11.35' r='0.7' fill='currentColor' />
-    </svg>
-  )
-}
-
-function ResourcesIcon() {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='20'
-      height='20'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <circle cx='8' cy='8' r='6.25' stroke='currentColor' strokeWidth='1.2' />
-      <path d='M6.75 5.5L11 8L6.75 10.5V5.5Z' fill='currentColor' />
-    </svg>
   )
 }
 
@@ -1144,12 +954,10 @@ function LearningPathDescription({
 
 function CommunityLearningPath({
   slug,
-  kicker,
-  kind
+  kicker
 }: {
   slug: string
   kicker: string
-  kind: Exclude<LearningPathKind, 'course'>
 }) {
   const router = useRouter()
   const auth = useAuthOptional()
@@ -1166,7 +974,6 @@ function CommunityLearningPath({
   const [resourceSuggestions, setResourceSuggestions] = React.useState<
     LearningPathResourceSuggestion[]
   >([])
-  const [viewMode, setViewMode] = React.useState<'graph' | 'list'>('list')
   const [showFinishedModal, setShowFinishedModal] = React.useState(false)
   const [topicRating, setTopicRating] = React.useState<{
     id: string
@@ -1174,16 +981,8 @@ function CommunityLearningPath({
   } | null>(null)
   const [pendingFinish, setPendingFinish] = React.useState(false)
   const [outlineSearch, setOutlineSearch] = React.useState('')
-  const [graphDetailWidth, setGraphDetailWidth] =
-    React.useState(GRAPH_DETAIL_DEFAULT)
-  const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
-  const bodyRef = React.useRef<HTMLDivElement>(null)
   const detailRef = React.useRef<HTMLDivElement>(null)
-  const graphDetailWidthRef = React.useRef(graphDetailWidth)
-  const graphSplitDraggingRef = React.useRef(false)
-  graphDetailWidthRef.current = graphDetailWidth
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
-  const [hoverId, setHoverId] = React.useState<string | null>(null)
   const [addOpen, setAddOpen] = React.useState(false)
   const [addLabel, setAddLabel] = React.useState('')
   const [addPlacement, setAddPlacement] = React.useState<'child' | 'after'>(
@@ -1198,9 +997,7 @@ function CommunityLearningPath({
   const [editingResourceId, setEditingResourceId] = React.useState<
     string | null
   >(null)
-  const [openSections, setOpenSections] = React.useState(OPEN_SECTIONS)
   const [resourceDraft, setResourceDraft] = React.useState(EMPTY_RESOURCE_DRAFT)
-  const [shareCopied, setShareCopied] = React.useState(false)
   const [pathOwnerId, setPathOwnerId] = React.useState<string | null>(null)
   const [creatorName, setCreatorName] = React.useState<string | null>(null)
   const [creatorAvatarUrl, setCreatorAvatarUrl] = React.useState<string | null>(
@@ -1217,7 +1014,9 @@ function CommunityLearningPath({
     string | null
   >(null)
   const [pathVisibility, setPathVisibility] =
-    React.useState<LearningPathVisibility>('private')
+    React.useState<LearningPathVisibility>(() =>
+      isCatalogLearningPathSlug(slug) ? 'public' : 'private'
+    )
   const [privacyBusy, setPrivacyBusy] = React.useState(false)
   const [publishModal, setPublishModal] = React.useState<{
     visibility: Extract<LearningPathVisibility, 'public' | 'collaborative'>
@@ -1232,7 +1031,6 @@ function CommunityLearningPath({
   )
   const [pathRowId, setPathRowId] = React.useState<string | null>(null)
   const [userStateReady, setUserStateReady] = React.useState(false)
-  const shareTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const stateTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const pathRef = React.useRef(path)
   const notesRef = React.useRef(notes)
@@ -1332,14 +1130,11 @@ function CommunityLearningPath({
     )
     setSelectedId(localSelection)
     replaceSearchParams({ node: localSelection })
-    setHoverId(null)
     setPathRowId(null)
     setUserStateReady(false)
     setAddResourceOpen(false)
     setEditingResourceId(null)
-    setOpenSections(OPEN_SECTIONS)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
-    setShareCopied(false)
     setShowFinishedModal(false)
     setTopicRating(null)
     setPendingFinish(false)
@@ -1417,8 +1212,8 @@ function CommunityLearningPath({
   React.useEffect(() => {
     if (!isLearningPathKnowledgeSelection(selectedId)) return
     if (isLearningPathFinished(path)) return
-    setSelectedId(LEARNING_PATH_RECOMMENDED_SECTION_ID)
-    replaceSearchParams({ node: LEARNING_PATH_RECOMMENDED_SECTION_ID })
+    setSelectedId(LEARNING_PATH_OVERVIEW_SECTION_ID)
+    replaceSearchParams({ node: LEARNING_PATH_OVERVIEW_SECTION_ID })
   }, [path, selectedId])
 
   React.useEffect(() => {
@@ -1487,87 +1282,6 @@ function CommunityLearningPath({
     setSummaryDraft(path.summary)
   }, [path.summary])
 
-  function measureGraphBodyWidth() {
-    return (
-      bodyRef.current?.getBoundingClientRect().width ??
-      (typeof window !== 'undefined' ? window.innerWidth : 1200)
-    )
-  }
-
-  function applyGraphDetailWidth(width: number, persist = false) {
-    const next = clampGraphDetailWidth(width, measureGraphBodyWidth())
-    graphDetailWidthRef.current = next
-    setGraphDetailWidth(next)
-    if (persist) persistGraphDetailWidth(next)
-    return next
-  }
-
-  React.useEffect(() => {
-    if (viewMode !== 'graph') return
-    applyGraphDetailWidth(readStoredGraphDetailWidth())
-  }, [viewMode])
-
-  React.useEffect(() => {
-    if (viewMode !== 'graph') return
-    function onResize() {
-      applyGraphDetailWidth(graphDetailWidthRef.current)
-    }
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [viewMode])
-
-  function handleGraphSplitPointerDown(
-    event: React.PointerEvent<HTMLButtonElement>
-  ) {
-    event.preventDefault()
-    event.currentTarget.setPointerCapture(event.pointerId)
-    graphSplitDraggingRef.current = true
-    setGraphSplitDragging(true)
-  }
-
-  function handleGraphSplitPointerMove(
-    event: React.PointerEvent<HTMLButtonElement>
-  ) {
-    if (!graphSplitDraggingRef.current) return
-    const body = bodyRef.current
-    if (!body) return
-    applyGraphDetailWidth(body.getBoundingClientRect().right - event.clientX)
-  }
-
-  function handleGraphSplitPointerUp(
-    event: React.PointerEvent<HTMLButtonElement>
-  ) {
-    if (!graphSplitDraggingRef.current) return
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId)
-    }
-    graphSplitDraggingRef.current = false
-    setGraphSplitDragging(false)
-    persistGraphDetailWidth(graphDetailWidthRef.current)
-  }
-
-  function handleGraphSplitKeyDown(
-    event: React.KeyboardEvent<HTMLButtonElement>
-  ) {
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault()
-      applyGraphDetailWidth(graphDetailWidthRef.current + 24, true)
-    } else if (event.key === 'ArrowRight') {
-      event.preventDefault()
-      applyGraphDetailWidth(graphDetailWidthRef.current - 24, true)
-    } else if (event.key === 'Home') {
-      event.preventDefault()
-      applyGraphDetailWidth(GRAPH_DETAIL_MIN, true)
-    } else if (event.key === 'End') {
-      event.preventDefault()
-      applyGraphDetailWidth(measureGraphBodyWidth() - GRAPH_MAP_MIN, true)
-    }
-  }
-
-  function handleGraphSplitDoubleClick() {
-    applyGraphDetailWidth(GRAPH_DETAIL_DEFAULT, true)
-  }
-
   React.useEffect(() => {
     let cancelled = false
     setCreatorName(null)
@@ -1604,21 +1318,18 @@ function CommunityLearningPath({
         byUrl[normalizeUserLinkUrl(link.url)] = link.id
       }
       setSavedLinkByUrl(byUrl)
-      if (!isOwnPath) {
-        const existing = links.find((link) =>
-          userLinkMatchesLearningPathSlug(link.url, slug)
-        )
-        setBookmarkLinkId(existing?.id ?? null)
-      }
+      const existing = links.find((link) =>
+        userLinkMatchesLearningPathSlug(link.url, slug)
+      )
+      setBookmarkLinkId(existing?.id ?? null)
     })
     return () => {
       cancelled = true
     }
-  }, [slug, currentUserId, isOwnPath])
+  }, [slug, currentUserId])
 
   React.useEffect(() => {
     return () => {
-      if (shareTimer.current) clearTimeout(shareTimer.current)
       flushUserState()
     }
   }, [slug])
@@ -1637,8 +1348,7 @@ function CommunityLearningPath({
   const marks = React.useMemo(() => sequenceMarks(path), [path])
   const goalNode =
     path.nodes.find((node) => node.kind === 'goal') ?? path.nodes[0]
-  const showingRecommended = isLearningPathRecommendedSelection(selectedId)
-  const showingMentalMap = isLearningPathMentalMapSelection(selectedId)
+  const showingOverview = isLearningPathOverviewSelection(selectedId)
   const showingKnowledge = isLearningPathKnowledgeSelection(selectedId)
   const pathFinished = isLearningPathFinished(path)
   const learnedTopics = React.useMemo(
@@ -1646,9 +1356,9 @@ function CommunityLearningPath({
     [path]
   )
   const selected =
-    showingRecommended || showingKnowledge
+    showingKnowledge
       ? null
-      : showingMentalMap
+      : showingOverview
       ? goalNode ?? null
       : (selectedId ? nodeById[selectedId] : null) ?? null
 
@@ -1664,14 +1374,13 @@ function CommunityLearningPath({
       }),
     [path.nodes, marks]
   )
-  const showRecommendedNav =
+  const showOverviewNav =
     !searching ||
+    'overview'.includes(outlineQuery) ||
     'recommended path'.includes(outlineQuery) ||
-    path.title.toLowerCase().includes(outlineQuery)
-  const showMentalMapNav =
-    !searching ||
     'mental map'.includes(outlineQuery) ||
     'general approach'.includes(outlineQuery) ||
+    path.title.toLowerCase().includes(outlineQuery) ||
     (goalNode?.label ?? '').toLowerCase().includes(outlineQuery)
   const showKnowledgeNav =
     pathFinished &&
@@ -1684,30 +1393,9 @@ function CommunityLearningPath({
       ))
   const outlineNoMatches =
     searching &&
-    !showRecommendedNav &&
-    !showMentalMapNav &&
+    !showOverviewNav &&
     !showKnowledgeNav &&
     filteredTree.length === 0
-  const visibleIds = React.useMemo(
-    () => new Set(path.nodes.map((node) => node.id)),
-    [path.nodes]
-  )
-  const graphSelectedId = showingMentalMap
-    ? goalNode?.id ?? ''
-    : showingRecommended || showingKnowledge
-    ? ''
-    : selected?.id ?? ''
-  const graphFocusId =
-    hoverId ??
-    (showingMentalMap || showingRecommended || showingKnowledge
-      ? goalNode?.id ?? ''
-      : selected?.id ?? goalNode?.id ?? '')
-  const layout = React.useMemo(
-    () => layoutHoverGraph(path, graphFocusId, visibleIds),
-    [path, graphFocusId, visibleIds]
-  )
-  const reduceMotion = usePrefersReducedMotion()
-  const displayPositions = useAnimatedPositions(layout.positions, !reduceMotion)
   const selectedMark = selected ? marks[selected.id] : undefined
   const selectedParent = selectedMark?.parentId
     ? nodeById[selectedMark.parentId]
@@ -1734,6 +1422,9 @@ function CommunityLearningPath({
         nodeSuggestions
       )
     : []
+  const overviewCopy = showingOverview
+    ? (selected?.description || path.summary || '').trim()
+    : ''
   const resourceFormOpen = addResourceOpen || Boolean(editingResourceId)
   const resourcePlacementMax =
     resourceFormOpen && editingResourceId
@@ -1745,10 +1436,11 @@ function CommunityLearningPath({
 
   function selectNode(id: string) {
     const next =
-      nodeById[id]?.kind === 'goal' ? LEARNING_PATH_MENTAL_MAP_SECTION_ID : id
+      nodeById[id]?.kind === 'goal'
+        ? LEARNING_PATH_OVERVIEW_SECTION_ID
+        : canonicalizeLearningPathSectionId(id)
     setSelectedId(next)
     replaceSearchParams({ node: next })
-    setOpenSections(OPEN_SECTIONS)
     setAddResourceOpen(false)
     setEditingResourceId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
@@ -1767,12 +1459,6 @@ function CommunityLearningPath({
 
   function addToPathFromSelection() {
     openAdd('child')
-  }
-
-  function addAfterSelected() {
-    if (!canEditPathStructure) return
-    if (!(selected ?? goalNode)) return
-    openAdd('after')
   }
 
   function openEdit() {
@@ -1825,7 +1511,7 @@ function CommunityLearningPath({
     if (!selected || selected.kind === 'goal') return
     const fallback =
       !selectedParent || selectedParent.kind === 'goal'
-        ? LEARNING_PATH_RECOMMENDED_SECTION_ID
+        ? LEARNING_PATH_OVERVIEW_SECTION_ID
         : selectedParent.id
     setPath((prev) => {
       const next = removeNodeSubtree(prev, selected.id)
@@ -1876,7 +1562,6 @@ function CommunityLearningPath({
       if (justFinished) {
         if (alreadyRated) setShowFinishedModal(true)
         else setPendingFinish(true)
-        setViewMode('list')
         setSelectedId(LEARNING_PATH_KNOWLEDGE_SECTION_ID)
         replaceSearchParams({ node: LEARNING_PATH_KNOWLEDGE_SECTION_ID })
       }
@@ -2012,21 +1697,6 @@ function CommunityLearningPath({
     setAddOpen(false)
   }
 
-  async function copyShareUrl() {
-    const url = `${window.location.origin}/learning-path/${path.slug}`
-    try {
-      await navigator.clipboard.writeText(url)
-      setShareCopied(true)
-      if (shareTimer.current) clearTimeout(shareTimer.current)
-      shareTimer.current = setTimeout(() => {
-        setShareCopied(false)
-        shareTimer.current = null
-      }, 2000)
-    } catch {
-      window.prompt('Copy this link', url)
-    }
-  }
-
   async function toggleBookmarkPath() {
     if (bookmarkBusy) return
     if (!currentUserId) {
@@ -2155,7 +1825,6 @@ function CommunityLearningPath({
       why: resource.why,
       sequence: String(resource.sequence)
     })
-    setOpenSections((prev) => ({ ...prev, resources: true }))
   }
 
   async function saveUserResource(event: React.FormEvent) {
@@ -2519,10 +2188,6 @@ function CommunityLearningPath({
         onSelectTopic={(gap) => {
           setPublishModal(null)
           selectNode(gap.id)
-          setOpenSections({
-            why: gap.missingWhy,
-            resources: gap.needed > 0
-          })
           if (gap.missingWhy) {
             const node = path.nodes.find((item) => item.id === gap.id)
             if (node) {
@@ -2548,20 +2213,9 @@ function CommunityLearningPath({
               onSave={savePathSummary}
             />
           }
-          schoolDate={formatHeroPublishedDate(
-            path.createdAt,
-            !isOwnPath &&
-              (pathVisibility === 'public' ||
-                pathVisibility === 'collaborative')
-              ? { visibility: pathVisibility }
-              : undefined
-          )}
-          reportTarget={{
-            type: 'learning_path',
-            id: pathRowId || path.slug,
-            url: learningPathHref(path.slug),
-            title: path.title
-          }}
+          schoolDate={formatHeroPublishedDate(path.createdAt, {
+            visibility: pathVisibility
+          })}
           publisherAvatarUrl={publisherAvatarUrl}
           publisherAvatarFallback={publisherAvatarFallback}
           publisherAvatarAlt={
@@ -2574,112 +2228,61 @@ function CommunityLearningPath({
           publisherAvatarHref={publisherAvatarHref}
           actions={
             <>
-              <button
-                type='button'
-                className={heroStyles.shareLink}
-                onClick={() => void copyShareUrl()}
-                aria-label={
-                  shareCopied
-                    ? 'Link copied to clipboard'
-                    : 'Copy link to this learning path'
+              <HeroShareButton href={learningPathHref(path.slug)} />
+              <HeroSaveButton
+                saved={Boolean(bookmarkLinkId)}
+                busy={bookmarkBusy}
+                onClick={() => void toggleBookmarkPath()}
+                saveLabel='Save this learning path'
+                savedLabel='Remove this learning path from your saved list'
+              />
+              <HeroMoreMenu
+                reportTarget={{
+                  type: 'learning_path',
+                  id: pathRowId || path.slug,
+                  url: learningPathHref(path.slug),
+                  title: path.title
+                }}
+                visibility={isOwnPath ? pathVisibility : undefined}
+                visibilityBusy={privacyBusy}
+                onVisibilityChange={
+                  isOwnPath
+                    ? (next) => void setPathVisibilityChoice(next)
+                    : undefined
                 }
-              >
-                <ShareIcon />
-                {shareCopied ? 'Copied' : 'Share'}
-              </button>
-              {isOwnPath ? (
-                <div
-                  className={`${saveStyles.wrap} ${styles.visibilitySelect}`}
-                >
-                  <FormSelect<LearningPathVisibility>
-                    ariaLabel='Learning path visibility'
-                    value={pathVisibility}
-                    options={VISIBILITY_OPTIONS}
-                    disabled={privacyBusy}
-                    onChange={(next) => void setPathVisibilityChoice(next)}
-                  />
-                </div>
-              ) : (
-                <div className={saveStyles.wrap}>
-                  <button
-                    type='button'
-                    className={
-                      bookmarkLinkId ? saveStyles.savedBtn : saveStyles.saveBtn
-                    }
-                    onClick={() => void toggleBookmarkPath()}
-                    disabled={bookmarkBusy}
-                    aria-pressed={Boolean(bookmarkLinkId)}
-                    aria-label={
-                      bookmarkLinkId
-                        ? 'Remove this learning path from your saved list'
-                        : 'Save this learning path'
-                    }
-                  >
-                    <span className={saveStyles.icon} aria-hidden>
-                      <BookmarkIcon filled={Boolean(bookmarkLinkId)} />
-                    </span>
-                    <span className={saveStyles.label}>
-                      {bookmarkLinkId ? 'Saved' : 'Save'}
-                    </span>
-                  </button>
-                </div>
-              )}
+              />
             </>
           }
         />
       </div>
 
-      <div
-        ref={bodyRef}
-        className={`${styles.body}${
-          viewMode === 'graph' ? ` ${styles.bodyGraph}` : ''
-        }${graphSplitDragging ? ` ${styles.bodyGraphDragging}` : ''}`}
-      >
-        <div
-          className={`${styles.layout} ${
-            viewMode === 'graph' ? styles.layoutGraph : styles.layoutList
-          }`}
-        >
+      <div className={styles.body}>
+        <div className={`${styles.layout} ${styles.layoutList}`}>
           <LearningPathOutlinePanel
-            viewMode={viewMode}
-            onViewModeChange={setViewMode}
             search={outlineSearch}
             onSearchChange={setOutlineSearch}
-            graphHint={learningPathOutlineHint(kind)}
             list={
               <>
                 {outlineNoMatches ? (
                   <p className={styles.pathListEmpty}>No matching steps.</p>
                 ) : null}
-                {showRecommendedNav || showMentalMapNav ? (
+                {showOverviewNav ? (
                   <div className={styles.navPanelSection}>
-                    {showMentalMapNav ? (
-                      <PathSectionRow
-                        label={LEARNING_PATH_MENTAL_MAP_LABEL}
-                        selected={showingMentalMap}
-                        onSelect={() =>
-                          selectNode(LEARNING_PATH_MENTAL_MAP_SECTION_ID)
-                        }
-                      />
-                    ) : null}
-                    {showRecommendedNav ? (
-                      <PathSectionRow
-                        label='Recommended Path'
-                        count={coreSteps.length}
-                        selected={showingRecommended}
-                        onSelect={() =>
-                          selectNode(LEARNING_PATH_RECOMMENDED_SECTION_ID)
-                        }
-                      />
-                    ) : null}
+                    <PathSectionRow
+                      label={LEARNING_PATH_OVERVIEW_LABEL}
+                      selected={showingOverview}
+                      onSelect={() =>
+                        selectNode(LEARNING_PATH_OVERVIEW_SECTION_ID)
+                      }
+                    />
                   </div>
                 ) : null}
                 {filteredTree.length > 0 ? (
                   <PathOutlineList
                     items={filteredTree}
-                    marks={marks}
                     selectedId={selectedId}
                     onSelect={selectNode}
+                    forceOpen={searching}
                   />
                 ) : !searching && coreSteps.length === 0 ? (
                   <p className={styles.pathListEmpty}>
@@ -2710,181 +2313,19 @@ function CommunityLearningPath({
                 />
               ) : undefined
             }
-            graph={
-              <div
-                className={styles.mapStage}
-                onMouseLeave={() => setHoverId(null)}
-              >
-                <GraphViewport
-                  scrollerClassName={styles.mapScroll}
-                  padClassName={styles.graphPad}
-                  canvasClassName={styles.canvas}
-                  canvasStyle={
-                    {
-                      '--graph-w': `${layout.width}px`,
-                      '--graph-h': `${layout.height}px`
-                    } as React.CSSProperties
-                  }
-                  overlay={<PathLegend />}
-                >
-                  <svg
-                    className={styles.connections}
-                    viewBox={`0 0 ${layout.width} ${layout.height}`}
-                    preserveAspectRatio='xMinYMin meet'
-                    aria-hidden
-                  >
-                    {path.edges.map((edge) => {
-                      if (
-                        !layout.visibleIds.has(edge.from) ||
-                        !layout.visibleIds.has(edge.to)
-                      ) {
-                        return null
-                      }
-                      const fromPos = displayPositions[edge.from]
-                      const toPos = displayPositions[edge.to]
-                      if (!fromPos || !toPos) return null
-                      return (
-                        <path
-                          key={`${edge.from}-${edge.to}`}
-                          d={edgePath(fromPos, toPos)}
-                          style={{ strokeWidth: 1.4 }}
-                        />
-                      )
-                    })}
-                  </svg>
-                  {path.nodes.map((node) => {
-                    if (!layout.visibleIds.has(node.id)) return null
-                    const mark = marks[node.id]
-                    const pos =
-                      displayPositions[node.id] ?? layout.positions[node.id]
-                    if (!pos) return null
-                    const isSelected = node.id === graphSelectedId
-                    return (
-                      <div
-                        key={node.id}
-                        className={
-                          isSelected
-                            ? `${styles.nodeAnchor} ${styles.nodeAnchorSelected}`
-                            : styles.nodeAnchor
-                        }
-                        style={{ left: pos.x, top: pos.y }}
-                      >
-                        <button
-                          type='button'
-                          className={nodeClass(node, isSelected)}
-                          aria-haspopup='menu'
-                          aria-expanded={isSelected}
-                          aria-label={
-                            mark
-                              ? mark.role === 'core'
-                                ? `Step ${mark.mark}: ${node.label}`
-                                : `${node.label}, ${mark.mark})`
-                              : node.label
-                          }
-                          onMouseEnter={() => setHoverId(node.id)}
-                          onFocus={() => setHoverId(node.id)}
-                          onClick={(event) => {
-                            centerGraphNode(event.currentTarget)
-                            selectNodeKeepingScroll(node.id)
-                          }}
-                        >
-                          <span className={styles.nodeStatus} />
-                          <span className={styles.nodeHead}>
-                            {mark ? (
-                              <span
-                                className={
-                                  mark.role === 'branch'
-                                    ? `${styles.nodeMark} ${styles.nodeMarkBranch}`
-                                    : styles.nodeMark
-                                }
-                              >
-                                {mark.role === 'branch'
-                                  ? `${mark.mark})`
-                                  : mark.mark}
-                              </span>
-                            ) : null}
-                            <span className={styles.nodeLabel}>
-                              {node.label}
-                            </span>
-                          </span>
-                          {node.sub && !isCannedPathSub(node.sub) ? (
-                            <span className={styles.nodeSub}>{node.sub}</span>
-                          ) : null}
-                        </button>
-                        {isSelected && canEditPathStructure ? (
-                          <button
-                            type='button'
-                            className={`${styles.nodePlusBtn} ${styles.nodeAfterBtn}`}
-                            data-no-pan=''
-                            aria-label={`New after “${node.label}”`}
-                            title={`New after “${node.label}”`}
-                            onClick={(event) => {
-                              event.stopPropagation()
-                              addAfterSelected()
-                            }}
-                          >
-                            <PlusIcon />
-                          </button>
-                        ) : null}
-                        {isSelected && canEditPathStructure ? (
-                          <PathStageActions
-                            popout
-                            onEdit={openEdit}
-                            onAdd={addToPathFromSelection}
-                            underLabel={node.label}
-                          />
-                        ) : null}
-                      </div>
-                    )
-                  })}
-                </GraphViewport>
-              </div>
-            }
           />
-
-          {viewMode === 'graph' ? (
-            <button
-              type='button'
-              className={`${styles.splitHandle}${
-                graphSplitDragging ? ` ${styles.splitHandleActive}` : ''
-              }`}
-              aria-label='Resize content panel'
-              aria-orientation='vertical'
-              aria-valuemin={GRAPH_DETAIL_MIN}
-              aria-valuenow={graphDetailWidth}
-              title='Drag to resize. Double-click to reset.'
-              onPointerDown={handleGraphSplitPointerDown}
-              onPointerMove={handleGraphSplitPointerMove}
-              onPointerUp={handleGraphSplitPointerUp}
-              onPointerCancel={handleGraphSplitPointerUp}
-              onLostPointerCapture={handleGraphSplitPointerUp}
-              onKeyDown={handleGraphSplitKeyDown}
-              onDoubleClick={handleGraphSplitDoubleClick}
-            />
-          ) : null}
 
           <PathContentActivity
             className={styles.detail}
             contentClassName={styles.detailContent}
             contentRef={detailRef}
-            style={
-              viewMode === 'graph'
-                ? {
-                    flexBasis: graphDetailWidth,
-                    width: graphDetailWidth,
-                    maxWidth: 'none'
-                  }
-                : undefined
-            }
             coursePageId={learningPathActivityPageId(slug)}
             courseTitle={path.title}
             courseUrl={learningPathHref(slug)}
             sectionId={selectedId}
             notesTopicTitle={
-              showingRecommended
-                ? 'Recommended Path'
-                : showingMentalMap
-                ? LEARNING_PATH_MENTAL_MAP_LABEL
+              showingOverview
+                ? LEARNING_PATH_OVERVIEW_LABEL
                 : showingKnowledge
                 ? 'What you learned'
                 : selected?.label ?? path.title
@@ -2893,16 +2334,20 @@ function CommunityLearningPath({
               userStateReady ? (
                 <SiteNotesEditor
                   key={`${slug}:${selectedId}:${currentUserId ?? 'anon'}`}
-                  value={parseStoredNotebookNote(notes[selectedId])}
+                  value={parseStoredNotebookNote(
+                    showingOverview
+                      ? notes[LEARNING_PATH_OVERVIEW_SECTION_ID] ||
+                          notes[LEARNING_PATH_MENTAL_MAP_SECTION_ID] ||
+                          notes[LEARNING_PATH_RECOMMENDED_SECTION_ID]
+                      : notes[selectedId]
+                  )}
                   onChange={(doc) => persistSelectedNote(selectedId, doc)}
                   placeholder='Write notes for this topic…'
                   ariaLabel='Your notes'
                   expandTitle='Your Notes'
                   expandTopic={
-                    showingRecommended
-                      ? 'Recommended Path'
-                      : showingMentalMap
-                      ? LEARNING_PATH_MENTAL_MAP_LABEL
+                    showingOverview
+                      ? LEARNING_PATH_OVERVIEW_LABEL
                       : showingKnowledge
                       ? 'What you learned'
                       : selected?.label
@@ -2924,13 +2369,7 @@ function CommunityLearningPath({
               })
             }
           >
-            {showingRecommended ? (
-              <LearningPathRecommendedOverview
-                steps={coreSteps}
-                marks={marks}
-                onSelect={selectNode}
-              />
-            ) : showingKnowledge ? (
+            {showingKnowledge ? (
               <LearningPathLearnedPanel
                 pathTitle={path.title}
                 topics={learnedTopics}
@@ -2939,7 +2378,7 @@ function CommunityLearningPath({
             ) : selected ? (
               <article className={styles.article}>
                 <header className={styles.articleHeader}>
-                  {!showingMentalMap && selectedParent ? (
+                  {!showingOverview && selectedParent ? (
                     <nav aria-label='Breadcrumb'>
                       <ol className={styles.breadcrumb}>
                         <li className={styles.breadcrumbItem}>
@@ -2955,86 +2394,53 @@ function CommunityLearningPath({
                       </ol>
                     </nav>
                   ) : null}
-                  <span className={styles.typeBadge}>
-                    {pathTypeBadge(selected, showingMentalMap)}
-                  </span>
                   <h1 className={styles.articleTitle}>
-                    {showingMentalMap ? path.title : selected.label}
+                    {showingOverview ? path.title : selected.label}
                   </h1>
-                </header>
-
-                {!showingMentalMap ? (
-                  <PathContentSection
-                    title='Why is this on the learning path'
-                    icon={<WhyIcon />}
-                    open={openSections.why}
-                    onToggle={() =>
-                      setOpenSections((prev) => ({ ...prev, why: !prev.why }))
-                    }
-                  >
+                  {!showingOverview ? (
                     <p className={styles.whyCopy}>
+                      <strong className={styles.whyLead}>
+                        Why is this on the learning path:
+                      </strong>{' '}
                       {selected.why ||
                         selected.description ||
                         'A reason has not been written for this step yet.'}
                     </p>
-                  </PathContentSection>
-                ) : null}
+                  ) : null}
+                </header>
 
                 <PathContentSection
                   title='Resources'
-                  icon={<ResourcesIcon />}
-                  open={openSections.resources}
-                  onToggle={() =>
-                    setOpenSections((prev) => ({
-                      ...prev,
-                      resources: !prev.resources
-                    }))
-                  }
                   extra={
-                    <>
-                      {listedResources.length > 0 ? (
-                        <span className={styles.sectionMeta}>
-                          {listedResources.length}{' '}
-                          {listedResources.length === 1
-                            ? 'resource'
-                            : 'resources'}{' '}
-                          · in order
-                        </span>
-                      ) : null}
-                      <button
-                        type='button'
-                        className={`${styles.addResourceBtn}${
-                          !currentUserId
-                            ? ` ${styles.addResourceBtnDisabled}`
-                            : ''
-                        }`}
-                        aria-disabled={!currentUserId}
-                        title={
-                          currentUserId
-                            ? undefined
-                            : canSuggestResources
-                            ? 'Sign in to suggest a resource'
-                            : 'Sign in to add a resource'
+                    <button
+                      type='button'
+                      className={`${styles.addResourceBtn}${
+                        !currentUserId
+                          ? ` ${styles.addResourceBtnDisabled}`
+                          : ''
+                      }`}
+                      aria-disabled={!currentUserId}
+                      title={
+                        currentUserId
+                          ? undefined
+                          : canSuggestResources
+                          ? 'Sign in to suggest a resource'
+                          : 'Sign in to add a resource'
+                      }
+                      onClick={() => {
+                        if (!currentUserId) {
+                          requestSignIn()
+                          return
                         }
-                        onClick={() => {
-                          if (!currentUserId) {
-                            requestSignIn()
-                            return
-                          }
-                          setEditingResourceId(null)
-                          setResourceDraft(EMPTY_RESOURCE_DRAFT)
-                          setAddResourceOpen(true)
-                          setOpenSections((prev) => ({
-                            ...prev,
-                            resources: true
-                          }))
-                        }}
-                      >
-                        {canSuggestResources
-                          ? '+ Suggest a resource'
-                          : '+ Add a resource'}
-                      </button>
-                    </>
+                        setEditingResourceId(null)
+                        setResourceDraft(EMPTY_RESOURCE_DRAFT)
+                        setAddResourceOpen(true)
+                      }}
+                    >
+                      {canSuggestResources
+                        ? '+ Suggest a resource'
+                        : '+ Add a resource'}
+                    </button>
                   }
                 >
                   {listedResources.length === 0 ? (
@@ -3146,6 +2552,20 @@ function CommunityLearningPath({
                                         {isOwnPath ? 'Dismiss' : 'Withdraw'}
                                       </button>
                                     ) : null}
+                                    <ReportButton
+                                      target={{
+                                        type: 'resource',
+                                        id: pathResourceReportId({
+                                          slug: path.slug,
+                                          nodeId: selected.id,
+                                          resourceId: resource.id
+                                        }),
+                                        url: learningPathHref(path.slug),
+                                        title: resource.title,
+                                        snippet:
+                                          resource.why || resource.passage
+                                      }}
+                                    />
                                     {canVoteOnResources &&
                                     !resource.suggested ? (
                                       <ResourceVoteControl
@@ -3169,20 +2589,6 @@ function CommunityLearningPath({
                                       onToggle={() =>
                                         void toggleResourceBookmark(resource)
                                       }
-                                    />
-                                    <ReportButton
-                                      target={{
-                                        type: 'resource',
-                                        id: pathResourceReportId({
-                                          slug: path.slug,
-                                          nodeId: selected.id,
-                                          resourceId: resource.id
-                                        }),
-                                        url: learningPathHref(path.slug),
-                                        title: resource.title,
-                                        snippet:
-                                          resource.why || resource.passage
-                                      }}
                                     />
                                     {resource.addedByYou ? (
                                       <button
@@ -3218,8 +2624,47 @@ function CommunityLearningPath({
                   )}
                 </PathContentSection>
 
-                {selected.kind !== 'goal' || nextNode ? (
+                {showingOverview ? (
+                  <PathContentSection title='Recommended Path'>
+                    {overviewCopy ? (
+                      <p className={styles.whyCopy}>{overviewCopy}</p>
+                    ) : null}
+                    {coreSteps.length === 0 ? (
+                      <p className={styles.articleEmpty}>
+                        Steps for this path will appear here as you add them.
+                      </p>
+                    ) : (
+                      <ul className={styles.childrenSequence}>
+                        {coreSteps.map((step, index) => (
+                          <li key={step.id}>
+                            <button
+                              type='button'
+                              onClick={() => selectNode(step.id)}
+                              className={styles.childBtn}
+                            >
+                              <span className={styles.childTitle}>
+                                <span className={styles.childIndex}>
+                                  {index + 1}.
+                                </span>
+                                {step.label}
+                              </span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </PathContentSection>
+                ) : null}
+
+                {showingOverview || selected.kind !== 'goal' || nextNode ? (
                   <div className={styles.actionRow}>
+                    {showingOverview ? (
+                      <LearningPathCommitRemindButton
+                        targetKey={learningPathCommitmentKey(slug)}
+                        signedIn={Boolean(currentUserId)}
+                        onSignIn={() => requestSignIn()}
+                      />
+                    ) : null}
                     {selected.kind !== 'goal' ? (
                       <button
                         type='button'
@@ -3250,7 +2695,9 @@ function CommunityLearningPath({
                         className={`${styles.primaryBtn} ${styles.nextBtn}`}
                         onClick={() => selectNodeKeepingScroll(nextNode.id)}
                       >
-                        Next
+                        {showingOverview
+                          ? 'Start Recommended Path'
+                          : 'Next'}
                       </button>
                     ) : null}
                   </div>
@@ -3714,6 +3161,6 @@ export function LearningPath({ slug }: { slug: string }) {
     return <CourseLearningPath key={slug} slug={slug} kicker={kicker} />
   }
   return (
-    <CommunityLearningPath key={slug} slug={slug} kicker={kicker} kind={kind} />
+    <CommunityLearningPath key={slug} slug={slug} kicker={kicker} />
   )
 }

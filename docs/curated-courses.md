@@ -100,7 +100,7 @@ flowchart TB
 
 - **General Approach** — graph of the syllabus (`data.mentalMapNodeId` holds map-only clips). Resources only; no **Why is this on the learning path** (the course blurb stays in the hero).
 - **Recommended Syllabus** — course blurb + topic list; does **not** wrap the tree.
-- **Topic tree** — loads that node’s sequenced resources from `learning_paths.data`. **Why is this on the learning path** and **Resources** start open.
+- **Topic tree** — accordion topics with a vertical line for nested lectures. A light-blue stroke check appears on the right when a topic or lecture is explored. Loads that node’s sequenced resources from `learning_paths.data`. **Why is this on the learning path:** is inline under the title. **Resources** start open.
 - **Resources** — from `data.resources` (or degrees JSON fallback).
 - **What you learned** — appears only after every syllabus node is explored.
 - **Ratings** — marking a topic explored asks how long it took and a % for how enjoyable learning that module was using the given resources; finishing the course asks the same for the whole course.

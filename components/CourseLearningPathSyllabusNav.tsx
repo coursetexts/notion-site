@@ -23,6 +23,10 @@ import type {
   CourseLearningPathNode
 } from '@/lib/course-learning-path-types'
 
+import {
+  OutlineAccordionChevron,
+  PathCompleteCheck
+} from './PathCompleteCheck'
 import styles from './CourseLearningPath.module.css'
 
 function matchesQuery(text: string, query: string) {
@@ -148,9 +152,6 @@ export function CourseLearningPathSyllabusNav({
           }`}
           style={{ paddingLeft: 4 }}
         >
-          <span className={styles.leafDot} aria-hidden>
-            <span className={styles.dot} />
-          </span>
           <button
             type='button'
             onClick={() => onSelect(COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID)}
@@ -175,9 +176,6 @@ export function CourseLearningPathSyllabusNav({
           }`}
           style={{ paddingLeft: 4 }}
         >
-          <span className={styles.leafDot} aria-hidden>
-            <span className={styles.dot} />
-          </span>
           <button
             type='button'
             onClick={() => onSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)}
@@ -296,9 +294,6 @@ export function CourseLearningPathSyllabusNav({
           }`}
           style={{ paddingLeft: 4 }}
         >
-          <span className={styles.leafDot} aria-hidden>
-            <span className={styles.dot} />
-          </span>
           <button
             type='button'
             onClick={() => onSelect(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)}
@@ -342,11 +337,8 @@ function ResourceNavItem({
         className={`${styles.navRow}${
           isSelected ? ` ${styles.navRowSelected}` : ''
         }`}
-        style={{ paddingLeft: 18 }}
+        style={{ paddingLeft: 8 }}
       >
-        <span className={styles.leafDot} aria-hidden>
-          <span className={styles.dot} />
-        </span>
         <button
           type='button'
           onClick={() => onSelect(section.id)}
@@ -397,43 +389,15 @@ function NavItem({
   const isSelected = selectedId === node.id
   const isExplored = exploredIds.has(node.id)
   const videoCount = node.topicResources?.length ?? 0
+  const isTopic = depth === 0
 
   return (
-    <li>
+    <li className={isTopic ? styles.navTopicItem : undefined}>
       <div
         className={`${styles.navRow}${
           isSelected ? ` ${styles.navRowSelected}` : ''
         }`}
-        style={{ paddingLeft: depth === 0 ? 4 : depth * 14 + 4 }}
       >
-        {hasChildren ? (
-          <button
-            type='button'
-            onClick={() => onToggle(node.id)}
-            aria-label={
-              isOpen ? `Collapse ${node.title}` : `Expand ${node.title}`
-            }
-            aria-expanded={isOpen}
-            className={`${styles.chevronBtn}${
-              isExplored ? ` ${styles.chevronBtnExplored}` : ''
-            }`}
-          >
-            <ChevronIcon
-              className={`${styles.chevronIcon}${
-                isOpen ? ` ${styles.chevronOpen}` : ''
-              }`}
-            />
-          </button>
-        ) : (
-          <span className={styles.leafDot} aria-hidden>
-            <span
-              className={`${styles.dot}${
-                isExplored ? ` ${styles.dotExplored}` : ''
-              }`}
-            />
-          </span>
-        )}
-
         <button
           type='button'
           onClick={() => onSelect(node.id)}
@@ -457,6 +421,22 @@ function NavItem({
             <span className={styles.videoCount}>{videoCount}</span>
           )}
         </button>
+        <span className={styles.completeCheckSlot}>
+          {isExplored ? <PathCompleteCheck /> : null}
+        </span>
+        {hasChildren ? (
+          <button
+            type='button'
+            onClick={() => onToggle(node.id)}
+            aria-label={
+              isOpen ? `Collapse ${node.title}` : `Expand ${node.title}`
+            }
+            aria-expanded={isOpen}
+            className={styles.chevronBtn}
+          >
+            <OutlineAccordionChevron open={isOpen} />
+          </button>
+        ) : null}
       </div>
 
       {hasChildren && isOpen && (

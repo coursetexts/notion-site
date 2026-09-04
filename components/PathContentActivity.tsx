@@ -148,6 +148,7 @@ export function PathContentActivity({
           courseTitle={courseTitle}
           coursePageId={coursePageId}
           sectionId={sectionId}
+          sectionTitle={notesTopicTitle}
           onHide={closeRightPanel}
           onAnnotationCountChange={setAnnotationCount}
           onActivityPosted={onActivityPosted}

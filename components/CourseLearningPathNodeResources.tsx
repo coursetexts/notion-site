@@ -9,8 +9,6 @@ import {
 import { learningPathHref } from '@/lib/learning-path-bookmark-link'
 
 import styles from './CourseLearningPath.module.css'
-import { CourseLearningPathSectionToggle } from './CourseLearningPathLinkSection'
-import { PlayIcon } from './CourseLearningPathSyllabusNav'
 import { FormSelect } from './FormSelect'
 import { ReportButton, reportHoverTargetClass } from './ReportButton'
 
@@ -88,7 +86,6 @@ export function CourseLearningPathNodeResources({
   onAdd,
   onUpdate
 }: CourseLearningPathNodeResourcesProps) {
-  const [open, setOpen] = React.useState(true)
   const [adding, setAdding] = React.useState(false)
   const [editingId, setEditingId] = React.useState<string | null>(null)
   const [draft, setDraft] = React.useState(EMPTY_DRAFT)
@@ -102,7 +99,6 @@ export function CourseLearningPathNodeResources({
     : undefined
 
   React.useEffect(() => {
-    setOpen(true)
     setAdding(false)
     setEditingId(null)
     setDraft(EMPTY_DRAFT)
@@ -147,7 +143,6 @@ export function CourseLearningPathNodeResources({
       sequence: String(resource.position)
     })
     setFormError(null)
-    setOpen(true)
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -237,24 +232,11 @@ export function CourseLearningPathNodeResources({
 
   return (
     <section aria-labelledby={headingId}>
-      <div
-        className={`${styles.videosHeader}${
-          open ? '' : ` ${styles.videosHeaderCollapsed}`
-        }`}
-      >
+      <div className={`${styles.videosHeader} ${styles.videosHeaderPlain}`}>
         <h2 id={headingId} className={styles.videosTitle}>
-          <span style={{ color: '#0089c4', display: 'inline-flex' }}>
-            <PlayIcon size={20} />
-          </span>
           Resources
         </h2>
         <div className={styles.videosHeaderActions}>
-          {items.length > 0 ? (
-            <span className={styles.videosMeta}>
-              {items.length} {items.length === 1 ? 'resource' : 'resources'} ·
-              in order
-            </span>
-          ) : null}
           <button
             type='button'
             className={`${styles.addResourceBtn}${
@@ -271,34 +253,20 @@ export function CourseLearningPathNodeResources({
               setEditingId(null)
               setDraft(EMPTY_DRAFT)
               setFormError(null)
-              setOpen(true)
             }}
           >
             + Add a resource
           </button>
-          <CourseLearningPathSectionToggle
-            open={open}
-            label='Resources'
-            onToggle={() => setOpen((value) => !value)}
-          />
         </div>
       </div>
 
-      {open ? (
-        <div className={styles.topicResourcesBody}>
-          {items.length > 0 ? (
-            <p className={styles.topicResourcesLead}>
-              {items.length} {items.length === 1 ? 'resource' : 'resources'} ·
-              in order
-            </p>
-          ) : (
+      <div className={styles.topicResourcesBody}>
+          {items.length === 0 ? (
             <p className={styles.topicResourcesEmpty}>
               Nothing here yet. When something makes this click, add it in the
               order you would study it.
             </p>
-          )}
-
-          {items.length > 0 ? (
+          ) : (
             <ol className={styles.topicResourceList}>
               {items.map((resource) => {
                 const title = resource.url ? (
@@ -377,9 +345,8 @@ export function CourseLearningPathNodeResources({
                 )
               })}
             </ol>
-          ) : null}
+          )}
         </div>
-      ) : null}
 
       {formOpen ? (
         <div

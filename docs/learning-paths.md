@@ -23,22 +23,21 @@ Official professor courses from Notion are **not** a `kind` yet. They stay at `/
 | `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
 | `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Academic Courses. Atlas callouts; empty search opens the create modal. |
 | `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here. **Fill out this path for me** shows a watering-plant popup (**Watering your path.** / **Creating your steps.**) until the outline lands. |
-| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. Visitors see **Public, Published** / **Collab, Published** on the date line; only the owner can **Edit this node** / **Add to path**. **Context** (next to Discussions / Your Notes) opens a dialog: what to paste into an LLM, plus the copied prompt (current step and ancestors, numbered outline with whys, goal/summary). |
+| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. The hero date line is **publisher photo · Public** (or **Collab** / **Private**) **· Published Mon YYYY**, then **Share**, **Save**, and **•••**. **•••** opens **Report**; owners also change visibility there. Only the owner can **Edit this node** / **Add to path**. **Context** (next to Discussions / Your Notes) opens a dialog: what to paste into an LLM, plus the copied prompt (current step and ancestors, numbered outline with whys, goal/summary). |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
 
 The profile **Learning** tab filters are **Courses**, **Learning paths**, **By you**, and **Committed**. Courses = an official Notion course bookmark **or** a `learning_paths` row with `kind=course` (`isCourseKindPath`). Learning paths = `community` + `research` only. **Committed** is a per-user flag (click Commit; hover Committed → Uncommit) in `learning_path_commitments`. You can commit without a reminder. After you commit, a **Notify** tag appears to the right of Commit; saving a cadence (every day / weekday + local time) stores `reminder_frequency`, `reminder_minute`, and `reminder_timezone` on that row. You cannot set a reminder without committing. Sending those notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the commitments table if `030` was never applied). Community/research/course-kind cards show muted byline text under the title (**Created by you · Private**, or **By {name} · Public** / Collaborative). Saved official Notion courses and pinned Coursetexts syllabi also get a byline (**By {professors} · {school} · Public** when the course page has been opened, otherwise **By {school} · Public** or **By Coursetexts · Public**). Cards with marked-complete sections or explored topics show a muted **97% complete** (etc.) tag to the left of Commit (hidden at 0%). A muted sprout **N day streak** tag sits to the left of **% complete** when the streak is greater than 0 (currently a few mocked titles only; real streak tracking is not built yet).
 
-Profile tabs also include **Knowledge** (acquired topics) and **Notes** (your private topic notes from courses and learning paths; `/profile` only; editable, with Open jumping to that topic and the notes panel). Finishing a path records unique node labels, shows blue confetti and a concepts modal, and adds a **What you learned** outline row. Hover **Explored** on the topic action to **Mark unexplored**. Completing a topic (or the whole path) asks how long it took and how enjoyable learning was with the given resources (0–100%). The left outline shows the topic name and a status square only (blue filled = explored); it does not print Exploring / Need this / As deep as you need. On a topic, **Why is this on the learning path** and **Resources** start open. **General Approach** has Resources only — no Why section (the path summary stays in the hero). See [knowledge.md](./knowledge.md). Daily Gemini linking of the shared catalog is **implemented but disabled**.
+Profile tabs also include **Knowledge** (acquired topics) and **Notes** (your private topic notes from courses and learning paths; `/profile` only; editable, with Open jumping to that topic and the notes panel). Finishing a path records unique node labels, shows blue confetti and a concepts modal, and adds a **What you learned** outline row. Hover **Explored** on the topic action to **Mark unexplored**. Completing a topic (or the whole path) asks how long it took and how enjoyable learning was with the given resources (0–100%). The left outline shows the topic name and a light-blue stroke check when `explored` (parents and children). It does not print Exploring / Need this / As deep as you need. On a topic, **Why is this on the learning path:** is an inline lead plus body under the title. **Resources** start open. **Overview** has Resources only — no Why section (the path summary stays in the hero). See [knowledge.md](./knowledge.md). Daily Gemini linking of the shared catalog is **implemented but disabled**.
 
 ## Left outline (community / research)
 
-1. **General Approach** — the goal / map overview (stored as the mental-map section, `?node=mental-map`). Resources only; no **Why is this on the learning path**.
-2. **Recommended Path** — overview of core steps, with the step count
-3. The numbered topic tree. A thicker rule sits between the two tabs and this list.
-4. **What you learned** — only after the path is finished
+1. **Overview** — combined General Approach + Recommended Path (`?node=overview`). Resources only; no **Why is this on the learning path**. A 1px hairline sits under this row (none above it).
+2. The topic tree. Top-level steps are accordion rows (chevron on the right). Nested steps sit on a vertical hairline. A light-blue stroke check appears on the right when a parent or child is `explored`.
+3. **What you learned** — only after the path is finished
 
-The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. The notes toolbar **Export PDF** downloads the current note as a PDF. Searching the outline for “mental map” still finds **General Approach**. Course syllabi use the same tab order with **Recommended Syllabus** instead of Recommended Path (see [curated-courses.md](./curated-courses.md)).
+The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. The notes toolbar **Export PDF** downloads the current note as a PDF. Searching the outline for “mental map” or “general approach” still finds **Overview**. Course syllabi use the same accordion/check treatment with **Recommended Syllabus** in the course nav (see [curated-courses.md](./curated-courses.md)).
 
 `/all-courses?view=learning-paths` is the full public browse of non-course paths: `listNonCourseLearningPaths()` selects `kind in ('community','research')` (title, goal, summary only — not the JSON blob), then appends any missing `SEEDED_LEARNING_PATHS`. Private rows stay hidden by RLS. **`kind=course` is excluded**, including empty stubs.
 
@@ -111,7 +110,7 @@ User overlay (`learning_path_user_state`):
 
 - `notes` — TipTap JSON per node id (community paths and course syllabi)
 - `resources` — extra resources the learner added
-- `node_status` — `explored` / `exploring` / `next`. The learner can toggle a topic back to `next` from **Explored** in the main pane. The outline square is blue when `explored`, outlined blue when `exploring`, grey otherwise.
+- `node_status` — `explored` / `exploring` / `next`. The learner can toggle a topic back to `next` from **Explored** in the main pane. The outline shows a light-blue stroke check when `explored` (parents and nested steps).
 
 ## Visibility
 
@@ -125,7 +124,7 @@ Replaces the old boolean `is_private`. The column remains, kept in sync (`is_pri
 
 - Catalog community / research / course rows: `visibility = public`, `owner_id` null.
 - New user paths: `visibility = private` until the owner changes it. Going back to private is always allowed.
-- Visitors (not the owner) see the mode on the hero date: **Public, Published · Aug 2026** or **Collab, Published · Aug 2026**. The owner’s date line stays **Published**; they already have the Private / Public / Collab control. Catalog course syllabi stay **Published** (no public/collab toggle).
+- The hero date line always shows the mode: **Public · Published Mon YYYY**, **Collab · Published Mon YYYY**, or **Private · Published Mon YYYY**, with the publisher photo. **Share**, heart **Save**, and **•••** sit on the right. **•••** opens **Report**; owners also pick Private / Public / Collab there. Catalog course syllabi use **Public · Published** (no visibility toggle).
 - Outline edits (**Edit this node**, **Add to path**, delete node) are owner-only, including on collaborative paths. List footer and graph popout hide those controls for everyone else. Signed-out local drafts still count as the owner. Apply `040_learning_path_outline_owner_only.sql` on existing databases.
 
 ### Publishing (private → public / collab)
@@ -144,7 +143,7 @@ When the switch succeeds, the owner’s overlay resources are copied onto `learn
 - RLS `SELECT`: `is_catalog OR visibility in ('public','collaborative') OR owner_id = auth.uid()`.
 - RLS `UPDATE`: owner as before; signed-in users may update `data` only when `kind = 'course' AND is_catalog` (syllabus resources). Collaborative community/research outlines are owner-only. A trigger blocks non-owners from changing slug/owner/kind/visibility/title/goal/summary, and from changing `data` except on catalog courses.
 
-Course catalog pages have no privacy toggle. Owned community/research paths use a three-way control.
+Course catalog pages have no privacy toggle. Owned community/research paths use the **•••** menu for Private / Public / Collab.
 
 **Context** (topic bar, next to Discussions / Your Notes) opens a dialog that copies a prompt for an external LLM and explains to paste it into ChatGPT, Claude, or similar so the model knows where you are on the path. The prompt includes the current step and its parents, the numbered outline with each topic’s why, then the goal and summary. Each outline row keeps the mark on the same line as the title (`1 Title`, `a) Title`, `i) Title`). Empty and placeholder whys are omitted. Course syllabi do not show this button.
 

@@ -516,6 +516,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           courseTitle={courseTitle}
           coursePageId={coursePageId}
           sectionId={currentSectionLabel}
+          sectionTitle={noteTopicTitle}
           onHide={closeRightPanel}
           onAnnotationCountChange={handleAnnotationCountChange}
           onActivityPosted={bumpActivityRefresh}

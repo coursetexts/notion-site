@@ -35,6 +35,7 @@
 }
 
 .title {
+  font-family: 'Hanken Grotesk', sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;

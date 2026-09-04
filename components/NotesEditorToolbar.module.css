@@ -2,9 +2,9 @@
   position: relative;
   z-index: 2;
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 4px;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
   padding: 8px 12px;
   border-bottom: 1px solid #e6e6e6;
   flex-shrink: 0;
@@ -27,6 +27,17 @@
   gap: 2px 4px;
   flex: 1;
   min-width: 0;
+}
+
+.saveStatus {
+  flex: none;
+  margin-left: auto;
+  font-family: var(--font-sans, 'Hanken Grotesk', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #16a34a;
+  white-space: nowrap;
 }
 
 .group {

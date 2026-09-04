@@ -11,14 +11,12 @@ import {
   getCourseLearningPathData,
   updateCourseLearningPathTopicResource
 } from '@/lib/course-learning-path-db'
-import { MENTAL_MAP_GOAL_ID } from '@/lib/course-learning-path-graph'
 import {
   readCourseLearningPathExplored,
   writeCourseLearningPathExplored
 } from '@/lib/course-learning-path-progress'
 import {
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
-  COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   getCourseLearningPathResourcesBySlug,
@@ -45,10 +43,7 @@ import {
   nextCourseLearningPathNode
 } from '@/lib/course-learning-path-types'
 import { structuralKnowledgeEdgesFromCourseLearningPath } from '@/lib/knowledge-graph'
-import {
-  learningPathKicker,
-  learningPathOutlineHint
-} from '@/lib/learning-path-kind-ui'
+import { learningPathKicker } from '@/lib/learning-path-kind-ui'
 import {
   isCourseLearningPathFinished,
   knowledgeTopicItemsFromCourseLearningPath,
@@ -81,7 +76,6 @@ import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
 import { LearningPathOutlinePanel } from './LearningPathOutlinePanel'
 import { LearningPathRatingModal } from './LearningPathRatingModal'
 import { PathContentActivity } from './PathContentActivity'
-import { PathGraphCanvas } from './PathGraphCanvas'
 
 export interface CourseLearningPathProps {
   /** Syllabus course slug in Supabase. Falls back to seed data when missing. */
@@ -100,38 +94,6 @@ function withCurriculumResources(
   const resources = getCourseLearningPathResourcesBySlug(slug || course.slug)
   if (!resources.length) return course
   return { ...course, resources }
-}
-
-const GRAPH_MAIN_MIN = 280
-const GRAPH_ASIDE_MIN = 360
-const GRAPH_MAIN_DEFAULT = 400
-const GRAPH_SPLIT_STORAGE_KEY = 'coursetexts-course-path-graph-main-width'
-
-function readStoredGraphMainWidth() {
-  if (typeof window === 'undefined') return GRAPH_MAIN_DEFAULT
-  try {
-    const raw = window.localStorage.getItem(GRAPH_SPLIT_STORAGE_KEY)
-    const n = raw ? Number(raw) : NaN
-    return Number.isFinite(n) ? n : GRAPH_MAIN_DEFAULT
-  } catch {
-    return GRAPH_MAIN_DEFAULT
-  }
-}
-
-function persistGraphMainWidth(width: number) {
-  try {
-    window.localStorage.setItem(
-      GRAPH_SPLIT_STORAGE_KEY,
-      String(Math.round(width))
-    )
-  } catch {
-    // ignore quota / private mode
-  }
-}
-
-function clampGraphMainWidth(width: number, bodyWidth: number) {
-  const max = Math.max(GRAPH_MAIN_MIN, Math.floor(bodyWidth - GRAPH_ASIDE_MIN))
-  return Math.round(Math.min(max, Math.max(GRAPH_MAIN_MIN, width)))
 }
 
 function escapeHtml(value: string) {
@@ -206,14 +168,11 @@ export function CourseLearningPath({
   const [selectedId, setSelectedId] = React.useState(
     COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
   )
-  const [navView, setNavView] = React.useState<'list' | 'graph'>('list')
   const [outlineSearch, setOutlineSearch] = React.useState('')
   const [expanded, setExpanded] = React.useState<Set<string>>(() => new Set())
   const [exploredIds, setExploredIds] = React.useState<Set<string>>(
     () => new Set()
   )
-  const [graphMainWidth, setGraphMainWidth] = React.useState(GRAPH_MAIN_DEFAULT)
-  const [graphSplitDragging, setGraphSplitDragging] = React.useState(false)
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
   const [showFinishedModal, setShowFinishedModal] = React.useState(false)
   const [topicRating, setTopicRating] = React.useState<{
@@ -222,91 +181,6 @@ export function CourseLearningPath({
   } | null>(null)
   const [pendingFinish, setPendingFinish] = React.useState(false)
   const mainRef = React.useRef<HTMLDivElement>(null)
-  const bodyRef = React.useRef<HTMLDivElement>(null)
-  const graphMainWidthRef = React.useRef(graphMainWidth)
-  const graphSplitDraggingRef = React.useRef(false)
-  graphMainWidthRef.current = graphMainWidth
-
-  function measureGraphBodyWidth() {
-    return (
-      bodyRef.current?.getBoundingClientRect().width ??
-      (typeof window !== 'undefined' ? window.innerWidth : 1200)
-    )
-  }
-
-  function applyGraphMainWidth(width: number, persist = false) {
-    const next = clampGraphMainWidth(width, measureGraphBodyWidth())
-    graphMainWidthRef.current = next
-    setGraphMainWidth(next)
-    if (persist) persistGraphMainWidth(next)
-    return next
-  }
-
-  React.useEffect(() => {
-    if (navView !== 'graph') return
-    applyGraphMainWidth(readStoredGraphMainWidth())
-  }, [navView])
-
-  React.useEffect(() => {
-    if (navView !== 'graph') return
-    function onResize() {
-      applyGraphMainWidth(graphMainWidthRef.current)
-    }
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [navView])
-
-  function handleGraphSplitPointerDown(
-    event: React.PointerEvent<HTMLButtonElement>
-  ) {
-    event.preventDefault()
-    event.currentTarget.setPointerCapture(event.pointerId)
-    graphSplitDraggingRef.current = true
-    setGraphSplitDragging(true)
-  }
-
-  function handleGraphSplitPointerMove(
-    event: React.PointerEvent<HTMLButtonElement>
-  ) {
-    if (!graphSplitDraggingRef.current) return
-    const body = bodyRef.current
-    if (!body) return
-    applyGraphMainWidth(body.getBoundingClientRect().right - event.clientX)
-  }
-
-  function handleGraphSplitPointerUp(
-    event: React.PointerEvent<HTMLButtonElement>
-  ) {
-    if (!graphSplitDraggingRef.current) return
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId)
-    }
-    graphSplitDraggingRef.current = false
-    setGraphSplitDragging(false)
-    persistGraphMainWidth(graphMainWidthRef.current)
-  }
-
-  function handleGraphSplitKeyDown(
-    event: React.KeyboardEvent<HTMLButtonElement>
-  ) {
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault()
-      applyGraphMainWidth(graphMainWidthRef.current + 24, true)
-    } else if (event.key === 'ArrowRight') {
-      event.preventDefault()
-      applyGraphMainWidth(graphMainWidthRef.current - 24, true)
-    } else if (event.key === 'Home') {
-      event.preventDefault()
-      applyGraphMainWidth(GRAPH_MAIN_MIN, true)
-    } else if (event.key === 'End') {
-      event.preventDefault()
-      applyGraphMainWidth(measureGraphBodyWidth() - GRAPH_ASIDE_MIN, true)
-    }
-  }
-
-  function handleGraphSplitDoubleClick() {
-    applyGraphMainWidth(GRAPH_MAIN_DEFAULT, true)
-  }
 
   React.useEffect(() => {
     if (courseProp) {
@@ -371,7 +245,6 @@ export function CourseLearningPath({
     const selected = initialCourseSelection(course)
     setSelectedId(selected)
     replaceSearchParams({ node: selected })
-    setNavView('list')
     setOutlineSearch('')
     setExpanded(expandedIdsForCourseSelection(course, selected))
   }, [course, slug])
@@ -438,16 +311,6 @@ export function CourseLearningPath({
     setMobileNavOpen(false)
   }
 
-  function handleGraphSelect(id: string) {
-    restoreScrollAfter(() => {
-      handleSelect(
-        id === MENTAL_MAP_GOAL_ID
-          ? COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID
-          : id
-      )
-    }, mainRef.current)
-  }
-
   function handleToggleExplored(nodeId: string) {
     if (!course) return
     const wasExplored = exploredIds.has(nodeId)
@@ -469,7 +332,6 @@ export function CourseLearningPath({
       if (justFinished) {
         if (alreadyRated) setShowFinishedModal(true)
         else setPendingFinish(true)
-        setNavView('list')
         setSelectedId(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)
         replaceSearchParams({ node: COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID })
         setMobileNavOpen(false)
@@ -713,11 +575,6 @@ export function CourseLearningPath({
   }
 
   const hasSyllabus = course.topics.length > 0
-  const graphSelectedId = showingMentalMap
-    ? MENTAL_MAP_GOAL_ID
-    : showingSyllabus || showingResources || showingKnowledge
-    ? ''
-    : selectedId
 
   return (
     <div className={pathStyles.section}>
@@ -782,16 +639,22 @@ export function CourseLearningPath({
           title={course.title}
           instructors={[{ name: 'By Coursetexts' }]}
           descriptionHtml={courseDescriptionHtml(course.description)}
-          schoolDate={formatHeroPublishedDate(course.createdAt)}
-          reportTarget={{
-            type: 'learning_path',
-            id: course.id || course.slug,
-            url: `/learning-path/${course.slug}`,
-            title: course.title
-          }}
+          schoolDate={formatHeroPublishedDate(course.createdAt, {
+            visibility: 'public'
+          })}
           publisherAvatarFallback='coursetexts'
           publisherAvatarAlt='Coursetexts'
-          actions={<CourseLearningPathHeroActions course={course} />}
+          actions={
+            <CourseLearningPathHeroActions
+              course={course}
+              reportTarget={{
+                type: 'learning_path',
+                id: course.id || course.slug,
+                url: `/learning-path/${course.slug}`,
+                title: course.title
+              }}
+            />
+          }
         />
       </div>
       <header className={styles.topBar}>
@@ -799,43 +662,23 @@ export function CourseLearningPath({
           type='button'
           onClick={() => setMobileNavOpen((v) => !v)}
           className={styles.menuBtn}
-          aria-label={
-            mobileNavOpen
-              ? navView === 'graph'
-                ? 'Close map'
-                : 'Close syllabus'
-              : navView === 'graph'
-              ? 'Open map'
-              : 'Open syllabus'
-          }
+          aria-label={mobileNavOpen ? 'Close syllabus' : 'Open syllabus'}
         >
           {mobileNavOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </header>
 
-      <div
-        ref={bodyRef}
-        className={`${pathStyles.body}${
-          navView === 'graph' ? ` ${pathStyles.bodyGraph}` : ''
-        }${graphSplitDragging ? ` ${pathStyles.bodyGraphDragging}` : ''}`}
-      >
-        <div
-          className={`${pathStyles.layout} ${
-            navView === 'graph' ? pathStyles.layoutGraph : pathStyles.layoutList
-          }`}
-        >
+      <div className={pathStyles.body}>
+        <div className={`${pathStyles.layout} ${pathStyles.layoutList}`}>
           <aside
             className={`${styles.aside}${
               mobileNavOpen ? ` ${styles.asideOpen}` : ''
-            }${navView === 'graph' ? ` ${styles.asideGraph}` : ''}`}
+            }`}
           >
             <LearningPathOutlinePanel
-              viewMode={navView}
-              onViewModeChange={setNavView}
               search={outlineSearch}
               onSearchChange={setOutlineSearch}
               searchAriaLabel='Search in outline'
-              graphHint={learningPathOutlineHint('course')}
               list={
                 <CourseLearningPathSyllabusNav
                   course={course}
@@ -849,44 +692,13 @@ export function CourseLearningPath({
                   hideSearch
                 />
               }
-              graph={
-                <div className={pathStyles.mapStage}>
-                  <PathGraphCanvas
-                    course={course}
-                    exploredIds={exploredIds}
-                    selectedId={graphSelectedId}
-                    onOpenNode={handleGraphSelect}
-                  />
-                </div>
-              }
             />
           </aside>
-
-          {navView === 'graph' ? (
-            <button
-              type='button'
-              className={`${pathStyles.splitHandle}${
-                graphSplitDragging ? ` ${pathStyles.splitHandleActive}` : ''
-              }`}
-              aria-label='Resize content panel'
-              aria-orientation='vertical'
-              aria-valuemin={GRAPH_MAIN_MIN}
-              aria-valuenow={graphMainWidth}
-              title='Drag to resize. Double-click to reset.'
-              onPointerDown={handleGraphSplitPointerDown}
-              onPointerMove={handleGraphSplitPointerMove}
-              onPointerUp={handleGraphSplitPointerUp}
-              onPointerCancel={handleGraphSplitPointerUp}
-              onLostPointerCapture={handleGraphSplitPointerUp}
-              onKeyDown={handleGraphSplitKeyDown}
-              onDoubleClick={handleGraphSplitDoubleClick}
-            />
-          ) : null}
 
           {mobileNavOpen && (
             <button
               type='button'
-              aria-label={navView === 'graph' ? 'Close map' : 'Close syllabus'}
+              aria-label='Close syllabus'
               onClick={() => setMobileNavOpen(false)}
               className={styles.overlay}
             />
@@ -896,15 +708,6 @@ export function CourseLearningPath({
             className={pathStyles.detail}
             contentClassName={pathStyles.detailContent}
             contentRef={mainRef}
-            style={
-              navView === 'graph'
-                ? {
-                    flexBasis: graphMainWidth,
-                    width: graphMainWidth,
-                    maxWidth: 'none'
-                  }
-                : undefined
-            }
             coursePageId={courseLearningPathActivityPageId(course.slug)}
             courseTitle={course.title}
             courseUrl={`/learning-path/${course.slug}`}

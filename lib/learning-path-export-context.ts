@@ -7,8 +7,7 @@ import {
 import { learningPathTopicHasWhy } from '@/lib/learning-path-publish'
 import {
   isLearningPathKnowledgeSelection,
-  isLearningPathMentalMapSelection,
-  isLearningPathRecommendedSelection,
+  isLearningPathOverviewSelection,
   outlineTreeWithoutGoal
 } from '@/lib/learning-path-sections'
 import {
@@ -29,10 +28,10 @@ function displayMark(mark?: PathMark) {
 
 function locationSentence(path: LearningPathData, selectedId: string) {
   const title = path.title.trim() || 'this learning path'
-  if (isLearningPathRecommendedSelection(selectedId)) {
+  if (isLearningPathOverviewSelection(selectedId)) {
     return `I am on the path ${quote(
       title
-    )}. I am viewing the recommended path overview, not a specific step.`
+    )}. I am viewing the path overview, not a specific step.`
   }
   if (isLearningPathKnowledgeSelection(selectedId)) {
     return `I am on the path ${quote(
@@ -40,12 +39,6 @@ function locationSentence(path: LearningPathData, selectedId: string) {
     )}. I am reviewing what I learned on this path.`
   }
   const byId = Object.fromEntries(path.nodes.map((node) => [node.id, node]))
-  const goal = path.nodes.find((node) => node.kind === 'goal')
-  if (isLearningPathMentalMapSelection(selectedId)) {
-    return `I am on the path ${quote(title)}. I am on the goal ${quote(
-      goal?.label.trim() || title
-    )}.`
-  }
   const selected = byId[selectedId]
   if (!selected) {
     return `I am on the path ${quote(title)}.`

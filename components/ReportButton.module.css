@@ -40,8 +40,21 @@
 .flag:focus-visible,
 .flagAlways:hover,
 .flagAlways:focus-visible {
-  color: #6b7280;
+  color: #25272b;
   outline: none;
+}
+
+.menuItem {
+  appearance: none;
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
 }
 
 .backdrop {

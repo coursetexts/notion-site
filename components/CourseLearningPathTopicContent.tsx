@@ -12,12 +12,6 @@ import {
 } from './CourseLearningPathNodeResources'
 import { CourseLearningPathWhy } from './CourseLearningPathWhy'
 
-const TYPE_LABEL: Record<CourseLearningPathNode['type'], string> = {
-  topic: 'Topic',
-  subtopic: 'Subtopic',
-  concept: 'Concept'
-}
-
 interface TopicContentProps {
   entry: CourseLearningPathFlatNode
   onSelect: (id: string) => void
@@ -82,12 +76,9 @@ export function CourseLearningPathTopicContent({
           </nav>
         )}
 
-        <span className={styles.typeBadge}>{TYPE_LABEL[node.type]}</span>
-
         <h1 className={styles.articleTitle}>{node.title}</h1>
+        <CourseLearningPathWhy text={node.description} />
       </header>
-
-      <CourseLearningPathWhy text={node.description} resetKey={node.id} />
 
       <CourseLearningPathNodeResources
         nodeId={node.id}

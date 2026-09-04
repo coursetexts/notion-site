@@ -93,9 +93,21 @@ export function SiteNotesEditor({
   const [expanded, setExpanded] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [exportingPdf, setExportingPdf] = React.useState(false)
+  const [saveStatus, setSaveStatus] = React.useState<'saving' | 'saved' | null>(
+    null
+  )
+  const saveStatusTimer = React.useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  )
 
   React.useEffect(() => {
     setPortalReady(true)
+  }, [])
+
+  React.useEffect(() => {
+    return () => {
+      if (saveStatusTimer.current) clearTimeout(saveStatusTimer.current)
+    }
   }, [])
 
   React.useEffect(() => {
@@ -166,6 +178,13 @@ export function SiteNotesEditor({
     onUpdate: ({ editor: ed }) => {
       if (!canTypeRef.current) return
       onChangeRef.current?.(ed.getJSON() as NotebookDocJson)
+      if (!onChangeRef.current) return
+      setSaveStatus('saving')
+      if (saveStatusTimer.current) clearTimeout(saveStatusTimer.current)
+      saveStatusTimer.current = setTimeout(() => {
+        saveStatusTimer.current = null
+        setSaveStatus('saved')
+      }, 700)
     }
   })
 
@@ -257,6 +276,7 @@ export function SiteNotesEditor({
           editor={editor}
           imageInputRef={imageInputRef}
           disabled={isLocked}
+          saveStatus={isLocked ? null : saveStatus}
           onExportPdf={isLocked ? undefined : () => void exportPdf()}
           exportingPdf={exportingPdf}
           onExpand={

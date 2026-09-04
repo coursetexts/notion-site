@@ -1,6 +1,5 @@
 import React from 'react'
 
-import type { ContentReportTarget } from '@/lib/content-reports'
 import {
   formatInstructorByline,
   rememberOfficialCourseByline,
@@ -8,7 +7,6 @@ import {
 } from '@/lib/course-byline'
 
 import styles from './CourseHero.module.css'
-import { ReportButton } from './ReportButton'
 import { SaveCourseButton } from './SaveCourseButton'
 
 export interface CourseHeroInstructor {
@@ -48,8 +46,6 @@ interface CourseHeroProps extends CourseHeroData {
   publisherAvatarHref?: string
   /** Replaces the HTML description (e.g. an editable field on owned paths). */
   descriptionSlot?: React.ReactNode
-  /** Grey flag next to the published date (learning path heroes). */
-  reportTarget?: ContentReportTarget
 }
 
 const COPYRIGHT_TOGGLE_TITLE = '⚖️ Copyright Report'
@@ -379,11 +375,10 @@ function getSchoolLogo(school: string): [string, string] | null {
   return null
 }
 
-/** Hero meta line: "Published | Aug 2026" — CourseHero splits on `|` into Published · month year.
- *  Visitors on a public or collaborative path get "Public, Published" / "Collab, Published". */
+/** Hero meta line. CourseHero splits on `|` into lead · rest, e.g. Public · Published Sep 2026. */
 export function formatHeroPublishedDate(
   value?: string | Date | null,
-  options?: { visibility?: 'public' | 'collaborative' }
+  options?: { visibility?: 'public' | 'collaborative' | 'private' }
 ): string {
   const parsed =
     value instanceof Date
@@ -396,13 +391,15 @@ export function formatHeroPublishedDate(
     month: 'short',
     year: 'numeric'
   })
-  const lead =
+  const vis =
     options?.visibility === 'collaborative'
-      ? 'Collab, Published'
+      ? 'Collab'
       : options?.visibility === 'public'
-      ? 'Public, Published'
-      : 'Published'
-  return `${lead} | ${monthYear}`
+      ? 'Public'
+      : options?.visibility === 'private'
+      ? 'Private'
+      : null
+  return vis ? `${vis} | Published ${monthYear}` : `Published | ${monthYear}`
 }
 
 /** Normalize schoolDate: school first, then date. Returns single string or [school, date] for styled dot. */
@@ -518,8 +515,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
   publisherAvatarFallback,
   publisherAvatarAlt,
   publisherAvatarHref,
-  descriptionSlot,
-  reportTarget
+  descriptionSlot
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
   const [copyrightReport, setCopyrightReport] =
@@ -704,7 +700,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
             ))}
           </div>
         ) : null}
-        {schoolDate || showSaveButton || actions || reportTarget ? (
+        {schoolDate || showSaveButton || actions ? (
           <div className={styles.schoolDateRow}>
             {schoolDate ? (
               <div className={styles.schoolDate}>
@@ -758,12 +754,7 @@ export const CourseHero: React.FC<CourseHeroProps> = ({
                     </>
                   )
                 })()}
-                {reportTarget ? (
-                  <ReportButton target={reportTarget} variant='always' />
-                ) : null}
               </div>
-            ) : reportTarget ? (
-              <ReportButton target={reportTarget} variant='always' />
             ) : null}
             {showSaveButton || actions ? (
               <div className={styles.saveWrap}>
