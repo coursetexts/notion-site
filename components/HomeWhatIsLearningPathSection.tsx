@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { LearningPathSchemaDiagram } from './CommunitySchema'
+import { HomeLearningPathDiagram } from './HomeLearningPathDiagram'
 
 import styles from './HomeWhatIsLearningPathSection.module.css'
 
@@ -69,7 +69,7 @@ You can make a learning path for yourself or publish it for others. When a path 
             />
           </button>
           <div className={styles.diagramFront}>
-            <LearningPathSchemaDiagram />
+            <HomeLearningPathDiagram />
           </div>
         </div>
       </div>

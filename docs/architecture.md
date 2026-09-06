@@ -51,7 +51,7 @@ Custom landing page (not the raw Notion root). Section order:
 1. Header
 2. Hero + search
 3. Dot-grid of featured Notion courses
-4. **What is a learning path?**
+4. **What is a learning path?** — copy plus a looping visual of the path diagram (`HomeLearningPathDiagram`): goal in a box, then connected concepts, then three stacked resources that become a Resource list, then notes (straight lines, not arrows), then a commit/remind → Notify badge. Decorative only; it does not create a path. `/community` still uses the static `LearningPathSchemaDiagram`.
 5. **Try courses from top schools** (Notion courses, subject chips)
 6. **Try learning paths from our community** (catalog paths)
 7. **Coursetexts is social learning**
