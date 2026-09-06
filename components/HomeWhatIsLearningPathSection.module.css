@@ -32,33 +32,43 @@
   overflow: visible;
 }
 
+.diagramPreviewOpen {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
 .diagramPeek {
   position: absolute;
-  z-index: 0;
-  top: 10%;
-  left: 42%;
-  width: 88%;
-  max-width: none;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   border: none;
-  background: transparent;
+  border-radius: 10px;
+  background: #ffffff;
   cursor: pointer;
   user-select: none;
-  border-radius: 14px;
   line-height: 0;
-  transform-origin: 18% 42%;
-  transition:
-    transform 560ms cubic-bezier(0.34, 1.4, 0.64, 1),
-    box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1),
-    z-index 0s 560ms;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: transform 640ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease,
+    visibility 0s 640ms;
 }
 
 .diagramPeek img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 14px;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
   pointer-events: none;
 }
 
@@ -66,32 +76,26 @@
   position: relative;
   z-index: 1;
   overflow: visible;
-  transform-origin: 30% 60%;
-  transition: transform 560ms cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition: opacity 220ms ease;
 }
 
-.diagramPeek:hover,
-.diagramPeek:focus-visible {
-  z-index: 2;
-  transform: translate(-22%, -6%) rotate(-2deg) scale(1.06);
-  box-shadow: 0 22px 44px rgba(44, 26, 12, 0.16);
-  outline: none;
-  transition:
-    transform 560ms cubic-bezier(0.34, 1.4, 0.64, 1),
-    box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1),
-    z-index 0s;
+.diagramPreviewOpen .diagramPeek {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: transform 640ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease,
+    visibility 0s;
 }
 
-.diagramPeek:hover ~ .diagramFront,
-.diagramPeek:focus-visible ~ .diagramFront {
-  transform: translate(-10%, 12%) rotate(3.5deg) scale(0.92);
+.diagramPreviewOpen .diagramFront {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.diagramPeek:focus-visible {
-  box-shadow:
-    0 22px 44px rgba(44, 26, 12, 0.16),
-    0 0 0 2px #ffffff,
-    0 0 0 4px #0089c4;
+.diagramPreviewOpen .diagramPeek:focus-visible {
+  outline: 2px solid #0089c4;
+  outline-offset: 2px;
 }
 
 .heading {
@@ -130,12 +134,6 @@
     row-gap: 28px;
     align-items: start;
   }
-
-  .diagramPeek {
-    top: 12%;
-    left: 36%;
-    width: 78%;
-  }
 }
 
 @media (max-width: 640px) {
@@ -155,16 +153,8 @@
 @media (prefers-reduced-motion: reduce) {
   .diagramPeek,
   .diagramFront,
-  .diagramPeek:hover,
-  .diagramPeek:focus-visible,
-  .diagramPeek:hover ~ .diagramFront,
-  .diagramPeek:focus-visible ~ .diagramFront {
+  .diagramPreviewOpen .diagramPeek,
+  .diagramPreviewOpen .diagramFront {
     transition: none;
-    transform: none;
-  }
-
-  .diagramPeek:hover,
-  .diagramPeek:focus-visible {
-    z-index: 2;
   }
 }

@@ -8,7 +8,7 @@ import styles from './HomeSocialLearningSection.module.css'
 
 const features = [
   {
-    title: 'Publish a learning path',
+    title: 'Publish & Commit to learning paths',
     body: 'Start with a learning goal. Create a learning path map that helps organize your notes, resources, and progress towards that learning goal',
     image: '/images/home/social-feature-track-progress-ss.png',
     imageAlt: 'Learning path with a goal, outline, and organized resources'

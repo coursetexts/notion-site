@@ -8,13 +8,13 @@ import {
 } from '@/lib/learning-path-seed'
 import {
   LEARNING_PATH_TOPICS,
-  learningPathTopics,
-  type LearningPathTopicId
+  type LearningPathTopicId,
+  learningPathTopics
 } from '@/lib/learning-path-topic'
 
-import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 import courseStyles from './HomeCoursesSection.module.css'
 import styles from './HomeLearningPathsSection.module.css'
+import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 
 function CommunityMark() {
   return (
@@ -70,9 +70,7 @@ export function HomeLearningPathsSection() {
     const matched =
       activeTopic == null
         ? paths
-        : paths.filter((path) =>
-            learningPathTopics(path).includes(activeTopic)
-          )
+        : paths.filter((path) => learningPathTopics(path).includes(activeTopic))
     return matched.slice(0, 12).map(pathToCard)
   }, [activeTopic, paths])
 
@@ -109,9 +107,6 @@ export function HomeLearningPathsSection() {
               <span className={courseStyles.subjectLabel}>{topic.label}</span>
             </button>
           ))}
-          <Link href='/community' legacyBehavior>
-            <a className={styles.cta}>The Community</a>
-          </Link>
         </div>
         <div className={courseStyles.dashedRule} />
       </div>
@@ -153,39 +148,53 @@ export function HomeLearningPathsSection() {
         </div>
       )}
 
-      <div className={courseStyles.viewAllBar}>
-        <Link
-          href={
-            activeTopic
-              ? `/all-courses?view=learning-paths&topic=${activeTopic}`
-              : '/all-courses?view=learning-paths'
-          }
-          legacyBehavior
-        >
-          <a
-            className={courseStyles.viewAllBarLink}
-            aria-label='View all learning paths'
+      <div className={courseStyles.viewAllRow}>
+        <p className={courseStyles.headingSub}>
+          Coursetexts is a community of learners. Anyone can publish a learning
+          path to help others learn what they have already. Importantly, the
+          community votes on resources to build the best possible learning
+          experience.{' '}
+          <Link href='/community' legacyBehavior>
+            <a className={courseStyles.headingSubLink}>
+              More on our community here
+            </a>
+          </Link>
+          .
+        </p>
+        <div className={courseStyles.viewAllBar}>
+          <Link
+            href={
+              activeTopic
+                ? `/all-courses?view=learning-paths&topic=${activeTopic}`
+                : '/all-courses?view=learning-paths'
+            }
+            legacyBehavior
           >
-            <span className={courseStyles.viewAllText}>View All</span>
-            <span className={courseStyles.viewAllArrowBox} aria-hidden='true'>
-              <svg
-                width='14'
-                height='14'
-                viewBox='0 0 14 14'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  d='M5.25 11.375L9.625 7L5.25 2.625'
-                  stroke='#5D534B'
-                  strokeWidth='1.60417'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </span>
-          </a>
-        </Link>
+            <a
+              className={courseStyles.viewAllBarLink}
+              aria-label='View all learning paths'
+            >
+              <span className={courseStyles.viewAllText}>View All</span>
+              <span className={courseStyles.viewAllArrowBox} aria-hidden='true'>
+                <svg
+                  width='14'
+                  height='14'
+                  viewBox='0 0 14 14'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M5.25 11.375L9.625 7L5.25 2.625'
+                    stroke='#5D534B'
+                    strokeWidth='1.60417'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </span>
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   )

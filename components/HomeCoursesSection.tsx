@@ -4,8 +4,8 @@ import Link from 'next/link'
 import styles from './HomeCoursesSection.module.css'
 import { HomeLearningPathsSection } from './HomeLearningPathsSection'
 import { HomeSocialLearningSection } from './HomeSocialLearningSection'
-import { DegreeCardIcon } from './degreeCardIcons'
 import { getSchoolLogoForMeta } from './courseSchoolLogo'
+import { DegreeCardIcon } from './degreeCardIcons'
 
 export type HomeCourseCard = {
   id: string
@@ -70,9 +70,7 @@ function HomeCourseCardItem({
         <article className={styles.courseCard}>
           <div className={styles.courseMetaRow}>
             <span
-              className={
-                course.subjectDegreeId ? styles.logoStack : undefined
-              }
+              className={course.subjectDegreeId ? styles.logoStack : undefined}
             >
               <span className={styles.schoolLogoWrap}>
                 {course.communityMark ? (
@@ -179,19 +177,6 @@ export function HomeCoursesSection({
 
       <div className={`${styles.content} ${styles.contentBottom}`}>
         <h2 className={styles.heading}>Try courses from top schools.</h2>
-        <p className={styles.headingSub}>
-          We work directly with professors to bring niche, hard-to-find graduate
-          courses online through our{' '}
-          <a
-            href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
-            target='_blank'
-            rel='noreferrer'
-            className={styles.headingSubLink}
-          >
-            publishing pipeline
-          </a>
-          .  We want to open source courses across every major unverisity. It&apos;s opensource, compliant and really fast!
-        </p>
 
         <div className={styles.subjectGroup}>
           <div className={styles.dashedRule} />
@@ -220,14 +205,6 @@ export function HomeCoursesSection({
                 <span className={styles.subjectLabel}>{subject.label}</span>
               </button>
             ))}
-            <a
-              href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
-              target='_blank'
-              rel='noreferrer'
-              className={styles.cta}
-            >
-              The Publishing Pipeline
-            </a>
           </div>
 
           <div className={styles.dashedRule} />
@@ -238,29 +215,48 @@ export function HomeCoursesSection({
           emptyMessage='No courses matched those subjects yet.'
         />
 
-        <div className={styles.viewAllBar}>
-          <Link href='/all-courses' legacyBehavior>
-            <a className={styles.viewAllBarLink} aria-label='View all courses'>
-              <span className={styles.viewAllText}>View All</span>
-              <span className={styles.viewAllArrowBox} aria-hidden='true'>
-                <svg
-                  width='14'
-                  height='14'
-                  viewBox='0 0 14 14'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M5.25 11.375L9.625 7L5.25 2.625'
-                    stroke='#5D534B'
-                    strokeWidth='1.60417'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  />
-                </svg>
-              </span>
+        <div className={styles.viewAllRow}>
+          <p className={styles.headingSub}>
+            We work directly with professors to bring niche, hard-to-find
+            graduate courses online through our{' '}
+            <a
+              href='https://blog.coursetexts.org/automating-copyright-compliance-for-open-courseware'
+              target='_blank'
+              rel='noreferrer'
+              className={styles.headingSubLink}
+            >
+              publishing pipeline
             </a>
-          </Link>
+            . We want to open source courses across every major unverisity.
+            It&apos;s opensource, compliant and really fast!
+          </p>
+          <div className={styles.viewAllBar}>
+            <Link href='/all-courses' legacyBehavior>
+              <a
+                className={styles.viewAllBarLink}
+                aria-label='View all courses'
+              >
+                <span className={styles.viewAllText}>View All</span>
+                <span className={styles.viewAllArrowBox} aria-hidden='true'>
+                  <svg
+                    width='14'
+                    height='14'
+                    viewBox='0 0 14 14'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M5.25 11.375L9.625 7L5.25 2.625'
+                      stroke='#5D534B'
+                      strokeWidth='1.60417'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    />
+                  </svg>
+                </span>
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
 

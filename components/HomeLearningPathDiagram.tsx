@@ -161,7 +161,99 @@ function Reveal({
   )
 }
 
-function ResourceStack({ delay, asList }: { delay: number; asList: boolean }) {
+type ResourceIconKind = 'video' | 'paper' | 'exercise' | 'book'
+
+const RESOURCE_ICON_KINDS: ResourceIconKind[][] = [
+  ['video', 'paper', 'exercise'],
+  ['paper', 'book', 'video'],
+  ['exercise', 'video', 'paper']
+]
+
+function ResourceKindIcon({ kind }: { kind: ResourceIconKind }) {
+  return (
+    <svg
+      className={styles.resourceKindIcon}
+      viewBox='0 0 12 12'
+      fill='none'
+      aria-hidden
+    >
+      {kind === 'video' ? (
+        <>
+          <rect
+            x='1.15'
+            y='2.4'
+            width='9.7'
+            height='7.2'
+            rx='1.7'
+            stroke='currentColor'
+            strokeWidth='1.1'
+          />
+          <path d='M5.05 4.55v2.9L7.85 6 5.05 4.55Z' fill='currentColor' />
+        </>
+      ) : null}
+      {kind === 'paper' ? (
+        <>
+          <path
+            d='M3.2 1.7h4.15L8.85 4.2v6.1H3.2V1.7Z'
+            stroke='currentColor'
+            strokeWidth='1.1'
+            strokeLinejoin='round'
+          />
+          <path
+            d='M7.3 1.7V4.2h2.55'
+            stroke='currentColor'
+            strokeWidth='1.1'
+            strokeLinejoin='round'
+          />
+          <path
+            d='M4.55 6.15h2.85M4.55 7.85h2.85'
+            stroke='currentColor'
+            strokeWidth='1.1'
+            strokeLinecap='round'
+          />
+        </>
+      ) : null}
+      {kind === 'exercise' ? (
+        <>
+          <rect
+            x='1.9'
+            y='1.9'
+            width='8.2'
+            height='8.2'
+            rx='1.6'
+            stroke='currentColor'
+            strokeWidth='1.1'
+          />
+          <path
+            d='M3.85 6.15l1.5 1.5 2.85-3.05'
+            stroke='currentColor'
+            strokeWidth='1.1'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </>
+      ) : null}
+      {kind === 'book' ? (
+        <path
+          d='M6 3.05c-1.15-.7-2.45-.85-3.7-.35v6.35c1.25-.5 2.55-.35 3.7.35 1.15-.7 2.45-.85 3.7-.35V2.7c-1.25-.5-2.55-.35-3.7.35Z'
+          stroke='currentColor'
+          strokeWidth='1.1'
+          strokeLinejoin='round'
+        />
+      ) : null}
+    </svg>
+  )
+}
+
+function ResourceStack({
+  delay,
+  asList,
+  kinds
+}: {
+  delay: number
+  asList: boolean
+  kinds: readonly ResourceIconKind[]
+}) {
   return (
     <span
       className={`${styles.resourceStack}${
@@ -169,23 +261,37 @@ function ResourceStack({ delay, asList }: { delay: number; asList: boolean }) {
       }`}
     >
       <span className={styles.resourceListTitle}>Resource list</span>
-      {[0, 1, 2].map((index) => (
+      {kinds.map((kind, index) => (
         <span
-          key={index}
+          key={`${kind}-${index}`}
           className={`${styles.chip} ${styles.chipResource} ${styles.pop}`}
           style={{ animationDelay: `${delay + (2 - index) * 70}ms` }}
         >
           <span className={styles.resourceNum}>{index + 1}</span>
           Resource
+          <ResourceKindIcon kind={kind} />
         </span>
       ))}
     </span>
   )
 }
 
-export function HomeLearningPathDiagram() {
+type HomeLearningPathDiagramProps = {
+  pauseLoop?: boolean
+  onCycleHold?: () => void
+  onCycleRestart?: () => void
+}
+
+export function HomeLearningPathDiagram({
+  pauseLoop = false,
+  onCycleHold,
+  onCycleRestart
+}: HomeLearningPathDiagramProps) {
   const reduceMotion = usePrefersReducedMotion()
   const rootRef = React.useRef<HTMLElement>(null)
+  const onCycleHoldRef = React.useRef(onCycleHold)
+  const onCycleRestartRef = React.useRef(onCycleRestart)
+  const hoveredDuringHoldRef = React.useRef(false)
   const [inView, setInView] = React.useState(false)
   const [cycle, setCycle] = React.useState(0)
   const [phase, setPhase] = React.useState<Phase>('goal')
@@ -194,6 +300,14 @@ export function HomeLearningPathDiagram() {
   const [commitPressed, setCommitPressed] = React.useState(false)
   const [reminderOn, setReminderOn] = React.useState(false)
   const [fading, setFading] = React.useState(false)
+  const [holding, setHolding] = React.useState(false)
+
+  onCycleHoldRef.current = onCycleHold
+  onCycleRestartRef.current = onCycleRestart
+
+  React.useEffect(() => {
+    if (pauseLoop) hoveredDuringHoldRef.current = true
+  }, [pauseLoop])
 
   React.useEffect(() => {
     const node = rootRef.current
@@ -225,6 +339,13 @@ export function HomeLearningPathDiagram() {
   }, [reduceMotion])
 
   React.useEffect(() => {
+    if (inView || reduceMotion) return
+    setHolding(false)
+    setFading(false)
+    onCycleRestartRef.current?.()
+  }, [inView, reduceMotion])
+
+  React.useEffect(() => {
     if (reduceMotion || !inView) return
 
     let cancelled = false
@@ -239,6 +360,8 @@ export function HomeLearningPathDiagram() {
     setCommitPressed(false)
     setReminderOn(false)
     setFading(false)
+    setHolding(false)
+    hoveredDuringHoldRef.current = false
 
     const typeDuration = GOAL_FILL.length * TYPE_MS
     const tConcepts = TYPE_START_MS + typeDuration + AFTER_TYPE_MS
@@ -253,8 +376,6 @@ export function HomeLearningPathDiagram() {
     const tSave = tChoose + ASK_SAVE_MS
     const tNotify = tSave + NOTIFY_MS
     const tReminder = tNotify + REMINDER_MS
-    const tFade = tReminder + HOLD_MS
-    const tRestart = tFade + FADE_MS
 
     at(TYPE_START_MS, () => {
       const started = Date.now()
@@ -291,10 +412,11 @@ export function HomeLearningPathDiagram() {
       setPhase('notify')
       setAskStep(0)
     })
-    at(tReminder, () => setReminderOn(true))
-    at(tFade, () => setFading(true))
-    at(tRestart, () => {
-      if (!cancelled) setCycle((current) => current + 1)
+    at(tReminder, () => {
+      setReminderOn(true)
+      hoveredDuringHoldRef.current = false
+      setHolding(true)
+      onCycleHoldRef.current?.()
     })
 
     return () => {
@@ -305,6 +427,27 @@ export function HomeLearningPathDiagram() {
       }
     }
   }, [cycle, inView, reduceMotion])
+
+  React.useEffect(() => {
+    if (!holding || pauseLoop || reduceMotion || !inView) return
+
+    const delay = hoveredDuringHoldRef.current ? 0 : HOLD_MS
+    hoveredDuringHoldRef.current = false
+
+    const fadeId = window.setTimeout(() => {
+      setFading(true)
+      onCycleRestartRef.current?.()
+    }, delay)
+    const restartId = window.setTimeout(() => {
+      setHolding(false)
+      setCycle((current) => current + 1)
+    }, delay + FADE_MS)
+
+    return () => {
+      window.clearTimeout(fadeId)
+      window.clearTimeout(restartId)
+    }
+  }, [holding, pauseLoop, reduceMotion, inView])
 
   const showConcepts = reduceMotion || phase !== 'goal'
   const showResources =
@@ -350,7 +493,7 @@ export function HomeLearningPathDiagram() {
     <figure
       ref={rootRef}
       className={styles.layout}
-      aria-label='Animated example of a learning path. A goal becomes connected concepts, with resources and notes, then a reminder. Decorative only; it does not create a path.'
+      aria-label='Animated example of a learning path. A goal becomes connected concepts, with resources such as videos, papers, and exercises, plus notes, then a reminder. Decorative only; it does not create a path.'
     >
       <div
         className={`${styles.stage}${fading ? ` ${styles.fading}` : ''}`}
@@ -370,11 +513,23 @@ export function HomeLearningPathDiagram() {
           <div className={styles.stack} key={cycle}>
             <Reveal open={showResources}>
               <div className={styles.triple}>
-                <ResourceStack delay={40} asList={resourcesAsList} />
+                <ResourceStack
+                  delay={40}
+                  asList={resourcesAsList}
+                  kinds={RESOURCE_ICON_KINDS[0]}
+                />
                 <span />
-                <ResourceStack delay={120} asList={resourcesAsList} />
+                <ResourceStack
+                  delay={120}
+                  asList={resourcesAsList}
+                  kinds={RESOURCE_ICON_KINDS[1]}
+                />
                 <span />
-                <ResourceStack delay={200} asList={resourcesAsList} />
+                <ResourceStack
+                  delay={200}
+                  asList={resourcesAsList}
+                  kinds={RESOURCE_ICON_KINDS[2]}
+                />
               </div>
               <div className={`${styles.triple} ${styles.lineRow}`}>
                 <ConnectorLine delay={80} from='concept-up' />
@@ -455,6 +610,7 @@ export function HomeLearningPathDiagram() {
 
           <Reveal open={showCommit}>
             <div className={styles.commitBar}>
+              {committed ? <span className={styles.person}>Josh</span> : null}
               <span
                 className={`${styles.commitTag}${
                   committed ? ` ${styles.commitTagOn}` : ''

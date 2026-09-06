@@ -142,15 +142,29 @@
 }
 
 .chipResource {
+  position: relative;
   background: #c9ebd8;
   border-color: #8fcbaa;
   color: #1f6b4a;
   gap: 6px;
-  transition:
-    min-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
+  padding-right: 22px;
+  padding-left: 22px;
+  transition: min-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
     padding 420ms cubic-bezier(0.22, 1, 0.36, 1),
     border-radius 420ms cubic-bezier(0.22, 1, 0.36, 1),
     font-size 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.resourceKindIcon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 11px;
+  height: 11px;
+  color: currentColor;
+  opacity: 0.38;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .chipNotes {
@@ -180,10 +194,8 @@
   line-height: 1.2;
   color: #1f6b4a;
   box-sizing: border-box;
-  transition:
-    max-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 280ms ease,
-    padding 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: max-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 280ms ease, padding 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .resourceNum {
@@ -218,13 +230,20 @@
 
 .resourceStackAsList .chipResource {
   min-height: 24px;
-  padding: 4px 8px;
+  padding: 4px 22px 4px 8px;
   justify-content: flex-start;
   font-size: 11px;
   border: none;
   border-radius: 0;
   border-top: 1px solid #8fcbaa;
   background: transparent;
+}
+
+.resourceStackAsList .resourceKindIcon {
+  right: 7px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.4;
 }
 
 .resourceStackAsList .resourceListTitle + .chipResource {
@@ -260,6 +279,15 @@
   border-top: 1px solid rgba(44, 26, 12, 0.1);
 }
 
+.person {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #2c1a0c;
+  animation: popIn 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .commitTag,
 .notifyTag {
   display: inline-flex;
@@ -279,10 +307,7 @@
   color: #5c5c5c;
   background: transparent;
   border: 1px solid #d0d0d0;
-  transition:
-    transform 160ms ease,
-    color 200ms ease,
-    background 200ms ease,
+  transition: transform 160ms ease, color 200ms ease, background 200ms ease,
     border-color 200ms ease;
 }
 
@@ -508,7 +533,10 @@
   }
 
   .triple {
-    grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) 16px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) 16px minmax(
+        0,
+        1fr
+      );
   }
 
   .chip {
@@ -517,10 +545,27 @@
     padding: 6px 4px;
   }
 
+  .chipResource {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .resourceKindIcon {
+    right: 4px;
+    width: 10px;
+    height: 10px;
+  }
+
   .resourceStackAsList .chipResource {
     min-height: 22px;
     font-size: 10px;
-    padding: 4px 6px;
+    padding: 4px 18px 4px 6px;
+  }
+
+  .resourceStackAsList .resourceKindIcon {
+    right: 5px;
+    width: 9px;
+    height: 9px;
   }
 
   .resourceListTitle {
@@ -556,6 +601,7 @@
 
   .pop,
   .notifyTag,
+  .person,
   .lineGrow,
   .chipResource,
   .resourceListTitle,
