@@ -269,7 +269,7 @@ export function ProfileCommunityLearningPathCard({
 }) {
   const savedLinkId = item.savedLinkId
   const canUnsave = Boolean(savedLinkId && onUnsave)
-  const isCreated = !savedLinkId
+  const isCreated = !savedLinkId && !item.invited
   const isCourse = isCourseKindPath(item.kind)
   const bylineAuthor = isCreated
     ? ownAuthorLabel

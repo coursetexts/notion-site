@@ -48,12 +48,31 @@ import {
   getLearningPathRecord,
   loadLearningPathUserState,
   overlayUserState,
+  probeLearningPathAccess,
   saveLearningPathUserState,
   setOwnedLearningPathVisibility,
+  updateLearningPathDataAsInvitee,
   upsertOwnedLearningPath,
   userStateFromPath,
   writeLocalUserState
 } from '@/lib/learning-path-db'
+import {
+  type LearningPathInvite,
+  inviteLearningPathCollaborator,
+  isCurrentUserLearningPathInvitee,
+  listLearningPathInvites,
+  loadLearningPathOwnerOverlayResources,
+  normalizeLearningPathInviteEmail,
+  removeLearningPathInvite
+} from '@/lib/learning-path-invites-db'
+import {
+  type LearningPathJoinRequest,
+  acceptLearningPathJoinRequest,
+  deleteJoinRequestsForInvite,
+  dismissLearningPathJoinRequest,
+  listLearningPathJoinRequests,
+  subscribeLearningPathJoinRequestUpdates
+} from '@/lib/learning-path-join-requests-db'
 import {
   type PathTreeItem,
   isCoreStep,
@@ -116,10 +135,12 @@ import {
   insertLearningPathUserResource,
   isCatalogLearningPathSlug,
   mergeLearningPathResources,
+  officialResourcesWithOwnerOverlay,
   parseLearningPathKind,
   readStoredLearningPaths,
   resolveLearningPath,
   sequenceMarks,
+  updateLearningPathOfficialResource,
   updateLearningPathUserResource
 } from '@/lib/learning-path-seed'
 import { readSearchParam, replaceSearchParams } from '@/lib/note-deep-link'
@@ -136,9 +157,11 @@ import { addLink, deleteLink, getMyLinks } from '@/lib/user-links'
 import heroStyles from './CourseHero.module.css'
 import styles from './LearningPath.module.css'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
+import { LearningPathInviteModal } from './LearningPathInviteModal'
 import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
 import { LearningPathPublishModal } from './LearningPathPublishModal'
 import { LearningPathRatingModal } from './LearningPathRatingModal'
+import { LearningPathUnavailable } from './LearningPathUnavailable'
 
 const RESOURCE_KINDS: LearningPathResourceKind[] = [
   'article',
@@ -1004,6 +1027,9 @@ function CommunityLearningPath({
   const [resourceSuggestions, setResourceSuggestions] = React.useState<
     LearningPathResourceSuggestion[]
   >([])
+  const [acceptingSuggestionId, setAcceptingSuggestionId] = React.useState<
+    string | null
+  >(null)
   const [showFinishedModal, setShowFinishedModal] = React.useState(false)
   const [topicRating, setTopicRating] = React.useState<{
     id: string
@@ -1060,6 +1086,25 @@ function CommunityLearningPath({
     null
   )
   const [pathRowId, setPathRowId] = React.useState<string | null>(null)
+  const [isPrivateInvitee, setIsPrivateInvitee] = React.useState(false)
+  const [ownerOverlayResources, setOwnerOverlayResources] = React.useState<
+    Record<string, LearningPathUserResource[]>
+  >({})
+  const [inviteOpen, setInviteOpen] = React.useState(false)
+  const [pathInvites, setPathInvites] = React.useState<LearningPathInvite[]>(
+    []
+  )
+  const [inviteBusy, setInviteBusy] = React.useState(false)
+  const [inviteRemovingId, setInviteRemovingId] = React.useState<string | null>(
+    null
+  )
+  const [inviteError, setInviteError] = React.useState<string | null>(null)
+  const [joinRequests, setJoinRequests] = React.useState<
+    LearningPathJoinRequest[]
+  >([])
+  const [joinAcceptingId, setJoinAcceptingId] = React.useState<string | null>(
+    null
+  )
   const [userStateReady, setUserStateReady] = React.useState(false)
   const stateTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const pathRef = React.useRef(path)
@@ -1084,8 +1129,18 @@ function CommunityLearningPath({
     void router.push(signInPageHref(next))
   }
 
-  function persistGraph(next: LearningPathData) {
-    if (!canEditPathStructure) return
+  function persistGraph(
+    next: LearningPathData,
+    mode: 'structure' | 'progress' = 'structure'
+  ) {
+    if (mode === 'progress') {
+      if (!isOwnPath) return
+    } else if (!canEditPathStructure) return
+    if (isPrivateInvitee && pathVisibility === 'private') {
+      const id = pathRowIdRef.current
+      if (id) void updateLearningPathDataAsInvitee(id, next)
+      return
+    }
     void upsertOwnedLearningPath(next).then((id) => {
       if (id) setPathRowId(id)
     })
@@ -1161,6 +1216,16 @@ function CommunityLearningPath({
     setSelectedId(localSelection)
     replaceSearchParams({ node: localSelection })
     setPathRowId(null)
+    setIsPrivateInvitee(false)
+    setOwnerOverlayResources({})
+    setInviteOpen(false)
+    setPathInvites([])
+    setInviteBusy(false)
+    setInviteRemovingId(null)
+    setInviteError(null)
+    setJoinRequests([])
+    setJoinAcceptingId(null)
+    setAcceptingSuggestionId(null)
     setUserStateReady(false)
     setAddResourceOpen(false)
     setEditingResourceId(null)
@@ -1207,6 +1272,22 @@ function CommunityLearningPath({
       )
       setNotes(state.notes)
       setUserResources(state.resources)
+      const viewerId = getCachedAuth().user?.id ?? currentUserId
+      const invitee =
+        Boolean(record?.id) &&
+        Boolean(viewerId) &&
+        record?.visibility === 'private' &&
+        Boolean(record.ownerId) &&
+        record.ownerId !== viewerId &&
+        (await isCurrentUserLearningPathInvitee(record.id))
+      if (cancelled) return
+      setIsPrivateInvitee(invitee)
+      if (invitee && record?.id) {
+        const overlay = await loadLearningPathOwnerOverlayResources(record.id)
+        if (!cancelled) setOwnerOverlayResources(overlay)
+      } else if (!cancelled) {
+        setOwnerOverlayResources({})
+      }
       const nextSelection = selectionFromSearch(
         next.nodes.map((node) => node.id)
       )
@@ -1269,6 +1350,7 @@ function CommunityLearningPath({
 
   const canEditPathStructure =
     isOwnPath ||
+    (isPrivateInvitee && pathVisibility === 'private') ||
     (!currentUserId &&
       !pathOwnerId &&
       !isCatalogLearningPathSlug(slug) &&
@@ -1447,9 +1529,15 @@ function CommunityLearningPath({
     : []
   const listedResources = selected
     ? mergeLearningPathResources(
-        selected.resources,
+        isPrivateInvitee
+          ? officialResourcesWithOwnerOverlay(
+              selected.resources,
+              ownerOverlayResources[selected.id] ?? []
+            )
+          : selected.resources,
         myResources,
-        nodeSuggestions
+        nodeSuggestions,
+        currentUserId
       )
     : []
   const resourceFormOpen = addResourceOpen || Boolean(editingResourceId)
@@ -1502,18 +1590,24 @@ function CommunityLearningPath({
     event.preventDefault()
     if (!canEditPathStructure) return
     const node = selected ?? goalNode
-    const label = editLabel.trim()
+    const inviteeLockedGoal = isPrivateInvitee && node?.kind === 'goal'
+    const label = inviteeLockedGoal ? node.label : editLabel.trim()
     if (!label || !node) return
     setPath((prev) => {
       const next: LearningPathData = {
         ...prev,
-        title: node.kind === 'goal' ? label : prev.title,
-        goal:
-          node.kind === 'goal'
-            ? /^i want to\s+/i.test(label)
-              ? label
-              : `I want to ${label}`
-            : prev.goal,
+        title: inviteeLockedGoal
+          ? prev.title
+          : node.kind === 'goal'
+          ? label
+          : prev.title,
+        goal: inviteeLockedGoal
+          ? prev.goal
+          : node.kind === 'goal'
+          ? /^i want to\s+/i.test(label)
+            ? label
+            : `I want to ${label}`
+          : prev.goal,
         nodes: prev.nodes.map((item) =>
           item.id === node.id
             ? {
@@ -1571,7 +1665,7 @@ function CommunityLearningPath({
       !isLearningPathFinished(path) &&
       isLearningPathFinished(next)
     setPath(next)
-    persistGraph(next)
+    persistGraph(next, 'progress')
     pathRef.current = next
     queueUserStateSave()
     if (makingExplored) {
@@ -1823,6 +1917,162 @@ function CommunityLearningPath({
     }
   }
 
+  const canInviteCollaborators =
+    isOwnPath &&
+    pathVisibility === 'private' &&
+    Boolean(pathRowId) &&
+    !pathRowId?.startsWith('path-') &&
+    !isCatalogLearningPathSlug(slug)
+
+  React.useEffect(() => {
+    if (!canInviteCollaborators || !pathRowId) {
+      setPathInvites([])
+      setJoinRequests([])
+      return
+    }
+    let cancelled = false
+    async function load() {
+      const [invites, requests] = await Promise.all([
+        listLearningPathInvites(pathRowId as string),
+        listLearningPathJoinRequests(pathRowId as string)
+      ])
+      if (cancelled) return
+      setPathInvites(invites)
+      setJoinRequests(requests)
+    }
+    void load()
+    const unsub = subscribeLearningPathJoinRequestUpdates(() => {
+      void load()
+    })
+    const timer = window.setInterval(() => {
+      void load()
+    }, 20000)
+    return () => {
+      cancelled = true
+      unsub()
+      window.clearInterval(timer)
+    }
+  }, [canInviteCollaborators, pathRowId, currentUserId])
+
+  React.useEffect(() => {
+    if (!canInviteCollaborators || joinRequests.length === 0 || !pathRowId) {
+      return
+    }
+    const key = `coursetexts.lp-join-popup:${pathRowId}`
+    try {
+      if (window.sessionStorage.getItem(key) === '1') return
+      window.sessionStorage.setItem(key, '1')
+    } catch {
+      /* private mode */
+    }
+    setInviteOpen(true)
+  }, [canInviteCollaborators, joinRequests.length, pathRowId])
+
+  async function openInviteCollaborators() {
+    if (!currentUserId) {
+      requestSignIn()
+      return
+    }
+    let id = pathRowId
+    if (!id || id.startsWith('path-')) {
+      id = await upsertOwnedLearningPath(path)
+      if (id) setPathRowId(id)
+    }
+    if (!id || id.startsWith('path-')) {
+      window.alert('Save this path first, then invite someone.')
+      return
+    }
+    setInviteError(null)
+    setInviteOpen(true)
+  }
+
+  async function handleInviteCollaborator(email: string) {
+    const id = pathRowId
+    if (!id || id.startsWith('path-')) return false
+    setInviteBusy(true)
+    setInviteError(null)
+    try {
+      const result = await inviteLearningPathCollaborator(id, email)
+      if ('error' in result) {
+        setInviteError(result.error)
+        return false
+      }
+      setPathInvites((prev) =>
+        prev.some((row) => row.id === result.invite.id)
+          ? prev
+          : [...prev, result.invite]
+      )
+      await deleteJoinRequestsForInvite(id, email)
+      const normalized = normalizeLearningPathInviteEmail(email)
+      setJoinRequests((prev) =>
+        prev.filter((row) => row.email !== normalized)
+      )
+      return true
+    } finally {
+      setInviteBusy(false)
+    }
+  }
+
+  async function handleRemoveInvite(inviteId: string) {
+    setInviteRemovingId(inviteId)
+    try {
+      const ok = await removeLearningPathInvite(inviteId)
+      if (!ok) {
+        window.alert('Could not remove that person.')
+        return
+      }
+      setPathInvites((prev) => prev.filter((row) => row.id !== inviteId))
+    } finally {
+      setInviteRemovingId(null)
+    }
+  }
+
+  async function handleAcceptJoinRequest(request: LearningPathJoinRequest) {
+    setJoinAcceptingId(request.id)
+    setInviteError(null)
+    try {
+      const result = await acceptLearningPathJoinRequest(request)
+      if ('error' in result) {
+        if (result.error === 'already') {
+          setJoinRequests((prev) =>
+            prev.filter((row) => row.id !== request.id)
+          )
+          return
+        }
+        setInviteError(
+          result.error === 'not-found'
+            ? 'not-found'
+            : result.error === 'self'
+            ? 'self'
+            : 'failed'
+        )
+        return
+      }
+      setJoinRequests((prev) => prev.filter((row) => row.id !== request.id))
+      setPathInvites((prev) =>
+        prev.some((row) => row.id === result.invite.id)
+          ? prev
+          : [...prev, result.invite]
+      )
+    } finally {
+      setJoinAcceptingId(null)
+    }
+  }
+
+  async function handleDismissJoinRequest(requestId: string) {
+    setInviteRemovingId(requestId)
+    try {
+      const ok = await dismissLearningPathJoinRequest(requestId)
+      if (!ok) {
+        window.alert('Could not dismiss that request.')
+        return
+      }
+      setJoinRequests((prev) => prev.filter((row) => row.id !== requestId))
+    } finally {
+      setInviteRemovingId(null)
+    }
+  }
+
   function closeResourceForm() {
     setAddResourceOpen(false)
     setEditingResourceId(null)
@@ -1892,6 +2142,47 @@ function CommunityLearningPath({
       closeResourceForm()
       return
     }
+    if (isPrivateInvitee) {
+      const previous = editingResourceId
+        ? selected.resources.find((item) => item.id === editingResourceId)
+        : undefined
+      const official: LearningPathResource = {
+        id: editingResourceId ?? newId('r'),
+        kind: resourceDraft.kind,
+        title,
+        source: previous?.source ?? '',
+        href: href || undefined,
+        why: passage,
+        addedByUserId: previous?.addedByUserId ?? currentUserId ?? undefined
+      }
+      setPath((prev) => {
+        const node = prev.nodes.find((item) => item.id === selected.id)
+        if (!node) return prev
+        const resources = editingResourceId
+          ? updateLearningPathOfficialResource(
+              node.resources,
+              editingResourceId,
+              official,
+              placement
+            )
+          : insertLearningPathOfficialResource(
+              node.resources,
+              official,
+              placement
+            )
+        const next: LearningPathData = {
+          ...prev,
+          nodes: prev.nodes.map((item) =>
+            item.id === selected.id ? { ...item, resources } : item
+          )
+        }
+        persistGraph(next)
+        pathRef.current = next
+        return next
+      })
+      closeResourceForm()
+      return
+    }
     const item: Omit<LearningPathUserResource, 'sequence'> = {
       id: editingResourceId ?? newId('ur'),
       kind: resourceDraft.kind,
@@ -1939,40 +2230,46 @@ function CommunityLearningPath({
       href: resource.href,
       why:
         [resource.passage, resource.why].filter(Boolean).join(' — ') ||
-        resource.why
+        resource.why,
+      addedByUserId: suggestion?.userId
     }
-    setPath((prev) => {
-      const next: LearningPathData = {
-        ...prev,
-        nodes: prev.nodes.map((node) =>
-          node.id === selected.id
-            ? {
-                ...node,
-                resources: insertLearningPathOfficialResource(
-                  node.resources,
-                  official,
-                  placement
-                )
-              }
-            : node
-        )
+    setAcceptingSuggestionId(resource.id)
+    try {
+      setPath((prev) => {
+        const next: LearningPathData = {
+          ...prev,
+          nodes: prev.nodes.map((node) =>
+            node.id === selected.id
+              ? {
+                  ...node,
+                  resources: insertLearningPathOfficialResource(
+                    node.resources,
+                    official,
+                    placement
+                  )
+                }
+              : node
+          )
+        }
+        persistGraph(next)
+        pathRef.current = next
+        return next
+      })
+      const ok = await respondToLearningPathResourceSuggestion(
+        resource.id,
+        pathRowId ?? path.slug,
+        'accepted'
+      )
+      if (!ok) {
+        window.alert('Could not accept this suggestion.')
+        return
       }
-      persistGraph(next)
-      pathRef.current = next
-      return next
-    })
-    const ok = await respondToLearningPathResourceSuggestion(
-      resource.id,
-      pathRowId ?? path.slug,
-      'accepted'
-    )
-    if (!ok) {
-      window.alert('Could not accept this suggestion.')
-      return
+      setResourceSuggestions((prev) =>
+        prev.filter((row) => row.id !== resource.id)
+      )
+    } finally {
+      setAcceptingSuggestionId(null)
     }
-    setResourceSuggestions((prev) =>
-      prev.filter((row) => row.id !== resource.id)
-    )
   }
 
   async function dismissSuggestedResource(
@@ -2226,6 +2523,63 @@ function CommunityLearningPath({
           }
         }}
       />
+      <LearningPathInviteModal
+        open={inviteOpen}
+        invites={pathInvites}
+        requests={joinRequests}
+        busy={inviteBusy}
+        removingId={inviteRemovingId}
+        acceptingId={joinAcceptingId}
+        error={inviteError}
+        onClose={() => {
+          setInviteOpen(false)
+          setInviteError(null)
+        }}
+        onInvite={handleInviteCollaborator}
+        onRemove={(inviteId) => void handleRemoveInvite(inviteId)}
+        onAcceptRequest={(request) => void handleAcceptJoinRequest(request)}
+        onDismissRequest={(requestId) => void handleDismissJoinRequest(requestId)}
+      />
+      {isOwnPath && joinRequests.length > 0 ? (
+        <div className={styles.joinBanner} role='status'>
+          <div className={styles.joinBannerInner}>
+            <p className={styles.joinBannerLead}>
+              {joinRequests.length === 1
+                ? 'Someone asked to join this private path.'
+                : `${joinRequests.length} people asked to join this private path.`}
+            </p>
+            <ul className={styles.joinBannerList}>
+              {joinRequests.map((request) => (
+                <li key={request.id} className={styles.joinBannerItem}>
+                  <span className={styles.joinBannerEmail}>
+                    {request.displayName
+                      ? `${request.displayName} · ${request.email}`
+                      : request.email}
+                  </span>
+                  <span className={styles.joinBannerActions}>
+                    <button
+                      type='button'
+                      className={styles.joinBannerInvite}
+                      disabled={joinAcceptingId === request.id}
+                      onClick={() => void handleAcceptJoinRequest(request)}
+                    >
+                      {joinAcceptingId === request.id ? 'Inviting…' : 'Invite'}
+                    </button>
+                    <button
+                      type='button'
+                      className={styles.joinBannerDismiss}
+                      disabled={inviteRemovingId === request.id}
+                      onClick={() => void handleDismissJoinRequest(request.id)}
+                    >
+                      Dismiss
+                    </button>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ) : null}
       <div className={styles.hero}>
         <CourseHero
           courseCode={kicker}
@@ -2275,6 +2629,11 @@ function CommunityLearningPath({
                 onVisibilityChange={
                   isOwnPath
                     ? (next) => void setPathVisibilityChoice(next)
+                    : undefined
+                }
+                onInviteCollaborators={
+                  isOwnPath && pathVisibility === 'private'
+                    ? () => void openInviteCollaborators()
                     : undefined
                 }
               />
@@ -2558,10 +2917,12 @@ function CommunityLearningPath({
                               </div>
                               <div className={styles.resourceMetaActions}>
                                 {resource.suggested ? (
-                                  <span className={styles.resourceYou}>
+                                  <span
+                                    className={`${styles.resourceYou} ${styles.resourceYouSuggestion}`}
+                                  >
                                     {resource.suggestedByYou
-                                      ? 'Suggested by you'
-                                      : 'Suggested'}
+                                      ? 'Resource suggestion added by you'
+                                      : 'Resource suggestion'}
                                   </span>
                                 ) : resource.addedByYou ? (
                                   <span className={styles.resourceYou}>
@@ -2572,11 +2933,16 @@ function CommunityLearningPath({
                                   <button
                                     type='button'
                                     className={styles.resourceAcceptBtn}
+                                    disabled={
+                                      acceptingSuggestionId === resource.id
+                                    }
                                     onClick={() =>
                                       void acceptSuggestedResource(resource)
                                     }
                                   >
-                                    Add
+                                    {acceptingSuggestionId === resource.id
+                                      ? 'Accepting…'
+                                      : 'Accept'}
                                   </button>
                                 ) : null}
                                 {resource.suggested &&
@@ -2633,7 +2999,14 @@ function CommunityLearningPath({
                                     void toggleResourceBookmark(resource)
                                   }
                                 />
-                                {resource.addedByYou ? (
+                                {resource.addedByYou ||
+                                (isPrivateInvitee &&
+                                  !resource.suggested &&
+                                  Boolean(
+                                    selected.resources.some(
+                                      (item) => item.id === resource.id
+                                    )
+                                  )) ? (
                                   <button
                                     type='button'
                                     className={styles.resourceEditBtn}
@@ -3031,7 +3404,12 @@ function CommunityLearningPath({
                   className={styles.modalInput}
                   value={editLabel}
                   onChange={(event) => setEditLabel(event.target.value)}
-                  autoFocus
+                  autoFocus={
+                    !(isPrivateInvitee && editorNode.kind === 'goal')
+                  }
+                  disabled={
+                    isPrivateInvitee && editorNode.kind === 'goal'
+                  }
                 />
               </label>
               <label className={styles.modalLabel}>
@@ -3156,13 +3534,22 @@ export function LearningPath({ slug }: { slug: string }) {
   const [kind, setKind] = React.useState<LearningPathKind | null>(
     seeded ? 'community' : null
   )
+  const [unavailable, setUnavailable] = React.useState<
+    'private' | 'missing' | null
+  >(null)
+  const [joinRequested, setJoinRequested] = React.useState(false)
 
   React.useEffect(() => {
     if (seeded) {
+      setUnavailable(null)
+      setJoinRequested(false)
       setKind('community')
       return
     }
     let cancelled = false
+    setKind(null)
+    setUnavailable(null)
+    setJoinRequested(false)
     void (async () => {
       const record = await getLearningPathRecord(slug)
       if (cancelled) return
@@ -3183,12 +3570,36 @@ export function LearningPath({ slug }: { slug: string }) {
         setKind('course')
         return
       }
-      setKind('community')
+      const access = await probeLearningPathAccess(slug)
+      if (cancelled) return
+      if (access.exists && !access.accessible) {
+        setUnavailable('private')
+        setJoinRequested(access.joinRequested)
+        return
+      }
+      const localDraft = readStoredLearningPaths().some(
+        (item) => item.slug === slug
+      )
+      if (localDraft || isCatalogLearningPathSlug(slug)) {
+        setKind('community')
+        return
+      }
+      setUnavailable('missing')
     })()
     return () => {
       cancelled = true
     }
   }, [slug, seeded])
+
+  if (unavailable) {
+    return (
+      <LearningPathUnavailable
+        slug={slug}
+        reason={unavailable}
+        joinRequested={unavailable === 'private' ? joinRequested : false}
+      />
+    )
+  }
 
   if (!kind) {
     return <div style={{ padding: '48px var(--home-side)' }}>Loading…</div>

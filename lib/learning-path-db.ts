@@ -23,6 +23,7 @@ import {
   writeStoredLearningPaths
 } from '@/lib/learning-path-seed'
 import { getCachedAuth } from '@/lib/auth-cache'
+import { listInvitedLearningPathIds } from '@/lib/learning-path-invites-db'
 import { storedNotebookNoteHasContent } from '@/lib/notebook-editor-default'
 import { recordNewlyExploredLearningPathNodes } from '@/lib/learning-path-progress-events-db'
 import { slugifyLearningPathName } from '@/lib/learning-path-slug'
@@ -631,6 +632,120 @@ export async function getLearningPathRecord(
     }
   }
   return null
+}
+
+export type LearningPathAccessProbe = {
+  exists: boolean
+  accessible: boolean
+  visibility: LearningPathVisibility | null
+  joinRequested: boolean
+}
+
+function parseAccessVisibility(value: unknown): LearningPathVisibility | null {
+  if (value === 'private' || value === 'public' || value === 'collaborative') {
+    return value
+  }
+  return null
+}
+
+export async function probeLearningPathAccess(
+  slug: string
+): Promise<LearningPathAccessProbe> {
+  const supabase = getSupabaseClient()
+  if (!supabase || !slug) {
+    return {
+      exists: false,
+      accessible: false,
+      visibility: null,
+      joinRequested: false
+    }
+  }
+  const { data, error } = await supabase.rpc('learning_path_public_access', {
+    p_slug: slug
+  })
+  if (error || !data || typeof data !== 'object' || Array.isArray(data)) {
+    if (error) console.error('probeLearningPathAccess failed', error)
+    return {
+      exists: false,
+      accessible: false,
+      visibility: null,
+      joinRequested: false
+    }
+  }
+  const row = data as {
+    exists?: boolean
+    accessible?: boolean
+    visibility?: unknown
+    join_requested?: boolean
+  }
+  return {
+    exists: Boolean(row.exists),
+    accessible: Boolean(row.accessible),
+    visibility: parseAccessVisibility(row.visibility),
+    joinRequested: Boolean(row.join_requested)
+  }
+}
+
+export async function listInvitedLearningPaths(): Promise<StoredLearningPath[]> {
+  const ids = await listInvitedLearningPathIds()
+  if (ids.length === 0) return []
+  const supabase = getSupabaseClient()
+  if (!supabase) return []
+  const columnSets = [
+    PATH_COLUMNS,
+    PATH_COLUMNS_WITHOUT_VISIBILITY,
+    PATH_COLUMNS_WITHOUT_KIND,
+    PATH_COLUMNS_MINIMAL
+  ]
+  for (const columns of columnSets) {
+    const { data, error } = await supabase
+      .from('learning_paths')
+      .select(columns)
+      .in('id', ids)
+      .order('updated_at', { ascending: false })
+    if (!error && Array.isArray(data)) {
+      return rowsToOwnedItems(data as unknown as LearningPathRow[]).map(
+        (item) => ({ ...item, invited: true })
+      )
+    }
+  }
+  return []
+}
+
+export async function listAccessibleLearningPaths(): Promise<
+  StoredLearningPath[]
+> {
+  const [owned, invited] = await Promise.all([
+    listOwnedLearningPaths(),
+    listInvitedLearningPaths()
+  ])
+  const slugs = new Set(owned.map((item) => item.slug))
+  return [...owned, ...invited.filter((item) => !slugs.has(item.slug))]
+}
+
+export async function updateLearningPathDataAsInvitee(
+  pathId: string,
+  path: LearningPathData
+): Promise<boolean> {
+  if (!pathId || !isPathUuid(pathId)) return false
+  const { supabase, userId } = await currentUserId()
+  if (!supabase || !userId) return false
+  const { id: _id, ...data } = path
+  void _id
+  const { error } = await supabase
+    .from('learning_paths')
+    .update({
+      data,
+      updated_at: new Date().toISOString()
+    })
+    .eq('id', pathId)
+    .eq('visibility', 'private')
+    .eq('is_catalog', false)
+  if (error) {
+    console.error('updateLearningPathDataAsInvitee failed', error)
+    return false
+  }
+  return true
 }
 
 export async function upsertOwnedLearningPath(

@@ -10,7 +10,7 @@ import {
 } from '@/lib/course-learning-path-pins-db'
 import {
   attachLearningPathKinds,
-  listOwnedLearningPaths
+  listAccessibleLearningPaths
 } from '@/lib/learning-path-db'
 import {
   learningPathsFromUserLinks,
@@ -94,7 +94,7 @@ export function PinnedCoursesNav() {
     const [pins, bookmarks, owned, links, storedPinKeys] = await Promise.all([
       listMyCourseLearningPathPins(),
       getMyBookmarks(),
-      listOwnedLearningPaths(),
+      listAccessibleLearningPaths(),
       getMyLinks(),
       listMyNavPins()
     ])

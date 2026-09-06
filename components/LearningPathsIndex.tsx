@@ -10,7 +10,7 @@ import {
 } from '@/lib/learning-path-seed'
 import {
   listCatalogLearningPaths,
-  listOwnedLearningPaths
+  listAccessibleLearningPaths
 } from '@/lib/learning-path-db'
 import {
   TRENDING_CONCEPTS,
@@ -105,7 +105,7 @@ export function LearningPathsIndex() {
   React.useEffect(() => {
     setCustomPaths(readStoredLearningPaths())
     void listCatalogLearningPaths().then(setCatalogPaths)
-    void listOwnedLearningPaths().then(setCustomPaths)
+    void listAccessibleLearningPaths().then(setCustomPaths)
   }, [])
 
   React.useEffect(() => {

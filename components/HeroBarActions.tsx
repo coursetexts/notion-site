@@ -139,13 +139,15 @@ export function HeroMoreMenu({
   shareHref,
   visibility,
   visibilityBusy,
-  onVisibilityChange
+  onVisibilityChange,
+  onInviteCollaborators
 }: {
   reportTarget: ContentReportTarget
   shareHref?: string
   visibility?: LearningPathVisibility
   visibilityBusy?: boolean
   onVisibilityChange?: (next: LearningPathVisibility) => void
+  onInviteCollaborators?: () => void
 }) {
   const [open, setOpen] = React.useState(false)
   const wrapRef = React.useRef<HTMLDivElement>(null)
@@ -194,6 +196,19 @@ export function HeroMoreMenu({
             className={heroStyles.moreItem}
             onOpen={() => setOpen(false)}
           />
+          {onInviteCollaborators ? (
+            <button
+              type='button'
+              role='menuitem'
+              className={heroStyles.moreItem}
+              onClick={() => {
+                onInviteCollaborators()
+                setOpen(false)
+              }}
+            >
+              Invite
+            </button>
+          ) : null}
           {showVisibility ? (
             <>
               <div className={heroStyles.moreDivider} />

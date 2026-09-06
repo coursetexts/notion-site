@@ -99,14 +99,18 @@ export function promoteLearningPathOwnerResources(
     const mine = nextUserResources[node.id] ?? []
     if (mine.length === 0) return node
     const listed = mergeLearningPathResources(node.resources, mine)
-    const resources: LearningPathResource[] = listed.map((row) => ({
-      id: row.id,
-      kind: row.kind,
-      title: row.title,
-      source: row.source ?? '',
-      href: row.href,
-      why: listedWhy(row.passage, row.why) || row.why
-    }))
+    const resources: LearningPathResource[] = listed.map((row) => {
+      const original = node.resources.find((item) => item.id === row.id)
+      return {
+        id: row.id,
+        kind: row.kind,
+        title: row.title,
+        source: row.source ?? '',
+        href: row.href,
+        why: listedWhy(row.passage, row.why) || row.why,
+        addedByUserId: original?.addedByUserId
+      }
+    })
     delete nextUserResources[node.id]
     changed = true
     return { ...node, resources }

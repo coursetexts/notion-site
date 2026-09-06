@@ -26,6 +26,8 @@ export type LearningPathResource = {
   source: string
   href?: string
   why: string
+  /** Set when a private-path invitee (or accepted collab suggestion) wrote this official item. */
+  addedByUserId?: string
 }
 
 export type LearningPathUserResource = {
@@ -60,7 +62,8 @@ function clampResourcePlacement(value: number, max: number): number {
 
 function listedFromSeeded(
   resource: LearningPathResource,
-  sequence: number
+  sequence: number,
+  viewerUserId?: string | null
 ): LearningPathListedResource {
   return {
     id: resource.id,
@@ -69,7 +72,9 @@ function listedFromSeeded(
     href: resource.href,
     source: resource.source,
     why: resource.why,
-    addedByYou: false,
+    addedByYou: Boolean(
+      viewerUserId && resource.addedByUserId === viewerUserId
+    ),
     sequence
   }
 }
@@ -120,7 +125,8 @@ export function mergeLearningPathResources(
   mine: LearningPathUserResource[],
   suggestions: Array<
     LearningPathUserResource & { suggestedByYou?: boolean }
-  > = []
+  > = [],
+  viewerUserId?: string | null
 ): LearningPathListedResource[] {
   const sequenced = mine.filter(
     (resource) =>
@@ -162,7 +168,7 @@ export function mergeLearningPathResources(
   let seedIndex = 0
   for (let i = 0; i < slots.length; i += 1) {
     if (slots[i] || seedIndex >= seeded.length) continue
-    slots[i] = listedFromSeeded(seeded[seedIndex], i + 1)
+    slots[i] = listedFromSeeded(seeded[seedIndex], i + 1, viewerUserId)
     seedIndex += 1
   }
 
@@ -200,6 +206,40 @@ export function insertLearningPathOfficialResource(
   const idx = clampResourcePlacement(placement, next.length + 1) - 1
   next.splice(idx, 0, item)
   return next
+}
+
+export function updateLearningPathOfficialResource(
+  resources: LearningPathResource[],
+  id: string,
+  item: LearningPathResource,
+  placement: number
+): LearningPathResource[] {
+  if (!resources.some((resource) => resource.id === id)) return resources
+  return insertLearningPathOfficialResource(
+    resources.filter((resource) => resource.id !== id),
+    { ...item, id },
+    placement
+  )
+}
+
+/** Show the owner’s unpublished overlay resources as part of the official list. */
+export function officialResourcesWithOwnerOverlay(
+  seeded: LearningPathResource[],
+  ownerMine: LearningPathUserResource[]
+): LearningPathResource[] {
+  if (!ownerMine.length) return seeded
+  return mergeLearningPathResources(seeded, ownerMine).map((row) => {
+    const original = seeded.find((item) => item.id === row.id)
+    return {
+      id: row.id,
+      kind: row.kind,
+      title: row.title,
+      source: row.source ?? '',
+      href: row.href,
+      why: [row.passage, row.why].filter(Boolean).join(' — ') || row.why,
+      addedByUserId: original?.addedByUserId
+    }
+  })
 }
 
 export function insertLearningPathUserResource(
@@ -337,6 +377,8 @@ export type StoredLearningPath = {
   createdAt?: string
   ownerId?: string | null
   ownerName?: string | null
+  /** Present when you were invited to a private path you do not own. */
+  invited?: boolean
 }
 
 export type LearningPathOutlineSubconcept = {

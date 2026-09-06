@@ -93,10 +93,13 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `039_learning_path_ratings_percent.sql` | **Existing DBs only:** widen `learning_path_ratings.rating` from 1–5 to 0–100 if `038` already ran |
 | `040_learning_path_outline_owner_only.sql` | Community/research outline (`data`) is owner-only; catalog course syllabus JSON stays writable for signed-in users |
 | `041_learning_path_commitment_reminders.sql` | Creates `learning_path_commitments` if missing, then optional reminder cadence. Commit without a reminder is allowed; a reminder requires a commitment. UI only; sending is not built yet |
+| `042_learning_path_invites.sql` | Private-path collaborator invites by email. Invitee must already have a `profiles` row. No invitation email. Invitees can read and edit outline `data` while the path stays private |
+| `043_learning_path_public_access.sql` | RPC `learning_path_public_access(slug)` so a private or unknown path URL does not render an empty Coursetexts shell. Requires `042`. |
+| `044_learning_path_join_requests.sql` | Request-to-join a private path. Stores requester email. Owner sees requests on the path and profile. Accepting creates a `learning_path_invites` row. Replaces `learning_path_public_access` to add `join_requested`. Requires `042`/`043`. |
 
 **Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`, and commitment reminder columns). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied).
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path.
 
 ## 4. Optional seeds
 
@@ -142,7 +145,10 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] `/learning-paths` and home community grid show catalog paths (not empty course placeholders)
 - [ ] Create a path while signed in → row in `learning_paths`; notes persist in `learning_path_user_state`
 - [ ] Owned path visibility: Private / Public / Collaborative
-- [ ] Collaborative path: visitor does **not** see Edit this node / Add to path; owner still does. Apply `040_learning_path_outline_owner_only.sql`.
+- [ ] Private path: owner **Invite** by email of someone already on Coursetexts; invitee signed in with that email can open and edit the outline; owner can Remove. Invitee-added official resources show **Added by you**. Apply `042_learning_path_invites.sql`. No invitation email is sent.
+- [ ] Signed-out (or another account) opening a private path URL sees **This learning path is private**, not an empty Coursetexts shell. Unknown slug sees **doesn’t exist yet** + create. Apply `043_learning_path_public_access.sql`.
+- [ ] Signed-in visitor on a private path they cannot open: **Request to join** records their email; owner sees a banner on the path and on `/profile` Activity, then Invite or Dismiss. Apply `044_learning_path_join_requests.sql`. No email is sent.
+- [ ] Collaborative path: visitor does **not** see Edit this node / Add to path; owner still does. Visitor **Suggest a resource** shows a dotted card; owner **Accept** copies it into the official list. Apply `040_learning_path_outline_owner_only.sql` (outline) and `032`/`034` (suggestions).
 - [ ] Community/research path: **Export Context** copies current step + numbered outline (mark and title on one line) + whys + goal
 - [ ] Field Atlas → new path with `kind=research`
 - [ ] Pin a course learning path → row in `learning_path_pins`

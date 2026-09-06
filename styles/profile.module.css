@@ -1722,6 +1722,104 @@
   padding-bottom: 3rem;
 }
 
+.joinBanner {
+  background: #fff8e8;
+  border: 1px solid #ead9a8;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 1.25rem;
+}
+
+.joinBannerLead {
+  margin: 0 0 10px;
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #25272b;
+}
+
+.joinBannerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.joinBannerItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.joinBannerCopy {
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #37352f;
+}
+
+.joinBannerActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.joinBannerInvite,
+.joinBannerDismiss,
+.feedCardJoinInvite,
+.feedCardJoinDismiss {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.joinBannerInvite,
+.feedCardJoinInvite {
+  color: #0089c4;
+}
+
+.joinBannerInvite:hover:not(:disabled),
+.joinBannerInvite:focus-visible:not(:disabled),
+.feedCardJoinInvite:hover:not(:disabled),
+.feedCardJoinInvite:focus-visible:not(:disabled) {
+  color: #006a99;
+}
+
+.joinBannerDismiss,
+.feedCardJoinDismiss {
+  color: #37352f;
+}
+
+.joinBannerDismiss:hover:not(:disabled),
+.joinBannerDismiss:focus-visible:not(:disabled),
+.feedCardJoinDismiss:hover:not(:disabled),
+.feedCardJoinDismiss:focus-visible:not(:disabled) {
+  color: #b42318;
+}
+
+.joinBannerInvite:disabled,
+.joinBannerDismiss:disabled,
+.feedCardJoinInvite:disabled,
+.feedCardJoinDismiss:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.feedCardJoinActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 0.65rem;
+}
+
 .mainPanel {
   min-width: 0;
 }

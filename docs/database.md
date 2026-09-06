@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied).
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell.
 
 ## Table groups
 
@@ -62,6 +62,8 @@ flowchart TB
     lpState["learning_path_user_state"]
     lpPins["learning_path_pins"]
     lpCommit["learning_path_commitments"]
+    lpInvites["learning_path_invites"]
+    lpJoinReq["learning_path_join_requests"]
   end
 
   subgraph Knowledge["Knowledge"]
@@ -99,6 +101,8 @@ flowchart TB
   cvc --> cpins
   lp --> lpState
   lp --> lpPins
+  lp --> lpInvites
+  lp --> lpJoinReq
   auth_users --> lpCommit
   auth_users --> ukt
   auth_users --> cr
@@ -318,6 +322,8 @@ erDiagram
   learning_paths ||--o{ learning_path_user_state : "path_id"
   learning_paths ||--o{ learning_path_pins : "path_id"
   learning_paths ||--o{ learning_path_resource_votes : "path_id"
+  learning_paths ||--o{ learning_path_invites : "path_id"
+  learning_paths ||--o{ learning_path_join_requests : "path_id"
   auth_users ||--o{ learning_path_user_state : "user_id"
   auth_users ||--o{ learning_path_pins : "user_id"
   auth_users ||--o{ learning_path_resource_votes : "user_id"
@@ -371,6 +377,23 @@ erDiagram
     smallint reminder_minute "0-1439 local minutes"
     text reminder_timezone "IANA"
   }
+
+  learning_path_invites {
+    uuid id PK
+    uuid path_id FK
+    text invited_email
+    uuid invited_user_id FK
+    uuid invited_by FK
+    timestamptz created_at
+  }
+
+  learning_path_join_requests {
+    uuid id PK
+    uuid path_id FK
+    uuid requester_user_id FK
+    text requester_email
+    timestamptz created_at
+  }
 ```
 
 | Column / table                 | Role                                                                                                                                                                                                           |
@@ -380,11 +403,13 @@ erDiagram
 | `is_private`                   | Kept in sync with `visibility = 'private'` for one release.                                                                                                                                                    |
 | `kind`                         | `community` (default), `research` (Field Atlas), or `course` (degree syllabus). Official Notion courses are not a kind yet.                                                                                    |
 | `is_filled`                    | Derived for `kind=course`: true when `data.topics` has at least one topic with children. Title-only catalog stubs stay false. The **courses** view of `/all-courses` lists only filled course paths.           |
-| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course). Community/research outline is owner-only; catalog course syllabus JSON stays writable for signed-in users. Existing DBs: apply `040_learning_path_outline_owner_only.sql`. |
+| `data`                         | Graph JSON (community/research) or `CourseLearningPathData` (course). Community/research outline is owner-only except private-path invitees; catalog course syllabus JSON stays writable for signed-in users. Official resource objects may include `addedByUserId` (invitee add, or accepted collab suggestion). Existing DBs: apply `040_learning_path_outline_owner_only.sql` and `042_learning_path_invites.sql`. |
 | `learning_path_user_state`     | Per-learner overlay: TipTap notes, extra resources, node status.                                                                                                                                               |
 | `learning_path_pins`           | Per-user pinned **course** syllabi.                                                                                                                                                                            |
 | `learning_path_resource_votes` | Upvotes on a resource list item. Independent of sequence. Public + collaborative paths only. `/community` diagrams this (`ResourceVoteSchemaDiagram`).                                                         |
 | `learning_path_commitments`    | Per-user committed flag on a Learning tab item. Owner-only. Profile filter **Committed**. Reminder cadence is optional (`reminder_frequency` / `reminder_minute` / `reminder_timezone` nullable); a reminder cannot exist without a commitment row. Sending notifications is not built yet. Existing DBs: apply `041_learning_path_commitment_reminders.sql` (creates the table if `030` was never applied). |
+| `learning_path_invites`        | Owner-only list of emails invited to co-edit a **private** path. No invitation email is sent. Access is a matching signed-in Coursetexts account (`invited_user_id` or JWT email). Existing DBs: apply `042_learning_path_invites.sql`. |
+| `learning_path_join_requests`  | Signed-in visitor asked to join a private path. Email is stored; no email is sent. Owner Invite creates a `learning_path_invites` row and deletes the request. Existing DBs: apply `044_learning_path_join_requests.sql`. |
 
 Saving someone else’s community path is a `user_links` row whose URL is `/learning-path/{slug}` — not a separate saves table.
 
@@ -502,6 +527,10 @@ erDiagram
 | Function                    | Purpose                                       |
 | --------------------------- | --------------------------------------------- |
 | `handle_new_user()`         | Trigger: create `profiles` on signup          |
+| `is_learning_path_invitee(path_id)` | True when the signed-in user’s id or email is on `learning_path_invites` |
+| `learning_path_public_access(slug)` | `{ exists, accessible, visibility, join_requested }` without path contents. Lets a private/unknown URL show a gate instead of an empty shell. Existing DBs: apply `043_learning_path_public_access.sql`; `044` adds `join_requested`. |
+| `request_learning_path_join(slug)` | Signed-in visitor records their email on a private path. Existing DBs: apply `044_learning_path_join_requests.sql`. |
+| `learning_path_owner_overlay_resources(path_id)` | Owner overlay resources JSON for the owner or a private invitee |
 | `list_users_directory(...)` | `/users` pagination + interest filter         |
 | `search_community(q, max)`  | FTS over `resources` + `knowledge_components` |
 | `delete_*_votes()`          | Clean polymorphic votes on delete             |
@@ -512,7 +541,9 @@ erDiagram
 - **Owner write** (`auth.uid() = user_id` / `owner_id`).
 - **Courses** (Notion / synthetic refs): anyone can insert/update (no PII; created on first visit).
 - **Curated syllabus tree + node resources**: public read; any authenticated user can mutate (curation left open).
-- **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata and community/research `data` (outline). Signed-in users may patch `data` only on catalog courses. Collaborative visibility does not grant outline edits.
+- **`learning_paths`**: catalog or `visibility in (public, collaborative)` is readable; owner mutates metadata and community/research `data` (outline). Signed-in users may patch `data` on catalog courses, or on a private path they were invited to. Collaborative visibility does not grant outline edits. Invitees are stored on `learning_path_invites`.
+- **`learning_path_invites`**: owner insert/select/delete on their private path; invitees can read their own row.
+- **`learning_path_join_requests`**: insert only via `request_learning_path_join`; owner or requester may select/delete.
 - **`learning_path_user_state` / `course_notes` / `learning_path_pins` / `learning_path_commitments`**: owner only.
 - **`user_knowledge_topics`**: public read; owner insert/delete.
 - **`knowledge_topics` / `knowledge_topic_edges`**: public read; writes via service role (ingest API; daily LLM cron is off).

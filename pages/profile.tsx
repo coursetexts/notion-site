@@ -83,8 +83,15 @@ import {
 import {
   attachLearningPathBylines,
   attachLearningPathKinds,
-  listOwnedLearningPaths
+  listAccessibleLearningPaths
 } from '@/lib/learning-path-db'
+import {
+  type LearningPathJoinRequest,
+  acceptLearningPathJoinRequest,
+  dismissLearningPathJoinRequest,
+  listOwnedLearningPathJoinRequests,
+  subscribeLearningPathJoinRequestUpdates
+} from '@/lib/learning-path-join-requests-db'
 import {
   learningPathCommitmentKey,
   listMyLearningPathCommitments,
@@ -320,7 +327,7 @@ function nextPathsCoursesFilter(
 }
 
 function isCreatedLearningPath(item: StoredLearningPath) {
-  return !item.savedLinkId
+  return !item.savedLinkId && !item.invited
 }
 
 function normalizeSearch(value: string) {
@@ -412,12 +419,12 @@ function feedItemMatchesQuery(item: ProfileFeedItem, query: string) {
   return fields.some((field) => matchesSearch(field, query))
 }
 
-function activityFeedRowMatchesQuery(
-  row:
-    | { kind: 'feed'; item: ProfileFeedItem }
-    | { kind: 'reply'; notification: ReplyNotification },
-  query: string
-) {
+type ActivityFeedRow =
+  | { kind: 'feed'; item: ProfileFeedItem }
+  | { kind: 'reply'; notification: ReplyNotification }
+  | { kind: 'join-request'; request: LearningPathJoinRequest }
+
+function activityFeedRowMatchesQuery(row: ActivityFeedRow, query: string) {
   if (!query) return true
   if (row.kind === 'reply') {
     const notification = row.notification
@@ -428,6 +435,18 @@ function activityFeedRowMatchesQuery(
       matchesSearch(notification.section_id ?? '', query) ||
       matchesSearch('replied', query) ||
       matchesSearch(notification.type, query)
+    )
+  }
+  if (row.kind === 'join-request') {
+    const request = row.request
+    return (
+      matchesSearch(request.displayName ?? '', query) ||
+      matchesSearch(request.email, query) ||
+      matchesSearch(request.pathTitle, query) ||
+      matchesSearch(request.pathSlug, query) ||
+      matchesSearch('join', query) ||
+      matchesSearch('asked', query) ||
+      matchesSearch('invite', query)
     )
   }
   return feedItemMatchesQuery(row.item, query)
@@ -503,6 +522,13 @@ export default function ProfilePage() {
     CommunityResourceBookmarkWithCourse[]
   >([])
   const [notifications, setNotifications] = useState<ReplyNotification[]>([])
+  const [joinRequests, setJoinRequests] = useState<LearningPathJoinRequest[]>(
+    []
+  )
+  const [joinAcceptingId, setJoinAcceptingId] = useState<string | null>(null)
+  const [joinDismissingId, setJoinDismissingId] = useState<string | null>(
+    null
+  )
   const [activityLoading, setActivityLoading] = useState(true)
   const [feedItems, setFeedItems] = useState<ProfileFeedItem[]>([])
   const [knowledgeTopics, setKnowledgeTopics] = useState<UserKnowledgeTopic[]>(
@@ -630,6 +656,7 @@ export default function ProfilePage() {
       resourceBookmarksRes,
       notificationRes,
       feedRes,
+      joinRequestsRes,
       fCount,
       fersCount,
       fList,
@@ -640,6 +667,7 @@ export default function ProfilePage() {
       getMyCommunityResourceBookmarks(),
       getReplyNotifications(userId),
       getProfileFeed(userId),
+      listOwnedLearningPathJoinRequests(),
       getFollowingCount(userId),
       getFollowersCount(userId),
       getFollowingList(userId),
@@ -650,6 +678,7 @@ export default function ProfilePage() {
     setResourceBookmarks(resourceBookmarksRes)
     setNotifications(notificationRes)
     setFeedItems(feedRes)
+    setJoinRequests(joinRequestsRes)
     setFollowingCount(fCount)
     setFollowersCount(fersCount)
     setFollowingList(fList)
@@ -703,6 +732,46 @@ export default function ProfilePage() {
     ]
   )
 
+  async function handleAcceptJoinRequest(request: LearningPathJoinRequest) {
+    setJoinAcceptingId(request.id)
+    try {
+      const result = await acceptLearningPathJoinRequest(request)
+      if ('error' in result) {
+        if (result.error === 'already') {
+          setJoinRequests((prev) =>
+            prev.filter((row) => row.id !== request.id)
+          )
+          return
+        }
+        window.alert(
+          result.error === 'not-found'
+            ? "That person isn't on Coursetexts anymore."
+            : result.error === 'self'
+            ? "That's your email."
+            : 'Could not invite that person. Try again.'
+        )
+        return
+      }
+      setJoinRequests((prev) => prev.filter((row) => row.id !== request.id))
+    } finally {
+      setJoinAcceptingId(null)
+    }
+  }
+
+  async function handleDismissJoinRequest(requestId: string) {
+    setJoinDismissingId(requestId)
+    try {
+      const ok = await dismissLearningPathJoinRequest(requestId)
+      if (!ok) {
+        window.alert('Could not dismiss that request.')
+        return
+      }
+      setJoinRequests((prev) => prev.filter((row) => row.id !== requestId))
+    } finally {
+      setJoinDismissingId(null)
+    }
+  }
+
   const loadLinks = useCallback(async () => {
     setLinksLoading(true)
     const [tags, allLinks] = await Promise.all([getMyTags(), getMyLinks(null)])
@@ -752,25 +821,33 @@ export default function ProfilePage() {
   )
 
   const activityFeedRows = useMemo(() => {
-    type Row =
-      | { kind: 'feed'; item: ProfileFeedItem }
-      | { kind: 'reply'; notification: ReplyNotification }
-    const rows: Row[] = feedItems.map((item) => ({
+    const rows: ActivityFeedRow[] = feedItems.map((item) => ({
       kind: 'feed' as const,
       item
     }))
     for (const notification of notifications) {
       rows.push({ kind: 'reply', notification })
     }
+    for (const request of joinRequests) {
+      rows.push({ kind: 'join-request', request })
+    }
     rows.sort((a, b) => {
       const ta =
-        a.kind === 'feed' ? a.item.created_at : a.notification.created_at
+        a.kind === 'feed'
+          ? a.item.created_at
+          : a.kind === 'reply'
+          ? a.notification.created_at
+          : a.request.createdAt
       const tb =
-        b.kind === 'feed' ? b.item.created_at : b.notification.created_at
+        b.kind === 'feed'
+          ? b.item.created_at
+          : b.kind === 'reply'
+          ? b.notification.created_at
+          : b.request.createdAt
       return tb.localeCompare(ta)
     })
     return rows
-  }, [feedItems, notifications])
+  }, [feedItems, notifications, joinRequests])
 
   const activityQuery = normalizeSearch(activitySearch)
   const visibleActivityFeedRows = useMemo(
@@ -1060,7 +1137,7 @@ export default function ProfilePage() {
     let cancelled = false
     void (async () => {
       const [owned, links] = await Promise.all([
-        listOwnedLearningPaths(),
+        listAccessibleLearningPaths(),
         getMyLinks()
       ])
       if (cancelled) return
@@ -1493,7 +1570,21 @@ export default function ProfilePage() {
   useEffect(() => {
     setView('profile')
     if (effectiveUser) loadActivity(effectiveUser.id)
-    else setActivityLoading(false)
+    else {
+      setJoinRequests([])
+      setActivityLoading(false)
+    }
+    if (!effectiveUser) return
+    const unsub = subscribeLearningPathJoinRequestUpdates(() => {
+      void listOwnedLearningPathJoinRequests().then(setJoinRequests)
+    })
+    const timer = window.setInterval(() => {
+      void listOwnedLearningPathJoinRequests().then(setJoinRequests)
+    }, 20000)
+    return () => {
+      unsub()
+      window.clearInterval(timer)
+    }
   }, [effectiveUser, loadActivity])
 
   useEffect(() => {
@@ -1895,6 +1986,61 @@ export default function ProfilePage() {
 
             {view === 'profile' && (
               <div className={styles.mainPanel}>
+                {joinRequests.length > 0 ? (
+                  <div className={styles.joinBanner} role='status'>
+                    <p className={styles.joinBannerLead}>
+                      {joinRequests.length === 1
+                        ? 'Someone asked to join a private learning path.'
+                        : `${joinRequests.length} people asked to join your private learning paths.`}
+                    </p>
+                    <ul className={styles.joinBannerList}>
+                      {joinRequests.map((request) => (
+                        <li key={request.id} className={styles.joinBannerItem}>
+                          <span className={styles.joinBannerCopy}>
+                            {request.displayName
+                              ? `${request.displayName} · ${request.email}`
+                              : request.email}{' '}
+                            asked to join{' '}
+                            {request.pathSlug ? (
+                              <Link href={`/learning-path/${request.pathSlug}`}>
+                                <a className={styles.inlineLink}>
+                                  {request.pathTitle}
+                                </a>
+                              </Link>
+                            ) : (
+                              request.pathTitle
+                            )}
+                            .
+                          </span>
+                          <span className={styles.joinBannerActions}>
+                            <button
+                              type='button'
+                              className={styles.joinBannerInvite}
+                              disabled={joinAcceptingId === request.id}
+                              onClick={() =>
+                                void handleAcceptJoinRequest(request)
+                              }
+                            >
+                              {joinAcceptingId === request.id
+                                ? 'Inviting…'
+                                : 'Invite'}
+                            </button>
+                            <button
+                              type='button'
+                              className={styles.joinBannerDismiss}
+                              disabled={joinDismissingId === request.id}
+                              onClick={() =>
+                                void handleDismissJoinRequest(request.id)
+                              }
+                            >
+                              Dismiss
+                            </button>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
                 <div className={styles.primaryTabsRow}>
                   <nav
                     className={styles.primaryTabs}
@@ -2788,8 +2934,9 @@ export default function ProfilePage() {
                           Nothing in your feed yet. Follow people to see their
                           comments, discussions, bookmarks, new learning paths,
                           and progress. Replies to your comments and
-                          discussions, plus suggestions on your resource lists,
-                          show up here as well.
+                          discussions, plus suggestions on your resource lists
+                          and requests to join your private paths, show up here
+                          as well.
                         </p>
                       ) : visibleActivityFeedRows.length === 0 ? (
                         <p className={styles.placeholder}>
@@ -2798,6 +2945,82 @@ export default function ProfilePage() {
                       ) : (
                         <ul className={styles.list}>
                           {visibleActivityFeedRows.map((row) => {
+                            if (row.kind === 'join-request') {
+                              const request = row.request
+                              const actorLabel =
+                                request.displayName?.trim() || request.email
+                              return (
+                                <li
+                                  key={`join-${request.id}`}
+                                  className={`${styles.listItem} ${styles.listItemUnread}`}
+                                >
+                                  <div className={styles.feedCardHead}>
+                                    <div className={styles.feedCardActor}>
+                                      <UserLink
+                                        userId={request.userId}
+                                        displayName={actorLabel}
+                                        showFollowingTag={followingIds.has(
+                                          request.userId
+                                        )}
+                                        showFollowsYouTag={followerIds.has(
+                                          request.userId
+                                        )}
+                                      />
+                                    </div>
+                                    <span className={styles.feedCardTime}>
+                                      {formatDate(request.createdAt)}
+                                    </span>
+                                  </div>
+                                  <div className={styles.feedCardActions}>
+                                    <span>asked to join </span>
+                                    {request.pathSlug ? (
+                                      <Link
+                                        href={`/learning-path/${request.pathSlug}`}
+                                      >
+                                        <a className={styles.inlineLink}>
+                                          {request.pathTitle}
+                                        </a>
+                                      </Link>
+                                    ) : (
+                                      <span>{request.pathTitle}</span>
+                                    )}
+                                  </div>
+                                  <p className={styles.notificationMeta}>
+                                    {request.email}
+                                  </p>
+                                  <div className={styles.feedCardJoinActions}>
+                                    <button
+                                      type='button'
+                                      className={styles.feedCardJoinInvite}
+                                      disabled={
+                                        joinAcceptingId === request.id
+                                      }
+                                      onClick={() =>
+                                        void handleAcceptJoinRequest(request)
+                                      }
+                                    >
+                                      {joinAcceptingId === request.id
+                                        ? 'Inviting…'
+                                        : 'Invite'}
+                                    </button>
+                                    <button
+                                      type='button'
+                                      className={styles.feedCardJoinDismiss}
+                                      disabled={
+                                        joinDismissingId === request.id
+                                      }
+                                      onClick={() =>
+                                        void handleDismissJoinRequest(
+                                          request.id
+                                        )
+                                      }
+                                    >
+                                      Dismiss
+                                    </button>
+                                  </div>
+                                </li>
+                              )
+                            }
                             if (row.kind === 'reply') {
                               const n = row.notification
                               return (
