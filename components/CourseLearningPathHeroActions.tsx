@@ -10,16 +10,13 @@ import {
   subscribeCourseLearningPathPins
 } from '@/lib/course-learning-path-pins-db'
 import type { CourseLearningPathData } from '@/lib/course-learning-path-types'
+import { learningPathHref } from '@/lib/learning-path-bookmark-link'
 
 import {
+  HeroActionGroup,
   HeroMoreMenu,
-  HeroSaveButton,
-  HeroShareButton
+  HeroSaveButton
 } from './HeroBarActions'
-
-export function CourseLearningPathShareButton() {
-  return <HeroShareButton />
-}
 
 export function CourseLearningPathSaveButton({
   course
@@ -87,10 +84,12 @@ export function CourseLearningPathHeroActions({
   reportTarget: ContentReportTarget
 }) {
   return (
-    <>
-      <CourseLearningPathShareButton />
+    <HeroActionGroup>
       <CourseLearningPathSaveButton course={course} />
-      <HeroMoreMenu reportTarget={reportTarget} />
-    </>
+      <HeroMoreMenu
+        shareHref={learningPathHref(course.slug)}
+        reportTarget={reportTarget}
+      />
+    </HeroActionGroup>
   )
 }

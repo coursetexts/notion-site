@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import '@tiptap/extension-youtube'
 import type { Editor } from '@tiptap/react'
+import { createPortal } from 'react-dom'
 
 import {
   insertBlockMathPrompt,
@@ -436,12 +437,18 @@ function ExportPdfIcon() {
   )
 }
 
-function ExpandIcon() {
+export function ExpandIcon({
+  strokeWidth = 2,
+  size = 18
+}: {
+  strokeWidth?: number
+  size?: number
+}) {
   return (
     <svg
       className={styles.expandIcon}
-      width='18'
-      height='18'
+      width={size}
+      height={size}
       viewBox='0 0 18 18'
       fill='none'
       aria-hidden
@@ -449,28 +456,28 @@ function ExpandIcon() {
       <path
         d='M10.5 2.5H15.5V7.5'
         stroke='currentColor'
-        strokeWidth='2'
+        strokeWidth={strokeWidth}
         strokeLinecap='round'
         strokeLinejoin='round'
       />
       <path
         d='M15.5 2.5L10 8'
         stroke='currentColor'
-        strokeWidth='2'
+        strokeWidth={strokeWidth}
         strokeLinecap='round'
         strokeLinejoin='round'
       />
       <path
         d='M7.5 15.5H2.5V10.5'
         stroke='currentColor'
-        strokeWidth='2'
+        strokeWidth={strokeWidth}
         strokeLinecap='round'
         strokeLinejoin='round'
       />
       <path
         d='M2.5 15.5L8 10'
         stroke='currentColor'
-        strokeWidth='2'
+        strokeWidth={strokeWidth}
         strokeLinecap='round'
         strokeLinejoin='round'
       />
@@ -535,6 +542,155 @@ function ToolBtn({
   )
 }
 
+function CaretIcon() {
+  return (
+    <svg
+      className={styles.caret}
+      width='8'
+      height='8'
+      viewBox='0 0 8 8'
+      fill='none'
+      aria-hidden
+    >
+      <path
+        d='M1.5 2.8L4 5.3L6.5 2.8'
+        stroke='currentColor'
+        strokeWidth='1.2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+function MoreIcon() {
+  return (
+    <Icon>
+      <circle cx='3' cy='8' r='1.15' fill='currentColor' />
+      <circle cx='8' cy='8' r='1.15' fill='currentColor' />
+      <circle cx='13' cy='8' r='1.15' fill='currentColor' />
+    </Icon>
+  )
+}
+
+function MenuItem({
+  label,
+  active,
+  onClick,
+  children
+}: {
+  label: string
+  active?: boolean
+  onClick: () => void
+  children?: React.ReactNode
+}) {
+  return (
+    <button
+      type='button'
+      role='menuitem'
+      className={`${styles.menuItem}${
+        active ? ` ${styles.menuItemActive}` : ''
+      }`}
+      onClick={onClick}
+    >
+      {children ? (
+        <span className={styles.menuItemIcon}>{children}</span>
+      ) : null}
+      {label}
+    </button>
+  )
+}
+
+function ToolMenu({
+  label,
+  active,
+  icon,
+  showCaret = true,
+  children
+}: {
+  label: string
+  active?: boolean
+  icon: React.ReactNode
+  showCaret?: boolean
+  children: (close: () => void) => React.ReactNode
+}) {
+  const [open, setOpen] = React.useState(false)
+  const wrapRef = React.useRef<HTMLDivElement>(null)
+  const menuRef = React.useRef<HTMLDivElement>(null)
+  const [menuPos, setMenuPos] = React.useState<{
+    top: number
+    left: number
+  } | null>(null)
+
+  React.useLayoutEffect(() => {
+    if (!open) {
+      setMenuPos(null)
+      return
+    }
+    const el = wrapRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const menuWidth = 176
+    const left = Math.min(
+      Math.max(8, rect.left),
+      Math.max(8, window.innerWidth - menuWidth - 8)
+    )
+    setMenuPos({ top: rect.bottom + 4, left })
+  }, [open])
+
+  React.useEffect(() => {
+    if (!open) return
+    function onPointerDown(event: MouseEvent) {
+      const target = event.target as Node
+      if (wrapRef.current?.contains(target)) return
+      if (menuRef.current?.contains(target)) return
+      setOpen(false)
+    }
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  return (
+    <div className={styles.menuWrap} ref={wrapRef}>
+      <button
+        type='button'
+        className={`${styles.toolBtn} ${styles.menuTrigger}${
+          active ? ` ${styles.toolBtnActive}` : ''
+        }${open ? ` ${styles.menuTriggerOpen}` : ''}`}
+        onClick={() => setOpen((value) => !value)}
+        aria-label={label}
+        aria-haspopup='menu'
+        aria-expanded={open}
+        data-tooltip={label}
+      >
+        {icon}
+        {showCaret ? <CaretIcon /> : null}
+      </button>
+      {open && menuPos
+        ? createPortal(
+            <div
+              ref={menuRef}
+              className={`${styles.menu} ${styles.menuFixed}`}
+              style={{ top: menuPos.top, left: menuPos.left }}
+              role='menu'
+              aria-label={label}
+            >
+              {children(() => setOpen(false))}
+            </div>,
+            document.body
+          )
+        : null}
+    </div>
+  )
+}
+
 export function NotesEditorToolbar({
   editor,
   imageInputRef,
@@ -546,7 +702,8 @@ export function NotesEditorToolbar({
   showPdf = false,
   className,
   disabled = false,
-  saveStatus = null
+  saveStatus = null,
+  layout = 'full'
 }: {
   editor: Editor
   imageInputRef: React.RefObject<HTMLInputElement | null>
@@ -559,7 +716,9 @@ export function NotesEditorToolbar({
   className?: string
   disabled?: boolean
   saveStatus?: 'saving' | 'saved' | null
+  layout?: 'full' | 'panel'
 }) {
+  const isPanel = layout === 'panel'
   const showHeadingLevels = headingLevels.length > 1
   const saveLabel =
     saveStatus === 'saving'
@@ -567,19 +726,253 @@ export function NotesEditorToolbar({
       : saveStatus === 'saved'
       ? 'Saved'
       : null
+  const headingActive = headingLevels.some((level) =>
+    editor.isActive('heading', { level })
+  )
+  const listActive =
+    editor.isActive('bulletList') || editor.isActive('orderedList')
 
   return (
     <div
       className={`${styles.toolbar}${
-        onExpand ? ` ${styles.toolbarWithExpand}` : ''
-      }${disabled ? ` ${styles.toolbarDisabled}` : ''}${
-        className ? ` ${className}` : ''
-      }`}
+        isPanel ? ` ${styles.toolbarPanel}` : ''
+      }${onExpand ? ` ${styles.toolbarWithExpand}` : ''}${
+        disabled ? ` ${styles.toolbarDisabled}` : ''
+      }${className ? ` ${className}` : ''}`}
       role='toolbar'
       aria-label='Note formatting'
       aria-disabled={disabled}
     >
       <div className={styles.toolbarTools}>
+        {isPanel ? (
+          <>
+            <div className={styles.group}>
+              <ToolBtn
+                label='Bold'
+                active={editor.isActive('bold')}
+                onClick={() => editor.chain().focus().toggleBold().run()}
+              >
+                <BoldIcon />
+              </ToolBtn>
+              <ToolBtn
+                label='Italic'
+                active={editor.isActive('italic')}
+                onClick={() => editor.chain().focus().toggleItalic().run()}
+              >
+                <ItalicIcon />
+              </ToolBtn>
+              <ToolBtn
+                label='Underline'
+                active={editor.isActive('underline')}
+                onClick={() => toggleNotesUnderline(editor)}
+              >
+                <UnderlineIcon />
+              </ToolBtn>
+              <ToolBtn
+                label='Highlight'
+                active={editor.isActive('highlight')}
+                onClick={() => toggleNotesHighlight(editor)}
+              >
+                <HighlightIcon />
+              </ToolBtn>
+            </div>
+            <div className={styles.group}>
+              <ToolMenu
+                label='Heading'
+                active={headingActive}
+                icon={<HeadingIcon />}
+              >
+                {(close) => (
+                  <>
+                    {headingLevels.map((level) => (
+                      <MenuItem
+                        key={level}
+                        label={`Heading ${level}`}
+                        active={editor.isActive('heading', { level })}
+                        onClick={() => {
+                          editor
+                            .chain()
+                            .focus()
+                            .toggleHeading({ level })
+                            .run()
+                          close()
+                        }}
+                      >
+                        <HeadingLevelIcon level={level} />
+                      </MenuItem>
+                    ))}
+                  </>
+                )}
+              </ToolMenu>
+              <ToolBtn
+                label='Quote'
+                active={editor.isActive('blockquote')}
+                onClick={() =>
+                  editor.chain().focus().toggleBlockquote().run()
+                }
+              >
+                <QuoteIcon />
+              </ToolBtn>
+              <ToolBtn
+                label='Link'
+                active={editor.isActive('link')}
+                onClick={() => setLinkFromUrlPrompt(editor)}
+              >
+                <LinkIcon />
+              </ToolBtn>
+            </div>
+            <div className={styles.group}>
+              <ToolMenu
+                label='List'
+                active={listActive}
+                icon={<BulletsIcon />}
+              >
+                {(close) => (
+                  <>
+                    <MenuItem
+                      label='Bullets'
+                      active={editor.isActive('bulletList')}
+                      onClick={() => {
+                        editor.chain().focus().toggleBulletList().run()
+                        close()
+                      }}
+                    >
+                      <BulletsIcon />
+                    </MenuItem>
+                    <MenuItem
+                      label='Numbered'
+                      active={editor.isActive('orderedList')}
+                      onClick={() => {
+                        editor.chain().focus().toggleOrderedList().run()
+                        close()
+                      }}
+                    >
+                      <NumberedIcon />
+                    </MenuItem>
+                  </>
+                )}
+              </ToolMenu>
+              <ToolBtn
+                label='Image'
+                onClick={() =>
+                  setImageFromUrlOrFile(editor, () =>
+                    imageInputRef.current?.click()
+                  )
+                }
+              >
+                <ImageIcon />
+              </ToolBtn>
+              <ToolMenu label='Math' icon={<LatexIcon />}>
+                {(close) => (
+                  <>
+                    <MenuItem
+                      label='Inline math'
+                      onClick={() => {
+                        insertInlineMathPrompt(editor)
+                        close()
+                      }}
+                    >
+                      <LatexIcon />
+                    </MenuItem>
+                    <MenuItem
+                      label='Math block'
+                      onClick={() => {
+                        insertBlockMathPrompt(editor)
+                        close()
+                      }}
+                    >
+                      <LatexBlockIcon />
+                    </MenuItem>
+                  </>
+                )}
+              </ToolMenu>
+              <ToolMenu
+                label='More formatting'
+                icon={<MoreIcon />}
+                showCaret={false}
+              >
+                {(close) => (
+                  <>
+                    <div className={styles.menuTitle}>More formatting</div>
+                    <MenuItem
+                      label='Indent'
+                      onClick={() => {
+                        indentNotesBlock(editor)
+                        close()
+                      }}
+                    >
+                      <IndentIcon />
+                    </MenuItem>
+                    <MenuItem
+                      label='Outdent'
+                      onClick={() => {
+                        outdentNotesBlock(editor)
+                        close()
+                      }}
+                    >
+                      <OutdentIcon />
+                    </MenuItem>
+                    <MenuItem
+                      label='Table'
+                      onClick={() => {
+                        insertNotesTable(editor)
+                        close()
+                      }}
+                    >
+                      <TableIcon />
+                    </MenuItem>
+                    <MenuItem
+                      label='Divider'
+                      onClick={() => {
+                        insertNotesDivider(editor)
+                        close()
+                      }}
+                    >
+                      <LineIcon />
+                    </MenuItem>
+                    {showYoutube ? (
+                      <MenuItem
+                        label='YouTube'
+                        onClick={() => {
+                          insertYoutubePrompt(editor)
+                          close()
+                        }}
+                      >
+                        <YoutubeIcon />
+                      </MenuItem>
+                    ) : null}
+                    {showPdf ? (
+                      <MenuItem
+                        label='PDF'
+                        onClick={() => {
+                          insertPdfPrompt(editor)
+                          close()
+                        }}
+                      >
+                        <PdfIcon />
+                      </MenuItem>
+                    ) : null}
+                    {onExportPdf ? (
+                      <MenuItem
+                        label={
+                          exportingPdf ? 'Exporting PDF' : 'Export PDF'
+                        }
+                        onClick={() => {
+                          if (exportingPdf) return
+                          onExportPdf()
+                          close()
+                        }}
+                      >
+                        <ExportPdfIcon />
+                      </MenuItem>
+                    ) : null}
+                  </>
+                )}
+              </ToolMenu>
+            </div>
+          </>
+        ) : (
+          <>
         <div className={styles.group}>
           <ToolBtn
             label='Bold'
@@ -731,8 +1124,10 @@ export function NotesEditorToolbar({
             </ToolBtn>
           ) : null}
         </div>
+          </>
+        )}
       </div>
-      {saveLabel ? (
+      {!isPanel && saveLabel ? (
         <span className={styles.saveStatus} aria-live='polite'>
           {saveLabel}
         </span>

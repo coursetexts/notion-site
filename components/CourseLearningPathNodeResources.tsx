@@ -21,6 +21,10 @@ const EMPTY_DRAFT = {
   sequence: ''
 }
 
+function resourceHelpedText(passage?: string, why?: string) {
+  return [passage?.trim(), why?.trim()].filter(Boolean).join('\n\n')
+}
+
 const RESOURCE_KIND_OPTIONS = COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS.map(
   (kind) => ({
     value: kind,
@@ -138,8 +142,8 @@ export function CourseLearningPathNodeResources({
       title: resource.title,
       url: resource.url ?? '',
       kind: resource.kind,
-      passage: resource.passage ?? '',
-      why: resource.why ?? '',
+      passage: resourceHelpedText(resource.passage, resource.why),
+      why: '',
       sequence: String(resource.position)
     })
     setFormError(null)
@@ -155,7 +159,7 @@ export function CourseLearningPathNodeResources({
     const title = draft.title.trim()
     const passage = draft.passage.trim()
     if (!title || !passage) {
-      setFormError('Title and the part that helped are required.')
+      setFormError('Title and what helped are required.')
       return
     }
 
@@ -199,7 +203,7 @@ export function CourseLearningPathNodeResources({
       url: normalized,
       title,
       passage,
-      why: draft.why.trim() || undefined,
+      why: undefined,
       suggestedPlacement
     }
 
@@ -231,44 +235,52 @@ export function CourseLearningPathNodeResources({
   }
 
   return (
-    <section aria-labelledby={headingId}>
+    <section
+      className={styles.topicResourcesSection}
+      aria-labelledby={headingId}
+    >
       <div className={`${styles.videosHeader} ${styles.videosHeaderPlain}`}>
         <h2 id={headingId} className={styles.videosTitle}>
           Resources
         </h2>
-        <div className={styles.videosHeaderActions}>
-          <button
-            type='button'
-            className={`${styles.addResourceBtn}${
-              !signedIn ? ` ${styles.addResourceBtnDisabled}` : ''
-            }`}
-            aria-disabled={!signedIn}
-            title={signedIn ? undefined : 'Sign in to add a resource'}
-            onClick={() => {
-              if (!signedIn) {
-                onSignIn?.()
-                return
-              }
-              setAdding(true)
-              setEditingId(null)
-              setDraft(EMPTY_DRAFT)
-              setFormError(null)
-            }}
-          >
-            + Add a resource
-          </button>
-        </div>
       </div>
 
       <div className={styles.topicResourcesBody}>
           {items.length === 0 ? (
-            <p className={styles.topicResourcesEmpty}>
-              Nothing here yet. When something makes this click, add it in the
-              order you would study it.
-            </p>
+            <div className={styles.topicResourcesEmptyBox}>
+              <p className={styles.topicResourcesEmpty}>
+                Nothing here yet. When something makes this click, add it in the
+                order you would study it.
+              </p>
+              <button
+                type='button'
+                className={`${styles.addResourceBtn}${
+                  !signedIn ? ` ${styles.addResourceBtnDisabled}` : ''
+                }`}
+                aria-disabled={!signedIn}
+                title={signedIn ? undefined : 'Sign in to add a resource'}
+                onClick={() => {
+                  if (!signedIn) {
+                    onSignIn?.()
+                    return
+                  }
+                  setAdding(true)
+                  setEditingId(null)
+                  setDraft(EMPTY_DRAFT)
+                  setFormError(null)
+                }}
+              >
+                + Add a resource
+              </button>
+            </div>
           ) : (
+            <>
             <ol className={styles.topicResourceList}>
               {items.map((resource) => {
+                const helpedText = resourceHelpedText(
+                  resource.passage,
+                  resource.why
+                )
                 const title = resource.url ? (
                   <a
                     className={styles.topicResourceTitle}
@@ -292,59 +304,75 @@ export function CourseLearningPathNodeResources({
                           : ''
                       }`}
                     >
-                      <span className={styles.topicResourcePos}>
-                        {resource.position}
-                      </span>
-                      <div className={styles.topicResourceBody}>
-                        <div className={styles.topicResourceMetaRow}>
+                      <div className={styles.topicResourceLead}>
+                        <span className={styles.topicResourcePos}>
+                          {resource.position}
+                        </span>
+                        <div className={styles.topicResourceBody}>
                           <p className={styles.topicResourceKind}>
                             {resource.kind}
                           </p>
-                          <div className={styles.topicResourceMetaActions}>
-                            {pathSlug ? (
-                              <ReportButton
-                                target={{
-                                  type: 'resource',
-                                  id: pathResourceReportId({
-                                    slug: pathSlug,
-                                    nodeId,
-                                    resourceId: resource.id
-                                  }),
-                                  url: learningPathHref(pathSlug),
-                                  title: pathTitle
-                                    ? `${resource.title} — ${pathTitle}`
-                                    : resource.title,
-                                  snippet: resource.why || resource.passage
-                                }}
-                              />
-                            ) : null}
-                            <button
-                              type='button'
-                              className={styles.topicResourceEditBtn}
-                              onClick={() => openEdit(resource)}
-                              aria-label='Edit'
-                            >
-                              <ResourceEditPencilIcon />
-                            </button>
-                          </div>
+                          {title}
+                          {helpedText ? (
+                            <p className={styles.topicResourcePassage}>
+                              The part that helped and why: {helpedText}
+                            </p>
+                          ) : null}
                         </div>
-                        {title}
-                        {resource.passage ? (
-                          <p className={styles.topicResourcePassage}>
-                            {resource.passage}
-                          </p>
+                      </div>
+                      <div className={styles.topicResourceMetaActions}>
+                        {pathSlug ? (
+                          <ReportButton
+                            target={{
+                              type: 'resource',
+                              id: pathResourceReportId({
+                                slug: pathSlug,
+                                nodeId,
+                                resourceId: resource.id
+                              }),
+                              url: learningPathHref(pathSlug),
+                              title: pathTitle
+                                ? `${resource.title} — ${pathTitle}`
+                                : resource.title,
+                              snippet: helpedText
+                            }}
+                          />
                         ) : null}
-                        {resource.why ? (
-                          <p className={styles.topicResourceWhy}>
-                            {resource.why}
-                          </p>
-                        ) : null}
+                        <button
+                          type='button'
+                          className={styles.topicResourceEditBtn}
+                          onClick={() => openEdit(resource)}
+                          aria-label='Edit'
+                        >
+                          <ResourceEditPencilIcon />
+                        </button>
                       </div>
                     </div>
                   </li>
                 )
               })}
             </ol>
+            <button
+              type='button'
+              className={`${styles.addResourceBtn}${
+                !signedIn ? ` ${styles.addResourceBtnDisabled}` : ''
+              }`}
+              aria-disabled={!signedIn}
+              title={signedIn ? undefined : 'Sign in to add a resource'}
+              onClick={() => {
+                if (!signedIn) {
+                  onSignIn?.()
+                  return
+                }
+                setAdding(true)
+                setEditingId(null)
+                setDraft(EMPTY_DRAFT)
+                setFormError(null)
+              }}
+            >
+              + Add a resource
+            </button>
+            </>
           )}
         </div>
 
@@ -420,9 +448,10 @@ export function CourseLearningPathNodeResources({
                 />
               </div>
               <label className={styles.topicResourceLabel}>
-                The part that helped
-                <input
-                  className={styles.topicResourceInput}
+                What part of this helped? Why did it help
+                <textarea
+                  className={styles.topicResourceNote}
+                  rows={3}
                   value={draft.passage}
                   onChange={(event) =>
                     setDraft((prev) => ({
@@ -430,20 +459,8 @@ export function CourseLearningPathNodeResources({
                       passage: event.target.value
                     }))
                   }
-                  placeholder='e.g. the QKV diagram, 12:40–14:10, chapter 4'
+                  placeholder='e.g. the QKV diagram, 12:40–14:10 — it made attention click'
                   required
-                />
-              </label>
-              <label className={styles.topicResourceLabel}>
-                Why it helped
-                <textarea
-                  className={styles.topicResourceNote}
-                  rows={3}
-                  value={draft.why}
-                  onChange={(event) =>
-                    setDraft((prev) => ({ ...prev, why: event.target.value }))
-                  }
-                  placeholder='What did this specific part make click?'
                 />
               </label>
               <label className={styles.topicResourceLabel}>

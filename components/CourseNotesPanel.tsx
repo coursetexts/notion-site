@@ -4,6 +4,10 @@ import cs from 'classnames'
 
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
 import {
+  NotesPanelChromeProvider,
+  NotesPanelChromeSlot
+} from '@/components/NotesPanelChrome'
+import {
   cacheCourseNote,
   getCourseNote,
   saveCourseNote
@@ -151,56 +155,61 @@ export function CourseNotesPanel({
     : 'Course notes'
 
   return (
-    <aside
-      className={cs(styles.root, sheetLayout && styles.rootSheet)}
-      aria-label='Your notes'
-    >
-      <div className={styles.header}>
-        <h2 className={styles.title}>Your Notes</h2>
-        <div className={styles.headerActions}>
-          {saveLabel ? (
-            <span className={styles.saveStatus} aria-live='polite'>
-              {saveLabel}
-            </span>
-          ) : null}
-          <button
-            type='button'
-            className={styles.hideBtn}
-            onClick={onHide}
-            aria-label='Hide your notes'
-          >
-            Hide
-          </button>
+    <NotesPanelChromeProvider>
+      <aside
+        className={cs(styles.root, sheetLayout && styles.rootSheet)}
+        aria-label='Your notes'
+      >
+        <div className={styles.header}>
+          <h2 className={styles.title}>Your Notes</h2>
+          <div className={styles.headerActions}>
+            {saveLabel ? (
+              <span className={styles.saveStatus} aria-live='polite'>
+                {saveLabel}
+              </span>
+            ) : null}
+            <NotesPanelChromeSlot />
+            <button
+              type='button'
+              className={styles.hideBtn}
+              onClick={onHide}
+              aria-label='Hide your notes'
+            >
+              Hide
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className={styles.meta}>
-        {topicTitle ? (
-          <p className={styles.topicTitle}>{topicTitle}</p>
-        ) : null}
-        <p className={styles.courseTitle}>{courseTitle || 'Untitled course'}</p>
-      </div>
+        <div className={styles.meta}>
+          {topicTitle ? (
+            <p className={styles.topicTitle}>{topicTitle}</p>
+          ) : null}
+          <p className={styles.courseTitle}>
+            {courseTitle || 'Untitled course'}
+          </p>
+        </div>
 
-      <div className={styles.body}>
-        {showEditor ? (
-          <SiteNotesEditor
-            key={editorKey}
-            value={initialContent}
-            onChange={scheduleSave}
-            placeholder='Write your notes for this topic…'
-            ariaLabel={ariaLabel}
-            expandTitle='Your Notes'
-            expandTopic={topicTitle || courseTitle}
-            fillHeight
-            locked={!signedIn}
-            lockedMessage='Sign in to add your notes'
-            onUnlock={onSignIn}
-            className={styles.notesEditorWrap}
-          />
-        ) : (
-          <p className={styles.loading}>Loading notes…</p>
-        )}
-      </div>
-    </aside>
+        <div className={styles.body}>
+          {showEditor ? (
+            <SiteNotesEditor
+              key={editorKey}
+              value={initialContent}
+              onChange={scheduleSave}
+              placeholder='Write your notes for this topic…'
+              ariaLabel={ariaLabel}
+              expandTitle='Your Notes'
+              expandTopic={topicTitle || courseTitle}
+              fillHeight
+              locked={!signedIn}
+              lockedMessage='Sign in to add your notes'
+              onUnlock={onSignIn}
+              className={styles.notesEditorWrap}
+            />
+          ) : (
+            <p className={styles.loading}>Loading notes…</p>
+          )}
+        </div>
+      </aside>
+    </NotesPanelChromeProvider>
   )
 }

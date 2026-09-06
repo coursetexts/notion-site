@@ -22,6 +22,37 @@
   border-color: transparent;
 }
 
+.chromeSaveStatus {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.chromeExpandBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #e5e1d3;
+  border-radius: 6px;
+  background: #fff;
+  color: #5d534b;
+  cursor: pointer;
+}
+
+.chromeExpandBtn:hover,
+.chromeExpandBtn:focus-visible {
+  color: #25272b;
+  border-color: #d4cfc4;
+}
+
+.chromeExpandBtn:focus-visible {
+  outline: 2px solid rgba(0, 137, 196, 0.35);
+  outline-offset: 2px;
+}
+
 .rootLocked {
   position: relative;
 }

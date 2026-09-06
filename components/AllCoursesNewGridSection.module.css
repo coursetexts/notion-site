@@ -54,23 +54,6 @@
   grid-row: 1 / span 2;
 }
 
-.fieldAtlasPromo {
-  grid-column: 3;
-  grid-row: 3 / span 2;
-  background: #006f9e;
-}
-
-.jobSkillsPromo {
-  grid-column: 3;
-  grid-row: 5 / span 2;
-}
-
-.lifeSkillsPromo {
-  grid-column: 3;
-  grid-row: 7 / span 2;
-  background: #000d1a;
-}
-
 .promoTitle {
   margin: 0;
   font-family: 'Guyot Press', serif;
@@ -130,14 +113,6 @@
   outline-offset: 2px;
 }
 
-.fieldAtlasPromo .promoButton {
-  color: #006f9e;
-}
-
-.lifeSkillsPromo .promoButton {
-  color: #000d1a;
-}
-
 .emptyCreate {
   margin-top: 40px;
   display: flex;
@@ -168,10 +143,7 @@
   margin-top: 32px;
 }
 
-.promoRow .createPathPromo,
-.promoRow .fieldAtlasPromo,
-.promoRow .jobSkillsPromo,
-.promoRow .lifeSkillsPromo {
+.promoRow .createPathPromo {
   grid-column: auto;
   grid-row: auto;
   min-height: 260px;
@@ -180,10 +152,7 @@
 
 @media (max-width: 1100px) {
   .degreesPromo,
-  .createPathPromo,
-  .fieldAtlasPromo,
-  .jobSkillsPromo,
-  .lifeSkillsPromo {
+  .createPathPromo {
     grid-column: 2;
   }
 }
@@ -196,10 +165,7 @@
 
 @media (max-width: 640px) {
   .degreesPromo,
-  .createPathPromo,
-  .fieldAtlasPromo,
-  .jobSkillsPromo,
-  .lifeSkillsPromo {
+  .createPathPromo {
     grid-column: 1;
     min-height: 220px;
   }

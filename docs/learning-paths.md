@@ -21,9 +21,9 @@ Official professor courses from Notion are **not** a `kind` yet. They stay at `/
 | Route                              | UI                                                                                                                                                        |
 | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/learning-paths`                  | Catalog + “your paths”, search, create modal                                                                                                              |
-| `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Academic Courses. Atlas callouts; empty search opens the create modal. |
+| `/all-courses?view=learning-paths` | Public **community + research** cards (`listNonCourseLearningPaths`). Title dropdown vs All Academic Courses. Create-path promo; empty search opens the create modal. |
 | `/learning-path/new?goal=…`        | Outline builder, then redirect to the new slug. Sign-in stores the outline (`sessionStorage` + `localStorage`) and returns here. **Fill out this path for me** shows a watering-plant popup (**Watering your path.** / **Creating your steps.**) until the outline lands. |
-| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. The hero date line is **publisher photo · Public** (or **Collab** / **Private**) **· Published Mon YYYY**, then **Share**, **Save**, and **•••**. **•••** opens **Report**; owners also change visibility there. Only the owner can **Edit this node** / **Add to path**. **Context** (next to Discussions / Your Notes) opens a dialog: what to paste into an LLM, plus the copied prompt (current step and ancestors, numbered outline with whys, goal/summary). |
+| `/learning-path/{slug}`            | Shared learning-path shell. `kind` only changes the title kicker and the left outline. The hero date line is **publisher photo · Public** (or **Collab** / **Private**) **· Published Mon YYYY**, then a Save/••• chip (official-course Save style, bookmark icon). **•••** opens **Share** (copies the link), **Report**; owners also change visibility there. Only the owner can **Edit this node** / **Add to path**. **Context** (next to Discussions / Your Notes) opens a dialog: what to paste into an LLM, plus the copied prompt (current step and ancestors, numbered outline with whys, goal/summary). |
 
 Home (“Try learning paths from our community”) shows the first 12 **community** catalog rows in a 3-column grid. Empty course placeholders are excluded (`listCatalogLearningPaths` filters `kind = 'community'`).
 
@@ -37,7 +37,7 @@ Profile tabs also include **Knowledge** (acquired topics) and **Notes** (your pr
 2. The topic tree. Top-level steps are accordion rows (chevron on the right). Nested steps sit on a vertical hairline. A light-blue stroke check appears on the right when a parent or child is `explored`.
 3. **What you learned** — only after the path is finished
 
-The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. The notes toolbar **Export PDF** downloads the current note as a PDF. Searching the outline for “mental map” or “general approach” still finds **Overview**. Course syllabi use the same accordion/check treatment with **Recommended Syllabus** in the course nav (see [curated-courses.md](./curated-courses.md)).
+The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. In the notes side panel, **Export PDF** is under the toolbar **…** menu. Searching the outline for “mental map” or “general approach” still finds **Overview**. Course syllabi use the same accordion/check treatment with **Recommended Syllabus** in the course nav (see [curated-courses.md](./curated-courses.md)).
 
 `/all-courses?view=learning-paths` is the full public browse of non-course paths: `listNonCourseLearningPaths()` selects `kind in ('community','research')` (title, goal, summary only — not the JSON blob), then appends any missing `SEEDED_LEARNING_PATHS`. Private rows stay hidden by RLS. **`kind=course` is excluded**, including empty stubs.
 
@@ -124,7 +124,7 @@ Replaces the old boolean `is_private`. The column remains, kept in sync (`is_pri
 
 - Catalog community / research / course rows: `visibility = public`, `owner_id` null.
 - New user paths: `visibility = private` until the owner changes it. Going back to private is always allowed.
-- The hero date line always shows the mode: **Public · Published Mon YYYY**, **Collab · Published Mon YYYY**, or **Private · Published Mon YYYY**, with the publisher photo. **Share**, heart **Save**, and **•••** sit on the right. **•••** opens **Report**; owners also pick Private / Public / Collab there. Catalog course syllabi use **Public · Published** (no visibility toggle).
+- The hero date line always shows the mode: **Public · Published Mon YYYY**, **Collab · Published Mon YYYY**, or **Private · Published Mon YYYY**, with the publisher photo. A Save/••• chip sits on the right (bookmark icon, same chip as official-course Save). **•••** opens **Share** (copies the link) and **Report**; owners also pick Private / Public / Collab there. Catalog course syllabi use **Public · Published** (no visibility toggle).
 - Outline edits (**Edit this node**, **Add to path**, delete node) are owner-only, including on collaborative paths. List footer and graph popout hide those controls for everyone else. Signed-out local drafts still count as the owner. Apply `040_learning_path_outline_owner_only.sql` on existing databases.
 
 ### Publishing (private → public / collab)

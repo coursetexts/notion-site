@@ -148,7 +148,7 @@ Community paths: [docs/learning-paths.md](../../docs/learning-paths.md).
 - [ ] Pin a course learning path → row in `learning_path_pins`
 - [ ] Public/collaborative path: signed-in upvote on a resource (grey arrow) does not change sequence
 - [ ] `/all-courses` **courses** view: second grid lists only `kind=course` rows with `is_filled` (not title-only stubs); degrees promo → `/degrees`
-- [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; atlas callouts; empty search opens create modal
+- [ ] `/all-courses?view=learning-paths`: public community + research only (`listNonCourseLearningPaths`); no `kind=course`; create-path promo; empty search opens create modal
 - [ ] `/community`: two explainers (path schema + vote/order diagram); collab CTA → `/community-resources`
 - [ ] Profile Learning tab: filters **Courses** (official Notion or `kind=course`), **Learning paths** (`community`+`research`), **Committed**; Commit tag writes `learning_path_commitments`; **Notify** stores a reminder cadence (`041`, which also creates the table if `030` never ran); muted **% complete** tag sits left of Commit
 - [ ] Profile Knowledge tab: topic list (graph view hidden); finishing a public path upserts catalog topics/structural edges. Daily Gemini cron is **off** ([docs/knowledge.md](../../docs/knowledge.md))

@@ -52,7 +52,7 @@ export function CourseLearningPathTopicContent({
   const topicResources = node.topicResources ?? []
 
   return (
-    <article className={styles.article}>
+    <article className={`${styles.article} ${styles.topicArticle}`}>
       <header className={styles.articleHeader}>
         {parents.length > 0 && (
           <nav aria-label='Breadcrumb'>
@@ -76,8 +76,10 @@ export function CourseLearningPathTopicContent({
           </nav>
         )}
 
-        <h1 className={styles.articleTitle}>{node.title}</h1>
-        <CourseLearningPathWhy text={node.description} />
+        <div className={styles.articleIntro}>
+          <h1 className={styles.articleTitle}>{node.title}</h1>
+          <CourseLearningPathWhy text={node.description} />
+        </div>
       </header>
 
       <CourseLearningPathNodeResources

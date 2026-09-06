@@ -9,7 +9,8 @@ import StarterKit from '@tiptap/starter-kit'
 import 'katex/dist/katex.min.css'
 import { createPortal } from 'react-dom'
 
-import { NotesEditorToolbar } from '@/components/NotesEditorToolbar'
+import { ExpandIcon, NotesEditorToolbar } from '@/components/NotesEditorToolbar'
+import { useNotesPanelChrome } from '@/components/NotesPanelChrome'
 import { exportRenderedNoteToPdf } from '@/lib/export-note-pdf'
 import {
   type NotebookDocJson,
@@ -87,10 +88,12 @@ export function SiteNotesEditor({
   const canTypeRef = React.useRef(canType)
   canTypeRef.current = canType
   const canExpand = allowExpand && !isPreview && !isLocked
+  const chrome = useNotesPanelChrome()
   const modalTitle = notesExpandAriaLabel(expandTitle, expandTopic, ariaLabel)
   const headingTitle = expandTitle?.trim() || ariaLabel
   const headingTopic = expandTopic?.trim() || ''
   const [expanded, setExpanded] = React.useState(false)
+  const panelLayout = Boolean(chrome) && fillHeight && !expanded
   const [portalReady, setPortalReady] = React.useState(false)
   const [exportingPdf, setExportingPdf] = React.useState(false)
   const [saveStatus, setSaveStatus] = React.useState<'saving' | 'saved' | null>(
@@ -193,6 +196,40 @@ export function SiteNotesEditor({
     editor.setEditable(canType)
   }, [editor, canType])
 
+  React.useEffect(() => {
+    if (!chrome) return
+    if (!editor || !panelLayout || (!canExpand && !chrome.showEditorSave)) {
+      chrome.setActions(null)
+      return
+    }
+    const saveLabel =
+      chrome.showEditorSave && saveStatus === 'saving'
+        ? 'Saving'
+        : chrome.showEditorSave && saveStatus === 'saved'
+        ? '✓ Saved'
+        : null
+    chrome.setActions(
+      <>
+        {saveLabel ? (
+          <span className={styles.chromeSaveStatus} aria-live='polite'>
+            {saveLabel}
+          </span>
+        ) : null}
+        {canExpand ? (
+          <button
+            type='button'
+            className={styles.chromeExpandBtn}
+            onClick={() => setExpanded(true)}
+            aria-label='Expand notes'
+          >
+            <ExpandIcon strokeWidth={1.35} size={16} />
+          </button>
+        ) : null}
+      </>
+    )
+    return () => chrome.setActions(null)
+  }, [chrome, panelLayout, canExpand, saveStatus, editor])
+
   const exportPdf = React.useCallback(async () => {
     if (!editor || exportingPdf) return
     setExportingPdf(true)
@@ -276,11 +313,15 @@ export function SiteNotesEditor({
           editor={editor}
           imageInputRef={imageInputRef}
           disabled={isLocked}
-          saveStatus={isLocked ? null : saveStatus}
+          saveStatus={isLocked || panelLayout ? null : saveStatus}
           onExportPdf={isLocked ? undefined : () => void exportPdf()}
           exportingPdf={exportingPdf}
+          headingLevels={panelLayout ? [2, 3] : [2]}
+          layout={panelLayout ? 'panel' : 'full'}
           onExpand={
-            canExpand && !expanded ? () => setExpanded(true) : undefined
+            canExpand && !expanded && !chrome
+              ? () => setExpanded(true)
+              : undefined
           }
         />
       ) : null}

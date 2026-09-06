@@ -13,9 +13,9 @@ import {
 import { CourseLearningPath } from '@/components/CourseLearningPath'
 import { FormSelect } from '@/components/FormSelect'
 import {
+  HeroActionGroup,
   HeroMoreMenu,
-  HeroSaveButton,
-  HeroShareButton
+  HeroSaveButton
 } from '@/components/HeroBarActions'
 import { LearningPathCommitRemindButton } from '@/components/LearningPathCommitRemindButton'
 import { LearningPathOutlinePanel } from '@/components/LearningPathOutlinePanel'
@@ -182,6 +182,10 @@ const EMPTY_RESOURCE_DRAFT = {
   passage: '',
   why: '',
   sequence: ''
+}
+
+function resourceHelpedText(passage?: string, why?: string) {
+  return [passage?.trim(), why?.trim()].filter(Boolean).join('\n\n')
 }
 
 function escapeHtml(value: string) {
@@ -686,7 +690,7 @@ function PathContentSection({
   children: React.ReactNode
 }) {
   return (
-    <section>
+    <section className={styles.contentSection}>
       <div className={styles.sectionHeader}>
         <h2 className={styles.sectionTitle}>{title}</h2>
         {extra ? (
@@ -695,6 +699,32 @@ function PathContentSection({
       </div>
       <div className={styles.sectionBody}>{children}</div>
     </section>
+  )
+}
+
+function AddResourceAction({
+  disabled,
+  title,
+  label,
+  onClick
+}: {
+  disabled: boolean
+  title?: string
+  label: string
+  onClick: () => void
+}) {
+  return (
+    <button
+      type='button'
+      className={`${styles.addResourceBtn}${
+        disabled ? ` ${styles.addResourceBtnDisabled}` : ''
+      }`}
+      aria-disabled={disabled}
+      title={title}
+      onClick={onClick}
+    >
+      {label}
+    </button>
   )
 }
 
@@ -1422,9 +1452,6 @@ function CommunityLearningPath({
         nodeSuggestions
       )
     : []
-  const overviewCopy = showingOverview
-    ? (selected?.description || path.summary || '').trim()
-    : ''
   const resourceFormOpen = addResourceOpen || Boolean(editingResourceId)
   const resourcePlacementMax =
     resourceFormOpen && editingResourceId
@@ -1821,8 +1848,8 @@ function CommunityLearningPath({
       title: resource.title,
       href: resource.href ?? '',
       kind: resource.kind,
-      passage: resource.passage ?? '',
-      why: resource.why,
+      passage: resourceHelpedText(resource.passage, resource.why),
+      why: '',
       sequence: String(resource.sequence)
     })
   }
@@ -1854,7 +1881,7 @@ function CommunityLearningPath({
         title,
         href: href || undefined,
         passage,
-        why: resourceDraft.why.trim(),
+        why: '',
         sequence: placement
       })
       if (!created) {
@@ -1871,7 +1898,7 @@ function CommunityLearningPath({
       title,
       href: href || undefined,
       passage,
-      why: resourceDraft.why.trim()
+      why: ''
     }
     setUserResources((prev) => {
       const current = prev[selected.id] ?? []
@@ -2083,7 +2110,7 @@ function CommunityLearningPath({
       editorNode.kind === 'milestone')
 
   const heroInstructors = isOwnPath
-    ? [{ name: 'By You' }]
+    ? [{ name: 'By You', url: '/profile' }]
     : pathOwnerId
     ? [
         {
@@ -2227,8 +2254,7 @@ function CommunityLearningPath({
           }
           publisherAvatarHref={publisherAvatarHref}
           actions={
-            <>
-              <HeroShareButton href={learningPathHref(path.slug)} />
+            <HeroActionGroup>
               <HeroSaveButton
                 saved={Boolean(bookmarkLinkId)}
                 busy={bookmarkBusy}
@@ -2237,6 +2263,7 @@ function CommunityLearningPath({
                 savedLabel='Remove this learning path from your saved list'
               />
               <HeroMoreMenu
+                shareHref={learningPathHref(path.slug)}
                 reportTarget={{
                   type: 'learning_path',
                   id: pathRowId || path.slug,
@@ -2251,7 +2278,7 @@ function CommunityLearningPath({
                     : undefined
                 }
               />
-            </>
+            </HeroActionGroup>
           }
         />
       </div>
@@ -2376,7 +2403,7 @@ function CommunityLearningPath({
                 onSelectTopic={selectNode}
               />
             ) : selected ? (
-              <article className={styles.article}>
+              <article className={`${styles.article} ${styles.topicArticle}`}>
                 <header className={styles.articleHeader}>
                   {!showingOverview && selectedParent ? (
                     <nav aria-label='Breadcrumb'>
@@ -2394,62 +2421,58 @@ function CommunityLearningPath({
                       </ol>
                     </nav>
                   ) : null}
-                  <h1 className={styles.articleTitle}>
-                    {showingOverview ? path.title : selected.label}
-                  </h1>
-                  {!showingOverview ? (
-                    <p className={styles.whyCopy}>
-                      <strong className={styles.whyLead}>
-                        Why is this on the learning path:
-                      </strong>{' '}
-                      {selected.why ||
-                        selected.description ||
-                        'A reason has not been written for this step yet.'}
-                    </p>
-                  ) : null}
+                  <div className={styles.articleIntro}>
+                    <h1 className={styles.articleTitle}>
+                      {showingOverview ? path.title : selected.label}
+                    </h1>
+                    {!showingOverview ? (
+                      <p className={styles.whyCopy}>
+                        <strong className={styles.whyLead}>
+                          Why is this on the learning path:
+                        </strong>{' '}
+                        {selected.why ||
+                          selected.description ||
+                          'A reason has not been written for this step yet.'}
+                      </p>
+                    ) : null}
+                  </div>
                 </header>
 
-                <PathContentSection
-                  title='Resources'
-                  extra={
-                    <button
-                      type='button'
-                      className={`${styles.addResourceBtn}${
-                        !currentUserId
-                          ? ` ${styles.addResourceBtnDisabled}`
-                          : ''
-                      }`}
-                      aria-disabled={!currentUserId}
-                      title={
-                        currentUserId
-                          ? undefined
-                          : canSuggestResources
-                          ? 'Sign in to suggest a resource'
-                          : 'Sign in to add a resource'
-                      }
-                      onClick={() => {
-                        if (!currentUserId) {
-                          requestSignIn()
-                          return
-                        }
-                        setEditingResourceId(null)
-                        setResourceDraft(EMPTY_RESOURCE_DRAFT)
-                        setAddResourceOpen(true)
-                      }}
-                    >
-                      {canSuggestResources
-                        ? '+ Suggest a resource'
-                        : '+ Add a resource'}
-                    </button>
-                  }
-                >
+                <PathContentSection title='Resources'>
                   {listedResources.length === 0 ? (
-                    <p className={styles.resourceEmpty}>
-                      {canSuggestResources
-                        ? 'Nothing here yet. Suggest a resource for the owner to review.'
-                        : 'Nothing here yet. When something makes this click, add it in the order you would study it.'}
-                    </p>
+                    <div className={styles.resourceEmptyBox}>
+                      <p className={styles.resourceEmpty}>
+                        {canSuggestResources
+                          ? 'Nothing here yet. Suggest a resource for the owner to review.'
+                          : 'Nothing here yet. When something makes this click, add it in the order you would study it.'}
+                      </p>
+                      <AddResourceAction
+                        disabled={!currentUserId}
+                        title={
+                          currentUserId
+                            ? undefined
+                            : canSuggestResources
+                            ? 'Sign in to suggest a resource'
+                            : 'Sign in to add a resource'
+                        }
+                        label={
+                          canSuggestResources
+                            ? '+ Suggest a resource'
+                            : '+ Add a resource'
+                        }
+                        onClick={() => {
+                          if (!currentUserId) {
+                            requestSignIn()
+                            return
+                          }
+                          setEditingResourceId(null)
+                          setResourceDraft(EMPTY_RESOURCE_DRAFT)
+                          setAddResourceOpen(true)
+                        }}
+                      />
+                    </div>
                   ) : (
+                    <>
                     <ol className={styles.resourceList}>
                       {listedResources.map((resource) => {
                         const kindLabel = resource.source
@@ -2477,6 +2500,15 @@ function CommunityLearningPath({
                         })
                         const bookmarkSaved = Boolean(
                           savedLinkByUrl[normalizeUserLinkUrl(bookmarkUrl)]
+                        )
+                        const showActionsDivider =
+                          Boolean(
+                            resource.suggested || resource.addedByYou
+                          ) ||
+                          (canVoteOnResources && !resource.suggested)
+                        const helpedText = resourceHelpedText(
+                          resource.passage,
+                          resource.why
                         )
                         const title = resource.href ? (
                           <a
@@ -2507,113 +2539,111 @@ function CommunityLearningPath({
                                   : ''
                               }`}
                             >
-                              <span className={styles.resourcePos}>
-                                {resource.sequence}
-                              </span>
-                              <div className={styles.resourceBody}>
-                                <div className={styles.resourceMetaRow}>
+                              <div className={styles.resourceLead}>
+                                <span className={styles.resourcePos}>
+                                  {resource.sequence}
+                                </span>
+                                <div className={styles.resourceBody}>
                                   <p className={styles.resourceKind}>
                                     {kindLabel}
                                   </p>
-                                  <div className={styles.resourceMetaActions}>
-                                    {resource.suggested ? (
-                                      <span className={styles.resourceYou}>
-                                        {resource.suggestedByYou
-                                          ? 'Suggested by you'
-                                          : 'Suggested'}
-                                      </span>
-                                    ) : resource.addedByYou ? (
-                                      <span className={styles.resourceYou}>
-                                        Added by you
-                                      </span>
-                                    ) : null}
-                                    {resource.suggested && isOwnPath ? (
-                                      <button
-                                        type='button'
-                                        className={styles.resourceAcceptBtn}
-                                        onClick={() =>
-                                          void acceptSuggestedResource(resource)
-                                        }
-                                      >
-                                        Add
-                                      </button>
-                                    ) : null}
-                                    {resource.suggested &&
-                                    (isOwnPath || resource.suggestedByYou) ? (
-                                      <button
-                                        type='button'
-                                        className={styles.resourceDismissBtn}
-                                        onClick={() =>
-                                          void dismissSuggestedResource(
-                                            resource
-                                          )
-                                        }
-                                      >
-                                        {isOwnPath ? 'Dismiss' : 'Withdraw'}
-                                      </button>
-                                    ) : null}
-                                    <ReportButton
-                                      target={{
-                                        type: 'resource',
-                                        id: pathResourceReportId({
-                                          slug: path.slug,
-                                          nodeId: selected.id,
-                                          resourceId: resource.id
-                                        }),
-                                        url: learningPathHref(path.slug),
-                                        title: resource.title,
-                                        snippet:
-                                          resource.why || resource.passage
-                                      }}
-                                    />
-                                    {canVoteOnResources &&
-                                    !resource.suggested ? (
-                                      <ResourceVoteControl
-                                        score={voteScore}
-                                        userVoted={userVoted}
-                                        disabled={
-                                          votingResourceId === resource.id
-                                        }
-                                        signedIn={Boolean(currentUserId)}
-                                        onToggle={() =>
-                                          void toggleResourceUpvote(resource.id)
-                                        }
-                                      />
-                                    ) : null}
-                                    <ResourceBookmarkControl
-                                      saved={bookmarkSaved}
-                                      disabled={
-                                        bookmarkingResourceId === resource.id
-                                      }
-                                      signedIn={Boolean(currentUserId)}
-                                      onToggle={() =>
-                                        void toggleResourceBookmark(resource)
-                                      }
-                                    />
-                                    {resource.addedByYou ? (
-                                      <button
-                                        type='button'
-                                        className={styles.resourceEditBtn}
-                                        onClick={() =>
-                                          openEditResource(resource)
-                                        }
-                                        aria-label='Edit'
-                                      >
-                                        <ResourceEditPencilIcon />
-                                      </button>
-                                    ) : null}
-                                  </div>
+                                  {title}
+                                  {helpedText ? (
+                                    <p className={styles.resourcePassage}>
+                                      The part that helped and why:{' '}
+                                      {helpedText}
+                                    </p>
+                                  ) : null}
                                 </div>
-                                {title}
-                                {resource.passage ? (
-                                  <p className={styles.resourcePassage}>
-                                    {resource.passage}
-                                  </p>
+                              </div>
+                              <div className={styles.resourceMetaActions}>
+                                {resource.suggested ? (
+                                  <span className={styles.resourceYou}>
+                                    {resource.suggestedByYou
+                                      ? 'Suggested by you'
+                                      : 'Suggested'}
+                                  </span>
+                                ) : resource.addedByYou ? (
+                                  <span className={styles.resourceYou}>
+                                    Added by you
+                                  </span>
                                 ) : null}
-                                {resource.why ? (
-                                  <p className={styles.resourceWhy}>
-                                    {resource.why}
-                                  </p>
+                                {resource.suggested && isOwnPath ? (
+                                  <button
+                                    type='button'
+                                    className={styles.resourceAcceptBtn}
+                                    onClick={() =>
+                                      void acceptSuggestedResource(resource)
+                                    }
+                                  >
+                                    Add
+                                  </button>
+                                ) : null}
+                                {resource.suggested &&
+                                (isOwnPath || resource.suggestedByYou) ? (
+                                  <button
+                                    type='button'
+                                    className={styles.resourceDismissBtn}
+                                    onClick={() =>
+                                      void dismissSuggestedResource(resource)
+                                    }
+                                  >
+                                    {isOwnPath ? 'Dismiss' : 'Withdraw'}
+                                  </button>
+                                ) : null}
+                                {canVoteOnResources && !resource.suggested ? (
+                                  <ResourceVoteControl
+                                    score={voteScore}
+                                    userVoted={userVoted}
+                                    disabled={
+                                      votingResourceId === resource.id
+                                    }
+                                    signedIn={Boolean(currentUserId)}
+                                    onToggle={() =>
+                                      void toggleResourceUpvote(resource.id)
+                                    }
+                                  />
+                                ) : null}
+                                {showActionsDivider ? (
+                                  <span
+                                    className={styles.resourceActionsDivider}
+                                    aria-hidden
+                                  />
+                                ) : null}
+                                <ReportButton
+                                  target={{
+                                    type: 'resource',
+                                    id: pathResourceReportId({
+                                      slug: path.slug,
+                                      nodeId: selected.id,
+                                      resourceId: resource.id
+                                    }),
+                                    url: learningPathHref(path.slug),
+                                    title: resource.title,
+                                    snippet: helpedText
+                                  }}
+                                />
+                                <ResourceBookmarkControl
+                                  saved={bookmarkSaved}
+                                  disabled={
+                                    bookmarkingResourceId === resource.id
+                                  }
+                                  signedIn={Boolean(currentUserId)}
+                                  onToggle={() =>
+                                    void toggleResourceBookmark(resource)
+                                  }
+                                />
+                                {resource.addedByYou ? (
+                                  <button
+                                    type='button'
+                                    className={styles.resourceEditBtn}
+                                    onClick={() =>
+                                      openEditResource(resource)
+                                    }
+                                    aria-label='Edit'
+                                  >
+                                    <ResourceEditPencilIcon />
+                                  </button>
                                 ) : null}
                               </div>
                             </div>
@@ -2621,14 +2651,36 @@ function CommunityLearningPath({
                         )
                       })}
                     </ol>
+                    <AddResourceAction
+                      disabled={!currentUserId}
+                      title={
+                        currentUserId
+                          ? undefined
+                          : canSuggestResources
+                          ? 'Sign in to suggest a resource'
+                          : 'Sign in to add a resource'
+                      }
+                      label={
+                        canSuggestResources
+                          ? '+ Suggest a resource'
+                          : '+ Add a resource'
+                      }
+                      onClick={() => {
+                        if (!currentUserId) {
+                          requestSignIn()
+                          return
+                        }
+                        setEditingResourceId(null)
+                        setResourceDraft(EMPTY_RESOURCE_DRAFT)
+                        setAddResourceOpen(true)
+                      }}
+                    />
+                    </>
                   )}
                 </PathContentSection>
 
                 {showingOverview ? (
                   <PathContentSection title='Recommended Path'>
-                    {overviewCopy ? (
-                      <p className={styles.whyCopy}>{overviewCopy}</p>
-                    ) : null}
                     {coreSteps.length === 0 ? (
                       <p className={styles.articleEmpty}>
                         Steps for this path will appear here as you add them.
@@ -2792,9 +2844,10 @@ function CommunityLearningPath({
                 />
               </div>
               <label className={styles.modalLabel}>
-                The part that helped
-                <input
-                  className={styles.modalInput}
+                What part of this helped? Why did it help
+                <textarea
+                  className={styles.modalTextarea}
+                  rows={3}
                   value={resourceDraft.passage}
                   onChange={(event) =>
                     setResourceDraft((prev) => ({
@@ -2802,23 +2855,8 @@ function CommunityLearningPath({
                       passage: event.target.value
                     }))
                   }
-                  placeholder='e.g. the QKV diagram, 12:40–14:10, chapter 4'
+                  placeholder='e.g. the QKV diagram, 12:40–14:10 — it made attention click'
                   required
-                />
-              </label>
-              <label className={styles.modalLabel}>
-                Why it helped
-                <textarea
-                  className={styles.modalTextarea}
-                  rows={3}
-                  value={resourceDraft.why}
-                  onChange={(event) =>
-                    setResourceDraft((prev) => ({
-                      ...prev,
-                      why: event.target.value
-                    }))
-                  }
-                  placeholder='What did this specific part make click?'
                 />
               </label>
               <label className={styles.modalLabel}>

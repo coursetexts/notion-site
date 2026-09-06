@@ -732,7 +732,7 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
 
   return (
     <section className={styles.root} aria-label='Course activity'>
-      <h2 className={styles.mainTitle}>Completed the course?</h2>
+      <h2 className={styles.mainTitle}>Discuss this with others?</h2>
 
       <div className={styles.layout}>
         <div className={styles.main}>

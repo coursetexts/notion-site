@@ -12,6 +12,7 @@ import {
 
 import { AnnotationWidget } from './AnnotationWidget'
 import contentMainStyles from './ContentMain.module.css'
+import { NotesPanelChromeProvider, NotesPanelChromeSlot } from './NotesPanelChrome'
 import notesStyles from './CourseNotesPanel.module.css'
 import styles from './PathContentActivity.module.css'
 import { ExportContextButton } from './ExportContextButton'
@@ -158,41 +159,44 @@ export function PathContentActivity({
     }
     if (rightPanel === 'notes') {
       return (
-        <aside
-          className={`${notesStyles.root}${
-            sheetLayout ? ` ${notesStyles.rootSheet}` : ''
-          }`}
-          aria-label='Your notes'
-        >
-          <div className={notesStyles.header}>
-            <h2 className={notesStyles.title}>Your Notes</h2>
-            <div className={notesStyles.headerActions}>
-              <button
-                type='button'
-                className={notesStyles.hideBtn}
-                onClick={closeRightPanel}
-                aria-label='Hide your notes'
-              >
-                Hide
-              </button>
+        <NotesPanelChromeProvider showEditorSave>
+          <aside
+            className={`${notesStyles.root}${
+              sheetLayout ? ` ${notesStyles.rootSheet}` : ''
+            }`}
+            aria-label='Your notes'
+          >
+            <div className={notesStyles.header}>
+              <h2 className={notesStyles.title}>Your Notes</h2>
+              <div className={notesStyles.headerActions}>
+                <NotesPanelChromeSlot />
+                <button
+                  type='button'
+                  className={notesStyles.hideBtn}
+                  onClick={closeRightPanel}
+                  aria-label='Hide your notes'
+                >
+                  Hide
+                </button>
+              </div>
             </div>
-          </div>
-          <div className={notesStyles.meta}>
-            {notesTopicTitle ? (
-              <p className={notesStyles.topicTitle}>{notesTopicTitle}</p>
-            ) : null}
-            <p className={notesStyles.courseTitle}>{courseTitle}</p>
-          </div>
-          <div className={notesStyles.body}>
-            {notesEditor ? (
-              <div className={notesStyles.notesEditorWrap}>{notesEditor}</div>
-            ) : (
-              <p className={notesStyles.loading}>
-                Select a topic to take notes.
-              </p>
-            )}
-          </div>
-        </aside>
+            <div className={notesStyles.meta}>
+              {notesTopicTitle ? (
+                <p className={notesStyles.topicTitle}>{notesTopicTitle}</p>
+              ) : null}
+              <p className={notesStyles.courseTitle}>{courseTitle}</p>
+            </div>
+            <div className={notesStyles.body}>
+              {notesEditor ? (
+                <div className={notesStyles.notesEditorWrap}>{notesEditor}</div>
+              ) : (
+                <p className={notesStyles.loading}>
+                  Select a topic to take notes.
+                </p>
+              )}
+            </div>
+          </aside>
+        </NotesPanelChromeProvider>
       )
     }
     return null

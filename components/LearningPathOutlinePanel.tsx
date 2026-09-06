@@ -20,7 +20,7 @@ export function LearningPathOutlinePanel({
       <div className={styles.mapToolbar}>
         <div className={styles.mapToolbarRow}>
           <div className={styles.mapToolbarCopy}>
-            <h2 className={styles.mapTitle}>The outline</h2>
+            <h2 className={styles.mapTitle}>THE PATH</h2>
           </div>
         </div>
         <div className={styles.searchWrap}>

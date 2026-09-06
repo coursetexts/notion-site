@@ -360,6 +360,8 @@
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.16px;
+  text-decoration: underline #e6e6e6;
+  text-underline-offset: 7px;
 }
 
 .schoolDateRow {
@@ -473,6 +475,60 @@
   display: inline-flex;
   align-items: center;
   gap: 14px;
+}
+
+.heroActionGroup {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 4px;
+  border: 1px solid var(--outline, #e6e6e6);
+  background: var(--offwhite, #fdfdfd);
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.04);
+  overflow: visible;
+}
+
+.heroActionGroup > * + * {
+  border-left: 1px solid var(--outline, #e6e6e6);
+}
+
+.heroActionGroup .heroAction,
+.heroActionGroup .moreBtn {
+  padding: 8px 12px;
+  gap: 10px;
+  border-radius: 0;
+  box-shadow: none;
+  color: #37352f;
+}
+
+.heroActionGroup .moreWrap {
+  align-items: stretch;
+}
+
+.heroActionGroup .moreBtn {
+  height: 100%;
+}
+
+.heroActionGroup .heroAction:hover,
+.heroActionGroup .heroAction:focus-visible,
+.heroActionGroup .moreBtn:hover,
+.heroActionGroup .moreBtn:focus-visible {
+  color: #37352f;
+  background-color: #f5f5f5;
+}
+
+.heroActionGroup .heroActionSaved {
+  background: #f2f9ff;
+  color: #37352f;
+}
+
+.heroActionGroup .heroActionSaved svg {
+  color: #0089c4;
+}
+
+.heroActionGroup .heroActionSaved:hover,
+.heroActionGroup .heroActionSaved:focus-visible {
+  background-color: #e8f4fd;
+  color: #37352f;
 }
 
 .heroAction,

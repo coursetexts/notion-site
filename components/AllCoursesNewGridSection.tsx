@@ -122,42 +122,6 @@ function CreatePathPromoCard({ onCreate }: { onCreate: () => void }) {
   )
 }
 
-function FieldAtlasPromoCard() {
-  return (
-    <PromoCard
-      className={styles.fieldAtlasPromo}
-      title='Check out our Field Atlas'
-      body='to see learning paths to understanding frontier research questions by field'
-      href='/field-atlas'
-      buttonLabel='View Field Atlas'
-    />
-  )
-}
-
-function JobSkillsAtlasPromoCard() {
-  return (
-    <PromoCard
-      className={styles.jobSkillsPromo}
-      title='Check out our Job Skills Atlas'
-      body='to see learning paths for skills by job'
-      href='/job-skills-atlas'
-      buttonLabel='View Job Skills Atlas'
-    />
-  )
-}
-
-function LifeSkillsAtlasPromoCard() {
-  return (
-    <PromoCard
-      className={styles.lifeSkillsPromo}
-      title='Check out our Life Skills Atlas'
-      body='For learning paths on common life skills'
-      href='/life-skills-atlas'
-      buttonLabel='View Life Skills Atlas'
-    />
-  )
-}
-
 function LearningPathsPromoSlot({
   inline,
   onCreate
@@ -165,20 +129,13 @@ function LearningPathsPromoSlot({
   inline?: boolean
   onCreate: () => void
 }) {
-  const cards = (
-    <>
-      <CreatePathPromoCard onCreate={onCreate} />
-      <FieldAtlasPromoCard />
-      <JobSkillsAtlasPromoCard />
-      <LifeSkillsAtlasPromoCard />
-    </>
-  )
+  const card = <CreatePathPromoCard onCreate={onCreate} />
 
   if (inline) {
-    return <div className={styles.promoRow}>{cards}</div>
+    return <div className={styles.promoRow}>{card}</div>
   }
 
-  return cards
+  return card
 }
 
 export function AllCoursesNewGridSection({
@@ -246,15 +203,6 @@ export function AllCoursesNewGridSection({
           descriptionWidth='75%'
         />
 
-        <p className={styles.disclaimerText}>
-          Coursetexts has neither sought nor received permission from any
-          university to open-source courses that were taught at that university.
-          It is not affiliated with, sponsored by, or endorsed by any
-          university.
-        </p>
-
-        <div className={styles.sectionDivider} role='separator' />
-
         <CourseCardGrid
           cards={coursePaths}
           emptyMessage={coursePathEmptyMessage(
@@ -264,6 +212,15 @@ export function AllCoursesNewGridSection({
           descriptionWidth='75%'
           startSlot={<DegreesPromoCard />}
         />
+
+        <p className={styles.disclaimerText}>
+          Coursetexts has neither sought nor received permission from any
+          university to open-source courses that were taught at that university.
+          It is not affiliated with, sponsored by, or endorsed by any
+          university.
+        </p>
+
+        <div className={styles.sectionDivider} role='separator' />
       </div>
     </section>
   )

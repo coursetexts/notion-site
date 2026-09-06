@@ -190,17 +190,6 @@
   color: #b42318;
 }
 
-.colLabels {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: 16px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6b7280;
-}
-
 .steps {
   display: flex;
   flex-direction: column;
@@ -219,18 +208,6 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 14px;
-}
-
-.stepBadge {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  background: #c9ebd8;
-  color: #1f6b4a;
-  font-size: 12px;
-  font-weight: 600;
 }
 
 .stepTitle {
@@ -277,8 +254,8 @@
 }
 
 .conceptTree {
-  margin-left: 12px;
-  padding-left: 16px;
+  margin: 4px 0 0 8px;
+  padding: 4px 0 4px 16px;
   border-left: 1px solid #e6e6e6;
   display: flex;
   flex-direction: column;
@@ -295,15 +272,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.mark {
-  flex-shrink: 0;
-  width: 18px;
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: #6b7280;
 }
 
 .rowInput {
@@ -326,11 +294,11 @@
 
 .whyField {
   display: block;
-  margin: 4px 0 8px 26px;
+  margin: 4px 0 8px 0;
 }
 
 .stepCard > .whyField {
-  margin-left: 34px;
+  margin-left: 0;
 }
 
 .whyLabel {
@@ -363,7 +331,9 @@
 }
 
 .subTree {
-  margin-left: 26px;
+  margin: 2px 0 0 8px;
+  padding: 2px 0 4px 16px;
+  border-left: 1px solid #e6e6e6;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -514,9 +484,5 @@
   .outlineTitleRow {
     align-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  .colLabels {
-    display: none;
   }
 }

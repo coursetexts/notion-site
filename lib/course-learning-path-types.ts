@@ -52,7 +52,7 @@ export interface CourseLearningPathTopicResource {
   position: number
   title: string
   url?: string
-  /** The specific part that helped. */
+  /** What part helped and why. */
   passage?: string
   why?: string
 }

@@ -1547,8 +1547,7 @@ export function learningPathFromOutline({
       status: 'exploring',
       x: 50,
       y: 12,
-      description:
-        'Begin with the intention. Work backward into the knowledge that would make you capable of it.',
+      description: '',
       why: 'This path starts from what you are trying to do.',
       resources: []
     }
@@ -1659,8 +1658,7 @@ export function emptyLearningPath(
         status: 'exploring',
         x: 50,
         y: 18,
-        description:
-          'Begin with the intention. Work backward into the knowledge that would make you capable of it.',
+        description: '',
         why: 'Courses and fields are particular paths through a larger graph. This path starts from what you are trying to do.',
         resources: []
       }
