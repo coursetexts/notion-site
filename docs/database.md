@@ -1,6 +1,6 @@
 # Database
 
-Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell.
+Fresh installs: apply SQL in [`supabase/migrations/`](../supabase/migrations/README.md). Prefer `000_complete_schema.sql` (includes `001`–`030`, `034`–`038`, and `040`, with `rating` already 0–100, plus commitment reminder columns). Existing DBs that already ran an older 1–5 `038` should also apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments and optional reminder cadence (`041` creates `learning_path_commitments` if `030` was never applied). Apply `042` for private-path collaborator invites by email. Apply `043` so private or unknown learning-path URLs do not render an empty Coursetexts shell. Apply `045` so `/knowledge-graph` can persist topic–path occurrences.
 
 ## Table groups
 
@@ -70,6 +70,7 @@ flowchart TB
     ukt["user_knowledge_topics"]
     kt["knowledge_topics"]
     ke["knowledge_topic_edges"]
+    ko["knowledge_topic_path_occurrences"]
   end
 
   subgraph Reports["Reports"]
@@ -107,6 +108,8 @@ flowchart TB
   auth_users --> ukt
   auth_users --> cr
   kt --> ke
+  kt --> ko
+  lp --> ko
   notebooks --> tabs
 ```
 
@@ -448,7 +451,7 @@ erDiagram
 
 ## Knowledge
 
-Per-user acquired topics plus a shared catalog of labels and edges. The profile Knowledge tab shows a list only; the catalog still powers ingest and can feed a graph later. See [knowledge.md](./knowledge.md).
+Per-user acquired topics plus a shared catalog of labels, path occurrences, and edges. `/knowledge-graph` shows topics and the learning paths they reoccur in. The profile Knowledge tab stays a list. See [knowledge.md](./knowledge.md).
 
 ```mermaid
 erDiagram
@@ -456,6 +459,8 @@ erDiagram
   learning_paths |o--o{ user_knowledge_topics : "source_path_id"
   knowledge_topics ||--o{ knowledge_topic_edges : "from_id"
   knowledge_topics ||--o{ knowledge_topic_edges : "to_id"
+  knowledge_topics ||--o{ knowledge_topic_path_occurrences : "topic_id"
+  learning_paths |o--o{ knowledge_topic_path_occurrences : "path_id"
 
   user_knowledge_topics {
     uuid id PK
@@ -477,6 +482,16 @@ erDiagram
     uuid to_id FK
     text kind "prerequisite related part_of"
     text source "path_structure llm"
+  }
+
+  knowledge_topic_path_occurrences {
+    uuid id PK
+    uuid topic_id FK
+    uuid path_id FK "nullable"
+    text path_slug
+    text path_title
+    text path_kind "community research course"
+    text node_kind "topic subtopic concept path_node"
   }
 ```
 
@@ -546,7 +561,7 @@ erDiagram
 - **`learning_path_join_requests`**: insert only via `request_learning_path_join`; owner or requester may select/delete.
 - **`learning_path_user_state` / `course_notes` / `learning_path_pins` / `learning_path_commitments`**: owner only.
 - **`user_knowledge_topics`**: public read; owner insert/delete.
-- **`knowledge_topics` / `knowledge_topic_edges`**: public read; writes via service role (ingest API; daily LLM cron is off).
+- **`knowledge_topics` / `knowledge_topic_edges` / `knowledge_topic_path_occurrences`**: public read; writes via service role (ingest API; daily LLM cron is off). Existing DBs: apply `045_knowledge_topic_path_occurrences.sql`.
 - **`content_reports`**: public read (testing); signed-in users insert their own rows. Restrict `/reports` later via `REPORTS_DASHBOARD_OPEN`.
 - **`learning_path_ratings`**: owner read/write; localStorage fallback when signed out or `038` is missing.
 - **`learning_path_resource_votes`**: readable when the path is; any signed-in user may upvote on `public` / `collaborative` paths. Votes do not change resource sequence.

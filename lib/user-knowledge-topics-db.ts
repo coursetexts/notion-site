@@ -178,6 +178,7 @@ export async function addMyKnowledgeTopics(
     pathSlug?: string | null
     pathTitle?: string | null
     graphEdges?: KnowledgeGraphEdgeDraft[]
+    pathKind?: 'community' | 'research' | 'course' | null
   }
 ): Promise<UserKnowledgeTopic[]> {
   const userId = await currentUserId()
@@ -226,7 +227,16 @@ export async function addMyKnowledgeTopics(
   }
   void ingestKnowledgeGraph({
     labels: incoming.map((topic) => topic.label),
-    edges: source?.graphEdges
+    edges: source?.graphEdges,
+    path:
+      source?.pathSlug || source?.pathId
+        ? {
+            id: source.pathId,
+            slug: source.pathSlug,
+            title: source.pathTitle,
+            kind: source.pathKind
+          }
+        : undefined
   })
   return listKnowledgeTopicsByUserId(userId)
 }
@@ -236,12 +246,14 @@ export async function addKnowledgeTopicsFromCompletedPath(input: {
   pathId?: string | null
   pathSlug?: string | null
   pathTitle?: string | null
+  pathKind?: 'community' | 'research' | 'course' | null
   graphEdges?: KnowledgeGraphEdgeDraft[]
 }): Promise<UserKnowledgeTopic[]> {
   return addMyKnowledgeTopics(input.labels, {
     pathId: input.pathId,
     pathSlug: input.pathSlug,
     pathTitle: input.pathTitle,
+    pathKind: input.pathKind,
     graphEdges: input.graphEdges
   })
 }

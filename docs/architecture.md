@@ -51,17 +51,17 @@ Custom landing page (not the raw Notion root). Section order:
 1. Header
 2. Hero + search
 3. Dot-grid of featured Notion courses
-4. **What is a learning path?** — copy plus a looping visual of the path diagram (`HomeLearningPathDiagram`): goal in a box, then connected concepts, then three stacked resources that become a Resource list (faint video / paper / exercise / book icons on the right of each resource), then notes (straight lines, not arrows), then a commit/remind → **Josh · Committed** and a Notify badge. The learning-path screenshot (`learning-path-preview.png`) is hidden during the loop and only slides up from the bottom at the end, covering the diagram; hovering it holds that frame, and leaving it (or never hovering) lets the animation loop. Decorative only; it does not create a path. `/community` still uses the static `LearningPathSchemaDiagram`.
-5. **Try courses from top schools** (Notion courses, subject chips). The publishing-pipeline copy sits to the left of **View all**.
-6. **Try learning paths from our community** (catalog paths). Community copy sits to the left of **View all**, with a link to `/community`.
-7. **Coursetexts is social learning**
-8. Learn something new / donate / blog / footer
+4. **A new educational interface. Learning paths.** — copy plus a looping visual (`HomeLearningPathDiagram`): goal in a box, then connected concepts, then three stacked resources that become a Resource list (faint video / paper / exercise / book icons on the right of each resource), then notes, then a commit/remind → **Josh · Committed** and a Notify badge. Decorative only; it does not create a path. `/community` still uses the static `LearningPathSchemaDiagram`.
+5. **Try learning paths from our community** (catalog paths). Community copy sits to the left of **View all**, with a link to `/community`.
+6. **A community for self-learners** (`HomeSocialLearningSection`).
+7. **Learn from advanced university courses** (Notion courses, subject chips). The publishing-pipeline copy sits to the left of **View all**.
+8. Donate / blog / footer
 
 Course cards come from the Notion sitemap in `getStaticProps`. Community path cards come from `listCatalogLearningPaths()` (seeded catalog, merged with any extra rows in `lib/learning-path-seed.ts`).
 
 ## All Courses (`/all-courses`)
 
-The Guyot title is a dropdown: **All Academic Courses** (default) or **All Learning Paths**. The choice is `?view=learning-paths` (omit `view` for courses). Search `q` is shared. Subject chips and school logos apply only to the courses view.
+The Guyot title is static and follows the selected catalog: **All Academic Courses** (default) or **All Learning Paths**. Under search, **Academic Courses | Learning Paths** is a visible text filter (`?view=learning-paths`; omit `view` for courses). Search `q` is shared. Subject chips and school logos apply only to the courses view; topic chips apply only to the learning-paths view.
 
 **Courses view**
 
@@ -93,6 +93,7 @@ flowchart LR
   LPNew["/learning-path/new"]
   LPIndex["/learning-paths"]
   Atlas["/field-atlas"]
+  KnowledgeGraph["/knowledge-graph"]
   Community["/community"]
   Resources["/community-resources"]
   Profile["/profile  /profile/{userId}"]
@@ -106,6 +107,7 @@ flowchart LR
   LPIndex --> LP
   LPNew --> LP
   Atlas -->|"kind=research"| LPNew
+  KnowledgeGraph -->|"topic paths"| LP
   All -->|"courses view"| Course
   All -->|"courses view syllabi"| LP
   All -->|"?view=learning-paths"| LP
@@ -123,11 +125,12 @@ flowchart LR
 | -------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Home                       | `/`                                                              | Notion sitemap + catalog learning paths                                                                                                                                                                                                                                                                                                                                                                         |
 | Notion courses             | `/course/{pageId}`, `/[pageId]`, `/c/*`                          | Notion + `courses` / activity / `course_notes`                                                                                                                                                                                                                                                                                                                                                                  |
-| Catalog browse             | `/all-courses`                                                   | Title toggle **All Academic Courses** (default) or **All Learning Paths**. Courses: Notion + filled `kind=course` syllabi (`is_filled`) + degrees promo. Learning paths (`?view=learning-paths`): public `community` + `research` via `listNonCourseLearningPaths()` + create-path promo.                                                                                                                           |
+| Catalog browse             | `/all-courses`                                                   | Visible **Academic Courses \| Learning Paths** filter (`?view=learning-paths`; omit `view` for courses). Heading matches the selection. Courses: Notion + filled `kind=course` syllabi (`is_filled`) + degrees promo. Learning paths: public `community` + `research` via `listNonCourseLearningPaths()` + create-path promo.                                                                                                                           |
 | Degrees                    | `/degrees`                                                       | UG / grad JSON                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Course learning path       | `/learning-path/{slug}` (`kind=course`)                          | Same shell; syllabus outline + `learning_paths.data` (`curated_*` backup)                                                                                                                                                                                                                                                                                                                                       |
 | Community / research paths | `/learning-paths`, `/learning-path/{slug}`, `/learning-path/new` | `learning_paths` + `learning_path_user_state`. Left outline: **Overview** (Resources only; no Why), then the accordion topic tree (vertical line for nested steps; light-blue stroke check when explored). Hero: publisher photo · Public/Collab/Private · Published; Save/••• chip (bookmark icon). **•••** has Share (copy link), Report; owners change visibility. While private, owners can **Invite** a Coursetexts account by email (no email is sent; access is a matching signed-in address). The owner and those invitees can add/edit nodes; invitee-added resources show **Added by you**. A private URL you cannot read shows a gate; signed-in visitors can **Request to join**. On Collab, visitors suggest resources (dotted card); the owner **Accept**s them onto the official list. **Context** opens a dialog with the copied LLM prompt (current step, numbered outline with whys, goal) and how to paste it into a chat. Auto-fill shows a watering-plant popup until the outline is ready. Topic threads are **Discussions**. |
 | Field Atlas                | `/field-atlas`                                                   | Seeded atlas tree; can start a `kind=research` path                                                                                                                                                                                                                                                                                                                                                             |
+| Knowledge graph            | `/knowledge-graph`                                               | Frozen snapshot in `data/knowledge-graph.json`. Page does not harvest or call `GET /api/knowledge-graph`. LLM clustering is typed but not called yet.                                                                                                                                                                                          |
 | Community explainer        | `/community`                                                     | Learning-path copy + structure diagram; collab-resources copy + vote/order diagram; trending lists                                                                                                                                                                                                                                                                                                              |
 | Resource library           | `/community-resources`                                           | `resources`, `knowledge_components`, `search_community`                                                                                                                                                                                                                                                                                                                                                         |
 | Reports                    | `/reports`                                                       | `content_reports`. Open while testing; later `coursetexts.info@gmail.com` only.                                                                                                                                                                                                                                                                                                                                 |
@@ -204,7 +207,7 @@ Adding a resource on a syllabus node patches `learning_paths.data` and also publ
 
 ## Knowledge on a profile
 
-Finishing a community, research, or course path records unique topic labels on `user_knowledge_topics` and may ingest structural edges into the shared catalog. Newly explored topics (and finishing the whole map) ask for learner-entered duration and a 0–100% enjoyment rating (`learning_path_ratings`). The Knowledge tab list and the path **What you learned** row are documented in [knowledge.md](./knowledge.md). A daily Gemini job that would add extra catalog edges is **in the repo but not scheduled**.
+Finishing a community, research, or course path records unique topic labels on `user_knowledge_topics` and may ingest structural edges plus path occurrences into the shared catalog. `/knowledge-graph` maps those topics to the learning paths they reoccur in. Newly explored topics (and finishing the whole map) ask for learner-entered duration and a 0–100% enjoyment rating (`learning_path_ratings`). The Knowledge tab list and the path **What you learned** row are documented in [knowledge.md](./knowledge.md). A daily Gemini job that would add extra catalog edges is **in the repo but not scheduled**. The next LLM step is clustering similar labels across paths.
 
 ## Notes on a profile
 

@@ -368,3 +368,34 @@ export async function applyLlmKnowledgeEdges(
     skipped: false
   }
 }
+
+/**
+ * Next LLM pass (not wired yet): cluster similar labels that recur across
+ * learning paths into one knowledge component. Harvest already stores
+ * per-path occurrences on exact-match labels.
+ */
+export type KnowledgeGraphLlmClusterDraft = {
+  canonicalLabel: string
+  members: string[]
+}
+
+export const KNOWLEDGE_GRAPH_LLM_CLUSTER_SCHEMA = {
+  type: 'object',
+  properties: {
+    clusters: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          canonical: { type: 'string' },
+          members: {
+            type: 'array',
+            items: { type: 'string' }
+          }
+        },
+        required: ['canonical', 'members']
+      }
+    }
+  },
+  required: ['clusters']
+}

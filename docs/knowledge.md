@@ -1,8 +1,12 @@
 # Knowledge (profile + collective graph)
 
-Topics you pick up by finishing learning paths, plus an optional Coursetexts-wide graph of how those topics relate.
+Topics you pick up by finishing learning paths, plus a Coursetexts-wide graph of how those topics recur across paths.
 
 ## What people see
+
+`/knowledge-graph` is a public map of **knowledge components** harvested from filled course syllabi and public community/research learning paths. Matching titles collapse onto one node. Click a topic to see every learning path it appears on. The default view is recurring syllabus **topics** (and community path nodes). **Include matching concepts** adds leaf labels that also recur. Exact wording matches today; an LLM pass can later cluster similar names (`KNOWLEDGE_GRAPH_LLM_CLUSTER_SCHEMA` in `lib/knowledge-graph-llm.ts` — not wired yet).
+
+The page reads a frozen snapshot (`data/knowledge-graph.json`). It does **not** call `GET /api/knowledge-graph` and does not harvest on load. To rebuild the snapshot on purpose: `npx tsx scripts/snapshot-knowledge-graph.ts`.
 
 On `/profile` and `/profile/{userId}`, the primary tabs are **Learning | Knowledge | Notes | Bookmarks | Activity**. **Notes** is owner-only (`/profile`). Search fields on those tabs share one width.
 
@@ -19,7 +23,7 @@ The outline marks progress with a light-blue stroke check when a topic is explor
 
 **Finished** means every non-goal node is `explored` (community/research) or every flattened syllabus node is in the explored set (course). Un-exploring a topic hides the What you learned tab again until the path is complete.
 
-Existing DBs: apply `035_user_knowledge_topics.sql` and `036_knowledge_graph.sql`. For duration + enjoyment % after explore/finish, apply `038_learning_path_ratings.sql` (and `039` if an older 1–5 `rating` check is already live).
+Existing DBs: apply `035_user_knowledge_topics.sql`, `036_knowledge_graph.sql`, and `045_knowledge_topic_path_occurrences.sql`. For duration + enjoyment % after explore/finish, apply `038_learning_path_ratings.sql` (and `039` if an older 1–5 `rating` check is already live).
 
 ## How topics get onto a profile
 
@@ -31,7 +35,7 @@ Un-exploring a topic does **not** delete it from the Knowledge tab. You still �
 
 ## Shared catalog (collective graph)
 
-`knowledge_topics` is one Coursetexts-wide list of labels. `knowledge_topic_edges` links them (`prerequisite` | `related` | `part_of`) from:
+`knowledge_topics` is one Coursetexts-wide list of labels. `knowledge_topic_path_occurrences` records which public learning paths each label appears on. `knowledge_topic_edges` links topics (`prerequisite` | `related` | `part_of`) from:
 
 | Source | When |
 |--------|------|
@@ -40,7 +44,7 @@ Un-exploring a topic does **not** delete it from the Knowledge tab. You still �
 
 Public `SELECT`. Writes use the service role (ingest API or the cron handler).
 
-When a signed-in user finishes a public path, the client also `POST`s `/api/knowledge-graph/ingest` with those labels and structural edges. That incremental ingest **is** on. It does not call Gemini.
+When a signed-in user finishes a public path, the client also `POST`s `/api/knowledge-graph/ingest` with those labels, structural edges, and the path identity so occurrences can be upserted. That incremental ingest **is** on. It does not call Gemini.
 
 ## Daily LLM rebuild — disabled
 
@@ -70,6 +74,8 @@ To enable later:
 }
 ```
 
-Vercel will send `Authorization: Bearer $CRON_SECRET`. The job is incremental (~8 focus topics + neighbors/candidates) and `maxDuration` is 60s.
+Vercel will send `Authorization: Bearer $CRON_SECRET`. The job is incremental (~8 focus topics + neighbors/candidates) and `maxDuration` is 60s. Harvest also upserts `knowledge_topic_path_occurrences`.
 
-Until then, catalog ingest still writes structural edges. The Knowledge tab no longer shows a graph; `ProfileKnowledgeGraph` stays in the repo if we turn that view back on.
+The next LLM step is clustering similar labels across paths (`KNOWLEDGE_GRAPH_LLM_CLUSTER_SCHEMA`). Do not invent new topics. Until that is wired, `/knowledge-graph` uses exact `normalized_label` matches.
+
+Until then, catalog ingest still writes structural edges and path occurrences. The Knowledge tab no longer shows a graph; `ProfileKnowledgeGraph` stays in the repo if we turn that view back on.

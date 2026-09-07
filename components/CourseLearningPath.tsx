@@ -272,6 +272,7 @@ export function CourseLearningPath({
       pathId: course.id,
       pathSlug: course.slug,
       pathTitle: course.title,
+      pathKind: 'course',
       graphEdges: structuralKnowledgeEdgesFromCourseLearningPath(course)
     })
   }, [auth?.user, course, exploredIds])

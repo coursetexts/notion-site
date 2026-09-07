@@ -102,6 +102,12 @@ export async function listKnowledgeGraphSubset(
 export async function ingestKnowledgeGraph(input: {
   labels: string[]
   edges?: KnowledgeGraphEdgeDraft[]
+  path?: {
+    id?: string | null
+    slug?: string | null
+    title?: string | null
+    kind?: string | null
+  }
 }): Promise<void> {
   if (typeof window === 'undefined') return
   const labels = input.labels.map((label) => label.trim()).filter(Boolean)
@@ -121,7 +127,11 @@ export async function ingestKnowledgeGraph(input: {
       },
       body: JSON.stringify({
         labels,
-        edges: input.edges ?? []
+        edges: input.edges ?? [],
+        pathId: input.path?.id ?? null,
+        pathSlug: input.path?.slug ?? null,
+        pathTitle: input.path?.title ?? null,
+        pathKind: input.path?.kind ?? null
       })
     })
   } catch {

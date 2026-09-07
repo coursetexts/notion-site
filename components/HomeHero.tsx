@@ -196,10 +196,7 @@ export function HomeHero({
             ))}
           </div>
         </div>
-        <p className={styles.nonProfitNote}>
-           {/* Coursetexts is a 501(c)(3) nonprofit building open tools for self-directed learning. */}
-           Coursetexts is a registered 501© <br/>non-profit doing open research on self-learning, <br/>educational interfaces, and scaling open source software.
-        </p>
+
       </div>
     </section>
   )

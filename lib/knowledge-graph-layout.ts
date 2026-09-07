@@ -111,3 +111,100 @@ export function layoutKnowledgeGraph(
   const height = Math.max(420, cursorY + isolatedHeight + PAD_Y)
   return { width: Math.max(720, maxX), height, positions }
 }
+
+/**
+ * Bipartite layout: learning paths on an outer ring, knowledge components
+ * inward. Topics that appear on several paths sit closer to the center.
+ */
+export function layoutKnowledgeOccurrenceGraph(
+  topics: Array<{ id: string; pathIds: string[] }>,
+  paths: Array<{ id: string }>
+): KnowledgeGraphLayout {
+  const positions: Record<string, { x: number; y: number }> = {}
+  if (paths.length === 0 && topics.length === 0) {
+    return { width: 720, height: 420, positions }
+  }
+
+  if (paths.length === 0) {
+    return layoutKnowledgeGraph(
+      topics.map((topic) => ({ id: topic.id, label: topic.id })),
+      []
+    )
+  }
+
+  const radius = Math.max(280, (paths.length * 92) / (2 * Math.PI))
+  const cx = PAD_X + radius + NODE_W / 2 + 36
+  const cy = PAD_Y + radius + NODE_H / 2 + 24
+
+  paths.forEach((path, index) => {
+    const angle = (Math.PI * 2 * index) / paths.length - Math.PI / 2
+    positions[path.id] = {
+      x: cx + Math.cos(angle) * radius,
+      y: cy + Math.sin(angle) * radius
+    }
+  })
+
+  const singles = new Map<string, string[]>()
+  const bridges: Array<{ id: string; pathIds: string[] }> = []
+  for (const topic of topics) {
+    if (topic.pathIds.length === 1) {
+      const pathId = topic.pathIds[0]
+      const list = singles.get(pathId) ?? []
+      list.push(topic.id)
+      singles.set(pathId, list)
+    } else {
+      bridges.push(topic)
+    }
+  }
+
+  const inner = radius * 0.58
+  for (const [pathId, ids] of singles) {
+    const origin = positions[pathId]
+    if (!origin) continue
+    const base = Math.atan2(origin.y - cy, origin.x - cx)
+    ids.forEach((id, index) => {
+      const spread = (index - (ids.length - 1) / 2) * Math.min(0.22, 1.2 / ids.length)
+      const angle = base + spread
+      positions[id] = {
+        x: cx + Math.cos(angle) * inner,
+        y: cy + Math.sin(angle) * inner
+      }
+    })
+  }
+
+  bridges.forEach((topic, index) => {
+    let x = 0
+    let y = 0
+    let count = 0
+    for (const pathId of topic.pathIds) {
+      const origin = positions[pathId]
+      if (!origin) continue
+      x += origin.x
+      y += origin.y
+      count += 1
+    }
+    if (count === 0) {
+      positions[topic.id] = { x: cx, y: cy }
+      return
+    }
+    const avgX = x / count
+    const avgY = y / count
+    const jitter = ((index % 8) - 3.5) * 10
+    positions[topic.id] = {
+      x: avgX * 0.42 + cx * 0.58 + jitter,
+      y: avgY * 0.42 + cy * 0.58 + ((index % 5) - 2) * 8
+    }
+  })
+
+  let maxX = cx + radius + NODE_W / 2 + PAD_X
+  let maxY = cy + radius + NODE_H / 2 + PAD_Y
+  for (const point of Object.values(positions)) {
+    maxX = Math.max(maxX, point.x + NODE_W / 2 + PAD_X)
+    maxY = Math.max(maxY, point.y + NODE_H / 2 + PAD_Y)
+  }
+  return {
+    width: Math.max(720, Math.ceil(maxX)),
+    height: Math.max(520, Math.ceil(maxY)),
+    positions
+  }
+}

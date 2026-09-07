@@ -96,10 +96,11 @@ For a named migration history instead of ad‑hoc snippets, use the Supabase CLI
 | `042_learning_path_invites.sql` | Private-path collaborator invites by email. Invitee must already have a `profiles` row. No invitation email. Invitees can read and edit outline `data` while the path stays private |
 | `043_learning_path_public_access.sql` | RPC `learning_path_public_access(slug)` so a private or unknown path URL does not render an empty Coursetexts shell. Requires `042`. |
 | `044_learning_path_join_requests.sql` | Request-to-join a private path. Stores requester email. Owner sees requests on the path and profile. Accepting creates a `learning_path_invites` row. Replaces `learning_path_public_access` to add `join_requested`. Requires `042`/`043`. |
+| `045_knowledge_topic_path_occurrences.sql` | Topic ↔ learning-path occurrences for `/knowledge-graph`. Public read; writes via service role. Requires `036`. |
 
 **Fresh project:** paste `000_complete_schema.sql` once (includes `001`–`014`, `017`–`030`, `034`–`038`, `040`, and commitment reminder columns). Skip `015`/`016` unless you already had old table names.
 
-Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path.
+Existing projects that already ran through `037` should apply `038` (do not re-run `000`). If `038` already ran with a 1–5 rating check, apply `039`. Apply `040` so collaborative paths cannot rewrite the outline. Apply `041` for Learn-tab commitments + reminder cadence (`041` creates the table if `030` was never applied). Apply `042` for private collaborator invites. Apply `043` so private/unknown path URLs show an access/missing state. Apply `044` so signed-in visitors can request to join a private path. Apply `045` for `/knowledge-graph` topic–path occurrences.
 
 ## 4. Optional seeds
 

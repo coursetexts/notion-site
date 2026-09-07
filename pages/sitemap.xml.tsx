@@ -43,6 +43,10 @@ const createSitemap = (siteMap: SiteMap) =>
       <loc>${host}/</loc>
     </url>
 
+    <url>
+      <loc>${host}/knowledge-graph</loc>
+    </url>
+
     ${Object.keys(siteMap.canonicalPageMap)
       .map((canonicalPagePath) =>
         `

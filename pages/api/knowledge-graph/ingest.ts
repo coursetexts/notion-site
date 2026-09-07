@@ -3,10 +3,14 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getApiUser } from '@/lib/api-user'
 import {
   type KnowledgeGraphEdgeDraft,
+  type KnowledgePathRef,
   isKnowledgeEdgeKind,
   mergeEdgeDrafts
 } from '@/lib/knowledge-graph'
-import { ingestKnowledgeLabelsAndEdges } from '@/lib/knowledge-graph-harvest'
+import {
+  ingestKnowledgeLabelsAndEdges,
+  knowledgePathRefFromRow
+} from '@/lib/knowledge-graph-harvest'
 import { normalizeKnowledgeTopicLabel } from '@/lib/learning-path-knowledge'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 
@@ -32,6 +36,62 @@ function readDrafts(raw: unknown): KnowledgeGraphEdgeDraft[] {
   return mergeEdgeDrafts(drafts)
 }
 
+function readString(value: unknown) {
+  return typeof value === 'string' ? value.trim() : ''
+}
+
+async function resolveIngestPath(
+  admin: NonNullable<ReturnType<typeof getSupabaseAdmin>>,
+  body: Record<string, unknown>
+): Promise<KnowledgePathRef | null> {
+  const slug = readString(body.pathSlug)
+  const id = readString(body.pathId)
+  const title = readString(body.pathTitle)
+  const kind = body.pathKind
+  if (!slug && !id) return null
+
+  const columns = 'id, slug, title, kind'
+  if (slug) {
+    const { data } = await admin
+      .from('learning_paths')
+      .select(columns)
+      .eq('slug', slug)
+      .maybeSingle()
+    const fromRow = knowledgePathRefFromRow(
+      (data || {}) as {
+        id?: string
+        slug?: string
+        title?: string
+        kind?: string
+      }
+    )
+    if (fromRow) return fromRow
+  }
+  if (id) {
+    const { data } = await admin
+      .from('learning_paths')
+      .select(columns)
+      .eq('id', id)
+      .maybeSingle()
+    const fromRow = knowledgePathRefFromRow(
+      (data || {}) as {
+        id?: string
+        slug?: string
+        title?: string
+        kind?: string
+      }
+    )
+    if (fromRow) return fromRow
+  }
+
+  return knowledgePathRefFromRow({
+    id: id || slug,
+    slug: slug || id,
+    title: title || slug || id,
+    kind: typeof kind === 'string' ? kind : null
+  })
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -52,7 +112,8 @@ export default async function handler(
   }
 
   const body = req.body && typeof req.body === 'object' ? req.body : {}
-  const labelsRaw = (body as { labels?: unknown }).labels
+  const record = body as Record<string, unknown>
+  const labelsRaw = record.labels
   const labels = Array.isArray(labelsRaw)
     ? labelsRaw
         .filter((item): item is string => typeof item === 'string')
@@ -65,9 +126,11 @@ export default async function handler(
   }
 
   try {
+    const path = await resolveIngestPath(admin, record)
     await ingestKnowledgeLabelsAndEdges(admin, {
       labels,
-      edges: readDrafts((body as { edges?: unknown }).edges)
+      edges: readDrafts(record.edges),
+      path
     })
     return res.status(200).json({ ok: true })
   } catch (error: unknown) {

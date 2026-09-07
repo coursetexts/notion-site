@@ -83,10 +83,9 @@ export function HomeDotGrid({ courses = [] }: HomeDotGridProps) {
         </div>
 
         <p className={styles.disclaimer}>
-          Coursetexts has neither sought nor received permission from any
-          university to open-source courses that were taught at that university.
-          It is not affiliated with, sponsored by, or endorsed by any
-          university.
+        Coursetexts is a registered 501©
+non-profit doing open research on self-learning,
+educational interfaces, and scaling open source software.
         </p>
       </div>
     </section>

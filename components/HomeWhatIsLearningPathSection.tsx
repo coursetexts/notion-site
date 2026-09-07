@@ -17,13 +17,8 @@ export function HomeWhatIsLearningPathSection() {
             <span className={styles.headingAccent}>Learning paths.</span>
           </h2>
           <p className={styles.body}>
-            When you want to learn something, you have a goal. A learning path
-            is that goal, broken into the concepts you need, in an order that
-            works — with a resource list and your notes on each one.
-            <br />
-            <br />
-            It is one place to follow, remember, and come back to, instead of a
-            trail of chats, videos, and tabs.
+          Turn any learning goal into a path you can finish.
+          Follow an ordered sequence of concepts, use the best community-ranked resources, and keep your notes and progress in one place.
           </p>
         </div>
 

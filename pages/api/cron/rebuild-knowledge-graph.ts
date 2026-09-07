@@ -62,6 +62,7 @@ export default async function handler(
       ok: true,
       topics: harvested.topicCount,
       structuralEdges: harvested.edgeCount,
+      occurrences: harvested.occurrenceCount,
       llm
     })
   } catch (error: unknown) {

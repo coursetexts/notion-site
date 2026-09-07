@@ -67,3 +67,44 @@ export function listFilledCuratedCourseCatalog(): FilledCuratedCourseCatalogItem
     a.title.localeCompare(b.title, undefined, { sensitivity: 'base' })
   )
 }
+
+export type FilledCuratedCoursePayload = {
+  slug: string
+  title: string
+  data: unknown
+}
+
+/** Full syllabus JSON for filled degree courses (server-only). */
+export function listFilledCuratedCoursePayloads(): FilledCuratedCoursePayload[] {
+  const dir = path.join(process.cwd(), 'data/curated-courses')
+  if (!fs.existsSync(dir)) return []
+
+  const items: FilledCuratedCoursePayload[] = []
+
+  for (const file of fs.readdirSync(dir)) {
+    if (!file.endsWith('.json')) continue
+    const fullPath = path.join(dir, file)
+    let raw: unknown
+    try {
+      raw = JSON.parse(fs.readFileSync(fullPath, 'utf8'))
+    } catch {
+      continue
+    }
+    if (!courseLearningPathIsFilled(raw)) continue
+    if (!raw || typeof raw !== 'object') continue
+
+    const row = raw as { slug?: unknown; title?: unknown }
+    const slug =
+      typeof row.slug === 'string' && row.slug.trim()
+        ? row.slug.trim()
+        : file.replace(/\.json$/, '')
+    const title =
+      typeof row.title === 'string' && row.title.trim()
+        ? row.title.trim()
+        : slug
+
+    items.push({ slug, title, data: raw })
+  }
+
+  return items
+}

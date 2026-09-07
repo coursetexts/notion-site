@@ -3,10 +3,14 @@
  * Labels are unique on normalized_label. Edges come from path structure or the LLM job.
  */
 
-import type { LearningPathData } from '@/lib/learning-path-seed'
+import type {
+  LearningPathData,
+  LearningPathKind
+} from '@/lib/learning-path-seed'
 import {
   type CourseLearningPathData,
   type CourseLearningPathNode,
+  type CourseLearningPathNodeType,
   isCourseLearningPathPayload
 } from '@/lib/course-learning-path-types'
 import { normalizeKnowledgeTopicLabel } from '@/lib/learning-path-knowledge'
@@ -30,6 +34,47 @@ export type KnowledgeGraphViewEdge = {
   fromId: string
   toId: string
   kind: KnowledgeEdgeKind
+}
+
+export type KnowledgeNodeKind = CourseLearningPathNodeType | 'path_node'
+
+export type KnowledgePathRef = {
+  id: string
+  slug: string
+  title: string
+  kind: LearningPathKind
+}
+
+export type HarvestedTopicLabel = {
+  label: string
+  nodeKind: KnowledgeNodeKind
+}
+
+const NODE_KIND_RANK: Record<KnowledgeNodeKind, number> = {
+  topic: 3,
+  subtopic: 2,
+  concept: 2,
+  path_node: 1
+}
+
+export function isKnowledgePathKind(value: unknown): value is LearningPathKind {
+  return value === 'community' || value === 'research' || value === 'course'
+}
+
+export function isKnowledgeNodeKind(value: unknown): value is KnowledgeNodeKind {
+  return (
+    value === 'topic' ||
+    value === 'subtopic' ||
+    value === 'concept' ||
+    value === 'path_node'
+  )
+}
+
+export function preferKnowledgeNodeKind(
+  current: KnowledgeNodeKind,
+  next: KnowledgeNodeKind
+): KnowledgeNodeKind {
+  return NODE_KIND_RANK[next] > NODE_KIND_RANK[current] ? next : current
 }
 
 export function isKnowledgeEdgeKind(value: unknown): value is KnowledgeEdgeKind {
@@ -140,7 +185,46 @@ export function structuralKnowledgeEdgesFromCourseLearningPath(
 
 export type HarvestedPathGraph = {
   labels: string[]
+  topics: HarvestedTopicLabel[]
   edges: KnowledgeGraphEdgeDraft[]
+}
+
+function addHarvestedTopic(
+  topics: HarvestedTopicLabel[],
+  byKey: Map<string, number>,
+  label: string,
+  nodeKind: KnowledgeNodeKind
+) {
+  const trimmed = label.trim()
+  const key = normalizeKnowledgeTopicLabel(trimmed)
+  if (!trimmed || !key) return
+  const existing = byKey.get(key)
+  if (existing == null) {
+    byKey.set(key, topics.length)
+    topics.push({ label: trimmed, nodeKind })
+    return
+  }
+  topics[existing].nodeKind = preferKnowledgeNodeKind(
+    topics[existing].nodeKind,
+    nodeKind
+  )
+}
+
+function walkCourseHarvestTopics(
+  nodes: CourseLearningPathNode[],
+  topics: HarvestedTopicLabel[],
+  byKey: Map<string, number>
+) {
+  for (const node of nodes) {
+    const nodeKind: KnowledgeNodeKind =
+      node.type === 'topic' || node.type === 'subtopic' || node.type === 'concept'
+        ? node.type
+        : 'concept'
+    addHarvestedTopic(topics, byKey, node.title, nodeKind)
+    if (node.children?.length) {
+      walkCourseHarvestTopics(node.children, topics, byKey)
+    }
+  }
 }
 
 export function harvestGraphFromLearningPathData(
@@ -148,40 +232,26 @@ export function harvestGraphFromLearningPathData(
 ): HarvestedPathGraph | null {
   if (!data || typeof data !== 'object') return null
   if (isCourseLearningPathPayload(data)) {
-    const labels: string[] = []
-    const seen = new Set<string>()
-    const collect = (nodes: CourseLearningPathNode[]) => {
-      for (const node of nodes) {
-        const label = node.title.trim()
-        const key = normalizeKnowledgeTopicLabel(label)
-        if (label && key && !seen.has(key)) {
-          seen.add(key)
-          labels.push(label)
-        }
-        if (node.children?.length) collect(node.children)
-      }
-    }
-    collect(data.topics)
+    const topics: HarvestedTopicLabel[] = []
+    walkCourseHarvestTopics(data.topics, topics, new Map())
     return {
-      labels,
+      labels: topics.map((topic) => topic.label),
+      topics,
       edges: structuralKnowledgeEdgesFromCourseLearningPath(data)
     }
   }
   const row = data as { nodes?: unknown; edges?: unknown }
   if (!Array.isArray(row.nodes) || !Array.isArray(row.edges)) return null
   const path = data as LearningPathData
-  const labels: string[] = []
-  const seen = new Set<string>()
+  const topics: HarvestedTopicLabel[] = []
+  const byKey = new Map<string, number>()
   for (const node of path.nodes) {
     if (node.kind === 'goal') continue
-    const label = (node.label || '').trim()
-    const key = normalizeKnowledgeTopicLabel(label)
-    if (!label || !key || seen.has(key)) continue
-    seen.add(key)
-    labels.push(label)
+    addHarvestedTopic(topics, byKey, node.label || '', 'path_node')
   }
   return {
-    labels,
+    labels: topics.map((topic) => topic.label),
+    topics,
     edges: structuralKnowledgeEdgesFromLearningPath(path)
   }
 }
