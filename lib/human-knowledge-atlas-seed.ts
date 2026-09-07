@@ -967,6 +967,90 @@ export const ATLAS_QUESTIONS: Record<string, AtlasQuestion> = {
       )
     ],
     updated: '2026-03-15'
+  },
+  'q-ml-meaning': {
+    id: 'q-ml-meaning',
+    title: 'How do language models represent meaning?',
+    posed:
+      'Transformers predict the next token with striking fluency. It is still unclear whether the residual stream holds something like a world model, a pile of useful correlations, or a hybrid that only looks like understanding from the outside.',
+    status: 'active',
+    disciplinePath: 'Computer Science / Machine Learning',
+    hypotheses: [
+      {
+        id: 'h1',
+        statement:
+          'Meaning is a linear geometry in activation space: features, directions, and circuits that can be read off and edited.',
+        weight: 'leading',
+        proponents: 'Mechanistic interpretability community',
+        readingList: [
+          {
+            id: 'r-ml-h1-olah',
+            title: 'Zoom In: An Introduction to Circuits',
+            url: 'https://distill.pub/2020/circuits/zoom-in/',
+            note: 'Olah et al. — the claim that features and circuits are the right units.',
+            threads: []
+          },
+          {
+            id: 'r-ml-h1-elon',
+            title: 'Toy Models of Superposition',
+            url: 'https://transformer-circuits.pub/2022/toy_model/index.html',
+            note: 'Why related features share directions, and why that makes “meaning” hard to localize.',
+            threads: []
+          }
+        ]
+      },
+      {
+        id: 'h2',
+        statement:
+          'These models compress linguistic form, not a grounded model of the world; fluency is not understanding.',
+        weight: 'contender',
+        proponents: 'Grounding / embodiment skeptics',
+        readingList: [
+          {
+            id: 'r-ml-h2-bender',
+            title: 'On the Dangers of Stochastic Parrots',
+            url: 'https://dl.acm.org/doi/10.1145/3442188.3445922',
+            note: 'Bender et al., 2021 — the form-without-meaning argument.',
+            threads: []
+          }
+        ]
+      }
+    ],
+    evidence: [
+      {
+        id: 'e1',
+        claim:
+          'Probing and sparse autoencoders recover interpretable features, including some that look like entities and relations.',
+        strength: 'suggestive'
+      },
+      {
+        id: 'e2',
+        claim:
+          'Models still fail at simple grounded tasks that a meaning-bearing system should not miss.',
+        strength: 'suggestive'
+      }
+    ],
+    experiments: [
+      {
+        id: 'x1',
+        name: 'Activation-level causal interventions on transformer circuits',
+        stage: 'running',
+        note: 'Tests whether a putative “meaning” direction is actually used.'
+      }
+    ],
+    readingList: [
+      {
+        id: 'r-ml-illustrated',
+        title: 'The Illustrated Transformer',
+        url: 'https://jalammar.github.io/illustrated-transformer/',
+        note: 'The architecture the question is about, before the philosophy.',
+        threads: []
+      }
+    ],
+    researchers: ['Chris Olah', 'Ellie Pavlick', 'Jacob Andreas'],
+    labs: ['Anthropic', 'MIT CSAIL'],
+    threads: [],
+    updated: '2026-08-20'
   }
 }
 
@@ -1294,6 +1378,26 @@ export const ATLAS_FACTS: Record<string, AtlasKnownFact> = {
     ],
     threads: [],
     updated: '2026-02-14'
+  },
+  'k-ml-attention': {
+    id: 'k-ml-attention',
+    title:
+      'Scaled dot-product attention lets a token mix information from other tokens in a sequence.',
+    note: 'The mechanism is settled. What those mixtures represent is not.',
+    howDiscovered:
+      'Bahdanau et al. introduced attention for translation; Vaswani et al. (2017) made scaled dot-product attention the block of the transformer. The algebra is public and widely reimplemented. The open question is what the resulting representations are doing.',
+    disciplinePath: 'Computer Science / Machine Learning',
+    readingList: [
+      {
+        id: 'r-attn-vaswani',
+        title: 'Attention Is All You Need',
+        url: 'https://arxiv.org/abs/1706.03762',
+        note: 'Vaswani et al., 2017 — the architecture paper.',
+        threads: []
+      }
+    ],
+    threads: [],
+    updated: '2026-08-20'
   }
 }
 
@@ -1428,6 +1532,32 @@ export const ATLAS_TREE: AtlasTreeNode[] = [
             label: 'unresolved',
             kind: 'unresolved',
             questionIds: ['q-cs-pnp']
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'd-cs',
+    label: 'Computer Science',
+    kind: 'domain',
+    children: [
+      {
+        id: 's-ml',
+        label: 'Machine Learning',
+        kind: 'subfield',
+        children: [
+          {
+            id: 's-ml-known',
+            label: 'known',
+            kind: 'known',
+            factIds: ['k-ml-attention']
+          },
+          {
+            id: 's-ml-unresolved',
+            label: 'unresolved',
+            kind: 'unresolved',
+            questionIds: ['q-ml-meaning']
           }
         ]
       }

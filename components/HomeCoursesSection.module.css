@@ -109,9 +109,7 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition:
-    color 200ms ease,
-    opacity 200ms ease;
+  transition: color 200ms ease, opacity 200ms ease;
 }
 
 .subjectItem:hover,
@@ -190,9 +188,7 @@
 .courseCardLink {
   display: block;
   cursor: pointer;
-  transition:
-    transform 220ms ease,
-    opacity 220ms ease;
+  transition: transform 220ms ease, opacity 220ms ease;
 }
 
 .courseCardLink:hover,
@@ -308,9 +304,7 @@
   line-height: 20px;
   letter-spacing: 0;
   color: #000000;
-  transition:
-    color 220ms ease,
-    text-decoration-color 220ms ease;
+  transition: color 220ms ease, text-decoration-color 220ms ease;
 }
 
 .courseTitleTruncated {
@@ -320,6 +314,16 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+}
+
+.courseStats {
+  margin: 8px 0 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.0004em;
+  color: #6b7280;
 }
 
 .courseCardLink:hover .courseTitle,
@@ -370,9 +374,7 @@
   justify-content: space-between;
   position: relative;
   cursor: pointer;
-  transition:
-    border-top-color 220ms ease,
-    border-bottom-color 220ms ease;
+  transition: border-top-color 220ms ease, border-bottom-color 220ms ease;
 }
 
 .viewAllRow .viewAllBar {
@@ -444,9 +446,7 @@
   justify-content: center;
   box-sizing: border-box;
   cursor: pointer;
-  transition:
-    border-color 220ms ease,
-    transform 220ms ease;
+  transition: border-color 220ms ease, transform 220ms ease;
 }
 
 .viewAllArrowBox svg {

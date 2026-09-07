@@ -97,9 +97,7 @@
   text-decoration: none;
   cursor: pointer;
   box-sizing: border-box;
-  transition:
-    background 200ms ease,
-    opacity 200ms ease;
+  transition: background 200ms ease, opacity 200ms ease;
 }
 
 .promoButton:hover,
@@ -143,11 +141,97 @@
   margin-top: 32px;
 }
 
+.resultGroup + .sectionDivider,
+.bestMatchLink + .sectionDivider {
+  margin-top: 64px;
+}
+
 .promoRow .createPathPromo {
   grid-column: auto;
   grid-row: auto;
   min-height: 260px;
   height: auto;
+}
+
+.bestMatchLink {
+  display: block;
+  margin-bottom: 56px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bestMatch {
+  padding: 8px 0 4px;
+}
+
+.bestMatchKicker {
+  margin: 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0089c4;
+}
+
+.bestMatchTitle {
+  margin: 10px 0 0;
+  font-family: 'Guyot Press', serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: 0.0002em;
+  color: #000000;
+  text-decoration: underline;
+  text-decoration-color: var(--outline, #e6e6e6);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: color 220ms ease, text-decoration-color 220ms ease;
+}
+
+.bestMatchLink:hover .bestMatchTitle,
+.bestMatchLink:focus-visible .bestMatchTitle {
+  color: #0089c4;
+  text-decoration-color: #0089c4;
+}
+
+.bestMatchStats,
+.bestMatchMeta {
+  margin: 12px 0 0;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.0004em;
+  color: #6b7280;
+}
+
+.bestMatchDescription {
+  margin: 14px 0 0;
+  max-width: 42rem;
+  font-family: 'Guyot Press', serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: 0.0002em;
+  color: #353b48;
+}
+
+.resultGroup + .resultGroup {
+  margin-top: 64px;
+}
+
+.groupHeading {
+  margin: 0 0 28px;
+  font-family: 'Guyot Press', serif;
+  font-weight: 401;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: 0.0002em;
+  color: #000000;
 }
 
 @media (max-width: 1100px) {
@@ -160,6 +244,14 @@
 @media (max-width: 768px) {
   .content {
     padding: 112px 0 144px;
+  }
+
+  .groupHeading {
+    font-size: 22px;
+  }
+
+  .bestMatchTitle {
+    font-size: 28px;
   }
 }
 

@@ -18,6 +18,8 @@ export type HomeCourseCard = {
   subjectDegreeId?: string
   /** Graph mark used for community / research learning path cards. */
   communityMark?: boolean
+  /** Optional “7 concepts · 24 resources” line under the title. */
+  statsLine?: string
 }
 
 function CommunityPathMark() {
@@ -99,6 +101,10 @@ function HomeCourseCardItem({
           >
             {course.title}
           </h3>
+
+          {course.statsLine ? (
+            <p className={styles.courseStats}>{course.statsLine}</p>
+          ) : null}
 
           <p
             className={`${styles.courseDescription} ${styles.courseDescriptionTruncated}`}
@@ -241,7 +247,7 @@ export function HomeCoursesSection({
             It&apos;s opensource, compliant and really fast!
           </p>
           <div className={styles.viewAllBar}>
-            <Link href='/all-courses' legacyBehavior>
+            <Link href='/all-courses?view=courses' legacyBehavior>
               <a
                 className={styles.viewAllBarLink}
                 aria-label='View all courses'

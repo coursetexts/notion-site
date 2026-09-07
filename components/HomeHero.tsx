@@ -25,7 +25,7 @@ const partnerLinks = [
   {
     label: 'More schools',
     icon: '/images/home/plus-10.png',
-    href: '/all-courses'
+    href: '/all-courses?view=courses'
   }
 ]
 

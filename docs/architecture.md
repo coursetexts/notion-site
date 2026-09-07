@@ -61,18 +61,27 @@ Course cards come from the Notion sitemap in `getStaticProps`. Community path ca
 
 ## All Courses (`/all-courses`)
 
-The Guyot title is static and follows the selected catalog: **All Academic Courses** (default) or **All Learning Paths**. Under search, **Academic Courses | Learning Paths** is a visible text filter (`?view=learning-paths`; omit `view` for courses). Search `q` is shared. Subject chips and school logos apply only to the courses view; topic chips apply only to the learning-paths view.
+The Guyot title follows the selected catalog: **Discover** (default; omit `view`, or `?view=all`), **All Learning Paths**, **All University Courses**, **Degree Curricula**, or **Research Questions**. Under search, **All | Learning Paths | University Courses | Degrees | Research** is a visible text filter. Search `q` is shared. A query with no type filter searches every catalog together: the most goal-relevant result is the **Best match**, then remaining hits are grouped by type (related learning paths, university courses, degree curricula, research questions). Filled `kind=course` syllabi can appear under related learning paths when they match the goal. Subject chips apply only to the university-courses view; topic chips apply only to the learning-paths view; school logos show on Discover and University Courses.
 
-**Courses view**
+**Discover (default)**
+
+1. With a query: best match, then grouped results across learning paths (community + research + matching syllabi), official Notion courses, UG/grad degree curricula, and Field Atlas / Explore questions. A brown **Can't find what you're looking for? Create your own path →** card always sits at the bottom (matches and empty search). It opens the create-path modal.
+2. With no query: a short browse of each type (paths, university courses, degrees, research). Full syllabus grid stays on University Courses. The create-path promo sits in the learning-paths grid.
+
+**University Courses view (`?view=courses`)**
 
 1. Official Notion courses (capped at 14 until the user searches or picks subject chips)
 2. Filled `kind=course` syllabi: every `data/curated-courses/{slug}.json` with a topic tree, merged with `listCourseLearningPaths()` (`is_filled`). Empty catalog stubs stay out. Brown degrees promo in the top-right of that syllabus grid → `/degrees` (new tab)
 3. University-affiliation disclaimer
 4. Divider
 
-**Learning-paths view**
+**Learning-paths view (`?view=learning-paths`)**
 
-Public `community` and `research` rows via `listNonCourseLearningPaths()` — **not** `kind=course`, so the ~1800 empty syllabus stubs never appear. A **Create your own learning path** promo sits in the top-right of that grid. A search with no matches shows “No existing learning paths matched your search,” a hairline, then that create promo.
+Public `community` and `research` rows via `listNonCourseLearningPaths()` — **not** `kind=course`, so the ~1800 empty syllabus stubs never appear. With no query, a **Create your own path →** promo sits in the top-right of that grid. Any search (`q`) — including ones with matches — ends with that same create-path card at the bottom; empty search shows “No existing learning paths matched your search,” a hairline, then the card.
+
+**Degrees / Research views**
+
+`?view=degrees` searches UG/grad curricula. `?view=research` searches Field Atlas questions (plus Explore Questions). These filters are explicit; homepage search does not set them. A search in either view also ends with the create-path card. University Courses search (`?view=courses&q=`) does too.
 
 ## Community (`/community`)
 
@@ -108,9 +117,12 @@ flowchart LR
   LPNew --> LP
   Atlas -->|"kind=research"| LPNew
   KnowledgeGraph -->|"topic paths"| LP
-  All -->|"courses view"| Course
-  All -->|"courses view syllabi"| LP
+  All -->|"Discover search"| LP
+  All -->|"?view=courses"| Course
+  All -->|"?view=courses syllabi"| LP
   All -->|"?view=learning-paths"| LP
+  All -->|"?view=degrees"| Degrees
+  All -->|"?view=research"| Atlas
   Community -->|"?view=learning-paths"| All
   Course --> Reports
   LP --> Reports
@@ -125,7 +137,7 @@ flowchart LR
 | -------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Home                       | `/`                                                              | Notion sitemap + catalog learning paths                                                                                                                                                                                                                                                                                                                                                                         |
 | Notion courses             | `/course/{pageId}`, `/[pageId]`, `/c/*`                          | Notion + `courses` / activity / `course_notes`                                                                                                                                                                                                                                                                                                                                                                  |
-| Catalog browse             | `/all-courses`                                                   | Visible **Academic Courses \| Learning Paths** filter (`?view=learning-paths`; omit `view` for courses). Heading matches the selection. Courses: Notion + filled `kind=course` syllabi (`is_filled`) + degrees promo. Learning paths: public `community` + `research` via `listNonCourseLearningPaths()` + create-path promo.                                                                                                                           |
+| Catalog browse             | `/all-courses`                                                   | Visible **All \| Learning Paths \| University Courses \| Degrees \| Research** filter. Omit `view` (or `?view=all`) for unified Discover: a query ranks a **Best match** then groups the rest by type, and always ends with **Can't find what you're looking for? Create your own path →**. `?view=courses` official Notion + filled syllabi + degrees promo. `?view=learning-paths` public `community` + `research` via `listNonCourseLearningPaths()`. `?view=degrees` / `?view=research` for those catalogs only. Any `q` on those views also shows the create-path card at the bottom.                                                                                                                                                                                                 |
 | Degrees                    | `/degrees`                                                       | UG / grad JSON                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Course learning path       | `/learning-path/{slug}` (`kind=course`)                          | Same shell; syllabus outline + `learning_paths.data` (`curated_*` backup)                                                                                                                                                                                                                                                                                                                                       |
 | Community / research paths | `/learning-paths`, `/learning-path/{slug}`, `/learning-path/new` | `learning_paths` + `learning_path_user_state`. Left outline: **Overview** (Resources only; no Why), then the accordion topic tree (vertical line for nested steps; light-blue stroke check when explored). Hero: publisher photo · Public/Collab/Private · Published; Save/••• chip (bookmark icon). **•••** has Share (copy link), Report; owners change visibility. While private, owners can **Invite** a Coursetexts account by email (no email is sent; access is a matching signed-in address). The owner and those invitees can add/edit nodes; invitee-added resources show **Added by you**. A private URL you cannot read shows a gate; signed-in visitors can **Request to join**. On Collab, visitors suggest resources (dotted card); the owner **Accept**s them onto the official list. **Context** opens a dialog with the copied LLM prompt (current step, numbered outline with whys, goal) and how to paste it into a chat. Auto-fill shows a watering-plant popup until the outline is ready. Topic threads are **Discussions**. |

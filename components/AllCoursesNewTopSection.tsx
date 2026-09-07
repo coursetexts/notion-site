@@ -6,8 +6,8 @@ import {
   type LearningPathTopicId
 } from '@/lib/learning-path-topic'
 
-import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 import styles from './AllCoursesNewTopSection.module.css'
+import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 
 const SUBJECTS = [
   { label: 'Science', icon: '/images/home/science.png' },
@@ -35,21 +35,33 @@ const PARTNER_LINKS = [
   {
     label: 'More schools',
     icon: '/images/home/plus-10.png',
-    href: '/all-courses'
+    href: '/all-courses?view=courses'
   }
 ]
 
-export const ALL_COURSES_VIEWS = ['courses', 'learning-paths'] as const
+export const ALL_COURSES_VIEWS = [
+  'all',
+  'learning-paths',
+  'courses',
+  'degrees',
+  'research'
+] as const
 export type AllCoursesView = (typeof ALL_COURSES_VIEWS)[number]
 
 export const ALL_COURSES_VIEW_LABELS: Record<AllCoursesView, string> = {
-  courses: 'All Academic Courses',
-  'learning-paths': 'All Learning Paths'
+  all: 'Discover',
+  courses: 'All University Courses',
+  'learning-paths': 'All Learning Paths',
+  degrees: 'Degree Curricula',
+  research: 'Research Questions'
 }
 
 export const ALL_COURSES_VIEW_FILTERS: Record<AllCoursesView, string> = {
-  courses: 'Academic Courses',
-  'learning-paths': 'Learning Paths'
+  all: 'All',
+  'learning-paths': 'Learning Paths',
+  courses: 'University Courses',
+  degrees: 'Degrees',
+  research: 'Research'
 }
 
 type AllCoursesNewTopSectionProps = {
@@ -80,6 +92,7 @@ export function AllCoursesNewTopSection({
   const submitFromButtonRef = React.useRef(false)
   const showCourseFilters = view === 'courses'
   const showPathFilters = view === 'learning-paths'
+  const showPartnerLogos = view === 'all' || view === 'courses'
 
   React.useEffect(() => {
     return () => {
@@ -227,51 +240,51 @@ export function AllCoursesNewTopSection({
         ) : null}
 
         {showCourseFilters ? (
-          <>
-            <div className={styles.subjectRow}>
-              {SUBJECTS.map((subject) => (
-                <button
-                  key={subject.label}
-                  type='button'
-                  className={`${styles.subjectItem} ${
-                    activeSubjects.includes(subject.label)
-                      ? styles.subjectItemActive
-                      : ''
-                  }`}
-                  onClick={() => onSubjectToggle(subject.label)}
-                  aria-pressed={activeSubjects.includes(subject.label)}
-                >
-                  <span className={styles.subjectIconWrap}>
-                    <img
-                      src={subject.icon}
-                      alt=''
-                      className={styles.subjectIcon}
-                      aria-hidden='true'
-                    />
-                  </span>
-                  <span className={styles.subjectLabel}>{subject.label}</span>
-                </button>
-              ))}
-            </div>
+          <div className={styles.subjectRow}>
+            {SUBJECTS.map((subject) => (
+              <button
+                key={subject.label}
+                type='button'
+                className={`${styles.subjectItem} ${
+                  activeSubjects.includes(subject.label)
+                    ? styles.subjectItemActive
+                    : ''
+                }`}
+                onClick={() => onSubjectToggle(subject.label)}
+                aria-pressed={activeSubjects.includes(subject.label)}
+              >
+                <span className={styles.subjectIconWrap}>
+                  <img
+                    src={subject.icon}
+                    alt=''
+                    className={styles.subjectIcon}
+                    aria-hidden='true'
+                  />
+                </span>
+                <span className={styles.subjectLabel}>{subject.label}</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
 
-            <div className={styles.logoRow} aria-label='Partner schools'>
-              {PARTNER_LINKS.map((partner) => (
-                <Link key={partner.label} href={partner.href} legacyBehavior>
-                  <a className={styles.logoCircle} title={partner.label}>
-                    <img
-                      src={partner.icon}
-                      alt={partner.label}
-                      className={
-                        partner.label === 'More schools'
-                          ? styles.logoPlusImage
-                          : styles.logoImage
-                      }
-                    />
-                  </a>
-                </Link>
-              ))}
-            </div>
-          </>
+        {showPartnerLogos ? (
+          <div className={styles.logoRow} aria-label='Partner schools'>
+            {PARTNER_LINKS.map((partner) => (
+              <Link key={partner.label} href={partner.href} legacyBehavior>
+                <a className={styles.logoCircle} title={partner.label}>
+                  <img
+                    src={partner.icon}
+                    alt={partner.label}
+                    className={
+                      partner.label === 'More schools'
+                        ? styles.logoPlusImage
+                        : styles.logoImage
+                    }
+                  />
+                </a>
+              </Link>
+            ))}
+          </div>
         ) : null}
       </div>
     </section>

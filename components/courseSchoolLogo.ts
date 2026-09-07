@@ -38,7 +38,9 @@ export function getSchoolLogoForMeta(meta: string): SchoolLogo {
   if (
     value.includes('coursetexts') ||
     value.includes('course learning path') ||
-    value.includes('learning path')
+    value.includes('learning path') ||
+    value.includes('research') ||
+    value.includes('degree curriculum')
   ) {
     return { src: '/coursetexts-book.svg', alt: 'Coursetexts' }
   }
