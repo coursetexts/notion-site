@@ -1,3 +1,4 @@
+import { contactEmail } from '../lib/contact'
 import Head from 'next/head'
 import React from 'react'
 
@@ -155,7 +156,7 @@ const TermsOfService = () => {
                 contact us at:
               </p>
               <p style={{ marginBottom: '2rem' }} className='notion-text'>
-                Email: coursetexts@mit.edu
+                Email: {contactEmail}
               </p>
             </main>
           </div>

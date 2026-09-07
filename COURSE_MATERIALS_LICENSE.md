@@ -27,7 +27,7 @@ The permission in Section 2 does not include AI Training, whether commercial or 
 
 "AI Training" means using any Course Materials, in whole or in part, as data to train, pre-train, fine-tune, retrain, distill, or otherwise adjust the weights or parameters of an artificial-intelligence or machine-learning model, including placing the Course Materials in a dataset intended for any of those purposes.
 
-To request an AI Training license, contact coursetexts@mit.edu. Payment is required for every AI Training use.
+To request an AI Training license, contact the contact address shown at https://coursetexts.org/course-materials-license. Payment is required for every AI Training use.
 
 ## 4. Exceptions and limitations
 

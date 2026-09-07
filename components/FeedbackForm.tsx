@@ -136,7 +136,7 @@ const FeedbackForm = ({ courseName }) => {
                 name='email'
                 value={formData.email}
                 onChange={handleChange}
-                placeholder='you@example.com'
+                placeholder='Email address'
                 required
               />
             </label>
