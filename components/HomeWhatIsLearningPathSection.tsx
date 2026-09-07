@@ -4,14 +4,6 @@ import { HomeLearningPathDiagram } from './HomeLearningPathDiagram'
 import styles from './HomeWhatIsLearningPathSection.module.css'
 
 export function HomeWhatIsLearningPathSection() {
-  const [previewOpen, setPreviewOpen] = React.useState(false)
-  const [previewHover, setPreviewHover] = React.useState(false)
-
-  const closePreview = React.useCallback(() => {
-    setPreviewOpen(false)
-    setPreviewHover(false)
-  }, [])
-
   return (
     <section
       id='what-is-a-learning-path'
@@ -35,35 +27,8 @@ export function HomeWhatIsLearningPathSection() {
           </p>
         </div>
 
-        <div
-          className={`${styles.diagram}${
-            previewOpen ? ` ${styles.diagramPreviewOpen}` : ''
-          }`}
-        >
-          <div className={styles.diagramFront}>
-            <HomeLearningPathDiagram
-              pauseLoop={previewHover}
-              onCycleHold={() => setPreviewOpen(true)}
-              onCycleRestart={closePreview}
-            />
-          </div>
-          <button
-            type='button'
-            className={styles.diagramPeek}
-            tabIndex={previewOpen ? 0 : -1}
-            aria-hidden={!previewOpen}
-            aria-label='Preview of a learning path for playing a song on guitar'
-            onMouseEnter={() => {
-              if (previewOpen) setPreviewHover(true)
-            }}
-            onMouseLeave={() => setPreviewHover(false)}
-            onFocus={() => {
-              if (previewOpen) setPreviewHover(true)
-            }}
-            onBlur={() => setPreviewHover(false)}
-          >
-            <img src='/images/home/learning-path-preview.png' alt='' />
-          </button>
+        <div className={styles.diagram}>
+          <HomeLearningPathDiagram />
         </div>
       </div>
     </section>

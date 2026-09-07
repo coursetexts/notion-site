@@ -3,15 +3,29 @@ import * as React from 'react'
 import styles from './HomeLearningPathDiagram.module.css'
 
 const GOAL_STEM = 'my goal is to '
-const GOAL_FILL = 'play a song on guitar'
+const GOAL_FILLS = [
+  'play a song on guitar',
+  'become an aerospace engineer',
+  'learn the history of art'
+] as const
 const GOAL_PLACEHOLDER = '...'
+
+function goalForCycle(cycle: number) {
+  return GOAL_FILLS[cycle % GOAL_FILLS.length] ?? GOAL_FILLS[0]
+}
 
 const TYPE_START_MS = 900
 const TYPE_MS = 42
 const AFTER_TYPE_MS = 380
-const CONCEPTS_MS = 780
-const RESOURCES_MS = 1000
-const RESOURCE_LIST_MS = 720
+const CONCEPT_APPEAR_MS = 340
+const CONCEPT_ARROW_MS = 300
+const CONCEPT_TAIL_MS = 220
+const RESOURCE_SPACE_MS = 520
+const RESOURCES_MS = 880
+const RESOURCE_SWAP_STEP_MS = 600
+const RESOURCE_SWAP_ANIM_MS = 520
+const RESOURCE_LIST_MS = 520
+const RESOURCE_NUMBER_MS = 380
 const NOTES_MS = 700
 const COMMIT_MS = 520
 const ASK_MS = 420
@@ -20,7 +34,7 @@ const ASK_CHOOSE_MS = 820
 const ASK_SAVE_MS = 720
 const NOTIFY_MS = 420
 const REMINDER_MS = 520
-const HOLD_MS = 2800
+const HOLD_MS = 4000
 const FADE_MS = 420
 
 const FREQUENCY_OPTIONS = ['Every day', 'Weekdays', 'Every Monday'] as const
@@ -29,6 +43,7 @@ const REMINDER_LABEL = 'Every day · 7:00 PM'
 type Phase =
   | 'goal'
   | 'concepts'
+  | 'resourceSpace'
   | 'resources'
   | 'resourceList'
   | 'notes'
@@ -67,6 +82,47 @@ function ArrowRight() {
       />
     </svg>
   )
+}
+
+const CONCEPT_COUNT = 3
+const CONCEPT_STEP_FINAL = CONCEPT_COUNT * 2 - 1
+
+function ConceptChain({ step }: { step: number }) {
+  const items: React.ReactNode[] = []
+
+  for (let index = 0; index < CONCEPT_COUNT; index += 1) {
+    const conceptAt = index * 2 + 1
+    const arrowAt = index * 2 + 2
+
+    items.push(
+      step >= conceptAt ? (
+        <span
+          key={`concept-${index}`}
+          className={`${styles.chip} ${styles.chipConcept} ${styles.pop}`}
+        >
+          Concept
+        </span>
+      ) : (
+        <span key={`concept-${index}`} />
+      )
+    )
+
+    if (index < CONCEPT_COUNT - 1) {
+      items.push(
+        step >= arrowAt ? (
+          <span key={`arrow-${index}`} className={styles.arrowSlot}>
+            <span className={styles.arrowDraw}>
+              <ArrowRight />
+            </span>
+          </span>
+        ) : (
+          <span key={`arrow-${index}`} />
+        )
+      )
+    }
+  }
+
+  return <div className={styles.triple}>{items}</div>
 }
 
 function ConnectorLine({
@@ -163,11 +219,87 @@ function Reveal({
 
 type ResourceIconKind = 'video' | 'paper' | 'exercise' | 'book'
 
-const RESOURCE_ICON_KINDS: ResourceIconKind[][] = [
-  ['video', 'paper', 'exercise'],
-  ['paper', 'book', 'video'],
-  ['exercise', 'video', 'paper']
+type ResourceCard = {
+  id: string
+  kind: ResourceIconKind
+  popIndex: number
+}
+
+type ResourceColumn = {
+  delay: number
+  items: ResourceCard[]
+  /** Indices are relative to the list after any earlier swaps. */
+  swaps: [number, number][]
+}
+
+const RESOURCE_COLUMNS: ResourceColumn[] = [
+  {
+    delay: 40,
+    items: [
+      { id: 'r0a', kind: 'video', popIndex: 0 },
+      { id: 'r0b', kind: 'paper', popIndex: 1 },
+      { id: 'r0c', kind: 'exercise', popIndex: 2 }
+    ],
+    swaps: [
+      [0, 2],
+      [0, 1]
+    ]
+  },
+  {
+    delay: 120,
+    items: [
+      { id: 'r1a', kind: 'paper', popIndex: 0 },
+      { id: 'r1b', kind: 'book', popIndex: 1 },
+      { id: 'r1c', kind: 'video', popIndex: 2 }
+    ],
+    swaps: [
+      [1, 2],
+      [0, 2]
+    ]
+  },
+  {
+    delay: 200,
+    items: [
+      { id: 'r2a', kind: 'exercise', popIndex: 0 },
+      { id: 'r2b', kind: 'video', popIndex: 1 },
+      { id: 'r2c', kind: 'paper', popIndex: 2 }
+    ],
+    swaps: [
+      [0, 1],
+      [1, 2]
+    ]
+  }
 ]
+
+const RESOURCE_SWAP_COUNT = RESOURCE_COLUMNS[0]?.swaps.length ?? 2
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect
+
+function swapItems<T>(items: T[], left: number, right: number): T[] {
+  const next = items.slice()
+  const a = next[left]
+  const b = next[right]
+  if (a === undefined || b === undefined) return items
+  next[left] = b
+  next[right] = a
+  return next
+}
+
+function orderedResources(
+  items: readonly ResourceCard[],
+  swapStep: number,
+  swaps: readonly [number, number][]
+): ResourceCard[] {
+  let next = items.slice()
+  const count = Math.max(0, Math.min(swapStep, swaps.length))
+  for (let index = 0; index < count; index += 1) {
+    const pair = swaps[index]
+    if (!pair) continue
+    next = swapItems(next, pair[0], pair[1])
+  }
+  return next
+}
 
 function ResourceKindIcon({ kind }: { kind: ResourceIconKind }) {
   return (
@@ -248,66 +380,154 @@ function ResourceKindIcon({ kind }: { kind: ResourceIconKind }) {
 function ResourceStack({
   delay,
   asList,
-  kinds
+  numbered,
+  items,
+  swapStep,
+  swaps,
+  enableFlip,
+  visible
 }: {
   delay: number
   asList: boolean
-  kinds: readonly ResourceIconKind[]
+  numbered: boolean
+  items: readonly ResourceCard[]
+  swapStep: number
+  swaps: readonly [number, number][]
+  enableFlip: boolean
+  visible: boolean
 }) {
+  const ordered = React.useMemo(
+    () => orderedResources(items, swapStep, swaps),
+    [items, swapStep, swaps]
+  )
+  const rootRef = React.useRef<HTMLSpanElement>(null)
+  const prevRects = React.useRef<Map<string, DOMRect>>(new Map())
+  const [entered, setEntered] = React.useState(false)
+  const orderKey = ordered.map((item) => item.id).join(',')
+
+  React.useEffect(() => {
+    if (!visible) {
+      setEntered(false)
+      return
+    }
+    const appearMs = delay + 140 + 420 + 40
+    const id = window.setTimeout(() => setEntered(true), appearMs)
+    return () => window.clearTimeout(id)
+  }, [delay, visible])
+
+  useIsomorphicLayoutEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+
+    const nodes = root.querySelectorAll<HTMLElement>('[data-resource-id]')
+    const nextRects = new Map<string, DOMRect>()
+    nodes.forEach((node) => {
+      const id = node.dataset.resourceId
+      if (!id) return
+      nextRects.set(id, node.getBoundingClientRect())
+    })
+
+    if (enableFlip && visible && entered && swapStep > 0) {
+      nextRects.forEach((rect, id) => {
+        const prev = prevRects.current.get(id)
+        const node = root.querySelector<HTMLElement>(
+          `[data-resource-id="${id}"]`
+        )
+        if (!prev || !node) return
+        const dy = prev.top - rect.top
+        if (Math.abs(dy) < 1) return
+
+        node.getAnimations().forEach((animation) => animation.cancel())
+
+        const dx = dy > 0 ? 8 : -8
+        node.classList.add(styles.chipResourceLift)
+        const animation = node.animate(
+          [
+            { transform: `translateY(${dy}px)` },
+            {
+              transform: `translateY(${dy * 0.4}px) translateX(${dx}px) scale(1.06)`,
+              offset: 0.42
+            },
+            { transform: 'none' }
+          ],
+          {
+            duration: RESOURCE_SWAP_ANIM_MS,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+          }
+        )
+        const clearLift = () => {
+          node.classList.remove(styles.chipResourceLift)
+        }
+        animation.finished.then(clearLift, clearLift)
+      })
+    }
+
+    prevRects.current = nextRects
+  }, [enableFlip, entered, orderKey, swapStep, visible])
+
   return (
     <span
+      ref={rootRef}
       className={`${styles.resourceStack}${
         asList ? ` ${styles.resourceStackAsList}` : ''
+      }${numbered ? ` ${styles.resourceStackNumbered}` : ''}${
+        visible ? '' : ` ${styles.resourceQuiet}`
       }`}
     >
       <span className={styles.resourceListTitle}>Resource list</span>
-      {kinds.map((kind, index) => (
-        <span
-          key={`${kind}-${index}`}
-          className={`${styles.chip} ${styles.chipResource} ${styles.pop}`}
-          style={{ animationDelay: `${delay + (2 - index) * 70}ms` }}
-        >
-          <span className={styles.resourceNum}>{index + 1}</span>
-          Resource
-          <ResourceKindIcon kind={kind} />
-        </span>
-      ))}
+      {items.map((item) => {
+        const visualIndex = ordered.findIndex((entry) => entry.id === item.id)
+        const index = visualIndex < 0 ? 0 : visualIndex
+
+        return (
+          <span
+            key={item.id}
+            data-resource-id={item.id}
+            className={`${styles.chip} ${styles.chipResource}${
+              visible && !entered ? ` ${styles.fadePop}` : ''
+            }`}
+            style={{
+              order: index,
+              animationDelay:
+                visible && !entered
+                  ? `${delay + (2 - item.popIndex) * 70}ms`
+                  : undefined,
+              transitionDelay: numbered ? `${index * 70}ms` : undefined
+            }}
+          >
+            <span
+              className={styles.resourceNum}
+              style={{
+                transitionDelay: numbered ? `${index * 70}ms` : undefined
+              }}
+            >
+              {index + 1}
+            </span>
+            Resource
+            <ResourceKindIcon kind={item.kind} />
+          </span>
+        )
+      })}
     </span>
   )
 }
 
-type HomeLearningPathDiagramProps = {
-  pauseLoop?: boolean
-  onCycleHold?: () => void
-  onCycleRestart?: () => void
-}
-
-export function HomeLearningPathDiagram({
-  pauseLoop = false,
-  onCycleHold,
-  onCycleRestart
-}: HomeLearningPathDiagramProps) {
+export function HomeLearningPathDiagram() {
   const reduceMotion = usePrefersReducedMotion()
   const rootRef = React.useRef<HTMLElement>(null)
-  const onCycleHoldRef = React.useRef(onCycleHold)
-  const onCycleRestartRef = React.useRef(onCycleRestart)
-  const hoveredDuringHoldRef = React.useRef(false)
   const [inView, setInView] = React.useState(false)
   const [cycle, setCycle] = React.useState(0)
   const [phase, setPhase] = React.useState<Phase>('goal')
   const [typed, setTyped] = React.useState('')
   const [askStep, setAskStep] = React.useState(0)
+  const [conceptStep, setConceptStep] = React.useState(0)
+  const [swapStep, setSwapStep] = React.useState(0)
+  const [resourcesNumbered, setResourcesNumbered] = React.useState(false)
   const [commitPressed, setCommitPressed] = React.useState(false)
   const [reminderOn, setReminderOn] = React.useState(false)
   const [fading, setFading] = React.useState(false)
   const [holding, setHolding] = React.useState(false)
-
-  onCycleHoldRef.current = onCycleHold
-  onCycleRestartRef.current = onCycleRestart
-
-  React.useEffect(() => {
-    if (pauseLoop) hoveredDuringHoldRef.current = true
-  }, [pauseLoop])
+  const goalFillText = goalForCycle(cycle)
 
   React.useEffect(() => {
     const node = rootRef.current
@@ -330,19 +550,21 @@ export function HomeLearningPathDiagram({
   React.useEffect(() => {
     if (reduceMotion) {
       setPhase('notify')
-      setTyped(GOAL_FILL)
+      setTyped(goalFillText)
       setAskStep(0)
+      setConceptStep(CONCEPT_STEP_FINAL)
+      setSwapStep(RESOURCE_SWAP_COUNT)
+      setResourcesNumbered(true)
       setCommitPressed(false)
       setReminderOn(true)
       setFading(false)
     }
-  }, [reduceMotion])
+  }, [goalFillText, reduceMotion])
 
   React.useEffect(() => {
     if (inView || reduceMotion) return
     setHolding(false)
     setFading(false)
-    onCycleRestartRef.current?.()
   }, [inView, reduceMotion])
 
   React.useEffect(() => {
@@ -357,17 +579,26 @@ export function HomeLearningPathDiagram({
     setPhase('goal')
     setTyped('')
     setAskStep(0)
+    setConceptStep(0)
+    setSwapStep(0)
+    setResourcesNumbered(false)
     setCommitPressed(false)
     setReminderOn(false)
     setFading(false)
     setHolding(false)
-    hoveredDuringHoldRef.current = false
 
-    const typeDuration = GOAL_FILL.length * TYPE_MS
+    const typeDuration = goalFillText.length * TYPE_MS
     const tConcepts = TYPE_START_MS + typeDuration + AFTER_TYPE_MS
-    const tResources = tConcepts + CONCEPTS_MS
-    const tResourceList = tResources + RESOURCES_MS
-    const tNotes = tResourceList + RESOURCE_LIST_MS
+    const tConceptArrow1 = tConcepts + CONCEPT_APPEAR_MS
+    const tConcept2 = tConceptArrow1 + CONCEPT_ARROW_MS
+    const tConceptArrow2 = tConcept2 + CONCEPT_APPEAR_MS
+    const tConcept3 = tConceptArrow2 + CONCEPT_ARROW_MS
+    const tResourceSpace = tConcept3 + CONCEPT_TAIL_MS
+    const tResources = tResourceSpace + RESOURCE_SPACE_MS
+    const tSwap1 = tResources + RESOURCES_MS
+    const tSwap2 = tSwap1 + RESOURCE_SWAP_STEP_MS
+    const tResourceList = tSwap2 + RESOURCE_SWAP_STEP_MS
+    const tNotes = tResourceList + RESOURCE_LIST_MS + RESOURCE_NUMBER_MS
     const tCommit = tNotes + NOTES_MS
     const tPress = tCommit + COMMIT_MS
     const tAsk = tPress + ASK_MS
@@ -385,18 +616,29 @@ export function HomeLearningPathDiagram({
           return
         }
         const count = Math.min(
-          GOAL_FILL.length,
+          goalFillText.length,
           Math.floor((Date.now() - started) / TYPE_MS) + 1
         )
-        setTyped(GOAL_FILL.slice(0, count))
-        if (count >= GOAL_FILL.length) window.clearInterval(tick)
+        setTyped(goalFillText.slice(0, count))
+        if (count >= goalFillText.length) window.clearInterval(tick)
       }, TYPE_MS)
       ids.push(tick)
     })
 
-    at(tConcepts, () => setPhase('concepts'))
+    at(tConcepts, () => {
+      setPhase('concepts')
+      setConceptStep(1)
+    })
+    at(tConceptArrow1, () => setConceptStep(2))
+    at(tConcept2, () => setConceptStep(3))
+    at(tConceptArrow2, () => setConceptStep(4))
+    at(tConcept3, () => setConceptStep(CONCEPT_STEP_FINAL))
+    at(tResourceSpace, () => setPhase('resourceSpace'))
     at(tResources, () => setPhase('resources'))
+    at(tSwap1, () => setSwapStep(1))
+    at(tSwap2, () => setSwapStep(2))
     at(tResourceList, () => setPhase('resourceList'))
+    at(tResourceList + RESOURCE_LIST_MS, () => setResourcesNumbered(true))
     at(tNotes, () => setPhase('notes'))
     at(tCommit, () => setPhase('commit'))
     at(tPress, () => setCommitPressed(true))
@@ -414,9 +656,7 @@ export function HomeLearningPathDiagram({
     })
     at(tReminder, () => {
       setReminderOn(true)
-      hoveredDuringHoldRef.current = false
       setHolding(true)
-      onCycleHoldRef.current?.()
     })
 
     return () => {
@@ -426,38 +666,37 @@ export function HomeLearningPathDiagram({
         window.clearInterval(id)
       }
     }
-  }, [cycle, inView, reduceMotion])
+  }, [cycle, goalFillText, inView, reduceMotion])
 
   React.useEffect(() => {
-    if (!holding || pauseLoop || reduceMotion || !inView) return
-
-    const delay = hoveredDuringHoldRef.current ? 0 : HOLD_MS
-    hoveredDuringHoldRef.current = false
+    if (!holding || reduceMotion || !inView) return
 
     const fadeId = window.setTimeout(() => {
       setFading(true)
-      onCycleRestartRef.current?.()
-    }, delay)
+    }, HOLD_MS)
     const restartId = window.setTimeout(() => {
       setHolding(false)
       setCycle((current) => current + 1)
-    }, delay + FADE_MS)
+    }, HOLD_MS + FADE_MS)
 
     return () => {
       window.clearTimeout(fadeId)
       window.clearTimeout(restartId)
     }
-  }, [holding, pauseLoop, reduceMotion, inView])
+  }, [holding, reduceMotion, inView])
 
-  const showConcepts = reduceMotion || phase !== 'goal'
-  const showResources =
+  const showConcepts = reduceMotion || conceptStep >= 1
+  const showResourceSpace =
     reduceMotion ||
+    phase === 'resourceSpace' ||
     phase === 'resources' ||
     phase === 'resourceList' ||
     phase === 'notes' ||
     phase === 'commit' ||
     phase === 'ask' ||
     phase === 'notify'
+  const resourcesVisible =
+    reduceMotion || (showResourceSpace && phase !== 'resourceSpace')
   const resourcesAsList =
     reduceMotion ||
     phase === 'resourceList' ||
@@ -465,6 +704,7 @@ export function HomeLearningPathDiagram({
     phase === 'commit' ||
     phase === 'ask' ||
     phase === 'notify'
+  const numberedResources = reduceMotion || resourcesNumbered
   const showNotes =
     reduceMotion ||
     phase === 'notes' ||
@@ -483,9 +723,11 @@ export function HomeLearningPathDiagram({
     !reduceMotion &&
     phase === 'goal' &&
     !fading &&
-    typed.length < GOAL_FILL.length
+    typed.length < goalFillText.length
   const goalFill =
-    reduceMotion || (phase !== 'goal' && typed.length === 0) ? GOAL_FILL : typed
+    reduceMotion || (phase !== 'goal' && typed.length === 0)
+      ? goalFillText
+      : typed
   const showPlaceholder =
     !reduceMotion && phase === 'goal' && typed.length === 0
 
@@ -493,7 +735,7 @@ export function HomeLearningPathDiagram({
     <figure
       ref={rootRef}
       className={styles.layout}
-      aria-label='Animated example of a learning path. A goal becomes connected concepts, with resources such as videos, papers, and exercises, plus notes, then a reminder. Decorative only; it does not create a path.'
+      aria-label='Animated example of a learning path. A goal becomes connected concepts, with resources that are rearranged into an intentional order before they are numbered, plus notes, then a reminder. Decorative only; it does not create a path.'
     >
       <div
         className={`${styles.stage}${fading ? ` ${styles.fading}` : ''}`}
@@ -511,68 +753,49 @@ export function HomeLearningPathDiagram({
           </p>
 
           <div className={styles.stack} key={cycle}>
-            <Reveal open={showResources}>
+            <Reveal open={showResourceSpace}>
               <div className={styles.triple}>
-                <ResourceStack
-                  delay={40}
-                  asList={resourcesAsList}
-                  kinds={RESOURCE_ICON_KINDS[0]}
-                />
-                <span />
-                <ResourceStack
-                  delay={120}
-                  asList={resourcesAsList}
-                  kinds={RESOURCE_ICON_KINDS[1]}
-                />
-                <span />
-                <ResourceStack
-                  delay={200}
-                  asList={resourcesAsList}
-                  kinds={RESOURCE_ICON_KINDS[2]}
-                />
+                {RESOURCE_COLUMNS.map((column, index) => (
+                  <React.Fragment key={column.items[0]?.id ?? index}>
+                    {index > 0 ? <span /> : null}
+                    <ResourceStack
+                      delay={column.delay}
+                      asList={resourcesAsList}
+                      numbered={numberedResources}
+                      items={column.items}
+                      swapStep={swapStep}
+                      swaps={column.swaps}
+                      enableFlip={!reduceMotion}
+                      visible={resourcesVisible}
+                    />
+                  </React.Fragment>
+                ))}
               </div>
               <div className={`${styles.triple} ${styles.lineRow}`}>
-                <ConnectorLine delay={80} from='concept-up' />
-                <span />
-                <ConnectorLine delay={160} from='concept-up' />
-                <span />
-                <ConnectorLine delay={240} from='concept-up' />
+                {resourcesVisible ? (
+                  <>
+                    <ConnectorLine delay={80} from='concept-up' />
+                    <span />
+                    <ConnectorLine delay={160} from='concept-up' />
+                    <span />
+                    <ConnectorLine delay={240} from='concept-up' />
+                  </>
+                ) : (
+                  <>
+                    <span className={styles.lineSlot} />
+                    <span />
+                    <span className={styles.lineSlot} />
+                    <span />
+                    <span className={styles.lineSlot} />
+                  </>
+                )}
               </div>
             </Reveal>
 
             <Reveal open={showConcepts}>
-              <div className={styles.triple}>
-                <span
-                  className={`${styles.chip} ${styles.chipConcept} ${styles.pop}`}
-                  style={{ animationDelay: '40ms' }}
-                >
-                  Concept
-                </span>
-                <span
-                  className={styles.pop}
-                  style={{ animationDelay: '120ms' }}
-                >
-                  <ArrowRight />
-                </span>
-                <span
-                  className={`${styles.chip} ${styles.chipConcept} ${styles.pop}`}
-                  style={{ animationDelay: '160ms' }}
-                >
-                  Concept
-                </span>
-                <span
-                  className={styles.pop}
-                  style={{ animationDelay: '240ms' }}
-                >
-                  <ArrowRight />
-                </span>
-                <span
-                  className={`${styles.chip} ${styles.chipConcept} ${styles.pop}`}
-                  style={{ animationDelay: '280ms' }}
-                >
-                  Concept
-                </span>
-              </div>
+              <ConceptChain
+                step={reduceMotion ? CONCEPT_STEP_FINAL : conceptStep}
+              />
             </Reveal>
 
             <Reveal open={showNotes}>

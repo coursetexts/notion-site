@@ -152,7 +152,14 @@
   transition: min-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
     padding 420ms cubic-bezier(0.22, 1, 0.36, 1),
     border-radius 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    font-size 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    gap 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease;
+}
+
+.chipResourceLift {
+  z-index: 3;
+  box-shadow: 0 10px 20px rgba(31, 107, 74, 0.22);
 }
 
 .resourceKindIcon {
@@ -162,7 +169,7 @@
   width: 11px;
   height: 11px;
   color: currentColor;
-  opacity: 0.38;
+  opacity: 0.72;
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -174,14 +181,18 @@
 }
 
 .resourceStack {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 5px;
   min-width: 0;
+  overflow: visible;
   transition: gap 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .resourceListTitle {
+  order: -1;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
@@ -205,6 +216,7 @@
   width: 14px;
   height: 14px;
   flex-shrink: 0;
+  overflow: hidden;
   border-radius: 3px;
   background: rgba(31, 107, 74, 0.14);
   font-size: 10px;
@@ -232,6 +244,7 @@
   min-height: 24px;
   padding: 4px 22px 4px 8px;
   justify-content: flex-start;
+  gap: 0;
   font-size: 11px;
   border: none;
   border-radius: 0;
@@ -252,20 +265,65 @@
 
 .resourceStackAsList .resourceNum {
   display: inline-flex;
+  width: 0;
+  min-width: 0;
+  opacity: 0;
+  background: transparent;
+  transform: scale(0.55);
+  transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    min-width 280ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1), background 240ms ease;
+}
+
+.resourceStackNumbered .chipResource {
+  gap: 6px;
+}
+
+.resourceStackNumbered .resourceNum {
+  display: inline-flex;
+  width: 14px;
+  min-width: 14px;
+  opacity: 1;
+  background: rgba(31, 107, 74, 0.14);
+  transform: none;
 }
 
 .arrowRight {
   display: block;
-  margin: 0 auto;
+  flex-shrink: 0;
   width: 16px;
   height: 10px;
   color: #2c1a0c;
+}
+
+.arrowSlot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.arrowDraw {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 16px;
+  animation: arrowGrow 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .pop {
   opacity: 0;
   transform: translateY(8px);
   animation: popIn 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.resourceQuiet {
+  opacity: 0;
+}
+
+.fadePop {
+  opacity: 0;
+  transform: scale(0.92);
+  animation: fadePop 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .commitBar {
@@ -497,6 +555,25 @@
   }
 }
 
+@keyframes fadePop {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arrowGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 16px;
+    opacity: 1;
+  }
+}
+
 @keyframes lineGrow {
   to {
     opacity: 1;
@@ -600,16 +677,28 @@
   }
 
   .pop,
+  .fadePop,
+  .resourceQuiet,
   .notifyTag,
   .person,
   .lineGrow,
+  .arrowDraw,
   .chipResource,
   .resourceListTitle,
-  .resourceStack {
+  .resourceStack,
+  .resourceNum {
     opacity: 1;
     transform: none;
     animation: none;
     transition: none;
+  }
+
+  .resourceStackAsList .resourceNum,
+  .resourceStackNumbered .resourceNum {
+    width: 14px;
+    min-width: 14px;
+    opacity: 1;
+    background: rgba(31, 107, 74, 0.14);
   }
 
   .caret,

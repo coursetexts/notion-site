@@ -175,8 +175,18 @@ export function HomeCoursesSection({
         <HomeLearningPathsSection />
       </div>
 
+      <HomeSocialLearningSection />
+
       <div className={`${styles.content} ${styles.contentBottom}`}>
-        <h2 className={styles.heading}>Try courses from top schools.</h2>
+        <div className={styles.headingCopy}>
+          <h2 className={styles.heading}>
+            Learn from advanced university courses.
+          </h2>
+          <p className={styles.headingIntro}>
+            Explore hard-to-find courses from leading universities, published
+            with professors and organized for self-directed learning.
+          </p>
+        </div>
 
         <div className={styles.subjectGroup}>
           <div className={styles.dashedRule} />
@@ -259,8 +269,6 @@ export function HomeCoursesSection({
           </div>
         </div>
       </div>
-
-      <HomeSocialLearningSection />
     </section>
   )
 }

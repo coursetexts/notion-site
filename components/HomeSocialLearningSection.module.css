@@ -40,6 +40,24 @@
   font-weight: inherit;
 }
 
+.introCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.subheading {
+  margin: 0;
+  max-width: 720px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.0004em;
+  color: #37352f;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
@@ -156,6 +174,10 @@
 
   .heading {
     font-size: 26px;
+  }
+
+  .subheading {
+    font-size: 14px;
   }
 
   .featureGrid {

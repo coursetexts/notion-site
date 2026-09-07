@@ -8,22 +8,22 @@ import styles from './HomeSocialLearningSection.module.css'
 
 const features = [
   {
-    title: 'Publish & Commit to learning paths',
-    body: 'Start with a learning goal. Create a learning path map that helps organize your notes, resources, and progress towards that learning goal',
+    title: 'Create and follow learning paths',
+    body: 'Turn a goal into an ordered path of concepts, resources, and notes. Follow a path someone else created—or publish your own for others.',
     image: '/images/home/social-feature-track-progress-ss.png',
-    imageAlt: 'Learning path with a goal, outline, and organized resources'
+    imageAlt: 'Learning path with a goal, outline, and ordered resources'
   },
   {
-    title: 'Curate Resources',
-    body: 'Find and rank the best resources to learn a concept in a goal, or bookmark a resource for later',
+    title: 'Share what helped',
+    body: 'Add the videos, papers, exercises, and explanations that made a concept click. Vote on resources so the most useful ones rise to the top.',
     image: '/images/home/social-feature-bookshelf-ss.png',
-    imageAlt: 'Learners ranking resources for a concept'
+    imageAlt: 'Learners adding and ranking resources for a concept'
   },
   {
-    title: 'Discuss with friends',
-    body: 'Chat with other learners across course materials, syllabi, and shared material',
+    title: 'Discuss each concept',
+    body: 'Ask questions, share what you learned, and help others when they get stuck—all alongside learners working through the same path.',
     image: '/images/home/social-feature-annotate-ss.png',
-    imageAlt: 'Discussion among learners on course materials'
+    imageAlt: 'Discussion among learners on the same learning path'
   }
 ] as const
 
@@ -36,16 +36,18 @@ export function HomeSocialLearningSection() {
   const ctaHref = isLoggedIn
     ? '/profile'
     : `/signin?redirect=${encodeURIComponent('/profile')}`
-  const ctaLabel = isLoggedIn ? 'Your Profile' : 'Create an Account'
+  const ctaLabel = isLoggedIn ? 'Your Profile' : 'Start learning'
 
   return (
     <section className={styles.section}>
       <div className={styles.content}>
         <div className={styles.intro}>
-          <h2 className={styles.heading}>
-            Coursetexts is social learning,{' '}
-            <span className={styles.headingAccent}>as it was meant to be.</span>
-          </h2>
+          <div className={styles.introCopy}>
+            <h2 className={styles.heading}>
+              A <span className={styles.headingAccent}>community</span> for self-learners.
+            </h2>
+            <p className={styles.subheading}>Learn independently, not alone</p>
+          </div>
           <Link href={ctaHref} legacyBehavior>
             <a className={styles.cta}>{ctaLabel}</a>
           </Link>
