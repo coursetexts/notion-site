@@ -1,3 +1,5 @@
+import { parsePageId, uuidToId } from 'notion-utils'
+
 import { getSupabaseClient } from './supabase'
 
 export interface SectionProgressStatus {
@@ -95,33 +97,53 @@ export async function updateSectionProgress(
 
 const TOC_LABELS_KEY_PREFIX = 'coursetexts.course-toc-labels:'
 
-export function writeCourseTocLabels(coursePageId: string, labels: string[]) {
-  if (typeof window === 'undefined' || !coursePageId || labels.length === 0) {
-    return
-  }
-  try {
-    window.localStorage.setItem(
-      TOC_LABELS_KEY_PREFIX + coursePageId,
-      JSON.stringify(labels)
-    )
-  } catch {
-    /* quota / private mode */
-  }
+export function coursePageIdKeyVariants(pageId: string): string[] {
+  const raw = pageId.trim()
+  if (!raw) return []
+  const uuid = parsePageId(raw, { uuid: true }) || ''
+  const compact =
+    parsePageId(raw, { uuid: false }) || (uuid ? uuidToId(uuid) : '')
+  return [...new Set([raw, uuid, compact].filter(Boolean))]
 }
 
-export function readCourseTocLabels(coursePageId: string): string[] {
+function readCourseTocLabelsExact(coursePageId: string): string[] {
   if (typeof window === 'undefined' || !coursePageId) return []
   try {
-    const raw = window.localStorage.getItem(TOC_LABELS_KEY_PREFIX + coursePageId)
+    const raw = window.localStorage.getItem(
+      TOC_LABELS_KEY_PREFIX + coursePageId
+    )
     if (!raw) return []
     const parsed = JSON.parse(raw) as unknown
     if (!Array.isArray(parsed)) return []
     return parsed.filter(
-      (label): label is string => typeof label === 'string' && label.trim().length > 0
+      (label): label is string =>
+        typeof label === 'string' && label.trim().length > 0
     )
   } catch {
     return []
   }
+}
+
+export function writeCourseTocLabels(coursePageId: string, labels: string[]) {
+  if (typeof window === 'undefined' || !coursePageId || labels.length === 0) {
+    return
+  }
+  const payload = JSON.stringify(labels)
+  for (const id of coursePageIdKeyVariants(coursePageId)) {
+    try {
+      window.localStorage.setItem(TOC_LABELS_KEY_PREFIX + id, payload)
+    } catch {
+      /* quota / private mode */
+    }
+  }
+}
+
+export function readCourseTocLabels(coursePageId: string): string[] {
+  for (const id of coursePageIdKeyVariants(coursePageId)) {
+    const labels = readCourseTocLabelsExact(id)
+    if (labels.length > 0) return labels
+  }
+  return []
 }
 
 export async function listMyCourseSectionProgress(): Promise<

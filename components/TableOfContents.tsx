@@ -12,6 +12,7 @@ import {
   type TocItem
 } from '@/lib/courseContentSections'
 
+import { PathCompleteCheck } from './PathCompleteCheck'
 import styles from './TableOfContents.module.css'
 
 const DATA_TAB_INDEX = 'data-tab-index'
@@ -68,7 +69,7 @@ function showOnlyContentBlock(
     })
 }
 
-function Icon({ type }: { type: 'pdf' | 'lock' | 'check' | 'bookmark' }) {
+function Icon({ type }: { type: 'pdf' | 'lock' | 'bookmark' }) {
   if (type === 'pdf') {
     return (
       <span className={styles.itemIcon} aria-hidden>
@@ -104,27 +105,6 @@ function Icon({ type }: { type: 'pdf' | 'lock' | 'check' | 'bookmark' }) {
       </span>
     )
   }
-  if (type === 'check') {
-    return (
-      <span className={styles.itemIconCheck} aria-hidden>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          width='12'
-          height='12'
-          viewBox='0 0 12 12'
-          fill='none'
-        >
-          <path
-            d='M10.125 3.375L4.875 8.625L2.25 6'
-            stroke='#FDFDFD'
-            strokeWidth='1.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-        </svg>
-      </span>
-    )
-  }
   if (type === 'bookmark') {
     return (
       <span className={styles.itemIconBookmark} aria-hidden>
@@ -151,6 +131,7 @@ export type { TocChild, TocItem }
 export interface TableOfContentsRef {
   goToNextSection: () => void
   goToPreviousSection: () => void
+  goToFirstSection: () => void
   /** Open the tab (and optional subtab) that matches the given section label. */
   goToSectionByLabel: (label: string) => void
 }
@@ -193,7 +174,7 @@ export const TableOfContents = React.forwardRef<
     onSelectionClearPdf,
     onSelectedItemChange,
     onSectionChange,
-    title = 'Table of Contents',
+    title = 'The Path',
     sectionProgress
   },
   ref
@@ -489,6 +470,17 @@ export const TableOfContents = React.forwardRef<
     handleSubtabClick
   ])
 
+  const handleGoToFirstSection = React.useCallback(() => {
+    if (itemsProp.length === 0) return
+    const children = itemsProp[0]?.children ?? []
+    const first = children.find((c) => Boolean(c.id)) ?? children[0] ?? null
+    if (first) {
+      handleSubtabClick(0, first)
+      return
+    }
+    handleTabClick(0)
+  }, [itemsProp, handleTabClick, handleSubtabClick])
+
   const handleGoToSectionByLabel = React.useCallback(
     (label: string) => {
       if (!label || itemsProp.length === 0) return
@@ -517,9 +509,15 @@ export const TableOfContents = React.forwardRef<
     () => ({
       goToNextSection: handleGoToNextSection,
       goToPreviousSection: handleGoToPreviousSection,
+      goToFirstSection: handleGoToFirstSection,
       goToSectionByLabel: handleGoToSectionByLabel
     }),
-    [handleGoToNextSection, handleGoToPreviousSection, handleGoToSectionByLabel]
+    [
+      handleGoToNextSection,
+      handleGoToPreviousSection,
+      handleGoToFirstSection,
+      handleGoToSectionByLabel
+    ]
   )
 
   return (
@@ -544,7 +542,7 @@ export const TableOfContents = React.forwardRef<
           const itemCompleted = status?.isCompleted
           const itemBookmarked = status?.isBookmarked
           const itemIcon = (
-            item as TocItem & { icon?: 'pdf' | 'lock' | 'check' | 'bookmark' }
+            item as TocItem & { icon?: 'pdf' | 'lock' | 'bookmark' }
           ).icon
           const showChildren =
             Boolean(item.children && item.children.length > 0) &&
@@ -579,7 +577,7 @@ export const TableOfContents = React.forwardRef<
                         : '▸'}
                     </span>
                   )}
-                  {itemCompleted && <Icon type='check' />}
+                  {itemCompleted && <PathCompleteCheck />}
                   {!itemCompleted && itemBookmarked && (
                     <Icon type='bookmark' />
                   )}
@@ -622,7 +620,7 @@ export const TableOfContents = React.forwardRef<
                           >
                             <span>{child.label}</span>
                             <span className={styles.childEndRail}>
-                              {childCompleted && <Icon type='check' />}
+                              {childCompleted && <PathCompleteCheck />}
                               {!childCompleted && childBookmarked && (
                                 <Icon type='bookmark' />
                               )}

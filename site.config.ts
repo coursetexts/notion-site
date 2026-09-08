@@ -64,13 +64,9 @@ export default siteConfig({
   includeNotionIdInUrls: false,
 
   navigationLinks: [
-    { title: 'All Courses', pageId: process.env.NEXT_PUBLIC_NOTION_PAGE_ID! },
-    { title: 'Degrees', url: '/degrees' },
-    { title: 'Resources', url: '/manifesto' },
-    { title: 'Communities', url: '/users' },
-    {
-      title: 'Donate',
-      url: 'https://hcb.hackclub.com/donations/start/coursetexts'
-    }
+    { title: 'Explore', url: '/all-courses' },
+    { title: 'Create a path', url: '/learning-path/new' },
+    { title: 'Community', url: '/community' },
+    { title: 'About', url: '/about' }
   ]
 })

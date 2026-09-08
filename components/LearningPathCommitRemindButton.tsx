@@ -15,6 +15,7 @@ import {
 } from '@/lib/learning-path-commitments-db'
 
 import styles from './LearningPath.module.css'
+import stepStyles from './StepNavBar.module.css'
 
 const DEFAULT_REMINDER_MINUTE = 12 * 60
 
@@ -165,7 +166,7 @@ export function LearningPathCommitRemindButton({
     <span className={styles.commitRemindWrap} ref={wrapRef}>
       <button
         type='button'
-        className={`${styles.ghostBtn} ${styles.commitRemindBtn}${
+        className={`${stepStyles.secondaryBtn} ${styles.commitRemindBtn}${
           committed ? ` ${styles.commitRemindBtnActive}` : ''
         }`}
         onClick={toggleOpen}

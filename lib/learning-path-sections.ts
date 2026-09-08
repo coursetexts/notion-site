@@ -9,10 +9,10 @@ export const LEARNING_PATH_OVERVIEW_LABEL = 'Overview'
 /** @deprecated Old recommended-path URL; treated as Overview. */
 export const LEARNING_PATH_RECOMMENDED_SECTION_ID = 'recommended-path'
 
-/** Left-nav / main-panel section for the path mental map (course paths). */
+/** @deprecated Old General Approach URL; treated as Overview on course paths. */
 export const LEARNING_PATH_MENTAL_MAP_SECTION_ID = 'mental-map'
 
-/** User-facing name for the mental-map section on course learning paths. */
+/** Legacy General Approach label; outline search still finds Overview. */
 export const LEARNING_PATH_MENTAL_MAP_LABEL = 'General Approach'
 
 /** Left-nav / main-panel section for topics learned after finishing the path. */
@@ -46,8 +46,7 @@ export function isLearningPathKnowledgeSelection(id: string) {
 
 export function isLearningPathSectionSelection(id: string) {
   return (
-    isLearningPathOverviewSelection(id) ||
-    isLearningPathKnowledgeSelection(id)
+    isLearningPathOverviewSelection(id) || isLearningPathKnowledgeSelection(id)
   )
 }
 

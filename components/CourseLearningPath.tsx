@@ -17,13 +17,14 @@ import {
 } from '@/lib/course-learning-path-progress'
 import {
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
+  COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
+  canonicalizeCourseLearningPathSectionId,
   getCourseLearningPathResourcesBySlug,
   isCourseLearningPathKnowledgeSelection,
-  isCourseLearningPathMentalMapSelection,
+  isCourseLearningPathOverviewSelection,
   isCourseLearningPathResourceSelection,
-  isCourseLearningPathSyllabusSelection,
   isMentalMapVideoNodeId
 } from '@/lib/course-learning-path-resources'
 import {
@@ -35,27 +36,32 @@ import {
   type CourseLearningPathTopicResource,
   type CourseLearningPathTopicResourceKind,
   buildCourseLearningPathIndex,
+  flattenCourseLearningPathNodes,
   formatCourseLearningPathConceptTree,
   insertTopicResourceAtPlacement,
   mapCourseLearningPathMentalMapTopicResources,
   mapCourseLearningPathNodeTopicResources,
-  moveTopicResourceToPlacement,
-  nextCourseLearningPathNode
+  moveTopicResourceToPlacement
 } from '@/lib/course-learning-path-types'
 import { structuralKnowledgeEdgesFromCourseLearningPath } from '@/lib/knowledge-graph'
+import { learningPathCommitmentKey } from '@/lib/learning-path-commitments-db'
 import { learningPathKicker } from '@/lib/learning-path-kind-ui'
 import {
   isCourseLearningPathFinished,
   knowledgeTopicItemsFromCourseLearningPath,
   knowledgeTopicsFromCourseLearningPath
 } from '@/lib/learning-path-knowledge'
-import { LEARNING_PATH_MENTAL_MAP_LABEL } from '@/lib/learning-path-sections'
 import { recordLearningPathProgressEvent } from '@/lib/learning-path-progress-events-db'
 import {
   LEARNING_PATH_RATING_TARGET,
   hasLocalLearningPathRating
 } from '@/lib/learning-path-ratings'
 import { submitLearningPathRating } from '@/lib/learning-path-ratings-db'
+import {
+  LEARNING_PATH_MENTAL_MAP_LABEL,
+  LEARNING_PATH_OVERVIEW_LABEL,
+  LEARNING_PATH_OVERVIEW_SECTION_ID
+} from '@/lib/learning-path-sections'
 import { readSearchParam, replaceSearchParams } from '@/lib/note-deep-link'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
 import { addKnowledgeTopicsFromCompletedPath } from '@/lib/user-knowledge-topics-db'
@@ -64,18 +70,19 @@ import { CourseActivity } from './CourseActivity'
 import { CourseHero, formatHeroPublishedDate } from './CourseHero'
 import styles from './CourseLearningPath.module.css'
 import { CourseLearningPathHeroActions } from './CourseLearningPathHeroActions'
-import { CourseLearningPathMentalMap } from './CourseLearningPathMentalMap'
 import { CourseLearningPathNotes } from './CourseLearningPathNotes'
 import { CourseLearningPathResources } from './CourseLearningPathResources'
 import { CourseLearningPathSyllabusNav } from './CourseLearningPathSyllabusNav'
 import { CourseLearningPathSyllabusOverview } from './CourseLearningPathSyllabusOverview'
 import { CourseLearningPathTopicContent } from './CourseLearningPathTopicContent'
 import pathStyles from './LearningPath.module.css'
+import { LearningPathCommitRemindButton } from './LearningPathCommitRemindButton'
 import { LearningPathFinishedModal } from './LearningPathFinishedModal'
 import { LearningPathLearnedPanel } from './LearningPathLearnedPanel'
 import { LearningPathOutlinePanel } from './LearningPathOutlinePanel'
 import { LearningPathRatingModal } from './LearningPathRatingModal'
 import { PathContentActivity } from './PathContentActivity'
+import { StepNavBar } from './StepNavBar'
 
 export interface CourseLearningPathProps {
   /** Syllabus course slug in Supabase. Falls back to seed data when missing. */
@@ -95,6 +102,11 @@ function withCurriculumResources(
   if (!resources.length) return course
   return { ...course, resources }
 }
+
+const OVERVIEW_NOTE_FALLBACK_IDS = [
+  COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
+  LEARNING_PATH_OVERVIEW_SECTION_ID
+]
 
 function escapeHtml(value: string) {
   return value
@@ -120,12 +132,12 @@ function courseDescriptionHtml(description: string) {
 function initialCourseSelection(course: CourseLearningPathData): string {
   const node = readSearchParam('node')
   if (!node) return COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
+  if (isCourseLearningPathOverviewSelection(node)) {
+    return COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
+  }
   if (
-    isCourseLearningPathSyllabusSelection(node) ||
-    isCourseLearningPathMentalMapSelection(node) ||
     isCourseLearningPathResourceSelection(node) ||
-    isCourseLearningPathKnowledgeSelection(node) ||
-    isMentalMapVideoNodeId(node)
+    isCourseLearningPathKnowledgeSelection(node)
   ) {
     return node
   }
@@ -282,8 +294,7 @@ export function CourseLearningPath({
     [course]
   )
 
-  const showingSyllabus = isCourseLearningPathSyllabusSelection(selectedId)
-  const showingMentalMap = isCourseLearningPathMentalMapSelection(selectedId)
+  const showingOverview = isCourseLearningPathOverviewSelection(selectedId)
   const showingResources = isCourseLearningPathResourceSelection(selectedId)
   const showingKnowledge = isCourseLearningPathKnowledgeSelection(selectedId)
   const learnedTopics = React.useMemo(
@@ -291,22 +302,36 @@ export function CourseLearningPath({
     [course]
   )
   const entry =
-    showingSyllabus || showingMentalMap || showingResources || showingKnowledge
+    showingOverview || showingResources || showingKnowledge
       ? null
       : selectedId && index[selectedId]
       ? index[selectedId]
       : null
+  const outlineOrder = React.useMemo(
+    () => (course ? flattenCourseLearningPathNodes(course) : []),
+    [course]
+  )
+  const topicIndex = entry
+    ? outlineOrder.findIndex((node) => node.id === entry.node.id)
+    : -1
+  const stepTotal = outlineOrder.length + 1
+  const stepCurrent = showingOverview ? 1 : topicIndex >= 0 ? topicIndex + 2 : 1
+  const isLastOutlineStep =
+    Boolean(entry) &&
+    outlineOrder.length > 0 &&
+    topicIndex === outlineOrder.length - 1
 
   function handleSelect(id: string) {
-    setSelectedId(id)
-    replaceSearchParams({ node: id })
+    const nextId = canonicalizeCourseLearningPathSectionId(id)
+    setSelectedId(nextId)
+    replaceSearchParams({ node: nextId })
     setExpanded((prev) => {
       const next = new Set(prev)
-      next.add(id)
-      if (isCourseLearningPathResourceSelection(id)) {
+      next.add(nextId)
+      if (isCourseLearningPathResourceSelection(nextId)) {
         next.add(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
       }
-      for (const parent of index[id]?.parents ?? []) next.add(parent.id)
+      for (const parent of index[nextId]?.parents ?? []) next.add(parent.id)
       return next
     })
     setMobileNavOpen(false)
@@ -350,6 +375,31 @@ export function CourseLearningPath({
 
   function handleNext(nodeId: string) {
     restoreScrollAfter(() => handleSelect(nodeId), mainRef.current)
+  }
+
+  function goStepPrevious() {
+    if (showingOverview || !course) return
+    if (topicIndex > 0) {
+      const prev = outlineOrder[topicIndex - 1]
+      if (prev) handleNext(prev.id)
+      return
+    }
+    handleNext(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+  }
+
+  function goStepNext() {
+    if (!course) return
+    if (isLastOutlineStep) {
+      handleSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)
+      return
+    }
+    if (showingOverview) {
+      const first = outlineOrder[0]
+      if (first) handleNext(first.id)
+      return
+    }
+    const next = outlineOrder[topicIndex + 1]
+    if (next) handleNext(next.id)
   }
 
   function handleToggle(id: string) {
@@ -714,10 +764,8 @@ export function CourseLearningPath({
             courseUrl={`/learning-path/${course.slug}`}
             sectionId={selectedId}
             notesTopicTitle={
-              showingSyllabus
-                ? 'Syllabus'
-                : showingMentalMap
-                ? LEARNING_PATH_MENTAL_MAP_LABEL
+              showingOverview
+                ? LEARNING_PATH_OVERVIEW_LABEL
                 : showingKnowledge
                 ? 'What you learned'
                 : showingResources
@@ -728,11 +776,12 @@ export function CourseLearningPath({
               <CourseLearningPathNotes
                 nodeId={selectedId}
                 courseSlug={course.slug}
+                fallbackNodeIds={
+                  showingOverview ? OVERVIEW_NOTE_FALLBACK_IDS : undefined
+                }
                 topicTitle={
-                  showingSyllabus
-                    ? 'Syllabus'
-                    : showingMentalMap
-                    ? LEARNING_PATH_MENTAL_MAP_LABEL
+                  showingOverview
+                    ? LEARNING_PATH_OVERVIEW_LABEL
                     : showingKnowledge
                     ? 'What you learned'
                     : showingResources
@@ -751,6 +800,44 @@ export function CourseLearningPath({
               />
             }
             onActivityPosted={() => setActivityRefreshNonce((n) => n + 1)}
+            footer={
+              showingKnowledge ||
+              showingResources ||
+              (!showingOverview && !entry) ? null : (
+                <StepNavBar
+                  current={stepCurrent}
+                  total={Math.max(stepTotal, 1)}
+                  hasPrevious={!showingOverview}
+                  isLastStep={isLastOutlineStep}
+                  onPrevious={goStepPrevious}
+                  onNext={
+                    showingOverview && outlineOrder.length === 0
+                      ? undefined
+                      : goStepNext
+                  }
+                  explored={entry ? exploredIds.has(entry.node.id) : false}
+                  onToggleExplored={
+                    entry
+                      ? () => handleToggleExplored(entry.node.id)
+                      : undefined
+                  }
+                  showExplored={Boolean(entry)}
+                  beforeNext={
+                    showingOverview ? (
+                      <LearningPathCommitRemindButton
+                        targetKey={learningPathCommitmentKey(slug)}
+                        signedIn={Boolean(auth?.user)}
+                        onSignIn={() =>
+                          auth?.signInWithGoogle(
+                            currentAuthRedirectPath({ node: selectedId })
+                          )
+                        }
+                      />
+                    ) : null
+                  }
+                />
+              )
+            }
           >
             {showingKnowledge ? (
               <LearningPathLearnedPanel
@@ -758,14 +845,10 @@ export function CourseLearningPath({
                 topics={learnedTopics}
                 onSelectTopic={handleSelect}
               />
-            ) : showingSyllabus ? (
+            ) : showingOverview ? (
               <CourseLearningPathSyllabusOverview
                 course={course}
                 onSelectTopic={handleSelect}
-              />
-            ) : showingMentalMap ? (
-              <CourseLearningPathMentalMap
-                course={course}
                 topicResources={course.mentalMapTopicResources}
                 dbBacked={Boolean(course.dbBacked)}
                 signedIn={Boolean(auth?.user)}
@@ -796,10 +879,6 @@ export function CourseLearningPath({
                 }
                 onAddTopicResource={handleAddTopicResource}
                 onUpdateTopicResource={handleUpdateTopicResource}
-                explored={exploredIds.has(entry.node.id)}
-                onToggleExplored={() => handleToggleExplored(entry.node.id)}
-                nextNode={nextCourseLearningPathNode(course, entry.node.id)}
-                onNext={handleNext}
                 pathSlug={course.slug}
                 pathTitle={course.title}
               />

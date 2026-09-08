@@ -17,6 +17,7 @@ import {
   buildSectionsFromHeadings,
   tocCompletableLabels
 } from '@/lib/courseContentSections'
+import { officialCourseCommitmentKey } from '@/lib/learning-path-commitments-db'
 import {
   courseTopicLabelFromKey,
   readSearchParam,
@@ -31,7 +32,21 @@ import { ContentMain } from './ContentMain'
 import { CourseActivity } from './CourseActivity'
 import styles from './CourseContent.module.css'
 import { CourseNotesPanel } from './CourseNotesPanel'
+import { LearningPathCommitRemindButton } from './LearningPathCommitRemindButton'
 import { TableOfContents } from './TableOfContents'
+
+function isOfficialCourseGeneralTab(
+  tocItems: TocItem[],
+  currentLabel: string,
+  parentLabel?: string | null
+): boolean {
+  const parent = parentLabel?.trim()
+    ? parentLabel.trim()
+    : tocItems.some((item) => item.label === currentLabel)
+    ? currentLabel
+    : tocItems[0]?.label ?? ''
+  return parent.trim().toLowerCase() === 'general'
+}
 
 export interface CourseContentProps {
   /** Optional ref for the main content container so existing DOM can be moved into it */
@@ -70,6 +85,7 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   const tocRef = React.useRef<{
     goToNextSection: () => void
     goToPreviousSection: () => void
+    goToFirstSection: () => void
     goToSectionByLabel: (label: string) => void
   } | null>(null)
   const [sectionIndex, setSectionIndex] = React.useState(1)
@@ -341,6 +357,11 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     isCompleted: false,
     isBookmarked: false
   }
+  const showingGeneral = isOfficialCourseGeneralTab(
+    tocItems,
+    currentSectionLabel,
+    embedParentTitle
+  )
 
   React.useEffect(() => {
     if (!currentSectionLabel) return
@@ -594,8 +615,22 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           totalSections={sectionTotal}
           onPreviousSection={() => tocRef.current?.goToPreviousSection()}
           hasPreviousSection={hasPreviousSection}
-          onNextSection={() => tocRef.current?.goToNextSection()}
+          onNextSection={() => {
+            if (hasNextSection) tocRef.current?.goToNextSection()
+            else tocRef.current?.goToFirstSection()
+          }}
           hasNextSection={hasNextSection}
+          beforeNext={
+            showingGeneral && coursePageId ? (
+              <LearningPathCommitRemindButton
+                targetKey={officialCourseCommitmentKey(coursePageId)}
+                signedIn={Boolean(authUser)}
+                onSignIn={() =>
+                  auth?.signInWithGoogle(currentAuthRedirectPath())
+                }
+              />
+            ) : null
+          }
         >
           {children}
         </ContentMain>

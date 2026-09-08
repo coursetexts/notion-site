@@ -34,7 +34,8 @@ export function PathContentActivity({
   style,
   children,
   onActivityPosted,
-  onExportContext
+  onExportContext,
+  footer
 }: {
   coursePageId: string
   courseTitle: string
@@ -50,6 +51,8 @@ export function PathContentActivity({
   onActivityPosted?: () => void
   /** Opens a dialog with LLM-ready path context (current step, outline, whys, goal). */
   onExportContext?: () => string
+  /** Pinned under the scrolling article (shared step bar). */
+  footer?: React.ReactNode
 }) {
   const [rightPanel, setRightPanel] = React.useState<RightPanel>('none')
   const [annotationCount, setAnnotationCount] = React.useState(0)
@@ -226,6 +229,7 @@ export function PathContentActivity({
         >
           {children}
         </div>
+        {footer ? <div className={styles.contentFooter}>{footer}</div> : null}
       </div>
       <AnimatePresence mode='wait' initial={false}>
         {showDesktopRightPanel ? (

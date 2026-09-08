@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 0;
+  min-height: 100svh;
   background: #fff;
 }
 
@@ -10,6 +10,17 @@
   flex: 1;
   min-width: 0;
   min-height: 0;
+}
+
+.contentFooter {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 12px 3rem 20px;
+  border-top: 1px solid #e5e1d3;
+  background: #fff;
+  box-sizing: border-box;
+  overflow: visible;
+  z-index: 4;
 }
 
 .annotationsColumn {
@@ -76,5 +87,11 @@
 @media (max-width: 1100px) {
   .annotationsColumn {
     display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .contentFooter {
+    padding: 12px 1.25rem 16px;
   }
 }

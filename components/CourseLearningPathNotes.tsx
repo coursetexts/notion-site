@@ -8,7 +8,8 @@ import {
 } from '@/lib/course-learning-path-notes-db'
 import {
   NOTEBOOK_EMPTY_DOC,
-  type NotebookDocJson
+  type NotebookDocJson,
+  isNotebookDocEmpty
 } from '@/lib/notebook-editor-default'
 import { registerPersistBeforeSignOut } from '@/lib/persist-before-sign-out'
 
@@ -20,6 +21,8 @@ export interface CourseLearningPathNotesProps {
   topicTitle?: string
   signedIn?: boolean
   onSignIn?: () => void
+  /** If the canonical node has no note, try these ids (Overview legacy keys). */
+  fallbackNodeIds?: string[]
 }
 
 function noteStorageKey(courseSlug: string, nodeId: string) {
@@ -35,7 +38,8 @@ export function CourseLearningPathNotes({
   courseSlug,
   topicTitle,
   signedIn = false,
-  onSignIn
+  onSignIn,
+  fallbackNodeIds
 }: CourseLearningPathNotesProps) {
   const currentKey = noteStorageKey(courseSlug, nodeId)
   const [loadedKey, setLoadedKey] = React.useState('')
@@ -54,10 +58,13 @@ export function CourseLearningPathNotes({
   courseSlugRef.current = courseSlug
   signedInRef.current = signedIn
 
+  const fallbackKey = (fallbackNodeIds ?? []).join('\n')
+
   React.useLayoutEffect(() => {
     let cancelled = false
     const id = nodeId
     const slug = courseSlug
+    const fallbacks = fallbackKey ? fallbackKey.split('\n') : []
     const empty = NOTEBOOK_EMPTY_DOC as unknown as NotebookDocJson
     if (!signedIn) {
       latestJson.current = empty
@@ -68,7 +75,17 @@ export function CourseLearningPathNotes({
     setLoadedKey('')
     latestJson.current = empty
     ;(async () => {
-      const content = await getCourseLearningPathNote(id, slug)
+      let content = await getCourseLearningPathNote(id, slug)
+      if (isNotebookDocEmpty(content)) {
+        for (const fallbackId of fallbacks) {
+          if (!fallbackId || fallbackId === id) continue
+          const alt = await getCourseLearningPathNote(fallbackId, slug)
+          if (!isNotebookDocEmpty(alt)) {
+            content = alt
+            break
+          }
+        }
+      }
       if (cancelled) return
       latestJson.current = content
       setInitialContent(content)
@@ -84,7 +101,7 @@ export function CourseLearningPathNotes({
         void saveCourseLearningPathNote(id, slug, latestJson.current)
       }
     }
-  }, [nodeId, courseSlug, signedIn])
+  }, [nodeId, courseSlug, signedIn, fallbackKey])
 
   const flushSave = React.useCallback(async () => {
     if (!signedInRef.current) return

@@ -1,0 +1,148 @@
+.bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.left,
+.center,
+.right {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+}
+
+.right {
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.slot {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+
+.slot button {
+  height: 36px;
+  min-height: 36px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  display: inline-block;
+  min-height: 36px;
+}
+
+.count {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #37352f;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.secondaryBtn,
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 12px;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.secondaryBtn {
+  color: #37352f;
+  background: #fff;
+  border: 1px solid var(--outline, #e6e6e6);
+}
+
+.secondaryBtn:hover,
+.secondaryBtn:focus-visible {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #d5d5d5;
+}
+
+.primaryBtn {
+  color: #fff;
+  background: #2c1a0c;
+  border: 1px solid #2c1a0c;
+}
+
+.primaryBtn:hover,
+.primaryBtn:focus-visible {
+  opacity: 0.9;
+}
+
+.btnIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .bar {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'prev count'
+      'actions actions';
+  }
+
+  .left {
+    grid-area: prev;
+  }
+
+  .center {
+    grid-area: count;
+    justify-content: flex-end;
+  }
+
+  .right {
+    grid-area: actions;
+    justify-content: stretch;
+  }
+
+  .right .secondaryBtn,
+  .right .primaryBtn {
+    flex: 1;
+  }
+
+  .right .slot {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .right .slot > * {
+    display: flex;
+    width: 100%;
+  }
+
+  .right .slot button {
+    flex: 1;
+    width: 100%;
+  }
+}

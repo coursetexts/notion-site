@@ -63,9 +63,23 @@
   font-size: 13px;
   line-height: 20px;
   letter-spacing: -0.005em;
-  text-transform: capitalize;
+  text-transform: none;
   color: var(--midGrey, #37352f);
   white-space: nowrap;
+}
+
+button.middleItem {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  color: var(--midGrey, #37352f);
 }
 
 .interactiveLink {
@@ -105,10 +119,10 @@
 .communityPanel {
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: auto;
+  right: 0;
   z-index: 30;
   padding-top: 14px;
-  transform: translateX(-50%);
   pointer-events: none;
   visibility: hidden;
 }
@@ -192,6 +206,57 @@
 .communityFlyout:focus-within .communityLink:nth-child(3),
 .communityFlyout[data-open='true'] .communityLink:nth-child(3) {
   transition-delay: 140ms;
+}
+
+.communityFlyout:hover .communityLink:nth-child(4),
+.communityFlyout:focus-within .communityLink:nth-child(4),
+.communityFlyout[data-open='true'] .communityLink:nth-child(4) {
+  transition-delay: 190ms;
+}
+
+.communityFlyout:hover .communityLink:nth-child(5),
+.communityFlyout:focus-within .communityLink:nth-child(5),
+.communityFlyout[data-open='true'] .communityLink:nth-child(5) {
+  transition-delay: 240ms;
+}
+
+.communityFlyout:hover .communityLink:nth-child(6),
+.communityFlyout:focus-within .communityLink:nth-child(6),
+.communityFlyout[data-open='true'] .communityLink:nth-child(6) {
+  transition-delay: 290ms;
+}
+
+.aboutPanelInner {
+  min-width: min(360px, calc(100vw - 32px));
+  width: 360px;
+}
+
+.aboutLink {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 16px;
+  white-space: normal;
+}
+
+.aboutLinkTitle {
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.005em;
+}
+
+.aboutLinkDesc {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.005em;
+  color: #6b7280;
+}
+
+.aboutLink:hover .aboutLinkDesc,
+.aboutLink:focus-visible .aboutLinkDesc {
+  color: #5a8aa3;
 }
 
 .communityFlyout:hover .interactiveLink::after,
@@ -486,7 +551,20 @@
   color: #0089c4;
 }
 
+.menuNavHeading {
+  margin: 0;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: #000000;
+  padding: 4px 0;
+}
+
 .menuNavChild {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9375rem;
   line-height: 1.35;
@@ -498,6 +576,15 @@
 
 .menuNavChild:hover,
 .menuNavChild:focus-visible {
+  color: #0089c4;
+}
+
+.menuNavChild .aboutLinkTitle {
+  color: #37352f;
+}
+
+.menuNavChild:hover .aboutLinkTitle,
+.menuNavChild:focus-visible .aboutLinkTitle {
   color: #0089c4;
 }
 

@@ -3,11 +3,12 @@
  * Data comes from degrees-page curriculum JSON (textbook / website / youtube).
  */
 import { graduateDegrees } from '@/lib/graduate-degrees'
+import { isLearningPathOverviewSelection } from '@/lib/learning-path-sections'
 import {
-  getCourseLearningPathSlug,
-  undergraduateDegrees,
   type CourseResource,
-  type CourseResourceKind
+  type CourseResourceKind,
+  getCourseLearningPathSlug,
+  undergraduateDegrees
 } from '@/lib/undergraduate-degrees'
 
 export type CourseLearningPathResourceSectionKind = CourseResourceKind
@@ -40,17 +41,19 @@ export const COURSE_LEARNING_PATH_RESOURCE_SECTIONS: readonly CourseLearningPath
 
 export const COURSE_LEARNING_PATH_RESOURCES_SECTION_ID = 'resources'
 
-/** Selectable left-nav / main-panel section for the course syllabus overview. */
+/** Canonical left-nav / main-panel id for course Overview (`syllabus:overview`). */
 export const COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID = 'syllabus:overview'
 
-/** Selectable left-nav / main-panel section for the course mental map. */
+/** Legacy General Approach URL; treated as Overview. */
 export const COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID = 'mental-map'
 
 /** Selectable left-nav / main-panel section for topics learned after finishing. */
 export const COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID = 'knowledge-gained'
 
 export function isCourseLearningPathResourceSelection(id: string): boolean {
-  return COURSE_LEARNING_PATH_RESOURCE_SECTIONS.some((section) => section.id === id)
+  return COURSE_LEARNING_PATH_RESOURCE_SECTIONS.some(
+    (section) => section.id === id
+  )
 }
 
 export function isCourseLearningPathSyllabusSelection(id: string): boolean {
@@ -59,6 +62,20 @@ export function isCourseLearningPathSyllabusSelection(id: string): boolean {
 
 export function isCourseLearningPathMentalMapSelection(id: string): boolean {
   return id === COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID
+}
+
+/** Overview tab: Recommended Syllabus, General Approach, or `?node=overview`. */
+export function isCourseLearningPathOverviewSelection(id: string): boolean {
+  return (
+    id === COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID ||
+    isLearningPathOverviewSelection(id)
+  )
+}
+
+export function canonicalizeCourseLearningPathSectionId(id: string): string {
+  return isCourseLearningPathOverviewSelection(id)
+    ? COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID
+    : id
 }
 
 export function isCourseLearningPathKnowledgeSelection(id: string): boolean {
@@ -80,7 +97,9 @@ export function getCourseLearningPathResourceSection(
   id: string
 ): CourseLearningPathResourceSection | null {
   return (
-    COURSE_LEARNING_PATH_RESOURCE_SECTIONS.find((section) => section.id === id) ?? null
+    COURSE_LEARNING_PATH_RESOURCE_SECTIONS.find(
+      (section) => section.id === id
+    ) ?? null
   )
 }
 

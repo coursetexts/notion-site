@@ -1319,7 +1319,7 @@
 }
 
 .detailContent {
-  padding: 2rem 3rem 4rem;
+  padding: 2rem 3rem 2rem;
   box-sizing: border-box;
   width: 100%;
 }
@@ -2066,17 +2066,6 @@ a.resourceTitle:focus-visible {
   color: #25272b;
 }
 
-.actionRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  width: 100%;
-  margin: 0;
-  overflow-anchor: auto;
-}
-
 .actionRow .primaryBtn {
   flex: none;
   min-width: 0;
@@ -2102,12 +2091,29 @@ a.resourceTitle:focus-visible {
 }
 
 .commitRemindBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  min-height: 36px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
+.commitRemindBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .commitRemindBtnActive {
-  border-color: #0089c4;
-  color: #0089c4;
+  border-color: #d5d5d5;
 }
 
 .commitRemindPopover {

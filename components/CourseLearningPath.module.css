@@ -492,6 +492,14 @@
   border-top: none;
 }
 
+.navOverviewSection {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 10px;
+  border-top: none;
+  border-bottom: 1px solid #e6e6e6;
+}
+
 .navSyllabusEmpty {
   margin: 0;
   padding: 4px 8px 0;
@@ -851,6 +859,31 @@
   .childrenGrid {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.childrenSequence {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.childrenSequence .childTitle {
+  white-space: normal;
+}
+
+.overviewPathSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.overviewPathSection .videosHeader {
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .childBtn {
@@ -1902,4 +1935,3 @@ a.topicResourceTitle:focus-visible {
     display: block;
   }
 }
-

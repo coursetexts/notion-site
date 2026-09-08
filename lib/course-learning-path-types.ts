@@ -44,7 +44,7 @@ export type CourseLearningPathTopicResourceKind =
 export const COURSE_LEARNING_PATH_TOPIC_RESOURCE_KINDS: CourseLearningPathTopicResourceKind[] =
   ['article', 'video', 'book', 'course', 'paper', 'exercise']
 
-/** Unified sequenced resource on a syllabus topic (or General Approach). */
+/** Unified sequenced resource on a syllabus topic (or Overview). */
 export interface CourseLearningPathTopicResource {
   id: string
   kind: CourseLearningPathTopicResourceKind
@@ -79,11 +79,11 @@ export interface CourseLearningPathData {
   resources?: CourseResource[]
   /** True when loaded from Supabase (mutations can persist). */
   dbBacked?: boolean
-  /** Course-level videos on the General Approach page. */
+  /** Course-level videos on the Overview page. */
   mentalMapVideos?: CourseLearningPathVideo[]
-  /** Unified sequenced resources on the General Approach page. */
+  /** Unified sequenced resources on the Overview page. */
   mentalMapTopicResources?: CourseLearningPathTopicResource[]
-  /** Hidden node id for General Approach resources stored in learning_paths.data. */
+  /** Hidden node id for Overview resources stored in learning_paths.data. */
   mentalMapNodeId?: string
   /** ISO timestamp from curated_courses.created_at when loaded from the DB. */
   createdAt?: string
@@ -123,7 +123,10 @@ export function buildCourseLearningPathIndex(
   c: CourseLearningPathData
 ): Record<string, CourseLearningPathFlatNode> {
   const index: Record<string, CourseLearningPathFlatNode> = {}
-  function walk(nodes: CourseLearningPathNode[], parents: CourseLearningPathNode[]) {
+  function walk(
+    nodes: CourseLearningPathNode[],
+    parents: CourseLearningPathNode[]
+  ) {
     for (const node of nodes) {
       index[node.id] = { node, parents }
       if (node.children?.length) walk(node.children, [...parents, node])
@@ -428,4 +431,14 @@ export function nextCourseLearningPathNode(
   const index = order.findIndex((node) => node.id === selectedId)
   if (index < 0) return order[0] ?? null
   return order[index + 1] ?? null
+}
+
+export function prevCourseLearningPathNode(
+  course: CourseLearningPathData,
+  selectedId: string
+): CourseLearningPathNode | null {
+  const order = flattenCourseLearningPathNodes(course)
+  const index = order.findIndex((node) => node.id === selectedId)
+  if (index <= 0) return null
+  return order[index - 1] ?? null
 }

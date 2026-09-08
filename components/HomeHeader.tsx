@@ -11,44 +11,125 @@ import { getCachedAuth } from '@/lib/auth-cache'
 import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 
 import { CoursetextsBookIcon } from './CoursetextsBookIcon'
+import { CreateLearningPathModal } from './CreateLearningPathModal'
 import styles from './HomeHeader.module.css'
 import { PinnedCoursesNav } from './PinnedCoursesNav'
 
-const communityChildren: Array<{ label: string; href: string }> = [
-  // Restore the Community dropdown by uncommenting these items.
-  // { label: 'Degrees', href: '/degrees' },
-  // { label: 'Field Atlas', href: '/field-atlas' }
-]
+type AboutNavChild = {
+  label: string
+  description: string
+  href: string
+  external?: boolean
+}
 
-const navItems = [
-  { label: 'All Courses', href: '/all-courses' },
-  { label: 'Manifesto', href: '/manifesto' },
+type NavItem =
+  | {
+      kind: 'link'
+      label: string
+      href: string
+      external?: boolean
+    }
+  | {
+      kind: 'action'
+      label: string
+      action: 'create-path'
+    }
+  | {
+      kind: 'menu'
+      label: string
+      children: AboutNavChild[]
+    }
+
+const aboutChildren: AboutNavChild[] = [
   {
-    label: 'Community',
-    href: '/community',
-    children: communityChildren
+    label: 'Why Coursetexts',
+    description: 'Mission, problem and manifesto.',
+    href: '/manifesto'
   },
   {
-    label: 'Donate',
-    href: 'https://hcb.hackclub.com/donations/start/coursetexts',
+    label: 'Our Story & Team',
+    description: 'Origins, current team, advisors and nonprofit status.',
+    href: '/about'
+  },
+  {
+    label: 'How We Publish',
+    description:
+      'Professor partnerships, permissions, licensing and content provenance.',
+    href: '/process'
+  },
+  {
+    label: 'For Professors',
+    description: 'Contribute materials or publish a course.',
+    href: '/professors'
+  },
+  {
+    label: 'Blog & Research',
+    description: 'Product research, educational interfaces and project updates.',
+    href: 'https://blog.coursetexts.org',
     external: true
+  },
+  {
+    label: 'Support Coursetexts',
+    description: 'Donation page and explanation of how funding is used.',
+    href: '/support'
   }
 ]
 
-function CommunityFlyout({
-  href,
+const navItems: NavItem[] = [
+  { kind: 'link', label: 'Explore', href: '/all-courses' },
+  { kind: 'action', label: 'Create a path', action: 'create-path' },
+  { kind: 'link', label: 'Community', href: '/community' },
+  { kind: 'menu', label: 'About', children: aboutChildren }
+]
+
+function AboutChildLink({
+  child,
+  className,
   onNavigate
 }: {
-  href: string
+  child: AboutNavChild
+  className: string
   onNavigate?: () => void
 }) {
+  const inner = (
+    <>
+      <span className={styles.aboutLinkTitle}>{child.label}</span>
+      <span className={styles.aboutLinkDesc}>{child.description}</span>
+    </>
+  )
+
+  if (child.external) {
+    return (
+      <a
+        href={child.href}
+        target='_blank'
+        rel='noreferrer'
+        className={className}
+        role='menuitem'
+        onClick={onNavigate}
+      >
+        {inner}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={child.href} legacyBehavior>
+      <a className={className} role='menuitem' onClick={onNavigate}>
+        {inner}
+      </a>
+    </Link>
+  )
+}
+
+function AboutFlyout({ onNavigate }: { onNavigate?: () => void }) {
   const wrapRef = React.useRef<HTMLDivElement>(null)
   const [open, setOpen] = React.useState(false)
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     if (event.key !== 'Escape') return
     setOpen(false)
-    wrapRef.current?.querySelector('a')?.focus()
+    wrapRef.current?.querySelector('button')?.focus()
   }
 
   function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
@@ -68,27 +149,25 @@ function CommunityFlyout({
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
     >
-      <Link href={href} legacyBehavior>
-        <a
-          className={`${styles.middleItem} ${styles.interactiveLink}`}
-          aria-haspopup='true'
-          aria-expanded={open}
+      <button
+        type='button'
+        className={`${styles.middleItem} ${styles.interactiveLink}`}
+        aria-haspopup='menu'
+        aria-expanded={open}
+      >
+        About
+      </button>
+      <div className={styles.communityPanel} role='menu' aria-label='About'>
+        <div
+          className={`${styles.communityPanelInner} ${styles.aboutPanelInner}`}
         >
-          Community
-        </a>
-      </Link>
-      <div className={styles.communityPanel} role='menu' aria-label='Community'>
-        <div className={styles.communityPanelInner}>
-          {communityChildren.map((child) => (
-            <Link key={child.href} href={child.href} legacyBehavior>
-              <a
-                className={styles.communityLink}
-                role='menuitem'
-                onClick={onNavigate}
-              >
-                {child.label}
-              </a>
-            </Link>
+          {aboutChildren.map((child) => (
+            <AboutChildLink
+              key={child.href}
+              child={child}
+              className={`${styles.communityLink} ${styles.aboutLink}`}
+              onNavigate={onNavigate}
+            />
           ))}
         </div>
       </div>
@@ -160,6 +239,7 @@ export function HomeHeader({
   const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
 
   const [menuOpen, setMenuOpen] = React.useState(false)
+  const [createPathOpen, setCreatePathOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [searchDraft, setSearchDraft] = React.useState('')
   const [expandRect, setExpandRect] = React.useState<DOMRect | null>(null)
@@ -193,6 +273,10 @@ export function HomeHeader({
     if (focusSearch()) return
     void router.push('/all-courses#all-courses-search')
   }, [focusSearch, router])
+
+  const openCreatePath = React.useCallback(() => {
+    setCreatePathOpen(true)
+  }, [])
 
   React.useEffect(() => {
     setPortalReady(true)
@@ -376,44 +460,91 @@ export function HomeHeader({
               </form>
 
               <nav className={styles.menuNav} aria-label='Home page navigation'>
-                {navItems.map((item) =>
-                  item.external ? (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target='_blank'
-                      rel='noreferrer'
-                      className={styles.menuNavLink}
-                      onClick={closeMenu}
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <React.Fragment key={item.label}>
-                      <div className={styles.menuNavGroup}>
-                        <Link href={item.href} legacyBehavior>
-                          <a className={styles.menuNavLink} onClick={closeMenu}>
-                            {item.label}
-                          </a>
-                        </Link>
-                        {item.children?.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            legacyBehavior
-                          >
+                {navItems.map((item) => {
+                  if (item.kind === 'menu') {
+                    return (
+                      <div key={item.label} className={styles.menuNavGroup}>
+                        <p className={styles.menuNavHeading}>{item.label}</p>
+                        {item.children.map((child) =>
+                          child.external ? (
                             <a
+                              key={child.href}
+                              href={child.href}
+                              target='_blank'
+                              rel='noreferrer'
                               className={styles.menuNavChild}
                               onClick={closeMenu}
                             >
-                              {child.label}
+                              <span className={styles.aboutLinkTitle}>
+                                {child.label}
+                              </span>
+                              <span className={styles.aboutLinkDesc}>
+                                {child.description}
+                              </span>
                             </a>
-                          </Link>
-                        ))}
+                          ) : (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              legacyBehavior
+                            >
+                              <a
+                                className={styles.menuNavChild}
+                                onClick={closeMenu}
+                              >
+                                <span className={styles.aboutLinkTitle}>
+                                  {child.label}
+                                </span>
+                                <span className={styles.aboutLinkDesc}>
+                                  {child.description}
+                                </span>
+                              </a>
+                            </Link>
+                          )
+                        )}
                       </div>
-                    </React.Fragment>
+                    )
+                  }
+
+                  if (item.kind === 'action') {
+                    return (
+                      <button
+                        key={item.label}
+                        type='button'
+                        className={`${styles.resetButton} ${styles.menuNavLink}`}
+                        onClick={() => {
+                          closeMenu()
+                          openCreatePath()
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    )
+                  }
+
+                  if (item.external) {
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target='_blank'
+                        rel='noreferrer'
+                        className={styles.menuNavLink}
+                        onClick={closeMenu}
+                      >
+                        {item.label}
+                      </a>
+                    )
+                  }
+
+                  return (
+                    <Link key={item.label} href={item.href} legacyBehavior>
+                      <a className={styles.menuNavLink} onClick={closeMenu}>
+                        {item.label}
+                      </a>
+                    </Link>
                   )
-                )}
+                })}
               </nav>
 
               <div className={styles.menuFooter}>
@@ -453,20 +584,39 @@ export function HomeHeader({
                 className={styles.middleItems}
                 aria-label='Home page navigation'
               >
-                {navItems.map((item) =>
-                  item.external ? (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target='_blank'
-                      rel='noreferrer'
-                      className={`${styles.middleItem} ${styles.interactiveLink}`}
-                    >
-                      {item.label}
-                    </a>
-                  ) : item.children?.length ? (
-                    <CommunityFlyout key={item.label} href={item.href} />
-                  ) : (
+                {navItems.map((item) => {
+                  if (item.kind === 'menu') {
+                    return <AboutFlyout key={item.label} />
+                  }
+
+                  if (item.kind === 'action') {
+                    return (
+                      <button
+                        key={item.label}
+                        type='button'
+                        className={`${styles.middleItem} ${styles.interactiveLink}`}
+                        onClick={openCreatePath}
+                      >
+                        {item.label}
+                      </button>
+                    )
+                  }
+
+                  if (item.external) {
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target='_blank'
+                        rel='noreferrer'
+                        className={`${styles.middleItem} ${styles.interactiveLink}`}
+                      >
+                        {item.label}
+                      </a>
+                    )
+                  }
+
+                  return (
                     <Link key={item.label} href={item.href} legacyBehavior>
                       <a
                         className={`${styles.middleItem} ${styles.interactiveLink}`}
@@ -475,7 +625,7 @@ export function HomeHeader({
                       </a>
                     </Link>
                   )
-                )}
+                })}
 
                 <button
                   type='button'
@@ -541,6 +691,10 @@ export function HomeHeader({
       </section>
 
       {portalReady && createPortal(mobileMenu, document.body)}
+      <CreateLearningPathModal
+        open={createPathOpen}
+        onClose={() => setCreatePathOpen(false)}
+      />
     </>
   )
 }

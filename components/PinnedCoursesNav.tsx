@@ -9,14 +9,20 @@ import {
   subscribeCourseLearningPathPins
 } from '@/lib/course-learning-path-pins-db'
 import {
-  attachLearningPathKinds,
-  listAccessibleLearningPaths
-} from '@/lib/learning-path-db'
-import {
   learningPathsFromUserLinks,
   mergeOwnedAndSavedLearningPaths
 } from '@/lib/learning-path-bookmark-link'
+import {
+  attachLearningPathKinds,
+  listAccessibleLearningPaths
+} from '@/lib/learning-path-db'
 import { isCourseKindPath } from '@/lib/learning-path-kind-ui'
+import { readStoredLearningPaths } from '@/lib/learning-path-seed'
+import {
+  type NavPinResume,
+  enrichOfficialNavPinResume,
+  loadNavPinResume
+} from '@/lib/nav-pin-resume'
 import {
   hasSeededNavPins,
   learningPathNavPinKey,
@@ -27,7 +33,6 @@ import {
   subscribeNavPins
 } from '@/lib/nav-pins-db'
 import { getMyLinks } from '@/lib/user-links'
-import { readStoredLearningPaths } from '@/lib/learning-path-seed'
 
 import { PinIcon } from './PinIcon'
 import styles from './PinnedCoursesNav.module.css'
@@ -39,6 +44,18 @@ type PinNavItem = {
   title: string
   href: string
   pinKey: string
+  pathSlug?: string
+  officialPageId?: string
+}
+
+type NavPinResumeMaps = {
+  byPathSlug: Record<string, NavPinResume>
+  byOfficialPageId: Record<string, NavPinResume>
+}
+
+const EMPTY_RESUME: NavPinResumeMaps = {
+  byPathSlug: {},
+  byOfficialPageId: {}
 }
 
 const PIN_NAV_TABS: {
@@ -65,11 +82,110 @@ function sortSavedWithPins(
   const index = new Map(pinKeys.map((key, i) => [key, i]))
   const pinned = items
     .filter((item) => index.has(item.pinKey))
-    .sort(
-      (a, b) => (index.get(a.pinKey) ?? 0) - (index.get(b.pinKey) ?? 0)
-    )
+    .sort((a, b) => (index.get(a.pinKey) ?? 0) - (index.get(b.pinKey) ?? 0))
   const rest = items.filter((item) => !index.has(item.pinKey))
   return [...pinned, ...rest]
+}
+
+function resumeForItem(
+  item: PinNavItem,
+  maps: NavPinResumeMaps
+): NavPinResume | null {
+  if (item.pathSlug) return maps.byPathSlug[item.pathSlug] ?? null
+  if (item.officialPageId) {
+    return maps.byOfficialPageId[item.officialPageId] ?? null
+  }
+  return null
+}
+
+function PinNavRow({
+  item,
+  pinned,
+  resume,
+  onTogglePinned,
+  onNavigate
+}: {
+  item: PinNavItem
+  pinned: boolean
+  resume: NavPinResume | null
+  onTogglePinned: (item: PinNavItem) => void
+  onNavigate: () => void
+}) {
+  const [hovered, setHovered] = React.useState(false)
+  const [coarsePointer, setCoarsePointer] = React.useState(false)
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(hover: none)')
+    const sync = () => setCoarsePointer(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  const showResume = coarsePointer || hovered
+
+  function onBlur(event: React.FocusEvent<HTMLLIElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      setHovered(false)
+    }
+  }
+
+  return (
+    <li
+      className={pinned ? `${styles.row} ${styles.rowPinned}` : styles.row}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setHovered(true)}
+      onBlurCapture={onBlur}
+    >
+      <div className={styles.rowMain}>
+        <Link href={item.href} legacyBehavior>
+          <a className={styles.courseLink} onClick={onNavigate}>
+            {item.title}
+          </a>
+        </Link>
+        <button
+          type='button'
+          className={styles.rowPin}
+          aria-label={
+            pinned ? `Unpin ${item.title}` : `Pin ${item.title} to top`
+          }
+          onClick={() => onTogglePinned(item)}
+        >
+          <PinIcon filled={pinned} size={14} />
+        </button>
+      </div>
+      {showResume ? (
+        <div className={styles.resume}>
+          {resume ? (
+            <p className={styles.resumeCount}>
+              {resume.explored} of {resume.total} {resume.unit} explored
+            </p>
+          ) : (
+            <p className={styles.resumeCount}>Pick up where you left off</p>
+          )}
+          <div className={styles.resumeNext}>
+            {resume?.nextLabel ? (
+              <span className={styles.resumeNextLabel}>
+                Next: {resume.nextLabel}
+              </span>
+            ) : (
+              <span className={styles.resumeNextLabel}>
+                {resume && resume.explored >= resume.total
+                  ? 'All caught up'
+                  : item.title}
+              </span>
+            )}
+            <Link href={resume?.continueHref ?? item.href} legacyBehavior>
+              <a className={styles.continue} onClick={onNavigate}>
+                Continue →
+              </a>
+            </Link>
+          </div>
+        </div>
+      ) : null}
+    </li>
+  )
 }
 
 export function PinnedCoursesNav() {
@@ -78,81 +194,114 @@ export function PinnedCoursesNav() {
   const [coursePins, setCoursePins] = React.useState<
     PinnedCourseLearningPath[]
   >([])
-  const [officialCourses, setOfficialCourses] = React.useState<PinNavItem[]>(
-    []
-  )
-  const [courseKindPaths, setCourseKindPaths] = React.useState<PinNavItem[]>(
-    []
-  )
+  const [officialCourses, setOfficialCourses] = React.useState<PinNavItem[]>([])
+  const [courseKindPaths, setCourseKindPaths] = React.useState<PinNavItem[]>([])
   const [communityPaths, setCommunityPaths] = React.useState<PinNavItem[]>([])
   const [researchPaths, setResearchPaths] = React.useState<PinNavItem[]>([])
   const [pinKeys, setPinKeys] = React.useState<string[]>([])
+  const [resume, setResume] = React.useState<NavPinResumeMaps>(EMPTY_RESUME)
   const [loading, setLoading] = React.useState(true)
   const rootRef = React.useRef<HTMLDivElement>(null)
 
-  const refresh = React.useCallback(async () => {
-    const [pins, bookmarks, owned, links, storedPinKeys] = await Promise.all([
-      listMyCourseLearningPathPins(),
-      getMyBookmarks(),
-      listAccessibleLearningPaths(),
-      getMyLinks(),
-      listMyNavPins()
-    ])
-    let nextPinKeys = storedPinKeys
-    if (!hasSeededNavPins()) {
-      markNavPinsSeeded()
-      const seeded = pins.map((pin) => learningPathNavPinKey(pin.slug))
-      for (const key of seeded) {
-        if (nextPinKeys.includes(key)) continue
-        await setNavPinned(key, true, { notify: false })
-        nextPinKeys = [key, ...nextPinKeys.filter((item) => item !== key)]
+  const refresh = React.useCallback(
+    async (opts?: { fetchOfficialToc?: boolean }) => {
+      const [pins, bookmarks, owned, links, storedPinKeys] = await Promise.all([
+        listMyCourseLearningPathPins(),
+        getMyBookmarks(),
+        listAccessibleLearningPaths(),
+        getMyLinks(),
+        listMyNavPins()
+      ])
+      let nextPinKeys = storedPinKeys
+      if (!hasSeededNavPins()) {
+        markNavPinsSeeded()
+        const seeded = pins.map((pin) => learningPathNavPinKey(pin.slug))
+        for (const key of seeded) {
+          if (nextPinKeys.includes(key)) continue
+          await setNavPinned(key, true, { notify: false })
+          nextPinKeys = [key, ...nextPinKeys.filter((item) => item !== key)]
+        }
       }
-    }
-    setPinKeys(nextPinKeys)
-    setCoursePins(pins)
-    setOfficialCourses(
-      bookmarks.map(({ course }) => ({
+      setPinKeys(nextPinKeys)
+      setCoursePins(pins)
+      const nextOfficial = bookmarks.map(({ course }) => ({
         id: course.notion_page_id,
         title: course.name,
         href: course.url ?? `/course/${course.notion_page_id}`,
-        pinKey: officialCourseNavPinKey(course.notion_page_id)
+        pinKey: officialCourseNavPinKey(course.notion_page_id),
+        officialPageId: course.notion_page_id
       }))
-    )
-    const merged = await attachLearningPathKinds(
-      mergeOwnedAndSavedLearningPaths({
-        owned,
-        stored: readStoredLearningPaths(),
-        saved: learningPathsFromUserLinks(links)
+      setOfficialCourses(nextOfficial)
+      const merged = await attachLearningPathKinds(
+        mergeOwnedAndSavedLearningPaths({
+          owned,
+          stored: readStoredLearningPaths(),
+          saved: learningPathsFromUserLinks(links)
+        })
+      )
+      const toNavItem = (item: (typeof merged)[number]): PinNavItem => ({
+        id: item.id,
+        title: item.goal,
+        href: `/learning-path/${item.slug}`,
+        pinKey: learningPathNavPinKey(item.slug),
+        pathSlug: item.slug
       })
-    )
-    const toNavItem = (item: (typeof merged)[number]): PinNavItem => ({
-      id: item.id,
-      title: item.goal,
-      href: `/learning-path/${item.slug}`,
-      pinKey: learningPathNavPinKey(item.slug)
-    })
-    const pinSlugs = new Set(pins.map((pin) => pin.slug))
-    setCourseKindPaths(
-      merged
+      const pinSlugs = new Set(pins.map((pin) => pin.slug))
+      const nextCourseKind = merged
         .filter(
-          (item) =>
-            isCourseKindPath(item.kind) && !pinSlugs.has(item.slug)
+          (item) => isCourseKindPath(item.kind) && !pinSlugs.has(item.slug)
         )
         .map(toNavItem)
-    )
-    setCommunityPaths(
-      merged
+      const nextCommunity = merged
         .filter(
-          (item) =>
-            item.kind !== 'research' && !isCourseKindPath(item.kind)
+          (item) => item.kind !== 'research' && !isCourseKindPath(item.kind)
         )
         .map(toNavItem)
-    )
-    setResearchPaths(
-      merged.filter((item) => item.kind === 'research').map(toNavItem)
-    )
-    setLoading(false)
-  }, [])
+      const nextResearch = merged
+        .filter((item) => item.kind === 'research')
+        .map(toNavItem)
+      setCourseKindPaths(nextCourseKind)
+      setCommunityPaths(nextCommunity)
+      setResearchPaths(nextResearch)
+      const resumeMaps = await loadNavPinResume({
+        pathSlugs: [
+          ...pins.map((pin) => pin.slug),
+          ...nextCourseKind.map((item) => item.pathSlug ?? ''),
+          ...nextCommunity.map((item) => item.pathSlug ?? ''),
+          ...nextResearch.map((item) => item.pathSlug ?? '')
+        ],
+        official: nextOfficial.map((item) => ({
+          pageId: item.officialPageId ?? item.id,
+          href: item.href
+        }))
+      })
+      setResume(resumeMaps)
+      setLoading(false)
+      if (opts?.fetchOfficialToc) {
+        const officialMissing = nextOfficial.filter(
+          (item) => !resumeMaps.byOfficialPageId[item.officialPageId ?? item.id]
+        )
+        if (officialMissing.length > 0) {
+          const extraOfficial = await enrichOfficialNavPinResume({
+            official: officialMissing.map((item) => ({
+              pageId: item.officialPageId ?? item.id,
+              href: item.href
+            }))
+          })
+          if (Object.keys(extraOfficial).length > 0) {
+            setResume((prev) => ({
+              ...prev,
+              byOfficialPageId: {
+                ...prev.byOfficialPageId,
+                ...extraOfficial
+              }
+            }))
+          }
+        }
+      }
+    },
+    []
+  )
 
   React.useEffect(() => {
     void refresh()
@@ -170,7 +319,7 @@ export function PinnedCoursesNav() {
 
   React.useEffect(() => {
     if (!open) return
-    void refresh()
+    void refresh({ fetchOfficialToc: true })
     const onPointer = (e: MouseEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
     }
@@ -195,7 +344,8 @@ export function PinnedCoursesNav() {
             id: pin.pinId,
             title: pin.title,
             href: courseLearningPathHref(pin.slug),
-            pinKey: learningPathNavPinKey(pin.slug)
+            pinKey: learningPathNavPinKey(pin.slug),
+            pathSlug: pin.slug
           })),
           ...courseKindPaths
         ]
@@ -218,8 +368,7 @@ export function PinnedCoursesNav() {
   function onTabKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
     event.preventDefault()
-    const next: PinNavTab =
-      tab === 'courses' ? 'learning-paths' : 'courses'
+    const next: PinNavTab = tab === 'courses' ? 'learning-paths' : 'courses'
     setTab(next)
     const nextId =
       next === 'courses' ? 'pinned-tab-courses' : 'pinned-tab-paths'
@@ -239,11 +388,7 @@ export function PinnedCoursesNav() {
         <PinIcon filled size={18} />
       </button>
       {open && (
-        <div
-          className={styles.menu}
-          role='dialog'
-          aria-label='Saved items'
-        >
+        <div className={styles.menu} role='dialog' aria-label='Saved items'>
           <div className={styles.tabs} role='tablist' aria-label='Saved items'>
             {PIN_NAV_TABS.map((option, index) => (
               <React.Fragment key={option.id}>
@@ -280,9 +425,7 @@ export function PinnedCoursesNav() {
             id='pinned-nav-panel'
             role='tabpanel'
             aria-labelledby={
-              tab === 'courses'
-                ? 'pinned-tab-courses'
-                : 'pinned-tab-paths'
+              tab === 'courses' ? 'pinned-tab-courses' : 'pinned-tab-paths'
             }
           >
             {loading ? (
@@ -291,40 +434,16 @@ export function PinnedCoursesNav() {
               <p className={styles.empty}>{selected?.empty}</p>
             ) : (
               <ul className={styles.list}>
-                {items.map((item) => {
-                  const pinned = pinKeySet.has(item.pinKey)
-                  return (
-                    <li
-                      key={item.id}
-                      className={
-                        pinned
-                          ? `${styles.row} ${styles.rowPinned}`
-                          : styles.row
-                      }
-                    >
-                      <Link href={item.href} legacyBehavior>
-                        <a
-                          className={styles.courseLink}
-                          onClick={() => setOpen(false)}
-                        >
-                          {item.title}
-                        </a>
-                      </Link>
-                      <button
-                        type='button'
-                        className={styles.rowPin}
-                        aria-label={
-                          pinned
-                            ? `Unpin ${item.title}`
-                            : `Pin ${item.title} to top`
-                        }
-                        onClick={() => void togglePinned(item)}
-                      >
-                        <PinIcon filled={pinned} size={14} />
-                      </button>
-                    </li>
-                  )
-                })}
+                {items.map((item) => (
+                  <PinNavRow
+                    key={item.id}
+                    item={item}
+                    pinned={pinKeySet.has(item.pinKey)}
+                    resume={resumeForItem(item, resume)}
+                    onTogglePinned={(next) => void togglePinned(next)}
+                    onNavigate={() => setOpen(false)}
+                  />
+                ))}
               </ul>
             )}
           </div>

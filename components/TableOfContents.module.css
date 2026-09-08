@@ -139,20 +139,6 @@
   justify-content: center;
 }
 
-/* Matches ContentMain completed / bookmarked control icons: blue circle, white glyph */
-.itemIconCheck {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #0089c4;
-  border: 1px solid #0089c4;
-  box-sizing: border-box;
-}
-
 .itemIconBookmark {
   flex-shrink: 0;
   width: 18px;

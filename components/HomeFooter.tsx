@@ -33,14 +33,13 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
       image: '/images/home/footer-for-professors.png',
       label: 'for professors',
       title: 'Contribute your material',
-      href: '/manifesto'
+      href: '/professors'
     },
     {
       image: '/images/home/donation-badge.png',
       label: 'for supporters',
       title: 'Donate',
-      href: 'https://hcb.hackclub.com/donations/start/coursetexts',
-      external: true
+      href: '/support'
     }
   ]
 
@@ -64,11 +63,7 @@ export function HomeFooter({ variant = 'default' }: HomeFooterProps) {
   ]
 
   const communityLinks: NavItem[] = [
-    {
-      label: 'Donate',
-      href: 'https://hcb.hackclub.com/donations/start/coursetexts',
-      external: true
-    },
+    { label: 'Donate', href: '/support' },
     { label: 'Blogs', href: 'https://blog.coursetexts.org', external: true },
     { label: 'Press', href: '/manifesto' },
     {

@@ -63,7 +63,7 @@ flowchart TB
 |-------|------------------|
 | `learning_paths` (`kind=course`) | Identity + syllabus JSON (`data`) |
 | `learning_path_user_state` | Per-user TipTap notes keyed by node id |
-| `learning_path_pins` | Per-user pinned syllabi (header dropdown) |
+| `learning_path_pins` | Per-user pinned syllabi (header dropdown). Hover a row for explored/total + **Continue →** to the next node (`?node=`). |
 | `curated_courses` / `curated_course_*` | Backup + migrate/seed source; app does not write these after cutover |
 
 Resources added on a syllabus node also appear in `/community-resources`. They are labeled with a plain-text **concept tree** such as `Linear Algebra --> Linear Systems and Elimination --> Gaussian elimination and row reduction`.
@@ -79,8 +79,7 @@ Subject icons on those cards reuse the degrees-page SVG set (`DegreeCardIcon`). 
 ```mermaid
 flowchart TB
   Nav["Left panel"]
-  MM["General Approach"]
-  Rec["Recommended Syllabus<br/>→ overview"]
+  Over["Overview"]
   Tree["Topic / subtopic / concept tree"]
   Res["Resources"]
   TB["Core Textbooks"]
@@ -88,8 +87,7 @@ flowchart TB
   YT["Video Channels"]
   Learned["What you learned<br/>after the path is finished"]
 
-  Nav --> MM
-  Nav --> Rec
+  Nav --> Over
   Nav --> Tree
   Nav --> Res
   Res --> TB
@@ -98,8 +96,7 @@ flowchart TB
   Nav --> Learned
 ```
 
-- **General Approach** — graph of the syllabus (`data.mentalMapNodeId` holds map-only clips). Resources only; no **Why is this on the learning path** (the course blurb stays in the hero).
-- **Recommended Syllabus** — course blurb + topic list; does **not** wrap the tree.
+- **Overview** — same tab as community paths (`?node=syllabus:overview`; `mental-map` and `overview` canonicalize here). Course title, then Resources (`data.mentalMapNodeId` holds map-only clips), then **Recommended Path** topic list. No type badges and no **Why is this on the learning path** (the course blurb stays in the hero). A 1px hairline sits under this row (none above it). Searching for “overview”, “general approach”, “mental map”, or “recommended syllabus” still finds **Overview**. **Commit & Remind Me** sits on the bottom step bar next to **Next** (`learning-path:{slug}`).
 - **Topic tree** — accordion topics with a vertical line for nested lectures. A light-blue stroke check appears on the right when a topic or lecture is explored. Loads that node’s sequenced resources from `learning_paths.data`. **Why is this on the learning path:** is inline under the title. **Resources** start open.
 - **Resources** — from `data.resources` (or degrees JSON fallback).
 - **What you learned** — appears only after every syllabus node is explored.

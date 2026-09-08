@@ -26,6 +26,7 @@ import {
 import { PathContentActivity } from '@/components/PathContentActivity'
 import { ReportButton, reportHoverTargetClass } from '@/components/ReportButton'
 import { SiteNotesEditor } from '@/components/SiteNotesEditor'
+import { StepNavBar } from '@/components/StepNavBar'
 import { getCachedAuth } from '@/lib/auth-cache'
 import { currentAuthRedirectPath, signInPageHref } from '@/lib/auth-redirect'
 import { pathResourceReportId } from '@/lib/content-reports'
@@ -442,6 +443,16 @@ function nextOutlineNode(
   const index = order.findIndex((node) => node.id === selectedId)
   if (index < 0) return order[0] ?? null
   return order[index + 1] ?? null
+}
+
+function prevOutlineNode(
+  path: LearningPathData,
+  selectedId: string
+): LearningPathNode | null {
+  const order = flattenTree(visibleTree(path, path.nodes))
+  const index = order.findIndex((node) => node.id === selectedId)
+  if (index <= 0) return null
+  return order[index - 1] ?? null
 }
 
 function PlusIcon() {
@@ -1547,7 +1558,23 @@ function CommunityLearningPath({
       : listedResources.length + 1
   const nestedToDelete =
     selected && selected.kind !== 'goal' ? descendantIds(path, selected.id) : []
+  const outlineOrder = React.useMemo(() => flattenTree(tree), [tree])
+  const topicIndex =
+    showingOverview || !selected
+      ? -1
+      : outlineOrder.findIndex((node) => node.id === selected.id)
+  const stepTotal = outlineOrder.length + 1
+  const stepCurrent = showingOverview
+    ? 1
+    : topicIndex >= 0
+      ? topicIndex + 2
+      : 1
+  const isLastOutlineStep =
+    !showingOverview &&
+    outlineOrder.length > 0 &&
+    topicIndex === outlineOrder.length - 1
   const nextNode = selected ? nextOutlineNode(path, selected.id) : null
+  const prevNode = selected ? prevOutlineNode(path, selected.id) : null
 
   function selectNode(id: string) {
     const next =
@@ -1563,6 +1590,28 @@ function CommunityLearningPath({
 
   function selectNodeKeepingScroll(id: string) {
     restoreScrollAfter(() => selectNode(id), detailRef.current)
+  }
+
+  function goStepPrevious() {
+    if (showingOverview) return
+    if (prevNode) {
+      selectNodeKeepingScroll(prevNode.id)
+      return
+    }
+    selectNodeKeepingScroll(LEARNING_PATH_OVERVIEW_SECTION_ID)
+  }
+
+  function goStepNext() {
+    if (isLastOutlineStep) {
+      selectNode(LEARNING_PATH_OVERVIEW_SECTION_ID)
+      return
+    }
+    if (showingOverview) {
+      const first = outlineOrder[0]
+      if (first) selectNodeKeepingScroll(first.id)
+      return
+    }
+    if (nextNode) selectNodeKeepingScroll(nextNode.id)
   }
 
   function openAdd(placement: 'child' | 'after') {
@@ -2754,6 +2803,36 @@ function CommunityLearningPath({
                 selectedId
               })
             }
+            footer={
+              showingKnowledge || !selected ? null : (
+                <StepNavBar
+                  current={stepCurrent}
+                  total={Math.max(stepTotal, 1)}
+                  hasPrevious={!showingOverview}
+                  isLastStep={isLastOutlineStep}
+                  onPrevious={goStepPrevious}
+                  onNext={
+                    showingOverview && outlineOrder.length === 0
+                      ? undefined
+                      : goStepNext
+                  }
+                  explored={selected.status === 'explored'}
+                  onToggleExplored={
+                    selected.kind === 'goal' ? undefined : toggleExplored
+                  }
+                  showExplored={selected.kind !== 'goal'}
+                  beforeNext={
+                    showingOverview ? (
+                      <LearningPathCommitRemindButton
+                        targetKey={learningPathCommitmentKey(slug)}
+                        signedIn={Boolean(currentUserId)}
+                        onSignIn={() => requestSignIn()}
+                      />
+                    ) : null
+                  }
+                />
+              )
+            }
           >
             {showingKnowledge ? (
               <LearningPathLearnedPanel
@@ -3079,53 +3158,6 @@ function CommunityLearningPath({
                       </ul>
                     )}
                   </PathContentSection>
-                ) : null}
-
-                {showingOverview || selected.kind !== 'goal' || nextNode ? (
-                  <div className={styles.actionRow}>
-                    {showingOverview ? (
-                      <LearningPathCommitRemindButton
-                        targetKey={learningPathCommitmentKey(slug)}
-                        signedIn={Boolean(currentUserId)}
-                        onSignIn={() => requestSignIn()}
-                      />
-                    ) : null}
-                    {selected.kind !== 'goal' ? (
-                      <button
-                        type='button'
-                        className={`${styles.primaryBtn}${
-                          selected.status === 'explored'
-                            ? ` ${styles.exploredBtn}`
-                            : ''
-                        }`}
-                        onClick={toggleExplored}
-                      >
-                        {selected.status === 'explored' ? (
-                          <span className={styles.exploredLabel}>
-                            <span className={styles.exploredIdle}>
-                              Explored
-                            </span>
-                            <span className={styles.exploredHover}>
-                              Mark unexplored
-                            </span>
-                          </span>
-                        ) : (
-                          'Mark as explored'
-                        )}
-                      </button>
-                    ) : null}
-                    {nextNode ? (
-                      <button
-                        type='button'
-                        className={`${styles.primaryBtn} ${styles.nextBtn}`}
-                        onClick={() => selectNodeKeepingScroll(nextNode.id)}
-                      >
-                        {showingOverview
-                          ? 'Start Recommended Path'
-                          : 'Next'}
-                      </button>
-                    ) : null}
-                  </div>
                 ) : null}
               </article>
             ) : null}

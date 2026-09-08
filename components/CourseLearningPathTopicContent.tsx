@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-import type {
-  CourseLearningPathFlatNode,
-  CourseLearningPathNode
-} from '@/lib/course-learning-path-types'
+import type { CourseLearningPathFlatNode } from '@/lib/course-learning-path-types'
 
 import styles from './CourseLearningPath.module.css'
 import {
@@ -25,10 +22,6 @@ interface TopicContentProps {
   onUpdateTopicResource?: (
     input: CourseLearningPathTopicResourceInput & { resourceId: string }
   ) => Promise<boolean>
-  explored?: boolean
-  onToggleExplored?: () => void
-  nextNode?: CourseLearningPathNode | null
-  onNext?: (id: string) => void
   pathSlug?: string
   pathTitle?: string
 }
@@ -41,10 +34,6 @@ export function CourseLearningPathTopicContent({
   onSignIn,
   onAddTopicResource,
   onUpdateTopicResource,
-  explored = false,
-  onToggleExplored,
-  nextNode = null,
-  onNext,
   pathSlug,
   pathTitle
 }: TopicContentProps) {
@@ -93,34 +82,6 @@ export function CourseLearningPathTopicContent({
         onAdd={onAddTopicResource}
         onUpdate={onUpdateTopicResource}
       />
-
-      <div className={styles.actionRow}>
-        <button
-          type='button'
-          className={`${styles.primaryBtn}${
-            explored ? ` ${styles.exploredBtn}` : ''
-          }`}
-          onClick={onToggleExplored}
-        >
-          {explored ? (
-            <span className={styles.exploredLabel}>
-              <span className={styles.exploredIdle}>Explored</span>
-              <span className={styles.exploredHover}>Mark unexplored</span>
-            </span>
-          ) : (
-            'Mark as explored'
-          )}
-        </button>
-        {nextNode ? (
-          <button
-            type='button'
-            className={`${styles.primaryBtn} ${styles.nextBtn}`}
-            onClick={() => onNext?.(nextNode.id)}
-          >
-            Next
-          </button>
-        ) : null}
-      </div>
     </article>
   )
 }

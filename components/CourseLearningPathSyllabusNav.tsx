@@ -1,33 +1,31 @@
 import * as React from 'react'
 
-import { LEARNING_PATH_MENTAL_MAP_LABEL } from '@/lib/learning-path-sections'
 import {
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
-  COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   type CourseLearningPathResourceSection,
   isCourseLearningPathKnowledgeSelection,
-  isCourseLearningPathMentalMapSelection,
+  isCourseLearningPathOverviewSelection,
   isCourseLearningPathResourceSelection,
-  isCourseLearningPathSyllabusSelection,
   resourcesForSection
 } from '@/lib/course-learning-path-resources'
-import {
-  isCourseLearningPathFinished,
-  knowledgeTopicItemsFromCourseLearningPath
-} from '@/lib/learning-path-knowledge'
 import type {
   CourseLearningPathData,
   CourseLearningPathNode
 } from '@/lib/course-learning-path-types'
-
 import {
-  OutlineAccordionChevron,
-  PathCompleteCheck
-} from './PathCompleteCheck'
+  isCourseLearningPathFinished,
+  knowledgeTopicItemsFromCourseLearningPath
+} from '@/lib/learning-path-knowledge'
+import {
+  LEARNING_PATH_MENTAL_MAP_LABEL,
+  LEARNING_PATH_OVERVIEW_LABEL
+} from '@/lib/learning-path-sections'
+
 import styles from './CourseLearningPath.module.css'
+import { OutlineAccordionChevron, PathCompleteCheck } from './PathCompleteCheck'
 
 function matchesQuery(text: string, query: string) {
   return text.toLowerCase().includes(query)
@@ -84,12 +82,14 @@ export function CourseLearningPathSyllabusNav({
     () => filterTopicTree(course.topics, query),
     [course.topics, query]
   )
-  const showSyllabus =
-    !searching || matchesQuery('Recommended Syllabus', query)
-  const showMentalMap =
+  const showOverview =
     !searching ||
+    matchesQuery(LEARNING_PATH_OVERVIEW_LABEL, query) ||
+    matchesQuery('Recommended Syllabus', query) ||
+    matchesQuery('Recommended Path', query) ||
     matchesQuery('Mental Map', query) ||
-    matchesQuery(LEARNING_PATH_MENTAL_MAP_LABEL, query)
+    matchesQuery(LEARNING_PATH_MENTAL_MAP_LABEL, query) ||
+    matchesQuery(course.title, query)
   const learnedTopics = React.useMemo(
     () => knowledgeTopicItemsFromCourseLearningPath(course),
     [course]
@@ -115,13 +115,11 @@ export function CourseLearningPathSyllabusNav({
   const resourcesOpen =
     searching || expanded.has(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
   const resourceSelected = isCourseLearningPathResourceSelection(selectedId)
-  const syllabusSelected = isCourseLearningPathSyllabusSelection(selectedId)
-  const mentalMapSelected = isCourseLearningPathMentalMapSelection(selectedId)
+  const overviewSelected = isCourseLearningPathOverviewSelection(selectedId)
   const knowledgeSelected = isCourseLearningPathKnowledgeSelection(selectedId)
   const noMatches =
     searching &&
-    !showSyllabus &&
-    !showMentalMap &&
+    !showOverview &&
     !showKnowledge &&
     !showResources &&
     filteredTopics.length === 0
@@ -129,190 +127,170 @@ export function CourseLearningPathSyllabusNav({
   return (
     <nav aria-label='Course syllabus' className={styles.nav}>
       {hideSearch ? null : (
-      <div className={styles.searchWrap}>
-        <input
-          type='search'
-          className={styles.search}
-          placeholder='SEARCH'
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          aria-label='Search in syllabus'
-        />
-      </div>
+        <div className={styles.searchWrap}>
+          <input
+            type='search'
+            className={styles.search}
+            placeholder='SEARCH'
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            aria-label='Search in syllabus'
+          />
+        </div>
       )}
       {noMatches ? (
         <p className={styles.navSyllabusEmpty}>No matching topics.</p>
       ) : null}
-      {showSyllabus || showMentalMap || filteredTopics.length > 0 || (!searching && course.topics.length === 0) ? (
-      <div className={styles.navPanelSection}>
-        {showMentalMap ? (
+      {showOverview ? (
         <div
-          className={`${styles.navRow}${
-            mentalMapSelected ? ` ${styles.navRowSelected}` : ''
-          }`}
-          style={{ paddingLeft: 4 }}
+          className={`${styles.navPanelSection} ${styles.navOverviewSection}`}
         >
-          <button
-            type='button'
-            onClick={() => onSelect(COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID)}
-            aria-current={mentalMapSelected ? 'true' : undefined}
-            className={styles.navSelect}
+          <div
+            className={`${styles.navRow}${
+              overviewSelected ? ` ${styles.navRowSelected}` : ''
+            }`}
+            style={{ paddingLeft: 4 }}
           >
-            <span
-              className={`${styles.navTitle} ${styles.navTitleTopic}${
-                mentalMapSelected ? ` ${styles.navTitleSelected}` : ''
-              }`}
+            <button
+              type='button'
+              onClick={() => onSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)}
+              aria-current={overviewSelected ? 'true' : undefined}
+              className={styles.navSelect}
             >
-              {LEARNING_PATH_MENTAL_MAP_LABEL}
-            </span>
-          </button>
+              <span
+                className={`${styles.navTitle} ${styles.navTitleTopic}${
+                  overviewSelected ? ` ${styles.navTitleSelected}` : ''
+                }`}
+              >
+                {LEARNING_PATH_OVERVIEW_LABEL}
+              </span>
+            </button>
+          </div>
         </div>
-        ) : null}
+      ) : null}
 
-        {showSyllabus ? (
-        <div
-          className={`${styles.navRow}${
-            syllabusSelected ? ` ${styles.navRowSelected}` : ''
-          }`}
-          style={{ paddingLeft: 4 }}
-        >
-          <button
-            type='button'
-            onClick={() => onSelect(COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID)}
-            aria-current={syllabusSelected ? 'true' : undefined}
-            className={styles.navSelect}
-          >
-            <span
-              className={`${styles.navTitle} ${styles.navTitleTopic}${
-                syllabusSelected ? ` ${styles.navTitleSelected}` : ''
-              }`}
-            >
-              Recommended Syllabus
-            </span>
-            {course.topics.length > 0 ? (
-              <span className={styles.videoCount}>{course.topics.length}</span>
-            ) : null}
-          </button>
-        </div>
-        ) : null}
-
-        {filteredTopics.length > 0 ? (
-          <ol className={styles.navList}>
-            {filteredTopics.map((topic, i) => (
-              <NavItem
-                key={topic.id}
-                node={topic}
-                index={i + 1}
-                depth={0}
-                selectedId={selectedId}
-                expanded={expanded}
-                exploredIds={exploredIds}
-                forceOpen={searching}
-                onSelect={onSelect}
-                onToggle={onToggle}
-              />
-            ))}
-          </ol>
-        ) : !searching && course.topics.length === 0 ? (
-          <p className={styles.navSyllabusEmpty}>
-            Syllabus topics coming soon.
-          </p>
-        ) : null}
-      </div>
+      {filteredTopics.length > 0 ? (
+        <ol className={styles.navList}>
+          {filteredTopics.map((topic, i) => (
+            <NavItem
+              key={topic.id}
+              node={topic}
+              index={i + 1}
+              depth={0}
+              selectedId={selectedId}
+              expanded={expanded}
+              exploredIds={exploredIds}
+              forceOpen={searching}
+              onSelect={onSelect}
+              onToggle={onToggle}
+            />
+          ))}
+        </ol>
+      ) : !searching && course.topics.length === 0 ? (
+        <p className={styles.navSyllabusEmpty}>Syllabus topics coming soon.</p>
       ) : null}
 
       {showResources ? (
-      <div className={styles.navPanelSection}>
-        <div
-          className={`${styles.navRow}${
-            resourceSelected ? ` ${styles.navRowSelected}` : ''
-          }`}
-          style={{ paddingLeft: 4 }}
-        >
-          <button
-            type='button'
-            onClick={() => onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)}
-            aria-label={
-              resourcesOpen ? 'Collapse Resources' : 'Expand Resources'
-            }
-            aria-expanded={resourcesOpen}
-            className={styles.chevronBtn}
+        <div className={styles.navPanelSection}>
+          <div
+            className={`${styles.navRow}${
+              resourceSelected ? ` ${styles.navRowSelected}` : ''
+            }`}
+            style={{ paddingLeft: 4 }}
           >
-            <ChevronIcon
-              className={`${styles.chevronIcon}${
-                resourcesOpen ? ` ${styles.chevronOpen}` : ''
-              }`}
-            />
-          </button>
-          <button
-            type='button'
-            onClick={() => {
-              if (!resourcesOpen) onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
-              const first = matchingResourceSections[0] ?? COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
-              onSelect(first.id)
-            }}
-            className={styles.navSelect}
-          >
-            <span
-              className={`${styles.navTitle} ${styles.navTitleTopic}${
-                resourceSelected ? ` ${styles.navTitleSelected}` : ''
-              }`}
+            <button
+              type='button'
+              onClick={() =>
+                onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+              }
+              aria-label={
+                resourcesOpen ? 'Collapse Resources' : 'Expand Resources'
+              }
+              aria-expanded={resourcesOpen}
+              className={styles.chevronBtn}
             >
-              Resources
-            </span>
-            {(course.resources?.length ?? 0) > 0 ? (
-              <span className={styles.videoCount}>
-                {course.resources!.length}
-              </span>
-            ) : null}
-          </button>
-        </div>
-
-        {resourcesOpen ? (
-          <ol className={styles.navList}>
-            {matchingResourceSections.map((section) => (
-              <ResourceNavItem
-                key={section.id}
-                section={section}
-                count={
-                  resourcesForSection(course.resources, section.kind).length
-                }
-                selectedId={selectedId}
-                onSelect={onSelect}
+              <ChevronIcon
+                className={`${styles.chevronIcon}${
+                  resourcesOpen ? ` ${styles.chevronOpen}` : ''
+                }`}
               />
-            ))}
-          </ol>
-        ) : null}
-      </div>
+            </button>
+            <button
+              type='button'
+              onClick={() => {
+                if (!resourcesOpen)
+                  onToggle(COURSE_LEARNING_PATH_RESOURCES_SECTION_ID)
+                const first =
+                  matchingResourceSections[0] ??
+                  COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
+                onSelect(first.id)
+              }}
+              className={styles.navSelect}
+            >
+              <span
+                className={`${styles.navTitle} ${styles.navTitleTopic}${
+                  resourceSelected ? ` ${styles.navTitleSelected}` : ''
+                }`}
+              >
+                Resources
+              </span>
+              {(course.resources?.length ?? 0) > 0 ? (
+                <span className={styles.videoCount}>
+                  {course.resources!.length}
+                </span>
+              ) : null}
+            </button>
+          </div>
+
+          {resourcesOpen ? (
+            <ol className={styles.navList}>
+              {matchingResourceSections.map((section) => (
+                <ResourceNavItem
+                  key={section.id}
+                  section={section}
+                  count={
+                    resourcesForSection(course.resources, section.kind).length
+                  }
+                  selectedId={selectedId}
+                  onSelect={onSelect}
+                />
+              ))}
+            </ol>
+          ) : null}
+        </div>
       ) : null}
 
       {showKnowledge ? (
-      <div className={styles.navPanelSection}>
-        <div
-          className={`${styles.navRow}${
-            knowledgeSelected ? ` ${styles.navRowSelected}` : ''
-          }`}
-          style={{ paddingLeft: 4 }}
-        >
-          <button
-            type='button'
-            onClick={() => onSelect(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)}
-            aria-current={knowledgeSelected ? 'true' : undefined}
-            className={styles.navSelect}
+        <div className={styles.navPanelSection}>
+          <div
+            className={`${styles.navRow}${
+              knowledgeSelected ? ` ${styles.navRowSelected}` : ''
+            }`}
+            style={{ paddingLeft: 4 }}
           >
-            <span
-              className={`${styles.navTitle} ${styles.navTitleTopic}${
-                knowledgeSelected ? ` ${styles.navTitleSelected}` : ''
-              }`}
+            <button
+              type='button'
+              onClick={() =>
+                onSelect(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)
+              }
+              aria-current={knowledgeSelected ? 'true' : undefined}
+              className={styles.navSelect}
             >
-              What you learned
-            </span>
-            {learnedTopics.length > 0 ? (
-              <span className={styles.videoCount}>{learnedTopics.length}</span>
-            ) : null}
-          </button>
+              <span
+                className={`${styles.navTitle} ${styles.navTitleTopic}${
+                  knowledgeSelected ? ` ${styles.navTitleSelected}` : ''
+                }`}
+              >
+                What you learned
+              </span>
+              {learnedTopics.length > 0 ? (
+                <span className={styles.videoCount}>
+                  {learnedTopics.length}
+                </span>
+              ) : null}
+            </button>
+          </div>
         </div>
-      </div>
       ) : null}
     </nav>
   )
