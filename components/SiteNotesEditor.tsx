@@ -37,6 +37,8 @@ export interface SiteNotesEditorProps {
   ariaLabel?: string
   compact?: boolean
   variant?: 'default' | 'preview'
+  /** `panel` = condensed side-panel toolbar; `auto` = panel when inside NotesPanelChrome + fillHeight */
+  toolbarLayout?: 'auto' | 'panel' | 'full'
   className?: string
   allowExpand?: boolean
   expandTitle?: string
@@ -70,6 +72,7 @@ export function SiteNotesEditor({
   ariaLabel = 'Notes',
   compact = false,
   variant = 'default',
+  toolbarLayout = 'auto',
   className,
   allowExpand = true,
   expandTitle,
@@ -93,7 +96,11 @@ export function SiteNotesEditor({
   const headingTitle = expandTitle?.trim() || ariaLabel
   const headingTopic = expandTopic?.trim() || ''
   const [expanded, setExpanded] = React.useState(false)
-  const panelLayout = Boolean(chrome) && fillHeight && !expanded
+  const panelChromeLayout = Boolean(chrome) && fillHeight && !expanded
+  const usePanelToolbar =
+    !expanded &&
+    (toolbarLayout === 'panel' ||
+      (toolbarLayout !== 'full' && panelChromeLayout))
   const [portalReady, setPortalReady] = React.useState(false)
   const [exportingPdf, setExportingPdf] = React.useState(false)
   const [saveStatus, setSaveStatus] = React.useState<'saving' | 'saved' | null>(
@@ -198,7 +205,7 @@ export function SiteNotesEditor({
 
   React.useEffect(() => {
     if (!chrome) return
-    if (!editor || !panelLayout || (!canExpand && !chrome.showEditorSave)) {
+    if (!editor || !panelChromeLayout || (!canExpand && !chrome.showEditorSave)) {
       chrome.setActions(null)
       return
     }
@@ -228,7 +235,7 @@ export function SiteNotesEditor({
       </>
     )
     return () => chrome.setActions(null)
-  }, [chrome, panelLayout, canExpand, saveStatus, editor])
+  }, [chrome, panelChromeLayout, canExpand, saveStatus, editor])
 
   const exportPdf = React.useCallback(async () => {
     if (!editor || exportingPdf) return
@@ -313,11 +320,11 @@ export function SiteNotesEditor({
           editor={editor}
           imageInputRef={imageInputRef}
           disabled={isLocked}
-          saveStatus={isLocked || panelLayout ? null : saveStatus}
+          saveStatus={isLocked || usePanelToolbar ? null : saveStatus}
           onExportPdf={isLocked ? undefined : () => void exportPdf()}
           exportingPdf={exportingPdf}
-          headingLevels={panelLayout ? [2, 3] : [2]}
-          layout={panelLayout ? 'panel' : 'full'}
+          headingLevels={usePanelToolbar ? [2, 3] : [2]}
+          layout={usePanelToolbar ? 'panel' : 'full'}
           onExpand={
             canExpand && !expanded && !chrome
               ? () => setExpanded(true)

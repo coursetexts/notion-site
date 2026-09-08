@@ -7,18 +7,30 @@ export function LearningPathOutlinePanel({
   onSearchChange,
   searchAriaLabel = 'Search in outline',
   list,
-  footer
+  footer,
+  onMobileClose
 }: {
   search: string
   onSearchChange: (value: string) => void
   searchAriaLabel?: string
   list: React.ReactNode
   footer?: React.ReactNode
+  onMobileClose?: () => void
 }) {
   return (
     <section className={styles.mapPanel}>
       <div className={styles.mapToolbar}>
         <div className={styles.mapToolbarRow}>
+          {onMobileClose ? (
+            <button
+              type='button'
+              className={styles.mapPanelCloseBtn}
+              onClick={onMobileClose}
+              aria-label='Close path menu'
+            >
+              <span aria-hidden>&laquo;</span>
+            </button>
+          ) : null}
           <div className={styles.mapToolbarCopy}>
             <h2 className={styles.mapTitle}>THE PATH</h2>
           </div>

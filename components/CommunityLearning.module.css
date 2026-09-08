@@ -212,6 +212,17 @@
     grid-template-columns: 1fr;
     gap: 32px;
   }
+
+  .bar {
+    align-items: flex-start;
+  }
+
+  .barLink {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -239,6 +239,7 @@ export function HomeHeader({
   const accountLabel = isLoggedIn ? 'Your Profile' : 'Sign in'
 
   const [menuOpen, setMenuOpen] = React.useState(false)
+  const [aboutMenuOpen, setAboutMenuOpen] = React.useState(false)
   const [createPathOpen, setCreatePathOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
   const [searchDraft, setSearchDraft] = React.useState('')
@@ -283,7 +284,10 @@ export function HomeHeader({
   }, [])
 
   React.useEffect(() => {
-    if (!menuOpen) return
+    if (!menuOpen) {
+      setAboutMenuOpen(false)
+      return
+    }
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = ''
@@ -464,44 +468,84 @@ export function HomeHeader({
                   if (item.kind === 'menu') {
                     return (
                       <div key={item.label} className={styles.menuNavGroup}>
-                        <p className={styles.menuNavHeading}>{item.label}</p>
-                        {item.children.map((child) =>
-                          child.external ? (
-                            <a
-                              key={child.href}
-                              href={child.href}
-                              target='_blank'
-                              rel='noreferrer'
-                              className={styles.menuNavChild}
-                              onClick={closeMenu}
+                        <button
+                          type='button'
+                          className={styles.menuNavToggle}
+                          onClick={() => setAboutMenuOpen((open) => !open)}
+                          aria-expanded={aboutMenuOpen}
+                        >
+                          <span>{item.label}</span>
+                          <span
+                            className={`${styles.menuNavChevron}${
+                              aboutMenuOpen ? ` ${styles.menuNavChevronOpen}` : ''
+                            }`}
+                            aria-hidden
+                          >
+                            <svg
+                              xmlns='http://www.w3.org/2000/svg'
+                              width='12'
+                              height='12'
+                              viewBox='0 0 12 12'
+                              fill='none'
                             >
-                              <span className={styles.aboutLinkTitle}>
-                                {child.label}
-                              </span>
-                              <span className={styles.aboutLinkDesc}>
-                                {child.description}
-                              </span>
-                            </a>
-                          ) : (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              legacyBehavior
-                            >
-                              <a
-                                className={styles.menuNavChild}
-                                onClick={closeMenu}
-                              >
-                                <span className={styles.aboutLinkTitle}>
-                                  {child.label}
-                                </span>
-                                <span className={styles.aboutLinkDesc}>
-                                  {child.description}
-                                </span>
-                              </a>
-                            </Link>
-                          )
-                        )}
+                              <path
+                                d='M4.5 2.5L8 6L4.5 9.5'
+                                stroke='currentColor'
+                                strokeWidth='1.3'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                        <div
+                          className={`${styles.menuNavSubmenu}${
+                            aboutMenuOpen ? ` ${styles.menuNavSubmenuOpen}` : ''
+                          }`}
+                          aria-hidden={!aboutMenuOpen}
+                        >
+                          <div className={styles.menuNavSubmenuInner}>
+                            {item.children.map((child) =>
+                              child.external ? (
+                                <a
+                                  key={child.href}
+                                  href={child.href}
+                                  target='_blank'
+                                  rel='noreferrer'
+                                  className={styles.menuNavChild}
+                                  onClick={closeMenu}
+                                  tabIndex={aboutMenuOpen ? undefined : -1}
+                                >
+                                  <span className={styles.aboutLinkTitle}>
+                                    {child.label}
+                                  </span>
+                                  <span className={styles.aboutLinkDesc}>
+                                    {child.description}
+                                  </span>
+                                </a>
+                              ) : (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  legacyBehavior
+                                >
+                                  <a
+                                    className={styles.menuNavChild}
+                                    onClick={closeMenu}
+                                    tabIndex={aboutMenuOpen ? undefined : -1}
+                                  >
+                                    <span className={styles.aboutLinkTitle}>
+                                      {child.label}
+                                    </span>
+                                    <span className={styles.aboutLinkDesc}>
+                                      {child.description}
+                                    </span>
+                                  </a>
+                                </Link>
+                              )
+                            )}
+                          </div>
+                        </div>
                       </div>
                     )
                   }

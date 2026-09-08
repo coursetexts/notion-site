@@ -187,6 +187,22 @@
   padding-left: 0;
 }
 
+.mobileAside {
+  display: contents;
+}
+
+.mobileAsideOverlay {
+  display: none;
+}
+
+.mobilePathOpenBtn {
+  display: none;
+}
+
+.mapPanelCloseBtn {
+  display: none;
+}
+
 .metaRow {
   display: flex;
   flex-wrap: wrap;
@@ -1847,13 +1863,32 @@ a.resourceTitle:focus-visible {
 
 @media (max-width: 700px) {
   .resource {
-    flex-wrap: wrap;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .resourceLead {
+    width: 100%;
+  }
+
+  .resourceBody {
+    width: 100%;
+  }
+
+  .resourceTitle {
+    overflow-wrap: anywhere;
   }
 
   .resourceMetaActions {
     width: 100%;
-    justify-content: flex-end;
+    max-width: none;
+    margin-top: 0;
+    padding-top: 10px;
+    border-top: 1px solid #f0efea;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px 10px;
   }
 }
 
@@ -2527,16 +2562,13 @@ a.resourceTitle:focus-visible {
 
 @media (max-width: 900px) {
   .layout,
-  .layoutGraph,
-  .layoutList {
+  .layoutGraph {
     flex-direction: column;
     min-height: 0;
     height: auto;
   }
 
-  .layoutList .mapPanel,
-  .layoutGraph .mapPanel,
-  .mapPanel {
+  .layoutGraph .mapPanel {
     width: auto;
     height: auto;
     position: static;
@@ -2560,13 +2592,141 @@ a.resourceTitle:focus-visible {
   .metaTools {
     margin-left: 0;
   }
+
+  .mobilePathOpenBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    color: #25272b;
+    background-color: #fff;
+    border: 1px solid #e5e1d3;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .mobilePathOpenBtnIcon,
+  .mobilePathOpenBtnChevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #25272b;
+  }
+
+  .mobilePathOpenBtnChevron {
+    margin-left: -0.1rem;
+    color: #9ca3af;
+  }
+
+  .mobilePathOpenBtn:hover,
+  .mobilePathOpenBtn:focus-visible {
+    background-color: #f8f8f8;
+    border-color: #d1d5db;
+    outline: none;
+  }
+
+  .mapPanelCloseBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid #e6e6e6;
+    border-radius: 0;
+    background: transparent;
+    color: var(--core-almostBlack, #000d1a);
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .mapPanelCloseBtn:hover,
+  .mapPanelCloseBtn:focus-visible {
+    border-color: #0089c4;
+    color: #0089c4;
+    outline: none;
+  }
+
+  .bodyList {
+    padding-left: 0;
+  }
+
+  .layoutList {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    flex-direction: row;
+    height: auto;
+  }
+
+  .layoutList .mobileAside {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(300px, 88vw);
+    z-index: 15;
+    transform: translateX(-100%);
+    transition: transform 220ms ease;
+    background: #fff;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .layoutList .mobileAsideOpen {
+    transform: translateX(0);
+  }
+
+  .layoutList .mapPanel {
+    width: 100%;
+    height: 100%;
+    position: static;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .layoutList .mapToolbar {
+    padding-top: 16px;
+  }
+
+  .layoutList .pathListWrap {
+    min-height: 0;
+  }
+
+  .layoutList .detail {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mobileAsideOverlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 13, 26, 0.4);
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 620px) {
   .canvas,
   .mapStage,
   .mapScroll,
-  .pathListWrap {
+  .layoutGraph .pathListWrap {
     min-height: 460px;
   }
 

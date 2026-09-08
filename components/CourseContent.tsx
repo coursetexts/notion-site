@@ -35,6 +35,52 @@ import { CourseNotesPanel } from './CourseNotesPanel'
 import { LearningPathCommitRemindButton } from './LearningPathCommitRemindButton'
 import { TableOfContents } from './TableOfContents'
 
+function CourseOutlineOpenIcon() {
+  return (
+    <span className={styles.mobileCourseOpenBtnIcon} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='12'
+        height='12'
+        viewBox='0 0 12 12'
+        fill='none'
+      >
+        <circle cx='2.25' cy='2.25' r='0.9' fill='currentColor' />
+        <circle cx='2.25' cy='6' r='0.9' fill='currentColor' />
+        <circle cx='2.25' cy='9.75' r='0.9' fill='currentColor' />
+        <path
+          d='M4.5 2.25H10M4.5 6H10M4.5 9.75H8'
+          stroke='currentColor'
+          strokeWidth='1.1'
+          strokeLinecap='round'
+        />
+      </svg>
+    </span>
+  )
+}
+
+function CourseOutlineChevronIcon() {
+  return (
+    <span className={styles.mobileCourseOpenBtnChevron} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='10'
+        height='10'
+        viewBox='0 0 10 10'
+        fill='none'
+      >
+        <path
+          d='M3.25 2L6.75 5L3.25 8'
+          stroke='currentColor'
+          strokeWidth='1.2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    </span>
+  )
+}
+
 function isOfficialCourseGeneralTab(
   tocItems: TocItem[],
   currentLabel: string,
@@ -465,6 +511,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
   )
 
   const [isCompactLayout, setIsCompactLayout] = React.useState(false)
+  const [isMobileSidebarLayout, setIsMobileSidebarLayout] = React.useState(false)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = React.useState(false)
   const [portalReady, setPortalReady] = React.useState(false)
 
   React.useEffect(() => setPortalReady(true), [])
@@ -507,6 +555,35 @@ export const CourseContent: React.FC<CourseContentProps> = ({
     mq.addEventListener('change', sync)
     return () => mq.removeEventListener('change', sync)
   }, [])
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 800px)')
+    const sync = () => {
+      setIsMobileSidebarLayout(mq.matches)
+      if (!mq.matches) setMobileSidebarOpen(false)
+    }
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  React.useEffect(() => {
+    if (!mobileSidebarOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [mobileSidebarOpen])
+
+  React.useEffect(() => {
+    if (!mobileSidebarOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileSidebarOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [mobileSidebarOpen])
 
   const showDesktopRightPanel = !isCompactLayout && rightPanel !== 'none'
   const showMobileRightPanel = isCompactLayout && rightPanel !== 'none'
@@ -578,7 +655,13 @@ export const CourseContent: React.FC<CourseContentProps> = ({
             : styles.root
         }
       >
-        <aside className={styles.sidebar}>
+        <aside
+          id='course-toc-panel'
+          className={`${styles.sidebar}${
+            isMobileSidebarLayout ? ` ${styles.mobileSidebar}` : ''
+          }${mobileSidebarOpen ? ` ${styles.mobileSidebarOpen}` : ''}`}
+          aria-hidden={isMobileSidebarLayout && !mobileSidebarOpen}
+        >
           <TableOfContents
             ref={tocRef}
             contentRef={contentSlotRef}
@@ -588,8 +671,19 @@ export const CourseContent: React.FC<CourseContentProps> = ({
             onSelectedItemChange={handleSelectedItemChange}
             onSectionChange={handleSectionChange}
             sectionProgress={sectionProgress}
+            title='The Course'
+            drawerLayout={isMobileSidebarLayout}
+            onDrawerClose={() => setMobileSidebarOpen(false)}
           />
         </aside>
+        {mobileSidebarOpen ? (
+          <button
+            type='button'
+            aria-label='Close course menu'
+            onClick={() => setMobileSidebarOpen(false)}
+            className={styles.mobileSidebarOverlay}
+          />
+        ) : null}
         <ContentMain
           innerRef={setSlotRef}
           showAnnotations={rightPanel === 'annotations'}
@@ -597,6 +691,22 @@ export const CourseContent: React.FC<CourseContentProps> = ({
           annotationCount={annotationCount}
           showNotes={rightPanel === 'notes'}
           onShowNotes={() => openRightPanel('notes')}
+          viewBarLeading={
+            isMobileSidebarLayout ? (
+              <button
+                type='button'
+                className={styles.mobileCourseOpenBtn}
+                onClick={() => setMobileSidebarOpen(true)}
+                aria-expanded={mobileSidebarOpen}
+                aria-controls='course-toc-panel'
+                aria-label='Open course sections'
+              >
+                <CourseOutlineOpenIcon />
+                <span>The Course</span>
+                <CourseOutlineChevronIcon />
+              </button>
+            ) : undefined
+          }
           embedUrl={embedUrl}
           embedTitle={embedTitle}
           embedParentTitle={embedParentTitle}
@@ -620,6 +730,8 @@ export const CourseContent: React.FC<CourseContentProps> = ({
             else tocRef.current?.goToFirstSection()
           }}
           hasNextSection={hasNextSection}
+          hideCompleteBookmark={showingGeneral}
+          nextSectionLabel={showingGeneral ? 'Start path' : undefined}
           beforeNext={
             showingGeneral && coursePageId ? (
               <LearningPathCommitRemindButton

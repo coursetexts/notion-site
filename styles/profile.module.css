@@ -1449,6 +1449,10 @@
     text-align: center;
   }
 
+  .sidebarNameRow {
+    justify-content: center;
+  }
+
   .sidebarFollowLine {
     justify-content: center;
     gap: 8px;
@@ -1591,13 +1595,24 @@
 }
 
 /* Display name on /profile and /profile/[userId] sidebars */
+.sidebarNameRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  min-width: 0;
+  max-width: 100%;
+}
+
 .sidebarName {
   font-family: 'Guyot Press', 'Georgia', serif;
   font-size: 1.75rem;
   font-weight: 400;
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   color: #111;
   line-height: 1.2;
+  min-width: 0;
 }
 
 .sidebarFollowLine {
@@ -1864,6 +1879,88 @@
 
 .tabPanelHeaderRow .mainSerifTitle {
   margin: 0;
+}
+
+.tabPanelTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'title actions'
+    'search search';
+  align-items: end;
+  gap: 0.75rem 0.75rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.tabPanelTop .mainSerifTitle {
+  grid-area: title;
+  margin: 0;
+}
+
+.tabPanelActions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.tabPanelSearchRow {
+  grid-area: search;
+  min-width: 0;
+}
+
+.tabPanelSearchRow .panelSearchWrap {
+  margin: 0;
+  width: min(100%, 25rem);
+}
+
+@media (max-width: 860px) {
+  .primaryTabsRow {
+    margin-top: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .tabPanel {
+    padding-top: 0.5rem;
+  }
+
+  .tabPanelTop {
+    grid-template-areas:
+      'title title'
+      'search actions';
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .tabPanelTop:not(:has(.tabPanelActions)) {
+    grid-template-areas:
+      'title title'
+      'search search';
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tabPanelSearchRow .panelSearchWrap {
+    width: 100%;
+  }
+
+  .tabPanelActions {
+    flex-shrink: 0;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tabPanelActions .notebooksCreateBtn,
+  .tabPanelActions .linkFilterBtnNew,
+  .tabPanelActions .addLinkBtn,
+  .tabPanelActions .knowledgeAddInput {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.55rem;
+  }
 }
 
 .knowledgeHeaderActions {
@@ -2318,13 +2415,8 @@
   margin: 0.85rem 0 0.65rem;
 }
 
-.sidebarEditProfileRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-}
-
 .sidebarEditProfileBtn {
+  flex-shrink: 0;
   width: 34px;
   height: 34px;
   border: none;

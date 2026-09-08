@@ -546,6 +546,11 @@ button.middleItem {
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 
+button.menuNavLink {
+  width: 100%;
+  text-align: left;
+}
+
 .menuNavLink:hover,
 .menuNavLink:focus-visible {
   color: #0089c4;
@@ -558,6 +563,117 @@ button.middleItem {
   line-height: 1.35;
   color: #000000;
   padding: 4px 0;
+}
+
+.menuNavToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: #000000;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.menuNavToggle:hover,
+.menuNavToggle:focus-visible {
+  color: #0089c4;
+  outline: none;
+}
+
+.menuNavChevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #9ca3af;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.menuNavToggle:hover .menuNavChevron,
+.menuNavToggle:focus-visible .menuNavChevron {
+  color: #0089c4;
+}
+
+.menuNavChevronOpen {
+  transform: rotate(90deg);
+}
+
+.menuNavSubmenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menuNavSubmenuOpen {
+  grid-template-rows: 1fr;
+}
+
+.menuNavSubmenuInner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.menuNavSubmenuInner .menuNavChild {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s ease;
+}
+
+.menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild:nth-child(1) {
+  transition-delay: 0.06s;
+}
+
+.menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild:nth-child(3) {
+  transition-delay: 0.14s;
+}
+
+.menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild:nth-child(4) {
+  transition-delay: 0.18s;
+}
+
+.menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild:nth-child(5) {
+  transition-delay: 0.22s;
+}
+
+.menuNavSubmenu:not(.menuNavSubmenuOpen) .menuNavSubmenuInner .menuNavChild {
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuNavChevron,
+  .menuNavSubmenu,
+  .menuNavSubmenuInner .menuNavChild {
+    transition: none;
+  }
+
+  .menuNavSubmenuOpen .menuNavSubmenuInner .menuNavChild {
+    transition-delay: 0s;
+  }
 }
 
 .menuNavChild {
@@ -606,22 +722,23 @@ button.middleItem {
   width: 100%;
   padding: 12px 16px;
   appearance: none;
-  background: transparent;
-  border: 1px solid var(--outline, #e6e6e6);
+  background: var(--dark-brown, #2c1a0c);
+  border: 1px solid var(--dark-brown, #2c1a0c);
   border-radius: 10px;
   box-sizing: border-box;
   font-family: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9375rem;
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .menuSignUp:hover,
 .menuSignUp:focus-visible {
-  border-color: #0089c4;
-  background: #f5fbff;
+  background: #3d2618;
+  border-color: #3d2618;
+  opacity: 0.95;
   cursor: pointer;
 }
 
@@ -643,6 +760,12 @@ button.middleItem {
 
   .headerDesktopOnly {
     display: none;
+  }
+
+  .brandLink {
+    min-height: 40px;
+    padding: 8px 0;
+    box-sizing: border-box;
   }
 
   .mobileMenuBtn {

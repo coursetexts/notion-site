@@ -35,7 +35,8 @@ export function PathContentActivity({
   children,
   onActivityPosted,
   onExportContext,
-  footer
+  footer,
+  viewBarLeading
 }: {
   coursePageId: string
   courseTitle: string
@@ -53,6 +54,8 @@ export function PathContentActivity({
   onExportContext?: () => string
   /** Pinned under the scrolling article (shared step bar). */
   footer?: React.ReactNode
+  /** Rendered first in the sticky action bar (e.g. mobile path outline toggle). */
+  viewBarLeading?: React.ReactNode
 }) {
   const [rightPanel, setRightPanel] = React.useState<RightPanel>('none')
   const [annotationCount, setAnnotationCount] = React.useState(0)
@@ -212,15 +215,22 @@ export function PathContentActivity({
         className={`${styles.contentColumn}${className ? ` ${className}` : ''}`}
         style={style}
       >
-        <div className={contentMainStyles.viewBar}>
-          <ViewAnnotationsButton
-            count={annotationCount}
-            onClick={() => openRightPanel('annotations')}
-          />
-          <ViewYourNotesButton onClick={() => openRightPanel('notes')} />
-          {onExportContext ? (
-            <ExportContextButton getText={onExportContext} />
-          ) : null}
+        <div
+          className={`${contentMainStyles.viewBar}${
+            viewBarLeading ? ` ${styles.viewBarWithLeading}` : ''
+          }`}
+        >
+          {viewBarLeading}
+          <div className={styles.viewBarActions}>
+            <ViewAnnotationsButton
+              count={annotationCount}
+              onClick={() => openRightPanel('annotations')}
+            />
+            <ViewYourNotesButton onClick={() => openRightPanel('notes')} />
+            {onExportContext ? (
+              <ExportContextButton getText={onExportContext} />
+            ) : null}
+          </div>
         </div>
         <div
           className={`${styles.contentBody}${

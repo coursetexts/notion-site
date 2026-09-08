@@ -161,6 +161,9 @@ export interface TableOfContentsProps {
   title?: string
   /** Optional per-section status (completion / bookmark) keyed by section label. */
   sectionProgress?: Record<string, SectionProgressStatus>
+  /** Side-drawer layout on mobile: hide inline toggle and notify parent on navigate. */
+  drawerLayout?: boolean
+  onDrawerClose?: () => void
 }
 
 export const TableOfContents = React.forwardRef<
@@ -175,7 +178,9 @@ export const TableOfContents = React.forwardRef<
     onSelectedItemChange,
     onSectionChange,
     title = 'The Path',
-    sectionProgress
+    sectionProgress,
+    drawerLayout = false,
+    onDrawerClose
   },
   ref
 ) {
@@ -187,6 +192,8 @@ export const TableOfContents = React.forwardRef<
   const [expandedTabIndexes, setExpandedTabIndexes] = React.useState<
     Set<number>
   >(() => new Set())
+  const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
+  const [isCompactLayout, setIsCompactLayout] = React.useState(false)
   const hasInitializedFirstSubtab = React.useRef(false)
   const hasInitializedExpanded = React.useRef(false)
 
@@ -316,7 +323,23 @@ export const TableOfContents = React.forwardRef<
     }
   }, [itemsProp, onSelectedItemChange, contentRef, onLinkClick, onSelectionClearPdf])
 
-  const handleTabClick = (tabIndex: number) => {
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 800px)')
+    const sync = () => setIsCompactLayout(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  const closeMobileNav = React.useCallback(() => {
+    if (isCompactLayout) setMobileNavOpen(false)
+    onDrawerClose?.()
+  }, [isCompactLayout, onDrawerClose])
+
+  const handleTabClick = (
+    tabIndex: number,
+    options?: { keepMobileNavOpen?: boolean }
+  ) => {
     setActiveTabIndex(tabIndex)
     setActiveSubtabId(null)
     onSelectionClearPdf?.()
@@ -336,6 +359,10 @@ export const TableOfContents = React.forwardRef<
       }
     })
     showOnlyContentBlock(root, tabIndex, null)
+    if (!options?.keepMobileNavOpen) {
+      closeMobileNav()
+      contentRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   const handleItemClick = (item: TocItem) => {
@@ -351,7 +378,7 @@ export const TableOfContents = React.forwardRef<
 
   const handleSubtabClick = (tabIndex: number, child: TocChild) => {
     if (tabIndex !== activeTabIndex) {
-      handleTabClick(tabIndex)
+      handleTabClick(tabIndex, { keepMobileNavOpen: true })
     }
     setExpandedTabIndexes((prev) => {
       const next = new Set(prev)
@@ -369,6 +396,7 @@ export const TableOfContents = React.forwardRef<
       } else {
         window.open(child.href, '_blank', 'noopener,noreferrer')
       }
+      closeMobileNav()
       return
     }
     onSelectionClearPdf?.()
@@ -387,6 +415,8 @@ export const TableOfContents = React.forwardRef<
         applyHeadingHighlight(root, heading ?? subsection)
       }
     }
+    closeMobileNav()
+    contentRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const handleGoToNextSection = React.useCallback(() => {
@@ -520,19 +550,79 @@ export const TableOfContents = React.forwardRef<
     ]
   )
 
+  const activeSectionLabel = React.useMemo(() => {
+    const item = itemsProp[activeTabIndex]
+    if (!item) return title
+    if (activeSubtabId && item.children?.length) {
+      const child = item.children.find((c) => c.id === activeSubtabId)
+      if (child?.label) return child.label
+    }
+    return item.label
+  }, [itemsProp, activeTabIndex, activeSubtabId, title])
+
   return (
-    <nav className={styles.root} aria-label='Course table of contents'>
-      <h2 className={styles.heading}>{title}</h2>
-      <div className={styles.searchWrap}>
-        <input
-          type='search'
-          className={styles.search}
-          placeholder='SEARCH'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          aria-label='Search in table of contents'
-        />
-      </div>
+    <nav
+      className={styles.root}
+      aria-label='Course table of contents'
+      data-mobile-collapsed={
+        drawerLayout || !isCompactLayout || mobileNavOpen ? 'false' : 'true'
+      }
+      data-drawer-layout={drawerLayout ? 'true' : 'false'}
+    >
+      {isCompactLayout && !drawerLayout ? (
+        <button
+          type='button'
+          className={styles.mobileToggle}
+          onClick={() => setMobileNavOpen((open) => !open)}
+          aria-expanded={mobileNavOpen}
+        >
+          <span className={styles.mobileToggleLabel}>{activeSectionLabel}</span>
+          <span className={styles.mobileToggleChevron} aria-hidden>
+            {mobileNavOpen ? '▾' : '▸'}
+          </span>
+        </button>
+      ) : null}
+      {drawerLayout ? (
+        <div className={styles.drawerToolbar}>
+          <div className={styles.drawerToolbarRow}>
+            {onDrawerClose ? (
+              <button
+                type='button'
+                className={styles.drawerCloseBtn}
+                onClick={onDrawerClose}
+                aria-label='Close course menu'
+              >
+                <span aria-hidden>&laquo;</span>
+              </button>
+            ) : null}
+            <h2 className={styles.drawerTitle}>{title}</h2>
+          </div>
+          <div className={styles.searchWrap}>
+            <input
+              type='search'
+              className={styles.search}
+              placeholder='SEARCH'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label='Search in table of contents'
+            />
+          </div>
+        </div>
+      ) : (
+        <>
+          <h2 className={styles.heading}>{title}</h2>
+          <div className={styles.searchWrap}>
+            <input
+              type='search'
+              className={styles.search}
+              placeholder='SEARCH'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label='Search in table of contents'
+            />
+          </div>
+        </>
+      )}
       <ul className={styles.list}>
         {filteredItems.length === 0 && (
           <li className={styles.emptyState}>Loading sections…</li>

@@ -1024,6 +1024,52 @@ function LearningPathDescription({
   )
 }
 
+function PathOutlineOpenIcon() {
+  return (
+    <span className={styles.mobilePathOpenBtnIcon} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='12'
+        height='12'
+        viewBox='0 0 12 12'
+        fill='none'
+      >
+        <circle cx='2.25' cy='2.25' r='0.9' fill='currentColor' />
+        <circle cx='2.25' cy='6' r='0.9' fill='currentColor' />
+        <circle cx='2.25' cy='9.75' r='0.9' fill='currentColor' />
+        <path
+          d='M4.5 2.25H10M4.5 6H10M4.5 9.75H8'
+          stroke='currentColor'
+          strokeWidth='1.1'
+          strokeLinecap='round'
+        />
+      </svg>
+    </span>
+  )
+}
+
+function PathOutlineChevronIcon() {
+  return (
+    <span className={styles.mobilePathOpenBtnChevron} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='10'
+        height='10'
+        viewBox='0 0 10 10'
+        fill='none'
+      >
+        <path
+          d='M3.25 2L6.75 5L3.25 8'
+          stroke='currentColor'
+          strokeWidth='1.2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    </span>
+  )
+}
+
 function CommunityLearningPath({
   slug,
   kicker
@@ -1056,6 +1102,8 @@ function CommunityLearningPath({
   } | null>(null)
   const [pendingFinish, setPendingFinish] = React.useState(false)
   const [outlineSearch, setOutlineSearch] = React.useState('')
+  const [mobileOutlineOpen, setMobileOutlineOpen] = React.useState(false)
+  const [isMobileOutlineLayout, setIsMobileOutlineLayout] = React.useState(false)
   const detailRef = React.useRef<HTMLDivElement>(null)
   const [activityRefreshNonce, setActivityRefreshNonce] = React.useState(0)
   const [addOpen, setAddOpen] = React.useState(false)
@@ -1597,7 +1645,28 @@ function CommunityLearningPath({
     setAddResourceOpen(false)
     setEditingResourceId(null)
     setResourceDraft(EMPTY_RESOURCE_DRAFT)
+    setMobileOutlineOpen(false)
   }
+
+  React.useEffect(() => {
+    if (!mobileOutlineOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [mobileOutlineOpen])
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)')
+    const sync = () => {
+      setIsMobileOutlineLayout(mq.matches)
+      if (!mq.matches) setMobileOutlineOpen(false)
+    }
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
   function selectNodeKeepingScroll(id: string) {
     restoreScrollAfter(() => selectNode(id), detailRef.current)
@@ -2702,12 +2771,24 @@ function CommunityLearningPath({
         />
       </div>
 
-      <div className={styles.body}>
+      <div className={`${styles.body} ${styles.bodyList}`}>
         <div className={`${styles.layout} ${styles.layoutList}`}>
-          <LearningPathOutlinePanel
-            search={outlineSearch}
-            onSearchChange={setOutlineSearch}
-            list={
+          <aside
+            id='learning-path-outline-panel'
+            className={`${styles.mobileAside}${
+              mobileOutlineOpen ? ` ${styles.mobileAsideOpen}` : ''
+            }`}
+            aria-hidden={isMobileOutlineLayout && !mobileOutlineOpen}
+          >
+            <LearningPathOutlinePanel
+              search={outlineSearch}
+              onSearchChange={setOutlineSearch}
+              onMobileClose={
+                isMobileOutlineLayout
+                  ? () => setMobileOutlineOpen(false)
+                  : undefined
+              }
+              list={
               <>
                 {outlineNoMatches ? (
                   <p className={styles.pathListEmpty}>No matching steps.</p>
@@ -2759,12 +2840,36 @@ function CommunityLearningPath({
                 />
               ) : undefined
             }
-          />
+            />
+          </aside>
+
+          {mobileOutlineOpen ? (
+            <button
+              type='button'
+              aria-label='Close path menu'
+              onClick={() => setMobileOutlineOpen(false)}
+              className={styles.mobileAsideOverlay}
+            />
+          ) : null}
 
           <PathContentActivity
             className={styles.detail}
             contentClassName={styles.detailContent}
             contentRef={detailRef}
+            viewBarLeading={
+              <button
+                type='button'
+                className={styles.mobilePathOpenBtn}
+                onClick={() => setMobileOutlineOpen(true)}
+                aria-expanded={mobileOutlineOpen}
+                aria-controls='learning-path-outline-panel'
+                aria-label='Open the path'
+              >
+                <PathOutlineOpenIcon />
+                <span>The Path</span>
+                <PathOutlineChevronIcon />
+              </button>
+            }
             coursePageId={learningPathActivityPageId(slug)}
             courseTitle={path.title}
             courseUrl={learningPathHref(slug)}

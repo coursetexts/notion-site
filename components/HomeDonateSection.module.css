@@ -341,23 +341,25 @@
   .content {
     flex-direction: column;
     gap: 56px;
-    align-items: center;
+    align-items: stretch;
   }
 
   .leftPane,
   .ctaBar {
-    width: min(100%, 272px);
+    width: 100%;
   }
 
   .leftPane {
     height: auto;
+    min-height: 0;
     flex: none;
   }
 
   .rightPane {
     margin-top: 0;
-    width: min(100%, 440px);
+    width: 100%;
     max-width: 100%;
+    min-width: 0;
     flex: none;
     min-height: 320px;
   }

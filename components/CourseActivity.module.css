@@ -22,8 +22,8 @@
 
 .layout {
   display: grid;
-  grid-template-columns: 50% minmax(500px, 200px);
-  gap:10rem;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  gap: 3rem;
   align-items: start;
 }
 
@@ -787,90 +787,6 @@ button.sectionTag:focus-visible {
   margin: 0;
 }
 
-/* Empty-state CTA (no comments/annotations yet) – right column */
-.activityCtaWrap {
-  position: sticky;
-  top: 1rem;
-}
-
-.activityCta {
-  font-family: 'Hanken Grotesk', sans-serif;
-  background-color: #F8F7F4;
-  padding: 32px;
-  border-radius: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  max-width: 300px;
-  margin: auto;
-}
-
-.activityCtaImageWrap {
-  line-height: 0;
-}
-
-.activityCtaImage {
-  width: 100%;
-  height: auto;
-  max-width: 240px;
-  object-fit: contain;
-}
-
-.activityCtaMessage {
-  font-family: 'Guyot Press', serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #25272b;
-  margin: 0.5rem;
-}
-
-.activityCtaGoogleBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: 100%;
-  max-width: 280px;
-  padding: 0.75rem 1rem;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #25272b;
-  background: #fff;
-  border: 1px solid #e5e1d3;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s;
-}
-
-.activityCtaGoogleBtn:hover:not(:disabled) {
-  background: #f5f5f5;
-  border-color: #d4cfc4;
-}
-
-.activityCtaGoogleBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.activityCtaSignUp {
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 12px;
-  color: #5d534b;
-  margin: 0;
-}
-
-.activityCtaSignUpLink {
-  color: #25272b;
-  text-decoration: underline;
-}
-
-.activityCtaSignUpLink:hover {
-  color: #0089c4;
-}
-
 @media (max-width: 800px) {
   .root {
     padding: 4.25rem 1.25rem 2rem;
@@ -878,6 +794,7 @@ button.sectionTag:focus-visible {
 
   .layout {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .participants {
@@ -889,12 +806,6 @@ button.sectionTag:focus-visible {
   }
 
   .pathPeopleWrap {
-    position: static;
-    border-top: 1px solid #e5e1d3;
-    padding-top: 1rem;
-  }
-
-  .activityCtaWrap {
     position: static;
     border-top: 1px solid #e5e1d3;
     padding-top: 1rem;

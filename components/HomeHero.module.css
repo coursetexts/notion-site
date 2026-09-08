@@ -392,8 +392,25 @@
     line-height: 18px;
   }
 
+  .frameBelow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .chip {
+    min-height: 36px;
+    padding: 6px 12px;
+  }
+
   .logoRow {
     margin-left: 0;
+    transform: none;
+    justify-content: center;
+  }
+
+  .nonProfitNote {
+    text-align: center;
     transform: none;
   }
 }

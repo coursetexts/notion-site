@@ -133,11 +133,6 @@ export default function CommunityPage() {
                     stuck - on that concept, not in a scattered chat.
                   </p>
                   <p>
-                    <em>
-                      Sharing a resource is not a side feature. It is how
-                      Coursetexts compounds: every paper, video, or note that
-                      helped you can shorten the path for whoever comes next.
-                    </em>
                   </p>
                 </div>
                 <Link

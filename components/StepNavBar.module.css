@@ -104,45 +104,63 @@
   flex-shrink: 0;
 }
 
+.prevLabelShort {
+  display: none;
+}
+
+.exploredLabelShort {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .bar {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'prev count'
-      'actions actions';
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .left {
-    grid-area: prev;
+  .bar::-webkit-scrollbar {
+    display: none;
   }
 
   .center {
-    grid-area: count;
-    justify-content: flex-end;
-  }
-
-  .right {
-    grid-area: actions;
-    justify-content: stretch;
-  }
-
-  .right .secondaryBtn,
-  .right .primaryBtn {
-    flex: 1;
-  }
-
-  .right .slot {
-    flex: 1;
+    justify-content: center;
     min-width: 0;
   }
 
-  .right .slot > * {
-    display: flex;
-    width: 100%;
+  .right {
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 6px;
   }
 
-  .right .slot button {
-    flex: 1;
-    width: 100%;
+  .count {
+    font-size: 0.8125rem;
+  }
+
+  .secondaryBtn,
+  .primaryBtn {
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 0.8125rem;
+    gap: 4px;
+  }
+
+  .prevLabelFull {
+    display: none;
+  }
+
+  .prevLabelShort {
+    display: inline;
+  }
+
+  .exploredLabelFull {
+    display: none;
+  }
+
+  .exploredLabelShort {
+    display: inline;
   }
 }

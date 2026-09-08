@@ -102,7 +102,7 @@ flowchart TB
 - **What you learned** — appears only after every syllabus node is explored.
 - **Ratings** — marking a topic explored asks how long it took and a % for how enjoyable learning that module was using the given resources; finishing the course asks the same for the whole course.
 
-Notes open from the content bar (side panel), not an in-page dropdown. In the notes side panel, **Export PDF** is under the toolbar **…** menu.
+Notes open from the content bar (side panel), not an in-page dropdown. On mobile, the syllabus outline is a left drawer (**The Path** in the topic bar). In the notes side panel, **Export PDF** is under the toolbar **…** menu.
 
 ## JSON shape
 

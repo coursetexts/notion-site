@@ -961,6 +961,11 @@
     grid-template-columns: 1fr;
   }
 
+  .header .title,
+  .collabTitle {
+    font-size: 28px;
+  }
+
   .lede {
     grid-column: 1;
   }
@@ -968,6 +973,8 @@
   .collabSection {
     grid-template-columns: 1fr;
     row-gap: 20px;
+    margin-top: 40px;
+    padding-top: 32px;
   }
 
   .collabTitle {
@@ -978,9 +985,45 @@
     padding: 40px 0 64px;
   }
 
+  .body {
+    margin-top: 32px;
+    padding-top: 32px;
+  }
+
   .titleRow {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .filterBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .sortRow {
+    justify-content: flex-start;
+  }
+
+  .chip {
+    min-height: 36px;
+    padding: 6px 12px;
+  }
+
+  .sortBtn {
+    min-height: 36px;
+    padding: 6px 4px;
+  }
+
+  .feedBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .feedActions {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .rowMetaRight {

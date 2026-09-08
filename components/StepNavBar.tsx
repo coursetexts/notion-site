@@ -111,7 +111,8 @@ export function StepNavBar({
             <span className={styles.btnIcon} aria-hidden>
               <ChevronLeftIcon />
             </span>
-            <span>Previous</span>
+            <span className={styles.prevLabelFull}>Previous</span>
+            <span className={styles.prevLabelShort}>Prev</span>
           </button>
         ) : (
           <span className={styles.placeholder} aria-hidden />
@@ -147,7 +148,10 @@ export function StepNavBar({
                 <span>Explored</span>
               </>
             ) : (
-              'Mark as explored'
+              <>
+                <span className={styles.exploredLabelFull}>Mark as explored</span>
+                <span className={styles.exploredLabelShort}>Mark</span>
+              </>
             )}
           </button>
         ) : null}

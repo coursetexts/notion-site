@@ -176,7 +176,8 @@ export function CourseLearningPath({
     () => (courseProp ? withCurriculumResources(courseProp, slug) : null)
   )
   const [loading, setLoading] = React.useState(!courseProp)
-  const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
+  const [mobileOutlineOpen, setMobileOutlineOpen] = React.useState(false)
+  const [isMobileOutlineLayout, setIsMobileOutlineLayout] = React.useState(false)
   const courseIdentityRef = React.useRef<string | null>(null)
   const loadedSlugRef = React.useRef<string | null>(courseProp ? slug : null)
   const [selectedId, setSelectedId] = React.useState(
@@ -271,6 +272,26 @@ export function CourseLearningPath({
   }, [slug])
 
   React.useEffect(() => {
+    if (!mobileOutlineOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [mobileOutlineOpen])
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)')
+    const sync = () => {
+      setIsMobileOutlineLayout(mq.matches)
+      if (!mq.matches) setMobileOutlineOpen(false)
+    }
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  React.useEffect(() => {
     if (!course) return
     if (!isCourseLearningPathKnowledgeSelection(selectedId)) return
     if (isCourseLearningPathFinished(course, exploredIds)) return
@@ -338,7 +359,7 @@ export function CourseLearningPath({
       for (const parent of index[nextId]?.parents ?? []) next.add(parent.id)
       return next
     })
-    setMobileNavOpen(false)
+    setMobileOutlineOpen(false)
   }
 
   function handleToggleExplored(nodeId: string) {
@@ -364,7 +385,7 @@ export function CourseLearningPath({
         else setPendingFinish(true)
         setSelectedId(COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID)
         replaceSearchParams({ node: COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID })
-        setMobileNavOpen(false)
+        setMobileOutlineOpen(false)
       }
     }
     if (!wasExplored && course.dbBacked) {
@@ -717,28 +738,24 @@ export function CourseLearningPath({
           }
         />
       </div>
-      <header className={styles.topBar}>
-        <button
-          type='button'
-          onClick={() => setMobileNavOpen((v) => !v)}
-          className={styles.menuBtn}
-          aria-label={mobileNavOpen ? 'Close syllabus' : 'Open syllabus'}
-        >
-          {mobileNavOpen ? <CloseIcon /> : <MenuIcon />}
-        </button>
-      </header>
-
       <div className={pathStyles.body}>
         <div className={`${pathStyles.layout} ${pathStyles.layoutList}`}>
           <aside
-            className={`${styles.aside}${
-              mobileNavOpen ? ` ${styles.asideOpen}` : ''
+            id='course-learning-path-outline-panel'
+            className={`${pathStyles.mobileAside}${
+              mobileOutlineOpen ? ` ${pathStyles.mobileAsideOpen}` : ''
             }`}
+            aria-hidden={isMobileOutlineLayout && !mobileOutlineOpen}
           >
             <LearningPathOutlinePanel
               search={outlineSearch}
               onSearchChange={setOutlineSearch}
               searchAriaLabel='Search in outline'
+              onMobileClose={
+                isMobileOutlineLayout
+                  ? () => setMobileOutlineOpen(false)
+                  : undefined
+              }
               list={
                 <CourseLearningPathSyllabusNav
                   course={course}
@@ -755,19 +772,35 @@ export function CourseLearningPath({
             />
           </aside>
 
-          {mobileNavOpen && (
+          {mobileOutlineOpen ? (
             <button
               type='button'
-              aria-label='Close syllabus'
-              onClick={() => setMobileNavOpen(false)}
-              className={styles.overlay}
+              aria-label='Close path menu'
+              onClick={() => setMobileOutlineOpen(false)}
+              className={pathStyles.mobileAsideOverlay}
             />
-          )}
+          ) : null}
 
           <PathContentActivity
             className={pathStyles.detail}
             contentClassName={pathStyles.detailContent}
             contentRef={mainRef}
+            viewBarLeading={
+              isMobileOutlineLayout ? (
+                <button
+                  type='button'
+                  className={pathStyles.mobilePathOpenBtn}
+                  onClick={() => setMobileOutlineOpen(true)}
+                  aria-expanded={mobileOutlineOpen}
+                  aria-controls='course-learning-path-outline-panel'
+                  aria-label='Open the path'
+                >
+                  <CoursePathOutlineOpenIcon />
+                  <span>The Path</span>
+                  <CoursePathOutlineChevronIcon />
+                </button>
+              ) : undefined
+            }
             coursePageId={courseLearningPathActivityPageId(course.slug)}
             courseTitle={course.title}
             courseUrl={`/learning-path/${course.slug}`}
@@ -928,43 +961,49 @@ export function CourseLearningPath({
   )
 }
 
-function MenuIcon() {
+function CoursePathOutlineOpenIcon() {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='18'
-      height='18'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M2.5 4H13.5M2.5 8H13.5M2.5 12H13.5'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-      />
-    </svg>
+    <span className={pathStyles.mobilePathOpenBtnIcon} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='12'
+        height='12'
+        viewBox='0 0 12 12'
+        fill='none'
+      >
+        <circle cx='2.25' cy='2.25' r='0.9' fill='currentColor' />
+        <circle cx='2.25' cy='6' r='0.9' fill='currentColor' />
+        <circle cx='2.25' cy='9.75' r='0.9' fill='currentColor' />
+        <path
+          d='M4.5 2.25H10M4.5 6H10M4.5 9.75H8'
+          stroke='currentColor'
+          strokeWidth='1.1'
+          strokeLinecap='round'
+        />
+      </svg>
+    </span>
   )
 }
 
-function CloseIcon() {
+function CoursePathOutlineChevronIcon() {
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='18'
-      height='18'
-      viewBox='0 0 16 16'
-      fill='none'
-      aria-hidden
-    >
-      <path
-        d='M4 4L12 12M12 4L4 12'
-        stroke='currentColor'
-        strokeWidth='1.4'
-        strokeLinecap='round'
-      />
-    </svg>
+    <span className={pathStyles.mobilePathOpenBtnChevron} aria-hidden>
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='10'
+        height='10'
+        viewBox='0 0 10 10'
+        fill='none'
+      >
+        <path
+          d='M3.25 2L6.75 5L3.25 8'
+          stroke='currentColor'
+          strokeWidth='1.2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </svg>
+    </span>
   )
 }
 

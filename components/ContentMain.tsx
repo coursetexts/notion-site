@@ -52,8 +52,12 @@ export interface ContentMainProps {
   hideCompleteBookmark?: boolean
   /** Slot before Next (e.g. Commit & Remind Me on General). */
   beforeNext?: React.ReactNode
+  /** Overrides the default Next label in the step bar. */
+  nextSectionLabel?: string
   /** Rendered after the main title heading on the same row (e.g. Subscribe). */
   titleRowAddon?: React.ReactNode
+  /** Rendered first in the sticky action bar (e.g. mobile course outline toggle). */
+  viewBarLeading?: React.ReactNode
   /** Rendered at the end of the title row (e.g. + Add Resource). */
   titleRowTrailing?: React.ReactNode
 }
@@ -83,7 +87,9 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   hideAnnotationsChatButtons = false,
   hideCompleteBookmark = false,
   beforeNext,
+  nextSectionLabel,
   titleRowAddon,
+  viewBarLeading,
   titleRowTrailing
 }) => {
   const showViewBar = Boolean(
@@ -107,14 +113,21 @@ export const ContentMain: React.FC<ContentMainProps> = ({
   return (
     <main className={styles.root}>
       {showViewBar && (
-        <div className={styles.viewBar}>
-          {onShowAnnotations && (
-            <ViewAnnotationsButton
-              count={annotationCount}
-              onClick={onShowAnnotations}
-            />
-          )}
-          {onShowNotes && <ViewYourNotesButton onClick={onShowNotes} />}
+        <div
+          className={`${styles.viewBar}${
+            viewBarLeading ? ` ${styles.viewBarWithLeading}` : ''
+          }`}
+        >
+          {viewBarLeading}
+          <div className={styles.viewBarActions}>
+            {onShowAnnotations && (
+              <ViewAnnotationsButton
+                count={annotationCount}
+                onClick={onShowAnnotations}
+              />
+            )}
+            {onShowNotes && <ViewYourNotesButton onClick={onShowNotes} />}
+          </div>
         </div>
       )}
       <div className={styles.slot}>
@@ -167,6 +180,7 @@ export const ContentMain: React.FC<ContentMainProps> = ({
               isLastStep={!hasNextSection}
               onPrevious={onPreviousSection}
               onNext={onNextSection}
+              nextLabel={nextSectionLabel}
               explored={isCompleted}
               onToggleExplored={
                 showExplored

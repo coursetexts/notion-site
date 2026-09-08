@@ -327,6 +327,14 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    margin-top: 48px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
   .headingRow {
     flex-wrap: wrap;
     align-items: flex-start;
@@ -337,8 +345,40 @@
     width: 100%;
   }
 
+  .filtersRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
   .catalogRow {
-    flex-wrap: wrap;
-    row-gap: 8px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    padding: 2px 0 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+  }
+
+  .catalogRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .catalogLink {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 36px;
+    padding: 8px 10px;
+  }
+
+  .catalogDivider {
+    flex-shrink: 0;
+    padding: 0 2px;
   }
 }

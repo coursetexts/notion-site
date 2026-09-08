@@ -89,11 +89,11 @@ export function ProfileKnowledgePanel({
 
   return (
     <div className={styles.tabPanel}>
-      <div className={styles.tabPanelHeaderRow}>
+      <div className={styles.tabPanelTop}>
         <h2 className={styles.mainSerifTitle}>Knowledge</h2>
-        <div className={styles.knowledgeHeaderActions}>
-          {canAdd ? (
-            showAddInput ? (
+        {canAdd ? (
+          <div className={styles.tabPanelActions}>
+            {showAddInput ? (
               <input
                 ref={inputRef}
                 type='text'
@@ -129,9 +129,7 @@ export function ProfileKnowledgePanel({
               >
                 + Add topic
               </button>
-            )
-          ) : null}
-          {canAdd ? (
+            )}
             <button
               type='button'
               className={styles.notebooksCreateBtn}
@@ -140,20 +138,20 @@ export function ProfileKnowledgePanel({
             >
               {exportCopied ? 'Copied' : 'Export knowledge list'}
             </button>
-          ) : null}
-        </div>
-      </div>
-      <div className={styles.filterSearchBlock}>
-        <div className={styles.panelSearchWrap}>
-          <input
-            id={searchId}
-            type='search'
-            className={styles.panelSearchInput}
-            placeholder='SEARCH'
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            aria-label='Search completed topics'
-          />
+          </div>
+        ) : null}
+        <div className={styles.tabPanelSearchRow}>
+          <div className={styles.panelSearchWrap}>
+            <input
+              id={searchId}
+              type='search'
+              className={styles.panelSearchInput}
+              placeholder='SEARCH'
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              aria-label='Search completed topics'
+            />
+          </div>
         </div>
       </div>
       {loading ? (

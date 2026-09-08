@@ -39,7 +39,7 @@ Profile tabs also include **Knowledge** (acquired topics) and **Notes** (your pr
 2. The topic tree. Top-level steps are accordion rows (chevron on the right). Nested steps sit on a vertical hairline. A light-blue stroke check appears on the right when a parent or child is `explored`.
 3. **What you learned** — only after the path is finished
 
-The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. In the notes side panel, **Export PDF** is under the toolbar **…** menu. Searching the outline for “mental map” or “general approach” still finds **Overview**. Course syllabi use the same **Overview** tab and accordion/check treatment (see [curated-courses.md](./curated-courses.md)).
+The topic bar has **Discussions** (table `annotations`; `?annotations=1` or `?discussions=1`) and **Your Notes**. On mobile (≤900px), **The Path** opens the outline drawer (same as community paths and official Notion courses’ **The Course**). In the notes side panel, **Export PDF** is under the toolbar **…** menu. Searching the outline for “mental map” or “general approach” still finds **Overview**. Course syllabi use the same **Overview** tab and accordion/check treatment (see [curated-courses.md](./curated-courses.md)).
 
 `/all-courses?view=learning-paths` is the full public browse of non-course paths: `listNonCourseLearningPaths()` selects `kind in ('community','research')` (title, goal, summary only — not the JSON blob), then appends any missing `SEEDED_LEARNING_PATHS`. Private rows stay hidden by RLS. **`kind=course` is excluded**, including empty stubs.
 

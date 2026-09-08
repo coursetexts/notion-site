@@ -1670,7 +1670,31 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
-            <h1 className={styles.sidebarName}>{displayName}</h1>
+            <div className={styles.sidebarNameRow}>
+              <h1 className={styles.sidebarName}>{displayName}</h1>
+              {effectiveUser?.id ? (
+                <button
+                  type='button'
+                  className={
+                    isEditingProfile
+                      ? `${styles.sidebarEditProfileBtn} ${styles.sidebarEditProfileBtnActive}`
+                      : styles.sidebarEditProfileBtn
+                  }
+                  onClick={() => {
+                    if (isEditingProfile) {
+                      void saveProfile()
+                    } else {
+                      setIsEditingProfile(true)
+                    }
+                  }}
+                  aria-label={isEditingProfile ? 'Save profile' : 'Edit profile'}
+                  title={isEditingProfile ? 'Save profile' : 'Edit profile'}
+                  disabled={bioSaving}
+                >
+                  {isEditingProfile ? <CheckIcon /> : <PencilIcon />}
+                </button>
+              ) : null}
+            </div>
             <div className={styles.sidebarFollowLine}>
               <button
                 type='button'
@@ -1777,28 +1801,6 @@ export default function ProfilePage() {
                       Your bio, interests, and links will appear here.
                     </p>
                   ) : null}
-                </div>
-                <div className={styles.sidebarEditProfileRow}>
-                  <button
-                    type='button'
-                    className={
-                      isEditingProfile
-                        ? `${styles.sidebarEditProfileBtn} ${styles.sidebarEditProfileBtnActive}`
-                        : styles.sidebarEditProfileBtn
-                    }
-                    onClick={() => {
-                      if (isEditingProfile) {
-                        void saveProfile()
-                      } else {
-                        setIsEditingProfile(true)
-                      }
-                    }}
-                    aria-label={isEditingProfile ? 'Save profile' : 'Edit profile'}
-                    title={isEditingProfile ? 'Save profile' : 'Edit profile'}
-                    disabled={bioSaving}
-                  >
-                    {isEditingProfile ? <CheckIcon /> : <PencilIcon />}
-                  </button>
                 </div>
               </div>
             ) : null}
@@ -2142,11 +2144,11 @@ export default function ProfilePage() {
 
                 {mainTab === 'bookmarks' && (
                   <div className={styles.tabPanel}>
-                    <div className={styles.tabPanelHeaderRow}>
+                    <div className={styles.tabPanelTop}>
                       <h2 className={styles.mainSerifTitle}>
                         Bookmarked Resources
                       </h2>
-                      <div className={styles.primaryTabsRightActions}>
+                      <div className={styles.tabPanelActions}>
                         <button
                           type='button'
                           className={styles.linkFilterBtnNew}
@@ -2162,15 +2164,17 @@ export default function ProfilePage() {
                           + New Link
                         </button>
                       </div>
+                      <div className={styles.tabPanelSearchRow}>
+                        <ProfilePanelSearch
+                          id='profile-bookmarks-search'
+                          value={bookmarkSearch}
+                          onChange={setBookmarkSearch}
+                          ariaLabel='Search bookmarks'
+                        />
+                      </div>
                     </div>
                     <div className={styles.section}>
                       <div className={styles.filterSearchBlock}>
-                      <ProfilePanelSearch
-                        id='profile-bookmarks-search'
-                        value={bookmarkSearch}
-                        onChange={setBookmarkSearch}
-                        ariaLabel='Search bookmarks'
-                      />
                       <div className={styles.linkFilterRow}>
                         <div className={styles.linkFilterTagsWrap}>
                           <button
@@ -3200,29 +3204,33 @@ export default function ProfilePage() {
 
                 {mainTab === 'learning-path' && (
                   <div className={styles.tabPanel}>
-                    <div className={styles.tabPanelHeaderRow}>
+                    <div className={styles.tabPanelTop}>
                       <h2 className={styles.mainSerifTitle}>
                         Learning
                       </h2>
                       {showAllLearningCards ||
                       learningPathsOnly ||
                       byYouOnly ? (
-                        <button
-                          type='button'
-                          className={styles.notebooksCreateBtn}
-                          onClick={openLearningPathModal}
-                        >
-                          + New learning path
-                        </button>
+                        <div className={styles.tabPanelActions}>
+                          <button
+                            type='button'
+                            className={styles.notebooksCreateBtn}
+                            onClick={openLearningPathModal}
+                          >
+                            + New learning path
+                          </button>
+                        </div>
                       ) : null}
+                      <div className={styles.tabPanelSearchRow}>
+                        <ProfilePanelSearch
+                          id='profile-learning-search'
+                          value={learningSearch}
+                          onChange={setLearningSearch}
+                          ariaLabel='Search learning paths and courses'
+                        />
+                      </div>
                     </div>
                     <div className={styles.filterSearchBlock}>
-                    <ProfilePanelSearch
-                      id='profile-learning-search'
-                      value={learningSearch}
-                      onChange={setLearningSearch}
-                      ariaLabel='Search learning paths and courses'
-                    />
                     <div
                       className={`${styles.linkFilterRow} ${styles.pathsCoursesFilter}`}
                     >

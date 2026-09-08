@@ -213,29 +213,6 @@ export function CommunitySchema() {
   return (
     <>
       <LearningPathSchemaDiagram />
-      <p className={styles.notes}>
-        A learning path can be anything. We think there are two subsets of
-        this that are special cases.{' '}
-        <Link href='/degrees' legacyBehavior>
-          <a className={styles.notesLink}>Learning an academic degree</a>
-        </Link>{' '}
-        — e.g. <em>I want to learn computer science</em> — the structure for
-        this is generally standardized, and we can seed these learning paths.
-        The other is{' '}
-        <Link href='/field-atlas' legacyBehavior>
-          <a className={styles.notesLink}>
-            open questions in research fields
-          </a>
-        </Link>{' '}
-        — e.g.{' '}
-        <em>
-          I want enough background to understand how general relativity and
-          quantum mechanics reconcile
-        </em>
-        . These are popularly discussed questions, and there is a general
-        consensus in these fields for the background someone needs, so we can
-        seed them.
-      </p>
       <div className={styles.startPathWrap}>
         <Link href='/learning-path/new' legacyBehavior>
           <a className={styles.startPathBtn}>

@@ -192,43 +192,6 @@
   color: #2c1a0c;
 }
 
-.notes {
-  grid-column: 1 / -1;
-  margin: 0;
-  max-width: none;
-  color: #37352f;
-  font-family: 'Hanken Grotesk', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: -0.006px;
-  text-align: left;
-}
-
-.notes em {
-  font-style: italic;
-}
-
-.notesLink {
-  color: inherit;
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: var(--outline, #e6e6e6);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-skip-ink: none;
-  transition:
-    color 200ms ease,
-    text-decoration-color 200ms ease;
-}
-
-.notesLink:hover,
-.notesLink:focus-visible {
-  color: #0089c4;
-  text-decoration-color: #0089c4;
-}
-
 .startPathWrap {
   grid-column: 1 / -1;
   margin: 4px 0 0;
@@ -269,15 +232,20 @@
 
 @media (max-width: 768px) {
   .layout,
-  .notes,
   .startPathWrap {
     grid-column: 1;
     grid-row: auto;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
+  .pathBox {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .pathGrid {
+    min-width: 300px;
     grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 18px minmax(0, 1fr);
   }
 
@@ -285,5 +253,9 @@
     min-height: 38px;
     font-size: 12px;
     padding: 6px 4px;
+  }
+
+  .voteRow {
+    grid-template-columns: 28px minmax(0, 1fr) 40px;
   }
 }

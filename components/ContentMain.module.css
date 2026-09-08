@@ -25,6 +25,21 @@
   box-sizing: border-box;
 }
 
+.viewBarWithLeading {
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.viewBarActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-left: auto;
+  min-width: 0;
+}
+
 .viewBarCommunityActions {
   display: flex;
   align-items: center;

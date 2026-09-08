@@ -14,6 +14,22 @@ import styles from '@/styles/profile.module.css'
 
 const SAVE_MS = 700
 
+const PROFILE_MOBILE_MQ = '(max-width: 860px)'
+
+function useProfileMobileLayout() {
+  const [isMobile, setIsMobile] = React.useState(false)
+
+  React.useEffect(() => {
+    const mq = window.matchMedia(PROFILE_MOBILE_MQ)
+    const sync = () => setIsMobile(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  return isMobile
+}
+
 export function ProfileNotesPanel({
   notes,
   loading = false,
@@ -23,6 +39,7 @@ export function ProfileNotesPanel({
   loading?: boolean
   onNoteChange?: (note: ProfileTopicNote) => void
 }) {
+  const isMobile = useProfileMobileLayout()
   const [query, setQuery] = React.useState('')
   const [selectedId, setSelectedId] = React.useState<string | null>(null)
   const [saveState, setSaveState] = React.useState<
@@ -162,6 +179,7 @@ export function ProfileNotesPanel({
             onChange={scheduleSave}
             placeholder='Write your notes for this topic…'
             variant='default'
+            toolbarLayout={isMobile ? 'panel' : 'auto'}
             allowExpand
             fillHeight
             expandTitle='Your Notes'
