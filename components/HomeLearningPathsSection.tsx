@@ -7,14 +7,12 @@ import {
   SEEDED_LEARNING_PATHS
 } from '@/lib/learning-path-seed'
 import {
-  LEARNING_PATH_TOPICS,
   type LearningPathTopicId,
   learningPathTopics
 } from '@/lib/learning-path-topic'
 
 import courseStyles from './HomeCoursesSection.module.css'
 import styles from './HomeLearningPathsSection.module.css'
-import { LearningPathTopicIcon } from './LearningPathTopicIcon'
 
 function CommunityMark() {
   return (
@@ -49,21 +47,21 @@ function pathToCard(path: LearningPathData) {
   }
 }
 
-export function HomeLearningPathsSection() {
+type HomeLearningPathsSectionProps = {
+  activeTopic?: LearningPathTopicId | null
+}
+
+export function HomeLearningPathsSection({
+  activeTopic = null
+}: HomeLearningPathsSectionProps) {
   const [paths, setPaths] = React.useState<LearningPathData[]>(
     SEEDED_LEARNING_PATHS
   )
-  const [activeTopic, setActiveTopic] =
-    React.useState<LearningPathTopicId | null>(null)
 
   React.useEffect(() => {
     void listCatalogLearningPaths().then((next) => {
       if (next.length > 0) setPaths(next)
     })
-  }, [])
-
-  const handleTopicToggle = React.useCallback((topic: LearningPathTopicId) => {
-    setActiveTopic((current) => (current === topic ? null : topic))
   }, [])
 
   const cards = React.useMemo(() => {
@@ -83,32 +81,6 @@ export function HomeLearningPathsSection() {
         <h2 className={styles.heading}>
           Try learning paths from our community.
         </h2>
-      </div>
-
-      <div className={courseStyles.subjectGroup}>
-        <div className={courseStyles.dashedRule} />
-        <div className={`${courseStyles.subjectRow} ${styles.topicRow}`}>
-          {LEARNING_PATH_TOPICS.map((topic) => (
-            <button
-              key={topic.id}
-              type='button'
-              className={`${courseStyles.subjectItem} ${
-                activeTopic === topic.id ? courseStyles.subjectItemActive : ''
-              }`}
-              onClick={() => handleTopicToggle(topic.id)}
-              aria-pressed={activeTopic === topic.id}
-            >
-              <span className={courseStyles.subjectIconWrap}>
-                <LearningPathTopicIcon
-                  id={topic.id}
-                  className={styles.topicIcon}
-                />
-              </span>
-              <span className={courseStyles.subjectLabel}>{topic.label}</span>
-            </button>
-          ))}
-        </div>
-        <div className={courseStyles.dashedRule} />
       </div>
 
       {cards.length === 0 ? (

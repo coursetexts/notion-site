@@ -28,12 +28,27 @@
   margin-bottom: 20px;
 }
 
+.modalHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
 .modalTitle {
   font-family: 'Guyot Press', 'Fraunces', serif;
   font-size: 20px;
   font-weight: 401;
   line-height: 24px;
   color: #000;
+  margin: 0;
+}
+
+.workflow {
+  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #6b7280;
   margin: 0;
 }
 
@@ -89,14 +104,6 @@
 .textarea:focus-visible {
   outline: none;
   border-color: #0089c4;
-}
-
-.hint {
-  font-family: 'Hanken Grotesk', 'Inter', sans-serif;
-  font-size: 12px;
-  line-height: 20px;
-  color: #6b7280;
-  margin: 0;
 }
 
 .modalActions {

@@ -716,6 +716,77 @@ button.sectionTag:focus-visible {
   color: #5d534b;
 }
 
+.pathPeopleWrap {
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pathPeople {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pathPeopleTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #25272b;
+  margin: 0;
+}
+
+.pathMemberList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.pathMember {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.pathMemberAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #f8f7f4;
+  border: 1px solid #e5e1d3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #5d534b;
+  flex-shrink: 0;
+}
+
+.pathMemberName {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  color: #5d534b;
+}
+
+.pathPeopleEmpty {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #9ca3af;
+  margin: 0;
+}
+
 /* Empty-state CTA (no comments/annotations yet) – right column */
 .activityCtaWrap {
   position: sticky;
@@ -813,6 +884,12 @@ button.sectionTag:focus-visible {
     position: static;
     flex-direction: row;
     flex-wrap: wrap;
+    border-top: 1px solid #e5e1d3;
+    padding-top: 1rem;
+  }
+
+  .pathPeopleWrap {
+    position: static;
     border-top: 1px solid #e5e1d3;
     padding-top: 1rem;
   }

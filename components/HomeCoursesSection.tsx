@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Link from 'next/link'
 
+import type { LearningPathTopicId } from '@/lib/learning-path-topic'
+
 import styles from './HomeCoursesSection.module.css'
 import { HomeLearningPathsSection } from './HomeLearningPathsSection'
 import { HomeSocialLearningSection } from './HomeSocialLearningSection'
@@ -146,12 +148,14 @@ type HomeCoursesSectionProps = {
   courses?: HomeCourseCard[]
   activeSubjects?: string[]
   onSubjectToggle?: (subject: string) => void
+  activeTopic?: LearningPathTopicId | null
 }
 
 export function HomeCoursesSection({
   courses,
   activeSubjects = [],
-  onSubjectToggle
+  onSubjectToggle,
+  activeTopic = null
 }: HomeCoursesSectionProps) {
   const subjects = [
     { label: 'Science', icon: '/images/home/science.png' },
@@ -178,7 +182,7 @@ export function HomeCoursesSection({
   return (
     <section className={styles.section}>
       <div className={styles.content}>
-        <HomeLearningPathsSection />
+        <HomeLearningPathsSection activeTopic={activeTopic} />
       </div>
 
       <HomeSocialLearningSection />

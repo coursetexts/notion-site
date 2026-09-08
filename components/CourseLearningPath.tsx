@@ -19,6 +19,7 @@ import {
   COURSE_LEARNING_PATH_KNOWLEDGE_SECTION_ID,
   COURSE_LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   COURSE_LEARNING_PATH_RESOURCES_SECTION_ID,
+  COURSE_LEARNING_PATH_RESOURCE_SECTIONS,
   COURSE_LEARNING_PATH_SYLLABUS_SECTION_ID,
   canonicalizeCourseLearningPathSectionId,
   getCourseLearningPathResourcesBySlug,
@@ -60,7 +61,8 @@ import { submitLearningPathRating } from '@/lib/learning-path-ratings-db'
 import {
   LEARNING_PATH_MENTAL_MAP_LABEL,
   LEARNING_PATH_OVERVIEW_LABEL,
-  LEARNING_PATH_OVERVIEW_SECTION_ID
+  LEARNING_PATH_OVERVIEW_SECTION_ID,
+  LEARNING_PATH_START_LABEL
 } from '@/lib/learning-path-sections'
 import { readSearchParam, replaceSearchParams } from '@/lib/note-deep-link'
 import { restoreScrollAfter } from '@/lib/restore-scroll-after'
@@ -320,6 +322,8 @@ export function CourseLearningPath({
     Boolean(entry) &&
     outlineOrder.length > 0 &&
     topicIndex === outlineOrder.length - 1
+  const canStartFromOverview =
+    outlineOrder.length > 0 || COURSE_LEARNING_PATH_RESOURCE_SECTIONS.length > 0
 
   function handleSelect(id: string) {
     const nextId = canonicalizeCourseLearningPathSectionId(id)
@@ -395,7 +399,12 @@ export function CourseLearningPath({
     }
     if (showingOverview) {
       const first = outlineOrder[0]
-      if (first) handleNext(first.id)
+      if (first) {
+        handleNext(first.id)
+        return
+      }
+      const firstResource = COURSE_LEARNING_PATH_RESOURCE_SECTIONS[0]
+      if (firstResource) handleSelect(firstResource.id)
       return
     }
     const next = outlineOrder[topicIndex + 1]
@@ -811,9 +820,12 @@ export function CourseLearningPath({
                   isLastStep={isLastOutlineStep}
                   onPrevious={goStepPrevious}
                   onNext={
-                    showingOverview && outlineOrder.length === 0
+                    showingOverview && !canStartFromOverview
                       ? undefined
                       : goStepNext
+                  }
+                  nextLabel={
+                    showingOverview ? LEARNING_PATH_START_LABEL : undefined
                   }
                   explored={entry ? exploredIds.has(entry.node.id) : false}
                   onToggleExplored={

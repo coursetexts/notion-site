@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
   column-gap: clamp(28px, 4vw, 48px);
-  align-items: center;
+  align-items: start;
 }
 
 .copy {

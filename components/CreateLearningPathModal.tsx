@@ -55,9 +55,15 @@ export function CreateLearningPathModal({
         onMouseDown={(event) => event.stopPropagation()}
       >
         <div className={styles.modalHeader}>
-          <h2 id='create-path-title' className={styles.modalTitle}>
-            What do you want to learn?
-          </h2>
+          <div className={styles.modalHeading}>
+            <h2 id='create-path-title' className={styles.modalTitle}>
+              What do you want to learn?
+            </h2>
+            <p className={styles.workflow}>
+              Describe your goal → receive an editable draft path → add resources
+              → save or publish.
+            </p>
+          </div>
           <button
             type='button'
             className={styles.modalClose}
@@ -79,10 +85,6 @@ export function CreateLearningPathModal({
               autoFocus
             />
           </label>
-          <p className={styles.hint}>
-            The path starts from the intention. Work backward into the
-            knowledge that would make you capable of it.
-          </p>
           <div className={styles.modalActions}>
             <button
               type='button'

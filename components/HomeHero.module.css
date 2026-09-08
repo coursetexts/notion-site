@@ -53,7 +53,7 @@
 
 .searchWrap {
   margin-top: 40px;
-  width: 534px;
+  width: var(--hero-search-width, 534px);
   max-width: 100%;
   height: 49px;
   position: relative;
@@ -140,7 +140,7 @@
 
 .frameBelow {
   margin-top: 16px;
-  width: 534px;
+  width: var(--hero-search-width, 534px);
   max-width: 100%;
   min-height: 28px;
   display: flex;
@@ -148,24 +148,68 @@
   justify-content: space-between;
   align-items: center;
   padding: 0;
-  gap: 10px;
+  gap: 12px;
+}
+
+.chipMarquee {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.chipMarqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: chipMarquee 32s linear infinite;
+}
+
+.chipMarqueeTrack:hover,
+.chipMarqueeTrack:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes chipMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .chipRow {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  flex-shrink: 0;
+  gap: 8px;
+  padding-right: 8px;
 }
 
 .chip {
-  min-width: 54px;
+  min-width: 0;
   height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid transparent;
   background: var(--offwhite, #fdfdfd);
@@ -212,7 +256,7 @@
 
 .nonProfitNote {
   margin: 8px 0 0;
-  width: 534px;
+  width: var(--hero-search-width, 534px);
   max-width: 100%;
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 400;
@@ -304,13 +348,31 @@
   }
 
   .frameBelow {
-    flex-wrap: wrap;
-    justify-content: flex-start;
     gap: 12px;
   }
 
   .logoRow {
     margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chipMarqueeTrack {
+    animation: none;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .chipMarquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .chipMarqueeTrack > .chipRow:last-child {
+    display: none;
   }
 }
 
@@ -330,13 +392,8 @@
     line-height: 18px;
   }
 
-  .chipRow {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
   .logoRow {
     margin-left: 0;
+    transform: none;
   }
 }

@@ -20,11 +20,6 @@
   align-items: flex-start;
 }
 
-.topicRow {
-  flex-wrap: wrap;
-  row-gap: 12px;
-}
-
 .metaMark {
   width: 100%;
   height: 100%;
@@ -36,13 +31,6 @@
 
 .metaMark svg {
   display: block;
-}
-
-.topicIcon {
-  width: 20px;
-  height: 20px;
-  display: block;
-  color: #5d534b;
 }
 
 @media (max-width: 800px) {

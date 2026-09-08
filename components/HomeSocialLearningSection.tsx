@@ -36,7 +36,6 @@ export function HomeSocialLearningSection() {
   const ctaHref = isLoggedIn
     ? '/profile'
     : `/signin?redirect=${encodeURIComponent('/profile')}`
-  const ctaLabel = isLoggedIn ? 'Your Profile' : 'Start learning'
 
   return (
     <section className={styles.section}>
@@ -46,10 +45,9 @@ export function HomeSocialLearningSection() {
             <h2 className={styles.heading}>
               A <span className={styles.headingAccent}>community</span> for self-learners.
             </h2>
-            <p className={styles.subheading}>Learn independently, not alone</p>
           </div>
           <Link href={ctaHref} legacyBehavior>
-            <a className={styles.cta}>{ctaLabel}</a>
+            <a className={styles.cta}>Learn independently, not alone</a>
           </Link>
           <div className={styles.introRule} aria-hidden />
         </div>

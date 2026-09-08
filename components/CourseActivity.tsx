@@ -16,6 +16,7 @@ import {
   getOrCreateCourse,
   setVote
 } from '@/lib/course-activity-db'
+import type { LearningPathCircleMember } from '@/lib/learning-path-seed'
 
 import { useAuthOptional } from '../contexts/AuthContext'
 import styles from './CourseActivity.module.css'
@@ -522,6 +523,8 @@ export interface CourseActivityProps {
   onSectionClick?: (sectionLabel: string) => void
   /** Increment (e.g. from parent state) after activity is posted elsewhere so this list refetches. */
   activityRefreshNonce?: number
+  /** Learning-path circle members for the sidebar people list. */
+  pathMembers?: LearningPathCircleMember[]
 }
 
 export const CourseActivity: React.FC<CourseActivityProps> = ({
@@ -529,7 +532,8 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
   courseTitle,
   courseUrl,
   onSectionClick,
-  activityRefreshNonce = 0
+  activityRefreshNonce = 0,
+  pathMembers
 }) => {
   const auth = useAuthOptional()
   const [activeTab, setActiveTab] = useState<TabId>('comments')
@@ -718,6 +722,8 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
       .sort((a, b) => b.count - a.count)
       .slice(0, 10)
   }, [comments, annotations])
+
+  const showPathPeople = pathMembers !== undefined
 
   if (!coursePageId || !courseTitle) {
     return (
@@ -1143,52 +1149,126 @@ export const CourseActivity: React.FC<CourseActivityProps> = ({
           )}
         </div>
 
-        {participants.length > 0 && (
-          <aside className={styles.participants} aria-label='Participants'>
-            {participants.map((p, i) => (
-              <div key={i} className={styles.participant}>
-                <span className={styles.participantCount}>{p.count}</span>
-                <span className={styles.participantName}>{p.name}</span>
-              </div>
-            ))}
-          </aside>
-        )}
-
-        {!loading && totalCount === 0 && (
-          <aside className={styles.activityCtaWrap} aria-label='Call to action'>
-            <div className={styles.activityCta}>
-              <div className={styles.activityCtaImageWrap}>
-                <Image
-                  src='/images/coursepage/FurnitureSignInCTA.png'
-                  alt=''
-                  width={240}
-                  height={120}
-                  className={styles.activityCtaImage}
-                />
-              </div>
-              <p className={styles.activityCtaMessage}>
-                No comments yet. Be the first!
-              </p>
-              {!auth?.user && (
-                <>
-                  <button
-                    type='button'
-                    className={styles.activityCtaGoogleBtn}
-                    onClick={() =>
-                      auth?.signInWithGoogle?.(currentAuthRedirectPath())
-                    }
-                    disabled={!auth}
-                  >
-                    <GoogleIcon />
-                    <span>Continue with Google</span>
-                  </button>
-                  <p className={styles.activityCtaSignUp}>
-                    Don&apos;t have an account? Sign Up
-                  </p>
-                </>
+        {showPathPeople ? (
+          <aside
+            className={styles.pathPeopleWrap}
+            aria-label='People on this learning path'
+          >
+            <div className={styles.pathPeople}>
+              <h3 className={styles.pathPeopleTitle}>
+                People on this learning path
+              </h3>
+              {pathMembers.length > 0 ? (
+                <ul className={styles.pathMemberList}>
+                  {pathMembers.map((member) => (
+                    <li
+                      key={`${member.initials}-${member.name}`}
+                      className={styles.pathMember}
+                    >
+                      <span className={styles.pathMemberAvatar} aria-hidden>
+                        {member.initials}
+                      </span>
+                      <span className={styles.pathMemberName}>
+                        {member.name}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={styles.pathPeopleEmpty}>
+                  No one on this path yet.
+                </p>
               )}
             </div>
+
+            {!loading && totalCount === 0 ? (
+              <div className={styles.activityCta}>
+                <div className={styles.activityCtaImageWrap}>
+                  <Image
+                    src='/images/coursepage/FurnitureSignInCTA.png'
+                    alt=''
+                    width={240}
+                    height={120}
+                    className={styles.activityCtaImage}
+                  />
+                </div>
+                <p className={styles.activityCtaMessage}>
+                  No comments yet. Be the first!
+                </p>
+                {!auth?.user ? (
+                  <>
+                    <button
+                      type='button'
+                      className={styles.activityCtaGoogleBtn}
+                      onClick={() =>
+                        auth?.signInWithGoogle?.(currentAuthRedirectPath())
+                      }
+                      disabled={!auth}
+                    >
+                      <GoogleIcon />
+                      <span>Continue with Google</span>
+                    </button>
+                    <p className={styles.activityCtaSignUp}>
+                      Don&apos;t have an account? Sign Up
+                    </p>
+                  </>
+                ) : null}
+              </div>
+            ) : null}
           </aside>
+        ) : (
+          <>
+            {participants.length > 0 ? (
+              <aside className={styles.participants} aria-label='Participants'>
+                {participants.map((p, i) => (
+                  <div key={i} className={styles.participant}>
+                    <span className={styles.participantCount}>{p.count}</span>
+                    <span className={styles.participantName}>{p.name}</span>
+                  </div>
+                ))}
+              </aside>
+            ) : null}
+
+            {!loading && totalCount === 0 ? (
+              <aside
+                className={styles.activityCtaWrap}
+                aria-label='Call to action'
+              >
+                <div className={styles.activityCta}>
+                  <div className={styles.activityCtaImageWrap}>
+                    <Image
+                      src='/images/coursepage/FurnitureSignInCTA.png'
+                      alt=''
+                      width={240}
+                      height={120}
+                      className={styles.activityCtaImage}
+                    />
+                  </div>
+                  <p className={styles.activityCtaMessage}>
+                    No comments yet. Be the first!
+                  </p>
+                  {!auth?.user ? (
+                    <>
+                      <button
+                        type='button'
+                        className={styles.activityCtaGoogleBtn}
+                        onClick={() =>
+                          auth?.signInWithGoogle?.(currentAuthRedirectPath())
+                        }
+                        disabled={!auth}
+                      >
+                        <GoogleIcon />
+                        <span>Continue with Google</span>
+                      </button>
+                      <p className={styles.activityCtaSignUp}>
+                        Don&apos;t have an account? Sign Up
+                      </p>
+                    </>
+                  ) : null}
+                </div>
+              </aside>
+            ) : null}
+          </>
         )}
       </div>
     </section>

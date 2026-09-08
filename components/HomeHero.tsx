@@ -2,9 +2,31 @@ import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import {
+  LEARNING_PATH_TOPICS,
+  type LearningPathTopicId
+} from '@/lib/learning-path-topic'
+
 import styles from './HomeHero.module.css'
 
 const subjects = ['Science', 'Math', 'Sociology', 'English']
+
+type HeroChip =
+  | { kind: 'subject'; id: string; label: string }
+  | { kind: 'topic'; id: LearningPathTopicId; label: string }
+
+const heroChips: HeroChip[] = [
+  ...subjects.map((subject) => ({
+    kind: 'subject' as const,
+    id: subject,
+    label: subject
+  })),
+  ...LEARNING_PATH_TOPICS.map((topic) => ({
+    kind: 'topic' as const,
+    id: topic.id,
+    label: topic.label
+  }))
+]
 
 const partnerLinks = [
   {
@@ -32,11 +54,15 @@ const partnerLinks = [
 type HomeHeroProps = {
   activeSubjects?: string[]
   onSubjectToggle?: (subject: string) => void
+  activeTopic?: LearningPathTopicId | null
+  onTopicToggle?: (topic: LearningPathTopicId) => void
 }
 
 export function HomeHero({
   activeSubjects = [],
-  onSubjectToggle
+  onSubjectToggle,
+  activeTopic = null,
+  onTopicToggle
 }: HomeHeroProps) {
   const router = useRouter()
   const [query, setQuery] = React.useState('')
@@ -120,15 +146,59 @@ export function HomeHero({
     [activeSubjects, query, router, triggerSearchPulse]
   )
 
+  const renderChip = React.useCallback(
+    (chip: HeroChip, keySuffix: string) => {
+      const isActive =
+        chip.kind === 'subject'
+          ? activeSubjects.includes(chip.label)
+          : activeTopic === chip.id
+
+      return (
+        <button
+          key={`${chip.kind}-${chip.id}-${keySuffix}`}
+          type='button'
+          className={`${styles.chip} ${isActive ? styles.chipSelected : ''}`}
+          aria-pressed={isActive}
+          onClick={() => {
+            if (chip.kind === 'subject') {
+              onSubjectToggle?.(chip.label)
+              return
+            }
+
+            onTopicToggle?.(chip.id)
+          }}
+          tabIndex={keySuffix === 'b' ? -1 : undefined}
+        >
+          {chip.label}
+        </button>
+      )
+    },
+    [activeSubjects, activeTopic, onSubjectToggle, onTopicToggle]
+  )
+
+  const renderChipRow = React.useCallback(
+    (keySuffix: string, ariaHidden = false) => (
+      <div
+        className={styles.chipRow}
+        aria-hidden={ariaHidden ? true : undefined}
+      >
+        {heroChips.map((chip) => renderChip(chip, keySuffix))}
+      </div>
+    ),
+    [renderChip]
+  )
+
   return (
     <section className={styles.heroWrapper}>
       <div className={styles.heroContent}>
         <h1 className={styles.title}>
-          A  library for <span className={styles.titleFree}>self</span>-learners
+        Learn independently, <span className={styles.titleFree}>not</span> alone
         </h1>
 
         <p className={styles.description}>
-          High-quality materials, structure and community to help you <br />actually finish what you set to learn.
+        {/* learning paths with the concepts, resources, and structure you need to finish what you set out to learn. */}
+          Learning paths for self-learners — concepts, resources, and structure <br />to help you actually finish what you set out to learn.
+          {/* High-quality materials, structure and community to help you <br />actually finish what you set to learn. */}
           {/* or set out to do ?*/}
         </p>
 
@@ -158,24 +228,11 @@ export function HomeHero({
         </form>
 
         <div className={styles.frameBelow}>
-          <div className={styles.chipRow}>
-            {subjects.map((subject) => {
-              const isActive = activeSubjects.includes(subject)
-
-              return (
-                <button
-                  key={subject}
-                  type='button'
-                  className={`${styles.chip} ${
-                    isActive ? styles.chipSelected : ''
-                  }`}
-                  aria-pressed={isActive}
-                  onClick={() => onSubjectToggle?.(subject)}
-                >
-                  {subject}
-                </button>
-              )
-            })}
+          <div className={styles.chipMarquee}>
+            <div className={styles.chipMarqueeTrack}>
+              {renderChipRow('a')}
+              {renderChipRow('b', true)}
+            </div>
           </div>
 
           <div className={styles.logoRow} aria-label='Partner schools'>

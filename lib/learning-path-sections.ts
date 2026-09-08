@@ -6,6 +6,9 @@ export const LEARNING_PATH_OVERVIEW_SECTION_ID = 'overview'
 /** User-facing name for the combined overview section. */
 export const LEARNING_PATH_OVERVIEW_LABEL = 'Overview'
 
+/** Primary action on Overview — opens the first path step. */
+export const LEARNING_PATH_START_LABEL = 'Start learning path'
+
 /** @deprecated Old recommended-path URL; treated as Overview. */
 export const LEARNING_PATH_RECOMMENDED_SECTION_ID = 'recommended-path'
 

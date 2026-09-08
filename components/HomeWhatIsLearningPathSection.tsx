@@ -17,7 +17,7 @@ export function HomeWhatIsLearningPathSection() {
             <span className={styles.headingAccent}>Learning paths.</span>
           </h2>
           <p className={styles.body}>
-          Turn any learning goal into a path you can finish.
+          <b>Turn any learning goal into a path you can finish.</b> <br/><br/>
           Follow an ordered sequence of concepts, use the best community-ranked resources, and keep your notes and progress in one place.
           </p>
         </div>

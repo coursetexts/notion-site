@@ -6,7 +6,6 @@
 }
 
 .stage {
-  min-height: 364px;
   pointer-events: none;
   user-select: none;
   transition: opacity 420ms ease;
@@ -605,10 +604,6 @@
 }
 
 @media (max-width: 420px) {
-  .stage {
-    min-height: 336px;
-  }
-
   .triple {
     grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) 16px minmax(
         0,

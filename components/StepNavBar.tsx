@@ -66,6 +66,7 @@ export function StepNavBar({
   isLastStep,
   onPrevious,
   onNext,
+  nextLabel: nextLabelProp,
   explored = false,
   onToggleExplored,
   showExplored = false,
@@ -77,6 +78,8 @@ export function StepNavBar({
   isLastStep: boolean
   onPrevious?: () => void
   onNext?: () => void
+  /** Overrides the default Next / Finish path label. */
+  nextLabel?: string
   explored?: boolean
   onToggleExplored?: () => void
   showExplored?: boolean
@@ -92,7 +95,8 @@ export function StepNavBar({
   )
   if (!showBar) return null
 
-  const nextLabel = isLastStep ? 'Finish path' : 'Next'
+  const nextLabel =
+    nextLabelProp ?? (isLastStep ? 'Finish path' : 'Next')
 
   return (
     <div className={styles.bar} role='navigation' aria-label='Step'>

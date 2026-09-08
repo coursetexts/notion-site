@@ -13,7 +13,6 @@ import {
   uuidToId
 } from 'notion-utils'
 
-import { HomeBlogSection } from '@/components/HomeBlogSection'
 import {
   HomeCourseCard,
   HomeCoursesSection
@@ -25,6 +24,7 @@ import { HomeHeader } from '@/components/HomeHeader'
 import { HomeHero } from '@/components/HomeHero'
 // import { HomeLearnSection } from '@/components/HomeLearnSection'
 import { HomeWhatIsLearningPathSection } from '@/components/HomeWhatIsLearningPathSection'
+import type { LearningPathTopicId } from '@/lib/learning-path-topic'
 import { isDev, rootNotionPageId } from '@/lib/config'
 import { getSiteMap } from '@/lib/get-site-map'
 import { notionPageHref } from '@/lib/map-page-url'
@@ -1282,6 +1282,8 @@ export default function HomePage({
   )
   const [activeSubjects, setActiveSubjects] =
     React.useState<HomeSubject[]>(querySubjects)
+  const [activeTopic, setActiveTopic] =
+    React.useState<LearningPathTopicId | null>(null)
 
   React.useEffect(() => {
     if (!router.isReady) return
@@ -1324,6 +1326,10 @@ export default function HomePage({
 
       return SUBJECT_OPTIONS.filter((item) => next.includes(item))
     })
+  }, [])
+
+  const handleTopicToggle = React.useCallback((topic: LearningPathTopicId) => {
+    setActiveTopic((current) => (current === topic ? null : topic))
   }, [])
 
   const filteredCourses = React.useMemo(() => {
@@ -1376,6 +1382,8 @@ export default function HomePage({
         <HomeHero
           activeSubjects={activeSubjects}
           onSubjectToggle={handleSubjectToggle}
+          activeTopic={activeTopic}
+          onTopicToggle={handleTopicToggle}
         />
         <HomeDotGrid courses={courses} />
         <HomeWhatIsLearningPathSection />
@@ -1383,10 +1391,10 @@ export default function HomePage({
           courses={filteredCourses}
           activeSubjects={activeSubjects}
           onSubjectToggle={handleSubjectToggle}
+          activeTopic={activeTopic}
         />
         {/* <HomeLearnSection /> */}
         <HomeDonateSection />
-        <HomeBlogSection />
         <HomeFooterSection />
       </main>
     </>

@@ -114,6 +114,7 @@ import {
   LEARNING_PATH_MENTAL_MAP_SECTION_ID,
   LEARNING_PATH_OVERVIEW_LABEL,
   LEARNING_PATH_OVERVIEW_SECTION_ID,
+  LEARNING_PATH_START_LABEL,
   LEARNING_PATH_RECOMMENDED_SECTION_ID,
   canonicalizeLearningPathSectionId,
   isLearningPathKnowledgeSelection,
@@ -435,11 +436,18 @@ function flattenTree(items: PathTreeItem[]): LearningPathNode[] {
   return flat
 }
 
+function learningPathStepOrder(path: LearningPathData): LearningPathNode[] {
+  return flattenTree(
+    outlineTreeWithoutGoal(visibleTree(path, path.nodes))
+  )
+}
+
 function nextOutlineNode(
   path: LearningPathData,
   selectedId: string
 ): LearningPathNode | null {
-  const order = flattenTree(visibleTree(path, path.nodes))
+  const order = learningPathStepOrder(path)
+  if (isLearningPathOverviewSelection(selectedId)) return order[0] ?? null
   const index = order.findIndex((node) => node.id === selectedId)
   if (index < 0) return order[0] ?? null
   return order[index + 1] ?? null
@@ -449,7 +457,7 @@ function prevOutlineNode(
   path: LearningPathData,
   selectedId: string
 ): LearningPathNode | null {
-  const order = flattenTree(visibleTree(path, path.nodes))
+  const order = learningPathStepOrder(path)
   const index = order.findIndex((node) => node.id === selectedId)
   if (index <= 0) return null
   return order[index - 1] ?? null
@@ -1558,7 +1566,10 @@ function CommunityLearningPath({
       : listedResources.length + 1
   const nestedToDelete =
     selected && selected.kind !== 'goal' ? descendantIds(path, selected.id) : []
-  const outlineOrder = React.useMemo(() => flattenTree(tree), [tree])
+  const outlineOrder = React.useMemo(
+    () => learningPathStepOrder(path),
+    [path]
+  )
   const topicIndex =
     showingOverview || !selected
       ? -1
@@ -1607,7 +1618,7 @@ function CommunityLearningPath({
       return
     }
     if (showingOverview) {
-      const first = outlineOrder[0]
+      const first = nextOutlineNode(path, LEARNING_PATH_OVERVIEW_SECTION_ID)
       if (first) selectNodeKeepingScroll(first.id)
       return
     }
@@ -2816,6 +2827,9 @@ function CommunityLearningPath({
                       ? undefined
                       : goStepNext
                   }
+                  nextLabel={
+                    showingOverview ? LEARNING_PATH_START_LABEL : undefined
+                  }
                   explored={selected.status === 'explored'}
                   onToggleExplored={
                     selected.kind === 'goal' ? undefined : toggleExplored
@@ -3171,6 +3185,7 @@ function CommunityLearningPath({
           courseTitle={path.title}
           courseUrl={learningPathHref(slug)}
           activityRefreshNonce={activityRefreshNonce}
+          pathMembers={path.circle.members}
         />
       </div>
 

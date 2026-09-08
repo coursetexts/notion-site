@@ -96,7 +96,7 @@ flowchart TB
   Nav --> Learned
 ```
 
-- **Overview** — same tab as community paths (`?node=syllabus:overview`; `mental-map` and `overview` canonicalize here). Course title, then Resources (`data.mentalMapNodeId` holds map-only clips), then **Recommended Path** topic list. No type badges and no **Why is this on the learning path** (the course blurb stays in the hero). A 1px hairline sits under this row (none above it). Searching for “overview”, “general approach”, “mental map”, or “recommended syllabus” still finds **Overview**. **Commit & Remind Me** sits on the bottom step bar next to **Next** (`learning-path:{slug}`).
+- **Overview** — same tab as community paths (`?node=syllabus:overview`; `mental-map` and `overview` canonicalize here). Course title, then Resources (`data.mentalMapNodeId` holds map-only clips), then **Recommended Path** topic list. No type badges and no **Why is this on the learning path** (the course blurb stays in the hero). A 1px hairline sits under this row (none above it). Searching for “overview”, “general approach”, “mental map”, or “recommended syllabus” still finds **Overview**. **Commit & Remind Me** sits on the bottom step bar next to **Start learning path** (first topic, or the first Resources sub-tab when there are no topics yet; `learning-path:{slug}`).
 - **Topic tree** — accordion topics with a vertical line for nested lectures. A light-blue stroke check appears on the right when a topic or lecture is explored. Loads that node’s sequenced resources from `learning_paths.data`. **Why is this on the learning path:** is inline under the title. **Resources** start open.
 - **Resources** — from `data.resources` (or degrees JSON fallback).
 - **What you learned** — appears only after every syllabus node is explored.
